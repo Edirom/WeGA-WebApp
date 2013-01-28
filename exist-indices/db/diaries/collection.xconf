@@ -1,0 +1,37 @@
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+        <index xmlns:tei="http://www.tei-c.org/ns/1.0">
+                <create qname="tei:persName" type="xs:string"/>
+                <create qname="tei:workName" type="xs:string"/>
+                <create qname="tei:settlement" type="xs:string"/>
+                <create qname="tei:rs" type="xs:string"/>
+                <create qname="tei:date" type="xs:string"/>
+                <!-- <create qname="tei:placeName" type="xs:string"/> -->
+                <create qname="tei:ab" type="xs:string"/>
+                <create qname="tei:seg" type="xs:string"/>
+                <create qname="@key" type="xs:string"/>
+                <create qname="@when" type="xs:string"/>
+                <create qname="@notBefore" type="xs:string"/>
+                <create qname="@notAfter" type="xs:string"/>
+                <create qname="@from" type="xs:string"/>
+                <create qname="@to" type="xs:string"/>
+                <!-- Der folgende Eintrag führt leider unter eXist 1.4.3 zu dem Fehler, dass "1" im Index auftaucht (aus <hi rend="underline" n="1"/>); siehe Ticket #1353 -->
+                <!-- <create qname="@n" type="xs:string"/> -->
+                <create qname="@status" type="xs:string"/>
+                <fulltext default="none" attributes="no"/>
+                <lucene>
+                        <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+                        <!-- <analyzer class="de.wega.indexes.WeGAAnalyzer"/> -->
+                        <text qname="tei:ab"/>
+                        <text qname="tei:persName"/>
+                        <text qname="tei:seg"/>
+                        <text qname="tei:settlement"/>
+                        <text qname="tei:rs"/>
+                        <inline qname="tei:hi"/>
+                        <inline qname="tei:supplied"/>
+                        <inline qname="tei:subst"/>
+                        <inline qname="tei:del"/>
+                        <inline qname="tei:add"/>
+                        <inline qname="tei:damage"/>
+                </lucene>
+        </index>
+</collection>

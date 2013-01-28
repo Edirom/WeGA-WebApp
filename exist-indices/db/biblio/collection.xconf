@@ -1,0 +1,38 @@
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:tei="http://www.tei-c.org/ns/1.0">
+        <create qname="tei:persName" type="xs:string"/>
+        <create qname="tei:date" type="xs:string"/>
+        <create qname="tei:placeName" type="xs:string"/>
+        <create qname="tei:term" type="xs:string"/>
+        <create qname="tei:monogr" type="xs:string"/>
+        <create qname="tei:analytic" type="xs:string"/>
+        <create qname="tei:title" type="xs:string"/>
+        <create qname="@key" type="xs:string"/>
+        <create qname="@when" type="xs:string"/>
+        <create qname="@notBefore" type="xs:string"/>
+        <create qname="@notAfter" type="xs:string"/>
+        <create qname="@from" type="xs:string"/>
+        <create qname="@to" type="xs:string"/>
+        <create qname="@type" type="xs:string"/>
+        <create qname="@status" type="xs:string"/>
+        <fulltext default="none" attributes="no"/>
+        <lucene>
+            <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+            <!--            <analyzer class="de.wega.indexes.WeGAAnalyzer"/>-->
+            <text qname="tei:TEI"/>
+            <text qname="tei:biblStruct">
+                <ignore qname="tei:title"/>
+                <ignore qname="tei:author"/>
+                <ignore qname="tei:editor"/>
+            </text>
+			<text qname="tei:text">
+			    <ignore qname="tei:title"/>
+			    <ignore qname="tei:author"/>
+			    <ignore qname="tei:editor"/>
+			</text>
+            <text qname="tei:title" boost="2.0"/>
+            <text qname="tei:author" boost="2.0"/>
+            <text qname="tei:editor" boost="2.0"/>
+        </lucene>
+    </index>
+</collection>
