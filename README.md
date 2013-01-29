@@ -27,7 +27,7 @@ Quick start guide
 Documentation
 -------------
 
-To come …
+(Sparse) Documentation can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki).
 
 
 License
