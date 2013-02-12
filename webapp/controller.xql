@@ -421,13 +421,13 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/'
         else $error404
 
 (: PND Resolver :)
-else if (matches($exist:path, concat('^/', $lang, '/pnd/', '[0-9]{8}[0-9X]$'))) then
+else if (matches($exist:path, concat('^/', $lang, '/pnd/', '[0-9]{8,9}[0-9X]$'))) then
     let $id := wega:getIDByPND($exist:resource)
     return if($id ne '') then
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         	<redirect url="{concat('/', $lang, '/', $id)}"/>
         </dispatch>
-    else ()
+    else $error404
 
 (: Shortcut für Weber-Korrespondenz :)
 else if (matches($exist:path, concat('^/', lower-case($letters), '/?$'))) then
