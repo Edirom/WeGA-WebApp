@@ -106,7 +106,7 @@ declare function facets:createFacetLi($facet as xs:string, $freq as xs:int, $che
  :)
 
 declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int, $checked as xs:boolean, $category as xs:string, $docType as xs:string, $cacheKey as xs:string, $lang as xs:string) as element(li) {
-    let $facetExpanded := 
+    let $facetExpanded :=
         if(wega:isPerson($facet)) then wega:getRegName($facet)
         else if(wega:isWork($facet)) then wega:getRegTitle($facet)
         else if($facet ne '') then $facet
@@ -152,7 +152,11 @@ declare function facets:createFacetListForPopup($facets as element()*, $maxRows 
     return
     <ul>{
         if(exists($facets) or exists($checked)) then (
-            let $subSeqOfFacets := for $s in subsequence($facets, 1, $numberOfRows) order by $s/facets:term ascending return $s
+            let $subSeqOfFacets :=
+                for $s in subsequence($facets, 1, $numberOfRows)
+                let $temp := if(wega:isPerson($s/facets:term)) then wega:getRegName($s/facets:term) else if(wega:isWork($s/facets:term)) then wega:getRegTitle($s/facets:term) else if($s/facets:term ne '') then $s/facets:term else wega:getLanguageString('unknown', $lang)
+                order by $temp ascending
+                return $s
             (:let $subSeqOfFacets := for $x in $facets return if ($totalNumberOfChecked>0 and not(index-of($checked,data($x//term))>0)) then $x else():)
             (:let $log := util:log-system-out($subSeqOfFacets):)
             for $i in $subSeqOfFacets
@@ -587,9 +591,11 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $normDates := wega:getNormDates($docType)//entry
 	let $undatedKeys := 
 		if($docType eq 'diaries') then $normDates[not(./node())][@docID = $coll//tei:ab/@xml:id]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
+		else if($docType eq 'biblio') then $normDates[not(./node())][@docID = $coll//tei:biblStruct/@xml:id]/string(@docID)
 		else $normDates[not(./node())][@docID = $coll//tei:TEI/@xml:id]/string(@docID)
 	let $dated := 
 		if($docType eq 'diaries') then $normDates[@docID = $coll//tei:ab/@xml:id][./node()]
+		else if($docType eq 'biblio') then $normDates[@docID = $coll//tei:biblStruct/@xml:id][./node()]
 		else $normDates[@docID = $coll//tei:TEI/@xml:id][./node()]
     let $distinctYears := for $i in distinct-values($dated/@year) return $i cast as xs:int
     let $saveDated := session:set-attribute($datedSessionName, $dated)
@@ -626,13 +632,14 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
  : @return html:ul
 :)
 declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $yearsSessionName as xs:string, $lang as xs:string, $recusionDepth as xs:int) as element(ul) {
+    let $showYearsOnly := matches($entriesSessionName, 'biblio') (: Ausnahme für Bibliographie: hier werden nur Jahre angezeigt, keine Monate :)
     let $entries := session:get-attribute($entriesSessionName)
     let $distinctYears := session:get-attribute($yearsSessionName)
     let $maxRows := xs:int(wega:getOption('listViewMaxRows'))
     let $countYears := count($distinctYears)
     let $myDivisor := if (round($countYears div $maxRows) eq 0) then 1 else xs:int(round($countYears div $maxRows)) (: 9/7 :) 
     let $numberOfRows := if(ceiling($countYears div $myDivisor) gt $maxRows) then $maxRows else xs:int(ceiling($countYears div $myDivisor))
-    return if($countYears gt 1 or $recusionDepth eq 0) then
+    return if($countYears gt 1 or $recusionDepth eq 0 or $showYearsOnly) then
 		<ul>{
 			for $i at $count in (1 to $numberOfRows)
 			let $fromYearPosition := ($i - 1) * ($myDivisor) + 1
@@ -642,13 +649,14 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 			     else $distinctYears[. = (xs:int($distinctYears[$toYearPosition]) to xs:int($distinctYears[$fromYearPosition]))]
 			let $countDocsInInterval := count($entries[@year = $yearsInInterval])
 			let $isOneYear := $distinctYears[$fromYearPosition] eq $distinctYears[$toYearPosition]
+			let $nestedMenu := ($countDocsInInterval gt 12 and not($showYearsOnly)) or (not($isOneYear) and $showYearsOnly)
 			return 
 			<li>{
-				if($countDocsInInterval gt 12) then attribute class {'collapsed'} else (),
+				if($nestedMenu) then attribute class {'collapsed'} else (),
 				element span {
 					attribute class {'checkItem'},
 					attribute onclick {
-						if($countDocsInInterval gt 12) then 
+						if($nestedMenu) then 
 							let $newYearsSessionName := concat($yearsSessionName, $count)
 							let $saveYears := session:set-attribute($newYearsSessionName, $yearsInInterval)
 							return concat('javascript:', wega:printJavascriptFunction(<function><name>toggleSubMenu</name><param type="obj">this</param><param>{$entriesSessionName}</param><param>{$newYearsSessionName}</param><param>{$lang}</param></function>))

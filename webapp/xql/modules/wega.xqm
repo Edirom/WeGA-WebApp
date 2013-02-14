@@ -1495,11 +1495,9 @@ declare function wega:printJournalRef($biblStruct as node()?, $wrapperElement as
  :)
 
 declare function wega:printCitation($biblStruct as element(), $wrapperElement as xs:string, $lang as xs:string) as element()? {
-    if(wega:getRevisionStatus($biblStruct/root()) eq 'approved') then 
-        if($biblStruct/@type eq 'book') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
-        else if($biblStruct/@type eq 'article') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
-        else if($biblStruct/@type eq 'incollection') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
-        else ()
+    if($biblStruct/@type eq 'book') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'article') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'incollection') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else wega:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
@@ -1543,7 +1541,7 @@ declare function wega:printBookCitation($biblStruct as element(), $wrapperElemen
     let $editors := wega:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then concat($biblStruct/tei:series/tei:title, ' ', wega:getLanguageString('vol', $lang), '&#160;', $biblStruct/tei:series/tei:biblScope[@type eq 'vol']) else ()
     let $title := <span class="title">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
-    let $pubPlaceNYear := <span class="placeNYear">{string-join(($biblStruct//tei:imprint/tei:pubPlace, $biblStruct//tei:imprint/tei:date), ' ')}</span>
+    let $pubPlaceNYear := wega:printpubPlaceNYear($biblStruct//tei:imprint)
     return 
         element {$wrapperElement} {
             attribute class {'book'},
@@ -1603,7 +1601,7 @@ declare function wega:printIncollectionCitation($biblStruct as element(), $wrapp
     let $editor := wega:printCitationAuthors($biblStruct//tei:editor, $lang)
     let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title, '. ')}</span>
     let $bookTitle := <span class="journalTitle">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
-    let $pubPlaceNYear := <span class="placeNYear">{string-join(($biblStruct//tei:imprint/tei:pubPlace, $biblStruct//tei:imprint/tei:date), ' ')}</span>
+    let $pubPlaceNYear := wega:printpubPlaceNYear($biblStruct//tei:imprint)
     return 
         element {$wrapperElement} {
             $authors,
@@ -1611,10 +1609,8 @@ declare function wega:printIncollectionCitation($biblStruct as element(), $wrapp
             $articleTitle,
             ', in: ',
             $bookTitle,
-            concat(', ', wega:getLanguageString('edBy', $lang), ' '),
-            $editor,
-            ', ',
-            $pubPlaceNYear,
+            if(exists($editor)) then (concat(', ', wega:getLanguageString('edBy', $lang), ' '), $editor) else (),
+            if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
             if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', wega:getLanguageString('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
         }
 };
@@ -1638,6 +1634,29 @@ declare function wega:printCitationAuthors($authors as element()*, $lang as xs:s
             else if($counter eq $countAuthors - 1) then concat(' ', wega:getLanguageString('and', $lang), ' ')
             else ()
         )
+};
+
+(:~
+ : Helper function for wega:print*Citation() functions
+ : Creates a html:span element with pubPlaces and date as content 
+ : 
+ : @author Peter Stadler
+ : @param $imprint a tei:imprint element 
+ : @return html:span element if any data is given, the empty sequence otherwise
+ :)
+ 
+declare function wega:printpubPlaceNYear($imprint as element(tei:imprint)) as element(span)? {
+    let $countPlaces := count($imprint/tei:pubPlace)
+    let $places := 
+        for $place at $count in $imprint/tei:pubPlace
+        return (
+            if($count eq $countPlaces) then normalize-space($place)
+            else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
+            else concat(normalize-space($place), ', ')
+        )
+    return 
+        if($countPlaces ge 1 or $imprint/tei:date/@when castable as xs:date or $imprint/tei:date/@when castable as xs:gYear) then <span class="placeNYear">{string-join($places, ''), normalize-space($imprint/tei:date)}</span>
+        else ()
 };
 
 (:
@@ -2754,6 +2773,9 @@ declare function wega:createBiblioNormDates($docType as xs:string) as element() 
             return 
             element entry {
                 attribute docID {$docID},
+                if ($normDate castable as xs:date) then attribute year {year-from-date($normDate cast as xs:date)} else (),
+                if ($normDate castable as xs:date) then attribute month {month-from-date($normDate cast as xs:date)} else (),
+                if ($normDate castable as xs:date) then attribute day {day-from-date($normDate cast as xs:date)} else (),
                 $normDate
             }
         }</dictionary>  

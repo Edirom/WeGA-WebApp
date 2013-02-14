@@ -155,6 +155,7 @@ return
         	else if($docType eq 'works') then facets:getSeries($docType, $lang)
         	else if($docType eq 'persons') then facets:createAlphabetList($docType, $lang)
         	else if($docType eq 'news') then facets:createChronoList($docType, $lang)
+        	else if($docType eq 'biblio') then facets:createChronoList($docType, $lang)
         	else ()
     
     else if($function eq 'getSubMenu') then
