@@ -49,13 +49,9 @@ return
         let $entry := request:get-parameter('entry', ())    
         return ajax:getListFromEntriesWithoutKey($docID,$lang,$entry)
         
-    else if($function='letter_printTranscription') then
-        let $docID := request:get-parameter('id','A040914')
-        return ajax:letter_printTranscription($docID,$lang)
-    
-    else if($function='doc_printTranscription') then
-        let $docID := request:get-parameter('id','A040914')
-        return ajax:doc_printTranscription($docID,$lang)
+    else if($function='printTranscription') then
+        let $docID := request:get-parameter('id','')
+        return ajax:printTranscription($docID,$lang)
     
     else if($function eq 'getDiaryContext') then
         let $contextContainer := request:get-parameter('contextContainer','')

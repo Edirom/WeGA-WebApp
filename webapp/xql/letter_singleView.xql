@@ -89,7 +89,7 @@ return
                 {xho:createBreadCrumb($doc, $lang)}
                 <div id="contentLeft">
                         <ul id="letterTabs" class="shadetabs">
-                            <li><a href="functions/getAjax.xql?function=letter_printTranscription&#38;id={$docID}&#38;lang={$lang}" class="selected" rel="letterFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">{wega:getLanguageString('textOfLetter',$lang)}</a></li>
+                            <li><a href="functions/getAjax.xql?function=printTranscription&#38;id={$docID}&#38;lang={$lang}" class="selected" rel="letterFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">{wega:getLanguageString('textOfLetter',$lang)}</a></li>
                             <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="letterFrame" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
                             <li>{if(exists($doc//tei:facsimile//tei:graphic) and $rightsAreOK) 
                                 then <a href="functions/getImage.xql?id={$docID}&#38;lang={$lang}" rel="letterFrame" title="{wega:getLanguageString('tabTitle_facsimile', $lang)}">{wega:getLanguageString('facsimile',$lang)}</a>
@@ -97,7 +97,7 @@ return
                             </li>
                         </ul>
                     <div id="letterFrame">
-                        {if($withJS ne 'true') then ajax:letter_printTranscription($docID,$lang) else()}
+                        {if($withJS ne 'true') then ajax:printTranscription($docID,$lang) else()}
                     </div>
                     <script type="text/javascript">
                         var letter=new ddajaxtabs("letterTabs", "letterFrame")

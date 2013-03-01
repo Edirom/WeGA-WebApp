@@ -2187,7 +2187,27 @@ declare function wega:getCollectionPath($docID as xs:string) as xs:string? {
 };
 
 (:~
- : Gets letter head
+ : Gets writing header
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @return element
+ :)
+
+declare function wega:getWritingHead($doc as document-node(), $xslParams as element(parameters), $lang as xs:string) as item()* {
+    let $xslParamsHeader := 
+        <parameters>
+            {$xslParams/*}
+            <param name="headerMode" value="true"/>
+        </parameters>
+    return 
+        for $i in transform:transform($doc//tei:fileDesc/tei:titleStmt, doc("/db/webapp/xsl/doc_text.xsl"), $xslParamsHeader)
+        return wega:changeNamespace($i, '', ())
+};
+
+(:~
+ : Gets letter header
  :
  : @author Peter Stadler
  : @param $doc document node
@@ -2206,7 +2226,7 @@ declare function wega:getLetterHead($doc as document-node(), $lang as xs:string)
 };
 
 (:~
- : Constructs letter head
+ : Constructs letter header
  :
  : @author Peter Stadler
  : @param $doc document node

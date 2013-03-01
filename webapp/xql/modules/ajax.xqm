@@ -616,8 +616,7 @@ declare function ajax:getListFromEntriesWithoutKey($docID,$lang,$entry) {
 };
 
 (:~
- : Returns transcription of letter
- : (functions for requestLetterContext)
+ : Return the transcription text
  :
  : @author Peter Stadler
  : @param $docID ID of letter
@@ -625,17 +624,26 @@ declare function ajax:getListFromEntriesWithoutKey($docID,$lang,$entry) {
  : @return 
  :)
 
-declare function ajax:letter_printTranscription($docID,$lang) {
+declare function ajax:printTranscription($docID as xs:string, $lang as xs:string) as item()* {
     let $doc := wega:doc($docID)
     let $xslParams := 
-     <parameters>
-         <param name="lang" value="{$lang}"/>
-         <param name="dbPath" value="{document-uri($doc)}"/>
-         <param name="docID" value="{$docID}"/>
-         <param name="transcript" value="true"/>
-     </parameters>
-    let $header := wega:getLetterHead($doc, $lang)
-    let $letter := 
+        <parameters>
+            <param name="lang" value="{$lang}"/>
+            <param name="dbPath" value="{document-uri($doc)}"/>
+            <param name="docID" value="{$docID}"/>
+            <param name="transcript" value="true"/>
+        </parameters>
+    let $xslt := 
+        if(wega:isLetter($docID)) then doc("/db/webapp/xsl/letter_text.xsl")
+        else if(wega:isNews($docID)) then doc("/db/webapp/xsl/news.xsl")
+        else if(wega:isWriting($docID)) then doc("/db/webapp/xsl/doc_text.xsl")
+        else ()
+    let $head := 
+        if(wega:isLetter($docID)) then wega:getLetterHead($doc, $lang)
+        else if(wega:isNews($docID)) then element h1 {string($doc//tei:title[@level='a'])}
+        else if(wega:isWriting($docID)) then wega:getWritingHead($doc, $xslParams, $lang)
+        else ()
+    let $body := 
          if(functx:all-whitespace($doc//tei:text))
          (: Entfernen von Namespace-Deklarationen: siehe http://wiki.apache.org/cocoon/RemoveNamespaces :)
          then (
@@ -653,42 +661,35 @@ declare function ajax:letter_printTranscription($docID,$lang) {
                 }
             }
          )
-         else (wega:changeNamespace(transform:transform($doc//tei:text, doc("/db/webapp/xsl/letter_text.xsl"), $xslParams), '', ()))
-    return ($header, $letter)
+         else (wega:changeNamespace(transform:transform($doc//tei:text, $xslt, $xslParams), '', ()))
+     let $foot := 
+        if(wega:isNews($docID)) then ajax:getNewsFoot($doc, $lang)
+        else ()
+     
+     return ($head, $body, $foot)
 };
 
 (:~
- : Returns transcription of document
- : (functions for requestLetterContext)
+ : Create dateline and author link for website news
+ : (Helper Function for ajax:printTranscription())
  :
  : @author Peter Stadler
- : @param $docID ID of document
+ : @param $doc the news document node
  : @param $lang the current language (de|en)
- : @return 
+ : @return element html:p
  :)
-
-declare function ajax:doc_printTranscription($docID,$lang) {
-    let $doc := wega:doc($docID)
-    let $xslParamsHeader := 
-        <parameters>
-            <param name="lang" value="{$lang}"/>
-            <param name="dbPath" value="{document-uri($doc)}"/>
-            <param name="docID" value="{$docID}"/>
-            <param name="transcript" value="true"/>
-            <param name="headerMode" value="true"/>
-        </parameters>
-    let $xslParamsText := <parameters>{$xslParamsHeader/*[not(@name='headermode')]}</parameters> (: Entspricht $xslParamsHeader nur ohne headerMode-Parameter, was im Stylesheet zu unterschiedlichen modes führt :)
-    let $header :=	
-    	element header { 
-    		transform:transform($doc//tei:fileDesc/tei:titleStmt, doc("/db/webapp/xsl/doc_text.xsl"), $xslParamsHeader)
-    	}
-    let $transformedHeader := wega:changeNamespace($header, '', ())
-    let $document := 
-        if(functx:all-whitespace($doc//tei:text)) (: tei:body kommt auch in tei:floatingText vor! :)
-    (: Entfernen von Namespace-Deklarationen: siehe http://wiki.apache.org/cocoon/RemoveNamespaces :)
-            then (<div id="teiDoc_body">{wega:getLanguageString('correspondenceTextNotYetAvailable', $lang)}</div>)
-            else (wega:changeNamespace(transform:transform($doc//tei:text, doc("/db/webapp/xsl/doc_text.xsl"), $xslParamsText), '', ()))
-    return ($transformedHeader/*, $document)
+ 
+declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) as element(p) {
+    let $authorID := data($doc//tei:titleStmt/tei:author[1]/@key)
+    let $dateFormat := 
+        if ($lang = 'en') then '%A, %B %d, %Y'
+                          else '%A, %d. %B %Y'
+    return 
+        element p {
+            attribute class {'authorDate'},
+            wega:createPersonLink($authorID, $lang, 'fs'), 
+            concat(', ', wega:strftime($dateFormat, datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang))
+        }
 };
 
 (:~

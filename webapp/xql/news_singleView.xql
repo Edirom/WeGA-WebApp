@@ -89,7 +89,7 @@ return
                 {xho:createBreadCrumb($news, $lang)}
                 <div id="contentLeft">
                     <ul id="newsTabs" class="shadetabs">
-                        <li><a href="functions/news_printTranscription.xql?id={$docID}&#38;lang={$lang}" class="selected" rel="newsFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">Text</a></li>
+                        <li><a href="functions/getAjax.xql?function=printTranscription&#38;id={$docID}&#38;lang={$lang}" class="selected" rel="newsFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">Text</a></li>
                         <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="newsFrame" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
                     </ul>
                     <div id="newsFrame"><!-- (:Wird onload gefüllt:) --></div>

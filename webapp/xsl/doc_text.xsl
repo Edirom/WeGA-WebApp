@@ -17,7 +17,9 @@
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="$headerMode">
-                <xsl:apply-templates mode="header"/>
+                <xsl:element name="div">
+                    <xsl:apply-templates mode="header" select=".//tei:title[@level='a']"/>
+                </xsl:element>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:apply-templates/>
