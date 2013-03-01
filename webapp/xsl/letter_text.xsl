@@ -154,7 +154,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:closer">
+    <xsl:template match="tei:closer" priority="1">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">

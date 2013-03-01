@@ -123,14 +123,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:signed">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_signed'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:figure" priority="1">
         <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
         <xsl:variable name="figureHeight" select="'195'"/>

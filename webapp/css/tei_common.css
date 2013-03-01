@@ -221,14 +221,22 @@ li.listSubTitle {
 	list-style-type: none;
 }
 
-.tei_segRight {
-/*    float: right;*/
-    text-align: right;
+/* 
+    <signed> und <seg> werden als 'block' gesetzt, 
+    damit die Textausrichtung (s.u.) modifiziert werden kann 
+*/
+.tei_signed, .tei_segBlock {
     display: block;
-/*    width:99%;*/
 }
 
-.tei_segCenter {
+.textAlign-right {
+    text-align: right;
+}
+
+.textAlign-center {
     text-align: center;
-    display: block;
+}
+
+.textAlign-left {
+    text-align: left;
 }

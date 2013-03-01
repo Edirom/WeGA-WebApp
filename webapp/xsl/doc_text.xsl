@@ -78,12 +78,4 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:signed">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'teiSigned'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
-</xsl:stylesheet>
+    </xsl:stylesheet>
