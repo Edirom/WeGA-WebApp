@@ -153,7 +153,7 @@ declare function xho:createCommonFooter() as element()* {
     return (
     <div id="supportBadges">
         <a href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" title="W3C Markup Validation Service" /></a>
-        <a href="http://exist-db.org"><img src="http://exist-db.org/resources/powered.gif" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></a>
+        <a href="http://exist-db.org"><img src="http://exist-db.org/exist/icons/existdb-128.png" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></a>
         <a href="http://staatsbibliothek-berlin.de"><img src="{string-join(($baseHref, $html_pixDir,'stabi-logo.png'), '/')}" alt="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" /></a>
         <a href="http://www.adwmainz.de"><img src="{string-join(($baseHref, $html_pixDir,'adwMainz.png'), '/')}" alt="Akademie der Wissenschaften und der Literatur Mainz" title="Akademie der Wissenschaften und der Literatur Mainz" /></a>
         <a href="http://www.tei-c.org"><img src="http://www.tei-c.org/About/Badges/powered-by-TEI.png" alt="Powered by TEI" title="TEI: Text Encoding Initiative" /></a>
