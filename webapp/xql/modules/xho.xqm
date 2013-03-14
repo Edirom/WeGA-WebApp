@@ -131,23 +131,29 @@ declare function xho:createFooter() as element() {
  : @return XHTML element 
  :)
 
-declare function xho:createCommonFooter() as element()* {
+declare function xho:createCommonFooter() as item()* {
     let $html_pixDir := wega:getOption('html_pixDir')
     let $baseHref := wega:getOption('baseHref')
     let $piwikTrackingCode := 
         if(wega:getOption('environment') eq 'production') then (
+            <!-- Piwik -->,
             <script type="text/javascript">
-                var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.weber-gesamtausgabe.de/piwik/" : "http://www.weber-gesamtausgabe.de/piwik/");
-                document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+              var _paq = _paq || [];
+              _paq.push(["trackPageView"]);
+              _paq.push(["enableLinkTracking"]);
+            
+              (function() {{
+                var u=(("https:" == document.location.protocol) ? "https" : "http") + "{concat(substring-after($baseHref, 'http'), '/piwik/')}";
+                _paq.push(["setTrackerUrl", u+"piwik.php"]);
+                _paq.push(["setSiteId", "1"]);
+                var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+                g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+              }})();
             </script>,
-            <script type="text/javascript">
-                try {{
-                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-                piwikTracker.trackPageView();
-                piwikTracker.enableLinkTracking();
-                }} catch( err ) {{}}
-            </script>,
-            <noscript><p><img src="{concat($baseHref, '/piwik/piwik.php?idsite=1')}" style="border:0" alt="" /></p></noscript>
+            <!-- End Piwik Code -->,
+            <!-- Piwik Image Tracker -->,
+            <noscript><p><img src="{concat($baseHref, '/piwik/piwik.php?idsite=1&amp;rec=1')}" style="border:0" alt="" /></p></noscript>,
+            <!-- End Piwik -->
         )
         else ()
     return (
