@@ -313,12 +313,27 @@
     <xsl:function name="wega:getTextAlignment" as="xs:string">
         <xsl:param name="rend" as="xs:string?"/>
         <xsl:param name="default" as="xs:string"/>
-        <xsl:choose><xsl:when test="$rend = ('left', 'right', 'center')">
+        <xsl:choose>
+            <xsl:when test="$rend = ('left', 'right', 'center')">
                 <xsl:value-of select="concat('textAlign-', $rend)"/>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="concat('textAlign-', $default)"/>
+            <xsl:otherwise>
+                <xsl:value-of select="concat('textAlign-', $default)"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+
+    <xsl:function name="wega:computeMedian" as="xs:double?">
+        <xsl:param name="numbers" as="xs:double*"/>
+        <xsl:variable name="orderedNumbers" as="xs:double*">
+            <xsl:for-each select="$numbers">
+                <xsl:sort select="."/>
+                <xsl:value-of select="."/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="middle" as="xs:double" select="(count($orderedNumbers) + 1) div 2"/>
+        <xsl:value-of
+            select="avg(($orderedNumbers[ceiling($middle)], $orderedNumbers[floor($middle)]))"/>
     </xsl:function>
 
     <!--  *********************************************  -->
@@ -417,7 +432,7 @@
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
     <xsl:template match="tei:reg"/>
-    
+
     <xsl:template match="tei:lb" priority="0.5">
         <xsl:if test="@type='inWord'">
             <xsl:element name="span">
@@ -427,13 +442,15 @@
         </xsl:if>
         <xsl:element name="br"/>
     </xsl:template>
-    
+
     <!-- 
         tei:seg und tei:signed mit @rend werden schon als block-level-Elemente gesetzt, 
         brauchen daher keinen Zeilenumbruch mehr 
     -->
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
+    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]"
+        priority="0.6"/>
+    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]"
+        priority="0.6"/>
 
     <xsl:template match="text()">
         <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols), '|')"/>
@@ -674,7 +691,37 @@
         <xsl:element name="table">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:element name="tbody">
-                <xsl:apply-templates/>
+                <xsl:variable name="currNode" select="."/>
+                <!-- 
+                    Mittels median wird eine alternative Berechnung der Spaltenbreiten angeboten
+                    Dabei wird nicht das arithmetische Mittel der Zeichenlängen der jeweiligen Spalten genommen,
+                    sonderen eben der Median, damit extreme Ausreißer nicht so ins Gewicht fallen.
+                    (siehe  z.B. Tabelle in A040603)
+                -->
+                <xsl:variable name="medians" as="xs:double*">
+                    <xsl:choose>
+                        <xsl:when test="@rend = 'median'">
+                            <xsl:for-each select="(1 to count($currNode/tei:row[1]/tei:cell))">
+                                <xsl:variable name="counter" as="xs:integer">
+                                    <xsl:value-of select="position()"/>
+                                </xsl:variable>
+                                <xsl:value-of
+                                    select="wega:computeMedian($currNode/tei:row/tei:cell[$counter]/string-length())"
+                                />
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise/>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="widths" as="xs:double*">
+                    <xsl:for-each select="$medians">
+                        <xsl:value-of select="round-half-to-even(100 div (sum($medians) div .), 2)"
+                        />
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:apply-templates>
+                    <xsl:with-param name="widths" select="$widths" tunnel="yes"/>
+                </xsl:apply-templates>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -685,6 +732,8 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:cell">
+        <xsl:param name="widths" as="xs:double*" tunnel="yes"/>
+        <xsl:variable name="counter" as="xs:integer" select="position()"/>
         <xsl:choose>
             <xsl:when test="parent::tei:row[@role='label']">
                 <xsl:element name="th">
@@ -695,6 +744,11 @@
             <xsl:otherwise>
                 <xsl:element name="td">
                     <xsl:apply-templates select="@xml:id"/>
+                    <xsl:if test="exists($widths)">
+                        <xsl:attribute name="style">
+                            <xsl:value-of select="concat('width:', $widths[$counter], '%')"/>
+                        </xsl:attribute>
+                    </xsl:if>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:otherwise>
@@ -909,28 +963,30 @@
         <xsl:apply-templates/>
         <xsl:text>"</xsl:text>
     </xsl:template>-->
-<!--
+    <!--
         Ein <signed> wird standardmäßig rechtsbündig gesetzt und in eine eigene Zeile (display:block)
     -->
     <xsl:template match="tei:signed" priority="0.5">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="string-join(('tei_signed', wega:getTextAlignment(@rend, 'right')), ' ')"/>
+            <xsl:attribute name="class"
+                select="string-join(('tei_signed', wega:getTextAlignment(@rend, 'right')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    
+
     <!--
         Ein <seg> mit @rend wird standardmäßig linksbündig gesetzt und in eine eigene Zeile (display:block)
     -->
     <xsl:template match="tei:seg[@rend]" priority="0.5">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="string-join(('tei_segBlock', wega:getTextAlignment(@rend, 'left')), ' ')"/>
+            <xsl:attribute name="class"
+                select="string-join(('tei_segBlock', wega:getTextAlignment(@rend, 'left')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    
+
     <xsl:template match="tei:closer" priority="0.5">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
@@ -938,11 +994,11 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    
+
     <xsl:template match="@xml:id">
         <xsl:attribute name="id">
             <xsl:value-of select="."/>
         </xsl:attribute>
     </xsl:template>
-    
+
 </xsl:stylesheet>
