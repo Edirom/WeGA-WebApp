@@ -995,6 +995,14 @@
         </xsl:element>
     </xsl:template>
 
+    <xsl:template match="tei:sic">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="'tei_sic'"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+
     <xsl:template match="@xml:id">
         <xsl:attribute name="id">
             <xsl:value-of select="."/>
