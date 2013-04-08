@@ -16,6 +16,7 @@
     <xsl:param name="dbPath"/>
     <xsl:param name="docID"/>
     <xsl:param name="transcript"/>
+    <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
 
     <!--  *********************************************  -->
     <!--  *             Global Functions              *  -->
@@ -994,7 +995,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-
+    
     <xsl:template match="tei:sic">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>

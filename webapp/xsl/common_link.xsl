@@ -13,32 +13,47 @@
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
     <xsl:template match="tei:persName | tei:author">
-        <xsl:call-template name="createLink"/>
+        <xsl:choose>
+            <xsl:when test="$suppressLinks">
+                <xsl:call-template name="createSpanOnly"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="createLink"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="tei:rs">
         <xsl:choose>
-            <xsl:when test="matches(@type, '.+s$|newsPl$')">
-                <!-- Pluralformen werden aktuell noch ausgespart-->
-                <xsl:element name="span">
-                    <xsl:apply-templates select="@xml:id"/>
-                    <xsl:attribute name="class">
-                        <xsl:value-of select="@type"/>
-                        <xsl:if test="@key">
-                            <xsl:text> </xsl:text>
-                            <xsl:value-of select="@key"/>
-                        </xsl:if>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
-                </xsl:element>
-            </xsl:when>
-            <xsl:when test="@type = 'work'">
-                <xsl:call-template name="createHover">
-                    <xsl:with-param name="key" select="@key"/>
-                </xsl:call-template>
+            <xsl:when test="$suppressLinks">
+                <xsl:call-template name="createSpanOnly"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:call-template name="createLink"/>
+                <xsl:choose>
+                    <xsl:when test="matches(@type, '.+[yrnkg]s$|newsPl$')">
+                        <!-- Pluralformen werden aktuell noch ausgespart-->
+                        <xsl:element name="span">
+                            <xsl:apply-templates select="@xml:id"/>
+                            <xsl:attribute name="class">
+                                <xsl:value-of select="@type"/>
+                                <xsl:if test="@key">
+                                    <xsl:text> </xsl:text>
+                                    <xsl:value-of select="@key"/>
+                                </xsl:if>
+                            </xsl:attribute>
+                            <xsl:apply-templates/>
+                        </xsl:element>
+                    </xsl:when>
+                    <xsl:when test="matches(@type, 'work|biblio')">
+                        <!-- Für Werke und Bibliographische Objekte gibt es aktuell noch keine Einzelansicht, lediglich einen Tooltip -->
+                        <xsl:call-template name="createHover">
+                            <xsl:with-param name="key" select="@key"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="createLink"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -73,16 +88,13 @@
 
     <xsl:template match="tei:workName">
         <xsl:choose>
-            <xsl:when test="@key">
+            <xsl:when test="@key and not($suppressLinks)">
                 <xsl:call-template name="createHover">
                     <xsl:with-param name="key" select="@key"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:element name="span">
-                    <xsl:apply-templates select="@xml:id"/>
-                    <xsl:apply-templates/>
-                </xsl:element>
+                <xsl:call-template name="createSpanOnly"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -172,6 +184,13 @@
                     <xsl:text>Tip('unbekannt')</xsl:text>
                 </xsl:attribute>
             </xsl:if>-->
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template name="createSpanOnly">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 

@@ -703,8 +703,17 @@ declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) a
  :)
  
 declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:string) {
+    (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
+    let $yearsToSuppress := if(wega:getOption('environment') eq 'development') then  () else (1813,1814,1815,1816,1821,1822,1823,1826)
     let $doc := wega:doc($docID)
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="transcript" value="true"/></parameters>
+    let $curYear := year-from-date($doc/tei:ab/@n cast as xs:date)
+    let $xslParams := 
+        <parameters>
+            <param name="lang" value="{$lang}"/>
+            <param name="transcript" value="true"/>
+            {if($curYear = $yearsToSuppress) then <param name="suppressLinks" value="true"/>
+            else ()}
+        </parameters>
     let $dateFormat := if ($lang eq 'en')
         then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
