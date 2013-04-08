@@ -336,7 +336,7 @@ declare function facets:sortColl($coll as item()*) as item()* {
     else if(wega:isDiary($coll[1]/string(@xml:id)))   then for $i in $coll order by $i/xs:date(@n) ascending return $i
     else if(wega:isWork($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     else if(wega:isNews($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    else if(wega:isBiblio($coll[1]/string(@xml:id)))  then for $i in $coll order by $i//tei:imprint/tei:date/xs:string(@when) descending return $i
+    else if(wega:isBiblio($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
     else $coll
 };
 
