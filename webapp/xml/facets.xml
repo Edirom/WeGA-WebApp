@@ -81,12 +81,7 @@
     <entry xml:id="docStatus">
         <collection>diaries</collection>
         <collection>persons</collection>
-        <!--
-            Nachstehender XPath funktioniert leider nicht richtig. (Ticket #911)
-            Bei Überarbeiten der biblio-collection nochmal überarbeiten
-        -->
-<!--        <collection>biblio</collection>-->
-<!--        <path node="attribute">/(@status, root()//tei:revisionDesc/@status)</path>-->
+        <collection>biblio</collection>
         <path node="attribute">/@status</path>
     </entry>
 </dictionary>
