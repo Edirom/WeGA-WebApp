@@ -1466,6 +1466,9 @@ declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wra
     else if($biblStruct/@type eq 'book') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'incollection') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'inproceedings') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'review') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'phdthesis') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
     else wega:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
@@ -1507,7 +1510,7 @@ declare function wega:printGenericCitation($biblStruct as element(tei:biblStruct
 declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editors := wega:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
-    let $series := if(exists($biblStruct/tei:series/tei:title)) then concat($biblStruct/tei:series/tei:title, ' ', wega:getLanguageString('vol', $lang), '&#160;', $biblStruct/tei:series/tei:biblScope[@type eq 'vol']) else ()
+    let $series := if(exists($biblStruct/tei:series/tei:title)) then wega:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
     let $title := <span class="title">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
     let $pubPlaceNYear := wega:printpubPlaceNYear($biblStruct//tei:imprint)
     return 
@@ -1577,6 +1580,30 @@ declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrap
 };
 
 (:~
+ : Create a bibliographic citation for a series
+ : Helper function for various wega:print*Citation() 
+ : 
+ : @author Peter Stadler
+ : @param $series the TEI monogr element with the bibliographic reference of the journal
+ : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
+ : @param $lang the language switch (en, de)
+ : @return element
+ :)
+
+declare function wega:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
+    let $seriesTitle := string-join($series/tei:title, '. ')
+(:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
+    let $biblScope := concat(
+        if($series/tei:biblScope[@type = 'vol']) then concat(', ', wega:getLanguageString('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
+        if($series/tei:biblScope[@type = 'issue']) then concat(', ', wega:getLanguageString('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
+    )
+    return 
+        element {$wrapperElement} {
+            string-join(($seriesTitle, $biblScope), '')
+        }
+};
+
+(:~
  : Create a bibliographic citation for an incollection entry type
  : 
  : @author Peter Stadler
@@ -1590,8 +1617,9 @@ declare function wega:printIncollectionCitation($biblStruct as element(tei:biblS
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editor := wega:printCitationAuthors($biblStruct//tei:editor, $lang)
     let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title, '. ')}</span>
-    let $bookTitle := <span class="journalTitle">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
+    let $bookTitle := <span class="collectionTitle">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
     let $pubPlaceNYear := wega:printpubPlaceNYear($biblStruct//tei:imprint)
+    let $series := if(exists($biblStruct/tei:series/tei:title)) then wega:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
     return 
         element {$wrapperElement} {
             $authors,
@@ -1600,6 +1628,7 @@ declare function wega:printIncollectionCitation($biblStruct as element(tei:biblS
             ', in: ',
             $bookTitle,
             if(exists($editor)) then (concat(', ', wega:getLanguageString('edBy', $lang), ' '), $editor) else (),
+            if(exists($series)) then (' ', <span class="series">{concat('(= ', $series, ')')}</span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
             if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', wega:getLanguageString('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
         }
