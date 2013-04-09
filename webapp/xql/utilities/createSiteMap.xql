@@ -14,7 +14,7 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/
 declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
 
 declare variable $local:languages := ('en', 'de');
-declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications', 'bibliography':));
+declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography');
 declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'diaries', (:'works',:) 'news'(:, 'biblio':));
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as item()* {
