@@ -451,6 +451,9 @@ declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang
 declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
     let $doc := wega:doc($docID)
     let $isDiary := wega:isDiary($docID)
+    (: Temporarily suppressing display of persons, works etc. since those are not reliable :)
+    let $yearsToSuppress := if(wega:getOption('environment') eq 'development') then  () else (1813,1814,1815,1816,1821,1822,1823,1826)
+    let $suppressDisplay := if($isDiary) then if(year-from-date($doc/tei:ab/@n cast as xs:date) = $yearsToSuppress) then true() else false() else false()
     let $coll := 
         if ($entry eq 'person') then
             if($isDiary) then functx:value-union($doc//tei:persName/string(@key), functx:value-union($doc//tei:rs[@type eq 'person']/string(@key), for $i in $doc//tei:rs[@type = 'persons']/string(@key) return tokenize($i, ' ')))
@@ -459,7 +462,7 @@ declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
             if($isDiary) then functx:value-union($doc//tei:workName/string(@key), functx:value-union($doc//tei:rs[@type eq 'work']/string(@key), for $i in $doc//tei:rs[@type = 'works']/string(@key) return tokenize($i, ' ')))
             else functx:value-union($doc//tei:text//tei:workName/string(@key), functx:value-union($doc//tei:text//tei:rs[@type eq 'work']/string(@key), for $i in $doc//tei:text//tei:rs[@type = 'works']/string(@key) return tokenize($i, ' ')))
         else ()
-    return if ($coll != '') then (
+    return if ($coll != '' and not($suppressDisplay)) then (
         for $x in distinct-values($coll)[. != '']
         let $regName := 
             if($entry eq 'person') then wega:getRegName($x)
