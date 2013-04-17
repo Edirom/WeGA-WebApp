@@ -67,11 +67,7 @@ declare function facets:createFacets($collFacets as item()*) as element(facets:e
  :)
 
 declare function facets:createFacetLi($facet as xs:string, $freq as xs:int, $checked as xs:boolean, $category as xs:string, $docType as xs:string, $cacheKey as xs:string, $lang as xs:string) as element(li) {
-    let $facetExpanded := 
-        if(wega:isPerson($facet)) then wega:getRegName($facet)
-        else if(wega:isWork($facet)) then wega:getRegTitle($facet)
-        else if($facet ne '') then $facet
-        else wega:getLanguageString('unknown', $lang)
+    let $facetExpanded := facets:expandFacetTerm($facet, $lang)
     return 
     element li {
         if($checked)
@@ -106,11 +102,7 @@ declare function facets:createFacetLi($facet as xs:string, $freq as xs:int, $che
  :)
 
 declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int, $checked as xs:boolean, $category as xs:string, $docType as xs:string, $cacheKey as xs:string, $lang as xs:string) as element(li) {
-    let $facetExpanded :=
-        if(wega:isPerson($facet)) then wega:getRegName($facet)
-        else if(wega:isWork($facet)) then wega:getRegTitle($facet)
-        else if($facet ne '') then $facet
-        else wega:getLanguageString('unknown', $lang)
+    let $facetExpanded := facets:expandFacetTerm($facet, $lang)
     return 
     element li {
         if($checked) then attribute class {"checked"} else attribute class {""},
@@ -126,6 +118,24 @@ declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int,
             }
         }
     }
+};
+
+
+(:~
+ : Expand a facet term to a proper name (e.g. from an attribute value)
+ :
+ : @author Peter Stadler
+ : @param $facetTerm the facet term as given by facets:term-callback()/facets:entry/facets:term
+ : @param $lang the current language (de|en)
+ : @return string
+ :)
+
+declare function facets:expandFacetTerm($facetTerm as xs:string, $lang as xs:string) as xs:string {
+    if(wega:isPerson($facetTerm)) then wega:getRegName($facetTerm)
+    else if(wega:isWork($facetTerm)) then wega:getRegTitle($facetTerm)
+    else if(wega:isBiblioType($facetTerm)) then wega:getLanguageString($facetTerm, $lang)
+    else if($facetTerm ne '') then $facetTerm
+    else wega:getLanguageString('unknown', $lang)
 };
 
 (:~

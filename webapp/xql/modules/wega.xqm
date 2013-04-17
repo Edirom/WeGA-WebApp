@@ -2346,6 +2346,18 @@ declare function wega:isWeberStudies($doc as document-node()) as xs:boolean {
 };
 
 (:~
+ : Checks whether a given string matches the defined types of bibliographic objects
+ :
+ : @author Peter Stadler
+ : @param $string the string to test
+ : @return xs:boolean
+:)
+
+declare function wega:isBiblioType($string as xs:string) as xs:boolean {
+    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
+};
+
+(:~
  : Number to roman (string?)
  :
  : @author Source: http://contentmangler.wordpress.com/
