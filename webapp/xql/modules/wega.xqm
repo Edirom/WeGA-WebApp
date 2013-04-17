@@ -1464,6 +1464,7 @@ declare function wega:createDocLink($doc as document-node(), $content as xs:stri
 declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element()? {
     if($biblStruct/tei:analytic/tei:author[@sameAs]) then wega:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
     else if($biblStruct/@type eq 'book') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'score') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'incollection') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'inproceedings') then wega:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
@@ -1520,6 +1521,7 @@ declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), 
             else if(exists($editors)) then ($editors, concat(' (', wega:getLanguageString('ed', $lang), '), '))
             else (), 
             $title,
+            if(exists($editors) and exists($authors)) then (concat(', ', wega:getLanguageString('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then concat(' (= ', $series, '), ') else ', ',
             $pubPlaceNYear
         }
