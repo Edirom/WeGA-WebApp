@@ -119,14 +119,13 @@ declare function ajax:createHtmlList($date as xs:date, $lang as xs:string) as el
  : @return element
  :)
 
-declare function ajax:getTodaysEvents($date,$lang) {
-    let $date := if($date castable as xs:date) then $date else util:system-date()
+declare function ajax:getTodaysEvents($date as xs:date?,$lang as xs:string) as document-node() {
+    let $date := if(exists($date)) then $date else util:system-date()
     let $tmpDir := wega:getOption('tmpDir')
     let $todaysEventsFileName := concat('todaysEventsFile_', $lang, '.xml')
     let $todaysEventsFile := doc(concat($tmpDir, $todaysEventsFileName))
     return
-        if(xs:date($date) eq $todaysEventsFile/ul/xs:date(@class) and xmldb:last-modified($tmpDir, $todaysEventsFileName) gt wega:getDateTimeOfLastDBUpdate())
-        then $todaysEventsFile
+        if(xs:date($date) eq $todaysEventsFile/ul/xs:date(@class) and xmldb:last-modified($tmpDir, $todaysEventsFileName) gt wega:getDateTimeOfLastDBUpdate()) then $todaysEventsFile
         else doc(xmldb:store($tmpDir, concat('todaysEventsFile_', $lang, '.xml'), ajax:createHtmlList($date, $lang)))
 };
 

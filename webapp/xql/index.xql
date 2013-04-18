@@ -116,6 +116,7 @@ let $domLoaded :=
     <domLoaded xmlns="">
         <function>
             <name>requestTodaysEvents</name>
+            <param>{$date}</param>
             <param>{$lang}</param>
         </function>
     </domLoaded>
@@ -139,7 +140,7 @@ return
                     <div>
                         <h1>{wega:getLanguageString('whatHappenedOn', wega:strftime(if($lang eq 'en') then '%B %d' else '%d. %B', $date, $lang), $lang)}</h1>
                         <div id="todaysEvents">
-                            {if(not($withJS)) then ajax:getTodaysEvents('',$lang) else ()}
+                            {if(not($withJS)) then ajax:getTodaysEvents($date,$lang) else ()}
                             <!-- (: wird onload gefüllt :) -->
                         </div>
                     </div>

@@ -96,7 +96,7 @@ return
         return dev:validatePaths($docType)
         
     else if($function eq 'getTodaysEvents') then
-        let $date := util:system-date()
+        let $date := if(request:get-parameter('date',()) castable as xs:date) then request:get-parameter('date',()) else ()
         return ajax:getTodaysEvents($date,$lang)
 
     else if($function eq 'getWikipedia') then

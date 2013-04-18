@@ -1,5 +1,5 @@
-function requestTodaysEvents(lang) {
-    var url='functions/getAjax.xql?function=getTodaysEvents&lang='+lang;
+function requestTodaysEvents(date,lang) {
+    var url='functions/getAjax.xql?function=getTodaysEvents&lang='+lang+'&date='+date;
     var uniqId = uniqid();
     var ajaxLoader = new Element('span', {'id': uniqId, 'class': 'ajaxLoader'}).update(wegaSettings.ajaxLoaderCombined);
     $('todaysEvents').insert(ajaxLoader);
