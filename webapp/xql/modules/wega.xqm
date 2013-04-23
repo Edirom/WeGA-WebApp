@@ -2570,7 +2570,7 @@ declare function wega:createLetterNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := wega:getOneNormalizedDate($i//tei:dateSender/tei:date, false())
             let $n :=  $i//tei:dateSender/tei:date/string(@n)
 (:            let $senderID := $i//tei:sender/tei:persName[1]/string(@key):)
@@ -2610,8 +2610,8 @@ declare function wega:createWritingNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
-            let $normDate := wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date, false())
+            let $docID := $i/string(@xml:id)
+            let $normDate := wega:getOneNormalizedDate($i//tei:imprint/tei:date, false())
             let $n :=  string-join($i//tei:monogr/tei:title[@level = 'j'], '. ')
             order by $normDate, $n
             return 
@@ -2645,7 +2645,7 @@ declare function wega:createWorkNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//mei:mei/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n)
             let $n := $i//mei:altId[@type = 'WeV']
             let $sortCategory02 := $i//mei:altId[@type = 'WeV']/string(@subtype) 
@@ -2679,8 +2679,8 @@ declare function wega:createDiaryNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:ab/string(@xml:id)
-            let $normDate := $i//tei:ab/string(@n)
+            let $docID := $i/string(@xml:id)
+            let $normDate := $i/string(@n)
             order by $normDate
             return 
             element entry {
@@ -2712,7 +2712,7 @@ declare function wega:createNewsNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := datetime:date-from-dateTime($i//tei:publicationStmt/tei:date/xs:dateTime(@when))
             (:let $log := util:log-system-out($normDate):)
             order by $normDate descending

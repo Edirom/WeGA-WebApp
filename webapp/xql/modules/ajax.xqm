@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
  (:~
  : WeGA AJAX XQuery-Module
@@ -39,7 +39,7 @@ import module namespace jsonToXML="http://xqilla.sourceforge.net/Functions" at "
  : @param $lang the current language (de|en)
  : @return element
  :)
-
+ 
 declare function ajax:createHtmlListEntry($type,$persName,$letter,$sender,$addressee,$entryYear,$date,$lang) {
     let $isRound := (year-from-date($date) - $entryYear) mod 25 = 0
     let $formatedYear := <span>{wega:formatYear($entryYear cast as xs:int, $lang)}</span>
@@ -183,9 +183,10 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
                 else()
     return 
         for $i in $letterList 
-        group $i as $partition by $i/@key as $key
-            order by count($partition) descending
-            return <person>{$key, count($partition)}</person>
+(:        group $i as $partition by $i/@key as $key:)
+        group by $key := $i/@key
+        order by count($i) descending
+        return <person key="{$key}" count="{count($i)}"/>
 };
 
 (:~
@@ -210,20 +211,23 @@ declare function ajax:printCorrespondents($id as xs:string, $lang as xs:string, 
         let $key := $x/string(@key)
         let $doc := wega:doc($key)
         let $persNameSelected := wega:getRegName($key) (:wega:cleanString($person/tei:persName[@type='reg']):)
-        let $persNameSelectedCount := $x cast as xs:int
+        let $persNameSelectedCount := $x/@count cast as xs:int
         order by $persNameSelectedCount descending, $persNameSelected ascending
-        return element a {
-            attribute href {wega:createLinkToDoc($doc, $lang)},
-            attribute title {
-                if ($persNameSelectedCount gt 1) then concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letters',$lang), ')')
-                else concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letter',$lang), ')')},
-            element img {
-                attribute src {wega:getPortraitPath($doc/tei:person, (40, 55), $lang)},
-                attribute alt {$persNameSelected},
-                attribute width {'40'},
-                attribute height {'55'}
-            }
-        }
+        return
+            if(exists($doc)) then
+                element a {
+                    attribute href {wega:createLinkToDoc($doc, $lang)},
+                    attribute title {
+                        if ($persNameSelectedCount gt 1) then concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letters',$lang), ')')
+                        else concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letter',$lang), ')')},
+                    element img {
+                        attribute src {wega:getPortraitPath($doc/tei:person, (40, 55), $lang)},
+                        attribute alt {$persNameSelected},
+                        attribute width {'40'},
+                        attribute height {'55'}
+                    }
+                }
+            else ()
     return element div{$linkElements}
 };
 

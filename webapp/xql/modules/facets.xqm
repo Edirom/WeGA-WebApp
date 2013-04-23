@@ -340,7 +340,7 @@ declare function facets:createFilter($checked as xs:string*) as element(facets:f
  :)
 
 declare function facets:sortColl($coll as item()*) as item()* {
-    if(wega:isPerson($coll[1]/string(@xml:id)))       then for $i in $coll order by $i//tei:persName[@type = 'reg'] ascending return $i
+    if(wega:isPerson($coll[1]/string(@xml:id)))       then for $i in $coll order by $i/tei:persName[@type = 'reg'] ascending return $i
     else if(wega:isLetter($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     else if(wega:isWriting($coll[1]/string(@xml:id))) then for $i in $coll order by wega:getOneNormalizedDate($i//tei:imprint/tei:date[1], false()) ascending return $i
     else if(wega:isDiary($coll[1]/string(@xml:id)))   then for $i in $coll order by $i/xs:date(@n) ascending return $i
@@ -514,7 +514,7 @@ declare function facets:getFirstOrLastDocumentInMonth($entriesSessionName as xs:
  :)
 
 declare function facets:getFirstOrLastDocumentInSeries($collIDs as xs:string*, $seriesNo as xs:int, $first as xs:boolean) as xs:string {
-    let $docIDs := wega:getNormDates('works')//entry[. = $seriesNo][./@docID=$collIDs]
+    let $docIDs := wega:getNormDates('works')//entry[. = $seriesNo][@docID=$collIDs]
     return 
 	   if($first) then $docIDs[1]/string(@docID)
 	   else $docIDs[last()]/string(@docID)
@@ -600,13 +600,13 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $coll := session:get-attribute($sessionCollName)
 	let $normDates := wega:getNormDates($docType)//entry
 	let $undatedKeys := 
-		if($docType eq 'diaries') then $normDates[not(./node())][@docID = $coll//tei:ab/@xml:id]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
-		else if($docType eq 'biblio') then $normDates[not(./node())][@docID = $coll//tei:biblStruct/@xml:id]/string(@docID)
-		else $normDates[not(./node())][@docID = $coll//tei:TEI/@xml:id]/string(@docID)
+		if($docType eq 'diaries') then $normDates[not(./node())][@docID = $coll/@xml:id]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
+		else if($docType eq 'biblio') then $normDates[not(./node())][@docID = $coll/@xml:id]/string(@docID)
+		else $normDates[not(node())][@docID = $coll/@xml:id]/string(@docID)
 	let $dated := 
-		if($docType eq 'diaries') then $normDates[@docID = $coll//tei:ab/@xml:id][./node()]
-		else if($docType eq 'biblio') then $normDates[@docID = $coll//tei:biblStruct/@xml:id][./node()]
-		else $normDates[@docID = $coll//tei:TEI/@xml:id][./node()]
+		if($docType eq 'diaries') then $normDates[@docID = $coll/@xml:id][./node()]
+		else if($docType eq 'biblio') then $normDates[@docID = $coll/@xml:id][./node()]
+		else $normDates[@docID = $coll/@xml:id][./node()]
     let $distinctYears := for $i in distinct-values($dated/@year) return $i cast as xs:int
     let $saveDated := session:set-attribute($datedSessionName, $dated)
     let $saveUndated := session:set-attribute($undatedSessionName, $undatedKeys)
@@ -712,8 +712,8 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $distinctSeries := facets:getDistinctSeries($coll)
-    let $collIDs :=  $coll//mei:mei/string(@xml:id)
-    let $activeIDs := wega:getNormDates('works')//entry[./@docID=$collIDs]/string(@docID)
+    let $collIDs :=  $coll/string(@xml:id)
+    let $activeIDs := wega:getNormDates('works')//entry[@docID=$collIDs]/string(@docID)
     let $docType := 'works'
     let $category := 'series'
     return 
@@ -759,7 +759,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $normDates := wega:getNormDates($docType)//entry
-    let $persons := $normDates[@docID = $coll//tei:person/@xml:id]
+    let $persons := $normDates[@docID = $coll/@xml:id]
     let $countPersons := count($persons)
     let $savePersons := session:set-attribute($entriesSessionName, $persons)
     let $saveFromTo := session:set-attribute($fromToSessionName, (1,$countPersons))
@@ -782,20 +782,21 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
 :)
 declare function facets:createAlphabetListUl($entriesSessionName as xs:string, $fromToSessionName as xs:string, $lang as xs:string, $recusionDepth as xs:int) as element(ul) {
 	let $maxRows := xs:int(wega:getOption('listViewMaxRows'))
-	let $persons := session:get-attribute($entriesSessionName)//entry
+	let $persons := session:get-attribute($entriesSessionName)
 	let $from := session:get-attribute($fromToSessionName)[1]
 	let $to := session:get-attribute($fromToSessionName)[2]
 	let $countPersons := $to - $from +1
 	let $myDivisor := if (round($countPersons div $maxRows) eq 0) then 1 else xs:int(round($countPersons div $maxRows)) (: 9/7 :) 
     let $numberOfRows := if(ceiling($countPersons div $myDivisor) gt $maxRows) then $maxRows else xs:int(ceiling($countPersons div $myDivisor))
     let $threshold := 30
+(:    let $log := util:log-system-out(session:get-attribute($entriesSessionName)):)
     return (
     	element ul {
             for $i at $count in (1 to $numberOfRows) 
             let $fromPosition := ($i - 1) * ($myDivisor) + $from
 			let $toPosition := if ((($i * $myDivisor + $from -1) gt $to) or ($i eq $numberOfRows)) then $to else $i * $myDivisor + $from -1
-            let $startEntry := functx:substring-before-match(normalize-space($persons[$fromPosition]), '[\s,]')
-            let $endEntry := functx:substring-before-match(normalize-space($persons[$toPosition]), '[\s,]')
+            let $startEntry := functx:substring-before-match(normalize-space($persons[$fromPosition]), '[\s,]') (:'Start':)
+            let $endEntry := functx:substring-before-match(normalize-space($persons[$toPosition]), '[\s,]') (:'Ende':)
             let $countPersonsInInterval := $toPosition - $fromPosition +1
             let $newFromToSessionName := concat($fromToSessionName, $count)
             let $saveFromTo := session:set-attribute($newFromToSessionName, ($fromPosition,$toPosition))
