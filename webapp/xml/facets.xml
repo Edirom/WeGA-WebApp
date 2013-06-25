@@ -50,7 +50,7 @@
     </entry>
     <entry xml:id="journals">
         <collection>writings</collection>
-        <path node="element">//tei:title[@level='j'][ancestor::tei:sourceDesc]</path>
+        <path node="element">//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]</path>
     </entry>
     <entry xml:id="librettists">
         <collection>works</collection>
