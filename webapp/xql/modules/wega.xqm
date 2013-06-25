@@ -1569,7 +1569,9 @@ declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrap
     let $date := concat('(', $monogr/tei:imprint/tei:date, ')')
     let $biblScope := concat(
         if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', wega:getLanguageString('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', wega:getLanguageString('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'nr']) else (),
         if(exists($monogr/tei:imprint/tei:date)) then concat(' ', $date) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', wega:getLanguageString('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', wega:getLanguageString('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
