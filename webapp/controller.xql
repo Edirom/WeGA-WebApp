@@ -91,8 +91,21 @@ else if(matches($exist:path, 'css|jscript|pix|fonts')) then
         <ignore/>
     </dispatch>
 
-(: Startseiten-Weiterleitung :)
-else if (matches($exist:path, '^/([Ii]ndex/?)?$')) then
+(: 
+ :  Startseiten-Weiterleitung 1
+ :  Nackte Server-URL (evtl. mit Angabe der Sprache)
+:)
+else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{concat('/', $lang, '/Index')}"/>
+    </dispatch>
+
+(: 
+ :  Startseiten-Weiterleitung 2
+ :  Diverse Index Variationen
+ :  Achtung: .php hier nicht aufnehmen, dies wird mit den typo3ContentMappings abgefragt
+:)
+else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{concat('/', $lang, '/Index')}"/>
     </dispatch>
