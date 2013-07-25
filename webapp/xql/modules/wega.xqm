@@ -2611,7 +2611,7 @@ declare function wega:createWritingNormDates() {
             attribute xml:id {$xmlID},
             for $i in $coll 
             let $docID := $i//tei:TEI/string(@xml:id)
-            let $normDate := wega:getOneNormalizedDate($i//tei:imprint/tei:date, false())
+            let $normDate := wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date, false())
             let $n :=  string-join($i//tei:monogr/tei:title[@level = 'j'], '. ')
             order by $normDate, $n
             return 
