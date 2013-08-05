@@ -1751,7 +1751,7 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
  : @return node
  :)
  
-declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as node()? {
+declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
     let $serverURL := 
         if($resource eq 'wikipedia') then concat(wega:getOption($resource), $lang, '/')
         else wega:getOption($resource)

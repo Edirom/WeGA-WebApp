@@ -19,10 +19,10 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
+import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/webapp/xql/modules/functx.xqm";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "xmldb:exist:///db/webapp/xql/modules/wega.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "xmldb:exist:///db/webapp/xql/modules/facets.xqm";
-import module namespace jsonToXML="http://xqilla.sourceforge.net/Functions" at "xmldb:exist:///db/webapp/xql/modules/jsonToXML.xqm";
 
 (:~
  : Creates HTML list entry
@@ -415,29 +415,30 @@ declare function ajax:getDNB($pnd as xs:string, $lang as xs:string) as element(d
  : @return element
  :)
  
-declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang as xs:string) as element() {
-    let $findbuchResponse := wega:grabExternalResource('beacon', $pnd, (), true())
-    let $jxml := if(exists($findbuchResponse)) then jsonToXML:parse-json(util:binary-to-string($findbuchResponse)) else () 
+declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang as xs:string) as element(div) {
+    let $findbuchResponse := util:binary-to-string(wega:grabExternalResource('beacon', $pnd, (), true()))
+    let $jxml := 
+        if(exists($findbuchResponse)) then xqjson:parse-json($findbuchResponse)
+        else ()
     let $list :=
           <ul>{
-            for $i in 1 to count($jxml//json/item[2]//item)
-            let $link  := data($jxml//json/item[4]/item[$i])
-            let $title := data($jxml//json/item[3]/item[$i])
-            let $text  := data($jxml//json/item[2]/item[$i])
+            for $i in 1 to count($jxml/item[2]/item)
+            let $link  := normalize-space($jxml/item[4]/item[$i])
+            let $title := normalize-space($jxml/item[3]/item[$i])
+            let $text  := normalize-space($jxml/item[2]/item[$i])
             return
-                if(data($jxml//json/item[4]/item[$i])!="" and not(matches($link,"weber-gesamtausgabe.de")))
-                then <li><a title="{$title}" href="{$link}">{$text}</a></li>
-                else()
+                if(starts-with($link,"weber-gesamtausgabe.de")) then ()
+                else <li><a title="{$title}" href="{$link}">{$text}</a></li>
           }
           </ul>
-    return if (exists($list/li)) then
-        <div>
-            <h2>{wega:getLanguageString('beaconLinks', ($name,$pnd), $lang)}</h2>
-            {$list
-            (:$findbuchQuery//p:)}
-            <!--<p>[ <a href="{data($jxml//json/item[1]//item)}">DNB-Artikel</a> ]</p>-->
-        </div>
-        else <span class="notAvailable">{wega:getLanguageString('noBeaconsFound', $lang)}</span>
+    return 
+        <div>{
+            if (exists($list/li)) then (
+                <h2>{wega:getLanguageString('beaconLinks', ($name,$pnd), $lang)}</h2>,
+                $list
+            )
+            else <span class="notAvailable">{wega:getLanguageString('noBeaconsFound', $lang)}</span>
+        }</div>
 };
 
 (:~
