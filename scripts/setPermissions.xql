@@ -16,12 +16,12 @@ declare variable $local:data-collections := ('biblio', 'diaries', 'iconography',
 declare variable $local:webapp-collection := 'webapp';
 
 declare function local:set-collection-permissions($collection-uri as xs:string, $user-id as xs:string, $group-id as xs:string, $permissions as xs:string, $recursive as xs:boolean) as empty() {
+    let $setCollectionPermission := local:set-combined-permissions($collection-uri, $user-id, $group-id, $permissions)
     let $setFilePermissions := 
         for $file in xmldb:get-child-resources($collection-uri)
         return 
-            if(ends-with($file, 'xql')) then local:set-combined-permissions(concat($collection-uri, '/', $file), $user-id, $group-id, '755') (: make XQueries executable :)
-            else local:set-combined-permissions(concat($collection-uri, '/', $file), $user-id, $group-id, $permissions)
-    let $setCollectionPermission := local:set-combined-permissions($collection-uri, $user-id, $group-id, $permissions)
+            if(ends-with($file, 'xql')) then local:set-combined-permissions(concat($collection-uri, '/', $file), $user-id, $group-id, $permissions) (: make XQueries executable :)
+            else local:set-combined-permissions(concat($collection-uri, '/', $file), $user-id, $group-id, '744')
     return 
         if($recursive) then 
             for $coll in xmldb:get-child-collections($collection-uri)
@@ -40,7 +40,7 @@ declare function local:set-combined-permissions($resource as xs:string, $user-id
 
 (: set all data collections and resources recursively to admin:dba with 744 :)
 for $coll in $local:data-collections return 
-    local:set-collection-permissions(concat('/db/', $coll), 'admin', 'dba', '744', true()),
+    local:set-collection-permissions(concat('/db/', $coll), 'admin', 'dba', '755', true()),
 
 (: set webapp collection to admin:dba with 755 :)
 local:set-collection-permissions(concat('/db/', $local:webapp-collection), 'admin', 'dba', '755', true()),
