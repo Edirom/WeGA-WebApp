@@ -744,28 +744,29 @@ declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:
  : @return element
  :)
 
-declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as xs:string, $lang as xs:string) {
+declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as xs:string, $lang as xs:string) as element(div) {
     let $authorID := 'A002068'
-    let $coll := facets:getOrCreateColl('diaries', $authorID)
-    let $currPos := functx:index-of-node($coll, $coll//id($docID))
+    let $normDates := wega:getNormDates('diaries')
+    let $preceding := $normDates//entry[@docID = $docID]/preceding-sibling::entry[position() = last()]
+    let $following := $normDates//entry[@docID = $docID]/following-sibling::entry[1]
     return 
     <div id="{$contextContainer}">
         <h2>{wega:getLanguageString('context', $lang)}</h2>
         <ul>{
-            if($currPos gt 1) 
-                then element li {
+            if($preceding) then
+                element li {
                     wega:getLanguageString('prevDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink($coll[$currPos - 1]/root(), wega:getNiceDate($coll[$currPos - 1]/xs:date(@n), $lang), $lang, ())
+                    wega:createDocLink(wega:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ())
                 }
-                else (),
-            if($currPos lt count($coll)) 
-                then element li {
+            else (),
+            if($following) then
+                element li {
                     wega:getLanguageString('nextDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink($coll[$currPos + 1]/root(), wega:getNiceDate($coll[$currPos + 1]/xs:date(@n), $lang), $lang, ())
+                    wega:createDocLink(wega:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ())
                 }
-                else ()
+            else ()
             }
         </ul>
     </div>
