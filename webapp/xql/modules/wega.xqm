@@ -1401,8 +1401,8 @@ declare function wega:printCorrespondentName($persName as element(), $lang as xs
      if(exists($persName/@key)) 
         then wega:createPersonLink($persName/string(@key), $lang, $order)
         else if (exists($persName//text())) 
-            then <span class="noDataFound">{normalize-space($persName)}</span>
-            else <span class="noDataFound">{wega:getLanguageString('unknown',$lang)}</span>
+            then <xhtml:span class="noDataFound">{normalize-space($persName)}</xhtml:span>
+            else <xhtml:span class="noDataFound">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1421,10 +1421,10 @@ declare function wega:createPersonLink($id as xs:string, $lang as xs:string, $or
         else wega:getRegName($id)
     return if($name != '')
         then 
-            <a href="{string-join((wega:getOption('baseHref'), $lang, $id), '/')}">
-                <span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</span>
-            </a>
-        else <span class="{concat('noDataFound ', $id)}">{wega:getLanguageString('unknown',$lang)}</span>
+            <xhtml:a href="{string-join((wega:getOption('baseHref'), $lang, $id), '/')}">
+                <xhtml:span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</xhtml:span>
+            </xhtml:a>
+        else <xhtml:span class="{concat('noDataFound ', $id)}">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1949,7 +1949,9 @@ declare function wega:getPicMetadata($localPicURL as xs:string) as node()? {
                     <width>140px</width>
                     <height>185px</height>
                 </picMetadata>
-            else let $metadataFile := collection('/db/iconography')//tei:graphic[data(@url) = functx:substring-after-last($localPicURL, '/')]
+            else
+                let $picFile := functx:substring-after-last($localPicURL, '/')
+                let $metadataFile := collection('/db/iconography')//tei:graphic[@url = $picFile]
                 return
                 <picMetadata>
                     <localFile>{$localPicURL}</localFile>
@@ -2825,7 +2827,7 @@ declare function wega:createNormDates($docType as xs:string) as item()? {
  : @return item?
 :)
 
-declare function wega:getNormDates($docType as xs:string) as item()? {
+declare function wega:getNormDates($docType as xs:string) as document-node()? {
     let $normDatesFileName := 
         if($docType eq 'persons') then wega:getOption('persNamesFile') 
         else if($docType eq 'works') then wega:getOption('worksNormSeriesFile') 

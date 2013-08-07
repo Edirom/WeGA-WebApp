@@ -12,7 +12,7 @@ import module namespace ajax="http://xquery.weber-gesamtausgabe.de/webapp/xql/mo
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
-declare function local:collectMetaData($diaryDay as node(), $authorID as xs:string, $lang as xs:string) as item() {
+declare function local:collectMetaData($diaryDay as node(), $authorID as xs:string, $lang as xs:string) as element(wega:metaData) {
     let $name := wega:printFornameSurname(wega:getRegName($authorID))
     let $dateFormat := 
         if ($lang eq 'en') then '%A, %B %d, %Y'
@@ -24,7 +24,7 @@ declare function local:collectMetaData($diaryDay as node(), $authorID as xs:stri
         else data($diaryDay)
     let $commonMetaData := xho:collectCommonMetaData($diaryDay)
     return 
-    <metaData>
+    <wega:metaData>
         <title>{$pageTitle}</title>
         {$commonMetaData/*}
         <meta name="DC.title" content="{$pageTitle}"/>
@@ -38,7 +38,7 @@ declare function local:collectMetaData($diaryDay as node(), $authorID as xs:stri
         <!-- <meta name="DC.coverage" content="" scheme="DCTERMS.TGN"/> -->
         <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
         <meta name="DC.rights" content="All rights reserved by the WeGA"/>
-    </metaData>
+    </wega:metaData>
 };
 
 let $lang := request:get-parameter('lang','de')

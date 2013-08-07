@@ -15,12 +15,12 @@ let $sOpts     := wega:getSetSearchOptions('0')
 (:let $lastSearch := session:get-attribute('historyStack')
 let $sessionVar := session:set-attribute('historyStack',wega:pop($lastSearch)):)
 let $metaData  := 
-    <metaData>
+    <wega:metaData>
         <title>{wega:getLanguageString('search',$lang)}</title>
         {xho:collectCommonMetaData(())/*}
         <meta name="DC.creator" content="Christian Epp"/>
         <meta name="DC.language" content="{$lang}" scheme="DCTERMS.RFC3066"/>
-    </metaData>
+    </wega:metaData>
 let $domLoaded := 
     <domLoaded xmlns="">
         <function>

@@ -49,28 +49,13 @@ declare function local:createNewsTeaser($newsID as xs:string, $lang as xs:string
     )
 };
 
-(:declare function local:createDevelopmentLinks($baseHref as xs:string, $lang as xs:string) as element() {
-    element div {
-        attribute id {'developmentTools'},
-        element h1 {wega:getLanguageString('development', $lang)},
-        element ul {
-            element li {
-                element a {
-                    attribute href {string-join(($baseHref, $lang, wega:getLanguageString('tools', $lang)), '/')},
-                    'Tools'
-                }
-            }
-        }
-    }
-};:)
-
-declare function local:collectMetaData($lang as xs:string) as item() {
+declare function local:collectMetaData($lang as xs:string) as element(wega:metaData) {
     let $pageTitle := concat('Carl-Maria-von-Weber-Gesamtausgabe', ' – ', wega:getLanguageString('home', $lang)) 
     let $pageDescription := wega:getLanguageString('metaDescriptionIndex', $lang)
     let $commonMetaData := xho:collectCommonMetaData(())
     let $subject := string-join(('Carl Maria von Weber', 'Edition', 'Social Network', wega:getLanguageString('gesamtausgabe', $lang)), '; ')
     return 
-    <metaData>
+    <wega:metaData>
         <title>{$pageTitle}</title>
         {$commonMetaData/*}
         <meta name="DC.title" content="{$pageTitle}"/>
@@ -83,7 +68,7 @@ declare function local:collectMetaData($lang as xs:string) as item() {
         <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI"/>
         <meta name="google-site-verification" content="{wega:getOption('googleWebsiteMetatag')}" />
         <meta name="msvalidate.01" content="{wega:getOption('microsoftBingWebsiteMetatag')}" />
-    </metaData>
+    </wega:metaData>
 };
  
 let $lang := request:get-parameter('lang','')
