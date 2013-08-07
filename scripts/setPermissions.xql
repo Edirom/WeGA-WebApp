@@ -12,7 +12,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
 
-declare variable $local:data-collections := ('biblio', 'diaries', 'iconography', 'letters', 'news', 'persons', 'var', 'works', 'writings');
+declare variable $local:data-collections := ('biblio', 'diaries', 'iconography', 'letters', 'news', 'persons', 'var', 'webapp', 'works', 'writings');
 declare variable $local:webapp-collection := 'webapp';
 
 declare function local:set-collection-permissions($collection-uri as xs:string, $user-id as xs:string, $group-id as xs:string, $permissions as xs:string, $recursive as xs:boolean) as empty() {
@@ -38,12 +38,9 @@ declare function local:set-combined-permissions($resource as xs:string, $user-id
     else ()
 };
 
-(: set all data collections and resources recursively to admin:dba with 744 :)
+(: set all data collections and resources recursively to admin:dba with 755 :)
 for $coll in $local:data-collections return 
     local:set-collection-permissions(concat('/db/', $coll), 'admin', 'dba', '755', true()),
-
-(: set webapp collection to admin:dba with 755 :)
-local:set-collection-permissions(concat('/db/', $local:webapp-collection), 'admin', 'dba', '755', true()),
 
 (: create temporary collection if not available:)
 if(xmldb:collection-available(string-join(('/db', $local:webapp-collection, 'tmp'), '/'))) then ()
