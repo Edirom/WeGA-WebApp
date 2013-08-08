@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
 (:~
  : WeGA facets XQuery-Modul
@@ -339,11 +339,11 @@ declare function facets:createFilter($checked as xs:string*) as element(facets:f
  : @return item*
  :)
 
-declare function facets:sortColl($coll as item()*) as item()* {
+declare function facets:sortColl($coll as element()*) as element()* {
     if(wega:isPerson($coll[1]/string(@xml:id)))       then for $i in $coll order by $i/tei:persName[@type = 'reg'] ascending return $i
     else if(wega:isLetter($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     else if(wega:isWriting($coll[1]/string(@xml:id))) then for $i in $coll order by wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false()) ascending return $i
-    else if(wega:isDiary($coll[1]/string(@xml:id)))   then for $i in $coll order by $i/xs:date(@n) ascending return $i
+    else if(wega:isDiary($coll[1]/string(@xml:id)))   then for $i in $coll order by $i/@n cast as xs:date ascending return $i
     else if(wega:isWork($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     else if(wega:isNews($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
     else if(wega:isBiblio($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
@@ -497,7 +497,7 @@ declare function facets:getIndexOfFirstOrLastDocumentInYear($entriesSessionName 
 
 declare function facets:getFirstOrLastDocumentInMonth($entriesSessionName as xs:string, $year as xs:string, $month as xs:string, $first as xs:boolean) as xs:integer* {
     let $entries := session:get-attribute($entriesSessionName)
-    let $docsInYearAndMonth := $entries[@year = $year][@month = $month]
+    let $docsInYearAndMonth := $entries[@year = $year][@month = $month] (: kein Index mehr drauf !! :)
 	return 
 		if($first) then functx:index-of-node($entries, $docsInYearAndMonth[1])
 		else functx:index-of-node($entries, $docsInYearAndMonth[last()])
@@ -528,8 +528,11 @@ declare function facets:getFirstOrLastDocumentInSeries($collIDs as xs:string*, $
  : @return item*
  :)
 
-declare function facets:getDistinctSeries($coll as item()+) as item()* {
-    for $title in functx:distinct-deep($coll//mei:seriesStmt/mei:title[@level='s']) order by $title/xs:int(@n) return $title
+declare function facets:getDistinctSeries($coll as item()+) as element(mei:title)* {
+    for $series in $coll//mei:seriesStmt[@n='WeGA']
+    group by $title := $series/mei:title[@level='s']
+    order by $title/xs:int(@n)
+    return $title
 };
 
 (:~
@@ -597,16 +600,16 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $datedSessionName := concat('dated', $docType)
 	let $undatedSessionName := concat('undated', $docType)
 	let $yearsSessionName := concat('years', $docType)
-	let $coll := session:get-attribute($sessionCollName)
-	let $normDates := wega:getNormDates($docType)//entry
+	let $coll-ids := session:get-attribute($sessionCollName)/@xml:id
+	let $normDates := wega:getNormDates($docType)
 	let $undatedKeys := 
-		if($docType eq 'diaries') then $normDates[not(./node())][@docID = $coll/@xml:id]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
-		else if($docType eq 'biblio') then $normDates[not(./node())][@docID = $coll/@xml:id]/string(@docID)
-		else $normDates[not(node())][@docID = $coll/@xml:id]/string(@docID)
+		if($docType eq 'diaries') then $normDates//entry[not(./node())][@docID = $coll-ids]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
+		else if($docType eq 'biblio') then $normDates//entry[not(./node())][@docID = $coll-ids]/string(@docID)
+		else $normDates//entry[not(node())][@docID = $coll-ids]/string(@docID)
 	let $dated := 
-		if($docType eq 'diaries') then $normDates[@docID = $coll/@xml:id][./node()]
-		else if($docType eq 'biblio') then $normDates[@docID = $coll/@xml:id][./node()]
-		else $normDates[@docID = $coll/@xml:id][./node()]
+		if($docType eq 'diaries') then $normDates//entry[@docID = $coll-ids][./node()]
+		else if($docType eq 'biblio') then $normDates//entry[@docID = $coll-ids][./node()]
+        else $normDates//entry[@docID = $coll-ids][./node()]
     let $distinctYears := for $i in distinct-values($dated/@year) return $i cast as xs:int
     let $saveDated := session:set-attribute($datedSessionName, $dated)
     let $saveUndated := session:set-attribute($undatedSessionName, $undatedKeys)
@@ -657,7 +660,7 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 			let $yearsInInterval := (: news werden umgekehrt angeführt, also latest->first und nicht first->latest :)
 			     if(xs:int($distinctYears[$fromYearPosition]) lt xs:int($distinctYears[$toYearPosition])) then $distinctYears[. = (xs:int($distinctYears[$fromYearPosition]) to xs:int($distinctYears[$toYearPosition]))]
 			     else $distinctYears[. = (xs:int($distinctYears[$toYearPosition]) to xs:int($distinctYears[$fromYearPosition]))]
-			let $countDocsInInterval := count($entries[@year = $yearsInInterval])
+			let $countDocsInInterval := count($entries[@year = $yearsInInterval]) (: kein Index mehr drauf !! :)
 			let $isOneYear := $distinctYears[$fromYearPosition] eq $distinctYears[$toYearPosition]
 			let $nestedMenu := ($countDocsInInterval gt 12 and not($showYearsOnly)) or (not($isOneYear) and $showYearsOnly)
 			return 
@@ -684,7 +687,7 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 	else <ul>{
 			let $months := $entries[@year = $distinctYears]/@month
 			return for $i in distinct-values($months)
-				let $countMonth := count($entries[@year = $distinctYears][@month = $i])
+				let $countMonth := count($entries[@year = $distinctYears][@month = $i]) (: kein Index mehr drauf !! :)
 				let $startPosition := facets:getFirstOrLastDocumentInMonth($entriesSessionName, $distinctYears cast as xs:string, $i, true())
 				let $endPosition := facets:getFirstOrLastDocumentInMonth($entriesSessionName, $distinctYears cast as xs:string, $i, false())
 				let $onclick := concat('javascript:', wega:printJavascriptFunction(<function><name>showEntries</name><param type="obj">this</param><param>{$startPosition}</param><param>{$endPosition}</param><param>{$lang}</param><param>{replace($entriesSessionName, 'dated', 'sessionColl')}</param></function>)) 
