@@ -1,7 +1,7 @@
 <dictionary xmlns="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" xml:id="facets">
     <entry xml:id="residences">
         <collection>persons</collection>
-        <path node="element">//tei:residence/tei:settlement</path>
+        <path node="element">//tei:settlement[parent::tei:residence]</path>
     </entry>
     <entry xml:id="occupations">
         <collection>persons</collection>
@@ -9,23 +9,23 @@
     </entry>
     <entry xml:id="source">
         <collection>persons</collection>
-        <path node="attribute">//@source</path>
+        <path node="attribute">/@source</path>
     </entry>
     <entry xml:id="sender">
         <collection>letters</collection>
-        <path node="attribute">//tei:sender/tei:persName/@key</path>
+        <path node="attribute">//tei:persName[parent::tei:sender]/@key</path>
     </entry>
     <entry xml:id="addressees">
         <collection>letters</collection>
-        <path node="attribute">//tei:addressee/tei:persName/@key</path>
+        <path node="attribute">//tei:persName[parent::tei:addressee]/@key</path>
     </entry>
     <entry xml:id="placeOfSender">
         <collection>letters</collection>
-        <path node="element">//tei:placeSender/tei:placeName</path>
+        <path node="element">//tei:placeName[parent::tei:placeSender]</path>
     </entry>
     <entry xml:id="placeOfAddressee">
         <collection>letters</collection>
-        <path node="element">//tei:placeAddressee/tei:placeName</path>
+        <path node="element">//tei:placeName[parent::tei:placeAddressee]</path>
     </entry>
     <entry xml:id="persons">
         <collection>writings</collection>
@@ -66,7 +66,7 @@
     </entry>
     <entry xml:id="series">
         <collection default="no">works</collection>
-        <path node="attribute">//mei:seriesStmt/mei:title[@level='s']/@n</path>
+        <path node="attribute">//mei:title[@level='s'][parent::mei:seriesStmt]/@n</path>
     </entry>
     <entry xml:id="biblioType">
         <collection>biblio</collection>
