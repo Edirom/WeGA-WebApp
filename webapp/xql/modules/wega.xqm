@@ -1910,9 +1910,9 @@ declare function wega:retrievePicture($picURL as xs:string, $localName as xs:str
 declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:string) as xs:string? {
     let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/')
     let $localFileName := functx:substring-after-last($pathToLocalFile, '/')
-    let $pic := util:binary-doc($pathToLocalFile)
-    let $picWidth := util:catch('*', image:get-width($pic), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
-    let $picHeight := util:catch('*', image:get-height($pic), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+    (:let $pic := util:binary-doc($pathToLocalFile):)
+    let $picHeight := util:catch('*', image:get-height(util:binary-doc($pathToLocalFile)), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+    let $picWidth := util:catch('*', image:get-width(util:binary-doc($pathToLocalFile)), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
     let $metadata := 
         <picMetadata>
             <localFile>{$pathToLocalFile}</localFile>
@@ -1920,7 +1920,7 @@ declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL a
             <width>{concat($picWidth, 'px')}</width>
             <height>{concat($picHeight, 'px')}</height>
         </picMetadata>
-    return if(exists($pic) and $picWidth castable as xs:int and $picHeight castable as xs:int)
+    return if($picWidth instance of xs:integer and $picHeight instance of xs:integer)
         then util:catch('*', xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
         else ()
 };
@@ -1977,8 +1977,6 @@ declare function wega:createDigilibURL($localPicURL as xs:string, $dimensions as
     let $pixDir := wega:getOption('pixDir')
     let $imagesDir := wega:getOption('imagesDir')
     let $digilibDir := wega:getOption('digilibDir')
-    let $pic := util:binary-doc($localPicURL)
-    (:let $log := util:log-system-out($picMetadata):)
     let $picHeight := if(exists($picMetadata/height)) then xs:int(substring-before($picMetadata/height, 'px')) else 1
     let $picWidth := if(exists($picMetadata/width)) then xs:int(substring-before($picMetadata/width, 'px')) else 1
     let $dw := $dimensions[1]
