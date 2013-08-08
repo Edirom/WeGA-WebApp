@@ -285,7 +285,7 @@ declare function local:intersectOtherResults($result, $docType, $searchFilter, $
  :)
  
 declare function local:getResults($docType as xs:string) as element()* {
-    if(request:get-parameter('searchString','') eq '') then facets:getOrCreateColl($docType, 'indices', true())
+    if(request:get-parameter('searchString','') eq '') then facets:getOrCreateColl($docType, 'indices', true())/*
     else
         let $result := local:intersectLuceneResults((), $docType, 'fullText',          local:buildQuery(request:get-parameter('fullText',''),'fullText'))
         let $result := local:intersectLuceneResults($result, $docType, 'persName',          local:buildQuery(request:get-parameter('persName',''),'persName'))
