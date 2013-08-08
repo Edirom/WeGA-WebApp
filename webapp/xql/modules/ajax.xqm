@@ -784,26 +784,26 @@ declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as 
  :)
 
 declare function ajax:getNewsContext($contextContainer as xs:string, $docID as xs:string, $lang as xs:string) {
-(:    let $authorID := 'A002068':)
-    let $coll := facets:getOrCreateColl('news', 'indices')
-    let $currPos := functx:index-of-node($coll, $coll//id($docID))
+    let $normDates := wega:getNormDates('news') 
+    let $following := $normDates//entry[@docID = $docID]/preceding-sibling::entry[position() = last()]
+    let $preceding := $normDates//entry[@docID = $docID]/following-sibling::entry[1]
     let $baseHref := wega:getOption('baseHref') 
     return 
     <div id="{$contextContainer}">
         <h2>{wega:getLanguageString('context', $lang)}</h2>
         <ul>{
-            if($currPos lt count($coll)) (: Absteigende Sortierung! :)
+            if($preceding) (: Absteigende Sortierung! :)
                 then element li {
                     wega:getLanguageString('prevDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink($coll[$currPos + 1]/root(), $coll[$currPos + 1]/string(@xml:id), $lang, ()) (: Absteigende Sortierung! :)
+                    wega:createDocLink(wega:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
                 else (),
-            if($currPos gt 1)  (: Absteigende Sortierung! :)
+            if($following)  (: Absteigende Sortierung! :)
                 then element li {
                     wega:getLanguageString('nextDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink($coll[$currPos - 1]/root(), $coll[$currPos - 1]/string(@xml:id), $lang, ()) (: Absteigende Sortierung! :)
+                    wega:createDocLink(wega:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
                 else (),
             element li {
