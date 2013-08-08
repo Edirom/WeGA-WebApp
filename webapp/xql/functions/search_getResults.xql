@@ -17,12 +17,6 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 
 declare variable $local:docTypesForSearch := ('persons','letters','writings','diaries','works','news','biblio','var');
 
-(:
-declare function local:getCollection($docType as xs:string, $useCache as xs:boolean) as element()* {
-    if($useCache) then facets:getOrCreateColl($docType,'indices')
-    else facets:createColl($docType,'indices')
-};:)
-
 (:~
  : Creates the query-element for a lucene search. For example:
  : <query>
@@ -187,14 +181,14 @@ declare function local:searchForPersName($coll,$query,$docType) {
     return local:getRootNode($result,$docType)
 };
 
-declare function local:searchFullText($coll,$query,$docType) {
+declare function local:searchFullText($coll,$query,$docType) as element()* {
      let $result :=
-        if($docType='persons')       then $coll[ft:query(., $query)] | $coll//tei:persName[@type][ft:query(., $query)]
+        if($docType='persons')       then $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[@type][ft:query(., $query)]
         else if($docType='letters')  then $coll//tei:body[ft:query(., $query)]   | $coll//tei:correspDesc[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] |
                                           $coll//tei:incipit[ft:query(., $query)] | $coll//tei:note[ft:query(.[@type eq 'summary'], $query)]
-        else if($docType='diaries')  then $coll[ft:query(., $query)]
+        else if($docType='diaries')  then $coll/tei:ab[ft:query(., $query)]
         else if($docType='writings') then $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
-        else if($docType='works')    then $coll[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
+        else if($docType='works')    then $coll/mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
         else if($docType='news')     then $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
         else if($docType='biblio')   then $coll//tei:text[ft:query(., $query)] | $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
         else if($docType='var')      then collection('/db/var')//tei:body[ft:query(.,$query)] | collection('/db/var')//tei:title[ft:query(.,$query)]
@@ -212,8 +206,7 @@ declare function local:searchFullText($coll,$query,$docType) {
  : @return the resulting sequence of documents 
  :)
 declare function local:createSearchField($docType,$searchFilter,$query) {
-  let $coll      := (:local:getCollection($docType,false()):) facets:getOrCreateColl($docType, 'indices', false())
-  (:let $log := util:log-system-out(concat('#',$query)):)
+  let $coll      := facets:getOrCreateColl($docType, 'indices', false())
   return
     if($searchFilter='fullText')      then local:searchFullText($coll,$query,$docType)
     else if($searchFilter='persName') then local:searchForPersName($coll,$query,$docType)
