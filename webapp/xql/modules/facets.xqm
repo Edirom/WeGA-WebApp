@@ -378,7 +378,7 @@ declare function facets:updateColl($coll as node()*, $filter as element()) as it
  : @author Peter Stadler
  : @param $collName
  : @param $cacheKey
- : @param $useCache as boolean. true() tries to make use of caches while false() will bypass caches
+ : @param $useCache as boolean. true() tries to make use of caches while false() will bypass caches. false() will also avoid sorting and creation of new caches
  : @return node*
  :)
 declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:string, $useCache as xs:boolean) as document-node()* {
@@ -386,12 +386,11 @@ declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:
     let $dateTimeOfCache := cache:get($collName, $lastModKey)
     let $collCached := cache:get($collName, $cacheKey)
     return
-        if(exists($collCached) and not(wega:eXistDbWasUpdatedAfterwards($dateTimeOfCache)) and $useCache)
-        then 
+        if(exists($collCached) and not(wega:eXistDbWasUpdatedAfterwards($dateTimeOfCache)) and $useCache) then 
             typeswitch($collCached)
             case xs:string return ()
             default return $collCached
-        else
+        else if($useCache) then 
             let $newColl := facets:createColl($collName,$cacheKey)
             let $sortedColl := facets:sortColl($newColl)
             let $setCache := (cache:put($collName, $lastModKey, current-dateTime()),
@@ -400,6 +399,7 @@ declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:
             let $logMessage := concat('facets:getOrCreateColl(): created collection cache (',$cacheKey,') for ', $collName, ' (', count($newColl), ' items)')
             let $logToFile := wega:logToFile('info', $logMessage)
             return $sortedColl
+        else facets:createColl($collName,$cacheKey)
 };
 
 (:~
