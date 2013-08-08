@@ -73,6 +73,8 @@ return (
 if($isFunc) then  
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat('/xql/functions/', $exist:resource)}">
+            {if($exist:resource = 'getJavaScriptOptions.xql') then <set-header name="Cache-Control" value="max-age=3600"/>
+            else ()}
             <cache-control cache="yes"/>
         </forward>
     </dispatch>
