@@ -339,14 +339,14 @@ declare function facets:createFilter($checked as xs:string*) as element(facets:f
  : @return item*
  :)
 
-declare function facets:sortColl($coll as element()*) as element()* {
-    if(wega:isPerson($coll[1]/string(@xml:id)))       then for $i in $coll order by $i/tei:persName[@type = 'reg'] ascending return $i
-    else if(wega:isLetter($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
-    else if(wega:isWriting($coll[1]/string(@xml:id))) then for $i in $coll order by wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false()) ascending return $i
-    else if(wega:isDiary($coll[1]/string(@xml:id)))   then for $i in $coll order by $i/@n cast as xs:date ascending return $i
-    else if(wega:isWork($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
-    else if(wega:isNews($coll[1]/string(@xml:id)))    then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    else if(wega:isBiblio($coll[1]/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
+declare function facets:sortColl($coll as document-node()*) as document-node()* {
+    if(wega:isPerson($coll[1]/*/string(@xml:id)))       then for $i in $coll order by $i//tei:persName[@type = 'reg'] ascending return $i
+    else if(wega:isLetter($coll[1]/*/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:date[parent::tei:dateSender][1], false()) ascending, $i//tei:date[parent::tei:dateSender][1]/@n ascending return $i
+    else if(wega:isWriting($coll[1]/*/string(@xml:id))) then for $i in $coll order by wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false()) ascending return $i
+    else if(wega:isDiary($coll[1]/*/string(@xml:id)))   then for $i in $coll order by $i/*/@n cast as xs:date ascending return $i
+    else if(wega:isWork($coll[1]/*/string(@xml:id)))    then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
+    else if(wega:isNews($coll[1]/*/string(@xml:id)))    then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
+    else if(wega:isBiblio($coll[1]/*/string(@xml:id)))  then for $i in $coll order by wega:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
     else $coll
 };
 
@@ -373,66 +373,20 @@ declare function facets:updateColl($coll as node()*, $filter as element()) as it
 };
 
 (:~
- : Returns collection (from cache, if possible) DEPRECATED
- :
- : @author Peter Stadler
- : @param $collName
- : @param $cacheKey
- : @return node*
- :)
-
-(:declare function facets:getOrCreateCollOld($collName as xs:string, $cacheKey as xs:string(\:, $useCache as xs:boolean:\)) as node()* {
-    let $collPath := wega:getOption($collName)
-    let $lastModKey := 'lastModDateTime'
-    let $dateTimeOfCache := cache:get($collName, $lastModKey)
-    let $collCached := 
-(\:if($useCache) then:\) cache:get($collName, $cacheKey) (\:else():\)
-(\:    let $log := util:log-system-out(concat($collName, ': ', count(cache:get($collName, $cacheKey)))):\)
-    let $predicates := 
-        if(wega:isPerson($cacheKey)) then wega:getOption(concat($collName, 'Pred'), $cacheKey)
-        else wega:getOption(concat($collName, 'PredIndices'))
-    let $collPathExists := xmldb:collection-available($collPath) and ($collPath ne '') and ($cacheKey ne '')
-    let $isSupportedDiary := if($collName eq 'diaries') then $cacheKey eq 'indices' or $cacheKey eq 'A002068' else true() 
-    (\:let $log := if($collPathExists)
-        then util:log-system-out(concat($collName, ': si'))
-        else util:log-system-out(concat($collName, ': no')):\)
-    return if($collPathExists and $isSupportedDiary)
-        then if(exists($collCached) and $predicates ne '' and not(wega:eXistDbWasUpdatedAfterwards($dateTimeOfCache)))
-            then 
-                (\:let $log := util:log-system-out(concat('cached: ', $collName))
-                return:\) typeswitch($collCached)
-                case $s as xs:string return ()
-                default return $collCached
-            else (
-(\:                let $log := util:log-system-out(concat('created new: ', $collName)):\)
-                let $newColl := util:eval(concat('collection("', $collPath, '")', $predicates))
-                let $sortedColl := facets:sortColl($newColl)
-                let $setCache := (cache:put($collName, $lastModKey, current-dateTime()),
-                    if(exists($newColl)) then cache:put($collName, $cacheKey, $sortedColl)
-                    else cache:put($collName, $cacheKey, 'empty'))
-                let $logMessage := concat('facets:getOrCreateColl(): created collection cache (',$cacheKey,') for ', $collName, ' (', count($newColl), ' items)')
-                let $logToFile := wega:logToFile('info', $logMessage)
-                return $sortedColl
-            )
-        else ()
-};:)
-
-
-(:~
  : Returns collection (from cache, if possible)
  :
  : @author Peter Stadler
  : @param $collName
  : @param $cacheKey
+ : @param $useCache as boolean. true() tries to make use of caches while false() will bypass caches
  : @return node*
  :)
-
-declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:string(:, $useCache as xs:boolean:)) as node()* {
+declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:string, $useCache as xs:boolean) as document-node()* {
     let $lastModKey := 'lastModDateTime'
     let $dateTimeOfCache := cache:get($collName, $lastModKey)
     let $collCached := cache:get($collName, $cacheKey)
     return
-        if(exists($collCached) and not(wega:eXistDbWasUpdatedAfterwards($dateTimeOfCache)))
+        if(exists($collCached) and not(wega:eXistDbWasUpdatedAfterwards($dateTimeOfCache)) and $useCache)
         then 
             typeswitch($collCached)
             case xs:string return ()
@@ -449,7 +403,7 @@ declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:
 };
 
 (:~
- : helper function for facets:getOrCreateColl and search_getResults.xql
+ : helper function for facets:getOrCreateColl
  :
  : @author Peter Stadler
  : @param $collName
@@ -457,13 +411,13 @@ declare function facets:getOrCreateColl($collName as xs:string, $cacheKey as xs:
  : @return node*
  :)
 
-declare function facets:createColl($collName as xs:string, $cacheKey as xs:string) as node()* {
+declare %private function facets:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
     let $collPath := wega:getOption($collName)
     let $collPathExists := xmldb:collection-available($collPath) and ($collPath ne '') and ($cacheKey ne '')
     let $isSupportedDiary := if($collName eq 'diaries') then $cacheKey eq 'indices' or $cacheKey eq 'A002068' else true()
     let $predicates :=  if(wega:isPerson($cacheKey)) then wega:getOption(concat($collName, 'Pred'), $cacheKey)
         else wega:getOption(concat($collName, 'PredIndices'))
-    return if ($predicates ne '' and $collPathExists and $isSupportedDiary) then util:eval(concat('collection("', $collPath, '")', $predicates)) else()
+    return if ($collPathExists and $isSupportedDiary) then util:eval(concat('collection("', $collPath, '")', $predicates)) else()
 };
 
 (:~
@@ -600,7 +554,7 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $datedSessionName := concat('dated', $docType)
 	let $undatedSessionName := concat('undated', $docType)
 	let $yearsSessionName := concat('years', $docType)
-	let $coll-ids := session:get-attribute($sessionCollName)/@xml:id
+	let $coll-ids := session:get-attribute($sessionCollName)/*/@xml:id
 	let $normDates := wega:getNormDates($docType)
 	let $undatedKeys := 
 		if($docType eq 'diaries') then $normDates//entry[not(./node())][@docID = $coll-ids]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
@@ -762,7 +716,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $normDates := wega:getNormDates($docType)//entry
-    let $persons := $normDates[@docID = $coll/@xml:id]
+    let $persons := $normDates[@docID = $coll/*/@xml:id]
     let $countPersons := count($persons)
     let $savePersons := session:set-attribute($entriesSessionName, $persons)
     let $saveFromTo := session:set-attribute($fromToSessionName, (1,$countPersons))

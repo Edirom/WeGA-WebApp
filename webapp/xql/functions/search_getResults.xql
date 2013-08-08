@@ -17,10 +17,11 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 
 declare variable $local:docTypesForSearch := ('persons','letters','writings','diaries','works','news','biblio','var');
 
+(:
 declare function local:getCollection($docType as xs:string, $useCache as xs:boolean) as element()* {
     if($useCache) then facets:getOrCreateColl($docType,'indices')
     else facets:createColl($docType,'indices')
-};
+};:)
 
 (:~
  : Creates the query-element for a lucene search. For example:
@@ -211,7 +212,7 @@ declare function local:searchFullText($coll,$query,$docType) {
  : @return the resulting sequence of documents 
  :)
 declare function local:createSearchField($docType,$searchFilter,$query) {
-  let $coll      := local:getCollection($docType,false())
+  let $coll      := (:local:getCollection($docType,false()):) facets:getOrCreateColl($docType, 'indices', false())
   (:let $log := util:log-system-out(concat('#',$query)):)
   return
     if($searchFilter='fullText')      then local:searchFullText($coll,$query,$docType)
@@ -291,7 +292,7 @@ declare function local:intersectOtherResults($result, $docType, $searchFilter, $
  :)
  
 declare function local:getResults($docType as xs:string) as element()* {
-    if(request:get-parameter('searchString','') eq '') then local:getCollection($docType,true())
+    if(request:get-parameter('searchString','') eq '') then facets:getOrCreateColl($docType, 'indices', true())
     else
         let $result := local:intersectLuceneResults((), $docType, 'fullText',          local:buildQuery(request:get-parameter('fullText',''),'fullText'))
         let $result := local:intersectLuceneResults($result, $docType, 'persName',          local:buildQuery(request:get-parameter('persName',''),'persName'))
@@ -332,7 +333,7 @@ declare function local:getOnlyOneDateResults($searchString,$docType) {
     let $queryTo   := local:buildQueryTo($query,$nextMonth)
     let $queryTo   := if($queryTo) then xs:date($queryTo) else()
     let $query     := if(string-length($query) = 4) then concat($query,'-01-01') else if(string-length($query) = 7) then concat($query,'-01') else $query
-    let $coll      := local:getCollection($docType,true())
+    let $coll      := (:local:getCollection($docType,true()):) facets:getOrCreateColl($docType, 'indices', false())
     
     let $coll1 :=  
         if(exists($queryTo))

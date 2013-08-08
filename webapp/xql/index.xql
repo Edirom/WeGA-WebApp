@@ -16,11 +16,9 @@ import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/web
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
-declare function local:createNewsTeaser($newsID as xs:string, $lang as xs:string) as element()* {
-    let $news := wega:doc($newsID)
+declare function local:createNewsTeaser($news as document-node(), $lang as xs:string) as element()* {
     let $newsTeaserDate := $news//tei:fileDesc//tei:date/xs:dateTime(@when)
     let $authorID := data($news//tei:titleStmt/tei:author[1]/@key)
-(:    let $log := util:log-system-out(concat('ID: ', $newsID)):)
     let $dateFormat := if ($lang = 'en')
         then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
@@ -82,15 +80,15 @@ let $minNews := xs:integer(wega:getOption('minNews'))
 let $maxNewsDays := xs:integer(wega:getOption('maxNewsDays'))
 
 let $newsTeaser := 
-    let $newsColl :=    subsequence(facets:getOrCreateColl('news', 'indices')[days-from-duration($date - xs:date(.//tei:publicationStmt/tei:date/xs:dateTime(@when))) le $maxNewsDays], 1, $maxNews)
-    let $newsColl :=    if(count($newsColl) lt $minNews) then subsequence(facets:getOrCreateColl('news', 'indices'), 1, $minNews)
+    let $newsColl :=    subsequence(facets:getOrCreateColl('news', 'indices', true())[days-from-duration($date - xs:date(.//tei:publicationStmt/tei:date/xs:dateTime(@when))) le $maxNewsDays], 1, $maxNews)
+    let $newsColl :=    if(count($newsColl) lt $minNews) then subsequence(facets:getOrCreateColl('news', 'indices', true()), 1, $minNews)
                         else $newsColl 
     return
     (
         <h1>{wega:getLanguageString('news', $lang)}</h1>,
         for $news at $i in $newsColl  
         return (
-            local:createNewsTeaser($news/data(@xml:id), $lang),
+            local:createNewsTeaser($news, $lang),
             if($i ne count($newsColl)) then <hr class="news-teaser-break"/>
             else ()
         )

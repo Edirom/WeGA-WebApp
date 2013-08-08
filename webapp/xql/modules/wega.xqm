@@ -2862,6 +2862,7 @@ declare function wega:getNormDates($docType as xs:string) as document-node()? {
 declare function wega:logToFile($priority as xs:string, $message as xs:string) as empty() {
     let $file := wega:getOption('errorLogFile')
     let $message := concat($message, ' (rev. ', wega:getCurrentSvnRev(), ')')
+    let $log := if(wega:getOption('environment') eq 'development') then util:log-system-out($message) else ()
     return util:log-app($priority, $file, $message)
 };
 

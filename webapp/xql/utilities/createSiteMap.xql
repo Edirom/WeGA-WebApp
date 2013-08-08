@@ -18,7 +18,7 @@ declare variable $local:standardEntries := ('index', 'search', 'help', 'projectD
 declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'diaries', (:'works',:) 'news'(:, 'biblio':));
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as item()* {
-    for $x in facets:getOrCreateColl($type, 'indices')/root()
+    for $x in facets:getOrCreateColl($type, 'indices', true())
     let $lastmod := wega:getLastModifyDateOfDocument(document-uri($x))
     let $loc := wega:createLinkToDoc($x, $lang) 
     return 

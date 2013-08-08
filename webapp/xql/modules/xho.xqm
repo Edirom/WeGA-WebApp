@@ -294,7 +294,7 @@ declare function xho:createWorksDocumentsUL($id as xs:string, $lang as xs:string
     let $listItems :=  
         for $i in ('letters', 'writings', 'diaries', 'works')
 (:            let $log := util:log-system-out($i):)
-            let $coll := facets:getOrCreateColl($i, $id)
+            let $coll := facets:getOrCreateColl($i, $id, true())
             let $title := wega:getLanguageString(concat($i,'TableTitle'), wega:printFornameSurname($persName), $lang)
             let $href := if($i eq 'letters')
                 then string-join(($baseHref, $lang, $id, wega:getLanguageString('correspondence', $lang)), '/')
@@ -395,7 +395,7 @@ declare function xho:createTabsUL($curDocType as xs:string, $menuID as xs:string
         else string-join(($baseHref, $lang, wega:getLanguageString($menuNode/pageName, $lang)), '/')
     let $listItems := 
         for $i in $menuNode/entry
-        let $coll := facets:getOrCreateColl($i/docType, $menuID)
+        let $coll := facets:getOrCreateColl($i/docType, $menuID, true())
         let $title := wega:getLanguageString($i/displayName, $lang)
         let $url := string-join(($urlPart1, encode-for-uri($title)), '/')
 (:        let $log := util:log-system-out(string-join(($i/docType, $curDocType), ' ;; ')):)
