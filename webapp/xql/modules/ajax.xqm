@@ -427,7 +427,7 @@ declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang
             let $title := normalize-space($jxml/item[3]/item[$i])
             let $text  := normalize-space($jxml/item[2]/item[$i])
             return
-                if(starts-with($link,"weber-gesamtausgabe.de")) then ()
+                if(matches($link,"weber-gesamtausgabe.de")) then ()
                 else <li><a title="{$title}" href="{$link}">{$text}</a></li>
           }
           </ul>
