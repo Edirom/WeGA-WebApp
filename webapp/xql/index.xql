@@ -35,8 +35,8 @@ declare function local:createNewsTeaser($news as document-node(), $lang as xs:st
         }
     },
     element p {
-        substring($news//tei:body, 1, 400),
-        ' … ',
+        wega:printPreview(string($news//tei:body), 400),
+        ' ',
         element a{
             attribute href {wega:createLinkToDoc($news, $lang)},
             attribute title {wega:getLanguageString('more', $lang)},
