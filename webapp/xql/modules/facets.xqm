@@ -669,7 +669,7 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $distinctSeries := facets:getDistinctSeries($coll)
-    let $collIDs :=  $coll/string(@xml:id)
+    let $collIDs :=  $coll/*/string(@xml:id)
     let $activeIDs := wega:getNormDates('works')//entry[@docID=$collIDs]/string(@docID)
     let $docType := 'works'
     let $category := 'series'
@@ -677,8 +677,8 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     <div>
     	<h2>{wega:getLanguageString('series', $lang)}</h2>
 	    <ul>{
-	        for $i in $distinctSeries
-	        let $seriesNo := $i/@n
+	        for $mei-title in $distinctSeries
+	        let $seriesNo := $mei-title/@n
 	        let $firstDoc := facets:getFirstOrLastDocumentInSeries($collIDs, xs:int($seriesNo), true())
 	        let $lastDoc := facets:getFirstOrLastDocumentInSeries($collIDs, xs:int($seriesNo), false())
 	        let $startPosition := index-of($activeIDs,$firstDoc)
@@ -694,7 +694,7 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
 	                },
 	                element span {
 	                    attribute class {'seriesTitle'},
-	                    string($i)
+	                    string($mei-title)
 	                }
 	            }
 	        }
