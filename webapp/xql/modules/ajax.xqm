@@ -25,45 +25,6 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/mo
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "xmldb:exist:///db/webapp/xql/modules/facets.xqm";
 
 (:~
- : Creates HTML list entry
- : (function for index.xql)
- :
- : @author Christian Epp
- : @param $type of entry
- : @param $persName 
- : @param $letter
- : @param $sender
- : @param $addressee
- : @param $entryYear
- : @param $date
- : @param $lang the current language (de|en)
- : @return element
- :)
- 
-declare function ajax:createHtmlListEntry($type,$persName,$letter,$sender,$addressee,$entryYear,$date,$lang) {
-    let $isRound := (year-from-date($date) - $entryYear) mod 25 = 0
-    let $formatedYear := <span>{wega:formatYear($entryYear cast as xs:int, $lang)}</span>
-    let $content :=
-        if($type eq 'letter')       then ($formatedYear, ': ', $sender, ' ', wega:getLanguageString('writesTo', $lang), ' ', $addressee, 
-                                          if(ends-with($addressee, '.')) then ' ' else '. ', wega:createDocLink($letter, 
-                                          concat('[', wega:getLanguageString('readOnLetter', $lang), ']'), $lang, ('class=readOn', 'foo=bar')))
-        else if($type eq 'birth')   then ($formatedYear, ': ', $persName, ' ', wega:getLanguageString('isBorn', $lang))
-        else if($type eq 'baptism') then ($formatedYear, ': ', $persName, ' ', wega:getLanguageString('isBaptised', $lang))
-        else if($type eq 'death')   then ($formatedYear, ': ', $persName, ' ', wega:getLanguageString('dies', $lang))
-        else if($type eq 'funeral') then ($formatedYear, ': ', $persName, ' ', wega:getLanguageString('wasBuried', $lang))
-        else()
-    let $class :=
-        if($type eq 'letter') then "eventLetter"
-        else if($type eq 'birth' or $type eq 'baptism') then "eventBirth"
-        else if($type eq 'death' or $type eq 'funeral') then "eventDeath"
-        else ()
-    return
-       if($isRound)
-       then <li class="{$class}" style="list-style-image:url('../pix/stern_gelb.gif')" title="{wega:getLanguageString('roundYearsAgo',xs:string(year-from-date($date) - $entryYear), $lang)}">{$content}</li> 
-       else <li class="{$class}">{$content}</li>
-};
-
-(:~
  : Creates HTML list for todays events
  : (function for index.xql)
  :
@@ -74,40 +35,47 @@ declare function ajax:createHtmlListEntry($type,$persName,$letter,$sender,$addre
  : @return element
  :)
 
-declare function ajax:createHtmlList($date as xs:date, $lang as xs:string) as element() {
-    <ul class="{$date}">{
-        for $entry in wega:getTodaysEvents($date)//entry
-        let $personID := if($entry/@type eq 'birth' or $entry/@type eq 'baptism' or $entry/@type eq 'death' or $entry/@type eq 'funeral')
-                         then data($entry/@id)
-                         else()
-        let $persName := if($entry/@type eq 'birth' or $entry/@type eq 'baptism' or $entry/@type eq 'death' or $entry/@type eq 'funeral') 
-                         then wega:createPersonLink($personID, $lang, 'fs')
-                         else ()
-        let $letter :=   if($entry/@type eq 'letter')
-                         then wega:doc($entry/@id)
-                         else()
-        let $senderID := if($entry/@type eq 'letter')
-                         then $letter//tei:sender[1]/tei:persName/@key
-                         else()
-        let $addresseeID := if($entry/@type eq 'letter') 
-                            then $letter//tei:addressee[1]/tei:persName/@key
-                            else()
-        let $sender := if($entry/@type eq 'letter') 
-                       then wega:printCorrespondentName($letter//tei:sender[1]/*[1], $lang, 'fs')
-                       else if (exists($letter//tei:sender/tei:persName/text())) 
-                            then <i>{data($letter//tei:sender/tei:persName)}</i>
-                            else <i>{wega:getLanguageString('unknown',$lang)}</i>
-        let $addressee := if($entry/@type eq 'letter') 
-                          then wega:printCorrespondentName($letter//tei:addressee[1]/*[1], $lang, 'fs')
-                          else if (exists($letter//tei:addressee/tei:persName/text())) 
-                               then <i>{data($letter//tei:addressee/tei:persName)}</i>
-                               else <i>{wega:getLanguageString('unknown',$lang)}</i>
-        order by $entry/number(@year) ascending
+declare function ajax:getTodaysEvents($date as xs:date, $lang as xs:string) as element(ul) {
+    <ul>{
+        for $teiDate in wega:getTodaysEvents($date)
+        let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
+        let $typeOfEvent := 
+            if($teiDate/ancestor::tei:correspDesc) then 'letter'
+            else if($teiDate/parent::tei:birth[@type='baptism']) then 'isBaptised'
+            else if($teiDate/parent::tei:birth) then 'isBorn'
+            else if($teiDate/parent::tei:death[@type='funeral']) then 'wasBuried'
+            else if($teiDate/parent::tei:death) then 'dies'
+            else ()
+        order by $teiDate/xs:date(@when) ascending
         return
-            ajax:createHtmlListEntry($entry/@type,$persName,$letter,$sender,$addressee,$entry/@year,$date,$lang)
-    }
-    </ul>
+            element li {
+                if($isJubilee) then (
+                    attribute class {'jubilee'},
+                    attribute title {wega:getLanguageString('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)}
+                )
+                else (),
+                concat(wega:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
+                if($typeOfEvent eq 'letter') then ajax:createLetterLink($teiDate, $lang)
+                else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', wega:getLanguageString($typeOfEvent, $lang))
+            }
+    }</ul>
 };
+
+(:~
+ : Helper function for ajax:createHtmlList
+ :
+ : @author Peter Stadler
+ :)
+declare %private function ajax:createLetterLink($teiDate as element(tei:date)?, $lang as xs:string) as item()* {
+    let $sender := wega:printCorrespondentName($teiDate/ancestor::tei:correspDesc/tei:sender[1]/*[1], $lang, 'fs')
+    let $addressee := wega:printCorrespondentName($teiDate/ancestor::tei:correspDesc/tei:addressee[1]/*[1], $lang, 'fs')
+    return (
+        $sender, ' ', wega:getLanguageString('writesTo', $lang), ' ', $addressee, 
+        if(ends-with($addressee, '.')) then ' ' else '. ', 
+        wega:createDocLink($teiDate/root(), concat('[', wega:getLanguageString('readOnLetter', $lang), ']'), $lang, ('class=readOn'))
+    )
+};
+
 
 (:~
  : Returns a list of the todays events
@@ -119,16 +87,16 @@ declare function ajax:createHtmlList($date as xs:date, $lang as xs:string) as el
  : @return element
  :)
 
-declare function ajax:getTodaysEvents($date as xs:date?,$lang as xs:string) as document-node() {
+(:declare function ajax:getTodaysEvents($date as xs:date?,$lang as xs:string) as document-node() {
     let $date := if(exists($date)) then $date else util:system-date()
     let $tmpDir := wega:getOption('tmpDir')
     let $todaysEventsFileName := concat('todaysEventsFile_', $lang, '.xml')
     let $todaysEventsFile := doc(concat($tmpDir, $todaysEventsFileName))
     return
-        if(xs:date($date) eq $todaysEventsFile/ul/xs:date(@class) and xmldb:last-modified($tmpDir, $todaysEventsFileName) gt wega:getDateTimeOfLastDBUpdate()) then $todaysEventsFile
+        if(xs:date($date) eq $todaysEventsFile/ul/xs:date(@class) and xmldb:last-modified($tmpDir, $todaysEventsFileName) gt wega:getDateTimeOfLastDBUpdate() and false()) then $todaysEventsFile
         else doc(xmldb:store($tmpDir, concat('todaysEventsFile_', $lang, '.xml'), ajax:createHtmlList($date, $lang)))
 };
-
+:)
 (:~
  : Returns correspondents by a person
  : (functions for person_singleView.xql)

@@ -1338,36 +1338,20 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
 };
 
 (:~ 
- : Hilfsfunktion für wega:getTodaysEvents()
- : @author Christian Epp
- : @param $i single document
- : @param $type
- : @return node
- :)
-
-declare function wega:getTodaysEventsEntry($i,$type) as node()? {
-      <entry type="{$type}" year="{year-from-date($i/@when)}" id="{data(root($i)/*/@xml:id)}"/>
-};
-
-(:~ 
  : Gets events of the day for a certain date
  :
  : @author Peter Stadler
  : @param $date todays date
- : @return HTML node
+ : @return tei:date* tei:date elements that match given day and month of $date
  :)
 
-declare function wega:getTodaysEvents($date as xs:date) as node()? {
-    let $day := day-from-date($date)
-    let $month := month-from-date($date)
-    let $letter := collection(wega:getOption('letters'))//tei:dateSender/tei:date[@when castable as xs:date][day-from-date(@when) eq $day][month-from-date(@when) eq $month]
-    let $birth  := collection(wega:getOption('persons'))//tei:birth/tei:date[@when castable as xs:date][day-from-date(@when) eq $day ][ month-from-date(@when) eq $month]
-    let $death  := collection(wega:getOption('persons'))//tei:death/tei:date[@when castable as xs:date][day-from-date(@when) eq $day ][ month-from-date(@when) eq $month]
-    return <todaysEvents date="{$date}">
-            {for $i in $letter return wega:getTodaysEventsEntry($i,'letter')}
-            {for $i in $birth  return wega:getTodaysEventsEntry($i,if($i/@type eq 'baptism') then 'baptism' else 'birth')}
-            {for $i in $death  return wega:getTodaysEventsEntry($i,if($i/@type eq 'funeral') then 'funeral' else 'death')}
-            </todaysEvents>
+declare function wega:getTodaysEvents($date as xs:date) as element(tei:date)* {
+    let $day := functx:pad-integer-to-length(day-from-date($date), 2)
+    let $month := functx:pad-integer-to-length(month-from-date($date), 2)
+    let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
+    return 
+        collection(wega:getOption('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)] union
+        collection(wega:getOption('persons'))//tei:date[matches(@when, $date-regex)][parent::tei:birth or parent::tei:death]
 };
 
 (:~ 
