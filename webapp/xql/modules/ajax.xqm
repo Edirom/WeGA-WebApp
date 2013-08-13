@@ -309,7 +309,7 @@ declare function ajax:getWikipedia($pnd as xs:string, $lang as xs:string) as ele
     let $pnd := request:get-parameter('pnd','118629662')
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
-    let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/@href
+    let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
     let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     let $appendix := if($lang eq 'en') then 
@@ -352,7 +352,6 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
     let $pnd := request:get-parameter('pnd','118629662')
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('adb', $pnd, (), true())
-    let $wikiUrl := $wikiContent//xhtml:div[@id = 'adbcite']/xhtml:a[2]/@href
     let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc('/db/webapp/xsl/person_wikipedia.xsl'), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/></parameters>)
