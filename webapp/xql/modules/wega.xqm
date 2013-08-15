@@ -982,7 +982,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
         else '%A, %d. %B %Y'
     let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
     let $date := xs:date($diaryEntry/@n)
-    let $id := $diaryEntry//tei:ab/@xml:id
+    let $id := $diaryEntry/@xml:id
     
     return (
     element div {
