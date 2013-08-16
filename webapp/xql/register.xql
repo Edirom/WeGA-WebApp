@@ -49,12 +49,12 @@ let $domLoaded :=
             <name>initializeRSH</name>
         </function>-->
     </domLoaded>
-let $additionalJScripts :=
-    <additionalJScripts xmlns="">
+let $additionalJScripts := ()
+    (:<additionalJScripts xmlns="">
         <function>
             <name>create_RSH</name>
         </function>
-    </additionalJScripts>
+    </additionalJScripts>:)
 
 return 
 
