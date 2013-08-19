@@ -383,7 +383,8 @@ declare function ajax:getDNB($pnd as xs:string, $lang as xs:string) as element(d
  :)
  
 declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang as xs:string) as element(div) {
-    let $findbuchResponse := util:binary-to-string(wega:grabExternalResource('beacon', $pnd, (), true()))
+    let $findbuchResponse := wega:grabExternalResource('beacon', $pnd, (), true())
+        (:util:binary-to-string(wega:grabExternalResource('beacon', $pnd, (), true())):)
     let $jxml := 
         if(exists($findbuchResponse)) then xqjson:parse-json($findbuchResponse)
         else ()

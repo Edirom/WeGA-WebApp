@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
 (:~
 : Collected xQuery functions
@@ -21,6 +21,7 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util = "http://exist-db.org/xquery/util";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/webapp/xql/modules/functx.xqm";
+import module namespace http = "http://expath.org/ns/http-client";
 
 declare variable $wega:optionsFile as xs:string := '/db/webapp/xml/wegaOptions.xml';
 declare variable $wega:romanNums as xs:integer* := (1000,900,500,400,100,90,50,40,10,9,5,4,1);
@@ -1734,8 +1735,7 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- 
-declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
+ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
     let $serverURL := 
         if($resource eq 'wikipedia') then concat(wega:getOption($resource), $lang, '/')
         else wega:getOption($resource)
@@ -1748,7 +1748,7 @@ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:st
            $cachedResource/httpclient:response
            )
         else 
-           let $responseOrg := httpclient:get(xs:anyURI(concat($serverURL, $pnd)),true(), ())
+           (:let $responseOrg := httpclient:get(xs:anyURI(concat($serverURL, $pnd)),true(), ())
            let $modifiedResponse := 
                if($responseOrg/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($responseOrg,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
                else $responseOrg
@@ -1757,10 +1757,41 @@ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:st
                    {$modifiedResponse}
                </wega:externalResource>
            let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $responseFrame)
-           return $modifiedResponse
+           return $modifiedResponse:)
+           let $update := wega:http-get(xs:anyURI(concat($serverURL, $pnd)))
+           let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $update)
+           return $update/httpclient:response
     return 
         if($response/@statusCode eq '200') then $response 
         else ()
+};
+
+
+(:~
+ : Helper function for wega:grabExternalResource()
+ :
+ : @author Peter Stadler 
+ : @param $url the URL as xs:anyURI
+ : @return element wega:externalResource, a wrapper around httpclient:response
+ :)
+declare %private function wega:http-get($url as xs:anyURI) as element(wega:externalResource) {
+    let $req := <http:request href="{$url}" method="get" timeout="3"/>
+    let $response := 
+        try { http:send-request($req) }
+        catch * {wega:logToFile('error', string-join(('wega:http-get', $err:code, $err:description), ' ;; '))}
+    let $statusCode := $response[1]/data(@status)
+    return
+        <wega:externalResource date="{current-date()}">
+            <httpclient:response statusCode="{$statusCode}">
+                <httpclient:headers>{
+                    for $header in $response[1]//http:header
+                    return element httpclient:header {$header/@*}
+                }</httpclient:headers>
+                <httpclient:body mimetype="{$response[1]//http:body/data(@media-type)}">
+                    {$response[2]}
+                </httpclient:body>
+            </httpclient:response>
+        </wega:externalResource>
 };
 
 (:~
