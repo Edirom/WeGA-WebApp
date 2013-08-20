@@ -152,7 +152,7 @@ declare function wega:printDate($date as element(tei:date)?, $lang as xs:string)
  : @return element
  :)
 
-declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang as xs:string) as element()* {
+declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang as xs:string) as element(p)+ {
     let $place := wega:printPlaceOfBirthOrDeath($birthOrDeath/tei:placeName, $lang) 
     return 
         if(exists($birthOrDeath/tei:date/@*[name() != 'cert'])) then (: leere <date/> ausschliessen :)
@@ -172,7 +172,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
                 )
                 return wega:datesOfBirthOrDeathTemplate($myType, $content, $lang)
         else 
-            let $content := ($place, <span class="noDataFound">({wega:getLanguageString('dateUnknown',$lang)})</span>)
+            let $content := ($place, ' ', <span class="noDataFound">({wega:getLanguageString('dateUnknown',$lang)})</span>)
             return wega:datesOfBirthOrDeathTemplate($birthOrDeath/local-name(), $content, $lang) 
 };
 
@@ -186,7 +186,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
  : @return (html) element p
  :)
 
-declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content as item()*, $lang as xs:string) as element() {
+declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content as item()*, $lang as xs:string) as element(p) {
     let $html_pixDir := wega:getOption('html_pixDir')
     let $baseHref := wega:getOption('baseHref')
     let $iconPath := string-join(($baseHref, $html_pixDir, concat($myType,'.png')), '/')
