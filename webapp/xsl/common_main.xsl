@@ -1009,5 +1009,14 @@
             <xsl:value-of select="."/>
         </xsl:attribute>
     </xsl:template>
+    
+    <!-- Default template fürs Datum damit kein Leerzeichen danach entsteht -->
+    <xsl:template match="tei:date" priority="0.5">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="'tei_date'"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
 </xsl:stylesheet>
