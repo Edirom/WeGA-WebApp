@@ -1778,7 +1778,7 @@ declare %private function wega:http-get($url as xs:anyURI) as element(wega:exter
     let $req := <http:request href="{$url}" method="get" timeout="4"/>
     let $response := 
         try { http:send-request($req) }
-        catch * {wega:logToFile('error', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+        catch * {wega:logToFile('warn', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     let $statusCode := $response[1]/data(@status)
     return
         <wega:externalResource date="{current-date()}">
