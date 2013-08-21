@@ -1778,7 +1778,7 @@ declare %private function wega:http-get($url as xs:anyURI) as element(wega:exter
     let $req := <http:request href="{$url}" method="get" timeout="4"/>
     let $response := 
         try { http:send-request($req) }
-        catch * {wega:logToFile('error', string-join(('wega:http-get', $err:code, $err:description), ' ;; '))}
+        catch * {wega:logToFile('error', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     let $statusCode := $response[1]/data(@status)
     return
         <wega:externalResource date="{current-date()}">
@@ -1861,21 +1861,23 @@ declare function wega:changeNamespace($element as element(), $targetNamespace as
 declare function wega:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:string) as element(wega:wikipediaImages) {
     let $wikiArticle := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
     let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
-(:    let $log := util:log-system-out(($pnd, $lang)):)
     return 
         <wega:wikipediaImages>{
             for $div in $pics
             let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', wega:getLanguageString('sourceWikipedia', $lang), ')'))
             let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
-            let $picURI := if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) else $tmpPicURI
-            let $localURL := wega:retrievePicture(string($picURI), ())
-                return if(exists($localURL)) then
-                    <wega:wikipediaImage>
-                        <wega:caption>{$caption}</wega:caption>
-                        <wega:orgUrl>{$picURI}</wega:orgUrl>
-                        <wega:localUrl>{$localURL}</wega:localUrl>
-                    </wega:wikipediaImage>
-                    else ()
+            let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
+                if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 
+                else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
+                else ()
+            let $localURL := if($picURI castable as xs:anyURI) then wega:retrievePicture(xs:anyURI($picURI), ()) else ()
+            return if(exists($localURL)) then
+                <wega:wikipediaImage>
+                    <wega:caption>{$caption}</wega:caption>
+                    <wega:orgUrl>{$picURI}</wega:orgUrl>
+                    <wega:localUrl>{$localURL}</wega:localUrl>
+                </wega:wikipediaImage>
+                else ()
         }</wega:wikipediaImages>
 };
 
@@ -1888,7 +1890,7 @@ declare function wega:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs
  : @return xs:string the local path to the stored file 
  :)
  
-declare function wega:retrievePicture($picURL as xs:string, $localName as xs:string?) as xs:string? {
+declare function wega:retrievePicture($picURL as xs:anyURI, $localName as xs:string?) as xs:string? {
     let $suffix := lower-case(functx:substring-after-last($picURL, '.'))
 (:    let $log := util:log-system-out($picURL):)
     let $localFileName :=  if(matches($localName, '\S')) 
@@ -1905,9 +1907,12 @@ declare function wega:retrievePicture($picURL as xs:string, $localName as xs:str
     let $pathToLocalFile := concat($localDbCollection, '/', $localFileName, '.', $suffix)
     let $storeFile := 
         if (util:binary-doc-available($pathToLocalFile)) then () 
-        else util:catch('*', xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)), wega:logToFile('error', string-join(('wega:retrievePicture', $util:exception, $util:exception-message), ' ;; ')))
-    let $storePicMetaData := wega:storePicMetadata($pathToLocalFile, $picURL)
-(:    let $mimeType := $pic//httpclient:body/string(@mimetype):)
+        else
+            try { xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)) }
+            catch * { wega:logToFile('error', string-join(('wega:retrievePicture', $err:code, $err:description, 'URL: ' || $picURL), ' ;; ')) }
+    let $storePicMetaData := 
+        if(wega:getPicMetadata($pathToLocalFile)) then () (: Wenn Metadaten schon vorhanden sind, brauchen sie nicht erneut angelegt werden :)
+        else wega:storePicMetadata($pathToLocalFile, $picURL)
     return 
         if (util:binary-doc-available($pathToLocalFile) and wega:getPicMetadata($pathToLocalFile)) then $pathToLocalFile (: Datei bereits vorhanden :)
         else ()
@@ -1922,12 +1927,16 @@ declare function wega:retrievePicture($picURL as xs:string, $localName as xs:str
  : @return xs:string?
  :)
 
-declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:string) as xs:string? {
+declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:anyURI) as xs:string? {
     let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/')
     let $localFileName := functx:substring-after-last($pathToLocalFile, '/')
     (:let $pic := util:binary-doc($pathToLocalFile):)
-    let $picHeight := util:catch('*', image:get-height(util:binary-doc($pathToLocalFile)), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
-    let $picWidth := util:catch('*', image:get-width(util:binary-doc($pathToLocalFile)), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+    let $picHeight :=
+        try { image:get-height(util:binary-doc($pathToLocalFile)) }
+        catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
+    let $picWidth := 
+        try { image:get-width(util:binary-doc($pathToLocalFile)) }
+        catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
     let $metadata := 
         <picMetadata>
             <localFile>{$pathToLocalFile}</localFile>
@@ -1936,7 +1945,9 @@ declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL a
             <height>{concat($picHeight, 'px')}</height>
         </picMetadata>
     return if($picWidth instance of xs:integer and $picHeight instance of xs:integer)
-        then util:catch('*', xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+        then
+            try { xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata) }
+            catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile, 'origURL: ' || $origURL), ' ;; ')) }
         else ()
 };
 
@@ -1949,7 +1960,7 @@ declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL a
  : @return xs:string?
  :)
 
-declare function wega:getPicMetadata($localPicURL as xs:string) as node()? {
+declare function wega:getPicMetadata($localPicURL as xs:string) as element(picMetadata)? {
     let $tmpDir := wega:getOption('tmpDir')
     let $unknownWoman := wega:getOption('unknownWoman')
     let $unknownMan := wega:getOption('unknownMan')
