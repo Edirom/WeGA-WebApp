@@ -1775,7 +1775,7 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare %private function wega:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="3"/>
+    let $req := <http:request href="{$url}" method="get" timeout="4"/>
     let $response := 
         try { http:send-request($req) }
         catch * {wega:logToFile('error', string-join(('wega:http-get', $err:code, $err:description), ' ;; '))}
