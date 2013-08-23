@@ -17,16 +17,16 @@ declare variable $local:languages := ('en', 'de');
 declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography');
 declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'diaries', (:'works',:) 'news'(:, 'biblio':));
 
-declare function local:getUrlList($type as xs:string, $lang as xs:string) as item()* {
+declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in facets:getOrCreateColl($type, 'indices', true())
     let $lastmod := wega:getLastModifyDateOfDocument(document-uri($x))
     let $loc := wega:createLinkToDoc($x, $lang) 
     return 
-        element url {
+        <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
             element loc {$loc},
             if(exists($lastmod)) then element lastmod {$lastmod}
             else ()
-        }
+        }</url>
 };
 
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
@@ -63,8 +63,10 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
             return 
                 if(exists($newSitemap)) then (
                     let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=no', 'encoding=utf-8')
-                    let $compressedData := compression:gzip(util:string-to-binary(util:serialize($newSitemap, $serializationParameters)))
-                    let $storedData := xmldb:store($folderName, $fileName, $compressedData, 'application/gzip') 
+                    let $zip := compression:zip(<entry name="{functx:substring-before-last($fileName, '.')}" type="xml" method="deflate">{$newSitemap}</entry>, false())
+(:                    let $compressedData := compression:gzip(util:string-to-binary(util:serialize($newSitemap, $serializationParameters))):)
+                    let $storedData := xmldb:store($folderName, $fileName, $zip, 'application/zip')
+                        (:xmldb:store($folderName, $fileName, $compressedData, 'application/gzip'):) 
                     return util:binary-doc($storedData)
                 )
                 else ()
@@ -74,9 +76,9 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
 
 let $appLang := request:get-parameter('lang', 'de')
 let $resource := request:get-parameter('resource', '')
-(:let $host := request:get-parameter('host', wega:getOption('baseHref')):)
-let $properFileNames := for $lang in $local:languages return concat('sitemap_', $lang, '.xml.gz')
+let $host := request:get-parameter('host', wega:getOption('baseHref'))
+let $properFileNames := for $lang in $local:languages return concat('sitemap_', $lang, '.xml.zip')
 
-return 
-    if($properFileNames = $resource) then response:stream-binary(local:getSetSitemap($resource), 'application/x-gzip', $resource)
+return
+    if($properFileNames = $resource) then response:stream-binary(local:getSetSitemap($resource), 'application/zip', $resource)
     else local:createSitemapIndex($properFileNames)
