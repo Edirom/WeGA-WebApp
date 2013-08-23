@@ -512,7 +512,7 @@ else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     </dispatch>
 
 (: Sitemap :)
-else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.gz$')) then
+else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.(gz|zip)$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="/xql/utilities/createSiteMap.xql">
     	   <add-parameter name="lang" value="{$lang}"/>
