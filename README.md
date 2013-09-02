@@ -24,10 +24,17 @@ Quick start guide
 7. Direct your browser to `http://localhost:8080`
 
 
+Branches
+--------
+* `master` our stable branch, based on eXist 1.4.3
+* `develop` our development branch, based on eXist 2.1. Should be very stable by now and will become the next release.
+* `foundation-templating-dev` a complete rework of the WeGA-WebApp which will feature a responsive web design (built with foundation) and will adhere to the eXist templating and app packaging.
+
+
 Documentation
 -------------
 
-(Sparse) Documentation can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki).
+(Sparse) Documentation for the master branch can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki).
 
 
 License
