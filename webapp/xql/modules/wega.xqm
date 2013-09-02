@@ -722,7 +722,7 @@ declare function wega:getDocumentMetaData($docItem as item(), $lang as xs:string
 
 declare function wega:returnUnknownMetaData($docID as xs:string, $lang as xs:string, $usage as xs:string) as element() {
     let $logMessage := string-join(('wega:returnUnknownMetaData()', $docID, $lang, $usage), ';;')
-    let $log := wega:logToFile('error', $logMessage)
+    let $log := wega:logToFile('warn', $logMessage)
     let $cssClasses := 
         if($usage eq 'toolTip') then 'toolTip'
         else if($usage eq 'listView') then 'item' 
@@ -2397,7 +2397,7 @@ declare function wega:isBiblioType($string as xs:string) as xs:boolean {
 declare function wega:number-to-roman($num as xs:integer?) as xs:string {
     if(not($num castable as xs:int)) then ''
     else if($num eq 0) then ''
-    else if($num gt 3999) then wega:logToFile('error', 'wega:number-to-roman(): Cannot Convert Number Larger than 3999')
+    else if($num gt 3999) then wega:logToFile('warn', 'wega:number-to-roman(): Cannot Convert Number Larger than 3999')
     else wega:recursive-roman($num,'',$wega:romanNums)
 };
 
@@ -2888,7 +2888,7 @@ declare function wega:getNormDates($docType as xs:string) as document-node()? {
 declare function wega:logToFile($priority as xs:string, $message as xs:string) as empty() {
     let $file := wega:getOption('errorLogFile')
     let $message := concat($message, ' (rev. ', wega:getCurrentSvnRev(), ')')
-    let $log := if(wega:getOption('environment') eq 'development') then util:log-system-out($message) else ()
+    (:let $log := if(wega:getOption('environment') eq 'development') then util:log-system-out($message) else ():)
     return util:log-app($priority, $file, $message)
 };
 
