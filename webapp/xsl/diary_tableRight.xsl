@@ -43,7 +43,7 @@
             </xsl:with-param>
         </xsl:apply-templates>
     </xsl:template>
-    <xsl:template match="tei:date"/>
+    <xsl:template match="tei:date" priority="1"/>
     <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]">
         <xsl:param name="counter"/>
         <xsl:element name="span">
