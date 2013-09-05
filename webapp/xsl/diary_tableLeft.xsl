@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -57,7 +58,7 @@
             </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
-        <xsl:text> </xsl:text>
+        <!--<xsl:text> </xsl:text>--> <!-- Überflüssiges Leerzeichen - wofür wurde das benötigt? -->
     </xsl:template>
     <xsl:template match="tei:measure[@type='expense']" priority="0.5"/>
     <xsl:template match="tei:measure[@rend='inline' or @type='income' or @type='rebooking']"

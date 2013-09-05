@@ -14,7 +14,7 @@ import module namespace ajax="http://xquery.weber-gesamtausgabe.de/webapp/xql/mo
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
-declare function local:collectMetaData($person as node(), $lang as xs:string) as item() {
+declare function local:collectMetaData($person as node(), $lang as xs:string) as element(wega:metaData) {
     let $personID := $person/string(@xml:id)
     let $name := wega:printFornameSurname($person/tei:persName[@type='reg'])
     let $pageTitle := concat($name, ' – ', wega:getLanguageString('tabTitle_bio', $lang)) 
@@ -34,7 +34,7 @@ declare function local:collectMetaData($person as node(), $lang as xs:string) as
     let $commonMetaData := xho:collectCommonMetaData($person)
     let $noimageindex := if(exists(collection('/db/iconography')//tei:figure[.//tei:person[@corresp = $personID]][@n = 'portrait'][1][./tei:graphic])) then () else <meta name="robots" content="noimageindex"/>
     return 
-    <metaData>
+    <wega:metaData>
         <title>{$pageTitle}</title>
         {$commonMetaData/*}
         <meta name="DC.title" content="{$pageTitle}"/>
@@ -47,7 +47,7 @@ declare function local:collectMetaData($person as node(), $lang as xs:string) as
         <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
         <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI"/>
         {$noimageindex}
-    </metaData>
+    </wega:metaData>
 };
 
 let $lang := request:get-parameter('lang','')

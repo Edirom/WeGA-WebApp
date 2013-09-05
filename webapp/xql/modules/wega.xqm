@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
 (:~
 : Collected xQuery functions
@@ -21,6 +21,7 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util = "http://exist-db.org/xquery/util";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/webapp/xql/modules/functx.xqm";
+import module namespace http = "http://expath.org/ns/http-client";
 
 declare variable $wega:optionsFile as xs:string := '/db/webapp/xml/wegaOptions.xml';
 declare variable $wega:romanNums as xs:integer* := (1000,900,500,400,100,90,50,40,10,9,5,4,1);
@@ -151,7 +152,7 @@ declare function wega:printDate($date as element(tei:date)?, $lang as xs:string)
  : @return element
  :)
 
-declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang as xs:string) as element()* {
+declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang as xs:string) as element(p)+ {
     let $place := wega:printPlaceOfBirthOrDeath($birthOrDeath/tei:placeName, $lang) 
     return 
         if(exists($birthOrDeath/tei:date/@*[name() != 'cert'])) then (: leere <date/> ausschliessen :)
@@ -171,7 +172,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
                 )
                 return wega:datesOfBirthOrDeathTemplate($myType, $content, $lang)
         else 
-            let $content := ($place, <span class="noDataFound">({wega:getLanguageString('dateUnknown',$lang)})</span>)
+            let $content := ($place, ' ', <span class="noDataFound">({wega:getLanguageString('dateUnknown',$lang)})</span>)
             return wega:datesOfBirthOrDeathTemplate($birthOrDeath/local-name(), $content, $lang) 
 };
 
@@ -185,7 +186,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
  : @return (html) element p
  :)
 
-declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content as item()*, $lang as xs:string) as element() {
+declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content as item()*, $lang as xs:string) as element(p) {
     let $html_pixDir := wega:getOption('html_pixDir')
     let $baseHref := wega:getOption('baseHref')
     let $iconPath := string-join(($baseHref, $html_pixDir, concat($myType,'.png')), '/')
@@ -721,7 +722,7 @@ declare function wega:getDocumentMetaData($docItem as item(), $lang as xs:string
 
 declare function wega:returnUnknownMetaData($docID as xs:string, $lang as xs:string, $usage as xs:string) as element() {
     let $logMessage := string-join(('wega:returnUnknownMetaData()', $docID, $lang, $usage), ';;')
-    let $log := wega:logToFile('error', $logMessage)
+    let $log := wega:logToFile('warn', $logMessage)
     let $cssClasses := 
         if($usage eq 'toolTip') then 'toolTip'
         else if($usage eq 'listView') then 'item' 
@@ -982,7 +983,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
         else '%A, %d. %B %Y'
     let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
     let $date := xs:date($diaryEntry/@n)
-    let $id := $diaryEntry//tei:ab/@xml:id
+    let $id := $diaryEntry/@xml:id
     
     return (
     element div {
@@ -1338,36 +1339,20 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
 };
 
 (:~ 
- : Hilfsfunktion für wega:getTodaysEvents()
- : @author Christian Epp
- : @param $i single document
- : @param $type
- : @return node
- :)
-
-declare function wega:getTodaysEventsEntry($i,$type) as node()? {
-      <entry type="{$type}" year="{year-from-date($i/@when)}" id="{data(root($i)/*/@xml:id)}"/>
-};
-
-(:~ 
  : Gets events of the day for a certain date
  :
  : @author Peter Stadler
  : @param $date todays date
- : @return HTML node
+ : @return tei:date* tei:date elements that match given day and month of $date
  :)
 
-declare function wega:getTodaysEvents($date as xs:date) as node()? {
-    let $day := day-from-date($date)
-    let $month := month-from-date($date)
-    let $letter := collection(wega:getOption('letters'))//tei:dateSender/tei:date[@when castable as xs:date][day-from-date(@when) eq $day][month-from-date(@when) eq $month]
-    let $birth  := collection(wega:getOption('persons'))//tei:birth/tei:date[@when castable as xs:date][day-from-date(@when) eq $day ][ month-from-date(@when) eq $month]
-    let $death  := collection(wega:getOption('persons'))//tei:death/tei:date[@when castable as xs:date][day-from-date(@when) eq $day ][ month-from-date(@when) eq $month]
-    return <todaysEvents date="{$date}">
-            {for $i in $letter return wega:getTodaysEventsEntry($i,'letter')}
-            {for $i in $birth  return wega:getTodaysEventsEntry($i,if($i/@type eq 'baptism') then 'baptism' else 'birth')}
-            {for $i in $death  return wega:getTodaysEventsEntry($i,if($i/@type eq 'funeral') then 'funeral' else 'death')}
-            </todaysEvents>
+declare function wega:getTodaysEvents($date as xs:date) as element(tei:date)* {
+    let $day := functx:pad-integer-to-length(day-from-date($date), 2)
+    let $month := functx:pad-integer-to-length(month-from-date($date), 2)
+    let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
+    return 
+        collection(wega:getOption('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)] union
+        collection(wega:getOption('persons'))//tei:date[matches(@when, $date-regex)][parent::tei:birth or parent::tei:death]
 };
 
 (:~ 
@@ -1401,8 +1386,8 @@ declare function wega:printCorrespondentName($persName as element(), $lang as xs
      if(exists($persName/@key)) 
         then wega:createPersonLink($persName/string(@key), $lang, $order)
         else if (exists($persName//text())) 
-            then <span class="noDataFound">{normalize-space($persName)}</span>
-            else <span class="noDataFound">{wega:getLanguageString('unknown',$lang)}</span>
+            then <xhtml:span class="noDataFound">{normalize-space($persName)}</xhtml:span>
+            else <xhtml:span class="noDataFound">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1421,10 +1406,10 @@ declare function wega:createPersonLink($id as xs:string, $lang as xs:string, $or
         else wega:getRegName($id)
     return if($name != '')
         then 
-            <a href="{string-join((wega:getOption('baseHref'), $lang, $id), '/')}">
-                <span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</span>
-            </a>
-        else <span class="{concat('noDataFound ', $id)}">{wega:getLanguageString('unknown',$lang)}</span>
+            <xhtml:a href="{string-join((wega:getOption('baseHref'), $lang, $id), '/')}">
+                <xhtml:span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</xhtml:span>
+            </xhtml:a>
+        else <xhtml:span class="{concat('noDataFound ', $id)}">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1750,8 +1735,7 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- 
-declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as node()? {
+ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
     let $serverURL := 
         if($resource eq 'wikipedia') then concat(wega:getOption($resource), $lang, '/')
         else wega:getOption($resource)
@@ -1764,7 +1748,7 @@ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:st
            $cachedResource/httpclient:response
            )
         else 
-           let $responseOrg := httpclient:get(xs:anyURI(concat($serverURL, $pnd)),true(), ())
+           (:let $responseOrg := httpclient:get(xs:anyURI(concat($serverURL, $pnd)),true(), ())
            let $modifiedResponse := 
                if($responseOrg/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($responseOrg,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
                else $responseOrg
@@ -1773,10 +1757,41 @@ declare function wega:grabExternalResource($resource as xs:string, $pnd as xs:st
                    {$modifiedResponse}
                </wega:externalResource>
            let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $responseFrame)
-           return $modifiedResponse
+           return $modifiedResponse:)
+           let $update := wega:http-get(xs:anyURI(concat($serverURL, $pnd)))
+           let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $update)
+           return $update/httpclient:response
     return 
         if($response/@statusCode eq '200') then $response 
         else ()
+};
+
+
+(:~
+ : Helper function for wega:grabExternalResource()
+ :
+ : @author Peter Stadler 
+ : @param $url the URL as xs:anyURI
+ : @return element wega:externalResource, a wrapper around httpclient:response
+ :)
+declare %private function wega:http-get($url as xs:anyURI) as element(wega:externalResource) {
+    let $req := <http:request href="{$url}" method="get" timeout="4"/>
+    let $response := 
+        try { http:send-request($req) }
+        catch * {wega:logToFile('warn', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+    let $statusCode := $response[1]/data(@status)
+    return
+        <wega:externalResource date="{current-date()}">
+            <httpclient:response statusCode="{$statusCode}">
+                <httpclient:headers>{
+                    for $header in $response[1]//http:header
+                    return element httpclient:header {$header/@*}
+                }</httpclient:headers>
+                <httpclient:body mimetype="{$response[1]//http:body/data(@media-type)}">
+                    {$response[2]}
+                </httpclient:body>
+            </httpclient:response>
+        </wega:externalResource>
 };
 
 (:~
@@ -1846,21 +1861,23 @@ declare function wega:changeNamespace($element as element(), $targetNamespace as
 declare function wega:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:string) as element(wega:wikipediaImages) {
     let $wikiArticle := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
     let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
-(:    let $log := util:log-system-out(($pnd, $lang)):)
     return 
         <wega:wikipediaImages>{
             for $div in $pics
             let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', wega:getLanguageString('sourceWikipedia', $lang), ')'))
             let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
-            let $picURI := if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) else $tmpPicURI
-            let $localURL := wega:retrievePicture(string($picURI), ())
-                return if(exists($localURL)) then
-                    <wega:wikipediaImage>
-                        <wega:caption>{$caption}</wega:caption>
-                        <wega:orgUrl>{$picURI}</wega:orgUrl>
-                        <wega:localUrl>{$localURL}</wega:localUrl>
-                    </wega:wikipediaImage>
-                    else ()
+            let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
+                if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 
+                else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
+                else ()
+            let $localURL := if($picURI castable as xs:anyURI) then wega:retrievePicture(xs:anyURI($picURI), ()) else ()
+            return if(exists($localURL)) then
+                <wega:wikipediaImage>
+                    <wega:caption>{$caption}</wega:caption>
+                    <wega:orgUrl>{$picURI}</wega:orgUrl>
+                    <wega:localUrl>{$localURL}</wega:localUrl>
+                </wega:wikipediaImage>
+                else ()
         }</wega:wikipediaImages>
 };
 
@@ -1873,7 +1890,7 @@ declare function wega:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs
  : @return xs:string the local path to the stored file 
  :)
  
-declare function wega:retrievePicture($picURL as xs:string, $localName as xs:string?) as xs:string? {
+declare function wega:retrievePicture($picURL as xs:anyURI, $localName as xs:string?) as xs:string? {
     let $suffix := lower-case(functx:substring-after-last($picURL, '.'))
 (:    let $log := util:log-system-out($picURL):)
     let $localFileName :=  if(matches($localName, '\S')) 
@@ -1890,9 +1907,12 @@ declare function wega:retrievePicture($picURL as xs:string, $localName as xs:str
     let $pathToLocalFile := concat($localDbCollection, '/', $localFileName, '.', $suffix)
     let $storeFile := 
         if (util:binary-doc-available($pathToLocalFile)) then () 
-        else util:catch('*', xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)), wega:logToFile('error', string-join(('wega:retrievePicture', $util:exception, $util:exception-message), ' ;; ')))
-    let $storePicMetaData := wega:storePicMetadata($pathToLocalFile, $picURL)
-(:    let $mimeType := $pic//httpclient:body/string(@mimetype):)
+        else
+            try { xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)) }
+            catch * { wega:logToFile('error', string-join(('wega:retrievePicture', $err:code, $err:description, 'URL: ' || $picURL), ' ;; ')) }
+    let $storePicMetaData := 
+        if(wega:getPicMetadata($pathToLocalFile)) then () (: Wenn Metadaten schon vorhanden sind, brauchen sie nicht erneut angelegt werden :)
+        else wega:storePicMetadata($pathToLocalFile, $picURL)
     return 
         if (util:binary-doc-available($pathToLocalFile) and wega:getPicMetadata($pathToLocalFile)) then $pathToLocalFile (: Datei bereits vorhanden :)
         else ()
@@ -1907,12 +1927,16 @@ declare function wega:retrievePicture($picURL as xs:string, $localName as xs:str
  : @return xs:string?
  :)
 
-declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:string) as xs:string? {
+declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:anyURI) as xs:string? {
     let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/')
     let $localFileName := functx:substring-after-last($pathToLocalFile, '/')
-    let $pic := util:binary-doc($pathToLocalFile)
-    let $picWidth := util:catch('*', image:get-width($pic), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
-    let $picHeight := util:catch('*', image:get-height($pic), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+    (:let $pic := util:binary-doc($pathToLocalFile):)
+    let $picHeight :=
+        try { image:get-height(util:binary-doc($pathToLocalFile)) }
+        catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
+    let $picWidth := 
+        try { image:get-width(util:binary-doc($pathToLocalFile)) }
+        catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
     let $metadata := 
         <picMetadata>
             <localFile>{$pathToLocalFile}</localFile>
@@ -1920,8 +1944,10 @@ declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL a
             <width>{concat($picWidth, 'px')}</width>
             <height>{concat($picHeight, 'px')}</height>
         </picMetadata>
-    return if(exists($pic) and $picWidth castable as xs:int and $picHeight castable as xs:int)
-        then util:catch('*', xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata), wega:logToFile('error', string-join(('wega:storePicMetadata', $util:exception, $util:exception-message), ' ;; ')))
+    return if($picWidth instance of xs:integer and $picHeight instance of xs:integer)
+        then
+            try { xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata) }
+            catch * { wega:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile, 'origURL: ' || $origURL), ' ;; ')) }
         else ()
 };
 
@@ -1934,7 +1960,7 @@ declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL a
  : @return xs:string?
  :)
 
-declare function wega:getPicMetadata($localPicURL as xs:string) as node()? {
+declare function wega:getPicMetadata($localPicURL as xs:string) as element(picMetadata)? {
     let $tmpDir := wega:getOption('tmpDir')
     let $unknownWoman := wega:getOption('unknownWoman')
     let $unknownMan := wega:getOption('unknownMan')
@@ -1949,7 +1975,9 @@ declare function wega:getPicMetadata($localPicURL as xs:string) as node()? {
                     <width>140px</width>
                     <height>185px</height>
                 </picMetadata>
-            else let $metadataFile := collection('/db/iconography')//tei:graphic[data(@url) = functx:substring-after-last($localPicURL, '/')]
+            else
+                let $picFile := functx:substring-after-last($localPicURL, '/')
+                let $metadataFile := collection('/db/iconography')//tei:graphic[@url = $picFile]
                 return
                 <picMetadata>
                     <localFile>{$localPicURL}</localFile>
@@ -1975,8 +2003,6 @@ declare function wega:createDigilibURL($localPicURL as xs:string, $dimensions as
     let $pixDir := wega:getOption('pixDir')
     let $imagesDir := wega:getOption('imagesDir')
     let $digilibDir := wega:getOption('digilibDir')
-    let $pic := util:binary-doc($localPicURL)
-    (:let $log := util:log-system-out($picMetadata):)
     let $picHeight := if(exists($picMetadata/height)) then xs:int(substring-before($picMetadata/height, 'px')) else 1
     let $picWidth := if(exists($picMetadata/width)) then xs:int(substring-before($picMetadata/width, 'px')) else 1
     let $dw := $dimensions[1]
@@ -2371,7 +2397,7 @@ declare function wega:isBiblioType($string as xs:string) as xs:boolean {
 declare function wega:number-to-roman($num as xs:integer?) as xs:string {
     if(not($num castable as xs:int)) then ''
     else if($num eq 0) then ''
-    else if($num gt 3999) then wega:logToFile('error', 'wega:number-to-roman(): Cannot Convert Number Larger than 3999')
+    else if($num gt 3999) then wega:logToFile('warn', 'wega:number-to-roman(): Cannot Convert Number Larger than 3999')
     else wega:recursive-roman($num,'',$wega:romanNums)
 };
 
@@ -2570,7 +2596,7 @@ declare function wega:createLetterNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := wega:getOneNormalizedDate($i//tei:dateSender/tei:date, false())
             let $n :=  $i//tei:dateSender/tei:date/string(@n)
 (:            let $senderID := $i//tei:sender/tei:persName[1]/string(@key):)
@@ -2610,8 +2636,8 @@ declare function wega:createWritingNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
-            let $normDate := wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date, false())
+            let $docID := $i/string(@xml:id)
+            let $normDate := wega:getOneNormalizedDate($i//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
             let $n :=  string-join($i//tei:monogr/tei:title[@level = 'j'], '. ')
             order by $normDate, $n
             return 
@@ -2645,7 +2671,7 @@ declare function wega:createWorkNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//mei:mei/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n)
             let $n := $i//mei:altId[@type = 'WeV']
             let $sortCategory02 := $i//mei:altId[@type = 'WeV']/string(@subtype) 
@@ -2679,8 +2705,8 @@ declare function wega:createDiaryNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:ab/string(@xml:id)
-            let $normDate := $i//tei:ab/string(@n)
+            let $docID := $i/string(@xml:id)
+            let $normDate := $i/string(@n)
             order by $normDate
             return 
             element entry {
@@ -2712,7 +2738,7 @@ declare function wega:createNewsNormDates() {
         <dictionary xmlns=""> {
             attribute xml:id {$xmlID},
             for $i in $coll 
-            let $docID := $i//tei:TEI/string(@xml:id)
+            let $docID := $i/string(@xml:id)
             let $normDate := datetime:date-from-dateTime($i//tei:publicationStmt/tei:date/xs:dateTime(@when))
             (:let $log := util:log-system-out($normDate):)
             order by $normDate descending
@@ -2825,7 +2851,7 @@ declare function wega:createNormDates($docType as xs:string) as item()? {
  : @return item?
 :)
 
-declare function wega:getNormDates($docType as xs:string) as item()? {
+declare function wega:getNormDates($docType as xs:string) as document-node()? {
     let $normDatesFileName := 
         if($docType eq 'persons') then wega:getOption('persNamesFile') 
         else if($docType eq 'works') then wega:getOption('worksNormSeriesFile') 
@@ -2862,6 +2888,7 @@ declare function wega:getNormDates($docType as xs:string) as item()? {
 declare function wega:logToFile($priority as xs:string, $message as xs:string) as empty() {
     let $file := wega:getOption('errorLogFile')
     let $message := concat($message, ' (rev. ', wega:getCurrentSvnRev(), ')')
+    (:let $log := if(wega:getOption('environment') eq 'development') then util:log-system-out($message) else ():)
     return util:log-app($priority, $file, $message)
 };
 

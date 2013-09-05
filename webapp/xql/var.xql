@@ -57,7 +57,7 @@ declare function local:createNameListSidebar($docID as xs:string, $withJS as xs:
     }
 };
 
-declare function local:collectMetaData($doc as document-node(), $lang as xs:string) as item() {
+declare function local:collectMetaData($doc as document-node(), $lang as xs:string) as element(wega:metaData) {
     let $pageTitle := wega:cleanString($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'][@xml:lang = $lang]) 
     let $pageDescription := 
         if(wega:isBiblio($doc/tei:TEI/string(@xml:id))) then string-join($doc//tei:biblStruct[1]//tei:title, '. ')
@@ -68,7 +68,7 @@ declare function local:collectMetaData($doc as document-node(), $lang as xs:stri
         if($doc//tei:idno[@type='isbn-13']) then <meta name="DC.source" scheme="DCTERMS.URI" content="{concat('urn:ISBN:', normalize-space($doc//tei:idno[@type='isbn-13']))}"/>
         else ()
     return 
-    <metaData>
+    <wega:metaData>
         <title>{$pageTitle}</title>
         {$commonMetaData/*}
         <meta name="DC.title" content="{$pageTitle}"/>
@@ -78,7 +78,7 @@ declare function local:collectMetaData($doc as document-node(), $lang as xs:stri
         <meta name="DC.subject" content="{$subject}"/>
         <meta name="DC.language" content="{$lang}" scheme="DCTERMS.RFC3066"/>
         <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI"/>
-    </metaData>
+    </wega:metaData>
 };
  
 

@@ -43,12 +43,12 @@ declare function local:createTabsUL($containerID as xs:string, $lang as xs:strin
 let $lang    := request:get-parameter('lang','de')
 let $containerID := wega:getOption('containerID')
 let $metaData := 
-    <metaData>
+    <wega:metaData>
         <title>{wega:getLanguageString('tools', $lang)}</title>
         {xho:collectCommonMetaData(())/*}
         <meta name="DC.creator" content="Peter Stadler"/>
         <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
-    </metaData>
+    </wega:metaData>
 return
 
 <html>

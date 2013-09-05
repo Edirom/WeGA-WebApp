@@ -6,7 +6,7 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:head"/>
+        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:head tei:date"/>
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:template match="/">

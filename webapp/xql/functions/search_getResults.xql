@@ -17,22 +17,6 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 
 declare variable $local:docTypesForSearch := ('persons','letters','writings','diaries','works','news','biblio','var');
 
-declare function local:getCollection($docType as xs:string, $useCache as xs:boolean) {
-    if($useCache)
-    then facets:getOrCreateColl($docType,'indices')
-    else facets:createColl($docType,'indices')
-    (:    if($docType eq 'persons')       then collection(wega:getOption('persons'))//tei:person[not(./tei:ref)] (\: exclude duplicates :\)
-        else if($docType eq 'letters')  then collection(wega:getOption('letters'))//tei:TEI[not(./tei:ref)]
-        else if($docType eq 'diaries')  then collection(wega:getOption('diaries'))//tei:ab
-        else if($docType eq 'works')    then collection(wega:getOption('works'))//mei:mei
-        else if($docType eq 'news')     then collection(wega:getOption('news'))//tei:TEI
-        else if($docType eq 'writings') then collection(wega:getOption('writings'))//tei:TEI[not(./tei:ref)]
-        else if($docType eq 'biblio')   then collection(wega:getOption('biblio'))/tei:TEI | collection(wega:getOption('biblio'))/tei:biblStruct
-        else if($docType eq 'var')      then collection(wega:getOption('var'))//tei:TEI
-        else():)
-};
-
-
 (:~
  : Creates the query-element for a lucene search. For example:
  : <query>
@@ -46,9 +30,9 @@ declare function local:getCollection($docType as xs:string, $useCache as xs:bool
  : @return the query as XML or ()
  :)
 
-declare function local:buildQuery($searchString,$type) {
-    if($searchString = '') then ''
-    else
+declare function local:buildQuery($searchString as xs:string, $type as xs:string) as item() {
+    (:if($searchString = '') then ''
+    else:) (: wird schon vorher abgefangen :)
     let $hasWildcards       := matches($searchString, '.(\*|\?).')
     let $hasQuotationMarks  := matches($searchString,'".+"') or matches($searchString,"'.+'")
     let $hasHyphen          := matches($searchString, '-')
@@ -197,17 +181,17 @@ declare function local:searchForPersName($coll,$query,$docType) {
     return local:getRootNode($result,$docType)
 };
 
-declare function local:searchFullText($coll,$query,$docType) {
+declare function local:searchFullText($coll,$query,$docType) as element()* {
      let $result :=
-        if($docType='persons')       then $coll//tei:person[ft:query(., $query)] | $coll//tei:persName[@type][ft:query(., $query)]
+        if($docType='persons')       then $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[@type][ft:query(., $query)]
         else if($docType='letters')  then $coll//tei:body[ft:query(., $query)]   | $coll//tei:correspDesc[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] |
                                           $coll//tei:incipit[ft:query(., $query)] | $coll//tei:note[ft:query(.[@type eq 'summary'], $query)]
-        else if($docType='diaries')  then $coll//tei:ab[ft:query(., $query)]
-        else if($docType='writings') then $coll//tei:body[ft:query(., $query)]/ancestor::tei:TEI | $coll//tei:title[ft:query(., $query)]/ancestor::tei:TEI
-        else if($docType='works')    then $coll//mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
-        else if($docType='news')     then $coll//tei:body[ft:query(., $query)]/ancestor::tei:TEI | $coll//tei:title[ft:query(., $query)]/ancestor::tei:TEI
+        else if($docType='diaries')  then $coll/tei:ab[ft:query(., $query)]
+        else if($docType='writings') then $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
+        else if($docType='works')    then $coll/mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
+        else if($docType='news')     then $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
         else if($docType='biblio')   then $coll//tei:text[ft:query(., $query)] | $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
-        else if($docType='var')      then collection('/db/var')//tei:body[ft:query(.,$query)]/ancestor::tei:TEI | collection('/db/var')//tei:title[ft:query(.,$query)]/ancestor::tei:TEI
+        else if($docType='var')      then collection('/db/var')//tei:body[ft:query(.,$query)] | collection('/db/var')//tei:title[ft:query(.,$query)]
         else()
     return local:getRootNode($result,$docType)
 };
@@ -222,8 +206,7 @@ declare function local:searchFullText($coll,$query,$docType) {
  : @return the resulting sequence of documents 
  :)
 declare function local:createSearchField($docType,$searchFilter,$query) {
-  let $coll      := local:getCollection($docType,true())
-  (:let $log := util:log-system-out(concat('#',$query)):)
+  let $coll      := facets:getOrCreateColl($docType, 'indices', false())
   return
     if($searchFilter='fullText')      then local:searchFullText($coll,$query,$docType)
     else if($searchFilter='persName') then local:searchForPersName($coll,$query,$docType)
@@ -302,7 +285,7 @@ declare function local:intersectOtherResults($result, $docType, $searchFilter, $
  :)
  
 declare function local:getResults($docType as xs:string) as element()* {
-    if(request:get-parameter('searchString','')='') then local:getCollection($docType,true())
+    if(request:get-parameter('searchString','') eq '') then facets:getOrCreateColl($docType, 'indices', true())/*
     else
         let $result := local:intersectLuceneResults((), $docType, 'fullText',          local:buildQuery(request:get-parameter('fullText',''),'fullText'))
         let $result := local:intersectLuceneResults($result, $docType, 'persName',          local:buildQuery(request:get-parameter('persName',''),'persName'))
@@ -343,7 +326,7 @@ declare function local:getOnlyOneDateResults($searchString,$docType) {
     let $queryTo   := local:buildQueryTo($query,$nextMonth)
     let $queryTo   := if($queryTo) then xs:date($queryTo) else()
     let $query     := if(string-length($query) = 4) then concat($query,'-01-01') else if(string-length($query) = 7) then concat($query,'-01') else $query
-    let $coll      := local:getCollection($docType,true())
+    let $coll      := (:local:getCollection($docType,true()):) facets:getOrCreateColl($docType, 'indices', false())
     
     let $coll1 :=  
         if(exists($queryTo))

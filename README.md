@@ -18,16 +18,16 @@ Quick start guide
 1. Configure eXist
 2. Set up Digilib
 3. Upload directory `/webapp` to the eXist database root collection
-4. Upload directory `/exist-indices/db` to the eXist database `/db/system/config` collection
-5. Upload directories under `/example-data` to the eXist database root collection
-6. Create a database collection `tmp` under `/db/webapp` and set group and owner to "guest"
+4. Copy content of `/exist-indices/db` to the eXist database `/db/system/config/db` collection
+5. Upload directories from `/example-data` to the eXist database root collection
+6. Make all newly created collections readable for "guest" and the XQueries executable by user "guest". Create a database collection `tmp` under `/db/webapp` and set group and owner to "guest" – or use the helper script `scripts/setPermissions.xql`
 7. Direct your browser to `http://localhost:8080`
 
 
 Branches
 --------
-* `master` our stable branch, based on eXist 1.4.3
-* `develop` our development branch, based on eXist 2.1. Should be very stable by now and will become the next release.
+* `master` our stable branch, based on eXist 2.1
+* `develop` our development branch
 * `foundation-templating-dev` a complete rework of the WeGA-WebApp which will feature a responsive web design (built with foundation) and will adhere to the eXist templating and app packaging.
 
 

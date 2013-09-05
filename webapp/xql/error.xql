@@ -31,13 +31,13 @@ let $logToFile := wega:logToFile('error', $logMessage)
 let $setStatusCode := response:set-status-code(xs:int($errorCode))
 let $startID := 'A002068'
 let $metaData := 
-    <metaData>
+    <wega:metaData>
         <title>Error 404 – Carl-Maria-von-Weber-Gesamtausgabe</title>
         {xho:collectCommonMetaData(())/*}
         <meta name="DC.creator" content="Peter Stadler"/>
         <meta name="DC.language" content="{$lang}" scheme="DCTERMS.RFC3066"/>
         <meta name="robots" content="noindex,nofollow,noarchive"/>
-    </metaData>
+    </wega:metaData>
 return
 
 <html>
