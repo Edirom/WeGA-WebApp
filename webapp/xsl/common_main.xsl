@@ -655,26 +655,33 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
     <!--  Hier mit priority 0.5, da in Briefen und Tagebüchern unterschiedlich behandelt  -->
-    <xsl:template match="tei:pb" priority="0.5">
+    <xsl:template match="tei:pb|tei:cb" priority="0.5">
+        <xsl:variable name="division-sign" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="local-name() eq 'pb'">
+                    <xsl:value-of select="' | '"/> <!-- senkrechter Strich („|“) aka pipe -->
+                </xsl:when>
+                <xsl:when test="local-name() eq 'cb'">
+                    <xsl:value-of select="' ¦ '"/> <!-- in der Mitte unterbrochener („¦“) senkrechter Strich -->
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_pb'"/>
-            <!-- Page breaks between block level elements -->
+            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
+            <!-- breaks between block level elements -->
             <xsl:if test="parent::tei:div or parent::tei:body">
-                <xsl:attribute name="class" select="'tei_pb_block'"/>
+                <xsl:attribute name="class" select="concat('tei_', local-name(), '_block')"/>
             </xsl:if>
-            <xsl:text>|</xsl:text>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="tei:cb" priority="0.5">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_cb'"/>
-            <!-- Column breaks between block level elements -->
-            <xsl:if test="parent::tei:div or parent::tei:body">
-                <xsl:attribute name="class" select="'tei_cb_block'"/>
-            </xsl:if>
-            <xsl:text>¦</xsl:text>
-            <!--in der Mitte unterbrochener („¦“) senkrechter Strich-->
+            <xsl:choose>
+                <xsl:when test="@type='inWord'">
+                    <xsl:value-of select="normalize-space($division-sign)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$division-sign"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -1008,6 +1015,15 @@
         <xsl:attribute name="id">
             <xsl:value-of select="."/>
         </xsl:attribute>
+    </xsl:template>
+    
+    <!-- Default template fürs Datum damit kein Leerzeichen danach entsteht -->
+    <xsl:template match="tei:date" priority="0.5">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="'tei_date'"/>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
 
 </xsl:stylesheet>

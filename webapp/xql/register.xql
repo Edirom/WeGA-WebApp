@@ -20,7 +20,7 @@ let $docType := request:get-parameter('docType','letters')
 let $sessionFilterName := facets:getFilterName($docType)
 let $sessionCollName := facets:getCollName($docType, false())
 let $clearFilter := session:remove-attribute($sessionFilterName)
-let $coll := facets:getOrCreateColl($docType, $id)
+let $coll := facets:getOrCreateColl($docType, $id, true())
 let $createSessionColl := session:set-attribute($sessionCollName, $coll)
 (:let $log := util:log-system-out($docType):)
 (:let $log := util:log-system-out(count($coll)):)
@@ -45,21 +45,21 @@ let $domLoaded :=
         <function>
             <name>scrollToTop</name>
         </function>
-        <function>
+        <!--<function>
             <name>initializeRSH</name>
-        </function>
+        </function>-->
     </domLoaded>
-let $additionalJScripts :=
-    <additionalJScripts xmlns="">
+let $additionalJScripts := ()
+    (:<additionalJScripts xmlns="">
         <function>
             <name>create_RSH</name>
         </function>
-    </additionalJScripts>
+    </additionalJScripts>:)
 
 return 
 
 <html>
-    {xho:createHtmlHead('listView.css', ('list_functions.js', 'infinite_scroll.js', 'rsh_functions.js', 'rsh.js'), xho:collectMetaData($docType, $id, $lang), $domLoaded, $additionalJScripts)}
+    {xho:createHtmlHead('listView.css', ('list_functions.js', 'infinite_scroll.js'(:, 'rsh_functions.js', 'rsh.js':)), xho:collectMetaData($docType, $id, $lang), $domLoaded, $additionalJScripts)}
     <body>
         <div id="container">
             {xho:createHeadContainer($lang)}

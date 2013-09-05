@@ -20,6 +20,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/webapp/xql/modules/functx.xqm";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "xmldb:exist:///db/webapp/xql/modules/wega.xqm";
+import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "xmldb:exist:///db/webapp/xql/modules/facets.xqm";
 
 (:~
  : Show tools tab
@@ -116,14 +117,10 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFile := 
         if(not(doc-available(concat($tmpDir, $IDFileName)))) then doc(xmldb:store($tmpDir, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
         else doc(concat($tmpDir, $IDFileName))
-    let $coll1 := collection(wega:getOption($docType))/*/@xml:id
+    let $coll1 := collection(wega:getOption($docType))/*/data(@xml:id) (: facets:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
     let $coll2 := $IDFile//entry/substring(@xml:id, 2)
     let $removeOldTempIDS := dev:removeOldEntries($IDFile)
-    let $maxID := 
-        let $maxTemp := count($coll1) + count($coll2) + 200
-        return 
-            if ($docType eq 'persons') then max(($maxTemp,9000))
-            else $maxTemp
+    let $maxID := count($coll1) + count($coll2) + 200
     let $newID := 
         if ($maxID lt 9999) then dev:addFffiEntry($IDFile, concat('_', dev:getNewID($maxID, $coll1, $coll2)))
         else '_kein Eintrag verfügbar'
@@ -139,24 +136,27 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
  : @return element
  :)
 
-declare function dev:validateIDs($docType as xs:string) as element() {
-    let $goodKeys := util:eval(concat('collection("', wega:getOption($docType), '")', wega:getOption(concat($docType, 'PredIndices')), '/data(@xml:id)'))
-    let $duplicateKeys := util:eval(concat('collection("', wega:getOption($docType), '")', replace(wega:getOption(concat($docType, 'PredIndices')), '\[not\((.+)\)\]', '[$1]'), '/data(@xml:id)'))
+declare function dev:validateIDs($docType as xs:string) as element(div) {
+    let $goodKeys := facets:getOrCreateColl($docType, 'indices', true())(:/*/data(@xml:id):)
     let $col := collection('/db')
     let $elements := 
-        if($docType eq 'persons') then ($col//tei:persName/@key | $col//tei:rs[matches(@type,'person')]/@key | $col//mei:persName/@dbkey)
-        else if($docType eq 'letters') then ($col//tei:rs[matches(@type,'letter')]/@key)
-        else if($docType eq 'works') then ($col//tei:workName/@key | $col//tei:rs[matches(@type,'work')]/@key)
+        if($docType eq 'persons') then ($col//tei:persName[@key] | $col//tei:editor[@key] | $col//tei:author[@key] | $col//tei:rs[matches(@type,'person')][@key] | $col//mei:persName[@dbkey])
+        else if($docType eq 'letters') then ($col//tei:rs[matches(@type,'letter')][@key])
+        else if($docType eq 'works') then ($col//tei:workName[@key] | $col//tei:rs[matches(@type,'work')][@key])
+        else if($docType eq 'diaries') then ($col//tei:rs[matches(@type,'diary')][@key])
+        else if($docType eq 'news') then ($col//tei:rs[matches(@type,'news')][@key])
+        else if($docType eq 'writings') then ($col//tei:rs[matches(@type,'writing')][@key])
         else ()
 
 (:    return element div {count(distinct-values($elements))}:)
     return element div {
-        for $element in distinct-values($elements)
+        for $element in distinct-values($elements/@key | $elements/@dbkey)
         for $key in tokenize($element, '\s')
     
         return (
-            if ($key = $goodKeys) then ()
-            else(let $docIDs := $elements[. = $element]/root()/*/@xml:id | $elements[. = $key]/root()/*/@xml:id 
+            if ($goodKeys//id($key)) then ()
+            else (
+                let $docIDs := $elements[matches(@key, $element)]/root()/*/@xml:id | $elements[matches(@dbkey, $element)]/root()/*/@xml:id 
                 return element li {concat('Falscher Key: ', $key, ' (in: ', string-join($docIDs, ', '), ')')})
         )
     }
@@ -170,14 +170,13 @@ declare function dev:validateIDs($docType as xs:string) as element() {
  : @return element
  :)
 
-declare function dev:validatePNDs($docType as xs:string) as element() {
-    let $pnds := collection(wega:getOption('persons'))//tei:idno[@type='gnd']
+declare function dev:validatePNDs($docType as xs:string) as element(div) {
+    let $coll := facets:getOrCreateColl('persons', 'indices', true())
     return element div {
-        for $pnd in distinct-values($pnds)
+        for $pnd in distinct-values($coll//tei:idno[@type='gnd'])
         return (
-            if (count($pnds[. = $pnd]) gt 1) then (
-(:                let $docIDs := $elements[. = $element]/root()/*/@xml:id | $elements[. = $key]/root()/*/@xml:id :)
-                element li {concat('Doppelte PND: ', $pnd(:, ' (in: ', string-join($docIDs, ', '), ')':))}
+            if ($coll//tei:idno[. = $pnd][@type='gnd'][2]) then (
+                element li {concat('Doppelte PND: ', $pnd)}
             )
             else()
         )

@@ -1,4 +1,7 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:rng="http://relaxng.org/ns/structure/1.0" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
@@ -10,7 +13,7 @@
                 <xsl:attribute name="class" select="'hiddenText'"/>
                 <xsl:text>|</xsl:text>
             </xsl:element>
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="element()"/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:pb" priority="1">
@@ -40,7 +43,7 @@
             </xsl:with-param>
         </xsl:apply-templates>
     </xsl:template>
-    <xsl:template match="tei:date"/>
+    <xsl:template match="tei:date" priority="1"/>
     <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]">
         <xsl:param name="counter"/>
         <xsl:element name="span">

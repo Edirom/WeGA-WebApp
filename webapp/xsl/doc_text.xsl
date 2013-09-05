@@ -8,7 +8,7 @@
 
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footnote tei:head"/>
+        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footnote tei:head tei:date"/>
 
     <xsl:param name="headerMode" select="false()"/>
 

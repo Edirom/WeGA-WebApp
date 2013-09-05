@@ -130,8 +130,7 @@
                             <xsl:attribute name="title" select="substring(//*[@id eq @href], 2)"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:attribute name="title"
-                                select="wega:getLanguageString('wiki_referenceBack', $lang)"/>
+                            <xsl:attribute name="title" select="wega:getLanguageString('wiki_referenceBack', $lang)"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <xsl:apply-templates/>
@@ -175,6 +174,12 @@
             <xsl:attribute name="style" select="'display:none'"/>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+    <xsl:template match="span[@class='mw-headline']">
+        <xsl:copy>
+            <xsl:copy-of select="@id"/>
+            <xsl:apply-templates/>
+        </xsl:copy>
     </xsl:template>
     <xsl:template match="dl">
         <xsl:element name="dl">
