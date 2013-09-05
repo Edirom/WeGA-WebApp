@@ -15,13 +15,13 @@
       <entry xml:id="lettersPred">[(.//tei:sender/tei:persName/@key = '%1', .//tei:addressee/tei:persName/@key = '%1')][not(*/tei:ref)]</entry>
       <entry xml:id="writingsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
       <entry xml:id="newsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
-      <entry xml:id="diariesPred"></entry>
+      <entry xml:id="diariesPred">[./tei:ab]</entry>
       <entry xml:id="worksPred">[.//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]/@dbkey = '%1']</entry>
       <entry xml:id="iconographyPred">//tei:figure[.//tei:person[@corresp = '%1']][@n = 'portrait'][1]</entry>
       <entry xml:id="newsPredIndices">[not(*/tei:ref)]</entry>
       <entry xml:id="lettersPredIndices">[not(*/tei:ref)]</entry>
       <entry xml:id="writingsPredIndices">[not(*/tei:ref)]</entry>
-      <entry xml:id="diariesPredIndices"></entry>
+      <entry xml:id="diariesPredIndices">[./tei:ab]</entry>
       <entry xml:id="personsPredIndices">[not(*/tei:ref)]</entry>
       <entry xml:id="worksPredIndices"></entry>
       <entry xml:id="biblioPredIndices">[not(*/tei:ref)]</entry>
