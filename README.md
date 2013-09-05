@@ -8,7 +8,7 @@ It is especially _not_ yet designed as an eXist app package but is supposed to r
 Prerequisites
 -------------
 
-1. [eXist-db](http://exist-db.org/) v1.4.3 (other versions should work, but may need some adjustements) 
+1. [eXist-db](http://exist-db.org/) v2.1 (other versions should work, but may need some adjustements) 
 2. [Digilib Image Server](http://developer.berlios.de/projects/digilib/) v1.8.3: All processing of images (except icons under `/webapp/pix`) is done via Digilib. Well, if you don't need images, you don't need Digilib. Also, the exact version shouldn't be crucial.
 
 
@@ -16,6 +16,7 @@ Quick start guide
 -----------------
 
 1. Configure eXist
+2. Install expath package `xqjson` via dashboard
 2. Set up Digilib
 3. Upload directory `/webapp` to the eXist database root collection
 4. Copy content of `/exist-indices/db` to the eXist database `/db/system/config/db` collection
