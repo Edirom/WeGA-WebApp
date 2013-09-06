@@ -364,7 +364,9 @@ let $search := if(request:get-parameter-names() = "date" and  $numberOfSearchIte
     then for $docType in $docTypes return local:getOnlyOneDateResults(distinct-values(tokenize(request:get-parameter('date',''),'\s+')),$docType) 
     else for $docType in $docTypes return local:getResults($docType)
 
-let $searchResults := for $x in $search order by ft:score($x) descending, $x(://tei:persName[@type="reg"]:) ascending return $x
+let $searchResults := 
+    if($searchString eq '') then $search
+    else for $x in $search order by ft:score($x) descending, $x(://tei:persName[@type="reg"]:) ascending return $x
 let $firstDoc := session:get-attribute('firstDoc')
 let $searchResults := ($firstDoc,$searchResults except $firstDoc)
 let $firstDoc := session:remove-attribute('firstDoc')
