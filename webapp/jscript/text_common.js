@@ -145,7 +145,7 @@ function uniqid (prefix, more_entropy) {
 
 function writeWeGALog(text,logLevel) {
     if(!logLevel) logLevel = 'error';
-    var url = 'functions/writeWeGALog.xql?text='+text+'&logLevel='+logLevel;
+    var url = 'functions/writeWeGALog.xql?text='+encodeURIComponent(text)+'&logLevel='+logLevel;
     new Ajax.Request(url,{});
 };
 
