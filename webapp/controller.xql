@@ -48,9 +48,9 @@ let $search := if($isUtil or $isFunc) then () else wega:getLanguageString('searc
 let $help := if($isUtil or $isFunc) then () else wega:getLanguageString('help',$lang)
 let $projectDescription := if($isUtil or $isFunc) then () else replace(wega:getLanguageString('projectDescription',$lang), '\s', '_')
 (:let $weberStudies := if($isUtil or $isFunc) then () else wega:getLanguageString('weberStudies',$lang):)
-let $musicVolumes := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('musicVolumes',$lang))
-let $papers := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('papers',$lang))
-let $talks := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('talks',$lang))
+(:let $musicVolumes := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('musicVolumes',$lang)):)
+(:let $papers := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('papers',$lang)):)
+(:let $talks := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('talks',$lang)):)
 (:let $publications := if($isUtil or $isFunc) then () else wega:getLanguageString('publications',$lang):)
 let $bibliography := if($isUtil or $isFunc) then () else wega:getLanguageString('bibliography',$lang)
 let $literature := if($isUtil or $isFunc) then () else wega:getLanguageString('literature',$lang)
@@ -85,6 +85,12 @@ else if($isUtil) then
             <add-parameter name="lang" value="{$lang}"/>
             <cache-control cache="yes"/>
         </forward>
+    </dispatch>
+
+(: blank.html - Needed by RSH for Internet Explorer's hidden iframe :)
+else if ($exist:resource eq 'blank.html') then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="/jscript/blank.html"/>
     </dispatch>
 
 (: Wenn kein Apache vorgeschaltet ist, dann hier die Verzeichnisse css, jscript, pix auf den eXist-Jetty durchgeben :)
@@ -531,11 +537,10 @@ else if (matches($exist:path, '/webdav')) then
         <ignore/>
     </dispatch>
     
-else if (matches($exist:path, 'blank.html')) then
+else if ($exist:path eq '/favicon.ico') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/jscript/blank.html">
-    	</forward>
+        <redirect url="/pix/weber_favicon.ico"/>
     </dispatch>
-
+ 
 else $error404
 )
