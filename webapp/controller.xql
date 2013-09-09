@@ -35,7 +35,7 @@ let $isFunc := matches($exist:path, '/functions/')
 let $isUtil := matches($exist:path, '/utilities/')
 let $isDoc := matches($exist:resource, 'A0[2-6]')
 let $authorID := if($isDoc) then wega:getAuthorOfTeiDoc($exist:resource) else ()
-let $isWeberPublication := if(wega:isBiblio($exist:resource)) then wega:isWeberStudies(wega:doc($exist:resource)) else false()
+(:let $isWeberPublication := if(wega:isBiblio($exist:resource)) then wega:isWeberStudies(wega:doc($exist:resource)) else false():)
 let $indices := if($isUtil or $isFunc) then () else wega:getLanguageString('indices', $lang)
 let $persons := if($isUtil or $isFunc) then () else wega:getLanguageString('persons', $lang)
 let $letters := if($isUtil or $isFunc) then () else wega:getLanguageString('letters', $lang)
@@ -47,11 +47,11 @@ let $news := if($isUtil or $isFunc) then () else wega:getLanguageString('news',$
 let $search := if($isUtil or $isFunc) then () else wega:getLanguageString('search',$lang)
 let $help := if($isUtil or $isFunc) then () else wega:getLanguageString('help',$lang)
 let $projectDescription := if($isUtil or $isFunc) then () else replace(wega:getLanguageString('projectDescription',$lang), '\s', '_')
-let $weberStudies := if($isUtil or $isFunc) then () else wega:getLanguageString('weberStudies',$lang)
-let $musicVolumes := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('musicVolumes',$lang))
-let $papers := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('papers',$lang))
-let $talks := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('talks',$lang))
-let $publications := if($isUtil or $isFunc) then () else wega:getLanguageString('publications',$lang)
+(:let $weberStudies := if($isUtil or $isFunc) then () else wega:getLanguageString('weberStudies',$lang):)
+(:let $musicVolumes := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('musicVolumes',$lang)):)
+(:let $papers := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('papers',$lang)):)
+(:let $talks := if($isUtil or $isFunc) then () else encode-for-uri(wega:getLanguageString('talks',$lang)):)
+(:let $publications := if($isUtil or $isFunc) then () else wega:getLanguageString('publications',$lang):)
 let $bibliography := if($isUtil or $isFunc) then () else wega:getLanguageString('bibliography',$lang)
 let $literature := if($isUtil or $isFunc) then () else wega:getLanguageString('literature',$lang)
 let $discography := if($isUtil or $isFunc) then () else wega:getLanguageString('discography',$lang)
@@ -85,6 +85,12 @@ else if($isUtil) then
             <add-parameter name="lang" value="{$lang}"/>
             <cache-control cache="yes"/>
         </forward>
+    </dispatch>
+
+(: blank.html - Needed by RSH for Internet Explorer's hidden iframe :)
+else if ($exist:resource eq 'blank.html') then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="/jscript/blank.html"/>
     </dispatch>
 
 (: Wenn kein Apache vorgeschaltet ist, dann hier die Verzeichnisse css, jscript, pix auf den eXist-Jetty durchgeben :)
@@ -239,7 +245,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
     </dispatch>:)
 
 (: Weber-Studien Einzelansicht:)
-else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
+(:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -248,11 +254,11 @@ else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $
     	   <add-parameter name="docID" value="{$exist:resource}"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
-    </dispatch>
+    </dispatch>:)
 
 (: Publikationen :)
-else if (matches($exist:path, concat('^/', $lang,'/', $publications, '(/(', $weberStudies, '|', $musicVolumes, '|', $papers, '|', $talks, '))?$'))) then
-    local:forwardIndices('publications', $lang)
+(:else if (matches($exist:path, concat('^/', $lang,'/', $publications, '(/(', $weberStudies, '|', $musicVolumes, '|', $papers, '|', $talks, '))?$'))) then
+    local:forwardIndices('publications', $lang):)
 
 (: Bibliography :)
 else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $literature, '|', $discography, '|', $scores, '))?$'))) then
@@ -531,11 +537,10 @@ else if (matches($exist:path, '/webdav')) then
         <ignore/>
     </dispatch>
     
-else if (matches($exist:path, 'blank.html')) then
+else if ($exist:path eq '/favicon.ico') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/jscript/blank.html">
-    	</forward>
+        <redirect url="/pix/weber_favicon.ico"/>
     </dispatch>
-
+ 
 else $error404
 )
