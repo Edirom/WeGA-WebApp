@@ -60,7 +60,7 @@ declare function local:collectMetaData($lang as xs:string) as element(wega:metaD
         <meta name="description" content="{$pageDescription}" lang="{$lang}"/>
         <meta name="DC.description" content="{$pageDescription}"/>
         <meta name="DC.creator" content="Peter Stadler"/>
-        <meta name="DC.date" content="{xmldb:last-modified(wega:getOption('tmpDir'), concat('todaysEventsFile_', $lang, '.xml'))}" scheme="DCTERMS.W3CDTF"/>
+        <meta name="DC.date" content="{current-dateTime()}" scheme="DCTERMS.W3CDTF"/>
         <meta name="DC.subject" content="{$subject}"/>
         <meta name="DC.language" content="{$lang}" scheme="DCTERMS.RFC3066"/>
         <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI"/>
