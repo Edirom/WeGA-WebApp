@@ -386,7 +386,9 @@ declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang
     let $findbuchResponse := wega:grabExternalResource('beacon', $pnd, (), true())
         (:util:binary-to-string(wega:grabExternalResource('beacon', $pnd, (), true())):)
     let $jxml := 
-        if(exists($findbuchResponse)) then xqjson:parse-json($findbuchResponse)
+        if(exists($findbuchResponse)) then 
+            if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then xqjson:parse-json(util:binary-to-string($findbuchResponse))
+            else xqjson:parse-json($findbuchResponse)
         else ()
     let $list :=
           <ul>{
