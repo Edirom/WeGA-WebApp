@@ -37,8 +37,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
             <url><loc>{string-join((wega:getOption('baseHref'), $lang, replace(wega:getLanguageString($i, $lang), '\s', '_')), '/')}</loc></url>
         }
         {
-        (:for $k in $local:databaseEntries return local:getUrlList($k, $lang):)
-        ()
+        for $k in $local:databaseEntries return local:getUrlList($k, $lang)
         }
     </urlset>
 };
