@@ -1775,19 +1775,16 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare %private function wega:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="4"/>
+    let $req := <http:request href="{$url}" method="get" timeout="4"><http:header name="Connection" value="close"/></http:request>
     let $response := 
-        try { (:http:send-request($req):) httpclient:get($url,true(), ()) }
+        try { http:send-request($req) }
         catch * {wega:logToFile('warn', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
-    let $response := 
+    (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
-        else $response
-(:    let $statusCode := $response[1]/data(@status):)
+        else $response:)
+    let $statusCode := $response[1]/data(@status)
     return
         <wega:externalResource date="{current-date()}">
-            {$response}
-        </wega:externalResource>
-        (:<wega:externalResource date="{current-date()}">
             <httpclient:response statusCode="{$statusCode}">
                 <httpclient:headers>{
                     for $header in $response[1]//http:header
@@ -1797,7 +1794,7 @@ declare %private function wega:http-get($url as xs:anyURI) as element(wega:exter
                     {$response[2]}
                 </httpclient:body>
             </httpclient:response>
-        </wega:externalResource>:)
+        </wega:externalResource>
 };
 
 (:~
