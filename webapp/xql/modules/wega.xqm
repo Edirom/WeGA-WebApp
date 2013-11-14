@@ -1352,7 +1352,7 @@ declare function wega:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
     return 
         collection(wega:getOption('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)] union
-        collection(wega:getOption('persons'))//tei:date[matches(@when, $date-regex)][parent::tei:birth or parent::tei:death]
+        collection(wega:getOption('persons'))//tei:date[matches(@when, $date-regex)][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
 (:~ 
