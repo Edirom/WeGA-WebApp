@@ -96,11 +96,12 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
         else '%d. %B %Y'
     let $encryptedBugEmail := wega:encryptString(wega:getOption('bugEmail'), ())
     let $version := concat(wega:getOption('version'), if(wega:getOption('environment') eq 'development') then 'dev' else '')
+    let $versionDate := wega:strftime($dateFormat, xs:date(wega:getOption('versionDate')), $lang)
     let $permalink := string-join((wega:getOption('baseHref'), $docID), '/')
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
-                <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(wega:doc(wega:getOption('versionNews')), $lang)}">Version: {$version}</xhtml:a>) </xhtml:p>
+                <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(wega:doc(wega:getOption('versionNews')), $lang)}">{wega:getLanguageString('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
                 <xhtml:p>{
                     if(wega:getOption('environment') eq 'development') then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
                     else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
