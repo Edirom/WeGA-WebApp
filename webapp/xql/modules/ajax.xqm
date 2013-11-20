@@ -41,9 +41,9 @@ declare function ajax:getTodaysEvents($date as xs:date, $lang as xs:string) as e
         let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
         let $typeOfEvent := 
             if($teiDate/ancestor::tei:correspDesc) then 'letter'
-            else if($teiDate/parent::tei:birth[@type='baptism']) then 'isBaptised'
+            else if($teiDate[@type='baptism']) then 'isBaptised'
             else if($teiDate/parent::tei:birth) then 'isBorn'
-            else if($teiDate/parent::tei:death[@type='funeral']) then 'wasBuried'
+            else if($teiDate[@type='funeral']) then 'wasBuried'
             else if($teiDate/parent::tei:death) then 'dies'
             else ()
         order by $teiDate/xs:date(@when) ascending
