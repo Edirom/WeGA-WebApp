@@ -80,6 +80,7 @@ declare function xho:createHeadContainer($lang as xs:string) as element()* {
  :)
 
 declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as element(xhtml:div) {
+    let $docID := substring-before(functx:substring-after-last($docPath, '/'), '.')
     let $docHash := util:hash($docPath, 'md5')
 (:    let $log := util:log-system-out($docPath):)
     let $entry := doc(wega:getOption('svnChangeHistoryFile'))//id(concat('_',$docHash))
@@ -94,10 +95,16 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
         then '%B %d, %Y'
         else '%d. %B %Y'
     let $encryptedBugEmail := wega:encryptString(wega:getOption('bugEmail'), ())
-    return if(exists($author) and exists($date)) 
-        then
+    let $version := concat(wega:getOption('version'), if(wega:getOption('environment') eq 'development') then 'dev' else '')
+    let $permalink := string-join((wega:getOption('baseHref'), $docID), '/')
+    return 
+        if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
-                  <xhtml:p>{wega:getLanguageString('lastChangeDate',(wega:strftime($dateFormat, $date, $lang),$author),$lang)}</xhtml:p>
+                <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(wega:doc(wega:getOption('versionNews')), $lang)}">Version: {$version}</xhtml:a>) </xhtml:p>
+                <xhtml:p>{
+                    if(wega:getOption('environment') eq 'development') then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
+                    else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
+                }</xhtml:p>
                   {if($lang eq 'en') then 
                   <xhtml:p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
                     <xhtml:span onclick="javascript:decEma('{$encryptedBugEmail}')" class="ema">{wega:obfuscateEmail(wega:getOption('bugEmail'))}</xhtml:span>
