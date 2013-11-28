@@ -96,6 +96,7 @@ let $xslParams :=
         {if(exists($createSecNos)) then <param name="createSecNos" value="true"/> else()}
         {if($isBiography) then <param name="collapseBlock" value="true"/> else()}
         <param name="uri" value="{request:get-uri()}"/>
+        <param name="docID" value="{$docID}"/>
     </parameters>
 let $doc := wega:doc($docID)
 let $css := if($isImpressum) then 'index.css' else 'layout76-22.css'
