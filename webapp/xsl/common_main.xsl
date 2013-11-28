@@ -700,14 +700,15 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:element name="tbody">
                 <xsl:variable name="currNode" select="."/>
+                <!-- Bestimmung der Breite der Tabellenspalten -->
+                <xsl:variable name="define-width-of-cells" as="xs:double*">
+                    <xsl:choose>
                 <!-- 
                     Mittels median wird eine alternative Berechnung der Spaltenbreiten angeboten
                     Dabei wird nicht das arithmetische Mittel der Zeichenlängen der jeweiligen Spalten genommen,
                     sonderen eben der Median, damit extreme Ausreißer nicht so ins Gewicht fallen.
                     (siehe  z.B. Tabelle in A040603)
                 -->
-                <xsl:variable name="medians" as="xs:double*">
-                    <xsl:choose>
                         <xsl:when test="@rend = 'median'">
                             <xsl:for-each select="(1 to count($currNode/tei:row[1]/tei:cell))">
                                 <xsl:variable name="counter" as="xs:integer">
@@ -718,13 +719,19 @@
                                 />
                             </xsl:for-each>
                         </xsl:when>
+                        <!-- 
+                            Fieser Hack zum Ausrichten der Tabellen in der Bandübersicht
+                            Könnnte und sollte man mal generisch machen …
+                        -->
+                        <xsl:when test="$docID = 'A070011'">
+                            <xsl:copy-of select="(1,8,1)"/>
+                        </xsl:when>
                         <xsl:otherwise/>
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="widths" as="xs:double*">
-                    <xsl:for-each select="$medians">
-                        <xsl:value-of select="round-half-to-even(100 div (sum($medians) div .), 2)"
-                        />
+                    <xsl:for-each select="$define-width-of-cells">
+                        <xsl:value-of select="round-half-to-even(100 div (sum($define-width-of-cells) div .), 2)"/>
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:apply-templates>
@@ -745,13 +752,13 @@
         <xsl:choose>
             <xsl:when test="parent::tei:row[@role='label']">
                 <xsl:element name="th">
-                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:apply-templates select="@xml:id|@rows|@cols"/>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="td">
-                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:apply-templates select="@xml:id|@rows|@cols"/>
                     <xsl:if test="exists($widths)">
                         <xsl:attribute name="style">
                             <xsl:value-of select="concat('width:', $widths[$counter], '%')"/>
@@ -1013,6 +1020,18 @@
 
     <xsl:template match="@xml:id">
         <xsl:attribute name="id">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <xsl:template match="@rows">
+        <xsl:attribute name="rowspan">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:template>
+        
+    <xsl:template match="@cols">
+        <xsl:attribute name="colspan">
             <xsl:value-of select="."/>
         </xsl:attribute>
     </xsl:template>
