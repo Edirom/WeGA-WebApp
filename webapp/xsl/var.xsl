@@ -63,7 +63,7 @@
 
     <xsl:template match="tei:head[not(@type='sub')]">
         <xsl:choose>
-            <xsl:when test="$createSecNos">
+            <xsl:when test="$createToc">
                 <!-- Überschrift h2 für Editionsrichtlinien und Weber-Biographie -->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:attribute name="id">
@@ -76,11 +76,13 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
+                    <xsl:if test="$createSecNos">
                     <xsl:call-template name="createSecNo">
                         <xsl:with-param name="div" select="parent::tei:div"/>
                         <xsl:with-param name="lang" select="$lang"/>
                     </xsl:call-template>
                     <xsl:text> </xsl:text>
+                    </xsl:if>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
@@ -191,8 +193,7 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of
-            select="count($div/preceding-sibling::tei:div[ancestor-or-self::tei:div/@xml:lang=$lang]) + 1"/>
+        <xsl:value-of select="count($div/preceding-sibling::tei:div/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
         <xsl:if test="$dot">
             <xsl:text>. </xsl:text>
         </xsl:if>
@@ -214,11 +215,13 @@
                             <xsl:attribute name="href">
                                 <xsl:value-of select="concat('#', generate-id())"/>
                             </xsl:attribute>
-                            <xsl:call-template name="createSecNo">
-                                <xsl:with-param name="div" select="parent::tei:div"/>
-                                <xsl:with-param name="lang" select="$lang"/>
-                            </xsl:call-template>
-                            <xsl:text> </xsl:text>
+                            <xsl:if test="$createSecNos">
+                                <xsl:call-template name="createSecNo">
+                                    <xsl:with-param name="div" select="parent::tei:div"/>
+                                    <xsl:with-param name="lang" select="$lang"/>
+                                </xsl:call-template>
+                                <xsl:text> </xsl:text>
+                            </xsl:if>
                             <xsl:value-of select="."/>
                         </xsl:element>
                     </xsl:element>
