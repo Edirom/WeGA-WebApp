@@ -464,8 +464,6 @@ declare function ajax:requestLetterContext($docID as xs:string, $lang as xs:stri
     let $persons := wega:getNormDates('persons') 
     let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
     let $addresseeID := $doc//tei:addressee/tei:persName[1]/@key
-    let $senderName := wega:printCorrespondentName($doc//tei:fileDesc/tei:titleStmt/tei:author[1], $lang, 'fs')
-    let $addresseeName := wega:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs') (: siehe Ticket #739 :)
     let $normDates := if(exists($authorID)) then wega:getNormDates('letters') else ()
     
     (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
