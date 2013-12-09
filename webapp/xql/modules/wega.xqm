@@ -1382,7 +1382,7 @@ declare function wega:printFornameSurname($name as xs:string?) as xs:string? {
  : @return 
  :)
  
-declare function wega:printCorrespondentName($persName as element(), $lang as xs:string, $order as xs:string) as element() {
+declare function wega:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
      if(exists($persName/@key)) 
         then wega:createPersonLink($persName/string(@key), $lang, $order)
         else if (exists($persName//text())) 
@@ -2220,8 +2220,8 @@ declare function wega:constructLetterHead($doc as document-node(), $lang as xs:s
         else wega:getLanguageString('undated', $lang)
     let $sender := wega:printCorrespondentName($doc//tei:sender/*[1], $lang, 'fs')
     let $addressee := wega:printCorrespondentName($doc//tei:addressee/*[1], $lang, 'fs')
-    let $placeSender := if(normalize-space($doc//tei:placeSender) ne '') then normalize-space($doc//tei:placeSender) else ()
-    let $placeAddressee := if(normalize-space($doc//tei:placeAddressee) ne '') then normalize-space($doc//tei:placeAddressee) else ()
+    let $placeSender := if(functx:all-whitespace($doc//tei:placeSender)) then () else normalize-space($doc//tei:placeSender)
+    let $placeAddressee := if(functx:all-whitespace($doc//tei:placeAddressee)) then () else normalize-space($doc//tei:placeAddressee)
     return (
         element h1 {
             concat($sender, ' ', lower-case(wega:getLanguageString('to', $lang)), ' ', $addressee),
