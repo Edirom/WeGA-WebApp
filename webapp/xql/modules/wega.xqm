@@ -832,8 +832,8 @@ element div {
                 return (
                     <span  class="alt">{wega:cleanString($i)}</span>,
 (:                    transform:transform($i, doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams),:)
-                    if($i[@subtype='maiden']) 
-                        then <span class="nameDesc">{concat(' (', wega:getLanguageString('maidenName',$lang), ')')}</span> 
+                    if($i[@subtype='birth']) 
+                        then <span class="nameDesc">{concat(' (', wega:getLanguageString('birthName',$lang), ')')}</span> 
                         else if($i[@subtype='married'])
                             then <span class="nameDesc">{concat(' (', wega:getLanguageString('marriedName',$lang), ')')}</span> 
                             else '',
