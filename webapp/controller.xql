@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
@@ -7,13 +7,16 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "modules/wega.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "modules/config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "modules/lang.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "modules/controller.xqm";
 import module namespace functx="http://www.functx.com";
 
-declare variable $exist:resource external;
 declare variable $exist:path external;
+declare variable $exist:resource external;
 declare variable $exist:controller external;
+declare variable $exist:prefix external;
 
-declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) as element() {
+declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) as element(exist:dispatch) {
     let $menu := doc(config:get-option('menusFile'))//id($menuID)
     let $displayName := 
         if($exist:resource eq wega:getLanguageString($menu/pageName, $lang)) then $menu/entry[1]/displayName/text() 
@@ -33,7 +36,15 @@ declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) 
 };
 
 let $params := tokenize($exist:path, '/')
-let $lang := wega:getSetLanguage($params[2])
+let $lang := lang:get-set-language($params[2])
+let $exist-vars := map {
+    'path' := $exist:path,
+    'resource' := $exist:resource,
+    'controller' := $exist:controller,
+    'prefix' := $exist:prefix,
+    'lang' := $lang
+    }
+
 let $isFunc := matches($exist:path, '/functions/')
 let $isUtil := matches($exist:path, '/utilities/')
 let $isDoc := matches($exist:resource, 'A0[2-6]')
@@ -73,7 +84,7 @@ let $error404 :=
     </dispatch>
 
 return (
-if($isFunc) then  
+(:if($isFunc) then  
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat('/xql/functions/', $exist:resource)}">
             {if($exist:resource = 'getJavaScriptOptions.xql') then <set-header name="Cache-Control" value="max-age=3600"/>
@@ -88,7 +99,9 @@ else if($isUtil) then
             <add-parameter name="lang" value="{$lang}"/>
             <cache-control cache="yes"/>
         </forward>
-    </dispatch>
+    </dispatch>:)
+
+if($isUtil or $isFunc) then controller:forward-ajax($exist-vars)
 
 (: blank.html - Needed by RSH for Internet Explorer's hidden iframe :)
 else if ($exist:resource eq 'blank.html') then
@@ -97,7 +110,7 @@ else if ($exist:resource eq 'blank.html') then
     </dispatch>
 
 (: Wenn kein Apache vorgeschaltet ist, dann hier die Verzeichnisse css, jscript, pix auf den eXist-Jetty durchgeben :)
-else if(matches($exist:path, 'css|jscript|pix|fonts')) then
+else if(matches($exist:path, '/resources/')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
     </dispatch>
