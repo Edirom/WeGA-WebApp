@@ -10,11 +10,12 @@ declare namespace util="http://exist-db.org/xquery/util";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
 import module namespace xho="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/xho" at "xho.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "facets.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"; 
 
 declare function local:formatBibliography($biblItems as element()*, $lang as xs:string) as element()* {
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     return 
     for $i in $biblItems
     return 

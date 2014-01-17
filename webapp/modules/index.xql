@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 declare default element namespace "http://www.w3.org/1999/xhtml"; 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
@@ -75,7 +75,7 @@ let $lang := request:get-parameter('lang','')
 let $withJS := if(request:get-parameter('js', 'true') eq 'true') then true() else false()
 let $date := adjust-date-to-timezone(util:system-date(),())
 let $startID := 'A002068'
-let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
 
 let $maxNews := xs:integer(config:get-option('maxNews'))
 let $minNews := xs:integer(config:get-option('minNews'))
@@ -115,7 +115,7 @@ return
             {xho:createHeadContainer($lang)}
             <div id="main">
                 <div id="contentLeft">
-                   {transform:transform(doc("/db/var/A0700xx/A070005.xml")//tei:text//tei:div[@xml:lang=$lang][1], doc("/db/webapp/xsl/var.xsl"), $xslParams)}
+                   {transform:transform(core:doc('A070005')//tei:text//tei:div[@xml:lang=$lang][1], doc($config:xsl-collection-path || "/var.xsl"), $xslParams)}
                    <div id="newsTeaser">{$newsTeaser}</div>
                 </div>
                 <div id="contentRight">

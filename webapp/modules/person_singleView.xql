@@ -12,6 +12,7 @@ import module namespace xho="http://xquery.weber-gesamtausgabe.de/webapp/xql/mod
 import module namespace functx="http://www.functx.com";
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/ajax" at "ajax.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -57,7 +58,7 @@ let $withJS := request:get-parameter('js','true')
 let $person := core:doc($id)/tei:person
 let $name := wega:cleanString($person/tei:persName[@type='reg'])
 let $pnd := $person/tei:idno[@type='gnd']
-let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters> 
+let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters> 
 let $domLoaded := 
     if($withJS eq 'true') then
     <domLoaded xmlns="">

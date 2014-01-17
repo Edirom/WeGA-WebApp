@@ -246,14 +246,14 @@ return
 
 declare function ajax:getBiography($id as xs:string, $lang as xs:string) as element()* {
 let $person := core:doc($id)
-let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
 let $baseHref := config:get-option('baseHref')
 return (
     if($person//tei:note[@type="bioSummary"])
         then
             <div id="bioSummary">
                 <h2>{wega:getLanguageString('bioSummary',$lang)}</h2>
-                {wega:changeNamespace(transform:transform($person//tei:note[@type="bioSummary"], doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams), '', ())}
+                {wega:changeNamespace(transform:transform($person//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams), '', ())}
             </div>
         else 
             if($person//tei:event) then ()
@@ -280,7 +280,7 @@ declare function ajax:getWikipedia($pnd as xs:string, $lang as xs:string) as ele
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
     let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     let $appendix := if($lang eq 'en') then 
         <p class="linkAppendix">The content of this "Wikipedia" entitled box is taken from the article "<a href='{$wikiUrl}' title='Wikipedia article for {$name}'>{$name}</a>" 
@@ -322,9 +322,9 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
     let $pnd := request:get-parameter('pnd','118629662')
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('adb', $pnd, (), true())
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
-    let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc('/db/webapp/xsl/person_wikipedia.xsl'), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/></parameters>)
+    let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc('/db/webapp/xsl/person_wikipedia.xsl'), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>)
     let $result := if(exists($wikiContent//xhtml:meta)) 
         then (
             <div class="wikipediaText">
@@ -609,11 +609,12 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
             <param name="dbPath" value="{document-uri($doc)}"/>
             <param name="docID" value="{$docID}"/>
             <param name="transcript" value="true"/>
+            <param name="optionsFile" value="{$config:options-file-path}"/>
         </parameters>
     let $xslt := 
-        if(config:is-letter($docID)) then doc("/db/webapp/xsl/letter_text.xsl")
-        else if(config:is-news($docID)) then doc("/db/webapp/xsl/news.xsl")
-        else if(config:is-writing($docID)) then doc("/db/webapp/xsl/doc_text.xsl")
+        if(config:is-letter($docID)) then doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
+        else if(config:is-news($docID)) then doc(concat($config:xsl-collection-path, '/news.xsl'))
+        else if(config:is-writing($docID)) then doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
         else ()
     let $head := 
         if(config:is-letter($docID)) then wega:getLetterHead($doc, $lang)
@@ -624,8 +625,8 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
          if(functx:all-whitespace($doc//tei:text))
          (: Entfernen von Namespace-Deklarationen: siehe http://wiki.apache.org/cocoon/RemoveNamespaces :)
          then (
-            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else wega:changeNamespace(transform:transform($doc//tei:note[@type='summary'], doc("/db/webapp/xsl/letter_text.xsl"), $xslParams), '', ()) 
-            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else wega:changeNamespace(transform:transform($doc//tei:incipit, doc("/db/webapp/xsl/letter_text.xsl"), $xslParams), '', ())
+            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else wega:changeNamespace(transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ()) 
+            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else wega:changeNamespace(transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ())
             let $text := if($doc//tei:correspDesc[@n = 'revealed']) then wega:getLanguageString('correspondenceTextNotAvailable', $lang)
                          else wega:getLanguageString('correspondenceTextNotYetAvailable', $lang)
             return element div {
@@ -688,6 +689,7 @@ declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:
         <parameters>
             <param name="lang" value="{$lang}"/>
             <param name="transcript" value="true"/>
+            <param name="optionsFile" value="{$config:options-file-path}"/>
             {if($curYear = $yearsToSuppress) then <param name="suppressLinks" value="true"/>
             else ()}
         </parameters>

@@ -364,9 +364,9 @@ declare function wega:getEvents($person as node(), $lang as xs:string) as elemen
                     then concat('b', $whenFrom, 'a', $whenTo)
                     else concat('w', $whenFrom)
                 else string-join(($from, $to, $notBefore, $notAfter), '_')
-        let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="eventID" value="{concat('event-', $i, '_', $idDatePart)}"/></parameters>
+        let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="eventID" value="{concat('event-', $i, '_', $idDatePart)}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
         return 
-            wega:changeNamespace(transform:transform($event, doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams), '', ())
+            wega:changeNamespace(transform:transform($event, doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams), '', ())
 };
 
 (:~
@@ -733,7 +733,7 @@ let $imageDimension :=
 let $clickable := $usage eq 'listView'
 let $portraitPath := wega:getPortraitPath($person, $imageDimension, $lang)
 let $regName := wega:getRegName($fffiId)
-let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
 let $html_pixDir := config:get-option('html_pixDir')
 let $cssClasses := if($usage eq 'toolTip') 
     then 'person toolTip'
@@ -781,7 +781,7 @@ element div {
         if (exists($person//tei:persName[@type="full"]))
         then <p class="fullName">{
             wega:cleanString($person/tei:persName[@type='full'])
-(:        transform:transform($person//tei:persName[string(@type) eq 'full'], doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams):)
+(:        transform:transform($person//tei:persName[string(@type) eq 'full'], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams):)
         }</p>
         else()
         }
@@ -789,7 +789,7 @@ element div {
         if (exists($person//tei:persName[@type="real"]))
         then <p class="realName">{
             wega:cleanString($person/tei:persName[@type='real']),
-(:            transform:transform($person//tei:persName[string(@type) eq 'real'], doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams),:)
+(:            transform:transform($person//tei:persName[string(@type) eq 'real'], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams),:)
                                     <span class="nameDesc">{concat(' (', wega:getLanguageString('realName',$lang), ')')}</span>}</p>
         else()
         }
@@ -800,7 +800,7 @@ element div {
                 let $lastItem := $person//tei:persName[@type="alt"]/last()
                 return (
                     <span  class="alt">{wega:cleanString($i)}</span>,
-(:                    transform:transform($i, doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams),:)
+(:                    transform:transform($i, doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams),:)
                     if($i[@subtype='birth']) 
                         then <span class="nameDesc">{concat(' (', wega:getLanguageString('birthName',$lang), ')')}</span> 
                         else if($i[@subtype='married'])
@@ -819,7 +819,7 @@ element div {
                 let $lastItem := $person//tei:persName[@type="pseud"]/last()
                 return (
                     <span class="pseud">{wega:cleanString($i)}</span>,
-(:                    transform:transform($i, doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams),:)
+(:                    transform:transform($i, doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams),:)
                     if($count = $lastItem) then () else '; '
                     )
                 }
@@ -950,7 +950,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
     let $dateFormat := if ($lang eq 'en')
         then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $date := xs:date($diaryEntry/@n)
     let $id := $diaryEntry/@xml:id
     
@@ -1438,10 +1438,10 @@ declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wra
  :)
  
 declare function wega:printGenericCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
     let $title := for $i in $biblStruct//tei:title return 
-        (transform:transform($i, doc("/db/webapp/xsl/var.xsl"), $xslParams),
+        (transform:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), $xslParams),
         '. '
         )
     return 
@@ -1646,7 +1646,7 @@ declare function wega:printpubPlaceNYear($imprint as element(tei:imprint)) as el
  :)
  
 declare function wega:printSourceDesc($doc as document-node(), $lang as xs:string) as element(div) {
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/></parameters>
+    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $docID := $doc/tei:TEI/@xml:id cast as xs:string
     return
     <div class="clearfix">
@@ -1675,15 +1675,15 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
             }
             <div>{
                 (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
-                if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:listWit))) then transform:transform($doc//tei:sourceDesc/tei:listWit, doc("/db/webapp/xsl/sourceDesc.xsl"), $xslParams)
-                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:msDesc))) then transform:transform($doc//tei:sourceDesc/tei:msDesc, doc("/db/webapp/xsl/sourceDesc.xsl"), $xslParams)
+                if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:listWit))) then transform:transform($doc//tei:sourceDesc/tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams)
+                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:msDesc))) then transform:transform($doc//tei:sourceDesc/tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams)
                 else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:biblStruct))) then wega:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang)                
                 else (<span class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</span>)
             }</div>
             {if(exists($doc//tei:creation)) then (
             	<h3>{wega:getLanguageString('creation',$lang)}</h3>,
             	<ul>
-            		<li>{transform:transform($doc//tei:creation, doc("/db/webapp/xsl/sourceDesc.xsl"), $xslParams)}</li>
+            		<li>{transform:transform($doc//tei:creation, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams)}</li>
             	</ul>
             	)
             else ()	
@@ -2139,7 +2139,7 @@ declare function wega:getWritingHead($doc as document-node(), $xslParams as elem
             <param name="headerMode" value="true"/>
         </parameters>
     return 
-        for $i in transform:transform($doc//tei:fileDesc/tei:titleStmt, doc("/db/webapp/xsl/doc_text.xsl"), $xslParamsHeader)
+        for $i in transform:transform($doc//tei:fileDesc/tei:titleStmt, doc(concat($config:xsl-collection-path, '/doc_text.xsl')), $xslParamsHeader)
         return wega:changeNamespace($i, '', ())
 };
 

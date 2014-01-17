@@ -94,6 +94,7 @@ let $isBiography := $docID eq 'A070003'
 let $xslParams :=
     <parameters>
         <param name="lang" value="{$lang}"/>
+        <param name="optionsFile" value="{$config:options-file-path}"/>
         {if(exists($createToc)) then <param name="createToc" value="true"/> else()}
         {if(exists($createSecNos)) then <param name="createSecNos" value="true"/> else()}
         {if($isBiography) then <param name="collapseBlock" value="true"/> else()}
@@ -151,7 +152,7 @@ return
                     <div id="docFrame">
                         {if($isImpressum) then ()
                         else element h1 { wega:cleanString($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'][@xml:lang = $lang]) },
-                        transform:transform($doc//tei:text, doc("/db/webapp/xsl/var.xsl"), $xslParams)
+                        transform:transform($doc//tei:text, doc(concat($config:xsl-collection-path, '/var.xsl')), $xslParams)
                         }
                     </div>
                     <script type="text/javascript">

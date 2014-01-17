@@ -1,17 +1,13 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com"
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
 
     <!--  *********************************************  -->
     <!--  *             Global Variables              *  -->
     <!--  *********************************************  -->
-    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>
+<!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
+    <xsl:param name="optionsFile"/>
     <xsl:param name="lang"/>
     <xsl:param name="dbPath"/>
     <xsl:param name="docID"/>
@@ -25,17 +21,13 @@
     <xsl:function name="wega:getAuthorFromTeiDoc" as="xs:string">
         <xsl:param name="docID" as="xs:string"/>
         <!-- construct path to File (collection function does not work! cf. http://exist.2174344.n4.nabble.com/error-with-collection-in-XSLT-within-eXist-td2189008.html) -->
-        <xsl:variable name="pathToDoc"
-            select="concat(wega:getCollectionPath($docID), '/', $docID, '.xml')"/>
+        <xsl:variable name="pathToDoc" select="concat(wega:getCollectionPath($docID), '/', $docID, '.xml')"/>
         <xsl:variable name="docAvailable" select="doc-available($pathToDoc)"/>
         <xsl:choose>
             <xsl:when test="wega:isWork($docID) and $docAvailable">
                 <xsl:choose>
-                    <xsl:when
-                        test="doc($pathToDoc)//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/@dbkey">
-                        <xsl:value-of
-                            select="doc($pathToDoc)//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/string(@dbkey)"
-                        />
+                    <xsl:when test="doc($pathToDoc)//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/@dbkey">
+                        <xsl:value-of select="doc($pathToDoc)//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/string(@dbkey)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="wega:getOption('anonymusID')"/>
@@ -49,11 +41,8 @@
                 <xsl:choose>
                     <xsl:when test="$docAvailable">
                         <xsl:choose>
-                            <xsl:when
-                                test="doc($pathToDoc)//tei:fileDesc//tei:titleStmt//tei:author[1]/@key">
-                                <xsl:value-of
-                                    select="doc($pathToDoc)//tei:fileDesc//tei:titleStmt//tei:author[1]/string(@key)"
-                                />
+                            <xsl:when test="doc($pathToDoc)//tei:fileDesc//tei:titleStmt//tei:author[1]/@key">
+                                <xsl:value-of select="doc($pathToDoc)//tei:fileDesc//tei:titleStmt//tei:author[1]/string(@key)"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="wega:getOption('anonymusID')"/>
@@ -72,38 +61,28 @@
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
             <xsl:when test="wega:isPerson($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('persons'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('persons'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isIconography($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('iconography'), '/', substring($docID, 1, 5), 'xx')"
-                />
+                <xsl:value-of select="concat(wega:getOption('iconography'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isWork($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('works'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('works'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isWriting($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('writings'), '/', substring($docID, 1, 5), 'xx')"
-                />
+                <xsl:value-of select="concat(wega:getOption('writings'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isLetter($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('letters'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('letters'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isNews($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('news'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('news'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isDiary($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('diaries'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('diaries'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:when test="wega:isVar($docID)">
-                <xsl:value-of
-                    select="concat(wega:getOption('var'), '/', substring($docID, 1, 5), 'xx')"/>
+                <xsl:value-of select="concat(wega:getOption('var'), '/', substring($docID, 1, 5), 'xx')"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="'unknown'"/>
@@ -119,8 +98,7 @@
     <xsl:function name="wega:getLanguageString" as="xs:string">
         <xsl:param name="key" as="xs:string"/>
         <xsl:param name="lang" as="xs:string"/>
-        <xsl:value-of
-            select="doc(wega:getOption(concat('dic_', $lang)))//entry[@xml:id = $key]/text()"/>
+        <xsl:value-of select="doc(wega:getOption(concat('dic_', $lang)))//entry[@xml:id = $key]/text()"/>
     </xsl:function>
 
     <xsl:function name="wega:isPerson" as="xs:boolean">
@@ -256,8 +234,7 @@
                 <xsl:value-of select="string-join(($baseHref, $lang, $docID), '/')"/>
             </xsl:when>
             <xsl:when test="exists($folder) and $authorID ne ''">
-                <xsl:value-of
-                    select="string-join(($baseHref, $lang, $authorID, $folder, $docID), '/')"/>
+                <xsl:value-of select="string-join(($baseHref, $lang, $authorID, $folder, $docID), '/')"/>
             </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
@@ -333,8 +310,7 @@
             </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="middle" as="xs:double" select="(count($orderedNumbers) + 1) div 2"/>
-        <xsl:value-of
-            select="avg(($orderedNumbers[ceiling($middle)], $orderedNumbers[floor($middle)]))"/>
+        <xsl:value-of select="avg(($orderedNumbers[ceiling($middle)], $orderedNumbers[floor($middle)]))"/>
     </xsl:function>
 
     <!--  *********************************************  -->
@@ -344,9 +320,7 @@
         <xsl:param name="arg" as="xs:string?"/>
         <xsl:param name="changeFrom" as="xs:string*"/>
         <xsl:param name="changeTo" as="xs:string*"/>
-        <xsl:sequence
-            select="if (count($changeFrom) &gt; 0)              then functx:replace-multi(replace($arg, $changeFrom[1], functx:if-absent($changeTo[1],'')), $changeFrom[position() &gt; 1], $changeTo[position() &gt; 1])              else $arg"
-        />
+        <xsl:sequence select="if (count($changeFrom) &gt; 0)              then functx:replace-multi(replace($arg, $changeFrom[1], functx:if-absent($changeTo[1],'')), $changeFrom[position() &gt; 1], $changeTo[position() &gt; 1])              else $arg"/>
     </xsl:function>
     <xsl:function name="functx:if-absent" as="item()*">
         <xsl:param name="arg" as="item()*"/>
@@ -448,10 +422,8 @@
         tei:seg und tei:signed mit @rend werden schon als block-level-Elemente gesetzt, 
         brauchen daher keinen Zeilenumbruch mehr 
     -->
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]"
-        priority="0.6"/>
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]"
-        priority="0.6"/>
+    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
+    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
     <xsl:template match="text()">
         <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols), '|')"/>
@@ -635,13 +607,11 @@
                         <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
                     </xsl:when>
                     <xsl:when test="./tei:del[@rend='strikethrough']">
-                        <xsl:value-of
-                            select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
+                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
                         <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
                     </xsl:when>
                     <xsl:when test="./tei:del[@rend='overwritten']">
-                        <xsl:value-of
-                            select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
+                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
                         <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
                     </xsl:when>
                 </xsl:choose>
@@ -714,9 +684,7 @@
                                 <xsl:variable name="counter" as="xs:integer">
                                     <xsl:value-of select="position()"/>
                                 </xsl:variable>
-                                <xsl:value-of
-                                    select="wega:computeMedian($currNode/tei:row/tei:cell[$counter]/string-length())"
-                                />
+                                <xsl:value-of select="wega:computeMedian($currNode/tei:row/tei:cell[$counter]/string-length())"/>
                             </xsl:for-each>
                         </xsl:when>
                         <!-- 
@@ -846,16 +814,14 @@
     <xsl:template match="tei:figure" priority="0.5">
         <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
-        <xsl:variable name="href"
-            select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;mo=file')"/>
+        <xsl:variable name="href" select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;mo=file')"/>
         <xsl:variable name="title" select="tei:figDesc"/>
         <xsl:variable name="content">
             <xsl:element name="img">
                 <xsl:apply-templates select="@xml:id"/>
                 <xsl:attribute name="alt" select="tei:figDesc"/>
                 <xsl:attribute name="height" select="$figureHeight"/>
-                <xsl:attribute name="src"
-                    select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
+                <xsl:attribute name="src" select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
                 <xsl:attribute name="class" select="'figure'"/>
             </xsl:element>
         </xsl:variable>
@@ -984,8 +950,7 @@
     <xsl:template match="tei:signed" priority="0.5">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class"
-                select="string-join(('tei_signed', wega:getTextAlignment(@rend, 'right')), ' ')"/>
+            <xsl:attribute name="class" select="string-join(('tei_signed', wega:getTextAlignment(@rend, 'right')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -996,8 +961,7 @@
     <xsl:template match="tei:seg[@rend]" priority="0.5">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class"
-                select="string-join(('tei_segBlock', wega:getTextAlignment(@rend, 'left')), ' ')"/>
+            <xsl:attribute name="class" select="string-join(('tei_segBlock', wega:getTextAlignment(@rend, 'left')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
