@@ -26,7 +26,6 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";
 
-declare variable $wega:optionsFile as xs:string := '/db/webapp/xml/wegaOptions.xml';
 declare variable $wega:romanNums as xs:integer* := (1000,900,500,400,100,90,50,40,10,9,5,4,1);
 declare variable $wega:romanAlpha as xs:string* := ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I');
 declare variable $wega:historyStack := ();
@@ -462,25 +461,6 @@ declare function wega:getLanguageString($key as xs:string, $replacements as xs:s
 declare function wega:reverseLanguageString ($string as xs:string, $lang as xs:string) as xs:string* {
     let $dicID := concat('dic_', $lang)
     return wega:reverseDictionaryLookup($string, $dicID)
-};
-
-
-(:~
- : Sets the language as a session attribute and returns this value
- : 
- : @author Peter Stadler
- : @param $lang the language to switch to
- : @return xs:string 
- :)
- 
-declare function wega:getSetLanguage ($lang as xs:string) as xs:string
-{
-    let $session-lang := if ($lang eq 'en' or $lang eq 'de')
-        then session:set-attribute('lang', $lang)
-        else if (not(exists(session:get-attribute('lang'))))
-            then session:set-attribute('lang', 'de') (: Deutsch als Default-Sprache :)
-            else ()
-    return session:get-attribute('lang')
 };
 
 (:~
