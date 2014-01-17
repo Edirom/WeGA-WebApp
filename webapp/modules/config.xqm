@@ -280,7 +280,7 @@ declare function config:is-weberStudies($doc as document-node()) as xs:boolean {
  : @param $string the string to test
  : @return xs:boolean
 :)
-declare function config:is-BiblioType($string as xs:string) as xs:boolean {
+declare function config:is-biblioType($string as xs:string) as xs:boolean {
     $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
 };
 

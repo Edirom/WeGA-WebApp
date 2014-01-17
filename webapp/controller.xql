@@ -5,8 +5,8 @@ declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "modules/wega.xqm";
-import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "modules/config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $exist:resource external;
@@ -14,7 +14,7 @@ declare variable $exist:path external;
 declare variable $exist:controller external;
 
 declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) as element() {
-    let $menu := doc(wega:getOption('menusFile'))//id($menuID)
+    let $menu := doc(config:get-option('menusFile'))//id($menuID)
     let $displayName := 
         if($exist:resource eq wega:getLanguageString($menu/pageName, $lang)) then $menu/entry[1]/displayName/text() 
         else wega:reverseLanguageString($exist:resource, $lang)
@@ -108,7 +108,7 @@ else if(matches($exist:path, 'css|jscript|pix|fonts')) then
 :)
 else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/Index')}"/>
+        <redirect url="{concat($lang, '/Index')}"/>
     </dispatch>
 
 (: 
@@ -118,7 +118,7 @@ else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
 :)
 else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/Index')}"/>
+        <redirect url="{concat($lang, '/Index')}"/>
     </dispatch>
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
@@ -268,7 +268,7 @@ else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $lit
     local:forwardIndices('bibliography', $lang)
 
 (: Tools :)
-else if (wega:getOption('environment') eq 'development' and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
+else if (config:get-option('environment') eq 'development' and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{concat($exist:controller, '/modules/tools.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
@@ -504,7 +504,7 @@ else if (matches($exist:path, '^/wev_kurzfassung.html$')) then
 (: typo3ContentMappings :)
 else if (matches($exist:path, '^/index.php$')) then
     let $param := request:get-parameter('id', '10')
-    let $newPath := doc(wega:getOption('typo3ContentMappings'))//entry[@oldID = $param]
+    let $newPath := doc(config:get-option('typo3ContentMappings'))//entry[@oldID = $param]
     return if($newPath ne '') then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         	<redirect url="{$newPath}">
@@ -530,7 +530,7 @@ else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:pa
     </dispatch>
 
 (: JMX Statusinformationen :)
-else if (wega:getOption('environment') eq 'development' and $exist:path eq '/status') then 
+else if (config:get-option('environment') eq 'development' and $exist:path eq '/status') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
     </dispatch>

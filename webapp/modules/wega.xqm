@@ -547,39 +547,6 @@ declare function wega:reverseDictionaryLookup ($string as xs:string, $dicID as x
     return $dic//entry[. = $string]/string(@xml:id)
 };
 
-
-(:~
- :  Returns the requested option value from an option file given by the variable $wega:optionsFile
- :  
- : @author Peter Stadler
- : @param $key the key to look for in the options file
- : @return xs:string the option value as string identified by the key otherwise the empty string
- :)
- 
-declare function config:get-option($key as xs:string?) as xs:string {
-    let $dic := doc($wega:optionsFile)
-    let $item := $dic//id($key)
-    return wega:cleanString($item)
-};
-
-(:~
- : Get options from options file
- :
- : @author Peter Stadler
- : @param $key
- : @param $replacements
- : @return xs:string
- :)
-
-declare function config:get-option($key as xs:string?, $replacements as xs:string*) as xs:string {
-    let $dic := doc($wega:optionsFile)
-    let $item := $dic//id($key)
-    let $placeHolders := for $i at $count in $replacements
-        let $x := concat('%',$count)
-        return $x
-    return functx:replace-multi($item,$placeHolders,$replacements)
-};
-
 (:~
  : Tries to translate a string from sourceLang to targetLang using the dictionaries 
  : If no translation is found the empty string is returned
@@ -2247,19 +2214,6 @@ declare function wega:createLinkToDoc($doc as document-node(), $lang as xs:strin
             else ()
         else if(exists($folder) and $authorId ne '') then string-join((config:get-option('baseHref'), $lang, $authorId, $folder, $docID), '/')
         else ()
-};
-
-
-(:~
- : Checks whether a given string matches the defined types of bibliographic objects
- :
- : @author Peter Stadler
- : @param $string the string to test
- : @return xs:boolean
-:)
-
-declare function config:is-biblioType($string as xs:string) as xs:boolean {
-    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
 };
 
 (:~
