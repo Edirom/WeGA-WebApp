@@ -298,7 +298,7 @@ declare function ajax:getWikipedia($pnd as xs:string, $lang as xs:string) as ele
     let $result := if(exists($wikiContent//xhtml:meta)) 
         then (
             <div class="wikipediaText">
-                {transform:transform($wikiContent//xhtml:div[@id='bodyContent'], doc('/db/webapp/xsl/person_wikipedia.xsl'), $xslParams)}
+                {transform:transform($wikiContent//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), $xslParams)}
                 {$appendix}
             </div>
         )
@@ -325,11 +325,11 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
     let $wikiContent := wega:grabExternalResource('adb', $pnd, (), true())
     let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
-    let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc('/db/webapp/xsl/person_wikipedia.xsl'), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/></parameters>)
+    let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/></parameters>)
     let $result := if(exists($wikiContent//xhtml:meta)) 
         then (
             <div class="wikipediaText">
-                {transform:transform($wikiContent//xhtml:div[@id='bodyContent'], doc('/db/webapp/xsl/person_wikipedia.xsl'), $xslParams)}
+                {transform:transform($wikiContent//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), $xslParams)}
                 {$appendix}
             </div>
         )
@@ -700,8 +700,8 @@ declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:
     return 
         <div class="diaryDay" id="{$doc/tei:ab/string(@xml:id)}">
             <h2>{wega:strftime($dateFormat, xs:date($doc/tei:ab/@n), $lang)}</h2>
-            {wega:changeNamespace(transform:transform($doc, doc('/db/webapp/xsl/diary_tableLeft.xsl'), $xslParams), '', ())}
-            {wega:changeNamespace(transform:transform($doc, doc('/db/webapp/xsl/diary_tableRight.xsl'), $xslParams), '', ())}
+            {wega:changeNamespace(transform:transform($doc, doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl')), $xslParams), '', ())}
+            {wega:changeNamespace(transform:transform($doc, doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl')), $xslParams), '', ())}
         </div>,
         <div class="clearer"></div>
 };
