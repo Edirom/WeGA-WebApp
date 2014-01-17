@@ -20,7 +20,7 @@ declare function local:formatBibliography($biblItems as element()*, $lang as xs:
     for $i in $biblItems
     return 
     element li {
-        transform:transform($i, doc('/db/webapp/xsl/var.xsl'), $xslParams)
+        transform:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), $xslParams)
     }
 };
 

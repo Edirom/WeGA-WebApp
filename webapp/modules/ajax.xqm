@@ -254,7 +254,7 @@ return (
         then
             <div id="bioSummary">
                 <h2>{wega:getLanguageString('bioSummary',$lang)}</h2>
-                {wega:changeNamespace(transform:transform($person//tei:note[@type="bioSummary"], doc("/db/webapp/xsl/person_singleView.xsl"), $xslParams), '', ())}
+                {wega:changeNamespace(transform:transform($person//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams), '', ())}
             </div>
         else 
             if($person//tei:event) then ()
@@ -613,9 +613,9 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
             <param name="optionsFile" value="{$config:options-file-path}"/>
         </parameters>
     let $xslt := 
-        if(config:is-letter($docID)) then doc("/db/webapp/xsl/letter_text.xsl")
-        else if(config:is-news($docID)) then doc("/db/webapp/xsl/news.xsl")
-        else if(config:is-writing($docID)) then doc("/db/webapp/xsl/doc_text.xsl")
+        if(config:is-letter($docID)) then doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
+        else if(config:is-news($docID)) then doc(concat($config:xsl-collection-path, '/news.xsl'))
+        else if(config:is-writing($docID)) then doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
         else ()
     let $head := 
         if(config:is-letter($docID)) then wega:getLetterHead($doc, $lang)
@@ -626,8 +626,8 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
          if(functx:all-whitespace($doc//tei:text))
          (: Entfernen von Namespace-Deklarationen: siehe http://wiki.apache.org/cocoon/RemoveNamespaces :)
          then (
-            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else wega:changeNamespace(transform:transform($doc//tei:note[@type='summary'], doc("/db/webapp/xsl/letter_text.xsl"), $xslParams), '', ()) 
-            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else wega:changeNamespace(transform:transform($doc//tei:incipit, doc("/db/webapp/xsl/letter_text.xsl"), $xslParams), '', ())
+            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else wega:changeNamespace(transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ()) 
+            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else wega:changeNamespace(transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ())
             let $text := if($doc//tei:correspDesc[@n = 'revealed']) then wega:getLanguageString('correspondenceTextNotAvailable', $lang)
                          else wega:getLanguageString('correspondenceTextNotYetAvailable', $lang)
             return element div {
