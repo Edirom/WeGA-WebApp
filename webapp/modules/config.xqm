@@ -119,9 +119,15 @@ declare function config:app-meta($node as node(), $model as map(*)) as element()
  : @return xs:string the option value as string identified by the key otherwise the empty string
  :)
 declare function config:get-option($key as xs:string?) as xs:string {
-    let $dic := $config:options-file
-    let $item := $dic//id($key)
-    return normalize-space($item)
+    switch ($key)
+        (: this serves as a shortcut for legacy code :)
+        (: Please use core:link-to-current-app() directly! :)
+        case 'baseHref' return core:link-to-current-app(())
+        default return (
+            let $dic := $config:options-file
+            let $item := $dic//id($key)
+            return normalize-space($item)
+        )
 };
 
 (:~
