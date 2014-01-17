@@ -7,6 +7,7 @@ module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
@@ -178,4 +179,17 @@ declare function core:change-namespace($element as element(), $targetNamespace a
             return 
                 if ($child instance of element()) then core:change-namespace($child, $targetNamespace, $keepNamespaces)
                 else $child}
+};
+
+(:~
+ : Serves as a shortcut to templates:link-to-app()
+ : The assumed context is the current app
+ :
+ : @author Peter Stadler
+ : @param $relLink a relative path to be added to the returned path
+ : @return the complete URL for $relLink
+ :)
+declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
+(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    replace(string-join((request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink), "/"), "/+", "/")
 };
