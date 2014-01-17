@@ -12,5 +12,25 @@ declare variable $dir external;
 (: the target collection into which the app is deployed :)
 declare variable $target external;
 
+declare function local:mkcol-recursive($collection, $components) {
+    if (exists($components)) then
+        let $newColl := concat($collection, "/", $components[1])
+        return (
+            xdb:create-collection($collection, $components[1]),
+            local:mkcol-recursive($newColl, subsequence($components, 2))
+        )
+    else
+        ()
+};
+
+(: Helper function to recursively create a collection hierarchy. :)
+declare function local:mkcol($collection, $path) {
+    local:mkcol-recursive($collection, tokenize($path, "/"))
+};
+
 (: create tmp collection for caching all sorts of downloaded files :)
-sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest')
+sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest'),
+
+(: store the collection configuration :)
+local:mkcol("/db/system/config", $target), 
+xdb:store-files-from-pattern(concat("/system/config", $target), concat($dir, '/indices'), "**/*.xconf", (), true())
