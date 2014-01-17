@@ -22,12 +22,9 @@
         <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
             <fileset dir=".">
                 <include name="*.*"/>
-                <include name="css/**"/>
-                <include name="fonts/**"/>
-                <include name="jscript/**"/>
-                <include name="pix/**"/>
-                <include name="xml/**"/>
-                <include name="xql/**"/>
+                <include name="modules/**"/>
+                <include name="resources/**"/>
+                <include name="catalogues/**"/>
                 <include name="xsl/**"/>
                 <exclude name="${build}/*"/>
                 <exclude name=".git*"/>

@@ -4,11 +4,14 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "xmldb:exist:///db/webapp/xql/modules/wega.xqm";
-import module namespace functx="http://www.functx.com" at "xmldb:exist:///db/webapp/xql/modules/functx.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "modules/wega.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace functx="http://www.functx.com";
 
 declare variable $exist:resource external;
 declare variable $exist:path external;
+declare variable $exist:controller external;
 
 declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) as element() {
     let $menu := doc(wega:getOption('menusFile'))//id($menuID)
@@ -21,7 +24,7 @@ declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) 
 (:    let $log := util:log-system-out($displayName):)
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/register.xql">
+    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docType" value="{$docType}"/>
     	   <add-parameter name="id" value="{$menuID}"/>
@@ -35,7 +38,7 @@ let $isFunc := matches($exist:path, '/functions/')
 let $isUtil := matches($exist:path, '/utilities/')
 let $isDoc := matches($exist:resource, 'A0[2-6]')
 let $authorID := if($isDoc) then wega:getAuthorOfTeiDoc($exist:resource) else ()
-(:let $isWeberPublication := if(wega:isBiblio($exist:resource)) then wega:isWeberStudies(wega:doc($exist:resource)) else false():)
+(:let $isWeberPublication := if(config:is-biblio($exist:resource)) then config:is-weberStudies(core:doc($exist:resource)) else false():)
 let $indices := if($isUtil or $isFunc) then () else wega:getLanguageString('indices', $lang)
 let $persons := if($isUtil or $isFunc) then () else wega:getLanguageString('persons', $lang)
 let $letters := if($isUtil or $isFunc) then () else wega:getLanguageString('letters', $lang)
@@ -62,7 +65,7 @@ let $editorialGuidelines := if($isUtil or $isFunc) then () else replace(wega:get
 let $ajaxCrawlerParameter := '_escaped_fragment_'
 let $error404 := 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/error.xql">
+    	<forward url="{concat($exist:controller, '/modules/error.xql')}">
     	   <add-parameter name="errorCode" value="404"/>
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <cache-control cache="yes"/>
@@ -122,7 +125,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/index.xql">
+    	<forward url="{concat($exist:controller, '/modules/index.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -131,7 +134,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/search.xql">
+    	<forward url="{concat($exist:controller, '/modules/search.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	</forward>
     </dispatch>
@@ -145,7 +148,7 @@ else if (matches($exist:path, concat('^/', $lang,'/', $indices, '(/(', $persons,
             else wega:translateLanguageString(xmldb:decode-uri(xs:anyURI($exist:resource)), $lang, 'en')
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/register.xql">
+    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docType" value="{lower-case($docType)}"/>
     	   <add-parameter name="id" value="indices"/>
@@ -157,7 +160,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070001"/>
     	   <add-parameter name="createToc" value="true"/>
@@ -171,7 +174,7 @@ else if ($exist:path eq '/en/About' or $exist:path eq '/de/Impressum') then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070002"/>
     	   <add-parameter name="js" value="{$js}"/>
@@ -183,7 +186,7 @@ else if ($exist:path eq '/en/Biography' or $exist:path eq '/de/Biographie') then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070003"/>
     	   <add-parameter name="createToc" value="true"/>
@@ -197,7 +200,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $help, '/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070004"/>
     	   <add-parameter name="createToc" value="true"/>
@@ -211,7 +214,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $projectDescription, '/?$
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070006"/>
     	   <add-parameter name="createToc" value="true"/>
@@ -225,7 +228,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070009"/>
     	   <add-parameter name="js" value="{$js}"/>
@@ -237,7 +240,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070010"/>
     	   <add-parameter name="js" value="{$js}"/>
@@ -249,7 +252,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     return
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/var.xql">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="{$exist:resource}"/>
     	   <add-parameter name="js" value="{$js}"/>
@@ -267,7 +270,7 @@ else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $lit
 (: Tools :)
 else if (wega:getOption('environment') eq 'development' and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/tools.xql">
+    	<forward url="{concat($exist:controller, '/modules/tools.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	</forward>
     </dispatch>
@@ -309,7 +312,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $correspondence,
     let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'), '')
     return 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<forward url="/xql/register.xql">
+        	<forward url="{concat($exist:controller, '/modules/register.xql')}">
         	   <add-parameter name="lang" value="{$lang}"/>
         	   <add-parameter name="docType" value="letters"/>
         	   <add-parameter name="id" value="{$authorID}"/>
@@ -321,7 +324,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $writings, '/?$'
     let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'),'')
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/register.xql">
+    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docType" value="writings"/>
     	   <add-parameter name="id" value="{$authorID}"/>
@@ -333,7 +336,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $works, '/?$')))
     let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'),'')
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/register.xql">
+    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docType" value="works"/>
     	   <add-parameter name="id" value="{$authorID}"/>
@@ -345,7 +348,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A002068/', $diaries, '/?$'))
     let $authorID := 'A002068'
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/register.xql">
+    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docType" value="diaries"/>
     	   <add-parameter name="id" value="{$authorID}"/>
@@ -355,7 +358,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A002068/', $diaries, '/?$'))
 (: Personen - Einzelansicht :)
 else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-    let $person := wega:doc($exist:resource)/tei:person
+    let $person := core:doc($exist:resource)/tei:person
     return if(exists($person)) then 
         if($person/tei:ref) then ( 
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -364,7 +367,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
         )
         else
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-            	<forward url="/xql/person_singleView.xql">
+            	<forward url="{concat($exist:controller, '/modules/person_singleView.xql')}">
             	   <add-parameter name="lang" value="{$lang}"/>
             	   <add-parameter name="id" value="{$exist:resource}"/>
             	   <add-parameter name="js" value="{$js}"/>
@@ -375,7 +378,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
 (: Brief - Einzelansicht :)
 else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspondence,'/', 'A04\d{4}/?$'))) then
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-        let $doc := wega:doc($exist:resource)/tei:TEI
+        let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -383,7 +386,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspon
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="/xql/letter_singleView.xql">
+                	<forward url="{concat($exist:controller, '/modules/letter_singleView.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
@@ -394,7 +397,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspon
 (: Schriften - Einzelansicht :)
 else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $writings, '/', 'A03\d{4}/?$'))) then
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-        let $doc := wega:doc($exist:resource)/tei:TEI
+        let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -402,7 +405,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $writings,
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="/xql/doc_singleView.xql">
+                	<forward url="{concat($exist:controller, '/modules/doc_singleView.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
@@ -415,7 +418,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', 'A002068', '/', $diaries,
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
         return
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<forward url="/xql/diary_singleView.xql">
+        	<forward url="{concat($exist:controller, '/modules/diary_singleView.xql')}">
         	   <add-parameter name="lang" value="{$lang}"/>
         	   <add-parameter name="id" value="{$exist:resource}"/>
         	   <add-parameter name="js" value="{$js}"/>
@@ -425,7 +428,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', 'A002068', '/', $diaries,
 (: News - Einzelansicht :)
 else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/', 'A05\d{4}/?$'))) then
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-        let $doc := wega:doc($exist:resource)/tei:TEI
+        let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -433,7 +436,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/'
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="/xql/news_singleView.xql">
+                	<forward url="{concat($exist:controller, '/modules/news_singleView.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
