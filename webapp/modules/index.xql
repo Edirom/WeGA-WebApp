@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "1.0" encoding "UTF-8";
 declare default element namespace "http://www.w3.org/1999/xhtml"; 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
@@ -7,7 +7,7 @@ declare namespace transform="http://exist-db.org/xquery/transform";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace cache="http://exist-db.org/xquery/cache";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
-declare namespace datetime="http://exist-db.org/xquery/datetime";
+import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
 import module namespace xho="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/xho" at "xho.xqm";
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/ajax" at "ajax.xqm";
@@ -115,7 +115,7 @@ return
             {xho:createHeadContainer($lang)}
             <div id="main">
                 <div id="contentLeft">
-                   {transform:transform(core:doc('A070005')//tei:text//tei:div[@xml:lang=$lang][1], doc($config:xsl-collection-path || "/var.xsl"), $xslParams)}
+                   {transform:transform(core:doc('A070005')//tei:text//tei:div[@xml:lang=$lang][1], doc(concat($config:xsl-collection-path, "/var.xsl")), $xslParams)}
                    <div id="newsTeaser">{$newsTeaser}</div>
                 </div>
                 <div id="contentRight">

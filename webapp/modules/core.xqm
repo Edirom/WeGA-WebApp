@@ -11,6 +11,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
 
 (:~
  : Get document by ID

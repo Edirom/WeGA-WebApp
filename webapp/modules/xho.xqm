@@ -20,6 +20,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/mo
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8";
 
