@@ -2525,7 +2525,7 @@ declare function wega:getLastAuthorOfDocument($docPath as xs:string) as xs:strin
     let $docHash := util:hash($docPath, 'md5')
     let $entry := doc(wega:getOption('svnChangeHistoryFile'))//id(concat('_',$docHash))
     return 
-        if(exists($entry/@author)) then wega:dictionaryLookup(string($entry/@author),'svnUsers')
+        if(exists($entry/@author)) then wega:dictionaryLookup($entry/lower-case(@author),'svnUsers')
         else ()
 };
 

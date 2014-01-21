@@ -82,15 +82,8 @@ declare function xho:createHeadContainer($lang as xs:string) as element()* {
 declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as element(xhtml:div) {
     let $docID := substring-before(functx:substring-after-last($docPath, '/'), '.')
     let $docHash := util:hash($docPath, 'md5')
-(:    let $log := util:log-system-out($docPath):)
-    let $entry := doc(wega:getOption('svnChangeHistoryFile'))//id(concat('_',$docHash))
-    let $author := if(exists($entry/@author))
-        then wega:dictionaryLookup(data($entry/@author), xs:ID('svnUsers'))
-        else ()
-    let $date := if(exists($entry/@dateTime))
-        then datetime:date-from-dateTime($entry/@dateTime)
-        else ()
-    let $rev := data($entry/@rev)
+    let $author := wega:getLastAuthorOfDocument($docPath) 
+    let $date := wega:getLastModifyDateOfDocument($docPath)
     let $dateFormat := if($lang eq 'en')
         then '%B %d, %Y'
         else '%d. %B %Y'
@@ -103,19 +96,19 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
             <xhtml:div id="footer">
                 <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(wega:doc(wega:getOption('versionNews')), $lang)}">{wega:getLanguageString('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
                 <xhtml:p>{
-                    if(wega:getOption('environment') eq 'development') then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
-                    else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
+                    if(wega:getOption('environment') eq 'development') then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, datetime:date-from-dateTime($date), $lang),$author),$lang)
+                    else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, datetime:date-from-dateTime($date), $lang), $lang)
                 }</xhtml:p>
-                  {if($lang eq 'en') then 
-                  <xhtml:p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                    <xhtml:span onclick="javascript:decEma('{$encryptedBugEmail}')" class="ema">{wega:obfuscateEmail(wega:getOption('bugEmail'))}</xhtml:span>
-                  </xhtml:p>
-                  else 
-                  <xhtml:p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an
-                    <xhtml:span onclick="javascript:decEma('{$encryptedBugEmail}')" class="ema">{wega:obfuscateEmail(wega:getOption('bugEmail'))}</xhtml:span>
-                  </xhtml:p>
-                  }
-                    {xho:createCommonFooter()}
+                {if($lang eq 'en') then 
+                    <xhtml:p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                        <xhtml:span onclick="javascript:decEma('{$encryptedBugEmail}')" class="ema">{wega:obfuscateEmail(wega:getOption('bugEmail'))}</xhtml:span>
+                    </xhtml:p>
+                else 
+                    <xhtml:p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an
+                        <xhtml:span onclick="javascript:decEma('{$encryptedBugEmail}')" class="ema">{wega:obfuscateEmail(wega:getOption('bugEmail'))}</xhtml:span>
+                    </xhtml:p>
+                }
+                {xho:createCommonFooter()}
             </xhtml:div>
         else xho:createFooter()
 };
