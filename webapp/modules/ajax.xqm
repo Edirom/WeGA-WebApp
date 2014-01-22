@@ -118,7 +118,7 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
     let $fromOffset := if($fromOffset1 castable as xs:date) then string($fromOffset1) else string('0001-01-01')
     let $toOffset   := if($toOffset1   castable as xs:date) then string($toOffset1)   else string('9999-01-01')
     let $letterList := if ($correspondents eq 'addressee')
-        then collection('/db/letters')//tei:sender/tei:persName[@key = $id]
+        then core:getOrCreateColl('letters', $id, true())//tei:sender/tei:persName[@key = $id]
             [../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
             ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
             ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
@@ -127,7 +127,7 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
             ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]
             /../../tei:addressee/tei:persName[@key]
         else if ($correspondents eq 'sender')
-            then collection('/db/letters')//tei:addressee/tei:persName[@key = $id]
+            then core:getOrCreateColl('letters', $id, true())//tei:addressee/tei:persName[@key = $id]
             [../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
             ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
             ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
@@ -136,7 +136,7 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
             ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]
             /../../tei:sender/tei:persName[@key]
             else if ($correspondents eq 'all')
-                then collection('/db/letters')//tei:sender/tei:persName[@key = $id] 
+                then core:getOrCreateColl('letters', $id, true())//tei:sender/tei:persName[@key = $id] 
                      (:[../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
                      ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
                      ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
@@ -144,7 +144,7 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
                      ../../tei:dateSender/tei:date[@from >= $fromOffset and @from <= $toOffset] or
                      ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]:)
                      /../../tei:addressee/tei:persName[@key]
-                     | collection('/db/letters')//tei:addressee/tei:persName[@key = $id]
+                     | core:getOrCreateColl('letters', $id, true())//tei:addressee/tei:persName[@key = $id]
                      (:[../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
                      ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
                      ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
