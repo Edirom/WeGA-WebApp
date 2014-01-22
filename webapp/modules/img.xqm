@@ -35,12 +35,10 @@ declare function img:getPortraitPath($person as node(), $dimensions as xs:intege
     let $unknownWoman := config:get-option('unknownWoman')
     let $unknownMan := config:get-option('unknownMan')
     let $unknownSex := config:get-option('unknownSex')
-    let $localPortrait := core:getOrCreateColl('iconography', $docID, true())//tei:figure[@n='portrait'][1]
+    let $localPortraitURL := core:getOrCreateColl('iconography', $docID, true())//tei:figure[@n='portrait'][1]//tei:graphic[1]/data(@url)
     let $cachedPortrait := doc(concat($config:tmp-collection-path, replace($docID, '\d{2}$', 'xx'), '/', $docID, '.xml'))//localFile/string()
     let $graphicURL := 
-        if(exists($localPortrait)) then 
-            if(functx:all-whitespace($localPortrait//tei:graphic[1]/data(@url))) then () 
-            else string-join((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortrait//tei:graphic[1]/data(@url)), '/')
+        if(not(functx:all-whitespace($localPortraitURL))) then string-join((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortraitURL), '/')
         else 
             if(util:binary-doc-available($cachedPortrait)) then $cachedPortrait
             else 
@@ -97,7 +95,6 @@ declare function img:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:
  
 declare function img:retrievePicture($picURL as xs:anyURI, $localName as xs:string?) as xs:string? {
     let $suffix := lower-case(functx:substring-after-last($picURL, '.'))
-(:    let $log := util:log-system-out($picURL):)
     let $localFileName :=  if(matches($localName, '\S')) 
         then $localName
         else util:hash($picURL, 'md5')
@@ -221,13 +218,7 @@ declare function img:createDigilibURL($localPicURL as xs:string, $dimensions as 
         else 1
     let $wx := (1 - $ww) div 2
     let $digilibParams := concat('&#38;dw=', string($dw), '&#38;dh=', string($dh), '&#38;ww=', string($ww), '&#38;wh=', string($wh), '&#38;wx=', string($wx), '&#38;mo=q2')
-    return (:if(starts-with($localPicURL, $tmpDir))
-        then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-        else if(starts-with($localPicURL, $pixDir))
-            then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-            else if(starts-with($localPicURL, $imagesDir))
-                then concat(replace($localPicURL, $imagesDir, $digilibDir), $digilibParams)
-                else ():)
+    return
         img:replace-url-for-digilib($localPicURL, $digilibParams)
 };
 
@@ -250,7 +241,6 @@ declare function img:createDigilibURL($localPicURL as xs:string, $crop as xs:boo
 
 declare %private function img:replace-url-for-digilib($localPicURL as xs:string, $digilibParams as xs:string) as xs:string {
     let $digilibDir := config:get-option('digilibDir')
-    let $log := util:log-system-out($localPicURL)
     let $digilibURL :=
         (: case 1: Images are stored in $config:tmp-collection-path :)
         if(starts-with($localPicURL, $config:tmp-collection-path)) then concat(replace($localPicURL, $config:app-root || '/', $digilibDir), $digilibParams)
