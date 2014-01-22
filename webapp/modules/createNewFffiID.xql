@@ -6,7 +6,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace math="http://exist-db.org/xquery/math";
 
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 

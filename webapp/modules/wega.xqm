@@ -7,7 +7,7 @@ xquery version "3.0" encoding "UTF-8";
 : @version 1.0
 :)
 
-module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega";
+module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
@@ -24,7 +24,8 @@ import module namespace http = "http://expath.org/ns/http-client";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
-import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";
+(:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 
 declare variable $wega:romanNums as xs:integer* := (1000,900,500,400,100,90,50,40,10,9,5,4,1);
 declare variable $wega:romanAlpha as xs:string* := ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I');
@@ -584,45 +585,6 @@ declare function wega:getMainID($id as xs:string?) as xs:string
 (\:    return wega:getOrCreateThumb($imagePath, $dimension):\)
 };:)
 
-(:~
- : Gets portrait path for digilib
- :  
- : @author Peter Stadler
- : @param $person node of a certain person
- : @param $dimensions of image
- : @param $lang the language of the string (en|de)
- : @return xs:string
- :)
- 
-declare function wega:getPortraitPath($person as node(), $dimensions as xs:integer+, $lang as xs:string) as xs:string? {
-    let $fffiId := $person/data(@xml:id)
-    let $pnd := $person/tei:idno[@type='gnd']
-    let $tmpDir := config:get-option('tmpDir')
-    let $iconography := config:get-option('iconography')
-    let $predicates := config:get-option('iconographyPred', $fffiId)
-    let $unknownWoman := config:get-option('unknownWoman')
-    let $unknownMan := config:get-option('unknownMan')
-    let $unknownSex := config:get-option('unknownSex')
-    let $localPortrait := util:eval(concat('collection($iconography)', $predicates))
-    let $cachedPortrait := doc(concat($tmpDir, replace($fffiId, '\d{2}$', 'xx'), '/', $fffiId, '.xml'))//localFile/string()
-(:    doc(concat($wega:tmpDir, replace($fffiId, '\d{2}$', 'xx'), '/', $fffiId, '.xml'))//localFile/string():)
-    let $graphicURL := 
-        if(exists($localPortrait)) then 
-            if(exists($localPortrait/tei:graphic[1]/data(@url))) then functx:replace-multi(document-uri($person/root()), ('/db/', '\.xml'), ('/db/images/', concat('/', $localPortrait/tei:graphic[1]/data(@url))))
-            else ()
-        else 
-            if(util:binary-doc-available($cachedPortrait)) then $cachedPortrait
-            else 
-                if(exists($pnd)) then wega:retrieveImagesFromWikipedia(string($pnd), $lang)//wega:wikipediaImage[1]/wega:localUrl/text()
-                else ()
-    return if(exists($graphicURL))
-        then wega:createDigilibURL($graphicURL, $dimensions, true())
-        else if(data($person//tei:sex)='f') 
-            then wega:createDigilibURL($unknownWoman, $dimensions, true()) 
-            else if(data($person//tei:sex)='m') 
-                then wega:createDigilibURL($unknownMan, $dimensions, true()) 
-                else wega:createDigilibURL($unknownSex, $dimensions, true())
-};
 
 (:~
  : Gets document meta data
@@ -712,7 +674,7 @@ let $imageDimension :=
         if($usage eq 'toolTip') then for $i in tokenize(config:get-option('smallPicDimensions'), ',') return xs:int($i)
         else for $i in tokenize(config:get-option('mediumPicDimensions'), ',') return xs:int($i)
 let $clickable := $usage eq 'listView'
-let $portraitPath := wega:getPortraitPath($person, $imageDimension, $lang)
+let $portraitPath := img:getPortraitPath($person, $imageDimension, $lang)
 let $regName := wega:getRegName($fffiId)
 let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
 let $html_pixDir := config:get-option('html_pixDir')
@@ -1802,209 +1764,11 @@ declare function wega:changeNamespace($element as element(), $targetNamespace as
                 else $child}
 };
 
-(:~
- : Get portrait (i.e. the first picture on the page) from an wikipedia article
- :
- : @author Peter Stadler 
- : @param $pnd the PND number
- : @param $lang the language variable (de|en)
- : @return element the local path to the stored file
- :)
- 
-declare function wega:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:string) as element(wega:wikipediaImages) {
-    let $wikiArticle := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
-    let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
-    return 
-        <wega:wikipediaImages>{
-            for $div in $pics
-            let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', wega:getLanguageString('sourceWikipedia', $lang), ')'))
-            let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
-            let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
-                if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 
-                else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
-                else ()
-            let $localURL := if($picURI castable as xs:anyURI) then wega:retrievePicture(xs:anyURI($picURI), ()) else ()
-            return if(exists($localURL)) then
-                <wega:wikipediaImage>
-                    <wega:caption>{$caption}</wega:caption>
-                    <wega:orgUrl>{$picURI}</wega:orgUrl>
-                    <wega:localUrl>{$localURL}</wega:localUrl>
-                </wega:wikipediaImage>
-                else ()
-        }</wega:wikipediaImages>
-};
 
-(:~
- : Retrieve a picture from any URI and store it in the database
- :
- : @author Peter Stadler
- : @param $picURL the URL to the file as xs:string
- : @param $localName the fileName within the local db. If empty, a hash of the $picURL will be taken as fileName
- : @return xs:string the local path to the stored file 
- :)
- 
-declare function wega:retrievePicture($picURL as xs:anyURI, $localName as xs:string?) as xs:string? {
-    let $suffix := lower-case(functx:substring-after-last($picURL, '.'))
-(:    let $log := util:log-system-out($picURL):)
-    let $localFileName :=  if(matches($localName, '\S')) 
-        then $localName
-        else util:hash($picURL, 'md5')
-    let $tmpDir := config:get-option('tmpDir')
-    let $localDbCollection := if(matches($localFileName, '^A\d{6}$'))
-        then if(xmldb:collection-available(concat($tmpDir, replace($localFileName, '\d{2}$', 'xx'))))
-            then concat($tmpDir, replace($localFileName, '\d{2}$', 'xx'))
-            else xmldb:create-collection($tmpDir, replace($localFileName, '\d{2}$', 'xx'))
-        else if(xmldb:collection-available(concat($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))))
-            then concat($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
-            else xmldb:create-collection($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
-    let $pathToLocalFile := concat($localDbCollection, '/', $localFileName, '.', $suffix)
-    let $storeFile := 
-        if (util:binary-doc-available($pathToLocalFile)) then () 
-        else
-            try { xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)) }
-            catch * { core:logToFile('error', string-join(('wega:retrievePicture', $err:code, $err:description, 'URL: ' || $picURL), ' ;; ')) }
-    let $storePicMetaData := 
-        if(wega:getPicMetadata($pathToLocalFile)) then () (: Wenn Metadaten schon vorhanden sind, brauchen sie nicht erneut angelegt werden :)
-        else wega:storePicMetadata($pathToLocalFile, $picURL)
-    return 
-        if (util:binary-doc-available($pathToLocalFile) and wega:getPicMetadata($pathToLocalFile)) then $pathToLocalFile (: Datei bereits vorhanden :)
-        else ()
-};
 
-(:~
- : Stores picture meta data
- :
- : @author Peter Stadler
- : @param $pathToLocalFile
- : @param $origURL
- : @return xs:string?
- :)
 
-declare function wega:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:anyURI) as xs:string? {
-    let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/')
-    let $localFileName := functx:substring-after-last($pathToLocalFile, '/')
-    (:let $pic := util:binary-doc($pathToLocalFile):)
-    let $picHeight :=
-        try { image:get-height(util:binary-doc($pathToLocalFile)) }
-        catch * { core:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
-    let $picWidth := 
-        try { image:get-width(util:binary-doc($pathToLocalFile)) }
-        catch * { core:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
-    let $metadata := 
-        <picMetadata>
-            <localFile>{$pathToLocalFile}</localFile>
-            <origURL>{$origURL}</origURL>
-            <width>{concat($picWidth, 'px')}</width>
-            <height>{concat($picHeight, 'px')}</height>
-        </picMetadata>
-    return if($picWidth instance of xs:integer and $picHeight instance of xs:integer)
-        then
-            try { xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata) }
-            catch * { core:logToFile('error', string-join(('wega:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile, 'origURL: ' || $origURL), ' ;; ')) }
-        else ()
-};
 
-(:~
- : Gets picture meta data
- :
- : @author Peter Stadler
- : @param $pathToLocalFile
- : @param $origURL
- : @return xs:string?
- :)
 
-declare function wega:getPicMetadata($localPicURL as xs:string) as element(picMetadata)? {
-    let $tmpDir := config:get-option('tmpDir')
-    let $unknownWoman := config:get-option('unknownWoman')
-    let $unknownMan := config:get-option('unknownMan')
-    let $unknownSex := config:get-option('unknownSex')
-    return 
-    if (starts-with($localPicURL, $tmpDir))
-        then doc(concat(functx:substring-before-last($localPicURL, '.'), '.xml'))/picMetadata
-        else if($localPicURL eq $unknownMan or $localPicURL eq $unknownWoman or $localPicURL eq $unknownSex) 
-            then <picMetadata>
-                    <localFile>{$localPicURL}</localFile>
-                    <origURL/>
-                    <width>140px</width>
-                    <height>185px</height>
-                </picMetadata>
-            else
-                let $picFile := functx:substring-after-last($localPicURL, '/')
-                let $metadataFile := collection('/db/iconography')//tei:graphic[@url = $picFile]
-                return
-                <picMetadata>
-                    <localFile>{$localPicURL}</localFile>
-                    <origURL/>
-                    <width>{$metadataFile/string(@width)}</width>
-                    <height>{$metadataFile/string(@height)}</height>
-                </picMetadata>
-};
-
-(:~
- : Creates digilib URL
- :
- : @author Peter Stadler
- : @param $localPicURL
- : @param $dimensions of image
- : @param $trim 
- : @return xs:string?
- :)
-
-declare function wega:createDigilibURL($localPicURL as xs:string, $dimensions as xs:integer+, $trim as xs:boolean) as xs:string? {
-    let $picMetadata := wega:getPicMetadata($localPicURL)
-    let $tmpDir := config:get-option('tmpDir')
-    let $pixDir := config:get-option('pixDir')
-    let $imagesDir := config:get-option('imagesDir')
-    let $digilibDir := config:get-option('digilibDir')
-    let $picHeight := if(exists($picMetadata/height)) then xs:int(substring-before($picMetadata/height, 'px')) else 1
-    let $picWidth := if(exists($picMetadata/width)) then xs:int(substring-before($picMetadata/width, 'px')) else 1
-    let $dw := $dimensions[1]
-    let $dh := $dimensions[2]
-    let $ratioW := $picWidth div $dw
-    let $ratioH := $picHeight div $dh
-    let $ww := if(($ratioW gt $ratioH) and $trim) 
-        then round-half-to-even($ratioH div $ratioW, 2)
-        else 1
-    let $wh := if(($ratioH gt $ratioW) and $trim) 
-        then round-half-to-even($ratioW div $ratioH, 2)
-        else 1
-    let $wx := (1 - $ww) div 2
-    let $digilibParams := concat('&#38;dw=', string($dw), '&#38;dh=', string($dh), '&#38;ww=', string($ww), '&#38;wh=', string($wh), '&#38;wx=', string($wx), '&#38;mo=q2')
-    return if(starts-with($localPicURL, $tmpDir))
-        then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-        else if(starts-with($localPicURL, $pixDir))
-            then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-            else if(starts-with($localPicURL, $imagesDir))
-                then concat(replace($localPicURL, $imagesDir, $digilibDir), $digilibParams)
-                else ()
-};
-
-(:~
- : Creates digilib URL
- :
- : @author Peter Stadler
- : @param $localPicURL
- : @param $crop
- : @return xs:string? 
- :)
-
-declare function wega:createDigilibURL($localPicURL as xs:string, $crop as xs:boolean) as xs:string? {
-(:    let $log := util:log-system-out($localPicURL):)
-    let $tmpDir := config:get-option('tmpDir')
-    let $pixDir := config:get-option('pixDir')
-    let $imagesDir := config:get-option('imagesDir')
-    let $digilibDir := config:get-option('digilibDir')
-    let $digilibParams := if($crop)
-        then '&#38;dw=400&#38;dh=600'
-        else '&#38;mo=file'
-    return if(starts-with($localPicURL, $tmpDir))
-        then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-        else if(starts-with($localPicURL, $pixDir))
-            then concat(replace($localPicURL, '/db/webapp/', $digilibDir), $digilibParams)
-            else if(starts-with($localPicURL, $imagesDir))
-                then concat(replace($localPicURL, $imagesDir, $digilibDir), $digilibParams)
-                else ()
-};
 
 (:~
  : Normalize space

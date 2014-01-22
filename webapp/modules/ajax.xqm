@@ -7,7 +7,7 @@ xquery version "3.0" encoding "UTF-8";
  : @version 1.0
  :)
 
-module namespace ajax="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/ajax";
+module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 (:declare namespace xsd="http://www.w3.org/2001/XMLSchema";:)
@@ -21,10 +21,11 @@ declare namespace request="http://exist-db.org/xquery/request";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace functx="http://www.functx.com";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
-import module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "facets.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
+import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 (:~
@@ -192,7 +193,7 @@ declare function ajax:printCorrespondents($id as xs:string, $lang as xs:string, 
                         if ($persNameSelectedCount gt 1) then concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letters',$lang), ')')
                         else concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letter',$lang), ')')},
                     element img {
-                        attribute src {wega:getPortraitPath($doc/tei:person, (40, 55), $lang)},
+                        attribute src {img:getPortraitPath($doc/tei:person, (40, 55), $lang)},
                         attribute alt {$persNameSelected},
                         attribute width {'40'},
                         attribute height {'55'}
@@ -213,11 +214,9 @@ declare function ajax:printCorrespondents($id as xs:string, $lang as xs:string, 
  : @return 
  :)
 
-declare function ajax:getIconography($fffiID as xs:string, $pnd as xs:string, $lang as xs:string) as element(img)* {
-let $localIconography := collection('/db/iconography')//tei:person[@corresp=$fffiID]/ancestor::tei:TEI
-let $personDocUri := if(exists($localIconography)) 
-    then document-uri(core:doc($fffiID))
-    else ()
+declare function ajax:getIconography($docID as xs:string, $pnd as xs:string, $lang as xs:string) as element(img)* {
+    let $localIconography := core:getOrCreateColl('iconography', $docID, true())
+    let $local-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
 return
     (
     for $pic in $localIconography[.//tei:graphic/@url]
@@ -226,12 +225,12 @@ return
         let $crop := if($pic//tei:graphic/xs:int(substring-before(@width, 'px')) > 400 or $pic//tei:graphic/xs:int(substring-before(@height, 'px')) > 600)
             then true()
             else false()
-        let $localURL := functx:replace-multi($personDocUri, ('/db/', '\.xml'), ('/db/images/', concat('/', $graphicUrl)))
-        let $thumbnail := <img src="{wega:createDigilibURL($localURL, (40, 55), true())}" alt="{$caption}" width="40" height="55"/>
-        return wega:createLightboxAnchor(wega:createDigilibURL($localURL, $crop), $caption, 'person-iconography', $thumbnail),
+        let $localURL := string-join(($local-path, $docID, $graphicUrl), '/')
+        let $thumbnail := <img src="{img:createDigilibURL($localURL, (40, 55), true())}" alt="{$caption}" width="40" height="55"/>
+        return wega:createLightboxAnchor(img:createDigilibURL($localURL, $crop), $caption, 'person-iconography', $thumbnail),
         
-    for $pic in wega:retrieveImagesFromWikipedia($pnd,$lang)//wega:wikipediaImage
-        return  <img src="{wega:createDigilibURL($pic/wega:localUrl, (40, 55), true())}" alt="{$pic/wega:caption}" title="{$pic/wega:caption}" width="40" height="55"/>
+    for $pic in img:retrieveImagesFromWikipedia($pnd,$lang)//wega:wikipediaImage
+        return  <img src="{img:createDigilibURL($pic/wega:localUrl, (40, 55), true())}" alt="{$pic/wega:caption}" title="{$pic/wega:caption}" width="40" height="55"/>
     )
 };
 

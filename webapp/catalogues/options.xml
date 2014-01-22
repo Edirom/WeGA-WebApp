@@ -11,86 +11,87 @@
       <entry xml:id="biblio" type="xs:string">/db/biblio</entry>
       <entry xml:id="weberStudies" type="xs:string">/db/biblio</entry>
    </div>-->
-   <div xml:id="collectionPredicates">
-      <entry xml:id="lettersPred">[(.//tei:sender/tei:persName/@key = '%1', .//tei:addressee/tei:persName/@key = '%1')][not(*/tei:ref)]</entry>
-      <entry xml:id="writingsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
-      <entry xml:id="newsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
-      <entry xml:id="diariesPred">[./tei:ab]</entry>
-      <entry xml:id="worksPred">[.//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]/@dbkey = '%1']</entry>
-      <entry xml:id="iconographyPred">//tei:figure[.//tei:person[@corresp = '%1']][@n = 'portrait'][1]</entry>
-      <entry xml:id="newsPredIndices">[not(*/tei:ref)]</entry>
-      <entry xml:id="lettersPredIndices">[not(*/tei:ref)]</entry>
-      <entry xml:id="writingsPredIndices">[not(*/tei:ref)]</entry>
-      <entry xml:id="diariesPredIndices">[./tei:ab]</entry>
-      <entry xml:id="personsPredIndices">[not(*/tei:ref)]</entry>
-      <entry xml:id="worksPredIndices"/>
-      <entry xml:id="biblioPredIndices">[not(*/tei:ref)]</entry>
+    <div xml:id="collectionPredicates">
+        <entry xml:id="lettersPred">[(.//tei:sender/tei:persName/@key = '%1', .//tei:addressee/tei:persName/@key = '%1')][not(*/tei:ref)]</entry>
+        <entry xml:id="writingsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
+        <entry xml:id="newsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
+        <entry xml:id="diariesPred">[./tei:ab]</entry>
+        <entry xml:id="worksPred">[.//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]/@dbkey = '%1']</entry>
+        <entry xml:id="iconographyPred">//tei:figure[.//tei:person[@corresp = '%1']]/root()</entry>
+        <entry xml:id="newsPredIndices">[not(*/tei:ref)]</entry>
+        <entry xml:id="lettersPredIndices">[not(*/tei:ref)]</entry>
+        <entry xml:id="writingsPredIndices">[not(*/tei:ref)]</entry>
+        <entry xml:id="diariesPredIndices">[./tei:ab]</entry>
+        <entry xml:id="personsPredIndices">[not(*/tei:ref)]</entry>
+        <entry xml:id="iconographyPredIndices">[not(*/tei:ref)]</entry>
+        <entry xml:id="worksPredIndices"/>
+        <entry xml:id="biblioPredIndices">[not(*/tei:ref)]</entry>
 <!--      <entry xml:id="weberStudiesPredIndices">//tei:TEI[not(./tei:ref)]</entry>-->
-   </div>
-   <div xml:id="htmlOptions">
-      <entry xml:id="listViewMaxRows" type="xs:int">7</entry>
-      <entry xml:id="bigPicDimensions" type="xs:int+">100,133</entry>
-      <entry xml:id="mediumPicDimensions" type="xs:int+">70,93</entry>
-      <entry xml:id="smallPicDimensions" type="xs:int+">40,53</entry>
-      <entry xml:id="digilibDir" type="xs:string">/digilib/servlet/Scaler?fn=</entry>
-      <entry xml:id="relativeTmpDir" type="xs:string">../tmp/</entry>
-      <entry xml:id="html_sitemapDir" type="xs:string">sitemap</entry>
-      <entry xml:id="html_cssDir" type="xs:string">resources/css</entry>
-      <entry xml:id="html_jsDir" type="xs:string">resources/js</entry>
-      <entry xml:id="figureHeight" type="xs:int">75</entry>
-   </div>
-   <div xml:id="dbPaths">
-      <entry xml:id="tmpDir" type="xs:string">/db/apps/WeGA-WebApp/tmp/</entry>
-      <entry xml:id="pixDir" type="xs:string">/db/apps/WeGA-WebApp/resources/pix/</entry>
-      <entry xml:id="sitemapDir" type="xs:string">/db/apps/WeGA-WebApp/tmp/sitemap</entry>
-      <entry xml:id="dic_de" type="xs:string">/db/apps/WeGA-WebApp/catalogues/dictionary_de.xml</entry>
-      <entry xml:id="dic_en" type="xs:string">/db/apps/WeGA-WebApp/catalogues/dictionary_en.xml</entry>
+    </div>
+    <div xml:id="htmlOptions">
+        <entry xml:id="listViewMaxRows" type="xs:int">7</entry>
+        <entry xml:id="bigPicDimensions" type="xs:int+">100,133</entry>
+        <entry xml:id="mediumPicDimensions" type="xs:int+">70,93</entry>
+        <entry xml:id="smallPicDimensions" type="xs:int+">40,53</entry>
+        <entry xml:id="digilibDir" type="xs:string">/digilib/servlet/Scaler?fn=</entry>
+        <entry xml:id="relativeTmpDir" type="xs:string">../tmp/</entry>
+        <entry xml:id="html_sitemapDir" type="xs:string">sitemap</entry>
+        <entry xml:id="html_cssDir" type="xs:string">resources/css</entry>
+        <entry xml:id="html_jsDir" type="xs:string">resources/js</entry>
+        <entry xml:id="figureHeight" type="xs:int">75</entry>
+    </div>
+    <div xml:id="dbPaths">
+        <entry xml:id="tmpDir" type="xs:string">/db/apps/WeGA-WebApp/tmp/</entry>
+        <entry xml:id="pixDir" type="xs:string">/db/apps/WeGA-WebApp/resources/pix/</entry>
+        <entry xml:id="sitemapDir" type="xs:string">/db/apps/WeGA-WebApp/tmp/sitemap</entry>
+        <entry xml:id="dic_de" type="xs:string">/db/apps/WeGA-WebApp/catalogues/dictionary_de.xml</entry>
+        <entry xml:id="dic_en" type="xs:string">/db/apps/WeGA-WebApp/catalogues/dictionary_en.xml</entry>
 <!--      <entry xml:id="imagesDir" type="xs:string">/db/images/</entry>-->
 <!--      <entry xml:id="unknownMan" type="xs:string">/db/images/persons/unknown/nobody_m.png</entry>-->
 <!--      <entry xml:id="unknownWoman" type="xs:string">/db/images/persons/unknown/nobody_f.png</entry>-->
 <!--      <entry xml:id="unknownSex" type="xs:string">/db/images/persons/unknown/nobody_n.png</entry>-->
-      <entry xml:id="persNamesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/persNames.xml</entry>
-      <entry xml:id="lettersNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/lettersNormDates.xml</entry>
-      <entry xml:id="writingsNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/writingsNormDates.xml</entry>
-      <entry xml:id="newsNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/newsNormDates.xml</entry>
-      <entry xml:id="biblioNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/biblioNormDates.xml</entry>
-      <entry xml:id="weberStudiesNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/weberStudiesNormDates.xml</entry>
-      <entry xml:id="diariesNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/diariesNormDates.xml</entry>
-      <entry xml:id="worksNormSeriesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/worksNormSeries.xml</entry>
-      <entry xml:id="facetsFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/facets.xml</entry>
-      <entry xml:id="svnChangeHistoryFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/svnChangeHistory.xml</entry>
-      <entry xml:id="svnUsers" type="xs:string">/db/apps/WeGA-WebApp/catalogues/subversionUsers.xml</entry>
-      <entry xml:id="typo3ContentMappings" type="xs:string">/db/apps/WeGA-WebApp/catalogues/typo3ContentMappings.xml</entry>
-      <entry xml:id="menusFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/menus.xml</entry>
-   </div>
-   <div xml:id="javaScriptOptions">
-      <entry xml:id="baseHref" type="xs:string">http://localhost:8080</entry>
-      <entry xml:id="html_pixDir" type="xs:string">resources/pix</entry>
-      <entry xml:id="containerID">ajaxMainFrame</entry>
-      <entry xml:id="entriesPerPage">4</entry>
-      <entry xml:id="searchSessionName">searchSessionName</entry>
-      <entry xml:id="salt">23</entry>
-   </div>
-   <div xml:id="various">
-      <entry xml:id="anonymusID">A007979</entry>
-      <entry xml:id="errorLogFile">wega.webapp</entry>
-      <entry xml:id="bugEmail">bugs [at] weber-gesamtausgabe.de</entry>
-      <entry xml:id="letterContextCache">letterContextCache</entry>
-      <entry xml:id="environment">development</entry>
-      <entry xml:id="facsimileWhiteList">D-B</entry>
-      <entry xml:id="maxNews">4</entry>
-      <entry xml:id="minNews">1</entry>
-      <entry xml:id="maxNewsDays">120</entry>
-      <entry xml:id="googleWebsiteMetatag">EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys</entry>
-      <entry xml:id="microsoftBingWebsiteMetatag">AE39DA5613844228642EE48196AAA94A</entry>
-      <entry xml:id="version">1.2</entry>
-      <entry xml:id="versionNews">A050140</entry>
-      <entry xml:id="versionDate">2013-09-06</entry>
-   </div>
-   <div xml:id="externalPNDResources">
-      <entry xml:id="wikipedia">http://toolserver.org/~authoritycontrol/redirect/gnd/</entry>
-      <entry xml:id="adb">http://toolserver.org/~authoritycontrol/redirect/gnd/ws-adb/</entry>
-      <entry xml:id="dnb">http://d-nb.info/gnd/</entry>
-      <entry xml:id="beacon">http://beacon.findbuch.de/seealso/pnd-aks?format=seealso&amp;id=</entry>
-   </div>
+        <entry xml:id="persNamesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/persNames.xml</entry>
+        <entry xml:id="lettersNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/lettersNormDates.xml</entry>
+        <entry xml:id="writingsNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/writingsNormDates.xml</entry>
+        <entry xml:id="newsNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/newsNormDates.xml</entry>
+        <entry xml:id="biblioNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/biblioNormDates.xml</entry>
+        <entry xml:id="weberStudiesNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/weberStudiesNormDates.xml</entry>
+        <entry xml:id="diariesNormDatesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/diariesNormDates.xml</entry>
+        <entry xml:id="worksNormSeriesFile" type="xs:string">/db/apps/WeGA-WebApp/tmp/worksNormSeries.xml</entry>
+        <entry xml:id="facetsFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/facets.xml</entry>
+        <entry xml:id="svnChangeHistoryFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/svnChangeHistory.xml</entry>
+        <entry xml:id="svnUsers" type="xs:string">/db/apps/WeGA-WebApp/catalogues/subversionUsers.xml</entry>
+        <entry xml:id="typo3ContentMappings" type="xs:string">/db/apps/WeGA-WebApp/catalogues/typo3ContentMappings.xml</entry>
+        <entry xml:id="menusFile" type="xs:string">/db/apps/WeGA-WebApp/catalogues/menus.xml</entry>
+    </div>
+    <div xml:id="javaScriptOptions">
+        <entry xml:id="baseHref" type="xs:string">http://localhost:8080</entry>
+        <entry xml:id="html_pixDir" type="xs:string">resources/pix</entry>
+        <entry xml:id="containerID">ajaxMainFrame</entry>
+        <entry xml:id="entriesPerPage">4</entry>
+        <entry xml:id="searchSessionName">searchSessionName</entry>
+        <entry xml:id="salt">23</entry>
+    </div>
+    <div xml:id="various">
+        <entry xml:id="anonymusID">A007979</entry>
+        <entry xml:id="errorLogFile">wega.webapp</entry>
+        <entry xml:id="bugEmail">bugs [at] weber-gesamtausgabe.de</entry>
+        <entry xml:id="letterContextCache">letterContextCache</entry>
+        <entry xml:id="environment">development</entry>
+        <entry xml:id="facsimileWhiteList">D-B</entry>
+        <entry xml:id="maxNews">4</entry>
+        <entry xml:id="minNews">1</entry>
+        <entry xml:id="maxNewsDays">120</entry>
+        <entry xml:id="googleWebsiteMetatag">EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys</entry>
+        <entry xml:id="microsoftBingWebsiteMetatag">AE39DA5613844228642EE48196AAA94A</entry>
+        <entry xml:id="version">1.2</entry>
+        <entry xml:id="versionNews">A050140</entry>
+        <entry xml:id="versionDate">2013-09-06</entry>
+    </div>
+    <div xml:id="externalPNDResources">
+        <entry xml:id="wikipedia">http://toolserver.org/~authoritycontrol/redirect/gnd/</entry>
+        <entry xml:id="adb">http://toolserver.org/~authoritycontrol/redirect/gnd/ws-adb/</entry>
+        <entry xml:id="dnb">http://d-nb.info/gnd/</entry>
+        <entry xml:id="beacon">http://beacon.findbuch.de/seealso/pnd-aks?format=seealso&amp;id=</entry>
+    </div>
 </dictionary>

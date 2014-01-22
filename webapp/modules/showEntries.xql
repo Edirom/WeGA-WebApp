@@ -10,8 +10,8 @@ declare namespace util   = "http://exist-db.org/xquery/util";
 declare namespace ft     = "http://exist-db.org/xquery/lucene";
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 
-import module namespace wega   = "http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
-import module namespace facets = "http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets" at "facets.xqm";
+import module namespace wega   = "http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
+import module namespace facets = "http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 

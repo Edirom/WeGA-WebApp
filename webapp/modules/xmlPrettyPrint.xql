@@ -3,7 +3,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace transform="http://exist-db.org/xquery/transform";
-import module namespace wega = "http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
+import module namespace wega = "http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 

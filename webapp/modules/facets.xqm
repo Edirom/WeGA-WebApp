@@ -7,7 +7,7 @@ xquery version "3.0" encoding "UTF-8";
  : @version 1.0
  :)
 
-module namespace facets="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/facets";
+module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
@@ -17,7 +17,7 @@ declare namespace session = "http://exist-db.org/xquery/session";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
 declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util = "http://exist-db.org/xquery/util";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/webapp/xql/modules/wega" at "wega.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace functx="http://www.functx.com";
