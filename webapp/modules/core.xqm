@@ -28,13 +28,30 @@ declare function core:doc($docID as xs:string) as document-node()? {
 };
 
 (:~
+ : Returns collection from the WeGA-data library
+ : In contrast to core:getOrCreateColl() this function will return *all* documents from the specified collection, i.e. with all duplicates
+ :
+ : @author Peter Stadler
+ : @param $collectionName the name of the collection
+ : @return document-node()*
+ :)
+declare function core:data-collection($collectionName as xs:string) as document-node()* {
+    let $collectionPath := core:join-path-elements(($config:data-collection-path, $collectionName)) 
+    let $collectionPathExists := xmldb:collection-available($collectionPath) and ($collectionPath ne '')
+    return 
+        if ($collectionPathExists) then collection($collectionPath)
+        else ()
+};
+
+(:~
  : Returns collection (from cache, if possible)
+ : In contrast to core:data-collection() this function will return the filtered (i.e. without duplicates) and sorted documents from the specified collection
  :
  : @author Peter Stadler
  : @param $collName
  : @param $cacheKey
  : @param $useCache
- : @return node*
+ : @return document-node()*
  :)
 declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:string, $useCache as xs:boolean) as document-node()* {
     let $lastModKey := 'lastModDateTime'
@@ -58,20 +75,26 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
 };
 
 (:~
- : helper function for core:getOrCreateColl and search_getResults.xql
+ : helper function for core:getOrCreateColl
  :
  : @author Peter Stadler
  : @param $collName
  : @param $cacheKey
  : @return node*
  :)
-declare function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    let $collPath := string-join(($config:data-collection-path, $collName),'/') 
-    let $collPathExists := xmldb:collection-available($collPath) and ($collPath ne '') and ($cacheKey ne '')
-    let $isSupportedDiary := if($collName eq 'diaries') then $cacheKey eq 'indices' or $cacheKey eq 'A002068' else true()
-    let $predicates :=  if(config:is-person($cacheKey)) then config:get-option(concat($collName, 'Pred'), $cacheKey)
+declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
+    (:let $collPath := string-join(($config:data-collection-path, $collName),'/') 
+    let $collPathExists := xmldb:collection-available($collPath) and ($collPath ne '') and ($cacheKey ne ''):)
+    let $rawCollection := core:data-collection($collName)
+    let $isSupportedDiary := 
+        if($collName eq 'diaries') then $cacheKey eq 'indices' or $cacheKey eq 'A002068' 
+        else true()
+    let $predicates :=  
+        if(config:is-person($cacheKey)) then config:get-option(concat($collName, 'Pred'), $cacheKey)
         else config:get-option(concat($collName, 'PredIndices'))
-    return if ($predicates ne '' and $collPathExists and $isSupportedDiary) then util:eval(concat('collection("', $collPath, '")', $predicates)) else()
+    return 
+        if ($predicates ne '' and $rawCollection) then util:eval('$rawCollection' || $predicates) 
+        else()
 };
 
 (:~
@@ -84,9 +107,9 @@ declare function core:createColl($collName as xs:string, $cacheKey as xs:string)
 declare function core:sortColl($coll as item()*) as item()* {
     if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by $i//tei:persName[@type = 'reg'] ascending return $i
     else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
-    else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[1], false()) ascending return $i
+    else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
     else if(config:is-diary($coll[1]/tei:ab/string(@xml:id)))            then for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
-    else if(config:is-work($coll[1]/tei:TEI/string(@xml:id)))            then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
+    else if(config:is-work($coll[1]/mei:mei/string(@xml:id)))            then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     else if(config:is-news($coll[1]/tei:TEI/string(@xml:id)))            then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
     else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
     else $coll
@@ -192,4 +215,16 @@ declare function core:change-namespace($element as element(), $targetNamespace a
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
     replace(string-join((request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink), "/"), "/+", "/")
+};
+
+(:~
+ : Joins path elements with a forward slash
+ : In addition to string-join this function also takes care of double slashes
+ :
+ : @author Peter Stadler
+ : @param $segs the path elements to join
+ : @return the joined path as xs:string, the empty string when $segs was the empty sequence
+ :)
+declare function core:join-path-elements($segs as xs:string*) as xs:string {
+    replace(string-join($segs, '/'), '/+' , '/')
 };
