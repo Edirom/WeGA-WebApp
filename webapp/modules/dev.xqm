@@ -114,12 +114,11 @@ declare function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 a
  :)
 
 declare function dev:createNewID($docType as xs:string) as xs:string {
-    let $tmpDir := config:get-option('tmpDir')
     let $IDFileName := concat('tempIDs', $docType, '.xml')
     let $IDFile := 
-        if(not(doc-available(concat($tmpDir, $IDFileName)))) then doc(xmldb:store($tmpDir, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
-        else doc(concat($tmpDir, $IDFileName))
-    let $coll1 := collection(config:get-option($docType))/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
+        if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
+        else doc(concat($config:tmp-collection-path, $IDFileName))
+    let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
     let $coll2 := $IDFile//entry/substring(@xml:id, 2)
     let $removeOldTempIDS := dev:removeOldEntries($IDFile)
     let $maxID := count($coll1) + count($coll2) + 200
@@ -140,7 +139,7 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
 
 declare function dev:validateIDs($docType as xs:string) as element(div) {
     let $goodKeys := core:getOrCreateColl($docType, 'indices', true())(:/*/data(@xml:id):)
-    let $col := collection('/db')
+    let $col := collection($config:data-collection-path)
     let $elements := 
         if($docType eq 'persons') then ($col//tei:persName[@key] | $col//tei:editor[@key] | $col//tei:author[@key] | $col//tei:rs[matches(@type,'person')][@key] | $col//mei:persName[@dbkey])
         else if($docType eq 'letters') then ($col//tei:rs[matches(@type,'letter')][@key])
@@ -158,7 +157,7 @@ declare function dev:validateIDs($docType as xs:string) as element(div) {
         return (
             if ($goodKeys//id($key)) then ()
             else (
-                let $docIDs := $elements[matches(@key, $element)]/root()/*/@xml:id | $elements[matches(@dbkey, $element)]/root()/*/@xml:id 
+                let $docIDs := $elements[contains(@key, $element)]/root()/*/@xml:id | $elements[contains(@dbkey, $element)]/root()/*/@xml:id 
                 return element li {concat('Falscher Key: ', $key, ' (in: ', string-join($docIDs, ', '), ')')})
         )
     }
@@ -194,7 +193,7 @@ declare function dev:validatePNDs($docType as xs:string) as element(div) {
  :)
 
 declare function dev:validatePaths($docType as xs:string) as element() {
-    let $falseDocs := collection(config:get-option($docType))[document-uri(.) ne concat(config:getCollectionPath(./*/string(@xml:id)), '/', ./*/@xml:id, '.xml')]
+    let $falseDocs := core:data-collection($docType)[document-uri(.) ne concat(config:getCollectionPath(./*/string(@xml:id)), '/', ./*/@xml:id, '.xml')]
     return element div {
         element ul {
             for $i in $falseDocs/document-uri(.)
