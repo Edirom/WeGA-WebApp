@@ -4,6 +4,7 @@ xquery version "3.0";
  : XQuery module for creating normalized lists of documents
  :)
 module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm";
+declare default collation "?lang=de;strength=primary";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
@@ -12,7 +13,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
-
+import module namespace functx="http://www.functx.com";
 
 (:~
  : Main entry function
@@ -146,11 +147,15 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
         let $docID := $doc/*/data(@xml:id)
         let $sex := normalize-space($doc//tei:sex)
         let $name := normalize-space($doc//tei:persName[@type='reg'])
-        order by $name ascending
+        let $sortName := 
+            if(functx:all-whitespace($doc//tei:persName[@type='reg']/tei:surname[1])) then functx:substring-before-match($name, '\s?,')
+            else normalize-space($doc//tei:persName[@type='reg']/tei:surname[1])
+        order by $sortName ascending, $name ascending
         return 
             element entry {
                 attribute docID {$docID},
                 attribute sex {$sex},
+                attribute sortName {$sortName},
                 $name
             }
     }</catalogue>
