@@ -537,7 +537,7 @@ declare function ajax:requestLetterContext($docID as xs:string, $lang as xs:stri
  : @return element
  :)
 
-declare function ajax:printLetterContextLink($docNormEntry as element(entry)?, $from as xs:boolean, $lang as xs:string) as element(li)? {
+declare function ajax:printLetterContextLink($docNormEntry as element(norm:entry)?, $from as xs:boolean, $lang as xs:string) as element(li)? {
     if(exists($docNormEntry)) then (
         let $docID := $docNormEntry/data(@docID)
         let $doc := core:doc($docID)
