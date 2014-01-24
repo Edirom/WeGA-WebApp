@@ -67,7 +67,7 @@ return
                        <input type="checkbox" name="auswahl" value="biblio"  /><label>{wega:getLanguageString('bibliography',$lang)}</label>
                     </div>
                     
-                    <div id="overlaySpinningWheelContainer" style="display: none;"><img src="../pix/ajax-loader.gif" alt="spinning-wheel" /></div>
+                    <div id="overlaySpinningWheelContainer" style="display: none;"><img src="../resources/pix/ajax-loader.gif" alt="spinning-wheel" /></div>
                     
                     <div id="numberOfSearchResults" style="display:block">
                         <span id="numberOfSearchResultsCount" ></span>
