@@ -20,6 +20,7 @@ declare namespace util = "http://exist-db.org/xquery/util";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $facets:callback := util:function(xs:QName("facets:term-callback"), 2);
@@ -403,7 +404,7 @@ declare function facets:getFirstOrLastDocumentInMonth($entriesSessionName as xs:
  :)
 
 declare function facets:getFirstOrLastDocumentInSeries($collIDs as xs:string*, $seriesNo as xs:int, $first as xs:boolean) as xs:string {
-    let $docIDs := wega:getNormDates('works')//entry[. = $seriesNo][@docID=$collIDs]
+    let $docIDs := norm:get-norm-doc('works')//norm:entry[. = $seriesNo][@docID=$collIDs]
     return 
 	   if($first) then $docIDs[1]/string(@docID)
 	   else $docIDs[last()]/string(@docID)
@@ -490,15 +491,15 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $undatedSessionName := concat('undated', $docType)
 	let $yearsSessionName := concat('years', $docType)
 	let $coll-ids := session:get-attribute($sessionCollName)/*/@xml:id
-	let $normDates := wega:getNormDates($docType)
+	let $normDates := norm:get-norm-doc($docType)
 	let $undatedKeys := 
-		if($docType eq 'diaries') then $normDates//entry[not(./node())][@docID = $coll-ids]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
-		else if($docType eq 'biblio') then $normDates//entry[not(./node())][@docID = $coll-ids]/string(@docID)
-		else $normDates//entry[not(node())][@docID = $coll-ids]/string(@docID)
+		if($docType eq 'diaries') then $normDates//norm:entry[not(./node())][@docID = $coll-ids]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
+		else if($docType eq 'biblio') then $normDates//norm:entry[not(./node())][@docID = $coll-ids]/string(@docID)
+		else $normDates//norm:entry[not(node())][@docID = $coll-ids]/string(@docID)
 	let $dated := 
-		if($docType eq 'diaries') then $normDates//entry[@docID = $coll-ids][./node()]
-		else if($docType eq 'biblio') then $normDates//entry[@docID = $coll-ids][./node()]
-        else $normDates//entry[@docID = $coll-ids][./node()]
+		if($docType eq 'diaries') then $normDates//norm:entry[@docID = $coll-ids][./node()]
+		else if($docType eq 'biblio') then $normDates//norm:entry[@docID = $coll-ids][./node()]
+        else $normDates//norm:entry[@docID = $coll-ids][./node()]
     let $distinctYears := for $i in distinct-values($dated/@year) return $i cast as xs:int
     let $saveDated := session:set-attribute($datedSessionName, $dated)
     let $saveUndated := session:set-attribute($undatedSessionName, $undatedKeys)
@@ -605,7 +606,7 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     let $coll := session:get-attribute($sessionCollName)
     let $distinctSeries := facets:getDistinctSeries($coll)
     let $collIDs :=  $coll/*/string(@xml:id)
-    let $activeIDs := wega:getNormDates('works')//entry[@docID=$collIDs]/string(@docID)
+    let $activeIDs := norm:get-norm-doc('works')//norm:entry[@docID=$collIDs]/string(@docID)
     let $docType := 'works'
     let $category := 'series'
     return 
@@ -650,7 +651,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
 	let $fromToSessionName := concat('fromTo', $docType)
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
-    let $normDates := wega:getNormDates($docType)//entry
+    let $normDates := norm:get-norm-doc($docType)//norm:entry
     let $persons := $normDates[@docID = $coll/*/@xml:id]
     let $countPersons := count($persons)
     let $savePersons := session:set-attribute($entriesSessionName, $persons)

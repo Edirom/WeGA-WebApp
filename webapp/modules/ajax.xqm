@@ -26,6 +26,7 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/fac
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 (:~
@@ -463,27 +464,26 @@ declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
 
 declare function ajax:requestLetterContext($docID as xs:string, $lang as xs:string) as element()* {
     let $doc := core:doc($docID)
-    let $persons := wega:getNormDates('persons') 
     let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
     let $addresseeID := $doc//tei:addressee/tei:persName[1]/@key
-    let $normDates := if(exists($authorID)) then wega:getNormDates('letters') else ()
+    let $normDates := if(exists($authorID)) then norm:get-norm-doc('letters') else ()
     
     (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
-    let $prevLetterFromSender := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::entry[@authorID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
+    let $prevLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
     (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
-    let $prevLetterToSender := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
+    let $prevLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
     (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
-    let $nextLetterFromSender := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::entry[@authorID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)] 
+    let $nextLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)] 
     (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
-    let $nextLetterToSender := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)]
+    let $nextLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)]
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
-    let $prevLetterFromAddressee := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
+    let $prevLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][position() eq last()]
     (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
-    let $prevLetterFromAuthorToAddressee := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][position() eq last()]
+    let $prevLetterFromAuthorToAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][position() eq last()]
     (: Direkter Antwortbrief des Adressaten:)
-    let $replyLetterFromAddressee := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)]
+    let $replyLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][xs:integer(1)]
     (: Antwort des Autors auf die Antwort des Adressaten :)
-    let $replyLetterFromSender := $normDates//entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][xs:integer(1)] 
+    let $replyLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][xs:integer(1)] 
     return (
         <h3>{wega:getLanguageString('absouluteChronology',$lang)}</h3>,
         <h4>{wega:getLanguageString('prevLetters',$lang)}</h4>,
@@ -718,9 +718,9 @@ declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:
 
 declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as xs:string, $lang as xs:string) as element(div) {
     let $authorID := 'A002068'
-    let $normDates := wega:getNormDates('diaries')
-    let $preceding := $normDates//entry[@docID = $docID]/preceding-sibling::entry[position() = last()]
-    let $following := $normDates//entry[@docID = $docID]/following-sibling::entry[1]
+    let $normDates := norm:get-norm-doc('diaries')
+    let $preceding := $normDates//norm:entry[@docID = $docID]/preceding-sibling::norm:entry[position() = last()]
+    let $following := $normDates//norm:entry[@docID = $docID]/following-sibling::norm:entry[1]
     return 
     <div id="{$contextContainer}">
         <h2>{wega:getLanguageString('context', $lang)}</h2>
@@ -756,9 +756,9 @@ declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as 
  :)
 
 declare function ajax:getNewsContext($contextContainer as xs:string, $docID as xs:string, $lang as xs:string) {
-    let $normDates := wega:getNormDates('news') 
-    let $following := $normDates//entry[@docID = $docID]/preceding-sibling::entry[position() = last()]
-    let $preceding := $normDates//entry[@docID = $docID]/following-sibling::entry[1]
+    let $normDates := norm:get-norm-doc('news') 
+    let $following := $normDates//norm:entry[@docID = $docID]/preceding-sibling::norm:entry[position() = last()]
+    let $preceding := $normDates//norm:entry[@docID = $docID]/following-sibling::norm:entry[1]
     let $baseHref := config:get-option('baseHref') 
     return 
     <div id="{$contextContainer}">

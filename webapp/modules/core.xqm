@@ -80,7 +80,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
  : @author Peter Stadler
  : @param $collName
  : @param $cacheKey
- : @return node*
+ : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
     (:let $collPath := string-join(($config:data-collection-path, $collName),'/') 
@@ -102,9 +102,9 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  :
  : @author Peter Stadler 
  : @param $coll collection to be sorted
- : @return item*
+ : @return document-node()*
  :)
-declare function core:sortColl($coll as item()*) as item()* {
+declare function core:sortColl($coll as item()*) as document-node()* {
     if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by $i//tei:persName[@type = 'reg'] ascending return $i
     else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
@@ -114,7 +114,6 @@ declare function core:sortColl($coll as item()*) as item()* {
     else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
     else $coll
 };
-
 
 (:~
  : Write log message to log file
