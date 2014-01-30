@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 declare default collation "?lang=de;strength=primary";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
@@ -96,14 +96,15 @@ declare function local:createKWIC($item as item(), $lang as xs:string) as elemen
 };
 
 declare function local:createEntry($entry as item(), $clear as xs:boolean, $isSearchResult as xs:boolean, $lang as xs:string) as element()+ {
-    let $docMetaData := util:catch('*', 
-        wega:getDocumentMetaData($entry, $lang, 'listView'), 
-        if($config:isDevelopment) then element div {
-            attribute class {'item'},
-            string-join(('wega:getDocumentMetaData', $entry/@xml:id, $util:exception, $util:exception-message), ' ;; ')
+    let $docMetaData := 
+        try { wega:getDocumentMetaData($entry, $lang, 'listView') }
+        catch * { 
+            if($config:isDevelopment) then element div {
+                attribute class {'item'},
+                    string-join(('wega:getDocumentMetaData', $entry/@xml:id, $err:code, $err:description), ' ;; ') 
+            }
+            else core:logToFile('error', string-join(('wega:getDocumentMetaData', $err:code, $err:description), ' ;; '))
         }
-        else core:logToFile('error', string-join(('wega:getDocumentMetaData', $util:exception, $util:exception-message), ' ;; '))
-        )
     return 
         if($isSearchResult) then
             element div {
