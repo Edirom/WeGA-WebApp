@@ -69,29 +69,29 @@ return
         let $docID := request:get-parameter('id','A050001')
         return ajax:getNewsContext($contextContainer, $docID, $lang) 
         
-    else if($function eq 'showToolsTab' and config:get-option('environment') eq 'development') then
+    else if($function eq 'showToolsTab' and $config:isDevelopment) then
         let $docType := request:get-parameter('docType','common')
         return dev:showToolsTab($docType, $lang) 
 
-    else if($function eq 'generateID' and config:get-option('environment') eq 'development') then
+    else if($function eq 'generateID' and $config:isDevelopment) then
         let $docType := 
             if($lang eq 'en') then request:get-parameter('docType','common')
             else doc(config:get-option(concat('dic_', $lang)))//entry[lower-case(.) eq lower-case(request:get-parameter('docType', 'Personen'))]/string(@xml:id)
         return dev:createNewID($docType) 
 
-    else if($function eq 'validateIDs' and config:get-option('environment') eq 'development') then
+    else if($function eq 'validateIDs' and $config:isDevelopment) then
         let $docType := 
             if($lang eq 'en') then request:get-parameter('docType','common')
             else doc(config:get-option(concat('dic_', $lang)))//entry[lower-case(.) eq lower-case(request:get-parameter('docType', 'Personen'))]/string(@xml:id)
         return dev:validateIDs($docType)
     
-    else if($function eq 'validatePNDs' and config:get-option('environment') eq 'development') then
+    else if($function eq 'validatePNDs' and $config:isDevelopment) then
         let $docType := 
             if($lang eq 'en') then request:get-parameter('docType','common')
             else doc(config:get-option(concat('dic_', $lang)))//entry[lower-case(.) eq lower-case(request:get-parameter('docType', 'Personen'))]/string(@xml:id)
         return dev:validatePNDs($docType)
     
-    else if($function eq 'validatePaths' and config:get-option('environment') eq 'development') then
+    else if($function eq 'validatePaths' and $config:isDevelopment) then
         let $docType := 
             if($lang eq 'en') then request:get-parameter('docType','common')
             else doc(config:get-option(concat('dic_', $lang)))//entry[lower-case(.) eq lower-case(request:get-parameter('docType', 'Personen'))]/string(@xml:id)

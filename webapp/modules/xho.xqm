@@ -54,7 +54,7 @@ declare function xho:createHeadContainer($lang as xs:string) as element()* {
     return (
     element xhtml:div {
         attribute id {"headContainer"},
-        if(config:get-option('environment') eq 'development') then attribute class {'dev'}
+        if($config:isDevelopment) then attribute class {'dev'}
         else if(config:get-option('environment') eq 'release') then attribute class {'rel'}
         else (),
         <xhtml:h1><xhtml:a href="{$index}"><xhtml:span class="hiddenLink">Carl Maria von Weber Gesamtausgabe</xhtml:span></xhtml:a></xhtml:h1>,
@@ -98,7 +98,7 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
         then '%B %d, %Y'
         else '%d. %B %Y'
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
-    let $version := concat(config:get-option('version'), if(config:get-option('environment') eq 'development') then 'dev' else '')
+    let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
     let $versionDate := wega:strftime($dateFormat, xs:date(config:get-option('versionDate')), $lang)
     let $permalink := string-join((config:get-option('baseHref'), $docID), '/')
     return 
@@ -106,7 +106,7 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
             <xhtml:div id="footer">
                 <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(core:doc(config:get-option('versionNews')), $lang)}">{wega:getLanguageString('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
                 <xhtml:p>{
-                    if(config:get-option('environment') eq 'development') then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
+                    if($config:isDevelopment) then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
                     else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
                 }</xhtml:p>
                   {if($lang eq 'en') then 

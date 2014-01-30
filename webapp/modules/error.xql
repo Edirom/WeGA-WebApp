@@ -54,7 +54,7 @@ return
                 <div id="contentRight">
                     {xho:printEditionLinks($startID, $lang),
                     xho:printProjectLinks($lang),
-                    if(config:get-option('environment') eq 'development') then xho:printDevelopmentLinks($lang) else ()}
+                    if($config:isDevelopment) then xho:printDevelopmentLinks($lang) else ()}
                 </div>
             </div>
         </div>

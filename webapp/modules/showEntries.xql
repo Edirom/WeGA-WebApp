@@ -39,22 +39,21 @@ declare function local:getRootNode($node,$docType) {
 };
 
 declare function local:createKWIC($item as item(), $lang as xs:string) as element() {
-    let $dev := config:get-option('environment') eq 'development'
     let $kwic := util:catch('*',
         kwic:summarize($item, <config width="40"/>),
-        if($dev) then string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; ')
+        if($config:isDevelopment) then string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; ')
         else core:logToFile('error', string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; '))
         )
     let $score    := ft:score($item)
     return 
         element div {
             attribute class {'kwicResult'},
-            if($dev) then element p {
+            if($config:isDevelopment) then element p {
                 attribute class {'id'},
                 if($item/@xml:id) then $item/@xml:id cast as xs:string else()
             }
             else(),
-            if($dev and exists($item//mei:altId[@type="JV"])) then element p {
+            if($config:isDevelopment and exists($item//mei:altId[@type="JV"])) then element p {
                 attribute class {'id'},
                 concat("(JV ",$item//mei:altId[@type="JV"],")")
             } 
@@ -82,12 +81,12 @@ declare function local:createKWIC($item as item(), $lang as xs:string) as elemen
                                (:Kein Treffer im Textteil gefunden:)
                  (:let $deletion  := session:remove-attribute(concat('kwic-',$item/data(@xml:id))):)
                  return element p {$kwicNew }
-            else if($dev and normalize-space(string-join($kwic,'')) eq '' and false()) (: Nur eine Überlegung :)
+            else if($config:isDevelopment and normalize-space(string-join($kwic,'')) eq '' and false()) (: Nur eine Überlegung :)
                  then element p {'Für dieses Suchergebnis kann leider kein KWIC (keyword in kontext) ausgegeben werden.'}
                  else for $i in 1 to 20
                      return $kwic[$i]
                  ,
-                 if($dev) then element p {
+                 if($config:isDevelopment) then element p {
                     attribute class {'score'},
                     attribute style {'visibility:hidden'},
                     $score
@@ -97,10 +96,9 @@ declare function local:createKWIC($item as item(), $lang as xs:string) as elemen
 };
 
 declare function local:createEntry($entry as item(), $clear as xs:boolean, $isSearchResult as xs:boolean, $lang as xs:string) as element()+ {
-    let $dev := config:get-option('environment') eq 'development'
     let $docMetaData := util:catch('*', 
         wega:getDocumentMetaData($entry, $lang, 'listView'), 
-        if($dev) then element div {
+        if($config:isDevelopment) then element div {
             attribute class {'item'},
             string-join(('wega:getDocumentMetaData', $entry/@xml:id, $util:exception, $util:exception-message), ' ;; ')
         }

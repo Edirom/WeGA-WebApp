@@ -121,7 +121,7 @@ return
                 <div id="contentRight">
                     {xho:printEditionLinks($startID, $lang),
                     xho:printProjectLinks($lang),
-                    if(config:get-option('environment') eq 'development') then xho:printDevelopmentLinks($lang) else ()}
+                    if($config:isDevelopment) then xho:printDevelopmentLinks($lang) else ()}
                     <div>
                         <h1>{wega:getLanguageString('whatHappenedOn', wega:strftime(if($lang eq 'en') then '%B %d' else '%d. %B', $date, $lang), $lang)}</h1>
                         <div id="todaysEvents">
