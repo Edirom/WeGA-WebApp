@@ -339,3 +339,23 @@ declare function config:getCurrentSvnRev() as xs:int? {
         if($myNode castable as xs:int) then $myNode cast as xs:int
         else ()
 };
+
+(:~
+ : Create parameters for xsl transformations 
+ :
+ : @author Peter Stadler
+ : @return parameters
+:)
+declare function config:get-xsl-params($params as map()?) as element(parameters) {
+    <parameters>
+        <param name="lang" value="{session:get-attribute('lang')}"/>
+        <param name="optionsFile" value="{$config:options-file-path}"/>
+        <param name="baseHref" value="{core:link-to-current-app(())}"/>
+        {if(exists($params)) then 
+            for $i in map:keys($params)
+            return 
+                <param name="{$i}" value="{map:get($params, $i)}"/>
+        else ()
+        }
+    </parameters>
+};

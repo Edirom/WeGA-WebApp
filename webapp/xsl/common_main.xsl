@@ -8,6 +8,7 @@
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
     <xsl:param name="optionsFile"/>
+    <xsl:param name="baseHref"/>
     <xsl:param name="lang"/>
     <xsl:param name="dbPath"/>
     <xsl:param name="docID"/>

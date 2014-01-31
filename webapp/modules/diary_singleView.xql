@@ -51,7 +51,7 @@ let $docYear := year-from-date(xs:date($doc/tei:ab/@n))
 let $docYearID := concat('diary_Weber_', $docYear)
 let $docYear := collection('/db/diaries')//id($docYearID)
 let $authorID := 'A002068'
-let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
+let $xslParams := config:get-xsl-params(())
 let $contextContainer := 'context'
 let $domLoaded := 
     if($withJS) then

@@ -58,7 +58,7 @@ let $withJS := request:get-parameter('js','true')
 let $person := core:doc($id)/tei:person
 let $name := wega:cleanString($person/tei:persName[@type='reg'])
 let $pnd := $person/tei:idno[@type='gnd']
-let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters> 
+let $xslParams := config:get-xsl-params(()) 
 let $domLoaded := 
     if($withJS eq 'true') then
     <domLoaded xmlns="">

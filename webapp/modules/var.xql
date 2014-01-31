@@ -91,16 +91,16 @@ let $createSecNos := request:get-parameter('createSecNos',())
 let $withJS := if(request:get-parameter('js', 'true') eq 'true') then true() else false()
 let $isImpressum := $docID eq 'A070002'
 let $isBiography := $docID eq 'A070003'
-let $xslParams :=
-    <parameters>
-        <param name="lang" value="{$lang}"/>
-        <param name="optionsFile" value="{$config:options-file-path}"/>
-        {if(exists($createToc)) then <param name="createToc" value="true"/> else()}
-        {if(exists($createSecNos)) then <param name="createSecNos" value="true"/> else()}
-        {if($isBiography) then <param name="collapseBlock" value="true"/> else()}
-        <param name="uri" value="{request:get-uri()}"/>
-        <param name="docID" value="{$docID}"/>
-    </parameters>
+let $xslParams := 
+    config:get-xsl-params(
+        map:new((
+            map:entry('uri', request:get-uri()),
+            map:entry('docID', $docID),
+            if(exists($createToc)) then map:entry('createToc', 'true') else (),
+            if(exists($createSecNos)) then map:entry('createSecNos', 'true') else(),
+            if($isBiography) then map:entry('collapseBlock', 'true') else()
+        ))
+    )
 let $doc := core:doc($docID)
 let $css := if($isImpressum) then 'index.css' else 'layout76-22.css'
 let $domLoaded := 

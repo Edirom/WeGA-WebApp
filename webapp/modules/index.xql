@@ -75,7 +75,7 @@ let $lang := request:get-parameter('lang','')
 let $withJS := if(request:get-parameter('js', 'true') eq 'true') then true() else false()
 let $date := adjust-date-to-timezone(util:system-date(),())
 let $startID := 'A002068'
-let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
+let $xslParams := config:get-xsl-params(())
 
 let $maxNews := xs:integer(config:get-option('maxNews'))
 let $minNews := xs:integer(config:get-option('minNews'))

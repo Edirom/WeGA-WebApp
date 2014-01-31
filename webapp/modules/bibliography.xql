@@ -15,13 +15,11 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"; 
 
 declare function local:formatBibliography($biblItems as element()*, $lang as xs:string) as element()* {
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
-    return 
     for $i in $biblItems
     return 
-    element li {
-        transform:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), $xslParams)
-    }
+        element li {
+            transform:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
+        }
 };
 
 let $lang := request:get-parameter('lang','de')

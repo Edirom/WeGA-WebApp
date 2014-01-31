@@ -247,7 +247,7 @@ return
 
 declare function ajax:getBiography($id as xs:string, $lang as xs:string) as element()* {
 let $person := core:doc($id)
-let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
+let $xslParams := config:get-xsl-params(())
 let $baseHref := config:get-option('baseHref')
 return (
     if($person//tei:note[@type="bioSummary"])
@@ -281,7 +281,7 @@ declare function ajax:getWikipedia($pnd as xs:string, $lang as xs:string) as ele
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
     let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
+    let $xslParams := config:get-xsl-params(())
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     let $appendix := if($lang eq 'en') then 
         <p class="linkAppendix">The content of this "Wikipedia" entitled box is taken from the article "<a href='{$wikiUrl}' title='Wikipedia article for {$name}'>{$name}</a>" 
@@ -323,7 +323,7 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
     let $pnd := request:get-parameter('pnd','118629662')
     let $lang := request:get-parameter('lang', 'de')
     let $wikiContent := wega:grabExternalResource('adb', $pnd, (), true())
-    let $xslParams := <parameters><param name="lang" value="{$lang}"/><param name="optionsFile" value="{$config:options-file-path}"/></parameters>
+    let $xslParams := config:get-xsl-params(())
     let $name := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     let $appendix := transform:transform($wikiContent//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), <parameters><param name="lang" value="{$lang}"/><param name="mode" value="appendix"/></parameters>)
     let $result := if(exists($wikiContent//xhtml:meta)) 
@@ -603,14 +603,11 @@ declare function ajax:getListFromEntriesWithoutKey($docID,$lang,$entry) {
 
 declare function ajax:printTranscription($docID as xs:string, $lang as xs:string) as item()* {
     let $doc := core:doc($docID)
-    let $xslParams := 
-        <parameters>
-            <param name="lang" value="{$lang}"/>
-            <param name="dbPath" value="{document-uri($doc)}"/>
-            <param name="docID" value="{$docID}"/>
-            <param name="transcript" value="true"/>
-            <param name="optionsFile" value="{$config:options-file-path}"/>
-        </parameters>
+    let $xslParams := config:get-xsl-params( map {
+        'dbPath' := document-uri($doc),
+        'docID' := $docID,
+        'transcript' := 'true'
+        } )
     let $xslt := 
         if(config:is-letter($docID)) then doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
         else if(config:is-news($docID)) then doc(concat($config:xsl-collection-path, '/news.xsl'))
@@ -682,17 +679,10 @@ declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) a
  
 declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:string) {
     (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
-    let $yearsToSuppress := if($config:isDevelopment) then  () else (1813,1814,1815,1816,1821,1822,1823,1826)
+    let $yearsToSuppress := if($config:isDevelopment) then () else (1810 to 1816, 1821 to 1826)
     let $doc := core:doc($docID)
     let $curYear := year-from-date($doc/tei:ab/@n cast as xs:date)
-    let $xslParams := 
-        <parameters>
-            <param name="lang" value="{$lang}"/>
-            <param name="transcript" value="true"/>
-            <param name="optionsFile" value="{$config:options-file-path}"/>
-            {if($curYear = $yearsToSuppress) then <param name="suppressLinks" value="true"/>
-            else ()}
-        </parameters>
+    let $xslParams := config:get-xsl-params(map:new((map:entry('transcript', 'true'), if($curYear = $yearsToSuppress) then map:entry('suppressLinks', 'true') else ())))
     let $dateFormat := if ($lang eq 'en')
         then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
