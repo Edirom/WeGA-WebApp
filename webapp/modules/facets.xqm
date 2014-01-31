@@ -435,7 +435,7 @@ declare function facets:getDistinctSeries($coll as item()+) as element(mei:title
 
 declare function facets:getFacetCategories($docType as xs:string) as element(facets:categories) {
     <facets:categories>
-        {doc(config:get-option('facetsFile'))//facets:entry[./facets:collection[not(@default eq 'no')] = $docType]}
+        { doc(config:get-option('facetsFile'))//facets:collection[. = $docType][not(@default = 'no')]/ancestor::facets:entry }
     </facets:categories>
 };
 
@@ -459,8 +459,8 @@ declare function facets:createFacetFromFacetFile($entry as element(facets:entry)
     		java.util.ConcurrentModificationException oder 
     		java.lang.ArrayIndexOutOfBoundsException
     	:)
-    	util:catch('*', util:eval(concat('$coll', $entry/facets:path)), core:logToFile('error', string-join(('facets:createFacetFromFacetFile', $util:exception, $util:exception-message), ' ;; ')))
-(:        util:eval(concat('$coll', $entry/facets:path)):)
+    	try { util:eval(concat('$coll', $entry/facets:path)) }
+    	catch * { core:logToFile('error', string-join(('facets:createFacetFromFacetFile', $err:code, $err:description), ' ;; ')) }
     let $facets := 
     	typeswitch($collFacets)
         	case xs:string return 'error'
@@ -490,7 +490,7 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 	let $datedSessionName := concat('dated', $docType)
 	let $undatedSessionName := concat('undated', $docType)
 	let $yearsSessionName := concat('years', $docType)
-	let $coll-ids := session:get-attribute($sessionCollName)/*/@xml:id
+	let $coll-ids := facets:get-IDs(session:get-attribute($sessionCollName), $docType)
 	let $normDates := norm:get-norm-doc($docType)
 	let $undatedKeys := 
 		if($docType eq 'diaries') then $normDates//norm:entry[not(./node())][@docID = $coll-ids]/string(@docID) (: Bei keinem Treffer wird der leere String zurückgegeben :)
@@ -531,10 +531,10 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
  : @param $entriesSessionName
  : @param $yearsSessionName
  : @param $lang the language switch (en|de)
- : @param $recusionDepth
+ : @param $recursionDepth
  : @return html:ul
 :)
-declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $yearsSessionName as xs:string, $lang as xs:string, $recusionDepth as xs:int) as element(ul) {
+declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $yearsSessionName as xs:string, $lang as xs:string, $recursionDepth as xs:int) as element(ul) {
     let $showYearsOnly := matches($entriesSessionName, 'biblio') (: Ausnahme für Bibliographie: hier werden nur Jahre angezeigt, keine Monate :)
     let $entries := session:get-attribute($entriesSessionName)
     let $distinctYears := session:get-attribute($yearsSessionName)
@@ -542,7 +542,7 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
     let $countYears := count($distinctYears)
     let $myDivisor := if (round($countYears div $maxRows) eq 0) then 1 else xs:int(round($countYears div $maxRows)) (: 9/7 :) 
     let $numberOfRows := if(ceiling($countYears div $myDivisor) gt $maxRows) then $maxRows else xs:int(ceiling($countYears div $myDivisor))
-    return if($countYears gt 1 or $recusionDepth eq 0 or $showYearsOnly) then
+    return if($countYears gt 1 or $recursionDepth eq 0 or $showYearsOnly) then
 		<ul>{
 			for $i at $count in (1 to $numberOfRows)
 			let $fromYearPosition := ($i - 1) * ($myDivisor) + 1
@@ -605,7 +605,7 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $distinctSeries := facets:getDistinctSeries($coll)
-    let $collIDs :=  $coll/*/string(@xml:id)
+    let $collIDs :=  facets:get-IDs($coll, $docType)
     let $activeIDs := norm:get-norm-doc('works')//norm:entry[@docID=$collIDs]/string(@docID)
     let $docType := 'works'
     let $category := 'series'
@@ -652,7 +652,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
     let $sessionCollName := facets:getCollName($docType, false())
     let $coll := session:get-attribute($sessionCollName)
     let $normDates := norm:get-norm-doc($docType)//norm:entry
-    let $persons := $normDates[@docID = $coll/*/@xml:id]
+    let $persons := $normDates[@docID = facets:get-IDs($coll, $docType)]
     let $countPersons := count($persons)
     let $savePersons := session:set-attribute($entriesSessionName, $persons)
     let $saveFromTo := session:set-attribute($fromToSessionName, (1,$countPersons))
@@ -670,7 +670,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
  : @param $entriesSessionName
  : @param $fromToSessionName
  : @param $lang the language switch (en|de)
- : @param $recusionDepth
+ : @param $recursionDepth
  : @return html:ul
 :)
 declare function facets:createAlphabetListUl($entriesSessionName as xs:string, $fromToSessionName as xs:string, $lang as xs:string, $recusionDepth as xs:int) as element(ul) {
@@ -713,4 +713,12 @@ declare function facets:createAlphabetListUl($entriesSessionName as xs:string, $
             )
         }
     )
+};
+
+declare %private function facets:get-IDs($coll as document-node()*, $docType as xs:string) as attribute()* {
+    switch($docType)
+        case 'diaries' return $coll/tei:ab/@xml:id
+        case 'persons' return $coll/tei:person/@xml:id
+        case 'works' return $coll/mei:mei/@xml:id
+        default return $coll/tei:TEI/@xml:id 
 };
