@@ -1,7 +1,12 @@
 <collection xmlns="http://exist-db.org/collection-config/1.0">
-    <index>
+    <index xmlns:facets="http://xquery.weber-gesamtausgabe.de/modules/facets">
         <create qname="entry" type="xs:string"/>
         <create qname="@oldID" type="xs:string"/>
+        <!-- index entries for facets.xml  -->
+        <create qname="@default" type="xs:string"/>
+        <create qname="@type" type="xs:string"/>
+        <create qname="facets:collection" type="xs:string"/>
+        <create qname="@node" type="xs:string"/>
         <fulltext default="none" attributes="false"/>
     </index>
 </collection>
