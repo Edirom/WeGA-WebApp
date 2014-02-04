@@ -25,6 +25,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -56,12 +57,12 @@ declare function ajax:getTodaysEvents($date as xs:date, $lang as xs:string) as e
             element li {
                 if($isJubilee) then (
                     attribute class {'jubilee'},
-                    attribute title {wega:getLanguageString('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)}
+                    attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)}
                 )
                 else (),
                 concat(wega:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
                 if($typeOfEvent eq 'letter') then ajax:createLetterLink($teiDate, $lang)
-                else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', wega:getLanguageString($typeOfEvent, $lang))
+                else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang))
             }
     }</ul>
 };
@@ -75,9 +76,9 @@ declare %private function ajax:createLetterLink($teiDate as element(tei:date)?, 
     let $sender := wega:printCorrespondentName($teiDate/ancestor::tei:correspDesc/tei:sender[1]/*[1], $lang, 'fs')
     let $addressee := wega:printCorrespondentName($teiDate/ancestor::tei:correspDesc/tei:addressee[1]/*[1], $lang, 'fs')
     return (
-        $sender, ' ', wega:getLanguageString('writesTo', $lang), ' ', $addressee, 
+        $sender, ' ', lang:get-language-string('writesTo', $lang), ' ', $addressee, 
         if(ends-with($addressee, '.')) then ' ' else '. ', 
-        wega:createDocLink($teiDate/root(), concat('[', wega:getLanguageString('readOnLetter', $lang), ']'), $lang, ('class=readOn'))
+        wega:createDocLink($teiDate/root(), concat('[', lang:get-language-string('readOnLetter', $lang), ']'), $lang, ('class=readOn'))
     )
 };
 
@@ -191,8 +192,8 @@ declare function ajax:printCorrespondents($id as xs:string, $lang as xs:string, 
                 element a {
                     attribute href {wega:createLinkToDoc($doc, $lang)},
                     attribute title {
-                        if ($persNameSelectedCount gt 1) then concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letters',$lang), ')')
-                        else concat($persNameSelected, ' (', $persNameSelectedCount, ' ', wega:getLanguageString('letter',$lang), ')')},
+                        if ($persNameSelectedCount gt 1) then concat($persNameSelected, ' (', $persNameSelectedCount, ' ', lang:get-language-string('letters',$lang), ')')
+                        else concat($persNameSelected, ' (', $persNameSelectedCount, ' ', lang:get-language-string('letter',$lang), ')')},
                     element img {
                         attribute src {img:getPortraitPath($doc/tei:person, (40, 55), $lang)},
                         attribute alt {$persNameSelected},
@@ -253,12 +254,12 @@ return (
     if($person//tei:note[@type="bioSummary"])
         then
             <div id="bioSummary">
-                <h2>{wega:getLanguageString('bioSummary',$lang)}</h2>
+                <h2>{lang:get-language-string('bioSummary',$lang)}</h2>
                 {wega:changeNamespace(transform:transform($person//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams), '', ())}
             </div>
         else 
             if($person//tei:event) then ()
-            else <div id="bioSummary"><i>({wega:getLanguageString('noBioFound',$lang)})</i></div>,
+            else <div id="bioSummary"><i>({lang:get-language-string('noBioFound',$lang)})</i></div>,
         if($id eq 'A002068') then 
             if ($lang eq 'en') then ()
             else <p class="linkAppendix">Einen ausführlichen Lebenslauf finden Sie in der <a href="{concat($baseHref, '/de/Biographie')}">erweiterten Biographie</a></p> 
@@ -302,7 +303,7 @@ declare function ajax:getWikipedia($pnd as xs:string, $lang as xs:string) as ele
                 {$appendix}
             </div>
         )
-        else <span class="notAvailable">{wega:getLanguageString('noWikipediaEntryFound', $lang)}</span>
+        else <span class="notAvailable">{lang:get-language-string('noWikipediaEntryFound', $lang)}</span>
         
     return 
     (:wega:castDateFormat('Wed, 03 Apr 2010 19:09:48 GMT'):)
@@ -333,7 +334,7 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
                 {$appendix}
             </div>
         )
-        else <span class="notAvailable">{wega:getLanguageString('noADBEntryFound', $lang)}</span>
+        else <span class="notAvailable">{lang:get-language-string('noADBEntryFound', $lang)}</span>
         
     return 
     (:wega:castDateFormat('Wed, 03 Apr 2010 19:09:48 GMT'):)
@@ -362,12 +363,12 @@ declare function ajax:getDNB($pnd as xs:string, $lang as xs:string) as element(d
     return (
         <div id="dnbFrame">
             <ul>
-                <li><span class="desc">{wega:getLanguageString('pnd_name', $lang)}:</span> {$name}</li>
+                <li><span class="desc">{lang:get-language-string('pnd_name', $lang)}:</span> {$name}</li>
                 {
-                if ($roleName ne '') then element li {element span {attribute class {"desc"}, concat(wega:getLanguageString('pnd_roleName', $lang), ':')}, $roleName} else(),
-                if (exists($dates)) then for $date in $dates return element li {element span {attribute class {"desc"}, concat(wega:getLanguageString('pnd_dates', $lang), ':')}, $date} else(),
-                if ($occupation ne '') then element li {element span {attribute class {"desc"}, concat(wega:getLanguageString('pnd_occupation', $lang), ':')}, $occupation} else(),
-                if ($otherNames ne '') then element li {element span {attribute class {"desc"}, concat(wega:getLanguageString('pnd_otherNames', $lang), ':')}, $otherNames} else()
+                if ($roleName ne '') then element li {element span {attribute class {"desc"}, concat(lang:get-language-string('pnd_roleName', $lang), ':')}, $roleName} else(),
+                if (exists($dates)) then for $date in $dates return element li {element span {attribute class {"desc"}, concat(lang:get-language-string('pnd_dates', $lang), ':')}, $date} else(),
+                if ($occupation ne '') then element li {element span {attribute class {"desc"}, concat(lang:get-language-string('pnd_occupation', $lang), ':')}, $occupation} else(),
+                if ($otherNames ne '') then element li {element span {attribute class {"desc"}, concat(lang:get-language-string('pnd_otherNames', $lang), ':')}, $otherNames} else()
                 }
             </ul>
             {$appendix}
@@ -407,10 +408,10 @@ declare function ajax:getPNDBeacons($pnd as xs:string, $name as xs:string, $lang
     return 
         <div>{
             if (exists($list/li)) then (
-                <h2>{wega:getLanguageString('beaconLinks', ($name,$pnd), $lang)}</h2>,
+                <h2>{lang:get-language-string('beaconLinks', ($name,$pnd), $lang)}</h2>,
                 $list
             )
-            else <span class="notAvailable">{wega:getLanguageString('noBeaconsFound', $lang)}</span>
+            else <span class="notAvailable">{lang:get-language-string('noBeaconsFound', $lang)}</span>
         }</div>
 };
 
@@ -449,7 +450,7 @@ declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
         return 
         <li onclick="highlightSpanClassInText('{$x}',this)">{$regName}</li>
     )
-    else (<li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>)
+    else (<li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>)
 };
 
 (:~
@@ -485,43 +486,43 @@ declare function ajax:requestLetterContext($docID as xs:string, $lang as xs:stri
     (: Antwort des Autors auf die Antwort des Adressaten :)
     let $replyLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][xs:integer(1)] 
     return (
-        <h3>{wega:getLanguageString('absouluteChronology',$lang)}</h3>,
-        <h4>{wega:getLanguageString('prevLetters',$lang)}</h4>,
+        <h3>{lang:get-language-string('absouluteChronology',$lang)}</h3>,
+        <h4>{lang:get-language-string('prevLetters',$lang)}</h4>,
         <ul>{
           ajax:printLetterContextLink($prevLetterFromSender, false(), $lang),
           ajax:printLetterContextLink($prevLetterToSender, true(), $lang),
         (: Ausgabe von "no data found" when keiner der o.a. Briefe existiert, z.B. bei undatierten Briefen :)    
           if(exists($prevLetterFromSender) or exists($prevLetterToSender))
               then ()
-              else <li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>
+              else <li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>
         }</ul>,
-        <h4>{wega:getLanguageString('nextLetters',$lang)}</h4>,
+        <h4>{lang:get-language-string('nextLetters',$lang)}</h4>,
         <ul>{
           ajax:printLetterContextLink($nextLetterFromSender, false(), $lang),
           ajax:printLetterContextLink($nextLetterToSender, true(), $lang),
         (: Ausgabe von "no data found" when keiner der o.a. Briefe existiert, z.B. bei undatierten Briefen :)
           if(exists($nextLetterFromSender) or exists($nextLetterToSender))
               then()
-              else <li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>
+              else <li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>
         }</ul>,
-        <h3>{wega:getLanguageString('korrespondenzstelle',$lang)}</h3>,
-        <h4>{wega:getLanguageString('prevLetters',$lang)}</h4>,
+        <h3>{lang:get-language-string('korrespondenzstelle',$lang)}</h3>,
+        <h4>{lang:get-language-string('prevLetters',$lang)}</h4>,
         <ul>{
             ajax:printLetterContextLink($prevLetterFromAuthorToAddressee, false(), $lang),
             ajax:printLetterContextLink($prevLetterFromAddressee, true(), $lang),
             (: Ausgabe von "no data found" when keiner der o.a. Briefe existiert, z.B. bei undatierten Briefen :)
             if(exists($prevLetterFromAuthorToAddressee) or exists($prevLetterFromAddressee))
                 then()
-                else <li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>
+                else <li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>
         }</ul>,
-        <h4>{wega:getLanguageString('nextLetters',$lang)}</h4>,
+        <h4>{lang:get-language-string('nextLetters',$lang)}</h4>,
         <ul>{
             ajax:printLetterContextLink($replyLetterFromSender, false(), $lang),
             ajax:printLetterContextLink($replyLetterFromAddressee, true(), $lang),
             (: Ausgabe von "no data found" when keiner der o.a. Briefe existiert, z.B. bei undatierten Briefen :)
             if(exists($replyLetterFromSender) or exists($replyLetterFromAddressee))
                 then()
-                else <li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>
+                else <li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>
         }</ul>
     )
 };
@@ -542,10 +543,10 @@ declare function ajax:printLetterContextLink($docNormEntry as element(norm:entry
         let $docID := $docNormEntry/data(@docID)
         let $doc := core:doc($docID)
         let $authorID := if($docNormEntry/@authorID ne '') then $docNormEntry/data(@authorID) else config:get-option('anonymusID')
-        let $linkText := if($docNormEntry eq '') then wega:getLanguageString('withoutDate', $lang) else string($docNormEntry)
+        let $linkText := if($docNormEntry eq '') then lang:get-language-string('withoutDate', $lang) else string($docNormEntry)
         let $additionalText := if($from) 
-            then (concat(wega:getLanguageString('from', $lang), ' '), wega:printCorrespondentName($doc//tei:fileDesc/tei:titleStmt/tei:author[1], $lang, 'fs')) 
-            else (concat(wega:getLanguageString('to',   $lang), ' '), wega:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs')) (: siehe Ticket #739 :)
+            then (concat(lang:get-language-string('from', $lang), ' '), wega:printCorrespondentName($doc//tei:fileDesc/tei:titleStmt/tei:author[1], $lang, 'fs')) 
+            else (concat(lang:get-language-string('to',   $lang), ' '), wega:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs')) (: siehe Ticket #739 :)
         return 
         element li {
             wega:createDocLink($doc, $linkText, $lang, ()),
@@ -589,7 +590,7 @@ declare function ajax:getListFromEntriesWithoutKey($docID,$lang,$entry) {
          order by $entry ascending
          return (<li onclick="highlightSpanClassInText('{$asciiCode}',this)">{data($entry)}</li>))
     
-     else (<li class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</li>)
+     else (<li class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</li>)
 };
 
 (:~
@@ -624,8 +625,8 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
          then (
             let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else wega:changeNamespace(transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ()) 
             let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else wega:changeNamespace(transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams), '', ())
-            let $text := if($doc//tei:correspDesc[@n = 'revealed']) then wega:getLanguageString('correspondenceTextNotAvailable', $lang)
-                         else wega:getLanguageString('correspondenceTextNotYetAvailable', $lang)
+            let $text := if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
             return element div {
                 attribute id {'teiLetter_body'},
                 $incipit,
@@ -713,18 +714,18 @@ declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as 
     let $following := $normDates//norm:entry[@docID = $docID]/following-sibling::norm:entry[1]
     return 
     <div id="{$contextContainer}">
-        <h2>{wega:getLanguageString('context', $lang)}</h2>
+        <h2>{lang:get-language-string('context', $lang)}</h2>
         <ul>{
             if($preceding) then
                 element li {
-                    wega:getLanguageString('prevDiaryDay', $lang),
+                    lang:get-language-string('prevDiaryDay', $lang),
                     <br/>,
                     wega:createDocLink(core:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ())
                 }
             else (),
             if($following) then
                 element li {
-                    wega:getLanguageString('nextDiaryDay', $lang),
+                    lang:get-language-string('nextDiaryDay', $lang),
                     <br/>,
                     wega:createDocLink(core:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ())
                 }
@@ -752,18 +753,18 @@ declare function ajax:getNewsContext($contextContainer as xs:string, $docID as x
     let $baseHref := config:get-option('baseHref') 
     return 
     <div id="{$contextContainer}">
-        <h2>{wega:getLanguageString('context', $lang)}</h2>
+        <h2>{lang:get-language-string('context', $lang)}</h2>
         <ul>{
             if($preceding) (: Absteigende Sortierung! :)
                 then element li {
-                    wega:getLanguageString('prevDiaryDay', $lang),
+                    lang:get-language-string('prevDiaryDay', $lang),
                     <br/>,
                     wega:createDocLink(core:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
                 else (),
             if($following)  (: Absteigende Sortierung! :)
                 then element li {
-                    wega:getLanguageString('nextDiaryDay', $lang),
+                    lang:get-language-string('nextDiaryDay', $lang),
                     <br/>,
                     wega:createDocLink(core:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
@@ -771,9 +772,9 @@ declare function ajax:getNewsContext($contextContainer as xs:string, $docID as x
             element li {
                 attribute class {'gotoArchive'},
                 element a {
-                    attribute href {string-join(($baseHref, $lang, wega:getLanguageString('indices', $lang), wega:getLanguageString('news', $lang)), '/')},
-                    attribute title {wega:getLanguageString('newsArchive', $lang)},
-                    wega:getLanguageString('goToArchive', $lang)
+                    attribute href {string-join(($baseHref, $lang, lang:get-language-string('indices', $lang), lang:get-language-string('news', $lang)), '/')},
+                    attribute title {lang:get-language-string('newsArchive', $lang)},
+                    lang:get-language-string('goToArchive', $lang)
                 }
             }
             }

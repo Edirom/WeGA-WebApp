@@ -11,6 +11,7 @@ import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" a
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax" at "ajax.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -20,7 +21,7 @@ declare function local:collectMetaData($diaryDay as node(), $authorID as xs:stri
         if ($lang eq 'en') then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
     let $date := wega:strftime($dateFormat, $diaryDay/string(@n), $lang)
-    let $pageTitle := concat($name, ' – ', wega:getLanguageString('diarySingleViewTitle', $date, $lang)) 
+    let $pageTitle := concat($name, ' – ', lang:get-language-string('diarySingleViewTitle', $date, $lang)) 
     let $pageDescription := 
         if(string-length(data($diaryDay)) > 200) then concat(substring(wega:cleanString($diaryDay), 1, 200), '…')
         else data($diaryDay)
@@ -32,7 +33,7 @@ declare function local:collectMetaData($diaryDay as node(), $authorID as xs:stri
         <meta name="DC.title" content="{$pageTitle}"/>
         <meta name="description" content="{$pageDescription}" lang="{$lang}"/>
         <meta name="DC.description" content="{$pageDescription}"/>
-        <meta name="DC.subject" content="{string-join((wega:getLanguageString('diary', $lang), $name), '; ')}"/>
+        <meta name="DC.subject" content="{string-join((lang:get-language-string('diary', $lang), $name), '; ')}"/>
         <meta name="DC.contributor" content="Dagmar Beck"/>
         <meta name="DC.contributor" content="Sonja Klein"/>
         <!-- <meta name="DC.source" content=""/> -->
@@ -103,10 +104,10 @@ return
                 {xho:createBreadCrumb($doc, $lang)}
                 <div id="contentLeft">
                     <ul id="diaryTabs" class="shadetabs">
-                        <li><a href="functions/getAjax.xql?function=diary_printTranscription&#38;docID={$docID}&#38;lang={$lang}"  rel="diaryFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}" class="selected">Text</a></li>
-                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="diaryFrame" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
-                        <li>{if(exists($doc/tei:figDesc)) then <a href="#" rel="#default" title="{wega:getLanguageString('tabTitle_facsimile', $lang)}">{wega:getLanguageString('facsimile',$lang)}</a>
-                                else <span class="notAvailable">{wega:getLanguageString('facsimile',$lang)}</span>}
+                        <li><a href="functions/getAjax.xql?function=diary_printTranscription&#38;docID={$docID}&#38;lang={$lang}"  rel="diaryFrame" title="{lang:get-language-string('tabTitle_transcription', $lang)}" class="selected">Text</a></li>
+                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="diaryFrame" title="{lang:get-language-string('tabTitle_xml', $lang)}">XML</a></li>
+                        <li>{if(exists($doc/tei:figDesc)) then <a href="#" rel="#default" title="{lang:get-language-string('tabTitle_facsimile', $lang)}">{lang:get-language-string('facsimile',$lang)}</a>
+                                else <span class="notAvailable">{lang:get-language-string('facsimile',$lang)}</span>}
                         </li>
                         <!--
                         <li>{if(exists($doc/tei:auswertung)) then <a href="#" rel="#default" title="">Auswertung</a>
@@ -127,18 +128,18 @@ return
                 </div>
                 <div id="contentRight">
                     <div class="clearfix">
-                        <h2 class="headWithToggleMarker">{wega:getLanguageString('editorial',$lang)}</h2>
-                        <a class="toggleMarker" title="{wega:getLanguageString('showEditorial',$lang)}" onclick="$('editorial').toggle();$('show').toggle();$('hide').toggle()"><span id="show">({wega:getLanguageString('show',$lang)})</span><span id="hide" style="display:none">({wega:getLanguageString('hide',$lang)})</span></a>
+                        <h2 class="headWithToggleMarker">{lang:get-language-string('editorial',$lang)}</h2>
+                        <a class="toggleMarker" title="{lang:get-language-string('showEditorial',$lang)}" onclick="$('editorial').toggle();$('show').toggle();$('hide').toggle()"><span id="show">({lang:get-language-string('show',$lang)})</span><span id="hide" style="display:none">({lang:get-language-string('hide',$lang)})</span></a>
                         <br class="clearer"/>
                         <div id="editorial" style="display:none">
-                            <h3 id="series">{wega:getLanguageString('series',$lang)}</h3>
+                            <h3 id="series">{lang:get-language-string('series',$lang)}</h3>
                             <p>{data($docYear//tei:titleStmt/tei:title[@level='s'])}</p>
                             
-                            <h3 id="resp">{wega:getLanguageString('transcription',$lang)}</h3>
+                            <h3 id="resp">{lang:get-language-string('transcription',$lang)}</h3>
                             <ul>{for $name in $docYear//tei:respStmt/tei:name return <li>{data($name)}</li>}</ul>
                             
                             {if(exists($docYear//tei:listWit)) 
-                                then (<h3 class="headWithToggleMarker">{wega:getLanguageString('textSources',$lang)}</h3>,
+                                then (<h3 class="headWithToggleMarker">{lang:get-language-string('textSources',$lang)}</h3>,
                                      <ol class="toggleMarkerList">
                                         {for $i at $count in $docYear//tei:listWit/tei:witness 
                                             order by $i/@n ascending 
@@ -148,13 +149,13 @@ return
                                      </ol>,
                                      <br class="clearer"/>
                                      )
-                                else <h3>{wega:getLanguageString('textSource',$lang)}</h3>
+                                else <h3>{lang:get-language-string('textSource',$lang)}</h3>
                             }
                             <div>{if($docYear//tei:msIdentifier != '') 
                                 then if(exists($docYear//tei:listWit)) 
                                     then transform:transform($docYear//tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams) 
                                     else transform:transform($docYear//tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams)
-                                else (<span class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</span>)}
+                                else (<span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>)}
                             </div>
                         </div>
                     </div>
@@ -163,28 +164,28 @@ return
                         else <div id="{$contextContainer}"><!-- (: Wird onload gefüllt :) --></div>
                     }
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('knownPersons',$lang)}</h2>
+                        <h2>{lang:get-language-string('knownPersons',$lang)}</h2>
                         <ul id="persons">
                             <!-- (: Wird onload gefüllt :) -->
                             {if(not($withJS)) then ajax:getListFromEntriesWithKey($docID,$lang,'person') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('works',$lang)}</h2>
+                        <h2>{lang:get-language-string('works',$lang)}</h2>
                         <ul id="works">
                             <!-- (: Wird onload gefüllt :) -->
                             {if(not($withJS)) then ajax:getListFromEntriesWithKey($docID,$lang,'work') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('places',$lang)}</h2>
+                        <h2>{lang:get-language-string('places',$lang)}</h2>
                         <ul id="places">
                             <!-- (: Wird onload gefüllt :) -->
                             {if(not($withJS)) then ajax:getListFromEntriesWithoutKey($docID,$lang,'place') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('characterNames',$lang)}</h2>
+                        <h2>{lang:get-language-string('characterNames',$lang)}</h2>
                         <ul id="characters">
                             <!-- (: Wird onload gefüllt :) -->
                             {if(not($withJS)) then ajax:getListFromEntriesWithoutKey($docID,$lang,'character') else <li/>}

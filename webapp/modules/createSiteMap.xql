@@ -13,6 +13,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
 
@@ -36,7 +37,7 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $i in $local:standardEntries return 
-            <url><loc>{string-join((config:get-option('baseHref'), $lang, replace(wega:getLanguageString($i, $lang), '\s', '_')), '/')}</loc></url>
+            <url><loc>{string-join((config:get-option('baseHref'), $lang, replace(lang:get-language-string($i, $lang), '\s', '_')), '/')}</loc></url>
         }
         {
         for $k in $local:databaseEntries return local:getUrlList($k, $lang)

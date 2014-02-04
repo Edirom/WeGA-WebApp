@@ -23,6 +23,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace http = "http://expath.org/ns/http-client";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -124,22 +125,22 @@ declare function wega:printDate($date as element(tei:date)?, $lang as xs:string)
              else let $d := number(data($date/@when))
                   return if($d>0)
                          then $d
-                         else wega:getLanguageString('BC',string($d*-1),$lang) 
+                         else lang:get-language-string('BC',string($d*-1),$lang) 
         else if($date/@notBefore)
              then if($date/@notAfter)
                  then if(year-from-date($notBefore) eq year-from-date($notAfter)) 
                       then if(month-from-date($notBefore) eq month-from-date($notAfter))
                            then if(day-from-date($notBefore)=1 and day-from-date($notAfter)=wega:daysOfMonth(month-from-date($notAfter)))
-                                then concat(wega:getLanguageString(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
-                                else wega:getLanguageString('dateBetween',(xs:string(day-from-date($notBefore)),wega:getNiceDate($notAfter,$lang)),$lang)                       (: Zwischen 1. und 7. August 1801 :)
+                                then concat(lang:get-language-string(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
+                                else lang:get-language-string('dateBetween',(xs:string(day-from-date($notBefore)),wega:getNiceDate($notAfter,$lang)),$lang)                       (: Zwischen 1. und 7. August 1801 :)
                            else if(month-from-date($notBefore)=1 and month-from-date($notAfter)=12)
                                 then year-from-date($notBefore)                                                                                                      (: 1879 :)
-                                else wega:getLanguageString('dateBetween', (wega:strftime($dateFormat, $notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
-                      else wega:getLanguageString('dateBetween', (wega:getNiceDate($notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang)                     (: Zwischen 1. Juli 1709 und 4. August 1789 :)
-                 else wega:getLanguageString('dateNotBefore', (wega:getNiceDate($notBefore,$lang)), $lang)                                                           (: Frühestens am 1.Juli 1709 :)
+                                else lang:get-language-string('dateBetween', (wega:strftime($dateFormat, $notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
+                      else lang:get-language-string('dateBetween', (wega:getNiceDate($notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang)                     (: Zwischen 1. Juli 1709 und 4. August 1789 :)
+                 else lang:get-language-string('dateNotBefore', (wega:getNiceDate($notBefore,$lang)), $lang)                                                           (: Frühestens am 1.Juli 1709 :)
             else
                 if($date/@notAfter)
-                then wega:getLanguageString('dateNotAfter', (wega:getNiceDate($notAfter, $lang)), $lang)                                                             (: Spätestens am 1.Juli 1709 :)
+                then lang:get-language-string('dateNotAfter', (wega:getNiceDate($notAfter, $lang)), $lang)                                                             (: Spätestens am 1.Juli 1709 :)
                 else 
                     let $x := replace(data($date),'"','')
                     return if($x castable as xs:date) then wega:getNiceDate(xs:date($x),$lang) else()
@@ -176,7 +177,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
                 )
                 return wega:datesOfBirthOrDeathTemplate($myType, $content, $lang)
         else 
-            let $content := ($place, ' ', <span class="noDataFound">({wega:getLanguageString('dateUnknown',$lang)})</span>)
+            let $content := ($place, ' ', <span class="noDataFound">({lang:get-language-string('dateUnknown',$lang)})</span>)
             return wega:datesOfBirthOrDeathTemplate($birthOrDeath/local-name(), $content, $lang) 
 };
 
@@ -194,7 +195,7 @@ declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content
     let $html_pixDir := config:get-option('html_pixDir')
     let $baseHref := config:get-option('baseHref')
     let $iconPath := string-join(($baseHref, $html_pixDir, concat($myType,'.png')), '/')
-    let $iconTitle := wega:getLanguageString($myType,$lang) 
+    let $iconTitle := lang:get-language-string($myType,$lang) 
     return 
         element p {
             attribute class {$myType},
@@ -224,8 +225,8 @@ declare function wega:printPlaceOfBirthOrDeath($placeNames as element(tei:placeN
     return (
         if($count eq 1) then
             if(matches($name, '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
-            else concat(' ', lower-case(wega:getLanguageString('in', $lang)), ' ')
-        else concat(' ',wega:getLanguageString('or', $lang),' '),
+            else concat(' ', lower-case(lang:get-language-string('in', $lang)), ' ')
+        else concat(' ',lang:get-language-string('or', $lang),' '),
         element span {
             attribute class {string-join(('place', $certainty), ' ')},
             $name
@@ -409,45 +410,7 @@ declare function wega:getRegTitle($docID as xs:string) as xs:string {
         else wega:cleanString($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][1])
 };
 
-(:~
- : Gets language string only by key
- :
- : @author Peter Stadler
- : @param $key for the dictionary
- : @param $lang the language of the string (en|de)
- : @return xs:string
- :)
 
-declare function wega:getLanguageString($key as xs:string, $lang as xs:string) as xs:string
-{
-    let $dicID := concat('dic_', $lang)
-(:    xs:ID(concat('dictionary_',$lang)):)
-    return wega:dictionaryLookup($key,$dicID)
-};
-
-(:~
- : Gets language string with key and replacements
- :
- : @author Peter Stadler
- : @param $key for the dictionary
- : @param $replacements
- : @param $lang the language of the string (en|de)
- : @return xs:string
- :)
-
-declare function wega:getLanguageString($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string
-{
-    let $dicID := concat('dic_', $lang)
-(:    xs:ID(concat('dictionary_',$lang)):)
-    let $dicEntry := wega:dictionaryLookup($key,$dicID)
-    let $replacements := for $r in $replacements return if(string-length($r)<3 and $lang='de' and $key eq 'dateBetween')
-                                                        then concat($r,'.') (: Sonderfall: "Zwischen 3. und 4. März 1767" - Der Punkt hinter der 3 :)
-                                                        else $r
-    let $placeHolders := for $i at $count in $replacements
-        let $x := concat('%',$count)
-        return $x
-    return functx:replace-multi($dicEntry,$placeHolders,$replacements)
-};
 
 (:~
  : Does a dictionary lookup and returns the key for a given language string 
@@ -528,24 +491,7 @@ declare function wega:reverseDictionaryLookup ($string as xs:string, $dicID as x
     return $dic//entry[. = $string]/string(@xml:id)
 };
 
-(:~
- : Tries to translate a string from sourceLang to targetLang using the dictionaries 
- : If no translation is found the empty string is returned
- :  
- : @author Peter Stadler
- : @param $string the string to translate
- : @param $sourceLang the language to translate from
- : @param $targetLang the language to translate to
- : @return xs:string the translated string if successfull, otherwise the empty string
- :)
- 
-declare function wega:translateLanguageString($string as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string
-{
-    let $sourceDic := doc(config:get-option(concat('dic_', $sourceLang)))
-    let $targetDic := doc(config:get-option(concat('dic_', $targetLang)))
-    let $search := $targetDic//id($sourceDic//entry[lower-case(.) eq lower-case($string)]/string(@xml:id))
-    return wega:cleanString($search)
-};
+
 
 (:~
  : Return the main (primary) ID for a given ID
@@ -646,7 +592,7 @@ declare function wega:returnUnknownMetaData($docID as xs:string, $lang as xs:str
             <span class="IDunderIcon">{$docID}</span>
         </div>
         <div class="right">
-            <h1>{wega:getLanguageString('noDataFound', $lang)}</h1>
+            <h1>{lang:get-language-string('noDataFound', $lang)}</h1>
         </div>
     </div>
 };
@@ -687,7 +633,7 @@ let $imageEnlargeLink := if($imageEnlarge)
             then $localIconography//tei:title
             else if(matches($portraitPath, 'nobody_[fmn].png'))
                 then $regName
-                else concat($regName, ' (', wega:getLanguageString('sourceWikipedia', $lang), ')')
+                else concat($regName, ' (', lang:get-language-string('sourceWikipedia', $lang), ')')
          let $digilibParams := if(exists($localIconography))
             then if ($localIconography//tei:graphic/xs:int(substring-before(@width, 'px')) > 400 or $localIconography//tei:graphic/xs:int(substring-before(@height, 'px')) > 600)
                 then '&#38;dw=400&#38;dh=600'
@@ -703,7 +649,7 @@ element div {
     attribute class {$cssClasses},
     if($clickable) 
         then (attribute onclick {concat("location.href='", string-join(($baseHref, $lang, $fffiId), '/'), "'")},
-            attribute title {wega:getLanguageString('showPersonSingleView', wega:printFornameSurname($regName), $lang)})
+            attribute title {lang:get-language-string('showPersonSingleView', wega:printFornameSurname($regName), $lang)})
         else (),
 
     if($imageEnlarge)
@@ -731,21 +677,21 @@ element div {
         then <p class="realName">{
             wega:cleanString($person/tei:persName[@type='real']),
 (:            transform:transform($person//tei:persName[string(@type) eq 'real'], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams),:)
-                                    <span class="nameDesc">{concat(' (', wega:getLanguageString('realName',$lang), ')')}</span>}</p>
+                                    <span class="nameDesc">{concat(' (', lang:get-language-string('realName',$lang), ')')}</span>}</p>
         else()
         }
         {
         if (exists($person//tei:persName[@type="alt"]))
-        then <p class="altNames">{wega:getLanguageString('altNames',$lang)}: { 
+        then <p class="altNames">{lang:get-language-string('altNames',$lang)}: { 
                 for $i at $count in $person//tei:persName[string(@type) eq 'alt']
                 let $lastItem := $person//tei:persName[@type="alt"]/last()
                 return (
                     <span  class="alt">{wega:cleanString($i)}</span>,
 (:                    transform:transform($i, doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), $xslParams),:)
                     if($i[@subtype='birth']) 
-                        then <span class="nameDesc">{concat(' (', wega:getLanguageString('birthName',$lang), ')')}</span> 
+                        then <span class="nameDesc">{concat(' (', lang:get-language-string('birthName',$lang), ')')}</span> 
                         else if($i[@subtype='married'])
-                            then <span class="nameDesc">{concat(' (', wega:getLanguageString('marriedName',$lang), ')')}</span> 
+                            then <span class="nameDesc">{concat(' (', lang:get-language-string('marriedName',$lang), ')')}</span> 
                             else '',
                     if($count = $lastItem) then () else '; '
                     )
@@ -755,7 +701,7 @@ element div {
         }
         {
         if (exists($person//tei:persName[@type="pseud"]))
-        then <p class="pseudNames">{wega:getLanguageString('pseudonyms',$lang)}: { 
+        then <p class="pseudNames">{lang:get-language-string('pseudonyms',$lang)}: { 
                 for $i at $count in $person//tei:persName[string(@type) eq 'pseud']
                 let $lastItem := $person//tei:persName[@type="pseud"]/last()
                 return (
@@ -768,7 +714,7 @@ element div {
         else(),
         
         if(exists($person//tei:birth)) then wega:printDatesOfBirthOrDeath($person//tei:birth, $lang)
-        else wega:datesOfBirthOrDeathTemplate('birth', <span class="noDataFound">({wega:getLanguageString('noDataFound',$lang)})</span>, $lang),
+        else wega:datesOfBirthOrDeathTemplate('birth', <span class="noDataFound">({lang:get-language-string('noDataFound',$lang)})</span>, $lang),
         
         if(exists($person//tei:death)) then wega:printDatesOfBirthOrDeath($person//tei:death, $lang) else (),
         (:   Keine Ausgabe bei leerem death. Bei Angabe eines date wird das Datum ausgelesen bzw. ein  "keine Angaben gefunden" ausgegeben  :)
@@ -776,16 +722,16 @@ element div {
         if($person//tei:occupation) then 
             <p class="occupation">
                 {if($usage eq 'toolTip' and exists($person//tei:occupation[4])) (:Für tooltips und Suche wird die Anzeige von Wirkorten und Tätigkeiten auf 3 beschränkt:)
-                    then concat(string-join($person//tei:occupation[position() lt 4]/normalize-space(), ', '), ' ', wega:getLanguageString('etAlii', $lang))
+                    then concat(string-join($person//tei:occupation[position() lt 4]/normalize-space(), ', '), ' ', lang:get-language-string('etAlii', $lang))
                     else string-join($person//tei:occupation/normalize-space(), ', ')
                 }
             </p>
         else (),
         
         if($person//tei:residence) then 
-            <p class="residence">{wega:getLanguageString('placesOfAction',$lang)}:
+            <p class="residence">{lang:get-language-string('placesOfAction',$lang)}:
                 {if($usage eq 'toolTip' and exists($person//tei:residence[4])) (:Für tooltips und Suche wird die Anzeige von Wirkorten und Tätigkeiten auf 3 beschränkt:)
-                    then concat(string-join($person//tei:residence[position() lt 4]/normalize-space(), ', '), ' ', wega:getLanguageString('etAlii', $lang))
+                    then concat(string-join($person//tei:residence[position() lt 4]/normalize-space(), ', '), ' ', lang:get-language-string('etAlii', $lang))
                     else string-join($person//tei:residence/normalize-space(), ', ')
                 }
             </p>
@@ -824,7 +770,7 @@ declare function wega:getLetterMetaData($doc as document-node(), $lang as xs:str
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {wega:getLanguageString('showLetterSingleView', $lang)}
+                    attribute title {lang:get-language-string('showLetterSingleView', $lang)}
                 )
                 else (),
             element div {
@@ -837,11 +783,11 @@ declare function wega:getLetterMetaData($doc as document-node(), $lang as xs:str
                 attribute class {'right'},
                 wega:getLetterHead($doc, $lang),
                 element p {
-                    <span class="tei_hiBold">{wega:getLanguageString('incipit',$lang)}: </span>,
+                    <span class="tei_hiBold">{lang:get-language-string('incipit',$lang)}: </span>,
                     element span {
                         if(functx:all-whitespace($letter//tei:incipit)) then (
                             attribute class {'noDataFound'},
-                            wega:getLanguageString('noDataFound',$lang)
+                            lang:get-language-string('noDataFound',$lang)
                         )
                         else (
                             let $preview := wega:printPreview($letter//tei:incipit, 100)
@@ -852,11 +798,11 @@ declare function wega:getLetterMetaData($doc as document-node(), $lang as xs:str
                     }
                 },
                 element p {
-                    <span class="tei_hiBold">{wega:getLanguageString('summary',$lang)}: </span>,
+                    <span class="tei_hiBold">{lang:get-language-string('summary',$lang)}: </span>,
                     element span {
                         if(functx:all-whitespace($letter//tei:note[@type='summary'])) then (
                             attribute class {'noDataFound'},
-                            wega:getLanguageString('noDataFound',$lang)
+                            lang:get-language-string('noDataFound',$lang)
                         )
                         else wega:printPreview($letter//tei:note[@type='summary'], 100)
                     }
@@ -899,7 +845,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
         if($clickable) 
             then (
                 attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                attribute title {wega:getLanguageString('showDiaryDay', ('Weber', wega:strftime(substring-after($dateFormat, ', '), $date, $lang)), $lang)}
+                attribute title {lang:get-language-string('showDiaryDay', ('Weber', wega:strftime(substring-after($dateFormat, ', '), $date, $lang)), $lang)}
             )
             else (),
         attribute class {$cssClasses},
@@ -951,7 +897,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {wega:getLanguageString('showWritingSingleView', $docID, $lang)}
+                    attribute title {lang:get-language-string('showWritingSingleView', $docID, $lang)}
                 )
                 else (),
             element div {
@@ -1002,7 +948,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {wega:getLanguageString('showNewsSingleView', wega:getNiceDate($date, $lang), $lang)}
+                    attribute title {lang:get-language-string('showNewsSingleView', wega:getNiceDate($date, $lang), $lang)}
                 )
                 else (),
             element div {
@@ -1112,7 +1058,7 @@ declare function wega:getBiblioMetaData($item as item(), $lang as xs:string, $us
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {wega:getLanguageString('showWritingSingleView', $docID, $lang)}
+                    attribute title {lang:get-language-string('showWritingSingleView', $docID, $lang)}
                 )
                 else (),
             element div {
@@ -1126,7 +1072,7 @@ declare function wega:getBiblioMetaData($item as item(), $lang as xs:string, $us
                 wega:printCitation($bibl, 'span', $lang),
                 if($clickable) then element p {
                     attribute class {'readOn'},
-                    wega:getLanguageString('detailsAvailable', $lang)
+                    lang:get-language-string('detailsAvailable', $lang)
                 } 
                 else ()
             }
@@ -1144,15 +1090,15 @@ declare function wega:getBiblioMetaData($item as item(), $lang as xs:string, $us
  :)
 
 declare function wega:getVarURL($string as xs:string?,$lang as xs:string) {
-    let $result :=  if($string="A070001") then wega:getLanguageString("editorialGuidelines",$lang)
-                    else if($string="A070002") then wega:getLanguageString("about",$lang)
-                    else if($string="A070003") then wega:getLanguageString("bio",$lang)
-                    else if($string="A070004") then wega:getLanguageString("help",$lang)
-                    else if($string="A070005") then wega:getLanguageString("index",$lang)
-                    else if($string="A070006") then wega:getLanguageString("projectDescription",$lang)
-                    else if($string="A070009") then wega:getLanguageString("contact",$lang)
-                    else if($string="A070010") then wega:getLanguageString("editorialGuidelines-works",$lang)
-                    else if($string="A070011") then wega:getLanguageString("weberstudien",$lang)
+    let $result :=  if($string="A070001") then lang:get-language-string("editorialGuidelines",$lang)
+                    else if($string="A070002") then lang:get-language-string("about",$lang)
+                    else if($string="A070003") then lang:get-language-string("bio",$lang)
+                    else if($string="A070004") then lang:get-language-string("help",$lang)
+                    else if($string="A070005") then lang:get-language-string("index",$lang)
+                    else if($string="A070006") then lang:get-language-string("projectDescription",$lang)
+                    else if($string="A070009") then lang:get-language-string("contact",$lang)
+                    else if($string="A070010") then lang:get-language-string("editorialGuidelines-works",$lang)
+                    else if($string="A070011") then lang:get-language-string("weberstudien",$lang)
                     else()
     return replace($result, '\s', '_')
 };
@@ -1187,7 +1133,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {wega:getLanguageString('showWorkSingleView', wega:printPreview(string($title), 20), $lang)}
+                    attribute title {lang:get-language-string('showWorkSingleView', wega:printPreview(string($title), 20), $lang)}
                 )
                 else (),
             element div {
@@ -1200,7 +1146,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
                 attribute class {'right'},
                 element h1 {
                     if(empty($doc)) 
-                        then wega:getLanguageString('noDataFound', $lang)
+                        then lang:get-language-string('noDataFound', $lang)
                         else (
                             string($doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'main'][1]),
                             if(exists($doc//mei:altId[@type])) then 
@@ -1217,7 +1163,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
                 if(exists($doc//mei:seriesStmt/mei:title[@level='s'])) then ()
                     (:element h2 {
                         string-join((
-                            wega:getLanguageString('series', $lang),
+                            lang:get-language-string('series', $lang),
                             $doc//mei:seriesStmt/mei:title[@level='s']/wega:number-to-roman(@n), 
                             $doc//mei:seriesStmt/mei:title[@level='s']
                             ), ' ')
@@ -1229,7 +1175,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
                     return (
                         element span {
                             attribute class {'tei_hiBold'},
-                            wega:getLanguageString($i/string(@role), $lang)
+                            lang:get-language-string($i/string(@role), $lang)
                         },
                         ': ',
                         if(exists($i/@dbkey)) then wega:getRegName($i/string(@dbkey)) 
@@ -1296,7 +1242,7 @@ declare function wega:printCorrespondentName($persName as element()?, $lang as x
         then wega:createPersonLink($persName/string(@key), $lang, $order)
         else if (exists($persName//text())) 
             then <xhtml:span class="noDataFound">{normalize-space($persName)}</xhtml:span>
-            else <xhtml:span class="noDataFound">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
+            else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1318,7 +1264,7 @@ declare function wega:createPersonLink($id as xs:string, $lang as xs:string, $or
             <xhtml:a href="{string-join((config:get-option('baseHref'), $lang, $id), '/')}">
                 <xhtml:span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</xhtml:span>
             </xhtml:a>
-        else <xhtml:span class="{concat('noDataFound ', $id)}">{wega:getLanguageString('unknown',$lang)}</xhtml:span>
+        else <xhtml:span class="{concat('noDataFound ', $id)}">{lang:get-language-string('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1411,10 +1357,10 @@ declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), 
         element {$wrapperElement} {
             attribute class {'book'},
             if(exists($authors)) then ($authors, ', ') 
-            else if(exists($editors)) then ($editors, concat(' (', wega:getLanguageString('ed', $lang), '), '))
+            else if(exists($editors)) then ($editors, concat(' (', lang:get-language-string('ed', $lang), '), '))
             else (), 
             $title,
-            if(exists($editors) and exists($authors)) then (concat(', ', wega:getLanguageString('edBy', $lang), ' '), $editors) else (),
+            if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then concat(' (= ', $series, '), ') else ', ',
             $pubPlaceNYear
         }
@@ -1461,13 +1407,13 @@ declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrap
     let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
     let $date := concat('(', $monogr/tei:imprint/tei:date, ')')
     let $biblScope := concat(
-        if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', wega:getLanguageString('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', wega:getLanguageString('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'nr']) else (),
         if(exists($monogr/tei:imprint/tei:date)) then concat(' ', $date) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', wega:getLanguageString('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', wega:getLanguageString('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
+        if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
     )
     return 
         element {$wrapperElement} {
@@ -1491,8 +1437,8 @@ declare function wega:printSeriesCitation($series as element(tei:series), $wrapp
     let $seriesTitle := string-join($series/tei:title, '. ')
 (:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
     let $biblScope := concat(
-        if($series/tei:biblScope[@type = 'vol']) then concat(', ', wega:getLanguageString('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
-        if($series/tei:biblScope[@type = 'issue']) then concat(', ', wega:getLanguageString('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
+        if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
+        if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
     )
     return 
         element {$wrapperElement} {
@@ -1524,10 +1470,10 @@ declare function wega:printIncollectionCitation($biblStruct as element(tei:biblS
             $articleTitle,
             ', in: ',
             $bookTitle,
-            if(exists($editor)) then (concat(', ', wega:getLanguageString('edBy', $lang), ' '), $editor) else (),
+            if(exists($editor)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editor) else (),
             if(exists($series)) then (' ', <span class="series">{concat('(= ', $series, ')')}</span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
-            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', wega:getLanguageString('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
         }
 };
 
@@ -1547,7 +1493,7 @@ declare function wega:printCitationAuthors($authors as element()*, $lang as xs:s
         return (
             wega:printCorrespondentName($i, $lang, 'sf'),
             if($counter lt $countAuthors - 1) then ', '
-            else if($counter eq $countAuthors - 1) then concat(' ', wega:getLanguageString('and', $lang), ' ')
+            else if($counter eq $countAuthors - 1) then concat(' ', lang:get-language-string('and', $lang), ' ')
             else ()
         )
 };
@@ -1588,18 +1534,18 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
     let $docID := $doc/tei:TEI/@xml:id cast as xs:string
     return
     <div class="clearfix">
-        <h2 class="headWithToggleMarker">{wega:getLanguageString('editorial',$lang)}</h2>
-        <a class="toggleMarker" title="{wega:getLanguageString('showEditorial',$lang)}" onclick="$('editorial').toggle();$('show').toggle();$('hide').toggle()"><span id="show">({wega:getLanguageString('show',$lang)})</span><span id="hide" style="display:none">({wega:getLanguageString('hide',$lang)})</span></a>
+        <h2 class="headWithToggleMarker">{lang:get-language-string('editorial',$lang)}</h2>
+        <a class="toggleMarker" title="{lang:get-language-string('showEditorial',$lang)}" onclick="$('editorial').toggle();$('show').toggle();$('hide').toggle()"><span id="show">({lang:get-language-string('show',$lang)})</span><span id="hide" style="display:none">({lang:get-language-string('hide',$lang)})</span></a>
         <br class="clearer"/>
         <div id="editorial" style="display:none">
-            <h3 id="series">{wega:getLanguageString('series',$lang)}</h3>
+            <h3 id="series">{lang:get-language-string('series',$lang)}</h3>
             <p>{data($doc//tei:titleStmt/tei:title[@level='s'])}</p>
                             
-            <h3 id="resp">{wega:getLanguageString('transcription',$lang)}</h3>
+            <h3 id="resp">{lang:get-language-string('transcription',$lang)}</h3>
             <ul>{for $name in $doc//tei:respStmt/tei:name return <li>{data($name)}</li>}</ul>
                             
             {if(exists($doc//tei:listWit)) 
-                then (<h3 class="headWithToggleMarker">{wega:getLanguageString('textSources',$lang)}</h3>,
+                then (<h3 class="headWithToggleMarker">{lang:get-language-string('textSources',$lang)}</h3>,
                      <ol class="toggleMarkerList">
                         {for $i at $count in $doc//tei:listWit/tei:witness 
                             order by $i/@n ascending 
@@ -1609,17 +1555,17 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
                      </ol>,
                      <br class="clearer"/>
                      )
-                else <h3>{wega:getLanguageString('textSource',$lang)}</h3>
+                else <h3>{lang:get-language-string('textSource',$lang)}</h3>
             }
             <div>{
                 (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
                 if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:listWit))) then transform:transform($doc//tei:sourceDesc/tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
                 else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:msDesc))) then transform:transform($doc//tei:sourceDesc/tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
                 else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:biblStruct))) then wega:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang)                
-                else (<span class="noDataFound">{wega:getLanguageString('noDataFound',$lang)}</span>)
+                else (<span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>)
             }</div>
             {if(exists($doc//tei:creation)) then (
-            	<h3>{wega:getLanguageString('creation',$lang)}</h3>,
+            	<h3>{lang:get-language-string('creation',$lang)}</h3>,
             	<ul>
             		<li>{transform:transform($doc//tei:creation, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))}</li>
             	</ul>
@@ -1804,8 +1750,8 @@ declare function wega:printPubYears($writings as node()*, $lang as xs:string) as
                     if(($count mod 3) eq 0) then <br/> else()
                     )
         }
-        <label class="checkAll"><input type="checkbox" name="checkAll" onclick="checkAllBoxes('formYear', this.checked);" checked="checked"/>{wega:getLanguageString('checkAll', $lang)}</label>
-        <p><input type="submit" value="{wega:getLanguageString('apply', $lang)}"/></p>
+        <label class="checkAll"><input type="checkbox" name="checkAll" onclick="checkAllBoxes('formYear', this.checked);" checked="checked"/>{lang:get-language-string('checkAll', $lang)}</label>
+        <p><input type="submit" value="{lang:get-language-string('apply', $lang)}"/></p>
     </form>
 };
 
@@ -1828,8 +1774,8 @@ declare function wega:printJournals($writings as node()*, $lang as xs:string) as
         {for $i in $journals
             return (<label class="labelJournal"><input type="checkbox" checked="checked" class="itemCheckbox" name="checkJournal" value="{util:hash($i, 'md5')}"/>{$i}</label>)
         }
-        <label class="checkAll"><input type="checkbox" name="checkAll" onclick="checkAllBoxes('formJournal', this.checked);" checked="checked"/>{wega:getLanguageString('checkAll', $lang)}</label>
-        <p><input type="submit" value="{wega:getLanguageString('apply', $lang)}"/></p>
+        <label class="checkAll"><input type="checkbox" name="checkAll" onclick="checkAllBoxes('formJournal', this.checked);" checked="checked"/>{lang:get-language-string('checkAll', $lang)}</label>
+        <p><input type="submit" value="{lang:get-language-string('apply', $lang)}"/></p>
     </form>
 };
 
@@ -1915,15 +1861,15 @@ declare function wega:constructLetterHead($doc as document-node(), $lang as xs:s
     let $id := $doc//tei:TEI/string(@xml:id)
     let $date := if(exists(wega:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false())))
         then wega:getNiceDate(wega:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false()), $lang)
-        else wega:getLanguageString('undated', $lang)
+        else lang:get-language-string('undated', $lang)
     let $sender := wega:printCorrespondentName($doc//tei:sender/*[1], $lang, 'fs')
     let $addressee := wega:printCorrespondentName($doc//tei:addressee/*[1], $lang, 'fs')
     let $placeSender := if(functx:all-whitespace($doc//tei:placeSender)) then () else normalize-space($doc//tei:placeSender)
     let $placeAddressee := if(functx:all-whitespace($doc//tei:placeAddressee)) then () else normalize-space($doc//tei:placeAddressee)
     return (
         element h1 {
-            concat($sender, ' ', lower-case(wega:getLanguageString('to', $lang)), ' ', $addressee),
-            if(exists($placeAddressee)) then concat(' ', lower-case(wega:getLanguageString('in', $lang)), ' ', $placeAddressee) else()
+            concat($sender, ' ', lower-case(lang:get-language-string('to', $lang)), ' ', $addressee),
+            if(exists($placeAddressee)) then concat(' ', lower-case(lang:get-language-string('in', $lang)), ' ', $placeAddressee) else()
         },
         element h2 {
             string-join(($placeSender, $date), ', ')
@@ -1944,13 +1890,13 @@ declare function wega:createLinkToDoc($doc as document-node(), $lang as xs:strin
     let $docID :=  $doc/*/@xml:id cast as xs:string
     let $authorId := wega:getAuthorOfTeiDoc($doc)
     let $folder := 
-        if(config:is-letter($docID)) then wega:getLanguageString('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
-        else if(config:is-weberStudies($doc)) then wega:getLanguageString('weberStudies', $lang)
-        else wega:getLanguageString(config:get-doctype-by-id($docID), $lang)
+        if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
+        else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
+        else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
     return 
         if(config:is-person($docID)) then string-join((config:get-option('baseHref'), $lang, $docID), '/') (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
         else if(config:is-biblio($docID)) then 
-            if(config:is-weberStudies($doc)) then string-join((config:get-option('baseHref'), $lang, wega:getLanguageString('publications', $lang), $folder, $docID), '/')
+            if(config:is-weberStudies($doc)) then string-join((config:get-option('baseHref'), $lang, lang:get-language-string('publications', $lang), $folder, $docID), '/')
             else ()
         else if(exists($folder) and $authorId ne '') then string-join((config:get-option('baseHref'), $lang, $authorId, $folder, $docID), '/')
         else ()
@@ -2049,17 +1995,17 @@ declare function wega:outputAddress($address as element(), $lang as xs:string, $
     {for $i in $address/tei:addrLine
     return 
         <li>{
-            if($i/string(@n) eq 'telephone') then concat(wega:getLanguageString('tel',$lang), ': ', $i)
+            if($i/string(@n) eq 'telephone') then concat(lang:get-language-string('tel',$lang), ': ', $i)
             else if($i/string(@n) eq 'email') then 
                 let $encryptedEmail := wega:encryptString($i, ())
                 return 
                 element span {
                     attribute onclick {"javascript:decEma('",$encryptedEmail,"')"},
                     attribute class {'ema'},
-                    if (exists($name)) then attribute title {wega:getLanguageString('sendEmail', $name, $lang)} else (),
+                    if (exists($name)) then attribute title {lang:get-language-string('sendEmail', $name, $lang)} else (),
                     wega:obfuscateEmail($i)
                 }
-            else if($i/string(@n) eq 'fax') then concat(wega:getLanguageString('fax',$lang), ': ', $i)
+            else if($i/string(@n) eq 'fax') then concat(lang:get-language-string('fax',$lang), ': ', $i)
             else $i cast as xs:string
             }
         </li> 

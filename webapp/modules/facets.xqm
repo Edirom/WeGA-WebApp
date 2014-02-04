@@ -21,6 +21,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $facets:callback := util:function(xs:QName("facets:term-callback"), 2);
@@ -136,9 +137,9 @@ declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int,
 declare function facets:expandFacetTerm($facetTerm as xs:string, $lang as xs:string) as xs:string {
     if(config:is-person($facetTerm)) then wega:getRegName($facetTerm)
     else if(config:is-work($facetTerm)) then wega:getRegTitle($facetTerm)
-    else if(config:is-biblioType($facetTerm)) then wega:getLanguageString($facetTerm, $lang)
+    else if(config:is-biblioType($facetTerm)) then lang:get-language-string($facetTerm, $lang)
     else if($facetTerm ne '') then $facetTerm
-    else wega:getLanguageString('unknown', $lang)
+    else lang:get-language-string('unknown', $lang)
 };
 
 (:~
@@ -167,7 +168,7 @@ declare function facets:createFacetListForPopup($facets as element()*, $maxRows 
         if(exists($facets) or exists($checked)) then (
             let $subSeqOfFacets :=
                 for $s in subsequence($facets, 1, $numberOfRows)
-                let $temp := if(config:is-person($s/facets:term)) then wega:getRegName($s/facets:term) else if(config:is-work($s/facets:term)) then wega:getRegTitle($s/facets:term) else if($s/facets:term ne '') then $s/facets:term else wega:getLanguageString('unknown', $lang)
+                let $temp := if(config:is-person($s/facets:term)) then wega:getRegName($s/facets:term) else if(config:is-work($s/facets:term)) then wega:getRegTitle($s/facets:term) else if($s/facets:term ne '') then $s/facets:term else lang:get-language-string('unknown', $lang)
                 order by $temp ascending
                 return $s
             (:let $subSeqOfFacets := for $x in $facets return if ($totalNumberOfChecked>0 and not(index-of($checked,data($x//term))>0)) then $x else():)
@@ -178,7 +179,7 @@ declare function facets:createFacetListForPopup($facets as element()*, $maxRows 
                 let $freq := $i/xs:int(facets:frequency)
                 return facets:createFacetLiPopup($item, $freq, $isChecked, $category, $docType, $cacheKey, $lang)
         )
-        else <li class="notAvailable">{wega:getLanguageString('noDataFound', $lang)}</li>
+        else <li class="notAvailable">{lang:get-language-string('noDataFound', $lang)}</li>
         }
     </ul>
 };
@@ -230,9 +231,9 @@ declare function facets:createFacetListByAttribute($facets as element()*, $maxRo
                 return if ($i/facets:term = $checked)
                     then ()
                     else facets:createFacetLi($item, $freq, false(), $category, $docType, $cacheKey, $lang),
-            <li onmouseover="this.style.cursor='pointer'" onclick="loadPopup('{$category}','{$docType}','{$cacheKey}')">{concat(lower-case(wega:getLanguageString('more', $lang)), '…')}</li>
+            <li onmouseover="this.style.cursor='pointer'" onclick="loadPopup('{$category}','{$docType}','{$cacheKey}')">{concat(lower-case(lang:get-language-string('more', $lang)), '…')}</li>
         )
-        else <li class="notAvailable">{wega:getLanguageString('noDataFound', $lang)}</li>
+        else <li class="notAvailable">{lang:get-language-string('noDataFound', $lang)}</li>
         }
     </ul>
 };
@@ -279,9 +280,9 @@ declare function facets:createFacetListByElementContent($facets as element()*, $
                return if ($i/facets:term =  $checked) 
                    then ()
                    else facets:createFacetLi($i/facets:term, $freq, false(), $category, $docType, $cacheKey, $lang),
-               <li onmouseover="this.style.cursor='pointer'" onclick="loadPopup('{$category}','{$docType}','{$cacheKey}')">{concat(lower-case(wega:getLanguageString('more', $lang)), '…')}</li>
+               <li onmouseover="this.style.cursor='pointer'" onclick="loadPopup('{$category}','{$docType}','{$cacheKey}')">{concat(lower-case(lang:get-language-string('more', $lang)), '…')}</li>
         )
-        else <li class="notAvailable">{wega:getLanguageString('noDataFound', $lang)}</li>
+        else <li class="notAvailable">{lang:get-language-string('noDataFound', $lang)}</li>
         }
     </ul>
 };
@@ -468,7 +469,7 @@ declare function facets:createFacetFromFacetFile($entry as element(facets:entry)
     let $setCache := session:set-attribute(concat('facetsSessionAttribute_', $docType, $entry/string(@xml:id)), $facets) (: wird für das filterPopup benötigt:)
     return
 	    <div>
-	        <h2>{wega:getLanguageString($entry/@xml:id, $lang)}</h2>
+	        <h2>{lang:get-language-string($entry/@xml:id, $lang)}</h2>
 	        {
 	        if(not($facets = 'error') and $entry/facets:path/@node = 'attribute') then facets:createFacetListByAttribute($facets, $maxRows, $entry/@xml:id, $docType, $id, $lang)
 	        else if(not($facets = 'error') and $entry/facets:path/@node = 'element') then facets:createFacetListByElementContent($facets, $maxRows, $entry/@xml:id, $docType, $id, $lang)
@@ -507,7 +508,7 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
     let $undatedCount := if($undatedKeys = '') then 0 else count($undatedKeys) (: Abfrage auf leeren String, s.o. :)
 	return 
 		<div>
-			<h2>{wega:getLanguageString('chronology', $lang)}</h2>
+			<h2>{lang:get-language-string('chronology', $lang)}</h2>
 			{
 			    facets:createYearAndMonthUl($datedSessionName, $yearsSessionName, $lang, 0),
         		if($undatedCount ne 0) then 
@@ -515,8 +516,8 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
         				attribute class {"checkItem undated"}, 
         				attribute onclick {concat('javascript:', wega:printJavascriptFunction(<function><name>showEntries</name><param type="obj">this</param><param>1</param><param>{$undatedCount}</param><param>{$lang}</param><param>{$undatedSessionName}</param></function>))},
                         (: Die Abfrage sollte beim Einbau von weiteren Listen -- zB nach creation-date -- modifiziert werden :)
-                        if($docType eq 'writings') then wega:getLanguageString('unpublished', $lang)
-                        else wega:getLanguageString('undated', $lang),
+                        if($docType eq 'writings') then lang:get-language-string('unpublished', $lang)
+                        else lang:get-language-string('undated', $lang),
                         <span class="facetCount">{concat('(', $undatedCount,')')}</span>
                     }
                 else ()
@@ -569,7 +570,7 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 							return concat('javascript:', wega:printJavascriptFunction(<function><name>showEntries</name><param type="obj">this</param><param>{$startPosition}</param><param>{$endPosition}</param><param>{$lang}</param><param>{replace($entriesSessionName, 'dated', 'sessionColl')}</param></function>))
 					},
 					if($isOneYear) then $distinctYears[$fromYearPosition]
-					else concat($distinctYears[$fromYearPosition], ' ', wega:getLanguageString('chronoTo', $lang), ' ', $distinctYears[$toYearPosition]),
+					else concat($distinctYears[$fromYearPosition], ' ', lang:get-language-string('chronoTo', $lang), ' ', $distinctYears[$toYearPosition]),
 					<span class="facetCount">{concat('(', $countDocsInInterval,')')}</span>
 				}
 			}</li>
@@ -585,7 +586,7 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 				return 
 					<li>
 						<span class="checkItem" onclick="{$onclick}">
-							{wega:getLanguageString(concat('month',$i), $lang)}
+							{lang:get-language-string(concat('month',$i), $lang)}
 							<span class="facetCount">{concat('(', $countMonth,')')}</span>
 						</span>
 					</li>
@@ -611,7 +612,7 @@ declare function facets:getSeries($docType as xs:string, $lang as xs:string) as 
     let $category := 'series'
     return 
     <div>
-    	<h2>{wega:getLanguageString('series', $lang)}</h2>
+    	<h2>{lang:get-language-string('series', $lang)}</h2>
 	    <ul>{
 	        for $mei-title in $distinctSeries
 	        let $seriesNo := $mei-title/@n
@@ -658,7 +659,7 @@ declare function facets:createAlphabetList($docType as xs:string, $lang as xs:st
     let $saveFromTo := session:set-attribute($fromToSessionName, (1,$countPersons))
     return 
     	<div>
-    		<h2>{wega:getLanguageString('alphabetic', $lang)}</h2>
+    		<h2>{lang:get-language-string('alphabetic', $lang)}</h2>
 	        {facets:createAlphabetListUl($entriesSessionName, $fromToSessionName, $lang, 0)}
         </div>
 };
@@ -705,7 +706,7 @@ declare function facets:createAlphabetListUl($entriesSessionName as xs:string, $
                         },
                         if($recusionDepth eq 0) then 
                             if($countPersonsInInterval eq 1) then $startEntry 
-                            else concat($startEntry, ' ', wega:getLanguageString('chronoTo', $lang), ' ', $endEntry)
+                            else concat($startEntry, ' ', lang:get-language-string('chronoTo', $lang), ' ', $endEntry)
                         else concat($startEntry, ' …'),
                         <span class="facetCount">{concat('(', $countPersonsInInterval,')')(:$fromPosition, ' - ', $toPosition:)}</span>
                     }

@@ -11,6 +11,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" at "xho.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"; 
 
@@ -26,8 +27,8 @@ declare function local:buildFilterList($lang,$coll,$name,$heading) {
           </li>
     }
     </ul>,
-    <a style="cursor:pointer" onclick="selectAllInputs('{$name}')">{wega:getLanguageString('selectAll',$lang)}</a>,
-    <input type="submit" class="search-button" title="{wega:getLanguageString('apply',$lang)}" value="{wega:getLanguageString('apply',$lang)}"/>
+    <a style="cursor:pointer" onclick="selectAllInputs('{$name}')">{lang:get-language-string('selectAll',$lang)}</a>,
+    <input type="submit" class="search-button" title="{lang:get-language-string('apply',$lang)}" value="{lang:get-language-string('apply',$lang)}"/>
     )
 };
 

@@ -10,6 +10,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" at "xho.xqm";
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax" at "ajax.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -90,8 +91,8 @@ return
                 {xho:createBreadCrumb($news, $lang)}
                 <div id="contentLeft">
                     <ul id="newsTabs" class="shadetabs">
-                        <li><a href="functions/getAjax.xql?function=printTranscription&#38;id={$docID}&#38;lang={$lang}" class="selected" rel="newsFrame" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">Text</a></li>
-                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="newsFrame" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
+                        <li><a href="functions/getAjax.xql?function=printTranscription&#38;id={$docID}&#38;lang={$lang}" class="selected" rel="newsFrame" title="{lang:get-language-string('tabTitle_transcription', $lang)}">Text</a></li>
+                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="newsFrame" title="{lang:get-language-string('tabTitle_xml', $lang)}">XML</a></li>
                     </ul>
                     <div id="newsFrame"><!-- (:Wird onload gefüllt:) --></div>
                     <script type="text/javascript">
@@ -107,28 +108,28 @@ return
                         else <div id="{$contextContainer}"><!-- (: Wird onload gefüllt :) --></div>
                     }
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('knownPersons',$lang)}</h2>
+                        <h2>{lang:get-language-string('knownPersons',$lang)}</h2>
                         <ul id="persons">
                             <!-- (: Wird onload gefüllt :) -->
                             {if($withJS ne 'true') then ajax:getListFromEntriesWithKey($docID,$lang,'person') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('works',$lang)}</h2>
+                        <h2>{lang:get-language-string('works',$lang)}</h2>
                         <ul id="works">
                             <!-- (: Wird onload gefüllt :) -->
                             {if($withJS ne 'true') then ajax:getListFromEntriesWithKey($docID,$lang,'work') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('places',$lang)}</h2>
+                        <h2>{lang:get-language-string('places',$lang)}</h2>
                         <ul id="places">
                             <!-- (: Wird onload gefüllt :) -->
                             {if($withJS ne 'true') then ajax:getListFromEntriesWithoutKey($docID,$lang,'place') else <li/>}
                         </ul>
                     </div>
                     <div class="nameList">
-                        <h2>{wega:getLanguageString('characterNames',$lang)}</h2>
+                        <h2>{lang:get-language-string('characterNames',$lang)}</h2>
                         <ul id="characters">
                             <!-- (: Wird onload gefüllt :) -->
                             {if($withJS ne 'true') then ajax:getListFromEntriesWithoutKey($docID,$lang,'character') else <li/>}

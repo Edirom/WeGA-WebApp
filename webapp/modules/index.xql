@@ -14,6 +14,7 @@ import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax"
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
@@ -27,7 +28,7 @@ declare function local:createNewsTeaser($news as document-node(), $lang as xs:st
     return (
     element span {
         attribute class {'newsTeaserDate'},
-        wega:getLanguageString('websiteNews', wega:strftime($dateFormat, datetime:date-from-dateTime($newsTeaserDate), $lang), $lang)
+        lang:get-language-string('websiteNews', wega:strftime($dateFormat, datetime:date-from-dateTime($newsTeaserDate), $lang), $lang)
     },
     element h2 {
         element a {
@@ -41,19 +42,19 @@ declare function local:createNewsTeaser($news as document-node(), $lang as xs:st
         ' ',
         element a{
             attribute href {wega:createLinkToDoc($news, $lang)},
-            attribute title {wega:getLanguageString('more', $lang)},
+            attribute title {lang:get-language-string('more', $lang)},
             attribute class {'readOn'},
-            concat('[', wega:getLanguageString('more', $lang), ']')
+            concat('[', lang:get-language-string('more', $lang), ']')
         }
     }
     )
 };
 
 declare function local:collectMetaData($lang as xs:string) as element(wega:metaData) {
-    let $pageTitle := concat('Carl-Maria-von-Weber-Gesamtausgabe', ' – ', wega:getLanguageString('home', $lang)) 
-    let $pageDescription := wega:getLanguageString('metaDescriptionIndex', $lang)
+    let $pageTitle := concat('Carl-Maria-von-Weber-Gesamtausgabe', ' – ', lang:get-language-string('home', $lang)) 
+    let $pageDescription := lang:get-language-string('metaDescriptionIndex', $lang)
     let $commonMetaData := xho:collectCommonMetaData(())
-    let $subject := string-join(('Carl Maria von Weber', 'Edition', 'Social Network', wega:getLanguageString('gesamtausgabe', $lang)), '; ')
+    let $subject := string-join(('Carl Maria von Weber', 'Edition', 'Social Network', lang:get-language-string('gesamtausgabe', $lang)), '; ')
     return 
     <wega:metaData>
         <title>{$pageTitle}</title>
@@ -87,7 +88,7 @@ let $newsTeaser :=
                         else $newsColl 
     return
     (
-        <h1>{wega:getLanguageString('news', $lang)}</h1>,
+        <h1>{lang:get-language-string('news', $lang)}</h1>,
         for $news at $i in $newsColl  
         return (
             local:createNewsTeaser($news, $lang),
@@ -123,7 +124,7 @@ return
                     xho:printProjectLinks($lang),
                     if($config:isDevelopment) then xho:printDevelopmentLinks($lang) else ()}
                     <div>
-                        <h1>{wega:getLanguageString('whatHappenedOn', wega:strftime(if($lang eq 'en') then '%B %d' else '%d. %B', $date, $lang), $lang)}</h1>
+                        <h1>{lang:get-language-string('whatHappenedOn', wega:strftime(if($lang eq 'en') then '%B %d' else '%d. %B', $date, $lang), $lang)}</h1>
                         <div id="todaysEvents">
                             {if(not($withJS)) then ajax:getTodaysEvents($date,$lang) else ()}
                             <!-- (: wird onload gefüllt :) -->

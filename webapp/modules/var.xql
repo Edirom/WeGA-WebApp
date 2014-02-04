@@ -11,6 +11,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax" at "ajax.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -21,7 +22,7 @@ declare function local:createAboutSidebar($impressum as document-node(), $lang a
     element div {
         attribute id {'sidebarAddress'},
         element h2 {
-            wega:getLanguageString('address', $lang)
+            lang:get-language-string('address', $lang)
         },
         element h3 {
             data($impressum//tei:titleStmt/tei:funder[@xml:lang=$lang]/tei:name)
@@ -33,7 +34,7 @@ declare function local:createAboutSidebar($impressum as document-node(), $lang a
     element div {
         element h2 {
             (:Inhaltlich Verantwortliche gemäß § 55 Abs. 2 RStV:)
-            wega:getLanguageString('editorsInCharge', $lang)
+            lang:get-language-string('editorsInCharge', $lang)
         },
         element ul {
             for $i in ($impressum//tei:titleStmt/tei:author | $impressum//tei:titleStmt/tei:editor) 
@@ -48,7 +49,7 @@ declare function local:createNameListSidebar($docID as xs:string, $withJS as xs:
     element div {
         attribute class {'nameList'},
         element h2 {
-            wega:getLanguageString($i,$lang)
+            lang:get-language-string($i,$lang)
         },
         element ul {
             attribute id {$i},
@@ -146,8 +147,8 @@ return
             <div id="main">
                 <div id="contentLeft">
                     <ul id="docTabs" class="shadetabs">
-                        <li><a href="./#" class="selected" rel="#default" title="{wega:getLanguageString('tabTitle_transcription', $lang)}">Text</a></li>
-                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="docFrame" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
+                        <li><a href="./#" class="selected" rel="#default" title="{lang:get-language-string('tabTitle_transcription', $lang)}">Text</a></li>
+                        <li><a href="functions/xmlPrettyPrint.xql?id={$docID}" rel="docFrame" title="{lang:get-language-string('tabTitle_xml', $lang)}">XML</a></li>
                     </ul>
                     <div id="docFrame">
                         {if($isImpressum) then ()

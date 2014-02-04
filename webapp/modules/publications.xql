@@ -12,6 +12,7 @@ import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" a
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"; 
@@ -24,8 +25,8 @@ declare function local:createTabsUL($pubType as xs:string, $lang as xs:string) a
         (:let $coll := if($i eq 'correspondence')
             then core:getOrCreateColl('letters', $id)
             else core:getOrCreateColl($i, $id):)
-        let $title := wega:getLanguageString($i, $lang)
-        let $url := string-join(($baseHref, $lang, wega:getLanguageString('publications', $lang), encode-for-uri($title)), '/')
+        let $title := lang:get-language-string($i, $lang)
+        let $url := string-join(($baseHref, $lang, lang:get-language-string('publications', $lang), encode-for-uri($title)), '/')
         return (
             <li>{
                 if(true()) (: Abfrage nach $coll:)
@@ -52,10 +53,10 @@ declare function local:createTabsUL($pubType as xs:string, $lang as xs:string) a
 };
 
 declare function local:collectMetaData($pubType as xs:string, $lang as xs:string) as item() {
-    let $pageTitle := concat(wega:getLanguageString($pubType, $lang), ' – ', wega:getLanguageString('WeGAPublications', $lang))
-    let $pageDescription := wega:getLanguageString(concat($pubType, 'PublicationMetaDescription'), $lang)
+    let $pageTitle := concat(lang:get-language-string($pubType, $lang), ' – ', lang:get-language-string('WeGAPublications', $lang))
+    let $pageDescription := lang:get-language-string(concat($pubType, 'PublicationMetaDescription'), $lang)
     let $commonMetaData := xho:collectCommonMetaData(())
-    let $subject := string-join(('Carl Maria von Weber', wega:getLanguageString('publications', $lang)), '; ')
+    let $subject := string-join(('Carl Maria von Weber', lang:get-language-string('publications', $lang)), '; ')
     return 
     <metaData>
         <title>{$pageTitle}</title>

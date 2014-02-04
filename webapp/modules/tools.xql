@@ -13,6 +13,7 @@ import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" a
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -21,7 +22,7 @@ declare function local:createTabsUL($containerID as xs:string, $lang as xs:strin
     let $menu := ('common', 'persons', 'letters', 'writings', 'diaries', 'works', 'news')
     let $listItems := 
         for $i at $count in $menu
-        let $title := wega:getLanguageString($i, $lang)
+        let $title := lang:get-language-string($i, $lang)
         let $url := concat('functions/getAjax.xql?function=showToolsTab&amp;docType=',$i)
         return (
             element li {
@@ -46,7 +47,7 @@ let $lang    := request:get-parameter('lang','de')
 let $containerID := config:get-option('containerID')
 let $metaData := 
     <wega:metaData>
-        <title>{wega:getLanguageString('tools', $lang)}</title>
+        <title>{lang:get-language-string('tools', $lang)}</title>
         {xho:collectCommonMetaData(())/*}
         <meta name="DC.creator" content="Peter Stadler"/>
         <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
@@ -61,7 +62,7 @@ return
             <div id="main">
                 <div id="contentLeft">
                     <div>
-                        <h2>{wega:getLanguageString('tools', $lang)}</h2>
+                        <h2>{lang:get-language-string('tools', $lang)}</h2>
                         <ul>
                             <li><span onclick="javascript:generateID('{$lang}')" class="internalLink">Generiere ID</span></li>
                             <li><span onclick="javascript:validateIDs('{$lang}')" class="internalLink">Überprüfe IDs</span></li>

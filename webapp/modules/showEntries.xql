@@ -14,6 +14,7 @@ import module namespace wega   = "http://xquery.weber-gesamtausgabe.de/modules/w
 import module namespace facets = "http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8";
 
@@ -142,6 +143,6 @@ return
             return local:createEntry($entry, $clear, $isSearchResult, $lang)
         )
    else element div {
-            element h2{wega:getLanguageString('emptyResultSet', $lang)}
+            element h2{lang:get-language-string('emptyResultSet', $lang)}
         }
         

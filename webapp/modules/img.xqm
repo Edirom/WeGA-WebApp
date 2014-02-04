@@ -16,6 +16,7 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";
 import module namespace functx="http://www.functx.com";
 
@@ -67,7 +68,7 @@ declare function img:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:
     return 
         <wega:wikipediaImages>{
             for $div in $pics
-            let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', wega:getLanguageString('sourceWikipedia', $lang), ')'))
+            let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', lang:get-language-string('sourceWikipedia', $lang), ')'))
             let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
             let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
                 if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 

@@ -15,7 +15,7 @@ import module namespace functx="http://www.functx.com" at "functx.xqm";
 (:import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";:)
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 (:import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";:)
-(:import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";:)
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 
 (:~
  : get and set language variable from/in a session attribute
@@ -44,7 +44,8 @@ declare function lang:get-set-language($lang as xs:string?) as xs:string {
  : @return document-node
  :)
 declare %private function lang:get-language-catalogue($lang as xs:string) as document-node()? {
-    collection($config:catalogues-collection-path)//tei:text[@type='language-catalogue'][@xml:lang=$lang]/root()
+    (:collection($config:catalogues-collection-path)//tei:text[@type='language-catalogue'][@xml:lang=$lang]/root():)
+    doc(core:join-path-elements(($config:catalogues-collection-path, 'dictionary_' || $lang || '.xml')))
 };
 
 (:~
@@ -95,7 +96,9 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
  :)
 declare function lang:reverse-language-string-lookup($string as xs:string, $lang as xs:string) as xs:string* {
     let $catalogue := lang:get-language-catalogue($lang)
-    return $catalogue//tei:item[lower-case(.) eq lower-case($string)]/string(@xml:id)
+    return 
+        $catalogue//entry[lower-case(.) eq lower-case($string)]/string(@xml:id)
+        (:$catalogue//tei:item[lower-case(.) eq lower-case($string)]/string(@xml:id):)
 };
 
 (:~

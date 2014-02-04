@@ -13,24 +13,25 @@ import module namespace functx="http://www.functx.com";
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax" at "ajax.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
 declare function local:collectMetaData($person as node(), $lang as xs:string) as element(wega:metaData) {
     let $personID := $person/string(@xml:id)
     let $name := wega:printFornameSurname($person/tei:persName[@type='reg'])
-    let $pageTitle := concat($name, ' – ', wega:getLanguageString('tabTitle_bio', $lang)) 
+    let $pageTitle := concat($name, ' – ', lang:get-language-string('tabTitle_bio', $lang)) 
     let $pnd_dates := concat(wega:printDate($person//tei:birth/tei:date[1],$lang), '–', wega:printDate($person//tei:death/tei:date[1],$lang))
     let $occupations := string-join($person//tei:occupation/normalize-space(), ', ')
     let $placesOfAction := string-join($person//tei:residence/normalize-space(), ', ')
     let $pageDescription := concat(
-        wega:getLanguageString('bioInfoAbout', $lang), ' ', 
+        lang:get-language-string('bioInfoAbout', $lang), ' ', 
         $name,'. ',
-        wega:getLanguageString('pnd_dates', $lang), ': ', 
+        lang:get-language-string('pnd_dates', $lang), ': ', 
         $pnd_dates, '. ',
-        wega:getLanguageString('occupations', $lang), ': ',
+        lang:get-language-string('occupations', $lang), ': ',
         $occupations, '. ',
-        wega:getLanguageString('placesOfAction', $lang), ': ', 
+        lang:get-language-string('placesOfAction', $lang), ': ', 
         $placesOfAction
     )
     let $commonMetaData := xho:collectCommonMetaData($person)
@@ -42,7 +43,7 @@ declare function local:collectMetaData($person as node(), $lang as xs:string) as
         <meta name="DC.title" content="{$pageTitle}"/>
         <meta name="description" content="{$pageDescription}" lang="{$lang}"/>
         <meta name="DC.description" content="{$pageDescription}"/>
-        <meta name="DC.subject" content="{wega:getLanguageString('bio', $lang)}"/>
+        <meta name="DC.subject" content="{lang:get-language-string('bio', $lang)}"/>
         <!-- <meta name="DC.source" content=""/> -->
         <!-- <meta name="DC.relation" content=""/> --> 
         <!-- <meta name="DC.coverage" content="" scheme="DCTERMS.TGN"/> -->
@@ -94,25 +95,25 @@ return
                     {if($withJS ne 'true') then wega:getDocumentMetaData($id,$lang,'singleView') else()}
                     </div>
                     <ul id="personTabs" class="shadetabs">
-                        <li><a href="functions/getAjax.xql?function=getBiography&#38;id={$id}&#38;lang={$lang}" class="selected" rel="personDetails" title="{wega:getLanguageString('tabTitle_bio',$lang)}">{wega:getLanguageString('bio',$lang)}</a></li>
-                        <li><a href="functions/xmlPrettyPrint.xql?id={$id}" rel="personDetails" title="{wega:getLanguageString('tabTitle_xml', $lang)}">XML</a></li>
+                        <li><a href="functions/getAjax.xql?function=getBiography&#38;id={$id}&#38;lang={$lang}" class="selected" rel="personDetails" title="{lang:get-language-string('tabTitle_bio',$lang)}">{lang:get-language-string('bio',$lang)}</a></li>
+                        <li><a href="functions/xmlPrettyPrint.xql?id={$id}" rel="personDetails" title="{lang:get-language-string('tabTitle_xml', $lang)}">XML</a></li>
                         <li>
-                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getWikipedia&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{wega:getLanguageString('tabTitle_wikipedia', $lang)}">Wikipedia</a>
+                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getWikipedia&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{lang:get-language-string('tabTitle_wikipedia', $lang)}">Wikipedia</a>
                                 else <span class="notAvailable">Wikipedia</span>}
                         </li>
                         <li>
-                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getDNB&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{wega:getLanguageString('tabTitle_pnd', $lang)}">DNB</a>
+                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getDNB&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{lang:get-language-string('tabTitle_pnd', $lang)}">DNB</a>
                                 else <span class="notAvailable">DNB</span>}
                         </li>
                         <li>
-                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getADB&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{wega:getLanguageString('tabTitle_ADB', $lang)}">ADB</a>
+                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getADB&#38;pnd={string($pnd)}&#38;lang={$lang}" rel="personDetails" title="{lang:get-language-string('tabTitle_ADB', $lang)}">ADB</a>
                                 else <span class="notAvailable">ADB</span>}
                         </li>
                         <li>
-                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getPNDBeacons&#38;pnd={string($pnd)}&#38;lang={$lang}&#38;name={encode-for-uri($name)}" rel="personDetails" title="{wega:getLanguageString('tabTitle_Redirects', $lang)}">PND-Beacon</a>
+                            {if(exists($pnd)) then <a href="functions/getAjax.xql?function=getPNDBeacons&#38;pnd={string($pnd)}&#38;lang={$lang}&#38;name={encode-for-uri($name)}" rel="personDetails" title="{lang:get-language-string('tabTitle_Redirects', $lang)}">PND-Beacon</a>
                                 else <span class="notAvailable">PND-Beacon</span>}
                         </li>
-                        <!--<li><a href="functions/person_getBacklinks.xql?id={$id}&#38;lang={$lang}" rel="personDetails" title="{wega:getLanguageString('tabTitle_backlinks', $lang)}">{wega:getLanguageString('backlinks',$lang)}</a></li>-->
+                        <!--<li><a href="functions/person_getBacklinks.xql?id={$id}&#38;lang={$lang}" rel="personDetails" title="{lang:get-language-string('tabTitle_backlinks', $lang)}">{lang:get-language-string('backlinks',$lang)}</a></li>-->
                     </ul>
                     <div id="personDetails">
                         <!--(:Wird durch ajaxTabs gefüllt:)-->
@@ -128,20 +129,20 @@ return
                 
                 <div id="contentRight">
                     <div>
-                        <h2>{wega:getLanguageString('contacts',$lang)}</h2>
+                        <h2>{lang:get-language-string('contacts',$lang)}</h2>
                         <div id="contacts">
                         <!-- (:Wird onload durch requestPersonCorrespondents() gefüllt:) -->
                         {if($withJS ne 'true') then ajax:getPersonCorrespondents($id,$lang,'0001-01-01','9999-01-01','all') else()}
                         </div>
                     </div>
                     <div id="iconography">
-                        <h2>{wega:getLanguageString('album',$lang)}</h2>
+                        <h2>{lang:get-language-string('album',$lang)}</h2>
                         <!-- (:Wird onload durch requestPersonIconography() appended:) -->
                         {if($withJS ne 'true') then ajax:getIconography($id,string($pnd),$lang) else()}
                     </div>
                     {if($person//tei:affiliation/tei:address) then 
                         <div id="sidebarAddress">
-                            <h2>{wega:getLanguageString('address',$lang)}</h2>
+                            <h2>{lang:get-language-string('address',$lang)}</h2>
                             {wega:outputAddress(
                                 $person//tei:affiliation/tei:address, 
                                 $lang,

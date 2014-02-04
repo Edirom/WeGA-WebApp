@@ -20,6 +20,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8";
@@ -35,22 +36,22 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 declare function xho:createHeadContainer($lang as xs:string) as element()* {
     let $html_pixDir := config:get-option('html_pixDir')
     let $baseHref := config:get-option('baseHref')
-    let $uriTokens := tokenize(xmldb:decode-uri(request:get-uri()), '/')
-    let $search := string-join(($baseHref, $lang, wega:getLanguageString('search', $lang)), '/')
-    let $index := string-join(($baseHref, $lang, wega:getLanguageString('index', $lang)), '/')
-    let $impressum := string-join(($baseHref, $lang, wega:getLanguageString('about', $lang)), '/')
-    let $help := string-join(($baseHref, $lang, wega:getLanguageString('help', $lang)), '/')
+    let $uriTokens := tokenize(substring-after(xmldb:decode-uri(request:get-uri()), $baseHref), '/')
+    let $search := string-join(($baseHref, $lang, lang:get-language-string('search', $lang)), '/')
+    let $index := string-join(($baseHref, $lang, lang:get-language-string('index', $lang)), '/')
+    let $impressum := string-join(($baseHref, $lang, lang:get-language-string('about', $lang)), '/')
+    let $help := string-join(($baseHref, $lang, lang:get-language-string('help', $lang)), '/')
     let $switchLanguage := 
         for $i in $uriTokens[string-length(.) gt 2]
         return
         if (matches($i, 'A\d{6}'))
             then $i
             else if($lang eq 'en') 
-                then replace(wega:translateLanguageString(replace($i, '_', ' '), $lang, 'de'), '\s', '_') (: Ersetzen von Leerzeichen durch Unterstriche in der URL :)
-                else replace(wega:translateLanguageString(replace($i, '_', ' '), $lang, 'en'), '\s', '_')
+                then replace(lang:translate-language-string(replace($i, '_', ' '), $lang, 'de'), '\s', '_') (: Ersetzen von Leerzeichen durch Unterstriche in der URL :)
+                else replace(lang:translate-language-string(replace($i, '_', ' '), $lang, 'en'), '\s', '_')
     let $switchLanguage := if($lang eq 'en')
-        then <xhtml:a href="{string-join(($baseHref, 'de', $switchLanguage), '/')}" title="Diese Seite auf Deutsch"><xhtml:img src="{string-join(($baseHref, $html_pixDir, 'de.gif'), '/')}" alt="germanFlag" width="20" height="12"/></xhtml:a>
-        else <xhtml:a href="{string-join(($baseHref, 'en', $switchLanguage), '/')}" title="This page in english"><xhtml:img src="{string-join(($baseHref, $html_pixDir, 'gb.gif'), '/')}" alt="englishFlag" width="20" height="12"/></xhtml:a>
+        then <xhtml:a href="{core:join-path-elements(($baseHref, 'de', $switchLanguage))}" title="{lang:get-language-string('switchLanguage', 'de')}"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir, 'de.gif'))}" alt="germanFlag" width="20" height="12"/></xhtml:a>
+        else <xhtml:a href="{core:join-path-elements(($baseHref, 'en', $switchLanguage))}" title="{lang:get-language-string('switchLanguage', 'en')}"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir, 'gb.gif'))}" alt="englishFlag" width="20" height="12"/></xhtml:a>
     return (
     element xhtml:div {
         attribute id {"headContainer"},
@@ -59,15 +60,15 @@ declare function xho:createHeadContainer($lang as xs:string) as element()* {
         else (),
         <xhtml:h1><xhtml:a href="{$index}"><xhtml:span class="hiddenLink">Carl Maria von Weber Gesamtausgabe</xhtml:span></xhtml:a></xhtml:h1>,
         <xhtml:ul id="topMenu">
-            <xhtml:li><xhtml:a href="{$search}">{wega:getLanguageString('search',$lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{$index}">{wega:getLanguageString('home',$lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{$impressum}">{wega:getLanguageString('about',$lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{$help}">{wega:getLanguageString('help',$lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{$search}">{lang:get-language-string('search',$lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{$index}">{lang:get-language-string('home',$lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{$impressum}">{lang:get-language-string('about',$lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{$help}">{lang:get-language-string('help',$lang)}</xhtml:a></xhtml:li>
             <xhtml:li>{$switchLanguage}</xhtml:li>
         </xhtml:ul>
     },
-    <xhtml:noscript><xhtml:p class="noscript">{wega:getLanguageString('noscript', $lang)}</xhtml:p></xhtml:noscript>,
-    <xhtml:p id="IE6" class="noscript" style="display:none;">{wega:getLanguageString('oldBrowser', $lang)}</xhtml:p>,
+    <xhtml:noscript><xhtml:p class="noscript">{lang:get-language-string('noscript', $lang)}</xhtml:p></xhtml:noscript>,
+    <xhtml:p id="IE6" class="noscript" style="display:none;">{lang:get-language-string('oldBrowser', $lang)}</xhtml:p>,
     <xhtml:script type="text/javascript">if(navigator.userAgent.indexOf('MSIE 6') != -1) $('IE6').show()</xhtml:script>
     )
 };
@@ -100,14 +101,14 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
     let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
     let $versionDate := wega:strftime($dateFormat, xs:date(config:get-option('versionDate')), $lang)
-    let $permalink := string-join((config:get-option('baseHref'), $docID), '/')
+    let $permalink := core:join-path-elements((config:get-option('baseHref'), $docID))
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
-                <xhtml:p>{wega:getLanguageString('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(core:doc(config:get-option('versionNews')), $lang)}">{wega:getLanguageString('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
+                <xhtml:p>{lang:get-language-string('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(core:doc(config:get-option('versionNews')), $lang)}">{lang:get-language-string('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
                 <xhtml:p>{
-                    if($config:isDevelopment) then wega:getLanguageString('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
-                    else wega:getLanguageString('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
+                    if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
+                    else lang:get-language-string('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
                 }</xhtml:p>
                   {if($lang eq 'en') then 
                   <xhtml:p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
@@ -171,12 +172,12 @@ declare function xho:createCommonFooter() as item()* {
     <xhtml:div id="supportBadges">
         <xhtml:a href="http://validator.w3.org/check?uri=referer"><xhtml:img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" title="W3C Markup Validation Service" /></xhtml:a>
         <xhtml:a href="http://exist-db.org"><xhtml:img src="http://exist-db.org/exist/icons/existdb-128.png" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></xhtml:a>
-        <xhtml:a href="http://staatsbibliothek-berlin.de"><xhtml:img src="{string-join(($baseHref, $html_pixDir,'stabi-logo.png'), '/')}" alt="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" /></xhtml:a>
-        <xhtml:a href="http://www.adwmainz.de"><xhtml:img src="{string-join(($baseHref, $html_pixDir,'adwMainz.png'), '/')}" alt="Akademie der Wissenschaften und der Literatur Mainz" title="Akademie der Wissenschaften und der Literatur Mainz" /></xhtml:a>
+        <xhtml:a href="http://staatsbibliothek-berlin.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'stabi-logo.png'))}" alt="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" /></xhtml:a>
+        <xhtml:a href="http://www.adwmainz.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'adwMainz.png'))}" alt="Akademie der Wissenschaften und der Literatur Mainz" title="Akademie der Wissenschaften und der Literatur Mainz" /></xhtml:a>
         <xhtml:a href="http://www.tei-c.org"><xhtml:img src="http://www.tei-c.org/About/Badges/powered-by-TEI.png" alt="Powered by TEI" title="TEI: Text Encoding Initiative" /></xhtml:a>
         <xhtml:br/>
-        <xhtml:a href="http://www.uni-paderborn.de/"><xhtml:img src="{string-join(($baseHref, $html_pixDir,'upb-logo.png'), '/')}" alt="Universität Paderborn" title="Universität Paderborn" /></xhtml:a>
-        <xhtml:a href="http://www.hfm-detmold.de"><xhtml:img src="{string-join(($baseHref, $html_pixDir,'hfm-logo.png'), '/')}" alt="Hochschule für Musik Detmold" title="Hochschule für Musik Detmold" /></xhtml:a>
+        <xhtml:a href="http://www.uni-paderborn.de/"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'upb-logo.png'))}" alt="Universität Paderborn" title="Universität Paderborn" /></xhtml:a>
+        <xhtml:a href="http://www.hfm-detmold.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'hfm-logo.png'))}" alt="Hochschule für Musik Detmold" title="Hochschule für Musik Detmold" /></xhtml:a>
     </xhtml:div>,
     $piwikTrackingCode
     )
@@ -204,7 +205,7 @@ declare function xho:createHtmlHead($stylesheets as xs:string*, $jscripts as xs:
         <xhtml:head>
             <xhtml:meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
             <xhtml:meta name="fragment" content="!"/> 
-            <xhtml:link rel="icon" href="{string-join(($baseHref, $html_pixDir, 'weber_favicon.ico'), '/')}" type="image/x-icon"/>
+            <xhtml:link rel="icon" href="{core:join-path-elements(($baseHref, $html_pixDir, 'weber_favicon.ico'))}" type="image/x-icon"/>
             {$metaData/*}
             {for $i in insert-before($stylesheets, 0, $commonStylesheets)
                 return <xhtml:link media="all" type="text/css" rel="stylesheet" href="{string-join(($baseHref, config:get-option('html_cssDir'), $i), '/')}"/>
@@ -253,16 +254,16 @@ declare function xho:createBreadCrumb($doc as item(), $lang as xs:string) as ele
         let $docType := 
             if($doc//tei:text[@type eq 'letter'])
                 then if($authorID ne '') 
-                    then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, wega:getLanguageString('correspondence',$lang)), '/')}">{wega:getLanguageString('correspondence',$lang)}</xhtml:a>
-                    else <xhtml:span class="noDataFound">{wega:getLanguageString('correspondence',$lang)}</xhtml:span>
+                    then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('correspondence',$lang)), '/')}">{lang:get-language-string('correspondence',$lang)}</xhtml:a>
+                    else <xhtml:span class="noDataFound">{lang:get-language-string('correspondence',$lang)}</xhtml:span>
                 else if($doc//tei:text[@type eq 'historic-news' or @type eq 'performance-review'])
                     then if($authorID ne '') 
-                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, wega:getLanguageString('writings',$lang)), '/')}">{wega:getLanguageString('writings',$lang)}</xhtml:a>
-                        else <xhtml:span class="noDataFound">{wega:getLanguageString('writings',$lang)}</xhtml:span>
+                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('writings',$lang)), '/')}">{lang:get-language-string('writings',$lang)}</xhtml:a>
+                        else <xhtml:span class="noDataFound">{lang:get-language-string('writings',$lang)}</xhtml:span>
                     else if($isDiary)
-                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, wega:getLanguageString('diaries',$lang)), '/')}">{wega:getLanguageString('diaries',$lang)}</xhtml:a>
+                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('diaries',$lang)), '/')}">{lang:get-language-string('diaries',$lang)}</xhtml:a>
                         else if($doc//tei:text[@type eq 'news'])
-                            then <xhtml:span class="noDataFound">{wega:getLanguageString('news',$lang)}</xhtml:span>
+                            then <xhtml:span class="noDataFound">{lang:get-language-string('news',$lang)}</xhtml:span>
                             else ()
                                         
         return ($i, xs:string(' > '), $docType, xs:string(' > '), <xhtml:span class="{$docStatus}">{$docID}</xhtml:span>, if($count = $authorsCount) then () else element xhtml:br{})
@@ -285,7 +286,7 @@ declare function xho:createBreadCrumb($id as xs:string, $docType as xs:string, $
     let $author := wega:createPersonLink($id, $lang, 'fs')
     return
     <xhtml:div id="breadCrumb">
-        {$author, xs:string(' > '), wega:getLanguageString($docType, $lang)}
+        {$author, xs:string(' > '), lang:get-language-string($docType, $lang)}
     </xhtml:div>
 };
 
@@ -306,19 +307,19 @@ declare function xho:createWorksDocumentsUL($id as xs:string, $lang as xs:string
         for $i in ('letters', 'writings', 'diaries', 'works')
 (:            let $log := util:log-system-out($i):)
             let $coll := core:getOrCreateColl($i, $id, true())
-            let $title := wega:getLanguageString(concat($i,'TableTitle'), wega:printFornameSurname($persName), $lang)
+            let $title := lang:get-language-string(concat($i,'TableTitle'), wega:printFornameSurname($persName), $lang)
             let $href := if($i eq 'letters')
-                then string-join(($baseHref, $lang, $id, wega:getLanguageString('correspondence', $lang)), '/')
-                else string-join(($baseHref, $lang, $id, wega:getLanguageString($i, $lang)), '/')
+                then string-join(($baseHref, $lang, $id, lang:get-language-string('correspondence', $lang)), '/')
+                else string-join(($baseHref, $lang, $id, lang:get-language-string($i, $lang)), '/')
             let $linkText := if($i eq 'letters')
-                then wega:getLanguageString('correspondence', $lang)
-                else wega:getLanguageString($i, $lang)
+                then lang:get-language-string('correspondence', $lang)
+                else lang:get-language-string($i, $lang)
             return if(exists($coll) and ($i ne 'diaries' or $id eq 'A002068')) (: Tagebuch nur bei Weber anzeigen :)
                 then <xhtml:li><xhtml:a href="{$href}" title="{$title}">{$linkText}</xhtml:a></xhtml:li> 
                 else <xhtml:li><xhtml:span class="noTarget">{$linkText}</xhtml:span></xhtml:li>
     return (
     <xhtml:div id="works">
-        <xhtml:h2>{wega:getLanguageString('worksDocuments',$lang)}</xhtml:h2>
+        <xhtml:h2>{lang:get-language-string('worksDocuments',$lang)}</xhtml:h2>
         <xhtml:ul>
             {$listItems}
         </xhtml:ul>
@@ -368,7 +369,7 @@ declare function xho:collectCommonMetaData($doc as node()?) as element(wega:meta
 declare function xho:createPopupContainer($lang as xs:string) as element(xhtml:div) {
     <xhtml:div id="popupMain" style="position: fixed; visibility: hidden; left:10%; top: 10%; z-index: 7538; margin: 10px; background-color:#fff">
         <xhtml:div style="border: 2px solid #AAAAAA;">
-            <xhtml:h2>{wega:getLanguageString("restrictSelection", $lang)}</xhtml:h2>
+            <xhtml:h2>{lang:get-language-string("restrictSelection", $lang)}</xhtml:h2>
             <xhtml:ul id="popupTabs" class="shadetabs">
                 <xhtml:li onmouseover="this.style.cursor='pointer'">
                     <xhtml:a title="test" class="test"></xhtml:a>
@@ -377,9 +378,9 @@ declare function xho:createPopupContainer($lang as xs:string) as element(xhtml:d
             <xhtml:div id="popupContent" style="text-align:left; position:relative; border: 2px solid #AAAAAA; margin: 0 5px; overflow:auto;">
             </xhtml:div> 
             <xhtml:h3>
-                <xhtml:span style="margin-right:100px" onmouseover="this.style.cursor='pointer'" >{wega:getLanguageString("cancel", $lang)}</xhtml:span>
-                <!--<span onmouseover="this.style.cursor='pointer'">{wega:getLanguageString("reset", $lang)} </xhtml:span>-->
-                <xhtml:span onmouseover="this.style.cursor='pointer'" >{wega:getLanguageString("confirm", $lang)}</xhtml:span>
+                <xhtml:span style="margin-right:100px" onmouseover="this.style.cursor='pointer'" >{lang:get-language-string("cancel", $lang)}</xhtml:span>
+                <!--<span onmouseover="this.style.cursor='pointer'">{lang:get-language-string("reset", $lang)} </xhtml:span>-->
+                <xhtml:span onmouseover="this.style.cursor='pointer'" >{lang:get-language-string("confirm", $lang)}</xhtml:span>
             </xhtml:h3>
         </xhtml:div>
     </xhtml:div>
@@ -403,11 +404,11 @@ declare function xho:createTabsUL($curDocType as xs:string, $menuID as xs:string
         else doc(config:get-option('menusFile'))//id($menuID)
     let $urlPart1 := 
         if($isPerson) then string-join(($baseHref, $lang, $menuID), '/')
-        else string-join(($baseHref, $lang, wega:getLanguageString($menuNode/pageName, $lang)), '/')
+        else string-join(($baseHref, $lang, lang:get-language-string($menuNode/pageName, $lang)), '/')
     let $listItems := 
         for $i in $menuNode/entry
         let $coll := core:getOrCreateColl($i/docType, $menuID, true())
-        let $title := wega:getLanguageString($i/displayName, $lang)
+        let $title := lang:get-language-string($i/displayName, $lang)
         let $url := string-join(($urlPart1, encode-for-uri($title)), '/')
 (:        let $log := util:log-system-out(string-join(($i/docType, $curDocType), ' ;; ')):)
         return (
@@ -451,13 +452,13 @@ declare function xho:collectMetaData($docType as xs:string, $menuID as xs:string
         else doc(config:get-option('menusFile'))//id($menuID)/entry[./docType eq $docType]
     let $persName := wega:printFornameSurname(wega:getRegName($menuID))
     let $pageDescription := 
-        if(config:is-person($menuID)) then wega:getLanguageString($menuNode/string(@metaDesc), $persName, $lang)
-        else wega:getLanguageString($menuNode/string(@metaDesc), $lang)
+        if(config:is-person($menuID)) then lang:get-language-string($menuNode/string(@metaDesc), $persName, $lang)
+        else lang:get-language-string($menuNode/string(@metaDesc), $lang)
     let $pageTitle := 
-        if(config:is-person($menuID)) then wega:getLanguageString($menuNode/string(@metaTitle), $persName, $lang)
-        else wega:getLanguageString($menuNode/string(@metaTitle), $lang)
+        if(config:is-person($menuID)) then lang:get-language-string($menuNode/string(@metaTitle), $persName, $lang)
+        else lang:get-language-string($menuNode/string(@metaTitle), $lang)
     let $commonMetaData := xho:collectCommonMetaData(())
-    let $subject := wega:getLanguageString($menuNode/displayName/text(), $lang)
+    let $subject := lang:get-language-string($menuNode/displayName/text(), $lang)
     return 
         <wega:metaData>
             <xhtml:title>{$pageTitle}</xhtml:title>
@@ -484,14 +485,14 @@ declare function xho:printEditionLinks($startID as xs:string, $lang as xs:string
     let $baseHref := config:get-option('baseHref')
     return
     <xhtml:div id="edition">
-        <xhtml:h1>{wega:getLanguageString('digitalEdition', $lang)}</xhtml:h1>
+        <xhtml:h1>{lang:get-language-string('digitalEdition', $lang)}</xhtml:h1>
         <xhtml:ul>
             <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID), '/')}">Weber Person</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, wega:getLanguageString('correspondence', $lang)), '/')}">Weber {wega:getLanguageString('correspondence', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, wega:getLanguageString('diaries', $lang)), '/')}">Weber {wega:getLanguageString('diaries', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, wega:getLanguageString('writings', $lang)), '/')}">Weber {wega:getLanguageString('writings', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, wega:getLanguageString('works', $lang)), '/')}">Weber {wega:getLanguageString('works', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, wega:getLanguageString('indices', $lang)), '/')}">{wega:getLanguageString('indices', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('correspondence', $lang)), '/')}">Weber {lang:get-language-string('correspondence', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('diaries', $lang)), '/')}">Weber {lang:get-language-string('diaries', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('writings', $lang)), '/')}">Weber {lang:get-language-string('writings', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('works', $lang)), '/')}">Weber {lang:get-language-string('works', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('indices', $lang)), '/')}">{lang:get-language-string('indices', $lang)}</xhtml:a></xhtml:li>
         </xhtml:ul>
     </xhtml:div>
 };
@@ -508,14 +509,14 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
     let $baseHref := config:get-option('baseHref')
     return
     <xhtml:div id="project">
-        <xhtml:h1>{wega:getLanguageString('aboutTheProject', $lang)}</xhtml:h1>
+        <xhtml:h1>{lang:get-language-string('aboutTheProject', $lang)}</xhtml:h1>
         <xhtml:ul>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, wega:getLanguageString('indices',$lang), wega:getLanguageString('news',$lang)),'/')}">{wega:getLanguageString('news', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(wega:getLanguageString('editorialGuidelines',$lang), '\s', '_')),'/')}">{wega:getLanguageString('editorialGuidelines', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(wega:getLanguageString('projectDescription',$lang), '\s', '_')), '/')}">{wega:getLanguageString('projectDescription', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, wega:getLanguageString('publications',$lang)), '/')}">{wega:getLanguageString('publications', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, wega:getLanguageString('bibliography',$lang)), '/')}">{wega:getLanguageString('bibliography', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, wega:getLanguageString('contact',$lang)), '/')}">{wega:getLanguageString('contact', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('indices',$lang), lang:get-language-string('news',$lang)),'/')}">{lang:get-language-string('news', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')),'/')}">{lang:get-language-string('editorialGuidelines', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(lang:get-language-string('projectDescription',$lang), '\s', '_')), '/')}">{lang:get-language-string('projectDescription', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('publications',$lang)), '/')}">{lang:get-language-string('publications', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('bibliography',$lang)), '/')}">{lang:get-language-string('bibliography', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('contact',$lang)), '/')}">{lang:get-language-string('contact', $lang)}</xhtml:a></xhtml:li>
         </xhtml:ul>
     </xhtml:div>
 };
@@ -533,11 +534,11 @@ declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:
     return
     element xhtml:div {
         attribute id {'developmentTools'},
-        element xhtml:h1 {wega:getLanguageString('development', $lang)},
+        element xhtml:h1 {lang:get-language-string('development', $lang)},
         element xhtml:ul {
             element xhtml:li {
                 element xhtml:a {
-                    attribute href {string-join(($baseHref, $lang, wega:getLanguageString('tools', $lang)), '/')},
+                    attribute href {string-join(($baseHref, $lang, lang:get-language-string('tools', $lang)), '/')},
                     'Tools'
                 }
             }
