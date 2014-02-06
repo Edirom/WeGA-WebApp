@@ -201,7 +201,6 @@
     <xsl:function name="wega:createLinkToDoc" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:param name="lang" as="xs:string"/>
-        <xsl:variable name="baseHref" select="wega:getOption('baseHref')"/>
         <xsl:variable name="authorID">
             <xsl:choose>
                 <xsl:when test="wega:isPerson($docID)"/>
