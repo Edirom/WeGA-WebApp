@@ -721,5 +721,6 @@ declare %private function facets:get-IDs($coll as document-node()*, $docType as 
         case 'diaries' return $coll/tei:ab/@xml:id
         case 'persons' return $coll/tei:person/@xml:id
         case 'works' return $coll/mei:mei/@xml:id
+        case 'biblio' return $coll/tei:biblStruct/@xml:id
         default return $coll/tei:TEI/@xml:id 
 };
