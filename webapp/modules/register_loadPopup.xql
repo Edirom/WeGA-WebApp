@@ -19,7 +19,7 @@ let $category := request:get-parameter('category','sender')
 let $docType := request:get-parameter('docType','letters')
 let $cacheKey := request:get-parameter('cacheKey','indices')
 let $checked := session:get-attribute('checked')
-let $lang := wega:getSetLanguage('')
+let $lang := lang:get-set-language(())
 let $categoryList := session:get-attribute('facetCategories')//facets:entry/string(@xml:id)
 
 return
@@ -42,7 +42,7 @@ return
                     let $facets := session:get-attribute(concat('facetsSessionAttribute_', $docType,$x)) (: von serverseitigem cache zu client attribute geändert, da sich sonst verschiedene clients beeinflussen können (PS) :)
                         (:cache:get('facets',concat($docType,$x)):)
                     (:let $log := util:log-system-out(concat('popup - ', concat('facetsSessionAttribute_', $docType,$x), ': ', count($facets))):)
-                    return facets:createFacetListForPopup($facets, 0, $x, $docType, $cacheKey, 'de')
+                    return facets:createFacetListForPopup($facets, $x, $docType, $lang)
                 }</div>
             }
         </div>

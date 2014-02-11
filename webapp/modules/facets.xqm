@@ -24,8 +24,6 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
-declare variable $facets:callback := util:function(xs:QName("facets:term-callback"), 2);
-
 (:~
  : Returns list of terms and their frequency in the collection
  :
@@ -35,7 +33,7 @@ declare variable $facets:callback := util:function(xs:QName("facets:term-callbac
  : @return element
  :)
  
-declare function facets:term-callback($term as xs:string, $data as xs:int+) as element(facets:entry)? {
+declare %private function facets:term-callback($term as xs:string, $data as xs:int+) as element(facets:entry)? {
     <facets:entry>
         <facets:term>{$term}</facets:term>
         <facets:frequency>{$data[2]}</facets:frequency>
@@ -50,8 +48,8 @@ declare function facets:term-callback($term as xs:string, $data as xs:int+) as e
  : @return element
  :)
 
-declare function facets:createFacets($collFacets as item()*) as element(facets:entry)* {
-    for $k in util:index-keys($collFacets, '', $facets:callback, 10000)
+declare %private function facets:createFacets($collFacets as item()*) as element(facets:entry)* {
+    for $k in util:index-keys($collFacets, '', facets:term-callback#2, 10000)
         order by $k//xs:int(facets:frequency) descending
         return $k
 };
@@ -105,7 +103,7 @@ declare function facets:createFacetLi($facet as xs:string, $freq as xs:int, $che
  : @return element li
  :)
 
-declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int, $checked as xs:boolean, $category as xs:string, $docType as xs:string, $cacheKey as xs:string, $lang as xs:string) as element(li) {
+declare function facets:createFacetLiPopup($facet as xs:string, $freq as xs:int, $checked as xs:boolean, $category as xs:string, $lang as xs:string) as element(li) {
     let $facetExpanded := facets:expandFacetTerm($facet, $lang)
     return 
     element li {
@@ -155,29 +153,20 @@ declare function facets:expandFacetTerm($facetTerm as xs:string, $lang as xs:str
  : @return element ul
  :)
 
-declare function facets:createFacetListForPopup($facets as element()*, $maxRows as xs:int, $category as xs:string, $docType as xs:string, $cacheKey as xs:string, $lang as xs:string) as element(ul) {
+declare function facets:createFacetListForPopup($facets as element(facets:entry)*, $category as xs:string, $docType as xs:string, $lang as xs:string) as element(ul) {
     let $sessionFilter := session:get-attribute(facets:getFilterName($docType))
-    let $numberOfRows := count($facets)
     let $checked := distinct-values($sessionFilter//facets:entry[@category = $category])
     let $totalNumberOfChecked := count($checked)
-    (:let $log := util:log-system-out($checked):)
-    (:let $log := util:log-system-out(concat('totalChecked: ', $totalNumberOfChecked)):)
-    
     return
     <ul>{
         if(exists($facets) or exists($checked)) then (
-            let $subSeqOfFacets :=
-                for $s in subsequence($facets, 1, $numberOfRows)
-                let $temp := if(config:is-person($s/facets:term)) then wega:getRegName($s/facets:term) else if(config:is-work($s/facets:term)) then wega:getRegTitle($s/facets:term) else if($s/facets:term ne '') then $s/facets:term else lang:get-language-string('unknown', $lang)
-                order by $temp ascending
-                return $s
-            (:let $subSeqOfFacets := for $x in $facets return if ($totalNumberOfChecked>0 and not(index-of($checked,data($x//term))>0)) then $x else():)
-            (:let $log := util:log-system-out($subSeqOfFacets):)
-            for $i in $subSeqOfFacets
+            for $i in $facets
                 let $item := $i/facets:term
                 let $isChecked := exists(index-of($checked,$item))
                 let $freq := $i/xs:int(facets:frequency)
-                return facets:createFacetLiPopup($item, $freq, $isChecked, $category, $docType, $cacheKey, $lang)
+                let $li := facets:createFacetLiPopup($item, $freq, $isChecked, $category, $lang)
+                order by $li 
+                return $li
         )
         else <li class="notAvailable">{lang:get-language-string('noDataFound', $lang)}</li>
         }
@@ -185,7 +174,7 @@ declare function facets:createFacetListForPopup($facets as element()*, $maxRows 
 };
 
 (:~
- : Creates fecets list by attributes
+ : Creates facets list by attributes
  :
  : @author Peter Stadler
  : @param $facets collection of facets
@@ -239,7 +228,7 @@ declare function facets:createFacetListByAttribute($facets as element()*, $maxRo
 };
 
 (:~
- : Creates fecets list by attributes
+ : Creates facets list by elements
  :
  : @author Peter Stadler 
  : @param $facets collection of facets
