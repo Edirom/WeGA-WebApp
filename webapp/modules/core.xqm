@@ -138,7 +138,7 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
  : (helper function for wega:grabExternalResource())
  : 
  : @author Peter Stadler
- : @param $collection the collection to put the file in. If empty, the content will be stored in the tmp  
+ : @param $collection the collection to put the file in. If empty, the content will be stored in tmp  
  : @param $fileName the filename of the to be created resource with filename extension
  : @param $contents the content to store. Either a node, an xs:string, a Java file object or an xs:anyURI 
  : @return Returns the path to the newly created resource, empty sequence otherwise
