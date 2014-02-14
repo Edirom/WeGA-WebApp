@@ -105,7 +105,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare function core:sortColl($coll as item()*) as document-node()* {
-    if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by $i//tei:persName[@type = 'reg'] ascending return $i
+    if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
     else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
     else if(config:is-diary($coll[1]/tei:ab/string(@xml:id)))            then for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
@@ -226,4 +226,29 @@ declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
  :)
 declare function core:join-path-elements($segs as xs:string*) as xs:string {
     replace(string-join($segs, '/'), '/+' , '/')
+};
+
+(:~
+ : Creates a sortname for a given tei:person element
+ : This will be the first tei:surname, if none given it falls back to the substring before the comma 
+ :
+ : @author Peter Stadler
+ : @param $person the tei:person element
+ : @return xs:string
+ :)
+declare function core:create-sort-persname($person as element(tei:person)) as xs:string {
+    if(functx:all-whitespace($person/tei:persName[@type='reg']/tei:surname[1])) then core:normalize-space(functx:substring-before-match($person/tei:persName[@type='reg'], '\s?,'))
+    else core:normalize-space($person/tei:persName[@type='reg']/tei:surname[1])
+};
+
+(:~
+ : Normalizes a given string
+ : In addition to fn:normalize-space() this function treats non-breaking-spaces etc. as whitespace 
+ :
+ : @author Peter Stadler
+ : @param $string the string to normalize
+ : @return xs:string
+ :)
+declare function core:normalize-space($string as xs:string?) as xs:string {
+    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;|[\.,]\s*$', ' '))
 };

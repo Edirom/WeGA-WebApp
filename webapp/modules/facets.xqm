@@ -679,8 +679,8 @@ declare function facets:createAlphabetListUl($entriesSessionName as xs:string, $
             for $i at $count in (1 to $numberOfRows) 
             let $fromPosition := ($i - 1) * ($myDivisor) + $from
 			let $toPosition := if ((($i * $myDivisor + $from -1) gt $to) or ($i eq $numberOfRows)) then $to else $i * $myDivisor + $from -1
-            let $startEntry := functx:substring-before-match(normalize-space($persons[$fromPosition]), '[\s,]') (:'Start':)
-            let $endEntry := functx:substring-before-match(normalize-space($persons[$toPosition]), '[\s,]') (:'Ende':)
+            let $startEntry := functx:substring-before-match($persons[$fromPosition]/@sortName, '\s') (:'Start':)
+            let $endEntry := functx:substring-before-match($persons[$toPosition]/@sortName, '\s') (:'Ende':)
             let $countPersonsInInterval := $toPosition - $fromPosition +1
             let $newFromToSessionName := concat($fromToSessionName, $count)
             let $saveFromTo := session:set-attribute($newFromToSessionName, ($fromPosition,$toPosition))

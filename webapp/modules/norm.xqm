@@ -147,9 +147,7 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
         let $docID := $doc/*/data(@xml:id)
         let $sex := normalize-space($doc//tei:sex)
         let $name := normalize-space($doc//tei:persName[@type='reg'])
-        let $sortName := 
-            if(functx:all-whitespace($doc//tei:persName[@type='reg']/tei:surname[1])) then functx:substring-before-match($name, '\s?,')
-            else normalize-space($doc//tei:persName[@type='reg']/tei:surname[1])
+        let $sortName := core:create-sort-persname($doc/tei:person) 
         order by $sortName ascending, $name ascending
         return 
             element entry {
