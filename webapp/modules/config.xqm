@@ -36,7 +36,9 @@ declare variable $config:app-root as xs:string :=
 declare variable $config:catalogues-collection-path as xs:string := $config:app-root || '/catalogues';
 declare variable $config:options-file-path as xs:string := $config:catalogues-collection-path || '/options.xml';
 declare variable $config:options-file as document-node() := doc($config:options-file-path);
-declare variable $config:svn-change-history-file as document-node() := doc($config:catalogues-collection-path || '/svnChangeHistory.xml');
+declare variable $config:svn-change-history-file as document-node()? := 
+    if(doc-available($config:catalogues-collection-path || '/svnChangeHistory.xml')) then doc($config:catalogues-collection-path || '/svnChangeHistory.xml')
+    else ();
 declare variable $config:data-collection-path as xs:string := '/db/apps/WeGA-data';
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
@@ -305,26 +307,27 @@ declare function config:getCollectionPath($docID as xs:string) as xs:string? {
 };
 
 (:~
- : returns whether eXist-DB was updated after a given dateTime. 
- : The function tries to cast the given $dateTime as xs:dateTime and returns true() on default if $dateTime is not castable.
+ : Returns whether WeGA-data was updated after a given dateTime. 
+ : If $dateTime is not castable as xs:dateTime or $config:svn-change-history-file is not present it returns true().
  :
  : @author Peter Stadler
  : @param $dateTime the date to check
  : @return xs:boolean
 :)
 declare function config:eXistDbWasUpdatedAfterwards($dateTime as xs:dateTime?) as xs:boolean {
-    if($dateTime castable as xs:dateTime) then config:getDateTimeOfLastDBUpdate() gt ($dateTime cast as xs:dateTime)
+    if($dateTime castable as xs:dateTime) then config:getDateTimeOfLastDBUpdate() > ($dateTime cast as xs:dateTime)
     else true()
 };
 
 (:~
- : retrieves the dateTime of last eXist-db update by checking svnChangeHistoryFile
+ : Retrieves the dateTime of last eXist-db update by checking svnChangeHistoryFile
  :
  : @author Peter Stadler
  : @return xs:dateTime
 :)
 declare function config:getDateTimeOfLastDBUpdate() as xs:dateTime? {
-    xmldb:last-modified($config:catalogues-collection-path, 'svnChangeHistory.xml')
+    if($config:svn-change-history-file) then xmldb:last-modified($config:catalogues-collection-path, 'svnChangeHistory.xml')
+    else ()
 };
 
 (:~
@@ -334,10 +337,8 @@ declare function config:getDateTimeOfLastDBUpdate() as xs:dateTime? {
  : @return xs:int
 :)
 declare function config:getCurrentSvnRev() as xs:int? {
-    let $myNode := $config:svn-change-history-file/dictionary/@head
-    return 
-        if($myNode castable as xs:int) then $myNode cast as xs:int
-        else ()
+    if($config:svn-change-history-file/dictionary/@head castable as xs:int) then $config:svn-change-history-file/dictionary/@head cast as xs:int
+    else ()
 };
 
 (:~
