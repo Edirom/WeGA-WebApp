@@ -39,7 +39,6 @@ declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
             let $store-file := core:store-file($config:tmp-collection-path, $fileName, $newNormDates)
             return 
                 if(doc-available($store-file)) then doc($store-file)
-                (:doc(util:catch('*', xmldb:store($folderName, $fileName, $newNormDates), core:logToFile('error', string-join(('wega:getNormDates', $util:exception, $util:exception-message), ' ;; ')))):)
                 else ()
         )
         else doc(core:join-path-elements(($config:tmp-collection-path, $fileName)))

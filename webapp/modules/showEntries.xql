@@ -40,11 +40,12 @@ declare function local:getRootNode($node,$docType) {
 };
 
 declare function local:createKWIC($item as item(), $lang as xs:string) as element() {
-    let $kwic := util:catch('*',
-        kwic:summarize($item, <config width="40"/>),
-        if($config:isDevelopment) then string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; ')
-        else core:logToFile('error', string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; '))
-        )
+    let $kwic := 
+        try { kwic:summarize($item, <config width="40"/>) }
+        catch * { 
+            if($config:isDevelopment) then string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; ')
+            else core:logToFile('error', string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; '))
+            }
     let $score    := ft:score($item)
     return 
         element div {
