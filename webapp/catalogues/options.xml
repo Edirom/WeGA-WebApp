@@ -12,21 +12,21 @@
       <entry xml:id="weberStudies" type="xs:string">/db/biblio</entry>
    </div>-->
     <div xml:id="collectionPredicates">
-        <entry xml:id="lettersPred">[(.//tei:sender/tei:persName/@key = '%1', .//tei:addressee/tei:persName/@key = '%1')][not(*/tei:ref)]</entry>
-        <entry xml:id="writingsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
-        <entry xml:id="newsPred">[.//tei:fileDesc//tei:author/@key = '%1'][not(*/tei:ref)]</entry>
-        <entry xml:id="diariesPred">[./tei:ab]</entry>
+        <entry xml:id="lettersPred">//tei:persName[@key = '%1'][(ancestor::tei:sender, ancestor::tei:addressee)]/root()</entry>
+        <entry xml:id="writingsPred">//tei:author[@key = '%1'][ancestor::tei:fileDesc]/root()</entry>
+        <entry xml:id="newsPred">//tei:author[@key = '%1'][ancestor::tei:fileDesc]/root()</entry>
+        <entry xml:id="diariesPred">[tei:ab]</entry>
         <entry xml:id="worksPred">[.//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]/@dbkey = '%1']</entry>
-        <entry xml:id="iconographyPred">//tei:figure[.//tei:person[@corresp = '%1']]/root()</entry>
-        <entry xml:id="newsPredIndices">[not(*/tei:ref)]</entry>
-        <entry xml:id="lettersPredIndices">[not(*/tei:ref)]</entry>
-        <entry xml:id="writingsPredIndices">[not(*/tei:ref)]</entry>
-        <entry xml:id="diariesPredIndices">[./tei:ab]</entry>
-        <entry xml:id="personsPredIndices">[not(*/tei:ref)]</entry>
-        <entry xml:id="iconographyPredIndices">[not(*/tei:ref)]</entry>
-        <entry xml:id="worksPredIndices">[not(*/mei:ref)]</entry>
-        <entry xml:id="biblioPredIndices">[not(*/tei:ref)]</entry>
-<!--      <entry xml:id="weberStudiesPredIndices">//tei:TEI[not(./tei:ref)]</entry>-->
+        <entry xml:id="iconographyPred">//tei:person[@corresp = '%1']/root()</entry>
+        <entry xml:id="newsPredIndices">[not(tei:TEI/tei:ref)]</entry>
+        <entry xml:id="lettersPredIndices">[not(tei:TEI/tei:ref)]</entry>
+        <entry xml:id="writingsPredIndices">[not(tei:TEI/tei:ref)]</entry>
+        <entry xml:id="diariesPredIndices">[tei:ab]</entry>
+        <entry xml:id="personsPredIndices">[not(tei:person/tei:ref)]</entry>
+        <entry xml:id="iconographyPredIndices">[not(tei:TEI/tei:ref)]</entry>
+        <entry xml:id="worksPredIndices">[not(mei:mei/mei:ref)]</entry>
+        <entry xml:id="biblioPredIndices">[not(biblStruct/tei:ref)]</entry>
+        <!--      <entry xml:id="weberStudiesPredIndices">//tei:TEI[not(./tei:ref)]</entry>-->
     </div>
     <div xml:id="htmlOptions">
         <entry xml:id="listViewMaxRows" type="xs:int">7</entry>
