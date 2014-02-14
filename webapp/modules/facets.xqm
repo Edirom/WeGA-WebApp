@@ -526,6 +526,7 @@ declare function facets:createChronoList($docType as xs:string, $lang as xs:stri
 :)
 declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $yearsSessionName as xs:string, $lang as xs:string, $recursionDepth as xs:int) as element(ul) {
     let $showYearsOnly := matches($entriesSessionName, 'biblio') (: Ausnahme für Bibliographie: hier werden nur Jahre angezeigt, keine Monate :)
+    let $sortDescending := matches($entriesSessionName, 'biblio|news') (: Bibliographie und News werden absteigend sortiert :)
     let $entries := session:get-attribute($entriesSessionName)
     let $distinctYears := session:get-attribute($yearsSessionName)
     let $maxRows := xs:int(config:get-option('listViewMaxRows'))
@@ -537,9 +538,9 @@ declare function facets:createYearAndMonthUl($entriesSessionName as xs:string, $
 			for $i at $count in (1 to $numberOfRows)
 			let $fromYearPosition := ($i - 1) * ($myDivisor) + 1
 			let $toYearPosition := if (($i * $myDivisor gt $countYears) or ($i eq $numberOfRows)) then $countYears else $i * $myDivisor
-			let $yearsInInterval := (: news werden umgekehrt angeführt, also latest->first und nicht first->latest :)
-			     if(xs:int($distinctYears[$fromYearPosition]) lt xs:int($distinctYears[$toYearPosition])) then $distinctYears[. = (xs:int($distinctYears[$fromYearPosition]) to xs:int($distinctYears[$toYearPosition]))]
-			     else $distinctYears[. = (xs:int($distinctYears[$toYearPosition]) to xs:int($distinctYears[$fromYearPosition]))]
+			let $yearsInInterval := (: news und biblio werden umgekehrt angeführt, also latest->first und nicht first->latest :)
+			     if($sortDescending) then $distinctYears[. = (xs:int($distinctYears[$toYearPosition]) to xs:int($distinctYears[$fromYearPosition]))] 
+			     else $distinctYears[. = (xs:int($distinctYears[$fromYearPosition]) to xs:int($distinctYears[$toYearPosition]))]
 			let $countDocsInInterval := count($entries[@year = $yearsInInterval]) (: kein Index mehr drauf !! :)
 			let $isOneYear := $distinctYears[$fromYearPosition] eq $distinctYears[$toYearPosition]
 			let $nestedMenu := ($countDocsInInterval gt 12 and not($showYearsOnly)) or (not($isOneYear) and $showYearsOnly)
