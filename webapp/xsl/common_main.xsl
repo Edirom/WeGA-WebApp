@@ -626,6 +626,13 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="tei:gap[@reason='outOfScope']">
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="'tei_supplied'"/>
+            <xsl:text> […] </xsl:text>
+        </xsl:element>
+    </xsl:template>
+    
     <!--  Hier mit priority 0.5, da in Briefen und Tagebüchern unterschiedlich behandelt  -->
     <xsl:template match="tei:pb|tei:cb" priority="0.5">
         <xsl:variable name="division-sign" as="xs:string">
