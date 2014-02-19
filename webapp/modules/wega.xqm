@@ -2023,38 +2023,6 @@ declare function wega:getIDByPND($pnd as xs:string) as xs:string {
 };
 
 (:~
- : Retrieves the latest (subversion) author for a given document ID
- :
- : @author Peter Stadler
- : @param $docName the document name
- : @return xs:string
-:)
-
-declare function wega:getLastAuthorOfDocument($docPath as xs:string) as xs:string? {
-    let $docHash := util:hash($docPath, 'md5')
-    let $entry := doc(config:get-option('svnChangeHistoryFile'))//id(concat('_',$docHash))
-    return 
-        if(exists($entry/@author)) then wega:dictionaryLookup(string($entry/@author),'svnUsers')
-        else ()
-};
-
-(:~
- : Retrieves the latest (subversion) modify date for a given document ID
- :
- : @author Peter Stadler
- : @param $docName the document name
- : @return xs:dateTime
-:)
-
-declare function wega:getLastModifyDateOfDocument($docPath as xs:string) as xs:dateTime? {
-    let $docHash := util:hash($docPath, 'md5')
-    let $entry := doc(config:get-option('svnChangeHistoryFile'))//id(concat('_',$docHash))
-    return 
-        if($entry/@dateTime castable as xs:dateTime) then $entry/@dateTime cast as xs:dateTime
-        else ()
-};
-
-(:~
  : Creates lightbox anchor
  :
  : @author Christian Epp

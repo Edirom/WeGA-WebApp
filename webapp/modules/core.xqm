@@ -210,7 +210,7 @@ declare function core:change-namespace($element as element(), $targetNamespace a
  :)
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
-    replace(string-join((request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink), "/"), "/+", "/")
+    core:join-path-elements((request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
 };
 
 (:~

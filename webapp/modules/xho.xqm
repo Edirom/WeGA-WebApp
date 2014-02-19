@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
 (:~
 : WeGA XHTML XQuery-Modul
@@ -12,12 +12,10 @@ declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
-declare namespace session = "http://exist-db.org/xquery/session";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
-declare namespace cache = "http://exist-db.org/xquery/cache";
+declare namespace request = "http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
-import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -85,23 +83,17 @@ declare function xho:createHeadContainer($lang as xs:string) as element()* {
 
 declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as element(xhtml:div) {
     let $docID := substring-before(functx:substring-after-last($docPath, '/'), '.')
-    let $docHash := util:hash($docPath, 'md5')
-(:    let $log := util:log-system-out($docPath):)
-    let $entry := doc(config:get-option('svnChangeHistoryFile'))//id(concat('_',$docHash))
-    let $author := if(exists($entry/@author))
-        then wega:dictionaryLookup(data($entry/@author), xs:ID('svnUsers'))
-        else ()
-    let $date := if(exists($entry/@dateTime))
-        then datetime:date-from-dateTime($entry/@dateTime)
-        else ()
-    let $rev := data($entry/@rev)
+    let $svnProps := config:get-svn-props($docID)
+    let $author := map:get($svnProps, 'author')
+    let $date := map:get($svnProps, 'dateTime') cast as xs:dateTime
+    let $rev := map:get($svnProps, 'rev')
     let $dateFormat := if($lang eq 'en')
         then '%B %d, %Y'
         else '%d. %B %Y'
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
     let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
     let $versionDate := wega:strftime($dateFormat, xs:date(config:get-option('versionDate')), $lang)
-    let $permalink := core:join-path-elements((config:get-option('baseHref'), $docID))
+    let $permalink := 'http://' || request:get-server-name() || core:link-to-current-app($docID)
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
@@ -241,7 +233,7 @@ declare function xho:createHtmlHead($stylesheets as xs:string*, $jscripts as xs:
 declare function xho:createBreadCrumb($doc as item(), $lang as xs:string) as element(xhtml:div) {
     let $docID := $doc/root()/*/@xml:id cast as xs:string
     let $baseHref := config:get-option('baseHref')
-    let $isDiary := starts-with($docID, 'A06') (: Diverse Sonderbehandlungen fürs Tagebuch :)
+    let $isDiary := config:is-diary($docID) (: Diverse Sonderbehandlungen fürs Tagebuch :)
     let $authors := if($isDiary) 
         then wega:createPersonLink('A002068', $lang, 'fs')
         else for $i in $doc//tei:titleStmt//tei:author return wega:printCorrespondentName($i, $lang, 'fs')
@@ -337,7 +329,7 @@ declare function xho:createWorksDocumentsUL($id as xs:string, $lang as xs:string
  :)
 
 declare function xho:collectCommonMetaData($doc as node()?) as element(wega:metaData) {
-    let $docPath := if(exists($doc)) then document-uri($doc/root()) else ()
+    let $docID := $doc/*/data(@xml:id)
     let $contributors := 
         if(exists($doc//tei:fileDesc/tei:titleStmt/(tei:author | tei:editor))) then for $i in $doc//tei:fileDesc/tei:titleStmt/(tei:author | tei:editor) return <xhtml:meta name="DC.contributor" content="{$i}"/>
         else (<xhtml:meta name="DC.contributor" content="Joachim Veit"/>,<xhtml:meta name="DC.contributor" content="Peter Stadler"/>)
@@ -345,9 +337,10 @@ declare function xho:collectCommonMetaData($doc as node()?) as element(wega:meta
     <wega:metaData>
         <xhtml:link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
         <xhtml:link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
-        {if(exists($docPath)) then (
-        <xhtml:meta name="DC.creator" content="{wega:getLastAuthorOfDocument($docPath)}"/>,
-        <xhtml:meta name="DC.date" content="{wega:getLastModifyDateOfDocument($docPath)}" scheme="DCTERMS.W3CDTF"/> )
+        {if($docID) then (
+            <xhtml:meta name="DC.creator" content="{map:get(config:get-svn-props($docID), 'author')}"/>,
+            <xhtml:meta name="DC.date" content="{map:get(config:get-svn-props($docID), 'dateTime')}" scheme="DCTERMS.W3CDTF"/> 
+        )
         else ()
         }
         <xhtml:meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>

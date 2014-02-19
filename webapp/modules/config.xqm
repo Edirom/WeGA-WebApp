@@ -36,10 +36,10 @@ declare variable $config:app-root as xs:string :=
 declare variable $config:catalogues-collection-path as xs:string := $config:app-root || '/catalogues';
 declare variable $config:options-file-path as xs:string := $config:catalogues-collection-path || '/options.xml';
 declare variable $config:options-file as document-node() := doc($config:options-file-path);
-declare variable $config:svn-change-history-file as document-node()? := 
-    if(doc-available($config:catalogues-collection-path || '/svnChangeHistory.xml')) then doc($config:catalogues-collection-path || '/svnChangeHistory.xml')
-    else ();
 declare variable $config:data-collection-path as xs:string := '/db/apps/WeGA-data';
+declare variable $config:svn-change-history-file as document-node()? := 
+    if(doc-available($config:data-collection-path || '/subversionHistory.xml')) then doc($config:data-collection-path || '/subversionHistory.xml')
+    else ();
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 
@@ -340,6 +340,22 @@ declare function config:getCurrentSvnRev() as xs:int? {
     if($config:svn-change-history-file/dictionary/@head castable as xs:int) then $config:svn-change-history-file/dictionary/@head cast as xs:int
     else ()
 };
+
+(:~
+ : Retrieves some subversion properties (latest revision, author, dateTime) for a given document ID
+ :
+ : @author Peter Stadler
+ : @param $docID the document ID
+ : @return map()
+:)
+
+declare function config:get-svn-props($docID as xs:string) as map() {
+    map:new(
+        for $prop in $config:svn-change-history-file//id($docID)/@*
+        return map:entry(local-name($prop), data($prop))
+    )
+};
+
 
 (:~
  : Create parameters for xsl transformations 
