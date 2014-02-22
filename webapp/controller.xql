@@ -281,7 +281,7 @@ else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $lit
     local:forwardIndices('bibliography', $lang)
 
 (: Tools :)
-else if (config:get-option('environment') eq 'development' and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
+else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{concat($exist:controller, '/modules/tools.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
@@ -543,7 +543,7 @@ else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:pa
     </dispatch>
 
 (: JMX Statusinformationen :)
-else if (config:get-option('environment') eq 'development' and $exist:path eq '/status') then 
+else if ($config:isDevelopment and $exist:path eq '/status') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
     </dispatch>
@@ -557,6 +557,11 @@ else if ($exist:path eq '/favicon.ico') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="/pix/weber_favicon.ico"/>
     </dispatch>
- 
+
+else if ($config:isDevelopment and $exist:resource eq 'ant-calls.xql') then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <ignore/>
+    </dispatch>
+    
 else $error404
 )
