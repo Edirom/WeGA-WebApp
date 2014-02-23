@@ -231,10 +231,10 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="wega:isPerson($docID)">
-                <xsl:value-of select="string-join(($baseHref, $lang, $docID), '/')"/>
+                <xsl:value-of select="wega:join-path-elements(($baseHref, $lang, $docID))"/>
             </xsl:when>
             <xsl:when test="exists($folder) and $authorID ne ''">
-                <xsl:value-of select="string-join(($baseHref, $lang, $authorID, $folder, $docID), '/')"/>
+                <xsl:value-of select="wega:join-path-elements(($baseHref, $lang, $authorID, $folder, $docID))"/>
             </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
@@ -312,6 +312,13 @@
         <xsl:variable name="middle" as="xs:double" select="(count($orderedNumbers) + 1) div 2"/>
         <xsl:value-of select="avg(($orderedNumbers[ceiling($middle)], $orderedNumbers[floor($middle)]))"/>
     </xsl:function>
+    
+    <xsl:function name="wega:join-path-elements" as="xs:string">
+        <xsl:param name="segs" as="xs:string*"/>
+        <xsl:value-of select="replace(string-join(('/', $segs), '/'), '/+', '/')"/>
+    </xsl:function>
+        
+        
 
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
