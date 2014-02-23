@@ -1,8 +1,12 @@
 var wegaSettings = {};
-wegaSettings.ajaxLoaderImage = "<img src='"+options.baseHref+"/"+options.html_pixDir+"/ajax-loader.gif' alt='spinning-wheel'/>";
-wegaSettings.ajaxLoaderImageBar = "<img src='"+options.baseHref+"/"+options.html_pixDir+"/ajax-loader2.gif' alt='spinning-wheel'/>";
+wegaSettings.ajaxLoaderImage = "<img src='" + joinPathElements([options.baseHref,options.html_pixDir,'ajax-loader.gif']) + "' alt='spinning-wheel'/>";
+wegaSettings.ajaxLoaderImageBar = "<img src='" + joinPathElements([options.baseHref,options.html_pixDir,'ajax-loader2.gif']) + "' alt='spinning-wheel'/>";
 wegaSettings.ajaxLoaderText = "Requesting content …";
 wegaSettings.ajaxLoaderCombined = wegaSettings.ajaxLoaderImage+wegaSettings.ajaxLoaderText;
+
+function joinPathElements(segs) {
+    return segs.join('/').replace(/\/+/g, '/');
+};
 
 function metaDataToTip(id, lang){
     var uniqId = uniqid('id');
