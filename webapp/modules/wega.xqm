@@ -194,7 +194,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
 declare function wega:datesOfBirthOrDeathTemplate($myType as xs:string, $content as item()*, $lang as xs:string) as element(p) {
     let $html_pixDir := config:get-option('html_pixDir')
     let $baseHref := config:get-option('baseHref')
-    let $iconPath := string-join(($baseHref, $html_pixDir, concat($myType,'.png')), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, concat($myType,'.png')))
     let $iconTitle := lang:get-language-string($myType,$lang) 
     return 
         element p {
@@ -648,7 +648,7 @@ return (
 element div {
     attribute class {$cssClasses},
     if($clickable) 
-        then (attribute onclick {concat("location.href='", string-join(($baseHref, $lang, $fffiId), '/'), "'")},
+        then (attribute onclick {concat("location.href='", core:join-path-elements(($baseHref, $lang, $fffiId)), "'")},
             attribute title {lang:get-language-string('showPersonSingleView', wega:printFornameSurname($regName), $lang)})
         else (),
 
@@ -757,7 +757,7 @@ declare function wega:getLetterMetaData($doc as document-node(), $lang as xs:str
     let $clickable := $usage eq 'listView'
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-	let $iconPath := string-join(($baseHref, $html_pixDir, 'letterIcon.png'), '/')
+	let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'letterIcon.png'))
 	let $cssClasses := if($usage eq 'toolTip')  
         then 'letter toolTip'
         else if($usage eq 'listView')
@@ -827,7 +827,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
     let $diaryEntry := $doc/tei:ab
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-    let $iconPath := string-join(($baseHref, $html_pixDir, 'diaryIcon.png'), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'diaryIcon.png'))
     let $clickable := $usage eq 'listView'
 	let $cssClasses := if($usage eq 'toolTip')  
         then 'diaryDay toolTip'
@@ -884,7 +884,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
     let $docID := $doc/tei:TEI/string(@xml:id)
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-    let $iconPath := string-join(($baseHref, $html_pixDir, 'writingIcon.png'), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'writingIcon.png'))
 	let $cssClasses := if($usage eq 'toolTip') 
         then 'writing toolTip'
         else if($usage eq 'listView')
@@ -934,7 +934,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
     let $clickable := $usage eq 'listView'
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-    let $iconPath := string-join(($baseHref, $html_pixDir, 'newsIcon.png'), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'newsIcon.png'))
 	let $cssClasses := if($usage eq 'toolTip') 
         then 'news toolTip'
         else if($usage eq 'listView')
@@ -990,7 +990,7 @@ declare function wega:getVarMetaData($doc as document-node(), $lang as xs:string
     let $clickable := $usage eq 'listView'
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-    let $iconPath := string-join(($baseHref, $html_pixDir, 'varIcon.png'), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'varIcon.png'))
 	let $cssClasses := if($usage eq 'toolTip') 
         then 'news toolTip'
         else if($usage eq 'listView')
@@ -1003,7 +1003,7 @@ declare function wega:getVarMetaData($doc as document-node(), $lang as xs:string
             attribute class {$cssClasses},
             if($clickable) 
                 then (
-                    attribute onclick {concat("location.href='", string-join((config:get-option('baseHref'), $lang, wega:getVarURL($docID,$lang)), '/'), "'")},
+                    attribute onclick {concat("location.href='", core:join-path-elements((config:get-option('baseHref'), $lang, wega:getVarURL($docID,$lang))), "'")},
                     attribute title {}
                 )
                 else (),
@@ -1045,7 +1045,7 @@ declare function wega:getBiblioMetaData($item as item(), $lang as xs:string, $us
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
     let $biblioType := if(exists($doc//tei:biblStruct/@type)) then $doc//tei:biblStruct/data(@type) else 'blank'
-    let $iconPath := string-join(($baseHref, $html_pixDir, concat('biblioIcon-',$biblioType,'.png')), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, concat('biblioIcon-',$biblioType,'.png')))
 	let $cssClasses :=
 	   if($usage eq 'toolTip') then 'biblio toolTip'
 	   else if($usage eq 'listView' and $clickable) then 'biblio item detail'
@@ -1119,7 +1119,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
         (:if($usage eq 'listView') then true() else false():)
     let $baseHref := config:get-option('baseHref')
     let $html_pixDir := config:get-option('html_pixDir')
-    let $iconPath := string-join(($baseHref, $html_pixDir, 'workIcon.png'), '/')
+    let $iconPath := core:join-path-elements(($baseHref, $html_pixDir, 'workIcon.png'))
 	let $cssClasses := if($usage eq 'toolTip') 
         then 'works toolTip'
         else if($usage eq 'listView')
@@ -1261,7 +1261,7 @@ declare function wega:createPersonLink($id as xs:string, $lang as xs:string, $or
         else wega:getRegName($id)
     return if($name != '')
         then 
-            <xhtml:a href="{string-join((config:get-option('baseHref'), $lang, $id), '/')}">
+            <xhtml:a href="{core:join-path-elements((config:get-option('baseHref'), $lang, $id))}">
                 <xhtml:span class="person" onmouseover="metaDataToTip('{$id}', '{$lang}')" onmouseout="UnTip()">{$name}</xhtml:span>
             </xhtml:a>
         else <xhtml:span class="{concat('noDataFound ', $id)}">{lang:get-language-string('unknown',$lang)}</xhtml:span>
@@ -1891,11 +1891,11 @@ declare function wega:createLinkToDoc($doc as document-node(), $lang as xs:strin
         else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
         else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
     return 
-        if(config:is-person($docID)) then string-join((config:get-option('baseHref'), $lang, $docID), '/') (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
+        if(config:is-person($docID)) then core:join-path-elements((config:get-option('baseHref'), $lang, $docID)) (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
         else if(config:is-biblio($docID)) then 
-            if(config:is-weberStudies($doc)) then string-join((config:get-option('baseHref'), $lang, lang:get-language-string('publications', $lang), $folder, $docID), '/')
+            if(config:is-weberStudies($doc)) then core:join-path-elements((config:get-option('baseHref'), $lang, lang:get-language-string('publications', $lang), $folder, $docID))
             else ()
-        else if(exists($folder) and $authorId ne '') then string-join((config:get-option('baseHref'), $lang, $authorId, $folder, $docID), '/')
+        else if(exists($folder) and $authorId ne '') then core:join-path-elements((config:get-option('baseHref'), $lang, $authorId, $folder, $docID))
         else ()
 };
 

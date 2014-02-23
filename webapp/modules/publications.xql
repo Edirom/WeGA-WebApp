@@ -26,7 +26,7 @@ declare function local:createTabsUL($pubType as xs:string, $lang as xs:string) a
             then core:getOrCreateColl('letters', $id)
             else core:getOrCreateColl($i, $id):)
         let $title := lang:get-language-string($i, $lang)
-        let $url := string-join(($baseHref, $lang, lang:get-language-string('publications', $lang), encode-for-uri($title)), '/')
+        let $url := core:join-path-elements(($baseHref, $lang, lang:get-language-string('publications', $lang), encode-for-uri($title)))
         return (
             <li>{
                 if(true()) (: Abfrage nach $coll:)

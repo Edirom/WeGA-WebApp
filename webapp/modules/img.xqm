@@ -39,7 +39,7 @@ declare function img:getPortraitPath($person as node(), $dimensions as xs:intege
     let $localPortraitURL := core:getOrCreateColl('iconography', $docID, true())//tei:figure[@n='portrait'][1]//tei:graphic[1]/data(@url)
     let $cachedPortrait := doc(concat($config:tmp-collection-path, replace($docID, '\d{2}$', 'xx'), '/', $docID, '.xml'))//localFile/string()
     let $graphicURL := 
-        if(not(functx:all-whitespace($localPortraitURL))) then string-join((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortraitURL), '/')
+        if(not(functx:all-whitespace($localPortraitURL))) then core:join-path-elements((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortraitURL))
         else 
             if(util:binary-doc-available($cachedPortrait)) then $cachedPortrait
             else 

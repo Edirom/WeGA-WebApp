@@ -227,7 +227,7 @@ return
         let $crop := if($pic//tei:graphic/xs:int(substring-before(@width, 'px')) > 400 or $pic//tei:graphic/xs:int(substring-before(@height, 'px')) > 600)
             then true()
             else false()
-        let $localURL := string-join(($local-path, $docID, $graphicUrl), '/')
+        let $localURL := core:join-path-elements(($local-path, $docID, $graphicUrl))
         let $thumbnail := <img src="{img:createDigilibURL($localURL, (40, 55), true())}" alt="{$caption}" width="40" height="55"/>
         return wega:createLightboxAnchor(img:createDigilibURL($localURL, $crop), $caption, 'person-iconography', $thumbnail),
         
@@ -772,7 +772,7 @@ declare function ajax:getNewsContext($contextContainer as xs:string, $docID as x
             element li {
                 attribute class {'gotoArchive'},
                 element a {
-                    attribute href {string-join(($baseHref, $lang, lang:get-language-string('indices', $lang), lang:get-language-string('news', $lang)), '/')},
+                    attribute href {core:join-path-elements(($baseHref, $lang, lang:get-language-string('indices', $lang), lang:get-language-string('news', $lang)))},
                     attribute title {lang:get-language-string('newsArchive', $lang)},
                     lang:get-language-string('goToArchive', $lang)
                 }

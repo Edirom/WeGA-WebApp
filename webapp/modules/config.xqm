@@ -302,7 +302,7 @@ declare function config:is-biblioType($string as xs:string) as xs:boolean {
 declare function config:getCollectionPath($docID as xs:string) as xs:string? {
     let $docType := config:get-doctype-by-id($docID)
     return 
-        if(exists($docType)) then string-join(($config:data-collection-path, $docType, replace($docID, '\d{2}$', 'xx')), '/') 
+        if(exists($docType)) then core:join-path-elements(($config:data-collection-path, $docType, replace($docID, '\d{2}$', 'xx'))) 
         else ()
 };
 

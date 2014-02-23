@@ -48,7 +48,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
 declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
-        return <sitemap><loc>{string-join((config:get-option('baseHref'), config:get-option('html_sitemapDir'), $fileName), '/')}</loc></sitemap>
+        return <sitemap><loc>{core:join-path-elements((config:get-option('baseHref'), config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
         }
     </sitemapindex>
 };
@@ -60,7 +60,7 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
         if(xmldb:collection-available($folderName)) then xmldb:last-modified($folderName, $fileName) 
         else local:createSitemapCollection($folderName) 
     let $updateNecessary := typeswitch($currentDateTimeOfFile) 
-	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or not(util:binary-doc-available(string-join(($folderName, $fileName), '/')))
+	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or not(util:binary-doc-available(core:join-path-elements(($folderName, $fileName))))
 	   default return true()
     return 
         if($updateNecessary) then (
@@ -76,7 +76,7 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
                 )
                 else ()
         )
-        else util:binary-doc(string-join(($folderName, $fileName), '/'))
+        else util:binary-doc(core:join-path-elements(($folderName, $fileName)))
 };
 
 declare function local:getMimeType($compression as xs:string) as xs:string? {

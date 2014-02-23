@@ -34,11 +34,12 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 declare function xho:createHeadContainer($lang as xs:string) as element()* {
     let $html_pixDir := config:get-option('html_pixDir')
     let $baseHref := config:get-option('baseHref')
+    let $log := util:log-system-out('baseHref: ' || $baseHref)
     let $uriTokens := tokenize(substring-after(xmldb:decode-uri(request:get-uri()), $baseHref), '/')
-    let $search := string-join(($baseHref, $lang, lang:get-language-string('search', $lang)), '/')
-    let $index := string-join(($baseHref, $lang, lang:get-language-string('index', $lang)), '/')
-    let $impressum := string-join(($baseHref, $lang, lang:get-language-string('about', $lang)), '/')
-    let $help := string-join(($baseHref, $lang, lang:get-language-string('help', $lang)), '/')
+    let $search := core:join-path-elements(($baseHref, $lang, lang:get-language-string('search', $lang)))
+    let $index := core:join-path-elements(($baseHref, $lang, lang:get-language-string('index', $lang)))
+    let $impressum := core:join-path-elements(($baseHref, $lang, lang:get-language-string('about', $lang)))
+    let $help := core:join-path-elements(($baseHref, $lang, lang:get-language-string('help', $lang)))
     let $switchLanguage := 
         for $i in $uriTokens[string-length(.) gt 2]
         return
@@ -200,11 +201,11 @@ declare function xho:createHtmlHead($stylesheets as xs:string*, $jscripts as xs:
             <xhtml:link rel="icon" href="{core:join-path-elements(($baseHref, $html_pixDir, 'weber_favicon.ico'))}" type="image/x-icon"/>
             {$metaData/*}
             {for $i in insert-before($stylesheets, 0, $commonStylesheets)
-                return <xhtml:link media="all" type="text/css" rel="stylesheet" href="{string-join(($baseHref, config:get-option('html_cssDir'), $i), '/')}"/>
+                return <xhtml:link media="all" type="text/css" rel="stylesheet" href="{core:join-path-elements(($baseHref, config:get-option('html_cssDir'), $i))}"/>
             }
-            <xhtml:script type="text/javascript" src="{string-join(($baseHref, 'functions/getJavaScriptOptions.xql'), '/')}"></xhtml:script>
+            <xhtml:script type="text/javascript" src="{core:join-path-elements(($baseHref, 'functions/getJavaScriptOptions.xql'))}"></xhtml:script>
             {for $i in insert-before($jscripts, 0, $commonJscripts)
-                return <xhtml:script type="text/javascript" src="{string-join(($baseHref, config:get-option('html_jsDir'), $i), '/')}"></xhtml:script> 
+                return <xhtml:script type="text/javascript" src="{core:join-path-elements(($baseHref, config:get-option('html_jsDir'), $i))}"></xhtml:script> 
             }
             {for $i in $additionalJScripts//function
             	return <xhtml:script type="text/javascript">{wega:printJavascriptFunction($i)};</xhtml:script>
@@ -246,14 +247,14 @@ declare function xho:createBreadCrumb($doc as item(), $lang as xs:string) as ele
         let $docType := 
             if($doc//tei:text[@type eq 'letter'])
                 then if($authorID ne '') 
-                    then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('correspondence',$lang)), '/')}">{lang:get-language-string('correspondence',$lang)}</xhtml:a>
+                    then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('correspondence',$lang)))}">{lang:get-language-string('correspondence',$lang)}</xhtml:a>
                     else <xhtml:span class="noDataFound">{lang:get-language-string('correspondence',$lang)}</xhtml:span>
                 else if($doc//tei:text[@type eq 'historic-news' or @type eq 'performance-review'])
                     then if($authorID ne '') 
-                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('writings',$lang)), '/')}">{lang:get-language-string('writings',$lang)}</xhtml:a>
+                        then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('writings',$lang)))}">{lang:get-language-string('writings',$lang)}</xhtml:a>
                         else <xhtml:span class="noDataFound">{lang:get-language-string('writings',$lang)}</xhtml:span>
                     else if($isDiary)
-                        then <xhtml:a href="{string-join(($baseHref, $lang, $authorID, lang:get-language-string('diaries',$lang)), '/')}">{lang:get-language-string('diaries',$lang)}</xhtml:a>
+                        then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('diaries',$lang)))}">{lang:get-language-string('diaries',$lang)}</xhtml:a>
                         else if($doc//tei:text[@type eq 'news'])
                             then <xhtml:span class="noDataFound">{lang:get-language-string('news',$lang)}</xhtml:span>
                             else ()
@@ -301,8 +302,8 @@ declare function xho:createWorksDocumentsUL($id as xs:string, $lang as xs:string
             let $coll := core:getOrCreateColl($i, $id, true())
             let $title := lang:get-language-string(concat($i,'TableTitle'), wega:printFornameSurname($persName), $lang)
             let $href := if($i eq 'letters')
-                then string-join(($baseHref, $lang, $id, lang:get-language-string('correspondence', $lang)), '/')
-                else string-join(($baseHref, $lang, $id, lang:get-language-string($i, $lang)), '/')
+                then core:join-path-elements(($baseHref, $lang, $id, lang:get-language-string('correspondence', $lang)))
+                else core:join-path-elements(($baseHref, $lang, $id, lang:get-language-string($i, $lang)))
             let $linkText := if($i eq 'letters')
                 then lang:get-language-string('correspondence', $lang)
                 else lang:get-language-string($i, $lang)
@@ -396,13 +397,13 @@ declare function xho:createTabsUL($curDocType as xs:string, $menuID as xs:string
         if($isPerson) then doc(config:get-option('menusFile'))//id('persons')
         else doc(config:get-option('menusFile'))//id($menuID)
     let $urlPart1 := 
-        if($isPerson) then string-join(($baseHref, $lang, $menuID), '/')
-        else string-join(($baseHref, $lang, lang:get-language-string($menuNode/pageName, $lang)), '/')
+        if($isPerson) then core:join-path-elements(($baseHref, $lang, $menuID))
+        else core:join-path-elements(($baseHref, $lang, lang:get-language-string($menuNode/pageName, $lang)))
     let $listItems := 
         for $i in $menuNode/entry
         let $coll := core:getOrCreateColl($i/docType, $menuID, true())
         let $title := lang:get-language-string($i/displayName, $lang)
-        let $url := string-join(($urlPart1, encode-for-uri($title)), '/')
+        let $url := core:join-path-elements(($urlPart1, encode-for-uri($title)))
 (:        let $log := util:log-system-out(string-join(($i/docType, $curDocType), ' ;; ')):)
         return (
             <xhtml:li>{
@@ -480,12 +481,12 @@ declare function xho:printEditionLinks($startID as xs:string, $lang as xs:string
     <xhtml:div id="edition">
         <xhtml:h1>{lang:get-language-string('digitalEdition', $lang)}</xhtml:h1>
         <xhtml:ul>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID), '/')}">Weber Person</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('correspondence', $lang)), '/')}">Weber {lang:get-language-string('correspondence', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('diaries', $lang)), '/')}">Weber {lang:get-language-string('diaries', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('writings', $lang)), '/')}">Weber {lang:get-language-string('writings', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, $startID, lang:get-language-string('works', $lang)), '/')}">Weber {lang:get-language-string('works', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('indices', $lang)), '/')}">{lang:get-language-string('indices', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, $startID))}">Weber Person</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, $startID, lang:get-language-string('correspondence', $lang)))}">Weber {lang:get-language-string('correspondence', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, $startID, lang:get-language-string('diaries', $lang)))}">Weber {lang:get-language-string('diaries', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, $startID, lang:get-language-string('writings', $lang)))}">Weber {lang:get-language-string('writings', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, $startID, lang:get-language-string('works', $lang)))}">Weber {lang:get-language-string('works', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('indices', $lang)))}">{lang:get-language-string('indices', $lang)}</xhtml:a></xhtml:li>
         </xhtml:ul>
     </xhtml:div>
 };
@@ -504,12 +505,12 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
     <xhtml:div id="project">
         <xhtml:h1>{lang:get-language-string('aboutTheProject', $lang)}</xhtml:h1>
         <xhtml:ul>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('indices',$lang), lang:get-language-string('news',$lang)),'/')}">{lang:get-language-string('news', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')),'/')}">{lang:get-language-string('editorialGuidelines', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, replace(lang:get-language-string('projectDescription',$lang), '\s', '_')), '/')}">{lang:get-language-string('projectDescription', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('publications',$lang)), '/')}">{lang:get-language-string('publications', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('bibliography',$lang)), '/')}">{lang:get-language-string('bibliography', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{string-join(($baseHref, $lang, lang:get-language-string('contact',$lang)), '/')}">{lang:get-language-string('contact', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('indices',$lang), lang:get-language-string('news',$lang)))}">{lang:get-language-string('news', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')))}">{lang:get-language-string('editorialGuidelines', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, replace(lang:get-language-string('projectDescription',$lang), '\s', '_')))}">{lang:get-language-string('projectDescription', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('publications',$lang)))}">{lang:get-language-string('publications', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('bibliography',$lang)))}">{lang:get-language-string('bibliography', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('contact',$lang)))}">{lang:get-language-string('contact', $lang)}</xhtml:a></xhtml:li>
         </xhtml:ul>
     </xhtml:div>
 };
@@ -531,7 +532,7 @@ declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:
         element xhtml:ul {
             element xhtml:li {
                 element xhtml:a {
-                    attribute href {string-join(($baseHref, $lang, lang:get-language-string('tools', $lang)), '/')},
+                    attribute href {core:join-path-elements(($baseHref, $lang, lang:get-language-string('tools', $lang)))},
                     'Tools'
                 }
             }
