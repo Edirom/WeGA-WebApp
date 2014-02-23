@@ -34,7 +34,6 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 declare function xho:createHeadContainer($lang as xs:string) as element()* {
     let $html_pixDir := config:get-option('html_pixDir')
     let $baseHref := config:get-option('baseHref')
-    let $log := util:log-system-out('baseHref: ' || $baseHref)
     let $uriTokens := tokenize(substring-after(xmldb:decode-uri(request:get-uri()), $baseHref), '/')
     let $search := core:join-path-elements(($baseHref, $lang, lang:get-language-string('search', $lang)))
     let $index := core:join-path-elements(($baseHref, $lang, lang:get-language-string('index', $lang)))
