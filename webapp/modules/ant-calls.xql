@@ -52,12 +52,19 @@ declare function local:get-collection-path($partialPath as xs:string) as xs:stri
         else ()
 };
 
+declare function local:reindex($docType as xs:string) as xs:boolean {
+    if($docType = $local:wega-docTypes) then xmldb:reindex(core:join-path-elements(($config:data-collection-path,$docType)))
+    else false()
+};
+
 let $func := request:get-parameter('func', 'getCurrentSvnRev')
 let $data := request:get-data() 
+let $docType := request:get-parameter('docType', 'biblio')
 
 return 
     switch($func)
     case 'getCurrentSvnRev' return config:getCurrentSvnRev()
     case 'patch-subversion-history' return local:patch-subversion-history($data)
     case 'delete-resources' return local:delete-resources($data)
-    default return ''
+    case 'reindex' return local:reindex($docType)
+    default return error(QName('wega','error'), 'no function parameter given or wrong function name')
