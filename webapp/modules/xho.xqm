@@ -244,19 +244,15 @@ declare function xho:createBreadCrumb($doc as item(), $lang as xs:string) as ele
         {for $i at $count in $authors 
         let $authorID := functx:substring-after-last($i/@href, '/')
         let $docType := 
-            if($doc//tei:text[@type eq 'letter'])
-                then if($authorID ne '') 
-                    then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('correspondence',$lang)))}">{lang:get-language-string('correspondence',$lang)}</xhtml:a>
-                    else <xhtml:span class="noDataFound">{lang:get-language-string('correspondence',$lang)}</xhtml:span>
-                else if($doc//tei:text[@type eq 'historic-news' or @type eq 'performance-review'])
-                    then if($authorID ne '') 
-                        then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('writings',$lang)))}">{lang:get-language-string('writings',$lang)}</xhtml:a>
-                        else <xhtml:span class="noDataFound">{lang:get-language-string('writings',$lang)}</xhtml:span>
-                    else if($isDiary)
-                        then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('diaries',$lang)))}">{lang:get-language-string('diaries',$lang)}</xhtml:a>
-                        else if($doc//tei:text[@type eq 'news'])
-                            then <xhtml:span class="noDataFound">{lang:get-language-string('news',$lang)}</xhtml:span>
-                            else ()
+            if(config:is-letter($docID)) then
+                if($authorID ne '') then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('correspondence',$lang)))}">{lang:get-language-string('correspondence',$lang)}</xhtml:a>
+                else <xhtml:span class="noDataFound">{lang:get-language-string('correspondence',$lang)}</xhtml:span>
+            else if(config:is-writing($docID)) then 
+                if($authorID ne '') then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('writings',$lang)))}">{lang:get-language-string('writings',$lang)}</xhtml:a>
+                else <xhtml:span class="noDataFound">{lang:get-language-string('writings',$lang)}</xhtml:span>
+            else if($isDiary) then <xhtml:a href="{core:join-path-elements(($baseHref, $lang, $authorID, lang:get-language-string('diaries',$lang)))}">{lang:get-language-string('diaries',$lang)}</xhtml:a>
+            else if(config:is-news($docID)) then <xhtml:span class="noDataFound">{lang:get-language-string('news',$lang)}</xhtml:span>
+            else ()
                                         
         return ($i, xs:string(' > '), $docType, xs:string(' > '), <xhtml:span class="{$docStatus}">{$docID}</xhtml:span>, if($count = $authorsCount) then () else element xhtml:br{})
         }
