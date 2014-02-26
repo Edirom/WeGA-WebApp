@@ -136,6 +136,7 @@ declare function facets:expandFacetTerm($facetTerm as xs:string, $lang as xs:str
     if(config:is-person($facetTerm)) then wega:getRegName($facetTerm)
     else if(config:is-work($facetTerm)) then wega:getRegTitle($facetTerm)
     else if(config:is-biblioType($facetTerm)) then lang:get-language-string($facetTerm, $lang)
+    else if($facetTerm = ('albumblatt', 'letter')) then lang:get-language-string($facetTerm, $lang)
     else if($facetTerm ne '') then $facetTerm
     else lang:get-language-string('unknown', $lang)
 };

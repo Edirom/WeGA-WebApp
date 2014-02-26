@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <dictionary xmlns="http://xquery.weber-gesamtausgabe.de/modules/facets" xml:id="facets">
     <entry xml:id="residences">
         <collection>persons</collection>
@@ -27,6 +26,10 @@
     <entry xml:id="placeOfAddressee">
         <collection>letters</collection>
         <path node="element">//tei:placeName[parent::tei:placeAddressee]</path>
+    </entry>
+    <entry xml:id="docType">
+        <collection>letters</collection>
+        <path node="attribute">//tei:text/@type</path>
     </entry>
     <entry xml:id="persons">
         <collection>writings</collection>
