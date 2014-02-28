@@ -72,6 +72,14 @@
         <collection default="no">works</collection>
         <path node="attribute">//mei:title[@level='s'][parent::mei:seriesStmt]/@n</path>
     </entry>
+    <entry xml:id="authors">
+        <collection>biblio</collection>
+        <path node="element">//tei:author</path>
+    </entry>
+    <entry xml:id="editors">
+        <collection>biblio</collection>
+        <path node="element">//tei:editor</path>
+    </entry>
     <entry xml:id="biblioType">
         <collection>biblio</collection>
         <path node="attribute">/*/@type</path>
