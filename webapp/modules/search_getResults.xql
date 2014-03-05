@@ -208,7 +208,7 @@ declare function local:searchFullText($coll,$query,$docType) as element()* {
  : @return the resulting sequence of documents 
  :)
 declare function local:createSearchField($docType,$searchFilter,$query) {
-  let $coll      := core:getOrCreateColl($docType, 'indices', false())
+  let $coll      := core:data-collection($docType)
   return
     if($searchFilter='fullText')      then local:searchFullText($coll,$query,$docType)
     else if($searchFilter='persName') then local:searchForPersName($coll,$query,$docType)
