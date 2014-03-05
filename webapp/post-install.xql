@@ -33,4 +33,5 @@ sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest'),
 
 (: store the collection configuration :)
 local:mkcol("/db/system/config", $target), 
-xdb:store-files-from-pattern(concat("/system/config", $target), concat($dir, '/indices'), "**/*.xconf", (), true())
+xdb:store-files-from-pattern(concat("/system/config", $target), concat($dir, '/indices'), "**/*.xconf", (), true()),
+xdb:reindex($target)
