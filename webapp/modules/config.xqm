@@ -326,7 +326,7 @@ declare function config:eXistDbWasUpdatedAfterwards($dateTime as xs:dateTime?) a
  : @return xs:dateTime
 :)
 declare function config:getDateTimeOfLastDBUpdate() as xs:dateTime? {
-    if($config:svn-change-history-file) then xmldb:last-modified($config:catalogues-collection-path, 'svnChangeHistory.xml')
+    if($config:svn-change-history-file) then xmldb:last-modified($config:data-collection-path, 'subversionHistory.xml')
     else ()
 };
 
