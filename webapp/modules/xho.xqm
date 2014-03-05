@@ -93,7 +93,7 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
     let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
     let $versionDate := wega:strftime($dateFormat, xs:date(config:get-option('versionDate')), $lang)
-    let $permalink := 'http://' || request:get-server-name() || core:link-to-current-app($docID)
+    let $permalink := config:get-option('permaLinkPrefix') || core:link-to-current-app($docID)
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
