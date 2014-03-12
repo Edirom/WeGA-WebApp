@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
@@ -9,10 +9,12 @@ declare namespace response="http://exist-db.org/xquery/response";
 declare namespace util = "http://exist-db.org/xquery/util";
 declare namespace ft   = "http://exist-db.org/xquery/lucene";
 declare namespace kwic = "http://exist-db.org/xquery/kwic";
+declare namespace fn="http://www.w3.org/2005/xpath-functions";
 import module namespace wega = "http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace facets = "http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8";
@@ -286,11 +288,13 @@ declare function local:intersectOtherResults($result, $docType, $searchFilter, $
  : @return sequence of root nodes
  :)
  
-declare function local:getResults($docType as xs:string) as element()* {
-    if(request:get-parameter('searchString','') eq '') then core:getOrCreateColl($docType, 'indices', true())/*
+declare function local:getResults($searchString as xs:string, $docType as xs:string) as element()* {
+    if($searchString eq '') then core:getOrCreateColl($docType, 'indices', true())/*
     else
-        let $result := local:intersectLuceneResults((), $docType, 'fullText',          local:buildQuery(request:get-parameter('fullText',''),'fullText'))
-        let $result := local:intersectLuceneResults($result, $docType, 'persName',          local:buildQuery(request:get-parameter('persName',''),'persName'))
+        let $result := local:intersectLuceneResults((), $docType, 'fullText',          local:buildQuery($searchString,'fullText'))
+        
+        (: Advanced search temporarily disabled :)
+        (:let $result := local:intersectLuceneResults($result, $docType, 'persName',          local:buildQuery(request:get-parameter('persName',''),'persName'))
         let $result := local:intersectLuceneResults($result, $docType, 'persNameSender',    local:buildQuery(request:get-parameter('persNameSender',''),'persNameSender'))
         let $result := local:intersectLuceneResults($result, $docType, 'persNameAddressee', local:buildQuery(request:get-parameter('persNameAddressee',''),'persNameAddressee'))
         let $result := local:intersectLuceneResults($result, $docType, 'placeName',         local:buildQuery(request:get-parameter('placeName',''),'placeName'))
@@ -299,7 +303,7 @@ declare function local:getResults($docType as xs:string) as element()* {
         let $result := local:intersectOtherResults( $result, $docType, 'id',     tokenize(request:get-parameter('id',''),'\s+'))
         let $result := local:intersectOtherResults( $result, $docType, 'pnd',    tokenize(request:get-parameter('pnd',''),'\s+'))
         let $result := local:intersectOtherResults( $result, $docType, 'asksam', tokenize(request:get-parameter('asksam',''),'\s+'))
-        let $result := local:intersectOtherResults( $result, $docType, 'ks',     tokenize(request:get-parameter('ks',''),'\s+'))
+        let $result := local:intersectOtherResults( $result, $docType, 'ks',     tokenize(request:get-parameter('ks',''),'\s+')):)
         return $result
 };
 
@@ -351,27 +355,54 @@ declare function local:getOnlyOneDateResults($searchString,$docType) {
     return $result1 | $result2
 };
 
+(:~
+ : Helper function for local:search()
+ : Stores the result sequence in a session attribute
+ :
+ : @author Christian Epp
+ : @author Peter Stadler
+ : @param $searchResults the search results
+ : @return empty()
+ :)
+declare %private function local:save-session($searchResults as item()*) as empty() {
+    let $firstDoc := session:get-attribute('firstDoc') (: created by local:searchForId() :)
+    let $searchResults := ($firstDoc,$searchResults except $firstDoc) (: put firstDoc at position 1 and exclude it from the remaining result set  :)
+    let $remove-firstDoc := session:remove-attribute('firstDoc')
+    let $remove-searchSession := session:remove-attribute(config:get-option('searchSessionName'))
+    return session:set-attribute(config:get-option('searchSessionName'), $searchResults) (: Speichert das Ergebnis in der Sessionvariable :)
+};
+
+(:~
+ : Main search function
+ : The result sequence will be stored in a session attribute (configurable via options.xml) 
+ : while this function simply outputs the ammount of hits 
+ :
+ : @author Christian Epp
+ : @author Peter Stadler
+ : @param $searchString the query string
+ : @param $docTypes the various collections to search in (e.g. persons, letters) 
+ : @return the ammount of document hits as xs:integer
+ :)
+declare %private function local:search($searchString as xs:string, $docTypes as xs:string+, $date as element(tei:date)*) as xs:integer {
+    let $searchString :=
+        if($date) then string-join(analyze-string($searchString, string-join($date, '|'))//fn:non-match, ' ')
+        else $searchString
+    let $search := for $docType in $docTypes return local:getResults($searchString, $docType)
+    let $search := 
+        if(some $x in $date/@when satisfies $x castable as xs:date) then $search[.//tei:date/@when = $date/@when] 
+        else $search
+    let $searchResults := for $x in $search order by ft:score($x) descending, $x(://tei:persName[@type="reg"]:) ascending return $x
+    let $save-session := local:save-session($searchResults) 
+    return 
+        count($searchResults)
+};
+
 (: ############################# :)
 
 let $lang         := request:get-parameter('lang','de')
 let $setHeader    := response:set-header('cache-control','no-cache')
-let $searchString := request:get-parameter('searchString','')
-let $docTypes := functx:value-intersect($local:docTypesForSearch, request:get-parameter('collection',$local:docTypesForSearch)) (: Never trust user input :)
-    
-(:let $log := util:log-system-out($docTypes):)
+let $searchString := normalize-space(request:get-parameter('searchString',''))
+let $docTypes     := functx:value-intersect($local:docTypesForSearch, request:get-parameter('collection',$local:docTypesForSearch)) (: Never trust user input :)
+let $date         := date:parse-date($searchString)
 
-let $numberOfSearchItems := count(distinct-values(tokenize($searchString,'\s+')))
-
-let $search := if(request:get-parameter-names() = "date" and  $numberOfSearchItems = 1)
-    then for $docType in $docTypes return local:getOnlyOneDateResults(distinct-values(tokenize(request:get-parameter('date',''),'\s+')),$docType) 
-    else for $docType in $docTypes return local:getResults($docType)
-
-let $searchResults := 
-    if($searchString eq '') then $search
-    else for $x in $search order by ft:score($x) descending, $x(://tei:persName[@type="reg"]:) ascending return $x
-let $firstDoc := session:get-attribute('firstDoc')
-let $searchResults := ($firstDoc,$searchResults except $firstDoc)
-let $firstDoc := session:remove-attribute('firstDoc')
-let $deletion := session:remove-attribute(config:get-option('searchSessionName'))
-let $result := session:set-attribute(config:get-option('searchSessionName'), $searchResults) (: Speichert das Ergebnis in der Sessionvariable :)
-return count($searchResults)
+return local:search($searchString, $docTypes, $date)

@@ -7,9 +7,11 @@ module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace pdr="http://pdr.bbaw.de/namespaces/pdrws/";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 (:~
@@ -125,4 +127,23 @@ declare function date:strfdate($date as xs:date, $lang as xs:string, $format as 
     let $output := replace($output, '%A', lang:get-language-string(concat('day',datetime:day-in-week($date)), $lang))
 
     return normalize-space($output)
+};
+
+(:~
+ : Parse date from string via PDR webservice
+ :
+ : @author Peter Stadler
+ : @param $input the input string
+ : @return tei:date element with the matching part of the string as text content and isodate attributes
+ :)
+declare function date:parse-date($input as xs:string) as element(tei:date)* {
+    let $webservice-url := 'https://pdrprod.bbaw.de/pdrws/dates?lang=de&amp;output=xml'
+    let $text := 'text=' || encode-for-uri($input)
+    let $pdr-result := wega:http-get(xs:anyURI(string-join(($webservice-url, $text), '&amp;')))//pdr:result
+    return 
+        if($pdr-result) then 
+            for $result in $pdr-result 
+            return 
+                element tei:date {$result/pdr:isodate/@*, $result/string(pdr:occurrence)}
+        else ()
 };
