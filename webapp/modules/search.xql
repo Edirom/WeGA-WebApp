@@ -53,7 +53,7 @@ return
                 <form method="get" action="javascript:requestSearchResults('{$lang}',0)" id="searchForm">
                     <div id="searchFields">
                         <input id="input_0" type="text" name="input_0" maxlength="2048" title="{lang:get-language-string('WeGA-Search',$lang)}" style="width:400px" class="search-input"/><!-- size="55"  -->
-                        <span onclick="requestSelectRow('{$lang}','1','');this.toggle();$('input_0').toggle()" style="vertical-align:middle;text-align:right" class="side-orders">{lang:get-language-string('advancedSearch',$lang)}</span>
+                        <!-- <span onclick="requestSelectRow('{$lang}','1','');this.toggle();$('input_0').toggle()" style="vertical-align:middle;text-align:right" class="side-orders">{lang:get-language-string('advancedSearch',$lang)}</span> -->
                     </div>
                     <div>
                         <input type="submit" class="search-button" title="{lang:get-language-string('WeGA-Search',$lang)}" value="{lang:get-language-string('WeGA-Search',$lang)}"/>
