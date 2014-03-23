@@ -28,6 +28,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 (:~
@@ -60,7 +61,7 @@ declare function ajax:getTodaysEvents($date as xs:date, $lang as xs:string) as e
                     attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)}
                 )
                 else (),
-                concat(wega:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
+                concat(date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
                 if($typeOfEvent eq 'letter') then ajax:createLetterLink($teiDate, $lang)
                 else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang))
             }
@@ -664,7 +665,7 @@ declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) a
         element p {
             attribute class {'authorDate'},
             wega:createPersonLink($authorID, $lang, 'fs'), 
-            concat(', ', wega:strftime($dateFormat, datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang))
+            concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
         }
 };
 
@@ -689,7 +690,7 @@ declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:
         else '%A, %d. %B %Y'
     return 
         <div class="diaryDay" id="{$doc/tei:ab/string(@xml:id)}">
-            <h2>{wega:strftime($dateFormat, xs:date($doc/tei:ab/@n), $lang)}</h2>
+            <h2>{date:strfdate(xs:date($doc/tei:ab/@n), $lang, $dateFormat)}</h2>
             {wega:changeNamespace(transform:transform($doc, doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl')), $xslParams), '', ())}
             {wega:changeNamespace(transform:transform($doc, doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl')), $xslParams), '', ())}
         </div>,
@@ -720,14 +721,14 @@ declare function ajax:getDiaryContext($contextContainer as xs:string, $docID as 
                 element li {
                     lang:get-language-string('prevDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink(core:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ())
+                    wega:createDocLink(core:doc($preceding/@docID), date:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ())
                 }
             else (),
             if($following) then
                 element li {
                     lang:get-language-string('nextDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink(core:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ())
+                    wega:createDocLink(core:doc($following/@docID), date:getNiceDate($following/text() cast as xs:date, $lang), $lang, ())
                 }
             else ()
             }
@@ -759,14 +760,14 @@ declare function ajax:getNewsContext($contextContainer as xs:string, $docID as x
                 then element li {
                     lang:get-language-string('prevDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink(core:doc($preceding/@docID), wega:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
+                    wega:createDocLink(core:doc($preceding/@docID), date:getNiceDate($preceding/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
                 else (),
             if($following)  (: Absteigende Sortierung! :)
                 then element li {
                     lang:get-language-string('nextDiaryDay', $lang),
                     <br/>,
-                    wega:createDocLink(core:doc($following/@docID), wega:getNiceDate($following/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
+                    wega:createDocLink(core:doc($following/@docID), date:getNiceDate($following/text() cast as xs:date, $lang), $lang, ()) (: Absteigende Sortierung! :)
                 }
                 else (),
             element li {

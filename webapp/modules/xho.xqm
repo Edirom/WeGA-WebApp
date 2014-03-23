@@ -19,6 +19,7 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8";
@@ -92,15 +93,15 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
         else '%d. %B %Y'
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
     let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
-    let $versionDate := wega:strftime($dateFormat, xs:date(config:get-option('versionDate')), $lang)
+    let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
     let $permalink := config:get-option('permaLinkPrefix') || core:link-to-current-app($docID)
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
                 <xhtml:p>{lang:get-language-string('proposedCitation', $lang)}, {$permalink} (<xhtml:a href="{wega:createLinkToDoc(core:doc(config:get-option('versionNews')), $lang)}">{lang:get-language-string('versionInformation',($version, $versionDate), $lang)}</xhtml:a>) </xhtml:p>
                 <xhtml:p>{
-                    if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',(wega:strftime($dateFormat, $date, $lang),$author),$lang)
-                    else lang:get-language-string('lastChangeDateWithoutAuthor', wega:strftime($dateFormat, $date, $lang), $lang)
+                    if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',(date:strfdate($date, $lang, $dateFormat),$author),$lang)
+                    else lang:get-language-string('lastChangeDateWithoutAuthor', date:strfdate($date, $lang, $dateFormat), $lang)
                 }</xhtml:p>
                   {if($lang eq 'en') then 
                   <xhtml:p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 

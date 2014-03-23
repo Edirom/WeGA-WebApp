@@ -24,6 +24,7 @@ import module namespace http = "http://expath.org/ns/http-client";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -32,121 +33,6 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 declare variable $wega:romanNums as xs:integer* := (1000,900,500,400,100,90,50,40,10,9,5,4,1);
 declare variable $wega:romanAlpha as xs:string* := ('M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I');
 declare variable $wega:historyStack := ();
-
-(:~
- : String from time
- :
- : @author Peter Stadler
- : @param $format time format
- : @param $value the date
- : @param $lang the language switch (en|de)
- : @return xs:string 
- :)
-
-declare function wega:strftime($format as xs:string, $value as xs:date, $lang as xs:string) as xs:string
-{
-    let $day    := day-from-date($value)
-    let $month  := month-from-date($value)
-    let $year   := wega:formatYear(number(year-from-date($value)), $lang)
-    let $dicID  := concat('dic_',$lang)
-    let $output := replace($format, '%d', string($day))
-    let $output := replace($output, '%Y', string($year))
-    let $output := replace($output, '%B', wega:dictionaryLookup(concat('month',$month), $dicID))
-    let $output := replace($output, '%A', wega:dictionaryLookup(concat('day',datetime:day-in-week($value)), $dicID))
-
-    return wega:cleanString($output)
-};
-
-(:~
- : formats year specification depending on positive or negative value
- :
- : @author Peter Stadler
- : @param $year the year as (positive or negative) integer
- : @param $lang the language switch (en|de)
- : @return xs:string
- :)
- 
-declare function wega:formatYear($year as xs:int, $lang as xs:string) as xs:string {
-    if($year gt 0) then $year cast as xs:string
-    else if($lang eq 'en') then concat($year*-1,' BC')
-        else concat($year*-1,' v.&#8239;Chr.')
-};
-
-(:~
- : Casts date format
- :
- : @author Peter Stadler
- : @param $date in the format 'Wed, 03 Nov 2010 19:09:48 GMT'
- : @return xs:dateTime if succesfull, emtpy otherwise
- :)
-
-declare function wega:castDateFormat($date as xs:string) as xs:dateTime? {
-    let $splitDate := tokenize($date, ' ')
-    let $day := string($splitDate[2])
-    let $month := for $i in (1 to 12) return if(matches(substring(wega:dictionaryLookup(concat('month', $i), 'dic_en'), 1, 3), string($splitDate[3]))) 
-        then if($i le 9)
-            then concat('0', $i)
-            else $i
-        else ()
-    let $year := string($splitDate[4])
-    let $time := string($splitDate[5])
-    return xs:dateTime(concat($year, '-', $month, '-', $day, 'T', $time))
-};
-
-(:~
- : Returns number of days in a month. Does not consider leap years but always returns 28 days for february.
- :
- : @author Christian Epp
- : @param $month as integer value
- : @return number of days in month 
- :)
-declare function wega:daysOfMonth($month as xs:integer) as xs:integer {
-    if($month eq 2) then 28
-    else if($month eq 4 or $month eq 6 or $month eq 9 or $month eq 11) then 30
-    else 31
-};
-
-(:~
- : Creates a verbal date representation for i.e. birthday.
- :
- : @author Christian Epp
- : @param $date the date to be displayed
- : @param $lang the current language (en|de)
- : @return Text, der in den Meta-Daten angezeigt wird
- :)
-declare function wega:printDate($date as element(tei:date)?, $lang as xs:string) as xs:string {
-    let $dateFormat := if($lang = 'en') then '%d %B %Y' else '%d. %B %Y'
-    let $notBefore  := if($date/@notBefore) then wega:getCastableDate(data($date/@notBefore),false()) else()
-    let $notAfter   := if($date/@notAfter)  then wega:getCastableDate(data($date/@notAfter),true()) else()
-    let $date := 
-        if($date/@when)
-        then if($date/@when castable as xs:date)
-             then wega:getNiceDate($date/@when,$lang)
-             else let $d := number(data($date/@when))
-                  return if($d>0)
-                         then $d
-                         else lang:get-language-string('BC',string($d*-1),$lang) 
-        else if($date/@notBefore)
-             then if($date/@notAfter)
-                 then if(year-from-date($notBefore) eq year-from-date($notAfter)) 
-                      then if(month-from-date($notBefore) eq month-from-date($notAfter))
-                           then if(day-from-date($notBefore)=1 and day-from-date($notAfter)=wega:daysOfMonth(month-from-date($notAfter)))
-                                then concat(lang:get-language-string(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
-                                else lang:get-language-string('dateBetween',(xs:string(day-from-date($notBefore)),wega:getNiceDate($notAfter,$lang)),$lang)                       (: Zwischen 1. und 7. August 1801 :)
-                           else if(month-from-date($notBefore)=1 and month-from-date($notAfter)=12)
-                                then year-from-date($notBefore)                                                                                                      (: 1879 :)
-                                else lang:get-language-string('dateBetween', (wega:strftime($dateFormat, $notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
-                      else lang:get-language-string('dateBetween', (wega:getNiceDate($notBefore,$lang), wega:getNiceDate($notAfter,$lang)), $lang)                     (: Zwischen 1. Juli 1709 und 4. August 1789 :)
-                 else lang:get-language-string('dateNotBefore', (wega:getNiceDate($notBefore,$lang)), $lang)                                                           (: Frühestens am 1.Juli 1709 :)
-            else
-                if($date/@notAfter)
-                then lang:get-language-string('dateNotAfter', (wega:getNiceDate($notAfter, $lang)), $lang)                                                             (: Spätestens am 1.Juli 1709 :)
-                else 
-                    let $x := replace(data($date),'"','')
-                    return if($x castable as xs:date) then wega:getNiceDate(xs:date($x),$lang) else()
-        
-        return string($date)
-};
 
 (:~
  : Constructs the html block with the birth and death information of a person (to be used within wega:getPersonMetaData())   
@@ -171,7 +57,7 @@ declare function wega:printDatesOfBirthOrDeath($birthOrDeath as element(), $lang
                 let $content := (
                     element span {
                         attribute class {string-join(('date', $certainty), ' ')},
-                        wega:printDate($date, $lang)
+                        date:printDate($date, $lang)
                     },
                     $place
                 )
@@ -235,112 +121,6 @@ declare function wega:printPlaceOfBirthOrDeath($placeNames as element(tei:placeN
 }; 
 
 (:~
- : Checks, if given $date is castable as xs:date. If it's not castable, but has a length of 4, it will be changed into a date.  
- : 
- : @author Christian Epp
- : @author Peter Stadler
- : @param $node the supposed date node
- : @param $latest is true if the current node has a notAfter-attribute
- : @return the date in right type or empty
- :)
-
-declare function wega:getCastableDate($date as xs:string, $latest as xs:boolean) as xs:string? {
-    if($date castable as xs:date)
-    then $date
-    else if($date castable as xs:gYear)
-        (:if(string-length($date)=4):)
-         then
-            if($latest)
-            then concat($date,'-12-31')
-            else concat($date,'-01-01')
-         else()
-};    
-
-(:~
- : Gets nice date depending on the language
- :
- : @author Peter Stadler
- : @param $date 
- : @param $lang the current language (en|de)
- : @return xs:string
- :)
-
-declare function wega:getNiceDate($date as xs:date?, $lang as xs:string) as xs:string? {
-    let $dateFormat := if($lang eq 'en')
-        then '%B %d, %Y'
-        else '%d. %B %Y'
-	return if($date castable as xs:date) 
-	   then wega:strftime($dateFormat,$date,$lang)
-	   else $date
-};
-
-(:~
- : Construct one normalized xs:date from a tei:date element's date or duration attributes (@from, @to, @when, @notBefore, @notAfter)
- :  
- : @author Christian Epp
- : @author Peter Stadler
- : @param $date the tei:date
- : @param $latest a boolean whether the constructed date shall be the latest or earliest possible
- : @return the constructed date or empty
- :)
-
-declare function wega:getOneNormalizedDate($date as element()?, $latest as xs:boolean) as xs:string?
-{
-    if($date/@when)
-        then if($date/@when castable as xs:date) 
-            then $date/string(@when)
-            else if($date/@when castable as xs:dateTime)
-                then substring($date/@when,1,10)
-                else wega:getCastableDate($date/data(@when), $latest)
-        else if($latest)
-            then if($date/@notAfter)
-                then if($date/@notAfter castable as xs:date)
-                    then $date/string(@notAfter)
-                    else wega:getCastableDate($date/data(@notAfter), $latest)
-                else if($date/@notBefore)
-                    then if($date/@notBefore castable as xs:date)
-                        then $date/string(@notBefore)
-                        else wega:getCastableDate($date/data(@notBefore), $latest)
-                    else if($date/@to)
-                        then if($date/@to castable as xs:date)
-                            then $date/string(@to)
-                            else wega:getCastableDate($date/data(@to), $latest)
-                        else if($date/@from)
-                            then if($date/@from castable as xs:date)
-                                then $date/string(@from)
-                                else wega:getCastableDate($date/data(@from), $latest)
-                            else ()
-(: Alles nochmal in umgekehrter Reihenfolge, wenn der früheste Zeitpunkt gewünscht ist. :)                                
-            else if($date/@notBefore)
-                then if($date/@notBefore castable as xs:date)
-                    then $date/string(@notBefore)
-                    else wega:getCastableDate($date/data(@notBefore), $latest)
-                else if($date/@notAfter)
-                    then if($date/@notAfter castable as xs:date)
-                        then $date/string(@notAfter)
-                        else wega:getCastableDate($date/data(@notAfter), $latest)
-                    else if($date/@from)
-                        then if($date/@from castable as xs:date)
-                            then $date/string(@from)
-                            else wega:getCastableDate($date/data(@from), $latest)
-                        else if($date/@to)
-                            then if($date/@from castable as xs:date)
-                                then $date/string(@to)
-                                else wega:getCastableDate($date/data(@to), $latest)
-                            else ()
-};
-
-declare function wega:getYearFromDate($date as element()?) as xs:string? {
-    if(matches($date/@when, '^\d{4}')) then substring($date/@when, 1, 4)
-    else if(matches($date/@notBefore, '^\d{4}')) then substring($date/@notBefore, 1, 4)
-    else if(matches($date/@from, '^\d{4}')) then substring($date/@from, 1, 4)
-    else if(matches($date/@notAfter, '^\d{4}')) then substring($date/@notAfter, 1, 4)
-    else if(matches($date/@to, '^\d{4}')) then substring($date/@to, 1, 4)
-    else ()
-};
-
-
-(:~
  : Gets called on load of person_singleView.xql and puts tei:person//tei:event on screen
  :
  : @author Christian Epp
@@ -356,12 +136,12 @@ declare function wega:getEvents($person as node(), $lang as xs:string) as elemen
     let $end   := if($end   castable as xs:date) then $end   else xs:date('3001-01-01'):)
     
     for $event at $i in $person//tei:event
-        let $from := if(exists($event/@from)) then concat('f', wega:getCastableDate(string($event/@from), false())) else ()
-        let $to := if(exists($event/@to)) then concat('t', wega:getCastableDate(string($event/@to), true())) else ()
-        let $notBefore := if(exists($event/@notBefore)) then concat('b', wega:getCastableDate(string($event/@notBefore), false())) else ()
-        let $notAfter := if(exists($event/@notAfter)) then concat('a', wega:getCastableDate(string($event/@notAfter), true())) else ()
-        let $whenFrom := if(exists($event/@when)) then wega:getCastableDate(string($event/@when), false()) else ()
-        let $whenTo := if(exists($event/@when)) then wega:getCastableDate(string($event/@when), true()) else ()
+        let $from := if(exists($event/@from)) then concat('f', date:getCastableDate(string($event/@from), false())) else ()
+        let $to := if(exists($event/@to)) then concat('t', date:getCastableDate(string($event/@to), true())) else ()
+        let $notBefore := if(exists($event/@notBefore)) then concat('b', date:getCastableDate(string($event/@notBefore), false())) else ()
+        let $notAfter := if(exists($event/@notAfter)) then concat('a', date:getCastableDate(string($event/@notAfter), true())) else ()
+        let $whenFrom := if(exists($event/@when)) then date:getCastableDate(string($event/@when), false()) else ()
+        let $whenTo := if(exists($event/@when)) then date:getCastableDate(string($event/@when), true()) else ()
         let $idDatePart := if(exists($whenFrom))
                 then if($whenFrom ne $whenTo)
                     then concat('b', $whenFrom, 'a', $whenTo)
@@ -845,7 +625,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
         if($clickable) 
             then (
                 attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                attribute title {lang:get-language-string('showDiaryDay', ('Weber', wega:strftime(substring-after($dateFormat, ', '), $date, $lang)), $lang)}
+                attribute title {lang:get-language-string('showDiaryDay', ('Weber', date:strfdate($date, $lang, substring-after($dateFormat, ', '))), $lang)}
             )
             else (),
         attribute class {$cssClasses},
@@ -858,7 +638,7 @@ declare function wega:getDiaryMetaData($doc as document-node(), $lang as xs:stri
         element div {
             attribute class {'right'},
             element h1 {
-                wega:strftime($dateFormat, $date, $lang)
+                date:strfdate($date, $lang, $dateFormat)
             },
             element p {
                 wega:printPreview(string($diaryEntry), 200)
@@ -948,7 +728,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
             if($clickable) 
                 then (
                     attribute onclick {concat("location.href='", wega:createLinkToDoc($doc, $lang), "'")},
-                    attribute title {lang:get-language-string('showNewsSingleView', wega:getNiceDate($date, $lang), $lang)}
+                    attribute title {lang:get-language-string('showNewsSingleView', date:getNiceDate($date, $lang), $lang)}
                 )
                 else (),
             element div {
@@ -967,7 +747,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
                 },
                 element p {
                     attribute class {'news-metadata-teaser-date'},
-                    wega:getNiceDate($date, $lang)
+                    date:getNiceDate($date, $lang)
                 }
             }
         }
@@ -1837,7 +1617,7 @@ declare function wega:getWritingHead($doc as document-node(), $xslParams as elem
 
 declare function wega:getLetterHead($doc as document-node(), $lang as xs:string) as element()+ {
     let $docTitle := $doc//tei:fileDesc/tei:titleStmt/tei:title[@level="a"]
-    return if($docTitle ne '') 
+    return if(core:normalize-space($docTitle) ne '') 
         then (
             element h1 { $docTitle/text()[1] },
             element h2 { $docTitle/text()[2] }
@@ -1855,9 +1635,9 @@ declare function wega:getLetterHead($doc as document-node(), $lang as xs:string)
 :)
 
 declare function wega:constructLetterHead($doc as document-node(), $lang as xs:string) as element()+ {
-    let $id := $doc//tei:TEI/string(@xml:id)
-    let $date := if(exists(wega:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false())))
-        then wega:getNiceDate(wega:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false()), $lang)
+    let $id := $doc/tei:TEI/string(@xml:id)
+    let $date := if(exists(date:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false())))
+        then date:getNiceDate(date:getOneNormalizedDate($doc//tei:dateSender/tei:date[1], false()), $lang)
         else lang:get-language-string('undated', $lang)
     let $sender := wega:printCorrespondentName($doc//tei:sender/*[1], $lang, 'fs')
     let $addressee := wega:printCorrespondentName($doc//tei:addressee/*[1], $lang, 'fs')

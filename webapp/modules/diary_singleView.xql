@@ -12,6 +12,7 @@ import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
@@ -20,7 +21,7 @@ declare function local:collectMetaData($diaryDay as node(), $authorID as xs:stri
     let $dateFormat := 
         if ($lang eq 'en') then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
-    let $date := wega:strftime($dateFormat, $diaryDay/string(@n), $lang)
+    let $date := date:strfdate($diaryDay/string(@n), $lang, $dateFormat)
     let $pageTitle := concat($name, ' – ', lang:get-language-string('diarySingleViewTitle', $date, $lang)) 
     let $pageDescription := 
         if(string-length(data($diaryDay)) > 200) then concat(substring(wega:cleanString($diaryDay), 1, 200), '…')

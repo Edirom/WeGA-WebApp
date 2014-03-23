@@ -15,6 +15,7 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/fac
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
@@ -28,7 +29,7 @@ declare function local:createNewsTeaser($news as document-node(), $lang as xs:st
     return (
     element span {
         attribute class {'newsTeaserDate'},
-        lang:get-language-string('websiteNews', wega:strftime($dateFormat, datetime:date-from-dateTime($newsTeaserDate), $lang), $lang)
+        lang:get-language-string('websiteNews', date:strfdate(datetime:date-from-dateTime($newsTeaserDate), $lang, $dateFormat), $lang)
     },
     element h2 {
         element a {
@@ -124,7 +125,7 @@ return
                     xho:printProjectLinks($lang),
                     if($config:isDevelopment) then xho:printDevelopmentLinks($lang) else ()}
                     <div>
-                        <h1>{lang:get-language-string('whatHappenedOn', wega:strftime(if($lang eq 'en') then '%B %d' else '%d. %B', $date, $lang), $lang)}</h1>
+                        <h1>{lang:get-language-string('whatHappenedOn', date:strfdate($date, $lang, if($lang eq 'en') then '%B %d' else '%d. %B'), $lang)}</h1>
                         <div id="todaysEvents">
                             {if(not($withJS)) then ajax:getTodaysEvents($date,$lang) else ()}
                             <!-- (: wird onload gefüllt :) -->
