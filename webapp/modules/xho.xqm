@@ -86,7 +86,7 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
     let $docID := substring-before(functx:substring-after-last($docPath, '/'), '.')
     let $svnProps := config:get-svn-props($docID)
     let $author := map:get($svnProps, 'author')
-    let $date := map:get($svnProps, 'dateTime') cast as xs:dateTime
+    let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
     let $rev := map:get($svnProps, 'rev')
     let $dateFormat := if($lang eq 'en')
         then '%B %d, %Y'

@@ -13,6 +13,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace ajax="http://xquery.weber-gesamtausgabe.de/modules/ajax" at "ajax.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
@@ -21,7 +22,7 @@ declare function local:collectMetaData($person as node(), $lang as xs:string) as
     let $personID := $person/string(@xml:id)
     let $name := wega:printFornameSurname($person/tei:persName[@type='reg'])
     let $pageTitle := concat($name, ' – ', lang:get-language-string('tabTitle_bio', $lang)) 
-    let $pnd_dates := concat(wega:printDate($person//tei:birth/tei:date[1],$lang), '–', wega:printDate($person//tei:death/tei:date[1],$lang))
+    let $pnd_dates := concat(date:printDate($person//tei:birth/tei:date[1],$lang), '–', date:printDate($person//tei:death/tei:date[1],$lang))
     let $occupations := string-join($person//tei:occupation/normalize-space(), ', ')
     let $placesOfAction := string-join($person//tei:residence/normalize-space(), ', ')
     let $pageDescription := concat(
