@@ -11,7 +11,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";:)
 
-declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries letters news persons places var works writings', '\s+');
+declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries letters news persons places sources var works writings', '\s+');
 
 declare function local:patch-subversion-history($patch as document-node()) {
     update value $config:svn-change-history-file/dictionary/@head with $patch/dictionary/data(@head),
