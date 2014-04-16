@@ -29,6 +29,8 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     else if($biblStruct/@type eq 'article') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'incollection') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'inproceedings') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'inbook') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/@type eq 'mastersthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'review') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'phdthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
