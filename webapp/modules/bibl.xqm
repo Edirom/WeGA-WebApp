@@ -98,7 +98,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
  :)
 declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang) 
-    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title, '. ')}</span>
+    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title/normalize-space(), '. ')}</span>
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
     return 
         element {$wrapperElement} {
