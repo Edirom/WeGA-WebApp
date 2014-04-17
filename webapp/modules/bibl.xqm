@@ -104,6 +104,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
         element {$wrapperElement} {
             $authors,
             ', ',
+            if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] '
+            else (),
             $articleTitle,
             ', in: ',
             $journalCitation/span,
