@@ -170,7 +170,7 @@ declare function date:printDate($date as element(tei:date)?, $lang as xs:string)
             if(exists($notAfter)) then 
                 if(year-from-date($notBefore) eq year-from-date($notAfter)) then 
                     if(month-from-date($notBefore) eq month-from-date($notAfter)) then 
-                        if(day-from-date($notBefore) = 1 and day-from-date($notAfter) = functx:days-in-month(month-from-date($notAfter))) then concat(lang:get-language-string(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
+                        if(day-from-date($notBefore) = 1 and day-from-date($notAfter) = functx:days-in-month($notAfter)) then concat(lang:get-language-string(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
                         else lang:get-language-string('dateBetween',(xs:string(day-from-date($notBefore)),date:getNiceDate($notAfter,$lang)),$lang)                       (: Zwischen 1. und 7. August 1801 :)
                     else if(ends-with($notBefore, '01-01') and ends-with($notAfter, '12-31')) then year-from-date($notBefore)                                            (: 1879 :)
                     else lang:get-language-string('dateBetween', (date:strfdate($notBefore,$lang,$dateFormat), date:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
@@ -181,7 +181,7 @@ declare function date:printDate($date as element(tei:date)?, $lang as xs:string)
             if(exists($to)) then 
                 if(year-from-date($from) eq year-from-date($to)) then 
                     if(month-from-date($from) eq month-from-date($to)) then 
-                        if(day-from-date($from) = 1 and day-from-date($to) = functx:days-in-month(month-from-date($to))) then concat(lang:get-language-string(concat('month',month-from-date($from)),$lang),' ',year-from-date($from))                  (: August 1879 :)
+                        if(day-from-date($from) = 1 and day-from-date($to) = functx:days-in-month($to)) then concat(lang:get-language-string(concat('month',month-from-date($from)),$lang),' ',year-from-date($from))                  (: August 1879 :)
                         else lang:get-language-string('fromTo',(xs:string(day-from-date($from)),date:getNiceDate($to,$lang)),$lang)                       (: Vom 1. bis 7. August 1801 :)
                     else if(ends-with($from, '01-01') and ends-with($to, '12-31')) then year-from-date($from)                                            (: 1879 :)
                     else lang:get-language-string('fromTo', (date:strfdate($from,$lang,$dateFormat), date:getNiceDate($to,$lang)), $lang) (: Vom 1. Juli 1789 bis 4. August 1789 :)

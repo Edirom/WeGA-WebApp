@@ -49,6 +49,20 @@ declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($co
 
 declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
 
+(:declare variable $config:wega-docTypes as map() := map {
+    'biblio'        := 'A11',
+    'diaries'       := 'A06',
+    'iconography'   := 'A01',
+    'letters'       := 'A04',
+    'news'          := 'A05',
+    'persons'       := 'A00', 
+    'places'        := 'A13',
+    'sources'       := 'A22',
+    'var'           := 'A07',
+    'works'         := 'A02',
+    'writings'      := 'A03',
+    };
+:)
 (:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,
@@ -168,6 +182,8 @@ declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
     else if(config:is-iconography($id)) then 'iconography'
     else if(config:is-var($id)) then 'var'
     else if(config:is-biblio($id)) then 'biblio'
+    else if(config:is-place($id)) then 'places'
+    else if(config:is-source($id)) then 'sources'
     else ()
 };
 
@@ -269,6 +285,29 @@ declare function config:is-var($docID as xs:string?) as xs:boolean {
 declare function config:is-biblio($docID as xs:string?) as xs:boolean {
     matches($docID, '^A11\d{4}$')
 };
+
+(:~
+ : Checks whether a given id matches the WeGA pattern of places ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-place($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A13\d{4}$')
+};
+
+(:~
+ : Checks whether a given id matches the WeGA pattern of sources ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-source($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A22\d{4}$')
+};
+
 
 (:~
  : Checks whether a given document is from the series "Weber-Studien" published by the WeGA
