@@ -42,6 +42,7 @@ declare variable $config:svn-change-history-file as document-node()? :=
     else ();
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
+declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
 
 declare variable $config:isDevelopment as xs:boolean := config:get-option('environment') eq 'development';
 
@@ -407,6 +408,7 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         <param name="lang" value="{session:get-attribute('lang')}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
+        <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
         {if(exists($params)) then 
             for $i in map:keys($params)
             return 

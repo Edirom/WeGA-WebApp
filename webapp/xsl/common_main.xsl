@@ -13,6 +13,7 @@
     <xsl:param name="dbPath"/>
     <xsl:param name="docID"/>
     <xsl:param name="transcript"/>
+    <xsl:param name="smufl-decl"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
 
     <!--  *********************************************  -->
@@ -318,8 +319,15 @@
         <xsl:value-of select="replace(string-join(('/', $segs), '/'), '/+', '/')"/>
     </xsl:function>
         
+    <xsl:function name="wega:hex2dec" as="xs:integer?">
+        <!-- Taken from http://blog.sam.liddicott.com/2006/04/xslt-hex-to-decimal-conversion.html -->
+        <xsl:param name="str" as="xs:string"/>
+        <xsl:if test="$str != ''">
+            <xsl:variable name="len" select="string-length($str)"/>
+            <xsl:value-of select="                 if ( $len lt 2 ) then string-length(substring-before('0 1 2 3 4 5 6 7 8 9 AaBbCcDdEeFf',$str)) idiv 2                 else wega:hex2dec(substring($str,1,$len - 1))*16 + wega:hex2dec(substring($str,$len))                 "/>
+        </xsl:if>
+    </xsl:function>
         
-
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
     <!--  *********************************************  -->
@@ -941,16 +949,20 @@
     <xsl:template match="tei:footNote"/>
 
     <xsl:template match="tei:g">
-        <!--<xsl:element name="span">
+        <xsl:variable name="charName" select="substring-after(@ref, 'http://edirom.de/smufl-browser/')" as="xs:string"/>
+        <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
                 <xsl:when test="@type='music'">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
+                    <xsl:variable name="smufl-codepoint" select="doc($smufl-decl)//tei:char[@xml:id = $charName]/tei:mapping[@type='smufl']"/>
+                    <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
                 </xsl:when>
-            </xsl:choose>
+                <xsl:otherwise>
             <xsl:apply-templates/>
-        </xsl:element>-->
-        <xsl:apply-templates/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
     </xsl:template>
 
     <!--<xsl:template match="tei:quote">
