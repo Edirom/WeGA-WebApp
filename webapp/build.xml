@@ -3,6 +3,7 @@
     <property name="project.version" value="1.2dev"/>
     <property name="project.app" value="WeGA-WebApp"/>
     <property name="build.dir" value="build"/>
+    <property name="smufl.font" value="http://www.smufl.org/files/bravura-0.9.zip"/>
     
     <target name="all" depends="xar"/>
     <target name="rebuild" depends="clean,all"/>
@@ -12,12 +13,30 @@
         <delete file="expath-pkg.xml"/>
     </target>
     
-    <target name="xar">
+    <target name="init">
         <mkdir dir="${build.dir}"/>
+    </target>
+    
+    <target name="download-smufl-font" depends="init">
+        <description>Download Bravura font from the official website</description>
+        <get src="${smufl.font}" dest="${build.dir}/bravura.zip" skipexisting="yes"/>
+        <unzip src="${build.dir}/bravura.zip" dest="${build.dir}"/>
+    </target>
+    
+    <target name="xar" depends="init, download-smufl-font">
         <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
             </filterset>
+        </copy>
+        <mkdir dir="resources/fonts"/>
+        <copy todir="resources/fonts">
+            <fileset dir="${build.dir}">
+                <include name="eot/"/>
+                <include name="woff/"/>
+                <include name="otf/"/>
+                <include name="svg/"/>
+            </fileset>
         </copy>
         <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
             <fileset dir=".">
