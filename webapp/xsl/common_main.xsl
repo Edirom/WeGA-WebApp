@@ -1,4 +1,13 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+    xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
+    xmlns:functx="http://www.functx.com" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
+    
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
 
     <!--  *********************************************  -->
@@ -953,7 +962,7 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
-                <xsl:when test="@type='music'">
+                <xsl:when test="@type='smufl'">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
                     <xsl:variable name="smufl-codepoint" select="doc($smufl-decl)//tei:char[@xml:id = $charName]/tei:mapping[@type='smufl']"/>
                     <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
