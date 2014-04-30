@@ -186,7 +186,7 @@ declare function wega:getRegTitle($docID as xs:string) as xs:string {
     let $doc := core:doc($docID)
     return
         if(config:is-diary($docID)) then ()
-        else if(config:is-work($docID)) then wega:cleanString($doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'main'][1])
+        else if(config:is-work($docID)) then wega:cleanString($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)][1])
         else wega:cleanString($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][1])
 };
 
@@ -905,7 +905,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
         else if($usage eq 'listView')
             then 'works item'
             else 'works'
-    let $title := $doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'main'][1]
+    let $title := $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)][1]
 
     return (
         element div {
@@ -928,7 +928,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
                     if(empty($doc)) 
                         then lang:get-language-string('noDataFound', $lang)
                         else (
-                            string($doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'main'][1]),
+                            string($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)][1]),
                             if(exists($doc//mei:altId[@type])) then 
                                 if(exists($doc//mei:altId[@type='WeV'])) then concat('(WeV ', $doc//mei:altId[@type='WeV'], ')') (: Weber-Werke :)
                                 else concat('(', $doc//mei:altId[1]/string(@type), ' ', $doc//mei:altId[1], ')') (: Fremd-Werke :)
