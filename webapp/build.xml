@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="xar" name="WeGA-WebApp">
-    <property name="project.version" value="1.2dev"/>
-    <property name="project.app" value="WeGA-WebApp"/>
-    <property name="build.dir" value="build"/>
-    <property name="smufl.font" value="http://www.smufl.org/files/bravura-0.9.zip"/>
+    
+    <!-- import default properties from file -->
+    <property file="local.build.properties"/>
+    <property file="build.properties"/>
     
     <target name="all" depends="xar"/>
     <target name="rebuild" depends="clean,all"/>
@@ -23,7 +23,19 @@
         <unzip src="${build.dir}/bravura.zip" dest="${build.dir}"/>
     </target>
     
-    <target name="xar" depends="init, download-smufl-font">
+    <target name="additional-images" depends="init">
+        <description>Adds images to the build which are not part of the repository (e.g. due to copyrigt reasons)</description>
+        <copy todir="resources/pix">
+            <fileset dir="${additional.img.dir}">
+                <include name="hfm-logo.png"/>
+                <include name="adwMainz.png"/>
+                <include name="upb-logo.png"/>
+                <include name="stabi-logo.png"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="xar" depends="init, download-smufl-font, additional-images">
         <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
