@@ -536,7 +536,7 @@ else if (matches($exist:path, '^/pnd_beacon.txt$')) then
 (: Sitemap :)
 else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.(gz|zip)$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/createSiteMap.xql')}">
+    	<forward url="{concat($exist:controller, '/modules/sitemap.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="resource" value="{$exist:resource}"/>
     	</forward>

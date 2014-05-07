@@ -19,13 +19,14 @@ declare option exist:serialize "method=xml media-type=application/xml indent=yes
 
 declare variable $local:languages := ('en', 'de');
 declare variable $local:defaultCompression := 'gz'; (: gz or zip :)
+declare variable $local:host := config:get-option('permaLinkPrefix');
 declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography');
 declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'diaries', (:'works',:) 'news'(:, 'biblio':));
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
-    let $lastmod := wega:getLastModifyDateOfDocument(document-uri($x))
-    let $loc := wega:createLinkToDoc($x, $lang) 
+    let $lastmod := $config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime)
+    let $loc := core:join-path-elements(($local:host, wega:createLinkToDoc($x, $lang)))
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
             element loc {$loc},
@@ -37,7 +38,7 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $i in $local:standardEntries return 
-            <url><loc>{string-join((config:get-option('baseHref'), $lang, replace(lang:get-language-string($i, $lang), '\s', '_')), '/')}</loc></url>
+            <url><loc>{core:join-path-elements(($local:host, $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
         }
         {
         for $k in $local:databaseEntries return local:getUrlList($k, $lang)
@@ -48,7 +49,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
 declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
-        return <sitemap><loc>{core:join-path-elements((config:get-option('baseHref'), config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
+        return <sitemap><loc>{core:join-path-elements(($local:host, config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
         }
     </sitemapindex>
 };
@@ -108,9 +109,7 @@ declare function local:compressXML($xml as element(), $fileName as xs:string, $c
     else ()
 };
 
-let $appLang := request:get-parameter('lang', 'de')
 let $resource := request:get-parameter('resource', '')
-let $host := request:get-parameter('host', config:get-option('baseHref'))
 let $compression := if(ends-with($resource, 'zip')) then 'zip' else $local:defaultCompression
 let $properFileNames := for $lang in $local:languages return concat('sitemap_', $lang, '.xml.', $compression)
 
