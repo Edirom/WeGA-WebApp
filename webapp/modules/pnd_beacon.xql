@@ -14,7 +14,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 declare option exist:serialize "method=text media-type=text/plain encoding=utf-8";
 
 declare function local:createPNDBeacon() {
-    let $pnds := collection(config:get-option('persons'))//tei:idno[@type='gnd']
+    let $pnds := core:data-collection('persons')//tei:idno[@type='gnd']
     let $header := (
         '#FORMAT: BEACON',
         '#PREFIX: http://d-nb.info/gnd/',

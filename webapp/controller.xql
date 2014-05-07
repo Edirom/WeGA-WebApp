@@ -528,7 +528,7 @@ else if (matches($exist:path, '^/index.php$')) then
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/utilities/createPNDBeacon.xql">
+    	<forward url="{concat($exist:controller, '/modules/pnd_beacon.xql')}">
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
