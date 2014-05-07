@@ -106,7 +106,7 @@ if($isUtil or $isFunc) then controller:forward-ajax($exist-vars)
 (: blank.html - Needed by RSH for Internet Explorer's hidden iframe :)
 else if ($exist:resource eq 'blank.html') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/jscript/blank.html"/>
+    	<forward url="{concat($exist:controller, '/resources/js/blank.html')}"/>
     </dispatch>
 
 (: Wenn kein Apache vorgeschaltet ist, dann hier die Verzeichnisse css, jscript, pix auf den eXist-Jetty durchgeben :)
@@ -291,19 +291,19 @@ else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/',
 (: Personen - Weiterleitung :)
 else if (matches($exist:path, '^/A00\d{4}/?$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/', $exist:resource)}"/>
+        <redirect url="{core:join-path-elements(($lang, $exist:resource))}"/>
     </dispatch>
 
 (: Schrift - Weiterleitung :)
 else if (matches($exist:path, '^/(de/|en/)?A03\d{4}/?$') and $authorID ne '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/', $authorID, '/', $writings, '/', $exist:resource)}"/>
+        <redirect url="{core:join-path-elements(($lang, $authorID, $writings, $exist:resource))}"/>
     </dispatch>
 
 (: Brief - Weiterleitung :)
 else if (matches($exist:path, '^/(de/|en/)?A04\d{4}/?$') and $authorID ne '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/', $authorID, '/', $correspondence, '/', $exist:resource)}"/>
+        <redirect url="{core:join-path-elements(($lang, $authorID, $correspondence, $exist:resource))}"/>
     </dispatch>
 
 (: Tagebuch - Weiterleitung :)
@@ -311,13 +311,13 @@ else if (matches($exist:path, '^/(de/|en/)?A06\d{4}/?$')) then
     let $authorID := 'A002068'
     return 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<redirect url="{concat('/', $lang, '/', $authorID, '/', $diaries, '/', $exist:resource)}"/>
+        	<redirect url="{core:join-path-elements(($lang, $authorID, $diaries, $exist:resource))}"/>
         </dispatch>
         
 (: News - Weiterleitung :)
 else if (matches($exist:path, '^/(de/|en/)?A05\d{4}/?$') and $authorID ne '') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{concat('/', $lang, '/', $authorID, '/', $news, '/', $exist:resource)}"/>
+        <redirect url="{core:join-path-elements(($lang, $authorID, $news, $exist:resource))}"/>
     </dispatch>
 
 (: Personen - Briefliste :)
@@ -375,7 +375,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
     return if(exists($person)) then 
         if($person/tei:ref) then ( 
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                <redirect url="/{string-join(($lang, $person/tei:ref/@target), '/')}"/>
+                <redirect url="{$person/tei:ref/string(@target)}"/>
             </dispatch>
         )
         else
@@ -395,7 +395,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspon
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="/{string-join(($lang, $doc/tei:ref/@target), '/')}"/>
+                    <redirect url="{$doc/tei:ref/data(@target)}"/>
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -414,7 +414,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $writings,
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="/{string-join(($lang, $doc/tei:ref/@target), '/')}"/>
+                    <redirect url="{$doc/tei:ref/data(@target)}"/>
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -445,7 +445,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/'
         return if(exists($doc)) then 
             if($doc/tei:ref) then 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="/{string-join(($lang, $doc/tei:ref/@target), '/')}"/>
+                    <redirect url="{$doc/tei:ref/data(@target)}"/>
                 </dispatch>
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -462,14 +462,14 @@ else if (matches($exist:path, concat('^/', $lang, '/pnd/', '[0-9]{8,9}[0-9X]$'))
     let $id := wega:getIDByPND($exist:resource)
     return if($id ne '') then
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<redirect url="{concat('/', $lang, '/', $id)}"/>
+        	<redirect url="../{$id}"/>
         </dispatch>
     else $error404
 
 (: Shortcut für Weber-Korrespondenz :)
 else if (matches($exist:path, concat('^/', lower-case($letters), '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, 'A002068', $correspondence), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, 'A002068', $correspondence))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch>
@@ -477,15 +477,15 @@ else if (matches($exist:path, concat('^/', lower-case($letters), '/?$'))) then
 (: Shortcut für Weber-Tagebücher :)
 else if (matches($exist:path, concat('^/', lower-case($diaries), '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, 'A002068', $diaries), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, 'A002068', $diaries))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch>
 
 (: Shortcut für fffi-db :)
-else if (matches($exist:path, '^/fffi-db.*$')) then
+else if (matches($exist:path, '^/fffi-db[^/]*$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, $search), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, $search))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch>    
@@ -493,7 +493,7 @@ else if (matches($exist:path, '^/fffi-db.*$')) then
 (: Shortcut für Aktuelles :)
 else if (matches($exist:path, '^/aktuelles.html$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, $indices, $news), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, $indices, $news))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch> 
@@ -501,7 +501,7 @@ else if (matches($exist:path, '^/aktuelles.html$')) then
 (: Shortcut für Bibliographie :)
 else if (matches($exist:path, '^/weberbiblio.html$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, $bibliography), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, $bibliography))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch> 
@@ -509,7 +509,7 @@ else if (matches($exist:path, '^/weberbiblio.html$')) then
 (: Shortcut für Werkverzeichnis :)
 else if (matches($exist:path, '^/wev_kurzfassung.html$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="/{string-join(($lang, 'A002068', $works), '/')}">
+    	<redirect url="{core:join-path-elements(($lang, 'A002068', $works))}">
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch> 
@@ -536,7 +536,7 @@ else if (matches($exist:path, '^/pnd_beacon.txt$')) then
 (: Sitemap :)
 else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.(gz|zip)$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/xql/utilities/createSiteMap.xql">
+    	<forward url="{concat($exist:controller, '/modules/createSiteMap.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="resource" value="{$exist:resource}"/>
     	</forward>
@@ -555,7 +555,7 @@ else if (matches($exist:path, '/webdav')) then
     
 else if ($exist:path eq '/favicon.ico') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="/pix/weber_favicon.ico"/>
+        <redirect url="resources/pix/weber_favicon.ico"/>
     </dispatch>
 
 else if ($config:isDevelopment and $exist:resource eq 'ant-calls.xql') then 
