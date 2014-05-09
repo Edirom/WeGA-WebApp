@@ -3,7 +3,6 @@ declare default element namespace "http://www.w3.org/1999/xhtml";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace util="http://exist-db.org/xquery/util";
 declare namespace response="http://exist-db.org/xquery/response";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" at "xho.xqm";
@@ -14,7 +13,6 @@ declare option exist:serialize "method=xhtml media-type=text/html indent=no omit
 
 let $lang := request:get-parameter('lang','de')
 let $errorCode := request:get-parameter('errorCode','404')
-let $baseHref := config:get-option('baseHref')
 let $startID := 'A002068'
 let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
 let $errorText404 := 
@@ -31,7 +29,6 @@ let $errorText404 :=
 let $logMessage := concat('error.xql: ', request:get-uri(), ' (', $errorCode, ')')
 let $logToFile := core:logToFile('error', $logMessage)
 let $setStatusCode := response:set-status-code(xs:int($errorCode))
-let $startID := 'A002068'
 let $metaData := 
     <wega:metaData>
         <title>Error 404 – Carl-Maria-von-Weber-Gesamtausgabe</title>
