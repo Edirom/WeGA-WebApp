@@ -548,20 +548,40 @@ else if ($config:isDevelopment and $exist:path eq '/status') then
         <ignore/>
     </dispatch>
 
-else if (matches($exist:path, '/webdav')) then 
+(:else if (matches($exist:path, '/webdav')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
-    </dispatch>
-    
+    </dispatch>:)
+
+(: Favicon redirect :)
 else if ($exist:path eq '/favicon.ico') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="resources/pix/weber_favicon.ico"/>
     </dispatch>
 
+(: ANT interface for development :)
 else if ($config:isDevelopment and $exist:resource eq 'ant-calls.xql') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
     </dispatch>
+
+(: Schemata zum Download :)
+(: Redirect latest to Github :)
+else if (matches($exist:path, '^/schema/latest/')) then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{concat('https://raw.githubusercontent.com/Edirom/WeGA-ODD/master/schema/', substring-after($exist:path, '/schema/latest/'))}"/>
+    </dispatch>
+
+else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/schema.xql')}">
+    	   <add-parameter name="exist.path" value="{$exist:path}"/>
+    	</forward>
+        <error-handler>
+            {$error404/exist:forward}
+		</error-handler>
+    </dispatch>
+    
     
 else $error404
 )
