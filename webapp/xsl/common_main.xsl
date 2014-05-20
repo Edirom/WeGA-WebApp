@@ -23,6 +23,7 @@
     <xsl:param name="docID"/>
     <xsl:param name="transcript"/>
     <xsl:param name="smufl-decl"/>
+    <xsl:param name="data-collection-path"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
 
     <!--  *********************************************  -->
@@ -70,35 +71,7 @@
 
     <xsl:function name="wega:getCollectionPath" as="xs:string">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="wega:isPerson($docID)">
-                <xsl:value-of select="concat(wega:getOption('persons'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isIconography($docID)">
-                <xsl:value-of select="concat(wega:getOption('iconography'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isWork($docID)">
-                <xsl:value-of select="concat(wega:getOption('works'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isWriting($docID)">
-                <xsl:value-of select="concat(wega:getOption('writings'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isLetter($docID)">
-                <xsl:value-of select="concat(wega:getOption('letters'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isNews($docID)">
-                <xsl:value-of select="concat(wega:getOption('news'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isDiary($docID)">
-                <xsl:value-of select="concat(wega:getOption('diaries'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:when test="wega:isVar($docID)">
-                <xsl:value-of select="concat(wega:getOption('var'), '/', substring($docID, 1, 5), 'xx')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="'unknown'"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"></xsl:value-of>
     </xsl:function>
 
     <xsl:function name="wega:getOption" as="xs:string">
@@ -205,6 +178,82 @@
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
             </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="wega:isBiblio" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A11\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="wega:isPlace" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A13\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="wega:isSource" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A22\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="wega:isPerson($docID)">
+                <xsl:value-of select="'persons'"/>
+            </xsl:when>
+            <xsl:when test="wega:isIconography($docID)">
+                <xsl:value-of select="'iconography'"/>
+            </xsl:when>
+            <xsl:when test="wega:isWork($docID)">
+                <xsl:value-of select="'works'"/>
+            </xsl:when>
+            <xsl:when test="wega:isWriting($docID)">
+                <xsl:value-of select="'writings'"/>
+            </xsl:when>
+            <xsl:when test="wega:isLetter($docID)">
+                <xsl:value-of select="'letters'"/>
+            </xsl:when>
+            <xsl:when test="wega:isNews($docID)">
+                <xsl:value-of select="'news'"/>
+            </xsl:when>
+            <xsl:when test="wega:isDiary($docID)">
+                <xsl:value-of select="'diaries'"/>
+            </xsl:when>
+            <xsl:when test="wega:isVar($docID)">
+                <xsl:value-of select="'var'"/>
+            </xsl:when>
+            <xsl:when test="wega:isBiblio($docID)">
+                <xsl:value-of select="'biblio'"/>
+            </xsl:when>
+            <xsl:when test="wega:isPlace($docID)">
+                <xsl:value-of select="'places'"/>
+            </xsl:when>
+            <xsl:when test="wega:isSource($docID)">
+                <xsl:value-of select="'sources'"/>
+            </xsl:when>
+            <xsl:otherwise/>
         </xsl:choose>
     </xsl:function>
 
