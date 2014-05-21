@@ -43,8 +43,8 @@ declare function local:createKWIC($item as item(), $lang as xs:string) as elemen
     let $kwic := 
         try { kwic:summarize($item, <config width="40"/>) }
         catch * { 
-            if($config:isDevelopment) then string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; ')
-            else core:logToFile('error', string-join(('kwic:summarize', $item/@xml:id, $util:exception, $util:exception-message), ' ;; '))
+            if($config:isDevelopment) then string-join(('kwic:summarize', $item/@xml:id, $err:code, $err:description), ' ;; ')
+            else core:logToFile('error', string-join(('kwic:summarize', $item/@xml:id, $err:code, $err:description), ' ;; '))
             }
     let $score    := ft:score($item)
     return 

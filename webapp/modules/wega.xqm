@@ -1381,18 +1381,8 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
            $cachedResource/httpclient:response
            )
         else 
-           (:let $responseOrg := httpclient:get(xs:anyURI(concat($serverURL, $pnd)),true(), ())
-           let $modifiedResponse := 
-               if($responseOrg/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($responseOrg,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
-               else $responseOrg
-           let $responseFrame :=
-               <wega:externalResource date="{$today}">
-                   {$modifiedResponse}
-               </wega:externalResource>
-           let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $responseFrame)
-           return $modifiedResponse:)
            let $update := wega:http-get(xs:anyURI(concat($serverURL, $pnd)))
-           let $storeFile := wega:storeFileInTmpCollection($resource, $fileName, $update)
+           let $storeFile := core:store-file(core:join-path-elements(($config:tmp-collection-path, $resource)), $fileName, $update)
            return $update/httpclient:response
     return 
         if($response/@statusCode eq '200') then $response 
@@ -1431,30 +1421,6 @@ declare function wega:http-get($url as xs:anyURI) as element(wega:externalResour
 };
 
 (:~
- : Store some content as file in the webapp tmp collection   
- : 
- : @author Peter Stadler
- : @param $subCollection the subcollection of the tmp collection to put the file in. If empty, the content will be stored in tmp directly 
- : @param $fileName the filename of the to be created resource with filename extension
- : @param $contents the content to store. Either a node, an xs:string, a Java file object or an xs:anyURI 
- : @return Returns the path to the newly created resource, empty sequence otherwise
- :)
-declare function wega:storeFileInTmpCollection($subCollection as xs:string?, $fileName as xs:string, $contents as item()) as xs:string? {
-    let $tmpDir := config:get-option('tmpDir')
-    let $dbCollection := 
-        if(empty($subCollection)) then $tmpDir
-        else (
-            let $path := string-join(($tmpDir, $subCollection), '')
-            return 
-                if(xmldb:collection-available($path)) then $path
-                else xmldb:create-collection($tmpDir, $subCollection)
-        )
-    return
-        try { xmldb:store($dbCollection, $fileName, $contents) }
-        catch * { core:logToFile('error', string-join(('wega:storeFileInTmpCollection', $err:code, $err:description), ' ;; ')) }
-};
-
-(:~
  : @author Peter Stadler
  : Recursive identity transform with changing of namespace for a given element.
  :
@@ -1481,12 +1447,6 @@ declare function wega:changeNamespace($element as element(), $targetNamespace as
                 if ($child instance of element()) then wega:changeNamespace($child, $targetNamespace, $keepNamespaces)
                 else $child}
 };
-
-
-
-
-
-
 
 (:~
  : Normalize space

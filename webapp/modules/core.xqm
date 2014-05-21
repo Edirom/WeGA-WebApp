@@ -155,7 +155,7 @@ declare function core:store-file($collection as xs:string?, $fileName as xs:stri
             else xmldb:create-collection($parentColl, $coll)
     return
         try { xmldb:store($collection, $fileName, $contents) }
-        catch * { core:logToFile('error', string-join(('wega:storeFileInTmpCollection', $util:exception, $util:exception-message), ' ;; ')) }
+        catch * { core:logToFile('error', string-join(('core:store-file', $err:code, $err:description), ' ;; ')) }
 };
 
 (:~ 
