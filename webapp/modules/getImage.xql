@@ -14,15 +14,13 @@ declare function local:switchImage($docId as xs:string, $pageNo as xs:integer, $
 };
 
 let $lang := request:get-parameter('lang', 'de')
-let $docId := request:get-parameter('id', '')
-let $page := if (request:get-parameter('page', '') castable as xs:integer) then xs:integer(request:get-parameter('page', '')) else 1
-let $doc := if(empty($docId)) then() else core:doc($docId)
+let $docId := request:get-parameter('id', ())
+let $page := if(request:get-parameter('page', '') castable as xs:integer) then xs:integer(request:get-parameter('page', '')) else 1
+let $doc := core:doc($docId)
 let $images := $doc//tei:facsimile/tei:graphic/data(@url)
 let $imagesCount := count($images)
 (:let $digilibServerAddress := 'localhost:9090':)
-let $digilibFn := concat(functx:replace-multi(document-uri($doc), ('/db/', '\.xml'), ('/', '/')), $images[$page])
-(:let $jsCall := concat("javascript: letter.loadajaxpage('functions/getImage.xql?id=", $docId, "&#38;lang=", $lang, "&#38;page=") :)
-
+let $digilibFn := core:join-path-elements((substring-after(config:getCollectionPath($docId), $config:data-collection-path), $docId, $images[$page]))
 let $maxWidth := '700'
 let $maxHeight := '700'
 let $scaleFactor := 1
