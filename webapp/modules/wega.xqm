@@ -408,7 +408,7 @@ let $cssClasses := if($usage eq 'toolTip')
             then 'person item'
             else 'person'
 let $imageEnlargeLink := if($imageEnlarge)
-    then let $localIconography := collection('/db/iconography')//tei:figure[.//tei:person[@corresp = $fffiId]][@n = 'portrait'][1][./tei:graphic]/ancestor::tei:TEI
+    then let $localIconography := core:getOrCreateColl('iconography', 'indices', true())//tei:figure[.//tei:person[@corresp = $fffiId]][@n = 'portrait'][1][./tei:graphic]/ancestor::tei:TEI
          let $caption := if(exists($localIconography))
             then $localIconography//tei:title
             else if(matches($portraitPath, 'nobody_[fmn].png'))
