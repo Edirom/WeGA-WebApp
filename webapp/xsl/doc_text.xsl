@@ -79,5 +79,36 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <!-- This is just a hack (duplicated from letter_text.xsl) -->
+    <xsl:template match="tei:app">
+        <xsl:variable name="appInlineID">
+            <xsl:number level="any"/>
+        </xsl:variable>
+        <span class="teiLetter_lem" onmouseout="UnTip()">
+            <xsl:attribute name="onmouseover">
+                <xsl:text>TagToTip('</xsl:text>
+                <xsl:value-of select="concat('app_',$appInlineID)"/>
+                <xsl:text>')</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates select="./tei:lem"/>
+        </span>
+        <span class="teiLetter_noteInline">
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat('app_',$appInlineID)"/>
+            </xsl:attribute>
+            <xsl:text>Lesart(en):&#160;</xsl:text>
+            <xsl:for-each select="./tei:rdg">
+                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="position()!=last()">
+                    <xsl:text>;&#160;</xsl:text>
+                </xsl:if>
+            </xsl:for-each>
+        </span>
+    </xsl:template>
+    
+    <xsl:template match="tei:lem">
+        <xsl:apply-templates/>
+    </xsl:template>
 
-    </xsl:stylesheet>
+</xsl:stylesheet>
