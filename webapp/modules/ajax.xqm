@@ -263,7 +263,7 @@ return (
             else <div id="bioSummary"><i>({lang:get-language-string('noBioFound',$lang)})</i></div>,
         if($id eq 'A002068') then 
             if ($lang eq 'en') then ()
-            else <p class="linkAppendix">Einen ausführlichen Lebenslauf finden Sie in der <a href="{concat($baseHref, '/de/Biographie')}">erweiterten Biographie</a></p> 
+            else <p class="linkAppendix">Einen ausführlichen Lebenslauf finden Sie in der <a href="{core:join-path-elements(($baseHref, '/de/Biographie'))}">erweiterten Biographie</a></p> 
         else wega:getEvents($person/tei:person,$lang)
         )
 };
