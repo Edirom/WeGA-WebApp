@@ -1374,18 +1374,9 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
         else config:get-option($resource)
     let $fileName := string-join(($pnd, $lang, 'xml'), '.')
     let $today := current-date()
-    let $cachedResource := doc(concat(config:get-option('tmpDir'), $resource, '/', $fileName))/wega:externalResource
-    let $response := 
-        if($cachedResource/httpclient:response/@statusCode eq '200' and $cachedResource/xs:date(@date) eq $today and $useCache) then (
-           (:util:log-system-out(concat($pnd, ': cached version')),:) 
-           $cachedResource/httpclient:response
-           )
-        else 
-           let $update := wega:http-get(xs:anyURI(concat($serverURL, $pnd)))
-           let $storeFile := core:store-file(core:join-path-elements(($config:tmp-collection-path, $resource)), $fileName, $update)
-           return $update/httpclient:response
+    let $response := core:cache-doc(core:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega:http-get#1, xs:anyURI(concat($serverURL, $pnd)), not($useCache))
     return 
-        if($response/@statusCode eq '200') then $response 
+        if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
 };
 

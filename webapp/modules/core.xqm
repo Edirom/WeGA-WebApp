@@ -260,3 +260,34 @@ declare function core:normalize-space($string as xs:string?) as xs:string {
 declare function core:permalink($docID as xs:string) as xs:anyURI? {
     xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($docID))
 };
+
+(:~
+ : A simple caching function for XML documents
+ :
+ : @author Peter Stadler
+ : @param $docURI the database URI of the document
+ : @param $callBack a function to create the document content when the document is outdated or not available
+ : @param $overwrite force an overwrite of the given document
+ : @return the cached document
+ :)
+declare function core:cache-doc($docURI as xs:string, $callback as function() as element(), $callback-params as item()*, $overwrite as xs:boolean) as document-node()? {
+    let $fileName := functx:substring-after-last($docURI, '/')
+    let $collection := functx:substring-before-last($docURI, '/')
+    let $currentDateTimeOfFile := 
+        if(doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
+        else ()
+    let $updateNecessary := typeswitch($currentDateTimeOfFile) 
+	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile)
+	   default return true()
+	return 
+	   if($updateNecessary or $overwrite) then (
+            let $content := $callback($callback-params)
+            let $logMessage := concat('core:cache-doc(): saved document ', $docURI)
+            let $logToFile := core:logToFile('info', $logMessage)
+            let $store-file := core:store-file($collection, $fileName, $content)
+            return 
+                if(doc-available($store-file)) then doc($store-file)
+                else ()
+        )
+        else doc($docURI)
+};

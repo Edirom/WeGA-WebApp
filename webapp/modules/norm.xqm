@@ -25,26 +25,11 @@ import module namespace functx="http://www.functx.com";
  :)
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
-    let $currentDateTimeOfFile := 
-        if(doc-available(core:join-path-elements(($config:tmp-collection-path, $fileName)))) then xmldb:last-modified($config:tmp-collection-path, $fileName) 
-        else ()
-    let $updateNecessary := typeswitch($currentDateTimeOfFile) 
-	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile)
-	   default return true()
     return 
-        if($updateNecessary) then (
-            let $newNormDates := norm:create-norm-doc($docType)
-            let $logMessage := concat('norm:get-norm-doc(): created norm:catalogue for ', $docType)
-            let $logToFile := core:logToFile('info', $logMessage)
-            let $store-file := core:store-file($config:tmp-collection-path, $fileName, $newNormDates)
-            return 
-                if(doc-available($store-file)) then doc($store-file)
-                else ()
-        )
-        else doc(core:join-path-elements(($config:tmp-collection-path, $fileName)))
+        core:cache-doc(core:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, false())
 };
 
-declare %private function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
+declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
     switch ($docType)
         case 'biblio' return norm:create-norm-doc-biblio()
         case 'diaries' return norm:create-norm-doc-diaries()
@@ -55,7 +40,6 @@ declare %private function norm:create-norm-doc($docType as xs:string) as element
         case 'works' return norm:create-norm-doc-works()
         case 'places' return norm:create-norm-doc-places()
         default return ()
-        
 };
 
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {
