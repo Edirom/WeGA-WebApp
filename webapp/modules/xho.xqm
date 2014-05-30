@@ -94,7 +94,7 @@ declare function xho:createFooter($lang as xs:string, $docPath as xs:string) as 
     let $encryptedBugEmail := wega:encryptString(config:get-option('bugEmail'), ())
     let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
     let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
-    let $permalink := config:get-option('permaLinkPrefix') || core:link-to-current-app($docID)
+    let $permalink := core:permalink($docID)
     return 
         if(exists($author) and exists($date)) then
             <xhtml:div id="footer">
@@ -343,8 +343,9 @@ declare function xho:collectCommonMetaData($doc as document-node()?) as element(
         <xhtml:meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
         <xhtml:meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType"/>
         <xhtml:meta name="DC.format" content="text/html" scheme="DCTERMS.IMT"/>
-        {$contributors}
-        <xhtml:meta name="DC.identifier" content="{concat(config:get-option('baseHref'), request:get-uri())}" scheme="DCTERMS.URI"/>
+        {$contributors,
+        if ($docID) then <xhtml:meta name="DC.identifier" content="{core:permalink($docID)}" scheme="DCTERMS.URI"/>
+        else ()}
     </wega:metaData>
 };
 

@@ -18,7 +18,7 @@ import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.ex
  : Get document by ID
  :
  : @author Peter Stadler
- : @param $id the ID of the document
+ : @param $docID the ID of the document
  : @return returns the document node of the resource found for the specified ID.
 :)
 declare function core:doc($docID as xs:string) as document-node()? {
@@ -248,4 +248,15 @@ declare function core:create-sort-persname($person as element(tei:person)) as xs
  :)
 declare function core:normalize-space($string as xs:string?) as xs:string {
     normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;|[\.,]\s*$', ' '))
+};
+
+(:~
+ : Creates a permalink for a given ID
+ :
+ : @author Peter Stadler
+ : @param $docID the ID of the document
+ : @return xs:string
+ :)
+declare function core:permalink($docID as xs:string) as xs:anyURI? {
+    xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($docID))
 };
