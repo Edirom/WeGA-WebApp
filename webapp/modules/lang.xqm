@@ -11,7 +11,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace session="http://exist-db.org/xquery/session";
-import module namespace functx="http://www.functx.com" at "functx.xqm";
+import module namespace functx="http://www.functx.com";
 (:import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";:)
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 (:import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";:)
