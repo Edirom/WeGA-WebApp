@@ -525,6 +525,14 @@ else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     	</forward>
     </dispatch>
 
+(: correspDesc Beacon :)
+else if (matches($exist:path, '^/correspDesc.xml$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/correspDesc.xql')}">
+    	   <cache-control cache="yes"/>
+    	</forward>
+    </dispatch>
+    
 (: Sitemap :)
 else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.(gz|zip)$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
