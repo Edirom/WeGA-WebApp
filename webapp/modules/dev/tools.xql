@@ -7,13 +7,13 @@ declare namespace transform="http://exist-db.org/xquery/transform";
 declare namespace util="http://exist-db.org/xquery/util";
 (:declare namespace cache="http://exist-db.org/xquery/cache";:)
 (:declare namespace datetime="http://exist-db.org/xquery/datetime";:)
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
-import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" at "xho.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "../wega.xqm";
+import module namespace xho="http://xquery.weber-gesamtausgabe.de/modules/xho" at "../xho.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
-import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 

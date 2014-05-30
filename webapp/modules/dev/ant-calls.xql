@@ -5,8 +5,8 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace functx="http://www.functx.com";
-import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 (:import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";:)

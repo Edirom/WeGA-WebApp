@@ -280,14 +280,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
 else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $literature, '|', $discography, '|', $scores, '))?$'))) then
     local:forwardIndices('bibliography', $lang)
 
-(: Tools :)
-else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/tools.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	</forward>
-    </dispatch>
-
 (: Personen - Weiterleitung :)
 else if (matches($exist:path, '^/A00\d{4}/?$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -559,12 +551,6 @@ else if ($exist:path eq '/favicon.ico') then
         <redirect url="resources/pix/weber_favicon.ico"/>
     </dispatch>
 
-(: ANT interface for development :)
-else if ($config:isDevelopment and $exist:resource eq 'ant-calls.xql') then 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <ignore/>
-    </dispatch>
-
 (: Schemata zum Download :)
 (: Redirect latest to Github :)
 else if (matches($exist:path, '^/schema/latest/')) then 
@@ -582,6 +568,22 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
 		</error-handler>
     </dispatch>
     
+(: general forwarding of folder 'dev' for development :)
+else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
+        <error-handler>
+            {$error404/exist:forward}
+		</error-handler>
+    </dispatch>
+
+(: Tools :)
+else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/dev/tools.xql')}">
+    	   <add-parameter name="lang" value="{$lang}"/>
+    	</forward>
+    </dispatch>
     
 else $error404
 )

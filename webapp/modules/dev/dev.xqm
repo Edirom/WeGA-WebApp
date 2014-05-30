@@ -19,10 +19,10 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
-import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
-import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "../wega.xqm";
+import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "../facets.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 
 (:~
  : Show tools tab
