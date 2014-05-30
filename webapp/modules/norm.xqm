@@ -53,6 +53,7 @@ declare %private function norm:create-norm-doc($docType as xs:string) as element
         case 'persons' return norm:create-norm-doc-persons()
         case 'writings' return norm:create-norm-doc-writings()
         case 'works' return norm:create-norm-doc-works()
+        case 'places' return norm:create-norm-doc-places()
         default return ()
         
 };
@@ -98,7 +99,7 @@ declare %private function norm:create-norm-doc-diaries() as element(norm:catalog
 declare %private function norm:create-norm-doc-letters() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('letters', 'indices', true())
-        let $docID := $doc/*/data(@xml:id)
+        let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := date:getOneNormalizedDate($doc//tei:dateSender/tei:date, false())
         let $n :=  $doc//tei:dateSender/tei:date/data(@n)
 (:            let $senderID := $doc//tei:sender/tei:persName[1]/string(@key):)
@@ -143,7 +144,7 @@ declare %private function norm:create-norm-doc-news() as element(norm:catalogue)
 declare %private function norm:create-norm-doc-persons() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('persons', 'indices', true())
-        let $docID := $doc/*/data(@xml:id)
+        let $docID := $doc/tei:person/data(@xml:id)
         let $sex := normalize-space($doc//tei:sex)
         let $name := normalize-space($doc//tei:persName[@type='reg'])
         let $sortName := core:create-sort-persname($doc/tei:person) 
@@ -161,7 +162,7 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
 declare %private function norm:create-norm-doc-writings() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('writings', 'indices', true())
-        let $docID := $doc/*/data(@xml:id)
+        let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := date:getOneNormalizedDate($doc//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
         let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/normalize-space(), '. ')
         order by $normDate, $n
@@ -182,7 +183,7 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
 declare %private function norm:create-norm-doc-works() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('works', 'indices', true())
-        let $docID := $doc/*/data(@xml:id)
+        let $docID := $doc/mei:mei/data(@xml:id)
         let $normDate := $doc//mei:seriesStmt/mei:title[@level='s']/xs:int(@n)
         let $n := $doc//mei:altId[@type = 'WeV']
         let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype) 
@@ -193,6 +194,22 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
                 attribute docID {$docID},
                 attribute n {$n},
                 $normDate
+            }
+    }</catalogue>
+};
+
+declare %private function norm:create-norm-doc-places() as element(norm:catalogue) {
+    <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
+        for $doc in core:getOrCreateColl('places', 'indices', true())
+        let $docID := $doc/tei:place/data(@xml:id)
+        let $name := core:normalize-space($doc//tei:placeName[@type='reg'])
+        let $n := $doc//tei:idno[@type='geonames']
+        order by $name
+        return 
+            element entry {
+                attribute docID {$docID},
+                attribute n {$n},
+                $name
             }
     }</catalogue>
 };
