@@ -325,7 +325,7 @@ declare function xho:createWorksDocumentsUL($id as xs:string, $lang as xs:string
  : @return item of meta data 
  :)
 
-declare function xho:collectCommonMetaData($doc as node()?) as element(wega:metaData) {
+declare function xho:collectCommonMetaData($doc as document-node()?) as element(wega:metaData) {
     let $docID := $doc/*/data(@xml:id)
     let $contributors := 
         if(exists($doc//tei:fileDesc/tei:titleStmt/(tei:author | tei:editor))) then for $i in $doc//tei:fileDesc/tei:titleStmt/(tei:author | tei:editor) return <xhtml:meta name="DC.contributor" content="{$i}"/>

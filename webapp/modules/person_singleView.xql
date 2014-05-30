@@ -18,9 +18,9 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
-declare function local:collectMetaData($person as node(), $lang as xs:string) as element(wega:metaData) {
-    let $personID := $person/string(@xml:id)
-    let $name := wega:printFornameSurname($person/tei:persName[@type='reg'])
+declare function local:collectMetaData($person as document-node(), $lang as xs:string) as element(wega:metaData) {
+    let $personID := $person/tei:person/string(@xml:id)
+    let $name := wega:printFornameSurname($person//tei:persName[@type='reg'])
     let $pageTitle := concat($name, ' – ', lang:get-language-string('tabTitle_bio', $lang)) 
     let $pnd_dates := concat(date:printDate($person//tei:birth/tei:date[1],$lang), '–', date:printDate($person//tei:death/tei:date[1],$lang))
     let $occupations := string-join($person//tei:occupation/normalize-space(), ', ')
@@ -57,9 +57,9 @@ declare function local:collectMetaData($person as node(), $lang as xs:string) as
 let $lang := request:get-parameter('lang','')
 let $id := request:get-parameter('id','A002068')
 let $withJS := request:get-parameter('js','true')
-let $person := core:doc($id)/tei:person
-let $name := wega:cleanString($person/tei:persName[@type='reg'])
-let $pnd := $person/tei:idno[@type='gnd']
+let $person := core:doc($id)
+let $name := wega:cleanString($person//tei:persName[@type='reg'])
+let $pnd := $person//tei:idno[@type='gnd']
 let $xslParams := config:get-xsl-params(()) 
 let $domLoaded := 
     if($withJS eq 'true') then
@@ -153,7 +153,7 @@ return
                     {xho:createWorksDocumentsUL($id, $lang)}
                 </div>
             </div>
-            {xho:createFooter($lang, document-uri($person/root()))}
+            {xho:createFooter($lang, document-uri($person))}
         </div>
     </body>
 </html>

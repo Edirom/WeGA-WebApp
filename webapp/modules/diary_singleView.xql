@@ -16,12 +16,12 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
 
-declare function local:collectMetaData($diaryDay as node(), $authorID as xs:string, $lang as xs:string) as element(wega:metaData) {
+declare function local:collectMetaData($diaryDay as document-node(), $authorID as xs:string, $lang as xs:string) as element(wega:metaData) {
     let $name := wega:printFornameSurname(wega:getRegName($authorID))
     let $dateFormat := 
         if ($lang eq 'en') then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
-    let $date := date:strfdate($diaryDay/string(@n), $lang, $dateFormat)
+    let $date := date:strfdate($diaryDay/tei:ab/string(@n), $lang, $dateFormat)
     let $pageTitle := concat($name, ' – ', lang:get-language-string('diarySingleViewTitle', $date, $lang)) 
     let $pageDescription := 
         if(string-length(data($diaryDay)) > 200) then concat(substring(wega:cleanString($diaryDay), 1, 200), '…')
@@ -97,7 +97,7 @@ let $domLoaded :=
 return
 
 <html>
-    {xho:createHtmlHead(('layout76-22.css', 'diary_singleView.css'), (), local:collectMetaData($doc/tei:ab, $authorID, $lang), $domLoaded, ())}
+    {xho:createHtmlHead(('layout76-22.css', 'diary_singleView.css'), (), local:collectMetaData($doc, $authorID, $lang), $domLoaded, ())}
     <body>
         <div id="container">
             {xho:createHeadContainer($lang)}
@@ -194,7 +194,7 @@ return
                     </div>
                 </div>
             </div>
-            {xho:createFooter($lang, document-uri($doc/root()))}
+            {xho:createFooter($lang, document-uri($doc))}
         </div>
     </body>
 </html>

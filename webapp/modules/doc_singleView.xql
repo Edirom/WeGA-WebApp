@@ -14,7 +14,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 
 declare option exist:serialize "method=xhtml media-type=text/html indent=no omit-xml-declaration=yes encoding=utf-8 doctype-public=-//W3C//DTD&#160;XHTML&#160;1.0&#160;Strict//EN doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"; 
 
-declare function local:collectMetaData($doc as node(), $lang as xs:string) as element(wega:metaData) {
+declare function local:collectMetaData($doc as document-node(), $lang as xs:string) as element(wega:metaData) {
     let $pageTitle := string-join($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'], '. ')
     let $pageDescription := wega:cleanString($doc//tei:note[@type='summary'])
     let $commonMetaData := xho:collectCommonMetaData($doc)
@@ -144,7 +144,7 @@ return
                     </div>
                 </div>
             </div>
-            {xho:createFooter($lang, document-uri($doc/root()))}
+            {xho:createFooter($lang, document-uri($doc))}
         </div>
     </body>
 </html>
