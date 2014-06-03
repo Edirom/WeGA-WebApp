@@ -25,6 +25,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -693,7 +694,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
                     if (exists($doc//tei:idno[@type eq 'WeGA']/@n)) then concat(' (', $doc//tei:idno[@type eq 'WeGA']/@n, ')') 
                     else ()
                 },
-                wega:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang) 
+                bibl:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang) 
             }
         }
     )
@@ -849,7 +850,7 @@ declare function wega:getBiblioMetaData($item as item(), $lang as xs:string, $us
             },
             element div {
                 attribute class {'right'},
-                wega:printCitation($bibl, 'span', $lang),
+                bibl:printCitation($bibl, 'span', $lang),
                 if($clickable) then element p {
                     attribute class {'readOn'},
                     lang:get-language-string('detailsAvailable', $lang)
@@ -1018,11 +1019,10 @@ declare function wega:printFornameSurname($name as xs:string?) as xs:string? {
  :)
  
 declare function wega:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
-     if(exists($persName/@key)) 
-        then wega:createPersonLink($persName/string(@key), $lang, $order)
-        else if (exists($persName//text())) 
-            then <xhtml:span class="noDataFound">{normalize-space($persName)}</xhtml:span>
-            else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
+     if(exists($persName/@key)) then wega:createPersonLink($persName/string(@key), $lang, $order)
+     else if (contains($persName, ',') and $order eq 'fs') then <xhtml:span class="noDataFound">{wega:printFornameSurname($persName)}</xhtml:span>
+     else if (not(functx:all-whitespace($persName))) then <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
+     else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
 };
 
 (:~
@@ -1071,7 +1071,7 @@ declare function wega:createDocLink($doc as document-node(), $content as xs:stri
     }
 };
 
-(:~
+(:(\:~
  : Create a bibliographic citation from a biblStruct
  : 
  : @author Peter Stadler
@@ -1079,10 +1079,10 @@ declare function wega:createDocLink($doc as document-node(), $content as xs:stri
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
 
 declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element()? {
-    if($biblStruct/tei:analytic/tei:author[@sameAs]) then wega:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
+    if($biblStruct/tei:analytic/tei:author[@sameAs]) then wega:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (\: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :\)
     else if($biblStruct/@type eq 'book') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'score') then wega:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then wega:printArticleCitation($biblStruct, $wrapperElement, $lang)
@@ -1093,7 +1093,7 @@ declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wra
     else wega:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
-(:~
+(\:~
  : Create a generic bibliographic citation (This is highly specific to our WeGA data though!)
  : 
  : @author Peter Stadler
@@ -1101,7 +1101,7 @@ declare function wega:printCitation($biblStruct as element(tei:biblStruct), $wra
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
  
 declare function wega:printGenericCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
@@ -1117,7 +1117,7 @@ declare function wega:printGenericCitation($biblStruct as element(tei:biblStruct
         }
 };
 
-(:~
+(\:~
  : Create a bibliographic citation for a book
  : 
  : @author Peter Stadler
@@ -1125,7 +1125,7 @@ declare function wega:printGenericCitation($biblStruct as element(tei:biblStruct
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li) 
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
  
 declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
@@ -1146,7 +1146,7 @@ declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), 
         }
 };
 
-(:~
+(\:~
  : Create a bibliographic citation for an article
  : 
  : @author Peter Stadler
@@ -1154,7 +1154,7 @@ declare function wega:printBookCitation($biblStruct as element(tei:biblStruct), 
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li) 
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
  
 declare function wega:printArticleCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang) 
@@ -1170,8 +1170,8 @@ declare function wega:printArticleCitation($biblStruct as element(tei:biblStruct
             $journalCitation/text()
         }
 };
-
-(:~
+:)
+(:(\:~
  : Create a bibliographic citation for a journal
  : 1. Helper function for wega:printArticleCitation() 
  : 2. Function for creating bibliographic citations for writings when the source is a journal
@@ -1181,7 +1181,7 @@ declare function wega:printArticleCitation($biblStruct as element(tei:biblStruct
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
 
 declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
@@ -1202,7 +1202,7 @@ declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrap
         }
 };
 
-(:~
+(\:~
  : Create a bibliographic citation for a series
  : Helper function for various wega:print*Citation() 
  : 
@@ -1211,11 +1211,11 @@ declare function wega:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
 
 declare function wega:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $seriesTitle := string-join($series/tei:title, '. ')
-(:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
+(\:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):\)
     let $biblScope := concat(
         if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
         if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
@@ -1226,7 +1226,7 @@ declare function wega:printSeriesCitation($series as element(tei:series), $wrapp
         }
 };
 
-(:~
+(\:~
  : Create a bibliographic citation for an incollection entry type
  : 
  : @author Peter Stadler
@@ -1234,7 +1234,7 @@ declare function wega:printSeriesCitation($series as element(tei:series), $wrapp
  : @param $wrapperElement the HTML element for wrapping the output (usually span or li) 
  : @param $lang the language switch (en, de)
  : @return element
- :)
+ :\)
  
 declare function wega:printIncollectionCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := wega:printCitationAuthors($biblStruct//tei:author, $lang)
@@ -1257,14 +1257,14 @@ declare function wega:printIncollectionCitation($biblStruct as element(tei:biblS
         }
 };
 
-(:~
+(\:~
  : Helper function for wega:print*Citation() functions
  : 
  : @author Peter Stadler
  : @param $authors zero or more tei:author elements 
  : @param $lang the language switch (en, de)
  : @return item
- :)
+ :\)
  
 declare function wega:printCitationAuthors($authors as element()*, $lang as xs:string) as item()* {
     let $countAuthors := count($authors)
@@ -1278,14 +1278,14 @@ declare function wega:printCitationAuthors($authors as element()*, $lang as xs:s
         )
 };
 
-(:~
+(\:~
  : Helper function for wega:print*Citation() functions
  : Creates a html:span element with pubPlaces and date as content 
  : 
  : @author Peter Stadler
  : @param $imprint a tei:imprint element 
  : @return html:span element if any data is given, the empty sequence otherwise
- :)
+ :\)
  
 declare function wega:printpubPlaceNYear($imprint as element(tei:imprint)) as element(span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
@@ -1299,7 +1299,7 @@ declare function wega:printpubPlaceNYear($imprint as element(tei:imprint)) as el
     return 
         if($countPlaces ge 1 or $imprint/tei:date/@when castable as xs:date or $imprint/tei:date/@when castable as xs:gYear) then <span class="placeNYear">{string-join($places, ''), normalize-space($imprint/tei:date)}</span>
         else ()
-};
+};:)
 
 (:~
  : Create html output of tei:sourceDesc
@@ -1341,7 +1341,7 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
                 (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
                 if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:listWit))) then transform:transform($doc//tei:sourceDesc/tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
                 else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:msDesc))) then transform:transform($doc//tei:sourceDesc/tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
-                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:biblStruct))) then wega:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang)                
+                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:biblStruct))) then bibl:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang)                
                 else (<span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>)
             }</div>
             {if(exists($doc//tei:creation)) then (
