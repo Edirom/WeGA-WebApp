@@ -31,6 +31,12 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
+
+(: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
+declare variable $ajax:diaryYearsToSuppress as xs:integer* := 
+    if($config:isDevelopment) then () 
+    else (1810 to 1816, 1821 to 1826);
+
 (:~
  : Creates HTML list for todays events
  : (function for index.xql)
@@ -431,8 +437,7 @@ declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
     let $doc := core:doc($docID)
     let $isDiary := config:is-diary($docID)
     (: Temporarily suppressing display of persons, works etc. since those are not reliable :)
-    let $yearsToSuppress := if($config:isDevelopment) then  () else (1813,1814,1815,1816,1821,1822,1823,1826)
-    let $suppressDisplay := if($isDiary) then if(year-from-date($doc/tei:ab/@n cast as xs:date) = $yearsToSuppress) then true() else false() else false()
+    let $suppressDisplay := if($isDiary) then if(year-from-date($doc/tei:ab/@n cast as xs:date) = $ajax:diaryYearsToSuppress) then true() else false() else false()
     let $coll := 
         if ($entry eq 'person') then
             if($isDiary) then functx:value-union($doc//tei:persName/string(@key), functx:value-union($doc//tei:rs[@type eq 'person']/string(@key), for $i in $doc//tei:rs[@type = 'persons']/string(@key) return tokenize($i, ' ')))
@@ -680,11 +685,9 @@ declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) a
  :)
  
 declare function ajax:diary_printTranscription($docID as xs:string, $lang as xs:string) {
-    (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
-    let $yearsToSuppress := if($config:isDevelopment) then () else (1810 to 1816, 1821 to 1826)
     let $doc := core:doc($docID)
     let $curYear := year-from-date($doc/tei:ab/@n cast as xs:date)
-    let $xslParams := config:get-xsl-params(map:new((map:entry('transcript', 'true'), if($curYear = $yearsToSuppress) then map:entry('suppressLinks', 'true') else ())))
+    let $xslParams := config:get-xsl-params(map:new((map:entry('transcript', 'true'), if($curYear = $ajax:diaryYearsToSuppress) then map:entry('suppressLinks', 'true') else ())))
     let $dateFormat := if ($lang eq 'en')
         then '%A, %B %d, %Y'
         else '%A, %d. %B %Y'
