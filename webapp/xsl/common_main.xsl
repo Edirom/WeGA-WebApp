@@ -894,14 +894,15 @@
     <xsl:template match="tei:figure" priority="0.5">
         <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
-        <xsl:variable name="href" select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;mo=file')"/>
+        <xsl:variable name="localURL" select="wega:join-path-elements((replace(wega:getCollectionPath($docID), $data-collection-path, ''), $docID, tei:graphic/@url))"/>
+        <xsl:variable name="href" select="concat($digilibDir, $localURL, '&amp;mo=file')"/>
         <xsl:variable name="title" select="tei:figDesc"/>
         <xsl:variable name="content">
             <xsl:element name="img">
                 <xsl:apply-templates select="@xml:id"/>
                 <xsl:attribute name="alt" select="tei:figDesc"/>
                 <xsl:attribute name="height" select="$figureHeight"/>
-                <xsl:attribute name="src" select="concat($digilibDir, functx:replace-multi($dbPath, ('/db/', '\.xml'), ('','/')), tei:graphic/@url, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
+                <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
                 <xsl:attribute name="class" select="'figure'"/>
             </xsl:element>
         </xsl:variable>
