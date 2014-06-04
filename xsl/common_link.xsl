@@ -104,6 +104,11 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="href" select="@target"/>
             <xsl:apply-templates/>
+            <xsl:if test="@type = 'hyperLink'">
+                <xsl:element name="img">
+                    <xsl:attribute name="src" select="'https://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png'"/>
+                </xsl:element>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
 
