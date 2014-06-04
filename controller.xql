@@ -72,6 +72,7 @@ let $discography := if($isUtil or $isFunc) then () else lang:get-language-string
 let $scores := if($isUtil or $isFunc) then () else lang:get-language-string('scores',$lang)
 let $contact := if($isUtil or $isFunc) then () else lang:get-language-string('contact',$lang)
 let $tools := if($isUtil or $isFunc) then () else lang:get-language-string('tools',$lang)
+let $volContents := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('volContents',$lang))
 let $editorialGuidelines := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')
 let $ajaxCrawlerParameter := '_escaped_fragment_'
 let $error404 := 
@@ -279,6 +280,20 @@ else if (matches($exist:path, concat('^/', $lang, '/', wega:getVarURL('A070009',
 (: Bibliography :)
 else if (matches($exist:path, concat('^/', $lang,'/', $bibliography, '(/(', $literature, '|', $discography, '|', $scores, '))?$'))) then
     local:forwardIndices('bibliography', $lang)
+
+(: Bandübersicht :)
+else if (matches($exist:path, concat('^/', $lang, '/', $volContents, '/?$'))) then
+    let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
+    return
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
+    	   <add-parameter name="lang" value="{$lang}"/>
+    	   <add-parameter name="docID" value="A070011"/>
+    	   <add-parameter name="createToc" value="true"/>
+    	   <add-parameter name="createSecNos" value="true"/>
+    	   <add-parameter name="js" value="{$js}"/>
+    	</forward>
+    </dispatch>
 
 (: Personen - Weiterleitung :)
 else if (matches($exist:path, '^/A00\d{4}/?$')) then

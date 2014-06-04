@@ -505,7 +505,7 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
             <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('indices',$lang), lang:get-language-string('news',$lang)))}">{lang:get-language-string('news', $lang)}</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')))}">{lang:get-language-string('editorialGuidelines', $lang)}</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, replace(lang:get-language-string('projectDescription',$lang), '\s', '_')))}">{lang:get-language-string('projectDescription', $lang)}</xhtml:a></xhtml:li>
-            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('publications',$lang)))}">{lang:get-language-string('publications', $lang)}</xhtml:a></xhtml:li>
+            <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('volContents',$lang)))}">{lang:get-language-string('volContents', $lang)}</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('bibliography',$lang)))}">{lang:get-language-string('bibliography', $lang)}</xhtml:a></xhtml:li>
             <xhtml:li><xhtml:a href="{core:join-path-elements(($baseHref, $lang, lang:get-language-string('contact',$lang)))}">{lang:get-language-string('contact', $lang)}</xhtml:a></xhtml:li>
         </xhtml:ul>
