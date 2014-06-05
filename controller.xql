@@ -595,9 +595,6 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
 else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
-        <error-handler>
-            {$error404/exist:forward}
-		</error-handler>
     </dispatch>
 
 (: Tools :)
