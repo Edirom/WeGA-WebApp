@@ -281,7 +281,12 @@ declare function core:cache-doc($docURI as xs:string, $callback as function() as
 	   default return true()
 	return 
 	   if($updateNecessary or $overwrite) then (
-            let $content := $callback($callback-params)
+            let $content := 
+                if(count($callback-params) eq 0) then $callback()
+                else if(count($callback-params) eq 1) then $callback($callback-params)
+                else if(count($callback-params) eq 3) then $callback($callback-params[1], $callback-params[2], $callback-params[3])
+                else if(count($callback-params) eq 2) then $callback($callback-params[1], $callback-params[2])
+                else $callback($callback-params)
             let $logMessage := concat('core:cache-doc(): saved document ', $docURI)
             let $logToFile := core:logToFile('info', $logMessage)
             let $store-file := core:store-file($collection, $fileName, $content)

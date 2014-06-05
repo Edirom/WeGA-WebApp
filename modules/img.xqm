@@ -149,10 +149,11 @@ declare function img:createPicMetadata($pathToLocalFile as xs:string, $origURL a
  : @param $origURL
  : @return xs:string?
  :)
-declare function img:getPicMetadata($localPicURL as xs:string) as element(picMetadata) {
+declare function img:getPicMetadata($localPicURL as xs:string) as element(picMetadata)? {
     let $unknownWoman := config:get-option('unknownWoman')
     let $unknownMan := config:get-option('unknownMan')
     let $unknownSex := config:get-option('unknownSex')
+    let $picFileName := functx:substring-after-last($localPicURL, '/')
     let $localMetadataURL := concat(functx:substring-before-last($localPicURL, '.'), '.xml')
     return 
         if (doc-available($localMetadataURL)) then doc($localMetadataURL)/picMetadata
@@ -163,16 +164,16 @@ declare function img:getPicMetadata($localPicURL as xs:string) as element(picMet
                 <width>140px</width>
                 <height>185px</height>
             </picMetadata>
-        else
-            let $picFile := functx:substring-after-last($localPicURL, '/')
-            let $metadataFile := core:getOrCreateColl('iconography', 'indices', true())//tei:graphic[@url = $picFile]
+        else if(core:getOrCreateColl('iconography', 'indices', true())//tei:graphic[@url = $picFileName]) then 
+            let $metadataFile := core:getOrCreateColl('iconography', 'indices', true())//tei:graphic[@url = $picFileName]
             return
-            <picMetadata>
-                <localFile>{$localPicURL}</localFile>
-                <origURL/>
-                <width>{$metadataFile/normalize-space(@width)}</width>
-                <height>{$metadataFile/normalize-space(@height)}</height>
-            </picMetadata>
+                <picMetadata>
+                    <localFile>{$localPicURL}</localFile>
+                    <origURL/>
+                    <width>{$metadataFile/normalize-space(@width)}</width>
+                    <height>{$metadataFile/normalize-space(@height)}</height>
+                </picMetadata>
+        else ()
 };
 
 (:~
