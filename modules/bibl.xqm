@@ -114,60 +114,6 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
 };
 
 (:~
- : Create a bibliographic citation for a journal
- : 1. Helper function for bibl:printArticleCitation() 
- : 2. Function for creating bibliographic citations for writings when the source is a journal
- : 
- : @author Peter Stadler
- : @param $monogr the TEI monogr element with the bibliographic reference of the journal
- : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
- : @param $lang the language switch (en, de)
- : @return element
- :)
-declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
-    let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
-    let $date := concat('(', $monogr/tei:imprint/tei:date, ')')
-    let $biblScope := concat(
-        if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'nr']) else (),
-        if(exists($monogr/tei:imprint/tei:date)) then concat(' ', $date) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
-    )
-    return 
-        element {$wrapperElement} {
-            $journalTitle,
-            $biblScope
-        }
-};
-
-(:~
- : Create a bibliographic citation for a series
- : Helper function for various bibl:print*Citation() 
- : 
- : @author Peter Stadler
- : @param $series the TEI monogr element with the bibliographic reference of the journal
- : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
- : @param $lang the language switch (en, de)
- : @return element
- :)
-declare function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
-    let $seriesTitle := string-join($series/tei:title, '. ')
-(:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
-    let $biblScope := concat(
-        if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
-        if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
-    )
-    return 
-        element {$wrapperElement} {
-            <xhtml:span class="seriesTitle">{$seriesTitle}</xhtml:span>,
-            $biblScope
-        }
-};
-
-(:~
  : Create a bibliographic citation for an incollection entry type
  : 
  : @author Peter Stadler
@@ -194,6 +140,80 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
             if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+        }
+};
+
+(:~
+ : Create a bibliographic citation for a journal
+ : 1. Helper function for bibl:printArticleCitation() 
+ : 2. Function for creating bibliographic citations for writings when the source is a journal
+ : 
+ : @author Peter Stadler
+ : @param $monogr the TEI monogr element with the bibliographic reference of the journal
+ : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
+ : @param $lang the language switch (en, de)
+ : @return element
+ :)
+declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
+    let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
+(:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
+    let $biblScope := bibl:biblScope($monogr/tei:imprint, $lang) (:concat(
+        if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'nr']) else (),
+        if(exists($monogr/tei:imprint/tei:date)) then concat(' ', $date) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
+        if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
+    ):)
+    return 
+        element {$wrapperElement} {
+            $journalTitle,
+            $biblScope
+        }
+};
+
+(:~
+ : Helper function for various bibl:print*Citation() 
+ : 
+ : @author Peter Stadler
+ : @param $parent the parent element of the tei:biblScope elements (usually tei:imprint or tei:series)
+ : @param $lang the language switch (en, de)
+ : @return xs:string*
+ :)
+declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
+    concat(
+        if($parent/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@type = 'vol']) else (),
+        if($parent/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@type = 'jg']) else (),
+        if($parent/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@type = 'issue']) else (),
+        if($parent/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
+        if(exists($parent/tei:date)) then concat(' (', $parent/tei:date, ')') else (),
+        if($parent/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
+        if($parent/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
+    )
+};
+
+(:~
+ : Create a bibliographic citation for a series
+ : Helper function for various bibl:print*Citation() 
+ : 
+ : @author Peter Stadler
+ : @param $series the TEI monogr element with the bibliographic reference of the journal
+ : @param $wrapperElement the HTML element for wrapping the output (usually span or li)
+ : @param $lang the language switch (en, de)
+ : @return element
+ :)
+declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
+    let $seriesTitle := string-join($series/tei:title, '. ')
+(:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
+    let $biblScope := concat(
+        if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
+        if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
+    )
+    return 
+        element {$wrapperElement} {
+            <xhtml:span class="seriesTitle">{$seriesTitle}</xhtml:span>,
+            $biblScope
         }
 };
 
