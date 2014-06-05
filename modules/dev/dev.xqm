@@ -1,4 +1,4 @@
-xquery version "1.0" encoding "UTF-8";
+xquery version "3.0" encoding "UTF-8";
 
 (:~
  : WeGA Development XQuery-Module
@@ -57,12 +57,14 @@ declare function dev:showToolsTab($docType as xs:string, $lang as xs:string) {
  :)
 
 
-declare function dev:addFffiEntry($IDFile as item(), $id as xs:string?) as xs:string {
-    let $dateTime := util:system-dateTime()
-    return if (matches($id, '_A0\d{5}')) 
-        then (update insert <entry xml:id="{$id}" dateTime="{$dateTime}"/> into $IDFile/dictionary,
-            string($IDFile//id($id)/@xml:id)) 
-        else ''
+declare function dev:addFffiEntry($IDFile as document-node(), $id as xs:string?) as xs:string {
+    let $currentdateTime := util:system-dateTime()
+    let $newNode := <entry xml:id="{$id}" dateTime="{$currentdateTime}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
+    let $storeNode := 
+        if (matches($id, '_A\d{6}')) then update insert $newNode into $IDFile/dev:dictionary
+        else error(xs:QName('dev:error'), 'got wrong ID: ' || $id)
+    return 
+        $IDFile//id($id)/string(@xml:id)
 };
 
 (:~
@@ -73,19 +75,18 @@ declare function dev:addFffiEntry($IDFile as item(), $id as xs:string?) as xs:st
  : @return empty()
  :)
 
-declare function dev:removeOldEntries($IDFile as item()) as empty() {
+declare function dev:removeOldEntries($IDFile as document-node()) as empty() {
     let $currentdateTime := util:system-dateTime()
-(:    let $tempIDs := $IDFile//entry:)
-    for $entry in $IDFile//entry
-        let $date := xs:dateTime($entry/@dateTime)
-        let $id := data($entry/@xml:id)
-        return if($date lt ($currentdateTime - xs:dayTimeDuration('P10D')))
-            then update delete $IDFile//id($id)
-            else()
+    return 
+        for $entry in $IDFile//dev:entry[@dateTime < ($currentdateTime - xs:dayTimeDuration('P10D'))]
+        return 
+            update delete $entry
 };
 
 (:~
- : Get new ID
+ : Helper function for dev:createNewID()
+ : Beware: There is no check whether it's even possible to get a new ID!
+ : This must be taken care of by the calling function
  :
  : @author Peter Stadler 
  : @param $max
@@ -94,15 +95,13 @@ declare function dev:removeOldEntries($IDFile as item()) as empty() {
  : @return xs:string
  :)
 
-declare function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 as xs:string+) as xs:string {
+declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 as xs:string+) as xs:string {
     let $IDPrefix := substring($coll1[1], 1, 3)
     let $rand := functx:pad-integer-to-length(util:random($max) + 1, 4)
     let $newID := concat($IDPrefix, $rand)
-    return if ($newID = $coll1) 
-        then dev:getNewID($max, $coll1, $coll2)
-        else if ($newID = $coll2)  
-            then dev:getNewID($max, $coll1, $coll2)
-            else $newID  
+    return 
+        if ($newID = ($coll1, $coll2)) then dev:getNewID($max, $coll1, $coll2)
+        else $newID  
 };
 
 (:~
@@ -114,12 +113,11 @@ declare function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 a
  :)
 
 declare function dev:createNewID($docType as xs:string) as xs:string {
-    let $IDFileName := concat('tempIDs', $docType, '.xml')
-    let $IDFile := 
-        if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
-        else doc(concat($config:tmp-collection-path, $IDFileName))
+    let $IDFileName := concat($docType, '-tmpIDs.xml')
+    let $IDFileURI := core:join-path-elements(($config:tmp-collection-path, $IDFileName))
+    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#1, $docType, false())
     let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
-    let $coll2 := $IDFile//entry/substring(@xml:id, 2)
+    let $coll2 := $IDFile//dev:entry/substring(@xml:id, 2)
     let $removeOldTempIDS := dev:removeOldEntries($IDFile)
     let $maxID := count($coll1) + count($coll2) + 200
     let $newID := 
@@ -127,6 +125,10 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
         else '_kein Eintrag verfügbar'
 
     return substring($newID, 2)
+};
+
+declare function dev:create-empty-idfile($docType as xs:string) as element() {
+    <dictionary xml:id="{concat($docType, '-tmpIDs')}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
 };
 
 (:~
