@@ -29,22 +29,20 @@ import module namespace functx="http://www.functx.com";
  : @param $lang the language of the string (en|de)
  : @return xs:string
  :)
- 
-declare function img:getPortraitPath($person as node(), $dimensions as xs:integer+, $lang as xs:string) as xs:string? {
+declare function img:getPortraitPath($person as element(tei:person), $dimensions as xs:integer+, $lang as xs:string) as xs:string? {
     let $docID := $person/data(@xml:id)
     let $pnd := $person/tei:idno[@type='gnd']
     let $unknownWoman := config:get-option('unknownWoman')
     let $unknownMan := config:get-option('unknownMan')
     let $unknownSex := config:get-option('unknownSex')
-    let $localPortraitURL := core:getOrCreateColl('iconography', $docID, true())//tei:figure[@n='portrait'][1]//tei:graphic[1]/data(@url)
+    let $localPortrait := core:getOrCreateColl('iconography', $docID, true())//tei:figure[@n='portrait'][1]
     let $cachedPortrait := doc(concat($config:tmp-collection-path, replace($docID, '\d{2}$', 'xx'), '/', $docID, '.xml'))//localFile/string()
     let $graphicURL := 
-        if(not(functx:all-whitespace($localPortraitURL))) then core:join-path-elements((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortraitURL))
-        else 
-            if(util:binary-doc-available($cachedPortrait)) then $cachedPortrait
-            else 
-                if(exists($pnd)) then img:retrieveImagesFromWikipedia(string($pnd), $lang)//wega:wikipediaImage[1]/wega:localUrl/text()
-                else ()
+        if($localPortrait/tei:graphic[1]/data(@url)) then core:join-path-elements((substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'), $docID, $localPortrait/tei:graphic[1]/data(@url)))
+        else if($localPortrait) then () (: there is a figure but no graphic --> we want to display generic portraits :)
+        else if(util:binary-doc-available($cachedPortrait)) then $cachedPortrait
+        else if(exists($pnd)) then img:retrieveImagesFromWikipedia(string($pnd), $lang)//wega:wikipediaImage[1]/wega:localUrl/text()
+        else ()
     return 
         if(exists($graphicURL)) then img:createDigilibURL($graphicURL, $dimensions, true())
         else if(data($person//tei:sex)='f') then img:createDigilibURL($unknownWoman, $dimensions, true()) 
@@ -61,7 +59,6 @@ declare function img:getPortraitPath($person as node(), $dimensions as xs:intege
  : @param $lang the language variable (de|en)
  : @return element the local path to the stored file
  :)
- 
 declare function img:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:string) as element(wega:wikipediaImages) {
     let $wikiArticle := wega:grabExternalResource('wikipedia', $pnd, $lang, true())
     let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
@@ -93,31 +90,28 @@ declare function img:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:
  : @param $localName the fileName within the local db. If empty, a hash of the $picURL will be taken as fileName
  : @return xs:string the local path to the stored file 
  :)
- 
 declare function img:retrievePicture($picURL as xs:anyURI, $localName as xs:string?) as xs:string? {
     let $suffix := lower-case(functx:substring-after-last($picURL, '.'))
-    let $localFileName :=  if(matches($localName, '\S')) 
-        then $localName
+    let $localFileName :=  
+        if(matches($localName, '\S')) then $localName
         else util:hash($picURL, 'md5')
-    let $tmpDir := config:get-option('tmpDir')
-    let $localDbCollection := if(matches($localFileName, '^A\d{6}$'))
-        then if(xmldb:collection-available(concat($tmpDir, replace($localFileName, '\d{2}$', 'xx'))))
-            then concat($tmpDir, replace($localFileName, '\d{2}$', 'xx'))
-            else xmldb:create-collection($tmpDir, replace($localFileName, '\d{2}$', 'xx'))
-        else if(xmldb:collection-available(concat($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))))
-            then concat($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
-            else xmldb:create-collection($tmpDir, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
+    let $localDbCollection := 
+        if(matches($localFileName, '^A\d{6}$')) then 
+            if(xmldb:collection-available(concat($config:tmp-collection-path, replace($localFileName, '\d{2}$', 'xx')))) then concat($config:tmp-collection-path, replace($localFileName, '\d{2}$', 'xx'))
+            else xmldb:create-collection($config:tmp-collection-path, replace($localFileName, '\d{2}$', 'xx'))
+        else if(xmldb:collection-available(concat($config:tmp-collection-path, replace($localFileName, '^(\w{2})\w+', '$1xxx')))) then concat($config:tmp-collection-path, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
+            else xmldb:create-collection($config:tmp-collection-path, replace($localFileName, '^(\w{2})\w+', '$1xxx'))
     let $pathToLocalFile := concat($localDbCollection, '/', $localFileName, '.', $suffix)
     let $storeFile := 
         if (util:binary-doc-available($pathToLocalFile)) then () 
         else
             try { xmldb:store($localDbCollection, concat($localFileName, '.', $suffix), xs:anyURI($picURL)) }
             catch * { core:logToFile('error', string-join(('img:retrievePicture', $err:code, $err:description, 'URL: ' || $picURL), ' ;; ')) }
-    let $storePicMetaData := 
-        if(img:getPicMetadata($pathToLocalFile)) then () (: Wenn Metadaten schon vorhanden sind, brauchen sie nicht erneut angelegt werden :)
-        else img:storePicMetadata($pathToLocalFile, $picURL)
+    let $picMetaData := 
+        if(img:getPicMetadata($pathToLocalFile)) then img:getPicMetadata($pathToLocalFile) (: Wenn Metadaten schon vorhanden sind, brauchen sie nicht erneut angelegt werden :)
+        else core:cache-doc(concat(functx:substring-before-last($pathToLocalFile, '.'), '.xml'), img:createPicMetadata#2, ($pathToLocalFile, $picURL), false())
     return 
-        if (util:binary-doc-available($pathToLocalFile) and img:getPicMetadata($pathToLocalFile)) then $pathToLocalFile (: Datei bereits vorhanden :)
+        if (util:binary-doc-available($pathToLocalFile) and $picMetaData) then $pathToLocalFile (: Datei bereits vorhanden :)
         else ()
 };
 
@@ -129,29 +123,22 @@ declare function img:retrievePicture($picURL as xs:anyURI, $localName as xs:stri
  : @param $origURL
  : @return xs:string?
  :)
-
-declare function img:storePicMetadata($pathToLocalFile as xs:string, $origURL as xs:anyURI) as xs:string? {
-    let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/')
-    let $localFileName := functx:substring-after-last($pathToLocalFile, '/')
-    (:let $pic := util:binary-doc($pathToLocalFile):)
+declare function img:createPicMetadata($pathToLocalFile as xs:string, $origURL as xs:anyURI) as element(picMetadata) {
+(:    let $localDbCollection := functx:substring-before-last($pathToLocalFile, '/'):)
+(:    let $localFileName := functx:substring-after-last($pathToLocalFile, '/'):)
     let $picHeight :=
         try { image:get-height(util:binary-doc($pathToLocalFile)) }
-        catch * { core:logToFile('error', string-join(('img:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
+        catch * { core:logToFile('error', string-join(('img:createPicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
     let $picWidth := 
         try { image:get-width(util:binary-doc($pathToLocalFile)) }
-        catch * { core:logToFile('error', string-join(('img:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
-    let $metadata := 
+        catch * { core:logToFile('error', string-join(('img:createPicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile), ' ;; ')) }
+    return
         <picMetadata>
             <localFile>{$pathToLocalFile}</localFile>
             <origURL>{$origURL}</origURL>
-            <width>{concat($picWidth, 'px')}</width>
-            <height>{concat($picHeight, 'px')}</height>
+            <width>{if($picWidth instance of xs:integer) then concat($picWidth, 'px') else ()}</width>
+            <height>{if($picHeight instance of xs:integer) then concat($picHeight, 'px') else ()}</height>
         </picMetadata>
-    return if($picWidth instance of xs:integer and $picHeight instance of xs:integer)
-        then
-            try { xmldb:store($localDbCollection, concat(functx:substring-before-last($localFileName, '.'), '.xml'), $metadata) }
-            catch * { core:logToFile('error', string-join(('img:storePicMetadata', $err:code, $err:description, 'pathToLocalFile: ' || $pathToLocalFile, 'origURL: ' || $origURL), ' ;; ')) }
-        else ()
 };
 
 (:~
@@ -162,31 +149,30 @@ declare function img:storePicMetadata($pathToLocalFile as xs:string, $origURL as
  : @param $origURL
  : @return xs:string?
  :)
-
-declare function img:getPicMetadata($localPicURL as xs:string) as element(picMetadata)? {
-    let $tmpDir := config:get-option('tmpDir')
+declare function img:getPicMetadata($localPicURL as xs:string) as element(picMetadata) {
     let $unknownWoman := config:get-option('unknownWoman')
     let $unknownMan := config:get-option('unknownMan')
     let $unknownSex := config:get-option('unknownSex')
+    let $localMetadataURL := concat(functx:substring-before-last($localPicURL, '.'), '.xml')
     return 
-        if (starts-with($localPicURL, $tmpDir)) then doc(concat(functx:substring-before-last($localPicURL, '.'), '.xml'))/picMetadata
-        else if($localPicURL = ($unknownMan, $unknownWoman, $unknownSex)) 
-            then <picMetadata>
-                    <localFile>{$localPicURL}</localFile>
-                    <origURL/>
-                    <width>140px</width>
-                    <height>185px</height>
-                </picMetadata>
-            else
-                let $picFile := functx:substring-after-last($localPicURL, '/')
-                let $metadataFile := core:getOrCreateColl('iconography', 'indices', true())//tei:graphic[@url = $picFile]
-                return
-                <picMetadata>
-                    <localFile>{$localPicURL}</localFile>
-                    <origURL/>
-                    <width>{$metadataFile/string(@width)}</width>
-                    <height>{$metadataFile/string(@height)}</height>
-                </picMetadata>
+        if (doc-available($localMetadataURL)) then doc($localMetadataURL)/picMetadata
+        else if($localPicURL = ($unknownMan, $unknownWoman, $unknownSex)) then
+            <picMetadata>
+                <localFile>{$localPicURL}</localFile>
+                <origURL/>
+                <width>140px</width>
+                <height>185px</height>
+            </picMetadata>
+        else
+            let $picFile := functx:substring-after-last($localPicURL, '/')
+            let $metadataFile := core:getOrCreateColl('iconography', 'indices', true())//tei:graphic[@url = $picFile]
+            return
+            <picMetadata>
+                <localFile>{$localPicURL}</localFile>
+                <origURL/>
+                <width>{$metadataFile/normalize-space(@width)}</width>
+                <height>{$metadataFile/normalize-space(@height)}</height>
+            </picMetadata>
 };
 
 (:~
@@ -198,15 +184,10 @@ declare function img:getPicMetadata($localPicURL as xs:string) as element(picMet
  : @param $trim 
  : @return xs:string?
  :)
-
 declare function img:createDigilibURL($localPicURL as xs:string, $dimensions as xs:integer+, $trim as xs:boolean) as xs:string? {
     let $picMetadata := img:getPicMetadata($localPicURL)
-    let $tmpDir := config:get-option('tmpDir')
-    let $pixDir := config:get-option('pixDir')
-    let $imagesDir := config:get-option('imagesDir')
-    let $digilibDir := config:get-option('digilibDir')
-    let $picHeight := if(exists($picMetadata/height)) then xs:int(substring-before($picMetadata/height, 'px')) else 1
-    let $picWidth := if(exists($picMetadata/width)) then xs:int(substring-before($picMetadata/width, 'px')) else 1
+    let $picHeight := if(substring-before($picMetadata/height, 'px') castable as xs:int) then xs:int(substring-before($picMetadata/height, 'px')) else 1
+    let $picWidth := if(substring-before($picMetadata/width, 'px') castable as xs:int) then xs:int(substring-before($picMetadata/width, 'px')) else 1
     let $dw := $dimensions[1]
     let $dh := $dimensions[2]
     let $ratioW := $picWidth div $dw
@@ -231,7 +212,6 @@ declare function img:createDigilibURL($localPicURL as xs:string, $dimensions as 
  : @param $crop
  : @return xs:string? 
  :)
-
 declare function img:createDigilibURL($localPicURL as xs:string, $crop as xs:boolean) as xs:string? {
     let $digilibParams := if($crop)
         then '&#38;dw=400&#38;dh=600'
