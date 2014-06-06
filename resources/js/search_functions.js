@@ -65,7 +65,8 @@ function showSearchResults(page,numberOfResults,firstTime, lang) {
     var sessionName = options.searchSessionName;
     
     var elemId = "swheel_"+page;
-    var spinningWheelImage = new Element('img', {"src": options.baseHref+"/"+options.html_pixDir+"/ajax-loader.gif", "alt":"spinning-wheel"}); 
+    var spinningWheelImage = new Element('span', {'class': 'ajaxLoader'}).update(wegaSettings.ajaxLoaderCombined);  
+        //new Element('img', {"src": options.baseHref+"/"+options.html_pixDir+"/ajax-loader.gif", "alt":"spinning-wheel"}); 
     spinningWheelImage.setStyle({margin:'20px'});
     
     var spinningWheelContainer = new Element('div', {'class':'searchResultEntry', 'id':elemId});

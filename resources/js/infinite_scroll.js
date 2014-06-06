@@ -50,7 +50,8 @@ function showMoreEntries() {
     
     for(var i=1;i<=options.entriesPerPage;i++) {
         var elemId = "swheel_"+page+"_"+i;
-        var spinningWheelImage = new Element('img', {"src": options.baseHref+"/"+options.html_pixDir+"/ajax-loader.gif", "alt":"spinning-wheel"}); 
+        var spinningWheelImage = new Element('span', {'class': 'ajaxLoader'}).update(wegaSettings.ajaxLoaderCombined); 
+            //new Element('img', {"src": options.baseHref+"/"+options.html_pixDir+"/ajax-loader.gif", "alt":"spinning-wheel"}); 
         spinningWheelImage.setStyle({margin:'20px'});
         
         var spinningWheelContainer = new Element('div', {'id':elemId});
