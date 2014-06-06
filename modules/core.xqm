@@ -16,6 +16,7 @@ import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.ex
 
 (:~
  : Get document by ID
+ : The core:doc() function will also resolve duplicates
  :
  : @author Peter Stadler
  : @param $docID the ID of the document
@@ -23,8 +24,14 @@ import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.ex
 :)
 declare function core:doc($docID as xs:string) as document-node()? {
     let $collectionPath := config:getCollectionPath($docID)
+    let $docURL := core:join-path-elements(($collectionPath, $docID)) || '.xml'
     return 
-        if (exists($collectionPath)) then collection($collectionPath)//id($docID)/root() else ()
+        if(doc-available($docURL)) then
+            let $doc := doc($docURL) 
+            return
+                if($doc/tei:*/tei:ref/@target) then core:doc($doc/tei:*/tei:ref/@target)
+                else $doc
+        else ()
 };
 
 (:~
