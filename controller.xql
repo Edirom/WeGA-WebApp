@@ -102,7 +102,7 @@ else if(starts-with($exist:path, '/digilib/')) then
  :  Nackte Server-URL (evtl. mit Angabe der Sprache)
 :)
 else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
-    controller:redirect-absolute($exist-vars, '/Index')
+    controller:redirect-absolute('/Index', $lang)
 
 (: 
  :  Startseiten-Weiterleitung 2
@@ -110,7 +110,7 @@ else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
  :  Achtung: .php hier nicht aufnehmen, dies wird mit den typo3ContentMappings abgefragt
 :)
 else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
-    controller:redirect-absolute($exist-vars, '/Index')
+    controller:redirect-absolute('/Index', $lang)
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
@@ -333,7 +333,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     let $person := core:doc($exist:resource)/tei:person
     return if(exists($person)) then 
-        if($person/tei:ref) then controller:redirect-absolute($exist-vars, $person/tei:ref/string(@target))
+        if($person/@xml:id ne $exist:resource) then controller:redirect-absolute($person/string(@xml:id), $lang)
         else
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             	<forward url="{concat($exist:controller, '/modules/person_singleView.xql')}">
@@ -417,7 +417,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/'
 else if (matches($exist:path, concat('^/', $lang, '/pnd/', '[0-9]{8,9}[0-9X]$'))) then
     let $id := wega:getIDByPND($exist:resource)
     return 
-        if($id) then controller:redirect-absolute($exist-vars, $id)
+        if($id) then controller:redirect-absolute($id, $lang)
         else controller:error($exist-vars, 404)
 
 (: Shortcut für Weber-Korrespondenz :)

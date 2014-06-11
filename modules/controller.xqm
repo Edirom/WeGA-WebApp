@@ -46,9 +46,9 @@ declare function controller:forward-ajax($exist-vars as map(*)) as element(exist
  : @param $path the path to redirect to
  : @return exist:dispatch element for controller.xql
  :)
-declare function controller:redirect-absolute($exist-vars as map(*), $path as xs:string) as element(exist:dispatch) {
+declare function controller:redirect-absolute($path as xs:string, $lang as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{core:join-path-elements(('/', $exist-vars('prefix'), $exist-vars('controller'), $exist-vars('lang'), $path))}"/>
+        <redirect url="{core:link-to-current-app($lang || '/' || $path)}"/>
     </dispatch>
 };
 
@@ -59,8 +59,8 @@ declare function controller:redirect-docID($exist-vars as map(*), $requestID as 
     let $displayName := controller:display-name($exist-vars, $docType, 'persons') (: Die Darstellung als URL, also 'Korrespondenz', 'Tagebücher' etc. :)
     let $authorID := wega:getAuthorOfTeiDoc($doc)
     return 
-        if($docType eq 'persons') then controller:redirect-absolute($exist-vars, $docID)
-        else if($authorID) then controller:redirect-absolute($exist-vars, core:join-path-elements(($authorID, $displayName, $docID)))
+        if($docType eq 'persons') then controller:redirect-absolute($docID, $exist-vars('lang'))
+        else if($authorID) then controller:redirect-absolute(core:join-path-elements(($authorID, $displayName, $docID)), $exist-vars('lang'))
         else controller:error($exist-vars, 404)
 };
 
