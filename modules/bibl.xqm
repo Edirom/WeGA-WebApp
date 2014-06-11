@@ -228,6 +228,9 @@ declare %private function bibl:printSeriesCitation($series as element(tei:series
  
 declare %private function bibl:printCitationAuthors($authors as element()*, $lang as xs:string) as item()* {
     let $countAuthors := count($authors)
+    let $authors := 
+        if($countAuthors eq 0) then <tei:author>Anonymus</tei:author>
+        else $authors
     return 
         for $i at $counter in $authors
         let $author := <span class="{local-name($i)}">{string(wega:printCorrespondentName($i, $lang, 'sf'))}</span>
