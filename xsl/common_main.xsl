@@ -791,6 +791,9 @@
     <xsl:template match="tei:row">
         <xsl:element name="tr">
             <xsl:apply-templates select="@xml:id"/>
+            <xsl:if test="@rend='bg-color'">
+                <xsl:attribute name="class" select="@rend"/>
+            </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
