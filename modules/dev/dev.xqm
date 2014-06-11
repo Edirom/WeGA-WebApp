@@ -96,7 +96,7 @@ declare function dev:removeOldEntries($IDFile as document-node()) as empty() {
  :)
 
 declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 as xs:string+) as xs:string {
-    let $IDPrefix := substring($coll1[1], 1, 3)
+    let $IDPrefix := substring($coll1[22], 1, 3) (: use a higher element diary summaries, e.g. diary_Weber_1817 :)
     let $rand := functx:pad-integer-to-length(util:random($max) + 1, 4)
     let $newID := concat($IDPrefix, $rand)
     return 
@@ -115,7 +115,9 @@ declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+,
 declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFileName := concat($docType, '-tmpIDs.xml')
     let $IDFileURI := core:join-path-elements(($config:tmp-collection-path, $IDFileName))
-    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#1, $docType, false())
+    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), false())
+       (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
+        else doc(concat($config:tmp-collection-path, $IDFileName)):)
     let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
     let $coll2 := $IDFile//dev:entry/substring(@xml:id, 2)
     let $removeOldTempIDS := dev:removeOldEntries($IDFile)
@@ -127,8 +129,9 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
     return substring($newID, 2)
 };
 
-declare function dev:create-empty-idfile($docType as xs:string) as element() {
-    <dictionary xml:id="{concat($docType, '-tmpIDs')}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
+declare function dev:create-empty-idfile($docType as xs:string, $IDFileURI as xs:string) as element(dev:dictionary) {
+    if(doc-available($IDFileURI)) then doc($IDFileURI)/dev:dictionary (: preserve entries over db updates :)
+    else <dictionary xml:id="{concat($docType, '-tmpIDs')}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
 };
 
 (:~
