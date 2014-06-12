@@ -144,27 +144,11 @@ declare function ajax:getPersonCorrespondents($id as xs:string, $lang as xs:stri
             ../../tei:dateSender/tei:date[@from >= $fromOffset and @from <= $toOffset] or
             ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]
             /../../tei:sender/tei:persName[@key]
-            else if ($correspondents eq 'all')
-                then core:getOrCreateColl('letters', $id, true())//tei:sender/tei:persName[@key = $id] 
-                     (:[../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@to >= $fromOffset and @to <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@from >= $fromOffset and @from <= $toOffset] or
-                     ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]:)
-                     /../../tei:addressee/tei:persName[@key]
-                     | core:getOrCreateColl('letters', $id, true())//tei:addressee/tei:persName[@key = $id]
-                     (:[../../tei:dateSender/tei:date[@when >= $fromOffset and @when <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@notBefore >= $fromOffset and @notBefore <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@notAfter >= $fromOffset and @notAfter <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@to >= $fromOffset and @to <= $toOffset] or 
-                     ../../tei:dateSender/tei:date[@from >= $fromOffset and @from <= $toOffset] or
-                     ../../tei:dateSender/tei:date[not(@when or @from or @to or @notBefore or @notAfter)]]:)
-                     /../../tei:sender/tei:persName[@key]
-                else()
+        else if ($correspondents eq 'all')
+            then core:getOrCreateColl('letters', $id, true())//tei:persName[ancestor::tei:correspDesc][@key != $id]
+        else()
     return 
         for $i in $letterList 
-(:        group $i as $partition by $i/@key as $key:)
         group by $key := $i/@key
         order by count($i) descending
         return <person key="{$key}" count="{count($i)}"/>
@@ -438,16 +422,19 @@ declare function ajax:getListFromEntriesWithKey($docID,$lang,$entry) {
     let $isDiary := config:is-diary($docID)
     (: Temporarily suppressing display of persons, works etc. since those are not reliable :)
     let $suppressDisplay := if($isDiary) then if(year-from-date($doc/tei:ab/@n cast as xs:date) = $ajax:diaryYearsToSuppress) then true() else false() else false()
+    let $tokenizeIDs := function($key as xs:string) as xs:string* {
+        tokenize($key, '\s+')
+    }
     let $coll := 
         if ($entry eq 'person') then
-            if($isDiary) then functx:value-union($doc//tei:persName/string(@key), functx:value-union($doc//tei:rs[@type eq 'person']/string(@key), for $i in $doc//tei:rs[@type = 'persons']/string(@key) return tokenize($i, ' ')))
-            else functx:value-union($doc//tei:text//tei:persName/string(@key), functx:value-union($doc//tei:text//tei:rs[@type = 'person']/string(@key), for $i in $doc//tei:text//tei:rs[@type = 'persons']/string(@key) return tokenize($i, ' ')))
+            if($isDiary) then map($tokenizeIDs, ($doc//tei:persName[not(ancestor::tei:note)]/string(@key), $doc//tei:rs[@type = ('person', 'persons')][not(ancestor::tei:note)]/string(@key)))
+            else map($tokenizeIDs, ($doc//tei:text//tei:persName[not(ancestor::tei:note)]/string(@key), $doc//tei:text//tei:rs[@type = ('person', 'persons')][not(ancestor::tei:note)]/string(@key)))
         else if ($entry eq 'work') then 
-            if($isDiary) then functx:value-union($doc//tei:workName/string(@key), functx:value-union($doc//tei:rs[@type eq 'work']/string(@key), for $i in $doc//tei:rs[@type = 'works']/string(@key) return tokenize($i, ' ')))
-            else functx:value-union($doc//tei:text//tei:workName/string(@key), functx:value-union($doc//tei:text//tei:rs[@type eq 'work']/string(@key), for $i in $doc//tei:text//tei:rs[@type = 'works']/string(@key) return tokenize($i, ' ')))
+            if($isDiary) then map($tokenizeIDs, ($doc//tei:workName[not(ancestor::tei:note)]/@key, $doc//tei:rs[@type = ('work', 'works')][not(ancestor::tei:note)]/@key))
+            else map($tokenizeIDs, ($doc//tei:text//tei:workName[not(ancestor::tei:note)]/@key, $doc//tei:text//tei:rs[@type = ('work', 'works')][not(ancestor::tei:note)]/@key))
         else ()
-    return if ($coll != '' and not($suppressDisplay)) then (
-        for $x in distinct-values($coll)[. != '']
+    return if (count($coll) ne 0 and not($suppressDisplay)) then (
+        for $x in distinct-values($coll)
         let $regName := 
             if($entry eq 'person') then wega:getRegName($x)
             else if($entry eq 'work') then wega:getRegTitle($x)

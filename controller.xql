@@ -349,10 +349,8 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspon
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
         let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
-            if($doc/tei:ref) then 
-                <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="{$doc/tei:ref/data(@target)}"/>
-                </dispatch>
+            if($doc/@xml:id ne $exist:resource) then 
+                controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
                 	<forward url="{concat($exist:controller, '/modules/letter_singleView.xql')}">
@@ -368,10 +366,8 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $writings,
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
         let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
-            if($doc/tei:ref) then 
-                <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="{$doc/tei:ref/data(@target)}"/>
-                </dispatch>
+            if($doc/@xml:id ne $exist:resource) then 
+                controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
                 	<forward url="{concat($exist:controller, '/modules/doc_singleView.xql')}">
@@ -399,10 +395,8 @@ else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $news, '/'
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
         let $doc := core:doc($exist:resource)/tei:TEI
         return if(exists($doc)) then 
-            if($doc/tei:ref) then 
-                <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                    <redirect url="{$doc/tei:ref/data(@target)}"/>
-                </dispatch>
+            if($doc/@xml:id ne $exist:resource) then 
+                controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
                 	<forward url="{concat($exist:controller, '/modules/news_singleView.xql')}">
@@ -523,6 +517,7 @@ else if ($exist:path eq '/favicon.ico') then
 
 (: Schemata zum Download :)
 (: Redirect latest to Github :)
+(:
 else if (matches($exist:path, '^/schema/latest/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{concat('https://raw.githubusercontent.com/Edirom/WeGA-ODD/master/schema/', substring-after($exist:path, '/schema/latest/'))}"/>
@@ -537,6 +532,7 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
             {controller:error($exist-vars, 404)/exist:forward}
 		</error-handler>
     </dispatch>
+:)
     
 (: general forwarding of folder 'dev' for development :)
 else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
