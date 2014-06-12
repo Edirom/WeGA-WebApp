@@ -10,13 +10,19 @@ Prerequisites
 -------------
 
 1. [eXist-db](http://exist-db.org/) v2.x with support for XQuery 3.0
-2. [Digilib Image Server](http://developer.berlios.de/projects/digilib/) v1.8.3: All processing of images (except icons under `/resources/pix`) is done via Digilib. Well, if you don't need images, you don't need Digilib. Also, the exact version shouldn't be crucial.
+2. [Digilib Image Server](http://developer.berlios.de/projects/digilib/) v1.8.3: All processing of images (except icons under `/resources/pix`) is done via Digilib. Well, if you don't want images, you don't need Digilib. Also, the exact version shouldn't be crucial.
 
 
 Quick start guide
 -----------------
 
 If you have a running eXist 2.x database you can simply install the samples.xar as well as the WeGA-WebApp.xar via the Dashboard.
+
+### Dependencies
+* functx (http://www.functx.com), installable via dashboard
+* xqjson (http://xqilla.sourceforge.net/lib/xqjson), installable via dashboard
+
+
 
 
 Branches
