@@ -25,6 +25,8 @@
     <xsl:param name="smufl-decl"/>
     <xsl:param name="data-collection-path"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
+    
+    <xsl:key name="charDecl" match="tei:char" use="@xml:id"/>
 
     <!--  *********************************************  -->
     <!--  *             Global Functions              *  -->
@@ -1017,7 +1019,7 @@
             <xsl:choose>
                 <xsl:when test="@type='smufl'">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
-                    <xsl:variable name="smufl-codepoint" select="doc($smufl-decl)//tei:char[@xml:id = $charName]/tei:mapping[@type='smufl']"/>
+                    <xsl:variable name="smufl-codepoint" select="key('charDecl', $charName, doc($smufl-decl))/tei:mapping[@type='smufl']"/>
                     <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
                 </xsl:when>
                 <xsl:otherwise>
