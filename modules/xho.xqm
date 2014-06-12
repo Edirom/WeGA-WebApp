@@ -148,7 +148,7 @@ declare function xho:createCommonFooter() as item()* {
               _paq.push(["enableLinkTracking"]);
             
               (function() {{
-                var u=(("https:" == document.location.protocol) ? "https" : "http") + "{concat(substring-after($baseHref, 'http'), '/piwik/')}";
+                var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.weber-gesamtausgabe.de/piwik/";
                 _paq.push(["setTrackerUrl", u+"piwik.php"]);
                 _paq.push(["setSiteId", "1"]);
                 var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
@@ -157,7 +157,7 @@ declare function xho:createCommonFooter() as item()* {
             </xhtml:script>,
             <!-- End Piwik Code -->,
             <!-- Piwik Image Tracker -->,
-            <xhtml:noscript><xhtml:p><xhtml:img src="{concat($baseHref, '/piwik/piwik.php?idsite=1&amp;rec=1')}" style="border:0" alt="" /></xhtml:p></xhtml:noscript>,
+            <xhtml:noscript><xhtml:p><xhtml:img src="http://www.weber-gesamtausgabe.de/piwik/piwik.php?idsite=1" style="border:0" alt="" /></xhtml:p></xhtml:noscript>,
             <!-- End Piwik -->
         )
         else ()
