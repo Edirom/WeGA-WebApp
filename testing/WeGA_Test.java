@@ -19,13 +19,14 @@ public class WeGA_Test extends SeleneseTestCase {
 	/********* Einstellungen *********/
 	
 	String dbHost = "localhost";	// Der Host der Datenbank (192.168.3.104 für Menotti,menotti.bib.hfm-detmold.de)
+	String dbProto = "http";
+	String dbSubFolder = "/apps/WeGA-WebApp/";
 	String seHost = "localhost";	// Der Selenium-Host (muss nicht derselbe sein wie DB) 
 	int dbPort = 8080;	 			// Der Port der Datenbank
 	int sePort = 4444; 				// Der Selenium-Port
 	String docType = "all";			// persons, letters, writings, diaries, news, oder all
-	int	number = 5;					// Höchstanzahl der zu testenden Daten aus der Liste
-	String timeOut = "10000";		// Timeout beim Warten auf eine Seite in ms (auf Chrepps Rechner mind. 5s)
-	int firstElem = 0;				// Die Nummer des Elements, bei dem der Test starten soll
+	int	maxLen = 300;					// Höchstanzahl der zu testenden Daten aus der Liste
+	String timeOut = "20000";		// Timeout beim Warten auf eine Seite in ms (auf Chrepps Rechner mind. 5s)
 	String browser = "firefox";
 	
 	/********* Einstellungen *********/
@@ -34,6 +35,7 @@ public class WeGA_Test extends SeleneseTestCase {
 		//System.out.println(type);
 		if(type == "persons") return "" +
 			"selenium.isElementPresent(\"//*[@id='personSummary']//h1\");" + // Falls es ein h1 gibt, wurde Ajax geladen
+			"selenium.isElementPresent(\"//*[@id='bioSummary']\");" +
 			"selenium.isElementPresent(\"//*[@id='contacts']//div\");"; // Falls es ein div gibt, wurde Ajax geladen
 		//"selenium.isElementPresent(\"//*[@id='iconography']\");"; // Kann man nicht so richtig testen
 		else if(type == "letters") return "" +
@@ -71,17 +73,17 @@ public class WeGA_Test extends SeleneseTestCase {
 		else return "";
 	}
 	
-	String buildInput(String docType) throws Exception {
+	BufferedReader buildInput(String docType) throws Exception {
 		URL url = null;
-		try{ url = new URL("http://"+dbHost+":"+dbPort+"/utilities/ID-List.xql?type="+docType+"&start="+firstElem); }
+		try{ url = new URL(dbProto+"://"+dbHost+":"+dbPort+dbSubFolder+"dev/ID-List.xql?type="+docType+"&maxLen="+maxLen); }
 		catch(Exception e) { }
 		BufferedReader idFile = new BufferedReader(new InputStreamReader(url.openStream(),"UTF-8"));
-		return idFile.readLine();
+		return idFile;
 	}
 	
 	@Before
 	public void setUp() throws Exception {
-		selenium = new DefaultSelenium(seHost, sePort, "*"+browser, "http://"+dbHost+":"+dbPort+"/");
+		selenium = new DefaultSelenium(seHost, sePort, "*"+browser, dbProto+"://"+dbHost+":"+dbPort+dbSubFolder);
 		selenium.start();
 	}
 	
@@ -97,13 +99,13 @@ public class WeGA_Test extends SeleneseTestCase {
 	}
 	
 	void startTest(String type) throws Exception {
-		String input = buildInput(type);
-		StringTokenizer st = new StringTokenizer(input," ",false);
-		for(int i=0;st.hasMoreElements() && i<number;i++) {
-			String id = (String) st.nextElement();
+		BufferedReader input = buildInput(type);
+		String id = null;
+		while((id = input.readLine()) != null) {
 			try {
 				openURL(id,type,"de");
-				openURL(id,type,"en");}
+				openURL(id,type,"en");
+				}
 			catch(SeleniumException e) {System.out.println("\n"+id+" nicht korrekt geladen: "+e);}
 		}
 	}
@@ -123,7 +125,7 @@ public class WeGA_Test extends SeleneseTestCase {
 	public void openURL(String id, String docType, String lang) throws Exception {
 		//id ="WeGA_Jähns_1834-12-03_01";
 		id = URLEncoder.encode(id, "UTF-8");
-		selenium.open('/'+lang+'/'+id);
+		selenium.open(dbSubFolder+lang+'/'+id);
 		//System.out.print(id+":");
 		if(docType == "persons" | docType == "all") {
 			selenium.click(getTabName("bio",lang));

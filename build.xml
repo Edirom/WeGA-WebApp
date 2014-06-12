@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="xar" name="WeGA-WebApp">
+    
+    <!-- import default properties from file -->
+    <property file="local.build.properties"/>
+    <property file="build.properties"/>
+    
+    <target name="all" depends="xar"/>
+    <target name="rebuild" depends="clean,all"/>
+    
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete file="expath-pkg.xml"/>
+    </target>
+    
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+    
+    <target name="download-smufl-font" depends="init">
+        <description>Download Bravura font from the official website</description>
+        <get src="${smufl.font}" dest="${build.dir}/bravura.zip" skipexisting="yes"/>
+        <unzip src="${build.dir}/bravura.zip" dest="${build.dir}"/>
+    </target>
+    
+    <target name="additional-images" depends="init">
+        <description>Adds images to the build which are not part of the repository (e.g. due to copyrigt reasons)</description>
+        <copy todir="resources/pix">
+            <fileset dir="${additional.img.dir}">
+                <include name="hfm-logo.png"/>
+                <include name="adwMainz.png"/>
+                <include name="upb-logo.png"/>
+                <include name="stabi-logo.png"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="xar" depends="init, download-smufl-font, additional-images">
+        <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
+            <filterset>
+                <filter token="project.version" value="${project.version}"/>
+            </filterset>
+        </copy>
+        <mkdir dir="resources/fonts"/>
+        <copy todir="resources/fonts">
+            <fileset dir="${build.dir}">
+                <include name="eot/"/>
+                <include name="woff/"/>
+                <include name="otf/"/>
+                <include name="svg/"/>
+            </fileset>
+        </copy>
+        <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
+            <fileset dir=".">
+                <include name="*.*"/>
+                <include name="modules/**"/>
+                <include name="resources/**"/>
+                <include name="catalogues/**"/>
+                <include name="indices/**"/>
+                <include name="xsl/**"/>
+                <exclude name="build.xml"/>
+                <exclude name="*build.properties"/>
+                <exclude name=".git*"/>
+                <exclude name="*.tmpl"/>
+                <exclude name="*.txt"/>
+            </fileset>
+        </zip>
+    </target>
+</project>
