@@ -14,13 +14,16 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries iconography letters news persons places sources var works writings', '\s+');
 
 declare function local:patch-subversion-history($patch as document-node()) {
-    update value $config:svn-change-history-file/dictionary/@head with $patch/dictionary/data(@head),
-    for $entry in $patch//entry
-    let $id := $entry/data(@xml:id)
-    let $old := $config:svn-change-history-file//id($id)
-    return 
-        if($old) then update replace $old with $entry
-        else update insert $entry into $config:svn-change-history-file/dictionary
+    if($patch/dictionary/@head castable as xs:integer) then (
+        update value $config:svn-change-history-file/dictionary/@head with $patch/dictionary/data(@head),
+        for $entry in $patch//entry
+        let $id := $entry/data(@xml:id)
+        let $old := $config:svn-change-history-file//id($id)
+        return 
+            if($old) then update replace $old with $entry
+            else update insert $entry into $config:svn-change-history-file/dictionary
+        )
+    else ()
 };
 
 declare function local:delete-resources($data as xs:string) {
