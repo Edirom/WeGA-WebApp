@@ -26,7 +26,7 @@ declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'd
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
     let $lastmod := $config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime)
-    let $loc := core:join-path-elements(($local:host, wega:createLinkToDoc($x, $lang)))
+    let $loc := $local:host || core:join-path-elements(('/', wega:createLinkToDoc($x, $lang)))
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
             element loc {$loc},
@@ -38,7 +38,7 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $i in $local:standardEntries return 
-            <url><loc>{core:join-path-elements(($local:host, $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
+            <url><loc>{$local:host || core:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
         }
         {
         for $k in $local:databaseEntries return local:getUrlList($k, $lang)
@@ -49,7 +49,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
 declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
-        return <sitemap><loc>{core:join-path-elements(($local:host, config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
+        return <sitemap><loc>{$local:host || core:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
         }
     </sitemapindex>
 };
