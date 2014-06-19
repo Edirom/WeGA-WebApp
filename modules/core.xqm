@@ -61,24 +61,40 @@ declare function core:data-collection($collectionName as xs:string) as document-
  : @return document-node()*
  :)
 declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:string, $useCache as xs:boolean) as document-node()* {
-    let $lastModKey := 'lastModDateTime'
-    let $dateTimeOfCache := cache:get($collName, $lastModKey)
+    let $dateTimeOfCache := cache:get($collName, 'lastModDateTime')
     let $collCached := cache:get($collName, $cacheKey)
     return
-        if(exists($collCached) and not(config:eXistDbWasUpdatedAfterwards($dateTimeOfCache)) and $useCache)
-        then 
+        if(exists($collCached) and not(config:eXistDbWasUpdatedAfterwards($dateTimeOfCache)) and $useCache) then
             typeswitch($collCached)
             case xs:string return ()
             default return $collCached
+        else if($collName eq 'diaries' and $cacheKey != ('indices', 'A002068')) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
             let $sortedColl := core:sortColl($newColl)
-            let $setCache := (cache:put($collName, $lastModKey, current-dateTime()),
-                if(exists($newColl)) then cache:put($collName, $cacheKey, $sortedColl)
-                else cache:put($collName, $cacheKey, 'empty'))
-            let $logMessage := concat('core:getOrCreateColl(): created collection cache (',$cacheKey,') for ', $collName, ' (', count($newColl), ' items)')
-            let $logToFile := core:logToFile('info', $logMessage)
+            let $setCache := 
+                (: Do not cache all collections. This will result in too much memory consumption :)
+                if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
+                else ()
             return $sortedColl
+};
+
+(:~
+ : helper function for core:getOrCreateColl
+ :
+ : @author Peter Stadler
+ : @param $cacheName the name of the cache
+ : @param $cacheKey the key for the cache
+ : @param $content the content to cache
+ : @return item()*
+ :)
+declare %private function core:put-cache($cacheName as xs:string, $cacheKey as xs:string, $content as item()*) as item()* {
+    let $logMessage := concat('core:put-cache(): created cache (',$cacheKey,') for ', $cacheName, ' (', count($content), ' items)')
+    let $logToFile := core:logToFile('info', $logMessage)
+    return (
+        cache:put($cacheName, 'lastModDateTime', current-dateTime()),
+        cache:put($cacheName, $cacheKey, $content)
+    )
 };
 
 (:~
@@ -90,17 +106,12 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    (:let $collPath := string-join(($config:data-collection-path, $collName),'/') 
-    let $collPathExists := xmldb:collection-available($collPath) and ($collPath ne '') and ($cacheKey ne ''):)
     let $rawCollection := core:data-collection($collName)
-    let $isSupportedDiary := 
-        if($collName eq 'diaries') then $cacheKey eq 'indices' or $cacheKey eq 'A002068' 
-        else true()
     let $predicates :=  
         if(config:is-person($cacheKey)) then config:get-option(concat($collName, 'Pred'), $cacheKey)
         else config:get-option(concat($collName, 'PredIndices'))
     return 
-        if ($predicates ne '' and $rawCollection) then util:eval('$rawCollection' || $predicates) 
+        if ($predicates and $rawCollection) then util:eval('$rawCollection' || $predicates) 
         else()
 };
 
