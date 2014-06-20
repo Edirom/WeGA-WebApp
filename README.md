@@ -3,7 +3,7 @@ WeGA WebApp
 
 This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [www.weber-gesamtausgabe.de](http://www.weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
 
-Since version 1.2 (current develop branch) the WeGA-WebApp is designed as an eXist app package and should happily live together with other installed apps.
+Since version 1.2 the WeGA-WebApp is designed as an eXist app package and should happily live together with other installed apps.
 
 
 Prerequisites
