@@ -1570,12 +1570,12 @@ declare function wega:getLetterHead($doc as document-node(), $lang as xs:string)
     let $docTitle := $doc//tei:fileDesc/tei:titleStmt/tei:title[@level="a"]
     let $docTitlePart1 := $docTitle/(text() | *)[not(preceding-sibling::tei:lb)]
     let $docTitlePart2 := $docTitle/(text() | *)[preceding-sibling::tei:lb][following-sibling::tei:lb]
-    let $docTitlePart3 := $docTitle/(text() | *)[not(following-sibling::tei:lb)]
+    let $docTitlePart3 := $docTitle[tei:lb]/(text() | *)[not(following-sibling::tei:lb)]
     return 
         if($docTitlePart1) then (
             element h1 { core:normalize-space(string-join($docTitlePart1, ' ')) },
             if($docTitlePart2) then element h2 { core:normalize-space(string-join($docTitlePart2, ' ')) } else (),
-            element h2 { core:normalize-space(string-join($docTitlePart3, ' ')) }
+            if($docTitlePart3) then element h2 { core:normalize-space(string-join($docTitlePart3, ' ')) } else ()
         )
         else wega:constructLetterHead($doc, $lang)
 };
