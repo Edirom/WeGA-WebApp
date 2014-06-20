@@ -68,7 +68,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
             typeswitch($collCached)
             case xs:string return ()
             default return $collCached
-        else if($collName eq 'diaries' and $cacheKey != ('indices', 'A002068')) then () (: Suppress the creation of diary collections for others than Weber :)
+        else if($collName eq 'diaries' and not($cacheKey = ('indices', 'A002068'))) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
             let $sortedColl := core:sortColl($newColl)
