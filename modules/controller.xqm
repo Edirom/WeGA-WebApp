@@ -56,7 +56,7 @@ declare function controller:redirect-docID($exist-vars as map(*), $requestID as 
     let $doc := core:doc($requestID)
     let $docID := $doc/tei:*/string(@xml:id)
     let $docType := config:get-doctype-by-id($docID) (: Die originale Darstellung der doctypes, also 'persons', 'letters' etc:)
-    let $displayName := controller:display-name($exist-vars, $docType, 'persons') (: Die Darstellung als URL, also 'Korrespondenz', 'Tagebücher' etc. :)
+    let $displayName := controller:display-name($exist-vars, $docType) (: Die Darstellung als URL, also 'Korrespondenz', 'Tagebücher' etc. :)
     let $authorID := wega:getAuthorOfTeiDoc($doc)
     return 
         if($docType eq 'persons') then controller:redirect-absolute($docID, $exist-vars('lang'))
@@ -79,10 +79,12 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) {
  : 
  : @author Peter Stadler
  :)
-declare %private function controller:display-name($exist-vars as map(*), $docType as xs:string, $menuID as xs:string) as xs:string {
-    let $menu := doc(config:get-option('menusFile'))//id($menuID)
+declare %private function controller:display-name($exist-vars as map(*), $docType as xs:string) as xs:string {
+    let $displayName := 
+        if($docType eq 'letters') then 'correspondence'
+        else $docType
     return 
-        encode-for-uri(lang:get-language-string($menu/entry[docType = $docType]/string(displayName), $exist-vars('lang')))
+        encode-for-uri(lang:get-language-string($displayName, $exist-vars('lang')))
 };
 
 (:

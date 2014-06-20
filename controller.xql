@@ -277,7 +277,7 @@ else if (matches($exist:path, '^/A00\d{4}/?$')) then
     controller:redirect-docID($exist-vars, $exist:resource)
 
 (: Andere Dokumenten - Weiterleitung :)
-else if (matches($exist:path, '^/(de/|en/)?A\d{6}/?$') and config:get-doctype-by-id($exist:resource) ne 'persons') then
+else if (matches($exist:path, '^/(de/|en/)?A0[3456]\d{4}/?$')) then
     controller:redirect-docID($exist-vars, $exist:resource)
 
 (: Personen - Briefliste :)
