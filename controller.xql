@@ -468,7 +468,8 @@ else if (matches($exist:path, '^/index.php$')) then
     let $newPath := doc(config:get-option('typo3ContentMappings'))//entry[@oldID = $param]
     return if($newPath ne '') then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<redirect url="{$newPath}">
+        	<redirect url="{controller:encode-path-segments-for-uri($newPath)}">
+        	   <cache-control cache="yes"/>
         	</redirect>
         </dispatch>
      else controller:error($exist-vars, 404)

@@ -87,6 +87,17 @@ declare %private function controller:display-name($exist-vars as map(*), $docTyp
         encode-for-uri(lang:get-language-string($displayName, $exist-vars('lang')))
 };
 
+(:~
+ : Split URI into path segments and encode those for URI
+ : 
+ : @author Peter Stadler
+ : @param $uri the 
+ :)
+declare function controller:encode-path-segments-for-uri($uri-string as xs:string) as xs:string {
+    if(matches($uri-string, '^[a-zA-Z0-9/]+$')) then $uri-string
+    else core:join-path-elements(tokenize($uri-string, '/') ! encode-for-uri(.))
+};
+
 (:
 declare function controller:default-forward($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
     let $context := (\: Param for templating the context nav :\)
