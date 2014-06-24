@@ -3,6 +3,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
     xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:rng="http://relaxng.org/ns/structure/1.0" 
     xmlns:functx="http://www.functx.com" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
@@ -73,7 +74,7 @@
 
     <xsl:function name="wega:getCollectionPath" as="xs:string">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"></xsl:value-of>
+        <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"/>
     </xsl:function>
 
     <xsl:function name="wega:getOption" as="xs:string">
@@ -322,13 +323,13 @@
         <xsl:sequence select="for $k in string-to-codepoints($string) return $k * $mySalt"/>
     </xsl:function>
 
-    <xsl:function name="wega:addCurrencySymbolIfNecessary" as="element()?">
-        <xsl:param name="node" as="node()"/>
+    <xsl:function name="wega:addCurrencySymbolIfNecessary" as="element(xhtml:span)?">
+        <xsl:param name="measure" as="element(tei:measure)"/>
         <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-        <xsl:if test="not(matches($node,'[a-zƒ]')) and $node/@quantity &gt; 0">
+        <xsl:if test="matches(normalize-space($measure),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'tei_supplied'"/>
-                <xsl:value-of select="concat(' ', $node/@unit)"/>
+                <xsl:value-of select="concat(' ', $measure/@unit)"/>
             </xsl:element>
         </xsl:if>
     </xsl:function>
@@ -444,24 +445,6 @@
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-    <xsl:template name="addCurrencySymbolIfNecessary">
-        <xsl:param name="node" as="node()"/>
-        <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-        <xsl:if test="not(matches($node,'[a-zƒ]')) and $node/@quantity &gt; 0">
-            <xsl:element name="span">
-                <xsl:attribute name="class" select="'tei_supplied'"/>
-                <xsl:choose>
-                    <xsl:when test="$node/@unit eq 'f'">
-                        <xsl:value-of select="' ƒ'"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat(' ', $node/@unit)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template name="createEndnotes">

@@ -70,9 +70,7 @@
             <xsl:attribute name="class" select="concat(@type,$counter)"/>
             <xsl:apply-templates/>
             <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-            <xsl:call-template name="addCurrencySymbolIfNecessary">
-                <xsl:with-param name="node" select="."/>
-            </xsl:call-template>
+            <xsl:copy-of select="wega:addCurrencySymbolIfNecessary(.)"/>
         </xsl:element>
     </xsl:template>
 </xsl:stylesheet>
