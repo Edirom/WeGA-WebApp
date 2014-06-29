@@ -1592,8 +1592,8 @@ declare function wega:getLetterHead($doc as document-node(), $lang as xs:string)
 declare function wega:constructLetterHead($doc as document-node(), $lang as xs:string) as element()+ {
     let $id := $doc/tei:TEI/string(@xml:id)
     let $date := date:printDate($doc//tei:dateSender/tei:date[1], $lang)
-    let $sender := wega:printCorrespondentName($doc//tei:sender/*[1], $lang, 'fs')
-    let $addressee := wega:printCorrespondentName($doc//tei:addressee/*[1], $lang, 'fs')
+    let $sender := wega:printCorrespondentName($doc//tei:sender[1]/*[1], $lang, 'fs')
+    let $addressee := wega:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs')
     let $placeSender := if(functx:all-whitespace($doc//tei:placeSender)) then () else normalize-space($doc//tei:placeSender)
     let $placeAddressee := if(functx:all-whitespace($doc//tei:placeAddressee)) then () else normalize-space($doc//tei:placeAddressee)
     return (
