@@ -74,6 +74,7 @@ let $contact := if($isUtil or $isFunc) then () else lang:get-language-string('co
 let $tools := if($isUtil or $isFunc) then () else lang:get-language-string('tools',$lang)
 let $volContents := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('volContents',$lang))
 let $editorialGuidelines := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')
+let $editorialGuidelines-works := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines-works',$lang), '\s', '_')
 let $ajaxCrawlerParameter := '_escaped_fragment_'
 
 return (
@@ -160,6 +161,19 @@ else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?
     	</forward>
     </dispatch>
 
+(: Editorial Guidelines Works :)
+else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines-works, '/?$'))) then
+    let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
+    return
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
+    	   <add-parameter name="lang" value="{$lang}"/>
+    	   <add-parameter name="docID" value="A070010"/>
+    	   <add-parameter name="createSecNos" value="true"/>
+    	   <add-parameter name="js" value="{$js}"/>
+    	</forward>
+    </dispatch>
+    
 (: Impressum :)
 else if ($exist:path eq '/en/About' or $exist:path eq '/de/Impressum') then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'

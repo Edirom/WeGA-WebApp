@@ -25,8 +25,14 @@
                     <xsl:with-param name="lang" select="$lang"/>
                 </xsl:call-template>
             </xsl:if>
-            <xsl:apply-templates select=".//tei:div[@xml:lang=$lang]"/>
+            <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="tei:divGen[@type='toc']">
+        <xsl:call-template name="createToc">
+            <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="tei:div">
@@ -57,13 +63,18 @@
                 <xsl:attribute name="style" select="'display:none;'"/>
                 <xsl:attribute name="class" select="string-join((@type, 'collapseBlock'), ' ')"/>
             </xsl:if>
+            <xsl:if test="matches(@xml:id, '^para\d+$')">
+                <xsl:call-template name="create-para-label">
+                    <xsl:with-param name="no" select="substring-after(@xml:id, 'para')"/>
+                </xsl:call-template>
+            </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:head[not(@type='sub')]">
+    <xsl:template match="tei:head[not(@type='sub')][parent::tei:div]">
         <xsl:choose>
-            <xsl:when test="$createToc">
+            <xsl:when test="$createToc or ./following::tei:divGen or ./preceding::tei:divGen">
                 <!-- Überschrift h2 für Editionsrichtlinien und Weber-Biographie -->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:attribute name="id">
@@ -76,7 +87,7 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
-                    <xsl:if test="$createSecNos">
+                    <xsl:if test="$createSecNos and not(./following::tei:divGen)">
                     <xsl:call-template name="createSecNo">
                         <xsl:with-param name="div" select="parent::tei:div"/>
                         <xsl:with-param name="lang" select="$lang"/>
@@ -193,7 +204,7 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of select="count($div/preceding-sibling::tei:div/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
+        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)]/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
         <xsl:if test="$dot">
             <xsl:text>. </xsl:text>
         </xsl:if>
@@ -208,8 +219,7 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each
-                    select="//tei:text//tei:head[not(@type='sub') and ancestor::tei:div/@xml:lang = $lang]">
+                <xsl:for-each select="//tei:text//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">
@@ -227,6 +237,15 @@
                     </xsl:element>
                 </xsl:for-each>
             </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template name="create-para-label">
+        <!--<xsl:param name="lang" tunnel="yes"/>-->
+        <xsl:param name="no"/>
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="'para-label'"/>
+            <xsl:value-of select="concat('§ ', $no)"/>
         </xsl:element>
     </xsl:template>
 

@@ -992,6 +992,13 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <!-- Überschriften innerhalb einer table-Umgebung -->
+    <xsl:template match="tei:head[parent::tei:table]">
+        <xsl:element name="caption">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:footNote"/>
 
