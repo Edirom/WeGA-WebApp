@@ -1061,6 +1061,24 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:q">
+        <!-- Surround with quotation marks -->
+        <xsl:choose>
+            <!-- German (double) quotation marks -->
+            <xsl:when test="$lang eq 'de'">
+                <xsl:text>&#x201E;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201C;</xsl:text>
+            </xsl:when>
+            <!-- English (double) quotation marks as default -->
+            <xsl:otherwise>
+                <xsl:text>&#x201C;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201D;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
     <xsl:template match="@xml:id">
         <xsl:attribute name="id">
