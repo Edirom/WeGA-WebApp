@@ -776,7 +776,8 @@
     <xsl:template match="tei:row">
         <xsl:element name="tr">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:if test="@rend='bg-color'">
+            <xsl:if test="@rend">
+                <!-- The value of the @rend attribute gets passed through as class name(s) -->
                 <xsl:attribute name="class" select="@rend"/>
             </xsl:if>
             <xsl:apply-templates/>
@@ -930,6 +931,13 @@
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
+            <xsl:when test="@type = 'gloss'">
+                <xsl:element name="dl">
+                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="class" select="'tei_glossList'"/>
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="ul">
                     <xsl:apply-templates select="@xml:id"/>
@@ -939,6 +947,13 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template match="tei:item[parent::tei:list/@type='gloss']" priority="2">
+        <xsl:element name="dd">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
     <xsl:template match="tei:item[parent::tei:list]">
         <xsl:element name="li">
             <xsl:apply-templates select="@xml:id"/>
@@ -954,10 +969,9 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:label[@n='listLabel']">
-        <xsl:element name="span">
+    <xsl:template match="tei:label[parent::tei:list/@type='gloss']">
+        <xsl:element name="dt">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'listLabel'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
