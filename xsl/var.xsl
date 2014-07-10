@@ -114,14 +114,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:code">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'code'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:eg">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
