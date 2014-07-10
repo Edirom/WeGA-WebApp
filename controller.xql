@@ -155,7 +155,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070001"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -194,7 +193,6 @@ else if ($exist:path eq '/en/Biography' or $exist:path eq '/de/Biographie') then
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070003"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -208,7 +206,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $help, '/?$'))) then
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070004"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -222,7 +219,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $projectDescription, '/?$
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070006"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -280,7 +276,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $volContents, '/?$'))) th
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070011"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>

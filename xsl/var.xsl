@@ -4,7 +4,6 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
-    <xsl:param name="createToc" select="false()"/>
     <xsl:param name="createSecNos" select="false()"/>
     <xsl:param name="collapseBlock" select="false()"/>
     <xsl:param name="uri"/>
@@ -20,11 +19,6 @@
     <xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'docText'"/>
-            <xsl:if test="$createToc">
-                <xsl:call-template name="createToc">
-                    <xsl:with-param name="lang" select="$lang"/>
-                </xsl:call-template>
-            </xsl:if>
             <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
     </xsl:template>
@@ -74,7 +68,7 @@
 
     <xsl:template match="tei:head[not(@type='sub')][parent::tei:div]">
         <xsl:choose>
-            <xsl:when test="$createToc or ./following::tei:divGen or ./preceding::tei:divGen">
+            <xsl:when test="//tei:divGen">
                 <!-- Überschrift h2 für Editionsrichtlinien und Weber-Biographie -->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:attribute name="id">
