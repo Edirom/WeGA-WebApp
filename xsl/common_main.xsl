@@ -510,19 +510,20 @@
                 <xsl:copy/>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
+    </xsl:template>
 
     <xsl:template match="tei:hi[@rend='underline']">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                            <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
+                    <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
                         <xsl:value-of select="'tei_hi_underline2andMore'"/>
-                            </xsl:when>
-                            <xsl:otherwise>
+                    </xsl:when>
+                    <xsl:otherwise>
                         <xsl:value-of select="'tei_hi_underline1'"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
