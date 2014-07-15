@@ -200,7 +200,7 @@ declare function img:createDigilibURL($localPicURL as xs:string, $dimensions as 
         then round-half-to-even($ratioW div $ratioH, 2)
         else 1
     let $wx := (1 - $ww) div 2
-    let $digilibParams := concat('&#38;dw=', string($dw), '&#38;dh=', string($dh), '&#38;ww=', string($ww), '&#38;wh=', string($wh), '&#38;wx=', string($wx), '&#38;mo=q2')
+    let $digilibParams := concat('&#38;dw=', string($dw), '&#38;dh=', string($dh), '&#38;ww=', string($ww), '&#38;wh=', string($wh), '&#38;wx=', string($wx), '&#38;mo=q2,png')
     return
         img:replace-url-for-digilib($localPicURL, $digilibParams)
 };
