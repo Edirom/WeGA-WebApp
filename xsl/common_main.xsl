@@ -845,7 +845,7 @@
                 <xsl:apply-templates select="@xml:id"/>
                 <xsl:attribute name="alt" select="tei:figDesc"/>
                 <xsl:attribute name="height" select="$figureHeight"/>
-                <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
+                <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
                 <xsl:attribute name="class" select="'figure'"/>
             </xsl:element>
         </xsl:variable>
