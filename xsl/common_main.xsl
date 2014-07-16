@@ -1010,7 +1010,7 @@
     </xsl:template>
     
     <xsl:template match="tei:q" priority="0.5">
-        <!-- Surround with quotation marks -->
+        <!-- Always(!) surround with quotation marks -->
         <xsl:choose>
             <!-- German (double) quotation marks -->
             <xsl:when test="$lang eq 'de'">
@@ -1023,6 +1023,38 @@
                 <xsl:text>&#x201C;</xsl:text>
                 <xsl:apply-templates/>
                 <xsl:text>&#x201D;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:quote" priority="0.5">
+        <!-- Surround with quotation marks if @rend is set -->
+        <xsl:choose>
+            <!-- German double quotation marks -->
+            <xsl:when test="$lang eq 'de' and @rend='double-quotes'">
+                <xsl:text>&#x201E;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201C;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and @rend='double-quotes'">
+                <xsl:text>&#x201C;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201D;</xsl:text>
+            </xsl:when>
+            <!-- German single quotation marks -->
+            <xsl:when test="$lang eq 'de' and @rend='single-quotes'">
+                <xsl:text>&#x201A;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x2018;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and @rend='single-quotes'">
+                <xsl:text>&#x2018;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x2019;</xsl:text>
+            </xsl:when>
+            <!-- no quotation marks as default -->
+            <xsl:otherwise>
+                <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
