@@ -122,24 +122,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:figure" priority="1">
-        <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
-        <xsl:variable name="figureHeight" select="'195'"/>
-        <xsl:variable name="figureWidth" select="'150'"/>
-        <xsl:element name="img">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="src"
-                select="concat($digilibDir, replace(tei:graphic/@url, '/db/images/', ''), '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
-            <xsl:attribute name="title"
-                select="tei:figDesc/tei:title[@xml:lang = $lang and @level = 'a']"/>
-            <xsl:attribute name="alt"
-                select="tei:figDesc/tei:title[@xml:lang = $lang and @level = 'a']"/>
-            <xsl:attribute name="width" select="$figureWidth"/>
-            <xsl:attribute name="height" select="$figureHeight"/>
-            <xsl:attribute name="class" select="'teaserImage'"/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:address">
         <xsl:element name="ul">
             <xsl:apply-templates select="@xml:id"/>

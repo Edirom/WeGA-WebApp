@@ -839,17 +839,31 @@
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
         <xsl:variable name="localURL" select="wega:join-path-elements((replace(wega:getCollectionPath($docID), $data-collection-path, ''), $docID, tei:graphic/@url))"/>
         <xsl:variable name="href" select="concat($digilibDir, $localURL, '&amp;mo=file')"/>
-        <xsl:variable name="title" select="tei:figDesc"/>
-        <xsl:variable name="content">
-            <xsl:element name="img">
-                <xsl:apply-templates select="@xml:id"/>
-                <xsl:attribute name="alt" select="tei:figDesc"/>
-                <xsl:attribute name="height" select="$figureHeight"/>
-                <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
-                <xsl:attribute name="class" select="'figure'"/>
-            </xsl:element>
-        </xsl:variable>
-        <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+        <xsl:variable name="title" select="normalize-space(tei:figDesc)"/>
+        <xsl:choose>
+            <!-- External URLs -->
+            <xsl:when test="starts-with(tei:graphic/@url, 'http')">
+                <xsl:element name="img">
+                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="data(tei:graphic/@url)"/>
+                    <xsl:attribute name="class" select="'teaserImage'"/>
+                </xsl:element>
+            </xsl:when>
+            <!-- Local images -->
+            <xsl:otherwise>
+                <xsl:variable name="content">
+                    <xsl:element name="img">
+                        <xsl:apply-templates select="@xml:id"/>
+                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="height" select="$figureHeight"/>
+                        <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
+                        <xsl:attribute name="class" select="'figure'"/>
+                    </xsl:element>
+                </xsl:variable>
+                <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="tei:note" priority="0.5">
