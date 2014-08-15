@@ -524,6 +524,7 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
 declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:div) {
     let $ant-log := dev:ant-log()
     let $baseHref := config:get-option('baseHref')
+    let $html_pixDir := config:get-option('html_pixDir')
     return 
         <xhtml:div id="developmentTools">
             <xhtml:h1>{lang:get-language-string('development', $lang)}</xhtml:h1>
@@ -542,6 +543,6 @@ declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:
              <xhtml:span id="id-value" style="display: none;">ID value</xhtml:span>
             </xhtml:form>
             <xhtml:h2>Commit Status</xhtml:h2>
-            <xhtml:p><xhtml:a href="{core:join-path-elements(($baseHref, 'logs', $ant-log('rev') || '.log'))}" title="komplettes logfile ansehen">Revision {$ant-log('rev')}: </xhtml:a> <xhtml:img src="/resources/pix/{$ant-log('success')}.gif" alt="success-icon" style="margin-bottom:-5px;"/></xhtml:p>
+            <xhtml:p><xhtml:a href="{core:join-path-elements(($baseHref, 'logs', $ant-log('rev') || '.log'))}" title="komplettes logfile ansehen">Revision {$ant-log('rev')}: </xhtml:a> <xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir, $ant-log('success') || '.gif'))}" alt="success-icon" style="margin-bottom:-5px;"/></xhtml:p>
         </xhtml:div>
 };
