@@ -196,7 +196,6 @@ declare function dev:validatePNDs($docType as xs:string) as element(div) {
  : @param $docType
  : @return element
  :)
-
 declare function dev:validatePaths($docType as xs:string) as element() {
     let $falseDocs := core:data-collection($docType)[document-uri(.) ne concat(config:getCollectionPath(./*/string(@xml:id)), '/', ./*/@xml:id, '.xml')]
     return element div {
@@ -205,4 +204,20 @@ declare function dev:validatePaths($docType as xs:string) as element() {
             return element li {$i}
         }
     }
+};
+
+(:~
+ : Get latest ANT log file
+ :
+ : @author Peter Stadler 
+ : @return map with entries 'rev' and 'success'
+ :)
+declare function dev:ant-log() as map(*) {
+    let $logFile := util:binary-doc(core:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
+    let $logLines := tokenize(util:binary-to-string($logFile), '\n')
+    return
+        map:new((
+            map:entry('rev', substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')),
+            map:entry('success', if($logLines = 'BUILD SUCCESSFUL') then 'success' else 'failed')
+        ))
 };

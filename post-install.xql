@@ -31,6 +31,9 @@ declare function local:mkcol($collection, $path) {
 (: create tmp collection for caching all sorts of downloaded files :)
 sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest'),
 
+(: create a logs collection for upload of ANT logs (only needed for development) :)
+sm:chown(xs:anyURI(xdb:create-collection(concat($target, 'tmp'), 'logs')), 'guest'),
+
 (: store the collection configuration :)
 local:mkcol("/db/system/config", $target), 
 xdb:store-files-from-pattern(concat("/system/config", $target), concat($dir, '/indices'), "**/*.xconf", (), true()),

@@ -550,12 +550,11 @@ else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then
         <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
     </dispatch>
 
-(: Tools :)
-else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
+else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/dev/tools.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	</forward>
+        <forward url="{concat($exist:controller, '/tmp/logs/', $exist:resource)}">
+            <set-header name="Content-Type" value="text/plain"/>
+        </forward>
     </dispatch>
     
 else controller:error($exist-vars, 404)

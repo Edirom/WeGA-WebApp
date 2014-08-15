@@ -18,6 +18,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev/dev.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -521,18 +522,26 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
  :)
  
 declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:div) {
+    let $ant-log := dev:ant-log()
     let $baseHref := config:get-option('baseHref')
-    return
-    element xhtml:div {
-        attribute id {'developmentTools'},
-        element xhtml:h1 {lang:get-language-string('development', $lang)},
-        element xhtml:ul {
-            element xhtml:li {
-                element xhtml:a {
-                    attribute href {core:join-path-elements(($baseHref, $lang, lang:get-language-string('tools', $lang)))},
-                    'Tools'
-                }
-            }
-        }
-    }
+    return 
+        <xhtml:div id="developmentTools">
+            <xhtml:h1>{lang:get-language-string('development', $lang)}</xhtml:h1>
+            <xhtml:h2>Generiere ID</xhtml:h2>
+            <xhtml:form action="javascript:getNewID()" id="select-form">
+             <xhtml:select id="select-options">
+                 <xhtml:option value="persons">Person</xhtml:option>
+                 <xhtml:option value="letters">Brief</xhtml:option>
+                 <xhtml:option value="writings">Schrift</xhtml:option>
+                 <xhtml:option value="works">Werk</xhtml:option>
+                 <xhtml:option value="sources">Quelle</xhtml:option>
+                 <xhtml:option value="diaries">Tagebuch</xhtml:option>
+                 <xhtml:option value="biblio">Biblio</xhtml:option>
+             </xhtml:select>
+             <xhtml:input type="submit" value="&#8594;"/>
+             <xhtml:span id="id-value" style="display: none;">ID value</xhtml:span>
+            </xhtml:form>
+            <xhtml:h2>Commit Status</xhtml:h2>
+            <xhtml:p><xhtml:a href="{core:join-path-elements(($baseHref, 'logs', $ant-log('rev') || '.log'))}" title="komplettes logfile ansehen">Revision {$ant-log('rev')}: </xhtml:a> <xhtml:img src="/resources/pix/{$ant-log('success')}.gif" alt="success-icon" style="margin-bottom:-5px;"/></xhtml:p>
+        </xhtml:div>
 };
