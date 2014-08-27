@@ -11,6 +11,7 @@ declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
 
@@ -24,7 +25,7 @@ import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.ex
 :)
 declare function core:doc($docID as xs:string) as document-node()? {
     let $collectionPath := config:getCollectionPath($docID)
-    let $docURL := core:join-path-elements(($collectionPath, $docID)) || '.xml'
+    let $docURL := str:join-path-elements(($collectionPath, $docID)) || '.xml'
     return 
         if(doc-available($docURL)) then
             let $doc := doc($docURL) 
@@ -43,7 +44,7 @@ declare function core:doc($docID as xs:string) as document-node()? {
  : @return document-node()*
  :)
 declare function core:data-collection($collectionName as xs:string) as document-node()* {
-    let $collectionPath := core:join-path-elements(($config:data-collection-path, $collectionName)) 
+    let $collectionPath := str:join-path-elements(($config:data-collection-path, $collectionName)) 
     let $collectionPathExists := xmldb:collection-available($collectionPath) and ($collectionPath ne '')
     return 
         if ($collectionPathExists) then collection($collectionPath)
@@ -116,13 +117,13 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
 };
 
 (:~
- : Sort collection
+ : Sort collection (helper function for core:getOrCreateColl)
  :
  : @author Peter Stadler 
  : @param $coll collection to be sorted
  : @return document-node()*
  :)
-declare function core:sortColl($coll as item()*) as document-node()* {
+declare %private function core:sortColl($coll as item()*) as document-node()* {
     if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
     else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
@@ -176,20 +177,6 @@ declare function core:store-file($collection as xs:string?, $fileName as xs:stri
         catch * { core:logToFile('error', string-join(('core:store-file', $err:code, $err:description), ' ;; ')) }
 };
 
-(:~ 
- : Print forename surname
- :
- : @author Peter Stadler
- : @return xs:string
- :)
-declare function core:printFornameSurname($name as xs:string?) as xs:string? {
-    let $clearName := normalize-space($name)
-    return
-        if(matches($clearName, ','))
-        then normalize-space(string-join(reverse(tokenize($clearName, ',')), ' '))
-        else $clearName
-};
-
 (:~
  : @author Peter Stadler
  : Recursive identity transform with changing of namespace for a given element.
@@ -228,19 +215,7 @@ declare function core:change-namespace($element as element(), $targetNamespace a
  :)
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
-    core:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
-};
-
-(:~
- : Joins path elements with a forward slash
- : In addition to string-join this function also takes care of double slashes
- :
- : @author Peter Stadler
- : @param $segs the path elements to join
- : @return the joined path as xs:string, the empty string when $segs was the empty sequence
- :)
-declare function core:join-path-elements($segs as xs:string*) as xs:string {
-    replace(string-join($segs, '/'), '/+' , '/')
+    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
 };
 
 (:~
@@ -252,20 +227,8 @@ declare function core:join-path-elements($segs as xs:string*) as xs:string {
  : @return xs:string
  :)
 declare function core:create-sort-persname($person as element(tei:person)) as xs:string {
-    if(functx:all-whitespace($person/tei:persName[@type='reg']/tei:surname[1])) then core:normalize-space(functx:substring-before-match($person/tei:persName[@type='reg'], '\s?,'))
-    else core:normalize-space($person/tei:persName[@type='reg']/tei:surname[1])
-};
-
-(:~
- : Normalizes a given string
- : In addition to fn:normalize-space() this function treats non-breaking-spaces etc. as whitespace 
- :
- : @author Peter Stadler
- : @param $string the string to normalize
- : @return xs:string
- :)
-declare function core:normalize-space($string as xs:string?) as xs:string {
-    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;|[\.,]\s*$', ' '))
+    if(functx:all-whitespace($person/tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($person/tei:persName[@type='reg'], '\s?,'))
+    else str:normalize-space($person/tei:persName[@type='reg']/tei:surname[1])
 };
 
 (:~

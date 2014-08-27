@@ -12,6 +12,8 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace functx="http://www.functx.com";
 
@@ -26,7 +28,7 @@ import module namespace functx="http://www.functx.com";
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     return 
-        core:cache-doc(core:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, false())
+        core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, false())
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
@@ -186,7 +188,7 @@ declare %private function norm:create-norm-doc-places() as element(norm:catalogu
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('places', 'indices', true())
         let $docID := $doc/tei:place/data(@xml:id)
-        let $name := core:normalize-space($doc//tei:placeName[@type='reg'])
+        let $name := str:normalize-space($doc//tei:placeName[@type='reg'])
         let $n := $doc//tei:idno[@type='geonames']
         order by $name
         return 

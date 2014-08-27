@@ -14,6 +14,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
@@ -342,7 +343,7 @@ declare function config:is-biblioType($string as xs:string) as xs:boolean {
 declare function config:getCollectionPath($docID as xs:string) as xs:string? {
     let $docType := config:get-doctype-by-id($docID)
     return 
-        if(exists($docType)) then core:join-path-elements(($config:data-collection-path, $docType, replace($docID, '\d{2}$', 'xx'))) 
+        if(exists($docType)) then str:join-path-elements(($config:data-collection-path, $docType, replace($docID, '\d{2}$', 'xx'))) 
         else ()
 };
 

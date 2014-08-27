@@ -11,7 +11,8 @@ declare namespace pdr="http://pdr.bbaw.de/namespaces/pdrws/";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
+import module namespace wega-http="http://xquery.weber-gesamtausgabe.de/modules/wega-http" at "wega-http.xqm";
+(:import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";:)
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace functx="http://www.functx.com";
 
@@ -137,7 +138,7 @@ declare function date:strfdate($date as xs:date, $lang as xs:string, $format as 
 declare function date:parse-date($input as xs:string) as element(tei:date)* {
     let $webservice-url := 'https://pdrprod.bbaw.de/pdrws/dates?lang=de&amp;output=xml'
     let $text := 'text=' || encode-for-uri($input)
-    let $pdr-result := wega:http-get(xs:anyURI(string-join(($webservice-url, $text), '&amp;')))//pdr:result
+    let $pdr-result := wega-http:http-get(xs:anyURI(string-join(($webservice-url, $text), '&amp;')))//pdr:result
     return 
         if($pdr-result) then 
             for $result in $pdr-result 
