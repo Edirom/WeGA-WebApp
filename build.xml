@@ -9,21 +9,24 @@
     <target name="rebuild" depends="clean,all"/>
     
     <target name="clean">
-        <delete dir="${build.dir}"/>
+        <delete dir="${tmp.dir}"/>
+        <delete dir="${dist.dir}"/>
         <delete file="expath-pkg.xml"/>
     </target>
     
     <target name="init">
         <mkdir dir="${build.dir}"/>
+        <mkdir dir="${tmp.dir}"/>
+        <mkdir dir="${dist.dir}"/>
     </target>
     
     <target name="download-smufl-font" depends="init">
         <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${build.dir}/bravura.zip" skipexisting="yes"/>
-        <unzip src="${build.dir}/bravura.zip" dest="${build.dir}"/>
+        <get src="${smufl.font}" dest="${tmp.dir}/bravura.zip" skipexisting="yes"/>
+        <unzip src="${tmp.dir}/bravura.zip" dest="${tmp.dir}"/>
     </target>
     
-    <target name="additional-images" depends="init">
+    <!--<target name="additional-images" depends="init">
         <description>Adds images to the build which are not part of the repository (e.g. due to copyrigt reasons)</description>
         <copy todir="resources/pix">
             <fileset dir="${additional.img.dir}">
@@ -33,26 +36,104 @@
                 <include name="stabi-logo.png"/>
             </fileset>
         </copy>
-    </target>
+    </target>-->
     
-    <target name="xar" depends="init, download-smufl-font, additional-images">
-        <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
+    <target name="dist" depends="init, download-smufl-font">
+        <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
             </filterset>
         </copy>
-        <mkdir dir="resources/fonts"/>
-        <copy todir="resources/fonts">
-            <fileset dir="${build.dir}">
-                <include name="eot/"/>
-                <include name="woff/"/>
-                <include name="otf/"/>
-                <include name="svg/"/>
-            </fileset>
-        </copy>
-        <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
+        <!-- Copy everything from base.dir -->
+        <copy todir="${dist.dir}">
             <fileset dir=".">
                 <include name="*.*"/>
+                <include name="modules/**"/>
+                <include name="resources/**"/>
+                <include name="catalogues/**"/>
+                <include name="indices/**"/>
+                <include name="templates/**"/>
+                <include name="xsl/**"/>
+                <exclude name="build.xml"/>
+                <exclude name="*build.properties"/>
+                <exclude name=".git*"/>
+                <exclude name="*.tmpl"/>
+                <exclude name="*.txt"/>
+                <exclude name="bower.json"/>
+            </fileset>
+        </copy>
+        <!-- Copy additional fonts -->
+        <copy todir="${dist.dir}/resources/fonts">
+            <fileset dir="${tmp.dir}/eot/">
+                <include name="BravuraText.*"/>
+                <!--<include name="BravuraText.eot"/>-->
+                <!--<include name="BravuraText.woff"/>-->
+                <!--<include name="BravuraText.otf"/>-->
+                <!--<include name="BravuraText.svg"/>-->
+            </fileset>
+            <fileset dir="${tmp.dir}/woff/">
+                <include name="BravuraText.*"/>
+            </fileset>
+            <fileset dir="${tmp.dir}/otf/">
+                <include name="BravuraText.*"/>
+            </fileset>
+            <fileset dir="${tmp.dir}/svg/">
+                <include name="BravuraText.*"/>
+            </fileset>
+            <fileset dir="${wega.fonts.dir}">
+                <include name="2B*.*"/>
+            </fileset>
+            <fileset dir="bower_components/bootstrap/dist/fonts/">
+                <include name="*.*"/>
+            </fileset>
+            <fileset dir="bower_components/fontawesome/fonts/">
+                <include name="fontawesome-webfont.*"/>
+            </fileset>
+        </copy>
+        <!-- Copy additional images -->
+        <copy todir="${dist.dir}/resources/img">
+            <fileset dir="${wega.img.dir}">
+                <include name="*.*"/>
+            </fileset>
+        </copy>
+        <!-- Copy Javascripts from bower components -->
+        <copy todir="${dist.dir}/resources/js">
+            <fileset dir="bower_components/bootstrap/dist/js">
+                <include name="bootstrap.min.js"/>
+            </fileset>
+            <fileset dir="bower_components/bootstrap-select/dist/js">
+                <include name="bootstrap-select.min.js"/>
+            </fileset>
+            <fileset dir="bower_components/FitText.js">
+                <include name="jquery.fittext.js"/>
+            </fileset>
+            <fileset dir="bower_components/jquery/dist">
+                <include name="jquery.js"/>
+                <include name="jquery.min.js"/>
+                <include name="jquery.min.map"/>
+            </fileset>
+        </copy>
+        <!-- Copy CSS from bower components -->
+        <copy todir="${dist.dir}/resources/css">
+            <fileset dir="bower_components/bootstrap/dist/css">
+                <include name="bootstrap.min.css"/>
+                <include name="bootstrap.css.map"/>
+                <include name="bootstrap-theme.min.css"/>
+                <include name="bootstrap-theme.css.map"/>
+            </fileset>
+            <fileset dir="bower_components/bootstrap-select/dist/css">
+                <include name="bootstrap-select.min.css"/>
+            </fileset>
+            <fileset dir="bower_components/fontawesome/css">
+                <include name="font-awesome.min.css"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="xar" depends="init, dist">
+        <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
+            <fileset dir="${dist.dir}">
+                <!--<include name="*.*"/>
                 <include name="modules/**"/>
                 <include name="resources/**"/>
                 <include name="catalogues/**"/>
@@ -62,7 +143,7 @@
                 <exclude name="*build.properties"/>
                 <exclude name=".git*"/>
                 <exclude name="*.tmpl"/>
-                <exclude name="*.txt"/>
+                <exclude name="*.txt"/>-->
             </fileset>
         </zip>
     </target>
