@@ -15,6 +15,8 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wega-http="http://xquery.weber-gesamtausgabe.de/modules/wega-http" at "wega-http.xqm";
+import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace functx="http://www.functx.com";
 
 declare function app:page-title($node as node(), $model as map(*)) as element(title) {
@@ -36,7 +38,9 @@ declare function app:page-h1($node as node(), $model as map(*)) as element(h1) {
         }
 };:)
 
-declare function app:lookup-todays-events($node as node(), $model as map(*)) as map(*) {
+declare 
+    %templates:wrap
+    function app:lookup-todays-events($node as node(), $model as map(*)) as map(*) {
     let $events := 
         for $i in query:getTodaysEvents(current-date())
         order by $i/xs:date(@when) ascending
@@ -157,4 +161,184 @@ declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string
             else ()
         else if(exists($folder) and $authorId ne '') then core:link-to-current-app(str:join-path-elements(($lang, $authorId, $folder, $docID)))
         else ()
+};
+
+(:
+ : ****************************
+ : Person functions
+ : ****************************
+:)
+declare
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:breadcrumb-person-2nd-level($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        <a href="{core:link-to-current-app(str:join-path-elements(($lang, $model('docID'))))}">{
+            str:printFornameSurname($model('doc')//tei:persName[@type='reg'])
+        }</a>
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        map{
+            'fullnames' := $model('doc')//tei:persName[@type = 'full'],
+            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'],
+            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'],
+            'realnames' := $model('doc')//tei:persName[@type = 'real'],
+            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'],
+            'births' := date:printDate($model('doc')//tei:birth/tei:date[1], $lang),
+            'deaths' := date:printDate($model('doc')//tei:death/tei:date[1], $lang)
+        }
+};
+
+declare
+    %templates:wrap
+    function app:print-name($node as node(), $model as map(*), $type as xs:string) as xs:string? {
+        if ($model($type)) then $model($type) cast as xs:string 
+        else ()
+};
+
+declare
+    %templates:wrap
+    function app:print-date-and-place($node as node(), $model as map(*), $type as xs:string) as xs:string? {
+        if ($model($type)) then $model($type) cast as xs:string
+        else ()
+};
+
+(:declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:person-details($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $letters := core:getOrCreateColl('letters', $model('docID'), true())
+        let $diaries := core:getOrCreateColl('diaries', $model('docID'), true())
+        let $writings := core:getOrCreateColl('writings', $model('docID'), true())
+        let $works := core:getOrCreateColl('works', $model('docID'), true())
+        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')])
+        let $tabTitles := (
+            if(not(empty($letters))) then lang:get-language-string('correspondence', $lang) || ' (' || count($letters) || ')' else (),
+            if(not(empty($diaries))) then lang:get-language-string('diaries', $lang) || ' (' || count($diaries) || ')' else (),
+            if(not(empty($writings))) then lang:get-language-string('writings', $lang) || ' (' || count($writings) || ')' else (),
+            if(not(empty($works))) then lang:get-language-string('works', $lang) || ' (' || count($works) || ')' else (),
+            if(not(empty($contacts))) then lang:get-language-string('contacts', $lang) || ' (' || count($contacts) || ')' else ()
+        ) 
+        return
+            map{
+                'letters' := $letters,
+                'diaries' := $diaries,
+                'writings' := $writings,
+                'works' := $works,
+                'contacts' := $contacts,
+                'tabTitles' := $tabTitles
+            }
+};
+:)
+
+declare 
+    %templates:wrap
+    function app:person-details($node as node(), $model as map(*)) as map(*) {
+        let $docTypes := map:new(
+            for $docType in map:keys($config:wega-docTypes)
+            return 
+                map:entry($docType, core:getOrCreateColl($docType, $model('docID'), true()))
+        )
+        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')])
+(:        let $beacon := wega-http:grabExternalResource('beacon', $model('doc')//tei:idno[@type = 'gnd'], 'de', true()):)
+        
+        let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]
+        
+        let $beaconMap := 
+            let $findbuchResponse := wega-http:grabExternalResource('beacon', $model('doc')//tei:idno[@type = 'gnd'], 'de', true())
+            let $jxml := 
+                if(exists($findbuchResponse)) then 
+                    if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then xqjson:parse-json(util:binary-to-string($findbuchResponse))
+                    else xqjson:parse-json($findbuchResponse)
+                else ()
+            return 
+                map:new(
+                    for $i in 1 to count($jxml/item[2]/item)
+                    let $link  := str:normalize-space($jxml/item[4]/item[$i])
+                    let $title := str:normalize-space($jxml/item[3]/item[$i])
+                    let $text  := str:normalize-space($jxml/item[2]/item[$i])
+                    return
+                        if(matches($link,"weber-gesamtausgabe.de")) then ()
+                        else map:entry($title, ($link, $text))
+                )
+        
+        let $document-tabs := (
+            if(functx:all-whitespace($model('doc')//tei:note[@type='bioSummary'])) then () else 'wega',
+            if(map:contains($beaconMap, 'Wikipedia-Personenartikel')) then 'wikipedia' else(),
+            if(map:contains($beaconMap, 'Allgemeine Deutsche Biographie (Wikisource)')) then 'adb' else(),
+            if(count(map:keys($beaconMap)) eq 0) then () else 'beacon'
+        )
+        
+        let $tabTitles := map:new((
+            if(empty($document-tabs )) then ()
+            else map:entry('biographies', count($document-tabs[not(. = 'PND-Beacon')])),
+            
+            for $docType in map:keys($docTypes)
+            return 
+                if(empty($docTypes($docType))) then ()
+                else map:entry($docType, count($docTypes($docType))),
+                
+            if(empty($contacts)) then ()
+            else map:entry('contacts', count($contacts)),
+            
+            if(empty($backlinks)) then ()
+            else map:entry('backlinks', count($backlinks))
+            )
+        )
+        
+(:        let $log := util:log-system-out(count(map:keys($tabTitles))):)
+        return
+            map{
+                'tabTitlesMap' := $tabTitles,
+                'tabTitleKeys' := map:keys($tabTitles)[. != 'iconography'],
+                'docTypesMap' := $docTypes,
+                'contacts' := $contacts,
+                'gnd' := $model('doc')//tei:idno[@type = 'gnd'],
+                'beaconMap' := $beaconMap,
+                'document-tabs' := $document-tabs
+            }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:print-tabTitle($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    let $tabTitlesMap := $model('tabTitlesMap')
+    return
+    <a target=".{$model('tabTitleKey')}">{lang:get-language-string($model('tabTitleKey'), $lang) || ' (' || $tabTitlesMap($model('tabTitleKey')) || ')'}</a>
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-document-tab($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        <a href="#{$model('document-tab')}Text" data-toggle="tab">{
+            switch($model('document-tab'))
+            case 'adb' return (
+                attribute {'data-tab-url'} {'ajax.xql?func=adb&amp;gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
+            )
+            case 'wikipedia' return (
+                attribute {'data-tab-url'} {'ajax.xql?func=wikipedia&amp;gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
+            )
+            case 'beacon' return 'PND Beacon Links'
+            case 'wega' return 'WeGA ' || lang:get-language-string('bio', $lang)
+            default return ()
+        }</a>
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)? {
+        transform:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-beacon-links($node as node(), $model as map(*), $lang as xs:string) as element(ul) {
+        <ul>{
+            for $i in map:keys($model('beaconMap'))
+            return 
+                <li><a title="{$i}" href="{$model('beaconMap')($i)[1]}">{$model('beaconMap')($i)[2]}</a></li>
+        }</ul>
 };

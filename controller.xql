@@ -122,6 +122,13 @@ else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     controller:forward('/templates/index.html', $exist-vars)
     
+else if ($exist:resource eq 'ajax.xql') then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/ajax.xql')}">
+    	   <cache-control cache="yes"/>
+    	</forward>
+    </dispatch>
+    
 (: Suche :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
