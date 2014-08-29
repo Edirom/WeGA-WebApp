@@ -30,7 +30,7 @@ declare function local:tidy($node as node()) as node() {
 declare function local:tidy-attr($node as node()) as node()? {
     let $lang := request:get-attribute('lang')
     return 
-        if(starts-with($node, 'data-template')) then ()
+        if(starts-with(node-name($node), 'data-template')) then ()
         
         else if(starts-with($node, '$resources')) then 
             attribute { node-name($node) } {core:link-to-current-app(substring-after($node, '$'))}
