@@ -23,10 +23,6 @@ let $config := map {
     $templates:CONFIG_STOP_ON_ERROR := true()
 }
 
-(:let $model := map {
-    'lang' := 'de'
-}:)
-let $log := util:log-system-out(request:get-attribute('resource')) 
 let $model := 
     if(config:is-person(request:get-attribute('resource'))) then map {
         'docID' := request:get-attribute('resource'),
