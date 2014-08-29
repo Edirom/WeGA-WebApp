@@ -51,20 +51,20 @@ declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($co
 
 declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
 
-(:declare variable $config:wega-docTypes as map() := map {
+declare variable $config:wega-docTypes := map {
     'biblio'        := 'A11',
-    'diaries'       := 'A06',
     'iconography'   := 'A01',
     'letters'       := 'A04',
+    'diaries'       := 'A06',
     'news'          := 'A05',
     'persons'       := 'A00', 
     'places'        := 'A13',
+    'writings'      := 'A03',
     'sources'       := 'A22',
     'var'           := 'A07',
-    'works'         := 'A02',
-    'writings'      := 'A03',
-    };
-:)
+    'works'         := 'A02'
+};
+
 (:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,
