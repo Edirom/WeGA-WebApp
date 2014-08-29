@@ -19,8 +19,7 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "../wega.xqm";
-import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "../facets.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 
@@ -114,7 +113,7 @@ declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+,
 
 declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFileName := concat($docType, '-tmpIDs.xml')
-    let $IDFileURI := core:join-path-elements(($config:tmp-collection-path, $IDFileName))
+    let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
     let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), false())
        (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
         else doc(concat($config:tmp-collection-path, $IDFileName)):)
@@ -213,7 +212,7 @@ declare function dev:validatePaths($docType as xs:string) as element() {
  : @return map with entries 'rev' and 'success'
  :)
 declare function dev:ant-log() as map(*) {
-    let $logFile := util:binary-doc(core:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
+    let $logFile := util:binary-doc(str:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
     let $logLines := tokenize(util:binary-to-string($logFile), '\n')
     return
         map:new((

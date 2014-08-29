@@ -7,9 +7,7 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
-(:import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";:)
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 
 declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries iconography letters news persons places sources var works writings', '\s+');
 
@@ -41,7 +39,7 @@ declare function local:delete-resources($data as xs:string) {
 
 declare function local:get-resource-path($partialPath as xs:string) as xs:string* {
     for $docType in $local:wega-docTypes
-    let $fullPath := core:join-path-elements(($config:data-collection-path, $docType, $partialPath))
+    let $fullPath := str:join-path-elements(($config:data-collection-path, $docType, $partialPath))
     return 
         if(doc-available($fullPath)) then $fullPath
         else ()
@@ -49,14 +47,14 @@ declare function local:get-resource-path($partialPath as xs:string) as xs:string
 
 declare function local:get-collection-path($partialPath as xs:string) as xs:string* {
     for $docType in $local:wega-docTypes
-    let $fullPath := core:join-path-elements(($config:data-collection-path, $docType, $partialPath))
+    let $fullPath := str:join-path-elements(($config:data-collection-path, $docType, $partialPath))
     return 
         if(xmldb:collection-available($fullPath)) then $fullPath
         else ()
 };
 
 declare function local:reindex($docType as xs:string) as xs:boolean {
-    if($docType = $local:wega-docTypes) then xmldb:reindex(core:join-path-elements(($config:data-collection-path,$docType)))
+    if($docType = $local:wega-docTypes) then xmldb:reindex(str:join-path-elements(($config:data-collection-path,$docType)))
     else false()
 };
 

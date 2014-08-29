@@ -18,14 +18,14 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "../wega.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "../query.xqm";
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
 (:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";:)
 (:import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";:)
 
 
 declare function local:get-reg-name($params as map(*)) as xs:string {
-    wega:getRegName($params('id'))
+    query:get-reg-name($params('id'))
 };
 
 declare function local:get-new-id($params as map(*)) as xs:string {
