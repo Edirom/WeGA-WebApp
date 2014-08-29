@@ -20,7 +20,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : ATTENTION: Wikipedia sends HTMl pages without namespace
  :
  : @author Peter Stadler 
- : @param $resource the external resource (wikipedia|adb|dnb)
+ : @param $resource the external resource (wikipedia|adb|dnb|beacon)
  : @param $pnd the PND number
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
  : @param $useCache use cached version or force a reload of the external resource
