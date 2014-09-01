@@ -1,0 +1,29 @@
+<div data-template="app:dnb">
+    <h2>Angaben aus der DNB</h2>
+    <dl>
+        <dt data-template="lang:translate">pnd_name</dt>
+        <dd data-template="app:print" data-template-key="dnbName">Ein Name</dd>
+    </dl>
+    <dl>
+        <dt data-template="lang:translate">pnd_dates</dt>
+        <dd data-template="templates:each" data-template-from="dnbBirths" data-template-to="dataBirth">
+            <i class="fa fa-asterisk  media-object"/> <span data-template="app:print" data-template-key="dataBirth">dataBirth</span>
+        </dd>
+        <dd data-template="templates:each" data-template-from="dnbDeaths" data-template-to="dataDeath">
+            <strong>†</strong> <span data-template="app:print" data-template-key="dataDeath">dataDeath</span>
+        </dd>
+    </dl>
+    <dl>
+        <dt data-template="lang:translate">pnd_occupation</dt>
+        <dd data-template="templates:each" data-template-from="dnbOccupations" data-template-to="dnbOccupation">
+            <span data-template="app:print" data-template-key="dnbOccupation">Musiker</span>
+        </dd>
+    </dl>
+    <dl>
+        <dt data-template="lang:translate">pnd_otherNames</dt>
+        <dd data-template="templates:each" data-template-from="dnbOtherNames" data-template-to="dnbOtherName">
+            <span data-template="app:print" data-template-key="dnbOtherName">Musiker</span>
+        </dd>
+    </dl>
+    <p>Zu verknüpfter Literatur und weiteren Informationen siehe den vollständigen Eintrag in der Deutschen Nationalbibliothek.</p>
+</div>
