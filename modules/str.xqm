@@ -48,3 +48,20 @@ declare function str:printFornameSurname($name as xs:string?) as xs:string? {
         then normalize-space(string-join(reverse(tokenize($clearName, ',')), ' '))
         else $clearName
 };
+
+(:~ 
+ : Surround a string with typographic quotes
+ :
+ : @author Peter Stadler
+ : @return xs:string
+ :)
+declare function str:enquote($str as xs:string?, $lang as xs:string) as xs:string? {
+    let $quotes :=
+        switch ($lang)
+        case 'de' return '&#x201E;%1&#x201C;'
+        default return '&#x201C;%1&#x201D;'
+    return 
+        if($str) then replace($quotes, '%1', $str)
+        else ()
+    
+};

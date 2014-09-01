@@ -129,6 +129,21 @@ else if ($exist:resource eq 'ajax.xql') then
     	</forward>
     </dispatch>
     
+else if (ends-with($exist:resource, '.html')) then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<view>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}">
+            </forward>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-tidy.xql'}">
+                <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+            </forward>
+        </view>
+        <error-handler>
+            <forward url="/templates/error-page.html" method="get"/>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}"/>
+        </error-handler>
+    </dispatch>
+
 (: Suche :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
