@@ -3,13 +3,14 @@ xquery version "3.0" encoding "UTF-8";
 (:~
  : Functions for creating http requests
 :)
-module namespace wega-http="http://xquery.weber-gesamtausgabe.de/modules/wega-http";
+module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 
+import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
@@ -26,13 +27,14 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- declare function wega-http:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
-    let $serverURL := 
-        if($resource eq 'wikipedia') then concat(config:get-option($resource), $lang, '/')
-        else config:get-option($resource)
+ declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
+    let $url := 
+        if($resource eq 'wikipedia') then concat(config:get-option($resource), $lang, '/', $pnd)
+        else if($resource eq 'dnb') then concat(config:get-option($resource), $pnd, '/about/rdf')
+        else config:get-option($resource) || $pnd
     let $fileName := string-join(($pnd, $lang, 'xml'), '.')
     let $today := current-date()
-    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-http:http-get#1, xs:anyURI(concat($serverURL, $pnd)), not($useCache))
+    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), not($useCache))
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
@@ -46,7 +48,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @param $url the URL as xs:anyURI
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
-declare function wega-http:http-get($url as xs:anyURI) as element(wega:externalResource) {
+declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalResource) {
     let $req := <http:request href="{$url}" method="get" timeout="4"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { http:send-request($req) }
@@ -67,4 +69,24 @@ declare function wega-http:http-get($url as xs:anyURI) as element(wega:externalR
                 </httpclient:body>
             </httpclient:response>
         </wega:externalResource>
+};
+
+declare function wega-util:beacon-map($gnd as xs:string?) as map(*) {
+    let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de', true())
+    (:let $log := util:log-system-out($gnd):)
+    let $jxml := 
+        if(exists($findbuchResponse)) then 
+            if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then xqjson:parse-json(util:binary-to-string($findbuchResponse))
+            else xqjson:parse-json($findbuchResponse)
+        else ()
+    return 
+        map:new(
+            for $i in 1 to count($jxml/item[2]/item)
+            let $link  := str:normalize-space($jxml/item[4]/item[$i])
+            let $title := str:normalize-space($jxml/item[3]/item[$i])
+            let $text  := str:normalize-space($jxml/item[2]/item[$i])
+            return
+                if(matches($link,"weber-gesamtausgabe.de")) then ()
+                else map:entry($title, ($link, $text))
+        )
 };

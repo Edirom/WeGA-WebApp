@@ -5,7 +5,10 @@ module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace templates="http://exist-db.org/xquery/templates";
+declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
+declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
+declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 (:declare namespace request = "http://exist-db.org/xquery/request";:)
 (:declare namespace session = "http://exist-db.org/xquery/session";:)
 
@@ -15,8 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
-import module namespace wega-http="http://xquery.weber-gesamtausgabe.de/modules/wega-http" at "wega-http.xqm";
-import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare function app:page-title($node as node(), $model as map(*)) as element(title) {
@@ -27,16 +29,102 @@ declare function app:page-h1($node as node(), $model as map(*)) as element(h1) {
     <h1>{query:get-reg-name($model('docID'))}</h1>
 };
 
-(:declare function app:init-doc($node as node(), $model as map(*)) {
-    let $docID := tokenize(request:get-uri(), '/')[last()]
-    let $doc := core:doc($docID)
+(:
+ : ****************************
+ : Generic functions
+ : ****************************
+:)
+
+(:~
+ : Creates link to doc
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @return xs:string
+:)
+declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string) as xs:string? {
+    let $docID :=  $doc/*/@xml:id cast as xs:string
+    let $authorId := query:getAuthorOfTeiDoc($doc)
+    let $folder := 
+        if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
+        else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
+        else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
+    return
+        if(config:is-person($docID)) then core:link-to-current-app(str:join-path-elements(($lang, $docID))) (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
+        else if(config:is-biblio($docID)) then 
+            if(config:is-weberStudies($doc)) then core:link-to-current-app(str:join-path-elements((lang:get-language-string('publications', $lang), $folder, $docID)))
+            else ()
+        else if(exists($folder) and $authorId ne '') then core:link-to-current-app(str:join-path-elements(($lang, $authorId, $folder, $docID)))
+        else ()
+};
+
+(:~
+ : Creates an xhtml:a link to a WeGA document
+ :
+ : @author Peter Stadler
+ : @param $doc the document to create the link for
+ : @param $content the string content for the xhtml a element
+ : @param $lang the language switch (en, de)
+ : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
+ :)
+declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element() {
+    let $href := app:createUrlForDoc($doc, $lang)
+    let $docID :=  $doc/root()/*/@xml:id
     return 
-        map{
-            'doc' := $doc,
-            'docID' := $docID,
-            'page-title' := 'Eine Seite aus der WeGA' 
-        }
-};:)
+    element a {
+        attribute href {$href},
+        if(exists($attributes)) then for $att in $attributes return attribute {substring-before($att, '=')} {substring-after($att, '=')} 
+        else (),
+        $content
+    }
+};
+
+(:~
+ : Set an attribute to the value given in the $model map
+ :
+ : @author Peter Stadler
+ :)
+declare function app:set-attr($node as node(), $model as map(*), $attr as xs:string, $key as xs:string) as element() {
+    element {name($node)} {
+        $node/@*[not(name(.) = $attr)],
+        attribute {$attr} {$model($key)},
+        templates:process($node/node(), $model)
+    }
+};
+
+(:~
+ : Simply print a value from the $model map
+ :
+ : @author Peter Stadler
+ :)
+declare 
+    %templates:wrap
+    function app:print($node as node(), $model as map(*), $key as xs:string) as xs:string? {
+    if ($model($key) castable as xs:string) then string($model($key))
+    else ()
+};
+
+
+(:
+ : ****************************
+ : Index functions
+ : ****************************
+:)
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:word-of-the-day($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $words := core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
+        let $random := util:random(count($words) - 1) + 1 (: util:random may return 0! :)
+(:        let $log := util:log-system-out($words[$random]/ancestor::tei:TEI/string(@xml:id)):)
+        return 
+            map {
+                'wordOfTheDay' := str:enquote(str:normalize-space($words[$random]), $lang),
+                'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+            }
+};
 
 declare 
     %templates:wrap
@@ -78,9 +166,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
             }
 };
 
-declare 
-    %templates:wrap
-    function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
+declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
     <h2>{lang:get-language-string('whatHappenedOn', date:strfdate(current-date(), $lang, if($lang eq 'en') then '%B %d' else '%d. %B'), $lang)}</h2>
 };
 
@@ -100,27 +186,6 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 };
 
 (:~
- : Creates an xhtml:a link to a WeGA document
- :
- : @author Peter Stadler
- : @param $doc the document to create the link for
- : @param $content the string content for the xhtml a element
- : @param $lang the language switch (en, de)
- : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
- :)
-declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element() {
-    let $href := app:createUrlForDoc($doc, $lang)
-    let $docID :=  $doc/root()/*/@xml:id
-    return 
-    element a {
-        attribute href {$href},
-        if(exists($attributes)) then for $att in $attributes return attribute {substring-before($att, '=')} {substring-after($att, '=')} 
-        else (),
-        $content
-    }
-};
-
-(:~
  : Construct a name from a tei:persName or tei:name element wrapped in a <span> with @onmouseover etc.
  : If a @key is given on persName the regularized form will be returned, otherwise the content of persName.
  : If persName is empty than "unknown" is returned.
@@ -137,30 +202,6 @@ declare function app:printCorrespondentName($persName as element()?, $lang as xs
      else if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
      else if (not(functx:all-whitespace($persName))) then <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
      else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
-};
-
-(:~
- : Creates link to doc
- :
- : @author Peter Stadler
- : @param $doc document node
- : @param $lang the current language (de|en)
- : @return xs:string
-:)
-declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string) as xs:string? {
-    let $docID :=  $doc/*/@xml:id cast as xs:string
-    let $authorId := query:getAuthorOfTeiDoc($doc)
-    let $folder := 
-        if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
-        else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
-        else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
-    return
-        if(config:is-person($docID)) then core:link-to-current-app(str:join-path-elements(($lang, $docID))) (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
-        else if(config:is-biblio($docID)) then 
-            if(config:is-weberStudies($doc)) then core:link-to-current-app(str:join-path-elements((lang:get-language-string('publications', $lang), $folder, $docID)))
-            else ()
-        else if(exists($folder) and $authorId ne '') then core:link-to-current-app(str:join-path-elements(($lang, $authorId, $folder, $docID)))
-        else ()
 };
 
 (:
@@ -192,51 +233,10 @@ declare
         }
 };
 
-declare
-    %templates:wrap
-    function app:print-name($node as node(), $model as map(*), $type as xs:string) as xs:string? {
-        if ($model($type)) then $model($type) cast as xs:string 
-        else ()
-};
-
-declare
-    %templates:wrap
-    function app:print-date-and-place($node as node(), $model as map(*), $type as xs:string) as xs:string? {
-        if ($model($type)) then $model($type) cast as xs:string
-        else ()
-};
-
-(:declare 
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:person-details($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $letters := core:getOrCreateColl('letters', $model('docID'), true())
-        let $diaries := core:getOrCreateColl('diaries', $model('docID'), true())
-        let $writings := core:getOrCreateColl('writings', $model('docID'), true())
-        let $works := core:getOrCreateColl('works', $model('docID'), true())
-        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')])
-        let $tabTitles := (
-            if(not(empty($letters))) then lang:get-language-string('correspondence', $lang) || ' (' || count($letters) || ')' else (),
-            if(not(empty($diaries))) then lang:get-language-string('diaries', $lang) || ' (' || count($diaries) || ')' else (),
-            if(not(empty($writings))) then lang:get-language-string('writings', $lang) || ' (' || count($writings) || ')' else (),
-            if(not(empty($works))) then lang:get-language-string('works', $lang) || ' (' || count($works) || ')' else (),
-            if(not(empty($contacts))) then lang:get-language-string('contacts', $lang) || ' (' || count($contacts) || ')' else ()
-        ) 
-        return
-            map{
-                'letters' := $letters,
-                'diaries' := $diaries,
-                'writings' := $writings,
-                'works' := $works,
-                'contacts' := $contacts,
-                'tabTitles' := $tabTitles
-            }
-};
-:)
-
 declare 
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
+        let $gnd := $model('doc')//tei:idno[@type = 'gnd']/string()
         let $docTypes := map:new(
             for $docType in map:keys($config:wega-docTypes)
             return 
@@ -248,27 +248,14 @@ declare
         let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]
         
         let $beaconMap := 
-            let $findbuchResponse := wega-http:grabExternalResource('beacon', $model('doc')//tei:idno[@type = 'gnd'], 'de', true())
-            let $jxml := 
-                if(exists($findbuchResponse)) then 
-                    if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then xqjson:parse-json(util:binary-to-string($findbuchResponse))
-                    else xqjson:parse-json($findbuchResponse)
-                else ()
-            return 
-                map:new(
-                    for $i in 1 to count($jxml/item[2]/item)
-                    let $link  := str:normalize-space($jxml/item[4]/item[$i])
-                    let $title := str:normalize-space($jxml/item[3]/item[$i])
-                    let $text  := str:normalize-space($jxml/item[2]/item[$i])
-                    return
-                        if(matches($link,"weber-gesamtausgabe.de")) then ()
-                        else map:entry($title, ($link, $text))
-                )
+            if($gnd) then wega-util:beacon-map($gnd)
+            else map:new()
         
         let $document-tabs := (
             if(functx:all-whitespace($model('doc')//tei:note[@type='bioSummary'])) then () else 'wega',
             if(map:contains($beaconMap, 'Wikipedia-Personenartikel')) then 'wikipedia' else(),
             if(map:contains($beaconMap, 'Allgemeine Deutsche Biographie (Wikisource)')) then 'adb' else(),
+            if($gnd) then 'dnb' else (),
             if(count(map:keys($beaconMap)) eq 0) then () else 'beacon'
         )
         
@@ -288,7 +275,6 @@ declare
             else map:entry('backlinks', count($backlinks))
             )
         )
-        
 (:        let $log := util:log-system-out(count(map:keys($tabTitles))):)
         return
             map{
@@ -296,7 +282,7 @@ declare
                 'tabTitleKeys' := map:keys($tabTitles)[. != 'iconography'],
                 'docTypesMap' := $docTypes,
                 'contacts' := $contacts,
-                'gnd' := $model('doc')//tei:idno[@type = 'gnd'],
+                'gnd' := $gnd,
                 'beaconMap' := $beaconMap,
                 'document-tabs' := $document-tabs
             }
@@ -316,10 +302,13 @@ declare
         <a href="#{$model('document-tab')}Text" data-toggle="tab">{
             switch($model('document-tab'))
             case 'adb' return (
-                attribute {'data-tab-url'} {'ajax.xql?func=adb&amp;gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/adb.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
             )
             case 'wikipedia' return (
-                attribute {'data-tab-url'} {'ajax.xql?func=wikipedia&amp;gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/wikipedia.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
+            )
+            case 'dnb' return (
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/dnb.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'DNB ' || lang:get-language-string('personenartikel', $lang)
             )
             case 'beacon' return 'PND Beacon Links'
             case 'wega' return 'WeGA ' || lang:get-language-string('bio', $lang)
@@ -341,4 +330,104 @@ declare
             return 
                 <li><a title="{$i}" href="{$model('beaconMap')($i)[1]}">{$model('beaconMap')($i)[2]}</a></li>
         }</ul>
+};
+
+
+declare 
+    %templates:wrap
+    %templates:default("gnd", "")
+    %templates:default("lang", "en")
+    function app:wikipedia($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
+    let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang, true())
+    let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
+    let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
+    return 
+        map {
+            'wikiContent' := $wikiContent,
+            'wikiUrl' := $wikiUrl,
+            'wikiName' := $wikiName
+        }
+};
+
+
+declare function app:wikipedia-text($node as node(), $model as map(*)) as element() {
+    element {name($node)} {
+        $node/@*,
+        transform:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+    }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:wikipedia-disclaimer($node as node(), $model as map(*), $lang as xs:string) as element() {
+    element {name($node)} {
+        $node/@*,
+        
+        if($lang eq 'en') then (
+            'The content of this "Wikipedia" entitled box is taken from the article "',
+            <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
+            '" from ',
+            <a href="http://en.wikipedia.org">Wikipedia</a>,
+            'the free encyclopedia, and is released under a ',
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
+            '. You will find the ',
+            <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
+            'of this article in Wikipedia.'
+        )
+            
+        else (
+            'Der Inhalt dieser mit "Wikipedia" bezeichneten Box entstammt dem Artikel "',
+            <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
+            '" aus der freien Enzyklopädie ',
+            <a href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
+            ' und steht unter der ',
+            <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
+            '. In der Wikipedia findet sich auch die ',
+            <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
+            ' für diesen Artikel.'
+        )
+    }
+};
+
+declare 
+    %templates:wrap
+    %templates:default("gnd", "")
+    %templates:default("lang", "en")
+    function app:adb($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
+        map {
+            'adbContent' := wega-util:grabExternalResource('adb', $gnd, (), true())
+        }
+};
+
+
+declare function app:adb-text($node as node(), $model as map(*)) as element() {
+    element {name($node)} {
+        $node/@*,
+        transform:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+    }
+};
+
+declare function app:adb-disclaimer($node as node(), $model as map(*)) as element() {
+    element {name($node)} {
+        $node/@*,
+        transform:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
+    }
+};
+
+declare 
+    %templates:wrap
+    %templates:default("gnd", "")
+    %templates:default("lang", "en")
+    function app:dnb($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
+        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, (), true())
+(:        let $log := util:log-system-out($dnbContent//rdf:Description/gndo:preferredNameForThePerson/string()):)
+        return
+            map {
+                'dnbContent' := $dnbContent,
+                'dnbName' := $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/string(),
+                'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
+                'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
+                'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/string(),
+                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/string()
+            }
 };
