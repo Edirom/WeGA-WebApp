@@ -10,7 +10,7 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 (:declare namespace request = "http://exist-db.org/xquery/request";:)
-(:declare namespace session = "http://exist-db.org/xquery/session";:)
+declare namespace session = "http://exist-db.org/xquery/session";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -275,7 +275,15 @@ declare
             else map:entry('backlinks', count($backlinks))
             )
         )
-(:        let $log := util:log-system-out(count(map:keys($tabTitles))):)
+        
+        let $setSession := (
+            session:remove-attribute('gnd'),
+            session:set-attribute('gnd', $gnd),
+            session:remove-attribute('docID'),
+            session:set-attribute('docID', $model('docID'))
+        )
+        
+        let $log := util:log-system-out(session:get-attribute('docID'))
         return
             map{
                 'tabTitlesMap' := $tabTitles,
@@ -302,13 +310,13 @@ declare
         <a href="#{$model('document-tab')}Text" data-toggle="tab">{
             switch($model('document-tab'))
             case 'adb' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/adb.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/adb.html')} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
             )
             case 'wikipedia' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/wikipedia.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/wikipedia.html')} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
             )
             case 'dnb' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/dnb.html') || '?gnd=' || $model('gnd') || '&amp;lang=' || $lang} , 'DNB ' || lang:get-language-string('personenartikel', $lang)
+                attribute {'data-tab-url'} {core:link-to-current-app('templates/dnb.html')} , 'DNB ' || lang:get-language-string('personenartikel', $lang)
             )
             case 'beacon' return 'PND Beacon Links'
             case 'wega' return 'WeGA ' || lang:get-language-string('bio', $lang)
@@ -332,7 +340,13 @@ declare
         }</ul>
 };
 
-
+(:~
+ : Main Function for wikipedia.html
+ : Creates the wikipedia model
+ :
+ : @author Peter Stadler 
+ : @return map with keys:('wikiContent','wikiUrl','wikiName')
+ :)
 declare 
     %templates:wrap
     %templates:default("gnd", "")
@@ -389,6 +403,13 @@ declare
     }
 };
 
+(:~
+ : Main Function for adb.html
+ : Creates the ADB model
+ :
+ : @author Peter Stadler 
+ : @return map with key:'adbContent'
+ :)
 declare 
     %templates:wrap
     %templates:default("gnd", "")
@@ -430,4 +451,14 @@ declare
                 'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/string(),
                 'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/string()
             }
+};
+
+declare
+    %templates:default("docID", "")
+    function app:xml-prettify($node as node(), $model as map(*), $docID as xs:string) {
+        let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
+        let $log := util:log-system-out(session:get-attribute('path'))
+        return
+            if($config:isDevelopment) then util:serialize(core:doc($docID), $serializationParameters)
+            else util:serialize(wega-util:remove-comments(core:doc($docID)), $serializationParameters)
 };

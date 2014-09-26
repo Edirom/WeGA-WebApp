@@ -90,3 +90,25 @@ declare function wega-util:beacon-map($gnd as xs:string?) as map(*) {
                 else map:entry($title, ($link, $text))
         )
 };
+
+(:~
+ : Identity transformation with stripping off XML comments and processing instructions
+ :
+ : @author Peter Stadler 
+ : @param $nodes the nodes to transform
+ : @return transformed nodes
+ :)
+declare function wega-util:remove-comments($nodes as node()*) as node()* {
+    for $node in $nodes
+    return
+        if($node instance of processing-instruction()) then ()
+        else if($node instance of comment()) then ()
+        else if($node instance of element()) then 
+            element {node-name($node)} {
+                $node/@*,
+                wega-util:remove-comments($node/node())
+            }
+        else if($node instance of document-node()) then wega-util:remove-comments($node/node())
+        else $node
+};
+
