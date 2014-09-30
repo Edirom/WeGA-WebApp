@@ -12,6 +12,7 @@ declare namespace request="http://exist-db.org/xquery/request";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
 
@@ -153,6 +154,20 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
 };
 
 (:~
+ : Store some XML content as file in the db
+ : (shortcut for the more generic 4arity version)
+ : 
+ : @author Peter Stadler
+ : @param $collection the collection to put the file in. If empty, the content will be stored in tmp  
+ : @param $fileName the filename of the to be created resource with filename extension
+ : @param $contents the content to store. Must be a node 
+ : @return Returns the path to the newly created resource, empty sequence otherwise
+ :)
+declare function core:store-file($collection as xs:string?, $fileName as xs:string, $contents as item()) as xs:string? {
+    core:store-file($collection, $fileName, $contents, 'application/xml')
+};
+
+(:~
  : Store some content as file in the db
  : (helper function for wega:grabExternalResource())
  : 
@@ -162,7 +177,7 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
  : @param $contents the content to store. Either a node, an xs:string, a Java file object or an xs:anyURI 
  : @return Returns the path to the newly created resource, empty sequence otherwise
  :)
-declare function core:store-file($collection as xs:string?, $fileName as xs:string, $contents as item()) as xs:string? {
+declare function core:store-file($collection as xs:string?, $fileName as xs:string, $contents as item(), $mime-type as xs:string) as xs:string? {
     let $collection := 
         if(empty($collection) or ($collection eq '')) then $config:tmp-collection-path
         else $collection
@@ -173,9 +188,10 @@ declare function core:store-file($collection as xs:string?, $fileName as xs:stri
             if(xmldb:collection-available($parentColl || '/' || $coll)) then ''
             else xmldb:create-collection($parentColl, $coll)
     return
-        try { xmldb:store($collection, $fileName, $contents) }
+        try { xmldb:store($collection, $fileName, $contents, $mime-type) }
         catch * { core:logToFile('error', string-join(('core:store-file', $err:code, $err:description), ' ;; ')) }
 };
+
 
 (:~
  : @author Peter Stadler
@@ -251,11 +267,12 @@ declare function core:permalink($docID as xs:string) as xs:anyURI? {
  : @param $overwrite force an overwrite of the given document
  : @return the cached document
  :)
-declare function core:cache-doc($docURI as xs:string, $callback as function() as element(), $callback-params as item()*, $overwrite as xs:boolean) as document-node()? {
+declare function core:cache-doc($docURI as xs:string, $callback as function() as element(), $callback-params as item()*, $overwrite as xs:boolean) {
     let $fileName := functx:substring-after-last($docURI, '/')
     let $collection := functx:substring-before-last($docURI, '/')
     let $currentDateTimeOfFile := 
         if(doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
+        else if(util:binary-doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
         else ()
     let $updateNecessary := typeswitch($currentDateTimeOfFile) 
 	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile)
@@ -267,13 +284,17 @@ declare function core:cache-doc($docURI as xs:string, $callback as function() as
                 else if(count($callback-params) eq 1) then $callback($callback-params)
                 else if(count($callback-params) eq 3) then $callback($callback-params[1], $callback-params[2], $callback-params[3])
                 else if(count($callback-params) eq 2) then $callback($callback-params[1], $callback-params[2])
-                else $callback($callback-params)
+                else error(xs:QName('core:error'), 'Too many arguments to function callback')
+            let $mime-type := wega-util:guess-mimeType-from-suffix(functx:substring-after-last($docURI, '.'))
+            let $store-file := core:store-file($collection, $fileName, $content)
             let $logMessage := concat('core:cache-doc(): saved document ', $docURI)
             let $logToFile := core:logToFile('info', $logMessage)
-            let $store-file := core:store-file($collection, $fileName, $content)
             return 
                 if(doc-available($store-file)) then doc($store-file)
+                else if(util:binary-doc-available($store-file)) then util:binary-doc($store-file)
                 else ()
         )
-        else doc($docURI)
+        else if(doc-available($docURI)) then doc($docURI)
+        else if(util:binary-doc-available($docURI)) then util:binary-doc($docURI)
+        else ()
 };

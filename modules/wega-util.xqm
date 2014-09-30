@@ -112,3 +112,18 @@ declare function wega-util:remove-comments($nodes as node()*) as node()* {
         else $node
 };
 
+(:~
+ : Helper function for guessing a mime-type from a file extension
+ :
+ : @author Peter Stadler 
+ : @param $suffix the file extension
+ : @return the mime-type
+ :)
+declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as xs:string? {
+    switch($suffix)
+        case 'xml' return 'application/xml'
+        case 'jpg' return 'image/jpeg'
+        case 'png' return 'image/png'
+        default return error(xs:QName(wega-util:error), 'unknown file suffix "' || $suffix || '"')
+};
+
