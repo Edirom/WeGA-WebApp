@@ -101,10 +101,62 @@ declare function app:set-attr($node as node(), $model as map(*), $attr as xs:str
 declare 
     %templates:wrap
     function app:print($node as node(), $model as map(*), $key as xs:string) as xs:string? {
-    if ($model($key) castable as xs:string) then string($model($key))
-    else ()
+        if ($model($key) castable as xs:string) then string($model($key))
+        else ()
 };
 
+(:~
+ : Add additional JavaScript to the page template
+ : which gets invoked at the end of the page
+ :
+ : @author Peter Stadler
+ :)
+declare function app:page-javascript($node as node(), $model as map(*)) {
+    let $email := config:get-option('bugEmail')
+    return
+        <script type="text/javascript">
+                var e = "{substring-before($email, '@')}";
+                var t = "{substring-after($email, '@')}";
+                var r = '' + e + '@' + t ;
+                $('.obfuscate-email').attr('href',' mailto:' +r).html(r);
+        </script>
+};
+
+declare 
+    %templates:default("lang", "en")
+    %templates:wrap
+    function app:print-bugReportEmail($node as node(), $model as map(*), $lang as xs:string) as element(p) {
+        if($lang eq 'de') then 
+            <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an
+                <a href="#" class="obfuscate-email">You need Javascript enabled</a>
+            </p>
+        else 
+            <p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                <a href="#" class="obfuscate-email">You need Javascript enabled</a>
+            </p>
+};
+
+declare
+    %templates:default("lang", "en")
+    %templates:wrap
+    function app:print-permaLink($node as node(), $model as map(*), $lang as xs:string) as element(p) {
+        let $dateFormat := if($lang eq 'en')
+            then '%B %d, %Y'
+            else '%d. %B %Y'
+        let $svnProps := config:get-svn-props($model('docID'))
+        let $author := map:get($svnProps, 'author')
+        let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
+        let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
+        let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
+        let $permalink := core:permalink($model('docID'))
+        return 
+            <p>{lang:get-language-string('proposedCitation', $lang)}, {$permalink} ({app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ())})
+                <br/>
+                {if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',(date:strfdate($date, $lang, $dateFormat),$author),$lang)
+                else lang:get-language-string('lastChangeDateWithoutAuthor', date:strfdate($date, $lang, $dateFormat), $lang)
+                }
+            </p>
+};
 
 (:
  : ****************************
