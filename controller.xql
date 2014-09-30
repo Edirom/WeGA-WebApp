@@ -142,6 +142,16 @@ else if (ends-with($exist:resource, '.html')) then
         </error-handler>
     </dispatch>
 
+(:
+ : XML-Resources
+ :)
+else if (ends-with($exist:resource, '.xml')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-xml.xql'}">
+            <set-attribute name="resource" value="{substring-before($exist:resource, '.xml')}"/>
+        </forward>
+    </dispatch>
+
 (: Suche :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

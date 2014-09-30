@@ -276,6 +276,9 @@ declare
             )
         )
         
+        (: 
+         : Storing necessary parameters in a session for reuse via AJAX (e.g. wikipedia, adb, dnb mashups) 
+         :)
         let $setSession := (
             session:remove-attribute('gnd'),
             session:set-attribute('gnd', $gnd),
@@ -283,7 +286,7 @@ declare
             session:set-attribute('docID', $model('docID'))
         )
         
-        let $log := util:log-system-out(session:get-attribute('docID'))
+(:        let $log := util:log-system-out(session:get-attribute('docID')):)
         return
             map{
                 'tabTitlesMap' := $tabTitles,
@@ -292,7 +295,8 @@ declare
                 'contacts' := $contacts,
                 'gnd' := $gnd,
                 'beaconMap' := $beaconMap,
-                'document-tabs' := $document-tabs
+                'document-tabs' := $document-tabs,
+                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml')
             }
 };
 
