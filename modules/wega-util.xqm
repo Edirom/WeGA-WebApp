@@ -71,7 +71,7 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
         </wega:externalResource>
 };
 
-declare function wega-util:beacon-map($gnd as xs:string?) as map(*) {
+declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
     let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de', true())
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 

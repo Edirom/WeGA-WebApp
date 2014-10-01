@@ -288,14 +288,14 @@ declare
 declare 
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
-        let $gnd := $model('doc')//tei:idno[@type = 'gnd']/string()
+        let $gnd := query:get-gnd($model('doc'))
+        let $docTypes-for-display := ('letters', 'diaries', 'writings', 'works')
         let $docTypes := map:new(
-            for $docType in map:keys($config:wega-docTypes)
+            for $docType in $docTypes-for-display
             return 
                 map:entry($docType, core:getOrCreateColl($docType, $model('docID'), true()))
         )
         let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')])
-(:        let $beacon := wega-http:grabExternalResource('beacon', $model('doc')//tei:idno[@type = 'gnd'], 'de', true()):)
         
         let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]
         
@@ -303,81 +303,97 @@ declare
             if($gnd) then wega-util:beacon-map($gnd)
             else map:new()
         
-        let $document-tabs := (
-            if(functx:all-whitespace($model('doc')//tei:note[@type='bioSummary'])) then () else 'wega',
-            if(map:contains($beaconMap, 'Wikipedia-Personenartikel')) then 'wikipedia' else(),
-            if(map:contains($beaconMap, 'Allgemeine Deutsche Biographie (Wikisource)')) then 'adb' else(),
-            if($gnd) then 'dnb' else (),
-            if(count(map:keys($beaconMap)) eq 0) then () else 'beacon'
-        )
-        
-        let $tabTitles := map:new((
-            if(empty($document-tabs )) then ()
-            else map:entry('biographies', count($document-tabs[not(. = 'PND-Beacon')])),
-            
-            for $docType in map:keys($docTypes)
-            return 
-                if(empty($docTypes($docType))) then ()
-                else map:entry($docType, count($docTypes($docType))),
-                
-            if(empty($contacts)) then ()
-            else map:entry('contacts', count($contacts)),
-            
-            if(empty($backlinks)) then ()
-            else map:entry('backlinks', count($backlinks))
-            )
-        )
-        
-        (: 
-         : Storing necessary parameters in a session for reuse via AJAX (e.g. wikipedia, adb, dnb mashups) 
-         :)
-        let $setSession := (
-            session:remove-attribute('gnd'),
-            session:set-attribute('gnd', $gnd),
-            session:remove-attribute('docID'),
-            session:set-attribute('docID', $model('docID'))
-        )
-        
-(:        let $log := util:log-system-out(session:get-attribute('docID')):)
         return
             map{
-                'tabTitlesMap' := $tabTitles,
-                'tabTitleKeys' := map:keys($tabTitles)[. != 'iconography'],
                 'docTypesMap' := $docTypes,
                 'contacts' := $contacts,
+                'backlinks' := $backlinks,
                 'gnd' := $gnd,
                 'beaconMap' := $beaconMap,
-                'document-tabs' := $document-tabs,
                 'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml')
             }
 };
 
 declare
+    %templates:wrap
     %templates:default("lang", "en")
-    function app:print-tabTitle($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-    let $tabTitlesMap := $model('tabTitlesMap')
-    return
-    <a target=".{$model('tabTitleKey')}">{lang:get-language-string($model('tabTitleKey'), $lang) || ' (' || $tabTitlesMap($model('tabTitleKey')) || ')'}</a>
+    function app:docType-tabs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $documents := map { 
+            'title' := lang:get-language-string('biographies', $lang),
+            'target' := 'biographies',
+            'count' := count(for $i in app:document-tabs($node, $model, $lang)('document-tabs') where not($i('title') = ('XML-Preview', 'PND Beacon Links'))  return $i)
+        }
+        let $docTypes := 
+            for $docType in map:keys($model('docTypesMap')) 
+            where count($model('docTypesMap')($docType)) gt 0
+            return
+                map {
+                    'title' := lang:get-language-string($docType, $lang),
+                    'target' := $docType,
+                    'count' := count($model('docTypesMap')($docType))
+                }
+        let $contacts := 
+            if(count($model('contacts')) gt 0) then 
+                map {
+                    'title' := lang:get-language-string('contacts', $lang),
+                    'target' := 'contacts',
+                    'count' := count($model('contacts'))
+                }
+            else ()
+        let $backlinks := 
+            if(count($model('backlinks')) gt 0) then 
+                map {
+                    'title' := lang:get-language-string('backlinks', $lang),
+                    'target' := 'contacts',
+                    'count' := count($model('backlinks'))
+                }
+            else ()
+        
+        return 
+            map {
+                'docType-tabs' := (
+                    $documents,
+                    $docTypes,
+                    $contacts,
+                    $backlinks
+                )
+            }
+};
+
+declare
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:document-tabs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        map {
+            'document-tabs' := (
+                app:wega-bio-tab($model, $lang),
+                app:wikipedia-tab($model, $lang),
+                app:adb-tab($model, $lang),
+                app:beacon-tab($model, $lang),
+                app:xml-tab($model)
+            )
+        }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:print-docType-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
+        element {node-name($node)} {
+            $node/@*[not(local-name(.) eq 'target')],
+            attribute target {'.' || $model('docType-tab')('target')},
+            $model('docType-tab')('title') || ' (' || $model('docType-tab')('count') || ')'
+        }
 };
 
 declare 
     %templates:default("lang", "en")
-    function app:print-document-tab($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        <a href="#{$model('document-tab')}Text" data-toggle="tab">{
-            switch($model('document-tab'))
-            case 'adb' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/adb.html')} , 'ADB ' || lang:get-language-string('personenartikel', $lang)
-            )
-            case 'wikipedia' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/wikipedia.html')} , 'Wikipedia ' || lang:get-language-string('personenartikel', $lang)
-            )
-            case 'dnb' return (
-                attribute {'data-tab-url'} {core:link-to-current-app('templates/dnb.html')} , 'DNB ' || lang:get-language-string('personenartikel', $lang)
-            )
-            case 'beacon' return 'PND Beacon Links'
-            case 'wega' return 'WeGA ' || lang:get-language-string('bio', $lang)
-            default return ()
-        }</a>
+    function app:print-document-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
+        element {node-name($node)} {
+            $node/@*[not(local-name(.) eq 'href')],
+            attribute href {'#' || $model('document-tab')('fragmentIdentifier')},
+            if ($model('document-tab')('url')) then attribute data-tab-url {$model('document-tab')('url')} else (),
+            $model('document-tab')('title')
+        }
 };
 
 declare 
@@ -386,14 +402,14 @@ declare
         transform:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
 };
 
-declare 
-    %templates:default("lang", "en")
-    function app:print-beacon-links($node as node(), $model as map(*), $lang as xs:string) as element(ul) {
-        <ul>{
-            for $i in map:keys($model('beaconMap'))
-            return 
-                <li><a title="{$i}" href="{$model('beaconMap')($i)[1]}">{$model('beaconMap')($i)[2]}</a></li>
-        }</ul>
+declare function app:print-beacon-links($node as node(), $model as map(*)) as element(ul) {
+        let $beaconMap := $model('beaconMap')
+        return
+            <ul>{
+                for $i in map:keys($beaconMap)
+                return 
+                    <li><a title="{$i}" href="{$beaconMap($i)[1]}">{$beaconMap($i)[2]}</a></li>
+            }</ul>
 };
 
 (:~
@@ -405,18 +421,18 @@ declare
  :)
 declare 
     %templates:wrap
-    %templates:default("gnd", "")
     %templates:default("lang", "en")
-    function app:wikipedia($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
-    let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang, true())
-    let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
-    let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
-    return 
-        map {
-            'wikiContent' := $wikiContent,
-            'wikiUrl' := $wikiUrl,
-            'wikiName' := $wikiName
-        }
+    function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $gnd := query:get-gnd($model('doc'))
+        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang, true())
+        let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
+        let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
+        return 
+            map {
+                'wikiContent' := $wikiContent,
+                'wikiUrl' := $wikiUrl,
+                'wikiName' := $wikiName
+            }
 };
 
 
@@ -468,11 +484,10 @@ declare
  :)
 declare 
     %templates:wrap
-    %templates:default("gnd", "")
     %templates:default("lang", "en")
-    function app:adb($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
+    function app:adb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'adbContent' := wega-util:grabExternalResource('adb', $gnd, (), true())
+            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), (), true())
         }
 };
 
@@ -493,10 +508,9 @@ declare function app:adb-disclaimer($node as node(), $model as map(*)) as elemen
 
 declare 
     %templates:wrap
-    %templates:default("gnd", "")
     %templates:default("lang", "en")
-    function app:dnb($node as node(), $model as map(*), $gnd as xs:string, $lang as xs:string) as map(*) {
-        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, (), true())
+    function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $dnbContent := wega-util:grabExternalResource('dnb', query:get-gnd($model('doc')), (), true())
 (:        let $log := util:log-system-out($dnbContent//rdf:Description/gndo:preferredNameForThePerson/string()):)
         return
             map {
@@ -509,12 +523,66 @@ declare
             }
 };
 
-declare
-    %templates:default("docID", "")
-    function app:xml-prettify($node as node(), $model as map(*), $docID as xs:string) {
+declare function app:xml-prettify($node as node(), $model as map(*)) {
+        let $docID := $model('docID')
         let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
-        let $log := util:log-system-out(session:get-attribute('path'))
         return
             if($config:isDevelopment) then util:serialize(core:doc($docID), $serializationParameters)
             else util:serialize(wega-util:remove-comments(core:doc($docID)), $serializationParameters)
+};
+
+declare %private function app:xml-tab($model as map(*)) as map(*)? {
+    map {
+        'title' := 'XML-Preview',
+        'url' := $model('docID') || '/xml.html',
+        'fragmentIdentifier' := 'XMLPreview'
+    }
+};
+
+declare %private function app:wikipedia-tab($model as map(*), $lang as xs:string) as map(*)? {
+    if(map:contains($model('beaconMap'), 'Wikipedia-Personenartikel')) then 
+        map {
+            'title' := 'Wikipedia ' || lang:get-language-string('personenartikel', $lang),
+            'url' := $model('docID') || '/wikipedia.html',
+            'fragmentIdentifier' := 'wikipediaText'
+        }
+    else()
+};
+
+declare %private function app:adb-tab($model as map(*), $lang as xs:string) as map(*)? {
+    if(map:contains($model('beaconMap'), 'Allgemeine Deutsche Biographie (Wikisource)')) then 
+        map {
+            'title' := 'ADB ' || lang:get-language-string('personenartikel', $lang),
+            'url' := $model('docID') || '/adb.html',
+            'fragmentIdentifier' := 'adbText'
+        }
+    else()
+};
+
+declare %private function app:dnb-tab($model as map(*), $lang as xs:string) as map(*)? {
+    if($model('gnd')) then 
+        map {
+            'title' := 'DNB ' || lang:get-language-string('personenartikel', $lang),
+            'url' := $model('docID') || '/dnb.html',
+            'fragmentIdentifier' := 'dnbText'
+        }
+    else()
+};
+
+declare %private function app:beacon-tab($model as map(*), $lang as xs:string) as map(*)? {
+    if(count(map:keys($model('beaconMap'))) gt 0) then 
+        map {
+            'title' := 'PND Beacon Links',
+            'fragmentIdentifier' := 'pnd-beacon'
+        }
+    else()
+};
+
+declare %private function app:wega-bio-tab($model as map(*), $lang as xs:string) as map(*)? {
+    if(true()) then 
+        map {
+            'title' := 'WeGA Text',
+            'fragmentIdentifier' := 'wegaText'
+        }
+    else()
 };

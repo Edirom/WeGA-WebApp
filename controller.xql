@@ -126,10 +126,12 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  : Weiterleitung für AJAX requests (z.B. templates/adb.html, templates/dnb.html)
  : Caching muss unterbunden werden
  :)
-else if (ends-with($exist:resource, '.html')) then 
+else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templates/ajax')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/templates/ajax/' || $exist:resource}"/>
     	<view>
             <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}">
+                <set-attribute name="resource" value="{functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')}"/>
                 <set-header name="Cache-Control" value="no-cache"/>
             </forward>
             <forward url="{map:get($exist-vars, 'controller') || '/modules/view-tidy.xql'}">

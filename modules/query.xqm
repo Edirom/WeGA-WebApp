@@ -71,6 +71,20 @@ declare function query:getIDByPND($pnd as xs:string) as xs:string {
     core:data-collection('persons')//tei:idno[.=$pnd][@type='gnd']/parent::tei:person/string(@xml:id)
 };
 
+(:~
+ : Return GND 
+ :
+ : @author Peter Stadler
+ : @param $item may be xs:string (the WeGA ID), document-node() (of a person file), or a tei:person element
+ : @return the GND as xs:string, empty string or empty sequence if nothing was found 
+:)
+declare function query:get-gnd($item as item()) as xs:string? {
+    typeswitch($item)
+        case xs:string return core:doc($item)//tei:idno[@type = 'gnd']/string()
+        case document-node() return $item//tei:idno[@type = 'gnd']/string()
+        case element(tei:person) return $item/tei:idno[@type = 'gnd']/string()
+        default return ()
+};
 
 (:~ 
  : Gets events of the day for a certain date

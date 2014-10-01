@@ -92,30 +92,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 ">
-                    <ul class="resp-tabs-list">
-                        <li data-template="templates:each" data-template-from="tabTitleKeys" data-template-to="tabTitleKey">
-                            <a data-target=".korrespondenz" data-template="app:print-tabTitle">Korrespondenz (256)</a>
+                    <ul class="resp-tabs-list" data-template="app:docType-tabs">
+                        <li data-template="templates:each" data-template-from="docType-tabs" data-template-to="docType-tab">
+                            <a data-target=".korrespondenz" data-template="app:print-docType-tab">Korrespondenz (256)</a>
                         </li>
-
-                        <!--<li class="active">
-                            <a data-target=".biografien">Biografien (5)</a>
-                        </li>
-                        <li>
-                            <a data-target=".korrespondenz">Korrespondenz (256)</a>
-                        </li>
-                        <li>
-                            <a data-target=".schriften">Schriften (124)</a>
-                        </li>
-                        <li>
-                            <a data-target=".tagebuecher">Tagebücher (455)</a>
-                        </li>
-                        <li>
-                            <a data-target=".werke">Werke (98)</a>
-                        </li>
-                        <li>
-                            <a data-target=".kontakte">Kontakte (21)</a>
-                        </li>
--->
                     </ul>
                 </div>
             </div>
@@ -132,38 +112,13 @@
                                         <div class="allFilter">
                                             <h2 data-template="lang:translate">documents</h2>
                                             <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs">
+                                            <ul class="nav nav-tabs" data-template="app:document-tabs">
                                                 <li class="gradient-light" data-template="templates:each" data-template-from="document-tabs" data-template-to="document-tab">
                                                     <a href="#wegaText" data-toggle="tab" data-template="app:print-document-tab">WeGA Text</a>
                                                 </li>
                                                 <li class="gradient-light">
-                                                    <a href="#XMLPreview" data-tab-url="../templates/xml-prettify.html" data-toggle="tab" data-template="lang:translate">XML-Preview</a>
-                                                </li>
-                                                <li class="gradient-light">
                                                     <a href="#XMLDownload" data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-URL">XML-Download</a>
                                                 </li>
-                                                <!--<li class="gradient-light active">
-                                                    <a href="personDetails.php.html#wegaText" data-toggle="tab">WeGA Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                  <a href="personDetails.php.html#wikipediaText" data-toggle="tab">Wikipedia Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="personDetails.php.html#DNBText" data-toggle="tab">DNB Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="personDetails.php.html#ADBText" data-toggle="tab">ADB Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="personDetails.php.html#PNDBeaconText" data-toggle="tab">PND-Beacon Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="personDetails.php.html#XMLVorschau" data-toggle="tab">XML-Vorschau</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="personDetails.php.html#XMLDownload" data-toggle="tab">XML-Download</a>
-                                                </li>-->
-
                                             </ul>
                                         </div>
                                     </div>
@@ -173,31 +128,6 @@
                                             <div class="tab-pane active fade in" id="wegaText">
                                                 <h2>Biografie aus WeGA-Datenbank</h2>
                                                 <div data-template="app:print-wega-bio"/>
-                                                <!--<ul>
-                                                  <li>Kind aus einer Musikerfamilie, frühe
-                                                  Ausbildung beim Vater Franz Anton von Weber und
-                                                  beim ältesten Halbbruder Fridolin von Weber</li>
-                                                  <li>1789–1796 Reisen der Weberschen
-                                                  Theatergesellschaft unter Direktion des Vaters in
-                                                  Thüringen, Franken, der Oberpfalz und im Erzbistum
-                                                  Salzburg</li>
-                                                  <li>1796–1804 intensive musikalische Ausbildung
-                                                  bei verschiedenen Lehrern (u. a. Michael Haydn und
-                                                  Abbé Vogler), erste Kompositionen</li>
-                                                  <li>1804–1806 Kapellmeister am Theater in
-                                                  Breslau</li>
-                                                  <li>1807–1810 Anstellung als Geheimer Sekretär in
-                                                  Stuttgart</li>
-                                                  <li>1810–1813 „Reise-Jahre“, zunächst
-                                                  Konzerttätigkeit im Raum Mannheim / Heidelberg und
-                                                  erneuter Unterricht bei Vogler in Darmstadt
-                                                  (1810/11), dann Reisen auf der Suche nach einer
-                                                  Anstellung mit Konzerttätigkeit in Süd- und
-                                                  Mitteldeutschland, Prag und Berlin</li>
-                                                  <li>1813–1816 Kapellmeister am Ständetheater in
-                                                  Prag</li>
-                                                  <li>1817–1826 Hofkapellmeister in Dresden</li>
-                                                </ul>-->
                                             </div>
                                             <div class="tab-pane fade" id="wikipediaText">
                                                 <h2>Wikipedia</h2>
@@ -208,7 +138,7 @@
                                             <div class="tab-pane fade" id="dnbText">
                                                 <h2>DNB</h2>
                                             </div>
-                                            <div class="tab-pane fade" id="beaconText">
+                                            <div class="tab-pane fade" id="pnd-beacon">
                                                 <h2>Beacon Links</h2>
                                                 <ul data-template="app:print-beacon-links"/>
                                             </div>
