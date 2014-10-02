@@ -85,11 +85,12 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
                 return
                     str:join-path-elements(($config:tmp-collection-path, 'img', $filename)) 
             else ():)
+        let $log := util:log-system-out($picURI)
         return 
             if($picURI castable as xs:anyURI) then
                 map {
                     'caption' := $caption,
-                    'orgURL' := $picURI,
+                    'orgURI' := $picURI,
                     'docID' := $model('docID')
                 }
             else ()
@@ -295,11 +296,14 @@ declare function img:get-local-image-path($image-model as map(*), $size as xs:st
 };
 
 declare function img:get-wikipedia-portrait($model as map(*), $lang as xs:string, $size as xs:string) as map(*)? {
+    (:  large = 260x340  :)
     let $portraits := img:wikipedia-images($model, $lang)
     let $map := 
         function($portrait as map(*), $size as xs:string) {
             map {
-                'src' := controller:map-local-image-path-to-external(img:get-local-image-path($portrait, $size)),
+                'src' := (:controller:map-local-image-path-to-external(img:get-local-image-path($portrait, $size)):)
+                    (: simply refer to the wikipedia image source and adjust the thumbnail size :)
+                    replace($portrait('orgURI'), '/\d+px\-', '/260px-'),
                 'alt' := $portrait('caption'),
                 'title' := $portrait('caption')
             }
