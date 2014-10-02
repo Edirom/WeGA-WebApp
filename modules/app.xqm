@@ -18,6 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
@@ -111,15 +112,9 @@ declare
  :
  : @author Peter Stadler
  :)
-declare function app:page-javascript($node as node(), $model as map(*)) {
-    let $email := config:get-option('bugEmail')
-    return
-        <script type="text/javascript">
-                var e = "{substring-before($email, '@')}";
-                var t = "{substring-after($email, '@')}";
-                var r = '' + e + '@' + t ;
-                $('.obfuscate-email').attr('href',' mailto:' +r).html(r);
-        </script>
+declare function app:page-javascript($node as node(), $model as map(*)) as element(script)* {
+    js:obfuscate-email(),
+    js:load-portrait($model)
 };
 
 declare 

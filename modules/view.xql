@@ -14,6 +14,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare option exist:serialize "method=html5 media-type=text/html enforce-xhtml=yes";

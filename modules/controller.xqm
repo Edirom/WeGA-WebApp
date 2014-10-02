@@ -156,3 +156,23 @@ declare function controller:default-forward($html-template as xs:string, $exist-
     </dispatch>
 };
 :)
+
+(:~
+ : 
+ : 
+ : 
+ : @author Peter Stadler
+ : @param $path e.g. /db/apps/WeGA-WebApp/tmp/images/A0020xx/A002068/12345628.jpg
+~:)
+declare function controller:map-local-image-path-to-external($path as xs:string) as xs:string {
+    replace($path, $config:tmp-collection-path || '/images/A00\d{2}xx/(A00\d{4})/', '$1/img/')
+};
+
+(:~
+ :
+ : @author Peter Stadler
+ : @param $path e.g. /de/A002068/img/12345628.jpg
+~:)
+declare function controller:map-external-image-path-to-local($path as xs:string) as xs:string {
+    replace($path, '/\w{2}/(A00\d{2})(\d{2})/img/', replace($config:tmp-collection-path, $config:app-root, '') || '/images/$1xx/$1$2/')
+};

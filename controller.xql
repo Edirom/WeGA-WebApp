@@ -121,9 +121,40 @@ else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     controller:forward('/templates/index.html', $exist-vars)
+
+(:
+ : Virtual directory structure for persons:
+ : |- A002068.xml
+ : |- A002068.html
+ : |- A002068.json
+ : |- A002068
+ :      |- adb.html
+ :      |- wikipedia.html
+ :      |- dnb.html
+ :      |- xml.html
+ :      |- img
+ :          |- portrait_file.jpg
+ :
+ :)
+
+(: Personen - Weiterleitung :)
+else if (matches($exist:path, '^/A00\d{4}/?$')) then
+    controller:redirect-docID($exist-vars)
+
+(: Personen - Einzelansicht :)
+else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
+    controller:forward('/templates/person.html', $exist-vars)
     
 (:
- : Weiterleitung für AJAX requests (z.B. templates/adb.html, templates/dnb.html)
+ : Personenbilder
+ :)
+else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/img/'))) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller || controller:map-external-image-path-to-local($exist:path)}"/>
+    </dispatch>
+
+(:
+ : Weiterleitung für AJAX requests (alles unterhalb von templates/ajax)
  : Caching muss unterbunden werden
  :)
 else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templates/ajax')) then 
@@ -154,6 +185,7 @@ else if (ends-with($exist:resource, '.xml')) then
         </forward>
     </dispatch>
 
+    
 (: Suche :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -312,10 +344,6 @@ else if (ends-with($exist:resource, '.xml')) then
     	</forward>
     </dispatch>:)
 
-(: Personen - Weiterleitung :)
-else if (matches($exist:path, '^/A00\d{4}/?$')) then
-    controller:redirect-docID($exist-vars)
-
 (: Andere Dokumenten - Weiterleitung :)
 (:else if (matches($exist:path, '^/(de/|en/)?A0[3456]\d{4}/?$')) then
     controller:redirect-docID($exist-vars, $exist:resource):)
@@ -367,10 +395,6 @@ else if (matches($exist:path, '^/A00\d{4}/?$')) then
     	   <add-parameter name="id" value="{$authorID}"/>
     	</forward>
     </dispatch>:)
-    
-(: Personen - Einzelansicht :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
-    controller:forward('/templates/person.html', $exist-vars)
 
 (: Brief - Einzelansicht :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $authorID,'/', $correspondence,'/', 'A04\d{4}/?$'))) then
