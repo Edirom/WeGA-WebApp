@@ -267,11 +267,11 @@ declare function core:permalink($docID as xs:string) as xs:anyURI? {
  : @param $overwrite force an overwrite of the given document
  : @return the cached document
  :)
-declare function core:cache-doc($docURI as xs:string, $callback as function() as element(), $callback-params as item()*, $overwrite as xs:boolean) {
+declare function core:cache-doc($docURI as xs:string, $callback as function() as item(), $callback-params as item()*, $overwrite as xs:boolean) {
     let $fileName := functx:substring-after-last($docURI, '/')
     let $collection := functx:substring-before-last($docURI, '/')
     let $currentDateTimeOfFile := 
-        if(doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
+        if(wega-util:doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
         else if(util:binary-doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
         else ()
     let $updateNecessary := typeswitch($currentDateTimeOfFile) 
@@ -286,15 +286,15 @@ declare function core:cache-doc($docURI as xs:string, $callback as function() as
                 else if(count($callback-params) eq 2) then $callback($callback-params[1], $callback-params[2])
                 else error(xs:QName('core:error'), 'Too many arguments to function callback')
             let $mime-type := wega-util:guess-mimeType-from-suffix(functx:substring-after-last($docURI, '.'))
-            let $store-file := core:store-file($collection, $fileName, $content)
+            let $store-file := core:store-file($collection, $fileName, $content, $mime-type)
             let $logMessage := concat('core:cache-doc(): saved document ', $docURI)
             let $logToFile := core:logToFile('info', $logMessage)
             return 
-                if(doc-available($store-file)) then doc($store-file)
-                else if(util:binary-doc-available($store-file)) then util:binary-doc($store-file)
+                if(util:binary-doc-available($store-file)) then util:binary-doc($store-file)
+                else if(wega-util:doc-available($store-file)) then doc($store-file) 
                 else ()
         )
-        else if(doc-available($docURI)) then doc($docURI)
         else if(util:binary-doc-available($docURI)) then util:binary-doc($docURI)
+        else if(wega-util:doc-available($docURI)) then doc($docURI)
         else ()
 };

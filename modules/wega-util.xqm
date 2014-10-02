@@ -127,3 +127,7 @@ declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as x
         default return error(xs:QName(wega-util:error), 'unknown file suffix "' || $suffix || '"')
 };
 
+declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
+    try {doc-available($uri)}
+    catch * {false()}
+};
