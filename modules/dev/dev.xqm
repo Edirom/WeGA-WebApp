@@ -114,7 +114,7 @@ declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+,
 declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFileName := concat($docType, '-tmpIDs.xml')
     let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
-    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), false())
+    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P999D'))
        (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
         else doc(concat($config:tmp-collection-path, $IDFileName)):)
     let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)

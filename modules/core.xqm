@@ -264,21 +264,23 @@ declare function core:permalink($docID as xs:string) as xs:anyURI? {
  : @author Peter Stadler
  : @param $docURI the database URI of the document
  : @param $callBack a function to create the document content when the document is outdated or not available
- : @param $overwrite force an overwrite of the given document
+ : @param $lease an xs:dayTimeDuration value of how long the cache should persist
  : @return the cached document
  :)
-declare function core:cache-doc($docURI as xs:string, $callback as function() as item(), $callback-params as item()*, $overwrite as xs:boolean) {
+declare function core:cache-doc($docURI as xs:string, $callback as function() as item(), $callback-params as item()*, $lease as xs:dayTimeDuration?) {
     let $fileName := functx:substring-after-last($docURI, '/')
     let $collection := functx:substring-before-last($docURI, '/')
     let $currentDateTimeOfFile := 
         if(wega-util:doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
         else if(util:binary-doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
         else ()
-    let $updateNecessary := typeswitch($currentDateTimeOfFile) 
-	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile)
-	   default return true()
-	return 
-	   if($updateNecessary or $overwrite) then (
+    let $updateNecessary := 
+        (: Aktualisierung entweder bei geänderter Datenbank oder bei veraltetem Cache :) 
+        config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or $currentDateTimeOfFile + $lease lt current-dateTime()
+        (: oder bei nicht vorhandener Datei oder nicht vorhandenem $lease:)
+        or empty($lease) or empty($currentDateTimeOfFile)
+    return 
+	   if($updateNecessary) then (
             let $content := 
                 if(count($callback-params) eq 0) then $callback()
                 else if(count($callback-params) eq 1) then $callback($callback-params)

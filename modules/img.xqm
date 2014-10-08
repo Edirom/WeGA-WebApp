@@ -67,7 +67,7 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
     let $pnd := query:get-gnd($model('doc'))
     let $docID := $model('docID')
     let $wikiArticle := 
-        if($pnd) then wega-util:grabExternalResource('wikipedia', $pnd, $lang, true())
+        if($pnd) then wega-util:grabExternalResource('wikipedia', $pnd, $lang)
         else ()
     let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
     return 
@@ -289,7 +289,7 @@ declare function img:get-local-image-path($image-model as map(*), $size as xs:st
     let $suffix := lower-case(functx:substring-after-last($orgURL, '.'))
     let $filename := util:hash($orgURL, 'md5') || '.' || $suffix
     let $local-path := str:join-path-elements(($config:tmp-collection-path, 'images', replace($docID, '\d{2}$', 'xx'), $docID, $filename))
-    let $store-file := core:cache-doc($local-path, img:get-portrait#2, ($image-model, $size), false()) 
+    let $store-file := core:cache-doc($local-path, img:get-portrait#2, ($image-model, $size), xs:dayTimeDuration('P14D')) 
     return
         if($store-file instance of xs:base64Binary) then $local-path
         else ()

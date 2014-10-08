@@ -88,4 +88,4 @@ declare function ct:corresp-list() as element(tei:TEI) {
     }</TEI>
 };
 
-core:cache-doc(core:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), false())
+core:cache-doc(core:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'))

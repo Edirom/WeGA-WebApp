@@ -419,7 +419,7 @@ declare
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang, true())
+        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
@@ -482,7 +482,7 @@ declare
     %templates:default("lang", "en")
     function app:adb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), (), true())
+            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), ())
         }
 };
 
@@ -505,7 +505,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $dnbContent := wega-util:grabExternalResource('dnb', query:get-gnd($model('doc')), (), true())
+        let $dnbContent := wega-util:grabExternalResource('dnb', query:get-gnd($model('doc')), ())
 (:        let $log := util:log-system-out($dnbContent//rdf:Description/gndo:preferredNameForThePerson/string()):)
         return
             map {

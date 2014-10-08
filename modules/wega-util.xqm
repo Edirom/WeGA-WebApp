@@ -27,14 +27,15 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?, $useCache as xs:boolean) as element(httpclient:response)? {
+ declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?) as element(httpclient:response)? {
+    let $lease := xs:dayTimeDuration('P1D')
     let $url := 
         if($resource eq 'wikipedia') then concat(config:get-option($resource), $lang, '/', $pnd)
         else if($resource eq 'dnb') then concat(config:get-option($resource), $pnd, '/about/rdf')
         else config:get-option($resource) || $pnd
     let $fileName := string-join(($pnd, $lang, 'xml'), '.')
     let $today := current-date()
-    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), not($useCache))
+    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
@@ -72,7 +73,7 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
 };
 
 declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
-    let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de', true())
+    let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de')
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 
