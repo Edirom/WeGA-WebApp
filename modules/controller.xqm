@@ -17,9 +17,9 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 
 declare function controller:forward($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{$html-template}"/>
+    	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
     	<view>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}">
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view.xql'))}">
                 <set-attribute name="resource" value="{$exist-vars('resource')}"/>
                 <!--<set-attribute name="$exist:prefix" value="{map:get($exist-vars, 'prefix')}"/>
                 <set-attribute name="$exist:controller" value="{map:get($exist-vars, 'controller')}"/>
@@ -27,13 +27,13 @@ declare function controller:forward($html-template as xs:string, $exist-vars as 
                 <set-attribute name="{$context}" value="true"/>-->
                 <!--<set-header name="Cache-Control" value="no-cache"/>-->
             </forward>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-tidy.xql'}">
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
                 <set-attribute name="lang" value="{$exist-vars('lang')}"/>
             </forward>
         </view>
         <error-handler>
-            <forward url="/templates/error-page.html" method="get"/>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}"/>
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view.xql'))}"/>
         </error-handler>
     </dispatch>
 };
@@ -90,17 +90,17 @@ declare function controller:redirect-docID($exist-vars as map(*)) as element(exi
 
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="/templates/error-page.html"/>
+    	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
     	<view>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}">
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view.xql'))}">
                 <add-parameter name="errorCode" value="{$errorCode}"/>
                 <add-parameter name="lang" value="{$exist-vars('lang')}"/>
                 <cache-control cache="yes"/>
             </forward>
         </view>
         <error-handler>
-            <forward url="/templates/error-page.html" method="get"/>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}"/>
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view.xql'))}"/>
         </error-handler>
     </dispatch>
 };
