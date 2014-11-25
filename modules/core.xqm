@@ -120,7 +120,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  :
  : @author Peter Stadler 
  : @param $coll collection to be sorted
- : @return document-node()*
+ : @return the sorted collection
  :)
 declare function core:sortColl($coll as item()*) as document-node()* {
     if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
@@ -129,8 +129,25 @@ declare function core:sortColl($coll as item()*) as document-node()* {
     else if(config:is-diary($coll[1]/tei:ab/string(@xml:id)))            then for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
     else if(config:is-work($coll[1]/mei:mei/string(@xml:id)))            then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     else if(config:is-news($coll[1]/tei:TEI/string(@xml:id)))            then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
+    else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then core:sort-by-imprint-date-descending($coll)
     else $coll
+};
+
+(:~
+ : Helper function for core:sortColl()
+ : Sorts by imprint date descending and puts undated at the end
+ :
+ : @author Peter Stadler 
+ : @param $coll collection to be sorted
+ : @return the sorted collection
+ :)
+declare %private function core:sort-by-imprint-date-descending($coll as document-node()*) as document-node()* {
+    for $i in $coll
+    let $normDate := date:getOneNormalizedDate($i//tei:imprint/tei:date, false())
+    let $orderDate := if($normDate) then $normDate else '-9999-01-01'
+    order by xs:date($orderDate) descending
+    return 
+        $i
 };
 
 (:~

@@ -47,7 +47,7 @@ declare %private function norm:create-norm-doc-biblio() as element(norm:catalogu
         for $doc in core:getOrCreateColl('biblio', 'indices', true())
         let $docID := $doc/tei:*/data(@xml:id)
         let $normDate := date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
-        order by $normDate descending
+        (:order by $normDate descending:)
         return 
             element entry {
                 attribute docID {$docID},
