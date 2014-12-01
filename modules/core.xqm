@@ -143,7 +143,7 @@ declare function core:sortColl($coll as item()*) as document-node()* {
  :)
 declare %private function core:sort-by-imprint-date-descending($coll as document-node()*) as document-node()* {
     for $i in $coll
-    let $normDate := date:getOneNormalizedDate($i//tei:imprint/tei:date, false())
+    let $normDate := date:getOneNormalizedDate($i//tei:imprint[1]/tei:date[1], false())
     let $orderDate := if($normDate) then $normDate else '-9999-01-01'
     order by xs:date($orderDate) descending
     return 
