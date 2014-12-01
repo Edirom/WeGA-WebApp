@@ -32,7 +32,7 @@ declare function local:mkcol($collection, $path) {
 sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest'),
 
 (: create a logs collection for upload of ANT logs (only needed for development) :)
-sm:chown(xs:anyURI(xdb:create-collection(concat($target, 'tmp'), 'logs')), 'guest'),
+sm:chown(xs:anyURI(xdb:create-collection(concat($target, '/tmp'), 'logs')), 'guest'),
 
 (: store the collection configuration :)
 local:mkcol("/db/system/config", $target), 
