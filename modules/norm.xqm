@@ -147,9 +147,10 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('writings', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
-        let $normDate := date:getOneNormalizedDate($doc//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
-        let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/normalize-space(), '. ')
-        order by $normDate, $n
+        let $source := core:main-source($doc//tei:sourceDesc)
+        let $normDate := date:getOneNormalizedDate($source/tei:monogr/tei:imprint/tei:date[1], false())
+        let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/normalize-space(), '. ')
+        (:order by $normDate, $n:)
         return 
             element entry {
                 attribute docID {$docID},

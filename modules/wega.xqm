@@ -671,6 +671,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
         else if($usage eq 'listView')
             then 'writing item'
             else 'writing'
+    let $source := core:main-source($doc//tei:sourceDesc)
 
     return (
         element div {
@@ -694,7 +695,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
                     if (exists($doc//tei:idno[@type eq 'WeGA']/@n)) then concat(' (', $doc//tei:idno[@type eq 'WeGA']/@n, ')') 
                     else ()
                 },
-                bibl:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang) 
+                if($source instance of element(tei:biblStruct)) then bibl:printCitation($source, 'p', $lang) else () 
             }
         }
     )
