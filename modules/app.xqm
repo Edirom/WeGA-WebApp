@@ -18,6 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
@@ -45,18 +46,9 @@ declare function app:page-h1($node as node(), $model as map(*)) as element(h1) {
  : @return xs:string
 :)
 declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string) as xs:string? {
-    let $docID :=  $doc/*/@xml:id cast as xs:string
-    let $authorId := query:getAuthorOfTeiDoc($doc)
-    let $folder := 
-        if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
-        else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
-        else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
+    let $path :=  controller:path-to-resource($doc, $lang)
     return
-        if(config:is-person($docID)) then core:link-to-current-app(str:join-path-elements(($lang, $docID))) (: Ausnahme für Personen, die direkt unter {baseref}/{lang}/ angezeigt werden:)
-        else if(config:is-biblio($docID)) then 
-            if(config:is-weberStudies($doc)) then core:link-to-current-app(str:join-path-elements((lang:get-language-string('publications', $lang), $folder, $docID)))
-            else ()
-        else if(exists($folder) and $authorId ne '') then core:link-to-current-app(str:join-path-elements(($lang, $authorId, $folder, $docID)))
+        if($path) then core:link-to-current-app($path || '.html')
         else ()
 };
 

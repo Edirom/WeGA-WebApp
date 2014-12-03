@@ -17,25 +17,6 @@ declare variable $exist:resource external;
 declare variable $exist:controller external;
 declare variable $exist:prefix external;
 
-(:declare function local:forwardIndices($menuID as xs:string, $lang as xs:string) as element(exist:dispatch) {
-    let $menu := doc(config:get-option('menusFile'))//id($menuID)
-    let $displayName := 
-        if($exist:resource eq lang:get-language-string($menu/pageName, $lang)) then $menu/entry[1]/displayName/text() 
-        else wega:reverseLanguageString($exist:resource, $lang)
-        (\:if($lang eq 'en') then $exist:resource
-        else lang:translate-language-string(xmldb:decode-uri(xs:anyURI($exist:resource)), $lang, 'en'):\)
-    let $docType := $menu/entry[./displayName eq $displayName]/docType/text()
-(\:    let $log := util:log-system-out($displayName):\)
-    return
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	   <add-parameter name="docType" value="{$docType}"/>
-    	   <add-parameter name="id" value="{$menuID}"/>
-    	</forward>
-    </dispatch>
-};:)
-
 let $params := tokenize($exist:path, '/')
 let $lang := lang:get-set-language($params[2])
 let $exist-vars := map {
@@ -45,38 +26,6 @@ let $exist-vars := map {
     'prefix' := $exist:prefix,
     'lang' := $lang
     }
-
-(:let $isFunc := matches($exist:path, '/functions/')
-let $isUtil := matches($exist:path, '/utilities/')
-let $isDoc := matches($exist:resource, 'A0[2-6]')
-let $authorID := if($isDoc) then query:getAuthorOfTeiDoc($exist:resource) else ()
-(\:let $isWeberPublication := if(config:is-biblio($exist:resource)) then config:is-weberStudies(core:doc($exist:resource)) else false():\)
-let $indices := if($isUtil or $isFunc) then () else lang:get-language-string('indices', $lang)
-let $persons := if($isUtil or $isFunc) then () else lang:get-language-string('persons', $lang)
-let $letters := if($isUtil or $isFunc) then () else lang:get-language-string('letters', $lang)
-let $correspondence := if($isUtil or $isFunc) then () else lang:get-language-string('correspondence', $lang)
-let $writings := if($isUtil or $isFunc) then () else lang:get-language-string('writings',$lang)
-let $diaries := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('diaries',$lang))
-let $works := if($isUtil or $isFunc) then () else lang:get-language-string('works',$lang)
-let $news := if($isUtil or $isFunc) then () else lang:get-language-string('news',$lang)
-let $search := if($isUtil or $isFunc) then () else lang:get-language-string('search',$lang)
-let $help := if($isUtil or $isFunc) then () else lang:get-language-string('help',$lang)
-let $projectDescription := if($isUtil or $isFunc) then () else replace(lang:get-language-string('projectDescription',$lang), '\s', '_')
-(\:let $weberStudies := if($isUtil or $isFunc) then () else lang:get-language-string('weberStudies',$lang):\)
-(\:let $musicVolumes := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('musicVolumes',$lang)):\)
-(\:let $papers := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('papers',$lang)):\)
-(\:let $talks := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('talks',$lang)):\)
-(\:let $publications := if($isUtil or $isFunc) then () else lang:get-language-string('publications',$lang):\)
-let $bibliography := if($isUtil or $isFunc) then () else lang:get-language-string('bibliography',$lang)
-let $literature := if($isUtil or $isFunc) then () else lang:get-language-string('literature',$lang)
-let $discography := if($isUtil or $isFunc) then () else lang:get-language-string('discography',$lang)
-let $scores := if($isUtil or $isFunc) then () else lang:get-language-string('scores',$lang)
-let $contact := if($isUtil or $isFunc) then () else lang:get-language-string('contact',$lang)
-let $tools := if($isUtil or $isFunc) then () else lang:get-language-string('tools',$lang)
-let $volContents := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('volContents',$lang))
-let $editorialGuidelines := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')
-let $editorialGuidelines-works := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines-works',$lang), '\s', '_')
-let $ajaxCrawlerParameter := '_escaped_fragment_':)
 
 return (
 
@@ -109,7 +58,7 @@ else if(starts-with($exist:path, '/digilib/')) then
  :  Nackte Server-URL (evtl. mit Angabe der Sprache)
 :)
 else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
-    controller:redirect-absolute('/Index', $lang)
+    controller:redirect-absolute('/' || $lang || '/Index')
 
 (: 
  :  Startseiten-Weiterleitung 2
@@ -117,10 +66,10 @@ else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
  :  Achtung: .php hier nicht aufnehmen, dies wird mit den typo3ContentMappings abgefragt
 :)
 else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
-    controller:redirect-absolute('/Index', $lang)
+    controller:redirect-absolute('/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
-    controller:forward('/templates/index.html', $exist-vars)
+    controller:forward-html('/templates/index.html', $exist-vars)
 
 (:
  : Virtual directory structure for persons:
@@ -137,13 +86,10 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :
  :)
 
-(: Personen - Weiterleitung :)
-else if (matches($exist:path, '^/A00\d{4}/?$')) then
-    controller:redirect-docID($exist-vars)
-
-(: Personen - Einzelansicht :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
-    controller:forward('/templates/person.html', $exist-vars)
+(: Generelle Weiterleitung für Ressourcen :)    
+else if (matches($exist:resource, 'A\d{6}')) then 
+    controller:dispatch($exist-vars)
+    
     
 (:
  : Personenbilder
@@ -599,7 +545,8 @@ else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then
             <set-header name="Content-Type" value="text/plain"/>
         </forward>
     </dispatch>
-    
+
+(: zum debuggen rausgenommen um Fehler anzuzeigen:)
 else (:controller:error($exist-vars, 404):)
     ()
 )

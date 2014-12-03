@@ -51,6 +51,8 @@ declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($co
 
 declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
 
+declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
+
 declare variable $config:wega-docTypes := map {
     'biblio'        := 'A11',
     'iconography'   := 'A01',
@@ -318,7 +320,7 @@ declare function config:is-source($docID as xs:string?) as xs:boolean {
  : @param $docID the id to test as string
  : @return xs:boolean
 :)
-declare function config:is-weberStudies($doc as document-node()) as xs:boolean {
+declare function config:is-weberStudies($doc as document-node()?) as xs:boolean {
     $doc//tei:series/tei:title[@level = 's'] = 'Weber-Studien'
 };
 
@@ -329,7 +331,7 @@ declare function config:is-weberStudies($doc as document-node()) as xs:boolean {
  : @param $string the string to test
  : @return xs:boolean
 :)
-declare function config:is-biblioType($string as xs:string) as xs:boolean {
+declare function config:is-biblioType($string as xs:string?) as xs:boolean {
     $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
 };
 
