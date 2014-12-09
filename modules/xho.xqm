@@ -165,7 +165,7 @@ declare function xho:createCommonFooter() as item()* {
     return (
     <xhtml:div id="supportBadges">
         <xhtml:a href="http://validator.w3.org/check?uri=referer"><xhtml:img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" title="W3C Markup Validation Service" /></xhtml:a>
-        <xhtml:a href="http://exist-db.org"><xhtml:img src="http://exist-db.org/exist/icons/existdb-128.png" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></xhtml:a>
+        <xhtml:a href="http://exist-db.org"><xhtml:img src="http://exist-db.org/exist/apps/homepage/resources/img/powered-by.svg" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></xhtml:a>
         <xhtml:a href="http://staatsbibliothek-berlin.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'stabi-logo.png'))}" alt="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" /></xhtml:a>
         <xhtml:a href="http://www.adwmainz.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'adwMainz.png'))}" alt="Akademie der Wissenschaften und der Literatur Mainz" title="Akademie der Wissenschaften und der Literatur Mainz" /></xhtml:a>
         <xhtml:a href="http://www.tei-c.org"><xhtml:img src="http://www.tei-c.org/About/Badges/powered-by-TEI.png" alt="Powered by TEI" title="TEI: Text Encoding Initiative" /></xhtml:a>
