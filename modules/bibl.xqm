@@ -102,10 +102,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
     return 
         element {$wrapperElement} {
-            $authors,
-            ', ',
-            if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] '
-            else (),
+            if($authors) then ($authors, ', ') else (),
+            if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
             $articleTitle,
             ', in: ',
             $journalCitation/span,
