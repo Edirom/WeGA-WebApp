@@ -648,17 +648,19 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
  : @return element html:p
  :)
  
-declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) as element(p) {
+declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) as element(p)? {
     let $authorID := data($doc//tei:titleStmt/tei:author[1]/@key)
     let $dateFormat := 
         if ($lang = 'en') then '%A, %B %d, %Y'
                           else '%A, %d. %B %Y'
     return 
-        element p {
-            attribute class {'authorDate'},
-            wega:createPersonLink($authorID, $lang, 'fs'), 
-            concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
-        }
+        if($authorID) then 
+            element p {
+                attribute class {'authorDate'},
+                wega:createPersonLink($authorID, $lang, 'fs'), 
+                concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
+            }
+        else()
 };
 
 (:~
