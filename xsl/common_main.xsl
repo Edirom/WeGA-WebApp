@@ -329,7 +329,14 @@
         <xsl:if test="matches(normalize-space($measure),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'tei_supplied'"/>
-                <xsl:value-of select="concat(' ', $measure/@unit)"/>
+                <xsl:choose>
+                    <xsl:when test="$measure/@unit = 'f'">
+                        <xsl:value-of select="' &#402;'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat(' ', $measure/@unit)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
         </xsl:if>
     </xsl:function>
