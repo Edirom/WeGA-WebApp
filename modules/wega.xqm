@@ -742,7 +742,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
             element div {
                 attribute class {'right'},
                 element h1 {
-                    string($doc//tei:fileDesc//tei:titleStmt//tei:title[@level='a'])
+                    transform:transform($doc//tei:fileDesc//tei:titleStmt//tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
                 },
                 element p {
                     wega:printPreview(string($doc//tei:body), 150)

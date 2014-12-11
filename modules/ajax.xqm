@@ -609,7 +609,10 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
         else ()
     let $head := 
         if(config:is-letter($docID)) then wega:getLetterHead($doc, $lang)
-        else if(config:is-news($docID)) then element h1 {string($doc//tei:title[@level='a'])}
+        else if(config:is-news($docID)) then element h1 {
+            transform:transform($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
+            (:string($doc//tei:title[@level='a']):)
+            }
         else if(config:is-writing($docID)) then wega:getWritingHead($doc, $xslParams, $lang)
         else ()
     let $body := 

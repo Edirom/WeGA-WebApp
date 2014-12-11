@@ -35,7 +35,7 @@ declare function local:createNewsTeaser($news as document-node(), $lang as xs:st
         element a {
             attribute href {wega:createLinkToDoc($news, $lang)},
             attribute title {string($news//tei:title[@level='a'])},
-            string($news//tei:title[@level='a'])
+            transform:transform($news//tei:fileDesc//tei:titleStmt//tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
         }
     },
     element p {
