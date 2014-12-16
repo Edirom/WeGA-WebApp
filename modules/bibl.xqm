@@ -13,6 +13,8 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 
+declare variable $bibl:supportedBiblioTypes := ('book', 'score', 'article', 'incollection', 'inproceedings', 'inbook', 'mastersthesis', 'review', 'phdthesis');
+
 (:~
  : Create a bibliographic citation from a biblStruct
  : 
@@ -23,17 +25,17 @@ import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega"
  : @return element
  :)
 declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element()? {
-    if($biblStruct/tei:analytic/tei:author[@sameAs]) then bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
-    else if($biblStruct/@type eq 'book') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'score') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'article') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'incollection') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'inproceedings') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'inbook') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'mastersthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'review') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/@type eq 'phdthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
-    else bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
+    switch(bibl:guess-biblio-type($biblStruct))
+    case 'book' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    case 'score' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    case 'article' return bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    case 'incollection' return bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    case 'inproceedings' return bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    case 'inbook' return bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    case 'mastersthesis' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    case 'review' return bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    case 'phdthesis' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    default return bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
 (:~
@@ -223,7 +225,6 @@ declare %private function bibl:printSeriesCitation($series as element(tei:series
  : @param $lang the language switch (en, de)
  : @return item
  :)
- 
 declare %private function bibl:printCitationAuthors($authors as element()*, $lang as xs:string) as item()* {
     let $countAuthors := count($authors)
     return 
@@ -245,7 +246,6 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
  : @param $imprint a tei:imprint element 
  : @return html:span element if any data is given, the empty sequence otherwise
  :)
- 
 declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint)) as element(span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
     let $places := 
@@ -258,4 +258,18 @@ declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprin
     return 
         if($countPlaces ge 1 or $imprint/tei:date/@when castable as xs:date or $imprint/tei:date/@when castable as xs:gYear) then <span class="placeNYear">{string-join($places, ''), normalize-space($imprint/tei:date)}</span>
         else ()
+};
+
+(:~
+ : Helper function for bibl:printCitation()
+ : Analyzes a tei:biblStruct for hints of bibliographic type
+ : 
+ : @author Peter Stadler
+ : @param $biblStruct a tei:biblStruct element 
+ : @return the entry type as string, the empty sequence if nothing could be inferd
+ :)
+declare %private function bibl:guess-biblio-type($biblStruct as element(tei:biblStruct)) as xs:string? {
+    if($biblStruct/@type = $bibl:supportedBiblioTypes) then $biblStruct/@type cast as xs:string
+    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='j']) then 'article'
+    else()
 };
