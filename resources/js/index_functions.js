@@ -12,16 +12,24 @@ function requestTodaysEvents(date,lang) {
     });
 };
 
-function requestNewFffiID() {
-    var url='functions/createNewFffiID.xql';
+function getNewID() {
+    var selected = $F('select-options');
+    var url='../dev/api.xql?func=get-new-id&docType='+selected;
     var uniqId = uniqid();
-    var ajaxLoader = new Element('span', {'id': uniqId, 'class': 'ajaxLoader'}).update(wegaSettings.ajaxLoaderCombined);
-    $('fffi-ID').update(ajaxLoader);
-    new Ajax.Updater({success: 'fffi-ID'}, url, {
+    var ajaxLoader = new Element('span', {'id': uniqId, 'class': 'ajaxLoader'}).update(wegaSettings.ajaxLoaderImageBar);
+    $('id-value').show();
+    $('id-value').update(ajaxLoader);
+    new Ajax.Request(url, {
+        method: 'get',
+        onSuccess: function(response) {
+            var foo = new Element('span').update(response.responseText);
+            $('id-value').update(foo.textContent);
+            $(uniqId).remove() 
+        },
         onFailure: function() { 
             alert(getErrorMessage());
             writeWeGALog('Could not get '+url);
             $(uniqId).remove()            
         }
-    });
+    })
 };

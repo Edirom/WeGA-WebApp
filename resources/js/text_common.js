@@ -157,3 +157,11 @@ function getErrorMessage(lang) {
     if(lang == 'de') return 'Ups, das hätte nicht passieren dürfen!';
     else return 'Sorry, that should not have happened!';
 };
+
+function switchActivTab(className, activeTabId) {
+    var tabs = $$('div.'+className)
+    tabs.each(function(x) {
+        if(x.id == activeTabId) {x.show();}
+        else {x.hide();}
+    });
+};

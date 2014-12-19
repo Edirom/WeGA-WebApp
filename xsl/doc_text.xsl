@@ -110,5 +110,36 @@
     <xsl:template match="tei:lem">
         <xsl:apply-templates/>
     </xsl:template>
+    
+    <xsl:template match="tei:dateline">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class">
+                <xsl:text>tei_dateline</xsl:text>
+                <xsl:choose>
+                    <xsl:when test="@rend='left'">
+                        <xsl:text> block-left</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@rend='inline'">
+                        <xsl:text> block-inline</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="@rend='right'">
+                        <xsl:text> block-right</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="ancestor::tei:opener">
+                                <xsl:text> block-right</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="ancestor::tei:closer">
+                                <xsl:text> block-left</xsl:text>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
 </xsl:stylesheet>

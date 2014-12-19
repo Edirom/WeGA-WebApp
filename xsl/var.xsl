@@ -4,7 +4,6 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
-    <xsl:param name="createToc" select="false()"/>
     <xsl:param name="createSecNos" select="false()"/>
     <xsl:param name="collapseBlock" select="false()"/>
     <xsl:param name="uri"/>
@@ -20,13 +19,14 @@
     <xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'docText'"/>
-            <xsl:if test="$createToc">
-                <xsl:call-template name="createToc">
-                    <xsl:with-param name="lang" select="$lang"/>
-                </xsl:call-template>
-            </xsl:if>
-            <xsl:apply-templates select=".//tei:div[@xml:lang=$lang]"/>
+            <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="tei:divGen[@type='toc']">
+        <xsl:call-template name="createToc">
+            <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="tei:div">
@@ -57,13 +57,18 @@
                 <xsl:attribute name="style" select="'display:none;'"/>
                 <xsl:attribute name="class" select="string-join((@type, 'collapseBlock'), ' ')"/>
             </xsl:if>
+            <xsl:if test="matches(@xml:id, '^para\d+$')">
+                <xsl:call-template name="create-para-label">
+                    <xsl:with-param name="no" select="substring-after(@xml:id, 'para')"/>
+                </xsl:call-template>
+            </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:head[not(@type='sub')]">
+    <xsl:template match="tei:head[not(@type='sub')][parent::tei:div]">
         <xsl:choose>
-            <xsl:when test="$createToc">
+            <xsl:when test="//tei:divGen">
                 <!-- Überschrift h2 für Editionsrichtlinien und Weber-Biographie -->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:attribute name="id">
@@ -76,7 +81,7 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
-                    <xsl:if test="$createSecNos">
+                    <xsl:if test="$createSecNos and not(./following::tei:divGen)">
                     <xsl:call-template name="createSecNo">
                         <xsl:with-param name="div" select="parent::tei:div"/>
                         <xsl:with-param name="lang" select="$lang"/>
@@ -109,37 +114,11 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:code">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'code'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:eg">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="'eg'"/>
             <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="tei:figure" priority="1">
-        <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
-        <xsl:variable name="figureHeight" select="'195'"/>
-        <xsl:variable name="figureWidth" select="'150'"/>
-        <xsl:element name="img">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="src"
-                select="concat($digilibDir, replace(tei:graphic/@url, '/db/images/', ''), '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
-            <xsl:attribute name="title"
-                select="tei:figDesc/tei:title[@xml:lang = $lang and @level = 'a']"/>
-            <xsl:attribute name="alt"
-                select="tei:figDesc/tei:title[@xml:lang = $lang and @level = 'a']"/>
-            <xsl:attribute name="width" select="$figureWidth"/>
-            <xsl:attribute name="height" select="$figureHeight"/>
-            <xsl:attribute name="class" select="'teaserImage'"/>
         </xsl:element>
     </xsl:template>
 
@@ -193,7 +172,7 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of select="count($div/preceding-sibling::tei:div/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
+        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)]/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
         <xsl:if test="$dot">
             <xsl:text>. </xsl:text>
         </xsl:if>
@@ -208,8 +187,7 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each
-                    select="//tei:text//tei:head[not(@type='sub') and ancestor::tei:div/@xml:lang = $lang]">
+                <xsl:for-each select="//tei:text//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">
@@ -227,6 +205,15 @@
                     </xsl:element>
                 </xsl:for-each>
             </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template name="create-para-label">
+        <!--<xsl:param name="lang" tunnel="yes"/>-->
+        <xsl:param name="no"/>
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="'para-label'"/>
+            <xsl:value-of select="concat('§ ', $no)"/>
         </xsl:element>
     </xsl:template>
 

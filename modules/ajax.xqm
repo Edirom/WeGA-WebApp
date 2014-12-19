@@ -609,7 +609,10 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
         else ()
     let $head := 
         if(config:is-letter($docID)) then wega:getLetterHead($doc, $lang)
-        else if(config:is-news($docID)) then element h1 {string($doc//tei:title[@level='a'])}
+        else if(config:is-news($docID)) then element h1 {
+            transform:transform($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
+            (:string($doc//tei:title[@level='a']):)
+            }
         else if(config:is-writing($docID)) then wega:getWritingHead($doc, $xslParams, $lang)
         else ()
     let $body := 
@@ -648,17 +651,19 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
  : @return element html:p
  :)
  
-declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) as element(p) {
+declare function ajax:getNewsFoot($doc as document-node(), $lang as xs:string) as element(p)? {
     let $authorID := data($doc//tei:titleStmt/tei:author[1]/@key)
     let $dateFormat := 
         if ($lang = 'en') then '%A, %B %d, %Y'
                           else '%A, %d. %B %Y'
     return 
-        element p {
-            attribute class {'authorDate'},
-            wega:createPersonLink($authorID, $lang, 'fs'), 
-            concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
-        }
+        if($authorID) then 
+            element p {
+                attribute class {'authorDate'},
+                wega:createPersonLink($authorID, $lang, 'fs'), 
+                concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
+            }
+        else()
 };
 
 (:~

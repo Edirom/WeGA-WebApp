@@ -671,6 +671,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
         else if($usage eq 'listView')
             then 'writing item'
             else 'writing'
+    let $source := core:main-source($doc//tei:sourceDesc)
 
     return (
         element div {
@@ -694,7 +695,7 @@ declare function wega:getWritingMetaData($doc as document-node(), $lang as xs:st
                     if (exists($doc//tei:idno[@type eq 'WeGA']/@n)) then concat(' (', $doc//tei:idno[@type eq 'WeGA']/@n, ')') 
                     else ()
                 },
-                bibl:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang) 
+                if($source instance of element(tei:biblStruct)) then bibl:printCitation($source, 'p', $lang) else () 
             }
         }
     )
@@ -741,7 +742,7 @@ declare function wega:getNewsMetaData($doc as document-node(), $lang as xs:strin
             element div {
                 attribute class {'right'},
                 element h1 {
-                    string($doc//tei:fileDesc//tei:titleStmt//tei:title[@level='a'])
+                    transform:transform($doc//tei:fileDesc//tei:titleStmt//tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
                 },
                 element p {
                     wega:printPreview(string($doc//tei:body), 150)
@@ -1339,10 +1340,16 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
             }
             <div>{
                 (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
-                if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:listWit))) then transform:transform($doc//tei:sourceDesc/tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
-                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:msDesc))) then transform:transform($doc//tei:sourceDesc/tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
-                else if(not(functx:all-whitespace($doc//tei:sourceDesc/tei:biblStruct))) then bibl:printCitation($doc//tei:sourceDesc/tei:biblStruct, 'p', $lang)                
-                else (<span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>)
+                let $source := $doc//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
+                return
+                    if(functx:all-whitespace($source)) then 
+                        <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+                    else 
+                        typeswitch($source)
+                        case element(tei:listWit) return wega:listWit($source, $lang)
+                        case element(tei:msDesc) return transform:transform($source, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+                        case element(tei:biblStruct) return bibl:printCitation($source, 'p', $lang)
+                        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
             }</div>
             {if(exists($doc//tei:creation)) then (
             	<h3>{lang:get-language-string('creation',$lang)}</h3>,
@@ -1354,6 +1361,21 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
             }
         </div>
     </div>
+};
+
+declare %private function wega:listWit($listWit as element(tei:listWit), $lang as xs:string) {
+    for $witness at $count in $listWit/tei:witness
+    let $source := $witness/tei:*
+    order by $witness/@n ascending
+    return 
+        <div class="witness" id="{concat('source_', $count)}">{
+            if($count ne 1) then attribute style {'display:none;'} else (),
+            typeswitch($source)
+                case element(tei:bibl) return core:normalize-space($source)
+                case element(tei:msDesc) return transform:transform($source, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+                case element(tei:biblStruct) return bibl:printCitation($source, 'p', $lang)
+                default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+        }</div>
 };
 
 (:~
@@ -1592,8 +1614,8 @@ declare function wega:getLetterHead($doc as document-node(), $lang as xs:string)
 declare function wega:constructLetterHead($doc as document-node(), $lang as xs:string) as element()+ {
     let $id := $doc/tei:TEI/string(@xml:id)
     let $date := date:printDate($doc//tei:dateSender/tei:date[1], $lang)
-    let $sender := wega:printCorrespondentName($doc//tei:sender/*[1], $lang, 'fs')
-    let $addressee := wega:printCorrespondentName($doc//tei:addressee/*[1], $lang, 'fs')
+    let $sender := wega:printCorrespondentName($doc//tei:sender[1]/*[1], $lang, 'fs')
+    let $addressee := wega:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs')
     let $placeSender := if(functx:all-whitespace($doc//tei:placeSender)) then () else normalize-space($doc//tei:placeSender)
     let $placeAddressee := if(functx:all-whitespace($doc//tei:placeAddressee)) then () else normalize-space($doc//tei:placeAddressee)
     return (

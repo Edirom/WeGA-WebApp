@@ -120,17 +120,57 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  :
  : @author Peter Stadler 
  : @param $coll collection to be sorted
- : @return document-node()*
+ : @return the sorted collection
  :)
 declare function core:sortColl($coll as item()*) as document-node()* {
     if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
     else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
-    else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
+    else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then core:sort-writings($coll) (:for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i:)
     else if(config:is-diary($coll[1]/tei:ab/string(@xml:id)))            then for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
     else if(config:is-work($coll[1]/mei:mei/string(@xml:id)))            then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     else if(config:is-news($coll[1]/tei:TEI/string(@xml:id)))            then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
+    else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then core:sort-by-imprint-date-descending($coll)
     else $coll
+};
+
+(:~
+ : Helper function for core:sortColl()
+ : Sorts by imprint date descending and puts undated at the end
+ :
+ : @author Peter Stadler 
+ : @param $coll collection to be sorted
+ : @return the sorted collection
+ :)
+declare %private function core:sort-by-imprint-date-descending($coll as document-node()*) as document-node()* {
+    for $i in $coll
+    let $normDate := date:getOneNormalizedDate($i//tei:imprint[1]/tei:date[1], false())
+    let $orderDate := if($normDate) then $normDate else '-9999-01-01'
+    order by xs:date($orderDate) descending
+    return 
+        $i
+};
+
+declare function core:sort-writings($coll as document-node()*) as document-node()* {
+    for $i in $coll
+        let $source := core:main-source($i//tei:sourceDesc)
+        let $normDate :=
+            typeswitch($source)
+            case element(tei:msDesc) return () (: ungedruckte Schriften landen in der Rubrik "ungedruckt" :) (:date:getOneNormalizedDate($source/following::tei:creation/tei:date[1], false()):)
+            case element(tei:biblStruct) return date:getOneNormalizedDate($source/tei:monogr/tei:imprint/tei:date[1], false())
+            default return core:logToFile('warn', 'no textual source found for ' || $i/*/@xml:id)
+        let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/normalize-space(), '. ')
+        order by $normDate, $n ascending
+        return 
+            $i
+};
+
+declare function core:main-source($source as element()?) as element()? {
+    typeswitch($source/tei:*)
+        case element(tei:msDesc) return $source/tei:msDesc
+        case element(tei:listWit) return core:main-source($source/tei:listWit/tei:witness[@n='1'])
+        case element(tei:biblStruct) return $source/tei:biblStruct
+        case element(tei:bibl) return $source/tei:bibl
+        default return ()
 };
 
 (:~

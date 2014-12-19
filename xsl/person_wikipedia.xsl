@@ -90,19 +90,19 @@
     </xsl:template>
     <xsl:template match="b">
         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hiBold'"/>
+            <xsl:attribute name="class" select="'tei_hi_bold'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="i" mode="#all">
         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hiItalic'"/>
+            <xsl:attribute name="class" select="'tei_hi_italic'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tt">
         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hiTypewriter'"/>
+            <xsl:attribute name="class" select="'tei_hi_typewriter'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -152,7 +152,7 @@
     </xsl:template>
     <xsl:template match="sup">
         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hiSuperscript'"/>
+            <xsl:attribute name="class" select="'tei_hi_superscript'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>

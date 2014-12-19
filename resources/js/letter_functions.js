@@ -23,14 +23,6 @@ function requestLetterContext(id, lang) {
     });
 };
 
-function switchActivTab(className, activeTabId) {
-    var tabs = $$('div.'+className)
-    for (x in tabs) {
-        if(tabs[x].id == activeTabId) {tabs[x].style.display='block';}
-        else {tabs[x].style.display='none';}
-    };
-};
-
 function zoomIn(offsetX, offsetY, scaleFactor) {
     
     $('hiRes').hide();

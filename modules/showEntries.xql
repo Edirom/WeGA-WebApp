@@ -98,14 +98,19 @@ declare function local:createKWIC($item as item(), $lang as xs:string) as elemen
 };
 
 declare function local:createEntry($entry as item(), $clear as xs:boolean, $isSearchResult as xs:boolean, $lang as xs:string) as element()+ {
+    let $id := 
+        typeswitch($entry)
+        case xs:string return $entry
+        case element() return $entry/@xml:id
+        default return ()
     let $docMetaData := 
         try { wega:getDocumentMetaData($entry, $lang, 'listView') }
         catch * { 
             if($config:isDevelopment) then element div {
                 attribute class {'item'},
-                    string-join(('wega:getDocumentMetaData', $entry/@xml:id, $err:code, $err:description), ' ;; ') 
+                    string-join(('wega:getDocumentMetaData', $id, $err:code, $err:description), ' ;; ') 
             }
-            else core:logToFile('error', string-join(('wega:getDocumentMetaData', $err:code, $err:description), ' ;; '))
+            else core:logToFile('error', string-join(('wega:getDocumentMetaData', $id, $err:code, $err:description), ' ;; '))
         }
     return 
         if($isSearchResult) then

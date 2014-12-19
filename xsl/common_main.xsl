@@ -3,6 +3,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
     xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:rng="http://relaxng.org/ns/structure/1.0" 
     xmlns:functx="http://www.functx.com" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
@@ -73,7 +74,7 @@
 
     <xsl:function name="wega:getCollectionPath" as="xs:string">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"></xsl:value-of>
+        <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"/>
     </xsl:function>
 
     <xsl:function name="wega:getOption" as="xs:string">
@@ -322,13 +323,20 @@
         <xsl:sequence select="for $k in string-to-codepoints($string) return $k * $mySalt"/>
     </xsl:function>
 
-    <xsl:function name="wega:addCurrencySymbolIfNecessary" as="element()?">
-        <xsl:param name="node" as="node()"/>
+    <xsl:function name="wega:addCurrencySymbolIfNecessary" as="element(xhtml:span)?">
+        <xsl:param name="measure" as="element(tei:measure)"/>
         <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-        <xsl:if test="not(matches($node,'[a-zƒ]')) and $node/@quantity &gt; 0">
+        <xsl:if test="matches(normalize-space($measure),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'tei_supplied'"/>
-                <xsl:value-of select="concat(' ', $node/@unit)"/>
+                <xsl:choose>
+                    <xsl:when test="$measure/@unit = 'f'">
+                        <xsl:value-of select="' &#402;'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="concat(' ', $measure/@unit)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:element>
         </xsl:if>
     </xsl:function>
@@ -446,24 +454,6 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template name="addCurrencySymbolIfNecessary">
-        <xsl:param name="node" as="node()"/>
-        <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-        <xsl:if test="not(matches($node,'[a-zƒ]')) and $node/@quantity &gt; 0">
-            <xsl:element name="span">
-                <xsl:attribute name="class" select="'tei_supplied'"/>
-                <xsl:choose>
-                    <xsl:when test="$node/@unit eq 'f'">
-                        <xsl:value-of select="' ƒ'"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat(' ', $node/@unit)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
-
     <xsl:template name="createEndnotes">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'endNotes'"/>
@@ -527,57 +517,25 @@
                 <xsl:copy/>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
-
     </xsl:template>
-    <xsl:template match="tei:hi">
+
+    <xsl:template match="tei:hi[@rend='underline']">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="@rend='latintype'">
-                        <xsl:value-of select="'tei_hiLatin'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='superscript'">
-                        <xsl:value-of select="'tei_hiSuperscript'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='subscript'">
-                        <xsl:value-of select="'tei_hiSubscript'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='italic'">
-                        <xsl:value-of select="'tei_hiItalic'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='bold'">
-                        <xsl:value-of select="'tei_hiBold'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='spaced_out'">
-                        <xsl:value-of select="'tei_hiSpacedOut'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='antiqua'">
-                        <xsl:value-of select="'tei_hiAntiqua'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='small-caps'">
-                        <xsl:value-of select="'tei_hiSmallCaps'"/>
-                    </xsl:when>
-                    <xsl:when test="@rend='underline'">
-                        <xsl:choose>
-                            <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
-                                <xsl:value-of select="'tei_hiUnderline2andMore'"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="'tei_hiUnderline1'"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                    <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
+                        <xsl:value-of select="'tei_hi_underline2andMore'"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:if test="wega:getOption('environment') eq 'development'">
-                            <xsl:value-of select="'tei_cssUndefined'"/>
-                        </xsl:if>
+                        <xsl:value-of select="'tei_hi_underline1'"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
     <xsl:template match="tei:del[not(parent::tei:subst)]">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
@@ -693,13 +651,6 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:supplied">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_supplied'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
     
     <xsl:template match="tei:gap[@reason='outOfScope']">
         <xsl:element name="span">
@@ -793,7 +744,8 @@
     <xsl:template match="tei:row">
         <xsl:element name="tr">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:if test="@rend='bg-color'">
+            <xsl:if test="@rend">
+                <!-- The value of the @rend attribute gets passed through as class name(s) -->
                 <xsl:attribute name="class" select="@rend"/>
             </xsl:if>
             <xsl:apply-templates/>
@@ -889,29 +841,36 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:unclear">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_unclear'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:figure" priority="0.5">
         <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
         <xsl:variable name="localURL" select="wega:join-path-elements((replace(wega:getCollectionPath($docID), $data-collection-path, ''), $docID, tei:graphic/@url))"/>
         <xsl:variable name="href" select="concat($digilibDir, $localURL, '&amp;mo=file')"/>
-        <xsl:variable name="title" select="tei:figDesc"/>
-        <xsl:variable name="content">
-            <xsl:element name="img">
-                <xsl:apply-templates select="@xml:id"/>
-                <xsl:attribute name="alt" select="tei:figDesc"/>
-                <xsl:attribute name="height" select="$figureHeight"/>
-                <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2')"/>
-                <xsl:attribute name="class" select="'figure'"/>
-            </xsl:element>
-        </xsl:variable>
-        <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+        <xsl:variable name="title" select="normalize-space(tei:figDesc)"/>
+        <xsl:choose>
+            <!-- External URLs -->
+            <xsl:when test="starts-with(tei:graphic/@url, 'http')">
+                <xsl:element name="img">
+                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="data(tei:graphic/@url)"/>
+                    <xsl:attribute name="class" select="'teaserImage'"/>
+                </xsl:element>
+            </xsl:when>
+            <!-- Local images -->
+            <xsl:otherwise>
+                <xsl:variable name="content">
+                    <xsl:element name="img">
+                        <xsl:apply-templates select="@xml:id"/>
+                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="height" select="$figureHeight"/>
+                        <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
+                        <xsl:attribute name="class" select="'figure'"/>
+                    </xsl:element>
+                </xsl:variable>
+                <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="tei:note" priority="0.5">
@@ -947,6 +906,13 @@
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
+            <xsl:when test="@type = 'gloss'">
+                <xsl:element name="dl">
+                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="class" select="'tei_glossList'"/>
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="ul">
                     <xsl:apply-templates select="@xml:id"/>
@@ -956,6 +922,13 @@
         </xsl:choose>
     </xsl:template>
 
+    <xsl:template match="tei:item[parent::tei:list/@type='gloss']" priority="2">
+        <xsl:element name="dd">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
     <xsl:template match="tei:item[parent::tei:list]">
         <xsl:element name="li">
             <xsl:apply-templates select="@xml:id"/>
@@ -963,18 +936,9 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:label">
-        <xsl:element name="span">
+    <xsl:template match="tei:label[parent::tei:list/@type='gloss']">
+        <xsl:element name="dt">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_hiBold'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="tei:label[@n='listLabel']">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'listLabel'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -1009,6 +973,13 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <!-- Überschriften innerhalb einer table-Umgebung -->
+    <xsl:template match="tei:head[parent::tei:table]">
+        <xsl:element name="caption">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:footNote"/>
 
@@ -1029,11 +1000,6 @@
         </xsl:element>
     </xsl:template>
 
-    <!--<xsl:template match="tei:quote">
-        <xsl:text>"</xsl:text>
-        <xsl:apply-templates/>
-        <xsl:text>"</xsl:text>
-    </xsl:template>-->
     <!--
         Ein <signed> wird standardmäßig rechtsbündig gesetzt und in eine eigene Zeile (display:block)
     -->
@@ -1064,10 +1030,62 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:sic">
+    <xsl:template match="tei:q" priority="0.5">
+        <!-- Always(!) surround with quotation marks -->
+        <xsl:choose>
+            <!-- German (double) quotation marks -->
+            <xsl:when test="$lang eq 'de'">
+                <xsl:text>&#x201E;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201C;</xsl:text>
+            </xsl:when>
+            <!-- English (double) quotation marks as default -->
+            <xsl:otherwise>
+                <xsl:text>&#x201C;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201D;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:quote" priority="0.5">
+        <!-- Surround with quotation marks if @rend is set -->
+        <xsl:choose>
+            <!-- German double quotation marks -->
+            <xsl:when test="$lang eq 'de' and @rend='double-quotes'">
+                <xsl:text>&#x201E;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201C;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and @rend='double-quotes'">
+                <xsl:text>&#x201C;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x201D;</xsl:text>
+            </xsl:when>
+            <!-- German single quotation marks -->
+            <xsl:when test="$lang eq 'de' and @rend='single-quotes'">
+                <xsl:text>&#x201A;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x2018;</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and @rend='single-quotes'">
+                <xsl:text>&#x2018;</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>&#x2019;</xsl:text>
+            </xsl:when>
+            <!-- no quotation marks as default -->
+            <xsl:otherwise>
+                <xsl:apply-templates/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <!-- Default template for TEI elements -->
+    <!-- will be turned into html:span with class tei_elementName_attributeRendValue -->
+    <xsl:template match="tei:*">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_sic'"/>
+            <xsl:attribute name="class" select="string-join(('tei', local-name(), @rend), '_')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -1090,13 +1108,4 @@
         </xsl:attribute>
     </xsl:template>
     
-    <!-- Default template fürs Datum damit kein Leerzeichen danach entsteht -->
-    <xsl:template match="tei:date" priority="0.5">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_date'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
 </xsl:stylesheet>

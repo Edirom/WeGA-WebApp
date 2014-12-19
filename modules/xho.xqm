@@ -18,6 +18,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev/dev.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -164,7 +165,7 @@ declare function xho:createCommonFooter() as item()* {
     return (
     <xhtml:div id="supportBadges">
         <xhtml:a href="http://validator.w3.org/check?uri=referer"><xhtml:img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" title="W3C Markup Validation Service" /></xhtml:a>
-        <xhtml:a href="http://exist-db.org"><xhtml:img src="http://exist-db.org/exist/icons/existdb-128.png" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></xhtml:a>
+        <xhtml:a href="http://exist-db.org"><xhtml:img src="http://exist-db.org/exist/apps/homepage/resources/img/powered-by.svg" alt="powered by eXist" title="eXist-db Open Source Native XML Database" /></xhtml:a>
         <xhtml:a href="http://staatsbibliothek-berlin.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'stabi-logo.png'))}" alt="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" /></xhtml:a>
         <xhtml:a href="http://www.adwmainz.de"><xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir,'adwMainz.png'))}" alt="Akademie der Wissenschaften und der Literatur Mainz" title="Akademie der Wissenschaften und der Literatur Mainz" /></xhtml:a>
         <xhtml:a href="http://www.tei-c.org"><xhtml:img src="http://www.tei-c.org/About/Badges/powered-by-TEI.png" alt="Powered by TEI" title="TEI: Text Encoding Initiative" /></xhtml:a>
@@ -521,18 +522,29 @@ declare function xho:printProjectLinks($lang as xs:string) as element(xhtml:div)
  :)
  
 declare function xho:printDevelopmentLinks($lang as xs:string) as element(xhtml:div) {
+    let $ant-log := dev:ant-log()
     let $baseHref := config:get-option('baseHref')
-    return
-    element xhtml:div {
-        attribute id {'developmentTools'},
-        element xhtml:h1 {lang:get-language-string('development', $lang)},
-        element xhtml:ul {
-            element xhtml:li {
-                element xhtml:a {
-                    attribute href {core:join-path-elements(($baseHref, $lang, lang:get-language-string('tools', $lang)))},
-                    'Tools'
-                }
-            }
-        }
-    }
+    let $html_pixDir := config:get-option('html_pixDir')
+    return 
+        <xhtml:div id="developmentTools">
+            <xhtml:h1>{lang:get-language-string('development', $lang)}</xhtml:h1>
+            <xhtml:h2>Generiere ID</xhtml:h2>
+            <xhtml:form action="javascript:getNewID()" id="select-form">
+             <xhtml:select id="select-options">
+                 <xhtml:option value="persons">Person</xhtml:option>
+                 <xhtml:option value="letters">Brief</xhtml:option>
+                 <xhtml:option value="writings">Schrift</xhtml:option>
+                 <xhtml:option value="works">Werk</xhtml:option>
+                 <xhtml:option value="sources">Quelle</xhtml:option>
+                 <xhtml:option value="diaries">Tagebuch</xhtml:option>
+                 <xhtml:option value="biblio">Biblio</xhtml:option>
+             </xhtml:select>
+             <xhtml:input type="submit" value="&#8594;"/>
+             <xhtml:span id="id-value" style="display: none;">ID value</xhtml:span>
+            </xhtml:form>
+            <xhtml:h2>Commit Status</xhtml:h2>
+            <xhtml:p><xhtml:a href="{core:join-path-elements(($baseHref, 'logs', $ant-log('rev') || '.log'))}" title="komplettes logfile ansehen">Revision {$ant-log('rev')}: </xhtml:a> <xhtml:img src="{core:join-path-elements(($baseHref, $html_pixDir, $ant-log('success') || '.gif'))}" alt="success-icon" style="margin-bottom:-5px;"/></xhtml:p>
+            <xhtml:h2>Codesharing</xhtml:h2>
+            <xhtml:p><xhtml:a href="{core:join-path-elements(($baseHref,'apps/codesharing/index.htm'))}" title="TEI CodeSharing service by Martin Holmes">Codesharing WeGA-data</xhtml:a></xhtml:p>
+        </xhtml:div>
 };

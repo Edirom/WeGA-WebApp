@@ -74,6 +74,7 @@ let $contact := if($isUtil or $isFunc) then () else lang:get-language-string('co
 let $tools := if($isUtil or $isFunc) then () else lang:get-language-string('tools',$lang)
 let $volContents := if($isUtil or $isFunc) then () else encode-for-uri(lang:get-language-string('volContents',$lang))
 let $editorialGuidelines := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines',$lang), '\s', '_')
+let $editorialGuidelines-works := if($isUtil or $isFunc) then () else replace(lang:get-language-string('editorialGuidelines-works',$lang), '\s', '_')
 let $ajaxCrawlerParameter := '_escaped_fragment_'
 
 return (
@@ -154,12 +155,24 @@ else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070001"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
     </dispatch>
 
+(: Editorial Guidelines Works :)
+else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines-works, '/?$'))) then
+    let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
+    return
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
+    	   <add-parameter name="lang" value="{$lang}"/>
+    	   <add-parameter name="docID" value="A070010"/>
+    	   <add-parameter name="createSecNos" value="true"/>
+    	   <add-parameter name="js" value="{$js}"/>
+    	</forward>
+    </dispatch>
+    
 (: Impressum :)
 else if ($exist:path eq '/en/About' or $exist:path eq '/de/Impressum') then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
@@ -180,7 +193,6 @@ else if ($exist:path eq '/en/Biography' or $exist:path eq '/de/Biographie') then
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070003"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -194,7 +206,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $help, '/?$'))) then
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070004"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -208,7 +219,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $projectDescription, '/?$
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070006"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -266,7 +276,6 @@ else if (matches($exist:path, concat('^/', $lang, '/', $volContents, '/?$'))) th
     	<forward url="{concat($exist:controller, '/modules/var.xql')}">
     	   <add-parameter name="lang" value="{$lang}"/>
     	   <add-parameter name="docID" value="A070011"/>
-    	   <add-parameter name="createToc" value="true"/>
     	   <add-parameter name="createSecNos" value="true"/>
     	   <add-parameter name="js" value="{$js}"/>
     	</forward>
@@ -468,7 +477,8 @@ else if (matches($exist:path, '^/index.php$')) then
     let $newPath := doc(config:get-option('typo3ContentMappings'))//entry[@oldID = $param]
     return if($newPath ne '') then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<redirect url="{$newPath}">
+        	<redirect url="{controller:encode-path-segments-for-uri($newPath)}">
+        	   <cache-control cache="yes"/>
         	</redirect>
         </dispatch>
      else controller:error($exist-vars, 404)
@@ -540,12 +550,11 @@ else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then
         <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
     </dispatch>
 
-(: Tools :)
-else if ($config:isDevelopment and matches($exist:path, concat('^/', $lang, '/', $tools, '/?$'))) then
+else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/dev/tools.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	</forward>
+        <forward url="{concat($exist:controller, '/tmp/logs/', $exist:resource)}">
+            <set-header name="Content-Type" value="text/plain"/>
+        </forward>
     </dispatch>
     
 else controller:error($exist-vars, 404)
