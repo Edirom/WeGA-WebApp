@@ -145,6 +145,20 @@ declare
             </p>
 };
 
+(:~
+ : A non-wrapping alternative to the standard templates:each()
+ : Gets rid of the superfluous first list item
+ :
+ : @author Peter Stadler
+ :)
+declare function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string) {
+    for $item in $model($from)
+    return
+        element { node-name($node) } {
+            $node/@*, templates:process($node/node(), map:new(($model, map:entry($to, $item))))
+        }
+};
+
 (:
  : ****************************
  : Index functions
