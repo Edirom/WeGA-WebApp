@@ -319,9 +319,9 @@ declare function img:get-generic-portrait($model as map(*), $lang as xs:string, 
         map {
             'src' := 
                 switch($sex)
-                case 'f' return '/$resources/img/icons/icon_person_frau.png'
-                case 'm' return '/$resources/img/icons/icon_person_mann.png'
-                default return '/$resources/img/icons/icon_person_frau.png',
+                case 'f' return core:link-to-current-app('$resources/img/icons/icon_person_frau_gross.png')
+                case 'm' return core:link-to-current-app('$resources/img/icons/icon_person_mann_gross.png')
+                default return core:link-to-current-app('$resources/img/icons/icon_person_unbekannt_gross.png'),
             'alt' := 'no portrait available',
             'title' := 'no portrait available'
         }
