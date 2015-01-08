@@ -10,7 +10,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 (:import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";:)
 
-declare option exist:serialize "method=html5 media-type=text/html enforce-xhtml=yes";
+declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
 declare function local:tidy($node as node()) as node() {
     typeswitch ($node)

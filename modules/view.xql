@@ -17,7 +17,7 @@ import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" a
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
-declare option exist:serialize "method=html5 media-type=text/html enforce-xhtml=yes";
+declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
 let $config := map {
     $templates:CONFIG_APP_ROOT := $config:app-root,
