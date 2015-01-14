@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 data-template="app:page-h1">Weber, Carl Maria von</h1>
+                    <h1 data-template="app:person-title">Weber, Carl Maria von</h1>
                 </div>
             </div>
         </div>
@@ -13,12 +13,8 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li>
-                            <a href="$link/Index">Home</a>
-                        </li>
-                        <li>
-                            <a href="$link/A002068" data-template="app:breadcrumb-person-2nd-level">Carl Maria von Weber</a>
-                        </li>
+                        <li><a href="$link/Index">Home</a></li>
+                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
                         <li data-template="lang:translate">bio</li>
                     </ol>
                 </div>
@@ -92,9 +88,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 ">
-                    <ul class="resp-tabs-list" data-template="app:docType-tabs">
-                        <li data-template="app:each" data-template-from="docType-tabs" data-template-to="docType-tab">
-                            <a data-target=".korrespondenz" data-template="app:print-docType-tab">Korrespondenz (256)</a>
+                    <ul class="resp-tabs-list">
+                        <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">
+                            <a data-target=".biographies" data-template="app:person-main-tab">biographies</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">
+                            <a data-target=".correspondence" data-template="app:person-main-tab">correspondence</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-2" role="tab">
+                            <a data-target=".diaries" data-template="app:person-main-tab">diaries</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-3" role="tab">
+                            <a data-target=".works" data-template="app:person-main-tab">works</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-4" role="tab">
+                            <a data-target=".writings" data-template="app:person-main-tab">writings</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-5" role="tab">
+                            <a data-target=".contacts" data-template="app:person-main-tab">contacts</a>
+                        </li>
+                        <li class="resp-tab-item" aria-controls="tab_item-6" role="tab">
+                            <a data-target=".backlinks" data-template="app:person-main-tab">backlinks</a>
                         </li>
                     </ul>
                 </div>
@@ -112,12 +126,27 @@
                                         <div class="allFilter">
                                             <h2 data-template="lang:translate">documents</h2>
                                             <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs" data-template="app:document-tabs">
-                                                <li class="gradient-light" data-template="app:each" data-template-from="document-tabs" data-template-to="document-tab">
-                                                    <a href="#wegaText" data-toggle="tab" data-template="app:print-document-tab">WeGA Text</a>
+                                            <ul class="nav nav-tabs">
+                                                <li class="gradient-light">
+                                                    <a data-toggle="tab" href="#wegaText">WeGA Text</a>
                                                 </li>
                                                 <li class="gradient-light">
-                                                    <a href="#XMLDownload" data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-URL">XML-Download</a>
+                                                    <a data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
+                                                </li>
+                                                <li class="gradient-light">
+                                                    <a data-toggle="tab" href="#dnbText" data-template="app:ajax-tab">dnb-entry</a>
+                                                </li>
+                                                <li class="gradient-light">
+                                                    <a data-toggle="tab" href="#adbText" data-template="app:ajax-tab">adb-article</a>
+                                                </li>
+                                                <li class="gradient-light">
+                                                    <a data-toggle="tab" href="#pnd-beacon" data-template="app:tab">PND Beacon Links</a>
+                                                </li>
+                                                <li class="gradient-light">
+                                                    <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
+                                                </li>
+                                                <li class="gradient-light">
+                                                    <a href="/exist/apps/WeGA-WebApp/A002068.xml">XML-Download</a>
                                                 </li>
                                             </ul>
                                         </div>

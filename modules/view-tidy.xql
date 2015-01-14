@@ -3,6 +3,8 @@
  :)
 xquery version "3.0" encoding "UTF-8";
 
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
+
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 
 (:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";:)
@@ -12,16 +14,18 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
-declare function local:tidy($node as node()) as node() {
+declare function local:tidy($node as node()) as node()? {
     typeswitch ($node)
         case document-node() return
             for $child in $node/node() return local:tidy($child)     
                         
-        case element() return                 
-            element { node-name($node) } {
-                for $attr in $node/@* return local:tidy-attr($attr),
-                for $child in $node/node() return local:tidy($child)
-            }
+        case element() return
+            if($node/xhtml:a[@class='deactivated']) then ()
+            else 
+                element { node-name($node) } {
+                    for $attr in $node/@* return local:tidy-attr($attr),
+                    for $child in $node/node() return local:tidy($child)
+                }
                     
         default return 
             $node

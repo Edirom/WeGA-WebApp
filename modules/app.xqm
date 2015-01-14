@@ -22,13 +22,10 @@ import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules
 import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 
 declare function app:page-title($node as node(), $model as map(*)) as element(title) {
     <title>{$model('page-title')}</title>
-};
-
-declare function app:page-h1($node as node(), $model as map(*)) as element(h1) {
-    <h1>{query:get-reg-name($model('docID'))}</h1>
 };
 
 (:
@@ -159,9 +156,112 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
         }
 };
 
+
 (:
  : ****************************
- : Index functions
+ : Breadcrumbs 
+ : ****************************
+:)
+declare 
+    %templates:default("lang", "en")
+    function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        let $authorID := 
+            if(config:is-person($model('docID'))) then $model('docID')
+            else query:get-authorID($model('doc'))
+        let $href := app:createUrlForDoc(core:doc($authorID), $lang)
+        return 
+            element {node-name($node)} {
+                $node/@*[not(local-name(.) eq 'href')],
+                if($href) then attribute href {$href} else (),
+                str:printFornameSurname(query:get-reg-name($authorID))
+            }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        let $authorID := query:get-authorID($model('doc'))
+        let $href := functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/')
+        let $display-name := functx:substring-after-last($href, '/')
+        return
+            element {node-name($node)} {
+                $node/@*[not(local-name(.) eq 'href')],
+                if($href) then attribute href {$href} else (),
+                $display-name
+            }
+};
+
+
+(:
+ : ****************************
+ : Navigation / Tabs 
+ : ****************************
+:)
+
+declare
+    %templates:default("lang", "en")
+    function app:person-main-tab($node as node(), $model as map(*), $lang as xs:string) as element()? {
+        let $tabTitle := normalize-space($node)
+        let $count := count($model($tabTitle))
+        let $alwaysShowNoCount := $tabTitle = 'biographies'
+        return
+            if($count gt 0 or $alwaysShowNoCount) then
+                element {name($node)} {
+                        $node/@*,
+                        lang:get-language-string($tabTitle, $lang),
+                        if($alwaysShowNoCount) then () else ' (' || $count || ')'
+                    }
+            else 
+                element {name($node)} {
+                    attribute class {'deactivated'}
+                }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:ajax-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
+        let $beacon := 
+            try {map:keys($model('beaconMap'))}
+            catch * {()}
+        let $ajax-url :=
+            switch(normalize-space($node))
+            case 'XML-Preview' return 'xml.html'
+            case 'wikipedia-article' return if($beacon = 'Wikipedia-Personenartikel') then 'wikipedia.html' else ()
+            case 'adb-article' return if($beacon = 'Allgemeine Deutsche Biographie (Wikisource)') then 'adb.html' else ()
+            case 'dnb-entry' return if($model('gnd')) then 'dnb.html' else ()
+            default return ()
+        return
+            if($ajax-url) then 
+                element {name($node)} {
+                    $node/@*,
+                    attribute data-tab-url {core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-url)},
+                    lang:get-language-string(normalize-space($node), $lang)
+                }
+            else
+                element {name($node)} {
+                    attribute class {'deactivated'}
+                }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:tab($node as node(), $model as map(*), $lang as xs:string) as element() {
+        (: Currently only needed for "PND Beacon Links" :)
+        if($model('gnd')) then
+            element {name($node)} {
+                $node/@*,
+                normalize-space($node)
+            }
+        else
+            element {name($node)} {
+                attribute class {'deactivated'}
+            }
+};
+
+
+(:
+ : ****************************
+ : Index page
  : ****************************
 :)
 
@@ -239,7 +339,7 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 };
 
 (:~
- : Construct a name from a tei:persName or tei:name element wrapped in a <span> with @onmouseover etc.
+ : Construct a name from a tei:persName or tei:name element wrapped in a <span> 
  : If a @key is given on persName the regularized form will be returned, otherwise the content of persName.
  : If persName is empty than "unknown" is returned.
  : 
@@ -257,18 +357,17 @@ declare function app:printCorrespondentName($persName as element()?, $lang as xs
      else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
 };
 
+
 (:
  : ****************************
- : Person functions
+ : Person pages
  : ****************************
 :)
-declare
+
+declare 
     %templates:wrap
-    %templates:default("lang", "en")
-    function app:breadcrumb-person-2nd-level($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        <a href="{core:link-to-current-app(str:join-path-elements(($lang, $model('docID'))))}">{
-            str:printFornameSurname($model('doc')//tei:persName[@type='reg'])
-        }</a>
+    function app:person-title($node as node(), $model as map(*)) as xs:string {
+        query:get-reg-name($model('docID'))
 };
 
 declare 
@@ -290,15 +389,15 @@ declare
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $docTypes-for-display := ('letters', 'diaries', 'writings', 'works')
+        (:let $docTypes-for-display := ('letters', 'diaries', 'writings', 'works')
         let $docTypes := map:new(
             for $docType in $docTypes-for-display
             return 
                 map:entry($docType, core:getOrCreateColl($docType, $model('docID'), true()))
-        )
-        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')])
+        ):)
+(:        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]):)
         
-        let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]
+(:        let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]:)
         
         let $beaconMap := 
             if($gnd) then wega-util:beacon-map($gnd)
@@ -306,23 +405,27 @@ declare
         
         return
             map{
-                'docTypesMap' := $docTypes,
-                'contacts' := $contacts,
-                'backlinks' := $backlinks,
+(:                'docTypesMap' := $docTypes,:)
+                'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
+                'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
+                'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
+                'works' := core:getOrCreateColl('works', $model('docID'), true()),
+                'contacts' := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]),
+                'backlinks' := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')],
                 'gnd' := $gnd,
-                'beaconMap' := $beaconMap,
-                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml')
+                'beaconMap' := $beaconMap
+(:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
             }
 };
 
-declare
+(:declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:docType-tabs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $documents := map { 
             'title' := lang:get-language-string('biographies', $lang),
             'target' := 'biographies',
-            'count' := count(for $i in app:document-tabs($node, $model, $lang)('document-tabs') where not($i('title') = ('XML-Preview', 'PND Beacon Links'))  return $i)
+            'count' := (\:count(for $i in app:document-tabs($node, $model, $lang)('document-tabs') where not($i('title') = ('XML-Preview', 'PND Beacon Links'))  return $i):\) '1'
         }
         let $docTypes := 
             for $docType in map:keys($model('docTypesMap')) 
@@ -359,24 +462,9 @@ declare
                     $backlinks
                 )
             }
-};
+};:)
 
-declare
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:document-tabs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        map {
-            'document-tabs' := (
-                app:wega-bio-tab($model, $lang),
-                app:wikipedia-tab($model, $lang),
-                app:adb-tab($model, $lang),
-                app:beacon-tab($model, $lang),
-                app:xml-tab($model)
-            )
-        }
-};
-
-declare
+(:declare
     %templates:default("lang", "en")
     function app:print-docType-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
         element {node-name($node)} {
@@ -384,18 +472,7 @@ declare
             attribute target {'.' || $model('docType-tab')('target')},
             $model('docType-tab')('title') || ' (' || $model('docType-tab')('count') || ')'
         }
-};
-
-declare 
-    %templates:default("lang", "en")
-    function app:print-document-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        element {node-name($node)} {
-            $node/@*[not(local-name(.) eq 'href')],
-            attribute href {'#' || $model('document-tab')('fragmentIdentifier')},
-            if ($model('document-tab')('url')) then attribute data-tab-url {$model('document-tab')('url')} else (),
-            $model('document-tab')('title')
-        }
-};
+};:)
 
 declare 
     %templates:default("lang", "en")
@@ -532,58 +609,113 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
             else util:serialize(wega-util:remove-comments(core:doc($docID)), $serializationParameters)
 };
 
-declare %private function app:xml-tab($model as map(*)) as map(*)? {
-    map {
-        'title' := 'XML-Preview',
-        'url' := $model('docID') || '/xml.html',
-        'fragmentIdentifier' := 'XMLPreview'
-    }
+
+(:
+ : ****************************
+ : Document pages
+ : ****************************
+:)
+declare
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:document-title($node as node(), $model as map(*), $lang as xs:string) {
+        let $title-element := query:get-title-element($model('doc'))[1]
+        return
+            typeswitch($title-element)
+            case element(tei:title) return transform:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
+            case element(mei:title) return error(xs:QName('app:error'), 'function not yet implemented')
+            default return transform:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
+            
 };
 
-declare %private function app:wikipedia-tab($model as map(*), $lang as xs:string) as map(*)? {
-    if(map:contains($model('beaconMap'), 'Wikipedia-Personenartikel')) then 
-        map {
-            'title' := 'Wikipedia ' || lang:get-language-string('personenartikel', $lang),
-            'url' := $model('docID') || '/wikipedia.html',
-            'fragmentIdentifier' := 'wikipediaText'
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:print-transcription($node as node(), $model as map(*), $lang as xs:string) {
+        let $doc := $model('doc')
+        let $docID := $model('docID')
+        let $xslParams := config:get-xsl-params( map {
+            'dbPath' := document-uri($doc),
+            'docID' := $docID,
+            'transcript' := 'true'
+            } )
+        let $xslt := 
+            if(config:is-letter($docID)) then doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
+            else if(config:is-news($docID)) then doc(concat($config:xsl-collection-path, '/news.xsl'))
+            else if(config:is-writing($docID)) then doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
+            else ()
+    let $body := 
+         if(functx:all-whitespace($doc//tei:text))
+         then (
+            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams) 
+            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams)
+            let $text := if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
+            return element div {
+                attribute id {'teiLetter_body'},
+                $incipit,
+                $summary,
+                element span {
+                    attribute class {'notAvailable'},
+                    $text
+                }
+            }
+         )
+         else (transform:transform($doc//tei:text/tei:body, $xslt, $xslParams))
+     let $foot := 
+        if(config:is-news($docID)) then (:ajax:getNewsFoot($doc, $lang):) ''
+        else ()
+     
+     return ($body, $foot)
+    };
+
+(:~
+ : Constructs letter header
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @return element
+:)
+declare function app:construct-title($doc as document-node(), $lang as xs:string) as element()+ {
+    (: Support for Albumblätter?!? :)
+    let $id := $doc/tei:TEI/string(@xml:id)
+    let $date := date:printDate($doc//tei:dateSender/tei:date[1], $lang)
+    let $sender := app:printCorrespondentName($doc//tei:sender[1]/*[1], $lang, 'fs')/string()
+    let $addressee := app:printCorrespondentName($doc//tei:addressee[1]/*[1], $lang, 'fs')/string()
+    let $placeSender := if(functx:all-whitespace($doc//tei:placeSender)) then () else normalize-space($doc//tei:placeSender)
+    let $placeAddressee := if(functx:all-whitespace($doc//tei:placeAddressee)) then () else normalize-space($doc//tei:placeAddressee)
+    return (
+        element tei:title {
+            concat($sender, ' ', lower-case(lang:get-language-string('to', $lang)), ' ', $addressee),
+            if(exists($placeAddressee)) then concat(' ', lower-case(lang:get-language-string('in', $lang)), ' ', $placeAddressee) else(),
+            <tei:lb/>,
+            string-join(($placeSender, $date), ', ')
         }
-    else()
+    )
 };
 
-declare %private function app:adb-tab($model as map(*), $lang as xs:string) as map(*)? {
-    if(map:contains($model('beaconMap'), 'Allgemeine Deutsche Biographie (Wikisource)')) then 
-        map {
-            'title' := 'ADB ' || lang:get-language-string('personenartikel', $lang),
-            'url' := $model('docID') || '/adb.html',
-            'fragmentIdentifier' := 'adbText'
-        }
-    else()
-};
 
-declare %private function app:dnb-tab($model as map(*), $lang as xs:string) as map(*)? {
-    if($model('gnd')) then 
-        map {
-            'title' := 'DNB ' || lang:get-language-string('personenartikel', $lang),
-            'url' := $model('docID') || '/dnb.html',
-            'fragmentIdentifier' := 'dnbText'
-        }
-    else()
-};
-
-declare %private function app:beacon-tab($model as map(*), $lang as xs:string) as map(*)? {
-    if(count(map:keys($model('beaconMap'))) gt 0) then 
-        map {
-            'title' := 'PND Beacon Links',
-            'fragmentIdentifier' := 'pnd-beacon'
-        }
-    else()
-};
-
-declare %private function app:wega-bio-tab($model as map(*), $lang as xs:string) as map(*)? {
-    if(true()) then 
-        map {
-            'title' := 'WeGA Text',
-            'fragmentIdentifier' := 'wegaText'
-        }
-    else()
+(:~
+ : Create dateline and author link for website news
+ : (Helper Function for ajax:printTranscription())
+ :
+ : @author Peter Stadler
+ : @param $doc the news document node
+ : @param $lang the current language (de|en)
+ : @return element html:p
+ :)
+declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
+    let $authorID := query:get-authorID($model('doc'))
+    let $dateFormat := 
+        if ($lang = 'en') then '%A, %B %d, %Y'
+                          else '%A, %d. %B %Y'
+    return 
+        if($authorID) then 
+            element p {
+                attribute class {'authorDate'},
+                app:printCorrespondentName(query:get-author-element($model('doc')), $lang, 'fs'),
+                concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
+            }
+        else()
 };

@@ -11,6 +11,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -34,30 +35,42 @@ declare function query:get-reg-name($key as xs:string) as xs:string {
 };
 
 (:~
- : Grabs the first author from a TEI document
+ : Grabs the first author from a TEI document and returns its WeGA ID
  :
  : @author Peter Stadler 
  : @param $item the id of the TEI document (or the document node itself) to grab the author from
- : @return xs:string the name of the author as given by //tei:fileDesc/tei:titleStmt/tei:author[1]
+ : @return xs:string the WeGA ID
 :)
-declare function query:getAuthorOfTeiDoc($item as item()) as xs:string {
-    let $doc := typeswitch($item)
-        case xs:string return core:doc($item)/*
-        default return $item/*
-    let $docID := typeswitch($item)
-        case xs:string return $item
-        default return $doc/root()/*/@xml:id cast as xs:string
-    return 
+declare function query:get-authorID($doc as document-node()?) as xs:string {
+    let $author-element := query:get-author-element($doc)[1]
+    return
         if(exists($doc)) then 
-            if(config:is-diary($docID)) then 'A002068' (: Diverse Sonderbehandlungen fürs Tagebuch :)
-            else if(config:is-work($docID)) then  (: Diverse Sonderbehandlungen für Werke :)
-                if(exists($doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/@dbkey)) then $doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/string(@dbkey)
-                else if(exists($doc/mei:ref)) then ''
-                else config:get-option('anonymusID')
-            else if(exists($doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key)) then $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/string(@key)
-            else if(exists($doc/tei:ref)) then query:getAuthorOfTeiDoc($doc/tei:ref/@target cast as xs:string)
+            if(config:is-diary($doc/tei:ab/@xml:id)) then 'A002068' (: Diverse Sonderbehandlungen fürs Tagebuch :)
+            else if($author-element/@key) then $author-element/@key/string()
+            else if($author-element/@dbkey) then $author-element/@dbkey/string()
             else config:get-option('anonymusID')
         else ''
+};
+
+(:~
+ : Grabs the first author from a TEI document and returns its name (as noted in the document)
+ : For the regularized name see query:get-reg-name()
+ :
+ : @author Peter Stadler 
+ : @param $item the id of the TEI document (or the document node itself) to grab the author from
+ : @return xs:string the name of the author
+:)
+declare function query:get-authorName($doc as document-node()?) as xs:string {
+    if(exists($doc)) then 
+        if(config:is-diary($doc/tei:ab/@xml:id)) then 'Carl Maria von Weber' (: Diverse Sonderbehandlungen fürs Tagebuch :)
+        else normalize-space(query:get-author-element($doc)[1])
+    else ''
+};
+
+declare function query:get-author-element($doc as document-node()?) as element()* {
+    if(exists($doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'])) then $doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp']
+    else if(exists($doc//tei:fileDesc/tei:titleStmt/tei:author)) then $doc//tei:fileDesc/tei:titleStmt/tei:author
+    else ()
 };
 
 (:~
@@ -100,4 +113,19 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     return 
         collection(config:get-option('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)] union
         collection(config:get-option('persons'))//tei:date[matches(@when, $date-regex)][not(preceding-sibling::tei:date[matches(@when, $date-regex)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
+};
+
+(:~
+ : Gets reg title
+ :
+ : @author Peter Stadler
+ : @param $doc the TEI document
+ : @return xs:string
+ :)
+declare function query:get-title-element($doc as document-node()) as element()* {
+    let $docID := $doc/root()/*/@xml:id
+    return
+        if(config:is-diary($docID)) then ()
+        else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
+        else $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']
 };

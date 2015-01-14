@@ -107,8 +107,8 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'controller') || '/templates/ajax/' || $exist:resource}"/>
     	<view>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}">
-                <set-attribute name="resource" value="{functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')}"/>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql'}">
+                <set-attribute name="docID" value="{functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')}"/>
                 <set-header name="Cache-Control" value="no-cache"/>
             </forward>
             <forward url="{map:get($exist-vars, 'controller') || '/modules/view-tidy.xql'}">
@@ -117,7 +117,7 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
         </view>
         <error-handler>
             <forward url="/templates/error-page.html" method="get"/>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view.xql'}"/>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql'}"/>
         </error-handler>
     </dispatch>
 
@@ -126,7 +126,7 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
  :)
 else if (ends-with($exist:resource, '.xml')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-xml.xql'}">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql-xml.xql'}">
             <set-attribute name="resource" value="{substring-before($exist:resource, '.xml')}"/>
         </forward>
     </dispatch>
@@ -351,7 +351,7 @@ else if (ends-with($exist:resource, '.xml')) then
                 controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="{concat($exist:controller, '/modules/letter_singleView.xql')}">
+                	<forward url="{concat($exist:controller, '/modules/letter_singleview-html.xql.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
@@ -368,7 +368,7 @@ else if (ends-with($exist:resource, '.xml')) then
                 controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="{concat($exist:controller, '/modules/doc_singleView.xql')}">
+                	<forward url="{concat($exist:controller, '/modules/doc_singleview-html.xql.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
@@ -381,7 +381,7 @@ else if (ends-with($exist:resource, '.xml')) then
         let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
         return
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<forward url="{concat($exist:controller, '/modules/diary_singleView.xql')}">
+        	<forward url="{concat($exist:controller, '/modules/diary_singleview-html.xql.xql')}">
         	   <add-parameter name="lang" value="{$lang}"/>
         	   <add-parameter name="id" value="{$exist:resource}"/>
         	   <add-parameter name="js" value="{$js}"/>
@@ -397,7 +397,7 @@ else if (ends-with($exist:resource, '.xml')) then
                 controller:redirect-docID($exist-vars, $doc/@xml:id)
             else 
                 <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-                	<forward url="{concat($exist:controller, '/modules/news_singleView.xql')}">
+                	<forward url="{concat($exist:controller, '/modules/news_singleview-html.xql.xql')}">
                 	   <add-parameter name="lang" value="{$lang}"/>
                 	   <add-parameter name="id" value="{$exist:resource}"/>
                 	   <add-parameter name="js" value="{$js}"/>
