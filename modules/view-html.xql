@@ -25,13 +25,15 @@ let $config := map {
 }
 
 let $model := 
-    if(config:is-person(request:get-attribute('resource'))) then map {
-        'docID' := request:get-attribute('resource'),
-        'doc' := core:doc(request:get-attribute('resource')),
-        'page-title' := 'Eine Seite aus der WeGA'
-    }
-    else ()
-
+    typeswitch (request:get-attribute('docID'))
+    case xs:string return 
+        map {
+            'docID' := request:get-attribute('docID'),
+            'doc' := core:doc(request:get-attribute('docID')),
+            'page-title' := 'Eine Seite aus der WeGA'
+        }
+    default return ()
+    
 (:
  : We have to provide a lookup function to templates:apply to help it
  : find functions in the imported application modules. The templates
