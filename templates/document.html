@@ -37,41 +37,13 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs">
                             <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                            <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>
                             <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>
                             <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                             <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
                         </ul>
                     </div>
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#editorial">
-                        Editorial</h2>
-                    <div id="editorial" class="panel-collapse collapse borderBox">
-                        <h3 id="series">Reihe</h3>
-                        <p>WeGA, Briefe, Digitale Edition</p>
-                        <h3 id="resp">Übertragung</h3>
-                        <ul>
-                            <li>Eveline Bartlitz</li>
-                            <li>Joachim Veit</li>
-                        </ul>
-                        <h3>Textzeuge</h3>
-                        <div>
-                            <div>
-                                <h4>Bibliothek</h4>
-                                <p>Darmstadt (D), Universitäts- und Landesbibliothek Darmstadt
-                                    (D-DS), </p>
-                                <h4>Quellenbeschreibung</h4>
-                                <ul>
-                                    <li>1 Bl. (2 b.S. einschl. Adr.)</li>
-                                    <li>geschrieben v. F.A.</li>
-                                </ul>
-                                <h4>Drucke</h4>
-                                <ul>
-                                    <li>Hase, Oskar von (Hg.): Breitkopf &amp; Härtel. Gedenkschrift
-                                        u. Arbeitsbericht. Bd. 1: 1542–1827, 4. Aufl. Leipzig 1917,
-                                        S. 187.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext">
                         Kontext </h2>
                     <div id="kontext" class="panel-collapse collapse borderBox">
@@ -130,6 +102,49 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app:print-transcription"/>
                     </div>
+                    <div class="tab-pane fade" id="editorial">
+                        <h2 data-template="lang:translate">editorial</h2>
+                        <!--<div>
+                            <h3 data-template="lang:translate">series</h3>
+                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
+                        </div>-->
+                        
+                        <div>
+                            <h3 data-template="lang:translate">summary</h3>
+                            <div data-template="app:print-summary"/>
+                        </div>
+                        
+                        <div>
+                            <h3 data-template="lang:translate">incipit</h3>
+                            <div data-template="app:print-incipit"/>
+                        </div>
+                        
+                        <div>
+                            <h3 data-template="lang:translate">responsibilities</h3>
+                            <dl data-template="app:respStmts"/>
+                        </div>
+                        
+                        <div data-template="app:textSources">
+                            <h3 data-template="lang:translate">textSources</h3>
+                            <div data-template="app:each" data-template-from="textSources" data-template-to="textSource">
+                                <div data-template="app:print-textSource"/>
+                                <!--<h4>Bibliothek</h4>
+                                <p>Darmstadt (D), Universitäts- und Landesbibliothek Darmstadt
+                                    (D-DS), </p>
+                                <h4>Quellenbeschreibung</h4>
+                                <ul>
+                                    <li>1 Bl. (2 b.S. einschl. Adr.)</li>
+                                    <li>geschrieben v. F.A.</li>
+                                </ul>
+                                <h4>Drucke</h4>
+                                <ul>
+                                    <li>Hase, Oskar von (Hg.): Breitkopf &amp; Härtel. Gedenkschrift
+                                        u. Arbeitsbericht. Bd. 1: 1542–1827, 4. Aufl. Leipzig 1917,
+                                        S. 187.</li>
+                                </ul>-->
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-pane fade" id="Faksimile"> </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
@@ -143,4 +158,12 @@
                 </div>
             </div>
         </div>
-    </div></div>
+        <div class="row permaLink text-center" data-template="app:print-permaLink">
+            <p>Empfohlene Zitierweise: Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, http://www.weber-gesamtausgabe.de/wega/A000154 (Version 1.2dev vom 12. Juni 2014)</p>
+            <p>Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</p>
+        </div>
+        <div class="row bugreport text-center" data-template="app:print-bugReportEmail">
+            <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an bugs [at] weber-gesamtausgabe.de</p>
+        </div>
+    </div>
+</div>

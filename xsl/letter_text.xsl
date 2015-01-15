@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com"
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    version="2.0">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:functx="http://www.functx.com" xmlns:rng="http://relaxng.org/ns/structure/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
@@ -116,11 +116,11 @@
     </xsl:template>
     <xsl:template match="tei:note[@type='summary']" priority="1">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="'summary'"/>
+            <!--            <xsl:attribute name="id" select="'summary'"/>-->
             <xsl:if test="normalize-space(.) != ''">
-                <xsl:element name="h3">
+                <!--<xsl:element name="h3">
                     <xsl:value-of select="wega:getLanguageString('summary', $lang)"/>
-                </xsl:element>
+                </xsl:element>-->
                 <xsl:choose>
                     <xsl:when test="./tei:p">
                         <xsl:apply-templates/>
@@ -322,11 +322,11 @@
     </xsl:template>
     <xsl:template match="tei:incipit">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="'incipit'"/>
+            <!--<xsl:attribute name="id" select="'incipit'"/>-->
             <xsl:if test="normalize-space(.) != ''">
-                <xsl:element name="h3">
+                <!--<xsl:element name="h3">
                     <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
-                </xsl:element>
+                </xsl:element>-->
                 <xsl:choose>
                     <xsl:when test="./tei:p">
                         <xsl:apply-templates/>

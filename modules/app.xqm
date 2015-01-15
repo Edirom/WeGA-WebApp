@@ -20,6 +20,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
+import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -156,7 +157,6 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
         }
 };
 
-
 (:
  : ****************************
  : Breadcrumbs 
@@ -209,7 +209,7 @@ declare
                 element {name($node)} {
                         $node/@*,
                         lang:get-language-string($tabTitle, $lang),
-                        if($alwaysShowNoCount) then () else ' (' || $count || ')'
+                        if($alwaysShowNoCount) then () else <small>{' (' || $count || ')'}</small>
                     }
             else 
                 element {name($node)} {
@@ -389,23 +389,11 @@ declare
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        (:let $docTypes-for-display := ('letters', 'diaries', 'writings', 'works')
-        let $docTypes := map:new(
-            for $docType in $docTypes-for-display
-            return 
-                map:entry($docType, core:getOrCreateColl($docType, $model('docID'), true()))
-        ):)
-(:        let $contacts := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]):)
-        
-(:        let $backlinks := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]:)
-        
         let $beaconMap := 
             if($gnd) then wega-util:beacon-map($gnd)
             else map:new()
-        
         return
             map{
-(:                'docTypesMap' := $docTypes,:)
                 'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
                 'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
                 'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
@@ -418,61 +406,7 @@ declare
             }
 };
 
-(:declare
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:docType-tabs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $documents := map { 
-            'title' := lang:get-language-string('biographies', $lang),
-            'target' := 'biographies',
-            'count' := (\:count(for $i in app:document-tabs($node, $model, $lang)('document-tabs') where not($i('title') = ('XML-Preview', 'PND Beacon Links'))  return $i):\) '1'
-        }
-        let $docTypes := 
-            for $docType in map:keys($model('docTypesMap')) 
-            where count($model('docTypesMap')($docType)) gt 0
-            return
-                map {
-                    'title' := lang:get-language-string($docType, $lang),
-                    'target' := $docType,
-                    'count' := count($model('docTypesMap')($docType))
-                }
-        let $contacts := 
-            if(count($model('contacts')) gt 0) then 
-                map {
-                    'title' := lang:get-language-string('contacts', $lang),
-                    'target' := 'contacts',
-                    'count' := count($model('contacts'))
-                }
-            else ()
-        let $backlinks := 
-            if(count($model('backlinks')) gt 0) then 
-                map {
-                    'title' := lang:get-language-string('backlinks', $lang),
-                    'target' := 'contacts',
-                    'count' := count($model('backlinks'))
-                }
-            else ()
-        
-        return 
-            map {
-                'docType-tabs' := (
-                    $documents,
-                    $docTypes,
-                    $contacts,
-                    $backlinks
-                )
-            }
-};:)
 
-(:declare
-    %templates:default("lang", "en")
-    function app:print-docType-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        element {node-name($node)} {
-            $node/@*[not(local-name(.) eq 'target')],
-            attribute target {'.' || $model('docType-tab')('target')},
-            $model('docType-tab')('title') || ' (' || $model('docType-tab')('count') || ')'
-        }
-};:)
 
 declare 
     %templates:default("lang", "en")
@@ -647,27 +581,81 @@ declare
     let $body := 
          if(functx:all-whitespace($doc//tei:text))
          then (
-            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams) 
-            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams)
+(:            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams) :)
+(:            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams):)
             let $text := if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
                          else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
-            return element div {
-                attribute id {'teiLetter_body'},
-                $incipit,
-                $summary,
+            return (:element div {
+                attribute id {'teiLetter_body'},:)
+(:                $incipit,:)
+(:                $summary,:)
                 element span {
                     attribute class {'notAvailable'},
                     $text
                 }
-            }
+            (:}:)
          )
-         else (transform:transform($doc//tei:text/tei:body, $xslt, $xslParams))
+         else transform:transform($doc//tei:text/tei:body, $xslt, $xslParams)/*
      let $foot := 
         if(config:is-news($docID)) then (:ajax:getNewsFoot($doc, $lang):) ''
         else ()
      
      return ($body, $foot)
-    };
+};
+
+declare 
+    %templates:wrap
+    function app:series($node as node(), $model as map(*)) as xs:string {
+        str:normalize-space($model('doc')/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level='s'])
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:respStmts($node as node(), $model as map(*), $lang as xs:string) as element()* {
+        for $respStmt in $model('doc')//tei:respStmt[parent::tei:editionStmt]
+        return (
+            <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
+            <dd>{str:normalize-space(string-join($respStmt/tei:name, ', '))}</dd>
+        )
+};
+
+declare 
+    %templates:wrap
+    function app:textSources($node as node(), $model as map(*)) as map(*) {
+        (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
+        let $source := $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
+        return 
+        map {
+            'textSources' := 
+                typeswitch($source)
+                case element(tei:listWit) return $source/tei:witness/tei:*
+                default return $source
+        }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {
+        typeswitch($model('textSource'))
+        case element(tei:msDesc) return transform:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+        case element(tei:biblStruct) return bibl:printCitation($model('textSource'), 'p', $lang)
+        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)? {
+        if(functx:all-whitespace($model('doc')//tei:note[@type='summary'])) then () 
+        else transform:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)? {
+        if(functx:all-whitespace($model('doc')//tei:incipit)) then () 
+        else transform:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+};
 
 (:~
  : Constructs letter header

@@ -9,8 +9,7 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 (:import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";:)
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 
 (:~
@@ -230,7 +229,7 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
     let $countAuthors := count($authors)
     return 
         for $i at $counter in $authors
-        let $author := <span class="{local-name($i)}">{string(wega:printCorrespondentName($i, $lang, 'sf'))}</span>
+        let $author := <span class="{local-name($i)}">{str:printFornameSurname(str:normalize-space($i))}</span>
         return (
             $author,
             if($counter lt $countAuthors - 1) then ', '
