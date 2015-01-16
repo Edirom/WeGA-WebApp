@@ -73,7 +73,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
         else if($collName eq 'diaries' and not($cacheKey = ('indices', 'A002068'))) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
-            let $sortedColl := core:sortColl($newColl)
+            let $sortedColl := core:sortColl($newColl, $collName)
             let $setCache := 
                 (: Do not cache all collections. This will result in too much memory consumption :)
                 if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
@@ -108,13 +108,43 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    let $rawCollection := core:data-collection($collName)
+    (:let $rawCollection := core:data-collection($collName)
     let $predicates :=  
         if(config:is-person($cacheKey)) then config:get-option(concat($collName, 'Pred'), $cacheKey)
         else config:get-option(concat($collName, 'PredIndices'))
     return 
         if ($predicates and $rawCollection) then util:eval('$rawCollection' || $predicates) 
-        else()
+        else():)
+        
+    if(config:is-person($cacheKey)) then 
+        switch($collName)
+        case 'biblio' return core:data-collection($collName)//tei:autor[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
+        case 'diaries' return
+            if($cacheKey eq 'A002068') then core:data-collection($collName)
+            else ()
+        case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
+        case 'letters' return collection('/db/apps/WeGA-data/letters')//tei:persName[@key = $cacheKey][(ancestor::tei:sender, ancestor::tei:addressee)]/root()
+        case 'news' return core:data-collection($collName)//tei:author[@key = $cacheKey][ancestor::tei:fileDesc]/root()
+        case 'writings' return core:data-collection($collName)//tei:author[@key = $cacheKey][ancestor::tei:fileDesc]/root()
+        case 'works' return core:data-collection($collName)//mei:persName[@dbkey = $cacheKey][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
+        case 'backlinks' return 
+            core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:sender)][not(ancestor::tei:addressee)][not(parent::tei:author)]/root() | 
+            core:data-collection('diaries')//@key[.=$cacheKey]/root() |
+            core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root()
+        case 'contacts' return distinct-values(core:getOrCreateColl('letters', $cacheKey, true())//@key[ancestor::tei:correspDesc][. != $cacheKey]) ! core:doc(.)
+        default return ()
+    else if($cacheKey eq 'indices') then 
+        switch($collName)
+        case 'biblio' return core:data-collection($collName)[not(tei:biblStruct/tei:ref)]
+        case 'diaries' return core:data-collection($collName)[tei:ab]
+        case 'iconography' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+        case 'letters' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+        case 'news' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+        case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
+        case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+        case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
+        default return ()
+    else ()
 };
 
 (:~
@@ -124,15 +154,16 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  : @param $coll collection to be sorted
  : @return document-node()*
  :)
-declare %private function core:sortColl($coll as item()*) as document-node()* {
-    if(config:is-person($coll[1]/tei:person/string(@xml:id)))            then for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
-    else if(config:is-letter($coll[1]/tei:TEI/string(@xml:id)))          then for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
-    else if(config:is-writing($coll[1]/tei:TEI/string(@xml:id)))         then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
-    else if(config:is-diary($coll[1]/tei:ab/string(@xml:id)))            then for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
-    else if(config:is-work($coll[1]/mei:mei/string(@xml:id)))            then for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
-    else if(config:is-news($coll[1]/tei:TEI/string(@xml:id)))            then for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    else if(config:is-biblio($coll[1]/tei:biblStruct/string(@xml:id)))   then for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
-    else $coll
+declare %private function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
+    switch($collName)
+    case 'persons' return for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
+    case 'letters' return for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
+    case 'writings' return for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
+    case 'diaries' return for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
+    case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
+    case 'news' return for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
+    case 'biblio' return for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
+    default return $coll
 };
 
 (:~
