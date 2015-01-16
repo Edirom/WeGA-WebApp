@@ -1,12 +1,6 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
-    version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
-    <xsl:variable name="linkableElements" as="xs:string+"
-        select="('persName', 'rs', 'workName', 'characterName')"/>
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName')"/>
 
 
     <!--  *********************************************  -->
@@ -114,8 +108,7 @@
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when
-                test="exists(@key) and not(./descendant::*[local-name(.) = $linkableElements])">
+            <xsl:when test="exists(@key) and not(./descendant::*[local-name(.) = $linkableElements])">
                 <xsl:element name="a">
                     <xsl:if test="$transcript">
                         <xsl:attribute name="class" select="'transcript'"/>
@@ -171,7 +164,7 @@
                     </xsl:for-each>
                 </xsl:if>
             </xsl:attribute>
-            <xsl:if test="$key != '' and  not(matches($key, '\s'))">
+            <!--<xsl:if test="$key != '' and  not(matches($key, '\s'))">
                 <xsl:attribute name="onmouseover">
                     <xsl:text>metaDataToTip('</xsl:text>
                     <xsl:value-of select="$key"/>
@@ -182,7 +175,7 @@
                 <xsl:attribute name="onmouseout">
                     <xsl:text>UnTip()</xsl:text>
                 </xsl:attribute>
-            </xsl:if>
+            </xsl:if>-->
             <xsl:apply-templates/>
             <!--<xsl:if test="not($key)">
                 <xsl:attribute name="onmouseover">

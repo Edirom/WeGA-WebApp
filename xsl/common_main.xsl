@@ -424,13 +424,13 @@
             <xsl:otherwise>
                 <xsl:element name="span">
                     <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>
-                    <xsl:attribute name="onmouseover">
+<!--                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
+                    <!--<xsl:attribute name="onmouseover">
                         <xsl:text>TagToTip('</xsl:text>
                         <xsl:value-of select="concat('note_',$no)"/>
-                        <!-- <xsl:apply-templates />-->
+                        <!-\- <xsl:apply-templates />-\->
                         <xsl:text>')</xsl:text>
-                    </xsl:attribute>
+                    </xsl:attribute>-->
                     <xsl:attribute name="id">
                         <xsl:value-of select="concat('noteDefinitionMark_',$no)"/>
                     </xsl:attribute>
@@ -563,12 +563,12 @@
                 </xsl:variable>
                 <xsl:element name="span">
                     <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>
-                    <xsl:attribute name="onmouseover">
+<!--                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
+                    <!--<xsl:attribute name="onmouseover">
                         <xsl:text>TagToTip('</xsl:text>
                         <xsl:value-of select="concat('subst_',$addInlineID)"/>
                         <xsl:text>')</xsl:text>
-                    </xsl:attribute>
+                    </xsl:attribute>-->
                     <xsl:text>*</xsl:text>
                 </xsl:element>
                 <xsl:element name="span">
@@ -598,12 +598,12 @@
             <xsl:value-of select="./tei:add"/>
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-                <xsl:attribute name="onmouseout" select="'UnTip()'"/>
-                <xsl:attribute name="onmouseover">
+<!--                <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
+                <!--<xsl:attribute name="onmouseover">
                     <xsl:text>TagToTip('</xsl:text>
                     <xsl:value-of select="concat('subst_',$substInlineID)"/>
                     <xsl:text>')</xsl:text>
-                </xsl:attribute>
+                </xsl:attribute>-->
                 <xsl:text>*</xsl:text>
             </xsl:element>
             <xsl:element name="span">
