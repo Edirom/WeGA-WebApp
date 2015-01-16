@@ -85,7 +85,7 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
                 return
                     str:join-path-elements(($config:tmp-collection-path, 'img', $filename)) 
             else ():)
-        let $log := util:log-system-out($picURI)
+(:        let $log := util:log-system-out($picURI):)
         return 
             if($picURI castable as xs:anyURI) then
                 map {
