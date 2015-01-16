@@ -129,3 +129,11 @@ declare function query:get-title-element($doc as document-node()) as element()* 
         else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
         else $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']
 };
+
+declare function query:get-main-source($doc as document-node()) as element()? {
+    if($doc//tei:sourceDesc) then
+        if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']
+        else $doc//tei:sourceDesc/*
+    else if($doc//mei:sourceDesc) then ()
+    else ()
+};

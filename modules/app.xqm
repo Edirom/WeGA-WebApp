@@ -398,8 +398,10 @@ declare
                 'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
                 'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
                 'works' := core:getOrCreateColl('works', $model('docID'), true()),
-                'contacts' := distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]),
-                'backlinks' := core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')] | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')],
+                'contacts' := core:getOrCreateColl('contacts', $model('docID'), true()),
+                    (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
+                'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+                    (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
                 'gnd' := $gnd,
                 'beaconMap' := $beaconMap
 (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
@@ -557,7 +559,7 @@ declare
         return
             typeswitch($title-element)
             case element(tei:title) return transform:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
-            case element(mei:title) return error(xs:QName('app:error'), 'function not yet implemented')
+            case element(mei:title) return str:normalize-space($title-element)
             default return transform:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
             
 };
@@ -643,16 +645,20 @@ declare
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
 
+(:~
+ : Outputs the summary information of a TEI document
+ :
+:)
 declare 
     %templates:default("lang", "en")
-    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)? {
+    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) {
         if(functx:all-whitespace($model('doc')//tei:note[@type='summary'])) then () 
         else transform:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
 };
 
 declare 
     %templates:default("lang", "en")
-    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)? {
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) {
         if(functx:all-whitespace($model('doc')//tei:incipit)) then () 
         else transform:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
 };
@@ -706,4 +712,96 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
                 concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
             }
         else()
+};
+
+(:
+ : ****************************
+ : Searches
+ : ****************************
+:)
+
+declare 
+    %templates:default("page", "1")
+    %templates:default("docType", "letters")
+    %templates:wrap
+    function app:search($node as node(), $model as map(*), $page as xs:string, $docType as xs:string) as map(*) {
+        map {
+            'search-results' := subsequence($model($docType),1,10)
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:search-results-count($node as node(), $model as map(*)) as xs:string {
+        count($model('search-results')) || ' Suchergebnisse'
+};
+
+(:~
+ : Wrapper for dispatching various document types
+ : Simply redirects to the right fragment from 'templates/includes'
+ :
+ :)
+declare function app:dispatch-preview($node as node(), $model as map(*)) {
+    let $docType := config:get-doctype-by-id($model('search-result')/*/data(@xml:id))
+    return
+        templates:include($node, $model, 'templates/includes/preview-' || $docType || '.html')
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-icon($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        element {name($node)} {
+            $node/@*[not(name(.) = 'href')],
+            attribute href {app:createUrlForDoc($model('search-result'), $lang)},
+            templates:process($node/node(), $model)
+    }
+};
+
+(:~
+ : Overwrites the current model with 'doc' and 'docID' of the preview document
+ :
+ :)
+declare 
+    %templates:wrap
+    function app:preview($node as node(), $model as map(*)) as map(*) {
+        map {
+            'doc' := $model('search-result'),
+            'docID' := $model('search-result')/root()/*/data(@xml:id)
+        }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-title($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        element {name($node)} {
+            $node/@*[not(name(.) = 'href')],
+            attribute href {app:createUrlForDoc($model('search-result'), $lang)},
+            app:document-title($node, $model, $lang)
+    }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-incipit($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        str:normalize-space(app:print-incipit($node, $model, $lang))
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-summary($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        str:normalize-space(app:print-summary($node, $model, $lang))
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-citation($node as node(), $model as map(*), $lang as xs:string) as element(p)? {
+        let $source := query:get-main-source($model('doc'))
+        return 
+            typeswitch($source)
+            case element(tei:biblStruct) return 
+                element {name($node)} {
+                    $node/@*,
+                    str:normalize-space(bibl:printCitation($source, 'p', $lang))
+                }
+            default return ()
 };
