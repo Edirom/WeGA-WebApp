@@ -108,14 +108,6 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    (:let $rawCollection := core:data-collection($collName)
-    let $predicates :=  
-        if(config:is-person($cacheKey)) then config:get-option(concat($collName, 'Pred'), $cacheKey)
-        else config:get-option(concat($collName, 'PredIndices'))
-    return 
-        if ($predicates and $rawCollection) then util:eval('$rawCollection' || $predicates) 
-        else():)
-        
     if(config:is-person($cacheKey)) then 
         switch($collName)
         case 'biblio' return core:data-collection($collName)//tei:autor[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
@@ -123,10 +115,10 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             if($cacheKey eq 'A002068') then core:data-collection($collName)
             else ()
         case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
-        case 'letters' return collection('/db/apps/WeGA-data/letters')//tei:persName[@key = $cacheKey][(ancestor::tei:sender, ancestor::tei:addressee)]/root()
-        case 'news' return core:data-collection($collName)//tei:author[@key = $cacheKey][ancestor::tei:fileDesc]/root()
-        case 'writings' return core:data-collection($collName)//tei:author[@key = $cacheKey][ancestor::tei:fileDesc]/root()
-        case 'works' return core:data-collection($collName)//mei:persName[@dbkey = $cacheKey][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
+        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][(ancestor::tei:sender, ancestor::tei:addressee)]/root()
+        case 'news' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
+        case 'writings' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
+        case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
         case 'backlinks' return 
             core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:sender)][not(ancestor::tei:addressee)][not(parent::tei:author)]/root() | 
             core:data-collection('diaries')//@key[.=$cacheKey]/root() |
