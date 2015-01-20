@@ -103,8 +103,8 @@ declare
  : @author Peter Stadler
  :)
 declare function app:page-javascript($node as node(), $model as map(*)) as element(script)* {
-    js:obfuscate-email(),
-    js:load-portrait($model)
+    js:obfuscate-email()
+(:    js:load-portrait($model):)
 };
 
 declare 
