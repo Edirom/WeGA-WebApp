@@ -150,11 +150,16 @@ declare
  : @author Peter Stadler
  :)
 declare function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string) {
-    for $item in $model($from)
-    return
-        element { node-name($node) } {
-            $node/@*, templates:process($node/node(), map:new(($model, map:entry($to, $item))))
-        }
+    let $startTime := util:system-time()
+    return (
+        for $item in $model($from)
+        return
+            element { node-name($node) } {
+                $node/@*, templates:process($node/node(), map:new(($model, map:entry($to, $item))))
+            }
+        ,
+        util:log-system-out('each: ' || $from || ': ' || string(seconds-from-duration(util:system-time() - $startTime)))
+    )
 };
 
 (:
@@ -207,7 +212,8 @@ declare
         return
             if($count gt 0 or $alwaysShowNoCount) then
                 element {name($node)} {
-                        $node/@*,
+                        $node/@*[not(name(.)='data-target')],
+                        attribute data-target {replace($node/@data-target, '\$docID', $model('docID'))},
                         lang:get-language-string($tabTitle, $lang),
                         if($alwaysShowNoCount) then () else <small>{' (' || $count || ')'}</small>
                     }
@@ -719,7 +725,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
  : Searches
  : ****************************
 :)
-
+(:
 declare 
     %templates:default("page", "1")
     %templates:default("docType", "letters")
@@ -735,24 +741,14 @@ declare
     function app:search-results-count($node as node(), $model as map(*)) as xs:string {
         count($model('search-results')) || ' Suchergebnisse'
 };
-
-(:~
- : Wrapper for dispatching various document types
- : Simply redirects to the right fragment from 'templates/includes'
- :
- :)
-declare function app:dispatch-preview($node as node(), $model as map(*)) {
-    let $docType := config:get-doctype-by-id($model('search-result')/*/data(@xml:id))
-    return
-        templates:include($node, $model, 'templates/includes/preview-' || $docType || '.html')
-};
+:)
 
 declare 
     %templates:default("lang", "en")
     function app:preview-icon($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('search-result'), $lang)},
+            attribute href {app:createUrlForDoc($model('result-page-entry'), $lang)},
             templates:process($node/node(), $model)
     }
 };
@@ -765,8 +761,8 @@ declare
     %templates:wrap
     function app:preview($node as node(), $model as map(*)) as map(*) {
         map {
-            'doc' := $model('search-result'),
-            'docID' := $model('search-result')/root()/*/data(@xml:id)
+            'doc' := $model('result-page-entry'),
+            'docID' := $model('result-page-entry')/root()/*/data(@xml:id)
         }
 };
 
@@ -775,7 +771,7 @@ declare
     function app:preview-title($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('search-result'), $lang)},
+            attribute href {app:createUrlForDoc($model('result-page-entry'), $lang)},
             app:document-title($node, $model, $lang)
     }
 };

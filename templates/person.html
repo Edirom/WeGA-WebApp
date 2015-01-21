@@ -91,12 +91,12 @@
                 <div class="col-xs-12 ">
                     <ul class="resp-tabs-list">
                         <li class="active"><a data-template="app:person-main-tab">biographies</a></li>
-                        <li><a data-template="app:person-main-tab">correspondence</a></li>
-                        <li><a data-template="app:person-main-tab">writings</a></li>
-                        <li><a data-template="app:person-main-tab">diaries</a></li>
-                        <li><a data-template="app:person-main-tab">works</a></li>
-                        <li><a data-template="app:person-main-tab">contacts</a></li>
-                        <li><a data-template="app:person-main-tab">backlinks</a></li>
+                        <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
+                        <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
+                        <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
+                        <li><a data-template="app:person-main-tab" href="#works" data-target="$docID/works.html">works</a></li>
+                        <li><a data-template="app:person-main-tab" href="#contacts" data-target="$docID/contacts.html">contacts</a></li>
+                        <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                     </ul>
                 </div>
             </div>
@@ -172,99 +172,27 @@
                             </div>
                             <!-- Korrespondenz -->
                             <div class="tab-pane paddingTopIcon paddingBottomIcon textBlock korrespondenz" id="correspondence">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 textBlock searchResults" data-template="app:search" data-template-docType="correspondence">
-                                        <h2 data-template="app:search-results-count">256 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                               <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <!-- loaded via ajax -->
                             </div>
                             <!-- Schriften-->
                             <div class="schriften paddingTopIcon paddingBottomIcon textBlock" id="writings">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 searchResults" data-template="app:search" data-template-docType="writings">
-                                        <h2 data-template="app:search-results-count">124 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                                <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <!-- loaded via ajax -->
                             </div>
                             <!-- Tagebücher-->
-                            <div class="tagebuecher paddingTopIcon paddingBottomIcon textBlock">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 searchResults" data-template="app:search" data-template-docType="diaries">
-                                        <h2 data-template="app:search-results-count">124 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                                <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="tagebuecher paddingTopIcon paddingBottomIcon textBlock" id="diaries">
+                                <!-- loaded via ajax -->
                             </div>
                             <!-- Werke -->
-                            <div class="werke paddingTopIcon paddingBottomIcon textBlock">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 searchResults" data-template="app:search" data-template-docType="works">
-                                        <h2 data-template="app:search-results-count">124 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                                <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="werke paddingTopIcon paddingBottomIcon textBlock" id="works">
+                                <!-- loaded via ajax -->
                             </div>
                             <!-- Kontakte -->
-                            <div class="kontakte paddingTopIcon paddingBottomIcon textBlock">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 searchResults" data-template="app:search" data-template-docType="contacts">
-                                        <h2 data-template="app:search-results-count">124 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                                <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="kontakte paddingTopIcon paddingBottomIcon textBlock" id="contacts">
+                                <!-- loaded via ajax -->
                             </div>
                             <!-- Backlinks -->
-                            <div class="backlinks paddingTopIcon paddingBottomIcon textBlock">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <!-- Facetten Filter-->
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 searchResults" data-template="app:search" data-template-docType="backlinks">
-                                        <h2 data-template="app:search-results-count">124 Suchergebnisse</h2>
-                                        <ul class="media-list">
-                                            <li class="media" data-template="app:each" data-template-from="search-results" data-template-to="search-result">
-                                                <div data-template="app:dispatch-preview"/>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="backlinks paddingTopIcon paddingBottomIcon textBlock" id="backlinks">
+                                <!-- loaded via ajax -->
                             </div>
                         </div>
                     </div>

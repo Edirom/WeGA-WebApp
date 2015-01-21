@@ -8,7 +8,19 @@ $("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
 
 $('select').selectpicker({});
 
-$('#details').easyResponsiveTabs();
+$('#details').easyResponsiveTabs({
+    activate: function() {
+        var activeTab = $('li.resp-tab-active a');
+        var href = activeTab.attr('href');
+        var url = activeTab.attr('data-target');
+/*        console.log(url);*/
+
+        // Do not load the page twice
+        if ($(href).contents()[1].nodeType !== 1) { 
+            $(href).load(url);
+        }
+    }
+});
 
 
 $("[data-hovered-src]").hover(
