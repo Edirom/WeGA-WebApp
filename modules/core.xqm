@@ -132,6 +132,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'iconography' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'letters' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'news' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+        case 'persons' return core:data-collection($collName)[not(tei:person/tei:ref)]
         case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
         case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
