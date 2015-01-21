@@ -116,7 +116,7 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
             </forward>
         </view>
         <error-handler>
-            <forward url="/templates/error-page.html" method="get"/>
+            <forward url="{map:get($exist-vars, 'controller') || '/templates/error-page.html'}" method="get"/>
             <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql'}"/>
         </error-handler>
     </dispatch>
