@@ -28,9 +28,9 @@ declare function query:get-reg-name($key as xs:string) as xs:string {
     return wega:cleanString($regName)
     :)
     let $dictionary := norm:get-norm-doc('persons') 
-    let $response := $dictionary//norm:entry[@docID = $key]
+    let $response := $dictionary//@docID[. = $key]
     return 
-        if(exists($response)) then $response/text() cast as xs:string
+        if(exists($response)) then $response/parent::norm:entry/text()
         else ''
 };
 
