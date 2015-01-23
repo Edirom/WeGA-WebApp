@@ -6,8 +6,11 @@ $("h1").fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'});
 $("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
 
 
-$('select').selectpicker({});
+/* only needed after ajax calls?!? --> see later */
+/*$('select').selectpicker({});*/
 
+
+/* Responsive Tabs für person.html */
 $('#details').easyResponsiveTabs({
     activate: function() {
         var activeTab = $('li.resp-tab-active a');
@@ -17,30 +20,41 @@ $('#details').easyResponsiveTabs({
 
         // Do not load the page twice
         if ($(href).contents()[1].nodeType !== 1) { 
-            $(href).load(url);
+            $(href).mask();
+            $(href).load(url, function(response, status, xhr) {
+                if ( status == "error" ) {
+                    console.log(xhr.status + ": " + xhr.statusText);
+                }
+                else {
+                    $('select').selectpicker({});
+                }
+            });
         }
+        /* update facets */
+        $('select').selectpicker({});
+        $(href).unmask;
     }
 });
 
 
+/* Farbige Support Badges im footer (page.html) */
 $("[data-hovered-src]").hover(
-        
-        function(){
-    $(this).data("original-src",$(this).attr("src"));
-    $(this).attr("src",($(this).data("hovered-src")));
-},
+    function(){
+        $(this).data("original-src",$(this).attr("src"));
+        $(this).attr("src",($(this).data("hovered-src")));
+    },
+    function(){
+        $(this).data("hovered-src",$(this).attr("src"));
+        $(this).attr("src",($(this).data("original-src")));
+    } 
+);
 
-function(){
-          $(this).data("hovered-src",$(this).attr("src"));
-    $(this).attr("src",($(this).data("original-src")));
-} );
-
+/* Various functions */
 function showEntries(that)
 {
-
     $("#filter span").removeClass("activeFilterElement");
     $(that).addClass("activeFilterElement");
-}
+};
 
 function changeIconCollapse(that)
 {
@@ -63,9 +77,6 @@ function changeIconCollapse(that)
         $(that).addClass("inner-shadow-light");
     }
 
-
-
-
     else if ($(that).children("i").first().hasClass("fa-plus-circle"))
     {
         $(that).children("i").first().removeClass("fa-plus-circle");
@@ -77,12 +88,9 @@ function changeIconCollapse(that)
         $(that).children("i").first().removeClass("fa-minus-circle");
         $(that).children("i").first().addClass("fa-plus-circle");
     }
-}
-
-
+};
 
 function addSearchOption(that)
 {
-    
     $(that).closest(".col-md-9").append("<div class='searchform'>"+$(that).closest(".searchform").html()+"</div>");
 }
