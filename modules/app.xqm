@@ -213,7 +213,7 @@ declare
             if($count gt 0 or $alwaysShowNoCount) then
                 element {name($node)} {
                         $node/@*[not(name(.)='data-target')],
-                        attribute data-target {replace($node/@data-target, '\$docID', $model('docID'))},
+                        if($node/@data-target) then attribute data-target {replace($node/@data-target, '\$docID', $model('docID'))} else (),
                         lang:get-language-string($tabTitle, $lang),
                         if($alwaysShowNoCount) then () else <small>{' (' || $count || ')'}</small>
                     }
