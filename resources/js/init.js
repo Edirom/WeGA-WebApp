@@ -9,6 +9,8 @@ $("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
 /* only needed after ajax calls?!? --> see later */
 /*$('select').selectpicker({});*/
 
+/* hide tabs with no respective div content */
+$('li').has('a.deactivated').hide();
 
 /* Responsive Tabs für person.html */
 $('#details').easyResponsiveTabs({

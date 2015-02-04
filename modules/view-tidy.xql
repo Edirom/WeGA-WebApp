@@ -20,8 +20,8 @@ declare function local:tidy($node as node()) as node()? {
             for $child in $node/node() return local:tidy($child)     
                         
         case element() return
-            if($node/xhtml:a[@class='deactivated']) then ()
-            else 
+            (:if($node/xhtml:a[@class='deactivated']) then ()
+            else :)
                 element { node-name($node) } {
                     for $attr in $node/@* return local:tidy-attr($attr),
                     for $child in $node/node() return local:tidy($child)
