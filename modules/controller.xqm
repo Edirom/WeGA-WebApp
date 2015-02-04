@@ -45,7 +45,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
  :)
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{core:link-to-current-app($path)}"/>
+        <redirect url="{core:link-to-current-app(controller:encode-path-segments-for-uri($path))}"/>
     </dispatch>
 };
 
@@ -61,7 +61,7 @@ declare function controller:dispatch($exist-vars as map(*)) {
             map:entry('media-type', $media-type)
         ))
     let $doc := core:doc($docID)
-    let $path := controller:path-to-resource($doc, $exist-vars('lang'))
+    let $path := controller:encode-path-segments-for-uri(controller:path-to-resource($doc, $exist-vars('lang')))
 (:    let $log := util:log-system-out($exist-vars('path')):)
 (:    let $log := util:log-system-out($path):)
     return 
@@ -94,9 +94,12 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
  : @author Peter Stadler
  : @param $uri
  :)
-declare function controller:encode-path-segments-for-uri($uri-string as xs:string) as xs:string {
-    if(matches($uri-string, '^[a-zA-Z0-9/]+$')) then $uri-string
-    else str:join-path-elements(tokenize($uri-string, '/') ! encode-for-uri(.))
+declare function controller:encode-path-segments-for-uri($uri-string as xs:string?) as xs:string? {
+    typeswitch($uri-string)
+    case xs:string return 
+        if(matches($uri-string, '^[a-zA-Z0-9/]+$')) then $uri-string
+        else str:join-path-elements(tokenize($uri-string, '/') ! encode-for-uri(.))
+    default return ()
 };
 
 declare function controller:path-to-resource($doc as document-node()?, $lang as xs:string) as xs:string? {

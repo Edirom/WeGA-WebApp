@@ -562,10 +562,14 @@ declare
     %templates:default("lang", "en")
     function app:document-title($node as node(), $model as map(*), $lang as xs:string) {
         let $title-element := query:get-title-element($model('doc'))[1]
+        let $dateFormat := if ($lang eq 'en')
+            then '%A, %B %d, %Y'
+            else '%A, %d. %B %Y'
         return
             typeswitch($title-element)
             case element(tei:title) return transform:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
             case element(mei:title) return str:normalize-space($title-element)
+            case element(tei:date) return if($title-element castable as xs:date) then date:strfdate(xs:date($title-element), $lang, $dateFormat) else ()
             default return transform:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
             
 };
@@ -800,4 +804,11 @@ declare
                     str:normalize-space(bibl:printCitation($source, 'p', $lang))
                 }
             default return ()
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:preview-diary-teaser($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        str:shorten-text($model('doc'), 200)
 };

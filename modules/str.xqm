@@ -65,3 +65,19 @@ declare function str:enquote($str as xs:string?, $lang as xs:string) as xs:strin
         else ()
     
 };
+
+(:~
+ : Print teaser text of max length while truncating at word border
+ :
+ : @author Peter Stadler
+ : @param $string the string to truncate
+ : @param $maxLength the max length of the returned string as xs:int
+ : @return xs:string 
+:)
+declare function str:shorten-text($string as xs:string, $maxLength as xs:int) as xs:string {
+    let $delimiterRegex := '[\s\.,!\?\+-;]' 
+    let $maxString := substring(normalize-space($string),1,$maxLength)
+    return 
+        if(string-length($maxString) lt $maxLength) then $maxString 
+        else concat(functx:substring-before-last-match($maxString, $delimiterRegex), ' …')
+};

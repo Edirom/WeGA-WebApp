@@ -125,7 +125,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
 declare function query:get-title-element($doc as document-node()) as element()* {
     let $docID := $doc/root()/*/@xml:id
     return
-        if(config:is-diary($docID)) then ()
+        if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
         else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
         else $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']
 };
