@@ -122,7 +122,8 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'backlinks' return 
             core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:sender)][not(ancestor::tei:addressee)][not(parent::tei:author)]/root() | 
             core:data-collection('diaries')//@key[.=$cacheKey]/root() |
-            core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root()
+            core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
+            core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root()
         case 'contacts' return distinct-values(core:getOrCreateColl('letters', $cacheKey, true())//@key[ancestor::tei:correspDesc][. != $cacheKey]) ! core:doc(.)
         default return ()
     else if($cacheKey eq 'indices') then 
