@@ -97,6 +97,20 @@ declare
 };
 
 (:~
+ : Simply print a sequence from the $model map by joining items with $separator
+ :
+ : @param $separator the separator for the string-join()
+ : @author Peter Stadler
+ :)
+declare 
+    %templates:wrap
+    %templates:default("separator", ", ")
+    function app:join($node as node(), $model as map(*), $key as xs:string, $separator as xs:string) as xs:string? {
+        if ($model($key)) then string-join($model($key) ! str:normalize-space(.), $separator)
+        else ()
+};
+
+(:~
  : Add additional JavaScript to the page template
  : which gets invoked at the end of the page
  :
@@ -379,7 +393,7 @@ declare
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    function app:person-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map{
             'fullnames' := $model('doc')//tei:persName[@type = 'full'],
             'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'],
@@ -387,7 +401,9 @@ declare
             'realnames' := $model('doc')//tei:persName[@type = 'real'],
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'],
             'births' := date:printDate($model('doc')//tei:birth/tei:date[1], $lang),
-            'deaths' := date:printDate($model('doc')//tei:death/tei:date[1], $lang)
+            'deaths' := date:printDate($model('doc')//tei:death/tei:date[1], $lang),
+            'occupations' := $model('doc')//tei:occupation,
+            'residences' := $model('doc')//tei:residence
         }
 };
 
@@ -752,7 +768,7 @@ declare
     function app:preview-icon($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('result-page-entry'), $lang)},
+            attribute href {app:createUrlForDoc($model('doc'), $lang)},
             templates:process($node/node(), $model)
     }
 };
@@ -777,7 +793,8 @@ declare
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
             attribute href {app:createUrlForDoc($model('doc'), $lang)},
-            app:document-title($node, $model, $lang)
+            if(config:is-person($model('docID'))) then query:get-reg-name($model('docID')) 
+            else app:document-title($node, $model, $lang)
     }
 };
 
