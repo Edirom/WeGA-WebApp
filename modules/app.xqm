@@ -766,7 +766,8 @@ declare
     function app:preview($node as node(), $model as map(*)) as map(*) {
         map {
             'doc' := $model('result-page-entry'),
-            'docID' := $model('result-page-entry')/root()/*/data(@xml:id)
+            'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]
         }
 };
 
@@ -775,7 +776,7 @@ declare
     function app:preview-title($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('result-page-entry'), $lang)},
+            attribute href {app:createUrlForDoc($model('doc'), $lang)},
             app:document-title($node, $model, $lang)
     }
 };
@@ -811,4 +812,45 @@ declare
     %templates:default("lang", "en")
     function app:preview-diary-teaser($node as node(), $model as map(*), $lang as xs:string) as xs:string {
         str:shorten-text($model('doc'), 200)
+};
+
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-opus-no($node as node(), $model as map(*), $lang as xs:string) as element(a)? {
+        if(exists($model('doc')//mei:altId[@type])) then 
+            element {name($node)} {
+                $node/@*[not(name(.) = 'href')],
+                attribute href {app:createUrlForDoc($model('doc'), $lang)},
+                if(exists($model('doc')//mei:altId[@type='WeV'])) then concat('(WeV ', $model('doc')//mei:altId[@type='WeV'], ')') (: Weber-Werke :)
+                else concat('(', $model('doc')//mei:altId[1]/string(@type), ' ', $model('doc')//mei:altId[1], ')') (: Fremd-Werke :)
+            }
+        else()
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:preview-subtitle($node as node(), $model as map(*), $lang as xs:string) as element(h4)? {
+        if(exists($model('doc')//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'])) then 
+            element {name($node)} {
+                $node/@*,
+                data($model('doc')//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'][1])
+            }
+        else()
+};
+
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:preview-relator-role($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        lang:get-language-string($model('relator')/data(@role), $lang)
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        if($model('relator')/@dbkey) then query:get-reg-name($model('relator')/@dbkey)
+        else str:normalize-space($model('relator'))
 };
