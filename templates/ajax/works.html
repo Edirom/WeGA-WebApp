@@ -1,13 +1,25 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="row" data-template="search:results" data-template-docType="works">
     <div class="col-md-3 col-md-push-9">
         <!-- Facetten Filter-->
+        <div class="allFilter">
+            <h2 data-template="lang:translate">filter</h2>
+<!--            <h4 data-template="lang:translate">chronology</h4>-->
+            
+            <h4 data-template="lang:translate">librettists</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="librettists"/>
+            
+            <h4 data-template="lang:translate">lyricists</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="lyricists"/>
+            
+            <h4 data-template="lang:translate">dedicatees</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="dedicatees"/>
+            
+        </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page"
-        data-template-docType="works">
+    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page" data-template-docType="works">
         <h2 data-template="search:results-count">124 Suchergebnisse</h2>
         <ul class="media-list">
-            <li class="media" data-template="app:each" data-template-from="result-page-entries"
-                data-template-to="result-page-entry">
+            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
                 <div data-template="search:dispatch-preview"/>
             </li>
         </ul>

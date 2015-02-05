@@ -1,6 +1,22 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="row" data-template="search:results" data-template-docType="diaries">
     <div class="col-md-3 col-md-push-9">
         <!-- Facetten Filter-->
+        <div class="allFilter">
+            <h2 data-template="lang:translate">filter</h2>
+            <h4 data-template="lang:translate">chronology</h4>
+            
+            <h4 data-template="lang:translate">persons</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="persons"/>
+            
+            <h4 data-template="lang:translate">works</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="works"/>
+            
+            <h4 data-template="lang:translate">places</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="places"/>
+            
+            <h4 data-template="lang:translate">docStatus</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="docStatus"/>
+        </div>
     </div>
     <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page" data-template-docType="diaries">
         <h2 data-template="search:results-count">124 Suchergebnisse</h2>

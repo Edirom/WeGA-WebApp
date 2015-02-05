@@ -13,6 +13,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace functx="http://www.functx.com";
@@ -131,8 +132,8 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('persons', 'indices', true())
         let $docID := $doc/tei:person/data(@xml:id)
-        let $sex := normalize-space($doc//tei:sex)
-        let $name := normalize-space($doc//tei:persName[@type='reg'])
+        let $sex := str:normalize-space($doc//tei:sex)
+        let $name := str:normalize-space($doc//tei:persName[@type='reg'])
         let $sortName := core:create-sort-persname($doc/tei:person) 
         order by $sortName ascending, $name ascending
         return 
@@ -150,7 +151,7 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
         for $doc in core:getOrCreateColl('writings', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := date:getOneNormalizedDate($doc//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
-        let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/normalize-space(), '. ')
+        let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
         order by $normDate, $n
         return 
             element entry {
@@ -170,16 +171,19 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('works', 'indices', true())
         let $docID := $doc/mei:mei/data(@xml:id)
-        let $normDate := $doc//mei:seriesStmt/mei:title[@level='s']/xs:int(@n)
+(:        let $normDate := $doc//mei:seriesStmt/mei:title[@level='s']/xs:int(@n):)
+        let $title := str:normalize-space(query:get-title-element($doc)[1])
         let $n := $doc//mei:altId[@type = 'WeV']
-        let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype) 
-        let $sortCategory03 := $doc//mei:altId[@type = 'WeV']/xs:int(@n) 
-        order by $normDate, $sortCategory02, $sortCategory03, $n
+        (:let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype):) 
+        (:let $sortCategory03 := $doc//mei:altId[@type = 'WeV']/xs:int(@n):) 
+        (:order by $normDate, $sortCategory02, $sortCategory03, $n:)
+        order by $title, $n
         return 
             element entry {
                 attribute docID {$docID},
                 attribute n {$n},
-                $normDate
+                (:$normDate:)
+                $title
             }
     }</catalogue>
 };

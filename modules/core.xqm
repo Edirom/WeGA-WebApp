@@ -112,7 +112,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         switch($collName)
         case 'biblio' return core:data-collection($collName)//tei:autor[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
         case 'diaries' return
-            if($cacheKey eq 'A002068') then core:data-collection($collName)
+            if($cacheKey eq 'A002068') then core:data-collection($collName)[tei:ab]
             else ()
         case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
         case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][(ancestor::tei:sender, ancestor::tei:addressee)]/root()
@@ -121,7 +121,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
         case 'backlinks' return 
             core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:sender)][not(ancestor::tei:addressee)][not(parent::tei:author)]/root() | 
-            core:data-collection('diaries')//@key[.=$cacheKey]/root() |
+            core:data-collection('diaries')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root()
         case 'contacts' return distinct-values(core:getOrCreateColl('letters', $cacheKey, true())//@key[ancestor::tei:correspDesc][. != $cacheKey]) ! core:doc(.)

@@ -15,6 +15,7 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace session = "http://exist-db.org/xquery/session";
 declare namespace util = "http://exist-db.org/xquery/util";
+declare namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -23,19 +24,40 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace functx="http://www.functx.com";
 
-declare function facets:select($node as node(), $model as map(*), $facet as xs:string) as element(select) {
-    let $index-entries := facets:index-entries($model('search-results'), $facet)
-    let $startTime := util:system-time()
+declare 
+    %templates:default("lang", "en")
+    function facets:select($node as node(), $model as map(*), $facet as xs:string, $lang as xs:string) as element(select) {
+        let $facet-items := 
+            switch($facet)
+            case 'docType' return facets:from-docType($model('search-results'), $facet, $lang)
+            default return facets:from-index($model('search-results'), $facet)
+        return
+            element {name($node)} {
+                $node/@*,
+                <option selected="selected">{lang:get-language-string('all', $lang)}</option>,
+                $facet-items ! 
+                <option>{./facets:term || ' (' || ./facets:frequency || ')'}</option>
+            }
+};
+
+declare %private function facets:from-index($collection as node()*, $facet as xs:string) as element(facets:entry)* {
+    let $index-entries := facets:index-entries($collection, $facet)
+(:    let $startTime := util:system-time():)
     return (
-        element {name($node)} {
-            $node/@*,
-            facets:createFacets($index-entries) ! 
-            <option>{./facets:term || ' (' || ./facets:frequency || ')'}</option>
-        },
-        util:log-system-out($facet || ': ' || string(seconds-from-duration(util:system-time() - $startTime)))
+        facets:createFacets($index-entries)(:,
+        util:log-system-out($facet || ': ' || string(seconds-from-duration(util:system-time() - $startTime))):)
     )
 };
 
+declare %private function facets:from-docType($collection as node()*, $facet as xs:string, $lang as xs:string) as element(facets:entry)* {
+    for $i in $collection
+    group by $docType := substring($i/*/@xml:id, 1, 3)
+    return 
+        <facets:entry>
+            <facets:term>{lang:get-language-string(config:get-doctype-by-id($docType || '0001'), $lang)}</facets:term>
+            <facets:frequency>{count($i)}</facets:frequency>
+        </facets:entry>
+};
 
 (:~
  : Returns list of terms and their frequency in the collection
@@ -50,7 +72,7 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
         <facets:term>{
             switch(config:get-doctype-by-id($term))
             case 'persons' return query:get-reg-name($term)
-            case 'works' return 'To do'
+            case 'works' return query:get-reg-title($term)
             default return str:normalize-space($term) 
         }</facets:term>
         <facets:frequency>{$data[2]}</facets:frequency>
@@ -78,7 +100,19 @@ declare %private function facets:index-entries($collection as node()*, $facet as
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
     case 'placeOfSender' return $collection//tei:placeName[parent::tei:placeSender]
     case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:placeAddressee]
-(:    case 'works' return $collection//@key[parent::tei:workName] | $collection//@key[parent::tei:rs[@type='work']]:)
+    case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
+    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]
+    case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
+    case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
+    case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
+    case 'source' return $collection/tei:person/@source
+    case 'occupations' return $collection//tei:occupation
+    case 'residences' return $collection//tei:settlement[parent::tei:residence]
+        (: index-keys does not work with multiple whitespace separated keys
+            probably need to change to ft:query() someday?!
+        :)
+    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key[matches(., '^A02\d{4}$')])
+    case 'works' return ($collection//@key[parent::tei:workName][matches(., '^A02\d{4}$')] | $collection//@key[parent::tei:rs/@type='work'][matches(., '^A02\d{4}$')])
     default return ()
 };
 
