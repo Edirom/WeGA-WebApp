@@ -871,3 +871,25 @@ declare
         if($model('relator')/@dbkey) then query:get-reg-name($model('relator')/@dbkey)
         else str:normalize-space($model('relator'))
 };
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:register-title($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        'Personen'
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        'Register'
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        'Personen'
+};
+

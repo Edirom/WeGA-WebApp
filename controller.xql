@@ -141,20 +141,8 @@ else if (ends-with($exist:resource, '.xml')) then
     </dispatch>
 :)
 (: Register :)
-(:else if (matches($exist:path, concat('^/', $lang,'/', $indices, '(/(', $persons, '|', $letters, '|', $diaries, '|', $writings, '|', $works, '|', $news, '))?$'))) then
-    let $docType := if(matches($exist:resource, $indices))
-        then 'persons' (\: Default Register :\)
-        else if($lang eq 'en')
-            then $exist:resource
-            else lang:translate-language-string(xmldb:decode-uri(xs:anyURI($exist:resource)), $lang, 'en')
-    return 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/register.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	   <add-parameter name="docType" value="{lower-case($docType)}"/>
-    	   <add-parameter name="id" value="indices"/>
-    	</forward>
-    </dispatch>:)
+else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang), '/'))) then
+    controller:dispatch-register($exist-vars)
 
 (: Editorial Guidelines :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?$'))) then

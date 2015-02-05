@@ -70,6 +70,13 @@ declare function controller:dispatch($exist-vars as map(*)) {
         else controller:error($exist-vars, 404)
 };
 
+declare function controller:dispatch-register($exist-vars as map(*)) {
+    let $valid-path := '/de/Register/Personen'
+    return 
+        if($valid-path eq $exist-vars('path')) then controller:forward-html('/templates/register.html', $exist-vars)
+        else controller:error($exist-vars, 404)
+};
+
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
