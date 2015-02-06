@@ -140,9 +140,14 @@ else if (ends-with($exist:resource, '.xml')) then
     	</forward>
     </dispatch>
 :)
+
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang), '/'))) then
     controller:dispatch-register($exist-vars)
+
+(: Projekt :)
+else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/'))) then
+    controller:dispatch-project($exist-vars)
 
 (: Editorial Guidelines :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?$'))) then

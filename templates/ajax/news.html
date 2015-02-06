@@ -1,0 +1,26 @@
+<div xmlns="http://www.w3.org/1999/xhtml" class="row" data-template="search:results" data-template-docType="news">
+    <div class="col-md-3 col-md-push-9">
+        <!-- Facetten Filter-->
+        <div class="allFilter">
+            <h2 data-template="lang:translate">filter</h2>
+            <h4 data-template="lang:translate">chronology</h4>
+            
+            <h4 data-template="lang:translate">persons</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="persons"/>
+            
+            <h4 data-template="lang:translate">works</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="works"/>
+            
+            <h4 data-template="lang:translate">places</h4>
+            <select data-live-search="true" class="selectpicker gradient-light" data-template="facets:select" data-template-facet="places"/>
+        </div>
+    </div>
+    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page" data-template-docType="news">
+        <h2 data-template="search:results-count">124 Suchergebnisse</h2>
+        <ul class="media-list">
+            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+                <div data-template="search:dispatch-preview"/>
+            </li>
+        </ul>
+    </div>
+</div>

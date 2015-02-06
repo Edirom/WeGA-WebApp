@@ -52,7 +52,7 @@ declare function controller:redirect-absolute($path as xs:string) as element(exi
 };
 
 
-declare function controller:dispatch($exist-vars as map(*)) {
+declare function controller:dispatch($exist-vars as map(*)) as element(exist:dispatch) {
     let $media-type := controller:media-type($exist-vars)
     let $docID := functx:substring-before-if-contains($exist-vars('resource'), '.')
     let $updated-exist-vars := 
@@ -72,9 +72,10 @@ declare function controller:dispatch($exist-vars as map(*)) {
         else controller:error($exist-vars, 404)
 };
 
-declare function controller:dispatch-register($exist-vars as map(*)) {
+declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
     let $docType := lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
+    let $log := util:log-system-out($docType || ' - ' || $path)
     let $updated-exist-vars := 
         map:new((
             $exist-vars, 
@@ -84,6 +85,11 @@ declare function controller:dispatch-register($exist-vars as map(*)) {
     return 
         if($exist-vars('path') eq $path) then controller:forward-html('/templates/register.html', $updated-exist-vars)
         else controller:error($exist-vars, 404)
+};
+
+declare function controller:dispatch-project($exist-vars as map(*)) as element(exist:dispatch) {
+    if(contains($exist-vars('resource'), '.')) then controller:error($exist-vars, 404)
+    else controller:dispatch-register($exist-vars)
 };
 
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
@@ -140,10 +146,9 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
 };
 
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
-    let $valid-docTypes := map:keys($config:wega-docTypes)
-    return 
-        if($docType = $valid-docTypes) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
-        else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
+    if($docType = ('letters', 'diaries', 'persons', 'writings', 'works')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
+    else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
+    else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
 };
 
 (:~

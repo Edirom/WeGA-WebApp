@@ -415,18 +415,11 @@ declare
         }
 };
 
-declare 
+declare
+    %templates:wrap
     %templates:default("lang", "en")
-    function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as element(p) {
-        let $date := date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang)
-        (:let $dateFormat := 
-            if($lang eq 'de') then '%d.%B.%Y'
-            else '%B/%d/%Y':)
-        return
-            element {name($node)} {
-                $node/@*,
-                $date
-            }
+    function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang)
 };
 
 (:
@@ -936,3 +929,10 @@ declare function app:register-dispatch($node as node(), $model as map(*)) {
     case 'letters' return templates:include($node, $model, 'templates/ajax/correspondence.html')
     default return templates:include($node, $model, 'templates/ajax/' || $model('docType') || '.html')
 };
+
+declare 
+    %templates:wrap
+    function app:news-teaser-text($node as node(), $model as map(*)) as xs:string {
+        str:shorten-text($model('doc')//tei:text, 200)
+};
+
