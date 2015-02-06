@@ -165,6 +165,7 @@ declare function date:printDate($date as element(tei:date)?, $lang as xs:string)
     let $date := 
         if($date/@when) then 
             if($date/@when castable as xs:date) then date:getNiceDate($date/@when,$lang)
+            else if($date/@when castable as xs:dateTime) then date:getNiceDate($date/xs:dateTime(@when) cast as xs:date,$lang)
             else if($date/@when castable as xs:gYear) then date:formatYear($date/@when cast as xs:int, $lang)
             else ()
         else if(exists($notBefore)) then 
