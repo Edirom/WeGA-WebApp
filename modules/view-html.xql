@@ -31,6 +31,7 @@ let $model :=
     case xs:string return 
         map {
             'docID' := request:get-attribute('docID'),
+            'docType' := request:get-attribute('docType'),
             'doc' := core:doc(request:get-attribute('docID')),
             'page-title' := 'Eine Seite aus der WeGA'
         }

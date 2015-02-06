@@ -171,8 +171,8 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
             element { node-name($node) } {
                 $node/@*, templates:process($node/node(), map:new(($model, map:entry($to, $item))))
             }
-        ,
-        util:log-system-out('each: ' || $from || ': ' || string(seconds-from-duration(util:system-time() - $startTime)))
+        (:,
+        util:log-system-out('each: ' || $from || ': ' || string(seconds-from-duration(util:system-time() - $startTime))):)
     )
 };
 
@@ -210,12 +210,42 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+(:       TODO: this should link somewhere!! :)
+        lang:get-language-string('indices', $lang)
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        lang:get-language-string($model('docType'), $lang)
+};
+
 
 (:
  : ****************************
  : Navigation / Tabs 
  : ****************************
 :)
+
+
+declare
+    %templates:default("lang", "en")
+    function app:nav-register($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        element {name($node)} {
+                $node/@*[not(name(.)='href')],
+                attribute href {
+                    if(normalize-space($node) eq 'indices') then '#'
+                    else core:link-to-current-app(controller:path-to-register(normalize-space($node), $lang))
+                },
+                lang:get-language-string(normalize-space($node), $lang)
+            }
+};
+
 
 declare
     %templates:default("lang", "en")
@@ -420,7 +450,7 @@ declare
                 'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
                 'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
                 'works' := core:getOrCreateColl('works', $model('docID'), true()),
-                'contacts' := core:getOrCreateColl('contacts', $model('docID'), true()),
+                'contacts' := core:getOrCreateColl('persons', $model('docID'), true()),
                     (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
                 'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
                     (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
@@ -876,20 +906,12 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:register-title($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        'Personen'
+        lang:get-language-string($model('docType'), $lang)
 };
 
-declare 
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        'Register'
+declare function app:register-dispatch($node as node(), $model as map(*)) {
+    switch($model('docType'))
+    case 'persons' return templates:include($node, $model, 'templates/ajax/contacts.html')
+    case 'letters' return templates:include($node, $model, 'templates/ajax/correspondence.html')
+    default return templates:include($node, $model, 'templates/ajax/' || $model('docType') || '.html')
 };
-
-declare 
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        'Personen'
-};
-

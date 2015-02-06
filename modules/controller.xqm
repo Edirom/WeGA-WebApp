@@ -8,6 +8,7 @@ module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/contro
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -21,8 +22,9 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
     	<view>
             <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}">
-                <set-attribute name="resource" value="{$exist-vars('resource')}"/>
                 <set-attribute name="docID" value="{$exist-vars('docID')}"/>
+                <!-- Needed for register pages -->
+                <set-attribute name="docType" value="{$exist-vars('docType')}"/>
             </forward>
             <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
                 <set-attribute name="lang" value="{$exist-vars('lang')}"/>
@@ -71,9 +73,16 @@ declare function controller:dispatch($exist-vars as map(*)) {
 };
 
 declare function controller:dispatch-register($exist-vars as map(*)) {
-    let $valid-path := '/de/Register/Personen'
+    let $docType := lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))
+    let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
+    let $updated-exist-vars := 
+        map:new((
+            $exist-vars, 
+            map:entry('docID', 'indices'),
+            map:entry('docType', $docType)
+        ))
     return 
-        if($valid-path eq $exist-vars('path')) then controller:forward-html('/templates/register.html', $exist-vars)
+        if($exist-vars('path') eq $path) then controller:forward-html('/templates/register.html', $updated-exist-vars)
         else controller:error($exist-vars, 404)
 };
 
@@ -130,6 +139,12 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };
 
+declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
+    let $valid-docTypes := map:keys($config:wega-docTypes)
+    return 
+        if($docType = $valid-docTypes) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
+        else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
+};
 
 (:~
  : 
