@@ -113,6 +113,9 @@ declare %private function facets:index-entries($collection as node()*, $facet as
         :)
     case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key[matches(., '^A02\d{4}$')])
     case 'works' return ($collection//@key[parent::tei:workName][matches(., '^A02\d{4}$')] | $collection//@key[parent::tei:rs/@type='work'][matches(., '^A02\d{4}$')])
+    case 'authors' return $collection//tei:author/@key
+    case 'editors' return $collection//tei:editor/@key
+    case 'biblioType' return $collection/tei:biblStruct/@type
     default return ()
 };
 

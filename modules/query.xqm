@@ -145,9 +145,10 @@ declare function query:get-title-element($doc as document-node()) as element()* 
 };
 
 declare function query:get-main-source($doc as document-node()) as element()? {
-    if($doc//tei:sourceDesc) then
+    if($doc//tei:sourceDesc) then (: for writings and letters :)
         if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']
         else $doc//tei:sourceDesc/*
-    else if($doc//mei:sourceDesc) then ()
+    else if($doc//mei:sourceDesc) then () (: for works :)
+    else if($doc/tei:biblStruct) then $doc/tei:biblStruct (: for biblio :)
     else ()
 };
