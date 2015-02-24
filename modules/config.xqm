@@ -53,6 +53,8 @@ declare variable $config:expath-descriptor as element(expath:package)  := doc(co
 
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
+declare variable $config:default-entries-per-page as xs:int := 10; 
+
 declare variable $config:wega-docTypes := map {
     'biblio'        := 'A11',
     'iconography'   := 'A01',
@@ -420,4 +422,10 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         else ()
         }
     </parameters>
+};
+
+declare function config:entries-per-page() as xs:int {
+(:    Klappt irgendwie nicht?!? :)
+    (:$config:default-entries-per-page:)
+    10
 };

@@ -17,28 +17,42 @@ $('li').has('a.deactivated').hide();
 $('#details').easyResponsiveTabs({
     activate: function() {
         var activeTab = $('li.resp-tab-active a');
-        var href = activeTab.attr('href');
+        var container = activeTab.attr('href');
         var url = activeTab.attr('data-target');
-/*        console.log(url);*/
+        console.log(url);
 
         // Do not load the page twice
-        if ($(href).contents()[1].nodeType !== 1) { 
-            $(href).mask();
-            $(href).load(url, function(response, status, xhr) {
-                if ( status == "error" ) {
-                    console.log(xhr.status + ": " + xhr.statusText);
-                }
-                else {
-                    $('select').selectpicker({});
-                }
-            });
+        if ($(container).contents()[1].nodeType !== 1) {
+            ajaxCall(container, url)
         }
         /* update facets */
-        $('select').selectpicker({});
-        $(href).unmask;
+/*        $('select').selectpicker({});*/
+/*        $(href).unmask;*/
     }
 });
 
+function ajaxCall(container,url) {
+    $(container).mask();
+    $(container).load(url, function(response, status, xhr) {
+        if ( status == "error" ) {
+            console.log(xhr.status + ": " + xhr.statusText);
+        }
+        else {
+            /* update facets */
+            $('select').selectpicker({});
+            /* Listen for click events on pagination */
+            $('.page-link').on('click', 
+                function() {
+                    var activeTab = $('li.resp-tab-active a');
+                    var baseUrl = activeTab.attr('data-target');
+                    var url = baseUrl + $(this).attr('data-url');
+                    console.log(url);
+                    ajaxCall(container,url);
+                }
+            );
+        }
+    });
+};
 
 /* Farbige Support Badges im footer (page.html) */
 $("[data-hovered-src]").hover(

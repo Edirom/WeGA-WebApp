@@ -111,7 +111,7 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
 
 
 (:~
- : Split URI into path segments and encode those for URI
+ : Split URI into path segments and encode those for URI if necessary
  : 
  : @author Peter Stadler
  : @param $uri
@@ -149,6 +149,15 @@ declare function controller:path-to-register($docType as xs:string, $lang as xs:
     if($docType = ('letters', 'diaries', 'persons', 'writings', 'works')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
+};
+
+declare function controller:docType-url-for-author($author as document-node(), $docType as xs:string, $lang as xs:string) as xs:string {
+    let $docType-path-segment := 
+        switch($docType)
+        case 'letters' return 'correspondence'
+        default return $docType
+    return
+        core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang), $docType-path-segment || '.html')))
 };
 
 (:~
