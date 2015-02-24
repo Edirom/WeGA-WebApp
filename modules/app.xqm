@@ -466,6 +466,7 @@ declare
                 'works' := core:getOrCreateColl('works', $model('docID'), true()),
                 'contacts' := core:getOrCreateColl('persons', $model('docID'), true()),
                 'biblio' := core:getOrCreateColl('biblio', $model('docID'), true()),
+                'news' := core:getOrCreateColl('news', $model('docID'), true()),
                     (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
                 'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
                     (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
