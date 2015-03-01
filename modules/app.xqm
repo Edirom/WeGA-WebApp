@@ -385,6 +385,31 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+        let $isActive := $lang = lower-case(normalize-space($node))
+        return
+            element {name($node)} {
+                if($isActive) then (
+                    $node/@*[not(name(.)='class')],
+                    attribute class {string-join(($node/@class, 'active'), ' ')}
+                )
+                else $node/@*,
+                
+                (: Child element a takes the link :)
+                element a {
+                    attribute href {
+                        if($isActive) then '#'
+                        else controller:translate-URI(request:get-uri(), $lang, lower-case(normalize-space($node)))
+                    },
+                    normalize-space($node)
+                }
+            }
+};
+
+
 (:
  : ****************************
  : Index page

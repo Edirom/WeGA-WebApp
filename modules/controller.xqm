@@ -187,6 +187,17 @@ declare function controller:resolve-link($link as xs:string, $lang as xs:string)
         core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
 };
 
+declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:string, $targetLang as xs:string) as xs:string {
+    let $tokens := tokenize(functx:substring-after-match($uri, '/(de)|(en)/'), '/')
+    let $translated-tokens := 
+        for $i in $tokens
+        return
+            if(matches($i, 'A\d{6}')) then $i
+            else lang:translate-language-string($i, $sourceLang, $targetLang)
+    return
+        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
+};
+
 
 (:~
  : 
