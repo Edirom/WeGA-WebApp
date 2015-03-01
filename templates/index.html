@@ -16,22 +16,23 @@
     </div>
     <div class="colored borderBottom">
         <div class="container">
-            <form role="form" class="form-inline ">
+            <form role="form" class="form-inline" action="$link/search">
                 <div class="row paddingTopIcon paddingBottomIcon">
                     <div class="col-md-6 ">
-                        <div class="input-group ">
-                            <select class="input-group-addon gradient-light bootstrap-select   ">
-                                <option>Alle</option>
-                                <option>Personen</option>
-                                <option>Briefe</option>
-                                <option>Tagebücher</option>
-                                <option>Schriften</option>
-                                <option>Werke</option>
-                                <option>Aktuelles</option>
-                                <option>Bibliographie</option>
+                        <div class="input-group">
+                            <select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
+                                <option value="all" data-template="lang:translate">all</option>
+                                <option value="persons" data-template="lang:translate">persons</option>
+                                <option value="letters" data-template="lang:translate">correspondence</option>
+                                <option value="diaries" data-template="lang:translate">diaries</option>
+                                <option value="writings" data-template="lang:translate">writings</option>
+                                <option value="works" data-template="lang:translate">works</option>
+                                <option value="news" data-template="lang:translate">news</option>
+                                <option value="biblio" data-template="lang:translate">bibliography</option>
                             </select>
-                            <input type="search" class="form-control" placeholder="Standard Suche"/>
-                            <span class="input-group-btn  ">
+                            
+                            <input type="search" class="form-control" placeholder="Standard Suche" name="q"/>
+                            <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary">Suchen</button>
                             </span>
                         </div>

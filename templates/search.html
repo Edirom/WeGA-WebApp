@@ -1,0 +1,102 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 data-template="lang:translate">search</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="colored borderBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ol class="breadcrumb">
+                        <li><a href="$link/Index">Home</a></li>
+                        <li data-template="lang:translate">search</li>
+                    </ol>
+                </div>
+                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                    <i class="fa fa-arrow-left"/>
+                    <span data-template="lang:translate">Back</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row paddingBottomIcon paddingTopIcon">
+            
+            <div class="col-md-3 col-md-push-9">
+                <div class="allFilter" >  
+                    <h2>Filter</h2> 
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn gradient-light">
+                            <input type="checkbox" name="options" id="personen"/> Personen
+                        </label>
+                        <label class="btn gradient-light">
+                            <input type="checkbox" name="options" id="briefe"/> Briefe
+                        </label>
+                        <label class="btn gradient-light">
+                            <input type="checkbox" name="options" id="tagebuecher"/> Tagebücher
+                        </label>
+                        <label class="btn gradient-light">
+                            <input type="checkbox" name="options" id="schriften"/> Schriften
+                        </label>
+                        <label class="btn gradient-light">
+                            <input type="checkbox" name="options" id="werke"/> Werke
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9 col-md-pull-3 ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2>Bitte Suchbegriffe eintragen</h2>
+                    </div>
+                </div>    
+                <div class="row">
+                    
+                    <div class="col-md-9 searchform">
+                        <form role="form">
+                            <div class="input-group">
+                                <select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
+                                    <option value="all" data-template="lang:translate">all</option>
+                                    <option value="persons" data-template="lang:translate">persons</option>
+                                    <option value="letters" data-template="lang:translate">correspondence</option>
+                                    <option value="diaries" data-template="lang:translate">diaries</option>
+                                    <option value="writings" data-template="lang:translate">writings</option>
+                                    <option value="works" data-template="lang:translate">works</option>
+                                    <option value="news" data-template="lang:translate">news</option>
+                                    <option value="biblio" data-template="lang:translate">bibliography</option>
+                                </select>
+                                
+                                <input type="search" class="form-control" placeholder="Standard Suche" name="q"/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">Suchen</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <a class="advancedSearch" href="./sucheerweitert.php">Zur erweiterten Suche <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="row searchResultList" data-template="search:results" data-template-docType="search">
+                    <div class="col-xs-12 textBlock searchResults" data-template="search:result-page">
+                        <div data-template="templates:if-parameter-set" data-template-param="q"><h2 data-template="search:results-count">124 Suchergebnisse</h2></div>
+                        <ul class="media-list">
+                            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+                                <div data-template="search:dispatch-preview"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-template="templates:include" data-template-path="templates/includes/bug-report.html"/>
+    </div>
+</div>

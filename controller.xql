@@ -133,13 +133,8 @@ else if (ends-with($exist:resource, '.xml')) then
 
     
 (: Suche :)
-(:else if (matches($exist:path, concat('^/', $lang, '/', $search, '/?$'))) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/search.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	</forward>
-    </dispatch>
-:)
+else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
+    controller:forward-html('/templates/search.html', $exist-vars)
 
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
