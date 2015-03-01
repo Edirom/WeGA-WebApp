@@ -176,6 +176,7 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
     )
 };
 
+
 (:
  : ****************************
  : Breadcrumbs 
@@ -213,8 +214,15 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as item() {
-        if($model('docType') = 'indices') then lang:get-language-string('indices', $lang)
-        else 
+        switch($model('docType')) 
+        case 'indices' return lang:get-language-string('indices', $lang)
+        case 'biblio' case 'news' return 
+            element {node-name($node)} {
+                $node/@*[not(local-name(.) eq 'href')],
+                attribute href {core:link-to-current-app(controller:path-to-register('project', $lang))},
+                lang:get-language-string('project', $lang)
+            }
+        default return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
                 attribute href {core:link-to-current-app(controller:path-to-register('indices', $lang))},
@@ -358,6 +366,23 @@ declare
                 else <a class="page-link" data-url="{$page-link($page + 1)}">next &#x00BB;</a> 
             }</li>
         )
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+        let $active := contains( request:get-uri(), controller:resolve-link($node/xhtml:a/@href, $lang))
+(:        let $log := util:log-system-out(request:get-uri() || ' - ' || controller:resolve-link($node/xhtml:a/@href, $lang)):)
+        return
+            element {name($node)} {
+                if($active) then (
+                    $node/@*[not(name(.)='class')],
+                    attribute class {string-join(($node/@class, 'active'), ' ')}
+                )
+                else $node/@*,
+                templates:process($node/node(), $model)
+            }
 };
 
 (:

@@ -74,10 +74,9 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
     let $docType := 
-        if($exist-vars('resource')) then lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))
+        if($exist-vars('resource')) then lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))[. = (map:keys($config:wega-docTypes), 'indices', 'project')]
         else 'indices'
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
-(:    let $log := util:log-system-out($docType || ' - ' || $path):)
     let $updated-exist-vars := 
         map:new((
             $exist-vars, 
@@ -166,6 +165,28 @@ declare function controller:docType-url-for-author($author as document-node(), $
     return
         core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang), $docType-path-segment || '.html')))
 };
+
+(:
+ : links can be encoded within the HTML with the prefix '$link'
+ : these links are resolved here
+ : 
+ :)
+declare function controller:resolve-link($link as xs:string, $lang as xs:string) as xs:string? {
+    let $tokens := 
+        for $token in tokenize(substring-after($link, '$link'), '/')
+        let $has-suffix := contains($token, '.')
+        let $translation := 
+            if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) 
+            else lang:get-language-string($token, $lang)
+        return 
+            if($translation) then 
+                if($has-suffix) then $translation || '.' || substring-after($token, '.')
+                else $translation
+            else $token
+    return 
+        core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
+};
+
 
 (:~
  : 

@@ -11,6 +11,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
@@ -41,30 +42,9 @@ declare function local:tidy-attr($node as node()) as node()? {
             attribute { node-name($node) } {core:link-to-current-app(substring-after($node, '$'))}
         
         else if(starts-with($node, '$link')) then 
-            attribute { node-name($node) } {local:resolve-link(data($node), $lang)}
+            attribute { node-name($node) } {controller:resolve-link(data($node), $lang)}
             
         else $node
-};
-
-(:
- : links can be encoded within the HTML with the prefix '$link'
- : these links are resolved here
- : 
- :)
-declare function local:resolve-link($link as xs:string, $lang as xs:string) as xs:string? {
-    let $tokens := 
-        for $token in tokenize(substring-after($link, '$link'), '/')
-        let $has-suffix := contains($token, '.')
-        let $translation := 
-            if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) 
-            else lang:get-language-string($token, $lang)
-        return 
-            if($translation) then 
-                if($has-suffix) then $translation || '.' || substring-after($token, '.')
-                else $translation
-            else $token
-    return 
-        core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
 };
 
 (:
