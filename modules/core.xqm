@@ -137,6 +137,15 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
         case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
+        case 'indices' return 
+            core:getOrCreateColl('works', 'indices', true()) |
+            core:getOrCreateColl('letters', 'indices', true()) |
+            core:getOrCreateColl('diaries', 'indices', true()) |
+            core:getOrCreateColl('news', 'indices', true()) |
+            core:getOrCreateColl('biblio', 'indices', true()) |
+            core:getOrCreateColl('places', 'indices', true()) |
+            core:getOrCreateColl('writings', 'indices', true()) |
+            core:getOrCreateColl('persons', 'indices', true())
         default return ()
     else ()
 };

@@ -73,9 +73,11 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 };
 
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
-    let $docType := lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))
+    let $docType := 
+        if($exist-vars('resource')) then lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))
+        else 'indices'
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
-    let $log := util:log-system-out($docType || ' - ' || $path)
+(:    let $log := util:log-system-out($docType || ' - ' || $path):)
     let $updated-exist-vars := 
         map:new((
             $exist-vars, 
@@ -145,9 +147,14 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };
 
+(:~
+ : Indices can be under "Register (Indices)" or "Projekt (Project)" 
+~:)
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
     if($docType = ('letters', 'diaries', 'persons', 'writings', 'works')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
+    else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
+    else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))
     else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
 };
 

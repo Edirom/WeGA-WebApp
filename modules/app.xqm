@@ -211,18 +211,26 @@ declare
 };
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
-    function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-(:       TODO: this should link somewhere!! :)
-        lang:get-language-string('indices', $lang)
+    function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as item() {
+        if($model('docType') = 'indices') then lang:get-language-string('indices', $lang)
+        else 
+            element {node-name($node)} {
+                $node/@*[not(local-name(.) eq 'href')],
+                attribute href {core:link-to-current-app(controller:path-to-register('indices', $lang))},
+                lang:get-language-string('indices', $lang)
+            }
 };
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
-    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        lang:get-language-string($model('docType'), $lang)
+    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as element(a)? {
+        if($model('docType') = 'indices') then ()
+        else 
+            element {node-name($node)} {
+                $node/@*,
+                lang:get-language-string($model('docType'), $lang)
+            }
 };
 
 
@@ -239,7 +247,7 @@ declare
         element {name($node)} {
                 $node/@*[not(name(.)='href')],
                 attribute href {
-                    if(normalize-space($node) eq 'indices') then '#'
+                    if(normalize-space($node) eq 'indices') then core:link-to-current-app(controller:path-to-register('indices', $lang))
                     else core:link-to-current-app(controller:path-to-register(normalize-space($node), $lang))
                 },
                 lang:get-language-string(normalize-space($node), $lang)
