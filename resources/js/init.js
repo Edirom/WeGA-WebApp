@@ -8,7 +8,7 @@ $("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
 
 /* only needed after ajax calls?!? --> see later */
 /* needed on index page for the search box, as well */
-$('select').selectpicker({});
+//$('select').selectize({});
 
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
@@ -39,7 +39,19 @@ function ajaxCall(container,url) {
         }
         else {
             /* update facets */
-            $('select').selectpicker({});
+            $('select').selectize({
+                plugins: ['remove_button'],
+                hideSelected: true
+                // no effect
+                //closeAfterSelect: true,
+                // no effect
+                //openOnFocus: true
+                // testing, seems good :)
+                /*onFocus: function() { console.log('focus')},
+                onBlur: function() { console.log('blur')},
+                onChange: function() { console.log('onChange')},
+                onDropdownClose: function(e) { console.log('onDropdownClose')}*/
+            });
             /* Listen for click events on pagination */
             $('.page-link').on('click', 
                 function() {

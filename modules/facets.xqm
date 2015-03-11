@@ -34,9 +34,9 @@ declare
         return
             element {name($node)} {
                 $node/@*,
-                <option selected="selected">{lang:get-language-string('all', $lang)}</option>,
+                <option selected="selected" value="">{lang:get-language-string('all', $lang)}</option>,
                 $facet-items ! 
-                <option>{./facets:term || ' (' || ./facets:frequency || ')'}</option>
+                <option value="{./facets:value}">{./facets:term || ' (' || ./facets:frequency || ')'}</option>
             }
 };
 
@@ -55,6 +55,7 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
     return 
         <facets:entry>
             <facets:term>{lang:get-language-string(config:get-doctype-by-id($docType || '0001'), $lang)}</facets:term>
+            <facets:value>{$docType}</facets:value>
             <facets:frequency>{count($i)}</facets:frequency>
         </facets:entry>
 };
@@ -75,6 +76,7 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
             case 'works' return query:get-reg-title($term)
             default return str:normalize-space($term) 
         }</facets:term>
+        <facets:value>{$term}</facets:value>
         <facets:frequency>{$data[2]}</facets:frequency>
     </facets:entry>
 };
@@ -105,6 +107,7 @@ declare %private function facets:index-entries($collection as node()*, $facet as
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
     case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
+    case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
     case 'source' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation
     case 'residences' return $collection//tei:settlement[parent::tei:residence]
