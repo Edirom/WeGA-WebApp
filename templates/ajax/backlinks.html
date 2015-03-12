@@ -6,14 +6,14 @@
             <!--            <h4 data-template="lang:translate">chronology</h4>-->
             
             <h4 data-template="lang:translate">docType</h4>
-            <select multiple="multiple" data-template="facets:select" data-template-facet="docType"/>
+            <select multiple="multiple" data-template="facets:select" name="textType"/>
             
             <h4 data-template="lang:translate">docStatus</h4>
-            <select data-template="facets:select" data-template-facet="docStatus"/>
+            <select multiple="multiple" data-template="facets:select" name="docStatus"/>
             
         </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page" data-template-docType="backlinks">
+    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page">
         <h2 data-template="search:results-count">124 Suchergebnisse</h2>
         <ul class="media-list">
             <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">

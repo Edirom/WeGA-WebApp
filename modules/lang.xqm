@@ -25,16 +25,17 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
  : @return xs:string the (newly) set language variable 
  :)
 declare function lang:get-set-language($lang as xs:string?) as xs:string {
-    let $defaultLang := 'de'
+    (: only set language when parameter $lang is given :)
     let $setLang := 
-        if(matches($lang, 'de|en')) then session:set-attribute('lang', $lang)
+        if($lang = $config:valid-languages) then session:set-attribute('lang', $lang)
         else ()
     let $getLang := session:get-attribute('lang')
-    return 
-         if(matches($getLang, 'de|en')) then $getLang
-         else $defaultLang
+    return
+        (: Return from session variable :)
+        if($getLang = $config:valid-languages) then $getLang
+        (: else default language :)
+        else $config:valid-languages[1]
 };
-
 
 (:~ 
  : Get the language catalogue file

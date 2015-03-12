@@ -26,17 +26,29 @@ import module namespace functx="http://www.functx.com";
 
 declare 
     %templates:default("lang", "en")
-    function facets:select($node as node(), $model as map(*), $facet as xs:string, $lang as xs:string) as element(select) {
+    function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(select) {
+        let $facet := $node/data(@name)
         let $facet-items := 
             switch($facet)
-            case 'docType' return facets:from-docType($model('search-results'), $facet, $lang)
+            case 'textType' return facets:from-docType($model('search-results'), $facet, $lang)
             default return facets:from-index($model('search-results'), $facet)
         return
             element {name($node)} {
                 $node/@*,
-                <option selected="selected" value="">{lang:get-language-string('all', $lang)}</option>,
+                element option {
+                    (:if(map:contains($model('filters'), $facet)) then ()
+                    else attribute selected {'selected'},:)
+                    attribute value {''},
+                    lang:get-language-string('all', $lang)
+                },
                 $facet-items ! 
-                <option value="{./facets:value}">{./facets:term || ' (' || ./facets:frequency || ')'}</option>
+                    element option {
+                        if(map:get($model('filters'), $facet) = ./facets:value) then 
+                            attribute selected {'selected'}
+                        else (),
+                        attribute value {./facets:value},
+                        ./facets:term || ' (' || ./facets:frequency || ')'
+                    }
             }
 };
 
@@ -54,8 +66,8 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
     group by $docType := substring($i/*/@xml:id, 1, 3)
     return 
         <facets:entry>
-            <facets:term>{lang:get-language-string(config:get-doctype-by-id($docType || '0001'), $lang)}</facets:term>
-            <facets:value>{$docType}</facets:value>
+            <facets:term>{lang:get-language-string($config:wega-docTypes-inverse($docType), $lang)}</facets:term>
+            <facets:value>{$config:wega-docTypes-inverse($docType)}</facets:value>
             <facets:frequency>{count($i)}</facets:frequency>
         </facets:entry>
 };
@@ -76,7 +88,7 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
             case 'works' return query:get-reg-title($term)
             default return str:normalize-space($term) 
         }</facets:term>
-        <facets:value>{$term}</facets:value>
+        <facets:value>{str:normalize-space($term)}</facets:value>
         <facets:frequency>{$data[2]}</facets:frequency>
     </facets:entry>
 };
@@ -108,7 +120,7 @@ declare %private function facets:index-entries($collection as node()*, $facet as
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
     case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
     case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
-    case 'source' return $collection/tei:person/@source
+    case 'docSource' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation
     case 'residences' return $collection//tei:settlement[parent::tei:residence]
         (: index-keys does not work with multiple whitespace separated keys

@@ -53,6 +53,9 @@ declare variable $config:expath-descriptor as element(expath:package)  := doc(co
 
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
+(: The first language is the default language :)
+declare variable $config:valid-languages as xs:string* := ('en', 'de');
+
 declare variable $config:default-entries-per-page as xs:int := 10; 
 
 declare variable $config:wega-docTypes := map {
@@ -68,6 +71,10 @@ declare variable $config:wega-docTypes := map {
     'var'           := 'A07',
     'works'         := 'A02'
 };
+
+declare variable $config:wega-docTypes-inverse := map:new(
+    map:keys($config:wega-docTypes) ! map:entry(map:get($config:wega-docTypes, .), .) 
+);
 
 (:~
  : Resolve the given path using the current application context.

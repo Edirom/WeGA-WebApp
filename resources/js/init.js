@@ -5,10 +5,45 @@ $('.dropdown-secondlevel-nav').dropdownHover();
 $("h1").fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'});
 $("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
 
+/* A wrapper function for creating select boxes */
+/* Needs to be placed before the invoking call */
+$.fn.facets = function ()
+{
+     this.selectize({
+        plugins: ['remove_button'],
+        hideSelected: true,
+        onDropdownClose: function(e){
+            var params = [];
+            /* Set filters */
+            $('.allFilter:visible option:selected').each(function() {
+                var facet = $(this).parent().attr('name');
+                var value = $(this).attr('value');
+                /*console.log(facet + '=' + value);*/
+                params.push(facet + '=' + value)
+            })
+            
+            /* AJAX call for personal writings etc. */
+            if($('li.resp-tab-active').length === 1) {
+                var url = $('li.resp-tab-active a').attr('data-target') + '?'+params.join('&');
+                var container = $('li.resp-tab-active a').attr('href')
+                ajaxCall(container, url)
+            }
+            /* Refresh page for indices */
+            else {
+                self.location='?'+params.join('&')
+            }
+        }
+    })
+};
+
+/*function facetsDropdownClose(facet) {
+    console.log('foo')
+};*/
 
 /* only needed after ajax calls?!? --> see later */
 /* needed on index page for the search box, as well */
 //$('select').selectize({});
+$('.allFilter select').facets();
 
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
@@ -19,7 +54,7 @@ $('#details').easyResponsiveTabs({
         var activeTab = $('li.resp-tab-active a');
         var container = activeTab.attr('href');
         var url = activeTab.attr('data-target');
-        console.log(url);
+/*        console.log(url);*/
 
         // Do not load the page twice
         if ($(container).contents()[1].nodeType !== 1) {
@@ -39,19 +74,7 @@ function ajaxCall(container,url) {
         }
         else {
             /* update facets */
-            $('select').selectize({
-                plugins: ['remove_button'],
-                hideSelected: true
-                // no effect
-                //closeAfterSelect: true,
-                // no effect
-                //openOnFocus: true
-                // testing, seems good :)
-                /*onFocus: function() { console.log('focus')},
-                onBlur: function() { console.log('blur')},
-                onChange: function() { console.log('onChange')},
-                onDropdownClose: function(e) { console.log('onDropdownClose')}*/
-            });
+            $('.allFilter select').facets();
             /* Listen for click events on pagination */
             $('.page-link').on('click', 
                 function() {
