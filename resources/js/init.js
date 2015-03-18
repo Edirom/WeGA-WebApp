@@ -66,6 +66,14 @@ $('#details').easyResponsiveTabs({
     }
 });
 
+/* Watch filters and highlight spans in text */
+$('.allFilter input').change(
+  function() {
+    var key = $(this).attr('value');
+    $('.' + key).toggleClass('hi')
+  }
+)
+
 function ajaxCall(container,url) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {

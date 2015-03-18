@@ -30,48 +30,49 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                <div class="allFilter">
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
-                        Dokumente</h2>
-                    <div id="dokumente" class="panel-collapse collapse ">
-                        <!-- Nav tabs -->
-                        <ul class="nav nav-tabs">
-                            <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                            <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>
-                            <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>
-                            <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                            <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
-                        </ul>
-                    </div>
-                    
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext">
-                        Kontext </h2>
-                    <div id="kontext" class="panel-collapse collapse borderBox">
-                        <h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
-                            <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
-                        </ul><h4>Folgend</h4><ul>
-                            <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
-                            <li><a href="/de/A009155/Korrespondenz/A045302" onmouseover="metaDataToTip('A045302','de')" onmouseout="UnTip()">1799-07-10</a>: Von <a href="/de/A009155"><span class="person" onmouseover="metaDataToTip('A009155', 'de')" onmouseout="UnTip()">W. Freiin von Marschall genannt
-                                        Greiff</span></a></li>
-                        </ul><h3>Korrespondenzstelle</h3><h4>Vorausgehend</h4><ul>
-                            <li class="noDataFound">keine Angaben gefunden</li>
-                        </ul><h4>Folgend</h4><ul>
-                            <li class="noDataFound">keine Angaben gefunden</li>
-                        </ul>
-                    </div>
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#personen">
-                        Personen</h2>
-                    <div id="personen" class="panel-collapse collapse">
-                        <div data-toggle="buttons" class="btn-group primary">
-                            <label class="btn gradient-light">
-                                <input type="checkbox" id="option1" name="options"/> Weber, Carl
-                                Maria von </label>
-                            <label class="btn gradient-light">
-                                <input type="checkbox" id="option2" name="options"/> Weber,
-                                Gottfried </label>
+                <div class="allFilter" data-template="facets:document-allFilter">
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
+                            Dokumente</h2>
+                        <div id="dokumente" class="panel-collapse collapse ">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
+                                <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#werke"> Werke </h2>
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext">
+                            Kontext </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
+                                <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
+                            </ul><h4>Folgend</h4><ul>
+                                <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
+                                <li><a href="/de/A009155/Korrespondenz/A045302" onmouseover="metaDataToTip('A045302','de')" onmouseout="UnTip()">1799-07-10</a>: Von <a href="/de/A009155"><span class="person" onmouseover="metaDataToTip('A009155', 'de')" onmouseout="UnTip()">W. Freiin von Marschall genannt
+                                            Greiff</span></a></li>
+                            </ul><h3>Korrespondenzstelle</h3><h4>Vorausgehend</h4><ul>
+                                <li class="noDataFound">keine Angaben gefunden</li>
+                            </ul><h4>Folgend</h4><ul>
+                                <li class="noDataFound">keine Angaben gefunden</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>
+                        <div class="panel-collapse collapse" data-template="facets:filter-body">
+                            <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
+                                <label class="btn gradient-light" data-template="app:each" data-template-from="filterOptions" data-template-to="filterOption">
+                                    <input type="checkbox" name="options" data-template="facets:filter-value"/> <span data-template="facets:filter-label">Weber, Carl Maria von</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<h2 class="collapseSingle collapsed" data-toggle="collapse" href="#werke"> Werke </h2>
                     <div id="werke" class="panel-collapse collapse">
                         <div data-toggle="buttons" class="btn-group primary">
                             <label class="btn gradient-light">
@@ -93,7 +94,7 @@
                         Rollen </h2>
                     <div id="rollen" class="panel-collapse collapse borderBox">
                         <p>Keine Rollen</p>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3 ">
