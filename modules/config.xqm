@@ -76,6 +76,12 @@ declare variable $config:wega-docTypes-inverse := map:new(
     map:keys($config:wega-docTypes) ! map:entry(map:get($config:wega-docTypes, .), .) 
 );
 
+(: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
+declare variable $config:diaryYearsToSuppress as xs:integer* := 
+    if($config:isDevelopment) then () 
+    else (1810 to 1816, 1821 to 1826);
+
+
 (:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,

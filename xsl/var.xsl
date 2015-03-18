@@ -18,7 +18,7 @@
 
     <xsl:template match="tei:text">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="'docText'"/>
+            <xsl:attribute name="class" select="'docText'"/>
             <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
     </xsl:template>

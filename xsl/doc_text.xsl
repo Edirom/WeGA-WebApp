@@ -41,7 +41,7 @@
 
     <xsl:template match="tei:body">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="'teiDoc_body'"/>
+            <xsl:attribute name="class" select="'teiDoc_body'"/>
             <xsl:apply-templates select="./tei:div"/>
             <xsl:if test=".//tei:footNote">
                 <xsl:call-template name="createEndnotes"/>

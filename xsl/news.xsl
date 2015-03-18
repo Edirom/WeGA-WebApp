@@ -14,7 +14,7 @@
     </xsl:template>
     <xsl:template match="tei:body">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="'newsText'"/>
+            <xsl:attribute name="class" select="'newsText'"/>
             <xsl:apply-templates/>
             <xsl:if test="//tei:footNote">
                 <xsl:call-template name="createEndnotes"/>

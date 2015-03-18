@@ -738,44 +738,54 @@ declare
 };
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
     function app:print-transcription($node as node(), $model as map(*), $lang as xs:string) {
         let $doc := $model('doc')
         let $docID := $model('docID')
+        let $docType := $model('docType')
         let $xslParams := config:get-xsl-params( map {
             'dbPath' := document-uri($doc),
             'docID' := $docID,
-            'transcript' := 'true'
+            'transcript' := 'true',
+            (: Some special flag for diaries :)
+            'suppressLinks' := if(year-from-date(xs:date($doc/tei:ab/@n)) = $config:diaryYearsToSuppress) then 'true' else ()
             } )
-        let $xslt := 
-            if(config:is-letter($docID)) then doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
-            else if(config:is-news($docID)) then doc(concat($config:xsl-collection-path, '/news.xsl'))
-            else if(config:is-writing($docID)) then doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
+        let $xslt1 := 
+            switch($docType)
+            case 'letters' return doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
+            case 'news' return doc(concat($config:xsl-collection-path, '/news.xsl'))
+            case 'writings' return doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
+            case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
+            default return ()
+        let $xslt2 :=
+            switch($docType)
+            case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl'))
+            default return ()
+        let $textRoot :=
+            switch($docType)
+            case 'diaries' return $doc/tei:ab
+            default return $doc//tei:text/tei:body
+        let $body := 
+             if(functx:all-whitespace($textRoot))
+             then (
+                let $text := 
+                    if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+                    else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
+                return
+                    element span {
+                        attribute class {'notAvailable'},
+                        $text
+                    }
+             )
+             else (
+                transform:transform($textRoot, $xslt1, $xslParams),
+                if($xslt2) then transform:transform($textRoot, $xslt2, $xslParams) else ()
+            )
+         let $foot := 
+            if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
             else ()
-    let $body := 
-         if(functx:all-whitespace($doc//tei:text))
-         then (
-(:            let $summary := if(functx:all-whitespace($doc//tei:note[@type='summary'])) then () else transform:transform($doc//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams) :)
-(:            let $incipit := if(functx:all-whitespace($doc//tei:incipit)) then () else transform:transform($doc//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), $xslParams):)
-            let $text := if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
-                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
-            return (:element div {
-                attribute id {'teiLetter_body'},:)
-(:                $incipit,:)
-(:                $summary,:)
-                element span {
-                    attribute class {'notAvailable'},
-                    $text
-                }
-            (:}:)
-         )
-         else transform:transform($doc//tei:text/tei:body, $xslt, $xslParams)/*
-     let $foot := 
-        if(config:is-news($docID)) then (:ajax:getNewsFoot($doc, $lang):) ''
-        else ()
-     
-     return ($body, $foot)
+         
+         return ($body, $foot)
 };
 
 declare 
@@ -865,7 +875,7 @@ declare function app:construct-title($doc as document-node(), $lang as xs:string
 
 (:~
  : Create dateline and author link for website news
- : (Helper Function for ajax:printTranscription())
+ : (Helper Function for app:print-transcription)
  :
  : @author Peter Stadler
  : @param $doc the news document node
@@ -873,7 +883,7 @@ declare function app:construct-title($doc as document-node(), $lang as xs:string
  : @return element html:p
  :)
 declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
-    let $authorID := query:get-authorID($model('doc'))
+    let $authorID := query:get-authorID($doc)
     let $dateFormat := 
         if ($lang = 'en') then '%A, %B %d, %Y'
                           else '%A, %d. %B %Y'
@@ -881,7 +891,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
         if($authorID) then 
             element p {
                 attribute class {'authorDate'},
-                app:printCorrespondentName(query:get-author-element($model('doc')), $lang, 'fs'),
+                app:printCorrespondentName(query:get-author-element($doc), $lang, 'fs'),
                 concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
             }
         else()
