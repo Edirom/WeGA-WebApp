@@ -54,7 +54,7 @@ declare variable $config:expath-descriptor as element(expath:package)  := doc(co
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
 (: The first language is the default language :)
-declare variable $config:valid-languages as xs:string* := ('en', 'de');
+declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
 declare variable $config:default-entries-per-page as xs:int := 10; 
 
