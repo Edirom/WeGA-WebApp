@@ -69,7 +69,9 @@ declare variable $config:wega-docTypes := map {
     'writings'      := 'A03',
     'sources'       := 'A22',
     'var'           := 'A07',
-    'works'         := 'A02'
+    'works'         := 'A02',
+    (: dummy entry for creation of filter facets, see facets:document-allFilter :)
+    'characterNames'    := 'A17' 
 };
 
 declare variable $config:wega-docTypes-inverse := map:new(

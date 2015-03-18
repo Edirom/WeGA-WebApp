@@ -140,10 +140,19 @@ declare
     function facets:document-allFilter($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'filterSections' := 
-                for $filter in ('persons', 'works')
-                let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab]/tokenize(., '\s+')[starts-with(., $config:wega-docTypes($filter))])
+                for $filter in ('persons', 'works', 'places', 'characterNames')
+                let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[starts-with(., $config:wega-docTypes($filter))])
+                let $places := 
+                    if($filter = 'places') then distinct-values($model('doc')//tei:settlement[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
+                    else ()
+                let $characterNames := 
+                    if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
+                    else ()
+                let $log := util:log-system-out($filter || count($characterNames))
                 return 
                     if(exists($keys)) then map { $filter := $keys}
+                    else if(exists($places)) then map { $filter := $places}
+                    else if(exists($characterNames)) then map { $filter := $characterNames}
                     else ()
         }
 };
@@ -160,9 +169,15 @@ declare
                     let $label :=
                         switch($i)
                         case 'persons' return query:get-reg-name($j)
-                        default return query:get-reg-title($j)
+                        case 'works' return query:get-reg-title($j)
+                        default return $j
+                    let $key :=
+                        switch($i)
+                        case 'places' return string-join(string-to-codepoints($j) ! string(.), '')
+                        case 'characterNames' return string-join(string-to-codepoints($j) ! string(.), '')
+                        default return $j
                     order by $label ascending
-                    return map { 'key' := $j, 'label' := $label}
+                    return map { 'key' := $key, 'label' := $label}
         }
 };
 
@@ -193,6 +208,12 @@ declare function facets:filter-value($node as node(), $model as map(*)) as eleme
     }
 };
 
-declare function facets:filter-label($node as node(), $model as map(*)) as xs:string {
-    $model('filterOption')('label')
+declare function facets:filter-label($node as node(), $model as map(*)) as element(span) {
+    element {name($node)} {
+        $node/@*[not(name(.) = 'title')],
+        attribute title {$model('filterOption')('label')},
+        if(string-length($model('filterOption')('label')) > 30) then 
+            substring($model('filterOption')('label'), 1, 30) || '…'
+        else $model('filterOption')('label')
+    }
 };
