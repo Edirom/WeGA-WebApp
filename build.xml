@@ -132,6 +132,13 @@
                 <include name="bootstrap-remote-tabs.min.js"/>
 <!--                <include name="jquery.loadmask.js"/>-->
             </fileset>
+            <fileset dir="bower_components/jquery-ui/ui/minified">
+                <include name="core.min.js"/>
+                <include name="datepicker.min.js"/>
+            </fileset>
+            <fileset dir="bower_components/jquery-ui/ui/minified/i18n">
+                <include name="datepicker-de.min.js"/>
+            </fileset>
         </copy>
         <!-- Copy CSS from bower components -->
         <copy todir="${dist.dir}/resources/css">
@@ -153,9 +160,10 @@
             <fileset dir="bower_components/google-code-prettify/bin">
                 <include name="prettify.min.css"/>
             </fileset>
-            <!--<fileset dir="bower_components/bootstrap-remote-data/css">
-                <include name="jquery.loadmask.css"/>
-            </fileset>-->
+            <fileset dir="bower_components/jquery-ui/themes/overcast">
+                <include name="jquery-ui.min.css"/>
+                <include name="images/**"/>
+            </fileset>
         </copy>
     </target>
     

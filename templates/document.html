@@ -30,6 +30,7 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
+                <div id="datePicker"></div>
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
                         <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
@@ -46,10 +47,9 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext">
-                            Kontext </h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
-                            <h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext" data-template="lang:translate">context</h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:context-dispatch">
+                            <!--<h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
                                 <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
                             </ul><h4>Folgend</h4><ul>
                                 <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
@@ -59,7 +59,7 @@
                                 <li class="noDataFound">keine Angaben gefunden</li>
                             </ul><h4>Folgend</h4><ul>
                                 <li class="noDataFound">keine Angaben gefunden</li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                     <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
@@ -72,29 +72,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--<h2 class="collapseSingle collapsed" data-toggle="collapse" href="#werke"> Werke </h2>
-                    <div id="werke" class="panel-collapse collapse">
-                        <div data-toggle="buttons" class="btn-group primary">
-                            <label class="btn gradient-light">
-                                <input type="checkbox" id="option1" name="options"/>6 Fughetten
-                            </label>
-                        </div>
-                    </div>
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#orte"> Orte </h2>
-                    <div id="orte" class="panel-collapse collapse">
-                        <div data-toggle="buttons" class="btn-group primary">
-                            <label class="btn gradient-light">
-                                <input type="checkbox" id="Leipzig" name="options"/>Leipzig </label>
-                            <label class="btn gradient-light">
-                                <input type="checkbox" id="Salzburg" name="options"/> Salzburg
-                            </label>
-                        </div>
-                    </div>
-                    <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#rollen">
-                        Rollen </h2>
-                    <div id="rollen" class="panel-collapse collapse borderBox">
-                        <p>Keine Rollen</p>
-                    </div>-->
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3 ">
@@ -129,20 +106,6 @@
                             <h3 data-template="lang:translate">textSources</h3>
                             <div data-template="app:each" data-template-from="textSources" data-template-to="textSource">
                                 <div data-template="app:print-textSource"/>
-                                <!--<h4>Bibliothek</h4>
-                                <p>Darmstadt (D), Universitäts- und Landesbibliothek Darmstadt
-                                    (D-DS), </p>
-                                <h4>Quellenbeschreibung</h4>
-                                <ul>
-                                    <li>1 Bl. (2 b.S. einschl. Adr.)</li>
-                                    <li>geschrieben v. F.A.</li>
-                                </ul>
-                                <h4>Drucke</h4>
-                                <ul>
-                                    <li>Hase, Oskar von (Hg.): Breitkopf &amp; Härtel. Gedenkschrift
-                                        u. Arbeitsbericht. Bd. 1: 1542–1827, 4. Aufl. Leipzig 1917,
-                                        S. 187.</li>
-                                </ul>-->
                             </div>
                         </div>
                     </div>

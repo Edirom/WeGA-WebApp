@@ -109,6 +109,90 @@ $("[data-hovered-src]").hover(
     } 
 );
 
+$("#datePicker").datepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: "1810-02-26",
+    maxDate: "1826-06-03",
+    defaultDate: getDiaryDate(),
+    changeMonth: true,
+    changeYear: true,
+    onSelect: function(dateText, inst) { 
+        jump2diary(dateText)
+    },
+    beforeShowDay: function(date) {
+        return [ checkValidDiaryDate(date)  ]
+    }
+});
+
+function jump2diary(dateText) {
+    var lang = getLanguage();
+    var url = "http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
+    $.getJSON(url, function(data) {
+        self.location=data.url + '.html';
+    })
+};
+
+/* Exclude missing diary days */
+function checkValidDiaryDate(date) {
+    /* 5-20 April 1814 */
+    /* 26-31. Mai */
+    /* 1-9 Juni */
+    /* 19-30 Juni */
+    /* 1-26 Juli */
+    var start1 =  new Date('04/05/1814');
+    var end1 =  new Date('04/20/1814');
+    var start2 =  new Date('05/26/1814');
+    var end2 =  new Date('05/31/1814');
+    var start3 =  new Date('06/01/1814');
+    var end3 =  new Date('06/09/1814');
+    var start4 =  new Date('06/19/1814');
+    var end4 =  new Date('06/30/1814');
+    var start5 =  new Date('07/01/1814');
+    var end5 =  new Date('07/26/1814');
+    return !(
+        (date >= start1 && date <= end1) ||
+        (date >= start2 && date <= end2) ||
+        (date >= start3 && date <= end3) ||
+        (date >= start4 && date <= end4) ||
+        (date >= start5 && date <= end5)
+    )
+};
+
+/* Get the current language from the top navigation */
+function getLanguage() {
+    return $('#navbarCollapse li.active:last a').html().toLowerCase()
+};
+
+/* Get the current diary date from the h1 heading */
+function getDiaryDate() {
+    var title = $('h1.document').html();
+    var lang = getLanguage();
+    var format;
+    if(lang === 'de') { 
+        format = "DD, dd. MM yy" 
+    } 
+    else { 
+        format = "DD, MM dd, yy" 
+    } ; 
+    
+    try { 
+        var date = 
+            $.datepicker.parseDate( format, title, {
+              dayNamesShort: $.datepicker.regional[ lang ].dayNamesShort,
+              dayNames: $.datepicker.regional[ lang ].dayNames,
+              monthNamesShort: $.datepicker.regional[ lang ].monthNamesShort,
+              monthNames: $.datepicker.regional[ lang ].monthNames
+            });
+    }
+    catch(err) { date = '' }
+    return date
+};
+
+/* Get the document ID from the breadcrumb */
+function getID() {
+    return $('.breadcrumb li:last').html()
+};
+
 /* Various functions */
 function showEntries(that)
 {
