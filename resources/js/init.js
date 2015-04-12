@@ -45,6 +45,17 @@ $.fn.facets = function ()
 //$('select').selectize({});
 $('.allFilter select').facets();
 
+/* Initialise popovers for notes */
+$('.noteMarker').popover({
+  'html': true,
+  'placement': 'auto right',
+  'content': function() {
+      var noteID=$(this).attr('id').replace('Marker', '');
+      var note=$('#' + noteID);
+      return note.html();
+  }
+});
+
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
 

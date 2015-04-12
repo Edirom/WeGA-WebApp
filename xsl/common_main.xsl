@@ -293,10 +293,10 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="wega:isPerson($docID)">
-                <xsl:value-of select="wega:join-path-elements(($baseHref, $lang, $docID))"/>
+                <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
             <xsl:when test="exists($folder) and $authorID ne ''">
-                <xsl:value-of select="wega:join-path-elements(($baseHref, $lang, $authorID, $folder, $docID))"/>
+                <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $authorID, $folder, $docID)), '.html')"/>
             </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
@@ -422,22 +422,19 @@
         <xsl:choose>
             <xsl:when test="./descendant::*[local-name(.) = $blockLevelElements]"/>
             <xsl:otherwise>
-                <xsl:element name="span">
-                    <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-<!--                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
-                    <!--<xsl:attribute name="onmouseover">
-                        <xsl:text>TagToTip('</xsl:text>
-                        <xsl:value-of select="concat('note_',$no)"/>
-                        <!-\- <xsl:apply-templates />-\->
-                        <xsl:text>')</xsl:text>
-                    </xsl:attribute>-->
+               <xsl:element name="a">
+                  <xsl:attribute name="class">noteMarker</xsl:attribute>
+                  <xsl:attribute name="data-toggle">popover</xsl:attribute>
+                  <xsl:attribute name="data-trigger">focus</xsl:attribute>
+                  <xsl:attribute name="title" select="normalize-space(@type)"/>
+                  <xsl:attribute name="tabindex">0</xsl:attribute>
                     <xsl:attribute name="id">
-                        <xsl:value-of select="concat('noteDefinitionMark_',$no)"/>
+                       <xsl:value-of select="concat('noteMarker_',$no)"/>
                     </xsl:attribute>
                     <xsl:text>*</xsl:text>
                 </xsl:element>
                 <xsl:element name="span">
-                    <xsl:attribute name="class" select="'teiLetter_noteInline'"/>
+                    <xsl:attribute name="class" select="'inlineNote'"/>
                     <xsl:attribute name="id">
                         <xsl:value-of select="concat('note_',$no)"/>
                     </xsl:attribute>
