@@ -93,12 +93,6 @@
         </xsl:element>
     </xsl:template>
 
-    <!--  Soll das docDate angezeigt werden??  -->
-    <xsl:template match="tei:docDate">
-        <!--<div class="teiLetter_docDate">
-            <xsl:apply-templates />
-        </div>-->
-    </xsl:template>
     <xsl:template match="tei:opener">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
@@ -135,7 +129,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="//tei:opener//tei:dateline">
+    <xsl:template match="tei:dateline[ancestor::tei:opener]">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
@@ -174,7 +168,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="tei:closer//tei:dateline">
+    <xsl:template match="tei:dateline[ancestor::tei:closer]">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">teiLetter_datelineCloser</xsl:attribute>
@@ -265,47 +259,6 @@
         </xsl:choose>
     </xsl:template>
 
-    <!--<xsl:template match="tei:subst">
-        <xsl:apply-templates/>
-        <!-\-<xsl:choose>
-            <xsl:when test="@rend='overwritten'">
-                <span class="teiLetter_delOverwritten">
-                    <xsl:value-of select="normalize-space(tei:del)"/>
-                </span>
-                <xsl:value-of select="normalize-space(tei:add)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <p class="teiLetter_undefined">
-                    <xsl:apply-templates/>
-                </p>
-            </xsl:otherwise>
-        </xsl:choose>-\->
-    </xsl:template>-->
-    <xsl:template match="tei:cit">
-        <xsl:apply-templates select="./tei:quote"/>
-        <xsl:variable name="citInlineID">
-            <xsl:number level="any"/>
-        </xsl:variable>
-        <span class="teiLetter_noteDefinitionMark" onmouseout="UnTip()">
-            <xsl:attribute name="onmouseover">
-                <xsl:text>TagToTip('</xsl:text>
-                <xsl:value-of select="concat('cit_',$citInlineID)"/>
-                <xsl:text>')</xsl:text>
-            </xsl:attribute>
-            <xsl:text>*</xsl:text>
-        </span>
-        <span class="teiLetter_noteInline">
-            <xsl:attribute name="id">
-                <xsl:value-of select="concat('cit_',$citInlineID)"/>
-            </xsl:attribute>
-            <xsl:apply-templates select="./tei:bibl"/>
-        </span>
-    </xsl:template>
-    <xsl:template match="tei:quote">
-        <xsl:text>"</xsl:text>
-        <xsl:apply-templates/>
-        <xsl:text>"</xsl:text>
-    </xsl:template>
     <xsl:template match="tei:bibl">
         <!--        <p class="teiLetter_bibl">-->
         <xsl:if test="./tei:author">
@@ -320,6 +273,7 @@
         </xsl:if>
         <!--        </p>-->
     </xsl:template>
+   
     <xsl:template match="tei:incipit">
         <xsl:element name="div">
             <!--<xsl:attribute name="id" select="'incipit'"/>-->
