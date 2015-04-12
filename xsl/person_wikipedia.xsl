@@ -194,7 +194,7 @@
     <xsl:template match="div[@id='adbcite']" mode="appendix">
         <xsl:element name="p">
             <xsl:attribute name="class" select="'linkAppendix'"/>
-            <xsl:text>Der Inhalt dieser mit "ADB" bezeichneten Box entstammt dem </xsl:text>
+            <xsl:text>Der Text unter der Überschrift „ADB“ entstammt dem </xsl:text>
             <xsl:apply-templates mode="appendix"/>
         </xsl:element>
     </xsl:template>

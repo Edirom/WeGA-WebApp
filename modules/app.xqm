@@ -633,21 +633,21 @@ declare
         $node/@*,
         
         if($lang eq 'en') then (
-            'The content of this "Wikipedia" entitled box is taken from the article "',
+            'The text under the headline “Wikipedia” is taken from the article “',
             <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
-            '" from ',
+            '” from ',
             <a href="http://en.wikipedia.org">Wikipedia</a>,
-            'the free encyclopedia, and is released under a ',
+            ' the free encyclopedia, and is released under a ',
             <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
             '. You will find the ',
             <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
-            'of this article in Wikipedia.'
+            ' of this article in Wikipedia.'
         )
             
         else (
-            'Der Inhalt dieser mit "Wikipedia" bezeichneten Box entstammt dem Artikel "',
+            'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
             <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
-            '" aus der freien Enzyklopädie ',
+            '“ aus der freien Enzyklopädie ',
             <a href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
             ' und steht unter der ',
             <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
