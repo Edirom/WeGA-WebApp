@@ -417,8 +417,8 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template name="createSimpleToolTip">
-        <xsl:param name="no"/>
+    <xsl:template name="popover">
+        <xsl:param name="id"/>
         <xsl:choose>
             <xsl:when test="./descendant::*[local-name(.) = $blockLevelElements]"/>
             <xsl:otherwise>
@@ -426,20 +426,21 @@
                   <xsl:attribute name="class">noteMarker</xsl:attribute>
                   <xsl:attribute name="data-toggle">popover</xsl:attribute>
                   <xsl:attribute name="data-trigger">focus</xsl:attribute>
-                  <xsl:attribute name="title" select="normalize-space(@type)"/>
+<!--                  <xsl:attribute name="title" select="normalize-space(@type)"/>-->
                   <xsl:attribute name="tabindex">0</xsl:attribute>
-                    <xsl:attribute name="id">
-                       <xsl:value-of select="concat('noteMarker_',$no)"/>
-                    </xsl:attribute>
-                    <xsl:text>*</xsl:text>
+                  <xsl:attribute name="data-ref" select="$id"/>
+                  <!--<xsl:attribute name="id">
+                     <xsl:value-of select="concat('noteMarker_',$no)"/>
+                  </xsl:attribute>-->
+                  <xsl:text>*</xsl:text>
                 </xsl:element>
-                <xsl:element name="span">
+                <!--<xsl:element name="span">
                     <xsl:attribute name="class" select="'inlineNote'"/>
                     <xsl:attribute name="id">
                         <xsl:value-of select="concat('note_',$no)"/>
                     </xsl:attribute>
                     <xsl:apply-templates/>
-                </xsl:element>
+                </xsl:element>-->
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -533,7 +534,18 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:add[not(parent::tei:subst)]">
+       <xsl:variable name="addInlineID">
+          <xsl:choose>
+             <xsl:when test="@xml:id">
+                <xsl:value-of select="@xml:id"/>
+             </xsl:when>
+             <xsl:otherwise>
+                <xsl:value-of select="generate-id(.)"/>
+             </xsl:otherwise>
+          </xsl:choose>
+       </xsl:variable>
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
@@ -554,37 +566,12 @@
                 </xsl:choose>
             </xsl:attribute>
             <xsl:apply-templates/>
-            <xsl:if test="@place='margin' or @place='inline'">
-                <xsl:variable name="addInlineID">
-                    <xsl:value-of select="generate-id(.)"/>
-                </xsl:variable>
-                <xsl:element name="span">
-                    <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-<!--                    <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
-                    <!--<xsl:attribute name="onmouseover">
-                        <xsl:text>TagToTip('</xsl:text>
-                        <xsl:value-of select="concat('subst_',$addInlineID)"/>
-                        <xsl:text>')</xsl:text>
-                    </xsl:attribute>-->
-                    <xsl:text>*</xsl:text>
-                </xsl:element>
-                <xsl:element name="span">
-                    <xsl:attribute name="class" select="'teiLetter_noteInline'"/>
-                    <xsl:attribute name="id">
-                        <xsl:value-of select="concat('subst_',$addInlineID)"/>
-                    </xsl:attribute>
-                    <xsl:choose>
-                        <xsl:when test="@place='margin'">
-                            <xsl:value-of select="wega:getLanguageString('addMargin', $lang)"/>
-                        </xsl:when>
-                        <xsl:when test="@place='inline'">
-                            <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:element>
-            </xsl:if>
+           <xsl:call-template name="popover">
+              <xsl:with-param name="id" select="$addInlineID"/>
+           </xsl:call-template>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:subst">
         <xsl:variable name="substInlineID">
             <xsl:value-of select="generate-id(.)"/>
@@ -592,53 +579,11 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="'tei_subst'"/>
-            <xsl:value-of select="./tei:add"/>
-            <xsl:element name="span">
-                <xsl:attribute name="class" select="'teiLetter_noteDefinitionMark'"/>
-<!--                <xsl:attribute name="onmouseout" select="'UnTip()'"/>-->
-                <!--<xsl:attribute name="onmouseover">
-                    <xsl:text>TagToTip('</xsl:text>
-                    <xsl:value-of select="concat('subst_',$substInlineID)"/>
-                    <xsl:text>')</xsl:text>
-                </xsl:attribute>-->
-                <xsl:text>*</xsl:text>
-            </xsl:element>
-            <xsl:element name="span">
-                <xsl:attribute name="class" select="'teiLetter_noteInline'"/>
-                <xsl:attribute name="id">
-                    <xsl:value-of select="concat('subst_',$substInlineID)"/>
-                </xsl:attribute>
-                <xsl:choose>
-                    <xsl:when test="./tei:add[@place='inline']">
-                        <xsl:value-of select="wega:getLanguageString('substInline', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='above']">
-                        <xsl:value-of select="wega:getLanguageString('substAbove', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='below']">
-                        <xsl:value-of select="wega:getLanguageString('substBelow', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='margin']">
-                        <xsl:value-of select="wega:getLanguageString('substMargin', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='mixed']">
-                        <xsl:value-of select="wega:getLanguageString('substMixed', $lang)"/>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                    <xsl:when test="./tei:del/tei:gap">
-                        <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:del[@rend='strikethrough']">
-                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
-                        <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:del[@rend='overwritten']">
-                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
-                        <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:element>
+            <!--<xsl:value-of select="./tei:add"/>-->
+            <xsl:apply-templates select="tei:add | text()"/>
+            <xsl:call-template name="popover">
+               <xsl:with-param name="id" select="$substInlineID"/>
+            </xsl:call-template>
         </xsl:element>
     </xsl:template>
     
@@ -866,11 +811,11 @@
     <xsl:template match="tei:note" priority="0.5">
         <xsl:choose>
             <xsl:when test="@type='definition' or @type='commentary' or @type='textConst'">
-                <xsl:variable name="noteInlineID">
+                <!--<xsl:variable name="noteInlineID">
                     <xsl:number level="any"/>
-                </xsl:variable>
-                <xsl:call-template name="createSimpleToolTip">
-                    <xsl:with-param name="no" select="$noteInlineID"/>
+                </xsl:variable>-->
+                <xsl:call-template name="popover">
+                    <xsl:with-param name="id" select="@xml:id"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="@type='thematicCom'"/>

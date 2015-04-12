@@ -48,9 +48,14 @@ $('.allFilter select').facets();
 /* Initialise popovers for notes */
 $('.noteMarker').popover({
   'html': true,
-  'placement': 'auto right',
+  'placement': 'auto top',
+  'title': function(){
+      var noteID=$(this).attr('data-ref');
+      var note=$('#' + noteID);
+      return note.attr('data-title');
+  },
   'content': function() {
-      var noteID=$(this).attr('id').replace('Marker', '');
+      var noteID=$(this).attr('data-ref');
       var note=$('#' + noteID);
       return note.html();
   }

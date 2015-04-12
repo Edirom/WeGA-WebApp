@@ -6,14 +6,15 @@
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space
-        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date"/>
+    <xsl:preserve-space elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date tei:subst tei:add"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
+    <xsl:include href="apparatus.xsl"/>
 
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
+   
     <xsl:template match="tei:body">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'teiLetter_body'"/>
@@ -22,7 +23,9 @@
                 <xsl:call-template name="createEndnotes"/>
             </xsl:if>
         </xsl:element>
+        <xsl:call-template name="createApparatus"/>
     </xsl:template>
+   
     <xsl:template match="tei:div">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
@@ -59,6 +62,7 @@
             </xsl:choose>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:p">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
@@ -102,12 +106,14 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:head[parent::tei:div[@type='writingSession']]" priority="1">
         <xsl:element name="h2">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:note[@type='summary']" priority="1">
         <xsl:element name="div">
             <!--            <xsl:attribute name="id" select="'summary'"/>-->
@@ -148,6 +154,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:closer" priority="1">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
@@ -168,6 +175,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:dateline[ancestor::tei:closer]">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
@@ -178,6 +186,7 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+   
     <xsl:template match="tei:salute">
         <xsl:choose>
             <xsl:when test="parent::node()/name() = 'opener'">
@@ -208,10 +217,12 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+   
     <xsl:template match="tei:rdg"/>
     <xsl:template match="tei:lem">
         <xsl:apply-templates/>
     </xsl:template>
+   
     <xsl:template match="tei:app">
         <xsl:variable name="appInlineID">
             <xsl:number level="any"/>
