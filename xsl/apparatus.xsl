@@ -7,8 +7,25 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)]" mode="apparatus"/>
+         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)]" mode="apparatus"/>
       </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:del[not(parent::tei:subst)]">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_del'"/>
+         <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst', 'thematicCom')]">
+      <xsl:choose>
+         <xsl:when test="@type='thematicCom'"/>
+         <xsl:otherwise>
+            <xsl:call-template name="popover"/>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
    
    <xsl:template match="tei:note" mode="apparatus">
@@ -23,6 +40,16 @@
             </xsl:if>
          </xsl:attribute>
          <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:subst">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_subst'"/>
+         <!-- Need to take care of whitespace when there are multiple <add> -->
+         <xsl:apply-templates select="tei:add | text()"/>
+         <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
    
@@ -71,19 +98,6 @@
                         <xsl:value-of select="wega:getLanguageString('substMixed', $lang)"/>
                     </xsl:when>
                 </xsl:choose>
-                <xsl:choose>
-                    <xsl:when test="./tei:del/tei:gap">
-                        <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:del[@rend='strikethrough']">
-                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
-                        <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:del[@rend='overwritten']">
-                        <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
-                        <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
-                    </xsl:when>
-                </xsl:choose>
             </xsl:element>-->
       </xsl:element>
    </xsl:template>
@@ -96,6 +110,31 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text> some apparatus entry </xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:add[not(parent::tei:subst)]">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class">
+            <xsl:text>tei_add</xsl:text>
+            <xsl:choose>
+               <xsl:when test="@place='above'">
+                  <xsl:text> tei_hiSuperscript</xsl:text>
+               </xsl:when>
+               <xsl:when test="@place='below'">
+                  <xsl:text> tei_hiSubscript</xsl:text>
+               </xsl:when>
+               <!--<xsl:when test="./tei:add[@place='margin']">
+                        <xsl:text>Ersetzung am Rand. </xsl:text>
+                    </xsl:when>-->
+               <!--<xsl:when test="./tei:add[@place='mixed']">
+                        <xsl:text>Ersetzung an mehreren Stellen. </xsl:text>
+                        </xsl:when>-->
+            </xsl:choose>
+         </xsl:attribute>
+         <xsl:apply-templates/>
+         <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
    
@@ -132,6 +171,96 @@
             <!-- TODO translate -->
             <xsl:otherwise>Hinzufügung</xsl:otherwise>
          </xsl:choose>
+      </xsl:element>
+   </xsl:template>
+   
+   <!--<xsl:template match="tei:gap[@reason='outOfScope']">
+      <xsl:element name="span">
+         <xsl:attribute name="class" select="'tei_supplied'"/>
+         <xsl:text> […] </xsl:text>
+      </xsl:element>
+   </xsl:template>-->
+   
+   <!-- gap in damage, del, add und unclear?!? -->
+   <xsl:template match="tei:gap">
+      <xsl:element name="span">
+         <xsl:text> […]</xsl:text>
+         <xsl:if test="not(@reason='outOfScope')">
+            <xsl:call-template name="popover"/>
+         </xsl:if>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:gap" mode="apparatus">
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="@reason"/>
+         </xsl:attribute>
+         <xsl:text> Unleserliche Stelle </xsl:text>
+         <xsl:if test="@unit and @quantity">
+            <xsl:text>(ca. </xsl:text>
+            <xsl:value-of select="@quantity"/>
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="@unit"/>
+            <xsl:text>)</xsl:text>
+         </xsl:if>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:choice">
+      <xsl:choose>
+         <xsl:when test="./tei:unclear">
+            <xsl:apply-templates select="./tei:unclear[1]"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:apply-templates/>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+   
+   <xsl:template match="tei:sic[not(parent::tei:choice)]">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_sic'"/>
+         <xsl:apply-templates/>
+         <xsl:call-template name="popover"/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:sic[not(parent::tei:choice)]" mode="apparatus">
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+         </xsl:attribute>
+         <xsl:text>"</xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>": sic!</xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:corr">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_supplied'"/>
+         <xsl:text> [recte: </xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>]</xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:expan">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_supplied'"/>
+         <xsl:text> [</xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>]</xsl:text>
       </xsl:element>
    </xsl:template>
    

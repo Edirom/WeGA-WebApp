@@ -418,7 +418,17 @@
     </xsl:template>
 
     <xsl:template name="popover">
-        <xsl:param name="id"/>
+        <!--<xsl:param name="id"/>-->
+        <xsl:variable name="id">
+            <xsl:choose>
+                <xsl:when test="@xml:id">
+                    <xsl:value-of select="@xml:id"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="generate-id(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:choose>
             <xsl:when test="./descendant::*[local-name(.) = $blockLevelElements]"/>
             <xsl:otherwise>
@@ -524,73 +534,6 @@
                 </xsl:choose>
             </xsl:attribute>
             <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    
-    <xsl:template match="tei:del[not(parent::tei:subst)]">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_del'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-   
-    <xsl:template match="tei:add[not(parent::tei:subst)]">
-       <xsl:variable name="addInlineID">
-          <xsl:choose>
-             <xsl:when test="@xml:id">
-                <xsl:value-of select="@xml:id"/>
-             </xsl:when>
-             <xsl:otherwise>
-                <xsl:value-of select="generate-id(.)"/>
-             </xsl:otherwise>
-          </xsl:choose>
-       </xsl:variable>
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:text>tei_add</xsl:text>
-                <xsl:choose>
-                    <xsl:when test="@place='above'">
-                        <xsl:text> tei_hiSuperscript</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@place='below'">
-                        <xsl:text> tei_hiSubscript</xsl:text>
-                    </xsl:when>
-                    <!--<xsl:when test="./tei:add[@place='margin']">
-                        <xsl:text>Ersetzung am Rand. </xsl:text>
-                    </xsl:when>-->
-                    <!--<xsl:when test="./tei:add[@place='mixed']">
-                        <xsl:text>Ersetzung an mehreren Stellen. </xsl:text>
-                        </xsl:when>-->
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-           <xsl:call-template name="popover">
-              <xsl:with-param name="id" select="$addInlineID"/>
-           </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
-   
-    <xsl:template match="tei:subst">
-        <xsl:variable name="substInlineID">
-            <xsl:value-of select="generate-id(.)"/>
-        </xsl:variable>
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_subst'"/>
-            <!--<xsl:value-of select="./tei:add"/>-->
-            <xsl:apply-templates select="tei:add | text()"/>
-            <xsl:call-template name="popover">
-               <xsl:with-param name="id" select="$substInlineID"/>
-            </xsl:call-template>
-        </xsl:element>
-    </xsl:template>
-    
-    <xsl:template match="tei:gap[@reason='outOfScope']">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_supplied'"/>
-            <xsl:text> […] </xsl:text>
         </xsl:element>
     </xsl:template>
     
@@ -745,37 +688,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:choice">
-        <xsl:choose>
-            <xsl:when test="./tei:unclear">
-                <xsl:apply-templates select="./tei:unclear[1]"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:apply-templates/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="tei:corr">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_supplied'"/>
-            <xsl:text> [recte: </xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text>]</xsl:text>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="tei:expan">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_supplied'"/>
-            <xsl:text> [</xsl:text>
-            <xsl:apply-templates/>
-            <xsl:text>]</xsl:text>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:figure" priority="0.5">
         <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
@@ -804,23 +716,6 @@
                     </xsl:element>
                 </xsl:variable>
                 <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="tei:note" priority="0.5">
-        <xsl:choose>
-            <xsl:when test="@type='definition' or @type='commentary' or @type='textConst'">
-                <!--<xsl:variable name="noteInlineID">
-                    <xsl:number level="any"/>
-                </xsl:variable>-->
-                <xsl:call-template name="popover">
-                    <xsl:with-param name="id" select="@xml:id"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:when test="@type='thematicCom'"/>
-            <xsl:otherwise>
-                <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
