@@ -7,7 +7,7 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)]" mode="apparatus"/>
+         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice" mode="apparatus"/>
       </xsl:element>
    </xsl:template>
    
@@ -212,14 +212,56 @@
    </xsl:template>
    
    <xsl:template match="tei:choice">
-      <xsl:choose>
-         <xsl:when test="./tei:unclear">
-            <xsl:apply-templates select="./tei:unclear[1]"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <xsl:apply-templates/>
-         </xsl:otherwise>
-      </xsl:choose>
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class" select="'tei_choice'"/>
+         <xsl:choose>
+            <xsl:when test="tei:sic">
+               <xsl:apply-templates select="tei:sic"/>
+            </xsl:when>
+            <xsl:when test="tei:unclear">
+               <xsl:variable name="opts" as="element()*">
+                  <xsl:perform-sort select="tei:unclear">
+                     <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
+                  </xsl:perform-sort>
+               </xsl:variable>
+               <xsl:apply-templates select="$opts[1]"/>
+            </xsl:when>
+         </xsl:choose>
+         <xsl:call-template name="popover"/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:choice" mode="apparatus">
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+         </xsl:attribute>
+         <xsl:choose>
+            <xsl:when test="tei:sic">
+               <xsl:text>"</xsl:text>
+               <xsl:value-of select="tei:sic"/>
+               <xsl:text>": eigentlich "</xsl:text>
+               <xsl:value-of select="tei:corr"/>
+               <xsl:text>"</xsl:text>
+            </xsl:when>
+            <xsl:when test="tei:unclear">
+               <xsl:variable name="opts" as="element()*">
+                  <xsl:perform-sort select="tei:unclear">
+                     <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
+                  </xsl:perform-sort>
+               </xsl:variable>
+               <xsl:text>"</xsl:text>
+               <xsl:value-of select="$opts[1]"/>
+               <xsl:text>": weitere mögliche Lesarten: "</xsl:text>
+               <!-- Eventuell noch @cert mit ausgeben?!? -->
+               <xsl:value-of select="string-join(subsequence($opts, 2), '&quot;, &quot;')"/>
+               <xsl:text>"</xsl:text>
+            </xsl:when>
+         </xsl:choose>
+      </xsl:element>
    </xsl:template>
    
    <xsl:template match="tei:sic[not(parent::tei:choice)]">
@@ -275,5 +317,13 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:function>
+   
+   <xsl:variable name="sort-order" as="element()+">
+      <cert sort="1">high</cert>
+      <cert sort="2">medium</cert>
+      <cert sort="3">low</cert>
+      <cert sort="4">unknown</cert>
+      <cert sort="4"></cert>
+   </xsl:variable>
    
 </xsl:stylesheet>
