@@ -1049,3 +1049,11 @@ declare
         str:shorten-text($model('doc')//tei:text, 200)
 };
 
+(: Hide datePicker for docTypes other than diaries :)
+declare function app:datePicker($node as node(), $model as map(*)) as element()? {
+    if($model('docType') = 'diaries') then
+        element {name($node)} {
+            $node/@*
+        }
+    else ()
+};
