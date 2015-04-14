@@ -217,7 +217,7 @@
          <xsl:attribute name="class" select="'tei_choice'"/>
          <xsl:choose>
             <xsl:when test="tei:sic">
-               <xsl:apply-templates select="tei:sic"/>
+               <xsl:apply-templates select="tei:corr"/>
             </xsl:when>
             <xsl:when test="tei:unclear">
                <xsl:variable name="opts" as="element()*">
@@ -226,6 +226,9 @@
                   </xsl:perform-sort>
                </xsl:variable>
                <xsl:apply-templates select="$opts[1]"/>
+            </xsl:when>
+            <xsl:when test="tei:abbr">
+               <xsl:apply-templates select="tei:abbr"/>
             </xsl:when>
          </xsl:choose>
          <xsl:call-template name="popover"/>
@@ -241,10 +244,10 @@
          </xsl:attribute>
          <xsl:choose>
             <xsl:when test="tei:sic">
-               <xsl:text>"</xsl:text>
-               <xsl:value-of select="tei:sic"/>
-               <xsl:text>": eigentlich "</xsl:text>
+               <xsl:text>recte "</xsl:text>
                <xsl:value-of select="tei:corr"/>
+               <xsl:text>": eigentlich "</xsl:text>
+               <xsl:value-of select="tei:sic"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
             <xsl:when test="tei:unclear">
@@ -258,6 +261,13 @@
                <xsl:text>": weitere mögliche Lesarten: "</xsl:text>
                <!-- Eventuell noch @cert mit ausgeben?!? -->
                <xsl:value-of select="string-join(subsequence($opts, 2), '&quot;, &quot;')"/>
+               <xsl:text>"</xsl:text>
+            </xsl:when>
+            <xsl:when test="tei:abbr">
+               <xsl:text>"</xsl:text>
+               <xsl:value-of select="tei:abbr"/>
+               <xsl:text>": Abk. von "</xsl:text>
+               <xsl:value-of select="tei:expan"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
          </xsl:choose>
@@ -283,26 +293,6 @@
          <xsl:text>"</xsl:text>
          <xsl:apply-templates/>
          <xsl:text>": sic!</xsl:text>
-      </xsl:element>
-   </xsl:template>
-   
-   <xsl:template match="tei:corr">
-      <xsl:element name="span">
-         <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_supplied'"/>
-         <xsl:text> [recte: </xsl:text>
-         <xsl:apply-templates/>
-         <xsl:text>]</xsl:text>
-      </xsl:element>
-   </xsl:template>
-   
-   <xsl:template match="tei:expan">
-      <xsl:element name="span">
-         <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_supplied'"/>
-         <xsl:text> [</xsl:text>
-         <xsl:apply-templates/>
-         <xsl:text>]</xsl:text>
       </xsl:element>
    </xsl:template>
    
