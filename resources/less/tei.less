@@ -1,0 +1,164 @@
+.tei_hi_underline1 {
+/*    border-bottom: 1px solid black;*/
+    background-image: url(../img/underline1.gif);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+}
+
+.tei_hi_underline2andMore {
+    background-image: url(../img/underline2.gif);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+/*    border-bottom: 2px solid black;*/
+}
+
+.tei_hi_latintype, .tei_hi_italic, .tei_hi_antiqua {
+    font-style: italic;
+}
+
+.tei_hi_bold, .tei_mentioned {
+    font-weight: bold;
+}
+
+.tei_hi_spaced_out {
+    letter-spacing: 0.15em;
+}
+
+.tei_hi_superscript {
+    vertical-align: super;
+    font-size: 0.8em;
+    line-height: 0.7em;
+}
+
+.tei_hi_subscript {
+    vertical-align: sub;
+    font-size: 0.8em;
+    line-height: 0.7em;
+}
+
+.tei_hi_small-caps {
+    font-variant: small-caps;
+}
+
+/* Used in wikipedia transformations */
+.tei_hi_typewriter {
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+.tei_del, .tei_delOverwritten {
+    text-decoration:line-through;
+}
+
+/* @gray ist die Standardtextfarbe */
+/*
+.tei_supplied, .tei_pb, .tei_cb {
+    color: @gray;
+}
+*/
+
+.tei_pb_block, .tei_cb_block {
+    float:left;
+    display:block;
+}
+
+/*  for development … */
+.tei_cssUndefined {
+    border: 1px solid red;
+    color: red;
+    display:block;
+}
+
+/* @gray ist die Standardtextfarbe */
+/* Unsichere Daten und Orte */
+/*.cert_medium, .cert_low, .cert_unknown {
+    color: @gray;
+}*/
+
+/* @gray ist die Standardtextfarbe */
+.cert_medium:after, .cert_low:after, .cert_unknown:after{
+    content:" ?"; /* ACHTUNG: hier &thinsp; ist aber im Editor nicht zu erkennen */
+/*    color: @gray;*/
+}
+
+div.poem {
+   margin: 0.5pc 0em 0.5pc 30%; 
+}
+
+div.poem h2 {
+    text-align: center;
+    margin-left: -30%;
+    font-size: 1.2em;
+}
+
+div.poem h3 {
+    text-align: left;
+    font-size: 1em;
+}
+
+div.lg {
+    margin-bottom: 0.5pc !important;
+}
+
+.verseLine {
+    display: block;
+}
+
+/*.work {
+    color: #02176F;
+}
+*/
+/*
+.work:hover {
+    cursor: help;
+}
+*/
+
+.tei_code {
+    font-family: monospace;
+}
+
+.eg {
+    display: block;
+    font-family: monospace;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    white-space:pre-wrap;
+}
+
+li.listTitle {
+    list-style: none;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+li.listSubTitle {
+    list-style: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.tei_simpleList {
+	list-style-type: none;
+}
+
+/* 
+    <signed> und <seg> werden als 'block' gesetzt, 
+    damit die Textausrichtung (s.u.) modifiziert werden kann 
+*/
+.tei_signed, .tei_segBlock {
+    display: block;
+}
+
+.textAlign-right {
+    text-align: right;
+}
+
+.textAlign-center {
+    text-align: center;
+}
+
+.textAlign-left {
+    text-align: left;
+}
