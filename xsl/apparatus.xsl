@@ -7,15 +7,7 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice" mode="apparatus"/>
-      </xsl:element>
-   </xsl:template>
-   
-   <xsl:template match="tei:del[not(parent::tei:subst)]">
-      <xsl:element name="span">
-         <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_del'"/>
-         <xsl:apply-templates/>
+         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:supplied | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
       </xsl:element>
    </xsl:template>
    
@@ -29,9 +21,10 @@
    </xsl:template>
    
    <xsl:template match="tei:note" mode="apparatus">
+      <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="local-name()"/>
             <xsl:if test="self::tei:note">
@@ -39,8 +32,30 @@
                <xsl:value-of select="@type"/>
             </xsl:if>
          </xsl:attribute>
+         <!-- When ein ptr existiert, dann wird dieser ausgewertet -->
+         <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
          <xsl:apply-templates/>
       </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:ptr" mode="apparatus">
+      <!-- Thanks to Dimitre Novatchev! http://stackoverflow.com/questions/2694825/how-do-i-select-all-text-nodes-between-two-elements-using-xsl -->
+      <xsl:variable name="noteID" select="substring(@target, 2)"></xsl:variable>
+      <xsl:variable name="vtextPostPtr" select="following::text()"/>
+      <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
+      <xsl:variable name="textTokensBetween" select="tokenize(string($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)]), '\s+')"/>
+      <xsl:text>"</xsl:text>
+      <xsl:choose>
+         <xsl:when test="count($textTokensBetween) gt 6">
+            <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
+            <xsl:text> … </xsl:text>
+            <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -3, 3), ' ')"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:text>": </xsl:text>
    </xsl:template>
    
    <xsl:template match="tei:subst">
@@ -274,10 +289,10 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:sic[not(parent::tei:choice)]">
+   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:supplied | tei:del[not(parent::tei:subst)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_sic'"/>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates/>
          <xsl:call-template name="popover"/>
       </xsl:element>
@@ -293,6 +308,33 @@
          <xsl:text>"</xsl:text>
          <xsl:apply-templates/>
          <xsl:text>": sic!</xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:supplied" mode="apparatus">
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+         </xsl:attribute>
+         <xsl:text>"</xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>": Hinzufügung des Herausgebers</xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+         </xsl:attribute>
+         <xsl:text>"</xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>": </xsl:text>
+         <xsl:value-of select="@rend"/>
       </xsl:element>
    </xsl:template>
    
