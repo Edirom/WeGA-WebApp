@@ -49,7 +49,7 @@
          <xsl:when test="count($textTokensBetween) gt 6">
             <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
             <xsl:text> … </xsl:text>
-            <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -3, 3), ' ')"/>
+            <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
@@ -184,7 +184,7 @@
             <xsl:when test="count($tokens) gt 6">
                <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
                <xsl:text> … </xsl:text>
-               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -3, 3), ' ')"/>
+               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
             </xsl:when>
             <xsl:otherwise>
                <xsl:value-of select="$addedText"/>
