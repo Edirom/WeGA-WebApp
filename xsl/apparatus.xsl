@@ -7,7 +7,7 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:damage | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:supplied | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
+         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:supplied | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
       </xsl:element>
    </xsl:template>
    
@@ -43,7 +43,7 @@
       <xsl:variable name="noteID" select="substring(@target, 2)"></xsl:variable>
       <xsl:variable name="vtextPostPtr" select="following::text()"/>
       <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
-      <xsl:variable name="textTokensBetween" select="tokenize(string($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)]), '\s+')"/>
+      <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
       <xsl:text>"</xsl:text>
       <xsl:choose>
          <xsl:when test="count($textTokensBetween) gt 6">
@@ -63,7 +63,14 @@
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="'tei_subst'"/>
          <!-- Need to take care of whitespace when there are multiple <add> -->
-         <xsl:apply-templates select="tei:add | text()"/>
+         <xsl:choose>
+            <xsl:when test="count(tei:add) gt 1">
+               <xsl:apply-templates select="tei:add | text()"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates select="tei:add"/>
+            </xsl:otherwise>
+         </xsl:choose>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -76,7 +83,15 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
-         <xsl:apply-templates select="tei:add | text()"/>
+         <!-- Need to take care of whitespace when there are multiple <add> -->
+         <xsl:choose>
+            <xsl:when test="count(tei:add) gt 1">
+               <xsl:apply-templates select="tei:add | text()"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates select="tei:add"/>
+            </xsl:otherwise>
+         </xsl:choose>
          <xsl:text>": </xsl:text>
          <xsl:choose>
             <xsl:when test="./tei:del/tei:gap">

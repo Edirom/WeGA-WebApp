@@ -18,6 +18,7 @@ import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
+import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 

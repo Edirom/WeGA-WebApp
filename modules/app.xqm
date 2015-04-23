@@ -176,6 +176,16 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
     )
 };
 
+(:~
+ : Processes the child elements only when in development mode
+ : (i.e. skip for production and staging)
+ :
+ : @author Peter Stadler
+ :)
+declare function app:show-at-development($node as node(), $model as map(*)) as item()* {
+    if($config:isDevelopment) then templates:process($node/node(), $model)
+    else ()
+};
 
 (:
  : ****************************

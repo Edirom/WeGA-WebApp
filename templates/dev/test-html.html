@@ -1,0 +1,83 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="document">HTML-Auszeichnungen</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="colored borderBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ol class="breadcrumb">
+                        <li><a href="$link/Index">Home</a></li>
+                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
+                        <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
+                        <li data-template="app:print" data-template-key="docID">A040080</li>
+                    </ol>
+                </div>
+                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                    <i class="fa fa-arrow-left"/>
+                    <span data-template="lang:translate">Back</span>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="container documentText paddingTopIcon paddingBottomIcon">
+        <div class="row">
+            <div class="col-md-3 col-md-push-9">
+                <div class="allFilter">
+                    <div>
+                        <div>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li><h2>Apparateinträge</h2></li>
+                                <li class="gradient-light active"><a href="#subst" data-toggle="tab">subst</a></li>
+                                <li class="gradient-light"><a href="#add" data-toggle="tab">add (außerhalb subst)</a></li>
+                                <li class="gradient-light"><a href="#del" data-toggle="tab">del (außerhalb subst)</a></li>
+                                <li class="gradient-light"><a href="#supplied" data-toggle="tab">supplied</a></li>
+                                <li><h2>Hervorhebungen</h2></li>
+                                <li class="gradient-light"><a href="#underline1" data-toggle="tab">underline 1</a></li>
+                                <li class="gradient-light"><a href="#underline2" data-toggle="tab">underline 2 (und mehr)</a></li>
+                                <li class="gradient-light"><a href="#latintype" data-toggle="tab">latintype</a></li>
+                                <li class="gradient-light"><a href="#spaced_out" data-toggle="tab">spaced_out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-md-pull-3 ">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active fade in" id="subst">
+                        <div data-template="dev-app:print-examples" data-template-key="subst"/>
+                    </div>
+                    <div class="tab-pane fade" id="add">
+                        <div data-template="dev-app:print-examples" data-template-key="add"/>
+                    </div>
+                    <div class="tab-pane fade" id="del">
+                        <div data-template="dev-app:print-examples" data-template-key="del"/>
+                    </div>
+                    <div class="tab-pane fade" id="supplied">
+                        <div data-template="dev-app:print-examples" data-template-key="supplied"/>
+                    </div>
+                    <div class="tab-pane fade" id="underline1">
+                        <div data-template="dev-app:print-examples" data-template-key="underline1"/>
+                    </div>
+                    <div class="tab-pane fade" id="underline2">
+                        <div data-template="dev-app:print-examples" data-template-key="underline2"/>
+                    </div>
+                    <div class="tab-pane fade" id="latintype">
+                        <div data-template="dev-app:print-examples" data-template-key=""/>
+                    </div>
+                    <div class="tab-pane fade" id="spaced_out">
+                        <div data-template="dev-app:print-examples" data-template-key=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
