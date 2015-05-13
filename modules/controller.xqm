@@ -9,6 +9,8 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -72,6 +74,9 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
         else controller:error($exist-vars, 404)
 };
 
+(:~
+ : Dispatch pages for tab "Indices"
+ :)
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
     let $docType := 
         if($exist-vars('resource')) then lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))[. = (map:keys($config:wega-docTypes), 'indices', 'project')]
@@ -88,9 +93,18 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
         else controller:error($exist-vars, 404)
 };
 
+(:~
+ : Dispatch pages for tab "Project"
+ :)
 declare function controller:dispatch-project($exist-vars as map(*)) as element(exist:dispatch) {
-    if(contains($exist-vars('resource'), '.')) then controller:error($exist-vars, 404)
-    else controller:dispatch-register($exist-vars)
+    let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//xhtml:li[@id='project-nav']//xhtml:a 
+    let $request := request:get-uri()
+    let $a := $project-nav/@href[controller:resolve-link(.,$exist-vars('lang')) = $request]/parent::*
+    return
+        switch($a)
+        case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
+        case 'projectDescription' case 'editorialGuidelines' case 'contact' return controller:forward-html('/templates/var.html', $exist-vars)
+        default return controller:error($exist-vars, 404)
 };
 
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {

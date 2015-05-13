@@ -141,7 +141,7 @@ else if (contains($exist:path, concat('/', lang:get-language-string('indices', $
     controller:dispatch-register($exist-vars)
 
 (: Projekt :)
-else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang)))) then
+else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/', $exist:resource))) then
     controller:dispatch-project($exist-vars)
 
 (: Editorial Guidelines :)

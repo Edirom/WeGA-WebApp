@@ -1,0 +1,127 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="document" data-template="app:document-title">CARL MARIA VON WEBER AN
+                        BREITKOPF UND HÄRTEL IN LEIPZIG SALZBURG, MONTAG, 3. SEPTEMBER 1798</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="colored borderBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ol class="breadcrumb">
+                        <li><a href="$link/Index">Home</a></li>
+                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
+                        <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
+                        <li data-template="app:print" data-template-key="docID">A040080</li>
+                    </ol>
+                </div>
+                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                    <i class="fa fa-arrow-left"/>
+                    <span data-template="lang:translate">Back</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container documentText paddingTopIcon paddingBottomIcon">
+        <div class="row">
+            <div class="col-md-3 col-md-push-9">
+                <div id="datePicker" data-template="app:datePicker"/>
+                <div class="allFilter" data-template="facets:document-allFilter">
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
+                            Dokumente</h2>
+                        <div id="dokumente" class="panel-collapse collapse ">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
+                                <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext" data-template="lang:translate">context</h2>
+<!--                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:context-dispatch">-->
+                            <!--<h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
+                                <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
+                            </ul><h4>Folgend</h4><ul>
+                                <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
+                                <li><a href="/de/A009155/Korrespondenz/A045302" onmouseover="metaDataToTip('A045302','de')" onmouseout="UnTip()">1799-07-10</a>: Von <a href="/de/A009155"><span class="person" onmouseover="metaDataToTip('A009155', 'de')" onmouseout="UnTip()">W. Freiin von Marschall genannt
+                                            Greiff</span></a></li>
+                            </ul><h3>Korrespondenzstelle</h3><h4>Vorausgehend</h4><ul>
+                                <li class="noDataFound">keine Angaben gefunden</li>
+                            </ul><h4>Folgend</h4><ul>
+                                <li class="noDataFound">keine Angaben gefunden</li>
+                            </ul>-->
+                        <!--</div>-->
+                    </div>
+                    <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>
+                        <div class="panel-collapse collapse" data-template="facets:filter-body">
+                            <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
+                                <label class="btn gradient-light" data-template="app:each" data-template-from="filterOptions" data-template-to="filterOption">
+                                    <input type="checkbox" name="options" data-template="facets:filter-value"/> <span data-template="facets:filter-label">Weber, Carl Maria von</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-md-pull-3 ">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active fade in" id="transcription">
+                        <div data-template="app:print-transcription"/>
+                    </div>
+                    <div class="tab-pane fade" id="editorial">
+                        <h2 data-template="lang:translate">editorial</h2>
+                        <!--<div>
+                            <h3 data-template="lang:translate">series</h3>
+                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
+                        </div>-->
+                        
+                        <div>
+                            <h3 data-template="lang:translate">summary</h3>
+                            <div data-template="app:print-summary"/>
+                        </div>
+                        
+                        <div>
+                            <h3 data-template="lang:translate">incipit</h3>
+                            <div data-template="app:print-incipit"/>
+                        </div>
+                        
+                        <div>
+                            <h3 data-template="lang:translate">responsibilities</h3>
+                            <dl data-template="app:respStmts"/>
+                        </div>
+                        
+                        <div data-template="app:textSources">
+                            <h3 data-template="lang:translate">textSources</h3>
+                            <div data-template="app:each" data-template-from="textSources" data-template-to="textSource">
+                                <div data-template="app:print-textSource"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="facsimile"> </div>
+                    <div class="tab-pane fade" id="XMLPreview">
+                        <h2>XML</h2>
+                        <!-- loaded via AJAX request to ./xml.html -->
+                    </div>
+                    <div class="tab-pane fade" id="XMLDownload">
+                        <h2>XML Download</h2>
+                        <!-- Download initiated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-template="templates:include" data-template-path="templates/includes/permalink.html"/>
+        <div data-template="templates:include" data-template-path="templates/includes/bug-report.html"/>
+    </div>
+</div>
