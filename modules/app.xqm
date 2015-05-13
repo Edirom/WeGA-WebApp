@@ -176,6 +176,12 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
     )
 };
 
+declare 
+   %templates:wrap
+   function app:if-exists($node as node(), $model as map(*), $key as xs:string) {
+      if($model($key)) then templates:process($node/node(), $model)
+      else ()
+};
 
 (:
  : ****************************

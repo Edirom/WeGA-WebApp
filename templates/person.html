@@ -32,35 +32,35 @@
             <div class="col-md-3 paddingBottomIcon col-sm-6">
                 <h2 data-template="lang:translate">basic_data</h2>
                 <ol class="media">
-                    <li class="media" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
+                   <li class="media fullnames" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
                         <div class="pull-left">
                             <i class="fa fa-user media-object"/>
                         </div>
                         <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
                     </li>
-                    <li class="media" data-template="app:each" data-template-from="realnames" data-template-to="realname">
+                   <li class="media realnames" data-template="app:each" data-template-from="realnames" data-template-to="realname">
                         <div class="pull-left">
                             <i class="fa fa-user media-object"/>
                         </div>
                         <div class="media-body" data-template="app:print" data-template-key="realname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">realName</span>)--></div>
                     </li>
-                    <li class="media" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
+                   <li class="media birthnames" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
                         <div class="pull-left">
                             <i class="fa fa-user media-object"/>
                         </div>
                         <div class="media-body" data-template="app:print" data-template-key="birthname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">birthName</span>)--></div>
                     </li>
-                    <li class="media" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
+                   <li class="media marriednames" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
                         <div class="pull-left">
                             <i class="fa fa-user media-object"/>
                         </div>
                         <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
                     </li>
-                    <li class="media" data-template="app:each" data-template-from="pseudonyme" data-template-to="pseudonym">
+                   <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
                         <div class="pull-left">
                             <i class="fa fa-user media-object"/>
                         </div>
-                        <div class="media-body" data-template="app:print" data-template-key="pseudonym"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
+                        <div class="media-body" data-template="app:join" data-template-key="pseudonyme"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
                     </li>
                     <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
                         <div class="pull-left">
@@ -76,6 +76,22 @@
                         <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
                             in Eudin Unsicher: 22.10.1786 in Eudin </div>
                     </li>
+                   <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
+                      <div class="pull-left">                  
+                         <i class="fa fa-briefcase media-object"/>
+                      </div>
+                      <div class="media-body" data-template="app:join" data-template-key="occupations">
+                          Schauspielerin, Sängerin
+                      </div>
+                   </li>
+                   <li class="media residences" data-template="app:if-exists" data-template-key="residences">
+                      <div class="pull-left">                  
+                         <i class="fa fa-map-marker media-object"/>
+                      </div>
+                      <div class="media-body" data-template="app:join" data-template-key="residences">
+                         Köln, Gotha
+                      </div>
+                   </li>
                 </ol>
             </div>
             <div class="col-md-3 col-sm-12  iconographie">
