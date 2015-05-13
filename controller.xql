@@ -521,12 +521,16 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
     </dispatch>
 :)
     
-(: general forwarding of folder 'dev' for development :)
+(: general forwarding of folder 'dev' for development XQueries :)
 else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
     </dispatch>
 
+(: general forwarding of folder '/de/dev' for development HTML pages :)
+else if($config:isDevelopment and starts-with($exist:path, '/de/dev/')) then 
+    controller:forward-html('/templates/dev/' || $exist:resource, $exist-vars)
+    
 else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/tmp/logs/', $exist:resource)}">

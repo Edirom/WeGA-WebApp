@@ -110,9 +110,12 @@
         <xsl:choose>
             <xsl:when test="exists(@key) and not(./descendant::*[local-name(.) = $linkableElements])">
                 <xsl:element name="a">
-                    <xsl:if test="$transcript">
-                        <xsl:attribute name="class" select="'transcript'"/>
-                    </xsl:if>
+                    <xsl:attribute name="class">
+                        <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                        <xsl:if test="$transcript">
+                            <xsl:text> transcript</xsl:text>
+                        </xsl:if>
+                    </xsl:attribute>
                     <xsl:attribute name="href" select="wega:createLinkToDoc(@key, $lang)"/>
                     <xsl:call-template name="createHover">
                         <xsl:with-param name="key" select="@key"/>
