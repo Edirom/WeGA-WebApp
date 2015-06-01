@@ -19,7 +19,7 @@ $.fn.facets = function ()
                 var facet = $(this).parent().attr('name');
                 var value = $(this).attr('value');
                 /*console.log(facet + '=' + value);*/
-                params.push(facet + '=' + value)
+                params.push(facet + '=' + encodeURI(value))
             })
             
             /* AJAX call for personal writings etc. */

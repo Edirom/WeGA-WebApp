@@ -12,7 +12,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'placeOfAddressee', 'placeOfSender');
+    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender');
 
 (:~
  : All results
@@ -118,32 +118,9 @@ declare %private function search:create-filters() as map(*) {
 
 declare %private function search:filter-result($collection as document-node()*, $filters as map(*)) as document-node()* {
     let $filter := map:keys($filters)[1]
-    let $filtered-coll :=
-        switch($filter)
-        case 'sender' return $collection//@key[.=$filters($filter)][ancestor::tei:sender]/root()
-        case 'addressee' return $collection//@key[.=$filters($filter)][ancestor::tei:addressee]/root()
-        case 'docStatus' return ($collection/*/@status | $collection//tei:revisionDesc/@status)[.=$filters($filter)]/root()
-        case 'placeOfSender' return $collection//tei:placeName[.=$filters($filter)][parent::tei:placeSender]/root()
-        case 'placeOfAddressee' return $collection//tei:placeName[.=$filters($filter)][parent::tei:placeAddressee]/root()
-        case 'journals' return $collection//tei:title[.=$filters($filter)][@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]/root()
-(:        case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]:)
-        case 'dedicatees' return $collection//mei:persName[@dbkey=$filters($filter)][@role='dte']/root()
-        case 'lyricists' return $collection//mei:persName[@dbkey=$filters($filter)][@role='lyr']/root()
-        case 'librettists' return $collection//mei:persName[@dbkey=$filters($filter)][@role='lbt']/root()
-        case 'composers' return $collection//mei:persName[@dbkey=$filters($filter)][@role='cmp']/root()
-        case 'docSource' return $collection//@source[.=$filters($filter)]/root()
-        case 'occupations' return $collection//tei:occupation[.=$filters($filter)]/root()
-        case 'residences' return $collection//tei:settlement[.=$filters($filter)][parent::tei:residence]/root()
-            (: index-keys does not work with multiple whitespace separated keys
-                probably need to change to ft:query() someday?!
-            :)
-        case 'persons' return ($collection//@key[contains(.,$filters($filter))] | $collection//@dbkey[contains(.,$filters($filter))])/root()
-        case 'works' return ($collection//@key[contains(.,$filters($filter))] | $collection//@dbkey[contains(.,$filters($filter))])/root()
-        case 'authors' return $collection//@key[.=$filters($filter)][parent::tei:author]/root()
-        case 'editors' return $collection//@key[.=$filters($filter)][parent::tei:editor]/root()
-        case 'biblioType' return $collection//@type[.=$filters($filter)][parent::tei:biblStruct]/root()
-        case 'textType' return $collection//@xml:id[starts-with(., $config:wega-docTypes($filters($filter)))]/root()
-        default return $collection
+    let $filtered-coll := 
+      if($filter) then query:get-facets($collection, $filter)[.=$filters($filter)]/root()
+      else $collection
     let $newFilter := 
         try { map:remove($filters, $filter) }
         catch * {map:new()}

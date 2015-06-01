@@ -152,3 +152,33 @@ declare function query:get-main-source($doc as document-node()) as element()? {
     else if($doc/tei:biblStruct) then $doc/tei:biblStruct (: for biblio :)
     else ()
 };
+
+(:~
+ : see also $search:valid-params
+~:)
+declare function query:get-facets($collection as node()*, $facet as xs:string) as item()* {
+    switch($facet)
+    case 'sender' return $collection//@key[ancestor::tei:sender]
+    case 'addressee' return $collection//@key[ancestor::tei:addressee]
+    case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
+    case 'placeOfSender' return $collection//tei:placeName[parent::tei:placeSender]
+    case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:placeAddressee]
+    case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
+    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]
+    case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
+    case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
+    case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
+    case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
+    case 'docSource' return $collection/tei:person/@source
+    case 'occupations' return $collection//tei:occupation
+    case 'residences' return $collection//tei:settlement[parent::tei:residence]
+        (: index-keys does not work with multiple whitespace separated keys
+            probably need to change to ft:query() someday?!
+        :)
+    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key[matches(., '^A02\d{4}$')])
+    case 'works' return ($collection//@key[parent::tei:workName][matches(., '^A02\d{4}$')] | $collection//@key[parent::tei:rs/@type='work'][matches(., '^A02\d{4}$')])
+    case 'authors' return $collection//tei:author/@key
+    case 'editors' return $collection//tei:editor/@key
+    case 'biblioType' return $collection/tei:biblStruct/@type
+    default return ()
+};
