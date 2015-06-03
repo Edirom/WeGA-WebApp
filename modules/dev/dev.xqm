@@ -101,7 +101,6 @@ declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+,
         if(config:is-person($coll1[22])) then dev:pad-hex-to-length(dev:int2hex(util:random($max)), 4)
         else functx:pad-integer-to-length(util:random($max), 4)
     let $newID := concat($IDPrefix, $rand)
-    let $Log := util:log-system-out($newID)
     return 
         if ($newID = ($coll1, $coll2)) then dev:getNewID($max, $coll1, $coll2)
         else $newID  
