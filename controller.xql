@@ -282,7 +282,7 @@ else if (matches($exist:path, concat('^/', $lang, '/', $volContents, '/?$'))) th
     </dispatch>
 
 (: Personen - Weiterleitung :)
-else if (matches($exist:path, '^/A00\d{4}/?$')) then
+else if (matches($exist:path, '^/A00[A-F0-9]{4}/?$')) then
     controller:redirect-docID($exist-vars, $exist:resource)
 
 (: Andere Dokumenten - Weiterleitung :)
@@ -290,8 +290,8 @@ else if (matches($exist:path, '^/(de/|en/)?A0[3456]\d{4}/?$')) then
     controller:redirect-docID($exist-vars, $exist:resource)
 
 (: Personen - Briefliste :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $correspondence, '/?$'))) then
-    let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'), '')
+else if (matches($exist:path, concat('^/', $lang, '/A00[A-F0-9]{4}/', $correspondence, '/?$'))) then
+    let $authorID := string-join(functx:get-matches($exist:path, 'A00[A-F0-9]{4}'), '')
     return 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         	<forward url="{concat($exist:controller, '/modules/register.xql')}">
@@ -302,8 +302,8 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $correspondence,
         </dispatch>
 
 (: Personen - Schriftenliste :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $writings, '/?$'))) then
-    let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'),'')
+else if (matches($exist:path, concat('^/', $lang, '/A00[A-F0-9]{4}/', $writings, '/?$'))) then
+    let $authorID := string-join(functx:get-matches($exist:path, 'A00[A-F0-9]{4}'),'')
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{concat($exist:controller, '/modules/register.xql')}">
@@ -314,8 +314,8 @@ else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $writings, '/?$'
     </dispatch>
 
 (: Personen - Werkeliste :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/', $works, '/?$'))) then
-    let $authorID := string-join(functx:get-matches($exist:path, 'A00\d{4}'),'')
+else if (matches($exist:path, concat('^/', $lang, '/A00[A-F0-9]{4}/', $works, '/?$'))) then
+    let $authorID := string-join(functx:get-matches($exist:path, 'A00[A-F0-9]{4}'),'')
     return 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{concat($exist:controller, '/modules/register.xql')}">
@@ -338,7 +338,7 @@ else if (matches($exist:path, concat('^/', $lang, '/A002068/', $diaries, '/?$'))
     </dispatch>
     
 (: Personen - Einzelansicht :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/?$'))) then
+else if (matches($exist:path, concat('^/', $lang, '/A00[A-F0-9]{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
     let $person := core:doc($exist:resource)/tei:person
     return if(exists($person)) then 
