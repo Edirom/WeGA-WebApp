@@ -175,7 +175,7 @@ function requestSearchResults(lang,historySearch) {
     var searchString = searchString.replace(',','');
         
     // Eingabe einer ID abfangen
-    if(searchString.match(/^A+\d{6}$/)) {
+    if(searchString.match(/^A[0-9A-F]{6}$/)) {
        var urlID = "functions/getAjax.xql?function=search_testID&id="+searchString+"&lang="+lang;
        new Ajax.Request(urlID, {
            onSuccess: function(t) {

@@ -91,7 +91,7 @@
     <xsl:function name="wega:isPerson" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
-            <xsl:when test="matches($docID, '^A00\d{4}$')">
+            <xsl:when test="matches($docID, '^A00[0-9A-F]{4}$')">
                 <xsl:value-of select="true()"/>
             </xsl:when>
             <xsl:otherwise>
