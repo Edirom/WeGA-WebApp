@@ -6,7 +6,7 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:seg tei:hi tei:ab tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:date tei:add tei:head"/>
+        elements="tei:seg tei:hi tei:ab tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:date tei:add tei:head tei:note"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
     <!-- <xsl:param name="pageBreak"/> -->

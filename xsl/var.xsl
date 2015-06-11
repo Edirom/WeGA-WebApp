@@ -9,7 +9,7 @@
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date"/>
+        elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:note"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
     <xsl:template match="/">

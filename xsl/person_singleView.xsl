@@ -7,7 +7,7 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
 
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date"/>
+        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date tei:note"/>
     
     <xsl:param name="eventID" as="xs:string"/>
 
