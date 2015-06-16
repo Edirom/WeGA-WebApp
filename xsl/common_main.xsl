@@ -550,10 +550,10 @@
                 <xsl:text>tei_add</xsl:text>
                 <xsl:choose>
                     <xsl:when test="@place='above'">
-                        <xsl:text> tei_hiSuperscript</xsl:text>
+                        <xsl:text> tei_hi_superscript</xsl:text>
                     </xsl:when>
                     <xsl:when test="@place='below'">
-                        <xsl:text> tei_hiSubscript</xsl:text>
+                        <xsl:text> tei_hi_subscript</xsl:text>
                     </xsl:when>
                     <!--<xsl:when test="./tei:add[@place='margin']">
                         <xsl:text>Ersetzung am Rand. </xsl:text>
