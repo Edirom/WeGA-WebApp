@@ -139,6 +139,12 @@
             <fileset dir="bower_components/jquery-ui/ui/minified/i18n">
                 <include name="datepicker-de.min.js"/>
             </fileset>
+            <fileset dir="bower_components/moment/min">
+                <include name="moment-with-locales.min.js"/>
+            </fileset>
+            <fileset dir="bower_components/ionrangeslider/js">
+                <include name="ion.rangeSlider.min.js"/>
+            </fileset>
         </copy>
         <!-- Copy CSS from bower components -->
         <copy todir="${dist.dir}/resources/css">
@@ -163,6 +169,12 @@
             <fileset dir="bower_components/jquery-ui/themes/overcast">
                 <include name="jquery-ui.min.css"/>
                 <include name="images/**"/>
+            </fileset>
+            <fileset dir="bower_components/ionrangeslider/css">
+                <include name="*.css"/>
+            </fileset>
+            <fileset dir="bower_components/ionrangeslider">
+                <include name="img/**"/>
             </fileset>
         </copy>
     </target>

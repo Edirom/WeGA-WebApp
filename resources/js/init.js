@@ -36,6 +36,28 @@ $.fn.facets = function ()
     })
 };
 
+$.fn.rangeSlider = function () 
+{
+    this.ionRangeSlider({
+        min: moment(this.attr('data-from')),
+        max: moment(this.attr('data-to')),
+        from: moment(this.attr('data-from')),
+        to: moment(this.attr('data-to')),
+        grid: true,
+        type: "double",
+        //force_edges: true,
+        grid_num: 3,
+        keyboard: true,
+        prettify: function (num) {
+            var m = moment(num).locale("de");
+            return m.format("D. MMM YYYY");
+        },
+        onFinish: function (data) {
+            console.log(data.from);
+        }
+    });
+};
+
 // remove popovers when clicking somewhere
 $('body').on('click', function (e) {
     $('[data-original-title]').each(function () {
@@ -143,13 +165,14 @@ function ajaxCall(container,url) {
         else {
             /* update facets */
             $('.allFilter select').facets();
+            $('.rangeSlider').rangeSlider();
             /* Listen for click events on pagination */
             $('.page-link').on('click', 
                 function() {
                     var activeTab = $('li.resp-tab-active a');
                     var baseUrl = activeTab.attr('data-target');
                     var url = baseUrl + $(this).attr('data-url');
-                    console.log(url);
+                    //console.log(url);
                     ajaxCall(container,url);
                 }
             );
