@@ -18,6 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
@@ -431,6 +432,21 @@ declare
             }
 };
 
+(:~
+ : set the maximum dates for the IonRangeSlider
+~:)
+declare 
+    %templates:default("fromDate", "")
+    %templates:default("toDate", "")
+    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
+    element {name($node)} {
+         $node/@*,
+         attribute data-min {$model('earliestLetter')},
+         attribute data-max {$model('latestLetter')},
+         attribute data-from {if($fromDate castable as xs:date) then $fromDate else $model('earliestLetter')},
+         attribute data-to {if($toDate castable as xs:date) then $toDate else $model('latestLetter')}
+    }
+};
 
 (:
  : ****************************

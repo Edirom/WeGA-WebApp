@@ -39,10 +39,10 @@ $.fn.facets = function ()
 $.fn.rangeSlider = function () 
 {
     this.ionRangeSlider({
-        min: moment(this.attr('data-from')),
-        max: moment(this.attr('data-to')),
-        from: moment(this.attr('data-from')),
-        to: moment(this.attr('data-to')),
+        min: +moment(this.attr('data-min')),
+        max: +moment(this.attr('data-max')),
+        from: +moment(this.attr('data-from')),
+        to: +moment(this.attr('data-to')),
         grid: true,
         type: "double",
         //force_edges: true,
@@ -53,7 +53,14 @@ $.fn.rangeSlider = function ()
             return m.format("D. MMM YYYY");
         },
         onFinish: function (data) {
-            console.log(data.from);
+            var activeTab = $('li.resp-tab-active a');
+            var container = activeTab.attr('href');
+            var url = activeTab.attr('data-target');
+            var fromDate = moment(data.from).locale("de").format("YYYY-MM-DD");
+            var toDate = moment(data.to).locale("de").format("YYYY-MM-DD");
+            url += "?fromDate=" + fromDate + "&toDate=" + toDate;
+/*            console.log("from: " + fromDate + "; to: " +toDate);*/
+            ajaxCall(container, url);
         }
     });
 };
