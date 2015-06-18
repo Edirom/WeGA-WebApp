@@ -7,12 +7,14 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace templates="http://exist-db.org/xquery/templates";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender');
+    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
+    'fromDate', 'toDate');
 
 (:~
  : All results
@@ -31,7 +33,9 @@ declare
             map {
                 'search-results' := $filtered-results,
                 'docType' := $docType,
-                'filters' := $filters
+                'filters' := $filters,
+                'earliestLetter' := (norm:get-norm-doc($docType)//norm:entry[(@addresseeID,@authorID)=$model('docID')][text()])[1]/text(),
+                'latestLetter' := (norm:get-norm-doc($docType)//norm:entry[(@addresseeID,@authorID)=$model('docID')][text()])[last()]/text()
             }
 };
 
@@ -120,6 +124,9 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filter := map:keys($filters)[1]
     let $filtered-coll := 
       if($filter) then query:get-facets($collection, $filter)[.=$filters($filter)]/root()
+      (: need to add date filter here!!:)
+(:       case 'fromDate' return $collection//tei:date[@when ge $filters($filter)][parent::tei:dateSender]/root():)
+(:        case 'toDate' return $collection//tei:date[@when le $filters($filter)][parent::tei:dateSender]/root():)
       else $collection
     let $newFilter := 
         try { map:remove($filters, $filter) }
