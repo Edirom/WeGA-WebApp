@@ -206,7 +206,7 @@ declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:st
     let $translated-tokens := 
         for $i in $tokens
         return
-            if(matches($i, 'A\d{6}')) then $i
+            if(matches($i, 'A\d{2}[0-9A-F]')) then $i
             else lang:translate-language-string($i, $sourceLang, $targetLang)
     return
         core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
@@ -219,7 +219,7 @@ declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:st
  : @param $path e.g. /db/apps/WeGA-WebApp/tmp/images/A0020xx/A002068/12345628.jpg
 ~:)
 declare function controller:map-local-image-path-to-external($path as xs:string) as xs:string {
-    replace($path, $config:tmp-collection-path || '/images/A00\d{2}xx/(A00\d{4})/', '$1/img/')
+    replace($path, $config:tmp-collection-path || '/images/A00[0-9A-F]{2}xx/(A00[0-9A-F]{4})/', '$1/img/')
 };
 
 (:~
@@ -228,11 +228,11 @@ declare function controller:map-local-image-path-to-external($path as xs:string)
  : @param $path e.g. /de/A002068/img/12345628.jpg
 ~:)
 declare function controller:map-external-image-path-to-local($path as xs:string) as xs:string {
-    replace($path, '/\w{2}/(A00\d{2})(\d{2})/img/', replace($config:tmp-collection-path, $config:app-root, '') || '/images/$1xx/$1$2/')
+    replace($path, '/\w{2}/(A00[0-9A-F]{2})([0-9A-F]{2})/img/', replace($config:tmp-collection-path, $config:app-root, '') || '/images/$1xx/$1$2/')
 };
 
 declare %private function controller:resource-id($exist-vars as map(*)) as xs:string? {
-    let $regex := '^A\d{6}\.' || string-join($config:valid-resource-suffixes, '|') || '$'
+    let $regex := '^A\d{2}[0-9A-F]{4}\.' || string-join($config:valid-resource-suffixes, '|') || '$'
     return
         if(matches($exist-vars('resource'), $regex)) then substring-before($exist-vars('resource'), '.')
         else ()

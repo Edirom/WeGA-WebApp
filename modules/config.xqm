@@ -216,7 +216,7 @@ declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
  : @return xs:boolean
 :)
 declare function config:is-person($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A00\d{4}$')
+    matches($docID, '^A00[0-9A-F]{4}$')
 };
 
 (:~
@@ -362,7 +362,7 @@ declare function config:is-biblioType($string as xs:string?) as xs:boolean {
 declare function config:getCollectionPath($docID as xs:string) as xs:string? {
     let $docType := config:get-doctype-by-id($docID)
     return 
-        if(exists($docType)) then str:join-path-elements(($config:data-collection-path, $docType, replace($docID, '\d{2}$', 'xx'))) 
+        if(exists($docType)) then str:join-path-elements(($config:data-collection-path, $docType, replace($docID, '[0-9A-F]{2}$', 'xx'))) 
         else ()
 };
 

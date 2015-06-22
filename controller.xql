@@ -87,14 +87,14 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :)
 
 (: Generelle Weiterleitung für Ressourcen :)    
-else if (matches($exist:resource, 'A\d{6}')) then 
+else if (matches($exist:resource, 'A\d{2}[0-9A-F]{4}')) then 
     controller:dispatch($exist-vars)
     
     
 (:
  : Personenbilder
  :)
-else if (matches($exist:path, concat('^/', $lang, '/A00\d{4}/img/'))) then
+else if (matches($exist:path, concat('^/', $lang, '/A00[0-9A-F]{4}/img/'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller || controller:map-external-image-path-to-local($exist:path)}"/>
     </dispatch>
