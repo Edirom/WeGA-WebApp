@@ -157,10 +157,10 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  : @param $coll collection to be sorted
  : @return document-node()*
  :)
-declare %private function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
+declare function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
     switch($collName)
     case 'persons' return for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
-    case 'letters' return for $i in $coll order by date:getOneNormalizedDate($i//tei:dateSender/tei:date[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
+    case 'letters' return for $i in $coll order by date:getOneNormalizedDate(($i//tei:date[ancestor::tei:correspDesc])[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
     case 'writings' return for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
     case 'diaries' return for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
     case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i

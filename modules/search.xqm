@@ -28,14 +28,14 @@ declare
             switch($docType)
             case 'search' return search:query()
             default return core:getOrCreateColl($docType, $model('docID'), true())
-        let $filtered-results := search:filter-result($search-results, $filters)
+        let $filtered-results := search:filter-result($search-results, $filters, $docType)
         return
             map {
-                'search-results' := $filtered-results,
+                'search-results' := core:sortColl($filtered-results, $docType),
                 'docType' := $docType,
                 'filters' := $filters,
-                'earliestLetter' := (norm:get-norm-doc($docType)//norm:entry[(@addresseeID,@authorID)=$model('docID')][text()])[1]/text(),
-                'latestLetter' := (norm:get-norm-doc($docType)//norm:entry[(@addresseeID,@authorID)=$model('docID')][text()])[last()]/text()
+                'earliestDate' := search:get-earliest-date($docType, $model('docID')),
+                'latestDate' := search:get-latest-date($docType, $model('docID'))
             }
 };
 
@@ -112,6 +112,9 @@ declare %private function search:create-lucene-query-element($searchString as xs
         </query>
 };
 
+(:~
+ : Creates a map of to-be-applied-filters from URL request parameters
+~:)
 declare %private function search:create-filters() as map(*) {
     let $params := request:get-parameter-names()[.=$search:valid-params]
     return
@@ -120,18 +123,95 @@ declare %private function search:create-filters() as map(*) {
         )
 };
 
-declare %private function search:filter-result($collection as document-node()*, $filters as map(*)) as document-node()* {
+(:~  
+ : Filters collection according to given facets and date constraints
+ : Recursively applies this function until the filter map is empty
+~:)
+declare %private function search:filter-result($collection as document-node()*, $filters as map(*), $docType as xs:string) as document-node()* {
     let $filter := map:keys($filters)[1]
     let $filtered-coll := 
-      if($filter) then query:get-facets($collection, $filter)[.=$filters($filter)]/root()
-      (: need to add date filter here!!:)
-(:       case 'fromDate' return $collection//tei:date[@when ge $filters($filter)][parent::tei:dateSender]/root():)
-(:        case 'toDate' return $collection//tei:date[@when le $filters($filter)][parent::tei:dateSender]/root():)
+      if($filter) then 
+        if($filter = ('fromDate', 'toDate')) then search:date-filter($collection, $docType, $filters)
+        else query:get-facets($collection, $filter)[.=$filters($filter)]/root()
       else $collection
     let $newFilter := 
         try { map:remove($filters, $filter) }
         catch * {map:new()}
     return
-        if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter)
+        if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
         else $filtered-coll
+};
+
+(:~
+ : Helper function for search:filter-result()
+ : Applies chronological filter 'fromDate' and 'toDate'
+~:)
+declare %private function search:date-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
+    let $filter := map:keys($filters)[1]
+    return
+        switch($docType)
+        case 'biblio' return ()
+        case 'diaries' return 
+            if ($filter = 'fromDate') then $collection//tei:ab[@n >= $filters($filter)]/root()
+            else $collection//tei:ab[@n <= $filters($filter)]/root()
+        case 'letters' return
+            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
+            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
+        case 'news' return ()
+        case 'persons' return ()
+        case 'writings' return 
+            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
+            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
+        case 'works' return ()
+        case 'places' return ()
+        default return $collection
+};
+
+
+(:~
+ : 
+~:)
+declare %private function search:get-earliest-date($docType as xs:string, $cacheKey as xs:string) as xs:string? {
+    let $catalogue := norm:get-norm-doc($docType)
+    return
+        switch ($docType)
+            case 'biblio' return ()
+            case 'diaries' return 
+                if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[1]/text()
+                else ()
+            case 'letters' return 
+                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
+                else ($catalogue//norm:entry[(@addresseeID,@authorID)=$cacheKey][text()])[1]/text()
+            case 'news' return ()
+            case 'persons' return ()
+            case 'writings' return 
+                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
+                else ($catalogue//norm:entry[@authorID=$cacheKey][text()])[1]/text()
+            case 'works' return ()
+            case 'places' return ()
+            default return ()
+};
+
+(:~
+ : 
+~:)
+declare %private function search:get-latest-date($docType as xs:string, $cacheKey as xs:string) as xs:string? {
+    let $catalogue := norm:get-norm-doc($docType)
+    return
+        switch ($docType)
+            case 'biblio' return ()
+            case 'diaries' return 
+                if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[last()]/text()
+                else ()
+            case 'letters' return 
+                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
+                else ($catalogue//norm:entry[(@addresseeID,@authorID)=$cacheKey][text()])[last()]/text()
+            case 'news' return ()
+            case 'persons' return ()
+            case 'writings' return
+                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
+                else ($catalogue//norm:entry[@authorID=$cacheKey][text()])[last()]/text()
+            case 'works' return ()
+            case 'places' return ()
+            default return ()
 };

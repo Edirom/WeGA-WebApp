@@ -441,10 +441,10 @@ declare
     function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         attribute data-min {$model('earliestLetter')},
-         attribute data-max {$model('latestLetter')},
-         attribute data-from {if($fromDate castable as xs:date) then $fromDate else $model('earliestLetter')},
-         attribute data-to {if($toDate castable as xs:date) then $toDate else $model('latestLetter')}
+         attribute data-min {$model('earliestDate')},
+         attribute data-max {$model('latestDate')},
+         attribute data-from {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
+         attribute data-to {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
     }
 };
 

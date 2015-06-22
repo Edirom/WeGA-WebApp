@@ -29,7 +29,12 @@ import module namespace functx="http://www.functx.com";
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     return 
-        core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
+        if($docType = map:keys($config:wega-docTypes)) then
+            try {
+                core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
+            }
+            catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
+        else core:logToFile('warn', 'norm:get-norm-doc: Unsupported docType "' || $docType || '". Please refer to those defined in $config:wega-docTypes')
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
@@ -152,10 +157,12 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
         let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := date:getOneNormalizedDate($doc//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
         let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
+        let $authorID := query:get-authorID($doc)
         order by $normDate, $n
         return 
             element entry {
                 attribute docID {$docID},
+                attribute authorID {$authorID},
                 attribute n {$n},
                 if ($normDate castable as xs:date) then (
                     attribute year {year-from-date($normDate cast as xs:date)}, 
