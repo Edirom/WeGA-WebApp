@@ -12,25 +12,19 @@ $.fn.facets = function ()
      this.selectize({
         plugins: ['remove_button'],
         hideSelected: true,
-        onDropdownClose: function(e){
-            var params = [];
-            /* Set filters */
-            $('.allFilter:visible option:selected').each(function() {
-                var facet = $(this).parent().attr('name');
-                var value = $(this).attr('value');
-                /*console.log(facet + '=' + value);*/
-                params.push(facet + '=' + encodeURI(value))
-            })
+        onChange: function(e){
+            /* Get active facets to append as URL params */
+            var params = active_facets();
             
             /* AJAX call for personal writings etc. */
             if($('li.resp-tab-active').length === 1) {
-                var url = $('li.resp-tab-active a').attr('data-target') + '?'+params.join('&');
-                var container = $('li.resp-tab-active a').attr('href')
-                ajaxCall(container, url)
+                var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
+                var container = $('li.resp-tab-active a').attr('href');
+                ajaxCall(container, url);
             }
             /* Refresh page for indices */
             else {
-                self.location='?'+params.join('&')
+                self.location=params.toString();
             }
         }
     })
@@ -53,14 +47,23 @@ $.fn.rangeSlider = function ()
             return m.format("D. MMM YYYY");
         },
         onFinish: function (data) {
-            var activeTab = $('li.resp-tab-active a');
-            var container = activeTab.attr('href');
-            var url = activeTab.attr('data-target');
-            var fromDate = moment(data.from).locale("de").format("YYYY-MM-DD");
-            var toDate = moment(data.to).locale("de").format("YYYY-MM-DD");
-            url += "?fromDate=" + fromDate + "&toDate=" + toDate;
-/*            console.log("from: " + fromDate + "; to: " +toDate);*/
-            ajaxCall(container, url);
+            /* Get active facets to append as URL params */
+            var params = active_facets();
+            
+            /* Overwrite date params with new values from the slider */
+            params['fromDate'] = moment(data.from).locale("de").format("YYYY-MM-DD");
+            params['toDate'] = moment(data.to).locale("de").format("YYYY-MM-DD");
+            
+            /* AJAX call for personal writings etc. */
+            if($('li.resp-tab-active').length === 1) {
+                var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
+                var container = $('li.resp-tab-active a').attr('href');
+                ajaxCall(container, url)
+            }
+            /* Refresh page for indices */
+            else {
+                self.location = params.toString();
+            }
         }
     });
 };
@@ -95,6 +98,31 @@ $('a.persons').on('click', function() {
     return false;
 })
 
+/* Helper function */
+/* Get active facets to append as URL parameters */
+function active_facets() {
+    var params = {
+        facets:[],
+        fromDate:'',
+        toDate:'',
+        toString:function(){
+            return '?' + this.facets.join('&') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
+        }
+     };
+    /* Set filters */
+    $('.allFilter:visible option:selected').each(function() {
+        var facet = $(this).parent().attr('name');
+        var value = $(this).attr('value');
+        /*console.log(facet + '=' + value);*/
+        params['facets'].push(facet + '=' + encodeURI(value))
+    })
+    if($('.rangeSlider:visible').length) {
+        params['fromDate'] = $('.rangeSlider:visible').attr('data-from');
+        params['toDate'] = $('.rangeSlider:visible').attr('data-to');
+    }
+    return params;
+}
+
 // helper function to grab AJAX content for popovers
 function details_in_popup(link, div_id){
     $.ajax({
@@ -116,7 +144,13 @@ function details_in_popup(link, div_id){
 /* only needed after ajax calls?!? --> see later */
 /* needed on index page for the search box, as well */
 //$('select').selectize({});
+
+/* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
+
+/* Initialise range slider for index pages */
+$('.allFilter:visible .rangeSlider').rangeSlider();
+
 
 /* Initialise popovers for notes */
 $('.noteMarker').popover({
@@ -171,8 +205,8 @@ function ajaxCall(container,url) {
         }
         else {
             /* update facets */
-            $('.allFilter select').facets();
-            $('.rangeSlider').rangeSlider();
+            $('.allFilter:visible select').facets();
+            $('.allFilter:visible .rangeSlider').rangeSlider();
             /* Listen for click events on pagination */
             $('.page-link').on('click', 
                 function() {
