@@ -34,8 +34,8 @@ declare
                 'search-results' := core:sortColl($filtered-results, $docType),
                 'docType' := $docType,
                 'filters' := $filters,
-                'earliestDate' := search:get-earliest-date($docType, $model('docID')),
-                'latestDate' := search:get-latest-date($docType, $model('docID'))
+                'earliestDate' := if($docType =('letters', 'writings', 'diaries')) then search:get-earliest-date($docType, $model('docID')) else (),
+                'latestDate' := if($docType =('letters', 'writings', 'diaries')) then search:get-latest-date($docType, $model('docID')) else ()
             }
 };
 
