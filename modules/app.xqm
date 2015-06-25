@@ -354,15 +354,25 @@ declare
     function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
 (:        let $url := controller:docType-url-for-author($model('doc'), $model('docType'), $lang):)
-        let $page-link := function ($page as xs:int){
+        let $page-link := function($page as xs:int){
             (:$url ||:) '?page=' || $page || string-join(
-                request:get-parameter-names()[. != 'page'] ! (
+                map:keys($model('filters')) ! (
                     '&amp;' || string(.) || '=' || string-join(
-                        request:get-parameter(., ''),
+                        $model('filters')(.),
                         '&amp;' || string(.) || '=')
                     ), 
                 '')
             }
+        let $a-element := function($page as xs:int, $text as xs:string) {
+            element a {
+                attribute class {'page-link'},
+                (: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
+                if(config:is-person($model('docID'))) then attribute data-url {$page-link($page)}
+                (: for index pages there is no javascript needed but a direct refresh of the page :)
+                else attribute href {$page-link($page)},
+                $text
+            }
+        }
         let $last-page := ceiling(count($model('search-results')) div config:entries-per-page()) 
         return (
             <li>{
@@ -370,23 +380,23 @@ declare
                     attribute {'class'}{'disabled'},
                     <span>&#x00AB; previous</span>
                 )
-                else <a class="page-link" data-url="{$page-link($page - 1)}">&#x00AB; previous</a> 
+                else $a-element($page - 1, '&#x00AB; previous') 
             }</li>,
-            if($page gt 3) then <li><a class="page-link" data-url="{$page-link(1)}">1</a></li> else (),
-            if($page gt 4) then <li><a class="page-link" data-url="{$page-link(2)}">2</a></li> else (),
+            if($page gt 3) then <li>{$a-element(1, '1')}</li> else (),
+            if($page gt 4) then <li>{$a-element(2, '2')}</li> else (),
             if($page gt 5) then <li><span>…</span></li> else (),
-            ($page - 2, $page - 1)[. gt 0] ! <li><a class="page-link" data-url="{$page-link(.)}">{string(.)}</a></li>,
+            ($page - 2, $page - 1)[. gt 0] ! <li>{$a-element(., string(.))}</li>,
             <li class="active"><span>{$page}</span></li>,
-            ($page + 1, $page + 2)[. le $last-page] ! <li><a class="page-link" data-url="{$page-link(.)}">{string(.)}</a></li>,
+            ($page + 1, $page + 2)[. le $last-page] ! <li>{$a-element(., string(.))}</li>,
             if($page + 4 lt $last-page) then <li><span>…</span></li> else (),
-            if($page + 3 lt $last-page) then <li><a class="page-link" data-url="{$page-link($last-page - 1)}">{$last-page - 1}</a></li> else (),
-            if($page + 2 lt $last-page) then <li><a class="page-link" data-url="{$page-link($last-page)}">{$last-page}</a></li> else (),
+            if($page + 3 lt $last-page) then <li>{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
+            if($page + 2 lt $last-page) then <li>{$a-element($last-page, string($last-page))}</li> else (),
             <li>{
                 if($page ge $last-page) then (
                     attribute {'class'}{'disabled'},
                     <span>next &#x00BB;</span>
                 )
-                else <a class="page-link" data-url="{$page-link($page + 1)}">next &#x00BB;</a> 
+                else $a-element($last-page + 1, 'next &#x00BB;')
             }</li>
         )
 };
