@@ -68,8 +68,9 @@ declare function img:retrieveImagesFromWikipedia($pnd as xs:string, $lang as xs:
             let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', lang:get-language-string('sourceWikipedia', $lang), ')'))
             let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
             let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
-                if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 
-                else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
+                if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
+                else if(starts-with($tmpPicURI, 'http:')) then replace($tmpPicURI, 'http:', 'https:')
+                else if(starts-with($tmpPicURI, 'https:')) then $tmpPicURI
                 else ()
             let $localURL := if($picURI castable as xs:anyURI) then img:retrievePicture(xs:anyURI($picURI), ()) else ()
             return if(exists($localURL)) then
