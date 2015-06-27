@@ -175,8 +175,8 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
-    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key[matches(., '^A02\d{4}$')])
-    case 'works' return ($collection//@key[parent::tei:workName][matches(., '^A02\d{4}$')] | $collection//@key[parent::tei:rs/@type='work'][matches(., '^A02\d{4}$')])
+    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key)
+    case 'works' return ($collection//tei:workName/@key[not(contains(., ' '))] | $collection//tei:rs[@type='work']/@key[not(contains(., ' '))])
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
