@@ -29,7 +29,7 @@ import module namespace functx="http://www.functx.com";
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     return 
-        if($docType = map:keys($config:wega-docTypes)) then
+        if($config:wega-docTypes($docType)) then
             try {
                 core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
             }

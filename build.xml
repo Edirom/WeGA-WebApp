@@ -103,79 +103,10 @@
                 <include name="*.*"/>
             </fileset>
         </copy>
-        <!-- Copy Javascripts from bower components -->
-        <copy todir="${dist.dir}/resources/js">
-            <fileset dir="bower_components/bootstrap/dist/js">
-                <include name="bootstrap.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/selectize/dist/js/standalone/">
-                <include name="selectize.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/FitText.js">
-                <include name="jquery.fittext.js"/>
-            </fileset>
-            <fileset dir="bower_components/jquery/dist">
-                <include name="jquery.js"/>
-                <include name="jquery.min.js"/>
-                <include name="jquery.min.map"/>
-            </fileset>
-            <fileset dir="bower_components/Easy-Responsive-Tabs-to-Accordion/js">
-                <include name="easyResponsiveTabs.js"/>
-            </fileset>
-            <fileset dir="bower_components/google-code-prettify/bin">
-                <include name="prettify.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/bootstrap-hover-dropdown">
-                <include name="bootstrap-hover-dropdown.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/bootstrap-remote-data/js">
-                <include name="bootstrap-remote-tabs.min.js"/>
-<!--                <include name="jquery.loadmask.js"/>-->
-            </fileset>
-            <fileset dir="bower_components/jquery-ui/ui/minified">
-                <include name="core.min.js"/>
-                <include name="datepicker.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/jquery-ui/ui/minified/i18n">
-                <include name="datepicker-de.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/moment/min">
-                <include name="moment-with-locales.min.js"/>
-            </fileset>
-            <fileset dir="bower_components/ionrangeslider/js">
-                <include name="ion.rangeSlider.min.js"/>
-            </fileset>
-        </copy>
-        <!-- Copy CSS from bower components -->
-        <copy todir="${dist.dir}/resources/css">
-            <fileset dir="bower_components/bootstrap/dist/css">
-                <include name="bootstrap.min.css"/>
-                <include name="bootstrap.css.map"/>
-                <include name="bootstrap-theme.min.css"/>
-                <include name="bootstrap-theme.css.map"/>
-            </fileset>
-            <fileset dir="bower_components/selectize/dist/css">
-                <include name="selectize.bootstrap3.css"/>
-            </fileset>
-            <fileset dir="bower_components/fontawesome/css">
-                <include name="font-awesome.min.css"/>
-            </fileset>
-            <fileset dir="bower_components/Easy-Responsive-Tabs-to-Accordion/css">
-                <include name="easy-responsive-tabs.css"/>
-            </fileset>
-            <fileset dir="bower_components/google-code-prettify/bin">
-                <include name="prettify.min.css"/>
-            </fileset>
-            <fileset dir="bower_components/jquery-ui/themes/overcast">
-                <include name="jquery-ui.min.css"/>
-                <include name="images/**"/>
-            </fileset>
-            <fileset dir="bower_components/ionrangeslider/css">
-                <include name="*.css"/>
-            </fileset>
-            <fileset dir="bower_components/ionrangeslider">
-                <include name="img/**"/>
-            </fileset>
+        
+        <!-- Copy libs from bower components -->
+        <copy todir="${dist.dir}/resources/lib">
+            <fileset dir="bower_components"/>
         </copy>
     </target>
     
