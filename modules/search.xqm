@@ -160,8 +160,9 @@ declare %private function search:date-filter($collection as document-node()*, $d
             if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
             else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
         case 'news' return
-            if ($filter = 'fromDate') then $collection//tei:date[@when >= $filters($filter)][parent::tei:publicationStmt]/root()
-            else $collection//tei:date[@when <= $filters($filter)][parent::tei:publicationStmt]/root()
+            (: news enthalten dateTime im date/@when :)
+            if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
+            else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
         case 'persons' return ()
         case 'writings' return 
             if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
