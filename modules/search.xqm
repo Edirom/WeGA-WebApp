@@ -34,8 +34,8 @@ declare
                 'search-results' := core:sortColl($filtered-results, $docType),
                 'docType' := $docType,
                 'filters' := $filters,
-                'earliestDate' := if($docType =('letters', 'writings', 'diaries')) then search:get-earliest-date($docType, $model('docID')) else (),
-                'latestDate' := if($docType =('letters', 'writings', 'diaries')) then search:get-latest-date($docType, $model('docID')) else ()
+                'earliestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($docType, $model('docID')) else (),
+                'latestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($docType, $model('docID')) else ()
             }
 };
 
@@ -150,14 +150,18 @@ declare %private function search:date-filter($collection as document-node()*, $d
     let $filter := map:keys($filters)[1]
     return
         switch($docType)
-        case 'biblio' return ()
+        case 'biblio' return
+            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint]/root()
+            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint]/root()
         case 'diaries' return 
             if ($filter = 'fromDate') then $collection//tei:ab[@n >= $filters($filter)]/root()
             else $collection//tei:ab[@n <= $filters($filter)]/root()
         case 'letters' return
             if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
             else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
-        case 'news' return ()
+        case 'news' return
+            if ($filter = 'fromDate') then $collection//tei:date[@when >= $filters($filter)][parent::tei:publicationStmt]/root()
+            else $collection//tei:date[@when <= $filters($filter)][parent::tei:publicationStmt]/root()
         case 'persons' return ()
         case 'writings' return 
             if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
@@ -175,14 +179,15 @@ declare %private function search:get-earliest-date($docType as xs:string, $cache
     let $catalogue := norm:get-norm-doc($docType)
     return
         switch ($docType)
-            case 'biblio' return ()
             case 'diaries' return 
                 if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[1]/text()
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
                 else ($catalogue//norm:entry[(@addresseeID,@authorID)=$cacheKey][text()])[1]/text()
-            case 'news' return ()
+            case 'news' case 'biblio' return
+                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
+                else ($catalogue//norm:entry[@authorID=$cacheKey][text()])[last()]/text()
             case 'persons' return ()
             case 'writings' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
@@ -199,14 +204,15 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
     let $catalogue := norm:get-norm-doc($docType)
     return
         switch ($docType)
-            case 'biblio' return ()
             case 'diaries' return 
                 if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[last()]/text()
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
                 else ($catalogue//norm:entry[(@addresseeID,@authorID)=$cacheKey][text()])[last()]/text()
-            case 'news' return ()
+            case 'news' case 'biblio' return
+               if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
+                else ($catalogue//norm:entry[@authorID=$cacheKey][text()])[1]/text()
             case 'persons' return ()
             case 'writings' return
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
