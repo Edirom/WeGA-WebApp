@@ -98,6 +98,12 @@ $('a.persons').on('click', function() {
     return false;
 })
 
+/* checkbox for display of undated documents*/
+$(':checkbox').on('click', function() {
+    var params = active_facets();
+    self.location = params.toString();
+})
+
 /* Helper function */
 /* Get active facets to append as URL parameters */
 function active_facets() {
@@ -110,12 +116,17 @@ function active_facets() {
         }
      };
     /* Set filters */
-    $('.allFilter:visible option:selected').each(function() {
+    $('.allFilter:visible :selected').each(function() {
         var facet = $(this).parent().attr('name');
         var value = $(this).attr('value');
         /*console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
+    /* checkbox for display of undated documents*/
+    if($('#undated:checked').length) {
+      params['facets'].push('undated=true');
+    }
+    /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
         params['fromDate'] = $('.rangeSlider:visible').attr('data-from');
         params['toDate'] = $('.rangeSlider:visible').attr('data-to');

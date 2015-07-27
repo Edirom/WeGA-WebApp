@@ -458,6 +458,14 @@ declare
     }
 };
 
+declare function app:set-undated-checkbox($node as node(), $model as map(*)) as element(input) {
+    element {name($node)} {
+         $node/@*,
+         if(map:contains($model('filters'), 'undated')) then attribute checked {'checked'}
+         else ()
+    }
+};
+
 (:
  : ****************************
  : Index page
