@@ -396,7 +396,7 @@ declare
                     attribute {'class'}{'disabled'},
                     <span>next &#x00BB;</span>
                 )
-                else $a-element($last-page + 1, 'next &#x00BB;')
+                else $a-element($page + 1, 'next &#x00BB;')
             }</li>
         )
 };
