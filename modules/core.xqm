@@ -12,6 +12,8 @@ declare namespace request="http://exist-db.org/xquery/request";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
@@ -160,13 +162,26 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
 declare function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
     switch($collName)
     case 'persons' return for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
-    case 'letters' return for $i in $coll order by date:getOneNormalizedDate(($i//tei:date[ancestor::tei:correspDesc])[1], false()) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
-    case 'writings' return for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date[ancestor::tei:sourceDesc][1], false()) ascending return $i
-    case 'diaries' return for $i in $coll order by $i/tei:ab/xs:date(@n) ascending return $i
+    case 'letters' return for $i in $coll order by query:get-normalized-date($i) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
+    case 'writings' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
+    case 'diaries' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
     case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
-    case 'news' return for $i in $coll order by $i//tei:publicationStmt/tei:date/xs:dateTime(@when) descending return $i
-    case 'biblio' return for $i in $coll order by date:getOneNormalizedDate($i//tei:imprint/tei:date, false()) descending return $i
+    case 'news' return for $i in $coll order by query:get-normalized-date($i) descending return $i
+    case 'biblio' return for $i in $coll order by query:get-normalized-date($i) descending return $i
     default return $coll
+};
+
+(:~
+ : Return the undated documents of a given document type
+ :
+ : @author Peter Stadler 
+ : @param $docType the document type (e.g., letters, writings)
+ : @return document-node()*
+ :)
+declare function core:undated($docType as xs:string) as document-node()* {
+    let $norm-file := norm:get-norm-doc($docType)
+    for $i in $norm-file//norm:entry[not(text())]
+    return core:doc($i/@docID)
 };
 
 (:~

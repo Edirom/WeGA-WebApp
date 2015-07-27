@@ -10,11 +10,12 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate');
+    'fromDate', 'toDate', 'undated');
 
 (:~
  : All results
@@ -119,7 +120,9 @@ declare %private function search:create-filters() as map(*) {
     let $params := request:get-parameter-names()[.=$search:valid-params]
     return
         map:new(
-            $params ! map:entry(., request:get-parameter(., ()))
+            (: "undated" takes precedence over date filter :)
+            if($params[.='undated']) then $params[not(.= ('fromDate', 'toDate'))] ! map:entry(., request:get-parameter(., ()))
+            else $params ! map:entry(., request:get-parameter(., ()))
         )
 };
 
@@ -131,7 +134,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filter := map:keys($filters)[1]
     let $filtered-coll := 
       if($filter) then 
-        if($filter = ('fromDate', 'toDate')) then search:date-filter($collection, $docType, $filters)
+        if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
         else query:get-facets($collection, $filter)[.=$filters($filter)]/root()
       else $collection
     let $newFilter := 
@@ -151,21 +154,25 @@ declare %private function search:date-filter($collection as document-node()*, $d
     return
         switch($docType)
         case 'biblio' return
-            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint]/root()
+            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
+            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint]/root()
             else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint]/root()
         case 'diaries' return 
             if ($filter = 'fromDate') then $collection//tei:ab[@n >= $filters($filter)]/root()
             else $collection//tei:ab[@n <= $filters($filter)]/root()
         case 'letters' return
-            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
+            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
+            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
             else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
         case 'news' return
+            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             (: news enthalten dateTime im date/@when :)
-            if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
+            else  if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
             else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
         case 'persons' return ()
-        case 'writings' return 
-            if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
+        case 'writings' return
+            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
+            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
             else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
         case 'works' return ()
         case 'places' return ()

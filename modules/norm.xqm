@@ -15,7 +15,7 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 
-import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
+(:import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";:)
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -54,7 +54,7 @@ declare %private function norm:create-norm-doc-biblio() as element(norm:catalogu
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('biblio', 'indices', true())
         let $docID := $doc/tei:*/data(@xml:id)
-        let $normDate := date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
+        let $normDate := query:get-normalized-date($doc)
         order by $normDate descending
         return 
             element entry {
@@ -73,7 +73,7 @@ declare %private function norm:create-norm-doc-diaries() as element(norm:catalog
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('diaries', 'indices', true())
         let $docID := $doc/tei:ab/data(@xml:id)
-        let $normDate := $doc/tei:ab/string(@n)
+        let $normDate := query:get-normalized-date($doc)
         order by $normDate
         return 
             element entry {
@@ -92,10 +92,10 @@ declare %private function norm:create-norm-doc-letters() as element(norm:catalog
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('letters', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
-        let $normDate := date:getOneNormalizedDate($doc//tei:dateSender/tei:date, false())
+        let $normDate := query:get-normalized-date($doc)
         let $n :=  $doc//tei:dateSender/tei:date/data(@n)
 (:            let $senderID := $doc//tei:sender/tei:persName[1]/string(@key):)
-        let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/string(@key)
+        let $authorID := query:get-authorID($doc)
         let $addresseeID := $doc//tei:addressee/tei:persName[1]/string(@key)
         order by $normDate, $n
         return 
@@ -118,7 +118,7 @@ declare %private function norm:create-norm-doc-news() as element(norm:catalogue)
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('news', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
-        let $normDate := datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/xs:dateTime(@when))
+        let $normDate := query:get-normalized-date($doc) (:datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)):)
         order by $normDate descending
         return 
             element entry {
@@ -155,8 +155,9 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('writings', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
-        let $normDate := date:getOneNormalizedDate($doc//tei:sourceDesc/tei:*/tei:monogr/tei:imprint/tei:date[1], false())
-        let $n :=  string-join($doc//tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
+        let $source := query:get-main-source($doc)
+        let $normDate := query:get-normalized-date($doc)
+        let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
         let $authorID := query:get-authorID($doc)
         order by $normDate, $n
         return 

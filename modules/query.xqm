@@ -12,6 +12,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -137,7 +138,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
  : @return xs:string
  :)
 declare function query:get-title-element($doc as document-node()) as element()* {
-    let $docID := $doc/root()/*/@xml:id
+    let $docID := $doc/*/@xml:id
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
         else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
@@ -146,11 +147,34 @@ declare function query:get-title-element($doc as document-node()) as element()* 
 
 declare function query:get-main-source($doc as document-node()) as element()? {
     if($doc//tei:sourceDesc) then (: for writings and letters :)
-        if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']
+        if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']/*
         else $doc//tei:sourceDesc/*
     else if($doc//mei:sourceDesc) then () (: for works :)
     else if($doc/tei:biblStruct) then $doc/tei:biblStruct (: for biblio :)
     else ()
+};
+
+(:~
+ : Get the normalized date for a document
+ : (needed for core:sortColl() as well as norm:get-norm-doc())
+ :
+ : @author Peter Stadler
+ : @param $doc the TEI document
+ : @return xs:date
+ :)
+declare function query:get-normalized-date($doc as document-node()) as xs:date? {
+    let $docID := $doc/*/@xml:id
+    let $date := 
+        switch(config:get-doctype-by-id($docID))
+        case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
+        case 'letters' return date:getOneNormalizedDate(($doc//tei:dateSender/tei:date, $doc//tei:dateAddressee/tei:date)[1], false())
+        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
+        case 'diaries' return $doc/tei:ab/data(@n)
+        case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
+        default return () 
+    return 
+        if($date castable as xs:date) then $date cast as xs:date
+        else ()
 };
 
 (:~
