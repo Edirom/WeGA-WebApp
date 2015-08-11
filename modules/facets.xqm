@@ -121,7 +121,7 @@ declare
                 let $characterNames := 
                     if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
                     else ()
-                let $log := util:log-system-out($filter || count($characterNames))
+(:                let $log := util:log-system-out($filter || count($characterNames)):)
                 return 
                     if(exists($keys)) then map { $filter := $keys}
                     else if(exists($places)) then map { $filter := $places}

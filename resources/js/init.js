@@ -259,6 +259,31 @@ $("#datePicker").datepicker({
     }
 });
 
+$('#map').each(function() {
+    initFacsimile();
+});
+
+function initFacsimile() {
+    var originalMaxSize = $('#map').attr('data-originalMaxSize');
+    var url = $('#map').attr('data-url');
+    var maxZoomLevel = 0;
+    
+    while(originalMaxSize > 256){
+        originalMaxSize = originalMaxSize/2;
+        maxZoomLevel++;
+    }
+    console.log("maxZoomLevel: "+maxZoomLevel);
+    console.log("url: "+url);
+    
+    var map = L.map('map').setView([0, 0], 0);
+    var facsimileTile =  L.tileLayer.facsimileLayer(url, {
+        minZoom: 0,
+        maxZoom: maxZoomLevel,
+        continuousWorld : true
+    });
+    facsimileTile.addTo(map);
+};
+
 function jump2diary(dateText) {
     var lang = getLanguage();
     var url = "http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;

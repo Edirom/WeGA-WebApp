@@ -332,6 +332,21 @@ declare
                 }
 };
 
+
+declare
+    %templates:default("lang", "en")
+    function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
+        if($model('hasFacsimile')) then 
+            element {name($node)} {
+                $node/@*,
+                lang:get-language-string(normalize-space($node), $lang)
+            }
+        else
+            element {name($node)} {
+                attribute class {'deactivated'}
+            }
+};
+
 declare
     %templates:default("lang", "en")
     function app:tab($node as node(), $model as map(*), $lang as xs:string) as element() {
@@ -776,6 +791,16 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
  : Document pages
  : ****************************
 :)
+
+
+declare 
+    %templates:wrap
+    function app:doc-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'hasFacsimile' := exists($model('doc')//tei:facsimile/tei:graphic/@url)
+        }
+};
+
 declare
     %templates:wrap
     %templates:default("lang", "en")
@@ -951,6 +976,20 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
                 concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
             }
         else()
+};
+
+declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
+    let $image-url := 'file:///Users/pstadler/repos/FacsimileLayerViewer/example/{z}-{x}-{y}.jpg'
+    let $image-originalMaxSize := doc($config:data-collection-path || '/images/images.xml')//image[@id=$model('docID')]/data(@height)
+    return 
+        element {name($node)} {
+            if($image-url) then (
+                $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
+                attribute {'data-url'} {$image-url},
+                attribute {'data-originalMaxSize'} {$image-originalMaxSize}
+            )
+            else $node/@*
+        }
 };
 
 (:
