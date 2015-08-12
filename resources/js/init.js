@@ -15,17 +15,7 @@ $.fn.facets = function ()
         onChange: function(e){
             /* Get active facets to append as URL params */
             var params = active_facets();
-            
-            /* AJAX call for personal writings etc. */
-            if($('li.resp-tab-active').length === 1) {
-                var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
-                var container = $('li.resp-tab-active a').attr('href');
-                ajaxCall(container, url);
-            }
-            /* Refresh page for indices */
-            else {
-                self.location=params.toString();
-            }
+            updatePage(params);
         }
     })
 };
@@ -54,16 +44,7 @@ $.fn.rangeSlider = function ()
             params['fromDate'] = moment(data.from).locale("de").format("YYYY-MM-DD");
             params['toDate'] = moment(data.to).locale("de").format("YYYY-MM-DD");
             
-            /* AJAX call for personal writings etc. */
-            if($('li.resp-tab-active').length === 1) {
-                var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
-                var container = $('li.resp-tab-active a').attr('href');
-                ajaxCall(container, url)
-            }
-            /* Refresh page for indices */
-            else {
-                self.location = params.toString();
-            }
+            updatePage(params);
         }
     });
 };
@@ -98,10 +79,10 @@ $('a.persons').on('click', function() {
     return false;
 })
 
-/* checkbox for display of undated documents*/
-$(':checkbox').on('click', function() {
+/* checkbox for display of undated documents */
+$(document).on('click', '.undated', function() {
     var params = active_facets();
-    self.location = params.toString();
+    updatePage(params);
 })
 
 /* Helper function */
@@ -123,7 +104,7 @@ function active_facets() {
         params['facets'].push(facet + '=' + encodeURI(value))
     })
     /* checkbox for display of undated documents*/
-    if($('#undated:checked').length) {
+    if($('.undated:checked').length) {
       params['facets'].push('undated=true');
     }
     /* Get date values from range slider */
@@ -132,6 +113,23 @@ function active_facets() {
         params['toDate'] = $('.rangeSlider:visible').attr('data-to');
     }
     return params;
+}
+
+/* Helper function */
+/* See whether we're in a person context and need to update via AJAX
+ * or on an index page and need to refresh the whole page
+ */
+function updatePage(params) {
+    /* AJAX call for personal writings etc. */
+    if($('li.resp-tab-active').length === 1) {
+        var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
+        var container = $('li.resp-tab-active a').attr('href');
+        ajaxCall(container, url)
+    }
+    /* Refresh page for indices */
+    else {
+        self.location = params.toString();
+    }
 }
 
 // helper function to grab AJAX content for popovers
