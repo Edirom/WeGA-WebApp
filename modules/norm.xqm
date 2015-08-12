@@ -55,10 +55,13 @@ declare %private function norm:create-norm-doc-biblio() as element(norm:catalogu
         for $doc in core:getOrCreateColl('biblio', 'indices', true())
         let $docID := $doc/tei:*/data(@xml:id)
         let $normDate := query:get-normalized-date($doc)
+        (: $authorIDs should be in sync with the definition at core:createColl()  :)
+        let $authorIDs := distinct-values($doc//tei:author/@key | $doc//tei:editor/@key)
         order by $normDate descending
         return 
             element entry {
                 attribute docID {$docID},
+                attribute authorID {string-join($authorIDs, ' ')},
                 if ($normDate castable as xs:date) then (
                     attribute year {year-from-date($normDate cast as xs:date)}, 
                     attribute month {month-from-date($normDate cast as xs:date)}, 
@@ -94,16 +97,16 @@ declare %private function norm:create-norm-doc-letters() as element(norm:catalog
         let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := query:get-normalized-date($doc)
         let $n :=  $doc//tei:dateSender/tei:date/data(@n)
-(:            let $senderID := $doc//tei:sender/tei:persName[1]/string(@key):)
-        let $authorID := query:get-authorID($doc)
-        let $addresseeID := $doc//tei:addressee/tei:persName[1]/string(@key)
+        (: $authorIDs should be in sync with the definition at core:createColl()  :)
+        let $authorIDs := distinct-values($doc//@key[ancestor::tei:sender])
+        let $addresseeIDs := distinct-values($doc//@key[ancestor::tei:addressee])
         order by $normDate, $n
         return 
             element entry {
                 attribute docID {$docID},
                 attribute n {$n},
-                attribute authorID {$authorID},
-                attribute addresseeID {$addresseeID},
+                attribute authorID {string-join($authorIDs, ' ')},
+                attribute addresseeID {string-join($addresseeIDs, ' ')},
                 if ($normDate castable as xs:date) then (
                     attribute year {year-from-date($normDate cast as xs:date)}, 
                     attribute month {month-from-date($normDate cast as xs:date)}, 
@@ -118,11 +121,14 @@ declare %private function norm:create-norm-doc-news() as element(norm:catalogue)
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('news', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
+        (: $authorIDs should be in sync with the definition at core:createColl()  :)
+        let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
         let $normDate := query:get-normalized-date($doc) (:datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)):)
         order by $normDate descending
         return 
             element entry {
                 attribute docID {$docID},
+                attribute authorID {string-join($authorIDs, ' ')},
                 if ($normDate castable as xs:date) then (
                     attribute year {year-from-date($normDate cast as xs:date)}, 
                     attribute month {month-from-date($normDate cast as xs:date)}, 
@@ -158,12 +164,13 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
         let $source := query:get-main-source($doc)
         let $normDate := query:get-normalized-date($doc)
         let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
-        let $authorID := query:get-authorID($doc)
+        (: $authorIDs should be in sync with the definition at core:createColl()  :)
+        let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
         order by $normDate, $n
         return 
             element entry {
                 attribute docID {$docID},
-                attribute authorID {$authorID},
+                attribute authorID {string-join($authorIDs, ' ')},
                 attribute n {$n},
                 if ($normDate castable as xs:date) then (
                     attribute year {year-from-date($normDate cast as xs:date)}, 
