@@ -135,6 +135,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filtered-coll := 
       if($filter) then 
         if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
+        else if($filter = 'textType') then search:textType-filter($collection, $docType, $filters)
         else query:get-facets($collection, $filter)[.=$filters($filter)]/root()
       else $collection
     let $newFilter := 
@@ -179,6 +180,15 @@ declare %private function search:date-filter($collection as document-node()*, $d
         default return $collection
 };
 
+(:~
+ : Helper function for search:filter-result()
+ : Applies textType filter for backlinks
+~:)
+declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
+    let $filter := map:keys($filters)[1]
+    return 
+        $collection//@xml:id[config:get-doctype-by-id(.) = $filters($filter)]/root()
+};
 
 (:~
  : 
