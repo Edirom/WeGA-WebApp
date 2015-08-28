@@ -257,10 +257,10 @@ $("#datePicker").datepicker({
     }
 });
 
-$('#map').each(function() {
+/*$('#map').each(function() {
     initFacsimile();
 });
-
+*/
 function initFacsimile() {
     var originalMaxSize = $('#map').attr('data-originalMaxSize');
     var url = $('#map').attr('data-url');
@@ -274,7 +274,7 @@ function initFacsimile() {
     console.log("url: "+url);
     
     var map = L.map('map').setView([0, 0], 0);
-    var facsimileTile =  L.tileLayer.facsimileLayer(url, {
+    var facsimileTile =  L.facsimileLayer(url, {
         minZoom: 0,
         maxZoom: maxZoomLevel,
         continuousWorld : true
