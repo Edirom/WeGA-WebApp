@@ -343,7 +343,7 @@ declare function ajax:getADB($pnd as xs:string, $lang as xs:string) as element()
  :)
  
 declare function ajax:getDNB($pnd as xs:string, $lang as xs:string) as element(div) {
-    let $dnbContentRoot := wega:grabExternalResource('dnb', $pnd, (), true())//httpclient:body//xhtml:div[@class='chapters'][data(./xhtml:h2)=concat(config:get-option('dnb'),$pnd)]/xhtml:table[1]
+    let $dnbContentRoot := wega:grabExternalResource('dnb', $pnd, (), true())//xhtml:table[@id='fullRecordTable']
     let $name := normalize-space($dnbContentRoot//xhtml:td[preceding-sibling::xhtml:td/xhtml:strong = 'Person'])
     let $roleName := normalize-space($dnbContentRoot//xhtml:td[preceding-sibling::xhtml:td/xhtml:strong = 'Adelstitel'])
     let $otherNames := string-join($dnbContentRoot//xhtml:td[preceding-sibling::xhtml:td/xhtml:strong ='Andere Namen']/text()/normalize-space(.), '; ') 
