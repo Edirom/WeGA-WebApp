@@ -24,43 +24,58 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 
 (:~
- : Show tools tab
+ : Create new ID
  :
  : @author Peter Stadler 
  : @param $docType
- : @param $lang the current language
- : @return element
+ : @return xs:string
  :)
- 
-declare function dev:showToolsTab($docType as xs:string, $lang as xs:string) {
-    <div>
-        {if ($docType eq 'common') then ()
-        else (
-            element span {
-                attribute id {'newID'},
-                attribute style {'font-size:14px;margin:1em;display:block'},
-                dev:createNewID($docType)
-            }
-        )
-        }
-    </div>
+declare function dev:createNewID($docType as xs:string) as xs:string {
+    let $IDFileName := concat($docType, '-tmpIDs.xml')
+    let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
+    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P1D'))
+       (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
+        else doc(concat($config:tmp-collection-path, $IDFileName)):)
+    let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
+    let $coll2 := $IDFile//dev:entry/substring(@xml:id, 2)
+    let $removeOldTempIDS := dev:removeOldEntries($IDFile)
+    let $maxID := count($coll1) + count($coll2) + 200
+    let $newID := 
+        if ($maxID lt 65535) then dev:addFffiEntry($IDFile, concat('_', dev:getNewID($maxID, $coll1, $coll2)))
+        else '_kein Eintrag verfügbar'
+
+    return substring($newID, 2)
 };
 
 (:~
- : Add fffi entry
+ : Get latest ANT log file
+ :
+ : @author Peter Stadler 
+ : @return map with entries 'rev' and 'success'
+ :)
+declare function dev:ant-log() as map(*) {
+    let $logFile := util:binary-doc(str:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
+    let $logLines := tokenize(util:binary-to-string($logFile), '\n')
+    return
+        map:new((
+            map:entry('rev', substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')),
+            map:entry('success', if($logLines = 'BUILD SUCCESSFUL') then 'success' else 'failed')
+        ))
+};
+
+(:~
+ : Add new ID entry
  :
  : @author Peter Stadler 
  : @param $IDFile 
  : @param $id
  : @return xs:string
  :)
-
-
-declare function dev:addFffiEntry($IDFile as document-node(), $id as xs:string?) as xs:string {
+declare %private function dev:addFffiEntry($IDFile as document-node(), $id as xs:string?) as xs:string {
     let $currentdateTime := util:system-dateTime()
     let $newNode := <entry xml:id="{$id}" dateTime="{$currentdateTime}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
     let $storeNode := 
-        if (matches($id, '_A\d{6}')) then update insert $newNode into $IDFile/dev:dictionary
+        if (config:get-doctype-by-id(substring($id, 2))) then update insert $newNode into $IDFile/dev:dictionary
         else error(xs:QName('dev:error'), 'got wrong ID: ' || $id)
     return 
         $IDFile//id($id)/string(@xml:id)
@@ -74,7 +89,7 @@ declare function dev:addFffiEntry($IDFile as document-node(), $id as xs:string?)
  : @return empty()
  :)
 
-declare function dev:removeOldEntries($IDFile as document-node()) as empty() {
+declare %private function dev:removeOldEntries($IDFile as document-node()) as empty() {
     let $currentdateTime := util:system-dateTime()
     return 
         for $entry in $IDFile//dev:entry[@dateTime < ($currentdateTime - xs:dayTimeDuration('P10D'))]
@@ -93,130 +108,57 @@ declare function dev:removeOldEntries($IDFile as document-node()) as empty() {
  : @param $coll2
  : @return xs:string
  :)
-
 declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 as xs:string+) as xs:string {
     let $IDPrefix := substring($coll1[22], 1, 3) (: use a higher element diary summaries, e.g. diary_Weber_1817 :)
-    let $rand := functx:pad-integer-to-length(util:random($max) + 1, 4)
+    let $rand := 
+        if(config:is-person($coll1[22])) then dev:pad-hex-to-length(dev:int2hex(util:random($max)), 4)
+        else functx:pad-integer-to-length(util:random($max), 4)
     let $newID := concat($IDPrefix, $rand)
     return 
         if ($newID = ($coll1, $coll2)) then dev:getNewID($max, $coll1, $coll2)
         else $newID  
 };
 
-(:~
- : Create new ID
- :
- : @author Peter Stadler 
- : @param $docType
- : @return xs:string
- :)
-
-declare function dev:createNewID($docType as xs:string) as xs:string {
-    let $IDFileName := concat($docType, '-tmpIDs.xml')
-    let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
-    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P999D'))
-       (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
-        else doc(concat($config:tmp-collection-path, $IDFileName)):)
-    let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
-    let $coll2 := $IDFile//dev:entry/substring(@xml:id, 2)
-    let $removeOldTempIDS := dev:removeOldEntries($IDFile)
-    let $maxID := count($coll1) + count($coll2) + 200
-    let $newID := 
-        if ($maxID lt 9999) then dev:addFffiEntry($IDFile, concat('_', dev:getNewID($maxID, $coll1, $coll2)))
-        else '_kein Eintrag verfügbar'
-
-    return substring($newID, 2)
-};
-
-declare function dev:create-empty-idfile($docType as xs:string, $IDFileURI as xs:string) as element(dev:dictionary) {
+declare %private function dev:create-empty-idfile($docType as xs:string, $IDFileURI as xs:string) as element(dev:dictionary) {
     if(doc-available($IDFileURI)) then doc($IDFileURI)/dev:dictionary (: preserve entries over db updates :)
     else <dictionary xml:id="{concat($docType, '-tmpIDs')}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
 };
 
-(:~
- : Validate IDs
- :
- : @author Peter Stadler 
- : @param $docType
- : @return element
- :)
-
-declare function dev:validateIDs($docType as xs:string) as element(div) {
-    let $goodKeys := core:getOrCreateColl($docType, 'indices', true())(:/*/data(@xml:id):)
-    let $col := collection($config:data-collection-path)
-    let $elements := 
-        if($docType eq 'persons') then ($col//tei:persName[@key] | $col//tei:editor[@key] | $col//tei:author[@key] | $col//tei:rs[matches(@type,'person')][@key] | $col//mei:persName[@dbkey])
-        else if($docType eq 'letters') then ($col//tei:rs[matches(@type,'letter')][@key])
-        else if($docType eq 'works') then ($col//tei:workName[@key] | $col//tei:rs[matches(@type,'work')][@key])
-        else if($docType eq 'diaries') then ($col//tei:rs[matches(@type,'diary')][@key])
-        else if($docType eq 'news') then ($col//tei:rs[matches(@type,'news')][@key])
-        else if($docType eq 'writings') then ($col//tei:rs[matches(@type,'writing')][@key])
-        else ()
-
-(:    return element div {count(distinct-values($elements))}:)
-    return element div {
-        for $element in distinct-values($elements/@key | $elements/@dbkey)
-        for $key in tokenize($element, '\s')
-    
-        return (
-            if ($goodKeys//id($key)) then ()
-            else (
-                let $docIDs := $elements[contains(@key, $element)]/root()/*/@xml:id | $elements[contains(@dbkey, $element)]/root()/*/@xml:id 
-                return element li {concat('Falscher Key: ', $key, ' (in: ', string-join($docIDs, ', '), ')')})
-        )
-    }
+declare %private variable $dev:int2hex as map() := map {
+    '0' := '0',
+    '1' := '1',
+    '2' := '2',
+    '3' := '3',
+    '4' := '4',
+    '5' := '5', 
+    '6' := '6',
+    '7' := '7',
+    '8' := '8',
+    '9' := '9',
+    '10' := 'A',
+    '11' := 'B',
+    '12' := 'C',
+    '13' := 'D',
+    '14' := 'E',
+    '15' := 'F'
 };
 
-(:~
- : Validate PNDs
- :
- : @author Peter Stadler 
- : @param $docType
- : @return element
- :)
-
-declare function dev:validatePNDs($docType as xs:string) as element(div) {
-    let $coll := core:getOrCreateColl('persons', 'indices', true())
-    return element div {
-        for $pnd in distinct-values($coll//tei:idno[@type='gnd'])
-        return (
-            if ($coll//tei:idno[. = $pnd][@type='gnd'][2]) then (
-                element li {concat('Doppelte PND: ', $pnd)}
-            )
-            else()
-        )
-    }
-};
-
-(:~
- : Validate paths 
- :
- : @author Peter Stadler 
- : @param $docType
- : @return element
- :)
-declare function dev:validatePaths($docType as xs:string) as element() {
-    let $falseDocs := core:data-collection($docType)[document-uri(.) ne concat(config:getCollectionPath(./*/string(@xml:id)), '/', ./*/@xml:id, '.xml')]
-    return element div {
-        element ul {
-            for $i in $falseDocs/document-uri(.)
-            return element li {$i}
-        }
-    }
-};
-
-(:~
- : Get latest ANT log file
- :
- : @author Peter Stadler 
- : @return map with entries 'rev' and 'success'
- :)
-declare function dev:ant-log() as map(*) {
-    let $logFile := util:binary-doc(str:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
-    let $logLines := tokenize(util:binary-to-string($logFile), '\n')
+declare %private function dev:int2hex($number as xs:int) as xs:string {
+    let $div := $number div 16
+    let $count := floor($div)
+    let $remainder := ($div - $count) * 16
     return
-        map:new((
-            map:entry('rev', substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')),
-            map:entry('success', if($logLines = 'BUILD SUCCESSFUL') then 'success' else 'failed')
-        ))
+        concat(
+            if($count gt 15) then dev:int2hex($count)
+            else $dev:int2hex($count),
+            $dev:int2hex($remainder)
+        )
+};
+
+declare %private function dev:pad-hex-to-length($stringToPad as xs:string?, $length as xs:integer) as xs:string {
+    if ($length lt string-length($stringToPad)) then error(xs:QName('dev:Hex_Longer_Than_Length'))
+    else concat(
+            functx:repeat-string('0', $length - string-length($stringToPad)),
+            $stringToPad
+        )
 };

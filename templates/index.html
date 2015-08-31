@@ -18,7 +18,7 @@
         <div class="container">
             <form role="form" class="form-inline" action="$link/search">
                 <div class="row paddingTopIcon paddingBottomIcon">
-                    <div class="col-md-6 ">
+                    <div class="col-md-6">
                         <div class="input-group">
                             <select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
                                 <option value="all" data-template="lang:translate">all</option>
@@ -43,6 +43,39 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div data-template="app:show-at-development">
+        <div class="colored borderBottom">
+            <div class="container">
+                <form role="form" class="form-inline">
+                    <div class="row paddingTopIcon paddingBottomIcon">
+                        <h3>Development Tools</h3>
+                        <div class="col-md-6">
+                            <h4>Commit Status </h4>
+                            <a href="index.html#"><span class="currentRevision">Revision 9500 </span> <i class="fa fa-check-circle-o fa-lg"/></a>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Neue ID</h4>
+                            <div class="input-group">
+                                <select class="input-group-addon gradient-light bootstrap-select" name="newID-d" id="newID-select">
+                                    <option value="persons" data-template="lang:translate">persons</option>
+                                    <option value="letters" data-template="lang:translate">correspondence</option>
+                                    <option value="diaries" data-template="lang:translate">diaries</option>
+                                    <option value="writings" data-template="lang:translate">writings</option>
+                                    <option value="works" data-template="lang:translate">works</option>
+                                    <option value="news" data-template="lang:translate">news</option>
+                                    <option value="biblio" data-template="lang:translate">bibliography</option>
+                                </select>
+                                <button type="button" class="btn btn-primary" id="create-newID">
+                                    <i class="fa fa-arrow-right"/>
+                                </button>
+                                <span class="newID-result" style="display:none;">A001234</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="borderBottom">

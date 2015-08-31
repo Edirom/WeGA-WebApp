@@ -396,3 +396,14 @@ function addSearchOption(that)
 {
     $(that).closest(".col-md-9").append("<div class='searchform'>"+$(that).closest(".searchform").html()+"</div>");
 }
+
+$('#create-newID').on('click', function() {
+   var docType = $('#newID-select :selected').val();
+   var ajaxLoaderImage = "<img src=\"$resources/img/icons/ajax-loader.gif\" alt=\"spinning-wheel\"/>"
+   var ajaxLoader = $('<span class\"ajaxLoader\">').append(ajaxLoaderImage);
+   $('.newID-result').html(ajaxLoader);
+   $('.newID-result').show();
+   $.getJSON('../dev/api.xql?func=get-new-id&format=json&docType='+docType, function(response) {
+      $('.newID-result').html(response);
+   });
+});
