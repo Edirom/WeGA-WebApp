@@ -250,7 +250,15 @@ return (
             </div>
         else 
             if($person//tei:event) then ()
-            else <div id="bioSummary"><i>({lang:get-language-string('noBioFound',$lang)})</i></div>,
+            else <div id="bioSummary">
+                    <p><i>{lang:get-language-string('noBioFound',$lang)}</i></p>
+                    <p style="font-size: smaller;">{lang:get-language-string('noBioFoundReason',$lang)}:</p>
+                    <ul style="font-size: smaller;">
+                        <li> {lang:get-language-string('noBioFoundReason1',$lang)} </li>
+                        <li> {lang:get-language-string('noBioFoundReason2',$lang)} </li>
+                        <li> {lang:get-language-string('noBioFoundReason3',$lang)} </li>
+                    </ul>
+                </div>,
         if($id eq 'A002068') then 
             if ($lang eq 'en') then ()
             else <p class="linkAppendix">Einen ausführlichen Lebenslauf finden Sie in der <a href="{core:join-path-elements(($baseHref, '/de/Biographie'))}">erweiterten Biographie</a></p> 
@@ -609,10 +617,7 @@ declare function ajax:printTranscription($docID as xs:string, $lang as xs:string
         else ()
     let $head := 
         if(config:is-letter($docID)) then wega:getLetterHead($doc, $lang)
-        else if(config:is-news($docID)) then element h1 {
-            transform:transform($doc//tei:fileDesc/tei:titleStmt/tei:title[@level='a'], doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
-            (:string($doc//tei:title[@level='a']):)
-            }
+        else if(config:is-news($docID)) then element h1 {string($doc//tei:title[@level='a'])}
         else if(config:is-writing($docID)) then wega:getWritingHead($doc, $xslParams, $lang)
         else ()
     let $body := 
