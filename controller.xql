@@ -126,7 +126,7 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
  :)
 else if (ends-with($exist:resource, '.xml')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql-xml.xql'}">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-xml.xql'}">
             <set-attribute name="resource" value="{substring-before($exist:resource, '.xml')}"/>
         </forward>
     </dispatch>
@@ -143,6 +143,40 @@ else if (contains($exist:path, concat('/', lang:get-language-string('indices', $
 (: Projekt :)
 else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/', $exist:resource))) then
     controller:dispatch-project($exist-vars)
+
+(: IIIF manifest meta data :)
+else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+            <set-attribute name="docID" value="{substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/')}"/>
+            <set-attribute name="type" value="manifest"/>
+        </forward>
+    </dispatch>
+
+(: IIIF resource meta data :)
+(:else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/[^/]+/info.json')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+            <set-attribute name="docID" value="{substring-before(substring-after($exist:path, 'IIIF/'), '/')}"/>
+            <set-attribute name="image" value="{functx:substring-after-last(util:unescape-uri(substring-before($exist:path, '/info.json'), 'UTF-8'), '/')}"/>
+            <set-attribute name="type" value="resource"/>
+        </forward>
+    </dispatch>:)
+    
+(:else if (contains($exist:path, '/IIIF') and $exist:resource eq 'level0.json') then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/templates/ajax/dnb.html'}"/>
+        <view>
+            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+                <set-attribute name="resource" value="{substring-before($exist:resource, '.json')}"/>
+            </forward>
+        </view>
+    </dispatch>
+    :)
+else if (contains($exist:path, '/IIIF')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF{replace(substring-after($exist:path, 'IIIF'), 'default', 'native')}"/>
+    </dispatch>
 
 (: Editorial Guidelines :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $editorialGuidelines, '/?$'))) then

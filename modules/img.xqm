@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 (:~
 : xQuery functions for fetching and manipulating images
@@ -331,3 +331,96 @@ declare function img:crop-portrait() {
     ()
 };
 
+declare function img:iiif-manifest($docID as xs:string) as map(*) {
+    (:let $id := 'letters/A0412xx/A041234/1817-07-10_05_AM_Weber_an_Caroline_D-B_1r.tif'
+    let $width := '2030'
+    let $height := '2414':)
+    let $doc := core:doc($docID)
+    let $baseURL := 'http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF/'
+    let $id := $baseURL || $docID 
+    let $label := query:get-reg-title($docID)
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    return
+        map {
+            "@context":= "http://iiif.io/api/presentation/2/context.json",
+            "@id":= $id || '/manifest.json',
+            "@type" := "sc:Manifest", 
+            "label":= $label,
+            "sequences" := [ map {
+                "@id":= $id || '/sequences.json',
+                "@type" := "sc:Sequence", 
+                "label" := "Default", 
+                "canvases" := 
+                    for $i in $doc//tei:facsimile/tei:graphic
+                    let $image-id := $baseURL || img:iiif-resource-id($docID, $i/@xml:id)
+                    return 
+                        map:new((
+                            map:entry("@type", "sc:Canvas"),
+                            map:entry("label", $i/data(@xml:id)),
+                            map:entry("images", [ map {
+                                "@type" := "oa:Annotation",
+                                "resource" := map {
+                                    "@id" := $id || '/images.json',
+                                    "@type" := "dctypes:Image",
+                                    "service":= map {
+                                        "@context": "http://iiif.io/api/image/2/context.json", 
+                                        "@id": $image-id, 
+                                        "profile": "http://iiif.io/api/image/2/level0.json"
+                                    }
+                                }
+                            }])
+                        ))
+                
+            }]
+        }
+};
+(:
+declare function img:iiif-resource($docID as xs:string, $resource as xs:string) as map(*) {
+    let $doc := core:doc($docID)
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    let $baseURL := 'http://localhost:8080/exist/apps/WeGA-WebApp/IIIF/'
+    let $id := $baseURL || $docID 
+    let $graphic := $doc/id($resource) | $doc//tei:graphic[@url=$resource]
+    let $width := $graphic/substring-before(@width, 'px')
+    let $height := $graphic/substring-before(@height, 'px')
+    let $format := $graphic/data(@mimeType)
+    return 
+        map {
+            "@id":= $baseURL || img:iiif-resource-id($docID, $resource),
+            "@context" := "http://iiif.io/api/image/2/context.json",
+            "protocol" := "http://iiif.io/api/image",
+            "width" := $width,
+            "height" := $height,
+            "profile" := "http://iiif.io/api/image/2/level0.json"
+        }
+};:)
+
+(:~
+ : Helper function for constructing an IIIF resource ID
+~:)
+declare %private function img:iiif-resource-id($docID as xs:string, $resource as xs:string) as xs:string {
+    let $doc := core:doc($docID)
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    let $graphic := $doc/id($resource)
+    return
+        encode-for-uri(str:join-path-elements(($db-path, $docID, $graphic/@url)))
+};
+
+(: 
+[ map {
+                "formats" := [ "jpg", "png" ],
+                "qualities" := [ "native","color","grey" ],
+                "supports" := []
+            }]
+:)
+
+declare function img:iiif-imageProfile() as map(*) {
+    map {
+        "@context":= "http://iiif.io/api/image/2/context.json",
+        "@id":= "http://localhost:8080/exist/apps/WeGA-WebApp/IIIF/level0.json",
+        "@type" := "iiif:ImageProfile",
+        "qualities" := ["native", "color"],
+        "formats" := ["jpg", "png"],
+        "supports" := [  ]
+    }
+};

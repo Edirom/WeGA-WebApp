@@ -257,29 +257,39 @@ $("#datePicker").datepicker({
     }
 });
 
-/*$('#map').each(function() {
-    initFacsimile();
+/* Fieser Hack */
+$('#facsimile-tab').on('click', function() {
+    setTimeout(function() {
+       if ($('#map:visible')){
+           initFacsimile();
+       }
+   }, 500);
 });
-*/
+
 function initFacsimile() {
-    var originalMaxSize = $('#map').attr('data-originalMaxSize');
-    var url = $('#map').attr('data-url');
-    var maxZoomLevel = 0;
+    var map;
+    var iiifLayers = {};
     
-    while(originalMaxSize > 256){
-        originalMaxSize = originalMaxSize/2;
-        maxZoomLevel++;
-    }
-    console.log("maxZoomLevel: "+maxZoomLevel);
-    console.log("url: "+url);
-    
-    var map = L.map('map').setView([0, 0], 0);
-    var facsimileTile =  L.facsimileLayer(url, {
-        minZoom: 0,
-        maxZoom: maxZoomLevel,
-        continuousWorld : true
+    map = L.map('map', {
+        center: [0, 0],
+        crs: L.CRS.Simple,
+        zoom: 0
     });
-    facsimileTile.addTo(map);
+    
+    var manifestUrl = $('#map').attr('data-url');
+
+    // Grab a IIIF manifest
+    $.getJSON(manifestUrl, function(data) {
+      // For each image create a L.TileLayer.Iiif object and add that to an object literal for the layer control
+      $.each(data.sequences[0].canvases, function(_, val) {
+        iiifLayers[val.label] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json');
+      });
+        // Add layers control to the map
+        L.control.layers(iiifLayers).addTo(map);
+        
+        // Access the first Iiif object and add it to the map
+        iiifLayers[Object.keys(iiifLayers)[0]].addTo(map);
+    });
 };
 
 function jump2diary(dateText) {

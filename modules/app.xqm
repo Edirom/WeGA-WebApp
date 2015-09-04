@@ -979,14 +979,14 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
 };
 
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
-    let $image-url := 'file:///Users/pstadler/repos/FacsimileLayerViewer/example/{z}-{x}-{y}.jpg'
-    let $image-originalMaxSize := doc($config:data-collection-path || '/images/images.xml')//image[@id=$model('docID')]/data(@height)
+    let $image-url := core:link-to-current-app('IIIF/' || $model('docID') || '/manifest.json')
+(:    let $image-originalMaxSize := doc($config:data-collection-path || '/images/images.xml')//image[@id=$model('docID')]/data(@height) :)
     return 
         element {name($node)} {
             if($image-url) then (
                 $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                attribute {'data-url'} {$image-url},
-                attribute {'data-originalMaxSize'} {$image-originalMaxSize}
+                attribute {'data-url'} {$image-url}
+(:                attribute {'data-originalMaxSize'} {$image-originalMaxSize} :)
             )
             else $node/@*
         }
