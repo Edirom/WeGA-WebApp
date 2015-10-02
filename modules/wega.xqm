@@ -933,7 +933,7 @@ declare function wega:getWorkMetaData($doc as document-node(), $lang as xs:strin
                             string($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)][1]),
                             if(exists($doc//mei:altId/@type[. !='gnd'])) then 
                                 if(exists($doc//mei:altId[@type='WeV'])) then concat('(WeV ', $doc//mei:altId[@type='WeV'], ')') (: Weber-Werke :)
-                                else concat('(', $doc//mei:altId/@type[. !='gnd'][1]/string(.), ' ', $doc//mei:altId[@type[. !='gnd']][1], ')') (: Fremd-Werke :)
+                                else concat('(', ($doc//mei:altId/@type[. !='gnd'])[1]/string(.), ' ', ($doc//mei:altId[@type[. !='gnd']])[1], ')') (: Fremd-Werke :)
                             else()
                         )
                 },
