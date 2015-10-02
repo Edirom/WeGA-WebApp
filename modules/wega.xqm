@@ -1344,12 +1344,25 @@ declare function wega:printSourceDesc($doc as document-node(), $lang as xs:strin
                 return
                     if(functx:all-whitespace($source)) then 
                         <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
-                    else 
+                    else (
                         typeswitch($source)
                         case element(tei:listWit) return wega:listWit($source, $lang)
                         case element(tei:msDesc) return transform:transform($source, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
                         case element(tei:biblStruct) return bibl:printCitation($source, 'p', $lang)
-                        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+                        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>,
+                        
+                        if($source//tei:additional/tei:listBibl) then (
+                           <h4>{lang:get-language-string('prints', $lang)}</h4>,
+                           <ul>{
+                           for $i in $source//tei:additional/tei:listBibl/*
+                           return
+                              typeswitch($i)
+                              case element(tei:biblStruct) return bibl:printCitation($i, 'li', $lang)
+                              default return transform:transform($i, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+                           }</ul>
+                        )
+                        else ()
+                     )
             }</div>
             {if(exists($doc//tei:creation)) then (
             	<h3>{lang:get-language-string('creation',$lang)}</h3>,

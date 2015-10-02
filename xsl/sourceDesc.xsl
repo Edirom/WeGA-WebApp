@@ -114,12 +114,9 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:additional">
-        <xsl:element name="h4">
-            <xsl:value-of select="wega:getLanguageString('prints', $lang)"/>
-        </xsl:element>
-        <xsl:apply-templates/>
-    </xsl:template>
+    <!-- Additional ("Drucke") wird via XQuery ausgegeben in wega:printSourceDesc() -->
+    <xsl:template match="tei:additional"/>
+    
 
     <xsl:template match="tei:listBibl">
         <xsl:element name="ul">
@@ -127,7 +124,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:bibl[parent::tei:listBibl]">
+    <xsl:template match="tei:bibl">
         <xsl:element name="li">
             <xsl:apply-templates/>
         </xsl:element>
@@ -137,11 +134,8 @@
         <xsl:apply-templates/>
     </xsl:template>
 
-    <!--<xsl:template match="tei:biblStruct[parent::tei:listBibl]">
-        <xsl:sequence select="wega:printCitation(., 'li', $lang)"/>
-    </xsl:template>-->
-
-
+    <xsl:template match="tei:biblStruct[parent::tei:listBibl]"/>
+        
     <!--<xsl:template match="tei:quote">
         <xsl:text>"</xsl:text>
         <xsl:apply-templates/>
