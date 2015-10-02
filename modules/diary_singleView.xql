@@ -135,7 +135,11 @@ return
                             
                             <h3>{lang:get-language-string('textSource',$lang)}</h3>
                             
-                            <div>D-B, Mus. ms. autogr. theor. C. M. v. Weber 1</div>
+                            <div>
+                              <p>Berlin (D), Staatsbibliothek zu Berlin Preußischer Kulturbesitz, Musikabteilung (D-B), 
+                                 <br><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber 1
+                              </p>
+                           </div>
                         </div>
                     </div>
                     {if(not($withJS))
