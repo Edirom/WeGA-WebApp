@@ -899,7 +899,7 @@
                 </xsl:element>
             </xsl:when>
             <!-- Local images -->
-            <xsl:otherwise>
+            <xsl:when test="tei:graphic/@url">
                 <xsl:variable name="content">
                     <xsl:element name="img">
                         <xsl:apply-templates select="@xml:id"/>
@@ -910,6 +910,13 @@
                     </xsl:element>
                 </xsl:variable>
                 <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+            </xsl:when>
+            <!-- Fallback if no image url is present -->
+            <xsl:otherwise>
+                <xsl:element name="span">
+                    <xsl:attribute name="class" select="'tei_notatedMusic tei_supplied'"/>
+                    <xsl:value-of select="concat('Notenbeispiel: ', tei:desc)"/>
+                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
