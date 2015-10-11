@@ -830,6 +830,15 @@
             <xsl:text>]</xsl:text>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:sic[not(parent::tei:choice)]">
+        <xsl:apply-templates/>
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="'tei_supplied'"/>
+            <xsl:attribute name="style" select="'font-style:normal'"/>
+            <xsl:text> [sic] </xsl:text>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:expan">
         <xsl:element name="span">
