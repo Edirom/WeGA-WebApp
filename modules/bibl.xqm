@@ -35,6 +35,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     case 'mastersthesis' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     case 'review' return bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
     case 'phdthesis' return bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    case 'monogrOnly' return bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang)
     default return bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
@@ -157,15 +158,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
 (:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
-    let $biblScope := bibl:biblScope($monogr/tei:imprint, $lang) (:concat(
-        if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'nr']) else (),
-        if(exists($monogr/tei:imprint/tei:date)) then concat(' ', $date) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($monogr/tei:imprint/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($monogr/tei:imprint/tei:biblScope[@type = 'col'], '-', '–')) else ()
-    ):)
+    let $biblScope := bibl:biblScope($monogr/tei:imprint, $lang) 
     return 
         element {$wrapperElement} {
             $journalTitle,
@@ -269,7 +262,9 @@ declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprin
  : @return the entry type as string, the empty sequence if nothing could be inferd
  :)
 declare %private function bibl:guess-biblio-type($biblStruct as element(tei:biblStruct)) as xs:string? {
-    if($biblStruct/@type = $bibl:supportedBiblioTypes) then $biblStruct/@type cast as xs:string
+    (: An Schriften wird nur die Zeitschrift ausgegeben :)
+    if(config:is-writing($biblStruct/ancestor::tei:TEI/data(@xml:id))) then 'monogrOnly'
+    else if($biblStruct/@type = $bibl:supportedBiblioTypes) then $biblStruct/@type cast as xs:string
     else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='j']) then 'article'
     else()
 };
