@@ -215,11 +215,12 @@ declare function dev:validatePaths($docType as xs:string) as element() {
  : @return map with entries 'rev' and 'success'
  :)
 declare function dev:ant-log() as map(*) {
-    let $logFile := util:binary-doc(core:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
+    let $currLogRev := max(xmldb:get-child-resources($config:tmp-collection-path || '/logs') ! (substring-before(., '.log') cast as xs:int))
+    let $logFile := util:binary-doc(core:join-path-elements(($config:tmp-collection-path, 'logs', $currLogRev || '.log')))
     let $logLines := tokenize(util:binary-to-string($logFile), '\n')
     return
         map:new((
-            map:entry('rev', substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')),
+            map:entry('rev', $currLogRev),
             map:entry('success', if($logLines = 'BUILD SUCCESSFUL') then 'success' else 'failed')
         ))
 };
