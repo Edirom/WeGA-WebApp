@@ -49,9 +49,6 @@ let $lang := request:get-parameter('lang','de')
 let $docID := request:get-parameter('id','A060001')
 let $withJS := if(request:get-parameter('js', 'true') eq 'true') then true() else false()
 let $doc := core:doc($docID)
-let $docYear := year-from-date(xs:date($doc/tei:ab/@n))
-let $docYearID := concat('diary_Weber_', $docYear)
-let $docYear := collection('/db/diaries')//id($docYearID)
 let $authorID := 'A002068'
 let $xslParams := config:get-xsl-params(())
 let $contextContainer := 'context'
@@ -133,31 +130,16 @@ return
                         <a class="toggleMarker" title="{lang:get-language-string('showEditorial',$lang)}" onclick="$('editorial').toggle();$('show').toggle();$('hide').toggle()"><span id="show">({lang:get-language-string('show',$lang)})</span><span id="hide" style="display:none">({lang:get-language-string('hide',$lang)})</span></a>
                         <br class="clearer"/>
                         <div id="editorial" style="display:none">
-                            <h3 id="series">{lang:get-language-string('series',$lang)}</h3>
-                            <p>{data($docYear//tei:titleStmt/tei:title[@level='s'])}</p>
-                            
                             <h3 id="resp">{lang:get-language-string('transcription',$lang)}</h3>
-                            <ul>{for $name in $docYear//tei:respStmt/tei:name return <li>{data($name)}</li>}</ul>
+                            <ul><li>Dagmar Beck</li></ul>
                             
-                            {if(exists($docYear//tei:listWit)) 
-                                then (<h3 class="headWithToggleMarker">{lang:get-language-string('textSources',$lang)}</h3>,
-                                     <ol class="toggleMarkerList">
-                                        {for $i at $count in $docYear//tei:listWit/tei:witness 
-                                            order by $i/@n ascending 
-                                            return
-                                            <li><a onclick="switchActivTab('witness','{concat('source_', $count)}')">[{$i/data(@n)}]</a></li>
-                                        }
-                                     </ol>,
-                                     <br class="clearer"/>
-                                     )
-                                else <h3>{lang:get-language-string('textSource',$lang)}</h3>
-                            }
-                            <div>{if($docYear//tei:msIdentifier != '') 
-                                then if(exists($docYear//tei:listWit)) 
-                                    then transform:transform($docYear//tei:listWit, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams) 
-                                    else transform:transform($docYear//tei:msDesc, doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), $xslParams)
-                                else (<span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>)}
-                            </div>
+                            <h3>{lang:get-language-string('textSource',$lang)}</h3>
+                            
+                            <div>
+                              <p>Berlin (D), Staatsbibliothek zu Berlin Preußischer Kulturbesitz, Musikabteilung (D-B), 
+                                 <br/><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber 1
+                              </p>
+                           </div>
                         </div>
                     </div>
                     {if(not($withJS))

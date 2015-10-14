@@ -94,7 +94,9 @@
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:call-template name="createSpanOnly"/>
+                <xsl:element name="span">
+                    <xsl:apply-templates/>
+                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

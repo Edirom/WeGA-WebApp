@@ -91,7 +91,7 @@
     <xsl:function name="wega:isPerson" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
-            <xsl:when test="matches($docID, '^A00\d{4}$')">
+            <xsl:when test="matches($docID, '^A00[0-9A-F]{4}$')">
                 <xsl:value-of select="true()"/>
             </xsl:when>
             <xsl:otherwise>
@@ -550,10 +550,10 @@
                 <xsl:text>tei_add</xsl:text>
                 <xsl:choose>
                     <xsl:when test="@place='above'">
-                        <xsl:text> tei_hiSuperscript</xsl:text>
+                        <xsl:text> tei_hi_superscript</xsl:text>
                     </xsl:when>
                     <xsl:when test="@place='below'">
-                        <xsl:text> tei_hiSubscript</xsl:text>
+                        <xsl:text> tei_hi_subscript</xsl:text>
                     </xsl:when>
                     <!--<xsl:when test="./tei:add[@place='margin']">
                         <xsl:text>Ersetzung am Rand. </xsl:text>
@@ -830,6 +830,15 @@
             <xsl:text>]</xsl:text>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:sic[not(parent::tei:choice)]">
+        <xsl:apply-templates/>
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="'tei_supplied'"/>
+            <xsl:attribute name="style" select="'font-style:normal'"/>
+            <xsl:text> [sic] </xsl:text>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:expan">
         <xsl:element name="span">
@@ -869,6 +878,45 @@
                     </xsl:element>
                 </xsl:variable>
                 <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:notatedMusic" priority="0.5">
+        <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
+        <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
+        <xsl:variable name="localURL" select="wega:join-path-elements((replace(wega:getCollectionPath($docID), $data-collection-path, ''), $docID, tei:graphic/@url))"/>
+        <xsl:variable name="href" select="concat($digilibDir, $localURL, '&amp;mo=file')"/>
+        <xsl:variable name="title" select="normalize-space(tei:desc)"/>
+        <xsl:choose>
+            <!-- External URLs -->
+            <xsl:when test="starts-with(tei:graphic/@url, 'http')">
+                <xsl:element name="img">
+                    <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="data(tei:graphic/@url)"/>
+                    <xsl:attribute name="class" select="'teaserImage'"/>
+                </xsl:element>
+            </xsl:when>
+            <!-- Local images -->
+            <xsl:when test="tei:graphic/@url">
+                <xsl:variable name="content">
+                    <xsl:element name="img">
+                        <xsl:apply-templates select="@xml:id"/>
+                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="height" select="$figureHeight"/>
+                        <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
+                        <xsl:attribute name="class" select="'figure'"/>
+                    </xsl:element>
+                </xsl:variable>
+                <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
+            </xsl:when>
+            <!-- Fallback if no image url is present -->
+            <xsl:otherwise>
+                <xsl:element name="span">
+                    <xsl:attribute name="class" select="'tei_notatedMusic tei_supplied'"/>
+                    <xsl:value-of select="concat('Notenbeispiel: ', tei:desc)"/>
+                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -990,7 +1038,7 @@
             <xsl:choose>
                 <xsl:when test="@type='smufl'">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
-                    <xsl:variable name="smufl-codepoint" select="key('charDecl', $charName, doc($smufl-decl))/tei:mapping[@type='smufl']"/>
+                    <xsl:variable name="smufl-codepoint" select="key('charDecl', concat('_', $charName), doc($smufl-decl))/tei:mapping[@type='smufl']"/>
                     <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
                 </xsl:when>
                 <xsl:otherwise>
