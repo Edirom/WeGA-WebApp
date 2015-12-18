@@ -20,72 +20,89 @@ declare function ct:create-header() as element(tei:teiHeader) {
                 <publisher>
                     <ref target="http://weber-gesamtausgabe.de">Carl-Maria-von-Weber-Gesamtausgabe</ref>
                 </publisher>
+                <idno type="url">http://weber-gesamtausgabe.de/correspDesc.xml</idno>
                 <date when="{current-dateTime()}"/>
                 <availability>
-                    <licence target="https://creativecommons.org/licenses/by/3.0/">CC-BY 3.0</licence>
+                    <licence target="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</licence>
                     <licence target="http://opensource.org/licenses/BSD-2-Clause">BSD-2</licence>
                 </availability>
             </publicationStmt>
             <sourceDesc>
-                <bibl>
+                <bibl type="online">
                     Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="http://www.weber-gesamtausgabe.de">http://www.weber-gesamtausgabe.de</ref> (Version {config:get-option('version')} vom {date:strfdate(xs:date(config:get-option('versionDate')), 'de', '%d. %B %Y')})
                 </bibl>
             </sourceDesc>
         </fileDesc>
+        <profileDesc>
+            {for $i in core:data-collection('letters')//tei:correspDesc return ct:create-correspDesc($i)}
+        </profileDesc>
     </teiHeader>
 };
 
-declare function ct:create-text($correspDescs as element(tei:correspDesc)*) as element(tei:text) {
-    <text xmlns="http://www.tei-c.org/ns/1.0">
-        <body>
-            <listBibl>{
-                for $i in $correspDescs
-                return ct:create-correspDesc($i)
-            }</listBibl>
-        </body>
-    </text>
+declare function ct:create-correspDesc($correspDesc as element(tei:correspDesc)) as element(tei:correspDesc) {
+    <correspDesc ref="{concat('http://www.weber-gesamtausgabe.de/', $correspDesc/ancestor::tei:TEI/@xml:id)}" xmlns="http://www.tei-c.org/ns/1.0">{
+        ct:create-correspAction-sent($correspDesc),
+        ct:create-correspAction-received($correspDesc)
+    }</correspDesc>
 };
 
-declare function ct:create-correspDesc($correspDesc as element(tei:correspDesc)) as element(ct:correspDesc) {
-    <ct:correspDesc ref="{concat('http://www.weber-gesamtausgabe.de/', $correspDesc/ancestor::tei:TEI/@xml:id)}">{
-        for $person in ($correspDesc/tei:sender, $correspDesc/tei:addressee) return ct:create-sender-or-addressee($person),
-        for $place in ($correspDesc/tei:placeSender, $correspDesc/tei:placeAddressee) return ct:create-places($place),
-        for $date in ($correspDesc/tei:dateSender, $correspDesc/tei:dateAddressee) return ct:create-dates($date)
-    }</ct:correspDesc>
+declare function ct:create-correspAction-sent($correspDesc as element(tei:correspDesc)) as element(tei:correspAction)? {
+    let $correspAction :=
+        <correspAction type="sent" xmlns="http://www.tei-c.org/ns/1.0">{
+            $correspDesc/tei:sender/* ! ct:participant(.),
+            $correspDesc/tei:placeSender/* ! ct:place(.),
+            $correspDesc/tei:dateSender/* ! ct:date(.)
+        }</correspAction>
+    return
+        if($correspAction/*) then $correspAction
+        else ()
 };
 
-declare function ct:create-sender-or-addressee($input as element()) as element() {
+declare function ct:create-correspAction-received($correspDesc as element(tei:correspDesc)) as element(tei:correspAction)? {
+    let $correspAction :=
+        <correspAction type="received" xmlns="http://www.tei-c.org/ns/1.0">{
+            $correspDesc/tei:addressee/* ! ct:participant(.),
+            $correspDesc/tei:placeAddressee/* ! ct:place(.),
+            $correspDesc/tei:dateAddressee/* ! ct:date(.)
+        }</correspAction>
+    return
+        if($correspAction/*) then $correspAction
+        else ()
+};
+
+
+declare function ct:participant($input as element()) as element() {
     let $id := $input//@key[1]
     let $gnd := if($id) then wega:getGND(string($id)) else ()
     return 
-        element {xs:QName('ct:' || local-name($input))} {
+        element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
             if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd} else (),
-            normalize-space($input/*[1])
+            normalize-space($input)
         }
 };
 
-declare function ct:create-dates($input as element()) as element() {
-    element {xs:QName('ct:' || local-name($input))} {
-        $input/tei:date/@*[local-name(.) ne 'n'](:,
-        normalize-space($input):)
-    }
-};
-
-declare function ct:create-places($input as element()) as element() {
-    let $placeName := normalize-space($input/tei:placeName[1])
+declare function ct:place($input as element()) as element() {
+    let $placeName := normalize-space($input)
     let $geoID := core:data-collection('places')//tei:placeName[. = $placeName]/following-sibling::tei:idno
     return 
-        element {xs:QName('ct:' || local-name($input))} {
-            if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID[1]} else (),
+        element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
+            if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID} else (),
             $placeName
         }
 };
 
+declare function ct:date($input as element()) as element() {
+    element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
+        $input/@*[not(local-name(.) = ('n', 'calendar'))](:,
+        normalize-space($input):)
+    }
+};
+
 declare function ct:corresp-list() as element(tei:TEI) {
-    <TEI xmlns="http://www.tei-c.org/ns/1.0">{
-        ct:create-header(),
-        ct:create-text(core:data-collection('letters')//tei:correspDesc)
-    }</TEI>
+    <TEI xmlns="http://www.tei-c.org/ns/1.0">
+        {ct:create-header()}
+        <text><body><p/></body></text>
+    </TEI>
 };
 
 core:cache-doc(core:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'))
