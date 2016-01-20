@@ -92,8 +92,8 @@
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-                <!-- Überschrift h1 für Indexseite und Impressum -->
-                <xsl:element name="{concat('h', count(ancestor::tei:div))}">
+                <!-- Ebenfalls h2 für Indexseite und Impressum -->
+                <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:otherwise>
@@ -187,7 +187,7 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each select="//tei:text//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
+                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">

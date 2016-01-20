@@ -15,8 +15,7 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="$link/Index">Home</a></li>
-                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
-                        <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
+                        <li data-template="lang:translate">project</li>
                         <li data-template="app:print" data-template-key="docID">A040080</li>
                     </ol>
                 </div>
@@ -30,26 +29,25 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                <div id="datePicker" data-template="app:datePicker"/>
+<!--                <div id="datePicker" data-template="app:datePicker"/>-->
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
-                            Dokumente</h2>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">Dokumente</h2>
                         <div id="dokumente" class="panel-collapse collapse ">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                                <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>
+<!--                                <li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li>-->
+<!--                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:ajax-tab">facsimile</a></li>-->
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                                 <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div>
+                    <!--<div>
                         <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext" data-template="lang:translate">context</h2>
-<!--                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:context-dispatch">-->
-                            <!--<h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
+<!-\-                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:context-dispatch">-\->
+                            <!-\-<h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
                                 <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
                             </ul><h4>Folgend</h4><ul>
                                 <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
@@ -59,9 +57,9 @@
                                 <li class="noDataFound">keine Angaben gefunden</li>
                             </ul><h4>Folgend</h4><ul>
                                 <li class="noDataFound">keine Angaben gefunden</li>
-                            </ul>-->
-                        <!--</div>-->
-                    </div>
+                            </ul>-\->
+                        <!-\-</div>-\->
+                    </div>-->
                     <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
                         <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>
                         <div class="panel-collapse collapse" data-template="facets:filter-body">
@@ -80,12 +78,12 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app:print-transcription"/>
                     </div>
-                    <div class="tab-pane fade" id="editorial">
+                    <!--<div class="tab-pane fade" id="editorial">
                         <h2 data-template="lang:translate">editorial</h2>
-                        <!--<div>
+                        <!-\-<div>
                             <h3 data-template="lang:translate">series</h3>
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        </div>-\->
                         
                         <div>
                             <h3 data-template="lang:translate">summary</h3>
@@ -108,8 +106,8 @@
                                 <div data-template="app:print-textSource"/>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="facsimile"> </div>
+                    </div>-->
+                    <!--<div class="tab-pane fade" id="facsimile"> </div>-->
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
                         <!-- loaded via AJAX request to ./xml.html -->

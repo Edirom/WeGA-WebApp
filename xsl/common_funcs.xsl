@@ -295,7 +295,7 @@
                     <xsl:value-of select="$salt"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="wega:getOption('salt')"/>
+                    <xsl:value-of select="7"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

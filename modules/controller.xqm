@@ -97,13 +97,16 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
  : Dispatch pages for tab "Project"
  :)
 declare function controller:dispatch-project($exist-vars as map(*)) as element(exist:dispatch) {
-    let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//xhtml:li[@id='project-nav']//xhtml:a 
+    let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='project-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
     let $request := request:get-uri()
-    let $a := $project-nav/@href[controller:resolve-link(.,$exist-vars('lang')) = $request]/parent::*
+    let $a := distinct-values($project-nav/@href[controller:resolve-link(.,$exist-vars('lang')) = $request]/parent::*)
     return
         switch($a)
         case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
-        case 'projectDescription' case 'editorialGuidelines' case 'contact' return controller:forward-html('/templates/var.html', $exist-vars)
+        case 'projectDescription' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070006'), map:entry('docType', 'var')))) 
+        case 'editorialGuidelines'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070001'), map:entry('docType', 'var'))))
+        case 'contact' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
+        case 'about' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
@@ -146,7 +149,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         try {
             if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
             else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
-            else lang:get-language-string(config:get-doctype-by-id($docID), $lang)
+            else lang:get-language-string($docType, $lang)
         }
         catch * {()}
     let $authorID := 
@@ -156,6 +159,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         catch * {()}
     return 
         if($docType = 'persons') then str:join-path-elements(('/', $lang, $docID))
+        else if($docType = 'var') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), $docID))
         else if($authorID and $displayName) then str:join-path-elements(('/', $lang, $authorID, $displayName, $docID))
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };

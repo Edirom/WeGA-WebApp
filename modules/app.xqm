@@ -837,6 +837,7 @@ declare
             case 'news' return doc(concat($config:xsl-collection-path, '/news.xsl'))
             case 'writings' return doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
+            case 'var' return doc(concat($config:xsl-collection-path, '/var.xsl'))
             default return ()
         let $xslt2 :=
             switch($docType)
@@ -845,9 +846,10 @@ declare
         let $textRoot :=
             switch($docType)
             case 'diaries' return $doc/tei:ab
+            case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen)
             default return $doc//tei:text/tei:body
         let $body := 
-             if(functx:all-whitespace($textRoot))
+             if(functx:all-whitespace(<root>{$textRoot}</root>))
              then (
                 let $text := 
                     if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
