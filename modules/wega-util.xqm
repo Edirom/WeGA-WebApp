@@ -9,6 +9,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
+declare namespace http="http://expath.org/ns/http-client";
 
 import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
