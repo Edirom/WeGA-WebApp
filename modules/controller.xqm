@@ -99,14 +99,16 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
 declare function controller:dispatch-project($exist-vars as map(*)) as element(exist:dispatch) {
     let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='project-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
     let $request := request:get-uri()
-    let $a := distinct-values($project-nav/@href[controller:resolve-link(.,$exist-vars('lang')) = $request]/parent::*)
+    let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars('lang'))) = $request]/parent::*)
     return
         switch($a)
         case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
+        (: Need to inject the corresponding IDs of special pages here :)
         case 'projectDescription' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070006'), map:entry('docType', 'var')))) 
         case 'editorialGuidelines'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070001'), map:entry('docType', 'var'))))
         case 'contact' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
         case 'about' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
+        case 'volContents' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070011'), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
