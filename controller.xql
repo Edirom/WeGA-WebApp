@@ -144,6 +144,10 @@ else if (contains($exist:path, concat('/', lang:get-language-string('indices', $
 else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/', $exist:resource))) then
     controller:dispatch-project($exist-vars)
 
+(: Help :)
+else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('help', $lang), '/?$'))) then
+    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var'))))
+
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
