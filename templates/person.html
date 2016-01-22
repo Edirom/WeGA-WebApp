@@ -94,9 +94,11 @@
                    </li>
                 </ol>
             </div>
-            <div class="col-md-3 col-sm-12  iconographie">
+            <div class="col-md-3 col-sm-12 iconographie" data-template="img:iconography">
                 <h2>Ikonographie</h2>
-                <!--<img src="contentImg/ikonographie/1.png"/>-->
+                <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="20">
+                    <img data-template="img:iconographyImage" src="dummy.jpg"/>
+                </div>
             </div>
         </div>
     </div>

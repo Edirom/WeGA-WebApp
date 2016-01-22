@@ -4,7 +4,7 @@ module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-declare namespace templates="http://exist-db.org/xquery/templates";
+(:declare namespace templates="http://exist-db.org/xquery/templates";:)
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
@@ -13,6 +13,7 @@ declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace session = "http://exist-db.org/xquery/session";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
@@ -25,6 +26,7 @@ import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl"
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
+import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 
 declare function app:page-title($node as node(), $model as map(*)) as element(title) {
     <title>{$model('page-title')}</title>
@@ -161,19 +163,31 @@ declare
 (:~
  : A non-wrapping alternative to the standard templates:each()
  : Gets rid of the superfluous first list item
+ : 
+ : At present, only $callbackArity=2 is supported
  :
  : @author Peter Stadler
  :)
-declare function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string) {
-    let $startTime := util:system-time()
+declare 
+    %templates:default("max", "0")
+    %templates:default("callback", "0")
+    %templates:default("callbackArity", "2")
+    function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string, $max as xs:string, $callback as xs:string, $callbackArity as xs:string) {
+    let $items := 
+        if($max castable as xs:integer and $max != '0') then subsequence($model($from), 1, $max)
+        else $model($from)
+    let $callbackFunc := 
+        try { function-lookup(xs:QName($callback), xs:int($callbackArity)) } 
+        catch * { core:logToFile('error', 'Failed to lookup function "' || $callback ) }
     return (
-        for $item in $model($from)
-        return
-            element { node-name($node) } {
-                $node/@*, templates:process($node/node(), map:new(($model, map:entry($to, $item))))
-            }
-        (:,
-        util:log-system-out('each: ' || $from || ': ' || string(seconds-from-duration(util:system-time() - $startTime))):)
+        for $item in $items
+        return 
+            if(exists($callbackFunc)) then $callbackFunc($node, map:new(($model, map:entry($to, $item))))
+            else 
+                element { node-name($node) } {
+                    $node/@*,
+                    templates:process($node/node(), map:new(($model, map:entry($to, $item))))
+                }
     )
 };
 

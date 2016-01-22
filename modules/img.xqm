@@ -96,6 +96,21 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
             else ()
 };
 
+declare 
+    %templates:default("lang", "en")
+    %templates:wrap
+    function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
+        let $local-image := ()
+        let $wikipedia-images := img:wikipedia-images($model, $lang)
+        return
+            map { 'iconographyImages' := $wikipedia-images }
+};
+
+declare function img:iconographyImage($node as node(), $model as map(*)) as element(img) {
+        <img alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('orgURI')}"/>
+};
+
+
 (:~
  : Retrieve a picture from any URI and store it in the database
  :
