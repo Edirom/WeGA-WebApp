@@ -61,11 +61,10 @@ import module namespace functx="http://www.functx.com";
  : @author Peter Stadler 
  : @param $pnd the PND number
  : @param $lang the language variable (de|en)
- : @return element the local path to the stored file
+ : @return 
  :)
 declare function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $pnd := query:get-gnd($model('doc'))
-    let $docID := $model('docID')
     let $wikiArticle := 
         if($pnd) then wega-util:grabExternalResource('wikipedia', $pnd, $lang)
         else ()
@@ -90,8 +89,35 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
             if($picURI castable as xs:anyURI) then
                 map {
                     'caption' := $caption,
-                    'orgURI' := $picURI,
-                    'docID' := $model('docID')
+                    'thumbURI' := $picURI,
+                    'origURI' := '',
+                    'docID' := $model('docID'),
+                    'source' := 'Wikimedia'
+                }
+            else ()
+};
+
+declare function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $pnd := query:get-gnd($model('doc'))
+    let $page := 
+        if($pnd) then wega-util:grabExternalResource('portraitindex', $pnd, $lang)
+        else ()
+    let $pics := $page//xhtml:div[@class='listItemThumbnail']
+    let $log := util:log-system-out(count($pics))
+    return 
+        for $div in $pics
+        let $caption := normalize-space($div/following-sibling::xhtml:p/xhtml:a) || ', ' || replace(normalize-space(string-join($div/following-sibling::xhtml:p/text(), ' ')), '&#65533;', ' ') || ' (Quelle: Digitaler Portraitindex)'
+        let $picURI := $div//xhtml:img/data(@src)
+        let $origURI := $div/xhtml:a/data(@href)
+        let $log := util:log-system-out($caption)
+        return 
+            if($picURI castable as xs:anyURI) then
+                map {
+                    'caption' := $caption,
+                    'thumbURI' := $picURI,
+                    'origURI' := $origURI,
+                    'docID' := $model('docID'),
+                    'source' := 'Digitaler Portraitindex'
                 }
             else ()
 };
@@ -101,13 +127,14 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := ()
+        let $portraitindex-images := img:portraitindex-images($model, $lang)
         let $wikipedia-images := img:wikipedia-images($model, $lang)
         return
-            map { 'iconographyImages' := $wikipedia-images }
+            map { 'iconographyImages' := ($portraitindex-images, $wikipedia-images) }
 };
 
-declare function img:iconographyImage($node as node(), $model as map(*)) as element(img) {
-        <img alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('orgURI')}"/>
+declare function img:iconographyImage($node as node(), $model as map(*)) as element(a) {
+        <a href="{$model('iconographyImage')('origURI')}"><img title="{$model('iconographyImage')('caption')}" alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('thumbURI')}"/></a>
 };
 
 
@@ -318,7 +345,7 @@ declare function img:get-wikipedia-portrait($model as map(*), $lang as xs:string
             map {
                 'src' := (:controller:map-local-image-path-to-external(img:get-local-image-path($portrait, $size)):)
                     (: simply refer to the wikipedia image source and adjust the thumbnail size :)
-                    replace($portrait('orgURI'), '/\d+px\-', '/260px-'),
+                    replace($portrait('thumbURI'), '/\d+px\-', '/260px-'),
                 'alt' := $portrait('caption'),
                 'title' := $portrait('caption')
             }
