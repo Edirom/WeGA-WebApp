@@ -112,7 +112,7 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
     if(config:is-person($cacheKey)) then 
         switch($collName)
-        case 'biblio' return core:data-collection($collName)//tei:autor[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
+        case 'biblio' return core:data-collection($collName)//tei:author[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
         case 'diaries' return
             if($cacheKey eq 'A002068') then core:data-collection($collName)[tei:ab]
             else ()
