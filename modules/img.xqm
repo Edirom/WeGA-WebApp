@@ -74,23 +74,19 @@ declare function img:wikipedia-images($model as map(*), $lang as xs:string) as m
         let $caption := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', lang:get-language-string('sourceWikipedia', $lang), ')'))
         let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
         let $picURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
-            if(starts-with($tmpPicURI, '//')) then concat('http:', $tmpPicURI) 
+            if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
-       (: let $localURL := 
-            if($picURI castable as xs:anyURI) then 
-                let $suffix := lower-case(functx:substring-after-last($picURI, '.'))
-                let $filename := util:hash($picURI, 'md5') || '.' || $suffix
-                return
-                    str:join-path-elements(($config:tmp-collection-path, 'img', $filename)) 
-            else ():)
-(:        let $log := util:log-system-out($picURI):)
+        let $origURI := 
+            switch($lang) 
+            case 'de' return replace($div/xhtml:a/@href, '.+:', 'https://de.wikipedia.org/wiki/Datei:')
+            default return replace($div/xhtml:a/@href, '.+:', 'https://en.wikipedia.org/wiki/File:')
         return 
             if($picURI castable as xs:anyURI) then
                 map {
                     'caption' := $caption,
                     'thumbURI' := $picURI,
-                    'origURI' := '',
+                    'origURI' := $origURI,
                     'docID' := $model('docID'),
                     'source' := 'Wikimedia'
                 }
@@ -103,13 +99,11 @@ declare function img:portraitindex-images($model as map(*), $lang as xs:string) 
         if($pnd) then wega-util:grabExternalResource('portraitindex', $pnd, $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
-    let $log := util:log-system-out(count($pics))
     return 
         for $div in $pics
         let $caption := normalize-space($div/following-sibling::xhtml:p/xhtml:a) || ', ' || replace(normalize-space(string-join($div/following-sibling::xhtml:p/text(), ' ')), '&#65533;', ' ') || ' (Quelle: Digitaler Portraitindex)'
         let $picURI := $div//xhtml:img/data(@src)
         let $origURI := $div/xhtml:a/data(@href)
-        let $log := util:log-system-out($caption)
         return 
             if($picURI castable as xs:anyURI) then
                 map {
