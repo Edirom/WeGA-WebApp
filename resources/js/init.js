@@ -85,6 +85,11 @@ $(document).on('click', '.undated', function() {
     updatePage(params);
 })
 
+$('.allFilter').on('change', 'label', function() {
+    var params = active_facets();
+    updatePage(params);
+})
+
 /* Helper function */
 /* Get active facets to append as URL parameters */
 function active_facets() {
@@ -111,6 +116,16 @@ function active_facets() {
     if($('.rangeSlider:visible').length) {
         params['fromDate'] = $('.rangeSlider:visible').attr('data-from');
         params['toDate'] = $('.rangeSlider:visible').attr('data-to');
+    }
+    /* get values from checkboxes for docTypes at search page */
+    $('.allFilter:visible :checked').each(function() {
+        var facet = $(this).attr('name');
+        var value = $(this).attr('value');
+/*        console.log(facet + '=' + value);*/
+        params['facets'].push(facet + '=' + encodeURI(value))
+    })
+    if($('#query-string').length) {
+        params['facets'].push('q=' + $('#query-string').text());
     }
     return params;
 }

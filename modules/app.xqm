@@ -23,6 +23,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
+import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -383,11 +384,13 @@ declare
     function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
 (:        let $url := controller:docType-url-for-author($model('doc'), $model('docType'), $lang):)
+        let $params := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
+        let $paramsMap := map:new(($model('filters'), $params ! map:entry(., request:get-parameter(., ()))))
         let $page-link := function($page as xs:int){
             (:$url ||:) '?page=' || $page || string-join(
-                map:keys($model('filters')) ! (
+                map:keys($paramsMap) ! (
                     '&amp;' || string(.) || '=' || string-join(
-                        $model('filters')(.),
+                        $paramsMap(.),
                         '&amp;' || string(.) || '=')
                     ), 
                 '')

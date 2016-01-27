@@ -28,29 +28,29 @@
         <div class="row paddingBottomIcon paddingTopIcon">
             
             <div class="col-md-3 col-md-push-9">
-                <div class="allFilter" >  
+                <div class="allFilter">  
                     <h2>Filter</h2> 
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn gradient-light">
-                            <input type="checkbox" name="options" id="personen"/> Personen
+                            <input type="checkbox" name="d" value="persons"/> <span data-template="lang:translate">persons</span>
                         </label>
                         <label class="btn gradient-light">
-                            <input type="checkbox" name="options" id="briefe"/> Briefe
+                            <input type="checkbox" name="d" value="letters"/> <span data-template="lang:translate">letters</span>
                         </label>
                         <label class="btn gradient-light">
-                            <input type="checkbox" name="options" id="tagebuecher"/> Tagebücher
+                            <input type="checkbox" name="d" value="diaries"/> <span data-template="lang:translate">diaries</span>
                         </label>
                         <label class="btn gradient-light">
-                            <input type="checkbox" name="options" id="schriften"/> Schriften
+                            <input type="checkbox" name="d" value="writings"/> <span data-template="lang:translate">writings</span>
                         </label>
                         <label class="btn gradient-light">
-                            <input type="checkbox" name="options" id="werke"/> Werke
+                            <input type="checkbox" name="d" value="works"/> <span data-template="lang:translate">works</span>
                         </label>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-9 col-md-pull-3 ">
+            <div class="col-md-9 col-md-pull-3" data-template="search:results" data-template-docType="search">
                 <div class="row">
                     <div class="col-xs-12">
                         <h2>Bitte Suchbegriffe eintragen</h2>
@@ -59,9 +59,9 @@
                 <div class="row">
                     
                     <div class="col-md-9 searchform">
-                        <form role="form">
+                        <form role="form" class="form-inline">
                             <div class="input-group">
-                                <select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
+                                <!--<select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
                                     <option value="all" data-template="lang:translate">all</option>
                                     <option value="persons" data-template="lang:translate">persons</option>
                                     <option value="letters" data-template="lang:translate">correspondence</option>
@@ -70,29 +70,39 @@
                                     <option value="works" data-template="lang:translate">works</option>
                                     <option value="news" data-template="lang:translate">news</option>
                                     <option value="biblio" data-template="lang:translate">bibliography</option>
-                                </select>
+                                </select>-->
                                 
-                                <input type="search" class="form-control" placeholder="Standard Suche" name="q"/>
+                                <input type="text" class="form-control" placeholder="Standard Suche" name="q" data-template="search:inject-value" value="foobar"/>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">Suchen</button>
+                                    <button type="submit" class="btn btn-primary">Suchen</button>
                                 </span>
                             </div>
                         </form>
                     </div>
                     
                     <div class="col-md-3">
-                        <a class="advancedSearch" href="./sucheerweitert.php">Zur erweiterten Suche <i class="fa fa-arrow-right"></i></a>
+                        <a class="advancedSearch" href="#">Zur erweiterten Suche <i class="fa fa-arrow-right"/></a>
                     </div>
                 </div>
                 
-                <div class="row searchResultList" data-template="search:results" data-template-docType="search">
+                <div class="row searchResultList">
                     <div class="col-xs-12 textBlock searchResults" data-template="search:result-page">
-                        <div data-template="templates:if-parameter-set" data-template-param="q"><h2 data-template="search:results-count">124 Suchergebnisse</h2></div>
+                        <div data-template="templates:if-parameter-set" data-template-param="q"><h2 data-template="search:results-count">124 Suchergebnisse</h2><p data-template="app:print" data-template-key="query-string" style="display:none;" id="query-string"></p></div>
+                        <div data-template="templates:if-parameter-set" data-template-param="q">
+                            <ul class="pagination" data-template="app:pagination">
+                                <li><a href="#">&lt;</a></li>
+                            </ul>
+                        </div>
                         <ul class="media-list">
                             <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
                                 <div data-template="search:dispatch-preview"/>
                             </li>
                         </ul>
+                        <div data-template="templates:if-parameter-set" data-template-param="q">
+                            <ul class="pagination" data-template="app:pagination">
+                                <li><a href="#">&lt;</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

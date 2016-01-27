@@ -4,14 +4,15 @@ module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-declare namespace templates="http://exist-db.org/xquery/templates";
 
+import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 
+(: params for filtering the result set :)
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
@@ -25,9 +26,11 @@ declare
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
         let $filters := search:create-filters()
+        let $query-string := search:sanitize-query-string(request:get-parameter('q', '')[1])
+        let $query-docTypes := request:get-parameter('d', 'all') ! search:sanitize-query-string(.)
         let $search-results := 
             switch($docType)
-            case 'search' return search:query()
+            case 'search' return search:query(map {'query-string' := $query-string, 'query-docTypes' := $query-docTypes})
             default return core:getOrCreateColl($docType, $model('docID'), true())
         let $filtered-results := search:filter-result($search-results, $filters, $docType)
         return
@@ -35,6 +38,7 @@ declare
                 'search-results' := core:sortColl($filtered-results, $docType),
                 'docType' := $docType,
                 'filters' := $filters,
+                'query-string' := $query-string,
                 'earliestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($docType, $model('docID')) else (),
                 'latestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($docType, $model('docID')) else ()
             }
@@ -44,6 +48,14 @@ declare
     %templates:wrap
     function search:results-count($node as node(), $model as map(*)) as xs:string {
         count($model('search-results')) || ' Suchergebnisse'
+};
+
+declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
+    element {name($node)} {
+        $node/@*[not(name(.) = 'value')],
+        if($model('query-string') ne '') then attribute {'value'} {$model('query-string')}
+        else ()
+    }
 };
 
 (:~
@@ -72,14 +84,14 @@ declare function search:dispatch-preview($node as node(), $model as map(*)) {
         templates:include($node, $model, 'templates/includes/preview-' || $docType || '.html')
 };
 
-declare function search:query() as document-node()* {
-    let $searchString := request:get-parameter('q', '')
-    let $docType := request:get-parameter('d', 'all')
-    let $docType := 
-        if($docType = 'all') then map:keys($config:wega-docTypes)
-        else map:keys($config:wega-docTypes)[.=$docType]
+declare function search:query($model as map(*)) as document-node()* {
+    let $searchString := $model('query-string')
+    let $docTypes := $model('query-docTypes')
+    let $docTypes := 
+        if($docTypes = 'all') then map:keys($config:wega-docTypes)
+        else map:keys($config:wega-docTypes)[.=$docTypes]
     return 
-        if($searchString) then $docType ! search:fulltext($searchString, .)/root()
+        if($searchString) then $docTypes ! search:fulltext($searchString, .)/root()
         else ()
 };
 
@@ -240,4 +252,8 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
             case 'works' return ()
             case 'places' return ()
             default return ()
+};
+
+declare %private function search:sanitize-query-string($string as xs:string) as xs:string {
+    normalize-space($string)
 };
