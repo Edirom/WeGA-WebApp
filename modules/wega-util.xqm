@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 (:~
  : Functions for creating http requests
@@ -54,7 +54,7 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
     let $req := <http:request href="{$url}" method="get" timeout="4"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { http:send-request($req) }
-        catch * {core:logToFile('warn', string-join(('wega:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+        catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
         else $response:)
@@ -132,4 +132,16 @@ declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as x
 declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
     try {doc-available($uri)}
     catch * {false()}
+};
+
+declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)* {
+    let $url := 'https://tools.wmflabs.org/zoomviewer/iiif.php?f=' || $wikiFilename
+    let $lease := xs:dayTimeDuration('P1D')
+    let $fileName := util:hash($wikiFilename, 'md5') || '.xml'
+    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
+    return 
+        if($response//httpclient:response/@statusCode eq '200') then 
+            try { parse-json(util:binary-to-string($response//httpclient:body)) }
+            catch * {core:logToFile('warn', string-join(('wega-util:wikimedia-ifff', $err:code, $err:description, 'wikiFilename: ' || $wikiFilename), ' ;; '))}
+        else ()
 };

@@ -19,12 +19,13 @@
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
-                    <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> </div>
+                    <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> 
+                </div>
             </div>
         </div>
     </div>
     <div class="container paddingTopIcon paddingBottomIcon" data-template="app:person-basic-data">
-        <div class="row" id="meta">
+        <div class="row" id="meta" data-template="img:iconography">
             <div class="col-md-3 col-sm-6 portrait">
                 <!--<img id="portrait-placeholder" class="img-responsive" src="$resources/img/icons/icon_person_unbekannt_gross.png" alt="Placeholder Image" width="260" height="340"/>-->
                 <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
@@ -94,7 +95,7 @@
                    </li>
                 </ol>
             </div>
-            <div class="col-md-3 col-sm-12 iconographie" data-template="img:iconography">
+            <div class="col-md-3 col-sm-12 iconographie">
                 <h2>Ikonographie</h2>
                 <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="20">
                     <img data-template="img:iconographyImage" src="dummy.jpg"/>
