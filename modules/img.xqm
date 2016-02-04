@@ -97,9 +97,14 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                             switch($size)
                             case 'thumb' case 'small' return $thumbURI
                             case 'large' return 
-                                if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
-                                else $iiifInfo('@id') || '/full/full/0/native.jpg'
-                            default return $iiifInfo('@id') || '/full/full/0/native.jpg'
+                                try {
+                                    if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
+                                    else $iiifInfo('@id') || '/full/full/0/native.jpg'
+                                }
+                                catch * { $thumbURI }
+                            default return 
+                                try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
+                                catch * { $thumbURI }
                     }
                 }
             else ()
