@@ -77,14 +77,15 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
         let $linkTarget := 
+            (: Create a link to Wikipedia, e.g. https://de.wikipedia.org/wiki/Datei:Constanze_mozart.jpg :)
+            (: NB, not all images are found at wikimedia commons due to copyright issues :)
             switch($lang) 
-            case 'de' return replace($div/xhtml:a/@href, '.+:', 'https://de.wikipedia.org/wiki/Datei:')
-            default return replace($div/xhtml:a/@href, '.+:', 'https://en.wikipedia.org/wiki/File:')
+            case 'de' return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://de.wikipedia.org/wiki/Datei:'), '&amp;')
+            default return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://en.wikipedia.org/wiki/File:'), '&amp;')
         (:  Wikimedia IIIF
             siehe https://groups.google.com/forum/?hl=en#!topic/iiif-discuss/UTD181dxKtU
             https://github.com/Toollabs/zoomviewer
         :)
-        let $iiifURI := 'http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/' || util:hash(functx:substring-after-last($linkTarget, ':'), 'md5') || '.tif'
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
@@ -92,19 +93,21 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                     'linkTarget' := $linkTarget,
                     'source' := 'Wikimedia',
                     'url' := function($size) {
-                        let $iiifInfo := wega-util:wikimedia-ifff(functx:substring-after-last($linkTarget, ':'))
-                        return
-                            switch($size)
-                            case 'thumb' case 'small' return $thumbURI
-                            case 'large' return 
-                                try {
-                                    if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
-                                    else $iiifInfo('@id') || '/full/full/0/native.jpg'
-                                }
-                                catch * { $thumbURI }
-                            default return 
-                                try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
-                                catch * { $thumbURI }
+                        switch($size)
+                        case 'thumb' case 'small' return $thumbURI
+                        case 'large' return 
+                           let $iiifInfo := wega-util:wikimedia-ifff(functx:substring-after-last($linkTarget, ':'))
+                           return
+                              try {
+                                 if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
+                                 else $iiifInfo('@id') || '/full/full/0/native.jpg'
+                              }
+                              catch * { $thumbURI }
+                        default return 
+                           let $iiifInfo := wega-util:wikimedia-ifff(functx:substring-after-last($linkTarget, ':'))
+                           return
+                              try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
+                              catch * { $thumbURI }
                     }
                 }
             else ()
