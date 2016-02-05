@@ -116,17 +116,16 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
     	<view>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}">
-                <add-parameter name="errorCode" value="{$errorCode}"/>
-                <add-parameter name="lang" value="{$exist-vars('lang')}"/>
-                <cache-control cache="yes"/>
-            </forward>
-        </view>
-        <error-handler>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}"/>
-        </error-handler>
-    </dispatch>
+         <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}">
+             <add-parameter name="lang" value="{$exist-vars('lang')}"/>
+             <cache-control cache="yes"/>
+         </forward>
+         <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
+            <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+         </forward>
+     </view>
+  </dispatch>,
+   response:set-status-code($errorCode)
 };
 
 
