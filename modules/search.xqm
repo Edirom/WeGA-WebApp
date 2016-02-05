@@ -36,7 +36,7 @@ declare
         let $filtered-results := search:filter-result($search-results, $filters, $docType)
         return
             map {
-                'search-results' := core:sortColl($filtered-results, $docType),
+                'search-results' := $filtered-results (:core:sortColl($filtered-results, $docType):),
                 'docType' := $docType,
                 'filters' := $filters,
                 'query-string' := $query-string,
@@ -92,8 +92,19 @@ declare function search:query($model as map(*)) as document-node()* {
         if($docTypes = 'all') then map:keys($config:wega-docTypes)
         else map:keys($config:wega-docTypes)[.=$docTypes]
     return 
-        if($searchString) then $docTypes ! search:fulltext($searchString, .)/root()
+        if($searchString) then search:merge-hits($docTypes ! search:fulltext($searchString, .)) 
         else ()
+};
+
+
+(:~
+ : helper function for sorting and merging search results
+~:)
+declare %private function search:merge-hits($hits as item()*) as document-node()* {
+   for $hit in $hits
+   group by $doc := $hit/root()
+   order by sum($hit ! ft:score(.)) descending 
+   return $doc
 };
 
 declare %private function search:fulltext($searchString as xs:string, $docType as xs:string) as item()* {
