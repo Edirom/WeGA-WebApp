@@ -94,10 +94,10 @@ else if (matches($exist:resource, 'A\d{2}[0-9A-F]{4}')) then
 (:
  : Personenbilder
  :)
-else if (matches($exist:path, concat('^/', $lang, '/A00[0-9A-F]{4}/img/'))) then
+(:else if (matches($exist:path, concat('^/', $lang, '/A00[0-9A-F]{4}/img/'))) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller || controller:map-external-image-path-to-local($exist:path)}"/>
-    </dispatch>
+    </dispatch>:)
 
 (:
  : Weiterleitung für AJAX requests (alles unterhalb von templates/ajax)
@@ -134,7 +134,9 @@ else if (ends-with($exist:resource, '.xml')) then
     
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
-    controller:forward-html('/templates/search.html', $exist-vars)
+   (: Shortcut for IDs, given as query string :)
+   if(config:get-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ('letters','writings','persons','news','diaries')) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
+   else controller:forward-html('/templates/search.html', $exist-vars)
 
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
