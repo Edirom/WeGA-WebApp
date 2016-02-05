@@ -11,6 +11,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 (: params for filtering the result set :)
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
@@ -26,8 +27,8 @@ declare
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
         let $filters := search:create-filters()
-        let $query-string := search:sanitize-query-string(request:get-parameter('q', '')[1])
-        let $query-docTypes := request:get-parameter('d', 'all') ! search:sanitize-query-string(.)
+        let $query-string := str:sanitize(request:get-parameter('q', '')[1])
+        let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
         let $search-results := 
             switch($docType)
             case 'search' return search:query(map {'query-string' := $query-string, 'query-docTypes' := $query-docTypes})
@@ -252,8 +253,4 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
             case 'works' return ()
             case 'places' return ()
             default return ()
-};
-
-declare %private function search:sanitize-query-string($string as xs:string) as xs:string {
-    normalize-space($string)
 };

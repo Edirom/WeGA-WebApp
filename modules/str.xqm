@@ -20,7 +20,7 @@ import module namespace functx="http://www.functx.com";
  : @return xs:string
  :)
 declare function str:normalize-space($string as xs:string?) as xs:string {
-    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;|[\.,]\s*$', ' '))
+    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;', ' '))
 };
 
 (:~
@@ -80,4 +80,21 @@ declare function str:shorten-text($string as xs:string, $maxLength as xs:int) as
     return 
         if(string-length($maxString) lt $maxLength) then $maxString 
         else concat(functx:substring-before-last-match($maxString, $delimiterRegex), ' …')
+};
+
+(:~ 
+ : Sanitize user input
+ : cf. http://www.balisage.net/Proceedings/vol7/html/Vlist02/BalisageVol7-Vlist02.html
+ :
+ : @author Peter Stadler
+ : @return xs:string
+ :)
+declare function str:sanitize($str as xs:string) as xs:string {
+   if(contains($str, '&amp;')) then str:sanitize(replace($str, '&amp;', '&amp;amp;'))
+   else if(contains($str, '''')) then str:sanitize(replace($str, '''', '&amp;apos;'))
+   else if(contains($str, '""')) then str:sanitize(replace($str, '""', '&amp;quot;'))
+   else if(contains($str, '<')) then str:sanitize(replace($str, '<', '&amp;lt;'))
+   else if(contains($str, '{')) then str:sanitize(replace($str, '{', '{{'))
+   else if(contains($str, '}')) then str:sanitize(replace($str, '}', '}}'))
+   else $str
 };
