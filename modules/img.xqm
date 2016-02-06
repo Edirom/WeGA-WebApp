@@ -152,25 +152,22 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
  : @return 
  :)
 declare %private function img:wega-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $localPortraits := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure
-    let $localIIIF := 'http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF/'
-    return
-        for $fig in $localPortraits
-        let $iiifURI := $localIIIF || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
-        order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
-        return 
-            map {
-                'caption' := normalize-space($fig/preceding::tei:title),
-                'linkTarget' := $iiifURI || '/full/full/0/native.jpg',
-                'source' := normalize-space($fig/tei:bibl),
-                'url' := function($size) {
-                    switch($size)
-                    case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
-                    case 'small' return $iiifURI || '/full/,60/0/native.jpg'
-                    case 'large' return $iiifURI || '/full/,340/0/native.jpg'
-                    default return $iiifURI || '/full/full/0/native.jpg'
-                }
+    for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure
+    let $iiifURI := config:get-option('iiifServer') || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+    order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
+    return 
+        map {
+            'caption' := normalize-space($fig/preceding::tei:title),
+            'linkTarget' := $iiifURI || '/full/full/0/native.jpg',
+            'source' := normalize-space($fig/tei:bibl),
+            'url' := function($size) {
+                switch($size)
+                case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
+                case 'small' return $iiifURI || '/full/,60/0/native.jpg'
+                case 'large' return $iiifURI || '/full/,340/0/native.jpg'
+                default return $iiifURI || '/full/full/0/native.jpg'
             }
+        }
 };
 
 (:
