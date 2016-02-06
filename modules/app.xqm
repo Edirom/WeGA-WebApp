@@ -670,7 +670,14 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)? {
-        transform:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+        let $bio := transform:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+        return
+            if(exists($bio)) then $bio
+            else 
+                element {name($node)} {
+                    $node/@*,
+                    templates:process($node/node(), $model)
+                }
 };
 
 declare function app:print-beacon-links($node as node(), $model as map(*)) as element(ul) {

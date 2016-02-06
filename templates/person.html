@@ -164,7 +164,16 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active fade in" id="wegaText">
                                                 <h2>Biografie aus WeGA-Datenbank</h2>
-                                                <div data-template="app:print-wega-bio"/>
+                                                <div data-template="app:print-wega-bio">
+                                                    <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
+                                                    <p><i data-template="lang:translate">noBioFound</i></p>
+                                                    <p data-template="lang:translate">noBioFoundReason</p>
+                                                    <ul>
+                                                        <li data-template="lang:translate">noBioFoundReason1</li>
+                                                        <li data-template="lang:translate">noBioFoundReason2</li>
+                                                        <li data-template="lang:translate">noBioFoundReason3</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="wikipediaText">
                                                 <h2>Wikipedia</h2>
