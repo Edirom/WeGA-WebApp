@@ -151,8 +151,8 @@ declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)*
  : A wrapper function around eXist's transform:transform()
  : Applies a shortcut for empty and text only contents
 ~:)
-declare function wega-util:transform($node-tree as node()*, $stylesheet as item(), $parameters as node()?) as item()? {
-    if(functx:all-whitespace($node-tree)) then () 
+declare function wega-util:transform($node-tree as node()*, $stylesheet as item(), $parameters as node()?) as item()* {
+    if(every $i in $node-tree satisfies functx:all-whitespace($i)) then () 
     else if($node-tree/*) then transform:transform($node-tree, $stylesheet, $parameters)
-    else str:normalize-space($node-tree)
+    else $node-tree ! str:normalize-space(.)
 };

@@ -673,11 +673,12 @@ declare
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)? {
         let $bio := wega-util:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
         return
-            if(exists($bio)) then $bio
+            if($bio instance of element()) then $bio
             else 
                 element {name($node)} {
                     $node/@*,
-                    templates:process($node/node(), $model)
+                    if($bio instance of xs:string) then $bio
+                    else templates:process($node/node(), $model)
                 }
 };
 
@@ -829,18 +830,21 @@ declare
 declare
     %templates:wrap
     %templates:default("lang", "en")
-    function app:document-title($node as node(), $model as map(*), $lang as xs:string) {
+    function app:document-title($node as node(), $model as map(*), $lang as xs:string) as item()* {
         let $title-element := query:get-title-element($model('doc'))[1]
         let $dateFormat := if ($lang eq 'en')
             then '%A, %B %d, %Y'
             else '%A, %d. %B %Y'
-        return
+        let $title := 
             typeswitch($title-element)
             case element(tei:title) return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
             case element(mei:title) return str:normalize-space($title-element)
             case element(tei:date) return if($title-element castable as xs:date) then date:strfdate(xs:date($title-element), $lang, $dateFormat) else ()
             default return wega-util:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
-            
+        return
+            typeswitch($title)
+            case element() return $title/node()
+            default return $title
 };
 
 declare 
