@@ -643,29 +643,32 @@ declare
 declare 
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
-        let $gnd := query:get-gnd($model('doc'))
-        let $beaconMap := 
-            if($gnd) then wega-util:beacon-map($gnd)
-            else map:new()
-        return
-            map{
-                'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
-                'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
-                'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
-                'works' := core:getOrCreateColl('works', $model('docID'), true()),
-                'contacts' := core:getOrCreateColl('persons', $model('docID'), true()),
-                'biblio' := core:getOrCreateColl('biblio', $model('docID'), true()),
-                'news' := core:getOrCreateColl('news', $model('docID'), true()),
-                    (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
-                'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-                    (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
-                'gnd' := $gnd,
-                'beaconMap' := $beaconMap
-(:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
-            }
+    map{
+        'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
+        'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
+        'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
+        'works' := core:getOrCreateColl('works', $model('docID'), true()),
+        'contacts' := core:getOrCreateColl('persons', $model('docID'), true()),
+        'biblio' := core:getOrCreateColl('biblio', $model('docID'), true()),
+        'news' := core:getOrCreateColl('news', $model('docID'), true()),
+        (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
+        'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true())
+        (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
+        (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
+    }
 };
 
-
+declare function app:person-beacon($node as node(), $model as map(*)) as map(*)* {
+    let $gnd := query:get-gnd($model('doc'))
+    let $beaconMap := 
+        if($gnd) then wega-util:beacon-map($gnd)
+        else map:new()
+    return
+        map{
+            'gnd' := $gnd,
+            'beaconMap' := $beaconMap
+        }
+};
 
 declare 
     %templates:default("lang", "en")

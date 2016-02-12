@@ -40,8 +40,12 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
-        let $portraitindex-images := img:portraitindex-images($model, $lang)
-        let $wikipedia-images := img:wikipedia-images($model, $lang)
+        let $portraitindex-images := 
+            if(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) then img:portraitindex-images($model, $lang)
+            else ()
+        let $wikipedia-images := 
+            if(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) then img:wikipedia-images($model, $lang)
+            else ()
         return
             map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images) }
 };

@@ -24,218 +24,220 @@
             </div>
         </div>
     </div>
-    <div class="container paddingTopIcon paddingBottomIcon" data-template="app:person-basic-data">
-        <div class="row" id="meta" data-template="img:iconography">
-            <div class="col-md-3 col-sm-6 portrait">
-                <!--<img id="portrait-placeholder" class="img-responsive" src="$resources/img/icons/icon_person_unbekannt_gross.png" alt="Placeholder Image" width="260" height="340"/>-->
-                <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
-            </div>
-            <div class="col-md-3 paddingBottomIcon col-sm-6 basicdata">
-                <h2 data-template="lang:translate">basic_data</h2>
-                <ol class="media">
-                   <li class="media fullnames" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
-                        <div class="pull-left">
-                            <i class="fa fa-user media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
-                    </li>
-                   <li class="media realnames" data-template="app:each" data-template-from="realnames" data-template-to="realname">
-                        <div class="pull-left">
-                            <i class="fa fa-user media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="realname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">realName</span>)--></div>
-                    </li>
-                   <li class="media birthnames" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
-                        <div class="pull-left">
-                            <i class="fa fa-user media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="birthname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">birthName</span>)--></div>
-                    </li>
-                   <li class="media marriednames" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
-                        <div class="pull-left">
-                            <i class="fa fa-user media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
-                    </li>
-                   <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
-                        <div class="pull-left">
-                            <i class="fa fa-user media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:join" data-template-key="pseudonyme"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
-                    </li>
-                    <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
-                        <div class="pull-left">
-                            <i class="fa fa-asterisk  media-object"/>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="birth"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                            in Eudin Unsicher: 22.10.1786 in Eudin </div>
-                    </li>
-                    <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
-                        <div class="pull-left">
-                            <strong>†</strong>
-                        </div>
-                        <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                            in Eudin Unsicher: 22.10.1786 in Eudin </div>
-                    </li>
-                   <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
-                      <div class="pull-left">                  
-                         <i class="fa fa-briefcase media-object"/>
-                      </div>
-                      <div class="media-body" data-template="app:join" data-template-key="occupations">
-                          Schauspielerin, Sängerin
-                      </div>
-                   </li>
-                   <li class="media residences" data-template="app:if-exists" data-template-key="residences">
-                      <div class="pull-left">                  
-                         <i class="fa fa-map-marker media-object"/>
-                      </div>
-                      <div class="media-body" data-template="app:join" data-template-key="residences">
-                         Köln, Gotha
-                      </div>
-                   </li>
-                </ol>
-            </div>
-            <div class="col-md-3 col-sm-12 iconographie">
-                <h2>Ikonographie</h2>
-                <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="20">
-                    <img data-template="img:iconographyImage" src="dummy.jpg"/>
+    <div data-template="app:person-beacon">
+        <div class="container paddingTopIcon paddingBottomIcon" data-template="app:person-basic-data">
+            <div class="row" id="meta" data-template="img:iconography">
+                <div class="col-md-3 col-sm-6 portrait">
+                    <!--<img id="portrait-placeholder" class="img-responsive" src="$resources/img/icons/icon_person_unbekannt_gross.png" alt="Placeholder Image" width="260" height="340"/>-->
+                    <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
+                </div>
+                <div class="col-md-3 paddingBottomIcon col-sm-6 basicdata">
+                    <h2 data-template="lang:translate">basic_data</h2>
+                    <ol class="media">
+                       <li class="media fullnames" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
+                            <div class="pull-left">
+                                <i class="fa fa-user media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
+                        </li>
+                       <li class="media realnames" data-template="app:each" data-template-from="realnames" data-template-to="realname">
+                            <div class="pull-left">
+                                <i class="fa fa-user media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="realname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">realName</span>)--></div>
+                        </li>
+                       <li class="media birthnames" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
+                            <div class="pull-left">
+                                <i class="fa fa-user media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="birthname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">birthName</span>)--></div>
+                        </li>
+                       <li class="media marriednames" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
+                            <div class="pull-left">
+                                <i class="fa fa-user media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
+                        </li>
+                       <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
+                            <div class="pull-left">
+                                <i class="fa fa-user media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:join" data-template-key="pseudonyme"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
+                        </li>
+                        <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
+                            <div class="pull-left">
+                                <i class="fa fa-asterisk  media-object"/>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="birth"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
+                                in Eudin Unsicher: 22.10.1786 in Eudin </div>
+                        </li>
+                        <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
+                            <div class="pull-left">
+                                <strong>†</strong>
+                            </div>
+                            <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
+                                in Eudin Unsicher: 22.10.1786 in Eudin </div>
+                        </li>
+                       <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
+                          <div class="pull-left">                  
+                             <i class="fa fa-briefcase media-object"/>
+                          </div>
+                          <div class="media-body" data-template="app:join" data-template-key="occupations">
+                              Schauspielerin, Sängerin
+                          </div>
+                       </li>
+                       <li class="media residences" data-template="app:if-exists" data-template-key="residences">
+                          <div class="pull-left">                  
+                             <i class="fa fa-map-marker media-object"/>
+                          </div>
+                          <div class="media-body" data-template="app:join" data-template-key="residences">
+                             Köln, Gotha
+                          </div>
+                       </li>
+                    </ol>
+                </div>
+                <div class="col-md-3 col-sm-12 iconographie">
+                    <h2>Ikonographie</h2>
+                    <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="20">
+                        <img data-template="img:iconographyImage" src="dummy.jpg"/>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Nav tabs -->
-    <div id="details" data-template="app:person-details">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 ">
-                    <ul class="resp-tabs-list">
-                        <li class="active"><a data-template="app:person-main-tab">biographies</a></li>
-                        <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
-                        <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
-                        <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
-                        <li><a data-template="app:person-main-tab" href="#works" data-target="$docID/works.html">works</a></li>
-                        <li><a data-template="app:person-main-tab" href="#biblio" data-target="$docID/biblio.html">biblio</a></li>
-                        <li><a data-template="app:person-main-tab" href="#news" data-target="$docID/news.html">news</a></li>
-                        <li><a data-template="app:person-main-tab" href="#contacts" data-target="$docID/contacts.html">contacts</a></li>
-                        <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="colored borderTop none-sm">
+        <!-- Nav tabs -->
+        <div id="details" data-template="app:person-details">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 ">
-                        <div class="resp-tabs-container colored">
-                            <!-- Biographie-->
-                            <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-push-9">
-                                        <div class="allFilter">
-                                            <h2 data-template="lang:translate">documents</h2>
-                                            <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs">
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#wegaText">WeGA Text</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#dnbText" data-template="app:ajax-tab">dnb-entry</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#adbText" data-template="app:ajax-tab">adb-article</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#pnd-beacon" data-template="app:tab">PND Beacon Links</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
-                                                </li>
-                                                <li class="gradient-light">
-                                                    <a href="/exist/apps/WeGA-WebApp/A002068.xml">XML-Download</a>
-                                                </li>
-                                            </ul>
+                        <ul class="resp-tabs-list">
+                            <li class="active"><a data-template="app:person-main-tab">biographies</a></li>
+                            <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
+                            <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
+                            <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
+                            <li><a data-template="app:person-main-tab" href="#works" data-target="$docID/works.html">works</a></li>
+                            <li><a data-template="app:person-main-tab" href="#biblio" data-target="$docID/biblio.html">biblio</a></li>
+                            <li><a data-template="app:person-main-tab" href="#news" data-target="$docID/news.html">news</a></li>
+                            <li><a data-template="app:person-main-tab" href="#contacts" data-target="$docID/contacts.html">contacts</a></li>
+                            <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="colored borderTop none-sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <div class="resp-tabs-container colored">
+                                <!-- Biographie-->
+                                <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
+                                    <div class="row">
+                                        <div class="col-md-3 col-md-push-9">
+                                            <div class="allFilter">
+                                                <h2 data-template="lang:translate">documents</h2>
+                                                <!-- Nav tabs -->
+                                                <ul class="nav nav-tabs">
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#wegaText">WeGA Text</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#dnbText" data-template="app:ajax-tab">dnb-entry</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#adbText" data-template="app:ajax-tab">adb-article</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#pnd-beacon" data-template="app:tab">PND Beacon Links</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a href="/exist/apps/WeGA-WebApp/A002068.xml">XML-Download</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-9 col-md-pull-3 ">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active fade in" id="wegaText">
-                                                <h2>Biografie aus WeGA-Datenbank</h2>
-                                                <div data-template="app:print-wega-bio">
-                                                    <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
-                                                    <p><i data-template="lang:translate">noBioFound</i></p>
-                                                    <p data-template="lang:translate">noBioFoundReason</p>
-                                                    <ul>
-                                                        <li data-template="lang:translate">noBioFoundReason1</li>
-                                                        <li data-template="lang:translate">noBioFoundReason2</li>
-                                                        <li data-template="lang:translate">noBioFoundReason3</li>
-                                                    </ul>
+                                        <div class="col-md-9 col-md-pull-3 ">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade in" id="wegaText">
+                                                    <h2>Biografie aus WeGA-Datenbank</h2>
+                                                    <div data-template="app:print-wega-bio">
+                                                        <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
+                                                        <p><i data-template="lang:translate">noBioFound</i></p>
+                                                        <p data-template="lang:translate">noBioFoundReason</p>
+                                                        <ul>
+                                                            <li data-template="lang:translate">noBioFoundReason1</li>
+                                                            <li data-template="lang:translate">noBioFoundReason2</li>
+                                                            <li data-template="lang:translate">noBioFoundReason3</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="wikipediaText">
-                                                <h2>Wikipedia</h2>
-                                            </div>
-                                            <div class="tab-pane fade" id="adbText">
-                                                <h2>ADB</h2>
-                                            </div>
-                                            <div class="tab-pane fade" id="dnbText">
-                                                <h2>DNB</h2>
-                                            </div>
-                                            <div class="tab-pane fade" id="pnd-beacon">
-                                                <h2>Beacon Links</h2>
-                                                <ul data-template="app:print-beacon-links"/>
-                                            </div>
-                                            <div class="tab-pane fade" id="XMLPreview">
-                                                <h2>XML</h2>
-                                                <!--<pre class="prettyprint"><code class="language-xml"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>-->
-                                            </div>
-                                            <div class="tab-pane fade" id="XMLDownload">
-                                                <h2>XML Download</h2>
+                                                <div class="tab-pane fade" id="wikipediaText">
+                                                    <h2>Wikipedia</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="adbText">
+                                                    <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="dnbText">
+                                                    <h2>DNB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="pnd-beacon">
+                                                    <h2>Beacon Links</h2>
+                                                    <ul data-template="app:print-beacon-links"/>
+                                                </div>
+                                                <div class="tab-pane fade" id="XMLPreview">
+                                                    <h2>XML</h2>
+                                                    <!--<pre class="prettyprint"><code class="language-xml"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>-->
+                                                </div>
+                                                <div class="tab-pane fade" id="XMLDownload">
+                                                    <h2>XML Download</h2>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Korrespondenz -->
-                            <div class="tab-pane paddingTopIcon paddingBottomIcon textBlock korrespondenz" id="correspondence">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- Schriften-->
-                            <div class="schriften paddingTopIcon paddingBottomIcon textBlock" id="writings">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- Tagebücher-->
-                            <div class="tagebuecher paddingTopIcon paddingBottomIcon textBlock" id="diaries">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- Werke -->
-                            <div class="werke paddingTopIcon paddingBottomIcon textBlock" id="works">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- biblio (= Literatur) -->
-                            <div class="biblio paddingTopIcon paddingBottomIcon textBlock" id="biblio">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- news -->
-                            <div class="news paddingTopIcon paddingBottomIcon textBlock" id="news">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- Kontakte -->
-                            <div class="kontakte paddingTopIcon paddingBottomIcon textBlock" id="contacts">
-                                <!-- loaded via ajax -->
-                            </div>
-                            <!-- Backlinks -->
-                            <div class="backlinks paddingTopIcon paddingBottomIcon textBlock" id="backlinks">
-                                <!-- loaded via ajax -->
+                                <!-- Korrespondenz -->
+                                <div class="tab-pane paddingTopIcon paddingBottomIcon textBlock korrespondenz" id="correspondence">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Schriften-->
+                                <div class="schriften paddingTopIcon paddingBottomIcon textBlock" id="writings">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Tagebücher-->
+                                <div class="tagebuecher paddingTopIcon paddingBottomIcon textBlock" id="diaries">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Werke -->
+                                <div class="werke paddingTopIcon paddingBottomIcon textBlock" id="works">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- biblio (= Literatur) -->
+                                <div class="biblio paddingTopIcon paddingBottomIcon textBlock" id="biblio">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- news -->
+                                <div class="news paddingTopIcon paddingBottomIcon textBlock" id="news">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Kontakte -->
+                                <div class="kontakte paddingTopIcon paddingBottomIcon textBlock" id="contacts">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Backlinks -->
+                                <div class="backlinks paddingTopIcon paddingBottomIcon textBlock" id="backlinks">
+                                    <!-- loaded via ajax -->
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div data-template="templates:include" data-template-path="templates/includes/permalink.html"/>
+                    <div data-template="templates:include" data-template-path="templates/includes/bug-report.html"/>
                 </div>
-                <div data-template="templates:include" data-template-path="templates/includes/permalink.html"/>
-                <div data-template="templates:include" data-template-path="templates/includes/bug-report.html"/>
             </div>
         </div>
     </div>
