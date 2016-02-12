@@ -44,10 +44,13 @@ declare
             if(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) then img:wikipedia-images($model, $lang)
+            if(map:keys($model('beaconMap'))[contains(., 'Wikipedia-Personenartikel')]) then img:wikipedia-images($model, $lang)
             else ()
+        let $tripota-images := img:tripota-images($model, $lang)
+            (:if(map:keys($model('beaconMap'))[contains(., 'Tripota')]) then img:tripota-images($model, $lang)
+            else ():)
         return
-            map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images) }
+            map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
 };
 
 (:~
@@ -146,6 +149,37 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
                 }
             else ()
 };
+
+(:~
+ : Helper function for grabbing images from a tripota page
+ :
+ : @author Peter Stadler 
+ : @param 
+ : @param $lang the language variable (de|en)
+ : @return 
+ :)
+declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $pnd := query:get-gnd($model('doc'))
+    let $page := 
+        if($pnd) then wega-util:grabExternalResource('tripota', $pnd, $lang)
+        else ()
+    let $pics := $page//xhtml:td
+    return 
+        for $div in $pics
+        let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
+        return 
+            if($picURI castable as xs:anyURI) then
+                map {
+                    'caption' := normalize-space(string-join($div/xhtml:br[2]/following-sibling::node(), ' ')) || ' (Quelle: Trierer Porträtdatenbank)',
+                    'linkTarget' := 'http://www.tripota.uni-trier.de/' || $div/xhtml:a[1]/data(@href),
+                    'source' := 'Trierer Porträtdatenbank',
+                    'url' := function($size) {
+                        $picURI
+                    }
+                }
+            else ()
+};
+
 
 (:~
  : Helper function for adding local (= from the WeGA) images
