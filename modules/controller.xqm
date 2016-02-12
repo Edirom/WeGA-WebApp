@@ -49,7 +49,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
  :)
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{core:link-to-current-app(controller:encode-path-segments-for-uri($path))}"/>
+        <redirect url="{core:link-to-current-app($path)}"/>
     </dispatch>
 };
 

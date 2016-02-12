@@ -81,8 +81,8 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :      |- wikipedia.html
  :      |- dnb.html
  :      |- xml.html
- :      |- img
- :          |- portrait_file.jpg
+ :      |- Korrespondenz
+ :      |– Tagebücher
  :
  :)
 
@@ -90,15 +90,6 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
 else if (matches($exist:resource, 'A\d{2}[0-9A-F]{4}')) then 
     controller:dispatch($exist-vars)
     
-    
-(:
- : Personenbilder
- :)
-(:else if (matches($exist:path, concat('^/', $lang, '/A00[0-9A-F]{4}/img/'))) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{$exist:controller || controller:map-external-image-path-to-local($exist:path)}"/>
-    </dispatch>:)
-
 (:
  : Weiterleitung für AJAX requests (alles unterhalb von templates/ajax)
  : Caching muss unterbunden werden
@@ -149,6 +140,30 @@ else if (contains($exist:path, concat('/', lang:get-language-string('project', $
 (: Help :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('help', $lang), '/?$'))) then
     controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var'))))
+
+(: Korrespondenz :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
+
+(: Tagebücher :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('diaries', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('diaries', $lang), '.html#diaries'))
+
+(: Schriften :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
+
+(: Werke :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
+
+(: Bibliograpie :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
+
+(: News :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
