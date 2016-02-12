@@ -239,7 +239,7 @@ declare
     %templates:default("lang", "en")
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         let $authorID := query:get-authorID($model('doc'))
-        let $href := functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/')
+        let $href := core:link-to-current-app(functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/'))
         let $display-name := functx:substring-after-last($href, '/')
         return
             element {node-name($node)} {
@@ -434,7 +434,6 @@ declare
 };
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
     function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
         let $active := contains( request:get-uri(), controller:resolve-link($node/xhtml:a/@href, $lang))
@@ -451,7 +450,6 @@ declare
 };
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
     function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(li) {
         let $isActive := $lang = lower-case(normalize-space($node))
