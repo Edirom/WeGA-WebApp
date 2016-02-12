@@ -658,7 +658,7 @@ declare
     }
 };
 
-declare function app:person-beacon($node as node(), $model as map(*)) as map(*)* {
+declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd)
