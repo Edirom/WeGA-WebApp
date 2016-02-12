@@ -23,11 +23,12 @@ $.fn.facets = function ()
 $.fn.rangeSlider = function () 
 {
     this.ionRangeSlider({
-        min: +moment(this.attr('data-min')),
-        max: +moment(this.attr('data-max')),
-        from: +moment(this.attr('data-from')),
-        to: +moment(this.attr('data-to')),
+        min: +moment($(this).attr('data-min-slider')),
+        max: +moment($(this).attr('data-max-slider')),
+        from: +moment($(this).attr('data-from-slider')),
+        to: +moment($(this).attr('data-to-slider')),
         grid: true,
+        step: 100,
         type: "double",
         //force_edges: true,
         grid_num: 3,
@@ -59,6 +60,40 @@ $('body').on('click', function (e) {
         }
     });
 });
+
+// set the right tab and location for person pages 
+$.fn.toggleTab = function () {
+    /* make "biographies" the default if no fragment identifier is given*/
+    var tabHash = (location.hash.length == 0? '#biographies': location.hash);
+    
+    $(this).each(function(n,tab) {
+        var tabId = tab.href.substring(tab.href.indexOf('#'));
+        if(tab.href.endsWith(tabHash)) {
+            $(tab).parent().addClass('resp-tab-active');
+            $(tabId).addClass('resp-tab-content-active');
+        }else {
+            $(tab).parent().removeClass('resp-tab-active');
+            $(tabId).removeClass('resp-tab-content-active');
+            $(tabId).hide();
+        }
+    });
+    if($(this).length !== 0) { activateTab(); }
+};
+
+// load and activate person tab
+function activateTab() {
+    var activeTab = $('li.resp-tab-active a');
+        var container = activeTab.attr('href');
+        var url = activeTab.attr('data-target');
+
+        // Do not load the page twice
+        if ($(container).contents()[1].nodeType !== 1) {
+            ajaxCall(container, url)
+        }
+        /* update facets */
+/*        $('select').selectpicker({});*/
+/*        $(href).unmask;*/
+};
 
 // create popovers for links
 $('a.persons').on('click', function() {
@@ -114,8 +149,8 @@ function active_facets() {
     }
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
-        params['fromDate'] = $('.rangeSlider:visible').attr('data-from');
-        params['toDate'] = $('.rangeSlider:visible').attr('data-to');
+        params['fromDate'] = $('.rangeSlider:visible').attr('data-from-slider');
+        params['toDate'] = $('.rangeSlider:visible').attr('data-to-slider');
     }
     /* get values from checkboxes for docTypes at search page */
     $('.allFilter:visible :checked').each(function() {
@@ -197,21 +232,11 @@ $('li').has('a.deactivated').hide();
 
 /* Responsive Tabs für person.html */
 $('#details').easyResponsiveTabs({
-    activate: function() {
-        var activeTab = $('li.resp-tab-active a');
-        var container = activeTab.attr('href');
-        var url = activeTab.attr('data-target');
-/*        console.log(url);*/
-
-        // Do not load the page twice
-        if ($(container).contents()[1].nodeType !== 1) {
-            ajaxCall(container, url)
-        }
-        /* update facets */
-/*        $('select').selectpicker({});*/
-/*        $(href).unmask;*/
-    }
+    activate: activateTab
 });
+
+/* Folgender Aufruf *nach* der Initialisierung durch easyResponsiveTabs() */
+$('.resp-tab-item a').toggleTab();
 
 /* Watch filters and highlight spans in text */
 $('.allFilter input').change(
@@ -232,7 +257,7 @@ function ajaxCall(container,url) {
             $('.allFilter:visible select').facets();
             $('.allFilter:visible .rangeSlider').rangeSlider();
             /* Listen for click events on pagination */
-            $('.page-link').on('click', 
+            $('.page-link:visible').on('click', 
                 function() {
                     var activeTab = $('li.resp-tab-active a');
                     var baseUrl = activeTab.attr('data-target');
