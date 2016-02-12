@@ -146,8 +146,8 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('cor
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('diaries', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('diaries', $lang), '.html#diaries'))
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || encode-for-uri(lang:get-language-string('diaries', $lang)) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
