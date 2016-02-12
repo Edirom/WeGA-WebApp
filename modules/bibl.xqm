@@ -10,6 +10,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 (:import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";:)
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 
 (:~
@@ -47,7 +48,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
 declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $title := for $i in $biblStruct//tei:title return 
-        (transform:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(())),
+        (wega-util:transform($i, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(())),
         '. '
         )
     return 

@@ -11,6 +11,7 @@ declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace http="http://expath.org/ns/http-client";
 
+import module namespace functx="http://www.functx.com";
 import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -144,4 +145,14 @@ declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)*
             try { parse-json(util:binary-to-string($response//httpclient:body)) }
             catch * {core:logToFile('warn', string-join(('wega-util:wikimedia-ifff', $err:code, $err:description, 'wikiFilename: ' || $wikiFilename), ' ;; '))}
         else ()
+};
+
+(:~
+ : A wrapper function around eXist's transform:transform()
+ : Applies a shortcut for empty and text only contents
+~:)
+declare function wega-util:transform($node-tree as node()*, $stylesheet as item(), $parameters as node()?) as item()? {
+    if(functx:all-whitespace($node-tree)) then () 
+    else if($node-tree/*) then transform:transform($node-tree, $stylesheet, $parameters)
+    else str:normalize-space($node-tree)
 };

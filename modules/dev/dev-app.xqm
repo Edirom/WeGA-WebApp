@@ -20,6 +20,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "../app.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
 
 declare 
     %templates:wrap
@@ -42,7 +43,7 @@ declare
         let $tei := <tei:body>{subsequence($hits, $rand, $hitsPerPage) ! <tei:div><tei:head>Beispiel aus {./ancestor::tei:TEI/data(@xml:id)} (<tei:rs key="{./ancestor::tei:TEI/data(@xml:id)}" type="letter">zum Brief</tei:rs>)</tei:head>{.}</tei:div>}</tei:body>
         return ( 
             <h2>{$node/parent::xhtml:div/data(@id)}</h2>,
-            transform:transform($tei, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+            wega-util:transform($tei, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
         )
 };
 

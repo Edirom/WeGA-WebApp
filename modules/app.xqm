@@ -671,7 +671,7 @@ declare function app:person-beacon($node as node(), $model as map(*)) as map(*) 
 declare 
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)? {
-        let $bio := transform:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+        let $bio := wega-util:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
         return
             if(exists($bio)) then $bio
             else 
@@ -718,7 +718,7 @@ declare
 declare function app:wikipedia-text($node as node(), $model as map(*)) as element() {
     element {name($node)} {
         $node/@*,
-        transform:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
     }
 };
 
@@ -774,14 +774,14 @@ declare
 declare function app:adb-text($node as node(), $model as map(*)) as element() {
     element {name($node)} {
         $node/@*,
-        transform:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
     }
 };
 
 declare function app:adb-disclaimer($node as node(), $model as map(*)) as element() {
     element {name($node)} {
         $node/@*,
-        transform:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
+        wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
     }
 };
 
@@ -836,10 +836,10 @@ declare
             else '%A, %d. %B %Y'
         return
             typeswitch($title-element)
-            case element(tei:title) return transform:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
+            case element(tei:title) return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
             case element(mei:title) return str:normalize-space($title-element)
             case element(tei:date) return if($title-element castable as xs:date) then date:strfdate(xs:date($title-element), $lang, $dateFormat) else ()
-            default return transform:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))/node()
+            default return wega-util:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
             
 };
 
@@ -886,8 +886,8 @@ declare
                     }
              )
              else (
-                transform:transform($textRoot, $xslt1, $xslParams),
-                if($xslt2) then transform:transform($textRoot, $xslt2, $xslParams) else ()
+                wega-util:transform($textRoot, $xslt1, $xslParams),
+                if($xslt2) then wega-util:transform($textRoot, $xslt2, $xslParams) else ()
             )
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
@@ -931,7 +931,7 @@ declare
     %templates:default("lang", "en")
     function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {
         typeswitch($model('textSource'))
-        case element(tei:msDesc) return transform:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+        case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
         case element(tei:biblStruct) return bibl:printCitation($model('textSource'), 'p', $lang)
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
@@ -944,14 +944,14 @@ declare
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) {
         if(functx:all-whitespace($model('doc')//tei:note[@type='summary'])) then () 
-        else transform:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
 };
 
 declare 
     %templates:default("lang", "en")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) {
         if(functx:all-whitespace($model('doc')//tei:incipit)) then () 
-        else transform:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        else wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
 };
 
 (:~
