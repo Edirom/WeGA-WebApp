@@ -46,9 +46,9 @@ declare
         let $wikipedia-images := 
             if(map:keys($model('beaconMap'))[contains(., 'Wikipedia-Personenartikel')]) then img:wikipedia-images($model, $lang)
             else ()
-        let $tripota-images := img:tripota-images($model, $lang)
-            (:if(map:keys($model('beaconMap'))[contains(., 'Tripota')]) then img:tripota-images($model, $lang)
-            else ():)
+        let $tripota-images := 
+            if(map:keys($model('beaconMap'))[contains(., 'GND-Zuordnung')]) then img:tripota-images($model, $lang)
+            else ()
         return
             map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
 };
