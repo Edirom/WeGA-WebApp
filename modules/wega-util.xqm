@@ -30,7 +30,9 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @return node
  :)
  declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?) as element(httpclient:response)? {
-    let $lease := xs:dayTimeDuration('P1D')
+    let $lease := 
+        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $url := 
         if($resource eq 'wikipedia') then concat(config:get-option($resource), $lang, '/', $pnd)
         else if($resource eq 'dnb') then concat(config:get-option($resource), $pnd, '/about/rdf')
