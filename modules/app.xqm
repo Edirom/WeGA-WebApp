@@ -1028,18 +1028,32 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
  : Searches
  : ****************************
 :)
-(:
-declare 
-    %templates:default("page", "1")
-    %templates:default("docType", "letters")
-    %templates:wrap
-    function app:search($node as node(), $model as map(*), $page as xs:string, $docType as xs:string) as map(*) {
-        map {
-            'search-results' := subsequence($model($docType),1,10)
-        }
-};
 
 declare 
+    %templates:default("lang", "en")
+    function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
+        let $docType-filters := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio')
+        let $selected-docTypes := request:get-parameter('d', ()) 
+        return 
+            for $docType in $docType-filters
+            let $class := 
+                if($docType = $selected-docTypes) then normalize-space($node/@class) || ' active'
+                else normalize-space($node/@class)
+            return
+                element {name($node)} {
+                    $node/@*[not(name(.) = 'class')],
+                    attribute class {$class},
+                    element input {
+                        $node/xhtml:input/@*[not(name(.) = 'value')],
+                        attribute value {$docType},
+                        if($docType = $selected-docTypes) then attribute checked {'checked'}
+                        else ()
+                    },
+                    lang:get-language-string($docType, $lang)
+                }
+};
+
+(:declare 
     %templates:wrap
     function app:search-results-count($node as node(), $model as map(*)) as xs:string {
         count($model('search-results')) || ' Suchergebnisse'
