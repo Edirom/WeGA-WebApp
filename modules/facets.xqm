@@ -47,7 +47,7 @@ declare
                             attribute selected {'selected'}
                         else (),
                         attribute value {./facets:value},
-                        ./facets:term || ' (' || ./facets:frequency || ')'
+                        facets:display-term($facet, ./facets:term, $lang) || ' (' || ./facets:frequency || ')'
                     }
             }
 };
@@ -105,6 +105,15 @@ declare %private function facets:createFacets($collFacets as item()*) as element
 (:        order by $k//xs:int(facets:frequency) descending:)
         order by $k//facets:term ascending
         return $k
+};
+
+(:~
+ : Helper function for localizing facet terms
+~:)
+declare %private function facets:display-term($facet as xs:string, $term as xs:string, $lang as xs:string) as xs:string {
+    switch ($facet)
+    case 'docTypeSubClass' return lang:get-language-string($term, $lang)
+    default return $term
 };
 
 declare 

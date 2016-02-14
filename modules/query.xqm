@@ -204,5 +204,6 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
+    case 'docTypeSubClass' return $collection//tei:text/@type
     default return ()
 };

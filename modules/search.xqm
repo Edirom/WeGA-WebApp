@@ -17,7 +17,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated');
+    'fromDate', 'toDate', 'undated', 'docTypeSubClass');
 
 (:~
  : All results
