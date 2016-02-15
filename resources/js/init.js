@@ -51,10 +51,13 @@ $.fn.rangeSlider = function ()
 };
 
 $.fn.obfuscateEMail = function () {
-    var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim();
-    var t = $(this).html().substring($(this).html().indexOf(']') +1).trim();
-    var r = '' + e + '@' + t ;
-    $(this).attr('href',' mailto:' +r).html(r);
+    if($(this).length === 0) {}
+    else {
+        var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim();
+        var t = $(this).html().substring($(this).html().indexOf(']') +1).trim();
+        var r = '' + e + '@' + t ;
+        $(this).attr('href',' mailto:' +r).html(r);
+    }
 }
 
 // remove popovers when clicking somewhere
