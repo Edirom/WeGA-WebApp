@@ -230,7 +230,7 @@ declare
         return 
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
-                if($href) then attribute href {$href} else (),
+                if($href and not($authorID = config:get-option('anonymusID'))) then attribute href {$href} else (),
                 str:printFornameSurname(query:get-reg-name($authorID))
             }
 };
@@ -244,7 +244,7 @@ declare
         return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
-                if($href) then attribute href {$href} else (),
+                if($href and not($authorID = config:get-option('anonymusID'))) then attribute href {$href} else (),
                 $display-name
             }
 };
