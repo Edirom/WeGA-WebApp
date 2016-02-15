@@ -50,6 +50,13 @@ $.fn.rangeSlider = function ()
     });
 };
 
+$.fn.obfuscateEMail = function () {
+    var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim();
+    var t = $(this).html().substring($(this).html().indexOf(']') +1).trim();
+    var r = '' + e + '@' + t ;
+    $(this).attr('href',' mailto:' +r).html(r);
+}
+
 // remove popovers when clicking somewhere
 $('body').on('click', function (e) {
     $('[data-original-title]').each(function () {
@@ -124,6 +131,8 @@ $('.allFilter').on('change', 'label', function() {
     var params = active_facets();
     updatePage(params);
 })
+
+$('.obfuscate-email').obfuscateEMail();
 
 /* Helper function */
 /* Get active facets to append as URL parameters */

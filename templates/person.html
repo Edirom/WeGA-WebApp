@@ -96,11 +96,17 @@
                        </li>
                     </ol>
                 </div>
-                <div class="col-md-4 col-sm-12 iconographie">
+                <div class="col-md-4 col-sm-12 iconographie" data-template="app:if-not-exists" data-template-key="addrLines">
                     <h2>Ikonographie</h2>
                     <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
+                </div>
+                <div class="col-md-4 col-sm-12 iconographie" data-template="app:if-exists" data-template-key="addrLines">
+                    <h2 data-template="lang:translate">address</h2>
+                    <ul>
+                        <li data-template="app:each" data-template-from="addrLines" data-template-to="addrLine"><span data-template="app:person-addrLine">Adresszeile</span></li>
+                    </ul>
                 </div>
             </div>
         </div>

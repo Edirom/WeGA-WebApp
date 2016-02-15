@@ -21,7 +21,6 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
-import module namespace js="http://xquery.weber-gesamtausgabe.de/modules/js" at "js.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -114,28 +113,17 @@ declare
         else ()
 };
 
-(:~
- : Add additional JavaScript to the page template
- : which gets invoked at the end of the page
- :
- : @author Peter Stadler
- :)
-declare function app:page-javascript($node as node(), $model as map(*)) as element(script)* {
-    js:obfuscate-email()
-(:    js:load-portrait($model):)
-};
-
 declare 
     %templates:default("lang", "en")
     %templates:wrap
     function app:print-bugReportEmail($node as node(), $model as map(*), $lang as xs:string) as element(p) {
         if($lang eq 'de') then 
             <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an
-                <a href="#" class="obfuscate-email">You need Javascript enabled</a>
+                <a href="#" class="obfuscate-email">{config:get-option('bugEmail')}</a>
             </p>
         else 
             <p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                <a href="#" class="obfuscate-email">You need Javascript enabled</a>
+                <a href="#" class="obfuscate-email">{config:get-option('bugEmail')}</a>
             </p>
 };
 
@@ -193,7 +181,7 @@ declare
 };
 
 (:~
- : Processes the child elements only when some $key (value) exists in $model 
+ : Processes the child elements only if some $key (value) exists in $model 
  :
  : @author Peter Stadler
  :)
@@ -201,6 +189,18 @@ declare
    %templates:wrap
    function app:if-exists($node as node(), $model as map(*), $key as xs:string) {
       if($model($key)) then templates:process($node/node(), $model)
+      else ()
+};
+
+(:~
+ : Processes the child elements only if some $key (value) *not* exists in $model 
+ :
+ : @author Peter Stadler
+ :)
+declare 
+   %templates:wrap
+   function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) {
+      if(not($model($key))) then templates:process($node/node(), $model)
       else ()
 };
 
@@ -634,7 +634,8 @@ declare
             'births' := date:printDate($model('doc')//tei:birth/tei:date[1], $lang),
             'deaths' := date:printDate($model('doc')//tei:death/tei:date[1], $lang),
             'occupations' := $model('doc')//tei:occupation,
-            'residences' := $model('doc')//tei:residence
+            'residences' := $model('doc')//tei:residence,
+            'addrLines' := $model('doc')//tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']//tei:addrLine 
         }
 };
 
@@ -815,6 +816,23 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
             else util:serialize(wega-util:remove-comments(core:doc($docID)), $serializationParameters)
 };
 
+declare 
+    %templates:default("lang", "en")
+    function app:person-addrLine($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        switch ($model('addrLine')/@n)
+        case 'email' return 
+            element a {
+                attribute class {'obfuscate-email'},
+                normalize-space($model('addrLine'))
+            }
+        default return (
+            switch ($model('addrLine')/@n)
+            case 'telephone' return lang:get-language-string('tel',$lang) || ': '
+            case 'fax' return lang:get-language-string('fax',$lang) || ': '
+            default return (),
+            normalize-space($model('addrLine'))
+        )
+};
 
 (:
  : ****************************
