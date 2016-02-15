@@ -716,43 +716,45 @@ declare
 };
 
 
-declare function app:wikipedia-text($node as node(), $model as map(*)) as element() {
-    element {name($node)} {
-        $node/@*,
-        wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
-    }
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:wikipedia-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        return 
+            if(exists($wikiText)) then $wikiText
+            else lang:get-language-string('failedToLoadExternalResource', $lang)
 };
 
 declare 
+    %templates:wrap
     %templates:default("lang", "en")
-    function app:wikipedia-disclaimer($node as node(), $model as map(*), $lang as xs:string) as element() {
-    element {name($node)} {
-        $node/@*,
-        
-        if($lang eq 'en') then (
-            'The text under the headline “Wikipedia” is taken from the article “',
-            <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
-            '” from ',
-            <a href="http://en.wikipedia.org">Wikipedia</a>,
-            ' the free encyclopedia, and is released under a ',
-            <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
-            '. You will find the ',
-            <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
-            ' of this article in Wikipedia.'
-        )
-            
-        else (
-            'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
-            <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
-            '“ aus der freien Enzyklopädie ',
-            <a href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
-            ' und steht unter der ',
-            <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
-            '. In der Wikipedia findet sich auch die ',
-            <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
-            ' für diesen Artikel.'
-        )
-    }
+    function app:wikipedia-disclaimer($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        if($model('wikiContent')//xhtml:html) then 
+            switch($lang) 
+            case 'de' return (
+                'The text under the headline “Wikipedia” is taken from the article “',
+                <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
+                '” from ',
+                <a href="http://en.wikipedia.org">Wikipedia</a>,
+                ' the free encyclopedia, and is released under a ',
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
+                '. You will find the ',
+                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
+                ' of this article in Wikipedia.'
+            )
+            default return (
+                'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
+                <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
+                '“ aus der freien Enzyklopädie ',
+                <a href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
+                ' und steht unter der ',
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
+                '. In der Wikipedia findet sich auch die ',
+                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
+                ' für diesen Artikel.'
+            )
+        else ()
 };
 
 (:~
@@ -764,7 +766,6 @@ declare
  :)
 declare 
     %templates:wrap
-    %templates:default("lang", "en")
     function app:adb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), ())
@@ -772,18 +773,21 @@ declare
 };
 
 
-declare function app:adb-text($node as node(), $model as map(*)) as element() {
-    element {name($node)} {
-        $node/@*,
-        wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
-    }
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:adb-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        let $adbText := wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        return 
+            if(exists($adbText)) then $adbText
+            else lang:get-language-string('failedToLoadExternalResource', $lang)
 };
 
-declare function app:adb-disclaimer($node as node(), $model as map(*)) as element() {
-    element {name($node)} {
-        $node/@*,
-        wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
-    }
+declare 
+    %templates:wrap
+    function app:adb-disclaimer($node as node(), $model as map(*)) as element()? {
+        if($model('adbContent')//xhtml:html) then wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
+        else ()
 };
 
 declare 
