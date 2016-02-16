@@ -37,7 +37,7 @@ let $model :=
             'doc' := core:doc(request:get-attribute('docID')),
             'page-title' := 'Eine Seite aus der WeGA'
         }
-    default return ()
+    default return map:new()
     
 (:
  : We have to provide a lookup function to templates:apply to help it
