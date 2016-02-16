@@ -1,7 +1,7 @@
 xquery version "3.1" encoding "UTF-8";
 
 (:~
- : Functions for creating http requests
+ : Various utility functions for the WeGA WebApp
 :)
 module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util";
 declare default collation "?lang=de;strength=primary";
@@ -54,9 +54,9 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="4"><http:header name="Connection" value="close"/></http:request>
+    let $req := <http:request href="{$url}" method="get" timeout="1"><http:header name="Connection" value="close"/></http:request>
     let $response := 
-        try { http:send-request($req) }
+        try { wega-util:stopwatch(http:send-request#1, $req, string($url)) }
         catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
@@ -157,4 +157,30 @@ declare function wega-util:transform($node-tree as node()*, $stylesheet as item(
     if(every $i in $node-tree satisfies functx:all-whitespace($i)) then () 
     else if($node-tree/*) then transform:transform($node-tree, $stylesheet, $parameters)
     else $node-tree ! str:normalize-space(.)
+};
+
+(:~
+ : A function for logging the query times
+ :
+ : @param $func the function to watch
+ : @param $func-params the function parameters
+ : @param $mesg an optional message to append for the logging
+ : @return Timing information is written into the log file and the results of $func are returned 
+~:)
+declare function wega-util:stopwatch($func as function() as item(), $func-params as item()*, $mesg as xs:string?) as item()* {
+    let $startTime := util:system-time()
+    let $result := 
+        if(count($func-params) eq 0) then $func()
+        else if(count($func-params) eq 1) then $func($func-params)
+        else if(count($func-params) eq 2) then $func($func-params[1], $func-params[2])
+        else if(count($func-params) eq 3) then $func($func-params[1], $func-params[2], $func-params[3])
+        else if(count($func-params) eq 4) then $func($func-params[1], $func-params[2], $func-params[3], $func-params[4])
+        else error(xs:QName('wega-util:error'), 'Too many arguments to calback function of wega-util:stopwatch()')
+    let $message := 
+        if(exists($mesg)) then ' [' || $mesg || ']'
+        else ()
+    return (
+        $result, 
+        core:logToFile('debug', 'stopwatch (' || function-name($func) || '): ' || string(seconds-from-duration(util:system-time() - $startTime)) || $message)
+    )
 };

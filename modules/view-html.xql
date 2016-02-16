@@ -18,6 +18,7 @@ import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
@@ -56,8 +57,5 @@ let $lookup := function($functionName as xs:string, $arity as xs:int) {
  : Run it through the templating system and return the result.
  :)
 let $content := request:get-data()
-let $startTime := util:system-time()
-return (
-    templates:apply($content, $lookup, $model, $config),
-    util:log-system-out('view-html: ' || string(seconds-from-duration(util:system-time() - $startTime)))
-    )
+return 
+    wega-util:stopwatch(templates:apply#4, ($content, $lookup, $model, $config), ())

@@ -198,7 +198,7 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
     let $message := concat($message, ' (rev. ', config:getCurrentSvnRev(), ')')
     return (
         util:log-app($priority, $file, $message),
-        if($config:isDevelopment and ($priority = ('error', 'warn'))) then util:log-system-out($message)
+        if($config:isDevelopment and ($priority = ('error', 'warn', 'debug'))) then util:log-system-out($message)
         else ()
     )
 };
