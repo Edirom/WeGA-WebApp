@@ -420,7 +420,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
-        let $active := contains( request:get-uri(), controller:resolve-link($node/xhtml:a/@href, $lang))
+        let $active := some $i in $node//xhtml:a/@href satisfies contains( request:get-uri(), controller:resolve-link($i, $lang))
 (:        let $log := util:log-system-out(request:get-uri() || ' - ' || controller:resolve-link($node/xhtml:a/@href, $lang)):)
         return
             element {name($node)} {
