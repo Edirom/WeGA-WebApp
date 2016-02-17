@@ -192,10 +192,12 @@ declare function controller:docType-url-for-author($author as document-node(), $
  :)
 declare function controller:resolve-link($link as xs:string, $lang as xs:string) as xs:string? {
     let $tokens := 
-        for $token in tokenize(substring-after($link, '$link'), '/')
+        for $token in tokenize(substring-after($link, '$link/'), '/')
         let $has-suffix := contains($token, '.')
         let $translation := 
-            if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) 
+            if(matches($token, 'A[A-F0-9]{6}')) then $token
+            else if(matches($token, 'dev|test-html')) then $token
+            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) 
             else lang:get-language-string($token, $lang)
         return 
             if($translation) then 
