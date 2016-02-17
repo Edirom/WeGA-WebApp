@@ -150,6 +150,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         try {
             if(config:is-letter($docID)) then lang:get-language-string('correspondence', $lang) (: Ausnahme für Briefe=Korrespondenz:)
             else if(config:is-weberStudies($doc)) then lang:get-language-string('weberStudies', $lang)
+            else if($docType = 'var') then 'var'
             else lang:get-language-string($docType, $lang)
         }
         catch * {()}
