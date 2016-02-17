@@ -197,12 +197,10 @@ declare function controller:resolve-link($link as xs:string, $lang as xs:string)
         let $translation := 
             if(matches($token, 'A[A-F0-9]{6}')) then $token
             else if(matches($token, 'dev|test-html')) then $token
-            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) 
+            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) || '.' || substring-after($token, '.')
             else lang:get-language-string($token, $lang)
         return 
-            if($translation) then 
-                if($has-suffix) then $translation || '.' || substring-after($token, '.')
-                else $translation
+            if($translation) then $translation 
             else $token
     return 
         core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
