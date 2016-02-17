@@ -10,7 +10,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+(:import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";:)
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 (: params for filtering the result set :)
@@ -19,38 +19,41 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , '
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
     'fromDate', 'toDate', 'undated', 'docTypeSubClass');
 
+(: 
+ : a subset of $config:wega-docTypes. 
+ : Finally, all of these should be supported 
+ :)
+declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio');
+
 (:~
- : All results
+ : Main function called from the templating module
+ : All results will be created here for the search page as well as for list views (indices pages)
 ~:)
 declare 
     %templates:default("docType", "letters")
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
-        let $filters := search:create-filters()
-        let $query-string := str:sanitize(request:get-parameter('q', '')[1])
-        let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
-        let $search-results := 
-            switch($docType)
-            case 'search' return search:query(map {'query-string' := $query-string, 'query-docTypes' := $query-docTypes})
-            default return core:getOrCreateColl($docType, $model('docID'), true())
-        let $filtered-results := search:filter-result($search-results, $filters, $docType)
+        let $filters := map { 'filters' := search:create-filters() }
         return
-            map {
-                'search-results' := $filtered-results (:core:sortColl($filtered-results, $docType):),
-                'docType' := $docType,
-                'filters' := $filters,
-                'query-string' := $query-string,
-                'earliestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($docType, $model('docID')) else (),
-                'latestDate' := if($docType =('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($docType, $model('docID')) else ()
-            }
+            switch($docType)
+            (: search page :)
+            case 'search' return search:results(map:new(($model, $filters)))
+            (: various list views :)
+            default return search:lists(map:new(($model, $filters, map:entry('docType', $docType))))
 };
 
+(:~
+ : Print out the ammount of hits
+~:)
 declare 
     %templates:wrap
     function search:results-count($node as node(), $model as map(*)) as xs:string {
         count($model('search-results')) || ' Suchergebnisse'
 };
 
+(:~
+ : Write the sanitized query string into the search text input for reuse
+~:)
 declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
     element {name($node)} {
         $node/@*[not(name(.) = 'value')],
@@ -85,14 +88,42 @@ declare function search:dispatch-preview($node as node(), $model as map(*)) {
         templates:include($node, $model, 'templates/includes/preview-' || $docType || '.html')
 };
 
-declare function search:query($model as map(*)) as document-node()* {
+(:~
+ : Search results and other goodies for the search page 
+~:)
+declare %private function search:results($model as map(*)) as map(*) {
+    let $queryMap := search:prepare-search-string()
+    let $results := search:query(map:new(($queryMap, $model)))
+    return
+        map:new(($queryMap, map:entry('search-results', $results)))
+};  
+
+(:~
+ : Search results and other goodies for the list view pages 
+~:)
+declare %private function search:lists($model as map(*)) as map(*) {
+    let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
+    return
+        map {
+            'filters' := $model('filters'),
+            'search-results' := 
+                if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
+                else $coll,
+            'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
+            'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
+        }
+};  
+
+
+declare %private function search:query($model as map(*)) as document-node()* {
     let $searchString := $model('query-string')
     let $docTypes := $model('query-docTypes')
     let $docTypes := 
-        if($docTypes = 'all') then map:keys($config:wega-docTypes)
-        else map:keys($config:wega-docTypes)[.=$docTypes]
+        if($docTypes = 'all') then $search:wega-docTypes
+        else $search:wega-docTypes[.=$docTypes]
     return 
-        if($searchString) then search:merge-hits($docTypes ! search:fulltext($searchString, .)) 
+        if($model('dates')) then $docTypes ! search:exact-date($model('dates'), $model('filters'), .)
+        else if($searchString) then search:merge-hits($docTypes ! search:fulltext($searchString, $model('filters'), .)) 
         else ()
 };
 
@@ -107,9 +138,11 @@ declare %private function search:merge-hits($hits as item()*) as document-node()
    return $doc
 };
 
-declare %private function search:fulltext($searchString as xs:string, $docType as xs:string) as item()* {
+declare %private function search:fulltext($searchString as xs:string, $filters as map(), $docType as xs:string) as item()* {
     let $query := search:create-lucene-query-element($searchString)
-    let $coll := core:getOrCreateColl($docType, 'indices', true())
+    let $coll := 
+        if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
+        else core:getOrCreateColl($docType, 'indices', true())
     return
         switch($docType)
         case 'persons' return $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[ft:query(., $query)][@type]
@@ -124,6 +157,16 @@ declare %private function search:fulltext($searchString as xs:string, $docType a
         case 'news' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
         case 'biblio' return $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
         default return ()
+};
+
+declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as document-node()* {
+    let $coll := 
+        if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
+        else ()
+    let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates] ! core:doc(./@docID)
+    return
+        if($coll) then $coll intersect $date-search
+        else $date-search
 };
 
 declare %private function search:create-lucene-query-element($searchString as xs:string) as element(query) {
@@ -264,4 +307,23 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
             case 'works' return ()
             case 'places' return ()
             default return ()
+};
+
+(:~
+ : Read query string and parameters from URL 
+ :
+ : @return a map with sanitized query string, parameters and recognized dates (via PDR web service)
+~:)
+declare %private function search:prepare-search-string() as map(*) {
+    let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
+    let $query-string := str:sanitize(string-join(request:get-parameter('q', ''), ' '))
+    let $dates := analyze-string($query-string, '\d{4}-\d{2}-\d{2}')/fn:match/text()
+        (:if(string-length($query-string) ge 400) then date:parse-date($query-string)
+        else ():)
+    return
+        map {
+            'query-string' := $query-string, 
+            'query-docTypes' := $query-docTypes,
+            'dates' := $dates
+        }
 };
