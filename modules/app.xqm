@@ -286,21 +286,6 @@ declare
  : ****************************
 :)
 
-
-declare
-    %templates:default("lang", "en")
-    function app:nav-register($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        element {name($node)} {
-                $node/@*[not(name(.)='href')],
-                attribute href {
-                    if(normalize-space($node) eq 'indices') then core:link-to-current-app(controller:path-to-register('indices', $lang))
-                    else core:link-to-current-app(controller:path-to-register(normalize-space($node), $lang))
-                },
-                lang:get-language-string(normalize-space($node), $lang)
-            }
-};
-
-
 declare
     %templates:default("lang", "en")
     function app:person-main-tab($node as node(), $model as map(*), $lang as xs:string) as element()? {
