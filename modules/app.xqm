@@ -257,7 +257,6 @@ declare
         case 'biblio' case 'news' return 
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
-                attribute href {core:link-to-current-app(controller:path-to-register('project', $lang))},
                 lang:get-language-string('project', $lang)
             }
         default return

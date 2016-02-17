@@ -2,8 +2,13 @@
 
 $('.dropdown-secondlevel-nav').dropdownHover();
 
-$("h1").fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'});
-$("h1.document").fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'});
+/* Adjust font size of h1 headings */
+$.fn.h1FitText = function () {
+    if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
+    else if ($(this).hasClass('home')) { $(this).fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'}) }
+    else if ($(this).html().length > 30) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
+    else $(this).fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'});
+};
 
 /* A wrapper function for creating select boxes */
 /* Needs to be placed before the invoking call */
@@ -222,6 +227,8 @@ $('.allFilter select').facets();
 /* Initialise range slider for index pages */
 $('.allFilter:visible .rangeSlider').rangeSlider();
 
+
+$('h1').h1FitText();
 
 /* Initialise popovers for notes */
 $('.noteMarker').popover({
