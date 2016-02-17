@@ -51,11 +51,11 @@
                 <form role="form" class="form-inline">
                     <div class="row paddingTopIcon paddingBottomIcon">
                         <h3>Development Tools</h3>
-                        <div class="col-md-6">
-                            <h4>Commit Status </h4>
-                            <a href="#"><span class="currentRevision">Revision 9500 </span> <i class="fa fa-check-circle-o fa-lg"/></a>
+                        <div class="col-md-4" data-template="dev-app:ant-log">
+                            <h4>Commit Status</h4>
+                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg"/> <i class="fa fa-exclamation-triangle fa-lg"/></a>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-4 form-group">
                             <h4>Neue ID</h4>
                             <div class="input-group">
                                 <div class="input-group-btn dropdown">
@@ -77,6 +77,10 @@
                                 <span class="newID-result" style="display:none;">A001234</span>
                                 <span> </span>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Codesharing</h4>
+                            <a href="https://euryanthe.de/wega/apps/codesharing/index.htm">Codesharing WeGA-data</a>
                         </div>
                     </div>
                 </form>

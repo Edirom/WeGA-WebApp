@@ -47,3 +47,22 @@ declare
         )
 };
 
+(:~
+ : Get latest ANT log file
+ :
+ : @author Peter Stadler 
+ : @return map with entries 'rev' and 'success'
+ :)
+declare 
+    %templates:wrap 
+    function dev-app:ant-log($node as node(), $model as map(*)) as map(*) {
+    let $logFile := util:binary-doc(str:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
+    let $logLines := tokenize(util:binary-to-string($logFile), '\n')
+    let $rev := substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')
+    return
+        map {
+            'ant-log-rev' := $rev,
+            'ant-log-success' := ($logLines = 'BUILD SUCCESSFUL'),
+            'ant-log-url' := core:link-to-current-app('logs/' || $rev || '.log')
+        }
+};
