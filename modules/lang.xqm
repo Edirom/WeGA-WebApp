@@ -59,7 +59,10 @@ declare %private function lang:get-language-catalogue($lang as xs:string) as doc
  :)
 declare function lang:get-language-string($key as xs:string, $lang as xs:string) as xs:string {
     let $catalogue := lang:get-language-catalogue($lang)
-    return normalize-space($catalogue//id($key))
+    let $lookup := normalize-space($catalogue//id($key))
+    return
+        if($lookup) then $lookup
+        else ('',core:logToFile('warn', 'No dictinonary entry found for ' || $key))
 };
 
 (:~
@@ -82,7 +85,9 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
         for $i at $count in $replacements
         let $x := concat('%',$count)
         return $x
-    return functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
+    return 
+        if($catalogueEntry) then functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
+        else ('',core:logToFile('warn', 'No dictinonary entry found for ' || $key))
 };
 
 (:~
