@@ -181,27 +181,31 @@ declare
 };
 
 (:~
- : Processes the child elements only if some $key (value) exists in $model 
+ : Processes the node only when some $key (value) exists in $model 
  :
  : @author Peter Stadler
  :)
-declare 
-   %templates:wrap
-   function app:if-exists($node as node(), $model as map(*), $key as xs:string) {
-      if($model($key)) then templates:process($node/node(), $model)
-      else ()
+declare function app:if-exists($node as node(), $model as map(*), $key as xs:string) {
+    if($model($key)) then 
+        element {node-name($node)} {
+            $node/@*,
+            templates:process($node/node(), $model)
+        }
+    else ()
 };
 
 (:~
- : Processes the child elements only if some $key (value) *not* exists in $model 
+ : Processes the node only when some $key (value) *not* exists in $model 
  :
  : @author Peter Stadler
  :)
-declare 
-   %templates:wrap
-   function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) {
-      if(not($model($key))) then templates:process($node/node(), $model)
-      else ()
+declare function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) {
+    if(not($model($key))) then 
+        element {node-name($node)} {
+            $node/@*,
+            templates:process($node/node(), $model)
+        }
+    else ()
 };
 
 (:~
