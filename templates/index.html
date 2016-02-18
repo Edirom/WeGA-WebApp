@@ -53,7 +53,7 @@
                         <h3>Development Tools</h3>
                         <div class="col-md-4" data-template="dev-app:ant-log">
                             <h4>Commit Status</h4>
-                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg"/> <i class="fa fa-exclamation-triangle fa-lg"/></a>
+                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
                         </div>
                         <div class="col-md-4 form-group">
                             <h4>Neue ID</h4>
@@ -69,13 +69,15 @@
                                         <option value="biblio" data-template="lang:translate">bibliography</option>
                                     </select>
                                 </div>
-                                <span class="input-group-btn">
+                                <div class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="create-newID">
                                         <i class="fa fa-arrow-right"/>
                                     </button>
-                                </span>
-                                <span class="newID-result" style="display:none;">A001234</span>
-                                <span> </span>
+                                </div>
+                                <div id="newID-result">
+                                    <span style="display:none;">A001234</span>
+                                    <i class="fa fa-cog fa-spin fa-2x spinner" style="display:none;"></i>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
