@@ -48,19 +48,31 @@
                     </div>
                     <div>
                         <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext" data-template="lang:translate">context</h2>
-<!--                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:context-dispatch">-->
-                            <!--<h3>Absolute Chronologie</h3><h4>Vorausgehend</h4><ul>
-                                <li><a href="/de/A002068/Korrespondenz/A040082" onmouseover="metaDataToTip('A040082','de')" onmouseout="UnTip()">1798-01-01</a>: An <a href="/de/A000835"><span class="person" onmouseover="metaDataToTip('A000835', 'de')" onmouseout="UnTip()">Johann Peter Heuschkel</span></a></li>
-                            </ul><h4>Folgend</h4><ul>
-                                <li><a href="/de/A002068/Korrespondenz/A040086" onmouseover="metaDataToTip('A040086','de')" onmouseout="UnTip()">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
-                                <li><a href="/de/A009155/Korrespondenz/A045302" onmouseover="metaDataToTip('A045302','de')" onmouseout="UnTip()">1799-07-10</a>: Von <a href="/de/A009155"><span class="person" onmouseover="metaDataToTip('A009155', 'de')" onmouseout="UnTip()">W. Freiin von Marschall genannt
-                                            Greiff</span></a></li>
-                            </ul><h3>Korrespondenzstelle</h3><h4>Vorausgehend</h4><ul>
-                                <li class="noDataFound">keine Angaben gefunden</li>
-                            </ul><h4>Folgend</h4><ul>
-                                <li class="noDataFound">keine Angaben gefunden</li>
-                            </ul>-->
-                        <!--</div>-->
+                        <div id="kontext" class="panel-collapse collapse borderBox" data-template="app:if-matches" data-template-key="docType" data-template-value="letters">
+                            <div data-template="app:context-letter">
+                                <h3 data-template="lang:translate">absouluteChronology</h3>
+                                <h4 data-template="lang:translate">prevLetters</h4>
+                                <ul>
+                                    <li data-template="app:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
+                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
+                                    </li>
+                                </ul>
+                                <h4 data-template="lang:translate">nextLetters</h4>
+                                <ul>
+                                    <li><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></li>
+                                    <li><a href="/de/A009155/Korrespondenz/A045302">1799-07-10</a>: Von <a href="/de/A009155"><span class="person">W. Freiin von Marschall genannt Greiff</span></a></li>
+                                </ul>
+                                <h3 data-template="lang:translate">korrespondenzstelle</h3>
+                                <h4 data-template="lang:translate">prevLetters</h4>
+                                <ul>
+                                    <li class="noDataFound">keine Angaben gefunden</li>
+                                </ul>
+                                <h4 data-template="lang:translate">nextLetters</h4>
+                                <ul>
+                                    <li class="noDataFound">keine Angaben gefunden</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
                         <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>

@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app";
 
@@ -161,7 +161,7 @@ declare
     %templates:default("max", "0")
     %templates:default("callback", "0")
     %templates:default("callbackArity", "2")
-    function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string, $max as xs:string, $callback as xs:string, $callbackArity as xs:string) {
+    function app:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string, $max as xs:string, $callback as xs:string, $callbackArity as xs:string) as node()* {
     let $items := 
         if($max castable as xs:integer and $max != '0') then subsequence($model($from), 1, $max)
         else $model($from)
@@ -185,7 +185,7 @@ declare
  :
  : @author Peter Stadler
  :)
-declare function app:if-exists($node as node(), $model as map(*), $key as xs:string) {
+declare function app:if-exists($node as node(), $model as map(*), $key as xs:string) as node()? {
     if($model($key)) then 
         element {node-name($node)} {
             $node/@*,
@@ -199,8 +199,22 @@ declare function app:if-exists($node as node(), $model as map(*), $key as xs:str
  :
  : @author Peter Stadler
  :)
-declare function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) {
+declare function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) as node()? {
     if(not($model($key))) then 
+        element {node-name($node)} {
+            $node/@*,
+            templates:process($node/node(), $model)
+        }
+    else ()
+};
+
+(:~
+ : Processes the node only when some $key matches $value in $model 
+ :
+ : @author Peter Stadler
+ :)
+declare function app:if-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string) as node()? {
+    if($model($key) = $value) then 
         element {node-name($node)} {
             $node/@*,
             templates:process($node/node(), $model)
@@ -966,6 +980,68 @@ declare
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) {
         if(functx:all-whitespace($model('doc')//tei:incipit)) then () 
         else wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+};
+
+(:~
+ : Query the letter context, i.e. preceding and following letters
+~:)
+declare function app:context-letter($node as node(), $model as map(*)) as map(*)* {
+    let $doc := $model('doc')
+    let $docID := $model('docID')
+    let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
+    let $addresseeID := $doc//tei:addressee/tei:persName[1]/@key
+    let $normDates := norm:get-norm-doc('letters')
+    
+    (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
+    let $prevLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][1]
+    (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
+    let $prevLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
+    let $nextLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][1] 
+    (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
+    let $nextLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
+    let $prevLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
+    let $prevLetterFromAuthorToAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][1]
+    (: Direkter Antwortbrief des Adressaten:)
+    let $replyLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    (: Antwort des Autors auf die Antwort des Adressaten :)
+    let $replyLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][1] 
+    
+    let $create-map := function($norm-entry as element(norm:entry)?, $fromTo as xs:string) as map()? {
+        if($norm-entry) then
+            map {
+                'norm-date' := $norm-entry/text(),
+                'fromTo' := $fromTo,
+                'docID' := $norm-entry/data(@docID),
+                'partnerID' := $norm-entry/(@addresseeID,@authorID)[not(.=$authorID)]/data()
+            }
+        else ()
+    }
+    
+    return
+        map {
+            'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
+            'context-letter-absolute-next' := ($nextLetterFromSender, $nextLetterToSender),
+            'context-letter-korrespondenzstelle-prev' := ($prevLetterFromAuthorToAddressee, $prevLetterFromAddressee),
+            'context-letter-korrespondenzstelle-next' := ($replyLetterFromSender, $replyLetterFromAddressee)
+        }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-letter-context($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        let $letter := core:doc($model('letter-norm-entry')('docID'))
+        let $partner := core:doc($model('letter-norm-entry')('partnerID'))
+        return (
+            app:createDocLink($letter, $model('letter-norm-entry')('norm-date'), $lang, ()), 
+            ": ",
+            lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
+            " ",
+            if($partner) then app:createDocLink($partner, query:get-reg-name($model('letter-norm-entry')('partnerID')), $lang, ())
+            else 'unknown'
+        )
 };
 
 (:~
