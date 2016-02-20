@@ -1023,9 +1023,9 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
     return
         map {
             'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
-            'context-letter-absolute-next' := ($nextLetterFromSender, $nextLetterToSender),
-            'context-letter-korrespondenzstelle-prev' := ($prevLetterFromAuthorToAddressee, $prevLetterFromAddressee),
-            'context-letter-korrespondenzstelle-next' := ($replyLetterFromSender, $replyLetterFromAddressee)
+            'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
+            'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
+            'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
         }
 };
 
