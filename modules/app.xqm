@@ -181,7 +181,7 @@ declare
 };
 
 (:~
- : Processes the node only when some $key (value) exists in $model 
+ : Processes the node only if some $key (value) exists in $model 
  :
  : @author Peter Stadler
  :)
@@ -195,7 +195,7 @@ declare function app:if-exists($node as node(), $model as map(*), $key as xs:str
 };
 
 (:~
- : Processes the node only when some $key (value) *not* exists in $model 
+ : Processes the node only if some $key (value) *not* exists in $model 
  :
  : @author Peter Stadler
  :)
@@ -209,7 +209,7 @@ declare function app:if-not-exists($node as node(), $model as map(*), $key as xs
 };
 
 (:~
- : Processes the node only when some $key matches $value in $model 
+ : Processes the node only if some $key matches $value in $model 
  :
  : @author Peter Stadler
  :)
@@ -221,6 +221,21 @@ declare function app:if-matches($node as node(), $model as map(*), $key as xs:st
         }
     else ()
 };
+
+(:~
+ : Processes the node only if some $key *not* matches $value in $model 
+ :
+ : @author Peter Stadler
+ :)
+declare function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string) as node()? {
+    if($model($key) = $value) then ()
+    else 
+        element {node-name($node)} {
+            $node/@*,
+            templates:process($node/node(), $model)
+        }
+};
+
 
 (:~
  : Processes the child elements only when in development mode
@@ -1282,4 +1297,10 @@ declare function app:datePicker($node as node(), $model as map(*)) as element()?
             $node/@*
         }
     else ()
+};
+
+declare 
+    %templates:wrap
+    function app:letter-count($node as node(), $model as map(*)) as xs:integer? {
+        query:correspondence-partners($model('docID'))($model('parent-docID'))
 };

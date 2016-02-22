@@ -84,8 +84,10 @@ declare
  :)
 declare function search:dispatch-preview($node as node(), $model as map(*)) {
     let $docType := config:get-doctype-by-id($model('result-page-entry')/*/data(@xml:id))
+    (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
+    let $newModel := map:new(($model, map:entry('parent-docID', $model('docID'))))
     return
-        templates:include($node, $model, 'templates/includes/preview-' || $docType || '.html')
+        templates:include($node, $newModel, 'templates/includes/preview-' || $docType || '.html')
 };
 
 (:~
