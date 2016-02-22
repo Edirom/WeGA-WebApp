@@ -1,13 +1,9 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-   xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:tei="http://www.tei-c.org/ns/1.0"
-   xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-   exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" exclude-result-prefixes="xs" version="2.0">
    
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:supplied | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
+         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
       </xsl:element>
    </xsl:template>
    
@@ -40,7 +36,7 @@
    
    <xsl:template match="tei:ptr" mode="apparatus">
       <!-- Thanks to Dimitre Novatchev! http://stackoverflow.com/questions/2694825/how-do-i-select-all-text-nodes-between-two-elements-using-xsl -->
-      <xsl:variable name="noteID" select="substring(@target, 2)"></xsl:variable>
+      <xsl:variable name="noteID" select="substring(@target, 2)"/>
       <xsl:variable name="vtextPostPtr" select="following::text()"/>
       <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
@@ -290,7 +286,7 @@
                <xsl:value-of select="$opts[1]"/>
                <xsl:text>": weitere mögliche Lesarten: "</xsl:text>
                <!-- Eventuell noch @cert mit ausgeben?!? -->
-               <xsl:value-of select="string-join(subsequence($opts, 2), '&quot;, &quot;')"/>
+               <xsl:value-of select="string-join(subsequence($opts, 2), '&#34;, &#34;')"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
             <xsl:when test="tei:abbr">
@@ -304,12 +300,22 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:supplied | tei:del[not(parent::tei:subst)]">
+   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates/>
          <xsl:call-template name="popover"/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:supplied">
+      <xsl:element name="span">
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:text>[</xsl:text>
+         <xsl:apply-templates/>
+         <xsl:text>]</xsl:text>
       </xsl:element>
    </xsl:template>
    
@@ -326,7 +332,7 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:supplied" mode="apparatus">
+   <!--<xsl:template match="tei:supplied" mode="apparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -337,7 +343,7 @@
          <xsl:apply-templates/>
          <xsl:text>": Hinzufügung des Herausgebers</xsl:text>
       </xsl:element>
-   </xsl:template>
+   </xsl:template>-->
    
    <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
       <xsl:element name="div">
@@ -370,7 +376,7 @@
       <cert sort="2">medium</cert>
       <cert sort="3">low</cert>
       <cert sort="4">unknown</cert>
-      <cert sort="4"></cert>
+      <cert sort="4"/>
    </xsl:variable>
    
 </xsl:stylesheet>
