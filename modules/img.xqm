@@ -191,7 +191,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
  : @return 
  :)
 declare %private function img:wega-images($model as map(*), $lang as xs:string) as map(*)* {
-    for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure
+    for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
     (:  Need to double encode URI due to old Apache front end  :)
     let $iiifURI := config:get-option('iiifServer') || encode-for-uri(encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/')))
     order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
@@ -224,7 +224,10 @@ http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd7
 declare 
     %templates:default("lang", "en")
     function img:portrait($node as node(), $model as map(*), $lang as xs:string, $size as xs:string) as element() {
-        let $portrait := ($model('iconographyImages'), img:get-generic-portrait($model, $lang))[1]
+        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
+        let $portrait := 
+            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
+            else ($model('iconographyImages'), img:get-generic-portrait($model, $lang))[1]
         let $url := $portrait('url')($size)
         return
             element {node-name($node)} {
