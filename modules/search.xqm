@@ -103,12 +103,16 @@ declare %private function search:results($model as map(*)) as map(*) {
 ~:)
 declare %private function search:lists($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
+    let $search-results := 
+        if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
+        else $coll
+    let $filtered-results := 
+        if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($coll, 'persons', $model('docID')) 
+        else $search-results
     return
         map {
             'filters' := $model('filters'),
-            'search-results' := 
-                if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
-                else $coll,
+            'search-results' := $filtered-results,
             'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
             'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
         }

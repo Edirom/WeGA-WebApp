@@ -207,3 +207,12 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'docTypeSubClass' return $collection//tei:text/@type
     default return ()
 };
+
+declare function query:correspondence-partners($id as xs:string) as map(*) {
+    map:new(
+        for $i in (norm:get-norm-doc('letters')//@addresseeID[contains(., $id)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $id)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+') 
+        group by $partnerID := data($i)
+        return
+            map:entry($partnerID, count($i))
+    )
+};

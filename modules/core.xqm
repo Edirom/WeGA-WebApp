@@ -172,6 +172,15 @@ declare function core:sortColl($coll as item()*, $collName as xs:string) as docu
     default return $coll
 };
 
+declare function core:sortColl($coll as item()*, $collName as xs:string, $cacheKey as xs:string?) as document-node()* {
+    typeswitch($cacheKey)
+    case empty() return core:sortColl($coll, $collName)
+    default return
+        switch($collName)
+        case 'persons' return for $i in $coll order by number(query:correspondence-partners($i/tei:person/@xml:id)($cacheKey)) descending return $i
+        default return $coll
+};
+
 (:~
  : Return the undated documents of a given document type
  :
