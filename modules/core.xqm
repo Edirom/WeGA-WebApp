@@ -127,7 +127,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root() |
             core:data-collection('biblio')//tei:term[.=$cacheKey]/root()
-        case 'persons' return distinct-values(core:getOrCreateColl('letters', $cacheKey, true())//@key[ancestor::tei:correspDesc][. != $cacheKey][config:is-person(.)]) ! core:doc(.)
+        case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.)
         default return ()
     else if($cacheKey eq 'indices') then 
         switch($collName)
