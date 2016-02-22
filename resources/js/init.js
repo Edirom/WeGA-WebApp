@@ -127,7 +127,7 @@ $('a.persons').on('click', function() {
     });
     $(this).popover('show')
     return false;
-})
+});
 
 /* checkbox for display of undated documents */
 $(document).on('click', '.undated', function() {
@@ -206,7 +206,7 @@ function details_in_popup(link, div_id){
         success: function(response){
             var source = $('<div>' + response + '</div>');
             $('#'+div_id).html(source.find('#meta').html());
-            $('.popover-title').html(source.find('h1').text());
+            $('.popover-title').html('<a href="' + link + '">' + source.find('h1').text() + '</a>');
             $('.popover-content div.iconographie').hide();
             $('.popover-content div.basicdata h2').hide();
             // remove col-classes
