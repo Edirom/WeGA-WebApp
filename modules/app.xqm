@@ -228,7 +228,7 @@ declare function app:if-matches($node as node(), $model as map(*), $key as xs:st
  : @author Peter Stadler
  :)
 declare function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string) as node()? {
-    if($model($key) = $value) then ()
+    if($model($key) = tokenize($value, '\s+')) then ()
     else 
         element {node-name($node)} {
             $node/@*,

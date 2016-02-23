@@ -34,12 +34,13 @@ declare
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
         let $filters := map { 'filters' := search:create-filters() }
+(:        let $log := util:log-system-out($docType):)
         return
             switch($docType)
             (: search page :)
-            case 'search' return search:results(map:new(($model, $filters)))
+            case 'search' return search:search(map:new(($model, $filters, map:entry('docID', 'indices'))))
             (: various list views :)
-            default return search:lists(map:new(($model, $filters, map:entry('docType', $docType))))
+            default return search:list(map:new(($model, $filters, map:entry('docType', $docType))))
 };
 
 (:~
@@ -93,17 +94,17 @@ declare function search:dispatch-preview($node as node(), $model as map(*)) {
 (:~
  : Search results and other goodies for the search page 
 ~:)
-declare %private function search:results($model as map(*)) as map(*) {
+declare %private function search:search($model as map(*)) as map(*) {
     let $queryMap := search:prepare-search-string()
     let $results := search:query(map:new(($queryMap, $model)))
     return
-        map:new(($queryMap, map:entry('search-results', $results)))
+        map:new(($queryMap, $model, map:entry('search-results', $results)))
 };  
 
 (:~
  : Search results and other goodies for the list view pages 
 ~:)
-declare %private function search:lists($model as map(*)) as map(*) {
+declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
     let $search-results := 
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
