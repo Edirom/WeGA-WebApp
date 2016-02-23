@@ -249,14 +249,14 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                 switch($size)
                 case 'thumb' case 'small' return 
                     switch($sex)
-                    case 'f' return core:link-to-current-app('$resources/img/icons/icon_person_frau.png')
-                    case 'm' return core:link-to-current-app('$resources/img/icons/icon_person_mann.png')
-                    default return core:link-to-current-app('$resources/img/icons/icon_persons.png')
+                    case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau.png')
+                    case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
+                    default return core:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
-                    case 'f' return core:link-to-current-app('$resources/img/icons/icon_person_frau_gross.png')
-                    case 'm' return core:link-to-current-app('$resources/img/icons/icon_person_mann_gross.png')
-                    default return core:link-to-current-app('$resources/img/icons/icon_person_unbekannt_gross.png')
+                    case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
+                    case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
+                    default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }
 };
