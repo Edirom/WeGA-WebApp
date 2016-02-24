@@ -812,7 +812,8 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $dnbContent := wega-util:grabExternalResource('dnb', query:get-gnd($model('doc')), ())
+        let $gnd := query:get-gnd($model('doc'))
+        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, ())
 (:        let $log := util:log-system-out($dnbContent//rdf:Description/gndo:preferredNameForThePerson/string()):)
         return
             map {
@@ -821,7 +822,9 @@ declare
                 'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
                 'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
                 'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/string(),
-                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/string()
+                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/string(),
+                'lang' := $lang,
+                'dnbURL' := config:get-option('dnb') || $gnd
             }
 };
 

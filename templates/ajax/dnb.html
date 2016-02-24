@@ -1,5 +1,5 @@
 <div data-template="app:dnb">
-    <h2>Angaben aus der DNB</h2>
+    <h2 data-template="lang:translate">infoFromDNB</h2>
     <dl>
         <dt data-template="lang:translate">pnd_name</dt>
         <dd data-template="app:print" data-template-key="dnbName">Ein Name</dd>
@@ -25,5 +25,6 @@
             <span data-template="app:print" data-template-key="dnbOtherName">Musiker</span>
         </dd>
     </dl>
-    <p>Zu verknüpfter Literatur und weiteren Informationen siehe den vollständigen Eintrag in der Deutschen Nationalbibliothek.</p>
+    <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Zu verknüpfter Literatur und weiteren Informationen siehe den <a data-template="app:set-attr" data-template-attr="href" data-template-key="dnbURL">vollständigen Eintrag</a> in der Deutschen Nationalbibliothek.</p>
+    <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">For associated publications and further information please visit the <a data-template="app:set-attr" data-template-attr="href" data-template-key="dnbURL">complete entry</a> at the German National Library.</p>
 </div>
