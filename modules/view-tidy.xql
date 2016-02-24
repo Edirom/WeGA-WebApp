@@ -43,6 +43,9 @@ declare function local:tidy-attr($node as node()) as node()? {
         
         else if(starts-with($node, '$link')) then 
             attribute { node-name($node) } {controller:resolve-link(data($node), $lang)}
+
+        else if(starts-with($node, '$dev')) then 
+            attribute { node-name($node) } {core:link-to-current-app(substring($node, 2))}
             
         else $node
 };

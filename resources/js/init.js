@@ -353,7 +353,7 @@ function initFacsimile() {
 
 function jump2diary(dateText) {
     var lang = getLanguage();
-    var url = "http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
+    var url = $('#datePicker').attr('data-dev-url') + "?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
     $.getJSON(url, function(data) {
         self.location=data.url + '.html';
     })
