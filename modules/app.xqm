@@ -845,9 +845,15 @@ declare
                 attribute class {'obfuscate-email'},
                 normalize-space($model('addrLine'))
             }
+        case 'telephone' return (
+            lang:get-language-string('tel',$lang) || ': ',
+            element a {
+                attribute href {'tel:' || replace(normalize-space($model('addrLine')), '-|–|(\(0\))|\s', '')},
+                normalize-space($model('addrLine'))
+            }
+        )
         default return (
             switch ($model('addrLine')/@n)
-            case 'telephone' return lang:get-language-string('tel',$lang) || ': '
             case 'fax' return lang:get-language-string('fax',$lang) || ': '
             default return (),
             normalize-space($model('addrLine'))
