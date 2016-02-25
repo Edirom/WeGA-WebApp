@@ -687,10 +687,10 @@ declare function app:person-beacon($node as node(), $model as map(*)) as map(*) 
 
 declare 
     %templates:default("lang", "en")
-    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)? {
-        let $bio := wega-util:transform($model('doc')//tei:note[@type="bioSummary"], doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
+        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event), doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
         return
-            if($bio instance of element()) then $bio
+            if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
                 element {name($node)} {
                     $node/@*,

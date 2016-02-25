@@ -9,11 +9,8 @@
     <xsl:preserve-space
         elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date"/>
     
-    <xsl:param name="eventID" as="xs:string"/>
-
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
-
 
     <xsl:template match="tei:p">
         <xsl:element name="p">
@@ -25,20 +22,33 @@
     <xsl:template match="tei:note[@type='bioSummary']" priority="1">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
+            <xsl:choose>
+                <xsl:when test="tei:p">
+                    <xsl:apply-templates/>
+                </xsl:when>
+                <xsl:when test="tei:list">
+                    <xsl:apply-templates/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="p">
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     
     <xsl:template match="tei:event">
         <xsl:element name="div">
-            <xsl:attribute name="id" select="$eventID"/>
+            <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
     <xsl:template match="tei:head[parent::tei:event]" priority="0.7">
-        <xsl:element name="h2">
+        <xsl:element name="h3">
             <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
