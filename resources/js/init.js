@@ -471,11 +471,12 @@ function addSearchOption(that)
 }
 
 $('#create-newID').on('click', function() {
+    $('#newID-result span').hide();
     $('#newID-result i').show();
     var docType = $('#newID-select :selected').val();
     $.getJSON('../dev/api.xql?func=get-new-id&format=json&docType='+docType, function(response) {
         $('#newID-result span').html(response);
+        $('#newID-result i').hide();
+        $('#newID-result span').show();
     });
-    $('#newID-result i').hide();
-    $('#newID-result span').show();
 });
