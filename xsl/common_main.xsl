@@ -374,6 +374,7 @@
             <xsl:otherwise>
                 <xsl:element name="ul">
                     <xsl:apply-templates select="@xml:id"/>
+                    <xsl:attribute name="class" select="'tei_list'"/>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:otherwise>
