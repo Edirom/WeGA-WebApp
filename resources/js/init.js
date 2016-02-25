@@ -112,17 +112,18 @@ function activateTab() {
 
 // create popovers for links
 $('a.persons').on('click', function() {
+    var popoverClass =  "popover-" + $.now();
     $(this).popover({
         "html": true,
         "trigger": "manual",
         'placement': 'auto top',
+        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
         'title': function() {
             return 'Loading …'
         },
         "content": function(){
-            var div_id =  "tmp-id-" + $.now();
             link = $(this).attr('href');
-            return details_in_popup(link, div_id);
+            return details_in_popup(link, popoverClass);
         }
     });
     $(this).popover('show')
@@ -200,21 +201,21 @@ function updatePage(params) {
 }
 
 // helper function to grab AJAX content for popovers
-function details_in_popup(link, div_id){
+function details_in_popup(link, popoverClass){
     $.ajax({
         url: link,
         success: function(response){
             var source = $('<div>' + response + '</div>');
-            $('#'+div_id).html(source.find('#meta').html());
-            $('.popover-title').html('<a href="' + link + '">' + source.find('h1').text() + '</a>');
-            $('.popover-content div.iconographie').hide();
-            $('.popover-content div.basicdata h2').hide();
+            $('.'+popoverClass+' .popover-content').html(source.find('#meta').html());
+            $('.'+popoverClass+' .popover-title').html('<a href="' + link + '">' + source.find('h1').text() + '</a>');
+            $('.'+popoverClass+' div.iconographie').hide();
+            $('.'+popoverClass+' div.basicdata h2').hide();
             // remove col-classes
-            $('.popover-content div.portrait').attr('class', 'portrait');
-            $('.popover-content div.basicdata').attr('class', 'basicdata');
+            $('.'+popoverClass+' div.portrait').attr('class', 'portrait');
+            $('.'+popoverClass+' div.basicdata').attr('class', 'basicdata');
         }
     });
-    return '<div id="'+ div_id +'"><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
+    return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
 }
 
 /* only needed after ajax calls?!? --> see later */
