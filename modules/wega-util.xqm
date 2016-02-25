@@ -184,3 +184,14 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
         core:logToFile('debug', 'stopwatch (' || function-name($func) || '): ' || string(seconds-from-duration(util:system-time() - $startTime)) || $message)
     )
 };
+
+declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
+    typeswitch($node)
+    case element() return 
+        switch(local-name($node))
+        case 'del' case 'note' return ()
+        default return $node/child::node() ! wega-util:txtFromTEI(.)
+    case text() return $node
+    case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
+    default return ()
+};
