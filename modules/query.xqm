@@ -16,7 +16,7 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace functx="http://www.functx.com";
 
 (:~
- : Print the regularised name for a given person ID
+ : Print the regularised name for a given person or place ID
  :
  : @author Peter Stadler
  : @return xs:string
@@ -28,7 +28,7 @@ declare function query:get-reg-name($key as xs:string) as xs:string {
     let $regName := collection('/db/persons')//id($key)/tei:persName[@type='reg']
     return wega:cleanString($regName)
     :)
-    let $dictionary := norm:get-norm-doc('persons') 
+    let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($key)) 
     let $response := $dictionary//@docID[. = $key]
     return 
         if(exists($response)) then $response/parent::norm:entry/text()
@@ -215,4 +215,12 @@ declare function query:correspondence-partners($id as xs:string) as map(*) {
         return
             map:entry($partnerID, count($i))
     )
+};
+
+declare function query:place-of-diary-day($diaryDay as document-node()) as map(*) {
+    let $placeIDs := tokenize($diaryDay/tei:ab/@where, '\s+')[config:is-place(.)]
+    return
+        map:new(
+            $placeIDs ! map:entry(., query:get-reg-name(.))
+        )
 };

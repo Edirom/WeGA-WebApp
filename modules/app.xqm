@@ -886,7 +886,18 @@ declare
             typeswitch($title-element)
             case element(tei:title) return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
             case element(mei:title) return str:normalize-space($title-element)
-            case element(tei:date) return if($title-element castable as xs:date) then date:strfdate(xs:date($title-element), $lang, $dateFormat) else ()
+            case element(tei:date) return 
+                if($title-element castable as xs:date) then
+                    let $diaryPlaces := query:place-of-diary-day($model('doc'))
+                    return (
+                        date:strfdate(xs:date($title-element), $lang, $dateFormat),
+                        switch(count(map:keys($diaryPlaces)))
+                        case 0 return ()
+                        case 1 return ' (' || map:get($diaryPlaces, map:keys($diaryPlaces)[1]) || ')'
+                        case 2 return ' (' || map:get($diaryPlaces, map:keys($diaryPlaces)[1]) || ', ' || map:get($diaryPlaces, map:keys($diaryPlaces)[2]) || ')'
+                        default return ' (' || map:get($diaryPlaces, map:keys($diaryPlaces)[1]) || ', …, ' || map:get($diaryPlaces, map:keys($diaryPlaces)[last()]) || ')'
+                    )
+                else ()
             default return wega-util:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
         return
             typeswitch($title)
