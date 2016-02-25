@@ -177,7 +177,10 @@ function active_facets() {
 /*        console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
-    if($('#query-string').length) {
+    if($('#query-input').val().length) {
+        params['facets'].push('q=' + $('#query-input').val());
+    }
+    else if($('#query-string').length) {
         params['facets'].push('q=' + $('#query-string').text());
     }
     return params;
