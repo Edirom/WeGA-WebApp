@@ -52,6 +52,7 @@
     <xsl:template name="createMsIdentifier">
         <xsl:param name="node"/>
         <xsl:element name="h4">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>
         <xsl:element name="p">
@@ -90,6 +91,7 @@
 
     <xsl:template match="tei:physDesc">
         <xsl:element name="h4">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('physicalDescription', $lang)"/>
         </xsl:element>
         <xsl:element name="ul">
@@ -103,6 +105,7 @@
 
     <xsl:template match="tei:history">
         <xsl:element name="h4">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/>
         </xsl:element>
         <xsl:element name="ul">
@@ -116,6 +119,7 @@
 
     <xsl:template match="tei:additional">
         <xsl:element name="h4">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('prints', $lang)"/>
         </xsl:element>
         <xsl:apply-templates/>

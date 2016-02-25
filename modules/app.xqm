@@ -1004,16 +1004,24 @@ declare
 :)
 declare 
     %templates:default("lang", "en")
-    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) {
-        if(functx:all-whitespace($model('doc')//tei:note[@type='summary'])) then () 
-        else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+        let $summary := wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        return
+            if(every $i in $summary satisfies $i instance of element()) then $summary
+            else element p {
+                $summary
+            }
 };
 
 declare 
     %templates:default("lang", "en")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) {
-        if(functx:all-whitespace($model('doc')//tei:incipit)) then () 
-        else wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        let $incipit := wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        return 
+            if(every $i in $incipit satisfies $i instance of element()) then $incipit
+            else element p {
+                $incipit
+            }
 };
 
 (:~
