@@ -29,9 +29,6 @@ let $exist-vars := map {
 
 return (
 
-(:if($isUtil or $isFunc) then controller:forward-ajax($exist-vars):)
-
-
 (: Wenn kein Apache vorgeschaltet ist, dann hier die Verzeichnisse css, jscript, pix auf den eXist-Jetty durchgeben :)
 if(contains($exist:path, '/$resources/')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -40,14 +37,6 @@ if(contains($exist:path, '/$resources/')) then
         </forward>
     </dispatch>
 
-(: other (during development) resources are loaded from the app's components collection :)
-(:else if (contains($exist:path, '/$components/')) then 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{concat($exist:controller, '/components/', substring-after($exist:path, '/$components/'))}">
-            <set-header name="Cache-Control" value="max-age=3600, must-revalidate"/>
-        </forward>
-    </dispatch>:)
-    
 else if(starts-with($exist:path, '/digilib/')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <ignore/>
@@ -69,7 +58,7 @@ else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
     controller:redirect-absolute('/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
-    controller:forward-html('/templates/index.html', $exist-vars)
+    controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docType', 'home'))))
 
 (:
  : Virtual directory structure for persons:

@@ -28,10 +28,6 @@ import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 
-declare function app:page-title($node as node(), $model as map(*)) as element(title) {
-    <title>{$model('page-title')}</title>
-};
-
 (:
  : ****************************
  : Generic functions

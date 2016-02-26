@@ -224,3 +224,15 @@ declare function query:place-of-diary-day($diaryDay as document-node()) as map(*
             $placeIDs ! map:entry(., query:get-reg-name(.))
         )
 };
+
+(:~
+ : Extract all contributors from the document
+~:)
+declare function query:contributors($doc as document-node()?) as xs:string* {
+    let $contributors := 
+        $doc//tei:fileDesc/tei:titleStmt/(tei:author | tei:editor) |
+        $doc//tei:respStmt/tei:name |
+        $doc//mei:respStmt/mei:persName
+    return
+        $contributors ! data(.)
+};

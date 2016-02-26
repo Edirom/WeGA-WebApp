@@ -1,9 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head data-template="html-meta:metadata">
         <meta charset="UTF-8"/>
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title data-template="app:page-title">Carl-Maria-von-Weber-Gesamtausgabe</title>
+        <title data-template="app:print" data-template-key="meta-page-title">Carl-Maria-von-Weber-Gesamtausgabe</title>
+        
+        <meta name="DC.title" data-template="app:set-attr" data-template-attr="content" data-template-key="meta-page-title"/>
+        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
+        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType"/>
+        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT"/>
+        <meta name="DC.contributor" data-template="html-meta:each-meta" data-template-key="DC.contributor"/>
+        <meta name="DC.creator" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
+        <meta name="DC.date" scheme="DCTERMS.W3CDTF" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.date"/>
+        <meta name="DC.identifier" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
+        <meta name="DC.description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
+        <meta name="description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
+        <meta name="DC.subject" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.subject"/>
+        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
+        <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.rights"/>
+        <meta name="robots" content="noimageindex"/>
+        
+        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
+        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
 
         <link rel="stylesheet" type="text/css" href="$resources/lib/bootstrap/dist/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css"/>

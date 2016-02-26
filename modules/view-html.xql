@@ -18,6 +18,7 @@ import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
+import module namespace html-meta="http://xquery.weber-gesamtausgabe.de/modules/html-meta" at "html-meta.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 
@@ -29,15 +30,11 @@ let $config := map {
 }
 
 let $model := 
-    typeswitch (request:get-attribute('docID'))
-    case xs:string return 
-        map {
-            'docID' := request:get-attribute('docID'),
-            'docType' := request:get-attribute('docType'),
-            'doc' := core:doc(request:get-attribute('docID')),
-            'page-title' := 'Eine Seite aus der WeGA'
-        }
-    default return map:new()
+    map {
+        'docID' := request:get-attribute('docID'),
+        'docType' := request:get-attribute('docType'),
+        'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()}
+    }
     
 (:
  : We have to provide a lookup function to templates:apply to help it
@@ -46,11 +43,8 @@ let $model :=
  : below does see them.
  :)
 let $lookup := function($functionName as xs:string, $arity as xs:int) {
-    try {
-        function-lookup(xs:QName($functionName), $arity)
-    } catch * {
-        ()
-    }
+    try { function-lookup(xs:QName($functionName), $arity) } 
+    catch * {()}
 }
 (:
  : The HTML is passed in the request from the controller.
