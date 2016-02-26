@@ -9,12 +9,14 @@
         elements="tei:seg tei:hi tei:ab tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:date tei:add tei:head"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
-    <!-- <xsl:param name="pageBreak"/> -->
+    <xsl:include href="apparatus.xsl"/>
+    
     <xsl:template match="tei:ab">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="'tableLeft'"/>
             <xsl:apply-templates/>
+            <xsl:call-template name="createApparatus"/>
         </xsl:element>
     </xsl:template>
     <xsl:template match="tei:pb" priority="1">
@@ -61,8 +63,7 @@
         <!--<xsl:text> </xsl:text>--> <!-- Überflüssiges Leerzeichen - wofür wurde das benötigt? -->
     </xsl:template>
     <xsl:template match="tei:measure[@type='expense']" priority="0.5"/>
-    <xsl:template match="tei:measure[@rend='inline' or @type='income' or @type='rebooking']"
-        priority="1">
+    <xsl:template match="tei:measure[@rend='inline' or @type='income' or @type='rebooking']" priority="1">
         <xsl:variable name="counter">
             <xsl:number level="any"/>
         </xsl:variable>
