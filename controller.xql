@@ -58,7 +58,7 @@ else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
     controller:redirect-absolute('/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
-    controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docType', 'home'))))
+    controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docID', 'home'))))
 
 (:
  : Virtual directory structure for persons:

@@ -47,7 +47,8 @@ declare function html-meta:each-meta($node as node(), $model as map(*), $key as 
  : Helper function for creating the page description
 ~:)
 declare %private function html-meta:DC.description($model as map(*), $lang as xs:string) as xs:string? {
-    if($model('docID') = 'indices') then 'Carl-Maria-von-Weber-Gesamtausgabe – ' || lang:get-language-string('metaDescriptionIndex-' || $model('docType'), $lang)
+    if($model('docID') = 'indices') then lang:get-language-string('metaDescriptionIndex-' || $model('docType'), $lang)
+    else if($model('docID') = 'home') then lang:get-language-string('metaDescriptionIndex', $lang)
     else if(config:get-doctype-by-id($model('docID'))) then 
         switch($model('docType'))
         case 'persons' return 
@@ -77,6 +78,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
 ~:)
 declare %private function html-meta:page-title($model as map(*), $lang as xs:string) as xs:string? {
     if($model('docID') = 'indices') then 'Carl-Maria-von-Weber-Gesamtausgabe – ' || lang:get-language-string('metaTitleIndex-' || $model('docType'), $lang)
+    else if($model('docID') = 'home') then lang:get-language-string('metaTitleIndex-home', $lang)
     else if(config:get-doctype-by-id($model('docID'))) then 
         switch($model('docType'))
         case 'persons' return concat(str:printFornameSurname(query:get-reg-name($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
@@ -91,6 +93,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
 ~:)
 declare %private function html-meta:DC.subject($model as map(*), $lang as xs:string) as xs:string? {
     if($model('docID') = 'indices') then 'Index'
+    else if($model('docID') = 'home') then 'Carl Maria von Weber; Digitale Edition; Gesamtausgabe; Collected Works; Digital Edition'
     else if(config:get-doctype-by-id($model('docID'))) then 
         switch($model('docType'))
         case 'persons' return lang:get-language-string('bio', $lang)
@@ -108,6 +111,7 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
 ~:)
 declare %private function html-meta:DC.rights($model as map(*)) as xs:string? {
     if($model('docID') = 'indices') then 'Copyright © 2016, Carl-Maria-von-Weber-Gesamtausgabe, Detmold, Germany'
+    else if($model('docID') = 'home') then 'https://creativecommons.org/licenses/by/4.0/'
     else if(config:get-doctype-by-id($model('docID'))) then 
         switch($model('docType'))
         case 'persons' case 'writings' case 'news' case 'var' return 'https://creativecommons.org/licenses/by/4.0/'
@@ -120,7 +124,7 @@ declare %private function html-meta:DC.rights($model as map(*)) as xs:string? {
  : Helper function for collecting creator information
 ~:)
 declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
-    if($model('docID') = 'indices') then 'Carl-Maria-von-Weber-Gesamtausgabe'
+    if($model('docID') = ('indices', 'home')) then 'Carl-Maria-von-Weber-Gesamtausgabe'
     else if(config:get-doctype-by-id($model('docID'))) then map:get(config:get-svn-props($model('docID')), 'author')
     else ()
 };
@@ -129,7 +133,7 @@ declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
  : Helper function for collecting date information
 ~:)
 declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
-    if($model('docID') = 'indices') then config:getDateTimeOfLastDBUpdate() cast as xs:string
+    if($model('docID') = ('indices', 'home')) then config:getDateTimeOfLastDBUpdate() cast as xs:string
     else if(config:get-doctype-by-id($model('docID'))) then map:get(config:get-svn-props($model('docID')), 'dateTime')
     else ()
 };
@@ -139,6 +143,7 @@ declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
 ~:)
 declare %private function html-meta:DC.identifier($model as map(*)) as xs:string? {
     if($model('docID') = 'indices') then request:get-url()
+    else if($model('docID') = 'home') then 'http://weber-gesamtausgabe.de'
     else if(config:get-doctype-by-id($model('docID'))) then core:permalink($model('docID'))
     else ()
 };
