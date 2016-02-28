@@ -9,24 +9,22 @@ Since version 1.2 the WeGA-WebApp is designed as an eXist app package and should
 Prerequisites
 -------------
 
-1. [eXist-db](http://exist-db.org/) v2.x with support for XQuery 3.0
-2. [Digilib Image Server](http://developer.berlios.de/projects/digilib/) v1.8.3: All processing of images (except icons under `/resources/pix`) is done via Digilib. Well, if you don't want images, you don't need Digilib. Also, the exact version shouldn't be crucial.
+A recent [eXist-db](http://exist-db.org/) with support for XQuery 3.1 (!)
 
 
 Quick start guide
 -----------------
 
-If you have a running eXist 2.x database you can simply install the WeGA-data-samples.xar  as well as the WeGA-WebApp.xar from the [Release section](https://github.com/Edirom/WeGA-WebApp/releases) via the eXist-Dashboard.
+If you have a running eXist database you can simply install the WeGA-data-samples.xar  as well as the WeGA-WebApp.xar from the [Release section](https://github.com/Edirom/WeGA-WebApp/releases) via the eXist-Dashboard.
 
-### Dependencies
+### Dependencies on other eXist apps/libs
 * functx (http://www.functx.com), installable via dashboard
-* xqjson (http://xqilla.sourceforge.net/lib/xqjson), installable via dashboard
 
 
 
 Branches
 --------
-* `master` our stable branch, based on eXist 2.x
+* `master` our stable branch, i.e. the current release version
 * `develop` our development branch
 * other branches are experimental and and will get merged (or just some features) into develop at some point
 
@@ -34,10 +32,10 @@ Branches
 Documentation
 -------------
 
-(Sparse) Documentation for the master branch can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki).
+(Sparse) Documentation can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki) as well as the [changelog](https://github.com/Edirom/WeGA-WebApp/wiki/Changelog).
 
 
 License
 -------
 
-This work is available under dual license: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause) and [Creative Commons Attribution 3.0 Unported License (CC BY 3.0)](http://creativecommons.org/licenses/by/3.0/)
+This work is available under dual license: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause) and [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
