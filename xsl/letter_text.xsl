@@ -111,24 +111,18 @@
         </xsl:element>
     </xsl:template>
    
-    <xsl:template match="tei:note[@type='summary']" priority="1">
+    <xsl:template match="tei:note[@type=('summary', 'editorial')]" priority="1">
         <xsl:element name="div">
-            <!--            <xsl:attribute name="id" select="'summary'"/>-->
-            <xsl:if test="normalize-space(.) != ''">
-                <!--<xsl:element name="h3">
-                    <xsl:value-of select="wega:getLanguageString('summary', $lang)"/>
-                </xsl:element>-->
-                <xsl:choose>
-                    <xsl:when test="./tei:p">
+            <xsl:choose>
+                <xsl:when test="tei:p">
+                    <xsl:apply-templates/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="p">
                         <xsl:apply-templates/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="p">
-                            <xsl:apply-templates/>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
