@@ -4,10 +4,11 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-force-correspDesc";
 
-import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 declare function ct:create-header() as element(tei:teiHeader) {
     <teiHeader xmlns="http://www.tei-c.org/ns/1.0">
@@ -73,7 +74,7 @@ declare function ct:create-correspAction-received($correspDesc as element(tei:co
 
 declare function ct:participant($input as element()) as element() {
     let $id := $input//@key[1]
-    let $gnd := if($id) then wega:getGND(string($id)) else ()
+    let $gnd := if($id) then query:get-gnd(string($id)) else ()
     return 
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
             if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd} else (),
@@ -105,4 +106,4 @@ declare function ct:corresp-list() as element(tei:TEI) {
     </TEI>
 };
 
-core:cache-doc(core:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'))
+core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'))

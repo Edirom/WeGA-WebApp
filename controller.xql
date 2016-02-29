@@ -101,6 +101,14 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
         </error-handler>
     </dispatch>
 
+(:~
+ : The CMIF Output of the letters (has to go before the generic *.xml rule) 
+~:)
+else if ($exist:resource = 'correspDesc.xml') then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/correspDesc.xql'}"/>
+    </dispatch>
+
 (:
  : XML-Resources
  :)
