@@ -522,6 +522,13 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xsl:template match="tei:postscript">
+        <xsl:element name="div">
+            <xsl:attribute name="class">tei_postscript</xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- Default template for TEI elements -->
     <!-- will be turned into html:span with class tei_elementName_attributeRendValue -->

@@ -89,9 +89,6 @@
                         <xsl:text> noIndent</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:if test="parent::node()/name() = 'postscript'">
-                    <xsl:text> teiLetter_postscript</xsl:text>
-                </xsl:if>
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
