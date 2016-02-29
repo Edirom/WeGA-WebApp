@@ -41,16 +41,19 @@
       <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
       <xsl:text>"</xsl:text>
-      <xsl:choose>
-         <xsl:when test="count($textTokensBetween) gt 6">
-            <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
-            <xsl:text> … </xsl:text>
-            <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
-         </xsl:otherwise>
-      </xsl:choose>
+      <xsl:element name="span">
+         <xsl:attribute name="class" select="'tei_lemma'"/>
+         <xsl:choose>
+            <xsl:when test="count($textTokensBetween) gt 6">
+               <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
+               <xsl:text> … </xsl:text>
+               <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:element>
       <xsl:text>": </xsl:text>
    </xsl:template>
    

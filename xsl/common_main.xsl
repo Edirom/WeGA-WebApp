@@ -57,30 +57,14 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="./descendant::*[local-name(.) = $blockLevelElements]"/>
-            <xsl:otherwise>
-               <xsl:element name="a">
-                  <xsl:attribute name="class">noteMarker</xsl:attribute>
-                  <xsl:attribute name="data-toggle">popover</xsl:attribute>
-                  <xsl:attribute name="data-trigger">focus</xsl:attribute>
-<!--                  <xsl:attribute name="title" select="normalize-space(@type)"/>-->
-                  <xsl:attribute name="tabindex">0</xsl:attribute>
-                  <xsl:attribute name="data-ref" select="$id"/>
-                  <!--<xsl:attribute name="id">
-                     <xsl:value-of select="concat('noteMarker_',$no)"/>
-                  </xsl:attribute>-->
-                  <xsl:text>*</xsl:text>
-                </xsl:element>
-                <!--<xsl:element name="span">
-                    <xsl:attribute name="class" select="'inlineNote'"/>
-                    <xsl:attribute name="id">
-                        <xsl:value-of select="concat('note_',$no)"/>
-                    </xsl:attribute>
-                    <xsl:apply-templates/>
-                </xsl:element>-->
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:element name="a">
+            <xsl:attribute name="class">noteMarker</xsl:attribute>
+            <xsl:attribute name="data-toggle">popover</xsl:attribute>
+            <xsl:attribute name="data-trigger">focus</xsl:attribute>
+            <xsl:attribute name="tabindex">0</xsl:attribute>
+            <xsl:attribute name="data-ref" select="$id"/>
+            <xsl:text>*</xsl:text>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template name="createEndnotes">
