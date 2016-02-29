@@ -42,14 +42,14 @@ declare
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
         let $portraitindex-images := 
-            if(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) then img:portraitindex-images($model, $lang)
+            if(count(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(map:keys($model('beaconMap'))[contains(., 'Wikipedia-Personenartikel')]) then img:wikipedia-images($model, $lang)
+            if(count(map:keys($model('beaconMap'))[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
-            if(map:keys($model('beaconMap'))[contains(., 'GND-Zuordnung')]) then img:tripota-images($model, $lang)
-            else ()
+            if(count(map:keys($model('beaconMap'))[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
+            else () 
         return
             map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
 };
