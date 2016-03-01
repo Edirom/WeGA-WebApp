@@ -187,7 +187,7 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
         for $doc in core:getOrCreateColl('works', 'indices', true())
         let $docID := $doc/mei:mei/data(@xml:id)
 (:        let $normDate := $doc//mei:seriesStmt/mei:title[@level='s']/xs:int(@n):)
-        let $title := str:normalize-space(query:get-title-element($doc)[1])
+        let $title := str:normalize-space(query:get-title-element($doc, 'de')[1])
         let $n := $doc//mei:altId[@type = 'WeV']
         (:let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype):) 
         (:let $sortCategory03 := $doc//mei:altId[@type = 'WeV']/xs:int(@n):) 

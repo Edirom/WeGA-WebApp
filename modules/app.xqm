@@ -874,7 +874,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:document-title($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $title-element := query:get-title-element($model('doc'))[1]
+        let $title-element := query:get-title-element($model('doc'), $lang)
         let $dateFormat := if ($lang eq 'en')
             then '%A, %B %d, %Y'
             else '%A, %d. %B %Y'
