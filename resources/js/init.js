@@ -342,6 +342,9 @@ $('#facsimile-tab').on('click', function() {
 /* Load portraits via AJAX on index pages */
 $('.searchResults .portrait').loadPortrait();
 
+/* Put focus on text inputs */
+$('#query-input').focus();
+
 function initFacsimile() {
     var map;
     var iiifLayers = {};
