@@ -1085,14 +1085,14 @@ declare
     %templates:default("lang", "en")
     function app:print-letter-context($node as node(), $model as map(*), $lang as xs:string) as item()* {
         let $letter := core:doc($model('letter-norm-entry')('docID'))
-        let $partner := core:doc($model('letter-norm-entry')('partnerID'))
+        let $partner := try { core:doc($model('letter-norm-entry')('partnerID')) } catch * {()}
         return (
             app:createDocLink($letter, $model('letter-norm-entry')('norm-date'), $lang, ()), 
             ": ",
             lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
             " ",
             if($partner) then app:createDocLink($partner, query:get-reg-name($model('letter-norm-entry')('partnerID')), $lang, ())
-            else 'unknown'
+            else lang:get-language-string('unknown', $lang)
         )
 };
 
