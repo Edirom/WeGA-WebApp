@@ -111,21 +111,6 @@
         </xsl:element>
     </xsl:template>
    
-    <xsl:template match="tei:note[@type=('summary', 'editorial')]" priority="1">
-        <xsl:element name="div">
-            <xsl:choose>
-                <xsl:when test="tei:p">
-                    <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:element name="p">
-                        <xsl:apply-templates/>
-                    </xsl:element>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:dateline[ancestor::tei:opener]">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
@@ -209,17 +194,17 @@
         </xsl:choose>
     </xsl:template>
    
-    <xsl:template match="tei:rdg"/>
+    <!--<xsl:template match="tei:rdg"/>
     <xsl:template match="tei:lem">
         <xsl:apply-templates/>
-    </xsl:template>
+    </xsl:template>-->
    
-    <xsl:template match="tei:app">
+    <!--<xsl:template match="tei:app">
         <xsl:variable name="appInlineID">
             <xsl:number level="any"/>
         </xsl:variable>
         <xsl:choose>
-            <!--    tei:rdg[@cause='kein_Absatz'] nicht existent in den Daten. Dieser Zweig kann entfallen.       -->
+            <!-\-    tei:rdg[@cause='kein_Absatz'] nicht existent in den Daten. Dieser Zweig kann entfallen.       -\->
             <xsl:when test="./tei:rdg[@cause='kein_Absatz']">
                 <span class="teiLetter_noteDefinitionMark" onmouseout="UnTip()">
                     <xsl:attribute name="onmouseover">
@@ -249,17 +234,17 @@
                     <xsl:attribute name="id">
                         <xsl:value-of select="concat('app_',$appInlineID)"/>
                     </xsl:attribute>
-                    <xsl:text>Lesart(en):&#160;</xsl:text>
+                    <xsl:text>Lesart(en): </xsl:text>
                     <xsl:for-each select="./tei:rdg">
                         <xsl:value-of select="normalize-space(.)"/>
                         <xsl:if test="position()!=last()">
-                            <xsl:text>;&#160;</xsl:text>
+                            <xsl:text>; </xsl:text>
                         </xsl:if>
                     </xsl:for-each>
                 </span>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template>-->
 
     <xsl:template match="tei:bibl">
         <!--        <p class="teiLetter_bibl">-->
@@ -276,28 +261,6 @@
         <!--        </p>-->
     </xsl:template>
    
-    <xsl:template match="tei:incipit">
-        <xsl:element name="div">
-            <!--<xsl:attribute name="id" select="'incipit'"/>-->
-            <xsl:if test="normalize-space(.) != ''">
-                <!--<xsl:element name="h3">
-                    <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
-                </xsl:element>-->
-                <xsl:choose>
-                    <xsl:when test="./tei:p">
-                        <xsl:apply-templates/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="p">
-                            <xsl:text>"</xsl:text>
-                            <xsl:apply-templates/>
-                            <xsl:text> …"</xsl:text>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
-        </xsl:element>
-    </xsl:template>
     <!--<xsl:template match="tei:title[@level='a']">
         <xsl:apply-templates/>
     </xsl:template>-->

@@ -1,8 +1,4 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
-    version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     
     <xsl:strip-space elements="*"/>
@@ -139,6 +135,44 @@
     
     <xsl:template match="tei:creation">
         <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:note[@type=('summary', 'editorial')]" priority="1">
+        <xsl:element name="div">
+            <xsl:choose>
+                <xsl:when test="tei:p">
+                    <xsl:apply-templates/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="p">
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:incipit">
+        <xsl:element name="div">
+            <!--<xsl:attribute name="id" select="'incipit'"/>-->
+            <xsl:if test="normalize-space(.) != ''">
+                <!--<xsl:element name="h3">
+                    <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
+                </xsl:element>-->
+                <xsl:choose>
+                    <xsl:when test="./tei:p">
+                        <xsl:apply-templates/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:element name="p">
+                            <xsl:text>"</xsl:text>
+                            <xsl:apply-templates/>
+                            <xsl:text> …"</xsl:text>
+                        </xsl:element>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:element>
     </xsl:template>
 
     <!--<xsl:template match="tei:biblStruct[parent::tei:listBibl]">

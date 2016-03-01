@@ -43,7 +43,7 @@ declare
         let $tei := <tei:body>{subsequence($hits, $rand, $hitsPerPage) ! <tei:div><tei:head>Beispiel aus {./ancestor::tei:TEI/data(@xml:id)} (<tei:rs key="{./ancestor::tei:TEI/data(@xml:id)}" type="letter">zum Brief</tei:rs>)</tei:head>{.}</tei:div>}</tei:body>
         return ( 
             <h2>{$node/parent::xhtml:div/data(@id)}</h2>,
-            wega-util:transform($tei, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+            wega-util:transform($tei, doc(concat($config:xsl-collection-path, '/letters.xsl')), config:get-xsl-params(()))
         )
 };
 

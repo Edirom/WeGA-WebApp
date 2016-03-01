@@ -84,7 +84,7 @@ declare function app:set-attr($node as node(), $model as map(*), $attr as xs:str
 };
 
 (:~
- : Simply print a value from the $model map
+ : Simply print the string value of $model($key)
  :
  : @author Peter Stadler
  :)
@@ -684,7 +684,7 @@ declare function app:person-beacon($node as node(), $model as map(*)) as map(*) 
 declare 
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
-        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event), doc(concat($config:xsl-collection-path, '/person_singleView.xsl')), config:get-xsl-params(()))
+        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
             if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
@@ -733,7 +733,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:wikipedia-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))/node()
         return 
             if(exists($wikiText)) then $wikiText
             else lang:get-language-string('failedToLoadExternalResource', $lang)
@@ -790,7 +790,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:adb-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $adbText := wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(()))/node()
+        let $adbText := wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))/node()
         return 
             if(exists($adbText)) then $adbText
             else lang:get-language-string('failedToLoadExternalResource', $lang)
@@ -799,7 +799,7 @@ declare
 declare 
     %templates:wrap
     function app:adb-disclaimer($node as node(), $model as map(*)) as element()? {
-        if($model('adbContent')//xhtml:html) then wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/person_wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
+        if($model('adbContent')//xhtml:html) then wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
         else ()
 };
 
@@ -916,9 +916,8 @@ declare
             } )
         let $xslt1 := 
             switch($docType)
-            case 'letters' return doc(concat($config:xsl-collection-path, '/letter_text.xsl'))
-            case 'news' return doc(concat($config:xsl-collection-path, '/news.xsl'))
-            case 'writings' return doc(concat($config:xsl-collection-path, '/doc_text.xsl'))
+            case 'letters' return doc(concat($config:xsl-collection-path, '/letters.xsl'))
+            case 'news' case 'writings' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
             case 'var' return doc(concat($config:xsl-collection-path, '/var.xsl'))
             default return ()
@@ -989,7 +988,7 @@ declare
     %templates:default("lang", "en")
     function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {
         typeswitch($model('textSource'))
-        case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/sourceDesc.xsl')), config:get-xsl-params(()))
+        case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         case element(tei:biblStruct) return bibl:printCitation($model('textSource'), 'p', $lang)
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
@@ -1001,7 +1000,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $summary := wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        let $summary := wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
             else element p {
@@ -1013,7 +1012,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $incipit := wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        let $incipit := wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
@@ -1025,7 +1024,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $generalRemark := wega-util:transform($model('doc')//tei:note[@type='editorial'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
+        let $generalRemark := wega-util:transform($model('doc')//tei:note[@type='editorial'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
             else element p {
@@ -1034,6 +1033,16 @@ declare
             }
 };
 
+declare 
+    %templates:default("lang", "en")
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as element(p) {
+        let $creation := wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        return 
+            element p {
+                if(exists($creation)) then $creation
+                else '–'
+            }
+};
 
 (:~
  : Query the letter context, i.e. preceding and following letters
