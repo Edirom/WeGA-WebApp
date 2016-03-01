@@ -345,6 +345,22 @@ $('.searchResults .portrait').loadPortrait();
 /* Put focus on text inputs */
 $('#query-input').focus();
 
+/* Umbruch der Teaserüberschriften abhängig von Textlänge */
+$('.teaser + h2 a').each(function(a,b) {
+    var string = $(b).text().trim();
+    var tokens = string.split(' ');
+    var i = 0;
+    var newText = '';
+    while (i < string.length / 3 ) {
+        var str = tokens.shift();
+        newText += str + " ";
+        i+=str.length;
+    }
+    newText += '<br/>'
+    newText += tokens.join(' ');
+    $(b).html(newText);
+})
+
 function initFacsimile() {
     var map;
     var iiifLayers = {};
