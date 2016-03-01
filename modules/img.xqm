@@ -26,9 +26,9 @@ import module namespace functx="http://www.functx.com";
 
 (:
 Person portraits
-thumb = 
-small = 
-large = 260x340
+thumb = x52
+small = x60
+large = x340
 :)
 
 
@@ -41,15 +41,21 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
+        let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
+            if(exists($model('beaconMap'))) then $model('beaconMap')
+            else try { 
+                wega-util:beacon-map(query:get-gnd($model('doc')))
+                }
+                catch * { map:new() } 
         let $portraitindex-images := 
-            if(count(map:keys($model('beaconMap'))[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
+            if(map:keys($beaconMap)[contains(., 'Portraitindex')]) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(count(map:keys($model('beaconMap'))[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
+            if(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
-            if(count(map:keys($model('beaconMap'))[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
-            else () 
+            if(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) then img:tripota-images($model, $lang)
+            else ()
         return
             map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
 };

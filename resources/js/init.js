@@ -65,6 +65,14 @@ $.fn.obfuscateEMail = function () {
     }
 }
 
+/* Load portraits via AJAX */
+$.fn.loadPortrait = function () {
+    $(this).each( function(a, b) {
+        var url = $(b).children('a').attr('href').replace('.html', '/portrait.html');
+        $(b).load(url + " a");
+    })
+};
+
 // remove popovers when clicking somewhere
 $('body').on('click', function (e) {
     $('[data-original-title]').each(function () {
@@ -289,6 +297,8 @@ function ajaxCall(container,url) {
                     ajaxCall(container,url);
                 }
             );
+            /* Load portraits via AJAX */
+            $('.searchResults .portrait').loadPortrait();
         }
     });
 };
@@ -328,6 +338,9 @@ $('#facsimile-tab').on('click', function() {
        }
    }, 500);
 });
+
+/* Load portraits via AJAX on index pages */
+$('.searchResults .portrait').loadPortrait();
 
 function initFacsimile() {
     var map;

@@ -54,7 +54,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="1"><http:header name="Connection" value="close"/></http:request>
+    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { wega-util:stopwatch(http:send-request#1, $req, string($url)) }
         catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
