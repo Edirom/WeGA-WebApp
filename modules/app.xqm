@@ -1066,7 +1066,8 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
                 'norm-date' := $norm-entry/text(),
                 'fromTo' := $fromTo,
                 'docID' := $norm-entry/data(@docID),
-                'partnerID' := $norm-entry/(@addresseeID,@authorID)[not(.=$authorID)]/data()
+                (: There may be multiple addressees or senders! :)
+                'partnerID' := $norm-entry/(@addresseeID,@authorID)[not(contains(.,$authorID))]/tokenize(., '\s+')[1]
             }
         else ()
     }
