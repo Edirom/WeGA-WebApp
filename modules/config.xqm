@@ -81,7 +81,7 @@ declare variable $config:wega-docTypes-inverse := map:new(
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
     if($config:isDevelopment) then () 
-    else (1810 to 1816, 1821 to 1823);
+    else (1811 to 1816, 1821 to 1823);
 
 
 (:~
