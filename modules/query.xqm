@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 (:~
  : Functions for querying data from the WeGA-data app 
@@ -217,12 +217,18 @@ declare function query:correspondence-partners($id as xs:string) as map(*) {
     )
 };
 
-declare function query:place-of-diary-day($diaryDay as document-node()) as map(*) {
+(:~
+ : Lookup the places of a diary entry
+ :
+ : @param $diaryDay the document with the diary entry 
+ : @return an array of strings with the canonical names of the places 
+~:)
+declare function query:place-of-diary-day($diaryDay as document-node()) as array(xs:string) {
     let $placeIDs := tokenize($diaryDay/tei:ab/@where, '\s+')[config:is-place(.)]
     return
-        map:new(
-            $placeIDs ! map:entry(., query:get-reg-name(.))
-        )
+        array {
+            $placeIDs ! query:get-reg-name(.)
+        }
 };
 
 (:~
