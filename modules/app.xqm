@@ -1003,9 +1003,10 @@ declare
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
         let $summary := wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
         return
-            if(every $i in $summary satisfies $i instance of element()) then $summary
+            if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
             else element p {
-                $summary
+                if(exists($summary)) then $summary
+                else '–'
             }
 };
 
@@ -1014,9 +1015,10 @@ declare
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
         let $incipit := wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
         return 
-            if(every $i in $incipit satisfies $i instance of element()) then $incipit
+            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
-                $incipit
+                if(exists($incipit)) then $incipit
+                else '–'
             }
 };
 
@@ -1025,7 +1027,7 @@ declare
     function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
         let $generalRemark := wega-util:transform($model('doc')//tei:note[@type='editorial'], doc(concat($config:xsl-collection-path, '/letter_text.xsl')), config:get-xsl-params(()))
         return 
-            if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element(p))) then $generalRemark
+            if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
             else element p {
                 if(exists($generalRemark)) then $generalRemark
                 else '–'
