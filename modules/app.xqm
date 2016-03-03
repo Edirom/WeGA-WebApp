@@ -891,7 +891,7 @@ declare
                         case 0 return ()
                         case 1 return ' (' || $diaryPlaces(1) || ')'
                         case 2 return ' (' || $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ')'
-                        default return ' (' || $diaryPlaces(1) || ', …, ' || $diaryPlaces(2) || ')'
+                        default return ' (' || $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)) || ')'
                     )
                 else ()
             default return wega-util:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
