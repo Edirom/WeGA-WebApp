@@ -201,7 +201,7 @@ declare function controller:resolve-link($link as xs:string, $lang as xs:string)
             else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) || '.' || substring-after($token, '.')
             else lang:get-language-string($token, $lang)
         return 
-            if($translation) then $translation 
+            if($translation) then replace($translation, '\s+', '_') 
             else $token
     return 
         core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
@@ -210,12 +210,14 @@ declare function controller:resolve-link($link as xs:string, $lang as xs:string)
 declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:string, $targetLang as xs:string) as xs:string {
     let $tokens := tokenize(functx:substring-after-match($uri, '/(de)|(en)/'), '/')
     let $translated-tokens := 
-        for $i in $tokens
+        for $token in $tokens
+        let $has-suffix := contains($token, '.')
         return
-            if(matches($i, 'A\d{2}[0-9A-F]')) then $i
-            else lang:translate-language-string($i, $sourceLang, $targetLang)
+            if(matches($token, 'A\d{2}[0-9A-F]')) then $token
+            else if($has-suffix) then lang:translate-language-string(replace(substring-before(xmldb:decode($token), '.'), '_', ' '), $sourceLang, $targetLang) || '.' || substring-after($token, '.')
+            else lang:translate-language-string(replace(xmldb:decode($token), '_', ' '), $sourceLang, $targetLang)
     return
-        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
+        core:link-to-current-app(replace(str:join-path-elements(($targetLang,$translated-tokens)), '\s+', '_'))
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) {
