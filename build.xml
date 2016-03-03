@@ -32,14 +32,14 @@
     
     <target name="bower" depends="init">
         <description>Update javascript libraries via bower</description>
-        <exec executable="bower">
+        <exec executable="${bower.cmd}">
             <arg value="update"/>
         </exec>
     </target>
     
     <target name="less" depends="init">
         <description>Create CSS files via less</description>
-        <exec executable="lessc">
+        <exec executable="${lessc.cmd}">
             <arg line="resources/less/styles.less ${dist.dir}/resources/css/styles.css"/>
         </exec>
     </target>
