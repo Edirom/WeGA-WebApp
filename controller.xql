@@ -446,11 +446,8 @@ else if (contains($exist:path, '/IIIF')) then
         else controller:error($exist-vars, 404):)
 
 (: PND Resolver :)
-(:else if (matches($exist:path, concat('^/', $lang, '/pnd/', '[0-9]{8,9}[0-9X]$'))) then
-    let $id := query:getIDByPND($exist:resource)
-    return 
-        if($id) then controller:redirect-absolute($id, $lang)
-        else controller:error($exist-vars, 404):)
+(:else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '-[0-9X]+$'))) then
+    controller:redirect-by-gnd($exist-vars):)
 
 (: Shortcut für Weber-Korrespondenz :)
 (:else if (matches($exist:path, concat('^/', lower-case($letters), '/?$'))) then

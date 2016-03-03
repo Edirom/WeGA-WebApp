@@ -89,14 +89,15 @@ declare function query:get-author-element($doc as document-node()?) as element()
 };
 
 (:~
- : Retrieves the WeGA person ID by PND
+ : Retrieves a document by GND identifier
  :
  : @author Peter Stadler
- : @param $pnd the PND number
+ : @param $gnd the GND (Gemeinsame Normdatei = German Authority File) identifier
  : @return xs:string
 :)
-declare function query:getIDByPND($pnd as xs:string) as xs:string {
-    core:data-collection('persons')//tei:idno[.=$pnd][@type='gnd']/parent::tei:person/string(@xml:id)
+declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
+    core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
+    core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
 };
 
 (:~
