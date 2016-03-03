@@ -90,11 +90,12 @@ declare function str:shorten-text($string as xs:string, $maxLength as xs:int) as
  : @return xs:string
  :)
 declare function str:sanitize($str as xs:string) as xs:string {
-   if(contains($str, '&amp;')) then str:sanitize(replace($str, '&amp;', '&amp;amp;'))
+(: Das wird wohl intern schon berücksichtigt?! Jedenfalls bringt die doppelte(?) Kodierung hier nur Probleme    :)
+   (:if(contains($str, '&amp;')) then str:sanitize(replace($str, '&amp;', '&amp;amp;'))
    else if(contains($str, '''')) then str:sanitize(replace($str, '''', '&amp;apos;'))
    else if(contains($str, '""')) then str:sanitize(replace($str, '""', '&amp;quot;'))
    else if(contains($str, '<')) then str:sanitize(replace($str, '<', '&amp;lt;'))
    else if(contains($str, '{')) then str:sanitize(replace($str, '{', '{{'))
    else if(contains($str, '}')) then str:sanitize(replace($str, '}', '}}'))
-   else $str
+   else :)$str
 };
