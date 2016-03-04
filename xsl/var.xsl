@@ -123,19 +123,19 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
                 <xsl:when test="@n='telephone'">
-                    <xsl:value-of select="concat(wega:getLanguageString('tel',$lang), ': ', .)"/>
+                    <xsl:value-of select="concat(wega:getLanguageString('tel',$lang), ': ')"/>
+                    <xsl:element name="a">
+                        <xsl:attribute name="href" select="concat('tel:', replace(normalize-space(.), '-|–|(\(0\))|\s', ''))"/>
+                        <xsl:apply-templates/>
+                    </xsl:element>
                 </xsl:when>
                 <xsl:when test="@n='fax'">
                     <xsl:value-of select="concat(wega:getLanguageString('fax',$lang), ': ', .)"/>
                 </xsl:when>
                 <xsl:when test="@n='email'">
-<!--                    <xsl:variable name="encryptedEmail" select="string-join(for $i in wega:encryptString(., ()) return string($i), ' ')"/>-->
-                    <xsl:element name="span">
-                        <xsl:attribute name="class" select="'ema'"/>
-                        <!--<xsl:attribute name="onclick">
-                            <xsl:value-of select="concat('javascript:decEma(&#34;',$encryptedEmail,'&#34;)')"/>
-                        </xsl:attribute>-->
-                        <xsl:value-of select="wega:obfuscateEmail(.)"/>
+                    <xsl:element name="a">
+                        <xsl:attribute name="class" select="'obfuscate-email'"/>
+                        <xsl:apply-templates/>
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
