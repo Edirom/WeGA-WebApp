@@ -756,17 +756,6 @@ declare
         if($model('wikiContent')//xhtml:html) then 
             switch($lang) 
             case 'de' return (
-                'The text under the headline “Wikipedia” is taken from the article “',
-                <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
-                '” from ',
-                <a href="http://en.wikipedia.org">Wikipedia</a>,
-                ' the free encyclopedia, and is released under a ',
-                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
-                '. You will find the ',
-                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
-                ' of this article in Wikipedia.'
-            )
-            default return (
                 'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
                 <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
                 '“ aus der freien Enzyklopädie ',
@@ -776,6 +765,17 @@ declare
                 '. In der Wikipedia findet sich auch die ',
                 <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
                 ' für diesen Artikel.'
+            )
+            default return (
+                'The text under the headline “Wikipedia” is taken from the article “',
+                <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
+                '” from ',
+                <a href="http://en.wikipedia.org">Wikipedia</a>,
+                ' the free encyclopedia, and is released under a ',
+                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
+                '. You will find the ',
+                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
+                ' of this article in Wikipedia.'
             )
         else ()
 };
