@@ -48,13 +48,13 @@ declare
                 }
                 catch * { map:new() } 
         let $portraitindex-images := 
-            if(map:keys($beaconMap)[contains(., 'Portraitindex')]) then img:portraitindex-images($model, $lang)
+            if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) then img:wikipedia-images($model, $lang)
+            if(count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
-            if(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) then img:tripota-images($model, $lang)
+            if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
             else ()
         return
             map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
