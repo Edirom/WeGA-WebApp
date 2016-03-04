@@ -635,6 +635,12 @@ declare
 
 declare 
     %templates:wrap
+    function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
+        str:printFornameSurname(query:get-reg-name($model('docID')))
+};
+
+declare 
+    %templates:wrap
     %templates:default("lang", "en")
     function app:person-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map{
@@ -655,7 +661,8 @@ declare
 
 declare 
     %templates:wrap
-    function app:person-details($node as node(), $model as map(*)) as map(*) {
+    %templates:default("lang", "en")
+    function app:person-details($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     map{
         'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
         'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
@@ -665,7 +672,8 @@ declare
         'biblio' := core:getOrCreateColl('biblio', $model('docID'), true()),
         'news' := core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
-        'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true())
+        'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+        'lang' := $lang
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
     }

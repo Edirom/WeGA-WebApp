@@ -40,22 +40,10 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="collapseable" as="xs:string+" select="('abstract', 'toc')"/>
-        <xsl:if test="$collapseBlock and @type = $collapseable">
-            <xsl:element name="span">
-                <xsl:attribute name="class" select="'toggleBlock internalLink'"/>
-                <xsl:attribute name="onclick"
-                    select="concat('$(&#34;', $uniqueID, '&#34;).toggle()')"/>
-                <xsl:text>[</xsl:text>
-                <xsl:value-of select="wega:getLanguageString(@type, $lang)"/>
-                <xsl:text> +-]</xsl:text>
-            </xsl:element>
-        </xsl:if>
         <xsl:element name="div">
             <xsl:attribute name="id" select="$uniqueID"/>
-            <xsl:if test="$collapseBlock and @type = $collapseable">
-                <xsl:attribute name="style" select="'display:none;'"/>
-                <xsl:attribute name="class" select="string-join((@type, 'collapseBlock'), ' ')"/>
+            <xsl:if test="@type">
+                <xsl:attribute name="class" select="@type"/>
             </xsl:if>
             <xsl:if test="matches(@xml:id, '^para\d+$')">
                 <xsl:call-template name="create-para-label">
@@ -141,15 +129,12 @@
                     <xsl:value-of select="concat(wega:getLanguageString('fax',$lang), ': ', .)"/>
                 </xsl:when>
                 <xsl:when test="@n='email'">
-                    <xsl:variable name="encryptedEmail"
-                        select="string-join(for $i in wega:encryptString(., ()) return string($i), ' ')"/>
+<!--                    <xsl:variable name="encryptedEmail" select="string-join(for $i in wega:encryptString(., ()) return string($i), ' ')"/>-->
                     <xsl:element name="span">
                         <xsl:attribute name="class" select="'ema'"/>
-                        <xsl:attribute name="onclick">
-                            <xsl:value-of
-                                select="concat('javascript:decEma(&#34;',$encryptedEmail,'&#34;)')"
-                            />
-                        </xsl:attribute>
+                        <!--<xsl:attribute name="onclick">
+                            <xsl:value-of select="concat('javascript:decEma(&#34;',$encryptedEmail,'&#34;)')"/>
+                        </xsl:attribute>-->
                         <xsl:value-of select="wega:obfuscateEmail(.)"/>
                     </xsl:element>
                 </xsl:when>

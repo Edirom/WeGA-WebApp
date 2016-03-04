@@ -71,7 +71,8 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :      |- dnb.html
  :      |- xml.html
  :      |- Korrespondenz
- :      |– Tagebücher
+ :      |- Tagebücher
+ :      |- Biographie.html (nur bei Weber)
  :
  :)
 
@@ -235,17 +236,8 @@ else if (contains($exist:path, '/IIIF')) then
     </dispatch>:)
 
 (: Ausführliche Weber-Biographie :)
-(:else if ($exist:path eq '/en/Biography' or $exist:path eq '/de/Biographie') then
-    let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-    return
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	   <add-parameter name="docID" value="A070003"/>
-    	   <add-parameter name="createSecNos" value="true"/>
-    	   <add-parameter name="js" value="{$js}"/>
-    	</forward>
-    </dispatch>:)
+else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
+    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
 
 (: Help :)
 (:else if (matches($exist:path, concat('^/', $lang, '/', $help, '/?$'))) then

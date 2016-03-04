@@ -14,8 +14,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="$link/index">Home</a></li>
-                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
-                        <li data-template="lang:translate">bio</li>
+                        <li data-template="app:person-forename-surname">Carl Maria von Weber</li>
+<!--                        <li data-template="lang:translate">bio</li>-->
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -192,6 +192,10 @@
                                                             <li data-template="lang:translate">noBioFoundReason2</li>
                                                             <li data-template="lang:translate">noBioFoundReason3</li>
                                                         </ul>
+                                                    </div>
+                                                    <div data-template="app:if-matches" data-template-key="docID" data-template-value="A002068">
+                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
+                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
