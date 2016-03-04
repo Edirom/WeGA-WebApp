@@ -139,7 +139,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
  : @return xs:string
  :)
 declare function query:get-title-element($doc as document-node(), $lang as xs:string) as element()* {
-    let $docID := $doc/*/@xml:id
+    let $docID := $doc/*/data(@xml:id)
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
         else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
@@ -165,7 +165,7 @@ declare function query:get-main-source($doc as document-node()) as element()? {
  : @return xs:date
  :)
 declare function query:get-normalized-date($doc as document-node()) as xs:date? {
-    let $docID := $doc/*/@xml:id
+    let $docID := $doc/*/data(@xml:id)
     let $date := 
         switch(config:get-doctype-by-id($docID))
         case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
