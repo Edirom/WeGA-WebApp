@@ -144,7 +144,8 @@ $(document).on('click', '.undated', function() {
     updatePage(params);
 })
 
-$('.allFilter').on('change', 'label', function() {
+/* Start search by clicking on filter button */
+$('.searchDocTypeFilter').on('change', 'label', function() {
     var params = active_facets();
     updatePage(params);
 })
