@@ -189,45 +189,49 @@
         <!--        <xsl:text>] </xsl:text>-->
     </xsl:template>
     <xsl:template match="tei:table">
-        <xsl:element name="table">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:element name="tbody">
-                <xsl:variable name="currNode" select="."/>
-                <!-- Bestimmung der Breite der Tabellenspalten -->
-                <xsl:variable name="define-width-of-cells" as="xs:double*">
-                    <xsl:choose>
-                <!-- 
-                    Mittels median wird eine alternative Berechnung der Spaltenbreiten angeboten
-                    Dabei wird nicht das arithmetische Mittel der Zeichenlängen der jeweiligen Spalten genommen,
-                    sonderen eben der Median, damit extreme Ausreißer nicht so ins Gewicht fallen.
-                    (siehe  z.B. Tabelle in A040603)
-                -->
-                        <xsl:when test="@rend = 'median'">
-                            <xsl:for-each select="(1 to count($currNode/tei:row[1]/tei:cell))">
-                                <xsl:variable name="counter" as="xs:integer">
-                                    <xsl:value-of select="position()"/>
-                                </xsl:variable>
-                                <xsl:value-of select="wega:computeMedian($currNode/tei:row/tei:cell[$counter]/string-length())"/>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <!-- 
-                            Fieser Hack zum Ausrichten der Tabellen in der Bandübersicht
-                            Könnnte und sollte man mal generisch machen …
-                        -->
-                        <xsl:when test="$docID = 'A070011'">
-                            <xsl:copy-of select="(1,8,1)"/>
-                        </xsl:when>
-                        <xsl:otherwise/>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="widths" as="xs:double*">
-                    <xsl:for-each select="$define-width-of-cells">
-                        <xsl:value-of select="round-half-to-even(100 div (sum($define-width-of-cells) div .), 2)"/>
-                    </xsl:for-each>
-                </xsl:variable>
-                <xsl:apply-templates>
-                    <xsl:with-param name="widths" select="$widths" tunnel="yes"/>
-                </xsl:apply-templates>
+        <xsl:element name="div">
+            <xsl:attribute name="class">table-wrapper</xsl:attribute>
+            <xsl:element name="table">
+                <xsl:apply-templates select="@xml:id"/>
+                <xsl:attribute name="class">table</xsl:attribute>
+                <xsl:element name="tbody">
+                    <xsl:variable name="currNode" select="."/>
+                    <!-- Bestimmung der Breite der Tabellenspalten -->
+                    <xsl:variable name="define-width-of-cells" as="xs:double*">
+                        <xsl:choose>
+                            <!-- 
+                                Mittels median wird eine alternative Berechnung der Spaltenbreiten angeboten
+                                Dabei wird nicht das arithmetische Mittel der Zeichenlängen der jeweiligen Spalten genommen,
+                                sonderen eben der Median, damit extreme Ausreißer nicht so ins Gewicht fallen.
+                                (siehe  z.B. Tabelle in A040603)
+                            -->
+                            <xsl:when test="@rend = 'median'">
+                                <xsl:for-each select="(1 to count($currNode/tei:row[1]/tei:cell))">
+                                    <xsl:variable name="counter" as="xs:integer">
+                                        <xsl:value-of select="position()"/>
+                                    </xsl:variable>
+                                    <xsl:value-of select="wega:computeMedian($currNode/tei:row/tei:cell[$counter]/string-length())"/>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <!-- 
+                                Fieser Hack zum Ausrichten der Tabellen in der Bandübersicht
+                                Könnnte und sollte man mal generisch machen …
+                            -->
+                            <xsl:when test="$docID = 'A070011'">
+                                <xsl:copy-of select="(1,8,1)"/>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:variable name="widths" as="xs:double*">
+                        <xsl:for-each select="$define-width-of-cells">
+                            <xsl:value-of select="round-half-to-even(100 div (sum($define-width-of-cells) div .), 2)"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:apply-templates>
+                        <xsl:with-param name="widths" select="$widths" tunnel="yes"/>
+                    </xsl:apply-templates>
+                </xsl:element>
             </xsl:element>
         </xsl:element>
     </xsl:template>
