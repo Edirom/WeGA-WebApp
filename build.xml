@@ -120,7 +120,7 @@
         </zip>
     </target>
     
-    <target name="deploy" depends="xar">
+    <target name="deploy" depends="clean, xar">
         <path id="classpath.core">
             <fileset dir="${exist.home}/lib/core">
                 <include name="*.jar"/>
