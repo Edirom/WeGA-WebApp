@@ -12,7 +12,6 @@ declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace http="http://expath.org/ns/http-client";
 
 import module namespace functx="http://www.functx.com";
-import module namespace xqjson="http://xqilla.sourceforge.net/lib/xqjson";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
@@ -81,15 +80,15 @@ declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 
-            if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then xqjson:parse-json(util:binary-to-string($findbuchResponse))
-            else xqjson:parse-json($findbuchResponse)
+            if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
+            else parse-json($findbuchResponse)
         else ()
     return 
         map:new(
-            for $i in 1 to count($jxml/item[2]/item)
-            let $link  := str:normalize-space($jxml/item[4]/item[$i])
-            let $title := str:normalize-space($jxml/item[3]/item[$i])
-            let $text  := str:normalize-space($jxml/item[2]/item[$i])
+            for $i in 1 to array:size($jxml?2)
+            let $link  := str:normalize-space($jxml?4?($i))
+            let $title := str:normalize-space($jxml?3?($i))
+            let $text  := str:normalize-space($jxml?2?($i))
             return
                 if(matches($link,"weber-gesamtausgabe.de")) then ()
                 else map:entry($title, ($link, $text))
