@@ -1234,14 +1234,12 @@ declare
  : Overwrites the current model with 'doc' and 'docID' of the preview document
  :
  :)
-declare 
-    %templates:wrap
-    function app:preview($node as node(), $model as map(*)) as map(*) {
-        map {
-            'doc' := $model('result-page-entry'),
-            'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]
-        }
+declare function app:preview($node as node(), $model as map(*)) as map(*) {
+    map {
+        'doc' := $model('result-page-entry'),
+        'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+        'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]
+    }
 };
 
 declare 

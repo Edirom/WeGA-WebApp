@@ -1,10 +1,11 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
+import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -92,13 +93,27 @@ declare function search:dispatch-preview($node as node(), $model as map(*)) {
 };
 
 (:~
+ : KWIC output
+ :
+ :)
+declare 
+    %templates:wrap
+    function search:kwic($node as node(), $model as map(*)) {
+        for $hit in $model($model('docID'))
+        return
+            kwic:get-summary($hit, ($hit//exist:match)[1], <config width="40"/>)
+};
+
+(:~
  : Search results and other goodies for the search page 
 ~:)
 declare %private function search:search($model as map(*)) as map(*) {
     let $queryMap := search:prepare-search-string()
     let $results := search:query(map:new(($queryMap, $model)))
+    let $docs := for $i in $results return $i('doc')
+    let $kwics := map:new( for $i in $results return map:entry($i('doc')/*/data(@xml:id), $i('kwic')) )
     return
-        map:new(($queryMap, $model, map:entry('search-results', $results)))
+        map:new(($queryMap, $model, map:entry('search-results', $docs), $kwics))
 };  
 
 (:~
@@ -122,7 +137,7 @@ declare %private function search:list($model as map(*)) as map(*) {
 };  
 
 
-declare %private function search:query($model as map(*)) as document-node()* {
+declare %private function search:query($model as map(*)) as map(*)* {
     let $searchString := $model('query-string')
     let $docTypes := $model('query-docTypes')
     let $docTypes := 
@@ -138,11 +153,16 @@ declare %private function search:query($model as map(*)) as document-node()* {
 (:~
  : helper function for sorting and merging search results
 ~:)
-declare %private function search:merge-hits($hits as item()*) as document-node()* {
-   for $hit in $hits
-   group by $doc := $hit/root()
-   order by sum($hit ! ft:score(.)) descending 
-   return $doc
+declare %private function search:merge-hits($hits as item()*) as map(*)* {
+    for $hit in $hits
+    let $expanded := kwic:expand($hit)
+    group by $doc := $hit/root()
+    order by sum($hit ! ft:score(.)) descending 
+    return 
+        map { 
+            'doc' := $doc, 
+            'kwic' := $expanded
+        }
 };
 
 declare %private function search:fulltext($searchString as xs:string, $filters as map(), $docType as xs:string) as item()* {
@@ -166,14 +186,16 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
         default return ()
 };
 
-declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as document-node()* {
+declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as map(*)* {
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else ()
     let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates] ! core:doc(./@docID)
-    return
+    let $docs :=
         if($coll) then $coll intersect $date-search
         else $date-search
+    return
+        $docs ! map { 'doc' := . }
 };
 
 declare %private function search:create-lucene-query-element($searchString as xs:string) as element(query) {
