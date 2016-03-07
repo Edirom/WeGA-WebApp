@@ -48,6 +48,8 @@
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
+                <filter token="project.name" value="${project.name}"/>
+                <filter token="project.app" value="${project.app}"/>
             </filterset>
         </copy>
         <!-- Copy everything from base.dir -->
@@ -116,5 +118,44 @@
         <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
             <fileset dir="${dist.dir}"/>
         </zip>
+    </target>
+    
+    <target name="deploy" depends="xar">
+        <path id="classpath.core">
+            <fileset dir="${exist.home}/lib/core">
+                <include name="*.jar"/>
+            </fileset>
+            <pathelement path="${exist.home}/exist.jar"/>
+            <pathelement path="${exist.home}/exist-optional.jar"/>
+        </path>
+        <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+            <classpath refid="classpath.core"/>
+        </typedef>
+        
+        <!-- store xar-file in eXist-db -->
+        <xdb:store xmlns:xdb="http://exist-db.org/ant"
+            uri="${exist.db}/tmp"
+            createcollection="true"
+            createsubcollections="true"
+            user="${exist.user}"
+            password="${exist.pass}"
+            failonerror="true">
+            <fileset file="${build.dir}/${project.app}-${project.version}.xar"/>
+        </xdb:store>
+        
+        <!-- Deploy the xar -->
+        <xdb:xquery  xmlns:xdb="http://exist-db.org/ant"
+            uri="${exist.db}"
+            user="${exist.user}"
+            password="${exist.pass}">
+            (
+            if("${project.name}" = repo:list()) then (
+                repo:undeploy("${project.name}"),
+                repo:remove("${project.name}")
+            )
+            else (),
+            repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar")
+            )
+        </xdb:xquery>
     </target>
 </project>
