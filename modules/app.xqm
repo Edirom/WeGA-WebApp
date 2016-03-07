@@ -901,6 +901,7 @@ declare
                         case 0 return ()
                         case 1 return ' (' || $diaryPlaces(1) || ')'
                         case 2 return ' (' || $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ')'
+                        case 3 return ' (' || $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3) || ')'
                         default return ' (' || $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)) || ')'
                     )
                 else ()
