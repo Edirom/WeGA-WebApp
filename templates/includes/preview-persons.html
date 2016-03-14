@@ -1,102 +1,100 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
-    <div>
-        <div class="portrait">
-            <a class="pull-left" data-template="app:preview-icon">
-                <!-- Image will load via AJAX -->
-                <i class="fa fa-spinner fa-spin fa-2x"/>
-            </a>
-        </div>
-        <div class="media-body">
-            <h3 class="media-heading">
-                <a data-template="app:preview-title">Person Title</a>
-            </h3>
-            <ol class="media" data-template="app:person-basic-data">
-                
-                <li class="media" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
-                    <div class="pull-left">
-                        <i class="fa fa-user media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
-                </li>
-                <li class="media" data-template="app:each" data-template-from="realnames" data-template-to="realname">
-                    <div class="pull-left">
-                        <i class="fa fa-user media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="realname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">realName</span>)--></div>
-                </li>
-                <li class="media" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
-                    <div class="pull-left">
-                        <i class="fa fa-user media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="birthname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">birthName</span>)--></div>
-                </li>
-                <li class="media" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
-                    <div class="pull-left">
-                        <i class="fa fa-user media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
-                </li>
-                <li class="media" data-template="app:each" data-template-from="pseudonyme" data-template-to="pseudonym">
-                    <div class="pull-left">
-                        <i class="fa fa-user media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="pseudonym"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
-                </li>
-                
-                <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
-                    <div class="pull-left">
-                        <i class="fa fa-asterisk  media-object"/>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="birth"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                        in Eudin Unsicher: 22.10.1786 in Eudin </div>
-                </li>
-                
-                <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
-                    <div class="pull-left">
-                        <strong>†</strong>
-                    </div>
-                    <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                        in Eudin Unsicher: 22.10.1786 in Eudin </div>
-                </li>
-                
-                <li class="media">
-                    <div class="pull-left">                  
-                        <i class="fa fa-briefcase media-object"/>
-                    </div>
-                    <div class="media-body">
-                        <strong data-template="lang:translate">occupations</strong>:
-                        <span data-template="app:join" data-template-key="occupations">Schauspielerin, Sängerin</span>
-                    </div>
-                </li>
-                
-                <li class="media">
-                    <div class="pull-left">                  
-                        <i class="fa fa-map-marker media-object"/>
-                    </div>
-                    <div class="media-body">
-                        <strong data-template="lang:translate">residences</strong>:
-                        <span data-template="app:join" data-template-key="residences">Altenburg, Erfurt, Naumburg, Rudolstadt, Coburg, Bamberg, Augsburg, St. Gallen, Freiburg 
-                            (Breisgau), Karlsruhe, Frankfurt (Main), Prag, Dresden</span>
-                        
-                    </div>
-                </li>
-                
-                <li class="media" data-template="app:if-not-matches" data-template-key="parent-docID" data-template-value="indices">
-                    <div class="pull-left">                  
-                        <i class="fa fa-envelope media-object"/>
-                    </div>
-                    <div class="media-body">
-                        <strong data-template="app:letter-count">317</strong> <strong data-template="lang:translate">letters</strong>
-                    </div>
-                </li>
-                
-            </ol>
-            <p>
-                <strong><span data-template="lang:translate">identifier</span>:</strong> 
-                <span data-template="app:print" data-template-key="docID">A030043</span>
-            </p>
+    <div class="portrait preview-icon">
+        <a class="pull-left" data-template="app:preview-icon">
+            <!-- Image will load via AJAX -->
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a data-template="app:preview-title">Person Title</a>
+        </h3>
+        <ol class="media" data-template="app:person-basic-data">
             
-            <div class="kwic" data-template="search:kwic"/>
-        </div>
+            <li class="media" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
+            </li>
+            <li class="media" data-template="app:each" data-template-from="realnames" data-template-to="realname">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="realname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">realName</span>)--></div>
+            </li>
+            <li class="media" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="birthname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">birthName</span>)--></div>
+            </li>
+            <li class="media" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
+            </li>
+            <li class="media" data-template="app:each" data-template-from="pseudonyme" data-template-to="pseudonym">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="pseudonym"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
+            </li>
+            
+            <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
+                <div class="pull-left">
+                    <i class="fa fa-asterisk  media-object"/>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="birth"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
+                    in Eudin Unsicher: 22.10.1786 in Eudin </div>
+            </li>
+            
+            <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
+                <div class="pull-left">
+                    <strong>†</strong>
+                </div>
+                <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
+                    in Eudin Unsicher: 22.10.1786 in Eudin </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">                  
+                    <i class="fa fa-briefcase media-object"/>
+                </div>
+                <div class="media-body">
+                    <strong data-template="lang:translate">occupations</strong>:
+                    <span data-template="app:join" data-template-key="occupations">Schauspielerin, Sängerin</span>
+                </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">                  
+                    <i class="fa fa-map-marker media-object"/>
+                </div>
+                <div class="media-body">
+                    <strong data-template="lang:translate">residences</strong>:
+                    <span data-template="app:join" data-template-key="residences">Altenburg, Erfurt, Naumburg, Rudolstadt, Coburg, Bamberg, Augsburg, St. Gallen, Freiburg 
+                        (Breisgau), Karlsruhe, Frankfurt (Main), Prag, Dresden</span>
+                    
+                </div>
+            </li>
+            
+            <li class="media" data-template="app:if-not-matches" data-template-key="parent-docID" data-template-value="indices">
+                <div class="pull-left">                  
+                    <i class="fa fa-envelope media-object"/>
+                </div>
+                <div class="media-body">
+                    <strong data-template="app:letter-count">317</strong> <strong data-template="lang:translate">letters</strong>
+                </div>
+            </li>
+            
+        </ol>
+        <p>
+            <strong><span data-template="lang:translate">identifier</span>:</strong> 
+            <span data-template="app:print" data-template-key="docID">A030043</span>
+        </p>
+        
+        <div class="kwic" data-template="search:kwic"/>
     </div>
 </div>

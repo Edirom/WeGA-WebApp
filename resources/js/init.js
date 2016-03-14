@@ -119,7 +119,7 @@ function activateTab() {
 };
 
 // create popovers for links
-$('a.persons').on('click', function() {
+$('a.persons, a.writings, a.diaries, a.letters').on('click', function() {
     var popoverClass =  "popover-" + $.now();
     $(this).popover({
         "html": true,
@@ -220,7 +220,8 @@ function details_in_popup(link, popoverClass){
             var source = $('<div>' + response + '</div>');
             $('.'+popoverClass+' .popover-title').html(source.find('h3').children());
             $('.'+popoverClass+' .popover-content').html(source.children().children());
-            $('.'+popoverClass+' .portrait').loadPortrait();
+            $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
+            $('.'+popoverClass+' h3.media-heading').remove(); // remove relicts of headings
         }
     });
     return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
