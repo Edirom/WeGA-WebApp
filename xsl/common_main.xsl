@@ -304,36 +304,39 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:figure" priority="0.5">
-        <xsl:variable name="digilibDir" select="wega:getOption('digilibDir')"/>
+    <xsl:template match="tei:notatedMusic | tei:figure">
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="string-join((concat('tei_', local-name()), @rend), ' ')"/>
+            <xsl:choose>
+                <xsl:when test="tei:graphic">
+                    <xsl:apply-templates select="tei:graphic"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>[</xsl:text>
+                    <xsl:value-of select="wega:getLanguageString('sampleNotation', $lang)"/>
+                    <xsl:text>: </xsl:text>
+                    <xsl:apply-templates select="tei:desc | tei:figDesc"/>
+                    <xsl:text>]</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:graphic">
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
-        <xsl:variable name="localURL" select="wega:join-path-elements((replace(wega:getCollectionPath($docID), $data-collection-path, ''), $docID, tei:graphic/@url))"/>
-        <xsl:variable name="href" select="concat($digilibDir, $localURL, '&amp;mo=file')"/>
-        <xsl:variable name="title" select="normalize-space(tei:figDesc)"/>
-        <xsl:choose>
-            <!-- External URLs -->
-            <xsl:when test="starts-with(tei:graphic/@url, 'http')">
-                <xsl:element name="img">
-                    <xsl:apply-templates select="@xml:id"/>
-                    <xsl:attribute name="alt" select="$title"/>
-                    <xsl:attribute name="src" select="data(tei:graphic/@url)"/>
-                    <xsl:attribute name="class" select="'teaserImage'"/>
-                </xsl:element>
-            </xsl:when>
-            <!-- Local images -->
-            <xsl:otherwise>
-                <xsl:variable name="content">
-                    <xsl:element name="img">
-                        <xsl:apply-templates select="@xml:id"/>
-                        <xsl:attribute name="alt" select="$title"/>
-                        <xsl:attribute name="height" select="$figureHeight"/>
-                        <xsl:attribute name="src" select="concat($digilibDir, $localURL, '&amp;dh=', $figureHeight, '&amp;mo=q2,png')"/>
-                        <xsl:attribute name="class" select="'figure'"/>
-                    </xsl:element>
-                </xsl:variable>
-                <xsl:sequence select="wega:createLightboxAnchor($href,$title,'doc',$content)"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="localURL" select="concat(wega:getOption('iiifServer'), encode-for-uri(encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url)))))"/>
+        <xsl:variable name="title">
+            <!-- desc within notatedMusic and figDesc within figures -->
+            <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
+        </xsl:variable>
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
+            <xsl:element name="img">
+                <!--<xsl:attribute name="title" select="$title"/>-->
+                <xsl:attribute name="alt" select="$title"/>
+                <xsl:attribute name="src" select="concat($localURL, '/full/,', $figureHeight, '/0/native.jpg')"/>
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="tei:list">
