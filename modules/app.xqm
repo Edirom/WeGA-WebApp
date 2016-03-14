@@ -726,6 +726,7 @@ declare function app:print-beacon-links($node as node(), $model as map(*)) as el
         return
             <ul>{
                 for $i in map:keys($beaconMap)
+                order by $beaconMap($i)[2] collation "?lang=de-DE"
                 return 
                     <li><a title="{$i}" href="{$beaconMap($i)[1]}">{$beaconMap($i)[2]}</a></li>
             }</ul>
