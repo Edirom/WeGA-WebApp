@@ -130,7 +130,7 @@ $('a.persons').on('click', function() {
             return 'Loading …'
         },
         "content": function(){
-            link = $(this).attr('href');
+            link = $(this).attr('href').replace('.html', '/popover.html');
             return details_in_popup(link, popoverClass);
         }
     });

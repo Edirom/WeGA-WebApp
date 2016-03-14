@@ -511,6 +511,22 @@ declare function app:set-undated-checkbox($node as node(), $model as map(*)) as 
 
 (:
  : ****************************
+ : Popover
+ : ****************************
+:)
+(:~
+ : Wrapper for dispatching various document types (in analogy to search:dispatch-preview())
+ : Simply redirects to the right fragment from 'templates/includes'
+ :
+ :)
+declare function app:popover($node as node(), $model as map(*)) as map(*)* {
+    map {
+        'result-page-entry' := $model('doc')
+    }
+};
+
+(:
+ : ****************************
  : Index page
  : ****************************
 :)

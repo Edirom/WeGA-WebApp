@@ -70,6 +70,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :      |- wikipedia.html
  :      |- dnb.html
  :      |- xml.html
+ :      |- popover.html
  :      |- Korrespondenz
  :      |- Tagebücher
  :      |- Biographie.html (nur bei Weber)
