@@ -580,7 +580,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
                 concat(date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
                 if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
                 (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-                else (app:createDocLink($teiDate/root(), str:printFornameSurname(query:get-reg-name($teiDate/ancestor::tei:person/@xml:id)), $lang, ()), ' ', lang:get-language-string($typeOfEvent, $lang))
+                else (app:createDocLink($teiDate/root(), str:printFornameSurname(query:get-reg-name($teiDate/ancestor::tei:person/@xml:id)), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
             }
 };
 
@@ -615,7 +615,7 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return 
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
-     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:get-reg-name($persName/@key)), $lang, ())
+     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:get-reg-name($persName/@key)), $lang, ('class=persons'))
         (:wega:createPersonLink($persName/string(@key), $lang, $order):)
      else if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
      else if (not(functx:all-whitespace($persName))) then <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
