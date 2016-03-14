@@ -118,8 +118,8 @@ function activateTab() {
 /*        $(href).unmask;*/
 };
 
-// create popovers for links
-$('a.persons, a.writings, a.diaries, a.letters').on('click', function() {
+// create popovers for document types which already have single views
+$('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() {
     var popoverClass =  "popover-" + $.now();
     $(this).popover({
         "html": true,
@@ -131,6 +131,28 @@ $('a.persons, a.writings, a.diaries, a.letters').on('click', function() {
         },
         "content": function(){
             link = $(this).attr('href').replace('.html', '/popover.html');
+            return details_in_popup(link, popoverClass);
+        }
+    });
+    $(this).popover('show')
+    return false;
+});
+
+// create popovers for document types which only have previews (but no single view)
+$('span.works, span.biblio').css({'color': '#0064b4', 'cursor': 'pointer'});
+$('span.works, span.biblio').find('*').css('color', '#0064b4');
+$('span.works, span.biblio').on('click', function() {
+    var popoverClass =  "popover-" + $.now();
+    $(this).popover({
+        "html": true,
+        "trigger": "manual",
+        'placement': 'auto top',
+        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
+        'title': function() {
+            return 'Loading …'
+        },
+        "content": function(){
+            link = $(this).attr('data-ref').replace('.html', '/popover.html');
             return details_in_popup(link, popoverClass);
         }
     });

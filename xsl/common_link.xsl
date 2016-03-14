@@ -9,7 +9,7 @@
     <xsl:template match="tei:persName | tei:author">
         <xsl:choose>
             <xsl:when test="$suppressLinks">
-                <xsl:call-template name="createSpanOnly"/>
+                <xsl:call-template name="createSpan"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="createLink"/>
@@ -20,29 +20,17 @@
     <xsl:template match="tei:rs">
         <xsl:choose>
             <xsl:when test="$suppressLinks">
-                <xsl:call-template name="createSpanOnly"/>
+                <xsl:call-template name="createSpan"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="matches(@type, '.+[yrnkg]s$|newsPl$')">
                         <!-- Pluralformen werden aktuell noch ausgespart-->
-                        <xsl:element name="span">
-                            <xsl:apply-templates select="@xml:id"/>
-                            <xsl:attribute name="class">
-                                <xsl:value-of select="@type"/>
-                                <xsl:if test="@key">
-                                    <xsl:text> </xsl:text>
-                                    <xsl:value-of select="@key"/>
-                                </xsl:if>
-                            </xsl:attribute>
-                            <xsl:apply-templates/>
-                        </xsl:element>
+                        <xsl:call-template name="createSpan"/>
                     </xsl:when>
                     <xsl:when test="matches(@type, 'work|biblio')">
                         <!-- Für Werke und Bibliographische Objekte gibt es aktuell noch keine Einzelansicht, lediglich einen Tooltip -->
-                        <xsl:call-template name="createHover">
-                            <xsl:with-param name="key" select="@key"/>
-                        </xsl:call-template>
+                        <xsl:call-template name="createSpan"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="createLink"/>
@@ -53,44 +41,15 @@
     </xsl:template>
 
     <xsl:template match="tei:placeName">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:text>placeName </xsl:text>
-                <xsl:for-each select="string-to-codepoints(normalize-space(.))">
-                    <!--Umsetzen des Namens in ASCII-Zahlen, damit keine Umlaute o.ä. in der Klasse auftauchen-->
-                    <xsl:value-of select="."/>
-                </xsl:for-each>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
+        <xsl:call-template name="createSpan"/>
     </xsl:template>
 
     <xsl:template match="tei:characterName">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:text>characterName </xsl:text>
-                <xsl:for-each select="string-to-codepoints(normalize-space(.))">
-                    <!--Umsetzen des Namens in ASCII-Zahlen, damit keine Umlaute o.ä. in der Klasse auftauchen-->
-                    <xsl:value-of select="."/>
-                </xsl:for-each>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
+        <xsl:call-template name="createSpan"/>
     </xsl:template>
 
     <xsl:template match="tei:workName">
-        <xsl:choose>
-            <xsl:when test="@key and not($suppressLinks)">
-                <xsl:call-template name="createHover">
-                    <xsl:with-param name="key" select="@key"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:call-template name="createSpanOnly"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="createSpan"/>
     </xsl:template>
 
     <xsl:template match="tei:ref">
@@ -99,8 +58,9 @@
             <xsl:attribute name="href" select="@target"/>
             <xsl:apply-templates/>
             <xsl:if test="@type = 'hyperLink'">
-                <xsl:element name="img">
-                    <xsl:attribute name="src" select="'https://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png'"/>
+                <xsl:text> </xsl:text>
+                <xsl:element name="i">
+                    <xsl:attribute name="class">fa fa-external-link</xsl:attribute>
                 </xsl:element>
             </xsl:if>
         </xsl:element>
@@ -112,85 +72,43 @@
                 <xsl:element name="a">
                     <xsl:attribute name="class">
                         <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                        <xsl:if test="$transcript">
+                        <xsl:text> </xsl:text>
+                        <xsl:value-of select="@key"/>
+                        <!--<xsl:if test="$transcript">
                             <xsl:text> transcript</xsl:text>
-                        </xsl:if>
+                        </xsl:if>-->
                     </xsl:attribute>
                     <xsl:attribute name="href" select="wega:createLinkToDoc(@key, $lang)"/>
-                    <xsl:call-template name="createHover">
-                        <xsl:with-param name="key" select="@key"/>
-                    </xsl:call-template>
+                    <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:call-template name="createHover">
-                    <xsl:with-param name="key" select="@key"/>
-                </xsl:call-template>
+                <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template name="createHover">
-        <xsl:param name="key" required="no"/>
-        <xsl:variable name="docType">
-            <xsl:choose>
-                <xsl:when test="name(.)='persName'">
-                    <xsl:text>person</xsl:text>
-                </xsl:when>
-                <xsl:when test="name(.)='author'">
-                    <xsl:text>person</xsl:text>
-                </xsl:when>
-                <xsl:when test="name(.)='workName'">
-                    <xsl:text>work</xsl:text>
-                </xsl:when>
-                <xsl:when test="name(.)='characterName'">
-                    <xsl:text>character</xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="@type"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+    <xsl:template name="createSpan">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
-                <xsl:value-of select="$docType"/>
-                <xsl:if test="$key != '' and not(matches($key, '\s'))">
-                    <xsl:text> </xsl:text>
-                    <xsl:value-of select="$key"/>
-                </xsl:if>
-                <xsl:if test="$key = ''">
-                    <xsl:text> </xsl:text>
-                    <xsl:for-each select="string-to-codepoints(normalize-space(.))">
-                        <!--Umsetzen des Namens in ASCII-Zahlen, damit keine Umlaute o.ä. in der Klasse auftauchen-->
-                        <xsl:value-of select="."/>
-                    </xsl:for-each>
-                </xsl:if>
+                <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                <xsl:text> </xsl:text>
+                <xsl:choose>
+                    <xsl:when test="@key">
+                        <xsl:value-of select="@key"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="string-to-codepoints(normalize-space(.))">
+                            <!--Umsetzen des Namens in ASCII-Zahlen, damit keine Umlaute o.ä. in der Klasse auftauchen-->
+                            <xsl:value-of select="."/>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
-            <!--<xsl:if test="$key != '' and  not(matches($key, '\s'))">
-                <xsl:attribute name="onmouseover">
-                    <xsl:text>metaDataToTip('</xsl:text>
-                    <xsl:value-of select="$key"/>
-                    <xsl:text>', '</xsl:text>
-                    <xsl:value-of select="$lang"/>
-                    <xsl:text>')</xsl:text>
-                </xsl:attribute>
-                <xsl:attribute name="onmouseout">
-                    <xsl:text>UnTip()</xsl:text>
-                </xsl:attribute>
-            </xsl:if>-->
-            <xsl:apply-templates/>
-            <!--<xsl:if test="not($key)">
-                <xsl:attribute name="onmouseover">
-                    <xsl:text>Tip('unbekannt')</xsl:text>
-                </xsl:attribute>
-            </xsl:if>-->
-        </xsl:element>
-    </xsl:template>
-    
-    <xsl:template name="createSpanOnly">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
+            <xsl:if test="@key and not($suppressLinks)">
+                <xsl:attribute name="data-ref" select="wega:createLinkToDoc(@key, $lang)"/>
+            </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
