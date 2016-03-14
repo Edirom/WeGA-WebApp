@@ -218,13 +218,9 @@ function details_in_popup(link, popoverClass){
         url: link,
         success: function(response){
             var source = $('<div>' + response + '</div>');
-            $('.'+popoverClass+' .popover-content').html(source.find('#meta').html());
-            $('.'+popoverClass+' .popover-title').html('<a href="' + link + '">' + source.find('h1').text() + '</a>');
-            $('.'+popoverClass+' div.iconographie').hide();
-            $('.'+popoverClass+' div.basicdata h2').hide();
-            // remove col-classes
-            $('.'+popoverClass+' div.portrait').attr('class', 'portrait');
-            $('.'+popoverClass+' div.basicdata').attr('class', 'basicdata');
+            $('.'+popoverClass+' .popover-title').html(source.find('h3').children());
+            $('.'+popoverClass+' .popover-content').html(source.children().children());
+            $('.'+popoverClass+' .portrait').loadPortrait();
         }
     });
     return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
