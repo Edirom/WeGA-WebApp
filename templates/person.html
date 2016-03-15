@@ -183,11 +183,15 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
                                                     <h2 data-template="lang:translate">tabTitle_bio</h2>
+                                                    <div data-template="app:if-matches" data-template-key="source" data-template-value="Bach">
+                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                    </div>
                                                     <div data-template="app:print-wega-bio">
                                                         <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
                                                         <p><i data-template="lang:translate">noBioFound</i></p>
                                                         <p data-template="lang:translate">noBioFoundReason</p>
-                                                        <ul>
+                                                        <ul class="tei_list">
                                                             <li data-template="lang:translate">noBioFoundReason1</li>
                                                             <li data-template="lang:translate">noBioFoundReason2</li>
                                                             <li data-template="lang:translate">noBioFoundReason3</li>

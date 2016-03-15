@@ -689,7 +689,8 @@ declare
         'news' := core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
         'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-        'lang' := $lang
+        'lang' := $lang,
+        'source' := $model('doc')/tei:person/data(@source)
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
     }
