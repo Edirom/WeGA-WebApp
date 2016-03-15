@@ -139,8 +139,6 @@ $('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() 
 });
 
 // create popovers for document types which only have previews (but no single view)
-$('span.works, span.biblio').css({'color': '#0064b4', 'cursor': 'pointer'});
-$('span.works, span.biblio').find('*').css('color', '#0064b4');
 $('span.works, span.biblio').on('click', function() {
     var popoverClass =  "popover-" + $.now();
     $(this).popover({
