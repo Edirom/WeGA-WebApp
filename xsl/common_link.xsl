@@ -106,7 +106,8 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="@key and not($suppressLinks)">
+            <!-- Pluralformen wieder aussparen s.o. -->
+            <xsl:if test="@key and not($suppressLinks or string-length(@key) ne 7)">
                 <xsl:attribute name="data-ref" select="wega:createLinkToDoc(@key, $lang)"/>
             </xsl:if>
             <xsl:apply-templates/>
