@@ -434,7 +434,7 @@
     <xsl:template match="tei:footNote"/>
 
     <xsl:template match="tei:g">
-        <xsl:variable name="charName" select="substring-after(@ref, 'http://edirom.de/smufl-browser/')" as="xs:string"/>
+        <xsl:variable name="charName" select="concat('_', substring-after(@ref, 'http://edirom.de/smufl-browser/'))" as="xs:string"/>
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
