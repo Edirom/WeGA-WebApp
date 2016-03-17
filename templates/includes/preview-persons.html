@@ -35,11 +35,11 @@
                 </div>
                 <div class="media-body" data-template="app:print" data-template-key="marriedname"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">marriedName</span>)--></div>
             </li>
-            <li class="media" data-template="app:each" data-template-from="pseudonyme" data-template-to="pseudonym">
+            <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body" data-template="app:print" data-template-key="pseudonym"> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
+                <div class="media-body" data-template="app:join" data-template-key="pseudonyme" data-template-separator="; "> Weber, Carl Maria Friedrich Ernst von <!--(<span class="nameDesc" data-template="lang:translate">pseudonym</span>)--></div>
             </li>
             
             <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
@@ -72,25 +72,20 @@
                 <div class="media-body" data-template="app:print" data-template-key="funeral"> 20.11.1786 in Eutin </div>
             </li>
             
-            <li class="media">
+            <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
                 <div class="pull-left">                  
                     <i class="fa fa-briefcase media-object"/>
                 </div>
-                <div class="media-body">
-                    <strong data-template="lang:translate">occupations</strong>:
-                    <span data-template="app:join" data-template-key="occupations">Schauspielerin, Sängerin</span>
+                <div class="media-body" data-template="app:join" data-template-key="occupations">
+                    Schauspielerin, Sängerin
                 </div>
             </li>
-            
-            <li class="media">
+            <li class="media residences" data-template="app:if-exists" data-template-key="residences">
                 <div class="pull-left">                  
                     <i class="fa fa-map-marker media-object"/>
                 </div>
-                <div class="media-body">
-                    <strong data-template="lang:translate">residences</strong>:
-                    <span data-template="app:join" data-template-key="residences">Altenburg, Erfurt, Naumburg, Rudolstadt, Coburg, Bamberg, Augsburg, St. Gallen, Freiburg 
-                        (Breisgau), Karlsruhe, Frankfurt (Main), Prag, Dresden</span>
-                    
+                <div class="media-body" data-template="app:join" data-template-key="residences">
+                    Köln, Gotha
                 </div>
             </li>
             
