@@ -3,7 +3,28 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
-         <xsl:apply-templates select=".//tei:app | .//tei:subst | .//tei:note | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:choice | .//tei:del[not(parent::tei:subst)]" mode="apparatus"/>
+         <xsl:element name="h2">
+            <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
+         </xsl:element>
+         <xsl:element name="ul">
+            <xsl:attribute name="class">textConstitution</xsl:attribute>
+            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)]" >
+               <xsl:element name="li">
+                  <xsl:apply-templates select="." mode="apparatus"/>
+               </xsl:element>
+            </xsl:for-each>
+         </xsl:element>
+         <xsl:element name="h2">
+            <xsl:value-of select="wega:getLanguageString('commentary', $lang)"/>
+         </xsl:element>
+         <xsl:element name="ul">
+            <xsl:attribute name="class">commentary</xsl:attribute>
+            <xsl:for-each  select=".//tei:app | .//tei:note | .//tei:choice">
+               <xsl:element name="li">
+                  <xsl:apply-templates select="." mode="apparatus"/>
+               </xsl:element>
+            </xsl:for-each>
+         </xsl:element>
       </xsl:element>
    </xsl:template>
    
