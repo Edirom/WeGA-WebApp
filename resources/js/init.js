@@ -5,9 +5,9 @@ $('.dropdown-secondlevel-nav').dropdownHover();
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
-    else if ($(this).hasClass('home')) { $(this).fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'}) }
+    else if ($(this).hasClass('home')) { $(this).fitText(1.4, {minFontSize: '36px', maxFontSize: '48px'}) }
     else if ($(this).html().length > 30) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
-    else $(this).fitText(1.4, {minFontSize: '42px', maxFontSize: '70px'});
+    else $(this).fitText(1.4, {minFontSize: '36px', maxFontSize: '48px'});
 };
 
 /* A wrapper function for creating select boxes */
