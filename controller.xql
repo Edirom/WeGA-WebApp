@@ -33,9 +33,11 @@ return (
 if(contains($exist:path, '/$resources/')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/resources/', substring-after($exist:path, '/$resources/'))}">
-            <set-header name="Cache-Control" value="max-age=3600, must-revalidate"/>
+            <set-header name="Cache-Control" value="max-age=3600,public"/>
         </forward>
     </dispatch>
+
+else if(starts-with($exist:path, '/resources/')) then response:set-header('Cache-Control', 'max-age=3600,public') 
 
 else if(starts-with($exist:path, '/digilib/')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -86,22 +88,8 @@ else if (matches($exist:resource, 'A\d{2}[0-9A-F]{4}')) then
  : Caching muss unterbunden werden
  :)
 else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templates/ajax')) then 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/templates/ajax/' || $exist:resource}"/>
-    	<view>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql'}">
-                <set-attribute name="docID" value="{functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')}"/>
-                <set-header name="Cache-Control" value="no-cache"/>
-            </forward>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-tidy.xql'}">
-                <set-attribute name="lang" value="{$exist-vars('lang')}"/>
-            </forward>
-        </view>
-        <error-handler>
-            <forward url="{map:get($exist-vars, 'controller') || '/templates/error-page.html'}" method="get"/>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-html.xql'}"/>
-        </error-handler>
-    </dispatch>
+    controller:forward-html('/templates/ajax/' || $exist:resource, map:new(($exist-vars, map:entry('docID', functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')))))
+    
 
 (:~
  : The CMIF Output of the letters (has to go before the generic *.xml rule) 
@@ -463,6 +451,8 @@ else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then
     </dispatch>
 
 (: zum debuggen rausgenommen um Fehler anzuzeigen:)
-else (:controller:error($exist-vars, 404):)
-    ()
+else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist:path)
+
+else controller:error($exist-vars, 404)
+    
 )

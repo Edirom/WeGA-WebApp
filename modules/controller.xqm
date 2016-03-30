@@ -20,23 +20,35 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace functx="http://www.functx.com";
 
 declare function controller:forward-html($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
-    	<view>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}">
-                <set-attribute name="docID" value="{$exist-vars('docID')}"/>
-                <!-- Needed for register pages -->
-                <set-attribute name="docType" value="{$exist-vars('docType')}"/>
-            </forward>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
-                <set-attribute name="lang" value="{$exist-vars('lang')}"/>
-            </forward>
-        </view>
-        <error-handler>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}"/>
-        </error-handler>
-    </dispatch>
+    let $etag := controller:etag($exist-vars('path'))
+    let $modified := not(request:get-header('If-None-Match') = $etag)
+    return (
+        <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
+            <view>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}">
+                    <set-attribute name="docID" value="{$exist-vars('docID')}"/>
+                    <!-- Need to provoke 304 error in view-html.xql if unmodified -->
+                    <set-attribute name="modified" value="{$modified cast as xs:string}"/>
+                    <!-- Needed for register pages -->
+                    <set-attribute name="docType" value="{$exist-vars('docType')}"/>
+                </forward>
+                {if($modified) then 
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
+                    <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+                </forward>
+                else ()}
+            </view>
+            {if($modified) then
+            <error-handler>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}"/>
+            </error-handler>
+            else ()}
+        </dispatch>,
+        response:set-header('Cache-Control', 'max-age=120,public'),
+        response:set-header('ETag', $etag)
+    )
 };
 
 
@@ -253,14 +265,19 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
         else ()
 };
 
-
 declare %private function controller:media-type($exist-vars as map(*)) as xs:string? {
     'html'
 };
-
 
 declare %private function controller:forward-document($exist-vars as map(*)) as element(exist:dispatch) {
     switch($exist-vars('docType'))
     case 'persons' return controller:forward-html('/templates/person.html', $exist-vars)
     default return controller:forward-html('/templates/document.html', $exist-vars)
+};
+
+declare %private function controller:etag($path as xs:string) as xs:string {
+    let $lastChanged := config:getDateTimeOfLastDBUpdate()
+    let $params := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
+    return
+        util:hash($path || $lastChanged || $params || 'bar', 'md5')
 };
