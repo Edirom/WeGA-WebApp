@@ -1295,7 +1295,7 @@ declare
             case element(tei:biblStruct) return 
                 element {name($node)} {
                     $node/@*,
-                    str:normalize-space(bibl:printCitation($source, 'p', $lang))
+                    bibl:printCitation($source, 'p', $lang)/node()
                 }
             default return ()
 };
