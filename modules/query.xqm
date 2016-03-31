@@ -138,7 +138,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
  : @param $doc the TEI document
  : @return 
  :)
-declare function query:get-title-element($doc as document-node(), $lang as xs:string) as element() {
+declare function query:get-title-element($doc as document-node(), $lang as xs:string) as element()? {
     let $docID := $doc/*/data(@xml:id)
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
