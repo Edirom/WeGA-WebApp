@@ -279,5 +279,5 @@ declare %private function controller:etag($path as xs:string) as xs:string {
     let $lastChanged := config:getDateTimeOfLastDBUpdate()
     let $params := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
     return
-        util:hash($path || $lastChanged || $params || 'bar', 'md5')
+        util:hash($path || $lastChanged || $params, 'md5')
 };
