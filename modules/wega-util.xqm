@@ -55,7 +55,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalResource) {
     let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
-        try { wega-util:stopwatch(http:send-request#1, $req, string($url)) }
+        try { http:send-request($req) }
         catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')

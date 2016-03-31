@@ -53,7 +53,8 @@ let $lookup := function($functionName as xs:string, $arity as xs:int) {
 let $content := request:get-data()
 let $modified := request:get-attribute('modified') = 'true'
 return 
-    if($modified) then wega-util:stopwatch(templates:apply#4, ($content, $lookup, $model, $config), ()) 
+    if($modified) then (:wega-util:stopwatch(templates:apply#4, ($content, $lookup, $model, $config), ()):)
+        templates:apply($content, $lookup, $model, $config)
     else ( 
         (:util:log-system-out('cached ' || $model('docID')),:) 
         response:set-status-code( 304 )
