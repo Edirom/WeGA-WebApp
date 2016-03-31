@@ -132,19 +132,19 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
 };
 
 (:~
- : Gets reg title
+ : Fetches the main title element
  :
  : @author Peter Stadler
  : @param $doc the TEI document
- : @return xs:string
+ : @return 
  :)
-declare function query:get-title-element($doc as document-node(), $lang as xs:string) as element()* {
+declare function query:get-title-element($doc as document-node(), $lang as xs:string) as element() {
     let $docID := $doc/*/data(@xml:id)
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
-        else if(config:is-work($docID)) then $doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)]
+        else if(config:is-work($docID)) then ($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
         else if(config:is-var($docID)) then $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@xml:lang = $lang]
-        else $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']
+        else ($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
 };
 
 declare function query:get-main-source($doc as document-node()) as element()? {
