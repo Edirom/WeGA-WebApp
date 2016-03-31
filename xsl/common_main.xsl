@@ -282,17 +282,12 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
     <xsl:template match="tei:lg">
-        <xsl:element name="div">
+        <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="'lg'"/>
             <xsl:apply-templates/>
-            <!--<xsl:for-each select="./tei:l">
-                <xsl:apply-templates/>
-                <xsl:if test="not(position()=last())">
-                    <xsl:element name="br"/>
-                </xsl:if>
-            </xsl:for-each>-->
         </xsl:element>
     </xsl:template>
 
