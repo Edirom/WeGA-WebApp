@@ -413,13 +413,23 @@ function jump2diary(dateText) {
     })
 };
 
-/* Exclude missing diary days */
+/* Exclude diary days from datePicker */
+/* (some days are missing from Weber's diaries) */
 function checkValidDiaryDate(date) {
     /* 5-20 April 1814 */
-    /* 26-31. Mai */
-    /* 1-9 Juni */
-    /* 19-30 Juni */
-    /* 1-26 Juli */
+    /* 26-31. Mai 1814 */
+    /* 1-9 Juni 1814 */
+    /* 19-30 Juni 1814 */
+    /* 1-26 Juli 1814 */
+    /* August – Dezember 1814 */
+    /* 9-16 April 1819 */
+    /* 18–21 April 1819 */
+    /* 23 April 1819 */
+    /* 26–27 April 1819 */
+    /* 29 April 1819 */
+    /* 3-4 Mai 1819 */
+    /* 9-11 Mai 1819*/
+   
     var start1 =  new Date('04/05/1814');
     var end1 =  new Date('04/20/1814');
     var start2 =  new Date('05/26/1814');
@@ -430,12 +440,34 @@ function checkValidDiaryDate(date) {
     var end4 =  new Date('06/30/1814');
     var start5 =  new Date('07/01/1814');
     var end5 =  new Date('07/26/1814');
+    var start6 =  new Date('08/01/1814');
+    var end6 =  new Date('12/31/1814');
+    var start7 =  new Date('04/09/1819');
+    var end7 =  new Date('04/16/1819');
+    var start8 =  new Date('04/18/1819');
+    var end8 =  new Date('04/21/1819');
+    var day9 =  new Date('04/23/1819');
+    var start10 =  new Date('04/26/1819');
+    var end10 =  new Date('04/27/1819');
+    var day11 =  new Date('04/29/1819');
+    var start12 =  new Date('05/03/1819');
+    var end12 =  new Date('05/04/1819');
+    var start13 =  new Date('05/09/1819');
+    var end13 =  new Date('05/11/1819');
     return !(
         (date >= start1 && date <= end1) ||
         (date >= start2 && date <= end2) ||
         (date >= start3 && date <= end3) ||
         (date >= start4 && date <= end4) ||
-        (date >= start5 && date <= end5)
+        (date >= start5 && date <= end5) ||
+        (date >= start6 && date <= end6) ||
+        (date >= start7 && date <= end7) ||
+        (date >= start8 && date <= end8) ||
+        (date == day9) ||
+        (date >= start10 && date <= end10) ||
+        (date == day11) ||
+        (date >= start12 && date <= end12) ||
+        (date >= start13 && date <= end13)
     )
 };
 
