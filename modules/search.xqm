@@ -84,12 +84,16 @@ declare
  : Simply redirects to the right fragment from 'templates/includes'
  :
  :)
-declare function search:dispatch-preview($node as node(), $model as map(*)) {
-    let $docType := config:get-doctype-by-id($model('result-page-entry')/*/data(@xml:id))
-    (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
-    let $newModel := map:new(($model, map:entry('parent-docID', $model('docID'))))
-    return
-        templates:include($node, $newModel, 'templates/includes/preview-' || $docType || '.html')
+declare 
+    %templates:default("usage", "")
+    function search:dispatch-preview($node as node(), $model as map(*), $usage as xs:string) {
+        let $docType := config:get-doctype-by-id($model('result-page-entry')/*/data(@xml:id))
+        (: Need to distinguish between contacts and other person previews :)
+        let $usage := if(config:is-person($model('docID')) and $model('docType') = 'persons') then 'contacts' else ''
+        (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
+        let $newModel := map:new(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
+        return
+            templates:include($node, $newModel, 'templates/includes/preview-' || $docType || '.html')
 };
 
 (:~
