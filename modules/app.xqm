@@ -664,6 +664,7 @@ declare
             'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'],
             'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'],
             'realnames' := $model('doc')//tei:persName[@type = 'real'],
+            'altnames' := $model('doc')//tei:persName[@type = 'alt'][not(@subtype)],
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'],
             'births' := date:printDate(($model('doc')//tei:birth/tei:date[not(@type)])[1], $lang),
             'baptism' := date:printDate(($model('doc')//tei:birth/tei:date[@type='baptism'])[1], $lang),

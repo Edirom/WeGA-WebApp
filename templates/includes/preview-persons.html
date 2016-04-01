@@ -41,7 +41,12 @@
                 </div>
                 <div class="media-body"> <span data-template="app:join" data-template-key="pseudonyme" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">pseudonyme</span></div>
             </li>
-            
+            <li class="media altnames" data-template="app:if-exists" data-template-key="altnames">
+                <div class="pull-left">
+                    <i class="fa fa-user media-object"/>
+                </div>
+                <div class="media-body"> <span data-template="app:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
+            </li>
             <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
                 <div class="pull-left">
                     <i class="fa fa-asterisk  media-object"/>
