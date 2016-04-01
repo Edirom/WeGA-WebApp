@@ -1258,7 +1258,8 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]
+            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')],
+            'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type)
         }
 };
 
