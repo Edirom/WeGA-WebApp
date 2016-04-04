@@ -112,7 +112,7 @@ declare %private function facets:createFacets($collFacets as item()*) as element
 ~:)
 declare %private function facets:display-term($facet as xs:string, $term as xs:string, $lang as xs:string) as xs:string {
     switch ($facet)
-    case 'docTypeSubClass' return lang:get-language-string($term, $lang)
+    case 'docTypeSubClass' case 'docStatus' return lang:get-language-string($term, $lang)
     default return $term
 };
 
