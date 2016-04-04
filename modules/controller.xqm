@@ -276,8 +276,11 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
 };
 
 declare %private function controller:etag($path as xs:string) as xs:string {
-    let $lastChanged := config:getDateTimeOfLastDBUpdate()
-    let $params := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
+    let $lastChanged := 
+        (: reload index page every day because of word of the day and what happened on … :)
+        if(contains($path, 'Index')) then config:getDateTimeOfLastDBUpdate() || current-date()
+        else config:getDateTimeOfLastDBUpdate()
+    let $urlParams := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
     return
-        util:hash($path || $lastChanged || $params, 'md5')
+        util:hash($path || $lastChanged || $urlParams, 'md5')
 };
