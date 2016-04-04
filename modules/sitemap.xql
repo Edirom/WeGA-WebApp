@@ -8,10 +8,10 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace compression="http://exist-db.org/xquery/compression";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
-import module namespace wega = "http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";
 import module namespace functx="http://www.functx.com";
-import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
@@ -26,7 +26,7 @@ declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'd
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
     let $lastmod := $config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime)
-    let $loc := $local:host || core:join-path-elements(('/', wega:createLinkToDoc($x, $lang)))
+    let $loc := $local:host || app:createUrlForDoc($x, $lang)
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
             element loc {$loc},
@@ -38,7 +38,7 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $i in $local:standardEntries return 
-            <url><loc>{$local:host || core:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
+            <url><loc>{$local:host || str:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
         }
         {
         for $k in $local:databaseEntries return local:getUrlList($k, $lang)
@@ -49,7 +49,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
 declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
-        return <sitemap><loc>{$local:host || core:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
+        return <sitemap><loc>{$local:host || str:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
         }
     </sitemapindex>
 };
@@ -61,7 +61,7 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
         if(xmldb:collection-available($folderName)) then xmldb:last-modified($folderName, $fileName) 
         else local:createSitemapCollection($folderName) 
     let $updateNecessary := typeswitch($currentDateTimeOfFile) 
-	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or not(util:binary-doc-available(core:join-path-elements(($folderName, $fileName))))
+	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or not(util:binary-doc-available(str:join-path-elements(($folderName, $fileName))))
 	   default return true()
     return 
         if($updateNecessary) then (
@@ -77,7 +77,7 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
                 )
                 else ()
         )
-        else util:binary-doc(core:join-path-elements(($folderName, $fileName)))
+        else util:binary-doc(str:join-path-elements(($folderName, $fileName)))
 };
 
 declare function local:getMimeType($compression as xs:string) as xs:string? {
