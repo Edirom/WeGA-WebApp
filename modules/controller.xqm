@@ -240,24 +240,29 @@ declare function controller:redirect-by-gnd($exist-vars as map(*)) {
         else controller:error($exist-vars('resource'), '404')
 };
 
-(:~
- : 
- : @author Peter Stadler
- : @param $path e.g. /db/apps/WeGA-WebApp/tmp/images/A0020xx/A002068/12345628.jpg
-~:)
-(:declare function controller:map-local-image-path-to-external($path as xs:string) as xs:string {
-    replace($path, $config:tmp-collection-path || '/images/A00[0-9A-F]{2}xx/(A00[0-9A-F]{4})/', '$1/img/')
+declare function controller:lookup-url-mappings($exist-vars as map(*)) {
+    let $lookup-table := doc($config:catalogues-collection-path || '/urlMappings.xml')
+    let $mapping := $lookup-table//mapping[@from = $exist-vars('path')]
+(:    let $log := util:log-system-out($exist-vars('path')):)
+    return
+        if($mapping) then controller:redirect-absolute($mapping/normalize-space(@to))
+        (: zum debuggen rausgenommen um Fehler anzuzeigen:)
+        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
+        else controller:error($exist-vars, 404)
 };
-:)
-(:~
- :
- : @author Peter Stadler
- : @param $path e.g. /de/A002068/img/12345628.jpg
-~:)
-(:declare function controller:map-external-image-path-to-local($path as xs:string) as xs:string {
-    replace($path, '/\w{2}/(A00[0-9A-F]{2})([0-9A-F]{2})/img/', replace($config:tmp-collection-path, $config:app-root, '') || '/images/$1xx/$1$2/')
+
+declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
+    let $lookup-table := doc($config:catalogues-collection-path || '/typo3ContentMappings.xml')
+    let $oldID := request:get-parameter('id', '')
+    let $mapping := 
+        if($oldID castable as xs:integer) then $lookup-table//entry[@oldID = $oldID]
+        else ()
+    return
+        if($mapping) then controller:redirect-absolute(normalize-space($mapping))
+        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
+        else controller:error($exist-vars, 404)
 };
-:)
+
 declare %private function controller:resource-id($exist-vars as map(*)) as xs:string? {
     let $regex := '^A\d{2}[0-9A-F]{4}\.' || string-join($config:valid-resource-suffixes, '|') || '$'
     return

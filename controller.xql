@@ -295,38 +295,9 @@ else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002
     local:forwardIndices('publications', $lang):)
 
 
-(: Bandübersicht :)
-(:else if (matches($exist:path, concat('^/', $lang, '/', $volContents, '/?$'))) then
-    let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
-    return
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/var.xql')}">
-    	   <add-parameter name="lang" value="{$lang}"/>
-    	   <add-parameter name="docID" value="A070011"/>
-    	   <add-parameter name="createSecNos" value="true"/>
-    	   <add-parameter name="js" value="{$js}"/>
-    	</forward>
-    </dispatch>:)
-
 (: GND Resolver :)
 else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) then
     controller:redirect-by-gnd($exist-vars)
-
-(: Shortcut für Weber-Korrespondenz :)
-(:else if (matches($exist:path, concat('^/', lower-case($letters), '/?$'))) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, 'A002068', $correspondence))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch>:)
-
-(: Shortcut für Weber-Tagebücher :)
-(:else if (matches($exist:path, concat('^/', lower-case($diaries), '/?$'))) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, 'A002068', $diaries))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch>:)
 
 (: Shortcut für fffi-db :)
 (:else if (matches($exist:path, '^/fffi-db[^/]*$')) then
@@ -336,41 +307,6 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) the
     	</redirect>
     </dispatch>   :) 
 
-(: Shortcut für Aktuelles :)
-(:else if (matches($exist:path, '^/aktuelles.html$')) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, $indices, $news))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch> :)
-
-(: Shortcut für Bibliographie :)
-(:else if (matches($exist:path, '^/weberbiblio.html$')) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, $bibliography))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch> :)
-
-(: Shortcut für Werkverzeichnis :)
-(:else if (matches($exist:path, '^/wev_kurzfassung.html$')) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, 'A002068', $works))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch> :)
-
-(: typo3ContentMappings :)
-(:else if (matches($exist:path, '^/index.php$')) then
-    let $param := request:get-parameter('id', '10')
-    let $newPath := doc(config:get-option('typo3ContentMappings'))//entry[@oldID = $param]
-    return if($newPath ne '') then 
-        <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        	<redirect url="{controller:encode-path-segments-for-uri($newPath)}">
-        	   <cache-control cache="yes"/>
-        	</redirect>
-        </dispatch>
-     else controller:error($exist-vars, 404):)
 
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then
@@ -450,9 +386,9 @@ else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then
         </forward>
     </dispatch>
 
-(: zum debuggen rausgenommen um Fehler anzuzeigen:)
-else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist:path)
+(: typo3ContentMappings :)
+else if($exist:resource = 'index.php') then controller:lookup-typo3-mappings($exist-vars)
 
-else controller:error($exist-vars, 404)
-    
+else controller:lookup-url-mappings($exist-vars)
+
 )
