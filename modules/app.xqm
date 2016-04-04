@@ -307,6 +307,16 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:status($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
+        let $docStatus := $model('doc')/*/@status | $model('doc')//tei:revisionDesc/@status 
+        return
+            if($docStatus) then lang:get-language-string($docStatus, $lang)
+            else ()
+};
+
 
 (:
  : ****************************
