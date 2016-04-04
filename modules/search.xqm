@@ -287,7 +287,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
 declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
     let $filter := map:keys($filters)[1]
     return 
-        $collection//@xml:id[config:get-doctype-by-id(.) = $filters($filter)]/root()
+        $collection/*/@xml:id[config:get-doctype-by-id(.) = $filters($filter)]/root()
 };
 
 (:~
