@@ -617,9 +617,10 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
      if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:get-reg-name($persName/@key)), $lang, ('class=persons'))
         (:wega:createPersonLink($persName/string(@key), $lang, $order):)
-     else if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
-     else if (not(functx:all-whitespace($persName))) then <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
-     else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
+     else if (not(functx:all-whitespace($persName))) then 
+        if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
+        else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
+    else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
 };
 
 declare 
