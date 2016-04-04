@@ -127,7 +127,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
     return 
-        collection(config:get-option('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)] union
+        collection(config:get-option('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)][not(functx:all-whitespace(following::tei:text))] union
         collection(config:get-option('persons'))//tei:date[matches(@when, $date-regex)][not(preceding-sibling::tei:date[matches(@when, $date-regex)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
