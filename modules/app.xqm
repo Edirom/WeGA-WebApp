@@ -221,15 +221,23 @@ declare function app:if-matches($node as node(), $model as map(*), $key as xs:st
 (:~
  : Processes the node only if some $key *not* matches $value in $model 
  :
+ : @param $node the processed $node from the html template (a default param from the templating module)
+ : @param $model a map (a default param from the templating module)
+ : @param $key the key in $Model to look for
+ : @param $value the value of $key to match
+ : @param $wrap whether to copy the node $node to the output or just process the child nodes of $node  
  : @author Peter Stadler
  :)
-declare function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string) as node()? {
-    if($model($key) = tokenize($value, '\s+')) then ()
-    else 
-        element {node-name($node)} {
-            $node/@*,
-            templates:process($node/node(), $model)
-        }
+declare 
+    %templates:default("wrap", "yes")
+    function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
+        if($model($key) = tokenize($value, '\s+')) then ()
+        else if($wrap = 'yes') then
+            element {node-name($node)} {
+                $node/@*,
+                templates:process($node/node(), $model)
+            }
+        else templates:process($node/node(), $model)
 };
 
 
