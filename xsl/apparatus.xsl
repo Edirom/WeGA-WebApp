@@ -3,6 +3,9 @@
    <xsl:template name="createApparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
+         <xsl:if test="wega:isNews($docID)">
+            <xsl:attribute name="style">display:none</xsl:attribute>
+         </xsl:if>
          <xsl:element name="h2">
             <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
          </xsl:element>
