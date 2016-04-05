@@ -73,6 +73,26 @@ $.fn.loadPortrait = function () {
     })
 };
 
+/* Initialise datepicker for diaries */
+$.fn.initDatepicker = function () {
+    $(this).each(function(a,b) {
+        $(b).datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: "1810-02-26",
+            maxDate: "1826-06-03",
+            defaultDate: getDiaryDate(),
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(dateText, inst) { 
+                jump2diary(dateText)
+            },
+            beforeShowDay: function(date) {
+                return [ checkValidDiaryDate(date)  ]
+            }
+        })
+    })
+};
+
 // remove popovers when clicking somewhere
 $('body').on('click', function (e) {
     $('[data-original-title]').each(function () {
@@ -317,6 +337,7 @@ function ajaxCall(container,url) {
             );
             /* Load portraits via AJAX */
             $('.searchResults .portrait').loadPortrait();
+            $("#datePicker").initDatepicker();
         }
     });
 };
@@ -333,20 +354,7 @@ $("[data-hovered-src]").hover(
     } 
 );
 
-$("#datePicker").datepicker({
-    dateFormat: "yy-mm-dd",
-    minDate: "1810-02-26",
-    maxDate: "1826-06-03",
-    defaultDate: getDiaryDate(),
-    changeMonth: true,
-    changeYear: true,
-    onSelect: function(dateText, inst) { 
-        jump2diary(dateText)
-    },
-    beforeShowDay: function(date) {
-        return [ checkValidDiaryDate(date)  ]
-    }
-});
+$("#datePicker").initDatepicker();
 
 /* Fieser Hack */
 $('#facsimile-tab').on('click', function() {
@@ -478,7 +486,8 @@ function getLanguage() {
 
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
-    var title = $('h1.document').html();
+    /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
+    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html() : $('h1.document').html() ;
     var lang = getLanguage();
     var format;
     if(lang === 'de') { 
