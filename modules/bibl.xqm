@@ -23,7 +23,9 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
  : @return element
  :)
 declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element()? {
-    if($biblStruct/tei:analytic/tei:author[@sameAs]) then bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
+    (: First, for most writings we only want to display the journal :)
+    if($biblStruct/tei:analytic/tei:author[@sameAs] and not($biblStruct/ancestor::tei:additional)) then bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
+    (: That's nice – we have a type! :)
     else if($biblStruct/@type eq 'book') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'score') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
@@ -33,6 +35,10 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     else if($biblStruct/@type eq 'mastersthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'review') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'phdthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    (: Trying to guess … :)
+    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='m']) then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='j']) then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    (: Fallback :)
     else bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
 
@@ -102,8 +108,7 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
     return 
         element {$wrapperElement} {
-            $authors,
-            ', ',
+            if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] '
             else (),
             $articleTitle,
@@ -131,8 +136,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
     return 
         element {$wrapperElement} {
-            $authors,
-            ', ',
+            if(exists($authors)) then ($authors, ', ') else (),
             $articleTitle,
             ', in: ',
             $bookTitle,
@@ -230,7 +234,10 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
     let $countAuthors := count($authors)
     return 
         for $i at $counter in $authors
-        let $author := <span class="{local-name($i)}">{str:printFornameSurname(str:normalize-space($i))}</span>
+        let $authorElem :=
+            if($i/@sameAs) then $i/root()/id($i/substring(@sameAs, 2))
+            else $i
+        let $author := <span class="{local-name($i)}">{str:printFornameSurname(str:normalize-space($authorElem))}</span>
         return (
             $author,
             if($counter lt $countAuthors - 1) then ', '

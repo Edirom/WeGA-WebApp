@@ -68,11 +68,11 @@
             <xsl:if test="tei:repository/@n">
                 <xsl:text>(</xsl:text>
                 <xsl:value-of select="tei:repository/@n"/>
-                <xsl:text>), </xsl:text>
+                <xsl:text>)</xsl:text>
             </xsl:if>
             <xsl:if test="tei:collection != ''">
-                <xsl:value-of select="tei:collection"/>
                 <xsl:text>, </xsl:text>
+                <xsl:value-of select="tei:collection"/>
             </xsl:if>
             <xsl:if test="tei:idno != ''">
                 <xsl:element name="br"/>
@@ -114,24 +114,24 @@
     </xsl:template>
 
     <xsl:template match="tei:additional">
-        <xsl:element name="h4">
+        <!--<xsl:element name="h4">
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('prints', $lang)"/>
         </xsl:element>
-        <xsl:apply-templates/>
+        <xsl:apply-templates/>-->
     </xsl:template>
 
-    <xsl:template match="tei:listBibl">
+    <!--<xsl:template match="tei:listBibl">
         <xsl:element name="ul">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xsl:template match="tei:bibl[parent::tei:listBibl]">
+    <!--<xsl:template match="tei:bibl[parent::tei:listBibl]">
         <xsl:element name="li">
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
     
     <xsl:template match="tei:creation">
         <xsl:apply-templates/>

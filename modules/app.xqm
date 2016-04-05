@@ -181,13 +181,17 @@ declare
  :
  : @author Peter Stadler
  :)
-declare function app:if-exists($node as node(), $model as map(*), $key as xs:string) as node()? {
-    if($model($key)) then 
-        element {node-name($node)} {
-            $node/@*,
-            templates:process($node/node(), $model)
-        }
-    else ()
+declare 
+    %templates:default("wrap", "yes")
+    function app:if-exists($node as node(), $model as map(*), $key as xs:string, $wrap as xs:string) as node()* {
+        if($model($key)) then 
+            if($wrap = 'yes') then
+                element {node-name($node)} {
+                    $node/@*,
+                    templates:process($node/node(), $model)
+                }
+            else templates:process($node/node(), $model)
+        else ()
 };
 
 (:~
@@ -1035,10 +1039,30 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {
+    function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
         typeswitch($model('textSource'))
         case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         case element(tei:biblStruct) return bibl:printCitation($model('textSource'), 'p', $lang)
+        case element(tei:bibl) return <p>{str:normalize-space($model('textSource'))}</p>
+        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+};
+
+declare 
+    %templates:wrap
+    function app:additionalSources($node as node(), $model as map(*)) as map(*) {
+        (: tei:msDesc, tei:bibl, tei:biblStruct als mögliche Kindelemente von tei:additional/tei:listBibl :)
+        map {
+            'additionalSources' := $model('textSource')/tei:additional/tei:listBibl/tei:*
+        }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-additionalSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
+        typeswitch($model('additionalSource'))
+        case element(tei:msDesc) return wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        case element(tei:biblStruct) return <span class="biblio-entry">{bibl:printCitation($model('additionalSource'), 'p', $lang)/node()}</span>
+        case element(tei:bibl) return <span>{str:normalize-space($model('additionalSource'))}</span>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
 
