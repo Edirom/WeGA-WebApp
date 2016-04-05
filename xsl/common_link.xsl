@@ -8,11 +8,11 @@
     <!--  *********************************************  -->
     <xsl:template match="tei:persName | tei:author">
         <xsl:choose>
-            <xsl:when test="$suppressLinks">
-                <xsl:call-template name="createSpan"/>
+            <xsl:when test="@key and not($suppressLinks)">
+                <xsl:call-template name="createLink"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:call-template name="createLink"/>
+                <xsl:call-template name="createSpan"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
