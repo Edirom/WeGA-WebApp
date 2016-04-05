@@ -15,7 +15,9 @@
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="'tableLeft'"/>
-            <xsl:apply-templates/>
+            <xsl:element name="p">
+                <xsl:apply-templates/>
+            </xsl:element>
             <xsl:call-template name="createApparatus"/>
         </xsl:element>
     </xsl:template>
