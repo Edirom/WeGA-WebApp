@@ -129,7 +129,11 @@ declare %private function search:list($model as map(*)) as map(*) {
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
     let $filtered-results := 
-        if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($coll, 'persons', $model('docID')) 
+        if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($search-results, 'persons', $model('docID'))
+        else if ($model('docType') = 'letters' and $model('docID') ne 'indices') then core:sortColl($search-results, 'letters', $model('docID'))
+        else if ($model('docType') = 'writings' and $model('docID') ne 'indices') then core:sortColl($search-results, 'writings', $model('docID'))
+        else if ($model('docType') = 'diaries' and $model('docID') ne 'indices') then core:sortColl($search-results, 'diaries', $model('docID'))
+        else if ($model('docType') = 'biblio' and $model('docID') ne 'indices') then core:sortColl($search-results, 'biblio', $model('docID'))
         else $search-results
     return
         map {
