@@ -4,13 +4,11 @@ module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-(:declare namespace templates="http://exist-db.org/xquery/templates";:)
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-(:declare namespace request = "http://exist-db.org/xquery/request";:)
-declare namespace session = "http://exist-db.org/xquery/session";
+declare namespace request = "http://exist-db.org/xquery/request";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";

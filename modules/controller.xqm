@@ -28,6 +28,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
             <view>
                 <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}">
                     <set-attribute name="docID" value="{$exist-vars('docID')}"/>
+                    <set-attribute name="lang" value="{$exist-vars('lang')}"/>
                     <!-- Need to provoke 304 error in view-html.xql if unmodified -->
                     <set-attribute name="modified" value="{$modified cast as xs:string}"/>
                     <!-- Needed for register pages -->

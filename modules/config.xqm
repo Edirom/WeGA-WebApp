@@ -15,6 +15,7 @@ import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
@@ -425,7 +426,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
 :)
 declare function config:get-xsl-params($params as map()?) as element(parameters) {
     <parameters>
-        <param name="lang" value="{session:get-attribute('lang')}"/>
+        <param name="lang" value="{lang:get-set-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>

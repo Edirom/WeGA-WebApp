@@ -13,7 +13,6 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
-declare namespace session = "http://exist-db.org/xquery/session";
 declare namespace util = "http://exist-db.org/xquery/util";
 declare namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";

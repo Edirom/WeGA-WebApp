@@ -32,6 +32,7 @@ let $config := map {
 let $model := 
     map {
         'docID' := request:get-attribute('docID'),
+        'lang' := request:get-attribute('lang'),
         'docType' := request:get-attribute('docType'),
         'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()}
     }

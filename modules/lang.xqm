@@ -10,7 +10,6 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
-import module namespace session="http://exist-db.org/xquery/session";
 import module namespace functx="http://www.functx.com";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -18,23 +17,18 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 
 (:~
- : get and set language variable from/in a session attribute
+ : get and set language variable
  :
  : @author Peter Stadler
  : @param $lang the language to set
  : @return xs:string the (newly) set language variable 
  :)
 declare function lang:get-set-language($lang as xs:string?) as xs:string {
-    (: only set language when parameter $lang is given :)
-    let $setLang := 
-        if($lang = $config:valid-languages) then session:set-attribute('lang', $lang)
-        else ()
-    let $getLang := session:get-attribute('lang')
-    return
-        (: Return from session variable :)
-        if($getLang = $config:valid-languages) then $getLang
-        (: else default language :)
-        else $config:valid-languages[1]
+    if($lang = $config:valid-languages) then $lang
+    (: else try to guess from the URL path segment :)
+    else if(tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
+    (: else default language :)
+    else $config:valid-languages[1]
 };
 
 (:~ 
@@ -123,9 +117,15 @@ declare function lang:translate-language-string($string as xs:string, $sourceLan
     return normalize-space($search)
 };
 
-declare function lang:translate($node as node(), $model as map(*), $lang as xs:string) as element() {
+(:~
+ : translate function for use with the templating module
+ : The language information must be given in the $model
+ :
+ : @author Peter Stadler
+~:)
+declare function lang:translate($node as node(), $model as map(*)) as element() {
     element {'xhtml:' || $node/local-name()} {
         $node/@*[not(starts-with(name(.), 'data-template'))],
-        lang:get-language-string(normalize-space($node), $lang)
+        lang:get-language-string(normalize-space($node), $model('lang'))
     }
 };

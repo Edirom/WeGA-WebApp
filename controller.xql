@@ -17,8 +17,7 @@ declare variable $exist:resource external;
 declare variable $exist:controller external;
 declare variable $exist:prefix external;
 
-let $params := tokenize($exist:path, '/')
-let $lang := lang:get-set-language($params[2])
+let $lang := lang:get-set-language(())
 let $exist-vars := map {
     'path' := $exist:path,
     'resource' := $exist:resource,
