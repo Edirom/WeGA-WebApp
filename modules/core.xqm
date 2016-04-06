@@ -168,7 +168,7 @@ declare function core:sortColl($coll as item()*, $collName as xs:string) as docu
     case 'diaries' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
     case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     case 'news' return for $i in $coll order by query:get-normalized-date($i) descending return $i
-    case 'biblio' return for $i in $coll order by query:get-normalized-date($i) descending return $i
+    case 'biblio' return for $i in $coll order by string(query:get-normalized-date($i)) descending return $i
     default return $coll
 };
 
