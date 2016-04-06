@@ -51,6 +51,13 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
     )
 };
 
+declare function controller:forward-xml($exist-vars as map()*) as element(exist:dispatch) {
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-xml.xql'}">
+            <set-attribute name="resource" value="{$exist-vars('docID')}"/>
+        </forward>
+    </dispatch>
+};
 
 (:~
  : Redirect to given (absolute) path
@@ -271,13 +278,31 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
 };
 
 declare %private function controller:media-type($exist-vars as map(*)) as xs:string? {
-    'html'
+    let $suffix := functx:substring-after-last($exist-vars('resource'), '.')
+    let $header := tokenize(request:get-header('Accept'), ',')
+    return
+        controller:canonical-mime-type(($suffix, $header))
 };
 
-declare %private function controller:forward-document($exist-vars as map(*)) as element(exist:dispatch) {
-    switch($exist-vars('docType'))
-    case 'persons' return controller:forward-html('/templates/person.html', $exist-vars)
-    default return controller:forward-html('/templates/document.html', $exist-vars)
+declare %private function controller:canonical-mime-type($mime-type as xs:string*) as xs:string? {
+    switch($mime-type[1])
+    case 'html' case 'htm' return 'html'
+    case 'xml' case 'tei' return 'xml'
+    case 'text/html' case 'application/xhtml+xml' return 'html'
+    case 'application/xml' return 'xml'
+    default return 
+        if(count($mime-type) gt 1) then controller:canonical-mime-type(subsequence($mime-type, 2))
+        else ()
+};
+
+declare %private function controller:forward-document($exist-vars as map(*)) as element(exist:dispatch)? {
+    switch($exist-vars('media-type'))
+    case 'html' return
+        switch($exist-vars('docType'))
+        case 'persons' return controller:forward-html('/templates/person.html', $exist-vars)
+        default return controller:forward-html('/templates/document.html', $exist-vars)
+    case 'xml' return controller:forward-xml($exist-vars)
+    default return ()
 };
 
 declare %private function controller:etag($path as xs:string) as xs:string {
