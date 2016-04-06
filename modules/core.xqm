@@ -146,7 +146,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:getOrCreateColl('diaries', 'indices', true()) |
             core:getOrCreateColl('news', 'indices', true()) |
             core:getOrCreateColl('biblio', 'indices', true()) |
-            core:getOrCreateColl('places', 'indices', true()) |
+            (:core:getOrCreateColl('places', 'indices', true()) |:)
             core:getOrCreateColl('writings', 'indices', true()) |
             core:getOrCreateColl('persons', 'indices', true())
         default return ()
