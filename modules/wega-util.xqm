@@ -107,7 +107,7 @@ declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
 declare function wega-util:remove-comments($nodes as node()*) as node()* {
     for $node in $nodes
     return
-        if($node instance of processing-instruction()) then ()
+        if($node instance of processing-instruction()) then $node
         else if($node instance of comment()) then ()
         else if($node instance of element()) then 
             element {node-name($node)} {

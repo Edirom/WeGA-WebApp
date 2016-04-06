@@ -699,8 +699,7 @@ declare
 
 declare 
     %templates:wrap
-    %templates:default("lang", "en")
-    function app:person-details($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    function app:person-details($node as node(), $model as map(*)) as map(*) {
     map{
         'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
         'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
@@ -711,8 +710,9 @@ declare
         'news' := core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
         'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-        'lang' := $lang,
-        'source' := $model('doc')/tei:person/data(@source)
+        
+        'source' := $model('doc')/tei:person/data(@source),
+        'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
     }
@@ -916,7 +916,8 @@ declare
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
         map {
-            'hasFacsimile' := exists($model('doc')//tei:facsimile/tei:graphic/@url)
+            'hasFacsimile' := exists($model('doc')//tei:facsimile/tei:graphic/@url),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
 
