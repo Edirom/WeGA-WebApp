@@ -78,7 +78,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
-    let $title := <span class="title">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
+    let $title := <span class="title">{string-join($biblStruct/tei:monogr/tei:title/str:normalize-space(.), '. ')}</span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
     return 
         element {$wrapperElement} {
@@ -104,7 +104,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
  :)
 declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang) 
-    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title/normalize-space(), '. ')}</span>
+    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title/str:normalize-space(.), '. ')}</span>
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
     return 
         element {$wrapperElement} {
@@ -130,8 +130,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
 declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editor := bibl:printCitationAuthors($biblStruct//tei:editor, $lang)
-    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title, '. ')}</span>
-    let $bookTitle := <span class="collectionTitle">{string-join($biblStruct/tei:monogr/tei:title, '. ')}</span>
+    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title/str:normalize-space(.), '. ')}</span>
+    let $bookTitle := <span class="collectionTitle">{string-join($biblStruct/tei:monogr/tei:title/str:normalize-space(.), '. ')}</span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
     return 
@@ -159,7 +159,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  : @return element
  :)
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
-    let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title, '. ')}</span>
+    let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title/str:normalize-space(.), '. ')}</span>
 (:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
     let $biblScope := bibl:biblScope($monogr/tei:imprint, $lang) (:concat(
         if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
@@ -208,7 +208,7 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
  : @return element
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
-    let $seriesTitle := string-join($series/tei:title, '. ')
+    let $seriesTitle := string-join($series/tei:title/str:normalize-space(.), '. ')
 (:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
     let $biblScope := concat(
         if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
