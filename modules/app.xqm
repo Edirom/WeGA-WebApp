@@ -101,10 +101,17 @@ declare
  :)
 declare 
     %templates:wrap
+    %templates:default("max", "0")
     %templates:default("separator", ", ")
-    function app:join($node as node(), $model as map(*), $key as xs:string, $separator as xs:string) as xs:string? {
-        if ($model($key)) then string-join($model($key) ! str:normalize-space(.), $separator)
-        else ()
+    function app:join($node as node(), $model as map(*), $key as xs:string, $max as xs:string, $separator as xs:string) as xs:string? {
+        let $items := 
+            if($max castable as xs:integer and number($max) le 0) then $model($key)
+            else if($max castable as xs:integer and number($max) < count($model($key))) then (subsequence($model($key), 1, $max), '…')
+            else if($max castable as xs:integer and number($max) > 0) then subsequence($model($key), 1, $max)
+            else $model($key)
+        return
+            if ($items) then string-join($items ! str:normalize-space(.), $separator)
+            else ()
 };
 
 declare 
