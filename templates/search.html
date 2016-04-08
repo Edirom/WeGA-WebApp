@@ -34,18 +34,6 @@
                         <label class="btn gradient-light" data-template="app:search-filter">
                             <input type="checkbox" name="d" value="persons"/> persons
                         </label>
-                        <!--<label class="btn gradient-light">
-                            <input type="checkbox" name="d" value="letters"/> <span data-template="lang:translate">letters</span>
-                        </label>
-                        <label class="btn gradient-light">
-                            <input type="checkbox" name="d" value="diaries"/> <span data-template="lang:translate">diaries</span>
-                        </label>
-                        <label class="btn gradient-light">
-                            <input type="checkbox" name="d" value="writings"/> <span data-template="lang:translate">writings</span>
-                        </label>
-                        <label class="btn gradient-light">
-                            <input type="checkbox" name="d" value="works"/> <span data-template="lang:translate">works</span>
-                        </label>-->
                     </div>
                 </div>
             </div>
@@ -53,7 +41,7 @@
             <div class="col-md-9 col-md-pull-3" data-template="search:results" data-template-docType="search">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2>Bitte Suchbegriffe eintragen</h2>
+                        <h2 data-template="lang:translate">pleaseEnterSearchTerms</h2>
                     </div>
                 </div>    
                 <div class="row">
@@ -61,17 +49,6 @@
                     <div class="col-md-9 searchform">
                         <form role="form" class="form-inline">
                             <div class="input-group">
-                                <!--<select class="input-group-addon gradient-light bootstrap-select" name="d" data-template="templates:form-control">
-                                    <option value="all" data-template="lang:translate">all</option>
-                                    <option value="persons" data-template="lang:translate">persons</option>
-                                    <option value="letters" data-template="lang:translate">correspondence</option>
-                                    <option value="diaries" data-template="lang:translate">diaries</option>
-                                    <option value="writings" data-template="lang:translate">writings</option>
-                                    <option value="works" data-template="lang:translate">works</option>
-                                    <option value="news" data-template="lang:translate">news</option>
-                                    <option value="biblio" data-template="lang:translate">bibliography</option>
-                                </select>-->
-                                
                                 <input type="text" class="form-control" placeholder="Standard Suche" name="q" data-template="search:inject-value" value="foobar" id="query-input"/>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
@@ -80,9 +57,9 @@
                         </form>
                     </div>
                     
-                    <div class="col-md-3">
+                    <!--<div class="col-md-3">
                         <a class="advancedSearch" href="#">Zur erweiterten Suche <i class="fa fa-arrow-right"/></a>
-                    </div>
+                    </div>-->
                 </div>
                 
                 <div class="row searchResultList">
