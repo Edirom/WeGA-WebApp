@@ -3,7 +3,7 @@
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns:tei="http://www.tei-c.org/ns/1.0" 
     xmlns:rng="http://relaxng.org/ns/structure/1.0" version="2.0">
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
+
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     
     <xsl:param name="optionsFile"/>
@@ -72,7 +72,7 @@
             </xsl:attribute>
             <xsl:apply-templates/>
             <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-            <!--<xsl:copy-of select="wega:addCurrencySymbolIfNecessary(.)"/>-->
+            <xsl:copy-of select="wega:addCurrencySymbolIfNecessary(.)"/>
         </xsl:element>
     </xsl:template>
     
