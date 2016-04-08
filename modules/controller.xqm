@@ -130,6 +130,7 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
         case 'contact' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
         case 'about' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
         case 'volContents' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070011'), map:entry('docType', 'var'))))
+        case 'credits' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070013'), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
