@@ -138,14 +138,17 @@ declare
         let $svnProps := config:get-svn-props($model('docID'))
         let $author := map:get($svnProps, 'author')
         let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
+        let $formatedDate := 
+            try { date:strfdate($date, $lang, $dateFormat) }
+            catch * { core:logToFile('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
         let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
         let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
         let $permalink := core:permalink($model('docID'))
         return 
             <p>{lang:get-language-string('proposedCitation', $lang)}, {$permalink} ({app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ())})
                 <br/>
-                {if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',(date:strfdate($date, $lang, $dateFormat),$author),$lang)
-                else lang:get-language-string('lastChangeDateWithoutAuthor', date:strfdate($date, $lang, $dateFormat), $lang)
+                {if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
+                else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
                 }
             </p>
 };
@@ -321,6 +324,17 @@ declare
             element {node-name($node)} {
                 $node/@*,
                 lang:get-language-string($model('docType'), $lang)
+            }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        let $pathTokens := tokenize(request:get-attribute('$exist:path'), '/')
+        return 
+            element {node-name($node)} {
+                $node/@*,
+                $pathTokens[3]
             }
 };
 

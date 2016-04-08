@@ -124,8 +124,8 @@ else if (contains($exist:path, concat('/', lang:get-language-string('project', $
     controller:dispatch-project($exist-vars)
 
 (: Help :)
-else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('help', $lang), '/?$'))) then
-    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var'))))
+else if (contains($exist:path, concat('/', lang:get-language-string('help', $lang), '/', $exist:resource))) then
+    controller:dispatch-help($exist-vars)
 
 (: Korrespondenz :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then

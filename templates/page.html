@@ -127,8 +127,16 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li data-template="app:set-active-nav">
-                                <a href="$link/help" data-template="lang:translate">help</a>
+                            <li data-template="app:set-active-nav" id="help-nav">
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" data-template="lang:translate">help</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="$link/help/faq.html" data-template="lang:translate">faq</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a>
+                                    </li>
+                                </ul>
                             </li>
                             <div data-template="app:show-at-development">
                             <li class="divider"/>

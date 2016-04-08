@@ -133,6 +133,21 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
         default return controller:error($exist-vars, 404)
 };
 
+(:~
+ : Dispatch pages for tab "Help"
+ :)
+declare function controller:dispatch-help($exist-vars as map(*)) as element(exist:dispatch) {
+    let $help-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='help-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
+    let $request := request:get-uri()
+    let $a := distinct-values($help-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars('lang'))) = $request]/parent::*)
+    return
+        switch($a)
+        (: Need to inject the corresponding IDs of special pages here :)
+        case 'faq' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var')))) 
+        case 'apiDocumentation'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070012'), map:entry('docType', 'var'))))
+        default return controller:error($exist-vars, 404)
+};
+
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
