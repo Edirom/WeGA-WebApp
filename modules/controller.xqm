@@ -305,7 +305,7 @@ declare %private function controller:canonical-mime-type($mime-type as xs:string
     case 'html' case 'htm' return 'html'
     case 'xml' case 'tei' return 'xml'
     case 'text/html' case 'application/xhtml+xml' return 'html'
-    case 'application/xml' return 'xml'
+    case 'application/xml' case 'application/tei+xml' return 'xml'
     default return 
         if(count($mime-type) gt 1) then controller:canonical-mime-type(subsequence($mime-type, 2))
         else ()
