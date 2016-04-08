@@ -11,7 +11,6 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-(:import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";:)
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 (: params for filtering the result set :)
@@ -24,7 +23,7 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , '
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
  :)
-declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio');
+declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news');
 
 (:~
  : Main function called from the templating module

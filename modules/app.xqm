@@ -1274,13 +1274,14 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
 declare 
     %templates:default("lang", "en")
     function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
-        let $docType-filters := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio')
         let $selected-docTypes := request:get-parameter('d', ()) 
         return 
-            for $docType in $docType-filters
+            for $docType in $search:wega-docTypes
             let $class := 
                 if($docType = $selected-docTypes) then normalize-space($node/@class) || ' active'
                 else normalize-space($node/@class)
+            let $displayTitle := lang:get-language-string($docType, $lang)
+            order by $displayTitle
             return
                 element {name($node)} {
                     $node/@*[not(name(.) = 'class')],
@@ -1291,7 +1292,7 @@ declare
                         if($docType = $selected-docTypes) then attribute checked {'checked'}
                         else ()
                     },
-                    lang:get-language-string($docType, $lang)
+                    $displayTitle
                 }
 };
 
