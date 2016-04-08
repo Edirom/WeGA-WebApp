@@ -105,8 +105,30 @@
     <xsl:template match="tei:eg">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'eg'"/>
+            <xsl:attribute name="class" select="'panel panel-info'"/>
+            <xsl:apply-templates select="tei:gloss"/>
+            <xsl:element name="div">
+                <xsl:attribute name="class" select="'panel-body'"/>
+                <xsl:apply-templates select="node()[not(self::tei:gloss)]"/>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:code">
+        <xsl:element name="code">
+            <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:gloss[parent::tei:eg]">
+        <xsl:element name="div">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="'panel-heading'"/>
+            <xsl:element name="h4">
+                <xsl:attribute name="class" select="'panel-title'"/>
+                <xsl:apply-templates/>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
 
