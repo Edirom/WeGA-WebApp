@@ -1036,18 +1036,34 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:respStmts($node as node(), $model as map(*), $lang as xs:string) as element()* {
-        for $respStmt in $model('doc')//tei:respStmt[parent::tei:editionStmt]
-        return (
-            <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
-            <dd>{str:normalize-space(string-join($respStmt/tei:name, ', '))}</dd>
-        )
+        let $respStmts :=
+            switch($model('docType'))
+            case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
+            default return $model('doc')//tei:respStmt[parent::tei:editionStmt]
+        return
+            for $respStmt in $respStmts
+            return (
+                <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
+                <dd>{str:normalize-space(string-join($respStmt/tei:name, ', '))}</dd>
+            )
 };
 
 declare 
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
         (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
-        let $source := $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
+        let $source := 
+            switch($model('docType'))
+            case 'diaries' return 
+                <tei:msDesc>
+                   <tei:msIdentifier>
+                      <tei:country>D</tei:country>
+                      <tei:settlement>Berlin</tei:settlement>
+                      <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
+                      <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber 1</tei:idno>
+                   </tei:msIdentifier>
+                </tei:msDesc>
+            default return $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
         return 
         map {
             'textSources' := 
