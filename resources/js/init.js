@@ -487,7 +487,7 @@ function getLanguage() {
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
-    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html() : $('h1.document').html() ;
+    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace('<br>', '') : $('h1.document').html().replace('<br>', '') ;
     var lang = getLanguage();
     var format;
     if(lang === 'de') { 

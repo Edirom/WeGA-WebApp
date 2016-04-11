@@ -959,6 +959,7 @@ declare
                     let $diaryPlaces as array(xs:string) := query:place-of-diary-day($model('doc'))
                     return (
                         date:strfdate(xs:date($title-element), $lang, $dateFormat),
+                        <xhtml:br/>,
                         switch(array:size($diaryPlaces))
                         case 0 return ()
                         case 1 return ' (' || $diaryPlaces(1) || ')'
