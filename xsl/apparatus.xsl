@@ -11,7 +11,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">textConstitution</xsl:attribute>
-            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)]" >
+            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)]">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
@@ -22,7 +22,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">commentary</xsl:attribute>
-            <xsl:for-each  select=".//tei:app | .//tei:note | .//tei:choice">
+            <xsl:for-each select=".//tei:app | .//tei:note | .//tei:choice">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
@@ -224,6 +224,44 @@
             <!-- TODO translate -->
             <xsl:otherwise>Hinzufügung</xsl:otherwise>
          </xsl:choose>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:unclear[not(parent::tei:subst)]">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class">
+            <xsl:text>tei_add</xsl:text>
+         </xsl:attribute>
+         <xsl:apply-templates/>
+         <xsl:call-template name="popover"/>
+      </xsl:element>
+   </xsl:template>
+   
+   <xsl:template match="tei:unclear[not(parent::tei:subst)]" mode="apparatus">
+      <xsl:variable name="addedText">
+         <xsl:apply-templates/>
+      </xsl:variable>
+      <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="local-name()"/>
+         </xsl:attribute>
+         <xsl:text>"</xsl:text>
+         <xsl:choose>
+            <xsl:when test="count($tokens) gt 6">
+               <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
+               <xsl:text> … </xsl:text>
+               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="$addedText"/>
+            </xsl:otherwise>
+         </xsl:choose>
+         <xsl:text>": </xsl:text>
+         <xsl:text>Unsichere Lesung</xsl:text>
       </xsl:element>
    </xsl:template>
    

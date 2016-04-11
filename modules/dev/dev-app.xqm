@@ -32,6 +32,7 @@ declare
             case 'add' return core:getOrCreateColl('letters', 'indices', true())//tei:add[not(ancestor::tei:subst)]/ancestor::tei:p
             case 'del' return core:getOrCreateColl('letters', 'indices', true())//tei:del[not(ancestor::tei:subst)]/ancestor::tei:p
             case 'supplied' return core:getOrCreateColl('letters', 'indices', true())//tei:supplied/ancestor::tei:p
+            case 'unclear' return core:getOrCreateColl('letters', 'indices', true())//tei:unclear[not(ancestor::tei:choice)]/ancestor::tei:p
             case 'underline1' return core:getOrCreateColl('letters', 'indices', true())//tei:hi[@rend='underline'][string(@n) = ('', '1')]/ancestor::tei:p
             case 'underline2' return core:getOrCreateColl('letters', 'indices', true())//tei:hi[@rend='underline'][@n > 1]/ancestor::tei:p
             case 'latintype' return core:getOrCreateColl('letters', 'indices', true())//tei:hi[@rend='latintype']/ancestor::tei:p
