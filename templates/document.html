@@ -30,11 +30,14 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                <div id="datePicker" data-template="app:if-matches" data-template-key="docType" data-template-value="diaries" data-dev-url="$dev/api.xql"/>
+                
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">
-                            Dokumente</h2>
+                        <h2 class="collapseSingle" data-toggle="collapse" aria-expanded="true" href="#datePicker" data-template="lang:translate">calendar</h2>
+                        <div class="panel-collapse collapse in" id="datePicker" aria-expanded="true" data-template="app:if-matches" data-template-key="docType" data-template-value="diaries" data-dev-url="$dev/api.xql"/>
+                    </div>
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente" data-template="lang:translate">documents</h2>
                         <div id="dokumente" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
