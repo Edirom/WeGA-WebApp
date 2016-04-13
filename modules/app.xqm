@@ -115,23 +115,9 @@ declare
 };
 
 declare 
-    %templates:default("lang", "en")
     %templates:wrap
-    function app:print-bugReportEmail($node as node(), $model as map(*), $lang as xs:string) as element(p) {
-        if($lang eq 'de') then 
-            <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, so bitten wir um eine kurze Nachricht an
-                <a href="#" class="obfuscate-email">{config:get-option('bugEmail')}</a>
-            </p>
-        else 
-            <p>If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                <a href="#" class="obfuscate-email">{config:get-option('bugEmail')}</a>
-            </p>
-};
-
-declare
-    %templates:default("lang", "en")
-    %templates:wrap
-    function app:print-permaLink($node as node(), $model as map(*), $lang as xs:string) as element(p) {
+    function app:documentFooter($node as node(), $model as map(*)) as map(*) {
+        let $lang := $model('lang')
         let $dateFormat := if($lang eq 'en')
             then '%B %d, %Y'
             else '%d. %B %Y'
@@ -143,14 +129,15 @@ declare
             catch * { core:logToFile('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
         let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
         let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
-        let $permalink := core:permalink($model('docID'))
-        return 
-            <p>{lang:get-language-string('proposedCitation', $lang)}, {$permalink} ({app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ())})
-                <br/>
-                {if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
-                else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
-                }
-            </p>
+        return
+            map {
+                'bugEmail' := config:get-option('bugEmail'),
+                'permalink' := core:permalink($model('docID')),
+                'versionNews' := app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
+                'latestChange' :=
+                    if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
+                    else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
+            }
 };
 
 (:~
