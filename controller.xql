@@ -367,7 +367,13 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
 		</error-handler>
     </dispatch>
 :)
-    
+
+(: allow access to API (needed for datePicker) :)
+else if($exist:path eq  '/dev/api.xql') then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
+    </dispatch>
+
 (: general forwarding of folder 'dev' for development XQueries :)
 else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
