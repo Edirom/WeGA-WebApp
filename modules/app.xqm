@@ -208,13 +208,17 @@ declare function app:if-not-exists($node as node(), $model as map(*), $key as xs
  :
  : @author Peter Stadler
  :)
-declare function app:if-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string) as node()? {
-    if($model($key) = $value) then 
-        element {node-name($node)} {
-            $node/@*,
-            templates:process($node/node(), $model)
-        }
-    else ()
+declare 
+    %templates:default("wrap", "yes")
+    function app:if-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
+        if($model($key) = tokenize($value, '\s+')) then
+            if($wrap = 'yes') then
+                element {node-name($node)} {
+                    $node/@*,
+                    templates:process($node/node(), $model)
+                }
+            else templates:process($node/node(), $model)
+        else ()
 };
 
 (:~
@@ -237,18 +241,6 @@ declare
                 templates:process($node/node(), $model)
             }
         else templates:process($node/node(), $model)
-};
-
-
-(:~
- : Processes the child elements only when in development mode
- : (i.e. skip for production and staging)
- :
- : @author Peter Stadler
- :)
-declare function app:show-at-development($node as node(), $model as map(*)) as item()* {
-    if($config:isDevelopment) then templates:process($node/node(), $model)
-    else ()
 };
 
 (:
