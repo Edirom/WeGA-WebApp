@@ -45,50 +45,50 @@
             </form>
         </div>
     </div>
-    <div data-template="app:show-at-development">
-        <div class="colored borderBottom">
-            <div class="container">
-                <form role="form" class="form-inline">
-                    <div class="row paddingTopIcon paddingBottomIcon">
-                        <h3>Development Tools</h3>
-                        <div class="col-md-4" data-template="dev-app:ant-log">
-                            <h4>Commit Status</h4>
-                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <h4>Neue ID</h4>
-                            <div class="input-group">
-                                <div class="input-group-btn dropdown">
-                                    <select class="input-group-addon gradient-light bootstrap-select form-control" name="newID-d" id="newID-select">
-                                        <option value="persons" data-template="lang:translate">persons</option>
-                                        <option value="letters" data-template="lang:translate">correspondence</option>
-                                        <option value="diaries" data-template="lang:translate">diaries</option>
-                                        <option value="writings" data-template="lang:translate">writings</option>
-                                        <option value="works" data-template="lang:translate">works</option>
-                                        <option value="news" data-template="lang:translate">news</option>
-                                        <option value="biblio" data-template="lang:translate">bibliography</option>
-                                    </select>
-                                </div>
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary" id="create-newID">
-                                        <i class="fa fa-arrow-right"/>
-                                    </button>
-                                </div>
-                                <div id="newID-result">
-                                    <span style="display:none;">A001234</span>
-                                    <i class="fa fa-cog fa-spin fa-2x spinner" style="display:none;"/>
-                                </div>
+    
+    <div class="colored borderBottom" data-template="app:if-matches" data-template-key="environment" data-template-value="development">
+        <div class="container">
+            <form role="form" class="form-inline">
+                <div class="row paddingTopIcon paddingBottomIcon">
+                    <h3>Development Tools</h3>
+                    <div class="col-md-4" data-template="dev-app:ant-log">
+                        <h4>Commit Status</h4>
+                        <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <h4>Neue ID</h4>
+                        <div class="input-group">
+                            <div class="input-group-btn dropdown">
+                                <select class="input-group-addon gradient-light bootstrap-select form-control" name="newID-d" id="newID-select">
+                                    <option value="persons" data-template="lang:translate">persons</option>
+                                    <option value="letters" data-template="lang:translate">correspondence</option>
+                                    <option value="diaries" data-template="lang:translate">diaries</option>
+                                    <option value="writings" data-template="lang:translate">writings</option>
+                                    <option value="works" data-template="lang:translate">works</option>
+                                    <option value="news" data-template="lang:translate">news</option>
+                                    <option value="biblio" data-template="lang:translate">bibliography</option>
+                                </select>
+                            </div>
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary" id="create-newID">
+                                    <i class="fa fa-arrow-right"/>
+                                </button>
+                            </div>
+                            <div id="newID-result">
+                                <span style="display:none;">A001234</span>
+                                <i class="fa fa-cog fa-spin fa-2x spinner" style="display:none;"/>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <h4>Codesharing</h4>
-                            <a href="https://euryanthe.de/wega/apps/codesharing/index.htm">Codesharing WeGA-data</a>
-                        </div>
                     </div>
-                </form>
-            </div>
+                    <div class="col-md-4">
+                        <h4>Codesharing</h4>
+                        <a href="https://euryanthe.de/wega/apps/codesharing/index.htm">Codesharing WeGA-data</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+    
     <div class="borderBottom">
         <div class="container">
             <div class="row paddingTopIcon paddingBottomIcon">

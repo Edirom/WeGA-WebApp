@@ -34,7 +34,8 @@ let $model :=
         'docID' := request:get-attribute('docID'),
         'lang' := request:get-attribute('lang'),
         'docType' := request:get-attribute('docType'),
-        'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()}
+        'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()},
+        'environment' := config:get-option('environment')
     }
     
 (:
