@@ -58,9 +58,9 @@ $.fn.rangeSlider = function ()
 $.fn.obfuscateEMail = function () {
     if($(this).length === 0) {}
     else {
-        var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim();
-        var t = $(this).html().substring($(this).html().indexOf(']') +1).trim();
-        var r = '' + e + '@' + t ;
+        var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim(),
+            t = $(this).html().substring($(this).html().indexOf(']') +1).trim(),
+            r = '' + e + '@' + t ;
         $(this).attr('href',' mailto:' +r).html(r);
     }
 }
@@ -125,9 +125,9 @@ $.fn.toggleTab = function () {
 
 // load and activate person tab
 function activateTab() {
-    var activeTab = $('li.resp-tab-active a');
-        var container = activeTab.attr('href');
-        var url = activeTab.attr('data-target');
+    var activeTab = $('li.resp-tab-active a'),
+        container = activeTab.attr('href'),
+        url = activeTab.attr('data-target');
 
         // Do not load the page twice
         if ($(container).contents()[1].nodeType !== 1) {
@@ -205,8 +205,8 @@ function active_facets() {
      };
     /* Set filters */
     $('.allFilter:visible :selected').each(function() {
-        var facet = $(this).parent().attr('name');
-        var value = $(this).attr('value');
+        var facet = $(this).parent().attr('name'),
+            value = $(this).attr('value');
         /*console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
@@ -221,8 +221,8 @@ function active_facets() {
     }
     /* get values from checkboxes for docTypes at search page */
     $('.allFilter:visible :checked').each(function() {
-        var facet = $(this).attr('name');
-        var value = $(this).attr('value');
+        var facet = $(this).attr('name'),
+            value = $(this).attr('value');
 /*        console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
@@ -242,8 +242,8 @@ function active_facets() {
 function updatePage(params) {
     /* AJAX call for personal writings etc. */
     if($('li.resp-tab-active').length === 1) {
-        var url = $('li.resp-tab-active a').attr('data-target') + params.toString();
-        var container = $('li.resp-tab-active a').attr('href');
+        var url = $('li.resp-tab-active a').attr('data-target') + params.toString(),
+            container = $('li.resp-tab-active a').attr('href');
         ajaxCall(container, url)
     }
     /* Refresh page for indices */
@@ -285,13 +285,13 @@ $('.noteMarker').popover({
   'html': true,
   'placement': 'auto top',
   'title': function(){
-      var noteID=$(this).attr('data-ref');
-      var note=$('#' + noteID);
+      var noteID=$(this).attr('data-ref'),
+        note=$('#' + noteID);
       return note.attr('data-title');
   },
   'content': function() {
-      var noteID=$(this).attr('data-ref');
-      var note=$('#' + noteID);
+      var noteID=$(this).attr('data-ref'),
+        note=$('#' + noteID);
       return note.html();
   }
 });
@@ -328,9 +328,9 @@ function ajaxCall(container,url) {
             /* Listen for click events on pagination */
             $('.page-link:visible').on('click', 
                 function() {
-                    var activeTab = $('li.resp-tab-active a');
-                    var baseUrl = activeTab.attr('data-target');
-                    var url = baseUrl + $(this).attr('data-url');
+                    var activeTab = $('li.resp-tab-active a'),
+                        baseUrl = activeTab.attr('data-target'),
+                        url = baseUrl + $(this).attr('data-url');
                     //console.log(url);
                     ajaxCall(container,url);
                 }
@@ -373,12 +373,13 @@ $('#query-input').focus();
 
 /* Umbruch der Teaserüberschriften abhängig von Textlänge */
 $('.teaser + h2 a').each(function(a,b) {
-    var string = $(b).text().trim();
-    var tokens = string.split(' ');
-    var i = 0;
-    var newText = '';
+    var string = $(b).text().trim(),
+        tokens = string.split(' '),
+        i = 0,
+        newText = '',
+        str = '';
     while (i < string.length / 3 ) {
-        var str = tokens.shift();
+        str = tokens.shift();
         newText += str + " ";
         i+=str.length;
     }
@@ -388,8 +389,9 @@ $('.teaser + h2 a').each(function(a,b) {
 })
 
 function initFacsimile() {
-    var map;
-    var iiifLayers = {};
+    var map,
+        iiifLayers = {}
+        manifestUrl = $('#map').attr('data-url');
     
     map = L.map('map', {
         center: [0, 0],
@@ -397,7 +399,7 @@ function initFacsimile() {
         zoom: 0
     });
     
-    var manifestUrl = $('#map').attr('data-url');
+    
 
     // Grab a IIIF manifest
     $.getJSON(manifestUrl, function(data) {
@@ -414,8 +416,8 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var lang = getLanguage();
-    var url = $('#datePicker').attr('data-dev-url') + "?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
+    var lang = getLanguage(),
+        url = $('#datePicker').attr('data-dev-url') + "?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
     $.getJSON(url, function(data) {
         self.location=data.url + '.html';
     })
@@ -438,30 +440,30 @@ function checkValidDiaryDate(date) {
     /* 3-4 Mai 1819 */
     /* 9-11 Mai 1819*/
    
-    var start1 =  new Date('04/05/1814');
-    var end1 =  new Date('04/20/1814');
-    var start2 =  new Date('05/26/1814');
-    var end2 =  new Date('05/31/1814');
-    var start3 =  new Date('06/01/1814');
-    var end3 =  new Date('06/09/1814');
-    var start4 =  new Date('06/19/1814');
-    var end4 =  new Date('06/30/1814');
-    var start5 =  new Date('07/01/1814');
-    var end5 =  new Date('07/26/1814');
-    var start6 =  new Date('08/01/1814');
-    var end6 =  new Date('12/31/1814');
-    var start7 =  new Date('04/09/1819');
-    var end7 =  new Date('04/16/1819');
-    var start8 =  new Date('04/18/1819');
-    var end8 =  new Date('04/21/1819');
-    var day9 =  new Date('04/23/1819');
-    var start10 =  new Date('04/26/1819');
-    var end10 =  new Date('04/27/1819');
-    var day11 =  new Date('04/29/1819');
-    var start12 =  new Date('05/03/1819');
-    var end12 =  new Date('05/04/1819');
-    var start13 =  new Date('05/09/1819');
-    var end13 =  new Date('05/11/1819');
+    var start1 =  new Date('04/05/1814'),
+		 end1 =  new Date('04/20/1814'),
+		 start2 =  new Date('05/26/1814'),
+		 end2 =  new Date('05/31/1814'),
+		 start3 =  new Date('06/01/1814'),
+		 end3 =  new Date('06/09/1814'),
+		 start4 =  new Date('06/19/1814'),
+		 end4 =  new Date('06/30/1814'),
+		 start5 =  new Date('07/01/1814'),
+		 end5 =  new Date('07/26/1814'),
+		 start6 =  new Date('08/01/1814'),
+		 end6 =  new Date('12/31/1814'),
+		 start7 =  new Date('04/09/1819'),
+		 end7 =  new Date('04/16/1819'),
+		 start8 =  new Date('04/18/1819'),
+		 end8 =  new Date('04/21/1819'),
+		 day9 =  new Date('04/23/1819'),
+		 start10 =  new Date('04/26/1819'),
+		 end10 =  new Date('04/27/1819'),
+		 day11 =  new Date('04/29/1819'),
+		 start12 =  new Date('05/03/1819'),
+		 end12 =  new Date('05/04/1819'),
+		 start13 =  new Date('05/09/1819'),
+		 end13 =  new Date('05/11/1819');
     return !(
         (date >= start1 && date <= end1) ||
         (date >= start2 && date <= end2) ||
@@ -487,9 +489,10 @@ function getLanguage() {
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
-    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace('<br>', '') : $('h1.document').html().replace('<br>', '') ;
-    var lang = getLanguage();
-    var format;
+    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace('<br>', '') : $('h1.document').html().replace('<br>', '') ,
+		 lang = getLanguage(),
+		 format,
+		 date = '';
     if(lang === 'de') { 
         format = "DD, dd. MM yy" 
     } 
@@ -498,7 +501,7 @@ function getDiaryDate() {
     } ; 
     
     try { 
-        var date = 
+        date = 
             $.datepicker.parseDate( format, title, {
               dayNamesShort: $.datepicker.regional[ lang ].dayNamesShort,
               dayNames: $.datepicker.regional[ lang ].dayNames,
