@@ -955,10 +955,11 @@ declare
 };
 
 declare 
-    %templates:default("lang", "en")
-    function app:print-transcription($node as node(), $model as map(*), $lang as xs:string) {
+    %templates:wrap
+    function app:prepare-text($node as node(), $model as map(*)) as map(*) {
         let $doc := $model('doc')
         let $docID := $model('docID')
+        let $lang := $model('lang')
         let $docType := $model('docType')
         let $xslParams := config:get-xsl-params( map {
             'dbPath' := document-uri($doc),
@@ -1003,7 +1004,15 @@ declare
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
             else ()
          
-         return ($body, $foot)
+         return 
+            map { 
+                'transcription' := ($body,$foot), 
+                'apparatus' := $body/descendant-or-self::*[@class='apparatus']
+            }
+};
+
+declare function app:output($node as node(), $model as map(*), $key as xs:string) as item()* {
+        $model($key)
 };
 
 declare 
