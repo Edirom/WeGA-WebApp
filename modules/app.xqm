@@ -1006,7 +1006,7 @@ declare
          
          return 
             map { 
-                'transcription' := ($body,$foot), 
+                'transcription' := (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
                 'apparatus' := $body/descendant-or-self::*[@class='apparatus']
             }
 };

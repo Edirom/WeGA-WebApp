@@ -186,6 +186,10 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
     )
 };
 
+(:~
+ : Creates a simple text version of a TEI document (or fragment)
+ : by resolving choices, substitutions and removing notes
+~:)
 declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
     typeswitch($node)
     case element() return 
@@ -195,4 +199,23 @@ declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
     case text() return $node
     case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
     default return ()
+};
+
+(:~
+ : Removes descendant elements from all of the nodes in $nodes based on the class name.
+ : Inspired by functx:remove-elements-deep
+~:)
+declare function wega-util:remove-elements-by-class($nodes as node()*, $classes as xs:string*) as node()* {
+    for $node in $nodes
+    return
+        typeswitch($node)
+        case element() return
+            if ($node[@class = tokenize($classes, '\s+')]) then ()
+            else 
+                element { node-name($node) } { 
+                    $node/@*,
+                    wega-util:remove-elements-by-class($node/node(), $classes)
+                }
+        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
+        default return $node
 };

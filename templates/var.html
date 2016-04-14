@@ -55,11 +55,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-md-pull-3 ">
+            <div class="col-md-9 col-md-pull-3" data-template="app:prepare-text">
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div data-template="app:print-transcription"/>
+                        <div data-template="app:output" data-template-key="transcription"/>
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
@@ -78,19 +78,19 @@
             <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
-                    <br />
+                    <br/>
                     <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
             <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
                 <h4>Proposed citation</h4>
                 <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
-                    <br />
+                    <br/>
                     <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
         </div>
         <div class="row bugreport">
             <div class="col-md-9">
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br />so bitten wir um eine kurze Nachricht an
+                <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
                 <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
