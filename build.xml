@@ -114,7 +114,7 @@
         </copy>
     </target>
     
-    <target name="yuicompress" if="${compress}" depends="dist">
+    <target name="yuicompress" depends="dist">
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/css">
             <fileset dir="${dist.dir}/resources/css" includes="*.css" excludes="*min.css"/>
             <arg line="-jar ${yuicompress.jar} -v"/>
