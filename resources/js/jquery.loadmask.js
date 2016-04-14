@@ -63,7 +63,8 @@
 
         element.addClass("masked");
 
-        var maskDiv = $('<div class="loadmask"></div>');
+        var maskDiv = $('<div class="loadmask"></div>'),
+            maskMsgDiv;
 
         //auto height fix for IE
         if(navigator.userAgent.toLowerCase().indexOf("msie") > -1){
@@ -80,7 +81,7 @@
 
             /* My own loading message with bootstrap progress bar */
             /* Always show -- the optional 'label' is not supported here */
-            var maskMsgDiv = $('<div class="loadmask-msg" data-backdrop="static" data-keyboard="false"><div><h2>Please wait …</h2></div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"><span class="sr-only">75% Complete</span></div></div></div>');
+            maskMsgDiv = $('<div class="loadmask-msg" data-backdrop="static" data-keyboard="false"><div><h2>Please wait …</h2></div><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"><span class="sr-only">75% Complete</span></div></div></div>');
             element.append(maskMsgDiv);
 
             //calculate center position
