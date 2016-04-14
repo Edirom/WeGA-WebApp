@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
-        <div class="row">
+        <div class="row" data-template="app:doc-details">
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
@@ -39,7 +39,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                                <li class="gradient-light"><a data-toggle="tab">XML-Download</a></li>
+                                <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
