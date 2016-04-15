@@ -227,7 +227,7 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:unclear[not(parent::tei:subst)]">
+   <xsl:template match="tei:unclear[not(parent::tei:choice)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class">
@@ -238,7 +238,7 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:unclear[not(parent::tei:subst)]" mode="apparatus">
+   <xsl:template match="tei:unclear[not(parent::tei:choice)]" mode="apparatus">
       <xsl:variable name="addedText">
          <xsl:apply-templates/>
       </xsl:variable>
