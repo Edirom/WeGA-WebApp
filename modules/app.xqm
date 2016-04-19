@@ -991,7 +991,7 @@ declare
                     if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
                     else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
                 return
-                    element span {
+                    element p {
                         attribute class {'notAvailable'},
                         $text
                     }
@@ -1098,7 +1098,9 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $summary := wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        let $summary :=
+            if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+            else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
             else element p {
