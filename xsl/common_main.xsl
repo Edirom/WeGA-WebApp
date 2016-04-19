@@ -134,7 +134,7 @@
                 </xsl:if>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
-                <xsl:copy/>
+                <xsl:value-of select="."/>
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
