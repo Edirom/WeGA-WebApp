@@ -6,7 +6,8 @@
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:element name="h2">
+         <xsl:element name="h3">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
          </xsl:element>
          <xsl:element name="ul">
@@ -17,7 +18,8 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-         <xsl:element name="h2">
+         <xsl:element name="h3">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('commentary', $lang)"/>
          </xsl:element>
          <xsl:element name="ul">
@@ -52,8 +54,22 @@
                <xsl:value-of select="@type"/>
             </xsl:if>
          </xsl:attribute>
-         <!-- When ein ptr existiert, dann wird dieser ausgewertet -->
-         <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
+         <xsl:choose>
+            <xsl:when test="preceding::tei:ptr[@target=concat('#', $id)]">
+               <!-- When ein ptr existiert, dann wird dieser ausgewertet -->
+               <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
+               <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
+               <xsl:element name="span">
+                  <xsl:attribute name="class" select="'tei_lemma'"/>
+                  <xsl:text>"… </xsl:text>
+                  <xsl:value-of select="subsequence($textTokens, count($textTokens) - 4)"/>
+                  <xsl:text>": </xsl:text>
+               </xsl:element>
+            </xsl:otherwise>
+         </xsl:choose>
          <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>

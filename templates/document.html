@@ -133,13 +133,14 @@
                         </div>
                         
                         <div data-template="app:textSources">
+                            <h3 data-template="lang:translate" class="media-heading">provenance</h3>
                             <div data-template="app:each" data-template-from="textSources" data-template-to="textSource">
-                                <h3 data-template="lang:translate" class="media-heading">textSource</h3>
+                                <h4 data-template="lang:translate" class="media-heading">textSource</h4>
                                 <div data-template="app:print-textSource"/>
                                 <!-- Processing tei:additional for every source -->
                                 <div data-template="app:additionalSources">
                                     <div data-template="app:if-exists" data-template-key="additionalSources" data-template-wrap="no">
-                                        <h4 data-template="lang:translate" class="media-heading">additionalSources</h4>
+                                        <h5 data-template="lang:translate" class="media-heading">additionalSources</h5>
                                     </div>
                                     <ul class="tei_list">
                                         <li data-template="app:each" data-template-from="additionalSources" data-template-to="additionalSource">

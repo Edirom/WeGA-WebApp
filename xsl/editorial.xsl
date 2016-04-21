@@ -47,10 +47,10 @@
 
     <xsl:template name="createMsIdentifier">
         <xsl:param name="node"/>
-        <xsl:element name="h4">
+        <!--<xsl:element name="h4">
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
-        </xsl:element>
+        </xsl:element>-->
         <xsl:element name="p">
             <xsl:if test="tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
