@@ -755,6 +755,26 @@ declare function app:print-beacon-links($node as node(), $model as map(*)) as el
             }</ul>
 };
 
+declare 
+    %templates:wrap
+    function app:printPlaceOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as xs:string* {
+    let $placeNames :=
+        switch($key)
+        case 'birth' return $model('doc')//tei:placeName[parent::tei:birth]
+        case 'death' return $model('doc')//tei:placeName[parent::tei:death]
+        default return ()
+    return
+        for $placeName at $count in $placeNames
+        let $preposition :=
+            if(matches($placeName, '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
+            else concat(' ', lower-case(lang:get-language-string('in', $model('lang'))), ' ')
+        return (
+            $preposition || str:normalize-space($placeName),
+            if($count eq count($placeNames)) then ()
+            else concat(' ',lang:get-language-string('or', $model('lang')),' ')
+        )
+};
+
 (:~
  : Main Function for wikipedia.html
  : Creates the wikipedia model

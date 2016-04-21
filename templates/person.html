@@ -74,27 +74,38 @@
                             <div class="pull-left">
                                 <i class="fa fa-asterisk  media-object"/>
                             </div>
-                            <div class="media-body" data-template="app:print" data-template-key="birth"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                                in Eudin Unsicher: 22.10.1786 in Eudin </div>
+                            <div class="media-body">
+                                <span data-template="app:print" data-template-key="birth">20.11.1786</span>
+                                <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
+                                <!--Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
+                                in Eudin Unsicher: 22.10.1786 in Eudin--> </div>
                         </li>
                         <li class="media baptism" data-template="app:if-exists" data-template-key="baptism">
                             <div class="pull-left">
                                 <img src="$resources/img/baptism.gif"/>
                             </div>
-                            <div class="media-body" data-template="app:print" data-template-key="baptism"> 20.11.1786 in Eutin </div>
+                            <div class="media-body">
+                                <span data-template="app:print" data-template-key="baptism">20.11.1786</span>
+                                <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
+                            </div>
                         </li>
                         <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
                             <div class="pull-left">
                                 <strong>†</strong>
                             </div>
-                            <div class="media-body" data-template="app:print" data-template-key="death"> Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
-                                in Eudin Unsicher: 22.10.1786 in Eudin </div>
+                            <div class="media-body">
+                                <span data-template="app:print" data-template-key="death">20.11.1786</span>
+                                <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
+                            </div>
                         </li>
                         <li class="media funeral" data-template="app:if-exists" data-template-key="funeral">
                             <div class="pull-left">
                                 <img src="$resources/img/funeral.gif"/>
                             </div>
-                            <div class="media-body" data-template="app:print" data-template-key="funeral"> 20.11.1786 in Eutin </div>
+                            <div class="media-body">
+                                <span data-template="app:print" data-template-key="funeral">20.11.1786</span>
+                                <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
+                            </div>
                         </li>
                        <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
                           <div class="pull-left">                  
@@ -276,19 +287,19 @@
                     <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
                         <h4>Empfohlene Zitierweise</h4>
                         <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
-                            <br />
+                            <br/>
                             <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
                     <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
                         <h4>Proposed citation</h4>
                         <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
-                            <br />
+                            <br/>
                             <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
                 </div>
                 <div class="row bugreport">
                     <div class="col-md-9">
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br />so bitten wir um eine kurze Nachricht an
+                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
                             <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
                             <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
