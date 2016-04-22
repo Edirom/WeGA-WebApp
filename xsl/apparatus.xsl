@@ -292,7 +292,7 @@
    <xsl:template match="tei:gap">
       <xsl:element name="span">
          <xsl:text> […]</xsl:text>
-         <xsl:if test="not(@reason='outOfScope')">
+         <xsl:if test="not(@reason='outOfScope' or parent::tei:del)">
             <xsl:call-template name="popover"/>
          </xsl:if>
       </xsl:element>
@@ -436,7 +436,20 @@
          <xsl:text>"</xsl:text>
          <xsl:apply-templates/>
          <xsl:text>": </xsl:text>
-         <xsl:value-of select="@rend"/>
+         <xsl:choose>
+            <xsl:when test="tei:gap">
+               <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
+            </xsl:when>
+            <xsl:when test="@rend='strikethrough'">
+               <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
+            </xsl:when>
+            <xsl:when test="@rend='overwritten'">
+               <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="@rend"/>
+            </xsl:otherwise>
+         </xsl:choose>
       </xsl:element>
    </xsl:template>
    
