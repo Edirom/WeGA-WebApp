@@ -27,9 +27,20 @@
     <div data-template="app:person-beacon">
         <div class="container paddingTopIcon paddingBottomIcon" data-template="app:person-basic-data">
             <div class="row" id="meta" data-template="img:iconography">
-                <div class="col-md-3 col-sm-6 portrait">
+                <div class="col-md-3 col-sm-6">
                     <!--<img id="portrait-placeholder" class="img-responsive" src="$resources/img/icons/icon_person_unbekannt_gross.png" alt="Placeholder Image" width="260" height="340"/>-->
-                    <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
+                    <div class="portrait large">
+                        <div class="front">
+                            <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
+                        </div>
+                        <div class="back colored">
+                            <h3>Bildquelle</h3>
+                            <p data-template="app:portrait-credits">This is the source</p>
+                        </div>
+                        <div class="creditsButton">
+                            <span>Image Credits</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata">
                     <h2 data-template="lang:translate">basic_data</h2>

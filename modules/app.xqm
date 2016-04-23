@@ -775,6 +775,20 @@ declare
         )
 };
 
+declare
+    %templates:wrap
+    function app:portrait-credits($node as node(), $model as map(*)) as item()* {
+    let $portraitMap := $model('iconographyImages')[1]
+    return (
+        $portraitMap('source'),
+        if(contains($portraitMap('linkTarget'), config:get-option('iiifServer'))) then ()
+        else (<br/>, element a {
+            attribute href {$portraitMap('linkTarget')},
+            $portraitMap('linkTarget')
+        })
+    )
+};
+
 (:~
  : Main Function for wikipedia.html
  : Creates the wikipedia model

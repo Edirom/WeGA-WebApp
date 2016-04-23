@@ -192,6 +192,15 @@ $('.searchDocTypeFilter').on('change', 'label', function() {
 
 $('.obfuscate-email').obfuscateEMail();
 
+/* Flip portrait images to display credits */
+$(".portrait").flip({
+    trigger: 'manual'
+});
+
+$('.creditsButton').on('click', function() {
+    $(".portrait").flip('toggle');
+})
+
 /* Helper function */
 /* Get active facets to append as URL parameters */
 function active_facets() {
