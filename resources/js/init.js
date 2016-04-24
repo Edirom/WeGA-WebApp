@@ -197,6 +197,10 @@ $(".portrait").flip({
     trigger: 'manual'
 });
 
+/* Hiding the flip button when no image information is available */
+if ($('.back p').is(':empty')) {$('.creditsButton').hide()};
+
+/* button for flipping image/information */
 $('.creditsButton').on('click', function() {
     $(".portrait").flip('toggle');
 })
