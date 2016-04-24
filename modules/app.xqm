@@ -559,7 +559,7 @@ declare
         let $random := util:random(count($words) - 1) + 1 (: util:random may return 0! :)
         return 
             map {
-                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(wega-util:txtFromTEI($words[$random]), ' ')), $lang),
+                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(wega-util:txtFromTEI($words[$random]), '')), $lang),
                 'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
             }
 };
