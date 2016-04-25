@@ -117,12 +117,12 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             if($cacheKey eq 'A002068') then core:data-collection($collName)[tei:ab]
             else ()
         case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
-        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][(ancestor::tei:sender, ancestor::tei:addressee)]/root()
+        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][ancestor::tei:correspAction][not(ancestor::tei:note)]/root()
         case 'news' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
         case 'writings' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
         case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
         case 'backlinks' return 
-            core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:sender)][not(ancestor::tei:addressee)][not(parent::tei:author)]/root() | 
+            core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:correspAction)][not(parent::tei:author)]/root() | 
             core:data-collection('diaries')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root() |
@@ -163,7 +163,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
 declare function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
     switch($collName)
     case 'persons' return for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
-    case 'letters' return for $i in $coll order by query:get-normalized-date($i) ascending, $i//tei:dateSender/tei:date[1]/@n ascending return $i
+    case 'letters' return for $i in $coll order by query:get-normalized-date($i) ascending, ($i//tei:correspAction[@type='sent']/tei:date)[1]/@n ascending return $i
     case 'writings' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
     case 'diaries' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
     case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i

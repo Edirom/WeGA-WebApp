@@ -96,10 +96,10 @@ declare %private function norm:create-norm-doc-letters() as element(norm:catalog
         for $doc in core:getOrCreateColl('letters', 'indices', true())
         let $docID := $doc/tei:TEI/data(@xml:id)
         let $normDate := query:get-normalized-date($doc)
-        let $n :=  $doc//tei:dateSender/tei:date/data(@n)
+        let $n :=  $doc//tei:correspAction[@type='sent']/tei:date/data(@n)
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
-        let $authorIDs := distinct-values($doc//@key[ancestor::tei:sender])
-        let $addresseeIDs := distinct-values($doc//@key[ancestor::tei:addressee])
+        let $authorIDs := distinct-values($doc//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
+        let $addresseeIDs := distinct-values($doc//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
         order by $normDate, $n
         return 
             element entry {

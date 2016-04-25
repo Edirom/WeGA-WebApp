@@ -127,7 +127,7 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
     return 
-        collection(config:get-option('letters'))//tei:dateSender/tei:date[matches(@when, $date-regex)][not(functx:all-whitespace(following::tei:text))] union
+        collection(config:get-option('letters'))//tei:correspAction[@type='sent']/tei:date[matches(@when, $date-regex)][not(functx:all-whitespace(following::tei:text))] union
         collection(config:get-option('persons'))//tei:date[matches(@when, $date-regex)][not(preceding-sibling::tei:date[matches(@when, $date-regex)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
@@ -169,7 +169,7 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
     let $date := 
         switch(config:get-doctype-by-id($docID))
         case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
-        case 'letters' return date:getOneNormalizedDate(($doc//tei:dateSender/tei:date, $doc//tei:dateAddressee/tei:date)[1], false())
+        case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], false())
         case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
@@ -184,11 +184,11 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
 ~:)
 declare function query:get-facets($collection as node()*, $facet as xs:string) as item()* {
     switch($facet)
-    case 'sender' return $collection//@key[ancestor::tei:sender]
-    case 'addressee' return $collection//@key[ancestor::tei:addressee]
+    case 'sender' return $collection//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+    case 'addressee' return $collection//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
-    case 'placeOfSender' return $collection//tei:placeName[parent::tei:placeSender]
-    case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:placeAddressee]
+    case 'placeOfSender' return $collection//tei:placeName[parent::tei:correspAction/@type='sent']
+    case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:correspAction/@type='received']
     case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
     case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
