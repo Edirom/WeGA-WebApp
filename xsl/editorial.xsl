@@ -152,7 +152,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:incipit">
+    <xsl:template match="tei:note[@type='incipit']">
         <xsl:element name="div">
             <!--<xsl:attribute name="id" select="'incipit'"/>-->
             <xsl:if test="normalize-space(.) != ''">

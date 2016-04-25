@@ -183,7 +183,7 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
         case 'letters' return $coll//tei:body[ft:query(., $query)] | 
             $coll//tei:correspDesc[ft:query(., $query)] | 
             $coll//tei:title[ft:query(., $query)] |
-            $coll//tei:incipit[ft:query(., $query)] | 
+            $coll//tei:note[@type='incipit'][ft:query(., $query)] | 
             $coll//tei:note[ft:query(., $query)][@type = 'summary']
         case 'diaries' return $coll/tei:ab[ft:query(., $query)]
         case 'writings' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]

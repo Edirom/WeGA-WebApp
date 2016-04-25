@@ -1149,7 +1149,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $incipit := wega-util:transform($model('doc')//tei:incipit, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        let $incipit := wega-util:transform($model('doc')//tei:note[@type='incipit'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
