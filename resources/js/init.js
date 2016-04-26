@@ -205,6 +205,9 @@ $('.creditsButton').on('click', function() {
     $(".portrait").flip('toggle');
 })
 
+/* Open the first collapsable filter by default */
+$('.allFilter .collapse').first().collapse('show');
+
 /* Helper function */
 /* Get active facets to append as URL parameters */
 function active_facets() {
