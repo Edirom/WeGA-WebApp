@@ -243,6 +243,16 @@ declare
         else templates:process($node/node(), $model)
 };
 
+declare function app:order-list-items($node as node(), $model as map(*)) as element() {
+    element {node-name($node)} {
+        $node/@*,
+        for $child in $node/node()
+        let $childProcessed := templates:process($child, $model)
+        order by str:normalize-space($childProcessed)
+        return $childProcessed
+    }
+};
+
 (:
  : ****************************
  : Breadcrumbs 
