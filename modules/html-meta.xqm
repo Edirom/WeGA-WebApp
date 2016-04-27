@@ -109,15 +109,9 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
 (:~
  : Helper function for collecting licensing information
 ~:)
-declare %private function html-meta:DC.rights($model as map(*)) as xs:string? {
-    if($model('docID') = 'indices') then 'Copyright © 2016, Carl-Maria-von-Weber-Gesamtausgabe, Detmold, Germany'
-    else if($model('docID') = 'home') then 'https://creativecommons.org/licenses/by/4.0/'
-    else if(config:get-doctype-by-id($model('docID'))) then 
-        switch($model('docType'))
-        case 'persons' case 'writings' case 'news' case 'var' return 'https://creativecommons.org/licenses/by/4.0/'
-        case 'letters' return str:normalize-space($model('doc')//tei:availability)
-        default return ()
-    else ()
+declare %private function html-meta:DC.rights($model as map(*)) as xs:anyURI {
+    if($model('doc')//tei:licence/@target castable as xs:anyURI) then xs:anyURI($model('doc')//tei:licence/@target)
+    else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
 };
 
 (:~
