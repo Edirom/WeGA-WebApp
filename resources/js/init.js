@@ -208,6 +208,7 @@ $('.creditsButton').on('click', function() {
 /* Open the first collapsable filter by default */
 $('.allFilter .collapse').first().collapse('show');
 
+
 /* Helper function */
 /* Get active facets to append as URL parameters */
 function active_facets() {
@@ -322,6 +323,9 @@ $('#details').easyResponsiveTabs({
 
 /* Folgender Aufruf *nach* der Initialisierung durch easyResponsiveTabs() */
 $('.resp-tab-item a').toggleTab();
+
+/* Activate greedy nav on person pages */
+$('.greedy').greedyNav();
 
 /* Watch filters and highlight spans in text */
 $('.allFilter input').change(
