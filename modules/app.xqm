@@ -624,8 +624,8 @@ declare function app:print-events-title($node as node(), $model as map(*), $lang
  : @author Peter Stadler
  :)
 declare %private function app:createLetterLink($teiDate as element(tei:date)?, $lang as xs:string) as item()* {
-    let $sender := app:printCorrespondentName(($teiDate/parent::tei:correspAction/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')
-    let $addressee := app:printCorrespondentName(($teiDate/parent::tei:correspAction/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')
+    let $sender := app:printCorrespondentName(($teiDate/parent::tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')
+    let $addressee := app:printCorrespondentName(($teiDate/ancestor::tei:correspDesc/tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')
     return (
         $sender, ' ', lang:get-language-string('writesTo', $lang), ' ', $addressee, 
         if(ends-with($addressee, '.')) then ' ' else '. ', 
