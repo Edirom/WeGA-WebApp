@@ -35,42 +35,31 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </sourceDesc>
         </fileDesc>
         <profileDesc>
-            {for $i in core:data-collection('letters')//tei:correspDesc return ct:create-correspDesc($i)}
+            {for $i in core:data-collection('letters')//tei:correspDesc return ct:identity-transform-with-switches($i)}
         </profileDesc>
     </teiHeader>
 };
 
-declare function ct:create-correspDesc($correspDesc as element(tei:correspDesc)) as element(tei:correspDesc) {
-    <correspDesc ref="{concat('http://www.weber-gesamtausgabe.de/', $correspDesc/ancestor::tei:TEI/@xml:id)}" xmlns="http://www.tei-c.org/ns/1.0">{
-        ct:create-correspAction-sent($correspDesc),
-        ct:create-correspAction-received($correspDesc)
-    }</correspDesc>
-};
-
-declare function ct:create-correspAction-sent($correspDesc as element(tei:correspDesc)) as element(tei:correspAction)? {
-    let $correspAction :=
-        <correspAction type="sent" xmlns="http://www.tei-c.org/ns/1.0">{
-            $correspDesc/tei:sender/* ! ct:participant(.),
-            $correspDesc/tei:placeSender/* ! ct:place(.),
-            $correspDesc/tei:dateSender/* ! ct:date(.)
-        }</correspAction>
+declare function ct:identity-transform-with-switches($nodes as node()*) as item()* {
+    for $node in $nodes
     return
-        if($correspAction/*) then $correspAction
-        else ()
+        typeswitch($node)
+        case element(tei:persName) return ct:participant($node)
+        case element(tei:name) return ct:participant($node)
+        case element(tei:orgName) return ct:participant($node)
+        case element(tei:placeName) return ct:place($node)
+        case element(tei:settlement) return ct:place($node)
+        case element(tei:date) return ct:date($node)
+        case text() return $node
+        case comment() return ()
+        case processing-instruction() return ()
+        case document-node() return ct:identity-transform-with-switches($node/node())
+        default return
+            element {name($node)} {
+                $node/@*,
+                ct:identity-transform-with-switches($node/node())
+            }
 };
-
-declare function ct:create-correspAction-received($correspDesc as element(tei:correspDesc)) as element(tei:correspAction)? {
-    let $correspAction :=
-        <correspAction type="received" xmlns="http://www.tei-c.org/ns/1.0">{
-            $correspDesc/tei:addressee/* ! ct:participant(.),
-            $correspDesc/tei:placeAddressee/* ! ct:place(.),
-            $correspDesc/tei:dateAddressee/* ! ct:date(.)
-        }</correspAction>
-    return
-        if($correspAction/*) then $correspAction
-        else ()
-};
-
 
 declare function ct:participant($input as element()) as element() {
     let $id := $input//@key[1]
