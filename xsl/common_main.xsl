@@ -315,7 +315,7 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:text>[</xsl:text>
-                    <xsl:value-of select="wega:getLanguageString('sampleNotation', $lang)"/>
+                    <xsl:value-of select="wega:getLanguageString(local-name(), $lang)"/>
                     <xsl:text>: </xsl:text>
                     <xsl:apply-templates select="tei:desc | tei:figDesc"/>
                     <xsl:text>]</xsl:text>
