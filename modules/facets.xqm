@@ -154,8 +154,8 @@ declare
                         default return $j
                     let $key :=
                         switch($i)
-                        case 'places' return string-join(string-to-codepoints($j) ! string(.), '')
-                        case 'characterNames' return string-join(string-to-codepoints($j) ! string(.), '')
+                        case 'places' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')
+                        case 'characterNames' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')
                         default return $j
                     order by $label ascending
                     return map { 'key' := $key, 'label' := $label}
