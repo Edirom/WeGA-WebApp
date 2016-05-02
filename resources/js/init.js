@@ -186,8 +186,11 @@ $(document).on('click', '.undated', function() {
 
 /* Start search by clicking on filter button */
 $('.searchDocTypeFilter').on('change', 'label', function() {
-    var params = active_facets();
-    updatePage(params);
+    /* No need to refresh the page when there's no query string */
+    if($('#query-input').val().length) {
+        var params = active_facets();
+        updatePage(params);
+    }
 })
 
 $('.obfuscate-email').obfuscateEMail();
