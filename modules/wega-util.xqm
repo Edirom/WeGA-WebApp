@@ -33,9 +33,10 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $url := 
-        if($resource eq 'wikipedia') then concat(config:get-option($resource), $lang, '/', $pnd)
-        else if($resource eq 'dnb') then concat(config:get-option($resource), $pnd, '/about/rdf')
-        else config:get-option($resource) || $pnd
+        switch($resource)
+        case 'wikipedia' return replace(wega-util:beacon-map($pnd)('wikipedia')[1], 'dewiki', $lang || 'wiki')
+        case 'dnb' return concat(config:get-option($resource), $pnd, '/about/rdf')
+        default return config:get-option($resource) || $pnd
     let $fileName := string-join(($pnd, $lang, 'xml'), '.')
     let $today := current-date()
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
@@ -92,6 +93,7 @@ declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
                 let $text  := str:normalize-space($jxml?2?($i))
                 return
                     if(matches($link,"weber-gesamtausgabe.de")) then ()
+                    else if(matches($title,"Wikipedia-Personenartikel")) then map:entry('wikipedia', ($link, $text))
                     else map:entry($title, ($link, $text))
             )
         else map:new()
