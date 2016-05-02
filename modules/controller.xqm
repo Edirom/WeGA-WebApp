@@ -154,7 +154,8 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
     	<view>
          <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}">
-             <add-parameter name="lang" value="{$exist-vars('lang')}"/>
+             <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+             <set-attribute name="modified" value="true"/>
              <cache-control cache="yes"/>
          </forward>
          <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">

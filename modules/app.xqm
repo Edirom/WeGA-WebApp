@@ -1495,3 +1495,11 @@ declare
     function app:letter-count($node as node(), $model as map(*)) as xs:integer? {
         query:correspondence-partners($model('docID'))($model('parent-docID'))
 };
+
+declare 
+    %templates:wrap
+    function app:error-settings($node as node(), $model as map(*)) as map(*) {
+        map {
+            'bugEmail' := config:get-option('bugEmail') 
+        }
+}; 
