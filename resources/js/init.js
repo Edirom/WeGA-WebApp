@@ -195,18 +195,19 @@ $('.searchDocTypeFilter').on('change', 'label', function() {
 
 $('.obfuscate-email').obfuscateEMail();
 
-/* Flip portrait images to display credits */
-$(".portrait").flip({
-    trigger: 'manual'
-});
+$.fn.initPortraitCredits = function() {
+    $(this).each( function(_, portrait) {
+        /* Hiding the flip back when no image information is available */
+        if($('.back p').is(':empty')) { $('.back').hide(); }
+        else 
+            $(".portrait").flip({
+                trigger: 'hover'
+            });
+    })
+};
 
-/* Hiding the flip button when no image information is available */
-if ($('.back p').is(':empty')) {$('.creditsButton').hide()};
+$(".portrait").initPortraitCredits();
 
-/* button for flipping image/information */
-$('.creditsButton').on('click', function() {
-    $(".portrait").flip('toggle');
-})
 
 /* Open the first collapsable filter by default */
 $('.allFilter .collapse').first().collapse('show');
