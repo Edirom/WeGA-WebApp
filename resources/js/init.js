@@ -154,7 +154,7 @@ $('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() 
             return details_in_popup(link, popoverClass);
         }
     });
-    $(this).popover('show')
+    $(this).popover('show');
     return false;
 });
 
@@ -174,7 +174,7 @@ $('span.works, span.biblio').on('click', function() {
             return details_in_popup(link, popoverClass);
         }
     });
-    $(this).popover('show')
+    $(this).popover('show');
     return false;
 });
 
@@ -278,11 +278,13 @@ function details_in_popup(link, popoverClass){
     $.ajax({
         url: link,
         success: function(response){
-            var source = $('<div>' + response + '</div>');
-            $('.'+popoverClass+' .popover-title').html(source.find('h3').children());
-            $('.'+popoverClass+' .popover-content').html(source.children().children());
-            $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
+            var source = $('<div>' + response + '</div>'),
+                popover = $('.'+popoverClass).data('bs.popover');
+            popover.options.content = source.children().children();
+            popover.options.title = source.find('h3').children();
             $('.'+popoverClass+' h3.media-heading').remove(); // remove relicts of headings
+            $('.'+popoverClass).popover('show'); 
+            $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
         }
     });
     return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
