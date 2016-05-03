@@ -459,11 +459,11 @@ declare
             }</li>,
             if($page gt 3) then <li>{$a-element(1, '1')}</li> else (),
             if($page gt 4) then <li>{$a-element(2, '2')}</li> else (),
-            if($page gt 5) then <li><span>…</span></li> else (),
+            if($page gt 5) then <li class="disabled"><span>…</span></li> else (),
             ($page - 2, $page - 1)[. gt 0] ! <li>{$a-element(., string(.))}</li>,
             <li class="active"><span>{$page}</span></li>,
             ($page + 1, $page + 2)[. le $last-page] ! <li>{$a-element(., string(.))}</li>,
-            if($page + 4 lt $last-page) then <li><span>…</span></li> else (),
+            if($page + 4 lt $last-page) then <li class="disabled"><span>…</span></li> else (),
             if($page + 3 lt $last-page) then <li>{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
             if($page + 2 lt $last-page) then <li>{$a-element($last-page, string($last-page))}</li> else (),
             <li>{
