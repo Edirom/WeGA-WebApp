@@ -6,8 +6,7 @@ Copyright (c) 2015 Luke Jackson
 
 $.fn.greedyNav = function() {
 
-  var $nav = $('nav.greedy'),
-      $btn = $('nav.greedy button'),
+  var $btn = $('nav.greedy button'),
       $vlinks = $('nav.greedy .links'),
       $hlinks = $('nav.greedy .hidden-links'),
       
