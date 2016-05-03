@@ -287,7 +287,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
                 "@id":= $id || '/sequences.json',
                 "@type" := "sc:Sequence", 
                 "label" := "Default", 
-                "canvases" := 
+                "canvases" := [
                     for $i at $counter in $doc//tei:facsimile/tei:graphic
                     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
                     (:  Need to double encode URI due to old Apache front end  :)
@@ -312,7 +312,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
                                 }
                             }])
                         ))
-                
+                    ]
             }]
         }
 };
