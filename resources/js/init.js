@@ -420,7 +420,8 @@ function initFacsimile() {
     map = L.map('map', {
         center: [0, 0],
         crs: L.CRS.Simple,
-        zoom: 0
+        zoom: 0,
+        attributionControl: false
     });
     
     
