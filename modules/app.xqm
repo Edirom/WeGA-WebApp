@@ -749,7 +749,7 @@ declare
             else 
                 element {name($node)} {
                     $node/@*,
-                    if($bio instance of xs:string) then $bio
+                    if($bio instance of xs:string) then <p>{$bio}</p>
                     else templates:process($node/node(), $model)
                 }
 };
