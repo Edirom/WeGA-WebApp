@@ -161,11 +161,7 @@ declare function config:get-option($key as xs:string?) as xs:string {
         (: this serves as a shortcut for legacy code :)
         (: Please use core:link-to-current-app() directly! :)
         case 'baseHref' return core:link-to-current-app(())
-        default return (
-            let $dic := $config:options-file
-            let $item := $dic//id($key)
-            return normalize-space($item)
-        )
+        default return str:normalize-space($config:options-file/id($key))
 };
 
 (:~
