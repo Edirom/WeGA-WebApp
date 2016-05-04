@@ -144,6 +144,7 @@ $('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() 
     $(this).popover({
         "html": true,
         "trigger": "manual",
+        container: 'body',
         'placement': 'auto top',
         'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
         'title': function() {
@@ -164,6 +165,7 @@ $('span.works, span.biblio').on('click', function() {
     $(this).popover({
         "html": true,
         "trigger": "manual",
+        container: 'body',
         'placement': 'auto top',
         'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
         'title': function() {
