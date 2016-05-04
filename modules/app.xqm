@@ -962,10 +962,14 @@ declare
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
-        map {
-            'hasFacsimile' := exists($model('doc')//tei:facsimile/tei:graphic/@url),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
-        }
+        let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
+        return
+            map {
+                'hasFacsimile' := 
+                    if($config:isDevelopment) then exists($model('doc')//tei:facsimile/tei:graphic/@url)
+                    else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
+                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+            }
 };
 
 declare
