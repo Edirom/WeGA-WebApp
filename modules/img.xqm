@@ -199,7 +199,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
 declare %private function img:wega-images($model as map(*), $lang as xs:string) as map(*)* {
     for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
     (:  Need to double encode URI due to old Apache front end  :)
-    let $iiifURI := config:get-option('iiifServer') || encode-for-uri(encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/')))
+    let $iiifURI := config:get-option('iiifServer') || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
     order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
     return 
         map {

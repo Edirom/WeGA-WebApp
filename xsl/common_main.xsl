@@ -326,7 +326,7 @@
     
     <xsl:template match="tei:graphic">
         <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
-        <xsl:variable name="localURL" select="concat(wega:getOption('iiifServer'), encode-for-uri(encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url)))))"/>
+        <xsl:variable name="localURL" select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
             <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
