@@ -32,7 +32,9 @@ declare
             'DC.identifier' := html-meta:DC.identifier($model),
             'DC.description' := html-meta:DC.description($model, $lang),
             'DC.subject' := html-meta:DC.subject($model, $lang),
-            'DC.rights' := html-meta:DC.rights($model)
+            'DC.rights' := html-meta:DC.rights($model),
+            'google-site-verification' := config:get-option('googleWebsiteMetatag'),
+            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag')
         }
 };
 
