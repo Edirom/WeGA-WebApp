@@ -17,7 +17,7 @@ $.fn.greedyNav = function() {
       availableSpace, numOfVisibleItems, requiredSpace;
 
   // Get initial state
-  $vlinks.children().outerWidth(function(i, w) {
+  $vlinks.children(':visible').outerWidth(function(i, w) {
     totalSpace += w;
     numOfItems += 1;
     breakWidths.push(totalSpace);
@@ -28,12 +28,12 @@ $.fn.greedyNav = function() {
 
     // Get instant state
     availableSpace = $vlinks.width() - 10;
-    numOfVisibleItems = $vlinks.children().length;
+    numOfVisibleItems = $vlinks.children(':visible').length;
     requiredSpace = breakWidths[numOfVisibleItems - 1];
 
     // There is not enought space
     if (requiredSpace > availableSpace) {
-      $vlinks.children().last().prependTo($hlinks);
+      $vlinks.children(':visible').last().prependTo($hlinks);
       numOfVisibleItems -= 1;
       check();
       // There is more than enough space
@@ -55,6 +55,10 @@ $.fn.greedyNav = function() {
 
   $btn.on('click', function() {
     $hlinks.toggleClass('hidden');
+  });
+  
+  $vlinks.on('click', function() {
+    $hlinks.addClass('hidden');
   });
 
   check();
