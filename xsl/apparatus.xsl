@@ -171,6 +171,17 @@
       </xsl:element>
    </xsl:template>
    
+   <xsl:template match="tei:app">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class">
+            <xsl:text>tei_app</xsl:text>
+         </xsl:attribute>
+         <xsl:apply-templates select="tei:lem"/>
+         <xsl:call-template name="popover"/>
+      </xsl:element>
+   </xsl:template>
+   
    <xsl:template match="tei:app" mode="apparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
@@ -178,7 +189,16 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
-         <xsl:text> some apparatus entry </xsl:text>
+         <xsl:text>"</xsl:text>
+         <xsl:value-of select="tei:lem"/>
+         <xsl:text>": </xsl:text>
+         <xsl:text>Lesart in anderer Quelle: </xsl:text>
+         <xsl:variable name="rdg">
+            <xsl:apply-templates select="tei:rdg"/>
+         </xsl:variable>
+         <xsl:call-template name="remove-by-class">
+            <xsl:with-param name="nodes" select="$rdg"/>
+         </xsl:call-template>
       </xsl:element>
    </xsl:template>
    

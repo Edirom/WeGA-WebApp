@@ -87,6 +87,37 @@
             </xsl:element>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template name="remove-by-class">
+        <xsl:param name="nodes" as="node()*"/>
+        <xsl:for-each select="$nodes">
+            <xsl:choose>
+                <xsl:when test="self::document-node()">
+                    <xsl:call-template name="remove-by-class">
+                        <xsl:with-param name="nodes" select="current()/node()"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="self::comment()">
+                    <xsl:copy-of select="."/>
+                </xsl:when>
+                <xsl:when test="self::processing-instruction()">
+                    <xsl:copy-of select="."/>
+                </xsl:when>
+                <xsl:when test="self::text()">
+                    <xsl:copy-of select="."/>
+                </xsl:when>
+                <xsl:when test="self::xhtml:a[@class='noteMarker']"/>
+                <xsl:otherwise>
+                    <xsl:copy>
+                        <xsl:copy-of select="@*"/>
+                        <xsl:call-template name="remove-by-class">
+                            <xsl:with-param name="nodes" select="current()/node()"/>
+                        </xsl:call-template>
+                    </xsl:copy>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
 
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
