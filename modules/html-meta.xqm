@@ -129,8 +129,8 @@ declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
  : Helper function for collecting date information
 ~:)
 declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
-    if($model('docID') = ('indices', 'home')) then config:getDateTimeOfLastDBUpdate() cast as xs:string
-    else if(config:get-doctype-by-id($model('docID'))) then map:get(config:get-svn-props($model('docID')), 'dateTime')
+    if($model('docID') = ('indices', 'home')) then string(config:getDateTimeOfLastDBUpdate())
+    else if(config:get-doctype-by-id($model('docID')) and exists(config:get-svn-props($model('docID')))) then map:get(config:get-svn-props($model('docID')), 'dateTime')
     else ()
 };
 

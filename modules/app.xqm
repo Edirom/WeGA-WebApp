@@ -566,7 +566,9 @@ declare
     %templates:default("lang", "en")
     function app:word-of-the-day($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $words := core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
-        let $random := util:random(count($words) - 1) + 1 (: util:random may return 0! :)
+        let $random :=
+            if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0! :)
+            else 1
         return 
             map {
                 'wordOfTheDay' := str:enquote(str:normalize-space(string-join(wega-util:txtFromTEI($words[$random]), '')), $lang),
