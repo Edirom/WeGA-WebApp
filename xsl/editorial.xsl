@@ -160,7 +160,7 @@
                     <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
                 </xsl:element>-->
                 <xsl:choose>
-                    <xsl:when test="./tei:p">
+                    <xsl:when test="tei:p">
                         <xsl:apply-templates/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -172,6 +172,13 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:p">
+        <xsl:element name="p">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
