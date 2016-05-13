@@ -267,10 +267,10 @@ declare function controller:redirect-by-gnd($exist-vars as map(*)) {
 
 declare function controller:lookup-url-mappings($exist-vars as map(*)) {
     let $lookup-table := doc($config:catalogues-collection-path || '/urlMappings.xml')
-    let $mapping := $lookup-table//mapping[@from = $exist-vars('path')]
+    let $mapping := $lookup-table//mapping[controller:encode-path-segments-for-uri(@from) = $exist-vars('path')]
 (:    let $log := util:log-system-out($exist-vars('path')):)
     return
-        if($mapping) then controller:redirect-absolute($mapping/normalize-space(@to))
+        if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri($mapping/normalize-space(@to)))
         (: zum debuggen rausgenommen um Fehler anzuzeigen:)
         else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
         else controller:error($exist-vars, 404)
@@ -283,7 +283,7 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
         if($oldID castable as xs:integer) then $lookup-table//entry[@oldID = $oldID]
         else ()
     return
-        if($mapping) then controller:redirect-absolute(normalize-space($mapping))
+        if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri(normalize-space($mapping)))
         else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
         else controller:error($exist-vars, 404)
 };
