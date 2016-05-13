@@ -126,6 +126,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:data-collection('diaries')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root() |
+            core:data-collection('news')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('biblio')//tei:term[.=$cacheKey]/root()
         case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.)
         default return ()
