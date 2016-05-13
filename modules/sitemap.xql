@@ -25,7 +25,8 @@ declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'd
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
-    let $lastmod := $config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime)
+    (: In rare cases (when a file was deleted from a wrong folder and a file with the same name exists) there are two svn entries :)
+    let $lastmod := max($config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime))
     let $loc := $local:host || app:createUrlForDoc($x, $lang)
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
