@@ -20,7 +20,7 @@ import module namespace functx="http://www.functx.com";
  : @return xs:string
  :)
 declare function str:normalize-space($string as xs:string?) as xs:string {
-    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;', ' '))
+    normalize-unicode(normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;', ' ')))
 };
 
 (:~

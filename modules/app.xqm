@@ -912,11 +912,11 @@ declare
         return
             map {
                 'dnbContent' := $dnbContent,
-                'dnbName' := $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/string(),
+                'dnbName' := str:normalize-space($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson),
                 'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
                 'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
-                'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/string(),
-                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/string(),
+                'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/str:normalize-space(.),
+                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/str:normalize-space(.),
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
             }
