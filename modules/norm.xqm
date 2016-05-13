@@ -47,6 +47,7 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         case 'writings' return norm:create-norm-doc-writings()
         case 'works' return norm:create-norm-doc-works()
         case 'places' return norm:create-norm-doc-places()
+        case 'orgs' return norm:create-norm-doc-orgs()
         default return ()
 };
 
@@ -152,6 +153,20 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
                 attribute docID {$docID},
                 attribute sex {$sex},
                 attribute sortName {$sortName},
+                $name
+            }
+    }</catalogue>
+};
+
+declare %private function norm:create-norm-doc-orgs() as element(norm:catalogue) {
+    <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
+        for $doc in core:getOrCreateColl('orgs', 'indices', true())
+        let $docID := $doc/tei:org/data(@xml:id)
+        let $name := str:normalize-space($doc//tei:orgName[@type='reg'])
+        order by $name ascending
+        return 
+            element entry {
+                attribute docID {$docID},
                 $name
             }
     }</catalogue>

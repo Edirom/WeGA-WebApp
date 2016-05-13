@@ -71,6 +71,7 @@ declare variable $config:wega-docTypes := map {
     'sources'       := 'A22',
     'var'           := 'A07',
     'works'         := 'A02',
+    'orgs'          := 'A08',
     (: dummy entry for creation of filter facets, see facets:document-allFilter :)
     'characterNames'    := 'A17' 
 };
@@ -202,6 +203,7 @@ declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
     else if(config:is-biblio($id)) then 'biblio'
     else if(config:is-place($id)) then 'places'
     else if(config:is-source($id)) then 'sources'
+    else if(config:is-org($id)) then 'orgs'
     else ()
 };
 
@@ -326,6 +328,16 @@ declare function config:is-source($docID as xs:string?) as xs:boolean {
     matches($docID, '^A22\d{4}$')
 };
 
+(:~
+ : Checks whether a given id matches the WeGA pattern of org ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-org($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A08[0-9A-F]{4}$')
+};
 
 (:~
  : Checks whether a given document is from the series "Weber-Studien" published by the WeGA

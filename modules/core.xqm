@@ -141,6 +141,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
         case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
+        case 'orgs' return core:data-collection($collName)[not(tei:org/tei:ref)]
         case 'indices' return 
             core:getOrCreateColl('works', 'indices', true()) |
             core:getOrCreateColl('letters', 'indices', true()) |
@@ -149,6 +150,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:getOrCreateColl('biblio', 'indices', true()) |
             (:core:getOrCreateColl('places', 'indices', true()) |:)
             core:getOrCreateColl('writings', 'indices', true()) |
+            core:getOrCreateColl('orgs', 'indices', true()) |
             core:getOrCreateColl('persons', 'indices', true())
         default return ()
     else ()
@@ -170,6 +172,7 @@ declare function core:sortColl($coll as item()*, $collName as xs:string) as docu
     case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
     case 'news' return for $i in $coll order by query:get-normalized-date($i) descending return $i
     case 'biblio' return for $i in $coll order by string(query:get-normalized-date($i)) descending return $i
+    case 'orgs' return for $i in $coll order by str:normalize-space($i//tei:orgName[@type='reg']) ascending return $i
     default return $coll
 };
 
