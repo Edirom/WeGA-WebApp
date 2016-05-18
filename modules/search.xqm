@@ -14,7 +14,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 
 (: params for filtering the result set :)
-declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
+declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 'orgs',
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
     'fromDate', 'toDate', 'undated', 'docTypeSubClass');
@@ -23,7 +23,7 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , '
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
  :)
-declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news');
+declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news', 'orgs');
 
 (:~
  : Main function called from the templating module
@@ -128,11 +128,12 @@ declare %private function search:list($model as map(*)) as map(*) {
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
     let $filtered-results := 
-        if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($search-results, 'persons', $model('docID'))
+        if ($model('docID') ne 'indices') then core:sortColl($search-results, $model('docType'), $model('docID'))
+        (:if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($search-results, 'persons', $model('docID'))
         else if ($model('docType') = 'letters' and $model('docID') ne 'indices') then core:sortColl($search-results, 'letters', $model('docID'))
         else if ($model('docType') = 'writings' and $model('docID') ne 'indices') then core:sortColl($search-results, 'writings', $model('docID'))
         else if ($model('docType') = 'diaries' and $model('docID') ne 'indices') then core:sortColl($search-results, 'diaries', $model('docID'))
-        else if ($model('docType') = 'biblio' and $model('docID') ne 'indices') then core:sortColl($search-results, 'biblio', $model('docID'))
+        else if ($model('docType') = 'biblio' and $model('docID') ne 'indices') then core:sortColl($search-results, 'biblio', $model('docID')):)
         else $search-results
     return
         map {
@@ -180,6 +181,7 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
     return
         switch($docType)
         case 'persons' return $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[ft:query(., $query)][@type]
+        case 'orgs' return $coll/tei:org[ft:query(., $query)] | $coll//tei:orgName[ft:query(., $query)][@type]
         case 'letters' return $coll//tei:body[ft:query(., $query)] | 
             $coll//tei:correspDesc[ft:query(., $query)] | 
             $coll//tei:title[ft:query(., $query)] |
@@ -273,7 +275,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
             (: news enthalten dateTime im date/@when :)
             else  if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
             else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
-        case 'persons' return ()
+        case 'persons' case 'orgs' return ()
         case 'writings' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
@@ -310,7 +312,7 @@ declare %private function search:get-earliest-date($docType as xs:string, $cache
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
                 else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
-            case 'persons' return ()
+            case 'persons' case 'orgs' return ()
             case 'writings' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
                 else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
@@ -336,7 +338,7 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
                 else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
-            case 'persons' return ()
+            case 'persons' case 'orgs' return ()
             case 'writings' return
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
                 else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()

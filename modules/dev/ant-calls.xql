@@ -9,7 +9,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 
-declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries iconography letters news persons places sources var works writings', '\s+');
+declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries iconography letters news orgs persons places sources var works writings', '\s+');
 
 declare function local:patch-subversion-history($patch as document-node()) {
     if($patch/dictionary/@head castable as xs:integer) then (

@@ -9,6 +9,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "modules/lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "modules/str.xqm";
+import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "modules/search.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "modules/controller.xqm";
 import module namespace functx="http://www.functx.com";
 
@@ -101,7 +102,7 @@ else if ($exist:resource = 'correspDesc.xml') then
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
-   if(config:get-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ('letters','writings','persons','news','diaries', 'var', 'orgs')) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
+   if(config:get-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = $search:wega-docTypes) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
    else controller:forward-html('/templates/search.html', $exist-vars)
 
 (: Register :)
