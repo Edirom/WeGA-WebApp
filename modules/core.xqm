@@ -110,7 +110,7 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    if(config:is-person($cacheKey)) then 
+    if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
         switch($collName)
         case 'biblio' return core:data-collection($collName)//tei:author[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
         case 'diaries' return
@@ -122,11 +122,12 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         case 'writings' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
         case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
         case 'backlinks' return 
-            core:data-collection('letters')//@key[.=$cacheKey][not(ancestor::tei:correspAction)][not(parent::tei:author)]/root() | 
+            (core:data-collection('letters')//@key[.=$cacheKey][not(parent::tei:author)]/root() except core:data-collection('letters')//@key[.=$cacheKey][ancestor::tei:correspAction]/root()) | 
             core:data-collection('diaries')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root() |
             core:data-collection('news')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
+            core:data-collection('orgs')//@key[.=$cacheKey][not(parent::tei:orgName/@type)]/root() |
             core:data-collection('biblio')//tei:term[.=$cacheKey]/root()
         case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.)
         default return ()
