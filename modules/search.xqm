@@ -268,8 +268,8 @@ declare %private function search:date-filter($collection as document-node()*, $d
             else $collection//tei:ab[@n <= $filters($filter)]/root()
         case 'letters' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
-            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
+            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:correspAction]/root()
+            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:correspAction]/root()
         case 'news' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             (: news enthalten dateTime im date/@when :)
