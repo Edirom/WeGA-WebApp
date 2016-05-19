@@ -1396,7 +1396,8 @@ declare
             $node/@*[not(name(.) = 'href')],
             if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
             else (),
-            if(config:is-person($model('docID'))) then query:get-reg-name($model('docID')) 
+            if(config:is-person($model('docID'))) then query:get-reg-name($model('docID'))
+            else if(config:is-org($model('docID'))) then query:get-reg-name($model('docID'))
             else app:document-title($node, $model, $lang)
     }
 };

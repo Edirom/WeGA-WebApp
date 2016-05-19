@@ -86,7 +86,11 @@ declare
 declare 
     %templates:default("usage", "")
     function search:dispatch-preview($node as node(), $model as map(*), $usage as xs:string) {
-        let $docType := config:get-doctype-by-id($model('result-page-entry')/*/data(@xml:id))
+        let $docID := $model('result-page-entry')/*/data(@xml:id)
+        let $docType := 
+            (: Preview orgs with the person template :)
+            if(config:is-org($docID)) then 'persons'
+            else config:get-doctype-by-id($docID)
         (: Need to distinguish between contacts and other person previews :)
         let $usage := if(config:is-person($model('docID')) and $model('docType') = 'persons') then 'contacts' else ''
         (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
