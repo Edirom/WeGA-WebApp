@@ -105,13 +105,13 @@ declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
  :
  : @author Peter Stadler
  : @param $item may be xs:string (the WeGA ID), document-node() (of a person file), or a tei:person element
- : @return the GND as xs:string, empty string or empty sequence if nothing was found 
+ : @return the GND as xs:string, or empty sequence if nothing was found 
 :)
 declare function query:get-gnd($item as item()) as xs:string? {
     typeswitch($item)
         (: there might be several gnd IDs in organizations :)
-        case xs:string return core:doc($item)//(tei:idno[@type = 'gnd'])[1]/data()
-        default return $item//(tei:idno[@type = 'gnd'])[1]/data()
+        case xs:string return (core:doc($item)//tei:idno[@type = 'gnd']/text())[1]
+        default return ($item//tei:idno[@type = 'gnd']/text())[1]
 };
 
 (:~ 
