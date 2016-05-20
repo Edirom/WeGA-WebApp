@@ -703,8 +703,8 @@ declare
             'baptism' := date:printDate(($model('doc')//tei:birth/tei:date[@type='baptism'])[1], $lang),
             'deaths' := date:printDate(($model('doc')//tei:death/tei:date[not(@type)])[1], $lang),
             'funeral' := date:printDate(($model('doc')//tei:death/tei:date[@type = 'funeral'])[1], $lang),
-            'occupations' := $model('doc')//tei:occupation,
-            'residences' := $model('doc')//tei:residence,
+            'occupations' := $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
+            'residences' := $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
             'addrLines' := $model('doc')//tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']//tei:addrLine 
         }
 };
@@ -745,7 +745,7 @@ declare function app:person-beacon($node as node(), $model as map(*)) as map(*) 
 declare 
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
-        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
+        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
             if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
