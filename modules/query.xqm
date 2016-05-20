@@ -109,10 +109,9 @@ declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
 :)
 declare function query:get-gnd($item as item()) as xs:string? {
     typeswitch($item)
-        case xs:string return core:doc($item)//tei:idno[@type = 'gnd']/string()
-        case document-node() return $item//tei:idno[@type = 'gnd']/string()
-        case element(tei:person) return $item/tei:idno[@type = 'gnd']/string()
-        default return ()
+        (: there might be several gnd IDs in organizations :)
+        case xs:string return core:doc($item)//(tei:idno[@type = 'gnd'])[1]/data()
+        default return $item//(tei:idno[@type = 'gnd'])[1]/data()
 };
 
 (:~ 

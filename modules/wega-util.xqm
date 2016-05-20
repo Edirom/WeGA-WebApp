@@ -19,25 +19,24 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
  : If the date does match with today's date then the result will be taken from the cache; otherwise the external resource will be queried.
- : ATTENTION: Wikipedia sends HTMl pages without namespace
  :
  : @author Peter Stadler 
  : @param $resource the external resource (wikipedia|adb|dnb|beacon)
- : @param $pnd the PND number
+ : @param $gnd the PND number
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?) as element(httpclient:response)? {
+ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(httpclient:response)? {
     let $lease := 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $url := 
         switch($resource)
-        case 'wikipedia' return replace(wega-util:beacon-map($pnd)('wikipedia')[1], 'dewiki', $lang || 'wiki')
-        case 'dnb' return concat(config:get-option($resource), $pnd, '/about/rdf')
-        default return config:get-option($resource) || $pnd
-    let $fileName := string-join(($pnd, $lang, 'xml'), '.')
+        case 'wikipedia' return replace(wega-util:beacon-map($gnd, $docType)('wikipedia')[1], 'dewiki', $lang || 'wiki')
+        case 'dnb' return concat(config:get-option($resource), $gnd, '/about/rdf')
+        default return config:get-option($resource) || $gnd
+    let $fileName := string-join(($gnd, $lang, 'xml'), '.')
     let $today := current-date()
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
@@ -76,8 +75,11 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
         </wega:externalResource>
 };
 
-declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
-    let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de')
+declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
+    let $findbuchResponse := 
+        switch($docType)
+        case 'persons' return wega-util:grabExternalResource('beacon', $gnd, $docType, 'de')
+        default return wega-util:grabExternalResource('gnd-beacon', $gnd, $docType, 'de')
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 

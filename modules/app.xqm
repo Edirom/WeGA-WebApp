@@ -89,8 +89,8 @@ declare function app:set-attr($node as node(), $model as map(*), $attr as xs:str
 declare 
     %templates:wrap
     function app:print($node as node(), $model as map(*), $key as xs:string) as xs:string? {
-        if ($model($key) castable as xs:string) then string($model($key))
-        else ()
+        if ($model($key) castable as xs:string) then str:normalize-space($model($key))
+        else app:join($node, $model, $key, '0', '')
 };
 
 (:~
@@ -110,7 +110,7 @@ declare
             else if($max castable as xs:integer and number($max) > 0) then subsequence($model($key), 1, $max)
             else $model($key)
         return
-            if ($items) then string-join($items ! str:normalize-space(.), $separator)
+            if (every $i in $items satisfies $i castable as xs:string) then string-join($items ! str:normalize-space(.), $separator)
             else ()
 };
 
@@ -697,7 +697,7 @@ declare
             'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'],
             'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'],
             'realnames' := $model('doc')//tei:persName[@type = 'real'],
-            'altnames' := $model('doc')//tei:persName[@type = 'alt'][not(@subtype)],
+            'altnames' := $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] | $model('doc')//tei:orgName[@type = 'alt'],
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'],
             'births' := date:printDate(($model('doc')//tei:birth/tei:date[not(@type)])[1], $lang),
             'baptism' := date:printDate(($model('doc')//tei:birth/tei:date[@type='baptism'])[1], $lang),
@@ -733,7 +733,7 @@ declare
 declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     let $beaconMap := 
-        if($gnd) then wega-util:beacon-map($gnd)
+        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
     return
         map{
@@ -816,7 +816,7 @@ declare
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, $lang)
+        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
@@ -880,7 +880,7 @@ declare
     %templates:wrap
     function app:adb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), ())
+            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
         }
 };
 
@@ -907,16 +907,15 @@ declare
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, ())
-(:        let $log := util:log-system-out($dnbContent//rdf:Description/gndo:preferredNameForThePerson/string()):)
+        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
         return
             map {
                 'dnbContent' := $dnbContent,
-                'dnbName' := str:normalize-space($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson),
+                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.)),
                 'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
                 'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
-                'dnbOccupations' := $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/str:normalize-space(.),
-                'dnbOtherNames' := $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/str:normalize-space(.),
+                'dnbOccupations' := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
+                'dnbOtherNames' := ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody/str:normalize-space(.)),
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
             }

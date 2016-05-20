@@ -44,7 +44,7 @@ declare
         let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
             if(exists($model('beaconMap'))) then $model('beaconMap')
             else try { 
-                wega-util:beacon-map(query:get-gnd($model('doc')))
+                wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')))
                 }
                 catch * { map:new() } 
         let $portraitindex-images := 
@@ -78,9 +78,9 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
  : @return 
  :)
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $wikiArticle := 
-        if($pnd) then wega-util:grabExternalResource('wikipedia', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
     return 
@@ -136,9 +136,9 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
  : @return 
  :)
 declare %private function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($pnd) then wega-util:grabExternalResource('portraitindex', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
     return 
@@ -166,9 +166,9 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
  : @return 
  :)
 declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($pnd) then wega-util:grabExternalResource('tripota', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
     return 
