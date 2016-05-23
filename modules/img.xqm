@@ -41,6 +41,7 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
+        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
         let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
             if(exists($model('beaconMap'))) then $model('beaconMap')
             else try { 
@@ -56,8 +57,15 @@ declare
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
             else ()
+        let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images)
+        let $portrait := 
+            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
+            else ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
         return
-            map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
+            map { 
+                'iconographyImages' := $iconographyImages,
+                'portrait' := $portrait
+            }
 };
 
 (:~
@@ -234,16 +242,12 @@ http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd7
 declare 
     %templates:default("lang", "en")
     function img:portrait($node as node(), $model as map(*), $lang as xs:string, $size as xs:string) as element() {
-        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
-        let $portrait := 
-            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
-            else ($model('iconographyImages'), img:get-generic-portrait($model, $lang))[1]
-        let $url := $portrait('url')($size)
+        let $url := $model('portrait')('url')($size)
         return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) = ('src', 'title', 'alt'))],
-                attribute title {$portrait('caption')},
-                attribute alt {$portrait('caption')},
+                attribute title {$model('portrait')('caption')},
+                attribute alt {$model('portrait')('caption')},
                 attribute src {$url}
             }
 };
