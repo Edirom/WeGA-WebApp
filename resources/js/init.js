@@ -139,7 +139,7 @@ function activateTab() {
 };
 
 // create popovers for document types which already have single views
-$('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() {
+$('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs').on('click', function() {
     var popoverClass =  "popover-" + $.now();
     $(this).popover({
         "html": true,

@@ -199,6 +199,18 @@
         </xsl:choose>
     </xsl:function>
     
+    <xsl:function name="wega:isOrg" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A08\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
@@ -235,6 +247,9 @@
             <xsl:when test="wega:isSource($docID)">
                 <xsl:value-of select="'sources'"/>
             </xsl:when>
+            <xsl:when test="wega:isOrg($docID)">
+                <xsl:value-of select="'orgs'"/>
+            </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
     </xsl:function>
@@ -245,6 +260,7 @@
         <xsl:variable name="authorID">
             <xsl:choose>
                 <xsl:when test="wega:isPerson($docID)"/>
+                <xsl:when test="wega:isOrg($docID)"/>
                 <xsl:otherwise>
                     <xsl:value-of select="wega:getAuthorFromTeiDoc($docID)"/>
                 </xsl:otherwise>
@@ -271,7 +287,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="wega:isPerson($docID)">
+            <xsl:when test="wega:isPerson($docID) or wega:isOrg($docID)">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
             <xsl:when test="exists($folder) and $authorID ne ''">
