@@ -313,14 +313,14 @@ declare %private function controller:canonical-mime-type($mime-type as xs:string
         else ()
 };
 
-declare %private function controller:forward-document($exist-vars as map(*)) as element(exist:dispatch)? {
+declare %private function controller:forward-document($exist-vars as map(*)) as element(exist:dispatch) {
     switch($exist-vars('media-type'))
     case 'html' return
         switch($exist-vars('docType'))
         case 'persons' return controller:forward-html('/templates/person.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
-    default return ()
+    default return controller:error($exist-vars, 404)
 };
 
 declare %private function controller:etag($path as xs:string) as xs:string {
