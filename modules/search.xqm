@@ -102,7 +102,7 @@ declare
 declare 
     %templates:wrap
     function search:kwic($node as node(), $model as map(*)) {
-        for $hit in $model($model('docID'))
+        for $hit in $model($model('docID'))[.//exist:match]
         return
             kwic:get-summary($hit, ($hit//exist:match)[1], <config width="40"/>)
 };
@@ -180,13 +180,18 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
     return
         switch($docType)
         case 'persons' return $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[ft:query(., $query)][@type]
-        case 'letters' return $coll//tei:body[ft:query(., $query)] | 
+        case 'letters' return 
+            $coll//tei:body[ft:query(., $query)] | 
             $coll//tei:correspDesc[ft:query(., $query)] | 
             $coll//tei:title[ft:query(., $query)] |
             $coll//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $coll//tei:note[ft:query(., $query)][@type = 'summary']
+            $coll//tei:note[@type='summary'][ft:query(., $query)] |
+            $coll/tei:TEI[ft:query(., $query)]
         case 'diaries' return $coll/tei:ab[ft:query(., $query)]
-        case 'writings' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
+        case 'writings' return 
+            $coll//tei:body[ft:query(., $query)] | 
+            $coll//tei:title[ft:query(., $query)] |
+            $coll/tei:TEI[ft:query(., $query)]
         case 'works' return $coll/mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
         case 'news' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
         case 'biblio' return $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
