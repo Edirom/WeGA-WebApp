@@ -75,12 +75,12 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
         else if($collName eq 'diaries' and not($cacheKey = ('indices', 'A002068'))) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
-            let $sortedColl := core:sortColl($newColl, $collName)
+(:            let $sortedColl := core:sortColl($newColl, $collName):)
             let $setCache := 
                 (: Do not cache all collections. This will result in too much memory consumption :)
-                if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
+                if(count($newColl) gt 250) then core:put-cache($collName, $cacheKey, $newColl)
                 else ()
-            return $sortedColl
+            return $newColl
 };
 
 (:~
@@ -117,7 +117,7 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             if($cacheKey eq 'A002068') then core:data-collection($collName)[tei:ab]
             else ()
         case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
-        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][ancestor::tei:correspAction][not(ancestor::tei:note)]/root()
+(:        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][ancestor::tei:correspAction][not(ancestor::tei:note)]/root():)
         case 'news' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
         case 'writings' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
         case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
@@ -129,20 +129,22 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:data-collection('news')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
             core:data-collection('orgs')//@key[.=$cacheKey][not(parent::tei:orgName/@type)]/root() |
             core:data-collection('biblio')//tei:term[.=$cacheKey]/root()
-        case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.)
-        default return ()
+(:        case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.):)
+        default return
+            try { function-lookup(xs:QName('config:' || $collName), 1)(())('init-collection')($cacheKey) }
+            catch * {()}
     else if($cacheKey eq 'indices') then 
         switch($collName)
         case 'biblio' return core:data-collection($collName)[not(tei:biblStruct/tei:ref)]
         case 'diaries' return core:data-collection($collName)[tei:ab]
         case 'iconography' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
-        case 'letters' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
+(:        case 'letters' return core:data-collection($collName)[not(tei:TEI/tei:ref)]:)
         case 'news' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
-        case 'persons' return core:data-collection($collName)[not(tei:person/tei:ref)]
+(:        case 'persons' return core:data-collection($collName)[not(tei:person/tei:ref)]:)
         case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
         case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
         case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
-        case 'orgs' return core:data-collection($collName)[not(tei:org/tei:ref)]
+(:        case 'orgs' return core:data-collection($collName)[not(tei:org/tei:ref)]:)
         case 'indices' return 
             core:getOrCreateColl('works', 'indices', true()) |
             core:getOrCreateColl('letters', 'indices', true()) |
@@ -153,7 +155,9 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             core:getOrCreateColl('writings', 'indices', true()) |
             core:getOrCreateColl('orgs', 'indices', true()) |
             core:getOrCreateColl('persons', 'indices', true())
-        default return ()
+        default return 
+            try { function-lookup(xs:QName('config:' || $collName), 1)(())('init-collection')() }
+            catch * {()}
     else ()
 };
 

@@ -16,6 +16,8 @@ import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
@@ -115,11 +117,96 @@ declare %templates:wrap function config:app-title($node as node(), $model as map
     $config:expath-descriptor/expath:title/text()
 };
 
-declare function config:app-meta($node as node(), $model as map(*)) as element()* {
-    <meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="{$config:repo-descriptor/repo:description/text()}"/>,
-    for $author in $config:repo-descriptor/repo:author
-    return
-        <meta xmlns="http://www.w3.org/1999/xhtml" name="creator" content="{$author/text()}"/>
+declare function config:orgs($item as item()*) as map(*) {
+    map {
+        'name' := 'orgs',
+        'prefix' := 'A08',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A08\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor::tei:org]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            ()
+        },
+        'sort' := function() as document-node()* {
+            for $i in config:orgs($item)('filter')() order by str:normalize-space($i//tei:orgName[@type='reg']) ascending return $i
+        },
+        'init-collection' := function() as document-node()* {
+            config:orgs(core:data-collection('orgs'))('sort')()
+        }
+    }
+};
+
+declare function config:persons($item as item()*) as map(*) {
+    map {
+        'name' := 'persons',
+        'prefix' := 'A00',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A00[0-9A-F]{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor::tei:person]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.)
+        },
+        'sort' := function() as document-node()* {
+            for $i in config:persons($item)('filter')() order by core:create-sort-persname($i/tei:person) ascending return $i
+        },
+        'init-collection' := function() as document-node()* {
+            config:persons(core:data-collection('persons'))('sort')()
+        }
+    }
+};
+
+declare function config:letters($item as item()*) as map(*) {
+    map {
+        'name' := 'letters',
+        'prefix' := 'A04',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A04\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item/following::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root() | $item/preceding::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            $item/following::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() | $item/preceding::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() 
+        },
+        'sort' := function() as document-node()* {
+            for $i in config:letters($item)('filter')() order by query:get-normalized-date($i) ascending, ($i//tei:correspAction[@type='sent']/tei:date)[1]/@n ascending return $i
+        },
+        'init-collection' := function() as document-node()* {
+            config:letters(core:data-collection('letters'))('sort')()
+        }
+    }
+};
+
+declare function config:personsPlus($item as item()*) as map(*) {
+    map {
+        'name' := 'personsPlus',
+        'prefix' := (),
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then (config:orgs($item)('check')() or config:persons($item)('check')())
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            config:orgs($item)('filter')() | config:persons($item)('filter')()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            config:orgs($item)('filter-by-person')() | config:persons($item)('filter-by-person')() 
+        },
+        'sort' := function() as document-node()* {
+            config:orgs($item)('sort')() | config:persons($item)('sort')()
+        },
+        'init-collection' := function() as document-node()* {
+            config:orgs($item)('init-collection')() | config:persons($item)('init-collection')()
+        }
+    }
 };
 
 (:~
