@@ -778,7 +778,7 @@ declare
     return
         for $placeName at $count in $placeNames
         let $preposition :=
-            if(matches($placeName, '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
+            if(matches(normalize-space($placeName), '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
             else concat(' ', lower-case(lang:get-language-string('in', $model('lang'))), ' ')
         return (
             $preposition || str:normalize-space($placeName),
@@ -790,18 +790,15 @@ declare
 declare
     %templates:wrap
     function app:portrait-credits($node as node(), $model as map(*)) as item()* {
-    let $portraitMap := $model('iconographyImages')[1]
-    return (
-        if(exists($portraitMap)) then (
-            $portraitMap('source'),
-            if(contains($portraitMap('linkTarget'), config:get-option('iiifServer'))) then ()
+        if($model('portrait')('source') = 'Carl-Maria-von-Weber-Gesamtausgabe') then ()
+        else (
+            $model('portrait')('source'),
+            if(contains($model('portrait')('linkTarget'), config:get-option('iiifServer'))) then ()
             else (<br/>, element a {
-                attribute href {$portraitMap('linkTarget')},
-                $portraitMap('linkTarget')
+                attribute href {$model('portrait')('linkTarget')},
+                $model('portrait')('linkTarget')
             })
         )
-        else ()
-    )
 };
 
 (:~

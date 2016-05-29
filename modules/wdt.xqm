@@ -95,7 +95,8 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item//tei:correspDesc[ft:query(., $query)] | 
             $item//tei:title[ft:query(., $query)] |
             $item//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $item//tei:note[ft:query(., $query)][@type = 'summary']
+            $item//tei:note[ft:query(., $query)][@type = 'summary'] |
+            $item/tei:TEI[ft:query(., $query)]
         }
     }
 };
@@ -153,7 +154,8 @@ declare function wdt:writings($item as item()*) as map(*) {
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
             $item//tei:body[ft:query(., $query)] | 
-            $item//tei:title[ft:query(., $query)]
+            $item//tei:title[ft:query(., $query)] |
+            $item/tei:TEI[ft:query(., $query)]
         }
     }
 };

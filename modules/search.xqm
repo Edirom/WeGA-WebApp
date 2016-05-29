@@ -113,7 +113,7 @@ declare
 declare 
     %templates:wrap
     function search:kwic($node as node(), $model as map(*)) {
-        for $hit in $model($model('docID'))
+        for $hit in $model($model('docID'))[.//exist:match]
         return
             kwic:get-summary($hit, ($hit//exist:match)[1], <config width="40"/>)
 };
