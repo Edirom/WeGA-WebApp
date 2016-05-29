@@ -12,18 +12,23 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
-
-(: params for filtering the result set :)
-declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 'orgs',
-    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'docTypeSubClass');
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 (: 
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
  :)
-declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news', 'orgs');
+declare variable $search:wega-docTypes := (:('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news', 'orgs');:)
+    for $func in wdt:functions-available()
+    return 
+        if($func(())('memberOf') = 'search') then $func(())('name')
+        else ();
+
+(: params for filtering the result set :)
+declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
+    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
+    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
+    'fromDate', 'toDate', 'undated', 'docTypeSubClass');
 
 (:~
  : Main function called from the templating module
@@ -34,13 +39,14 @@ declare
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
         let $filters := map { 'filters' := search:create-filters() }
-(:        let $log := util:log-system-out($docType):)
         return
             switch($docType)
             (: search page :)
             case 'search' return search:search(map:new(($model, $filters, map:entry('docID', 'indices'))))
+            (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
+            case 'persons' return search:list(map:new(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
-            default return search:list(map:new(($model, $filters, map:entry('docType', $docType))))
+            default return search:list(map:new(($filters, map:put($model, 'docType', $docType))))
 };
 
 (:~
@@ -91,8 +97,9 @@ declare
             (: Preview orgs with the person template :)
             if(config:is-org($docID)) then 'persons'
             else config:get-doctype-by-id($docID)
+(:        let $log := util:log-system-out($model('docType') || ' - ' || $model('docID')):)
         (: Need to distinguish between contacts and other person previews :)
-        let $usage := if(config:is-person($model('docID')) and $model('docType') = 'persons') then 'contacts' else ''
+        let $usage := if(config:is-person($model('docID')) and $model('docType') = 'contacts') then 'contacts' else ''
         (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
         let $newModel := map:new(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
         return
@@ -132,20 +139,18 @@ declare %private function search:list($model as map(*)) as map(*) {
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
     let $filtered-results := 
-        if ($model('docID') ne 'indices') then core:sortColl($search-results, $model('docType'), $model('docID'))
-        (:if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($search-results, 'persons', $model('docID'))
-        else if ($model('docType') = 'letters' and $model('docID') ne 'indices') then core:sortColl($search-results, 'letters', $model('docID'))
-        else if ($model('docType') = 'writings' and $model('docID') ne 'indices') then core:sortColl($search-results, 'writings', $model('docID'))
-        else if ($model('docType') = 'diaries' and $model('docID') ne 'indices') then core:sortColl($search-results, 'diaries', $model('docID'))
-        else if ($model('docType') = 'biblio' and $model('docID') ne 'indices') then core:sortColl($search-results, 'biblio', $model('docID')):)
-        else $search-results
+        (:if ($model('docID') ne 'indices') then core:sortColl($search-results, $model('docType'), $model('docID'))
+        else:) $search-results
     return
-        map {
-            'filters' := $model('filters'),
-            'search-results' := $filtered-results,
-            'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
-            'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
-        }
+        map:merge((
+            $model,
+            map {
+                'filters' := $model('filters'),
+                'search-results' := $filtered-results,
+                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
+                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
+            }
+        ))
 };  
 
 
@@ -182,21 +187,10 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else core:getOrCreateColl($docType, 'indices', true())
+(:    let $log := util:log-system-out($docType):)
     return
-        switch($docType)
-        case 'persons' return $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[ft:query(., $query)][@type]
-        case 'orgs' return $coll/tei:org[ft:query(., $query)] | $coll//tei:orgName[ft:query(., $query)][@type]
-        case 'letters' return $coll//tei:body[ft:query(., $query)] | 
-            $coll//tei:correspDesc[ft:query(., $query)] | 
-            $coll//tei:title[ft:query(., $query)] |
-            $coll//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $coll//tei:note[ft:query(., $query)][@type = 'summary']
-        case 'diaries' return $coll/tei:ab[ft:query(., $query)]
-        case 'writings' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
-        case 'works' return $coll/mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
-        case 'news' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
-        case 'biblio' return $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
-        default return ()
+        try { function-lookup(xs:QName('wdt:' || $docType), 1)($coll)('search')($query) }
+        catch * { core:logToFile('warn', 'failed to search collection "' || $docType || '"') }
 };
 
 declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as map(*)* {

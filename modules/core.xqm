@@ -14,6 +14,7 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
@@ -75,12 +76,12 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
         else if($collName eq 'diaries' and not($cacheKey = ('indices', 'A002068'))) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
-(:            let $sortedColl := core:sortColl($newColl, $collName):)
+            let $sortedColl := core:sortColl($newColl, $collName, map { 'personID' := $cacheKey})
             let $setCache := 
                 (: Do not cache all collections. This will result in too much memory consumption :)
-                if(count($newColl) gt 250) then core:put-cache($collName, $cacheKey, $newColl)
+                if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
                 else ()
-            return $newColl
+            return $sortedColl
 };
 
 (:~
@@ -111,53 +112,17 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
     if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
-        switch($collName)
-        case 'biblio' return core:data-collection($collName)//tei:author[@key = $cacheKey]/root() | core:data-collection($collName)//tei:editor[@key = $cacheKey]/root()
-        case 'diaries' return
-            if($cacheKey eq 'A002068') then core:data-collection($collName)[tei:ab]
-            else ()
-        case 'iconography' return core:data-collection($collName)//tei:person[@corresp = $cacheKey]/root()
-(:        case 'letters' return core:data-collection($collName)//@key[. = $cacheKey][ancestor::tei:correspAction][not(ancestor::tei:note)]/root():)
-        case 'news' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
-        case 'writings' return core:data-collection($collName)//@key[. = $cacheKey][parent::tei:author][ancestor::tei:fileDesc]/root()
-        case 'works' return core:data-collection($collName)//@dbkey[. = $cacheKey][parent::mei:persName/@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
-        case 'backlinks' return 
-            (core:data-collection('letters')//@key[.=$cacheKey][not(parent::tei:author)]/root() except core:data-collection('letters')//@key[.=$cacheKey][ancestor::tei:correspAction]/root()) | 
-            core:data-collection('diaries')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
-            core:data-collection('writings')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
-            core:data-collection('persons')//@key[.=$cacheKey][not(parent::tei:persName/@type)]/root() |
-            core:data-collection('news')//@key[.=$cacheKey][not(parent::tei:author)]/root() |
-            core:data-collection('orgs')//@key[.=$cacheKey][not(parent::tei:orgName/@type)]/root() |
-            core:data-collection('biblio')//tei:term[.=$cacheKey]/root()
-(:        case 'persons' return distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $cacheKey)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $cacheKey)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $cacheKey] ! core:doc(.):)
-        default return
-            try { function-lookup(xs:QName('config:' || $collName), 1)(())('init-collection')($cacheKey) }
-            catch * {()}
+        wdt:lookup($collName, wdt:lookup($collName, ())('init-collection')())('filter-by-person')($cacheKey)
     else if($cacheKey eq 'indices') then 
         switch($collName)
-        case 'biblio' return core:data-collection($collName)[not(tei:biblStruct/tei:ref)]
-        case 'diaries' return core:data-collection($collName)[tei:ab]
-        case 'iconography' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
-(:        case 'letters' return core:data-collection($collName)[not(tei:TEI/tei:ref)]:)
-        case 'news' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
-(:        case 'persons' return core:data-collection($collName)[not(tei:person/tei:ref)]:)
-        case 'places' return core:data-collection($collName)[not(tei:place/tei:ref)]
-        case 'writings' return core:data-collection($collName)[not(tei:TEI/tei:ref)]
-        case 'works' return core:data-collection($collName)[not(mei:mei/mei:ref)]
-(:        case 'orgs' return core:data-collection($collName)[not(tei:org/tei:ref)]:)
         case 'indices' return 
-            core:getOrCreateColl('works', 'indices', true()) |
-            core:getOrCreateColl('letters', 'indices', true()) |
-            core:getOrCreateColl('diaries', 'indices', true()) |
-            core:getOrCreateColl('news', 'indices', true()) |
-            core:getOrCreateColl('biblio', 'indices', true()) |
-            (:core:getOrCreateColl('places', 'indices', true()) |:)
-            core:getOrCreateColl('writings', 'indices', true()) |
-            core:getOrCreateColl('orgs', 'indices', true()) |
-            core:getOrCreateColl('persons', 'indices', true())
-        default return 
-            try { function-lookup(xs:QName('config:' || $collName), 1)(())('init-collection')() }
-            catch * {()}
+            for $func in wdt:functions-available()
+            return 
+                if($func(())('memberOf') = 'indices') then $func(())('init-collection')()
+                else ()
+        default return
+            try { function-lookup(xs:QName('wdt:' || $collName), 1)(())('init-collection')() }
+            catch * { core:logToFile('warn', 'core:createColl(): failed to initialize collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;')) }
     else ()
 };
 
@@ -168,27 +133,20 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  : @param $coll collection to be sorted
  : @return document-node()*
  :)
-declare function core:sortColl($coll as item()*, $collName as xs:string) as document-node()* {
-    switch($collName)
-    case 'persons' return for $i in $coll order by core:create-sort-persname($i/tei:person) ascending return $i
-    case 'letters' return for $i in $coll order by query:get-normalized-date($i) ascending, ($i//tei:correspAction[@type='sent']/tei:date)[1]/@n ascending return $i
-    case 'writings' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
-    case 'diaries' return for $i in $coll order by query:get-normalized-date($i) ascending return $i
-    case 'works' return for $i in $coll order by $i//mei:seriesStmt/mei:title[@level='s']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string(@subtype) ascending, $i//mei:altId[@type = 'WeV']/xs:int(@n) ascending, $i//mei:altId[@type = 'WeV']/string() ascending return $i
-    case 'news' return for $i in $coll order by query:get-normalized-date($i) descending return $i
-    case 'biblio' return for $i in $coll order by string(query:get-normalized-date($i)) descending return $i
-    case 'orgs' return for $i in $coll order by str:normalize-space($i//tei:orgName[@type='reg']) ascending return $i
-    default return $coll
+declare function core:sortColl($coll as item()*, $collName as xs:string, $params as map()?) as document-node()* {
+    try { function-lookup(xs:QName('wdt:' || $collName), 1)($coll)('sort')($params) }
+    catch * { $coll, core:logToFile('error', 'core:sortColl(): failed to sort collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;'))}
 };
 
-declare function core:sortColl($coll as item()*, $collName as xs:string, $cacheKey as xs:string?) as document-node()* {
+(:declare function core:sortColl($coll as item()*, $collName as xs:string, $cacheKey as xs:string?) as document-node()* {
     typeswitch($cacheKey)
     case empty() return core:sortColl($coll, $collName)
     default return
         switch($collName)
+        (\: special sorting for contacts pane :\)
         case 'persons' return for $i in $coll order by number(query:correspondence-partners($i/tei:person/@xml:id)($cacheKey)) descending return $i
         default return $coll
-};
+};:)
 
 (:~
  : Return the undated documents of a given document type

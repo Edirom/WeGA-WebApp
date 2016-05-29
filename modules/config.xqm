@@ -18,6 +18,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
@@ -117,126 +118,6 @@ declare %templates:wrap function config:app-title($node as node(), $model as map
     $config:expath-descriptor/expath:title/text()
 };
 
-declare function config:orgs($item as item()*) as map(*) {
-    map {
-        'name' := 'orgs',
-        'prefix' := 'A08',
-        'check' := function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A08\d{4}$')
-            else false()
-        },
-        'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor::tei:org]/root()
-        },
-        'filter-by-person' := function($personID as xs:string) as document-node()* {
-            ()
-        },
-        'sort' := function() as document-node()* {
-            for $i in config:orgs($item)('filter')() order by str:normalize-space($i//tei:orgName[@type='reg']) ascending return $i
-        },
-        'init-collection' := function() as document-node()* {
-            config:orgs(core:data-collection('orgs'))('sort')()
-        }
-    }
-};
-
-declare function config:persons($item as item()*) as map(*) {
-    map {
-        'name' := 'persons',
-        'prefix' := 'A00',
-        'check' := function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A00[0-9A-F]{4}$')
-            else false()
-        },
-        'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor::tei:person]/root()
-        },
-        'filter-by-person' := function($personID as xs:string) as document-node()* {
-            distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.)
-        },
-        'sort' := function() as document-node()* {
-            for $i in config:persons($item)('filter')() order by core:create-sort-persname($i/tei:person) ascending return $i
-        },
-        'init-collection' := function() as document-node()* {
-            config:persons(core:data-collection('persons'))('sort')()
-        }
-    }
-};
-
-declare function config:letters($item as item()*) as map(*) {
-    map {
-        'name' := 'letters',
-        'prefix' := 'A04',
-        'check' := function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A04\d{4}$')
-            else false()
-        },
-        'filter' := function() as document-node()* {
-            $item/following::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root() | $item/preceding::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root()
-        },
-        'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/following::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() | $item/preceding::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() 
-        },
-        'sort' := function() as document-node()* {
-            for $i in config:letters($item)('filter')() order by query:get-normalized-date($i) ascending, ($i//tei:correspAction[@type='sent']/tei:date)[1]/@n ascending return $i
-        },
-        'init-collection' := function() as document-node()* {
-            config:letters(core:data-collection('letters'))('sort')()
-        }
-    }
-};
-
-declare function config:personsPlus($item as item()*) as map(*) {
-    map {
-        'name' := 'personsPlus',
-        'prefix' := (),
-        'check' := function() as xs:boolean {
-            if($item castable as xs:string) then (config:orgs($item)('check')() or config:persons($item)('check')())
-            else false()
-        },
-        'filter' := function() as document-node()* {
-            config:orgs($item)('filter')() | config:persons($item)('filter')()
-        },
-        'filter-by-person' := function($personID as xs:string) as document-node()* {
-            config:orgs($item)('filter-by-person')() | config:persons($item)('filter-by-person')() 
-        },
-        'sort' := function() as document-node()* {
-            config:orgs($item)('sort')() | config:persons($item)('sort')()
-        },
-        'init-collection' := function() as document-node()* {
-            config:orgs($item)('init-collection')() | config:persons($item)('init-collection')()
-        }
-    }
-};
-
-(:~
- : For debugging: generates a table showing all properties defined
- : in the application descriptors.
- :)
-(:declare function config:app-info($node as node(), $model as map(*)) {
-    let $expath := config:expath-descriptor()
-    let $repo := config:repo-descriptor()
-    return
-        <table class="app-info">
-            <tr>
-                <td>app collection:</td>
-                <td>{$config:app-root}</td>
-            </tr>
-            {
-                for $attr in ($expath/@*, $expath/*, $repo/*)
-                return
-                    <tr>
-                        <td>{node-name($attr)}:</td>
-                        <td>{$attr/string()}</td>
-                    </tr>
-            }
-            <tr>
-                <td>Controller:</td>
-                <td>{ request:get-attribute("$exist:controller") }</td>
-            </tr>
-        </table>
-};:)
-
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
  :  
@@ -279,19 +160,10 @@ declare function config:get-option($key as xs:string?, $replacements as xs:strin
  : @return xs:string document type
 :)
 declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
-    if(config:is-person($id)) then 'persons'
-    else if(config:is-writing($id)) then 'writings'
-    else if(config:is-work($id)) then 'works'
-    else if(config:is-diary($id)) then 'diaries'
-    else if(config:is-letter($id)) then 'letters'
-    else if(config:is-news($id)) then 'news'
-    else if(config:is-iconography($id)) then 'iconography'
-    else if(config:is-var($id)) then 'var'
-    else if(config:is-biblio($id)) then 'biblio'
-    else if(config:is-place($id)) then 'places'
-    else if(config:is-source($id)) then 'sources'
-    else if(config:is-org($id)) then 'orgs'
-    else ()
+    for $func in wdt:functions-available()
+    return 
+        if($func($id)('check')() and $func($id)('prefix')) then $func($id)('name')
+        else ()
 };
 
 (:~
