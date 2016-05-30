@@ -114,15 +114,8 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
     if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
         wdt:lookup($collName, wdt:lookup($collName, ())('init-collection')())('filter-by-person')($cacheKey)
     else if($cacheKey eq 'indices') then 
-        switch($collName)
-        case 'indices' return 
-            for $func in wdt:functions-available()
-            return 
-                if($func(())('memberOf') = 'indices') then $func(())('init-collection')()
-                else ()
-        default return
-            try { function-lookup(xs:QName('wdt:' || $collName), 1)(())('init-collection')() }
-            catch * { core:logToFile('warn', 'core:createColl(): failed to initialize collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;')) }
+        try { function-lookup(xs:QName('wdt:' || $collName), 1)(())('init-collection')() }
+        catch * { core:logToFile('warn', 'core:createColl(): failed to initialize collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;')) }
     else ()
 };
 

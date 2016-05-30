@@ -434,6 +434,33 @@ declare function wdt:backlinks($item as item()*) as map(*) {
     }
 };
 
+declare function wdt:indices($item as item()*) as map(*) {
+    map {
+        'name' := 'indices',
+        'prefix' := (),
+        'check' := function() as xs:boolean {
+            false()
+        },
+        'filter' := function() as document-node()* {
+            $item()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            ()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            $item
+        },
+        'init-collection' := function() as document-node()* {
+            for $func in wdt:functions-available()
+            return 
+                if($func(())('memberOf') = 'indices') then $func(())('init-collection')()
+                else ()
+        },
+        'memberOf' := (),
+        'search' := ()
+    }
+};
+
 declare function wdt:functions-available() as item()* {
     for $func in inspect:module-functions()
     return 
