@@ -33,7 +33,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             for $i in wdt:orgs($item)('filter')() order by str:normalize-space($i//tei:orgName[@type='reg']) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('orgs')
+            wdt:orgs(core:data-collection('orgs'))('filter')()
         },
         'title' := (),
         'undated' := (),
@@ -62,7 +62,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             for $i in wdt:persons($item)('filter')() order by core:create-sort-persname($i/tei:person) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('persons')
+            wdt:persons(core:data-collection('persons'))('filter')()
         },
         'memberOf' := (),
         'search' := ()
@@ -87,16 +87,16 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by query:get-normalized-date($i) ascending, ($i//tei:correspAction[@type='sent']/tei:date)[1]/@n ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')
+            wdt:letters(core:data-collection('letters'))('filter')()
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
-            $item//tei:body[ft:query(., $query)] | 
-            $item//tei:correspDesc[ft:query(., $query)] | 
-            $item//tei:title[ft:query(., $query)] |
-            $item//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $item//tei:note[ft:query(., $query)][@type = 'summary'] |
-            $item/tei:TEI[ft:query(., $query)]
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:correspDesc[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]//tei:note[@type='incipit'][ft:query(., $query)] | 
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = 'summary'] |
+            $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
 };
@@ -123,10 +123,10 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
-            $item/tei:org[ft:query(., $query)] | 
-            $item//tei:orgName[ft:query(., $query)][@type] |
-            $item/tei:person[ft:query(., $query)] | 
-            $item//tei:persName[ft:query(., $query)][@type]
+            $item[tei:org]/tei:org[ft:query(., $query)] | 
+            $item[tei:org]//tei:orgName[ft:query(., $query)][@type] |
+            $item[tei:person]/tei:person[ft:query(., $query)] | 
+            $item[tei:person]//tei:persName[ft:query(., $query)][@type]
         }
     }
 };
@@ -149,13 +149,13 @@ declare function wdt:writings($item as item()*) as map(*) {
             for $i in wdt:writings($item)('filter')() order by query:get-normalized-date($i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('writings')
+            wdt:writings(core:data-collection('writings'))('filter')()
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
-            $item//tei:body[ft:query(., $query)] | 
-            $item//tei:title[ft:query(., $query)] |
-            $item/tei:TEI[ft:query(., $query)]
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
 };
@@ -184,12 +184,12 @@ declare function wdt:works($item as item()*) as map(*) {
                 return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('works')
+            wdt:works(core:data-collection('works'))('filter')()
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
-            $item/mei:mei[ft:query(., $query)] | 
-            $item//mei:title[ft:query(., $query)]
+            $item[mei:mei]/mei:mei[ft:query(., $query)] | 
+            $item[mei:mei]//mei:title[ft:query(., $query)]
         }
     }
 };
@@ -213,11 +213,11 @@ declare function wdt:diaries($item as item()*) as map(*) {
             for $i in wdt:diaries($item)('filter')() order by query:get-normalized-date($i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('diaries')
+            wdt:diaries(core:data-collection('diaries'))('filter')()
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
-            $item/tei:ab[ft:query(., $query)]
+            $item[tei:ab]/tei:ab[ft:query(., $query)]
         }
     }
 };
@@ -240,12 +240,12 @@ declare function wdt:news($item as item()*) as map(*) {
             for $i in wdt:news($item)('filter')() order by query:get-normalized-date($i) descending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('news')
+            wdt:news(core:data-collection('news'))('filter')()
         },
         'memberOf' := 'search',
         'search' := function($query as element(query)) {
-            $item//tei:body[ft:query(., $query)] | 
-            $item//tei:title[ft:query(., $query)]
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)]
         }
     }
 };
@@ -268,7 +268,7 @@ declare function wdt:iconography($item as item()*) as map(*) {
             wdt:iconography($item)('filter')()
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('iconography')
+            wdt:iconography(core:data-collection('iconography'))('filter')()
         },
         'memberOf' := (),
         'search' := ()
@@ -318,14 +318,14 @@ declare function wdt:biblio($item as item()*) as map(*) {
             for $i in wdt:biblio($item)('filter')() order by string(query:get-normalized-date($i)) descending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('biblio')
+            wdt:biblio(core:data-collection('biblio'))('filter')()
         },
         'memberOf' := 'search',
         'search' := function($query as element(query)) {
-            $item//tei:biblStruct[ft:query(., $query)] | 
-            $item//tei:title[ft:query(., $query)] | 
-            $item//tei:author[ft:query(., $query)] | 
-            $item//tei:editor[ft:query(., $query)]
+            $item[tei:biblStruct]//tei:biblStruct[ft:query(., $query)] | 
+            $item[tei:biblStruct]//tei:title[ft:query(., $query)] | 
+            $item[tei:biblStruct]//tei:author[ft:query(., $query)] | 
+            $item[tei:biblStruct]//tei:editor[ft:query(., $query)]
         }
     }
 };
@@ -348,7 +348,7 @@ declare function wdt:places($item as item()*) as map(*) {
             for $i in wdt:places($item)('filter')() order by str:normalize-space($i//tei:placeName[@type='reg']) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('places')
+            wdt:places(core:data-collection('places'))('filter')()
         },
         'memberOf' := (),
         'search' := ()
