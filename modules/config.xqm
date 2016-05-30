@@ -166,6 +166,13 @@ declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
         else ()
 };
 
+declare function config:get-combined-doctype-by-id($id as xs:string?) as xs:string* {
+    for $func in wdt:functions-available()
+    return 
+        if($func($id)('check')()) then $func($id)('name')
+        else ()
+};
+
 (:~
  : Checks whether a given id matches the WeGA pattern of person ids
  :
