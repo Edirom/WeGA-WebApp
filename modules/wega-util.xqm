@@ -264,8 +264,9 @@ declare function wega-util:spherical-law-of-cosines-distance($latLon1 as array(*
 };
 
 declare function wega-util:distance-between-places($placeID1 as xs:string, $placeID2 as xs:string) as xs:double {
-   let $latLon1 := array { tokenize($placeID1//tei:geo, '\s+') }
-   let $latLon2 := array { tokenize($placeID2//tei:geo, '\s+') }
+   let $places := core:getOrCreateColl('places', 'indices', true())
+   let $latLon1 := array { tokenize($places/id($placeID1)//tei:geo, '\s+') ! . cast as xs:double }
+   let $latLon2 := array { tokenize($places/id($placeID2)//tei:geo, '\s+') ! . cast as xs:double }
    return 
       wega-util:spherical-law-of-cosines-distance($latLon1, $latLon2)
 };
