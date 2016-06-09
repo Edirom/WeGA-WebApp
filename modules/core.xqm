@@ -77,27 +77,15 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
         else if($collName eq 'diaries' and not($cacheKey = ('indices', 'A002068'))) then () (: Suppress the creation of diary collections for others than Weber :)
         else
             let $newColl := core:createColl($collName,$cacheKey)
+            let $newIndex := 
+                if($cacheKey eq 'indices') then wdt:lookup($collName, $newColl)('init-sortIndex')()
+                else ()
             let $sortedColl := core:sortColl($newColl, $collName, map { 'personID' := $cacheKey})
             let $setCache := 
                 (: Do not cache all collections. This will result in too much memory consumption :)
                 if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
                 else ()
             return $sortedColl
-};
-
-(:~
- : helper function for core:getOrCreateColl
- :
- : @author Peter Stadler
- : @param $collName the name of the collection
- : @return boolean
- :)
-declare %private function core:create-sort-index($collName as xs:string, $nodes as document-node()*) as xs:boolean {
-    let $index-name := $collName || '-sortIndex'
-    let $remove-index := sort:remove-index($index-name)
-    return
-        try { sort:create-index-callback($index-name, $nodes, function(){()}, ()) }
-        catch * {false(), core:logToFile('error', 'Failed to create sort index for collection ' || $collName)}
 };
 
 (:~
