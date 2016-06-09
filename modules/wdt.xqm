@@ -41,8 +41,22 @@ declare function wdt:orgs($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), wdt:orgs($item)('title-short'), ())
         },
+        'title' := function() as xs:string {
+            typeswitch($item)
+            case xs:string return str:normalize-space(core:doc($item)//tei:orgName[@type='reg'])
+            case document-node() return str:normalize-space($item//tei:orgName[@type='reg'])
+            case element(tei:org) return str:normalize-space($item/tei:orgName[@type='reg'])
+            default return ''
+            
+        },
         'label-facets' := function() as xs:string {
-            str:normalize-space($item//tei:orgName[@type='reg']) || ' (' || string-join($item//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
+            let $doc := 
+                typeswitch($item)
+                case xs:string return core:doc($item)
+                case document-node() return $item
+                default return ()
+            return
+                wdt:orgs($doc)('title')() || ' (' || string-join($doc//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
         },
         'undated' := (),
         'date' := (),
@@ -83,8 +97,16 @@ declare function wdt:persons($item as item()*) as map(*) {
                 return $sortName || $name
             }, ())
         },
+        'title' := function() as xs:string {
+            typeswitch($item)
+            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
+            case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
+            default return ''
+            
+        },
         'label-facets' := function() as xs:string {
-            str:normalize-space($item//tei:orgName[@type='reg']) || ' (' || string-join($item//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
+            wdt:persons($item)('title')()
         },
         'memberOf' := (),
         'search' := ()
@@ -244,6 +266,17 @@ declare function wdt:works($item as item()*) as map(*) {
                 functx:pad-integer-to-length($node//mei:altId[@type = 'WeV']/xs:int(@n), 4) || 
                 $node//mei:altId[@type = 'WeV']/string()
             }, ())
+        },
+        'title' := function() as xs:string {
+            typeswitch($item)
+            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case document-node() return str:normalize-space(query:get-title-element($item, 'de')[1])
+            case element() return str:normalize-space(query:get-title-element($item/root(), 'de')[1])
+            default return ''
+            
+        },
+        'label-facets' := function() as xs:string {
+            wdt:works($item)('title')()
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {

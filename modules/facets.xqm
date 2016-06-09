@@ -83,11 +83,10 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 declare %private function facets:term-callback($term as xs:string, $data as xs:int+) as element(facets:entry)? {
     <facets:entry>
         <facets:term>{
-            switch(config:get-doctype-by-id($term))
-            case 'persons' return query:get-reg-name($term)
-            case 'orgs' return wdt:orgs(core:doc($term))('label-facets')()
-            case 'works' return query:get-reg-title($term)
-            default return str:normalize-space($term) 
+            let $docType := config:get-doctype-by-id($term)
+            return 
+                if($docType) then wdt:lookup($docType, $term)('label-facets')()
+                else str:normalize-space($term) 
         }</facets:term>
         <facets:value>{str:normalize-space($term)}</facets:value>
         <facets:frequency>{$data[2]}</facets:frequency>
