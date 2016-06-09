@@ -138,15 +138,13 @@ declare %private function search:list($model as map(*)) as map(*) {
     let $search-results := 
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
-    let $filtered-results := 
-        (:if ($model('docID') ne 'indices') then core:sortColl($search-results, $model('docType'), $model('docID'))
-        else:) $search-results
+    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')(())
     return
         map:merge((
             $model,
             map {
                 'filters' := $model('filters'),
-                'search-results' := $filtered-results,
+                'search-results' := $sorted-results,
                 'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
                 'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
             }
