@@ -39,9 +39,11 @@ declare function wdt:orgs($item as item()*) as map(*) {
             wdt:orgs(core:data-collection('orgs'))('filter')()
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { str:normalize-space($node//tei:orgName[@type='reg']) }, ())
+            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), wdt:orgs($item)('title-short'), ())
         },
-        'title' := (),
+        'label-facets' := function() as xs:string {
+            str:normalize-space($item//tei:orgName[@type='reg']) || ' (' || string-join($item//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
+        },
         'undated' := (),
         'date' := (),
         'memberOf' := (), (: index, search :)
@@ -80,6 +82,9 @@ declare function wdt:persons($item as item()*) as map(*) {
                 let $name := str:normalize-space($node//tei:persName[@type='reg'])
                 return $sortName || $name
             }, ())
+        },
+        'label-facets' := function() as xs:string {
+            str:normalize-space($item//tei:orgName[@type='reg']) || ' (' || string-join($item//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
         },
         'memberOf' := (),
         'search' := ()

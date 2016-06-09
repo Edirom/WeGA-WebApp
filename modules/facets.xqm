@@ -20,6 +20,8 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare 
@@ -83,6 +85,7 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
         <facets:term>{
             switch(config:get-doctype-by-id($term))
             case 'persons' return query:get-reg-name($term)
+            case 'orgs' return wdt:orgs(core:doc($term))('label-facets')()
             case 'works' return query:get-reg-title($term)
             default return str:normalize-space($term) 
         }</facets:term>
