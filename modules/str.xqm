@@ -9,6 +9,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -98,4 +99,11 @@ declare function str:sanitize($str as xs:string) as xs:string {
    else if(contains($str, '{')) then str:sanitize(replace($str, '{', '{{'))
    else if(contains($str, '}')) then str:sanitize(replace($str, '}', '}}'))
    else :)$str
+};
+
+declare function str:list($items as xs:string*, $lang as xs:string, $maxLength as xs:int) as xs:string? {
+    let $count := count($items)
+    return
+        if($count le 2) then string-join($items, ', ')
+        else string-join(subsequence($items, 1, $count -1), ', ') || ' ' || lang:get-language-string('and', $lang) || ' ' || $items[$count]
 };
