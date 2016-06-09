@@ -8,7 +8,7 @@ module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
-(:import module namespace functx="http://www.functx.com";:)
+import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
@@ -117,6 +117,11 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
+        },
+        'sort-func' := function() as xs:string {
+            if($item/tei:org) then str:normalize-space($i//tei:orgName[@type='reg'])
+            else if(functx:all-whitespace($item//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($item//tei:persName[@type='reg'], '\s?,'))
+            else str:normalize-space($item//tei:persName[@type='reg']/tei:surname[1])
         },
         'init-collection' := function() as document-node()* {
             wdt:orgs($item)('init-collection')() | wdt:persons($item)('init-collection')()

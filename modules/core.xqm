@@ -8,6 +8,7 @@ declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";
+declare namespace sort="http://exist-db.org/xquery/sort";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
@@ -82,6 +83,21 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
                 if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
                 else ()
             return $sortedColl
+};
+
+(:~
+ : helper function for core:getOrCreateColl
+ :
+ : @author Peter Stadler
+ : @param $collName the name of the collection
+ : @return boolean
+ :)
+declare %private function core:create-sort-index($collName as xs:string, $nodes as document-node()*) as xs:boolean {
+    let $index-name := $collName || '-sortIndex'
+    let $remove-index := sort:remove-index($index-name)
+    return
+        try { sort:create-index-callback($index-name, $nodes, function(){()}, ()) }
+        catch * {false(), core:logToFile('error', 'Failed to create sort index for collection ' || $collName)}
 };
 
 (:~
