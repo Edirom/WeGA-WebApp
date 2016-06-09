@@ -30,7 +30,10 @@ declare function wdt:orgs($item as item()*) as map(*) {
             ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('orgs')) then ()
+            else (wdt:orgs(())('init-sortIndex')()),
             for $i in wdt:orgs($item)('filter')() order by sort:index('orgs', $i) ascending return $i
+            
         },
         'init-collection' := function() as document-node()* {
             wdt:orgs(core:data-collection('orgs'))('filter')()
@@ -62,6 +65,8 @@ declare function wdt:persons($item as item()*) as map(*) {
             ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('persons')) then ()
+            else (wdt:persons(())('init-sortIndex')()),
             for $i in wdt:persons($item)('filter')() order by sort:index('persons', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -69,8 +74,11 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('persons', wdt:persons(())('init-collection')(), function($node) { 
-                if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
-                else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
+                let $sortName :=
+                    if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
+                    else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
+                let $name := str:normalize-space($node//tei:persName[@type='reg'])
+                return $sortName || $name
             }, ())
         },
         'memberOf' := (),
@@ -93,6 +101,8 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item/following::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() | $item/preceding::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('letters')) then ()
+            else (wdt:letters(())('init-sortIndex')()),
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -101,9 +111,9 @@ declare function wdt:letters($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
-                let $n :=  $node//tei:correspAction[@type='sent']/tei:date/data(@n)
+                let $n :=  functx:pad-integer-to-length($node//tei:correspAction[@type='sent']/tei:date/data(@n), 4)
                 return
-                    $normDate || $n
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
         },
         'memberOf' := ('search', 'indices'),
@@ -133,6 +143,8 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
             () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('personsPlus')) then ()
+            else (wdt:personsPlus(())('init-sortIndex')()),
             for $i in $item order by sort:index('personsPlus', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -140,9 +152,12 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
-                if($node/tei:org) then str:normalize-space($node//tei:orgName[@type='reg'])
-                else if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
-                else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
+                let $sortName :=
+                    if($node/tei:org) then str:normalize-space($node//tei:orgName[@type='reg'])
+                    else if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
+                    else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
+                let $name := str:normalize-space($node//tei:persName[@type='reg'])
+                return $sortName || $name
             }, ())
         },
         'memberOf' := ('search', 'indices'),
@@ -170,6 +185,8 @@ declare function wdt:writings($item as item()*) as map(*) {
             $item/following::tei:author[@key = $personID][ancestor::tei:fileDesc]/root() | $item/preceding::tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('writings')) then ()
+            else (wdt:writings(())('init-sortIndex')()),
             for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -179,9 +196,9 @@ declare function wdt:writings($item as item()*) as map(*) {
             wdt:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
                 let $source := query:get-main-source($node)
-                let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
+                let $journal :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
                 return
-                    $normDate || $n
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal
             }, ())
         },
         'memberOf' := ('search', 'indices'),
@@ -208,6 +225,8 @@ declare function wdt:works($item as item()*) as map(*) {
             $item/following::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root() | $item/preceding::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root() | $item/self::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('works')) then ()
+            else (wdt:works(())('init-sortIndex')()),
             for $i in wdt:works($item)('filter')() order by sort:index('works', $i) return $i
         },
         'init-collection' := function() as document-node()* {
@@ -245,6 +264,8 @@ declare function wdt:diaries($item as item()*) as map(*) {
             else ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('diaries')) then ()
+            else (wdt:diaries(())('init-sortIndex')()),
             for $i in wdt:diaries($item)('filter')() order by sort:index('diaries', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -275,6 +296,8 @@ declare function wdt:news($item as item()*) as map(*) {
             $item/following::tei:author[@key = $personID][ancestor::tei:fileDesc]/root() | $item/preceding::tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('news')) then ()
+            else (wdt:news(())('init-sortIndex')()),
             for $i in wdt:news($item)('filter')() order by sort:index('news', $i) descending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -306,6 +329,8 @@ declare function wdt:iconography($item as item()*) as map(*) {
             $item/following::tei:person[@corresp = $personID]/root() | $item/preceding::tei:person[@corresp = $personID]/root() | $item/self::tei:person[@corresp = $personID]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('iconography')) then ()
+            else (wdt:iconography(())('init-sortIndex')()),
             for $i in wdt:iconography($item)('filter')() order by sort:index('iconography', $i) descending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -362,6 +387,8 @@ declare function wdt:biblio($item as item()*) as map(*) {
             wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('biblio')) then ()
+            else (wdt:biblio(())('init-sortIndex')()),
             for $i in wdt:biblio($item)('filter')() order by sort:index('biblio', $i) descending return $i
         },
         'init-collection' := function() as document-node()* {
@@ -395,6 +422,8 @@ declare function wdt:places($item as item()*) as map(*) {
             $item
         },
         'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('places')) then ()
+            else (wdt:places(())('init-sortIndex')()),
             for $i in wdt:places($item)('filter')() order by sort:index('places', $i)  ascending return $i
         },
         'init-collection' := function() as document-node()* {
