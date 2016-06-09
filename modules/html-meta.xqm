@@ -19,6 +19,7 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 declare 
     %templates:wrap
@@ -71,7 +72,8 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         case 'diaries' return str:shorten-text($model('doc'), 200)
         case 'news' return str:shorten-text($model('doc')//tei:text, 200)
         case 'var' return ()
-        default return core:logToFile('warn', 'Missing Page Title for ' || $model('docID') || ' – ' || $model('docType'))
+        case 'orgs' return wdt:orgs($model('doc'))('title')() || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
+        default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType'))
     else()
 };
 
@@ -86,6 +88,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
         case 'persons' return concat(str:printFornameSurname(query:get-reg-name($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
         case 'letters' case 'writings' case 'news' case 'var' return str:normalize-space(string-join(app:document-title(<a/>, $model, $lang)[not(normalize-space(.) = '')], '. '))
         case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', str:normalize-space(string-join(app:document-title(<a/>, $model, $lang), ' ')), $lang))
+        case 'orgs' return query:get-reg-name($model('docID')) || ' (' || $model('doc')//tei:state[tei:label = 'Art der Institution']/tei:desc || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
         default return ()
     else ()
 };
@@ -104,6 +107,7 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
         case 'diaries' return string-join((lang:get-language-string('diary', $lang), query:get-authorName($model('doc'))), '; ')
         case 'news' return string-join($model('doc')//tei:keywords/tei:term, '; ')
         case 'var' return 'Varia'
+        case 'orgs' return lang:get-language-string('orgs', $lang)
         default return ()
     else ()
 };
