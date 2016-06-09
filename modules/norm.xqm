@@ -58,7 +58,8 @@ declare %private function norm:create-norm-doc-biblio() as element(norm:catalogu
         let $normDate := query:get-normalized-date($doc)
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author/@key | $doc//tei:editor/@key)
-        order by $normDate descending
+(:   collections are already sorted!     :)
+(:        order by $normDate descending:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -78,7 +79,7 @@ declare %private function norm:create-norm-doc-diaries() as element(norm:catalog
         for $doc in core:getOrCreateColl('diaries', 'indices', true())
         let $docID := $doc/tei:ab/data(@xml:id)
         let $normDate := query:get-normalized-date($doc)
-        order by $normDate
+(:        order by $normDate:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -101,7 +102,7 @@ declare %private function norm:create-norm-doc-letters() as element(norm:catalog
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
         let $addresseeIDs := distinct-values($doc//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
-        order by $normDate, $n
+(:        order by $normDate, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -125,7 +126,7 @@ declare %private function norm:create-norm-doc-news() as element(norm:catalogue)
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
         let $normDate := query:get-normalized-date($doc) (:datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)):)
-        order by $normDate descending
+(:        order by $normDate descending:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -146,13 +147,13 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
         let $docID := $doc/tei:person/data(@xml:id)
         let $sex := str:normalize-space($doc//tei:sex)
         let $name := str:normalize-space($doc//tei:persName[@type='reg'])
-        let $sortName := core:create-sort-persname($doc/tei:person) 
-        order by $sortName ascending, $name ascending
+(:        let $sortName := core:create-sort-persname($doc/tei:person) :)
+(:        order by $sortName ascending, $name ascending:)
         return 
             element entry {
                 attribute docID {$docID},
                 attribute sex {$sex},
-                attribute sortName {$sortName},
+(:                attribute sortName {$sortName},:)
                 $name
             }
     }</catalogue>
@@ -163,7 +164,7 @@ declare %private function norm:create-norm-doc-orgs() as element(norm:catalogue)
         for $doc in core:getOrCreateColl('orgs', 'indices', true())
         let $docID := $doc/tei:org/data(@xml:id)
         let $name := str:normalize-space($doc//tei:orgName[@type='reg'])
-        order by $name ascending
+(:        order by $name ascending:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -181,7 +182,7 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
         let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
-        order by $normDate, $n
+(:        order by $normDate, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -207,7 +208,7 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
         (:let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype):) 
         (:let $sortCategory03 := $doc//mei:altId[@type = 'WeV']/xs:int(@n):) 
         (:order by $normDate, $sortCategory02, $sortCategory03, $n:)
-        order by $title, $n
+(:        order by $title, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -224,7 +225,7 @@ declare %private function norm:create-norm-doc-places() as element(norm:catalogu
         let $docID := $doc/tei:place/data(@xml:id)
         let $name := str:normalize-space($doc//tei:placeName[@type='reg'])
         let $n := $doc//tei:idno[@type='geonames']
-        order by $name
+(:        order by $name:)
         return 
             element entry {
                 attribute docID {$docID},

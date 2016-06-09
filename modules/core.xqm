@@ -8,7 +8,6 @@ declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace sort="http://exist-db.org/xquery/sort";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
@@ -135,16 +134,6 @@ declare function core:sortColl($coll as item()*, $collName as xs:string, $params
     catch * { $coll, core:logToFile('error', 'core:sortColl(): failed to sort collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;'))}
 };
 
-(:declare function core:sortColl($coll as item()*, $collName as xs:string, $cacheKey as xs:string?) as document-node()* {
-    typeswitch($cacheKey)
-    case empty() return core:sortColl($coll, $collName)
-    default return
-        switch($collName)
-        (\: special sorting for contacts pane :\)
-        case 'persons' return for $i in $coll order by number(query:correspondence-partners($i/tei:person/@xml:id)($cacheKey)) descending return $i
-        default return $coll
-};:)
-
 (:~
  : Return the undated documents of a given document type
  :
@@ -255,19 +244,6 @@ declare function core:change-namespace($element as element(), $targetNamespace a
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
     str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
-};
-
-(:~
- : Creates a sortname for a given tei:person element
- : This will be the first tei:surname, if none given it falls back to the substring before the comma 
- :
- : @author Peter Stadler
- : @param $person the tei:person element
- : @return xs:string
- :)
-declare function core:create-sort-persname($person as element(tei:person)) as xs:string {
-    if(functx:all-whitespace($person/tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($person/tei:persName[@type='reg'], '\s?,'))
-    else str:normalize-space($person/tei:persName[@type='reg']/tei:surname[1])
 };
 
 (:~
