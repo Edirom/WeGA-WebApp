@@ -60,7 +60,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'undated' := (),
         'date' := (),
-        'memberOf' := (), (: index, search :)
+        'memberOf' := ('sitemap'), (: index, search :)
         'search' := ()
     }
 };
@@ -99,7 +99,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'title' := function() as xs:string {
             typeswitch($item)
-            case xs:string return norm:get-norm-doc('persons')//@docID[.=$item]/str:normalize-space(parent::tei:entry)
+            case xs:string return norm:get-norm-doc('persons')//@docID[.=$item]/str:normalize-space(parent::norm:entry)
             case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
             case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
             default return ''
@@ -108,7 +108,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         'label-facets' := function() as xs:string {
             wdt:persons($item)('title')()
         },
-        'memberOf' := (),
+        'memberOf' := ('sitemap'),
         'search' := ()
     }
 };
@@ -143,7 +143,7 @@ declare function wdt:letters($item as item()*) as map(*) {
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
         },
-        'memberOf' := ('search', 'indices'),
+        'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:correspDesc[ft:query(., $query)] | 
@@ -228,7 +228,7 @@ declare function wdt:writings($item as item()*) as map(*) {
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal
             }, ())
         },
-        'memberOf' := ('search', 'indices'),
+        'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
@@ -312,7 +312,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
         },
-        'memberOf' := ('search', 'indices'),
+        'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:ab]/tei:ab[ft:query(., $query)]
         }
@@ -344,7 +344,7 @@ declare function wdt:news($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
         },
-        'memberOf' := 'search',
+        'memberOf' := ('search', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)]
@@ -604,10 +604,17 @@ declare %private function wdt:create-index-callback($id as xs:string, $item as i
     sort:create-index-callback($id, $item, $callback, $options)
 };
 
+declare function wdt:members($memberOf as xs:string+) as item()* {
+    for $func in wdt:functions-available()
+    return
+        if($func(())('memberOf') = $memberOf) then $func
+        else ()
+};
+
 declare function wdt:functions-available() as item()* {
     for $func in inspect:module-functions()
     return 
-        if(not(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:create-index-callback')))) then $func
+        if(not(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:create-index-callback')))) then $func
         else ()
 };
 

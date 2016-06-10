@@ -18,11 +18,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
  :)
-declare variable $search:wega-docTypes := (:('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news', 'orgs');:)
-    for $func in wdt:functions-available()
-    return 
-        if($func(())('memberOf') = 'search') then $func(())('name')
-        else ();
+declare variable $search:wega-docTypes := for $func in wdt:members('search') return $func(())('name');
 
 (: params for filtering the result set :)
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
