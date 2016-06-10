@@ -22,6 +22,7 @@ import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
@@ -442,7 +443,7 @@ declare
             element a {
                 attribute class {'page-link'},
                 (: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
-                if(config:is-person($model('docID'))) then attribute data-url {$page-link($page)}
+                if(config:get-combined-doctype-by-id($model('docID')) = 'personsPlus') then attribute data-url {$page-link($page)}
                 (: for index pages there is no javascript needed but a direct refresh of the page :)
                 else attribute href {$page-link($page)},
                 $text
