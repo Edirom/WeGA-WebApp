@@ -118,7 +118,7 @@ else if (contains($exist:path, concat('/', lang:get-language-string('help', $lan
     controller:dispatch-help($exist-vars)
 
 (: Korrespondenz :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
