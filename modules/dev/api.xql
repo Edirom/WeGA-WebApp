@@ -17,8 +17,10 @@ declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace json-output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace kml="http://www.opengis.net/kml/2.2";
 import module namespace functx="http://www.functx.com";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "../query.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
 (:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";:)
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
@@ -42,6 +44,29 @@ declare function local:get-diary-by-date($params as map(*)) as item() {
                 'url' := core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
             }
         else 'No results'
+};
+
+declare function local:diaryDay-to-kml($params as map(*)) as element(kml:Placemark)+ {
+    let $day := core:doc($params('docID'))/tei:ab
+    let $places := tokenize($day/@where, '\s')[matches(., 'A13')]
+    return
+    <kml:kml>
+        <kml:Folder>{
+            for $place in $places
+            let $placeEntry := collection('/db/apps/WeGA-data/places')/id($place)
+            let $coord := string-join(reverse(tokenize($placeEntry//tei:geo, '\s+')), ',')
+            return 
+                <kml:Placemark>
+                    <kml:name>{$day/string(@n)}</kml:name>
+                    <kml:address>{$placeEntry/tei:placeName[@type='reg'] cast as xs:string}</kml:address>
+                    <kml:TimeStamp><kml:when>{$day/string(@n)}</kml:when></kml:TimeStamp>
+                    <kml:description>Tagebucheintrag vom { $day/string(@n)} (&lt;a href="{if($config:isDevelopment) then 'https://euryanthe.de/wega/' else 'http://weber-gesamtausgabe.de', $day/data(@xml:id)}"&gt;{$day/data(@xml:id)}&lt;/a&gt;).</kml:description>
+                    <kml:Point>
+                        <kml:coordinates>{$coord}</kml:coordinates>
+                    </kml:Point>
+                </kml:Placemark>
+          }</kml:Folder>
+    </kml:kml>
 };
 
 declare function local:serialize-xml($response as item()*) {

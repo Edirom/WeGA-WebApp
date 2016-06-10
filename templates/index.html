@@ -53,7 +53,12 @@
                     <h3>Development Tools</h3>
                     <div class="col-md-4" data-template="dev-app:ant-log">
                         <h4>Commit Status</h4>
-                        <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                        <span data-template="app:if-exists" data-template-key="ant-log-rev">
+                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                        </span>
+                        <span data-template="app:if-not-exists" data-template-key="ant-log-rev">
+                            Keine Log-Datei verfügbar.
+                        </span>
                     </div>
                     <div class="col-md-4 form-group">
                         <h4>Neue ID</h4>
