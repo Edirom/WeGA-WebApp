@@ -39,7 +39,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             wdt:orgs(core:data-collection('orgs'))('filter')()
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), wdt:orgs($item)('title-short'), ())
+            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), wdt:orgs($item)('title'), ())
         },
         'title' := function() as xs:string {
             typeswitch($item)
@@ -99,7 +99,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'title' := function() as xs:string {
             typeswitch($item)
-            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case xs:string return norm:get-norm-doc('persons')//@docID[.=$item]/str:normalize-space(parent::tei:entry)
             case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
             case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
             default return ''

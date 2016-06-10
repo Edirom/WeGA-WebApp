@@ -138,7 +138,7 @@ declare %private function search:list($model as map(*)) as map(*) {
     let $search-results := 
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
-    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')(())
+    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' := $model('docID')} )
     return
         map:merge((
             $model,
