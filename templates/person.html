@@ -154,7 +154,8 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="persons"><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="orgs"><a data-template="app:person-main-tab" href="#biographies">history</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
                                 <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
                                 <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
@@ -211,7 +212,8 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
-                                                    <h2 data-template="lang:translate">tabTitle_bio</h2>
+                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
+                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
                                                     <div data-template="app:if-matches" data-template-key="source" data-template-value="Bach">
                                                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
                                                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>

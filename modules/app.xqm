@@ -350,7 +350,7 @@ declare
     function app:person-main-tab($node as node(), $model as map(*), $lang as xs:string) as element()? {
         let $tabTitle := normalize-space($node)
         let $count := count($model($tabTitle))
-        let $alwaysShowNoCount := $tabTitle = 'biographies'
+        let $alwaysShowNoCount := $tabTitle = ('biographies', 'history')
         return
             if($count gt 0 or $alwaysShowNoCount) then
                 element {name($node)} {

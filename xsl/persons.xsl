@@ -19,7 +19,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:note[@type='bioSummary']" priority="1">
+    <xsl:template match="tei:note[parent::document-node()]" priority="1">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
