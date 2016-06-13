@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 (:~
  : WeGA facets XQuery-Modul
@@ -26,50 +26,47 @@ import module namespace functx="http://www.functx.com";
 
 declare 
     %templates:default("lang", "en")
-    function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(select) {
+    function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:select) {
         let $facet := $node/data(@name)
-        let $facet-items := 
-            switch($facet)
-            case 'textType' return facets:from-docType($model('search-results'), $facet, $lang)
-            default return facets:from-index($model('search-results'), $facet)
+        let $facet-items := facets:facets($model('search-results'), $facet, 10, $lang) 
         return
             element {name($node)} {
                 $node/@*,
                 element option {
-                    (:if(map:contains($model('filters'), $facet)) then ()
-                    else attribute selected {'selected'},:)
                     attribute value {''},
                     lang:get-language-string('all', $lang)
                 },
-                $facet-items ! 
+                for $i in $facet-items?* 
+                order by $i?label
+                return
                     element option {
-                        if(map:get($model('filters'), $facet) = ./facets:value) then 
+                        if(map:get($model('filters'), $facet) = $i?value) then 
                             attribute selected {'selected'}
                         else (),
-                        attribute value {./facets:value},
-                        facets:display-term($facet, ./facets:term, $lang) || ' (' || ./facets:frequency || ')'
+                        attribute value {$i?value},
+                        facets:display-term($facet, $i?label, $lang) || ' (' || $i?frequency || ')'
                     }
             }
 };
 
-declare %private function facets:from-index($collection as node()*, $facet as xs:string) as element(facets:entry)* {
-    let $index-entries := query:get-facets($collection, $facet) (:facets:index-entries($collection, $facet):)
-(:    let $startTime := util:system-time():)
-    return (
-        facets:createFacets($index-entries)(:,
-        util:log-system-out($facet || ': ' || string(seconds-from-duration(util:system-time() - $startTime))):)
-    )
+declare function facets:facets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*)  {
+    switch($facet)
+    case 'textType' return facets:from-docType($nodes, $facet, $lang)
+    default return facets:createFacets(query:get-facets($nodes, $facet), $max)
 };
 
-declare %private function facets:from-docType($collection as node()*, $facet as xs:string, $lang as xs:string) as element(facets:entry)* {
-    for $i in $collection
-    group by $docType := substring($i/*/@xml:id, 1, 3)
-    return 
-        <facets:entry>
-            <facets:term>{lang:get-language-string($config:wega-docTypes-inverse($docType), $lang)}</facets:term>
-            <facets:value>{$config:wega-docTypes-inverse($docType)}</facets:value>
-            <facets:frequency>{count($i)}</facets:frequency>
-        </facets:entry>
+declare %private function facets:from-docType($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
+    [
+        for $i in $collection
+        group by $docTypePrefix := substring($i/*/@xml:id, 1, 3)
+        let $docType := lang:get-language-string($config:wega-docTypes-inverse($docTypePrefix), $lang)
+        return 
+            map {
+                'value' := $config:wega-docTypes-inverse($docTypePrefix),
+                'label' := $docType,
+                'frequency' := count($i)
+            }
+    ]
 };
 
 (:~
@@ -80,17 +77,17 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
  : @param $data contains frequency
  : @return element
  :)
-declare %private function facets:term-callback($term as xs:string, $data as xs:int+) as element(facets:entry)? {
-    <facets:entry>
-        <facets:term>{
-            let $docType := config:get-doctype-by-id($term)
-            return 
-                if($docType) then wdt:lookup($docType, $term)('label-facets')()
-                else str:normalize-space($term) 
-        }</facets:term>
-        <facets:value>{str:normalize-space($term)}</facets:value>
-        <facets:frequency>{$data[2]}</facets:frequency>
-    </facets:entry>
+declare %private function facets:term-callback($term as xs:string, $data as xs:int+) as map()? {
+    let $docType := config:get-doctype-by-id($term)
+    let $label := 
+        if($docType) then wdt:lookup($docType, $term)('label-facets')()
+        else str:normalize-space($term)
+    return
+    map {
+        'value' := str:normalize-space($term),
+        'label' := $label,
+        'frequency' := $data[2]
+    }
 };
 
 (:~
@@ -100,11 +97,10 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
  : @param $collFacets
  : @return element
  :)
-declare %private function facets:createFacets($collFacets as item()*) as element(facets:entry)* {
-    for $k in util:index-keys($collFacets, '', facets:term-callback#2, -1)
-(:        order by $k//xs:int(facets:frequency) descending:)
-        order by $k//facets:term ascending
-        return $k
+declare %private function facets:createFacets($collFacets as item()*, $max as xs:integer) as array(*) {
+    [
+        util:index-keys($collFacets, '', facets:term-callback#2, $max)
+    ]
 };
 
 (:~
@@ -167,8 +163,8 @@ declare function facets:filter-body($node as node(), $model as map(*)) as elemen
     element {name($node)} {
         $node/@class,
         (: That should be safe because there's always only one key in filterSection :)
-        attribute id {map:keys($model('filterSection'))},
-        templates:process($node/node(), $model)
+        attribute id {map:keys($model('filterSection'))}(:,
+        templates:process($node/node(), $model):)
     }
 };
 

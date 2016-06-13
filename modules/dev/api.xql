@@ -25,6 +25,8 @@ import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" a
 (:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";:)
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
+import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "../facets.xqm";
+import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "../search.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../controller.xqm";
 
 
@@ -118,6 +120,13 @@ declare function local:create-beacon($params as map(*)) as xs:string {
                 xs:dayTimeDuration('P999D')
             )
         )
+};
+(:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
+declare function local:facets($params as map(*))  {
+    let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))
+    return 
+        facets:facets($search?search-results, $params('facet'), 100, 'de')
+(:        count($search?search-results):)
 };
 
 declare function local:serialize-xml($response as item()*) {

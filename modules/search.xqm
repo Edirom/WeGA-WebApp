@@ -13,6 +13,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 (: 
  : a subset of $config:wega-docTypes. 
@@ -42,7 +43,7 @@ declare
             (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
             case 'persons' return search:list(map:new(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
-            default return search:list(map:new(($filters, map:put($model, 'docType', $docType))))
+            default return wega-util:stopwatch(search:list#1, map:new(($filters, map:put($model, 'docType', $docType))), 'search:list')
 };
 
 (:~
