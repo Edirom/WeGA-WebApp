@@ -208,11 +208,25 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) the
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/pnd_beacon.xql')}">
+    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
+    	   <add-parameter name="func" value="create-beacon"/>
+    	   <add-parameter name="type" value="pnd"/>
+    	   <add-parameter name="format" value="txt"/>
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
 
+(: GKD Beacon :)
+else if (matches($exist:path, '^/gkd_beacon.txt$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
+    	   <add-parameter name="func" value="create-beacon"/>
+    	   <add-parameter name="type" value="gkd"/>
+    	   <add-parameter name="format" value="txt"/>
+    	   <cache-control cache="yes"/>
+    	</forward>
+    </dispatch>
+    
 (: correspDesc Beacon :)
 else if (matches($exist:path, '^/correspDesc.xml$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

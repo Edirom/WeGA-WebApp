@@ -24,6 +24,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
 (:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";:)
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../controller.xqm";
 
 
@@ -69,6 +70,56 @@ declare function local:diaryDay-to-kml($params as map(*)) as element(kml:Placema
     </kml:kml>
 };
 
+
+declare function local:create-beacon($params as map(*)) as xs:string {
+    let $callBack := function($type as xs:string) {
+        let $pnds := 
+            switch($type)
+            case 'pnd' return core:data-collection('persons')//tei:idno[@type='gnd']
+            case 'gkd' return core:data-collection('orgs')//tei:idno[@type='gnd']
+            default return ()
+        let $desc := 
+            switch($type)
+            case 'pnd' return '#DESCRIPTION: Personendatensätze der Carl Maria von Weber Gesamtausgabe'
+            case 'gkd' return '#DESCRIPTION: Datensätze Organisationen/Körperschaften der Carl Maria von Weber Gesamtausgabe'
+            default return ()
+        let $feed := 
+            switch($type)
+            case 'pnd' return '#FEED: http://www.weber-gesamtausgabe.de/pnd_beacon.txt'
+            case 'gkd' return '#FEED: http://www.weber-gesamtausgabe.de/gkd_beacon.txt'
+            default return ()
+        let $header := (
+            '#FORMAT: BEACON',
+            '#PREFIX: http://d-nb.info/gnd/',
+            '#VERSION: 0.1',
+            '#TARGET: http://www.weber-gesamtausgabe.de/de/gnd/{ID}',
+            $feed,
+            '#CONTACT: Peter Stadler <stadler [ at ] weber-gesamtausgabe.de>',
+            '#INSTITUTION: Carl Maria von Weber Gesamtausgabe (WeGA)',
+            $desc,
+            concat('#TIMESTAMP: ', current-dateTime())
+            )
+        return concat(
+            string-join($header, '&#10;'),
+            '&#10;',
+            string-join($pnds, '&#10;')
+            )
+    }
+    let $fileName := 
+        switch($params('type'))
+        case 'pnd' return 'pnd_beacon.txt'
+        case 'gkd' return 'gkd_beacon.txt'
+        default return ()
+    return 
+        util:binary-to-string(
+            core:cache-doc(
+                str:join-path-elements(($config:tmp-collection-path, $fileName)), 
+                $callBack, $params('type'), 
+                xs:dayTimeDuration('P999D')
+            )
+        )
+};
+
 declare function local:serialize-xml($response as item()*) {
     let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=no', 'encoding=utf-8')
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
@@ -98,6 +149,16 @@ declare function local:serialize-json($response as item()*) {
         )
 };
 
+declare function local:serialize-txt($response as item()*) {
+    let $serializationParameters := ('method=text', 'media-type=text/plain', 'encoding=utf-8')
+    return 
+        response:stream(
+            if(every $i in $response satisfies $i instance of xs:string) then $response
+            else serialize($response), 
+            string-join($serializationParameters, ' ')
+        )
+};
+
 let $func := request:get-parameter('func', '')
 let $format := request:get-parameter('format', 'xml')
 let $params := 
@@ -116,5 +177,6 @@ return
     switch($format)
     case 'xml' return local:serialize-xml($response)
     case 'json' return local:serialize-json($response)
+    case 'txt' return local:serialize-txt($response)
     default return ()
     

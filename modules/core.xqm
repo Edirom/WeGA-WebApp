@@ -258,12 +258,12 @@ declare function core:permalink($docID as xs:string) as xs:anyURI? {
 };
 
 (:~
- : A simple caching function for XML documents
+ : A caching function for documents (XML and binary)
  :
  : @author Peter Stadler
  : @param $docURI the database URI of the document
  : @param $callBack a function to create the document content when the document is outdated or not available
- : @param $lease an xs:dayTimeDuration value of how long the cache should persist
+ : @param $lease an xs:dayTimeDuration value of how long the cache should persist, e.g. P999D (= 999 days)
  : @return the cached document
  :)
 declare function core:cache-doc($docURI as xs:string, $callback as function() as item(), $callback-params as item()*, $lease as xs:dayTimeDuration?) {
