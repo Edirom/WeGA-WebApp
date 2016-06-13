@@ -49,18 +49,18 @@
     <div class="colored borderBottom" data-template="app:if-matches" data-template-key="environment" data-template-value="development">
         <div class="container">
             <form role="form" class="form-inline">
-                <div class="row paddingTopIcon paddingBottomIcon">
+                <div class="row paddingTopIcon paddingBottomIcon history">
                     <h3>Development Tools</h3>
-                    <div class="col-md-4" data-template="dev-app:ant-log">
-                        <h4>Commit Status</h4>
-                        <span data-template="app:if-exists" data-template-key="ant-log-rev">
+                    <div class="col-md-3" data-template="dev-app:ant-log">
+                        <h4>Subversion Commit Status</h4>
+                        <p data-template="app:if-exists" data-template-key="ant-log-rev">
                             <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
-                        </span>
-                        <span data-template="app:if-not-exists" data-template-key="ant-log-rev">
+                        </p>
+                        <p data-template="app:if-not-exists" data-template-key="ant-log-rev">
                             Keine Log-Datei verfügbar.
-                        </span>
+                        </p>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-3 form-group">
                         <h4>Neue ID</h4>
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
@@ -85,9 +85,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <h4>Codesharing</h4>
                         <a href="https://euryanthe.de/wega/apps/codesharing/index.htm">Codesharing WeGA-data</a>
+                    </div>
+                    <div class="col-md-3" data-template="dev-app:app-status">
+                        <h4>WebApp Status</h4>
+                        <p>Deployed: <span data-template="app:print" data-template-key="deployment-date">31. August 2016</span></p>
+                        <!--<p>Version: <a href="#">71737434</a></p>-->
                     </div>
                 </div>
             </form>
