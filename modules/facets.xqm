@@ -24,14 +24,17 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 
+(:~
+ : 
+~:)
 declare 
     %templates:default("lang", "en")
     function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:select) {
         let $facet := $node/data(@name)
-        let $facet-items := facets:facets($model('search-results'), $facet, 10, $lang) 
+        let $facet-items := () (:facets:facets($model('search-results'), $facet, 10, $lang):) 
         return
             element {name($node)} {
-                $node/@*,
+                $node/@*(:,
                 element option {
                     attribute value {''},
                     lang:get-language-string('all', $lang)
@@ -45,7 +48,7 @@ declare
                         else (),
                         attribute value {$i?value},
                         facets:display-term($facet, $i?label, $lang) || ' (' || $i?frequency || ')'
-                    }
+                    }:)
             }
 };
 

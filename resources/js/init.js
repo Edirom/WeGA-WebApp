@@ -14,14 +14,41 @@ $.fn.h1FitText = function () {
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
 {
-     this.selectize({
-        plugins: ['remove_button'],
-        hideSelected: true,
-        onChange: function(e){
-            /* Get active facets to append as URL params */
-            var params = active_facets();
-            updatePage(params);
-        }
+    $(this).each( function(a, b) {
+        var url = $(this).attr('data-api-url') + '&func=facets&docID=indices&format=json&facet=' + $(this).attr('name');
+        console.log(url);
+        $(b).selectize({
+            plugins: ['remove_button'],
+            hideSelected: true,
+            onChange: function(e){
+                /* Get active facets to append as URL params */
+                var params = active_facets();
+                updatePage(params);
+            },
+            preload: "focus",
+            valueField: "value",
+            labelField: "label",
+            sortField: "label",
+            load: function(query, callback) {
+    //  if (!query.length) return callback();
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    error: function() {
+                        callback();
+                    },
+                    success: function(res) {
+                        callback(res[0]);
+                    }
+                });
+            },
+            render: {
+                option: function (item, escape) {
+                    return '<div>' + escape(item.label) + ' (' + escape(item.frequency) + ')</div>';
+                }
+            }
+        })
     })
 };
 
