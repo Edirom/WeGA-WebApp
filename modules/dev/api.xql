@@ -125,8 +125,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
 declare function local:facets($params as map(*))  {
     let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))
     return 
-        facets:facets($search?search-results, $params('facet'), 100, 'de')
-(:        count($search?search-results):)
+        facets:facets($search?search-results, $params('facet'), -1, 'de')
 };
 
 declare function local:serialize-xml($response as item()*) {
