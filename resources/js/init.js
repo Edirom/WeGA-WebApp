@@ -29,9 +29,10 @@ $.fn.facets = function ()
             valueField: "value",
             labelField: "label",
             sortField: "label",
+            searchField: ["label"],
             loadThrottle: 100,
             load: function(query, callback) {
-    //  if (!query.length) return callback();
+      if (query.length) return callback();
                 $.ajax({
                     url: url,
                     type: 'GET',
