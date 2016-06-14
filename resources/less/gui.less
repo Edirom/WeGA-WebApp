@@ -186,3 +186,14 @@ a.noteMarker
 h2.resp-accordion {
     display:none;
 }
+/* loading spinner for selectize plugin */
+.loading::before {
+    content: "\f110";
+	color:@gray-dark;
+	z-index: 2;
+	position: absolute;
+	top: .5em;
+	left: .5em;
+    .fa-spin;
+    .fa;
+}
