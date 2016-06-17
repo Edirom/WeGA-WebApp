@@ -43,7 +43,7 @@ declare
             (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
             case 'persons' return search:list(map:new(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
-            default return wega-util:stopwatch(search:list#1, map:new(($filters, map:put($model, 'docType', $docType))), 'search:list')
+            default return search:list(map:new(($filters, map:put($model, 'docType', $docType))))
 };
 
 (:~
