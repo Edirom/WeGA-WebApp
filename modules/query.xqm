@@ -29,9 +29,9 @@ declare function query:get-reg-name($key as xs:string) as xs:string {
     return wega:cleanString($regName)
     :)
     let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($key)) 
-    let $response := $dictionary//@docID[. = $key]
+    let $response := $dictionary//norm:entry[@docID = $key]
     return 
-        if(exists($response)) then $response/parent::norm:entry/text()
+        if(exists($response)) then $response/text()
         else ''
 };
 
@@ -125,10 +125,10 @@ declare function query:get-gnd($item as item()) as xs:string? {
 declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $day := functx:pad-integer-to-length(day-from-date($date), 2)
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
-    let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
+    let $month-day := concat('-', $month, '-', $day)
     return 
-        collection(config:get-option('letters'))//tei:correspAction[@type='sent']/tei:date[matches(@when, $date-regex)][not(functx:all-whitespace(following::tei:text))] union
-        collection(config:get-option('persons'))//tei:date[matches(@when, $date-regex)][not(preceding-sibling::tei:date[matches(@when, $date-regex)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
+        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[contains(@when, $month-day)][following::tei:text//tei:p] union
+        core:getOrCreateColl('persons', 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
 (:~
@@ -212,7 +212,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
 
 declare function query:correspondence-partners($id as xs:string) as map(*) {
     map:new(
-        for $i in (norm:get-norm-doc('letters')//@addresseeID[contains(., $id)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $id)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+') 
+        for $i in (norm:get-norm-doc('letters')//norm:entry[contains(@addresseeID, $id)] | norm:get-norm-doc('letters')//norm:entry[contains(@authorID, $id)])/(@authorID, @addresseeID)/tokenize(., '\s+') 
         group by $partnerID := data($i)
         return
             map:entry($partnerID, count($i))

@@ -114,12 +114,15 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
-        wdt:lookup($collName, wdt:lookup($collName, ())('init-collection')())('filter-by-person')($cacheKey)
-    else if($cacheKey eq 'indices') then 
-        try { function-lookup(xs:QName('wdt:' || $collName), 1)(())('init-collection')() }
-        catch * { core:logToFile('warn', 'core:createColl(): failed to initialize collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;')) }
-    else ()
+    let $func := 
+        try { function-lookup(xs:QName('wdt:' || $collName), 1) }
+        catch * { core:logToFile('error', 'core:createColl(): failed to lookup function "' || $collName || '"') }
+    let $coll := $func(())('init-collection')()
+    return
+        if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
+            $func($coll)('filter-by-person')($cacheKey)
+        else if($cacheKey eq 'indices') then $coll
+        else ()
 };
 
 (:~

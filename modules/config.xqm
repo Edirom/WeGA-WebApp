@@ -160,14 +160,14 @@ declare function config:get-option($key as xs:string?, $replacements as xs:strin
  : @return xs:string document type
 :)
 declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
-    for $func in wdt:functions-available()
+    for $func in $wdt:functions
     return 
         if($func($id)('check')() and $func($id)('prefix')) then $func($id)('name')
         else ()
 };
 
 declare function config:get-combined-doctype-by-id($id as xs:string?) as xs:string* {
-    for $func in wdt:functions-available()
+    for $func in $wdt:functions
     return 
         if($func($id)('check')()) then $func($id)('name')
         else ()
