@@ -66,6 +66,14 @@ declare function wdt:orgs($item as item()*) as map(*) {
 };
 
 declare function wdt:persons($item as item()*) as map(*) {
+    let $title := function() as xs:string {
+        typeswitch($item)
+            case xs:string return $norm:persons//norm:entry[@docID=$item]/str:normalize-space(.)
+            case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
+            case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
+            default return ''
+    }
+    return
     map {
         'name' := 'persons',
         'prefix' := 'A00',
@@ -97,17 +105,8 @@ declare function wdt:persons($item as item()*) as map(*) {
                 return $sortName || $name
             }, ())
         },
-        'title' := function() as xs:string {
-            typeswitch($item)
-            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
-            case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
-            default return ''
-            
-        },
-        'label-facets' := function() as xs:string {
-            wdt:persons($item)('title')()
-        },
+        'title' := $title,
+        'label-facets' := $title,
         'memberOf' := ('sitemap'),
         'search' := ()
     }
@@ -523,10 +522,8 @@ declare function wdt:contacts($item as item()*) as map(*) {
         },
         'sort' := function($params as map(*)?) as document-node()* {
             let $correspondence-partners := query:correspondence-partners($params('personID'))
-            let $log := util:log-system-out($params('personID'))
             return
-                for $i in $item order by number($correspondence-partners($i/tei:person/data(@xml:id))) descending return $i
-            
+                for $i in $item order by number($correspondence-partners($i/tei:*/data(@xml:id))) descending return $i
         },
         'init-collection' := function() as document-node()* {
             ()
@@ -629,5 +626,5 @@ declare variable $wdt:functions :=
 
 declare function wdt:lookup($name as xs:string, $item as item()*) as map(*) {
     try { function-lookup(xs:QName('wdt:' || $name), 1)($item) }
-    catch * { core:logToFile('error', 'wdt:lookup(): failed to lookup function "' || $name || '"') }
+    catch * { core:logToFile('error', 'wdt:lookup(): failed to lookup function "' || $name || '"'  || ' &#10;' || string-join(($err:code, $err:description), ' &#10;')) }
 };

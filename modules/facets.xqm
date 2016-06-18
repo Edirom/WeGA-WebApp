@@ -101,9 +101,9 @@ declare %private function facets:term-callback($term as xs:string, $data as xs:i
  : @return element
  :)
 declare %private function facets:createFacets($collFacets as item()*, $max as xs:integer) as array(*) {
-    [
-        util:index-keys($collFacets, '', facets:term-callback#2, $max)
-    ]
+    array {
+        util:index-keys($collFacets, (), facets:term-callback#2, $max, 'range-index')
+    }
 };
 
 (:~

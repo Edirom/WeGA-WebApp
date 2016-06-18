@@ -41,7 +41,7 @@ $.fn.facets = function ()
                         callback();
                     },
                     success: function(res) {
-                        callback(res[0]);
+                        callback(res);
                     }
                 });
             },

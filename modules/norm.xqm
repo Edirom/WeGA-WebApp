@@ -52,6 +52,12 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         default return ()
 };
 
+(:~
+ : This variable serves as a shortcut to reduce function calls when creating facets
+ : see wdt:persons(())('label-title') 
+~:)
+declare variable $norm:persons := norm:get-norm-doc('persons');
+
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('biblio', 'indices', true())
