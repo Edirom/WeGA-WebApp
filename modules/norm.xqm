@@ -47,9 +47,9 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         case 'persons' return norm:create-norm-doc-persons()
         case 'writings' return norm:create-norm-doc-writings()
         case 'works' return norm:create-norm-doc-works()
-        case 'places' return norm:create-norm-doc-places()
+(:        case 'places' return norm:create-norm-doc-places():)
         case 'orgs' return norm:create-norm-doc-orgs()
-        default return ()
+        default return core:logToFile('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
 };
 
 (:~
@@ -231,13 +231,13 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
     }</catalogue>
 };
 
-declare %private function norm:create-norm-doc-places() as element(norm:catalogue) {
+(:declare %private function norm:create-norm-doc-places() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('places', 'indices', true())
         let $docID := $doc/tei:place/data(@xml:id)
-        let $name := str:normalize-space($doc//tei:placeName[@type='reg'])
+        let $name := wdt:places($doc)('title')()
         let $n := $doc//tei:idno[@type='geonames']
-(:        order by $name:)
+(\:        order by $name:\)
         return 
             element entry {
                 attribute docID {$docID},
@@ -245,4 +245,4 @@ declare %private function norm:create-norm-doc-places() as element(norm:catalogu
                 $name
             }
     }</catalogue>
-};
+};:)

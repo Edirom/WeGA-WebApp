@@ -269,8 +269,8 @@ declare function wdt:works($item as item()*) as map(*) {
         'title' := function() as xs:string {
             typeswitch($item)
             case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case document-node() return str:normalize-space(query:get-title-element($item, 'de')[1])
-            case element() return str:normalize-space(query:get-title-element($item/root(), 'de')[1])
+            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return ''
             
         },
@@ -468,6 +468,13 @@ declare function wdt:places($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) }, ())
+        },
+        'title' := function() as item()* {
+            typeswitch($item)
+            case xs:string return str:normalize-space(core:doc($item)//tei:placeName[@type='reg'])
+            case document-node() return str:normalize-space($item//tei:placeName[@type='reg'])
+            case element() return str:normalize-space($item/root()//tei:placeName[@type='reg'])
+            default return ''
         },
         'memberOf' := (),
         'search' := ()

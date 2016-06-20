@@ -13,6 +13,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -22,16 +23,10 @@ import module namespace functx="http://www.functx.com";
  : @return xs:string
  :)
 declare function query:get-reg-name($key as xs:string) as xs:string {
-    (:
-    Leider zu langsam
-    
-    let $regName := collection('/db/persons')//id($key)/tei:persName[@type='reg']
-    return wega:cleanString($regName)
-    :)
-    let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($key)) 
-    let $response := $dictionary//norm:entry[@docID = $key]
+    let $docType := config:get-doctype-by-id($key) 
+    let $response := wdt:lookup($docType, $key)('title')()
     return 
-        if(exists($response)) then $response/text()
+        if(exists($response)) then $response
         else ''
 };
 

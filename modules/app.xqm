@@ -478,10 +478,18 @@ declare
 };
 
 declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:active-nav($node as node(), $model as map(*), $lang as xs:string) as map() {
+        let $active := $node//xhtml:a/@href[controller:encode-path-segments-for-uri(controller:resolve-link(., $lang)) = request:get-uri()]
+        return
+            map {'active-nav': $active}
+};
+
+declare 
     %templates:default("lang", "en")
     function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
-        let $active := some $i in $node//xhtml:a/@href satisfies contains( request:get-uri(), controller:resolve-link($i, $lang))
-(:        let $log := util:log-system-out(request:get-uri() || ' - ' || controller:resolve-link($node/xhtml:a/@href, $lang)):)
+        let $active := exists($node//xhtml:a[@href = $model('active-nav')])
         return
             element {name($node)} {
                 if($active) then (
