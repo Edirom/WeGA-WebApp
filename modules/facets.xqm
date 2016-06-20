@@ -14,7 +14,6 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util = "http://exist-db.org/xquery/util";
-declare namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -23,6 +22,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace templates="http://exist-db.org/xquery/templates";
 
 (:~
  : 
@@ -166,8 +166,8 @@ declare function facets:filter-body($node as node(), $model as map(*)) as elemen
     element {name($node)} {
         $node/@class,
         (: That should be safe because there's always only one key in filterSection :)
-        attribute id {map:keys($model('filterSection'))}(:,
-        templates:process($node/node(), $model):)
+        attribute id {map:keys($model('filterSection'))},
+        templates:process($node/node(), $model)
     }
 };
 

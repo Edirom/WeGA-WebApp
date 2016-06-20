@@ -56,7 +56,12 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
  : This variable serves as a shortcut to reduce function calls when creating facets
  : see wdt:persons(())('label-title') 
 ~:)
-declare variable $norm:persons := norm:get-norm-doc('persons');
+(:declare variable $norm:persons :=
+    try {
+        core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'normFile-persons.xml')), norm:create-norm-doc#1, 'persons', xs:dayTimeDuration('P999D'))
+    }
+    catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
+;:)
 
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{

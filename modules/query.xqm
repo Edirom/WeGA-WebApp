@@ -202,7 +202,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
             probably need to change to ft:query() someday?!
         :)
     case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key)
-    case 'works' return ($collection//tei:workName[not(contains(@key, ' '))] | $collection//tei:rs[@type='work'][not(contains(@key, ' '))])/@key
+    case 'works' return ($collection//tei:workName[@key] | $collection//tei:rs[@type='work'][@key])/@key[string-length(.) = 7]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
