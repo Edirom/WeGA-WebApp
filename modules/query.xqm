@@ -124,7 +124,7 @@ declare function query:get-title-element($doc as document-node(), $lang as xs:st
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
         else if(config:is-work($docID)) then ($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
-        else if(config:is-var($docID)) then $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@xml:lang = $lang]
+        else if(config:is-var($docID)) then ($doc//tei:title[@level = 'a'][@xml:lang = $lang])[1]
         else ($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
 };
 
