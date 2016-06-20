@@ -20,6 +20,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace functx="http://www.functx.com";
@@ -287,7 +288,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
     let $doc := core:doc($docID)
     let $baseURL := config:get-option('iiifServer')
     let $id := $baseURL || $docID 
-    let $label := query:get-reg-title($docID)
+    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')()
     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
     return
         map {

@@ -36,20 +36,6 @@ declare function query:get-reg-name($key as xs:string) as xs:string {
 };
 
 (:~
- : Print the regularised title for a given doc ID (works, writings, etc.)
- :
- : @author Peter Stadler
- : @return xs:string
- :)
-declare function query:get-reg-title($docID as xs:string) as xs:string {
-    let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($docID)) 
-    let $response := $dictionary//@docID[. = $docID]
-    return 
-        if(exists($response)) then $response/parent::norm:entry/text()
-        else ''
-};
-
-(:~
  : Grabs the first author from a TEI document and returns its WeGA ID
  :
  : @author Peter Stadler 

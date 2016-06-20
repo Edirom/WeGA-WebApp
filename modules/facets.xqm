@@ -150,7 +150,7 @@ declare
                     let $label :=
                         switch($i)
                         case 'persons' return query:get-reg-name($j)
-                        case 'works' return query:get-reg-title($j)
+                        case 'works' return wdt:works($j)('title')()
                         default return $j
                     let $key :=
                         switch($i)
