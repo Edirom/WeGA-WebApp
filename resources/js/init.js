@@ -15,8 +15,6 @@ $.fn.h1FitText = function () {
 $.fn.facets = function ()
 {
     $(this).each( function(a, b) {
-        var url = $(this).attr('data-api-url') + '&func=facets&docID=indices&format=json&facet=' + $(this).attr('name');
-        console.log(url);
         $(b).selectize({
             plugins: ['remove_button'],
             hideSelected: true,
@@ -32,7 +30,10 @@ $.fn.facets = function ()
             searchField: ["label"],
             loadThrottle: 100,
             load: function(query, callback) {
-      if (query.length) return callback();
+                if (query.length) return callback();
+                
+                var params = active_facets(),
+                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type');
                 $.ajax({
                     url: url,
                     type: 'GET',
@@ -252,7 +253,7 @@ function active_facets() {
         fromDate:'',
         toDate:'',
         toString:function(){
-            return '?' + this.facets.join('&') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
+            return '?' + ( this.facets.length !== 0 ? this.facets.join('&') : '') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
         }
      };
     /* Set filters */

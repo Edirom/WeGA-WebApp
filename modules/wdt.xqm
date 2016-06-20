@@ -14,6 +14,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 
+declare variable $wdt:persons-norm-file := norm:get-norm-doc('persons');
 
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
@@ -68,7 +69,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
 declare function wdt:persons($item as item()*) as map(*) {
     let $title := function() as xs:string {
         typeswitch($item)
-            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case xs:string return $wdt:persons-norm-file//norm:entry[@docID=$item]/str:normalize-space(.)
             case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
             case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
             default return ''

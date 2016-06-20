@@ -34,7 +34,11 @@ declare
         let $facet-items := () (:facets:facets($model('search-results'), $facet, 10, $lang):) 
         return
             element {name($node)} {
-                $node/@*(:,
+                $node/@*,
+                attribute data-api-url {core:link-to-current-app('dev/api.xql')},
+                attribute data-doc-id {$model?docID},
+                attribute data-doc-type {$model?docType}
+                (:,
                 element option {
                     attribute value {''},
                     lang:get-language-string('all', $lang)
@@ -55,7 +59,7 @@ declare
 declare function facets:facets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*)  {
     switch($facet)
     case 'textType' return facets:from-docType($nodes, $facet, $lang)
-    default return facets:createFacets(query:get-facets($nodes, $facet), $max)
+    default return facets:createFacets($nodes, $facet, $max, $lang)
 };
 
 declare %private function facets:from-docType($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
@@ -73,37 +77,26 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 };
 
 (:~
- : Returns list of terms and their frequency in the collection
- :
- : @author Peter Stadler 
- : @param $term
- : @param $data contains frequency
- : @return element
- :)
-declare %private function facets:term-callback($term as xs:string, $data as xs:int+) as map()? {
-    let $docType := config:get-doctype-by-id($term)
-    let $label := 
-        if($docType) then wdt:lookup($docType, $term)('label-facets')()
-        else str:normalize-space($term)
-    return
-    map {
-        'value' := str:normalize-space($term),
-        'label' := $label,
-        'frequency' := $data[2]
-    }
-};
-
-(:~
  : Create facets
  :
- : @author Peter Stadler 
- : @param $collFacets
- : @return element
  :)
-declare %private function facets:createFacets($collFacets as item()*, $max as xs:integer) as array(*) {
-    array {
-        util:index-keys($collFacets, (), facets:term-callback#2, $max, 'range-index')
+declare %private function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
+    let $facets := query:get-facets($nodes, $facet)
+    let $callback := function($term as xs:string, $data as xs:int+) {
+        let $label := 
+            switch($facet)
+            case 'persons' case 'orgs' case 'works' return wdt:lookup($facet, $term)('label-facets')()
+            case 'docTypeSubClass' case 'docStatus' return lang:get-language-string($term, $lang)
+            default return str:normalize-space($term)
+        return
+        map {
+            'value' := str:normalize-space($term),
+            'label' := $label,
+            'frequency' := $data[2]
+        }
     }
+    return 
+        array { util:index-keys($facets, (), $callback, $max, 'range-index') }
 };
 
 (:~
