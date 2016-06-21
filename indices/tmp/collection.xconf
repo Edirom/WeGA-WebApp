@@ -4,8 +4,9 @@
             <create qname="width" type="xs:string"/>
             <create qname="height" type="xs:string"/>
             <create qname="localFile" type="xs:string"/>
-            <create qname="norm:entry" type="xs:string"/>
-            <create qname="@docID" type="xs:string"/>
+            <create qname="norm:entry">
+                <field name="norm-docID" match="@docID" type="xs:string"/>
+            </create>
             <create qname="@n" type="xs:string"/>
             <create qname="@authorID" type="xs:string"/>
             <create qname="@addresseeID" type="xs:string"/>

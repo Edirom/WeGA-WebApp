@@ -25,34 +25,36 @@ import module namespace functx="http://www.functx.com";
 import module namespace templates="http://exist-db.org/xquery/templates";
 
 (:~
+ : Trying to reduce function calls to norm:get-norm-doc() when creating facets
+~:)
+declare variable $facets:persons-norm-file := doc($config:tmp-collection-path || '/normFile-persons.xml');
+
+(:~
  : 
 ~:)
 declare 
     %templates:default("lang", "en")
     function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:select) {
         let $facet := $node/data(@name)
-        let $facet-items := () (:facets:facets($model('search-results'), $facet, 10, $lang):) 
+        let $selected := $model?filters?($facet)
         return
             element {name($node)} {
                 $node/@*,
                 attribute data-api-url {core:link-to-current-app('dev/api.xql')},
                 attribute data-doc-id {$model?docID},
-                attribute data-doc-type {$model?docType}
-                (:,
+                attribute data-doc-type {$model?docType},
                 element option {
                     attribute value {''},
                     lang:get-language-string('all', $lang)
                 },
-                for $i in $facet-items?* 
-                order by $i?label
+                for $i in $selected 
+                order by $i
                 return
                     element option {
-                        if(map:get($model('filters'), $facet) = $i?value) then 
-                            attribute selected {'selected'}
-                        else (),
-                        attribute value {$i?value},
-                        facets:display-term($facet, $i?label, $lang) || ' (' || $i?frequency || ')'
-                    }:)
+                        attribute selected {'selected'},
+                        attribute value {$i},
+                        facets:display-term($facet, $i, $lang)
+                    }
             }
 };
 
@@ -83,11 +85,7 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 declare %private function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
     let $facets := query:get-facets($nodes, $facet)
     let $callback := function($term as xs:string, $data as xs:int+) {
-        let $label := 
-            switch($facet)
-            case 'persons' case 'orgs' case 'works' return wdt:lookup($facet, $term)('label-facets')()
-            case 'docTypeSubClass' case 'docStatus' return lang:get-language-string($term, $lang)
-            default return str:normalize-space($term)
+        let $label := facets:display-term($facet, $term, $lang) 
         return
         map {
             'value' := str:normalize-space($term),
@@ -103,9 +101,13 @@ declare %private function facets:createFacets($nodes as node()*, $facet as xs:st
  : Helper function for localizing facet terms
 ~:)
 declare %private function facets:display-term($facet as xs:string, $term as xs:string, $lang as xs:string) as xs:string {
-    switch ($facet)
-    case 'docTypeSubClass' case 'docStatus' return lang:get-language-string($term, $lang)
-    default return $term
+    switch($facet)
+    case 'persons' case 'sender' case 'addressee' return 
+        if(wdt:persons($term)('check')()) then str:normalize-space($facets:persons-norm-file//norm:entry[range:field-eq('norm-docID',$term)])
+        else wdt:orgs($term)('label-facets')()
+    case 'works' return wdt:works($term)('label-facets')()
+    case 'docTypeSubClass' case 'docStatus' case 'textType' return lang:get-language-string($term, $lang)
+    default return str:normalize-space($term)
 };
 
 declare 
@@ -122,7 +124,6 @@ declare
                 let $characterNames := 
                     if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
                     else ()
-(:                let $log := util:log-system-out($filter || count($characterNames)):)
                 return 
                     if(exists($keys)) then map { $filter := $keys}
                     else if(exists($places)) then map { $filter := $places}

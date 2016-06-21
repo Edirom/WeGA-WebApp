@@ -14,8 +14,6 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 
-declare variable $wdt:persons-norm-file := norm:get-norm-doc('persons');
-
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
         'name' := 'orgs',
@@ -46,7 +44,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             typeswitch($item)
             case xs:string return str:normalize-space(core:doc($item)//tei:orgName[@type='reg'])
             case document-node() return str:normalize-space($item//tei:orgName[@type='reg'])
-            case element(tei:org) return str:normalize-space($item/tei:orgName[@type='reg'])
+            case element() return str:normalize-space($item/root()//tei:orgName[@type='reg'])
             default return ''
             
         },
@@ -69,9 +67,9 @@ declare function wdt:orgs($item as item()*) as map(*) {
 declare function wdt:persons($item as item()*) as map(*) {
     let $title := function() as xs:string {
         typeswitch($item)
-            case xs:string return $wdt:persons-norm-file//norm:entry[@docID=$item]/str:normalize-space(.)
+            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
             case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
-            case element(tei:person) return str:normalize-space($item/tei:persName[@type='reg'])
+            case element() return str:normalize-space($item/root()//tei:persName[@type='reg'])
             default return ''
     }
     return
@@ -122,7 +120,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root()
+            $item/root()/descendant::tei:text[range:eq(@type, ('albumblatt', 'letter', 'guestbookEntry'))]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() 
@@ -133,7 +131,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[@type=('albumblatt', 'letter', 'guestbookEntry')]/root()
+            core:data-collection('letters')/descendant::tei:text[range:eq(@type,('albumblatt', 'letter', 'guestbookEntry'))]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -180,10 +178,10 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
                 let $sortName :=
-                    if($node/tei:org) then str:normalize-space($node//tei:orgName[@type='reg'])
-                    else if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
-                    else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
-                let $name := str:normalize-space($node//tei:persName[@type='reg'])
+                    if($node/tei:org) then str:normalize-space($node//tei:orgName[range:eq(@type,'reg')])
+                    else if(functx:all-whitespace($node//tei:persName[range:eq(@type,'reg')]/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[range:eq(@type,'reg')], '\s?,'))
+                    else str:normalize-space($node//tei:persName[range:eq(@type,'reg')]/tei:surname[1])
+                let $name := str:normalize-space($node//tei:persName[range:eq(@type,'reg')])
                 return $sortName || $name
             }, ())
         },
@@ -238,6 +236,14 @@ declare function wdt:writings($item as item()*) as map(*) {
 };
 
 declare function wdt:works($item as item()*) as map(*) {
+    let $title := function() as xs:string {
+        typeswitch($item)
+            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            default return ''
+    }
+    return
     map {
         'name' := 'works',
         'prefix' := 'A02',
@@ -267,17 +273,8 @@ declare function wdt:works($item as item()*) as map(*) {
                 $node//mei:altId[@type = 'WeV']/string()
             }, ())
         },
-        'title' := function() as xs:string {
-            typeswitch($item)
-            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            default return ''
-            
-        },
-        'label-facets' := function() as xs:string {
-            wdt:works($item)('title')()
-        },
+        'title' := $title,
+        'label-facets' := $title,
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
             $item[mei:mei]/mei:mei[ft:query(., $query)] | 
@@ -560,7 +557,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             core:data-collection('writings')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('writings', $personID, true()) |
             core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
             core:data-collection('news')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('news', $personID, true()) |
-            core:data-collection('orgs')//@key[.=$personID][not(parent::tei:orgName/@type)]/root() |
+            core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
             core:data-collection('biblio')//tei:term[.=$personID]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
