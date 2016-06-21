@@ -21,6 +21,7 @@ $.fn.facets = function ()
             onChange: function(e){
                 /* Get active facets to append as URL params */
                 var params = active_facets();
+                //console.log(params.toString());
                 updatePage(params);
             },
             preload: "focus",
@@ -277,7 +278,7 @@ function active_facets() {
         var facet = $(this).attr('name'),
             value = $(this).attr('value');
 /*        console.log(facet + '=' + value);*/
-        params['facets'].push(facet + '=' + encodeURI(value))
+        if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
     })
     if($('#query-input').val()) {
         params['facets'].push('q=' + $('#query-input').val());
