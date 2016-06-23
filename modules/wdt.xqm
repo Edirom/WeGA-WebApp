@@ -29,7 +29,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('orgs')) then for $i in wdt:orgs($item)('filter')() order by sort:index('orgs', $i) ascending return $i
+            if(sort:has-index('orgs')) then ()
             else (wdt:orgs(())('init-sortIndex')()),
             for $i in wdt:orgs($item)('filter')() order by sort:index('orgs', $i) ascending return $i
             
@@ -88,7 +88,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('persons')) then for $i in wdt:persons($item)('filter')() order by sort:index('persons', $i) ascending return $i
+            if(sort:has-index('persons')) then ()
             else (wdt:persons(())('init-sortIndex')()),
             for $i in wdt:persons($item)('filter')() order by sort:index('persons', $i) ascending return $i
         },
@@ -123,10 +123,12 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item/root()/descendant::tei:text[range:eq(@type, ('albumblatt', 'letter', 'guestbookEntry'))]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::tei:*[@key = $personID][ancestor-or-self::tei:correspAction][not(ancestor-or-self::tei:note)]/root() 
+            $item/root()//tei:persName[range:eq(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
+            $item/root()//tei:orgName[range:eq(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
+            $item/root()//tei:rs[ancestor::tei:correspAction][contains(@key, $personID)][not(ancestor-or-self::tei:note)]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('letters')) then for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
+            if(sort:has-index('letters')) then ()
             else (wdt:letters(())('init-sortIndex')()),
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
@@ -168,7 +170,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
             () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('personsPlus')) then for $i in wdt:personsPlus($item)('filter')() order by sort:index('personsPlus', $i) ascending return $i
+            if(sort:has-index('personsPlus')) then ()
             else (wdt:personsPlus(())('init-sortIndex')()),
             for $i in wdt:personsPlus($item)('filter')() order by sort:index('personsPlus', $i) ascending return $i
         },
@@ -207,10 +209,10 @@ declare function wdt:writings($item as item()*) as map(*) {
             $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
+            $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('writings')) then for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
+            if(sort:has-index('writings')) then ()
             else (wdt:writings(())('init-sortIndex')()),
             for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
         },
@@ -258,7 +260,7 @@ declare function wdt:works($item as item()*) as map(*) {
             $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('works')) then for $i in wdt:works($item)('filter')() order by sort:index('works', $i) return $i
+            if(sort:has-index('works')) then ()
             else (wdt:works(())('init-sortIndex')()),
             for $i in wdt:works($item)('filter')() order by sort:index('works', $i) return $i
         },
@@ -299,7 +301,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
             else ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('diaries')) then for $i in wdt:diaries($item)('filter')() order by sort:index('diaries', $i) ascending return $i 
+            if(sort:has-index('diaries')) then () 
             else (wdt:diaries(())('init-sortIndex')()),
             for $i in wdt:diaries($item)('filter')() order by sort:index('diaries', $i) ascending return $i
         },
@@ -331,7 +333,7 @@ declare function wdt:news($item as item()*) as map(*) {
             $item/root()/descendant::tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('news')) then for $i in wdt:news($item)('filter')() order by sort:index('news', $i) descending return $i
+            if(sort:has-index('news')) then ()
             else (wdt:news(())('init-sortIndex')()),
             for $i in wdt:news($item)('filter')() order by sort:index('news', $i) descending return $i
         },
@@ -364,7 +366,7 @@ declare function wdt:iconography($item as item()*) as map(*) {
             $item/root()/descendant::tei:person[@corresp = $personID]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('iconography')) then for $i in wdt:iconography($item)('filter')() order by sort:index('iconography', $i) descending return $i
+            if(sort:has-index('iconography')) then ()
             else (wdt:iconography(())('init-sortIndex')()),
             for $i in wdt:iconography($item)('filter')() order by sort:index('iconography', $i) descending return $i
         },
@@ -422,7 +424,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('biblio')) then for $i in wdt:biblio($item)('filter')() order by sort:index('biblio', $i) descending return $i
+            if(sort:has-index('biblio')) then ()
             else (wdt:biblio(())('init-sortIndex')()),
             for $i in wdt:biblio($item)('filter')() order by sort:index('biblio', $i) descending return $i
         },
@@ -457,7 +459,7 @@ declare function wdt:places($item as item()*) as map(*) {
             $item
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            if(sort:has-index('places')) then for $i in wdt:places($item)('filter')() order by sort:index('places', $i)  ascending return $i
+            if(sort:has-index('places')) then ()
             else (wdt:places(())('init-sortIndex')()),
             for $i in wdt:places($item)('filter')() order by sort:index('places', $i)  ascending return $i
         },
