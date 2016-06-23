@@ -108,8 +108,8 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $month-day := concat('-', $month, '-', $day)
     return 
-        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[range:field-contains('date-when', $month-day)][following::tei:text//tei:p] union
-        core:getOrCreateColl('persons', 'indices', true())//tei:date[range:contains(@when, $month-day)][not(preceding-sibling::tei:date[range:contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
+        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[contains(@when, $month-day)][following::tei:text//tei:p] union
+        core:getOrCreateColl('persons', 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
 (:~
