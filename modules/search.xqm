@@ -339,15 +339,15 @@ declare %private function search:get-earliest-date($docType as xs:string, $cache
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
+                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
             case 'news' case 'biblio' return
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
             case 'persons' case 'orgs' return ()
             case 'writings' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
             case 'works' return ()
             case 'places' return ()
             default return ()
@@ -365,15 +365,15 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
+                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
             case 'news' case 'biblio' return
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
             case 'persons' case 'orgs' return ()
             case 'writings' return
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
             case 'works' return ()
             case 'places' return ()
             default return ()
