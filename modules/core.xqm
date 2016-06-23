@@ -79,7 +79,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
             let $newIndex := 
                 if($cacheKey eq 'indices') then wdt:lookup($collName, $newColl)('init-sortIndex')()
                 else ()
-            let $sortedColl := core:sortColl($newColl, $collName, map { 'personID' := $cacheKey})
+            let $sortedColl := wdt:lookup($collName, $newColl)('sort')( map { 'personID' := $cacheKey} )
             let $setCache := 
                 (: Do not cache all collections. This will result in too much memory consumption :)
                 if(count($sortedColl) gt 250) then core:put-cache($collName, $cacheKey, $sortedColl)
@@ -123,18 +123,6 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
             $func($coll)('filter-by-person')($cacheKey)
         else if($cacheKey eq 'indices') then $coll
         else ()
-};
-
-(:~
- : Sort collection (helper function for core:getOrCreateColl)
- :
- : @author Peter Stadler 
- : @param $coll collection to be sorted
- : @return document-node()*
- :)
-declare function core:sortColl($coll as item()*, $collName as xs:string, $params as map()?) as document-node()* {
-    try { function-lookup(xs:QName('wdt:' || $collName), 1)($coll)('sort')($params) }
-    catch * { $coll, core:logToFile('error', 'core:sortColl(): failed to sort collection "' || $collName || '"' || ' &#10;' || string-join(($err:code, $err:description), ' &#10;'))}
 };
 
 (:~
