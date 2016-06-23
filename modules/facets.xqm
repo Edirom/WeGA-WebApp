@@ -48,12 +48,15 @@ declare
                     lang:get-language-string('all', $lang)
                 },
                 for $i in $selected 
+                let $display-term := facets:display-term($facet, $i, $lang)
                 order by $i
                 return
                     element option {
                         attribute selected {'selected'},
                         attribute value {$i},
-                        facets:display-term($facet, $i, $lang)
+                        (: mieser hack da der field-index nicht immer etwas findet und dann in den Facetten der Name leer bleibt … :)
+                        if($display-term) then $display-term
+                        else $facets:persons-norm-file//norm:entry[range:eq(@docID,$i)]
                     }
             }
 };
@@ -102,7 +105,9 @@ declare %private function facets:createFacets($nodes as node()*, $facet as xs:st
 ~:)
 declare %private function facets:display-term($facet as xs:string, $term as xs:string, $lang as xs:string) as xs:string {
     switch($facet)
-    case 'persons' case 'sender' case 'addressee' return 
+    case 'persons' case 'sender' case 'addressee' 
+    case 'dedicatees' case 'lyricists' case 'librettists' 
+    case 'composers' case 'authors' case 'editors' return 
         if(wdt:persons($term)('check')()) then str:normalize-space($facets:persons-norm-file//norm:entry[range:field-eq('norm-docID',$term)])
         else wdt:orgs($term)('label-facets')()
     case 'works' return wdt:works($term)('label-facets')()

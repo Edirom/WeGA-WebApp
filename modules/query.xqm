@@ -108,8 +108,8 @@ declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $month-day := concat('-', $month, '-', $day)
     return 
-        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[contains(@when, $month-day)][following::tei:text//tei:p] union
-        core:getOrCreateColl('persons', 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
+        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[range:field-contains('date-when', $month-day)][following::tei:text//tei:p] union
+        core:getOrCreateColl('persons', 'indices', true())//tei:date[range:contains(@when, $month-day)][not(preceding-sibling::tei:date[range:contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
 (:~
@@ -165,8 +165,8 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
 ~:)
 declare function query:get-facets($collection as node()*, $facet as xs:string) as item()* {
     switch($facet)
-    case 'sender' return $collection//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
-    case 'addressee' return $collection//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+    case 'sender' return $collection//tei:correspAction[range:eq(@type,'sent')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+    case 'addressee' return $collection//tei:correspAction[range:eq(@type,'received')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
     case 'placeOfSender' return $collection//tei:placeName[parent::tei:correspAction/@type='sent']
     case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:correspAction/@type='received']
@@ -183,7 +183,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
             probably need to change to ft:query() someday?!
         :)
     case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key)
-    case 'works' return ($collection//tei:workName[@key] | $collection//tei:rs[@type='work'][@key])/@key except ($collection//tei:workName[@key] | $collection//tei:rs[@type='work'][@key])/@key[contains(., ' ')]
+    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
