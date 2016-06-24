@@ -255,11 +255,12 @@ declare %private function search:date-filter($collection as document-node()*, $d
         case 'biblio' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             else if ($filter = 'fromDate') then ( 
-                $collection//tei:date[range:field-ge('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-to', $filters($filter))]
+                (: checking only the year for the lower threshold otherwise we'll miss date=1810 when checking 1810-01-01 :)
+                $collection//tei:date[range:field-ge('date-when', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-notBefore', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-notAfter', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-from', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-to', substring($filters($filter), 1, 4))]
                 )[parent::tei:imprint]/root()
             else ( 
                 $collection//tei:date[range:field-le('date-when', $filters($filter))] |
