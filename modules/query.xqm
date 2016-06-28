@@ -151,7 +151,7 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
         switch(config:get-doctype-by-id($docID))
         case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
         case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], false())
-        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
+        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, false())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
         default return () 
