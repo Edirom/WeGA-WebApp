@@ -13,6 +13,8 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
@@ -142,6 +144,20 @@ declare function wdt:letters($item as item()*) as map(*) {
                 return
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
+        },
+        'title' := function() as xs:string {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            return
+                string-join(
+                    wega-util:txtFromTEI(
+                        ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
+                    ),
+                    ''
+                )
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {

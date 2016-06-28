@@ -196,16 +196,19 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
 (:~
  : Creates a simple text version of a TEI document (or fragment)
  : by resolving choices, substitutions and removing notes
+ : (used for e.g. wordOfTheDay and letter titles)
 ~:)
 declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
     typeswitch($node)
-    case element() return 
-        switch(local-name($node))
-        case 'del' case 'note' return ()
-        default return $node/child::node() ! wega-util:txtFromTEI(.)
-    case text() return $node
+    case element(tei:del) return ()
+    case element(tei:note) return ()
+    case element(tei:lb) return '&#10;'
+    case element(tei:q) return (' &quot;', $node/child::node() ! wega-util:txtFromTEI(.), '&quot; ')
+    case text() return normalize-space($node)
     case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
-    default return ()
+    case processing-instruction() return ()
+    case comment() return ()
+    default return $node/child::node() ! wega-util:txtFromTEI(.)
 };
 
 (:~
