@@ -192,7 +192,7 @@ declare %private function search:exact-date($dates as xs:date*, $filters as map(
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else ()
-    let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates] ! core:doc(./@docID)
+    let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates ! string(.)] ! core:doc(./@docID)
     let $docs :=
         if($coll) then $coll intersect $date-search
         else $date-search
