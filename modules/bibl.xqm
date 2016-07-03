@@ -161,7 +161,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $journalTitle := <span class="journalTitle">{string-join($monogr/tei:title/str:normalize-space(.), '. ')}</span>
 (:    let $date := concat('(', $monogr/tei:imprint/tei:date, ')'):)
-    let $biblScope := bibl:biblScope($monogr/tei:imprint, $lang) (:concat(
+    let $biblScope := bibl:biblScope($monogr/tei:imprint[1], $lang) (:concat(
         if($monogr/tei:imprint/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'vol']) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'jg']) else (),
         if($monogr/tei:imprint/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $monogr/tei:imprint/tei:biblScope[@type = 'issue']) else (),
