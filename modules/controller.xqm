@@ -246,7 +246,8 @@ declare function controller:resolve-link($link as xs:string, $lang as xs:string)
 };
 
 declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:string, $targetLang as xs:string) as xs:string {
-    let $tokens := tokenize(functx:substring-after-match($uri, '/(de)|(en)/'), '/')
+    let $langRegex := '/(' || string-join($config:valid-languages, '|') || ')/'
+    let $tokens := tokenize(functx:substring-after-match($uri, $langRegex), '/')
     let $translated-tokens := 
         for $token in $tokens
         let $has-suffix := contains($token, '.')
