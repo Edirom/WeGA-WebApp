@@ -50,13 +50,19 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:placeName) return ct:place($node)
         case element(tei:settlement) return ct:place($node)
         case element(tei:date) return ct:date($node)
+        case element(tei:note) return 
+            element {QName(namespace-uri($node), local-name($node))} {
+                (: skip attributes due to danger of duplicate xml:ids – and we don't need them :)
+                ct:identity-transform-with-switches($node/node())
+            }
         case text() return $node
         case comment() return ()
         case processing-instruction() return ()
         case document-node() return ct:identity-transform-with-switches($node/node())
         default return
-            element {name($node)} {
+            element {QName(namespace-uri($node), local-name($node))} {
                 $node/@*,
+                if($node/self::tei:correspDesc) then attribute ref {'http://weber-gesamtausgabe.de/' || $node/ancestor::tei:TEI/@xml:id} else (),
                 ct:identity-transform-with-switches($node/node())
             }
 };
