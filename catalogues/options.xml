@@ -1,44 +1,6 @@
 <dictionary xml:id="wegaOptions">
-   <!--<div xml:id="collections">
-      <entry xml:id="persons" type="xs:string">/db/persons</entry>
-      <entry xml:id="letters" type="xs:string">/db/letters</entry>
-      <entry xml:id="diaries" type="xs:string">/db/diaries</entry>
-      <entry xml:id="writings" type="xs:string">/db/writings</entry>
-      <entry xml:id="news" type="xs:string">/db/news</entry>
-      <entry xml:id="iconography" type="xs:string">/db/iconography</entry>
-      <entry xml:id="works" type="xs:string">/db/works</entry>
-      <entry xml:id="var" type="xs:string">/db/var</entry>
-      <entry xml:id="biblio" type="xs:string">/db/biblio</entry>
-      <entry xml:id="weberStudies" type="xs:string">/db/biblio</entry>
-   </div>-->
-    <!--<div xml:id="collectionPredicates">
-        <entry xml:id="lettersPred">//tei:persName[@key = '%1'][(ancestor::tei:sender, ancestor::tei:addressee)]/root()</entry>
-        <entry xml:id="writingsPred">//tei:author[@key = '%1'][ancestor::tei:fileDesc]/root()</entry>
-        <entry xml:id="newsPred">//tei:author[@key = '%1'][ancestor::tei:fileDesc]/root()</entry>
-        <entry xml:id="diariesPred">[tei:ab]</entry>
-        <entry xml:id="worksPred">[.//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role=('cmp', 'lbt', 'lyr')]/@dbkey = '%1']</entry>
-        <entry xml:id="iconographyPred">//tei:person[@corresp = '%1']/root()</entry>
-        <entry xml:id="newsPredIndices">[not(tei:TEI/tei:ref)]</entry>
-        <entry xml:id="lettersPredIndices">[not(tei:TEI/tei:ref)]</entry>
-        <entry xml:id="writingsPredIndices">[not(tei:TEI/tei:ref)]</entry>
-        <entry xml:id="diariesPredIndices">[tei:ab]</entry>
-        <entry xml:id="personsPredIndices">[not(tei:person/tei:ref)]</entry>
-        <entry xml:id="iconographyPredIndices">[not(tei:TEI/tei:ref)]</entry>
-        <entry xml:id="worksPredIndices">[not(mei:mei/mei:ref)]</entry>
-        <entry xml:id="biblioPredIndices">[not(tei:biblStruct/tei:ref)]</entry>
-        <entry xml:id="placesPredIndices">[not(tei:place/tei:ref)]</entry>
-        <!-\-      <entry xml:id="weberStudiesPredIndices">//tei:TEI[not(./tei:ref)]</entry>-\->
-    </div>-->
     <div xml:id="htmlOptions">
-        <entry xml:id="listViewMaxRows" type="xs:int">7</entry>
-        <entry xml:id="bigPicDimensions" type="xs:int+">100,133</entry>
-        <entry xml:id="mediumPicDimensions" type="xs:int+">70,93</entry>
-        <entry xml:id="smallPicDimensions" type="xs:int+">40,53</entry>
-        <entry xml:id="digilibDir" type="xs:string">/digilib/servlet/Scaler?fn=</entry>
-        <entry xml:id="relativeTmpDir" type="xs:string">../tmp/</entry>
         <entry xml:id="html_sitemapDir" type="xs:string">sitemap</entry>
-        <entry xml:id="html_cssDir" type="xs:string">resources/css</entry>
-        <entry xml:id="html_jsDir" type="xs:string">resources/js</entry>
         <entry xml:id="figureHeight" type="xs:int">75</entry>
     </div>
     <div xml:id="dbPaths">
@@ -62,7 +24,6 @@
         <entry xml:id="bugEmail">bugs [@] weber-gesamtausgabe.de</entry>
         <entry xml:id="permaLinkPrefix">http://www.weber-gesamtausgabe.de</entry>
         <entry xml:id="iiifServer">https://euryanthe.de/digilib/Scaler/IIIF/</entry>
-        <entry xml:id="letterContextCache">letterContextCache</entry>
         <entry xml:id="environment">development</entry>
         <entry xml:id="facsimileWhiteList">D-B D-Hs</entry>
         <entry xml:id="maxNews">2</entry>
