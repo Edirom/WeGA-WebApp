@@ -19,9 +19,9 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </titleStmt>
             <publicationStmt>
                 <publisher>
-                    <ref target="http://weber-gesamtausgabe.de">Carl-Maria-von-Weber-Gesamtausgabe</ref>
+                    <ref target="{config:get-option('permaLinkPrefix')}">Carl-Maria-von-Weber-Gesamtausgabe</ref>
                 </publisher>
-                <idno type="url">http://weber-gesamtausgabe.de/correspDesc.xml</idno>
+                <idno type="url">{config:get-option('permaLinkPrefix')}/correspDesc.xml</idno>
                 <date when="{current-dateTime()}"/>
                 <availability>
                     <licence target="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</licence>
@@ -30,7 +30,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </publicationStmt>
             <sourceDesc>
                 <bibl type="online">
-                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="http://www.weber-gesamtausgabe.de">http://www.weber-gesamtausgabe.de</ref> (Version {config:get-option('version')} vom {date:strfdate(xs:date(config:get-option('versionDate')), 'de', '%d. %B %Y')})
+                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="{config:get-option('permaLinkPrefix')}">{config:get-option('permaLinkPrefix')}</ref> (Version {config:get-option('version')} vom {date:strfdate(xs:date(config:get-option('versionDate')), 'de', '%d. %B %Y')})
                 </bibl>
             </sourceDesc>
         </fileDesc>
@@ -62,7 +62,7 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         default return
             element {QName(namespace-uri($node), local-name($node))} {
                 $node/@*,
-                if($node/self::tei:correspDesc) then attribute ref {'http://weber-gesamtausgabe.de/' || $node/ancestor::tei:TEI/@xml:id} else (),
+                if($node/self::tei:correspDesc) then attribute ref {config:get-option('permaLinkPrefix') || '/' || $node/ancestor::tei:TEI/@xml:id} else (),
                 ct:identity-transform-with-switches($node/node())
             }
 };
