@@ -49,7 +49,7 @@ declare variable $config:tmp-collection-path as xs:string := $config:app-root ||
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
 
-declare variable $config:isDevelopment as xs:boolean := config:get-option('environment') eq 'development';
+declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
 declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
@@ -123,14 +123,18 @@ declare %templates:wrap function config:app-title($node as node(), $model as map
  :  
  : @author Peter Stadler
  : @param $key the key to look for in the options file
- : @return xs:string the option value as string identified by the key otherwise the empty string
+ : @return xs:string the option value as string identified by the key otherwise the empty sequence
  :)
-declare function config:get-option($key as xs:string?) as xs:string {
-    switch ($key)
-        (: this serves as a shortcut for legacy code :)
-        (: Please use core:link-to-current-app() directly! :)
-        case 'baseHref' return core:link-to-current-app(())
-        default return str:normalize-space($config:options-file/id($key))
+declare function config:get-option($key as xs:string?) as xs:string? {
+    let $result :=
+        switch ($key)
+            (: this serves as a shortcut for legacy code :)
+            (: Please use core:link-to-current-app() directly! :)
+            case 'baseHref' return core:link-to-current-app(())
+            default return str:normalize-space($config:options-file/id($key))
+    return
+        if($result) then $result
+        else core:logToFile('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
 };
 
 (:~
