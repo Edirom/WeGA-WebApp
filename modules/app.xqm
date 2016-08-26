@@ -1107,7 +1107,7 @@ declare
                       <tei:country>D</tei:country>
                       <tei:settlement>Berlin</tei:settlement>
                       <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
-                      <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber 1</tei:idno>
+                      <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber WFN 1</tei:idno>
                    </tei:msIdentifier>
                 </tei:msDesc>
             default return $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
