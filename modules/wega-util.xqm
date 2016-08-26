@@ -204,7 +204,7 @@ declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
     case element(tei:note) return ()
     case element(tei:lb) return '&#10;'
     case element(tei:q) return (' &quot;', $node/child::node() ! wega-util:txtFromTEI(.), '&quot; ')
-    case text() return normalize-space($node)
+    case text() return $node
     case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
     case processing-instruction() return ()
     case comment() return ()
