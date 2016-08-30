@@ -91,28 +91,33 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $wikiArticle := 
         if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
-    let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
+    (: Look for images in wikipedia infobox (for organizations) and thumbnails  :)
+    let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
     return 
         for $div in $pics
-        let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
+        let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img/@src
         let $thumbURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
             if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
+        let $tmpLinkTarget := $div/xhtml:a/@href | $div[self::xhtml:table]//xhtml:a[xhtml:img]/@href
         let $linkTarget := 
             (: Create a link to Wikipedia, e.g. https://de.wikipedia.org/wiki/Datei:Constanze_mozart.jpg :)
             (: NB, not all images are found at wikimedia commons due to copyright issues :)
             switch($lang) 
-            case 'de' return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://de.wikipedia.org/wiki/Datei:'), '&amp;')
-            default return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://en.wikipedia.org/wiki/File:'), '&amp;')
+            case 'de' return functx:substring-before-if-contains(replace($tmpLinkTarget, '.+:', 'https://de.wikipedia.org/wiki/Datei:'), '&amp;')
+            default return functx:substring-before-if-contains(replace($tmpLinkTarget, '.+:', 'https://en.wikipedia.org/wiki/File:'), '&amp;')
         (:  Wikimedia IIIF
             siehe https://groups.google.com/forum/?hl=en#!topic/iiif-discuss/UTD181dxKtU
             https://github.com/Toollabs/zoomviewer
         :)
+        let $caption := 
+            if($div[self::xhtml:table]) then $div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr[1] 
+            else $div/xhtml:div[@class='thumbcaption']
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
-                    'caption' := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
                     'linkTarget' := $linkTarget,
                     'source' := 'Wikimedia',
                     'url' := function($size) {
