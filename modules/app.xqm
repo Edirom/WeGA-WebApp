@@ -679,6 +679,20 @@ declare
         date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang)
 };
 
+declare 
+    %templates:default("lang", "en")
+    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(option)* {
+        <option value="all">{lang:get-language-string('all', $lang)}</option>,
+        for $docType in $search:wega-docTypes
+        let $displayTitle := lang:get-language-string($docType, $lang)
+        order by $displayTitle
+        return
+            element {name($node)} {
+                attribute value {$docType},
+                $displayTitle
+            }
+};
+
 (:
  : ****************************
  : Person pages
