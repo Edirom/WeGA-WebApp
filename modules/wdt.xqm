@@ -525,6 +525,38 @@ declare function wdt:sources($item as item()*) as map(*) {
     }
 };
 
+declare function wdt:thematicCommentaries($item as item()*) as map(*) {
+    map {
+        'name' := 'thematicCommentaries',
+        'prefix' := 'A074',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A074\d{3}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item/root()/descendant::tei:text[range:eq(@type, 'thematicCom')]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            $item
+        },
+        'init-collection' := function() as document-node()* {
+            core:data-collection('var')/descendant::tei:text[@type='thematicCom']/root()
+        },
+        'init-sortIndex' := function() as item()* {
+            ()
+        },
+        'memberOf' := ('search', 'indices', 'sitemap'),
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]/tei:TEI[ft:query(., $query)]
+        }
+    }
+};
+
 declare function wdt:contacts($item as item()*) as map(*) {
     map {
         'name' := 'contacts',
