@@ -1045,8 +1045,7 @@ declare
             case 'letters' return doc(concat($config:xsl-collection-path, '/letters.xsl'))
             case 'news' case 'writings' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
-            case 'var' return doc(concat($config:xsl-collection-path, '/var.xsl'))
-            default return ()
+            default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
         let $xslt2 :=
             switch($docType)
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl'))
