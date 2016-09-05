@@ -528,9 +528,9 @@ declare function wdt:sources($item as item()*) as map(*) {
 declare function wdt:thematicCommentaries($item as item()*) as map(*) {
     map {
         'name' := 'thematicCommentaries',
-        'prefix' := 'A074',
+        'prefix' := 'A29',
         'check' := function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A074\d{3}$')
+            if($item castable as xs:string) then matches($item, '^A29\d{4}$')
             else false()
         },
         'filter' := function() as document-node()* {
@@ -543,7 +543,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             $item
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('var')/descendant::tei:text[@type='thematicCom']/root()
+            core:data-collection('thematicCommentaries')/descendant::tei:text[@type='thematicCom']/root()
         },
         'init-sortIndex' := function() as item()* {
             ()
