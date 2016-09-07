@@ -8,19 +8,31 @@
     <xsl:param name="collapseBlock" select="false()"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space
-        elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName"/>
+    <xsl:preserve-space elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="tei:text">
+    <!-- wir nie benutzt, oder?! -->
+    <!--<xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'docText'"/>
             <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
+    </xsl:template>-->
+    
+    <xsl:template match="tei:body">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:back">
+        <xsl:apply-templates/>
+        <xsl:if test="//tei:note">
+            <xsl:call-template name="createEndnotesFromNotes"/>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:divGen[@type='toc']">
@@ -166,6 +178,13 @@
             </xsl:choose>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:note">
+        <xsl:element name="span">
+            <xsl:attribute name="class">tei_hi_superscript</xsl:attribute>
+            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body]) + 1"/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- Create section numbers for headings   -->
     <xsl:template name="createSecNo">
@@ -221,6 +240,21 @@
         <xsl:element name="span">
             <xsl:attribute name="class" select="'para-label'"/>
             <xsl:value-of select="concat('§ ', $no)"/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template name="createEndnotesFromNotes">
+        <xsl:element name="div">
+            <xsl:attribute name="id" select="'endNotes'"/>
+            <xsl:element name="h3">Endnotes</xsl:element>
+            <xsl:element name="ul">
+                <xsl:for-each select="//tei:note">
+                    <xsl:element name="li">
+                        <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
 
