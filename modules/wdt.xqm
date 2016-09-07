@@ -528,9 +528,9 @@ declare function wdt:sources($item as item()*) as map(*) {
 declare function wdt:thematicCommentaries($item as item()*) as map(*) {
     map {
         'name' := 'thematicCommentaries',
-        'prefix' := 'A29',
+        'prefix' := 'A09',
         'check' := function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A29\d{4}$')
+            if($item castable as xs:string) then matches($item, '^A09\d{4}$')
             else false()
         },
         'filter' := function() as document-node()* {
