@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="WeGA-WebApp-testing" default="diff">
+    
+    <property name="results.dir" value="${tmp.dir}/results"/>
+    
+    <target name="reset-expected-results">
+        <delete dir="${expected.results.dir}/${docType}"/>
+        <get dest="${expected.results.dir}/${docType}">
+            <resourcelist>
+                <file file="testing/urls/${docType}.txt"/>
+            </resourcelist>
+        </get>
+    </target>
+    
+    <target name="create-result-URLs" depends="init">
+        <copy file="testing/urls/${docType}.txt" tofile="${tmp.dir}/${docType}.txt" overwrite="true"/>
+        <!--<replace file="${tmp.dir}/letters.txt" token="http://www.weber-gesamtausgabe.de" value="http://localhost:8080/exist/apps/WeGA-WebApp"/>-->
+    </target>
+    
+    <target name="get-results" depends="create-result-URLs">
+        <delete dir="${tmp.dir}/results.raw/${docType}"/>
+        <get dest="${tmp.dir}/results.raw/${docType}">
+            <resourcelist>
+                <file file="${tmp.dir}/${docType}.txt"/>
+            </resourcelist>
+        </get>
+    </target>
+    
+    <target name="diff">
+        <xslt processor="trax" style="testing/flatten.xsl" basedir="${expected.results.dir}/${docType}" destdir="${tmp.dir}/expected.results.processed/${docType}"/>
+        <xslt processor="trax" style="testing/flatten.xsl" basedir="${tmp.dir}/results.raw/${docType}" destdir="${tmp.dir}/results.processed/${docType}"/>
+        <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
+        <exec executable="${bash.command}" output="${diff.out}">
+            <arg value="-c"/>
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node bower_components/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot;  ; done"/>
+            <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
+            <env key="LANG" value="C"/>
+        </exec>
+        <loadfile property="message" srcFile="${diff.out}"/>
+        <echo>${message}</echo>
+        <echo>Logfile at ${diff.out}</echo>
+    </target>
+    
+</project>

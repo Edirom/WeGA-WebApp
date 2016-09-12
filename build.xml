@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="xar" name="WeGA-WebApp">
+<project default="xar" name="WeGA-WebApp" xmlns:unless="ant:unless">
     
     <!-- import default properties from file -->
     <property file="local.build.properties"/>
     <property file="build.properties"/>
+    
+    <!-- import ANT file for tests -->
+    <import file="testing/ant-testing.xml"/>
     
     <target name="all" depends="xar"/>
     <target name="rebuild" depends="clean,all"/>
@@ -22,6 +25,12 @@
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <target name="test" if="docType">
+        <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
+        <antcall target="get-results"/>
+        <antcall target="diff"/>
     </target>
     
     <target name="download-smufl-font" depends="init">
@@ -177,4 +186,6 @@
             )
         </xdb:xquery>
     </target>
+    
+    
 </project>
