@@ -32,12 +32,15 @@
         <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
         <exec executable="${bash.command}" output="${diff.out}">
             <arg value="-c"/>
-            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node bower_components/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot;  ; done"/>
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node bower_components/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
             <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
             <env key="LANG" value="C"/>
         </exec>
-        <loadfile property="message" srcFile="${diff.out}"/>
-        <echo>${message}</echo>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="grep -A 2 -B 11 &quot;\[32m&quot; ${diff.out}"/>
+            <env key="LANG" value="C"/>
+        </exec>
         <echo>Logfile at ${diff.out}</echo>
     </target>
     

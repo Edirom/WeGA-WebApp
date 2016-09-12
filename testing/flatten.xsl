@@ -21,6 +21,9 @@
                 <xsl:when test="contains(., 'digilib')">
                     <xsl:value-of select="replace(., '.*/digilib', '/digilib')"/>
                 </xsl:when>
+                <xsl:when test="matches(., '#[a-f0-9]+')">
+                    <xsl:value-of select="'some_computed_id'"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="replace(., '/exist/apps/WeGA-WebApp', '')"/>
                 </xsl:otherwise>
@@ -54,6 +57,7 @@
     </xsl:template>
     
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
+    <!--<xsl:template match="html:li[normalize-space(.)='Themenkommentare']"/>-->
     
     <xsl:template match="@id"/>
     <xsl:template match="@data-ref"/>
