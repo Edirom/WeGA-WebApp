@@ -26,7 +26,17 @@
         </get>
     </target>
     
-    <target name="diff">
+    <target name="check-prettydiff">
+        <condition property="prettydiff.available" value="true">
+            <length file="bower_components/prettydiff/api/node-local.js" when="ne" length="0" />
+        </condition>
+    </target>
+    
+    <target name="update-prettydiff" depends="check-prettydiff" unless="prettydiff.available">
+        <antcall target="bower"/>
+    </target>
+    
+    <target name="diff" depends="update-prettydiff">
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${expected.results.dir}/${docType}" destdir="${tmp.dir}/expected.results.processed/${docType}"/>
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${tmp.dir}/results.raw/${docType}" destdir="${tmp.dir}/results.processed/${docType}"/>
         <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
@@ -36,12 +46,19 @@
             <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
             <env key="LANG" value="C"/>
         </exec>
-        <exec executable="${bash.command}">
+        <exec executable="${bash.command}" outputproperty="grep.out">
             <arg value="-c"/>
             <arg value="grep -A 2 -B 11 &quot;\[32m&quot; ${diff.out}"/>
             <env key="LANG" value="C"/>
         </exec>
+        <echo>${grep.out}</echo>
         <echo>Logfile at ${diff.out}</echo>
+        <fail>
+            <condition>
+                <length string="${grep.out}" trim="true" when="greater" length="0"/>
+            </condition>
+            Mismatch with expected results
+        </fail>
     </target>
     
 </project>

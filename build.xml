@@ -41,7 +41,7 @@
     
     <target name="bower" depends="init">
         <description>Update javascript libraries via bower</description>
-        <exec executable="${bower.cmd}">
+        <exec executable="${bower.cmd}" failonerror="yes">
             <arg value="update"/>
         </exec>
     </target>
