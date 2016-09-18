@@ -61,4 +61,16 @@
         </fail>
     </target>
     
+    <macrodef name="regressiontest">
+        <attribute name="doctype"/>
+        <sequential>
+            <antcall target="get-results">
+                <param name="docType" value="@{doctype}"/>
+            </antcall>
+            <antcall target="diff">
+                <param name="docType" value="@{doctype}"/>
+            </antcall>
+        </sequential>
+    </macrodef>
+    
 </project>

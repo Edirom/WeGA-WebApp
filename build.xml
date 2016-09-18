@@ -27,10 +27,12 @@
         <mkdir dir="${dist.dir}"/>
     </target>
     
-    <target name="test" if="docType">
+    <target name="test">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
-        <antcall target="get-results"/>
-        <antcall target="diff"/>
+        <regressiontest doctype="letters"/>
+        <regressiontest doctype="persons"/>
+        <regressiontest doctype="diaries"/>
+        <regressiontest doctype="var"/>
     </target>
     
     <target name="download-smufl-font" depends="init">
