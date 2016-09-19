@@ -1505,7 +1505,7 @@ declare
 
 declare function app:register-dispatch($node as node(), $model as map(*)) {
     switch($model('docType'))
-    case 'persons' return templates:include($node, $model, 'templates/ajax/contacts.html')
+    case 'persons' case 'personsPlus' return templates:include($node, $model, 'templates/ajax/contacts.html')
     case 'letters' return templates:include($node, $model, 'templates/ajax/correspondence.html')
     default return templates:include($node, $model, 'templates/ajax/' || $model('docType') || '.html')
 };
