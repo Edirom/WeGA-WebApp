@@ -57,6 +57,7 @@
     </xsl:template>
     
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
+    <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
     <!--<xsl:template match="html:li[normalize-space(.)='Themenkommentare']"/>-->
     
     <xsl:template match="@id"/>
