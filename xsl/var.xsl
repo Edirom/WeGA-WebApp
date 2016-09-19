@@ -38,7 +38,7 @@
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="tei:divGen[@type='endnotes']">
+    <xsl:template match="tei:divGen[@type='endNotes']">
         <xsl:call-template name="createEndnotesFromNotes"/>
     </xsl:template>
 
@@ -225,11 +225,21 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
+                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat('#', generate-id())"/>
+                                <xsl:choose>
+                                    <xsl:when test="parent::tei:div[@xml:id]">
+                                        <xsl:value-of select="concat('#', parent::tei:div/@xml:id)"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::tei:divGen">
+                                        <xsl:value-of select="concat('#', @type)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat('#', generate-id())"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:attribute>
                             <xsl:if test="$createSecNos">
                                 <xsl:call-template name="createSecNo">
@@ -238,7 +248,14 @@
                                 </xsl:call-template>
                                 <xsl:text> </xsl:text>
                             </xsl:if>
-                            <xsl:value-of select="."/>
+                            <xsl:choose>
+                                <xsl:when test="self::tei:divGen">
+                                    <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                     </xsl:element>
                 </xsl:for-each>
@@ -258,7 +275,9 @@
     <xsl:template name="createEndnotesFromNotes">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'endNotes'"/>
-            <xsl:element name="h2">Einzelnachweise</xsl:element>
+            <xsl:element name="h2">
+                <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+            </xsl:element>
             <xsl:element name="ol">
                 <xsl:attribute name="class">endNotes</xsl:attribute>
                 <xsl:for-each select="//tei:note">
