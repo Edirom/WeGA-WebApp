@@ -360,7 +360,7 @@ declare function wdt:news($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
         },
-        'memberOf' := ('search', 'sitemap'),
+        'memberOf' := ('search', 'sitemap', 'indices'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)]
@@ -456,7 +456,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                     tokenize($node//tei:author, '\s+')[last()]
                 }, ())
         },
-        'memberOf' := 'search',
+        'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
             $item[tei:biblStruct]//tei:biblStruct[ft:query(., $query)] | 
             $item[tei:biblStruct]//tei:title[ft:query(., $query)] | 
