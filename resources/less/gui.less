@@ -61,6 +61,20 @@
     font-family: 'CamingoDos-Regular';
 }
 
+.popover-content .endnote_backlink {
+    display:none;
+}
+
+ol.endNotes {
+    margin:0px;
+}
+
+/* hanging indent for bibliographies*/
+.bibliography li {
+    text-indent:-2em;
+    padding-left:2em;
+}
+
 /* adds space between work title and opus number  */
 .popover-title span {
     margin-right: .5em;
@@ -141,6 +155,13 @@ a.noteMarker
     padding: 0px 2px;
     margin-left: 2px;
     color:#fff;
+    &.arabic {
+        background-color: inherit;
+        padding: 0px 1px;
+        margin-left: 0px;
+        color:@brand-primary;
+        .tei_hi_superscript;
+    }
 }
 .documentFooter {
     font-size: 85%;

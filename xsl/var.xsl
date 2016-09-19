@@ -30,15 +30,16 @@
     
     <xsl:template match="tei:back">
         <xsl:apply-templates/>
-        <xsl:if test="//tei:note">
-            <xsl:call-template name="createEndnotesFromNotes"/>
-        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:divGen[@type='toc']">
         <xsl:call-template name="createToc">
             <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:divGen[@type='endnotes']">
+        <xsl:call-template name="createEndnotesFromNotes"/>
     </xsl:template>
 
     <xsl:template match="tei:div">
@@ -180,9 +181,20 @@
     </xsl:template>
     
     <xsl:template match="tei:note">
-        <xsl:element name="span">
-            <xsl:attribute name="class">tei_hi_superscript</xsl:attribute>
-            <xsl:value-of select="count(preceding::tei:note[ancestor::tei:body]) + 1"/>
+        <xsl:call-template name="popover">
+            <xsl:with-param name="marker" select="'arabic'"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:listBibl">
+        <xsl:element name="ul">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:bibl[parent::tei:listBibl]">
+        <xsl:element name="li">
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
@@ -246,11 +258,17 @@
     <xsl:template name="createEndnotesFromNotes">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'endNotes'"/>
-            <xsl:element name="h3">Endnotes</xsl:element>
-            <xsl:element name="ul">
+            <xsl:element name="h2">Einzelnachweise</xsl:element>
+            <xsl:element name="ol">
+                <xsl:attribute name="class">endNotes</xsl:attribute>
                 <xsl:for-each select="//tei:note">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:element name="a">
+                            <xsl:attribute name="class">endnote_backlink</xsl:attribute>
+                            <xsl:attribute name="href" select="concat('#ref-', @xml:id)"/>
+                            <xsl:value-of select="position()"/>
+                        </xsl:element>
                         <xsl:apply-templates/>
                     </xsl:element>
                 </xsl:for-each>
