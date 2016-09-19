@@ -358,7 +358,7 @@ declare function wdt:news($item as item()*) as map(*) {
             core:data-collection('news')[descendant::tei:text]
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
+            wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
         },
         'memberOf' := ('search', 'sitemap'),
         'search' := function($query as element(query)) {
