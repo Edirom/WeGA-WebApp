@@ -288,7 +288,8 @@ declare function wdt:works($item as item()*) as map(*) {
                 functx:pad-integer-to-length(($node//mei:seriesStmt/mei:title[@level])[1]/xs:int(@n), 4) || 
                 $node//mei:altId[@type = 'WeV']/string(@subtype) || 
                 functx:pad-integer-to-length($node//mei:altId[@type = 'WeV']/xs:int(@n), 4) || 
-                $node//mei:altId[@type = 'WeV']/string()
+                $node//mei:altId[@type = 'WeV']/string() || 
+                ($node//mei:title)[1]
             }, ())
         },
         'title' := $title,
@@ -357,7 +358,7 @@ declare function wdt:news($item as item()*) as map(*) {
             core:data-collection('news')[descendant::tei:text]
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
+            wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
         },
         'memberOf' := ('search', 'sitemap'),
         'search' := function($query as element(query)) {
@@ -448,7 +449,12 @@ declare function wdt:biblio($item as item()*) as map(*) {
             core:data-collection('biblio')[descendant::tei:monogr]
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('biblio', wdt:biblio(())('init-collection')(), function($node) { string(query:get-normalized-date($node)) }, ())
+            wdt:create-index-callback('biblio', wdt:biblio(())('init-collection')(), function($node) { 
+                let $date := query:get-normalized-date($node)
+                return
+                    (if(exists($date)) then $date else '0000') ||
+                    tokenize($node//tei:author, '\s+')[last()]
+                }, ())
         },
         'memberOf' := 'search',
         'search' := function($query as element(query)) {

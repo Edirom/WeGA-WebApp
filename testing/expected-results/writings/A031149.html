@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" />
+        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Städteverzeichnis für reisende Tonkünstler (nach Jähns-Katalog)</title>
+        
+        <meta name="DC.title" content="Städteverzeichnis für reisende Tonkünstler (nach Jähns-Katalog)" />
+        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
+        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
+        <meta name="DC.contributor" content="Carl Maria von Weber" />
+        <meta name="DC.contributor" content="Veit, Joachim" />
+        <meta name="DC.contributor" content="Stadler, Peter" />
+        <meta name="DC.creator" content="Peter Stadler" />
+        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
+        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031149" />
+        <meta name="DC.description" content="Weber listet hier verschiedene Städte Deutschlands und des Auslands auf, die er mit in sein Noth- und Hülfsbüchlein aufnehmen möchte" />
+        <meta name="description" content="Weber listet hier verschiedene Städte Deutschlands und des Auslands auf, die er mit in sein Noth- und Hülfsbüchlein aufnehmen möchte" />
+        <meta name="DC.subject" content="Historic Newspaper; Writing" />
+        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
+        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
+        <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
+        <meta name="robots" content="noimageindex" />
+        
+        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0066cc" />
+        <meta name="msapplication-TileColor" content="#2d89ef" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
+        
+        
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+
+    </head>
+    <body>
+        <nav role="navigation" class="navbar navbar-default">
+            <div class="container">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header col-md-3 navbar-right">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                        </a>
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                        <ul class="nav navbar-nav">
+
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            </li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            </li>
+                           <li id="project-nav">
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <!--<li>
+                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
+                                    </li>-->
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="help-nav">
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="divider"></li>
+                            <li>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li class="divider"></li>
+                            <li class="active"><a href="#">De</a>
+                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031149.html">En</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="document">Städteverzeichnis für reisende Tonkünstler (nach Jähns-Katalog)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="colored borderBottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ol class="breadcrumb">
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
+                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
+                        </li>
+                        <li><span>A031149</span> <span class="docStatus">in Bearbeitung</span>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                    <i class="fa fa-arrow-left"></i>
+                    <span>Zurück</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container documentText paddingTopIcon paddingBottomIcon">
+        <div class="row">
+            <div class="col-md-3 col-md-push-9">
+                
+                <div class="allFilter">
+                    
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <div id="dokument" class="panel-collapse collapse">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
+                                
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
+                                
+                                <li class="gradient-light"><a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031149/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031149.xml">XML-Download</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <div class="panel-collapse collapse" id="places">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6510998101114103" /> <span title="Amberg">Amberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="651101151129799104" /> <span title="Anspach">Anspach</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6511497117" /> <span title="Arau">Arau</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6511710311598117114103" /> <span title="Augsburg">Augsburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="669710998101114103" /> <span title="Bamberg">Bamberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6697115101108" /> <span title="Basel">Basel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6697121114101117116104" /> <span title="Bayreuth">Bayreuth</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66101114110" /> <span title="Bern">Bern</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6610111411046" /> <span title="Bern.">Bern.</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66105101108101102101108100" /> <span title="Bielefeld">Bielefeld</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="661149711010010111098117114103" /> <span title="Brandenburg">Brandenburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="661149711711011599104119101105103" /> <span title="Braunschweig">Braunschweig</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66114101109101110" /> <span title="Bremen">Bremen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6611410111510897117" /> <span title="Breslau">Breslau</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66114252110110" /> <span title="Brünn">Brünn</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="66117100105223105110" /> <span title="Budißin">Budißin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6797114108115114117104101" /> <span title="Carlsruhe">Carlsruhe</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6797115115101108" /> <span title="Cassel">Cassel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="67104101109110105116122" /> <span title="Chemnitz">Chemnitz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6711198117114103" /> <span title="Coburg">Coburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="67114111115115101110" /> <span title="Crossen">Crossen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="689711410911511697100116" /> <span title="Darmstadt">Darmstadt</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="691051151011109799104" /> <span title="Eisenach">Eisenach</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="69114102117114116" /> <span title="Erfurt">Erfurt</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="69117116105110" /> <span title="Eutin">Eutin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="70114101105981171141033210546326611446" /> <span title="Freiburg i. Br.">Freiburg i. Br.</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7011410112198101114103" /> <span title="Freyberg">Freyberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7011410598111117114103" /> <span title="Fribourg">Fribourg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7011412198117114103" /> <span title="Fryburg">Fryburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="71101110102" /> <span title="Genf">Genf</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="71105101115101110" /> <span title="Giesen">Giesen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="71105101223101110" /> <span title="Gießen">Gießen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7111111610497" /> <span title="Gotha">Gotha</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="71114111223101110" /> <span title="Großen">Großen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7297108108101" /> <span title="Halle">Halle</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7297110111118101114" /> <span title="Hanover">Hanover</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7210110510010110898101114103" /> <span title="Heidelberg">Heidelberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="721051081009811711410310497117115101110" /> <span title="Hildburghausen">Hildburghausen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="721051141159910498101114103" /> <span title="Hirschberg">Hirschberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="72111102" /> <span title="Hof">Hof</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7311011598114117107" /> <span title="Insbruk">Insbruk</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7410111097" /> <span title="Jena">Jena</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7597114108115114117104101" /> <span title="Karlsruhe">Karlsruhe</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7597223101108" /> <span title="Kaßel">Kaßel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7511198117114103" /> <span title="Koburg">Koburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="769711711597110110101" /> <span title="Lausanne">Lausanne</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="76105101103110105116122" /> <span title="Liegnitz">Liegnitz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="76105110122" /> <span title="Linz">Linz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7625298101107" /> <span title="Lübek">Lübek</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="76117122101114110" /> <span title="Luzern">Luzern</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="779710310010198117114103" /> <span title="Magdeburg">Magdeburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7797105110122" /> <span title="Mainz">Mainz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="77101105110117110103101110" /> <span title="Meinungen">Meinungen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="77105110100101110" /> <span title="Minden">Minden</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7810111710299104226116101108" /> <span title="Neufchâtel">Neufchâtel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="78101117102115991049799104116101108" /> <span title="Neufschachtel">Neufschachtel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7825211411098101114103" /> <span title="Nürnberg">Nürnberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7910110010111497110" /> <span title="Oederan">Oederan</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="79108108109252116122" /> <span title="Ollmütz">Ollmütz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="79108108109252122" /> <span title="Ollmüz">Ollmüz</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="809710010111498111114110" /> <span title="Paderborn">Paderborn</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="809722397117" /> <span title="Paßau">Paßau</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="80105108115101110" /> <span title="Pilsen">Pilsen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="82101103101110115112117114103" /> <span title="Regenspurg">Regenspurg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="82111114115991049799104" /> <span title="Rorschach">Rorschach</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8358327197108108101110" /> <span title="S: Gallen">S: Gallen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="839710812298117114103" /> <span title="Salzburg">Salzburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="83991049710210497117115101110" /> <span title="Schafhausen">Schafhausen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="839910410910510110010198101114103" /> <span title="Schmiedeberg">Schmiedeberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8399104119101114105110" /> <span title="Schwerin">Schwerin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="83111108111116104117114110" /> <span title="Solothurn">Solothurn</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="831161149722398117114103" /> <span title="Straßburg">Straßburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="85108109" /> <span title="Ulm">Ulm</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8710110510997114" /> <span title="Weimar">Weimar</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="87105110116101114116104117114" /> <span title="Winterthur">Winterthur</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8710511611610111098101114103" /> <span title="Wittenberg">Wittenberg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="8725211412298117114103" /> <span title="Würzburg">Würzburg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="90101108108101" /> <span title="Zelle">Zelle</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="9025211499104" /> <span title="Zürch">Zürch</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-md-pull-3">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active fade in" id="transcription">
+                        <div class="teiDoc_body">
+                                    <div class="docPart"><span class="lg"><span class="verseLine"><span class=" 729710998117114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Hamburg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e7">‡</a></span></span></span>. <span class=" 7625298101107"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Lübek</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e13">‡</a></span></span></span>. <span class=" 69117116105110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Eutin</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e19">‡</a></span></span></span>. <span class=" 8399104119101114105110"><span class="tei_settlement"><span class="tei_hi_underline1">Schwerin</span></span></span>. <span class=" 66101114108105110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Berlin</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e30">‡</a></span></span></span>. <span class=" 66114101109101110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Bremen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e36">‡</a></span></span></span></span><span class="verseLine"><span class=" 90101108108101"><span class="tei_settlement"><span class="tei_hi_underline1">Zelle</span></span></span>. <span class=" 7297110111118101114"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Hanover</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e47">‡</a></span></span></span>. <span class=" 661149711010010111098117114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Brandenburg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e53">‡</a></span></span></span>. <span class=" 77105110100101110"><span class="tei_settlement"><span class="tei_hi_underline1">Minden</span></span></span>. <span class=" 66105101108101102101108100"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Bielefeld</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e64">‡</a></span></span></span></span><span class="verseLine"><span class=" 661149711711011599104119101105103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Braunschweig</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e70">‡</a></span></span></span>, <span class=" 779710310010198117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Magdeburg</span></span></span>. <span class=" 809710010111498111114110"><span class="tei_settlement"><span class="tei_hi_underline1">Paderborn</span></span></span>. <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Cassel</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e87">‡</a></span></span></span></span>. <span class="tei_hi_latintype"><span class=" 8710511611610111098101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Wittenb<span class="tei_supplied" id="d8181e96">[er]</span>g</span></span></span></span></span><span class="verseLine"><span class=" 7297108108101"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Halle</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e102">‡</a></span></span></span>. <span class=" 76101105112122105103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Leipzig</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e108">‡</a></span></span></span>. <span class=" 68114101115100101110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Dresden</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e114">‡</a></span></span></span>. <span class="tei_choice"><span class="tei_corr"><span class=" 67114111115115101110"><span class="tei_settlement">Crossen</span></span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e118">‡</a></span><span class="tei_add tei_hi_superscript"><span class=" 66117100105223105110"><span class="tei_settlement"><span class="tei_hi_underline1">Budißin</span></span></span>. <span class=" 839910410910510110010198101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Schmiedeberg</span></span></span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e129">‡</a></span><span class=" 76105101103110105116122"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Liegnitz</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e142">‡</a></span></span></span>. <span class="tei_add tei_hi_subscript"><span class=" 721051141159910498101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Hirschberg</span></span></span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e146">‡</a></span><span class=" 6611410111510897117"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Breslau</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e155">‡</a></span></span></span></span><span class="verseLine"><span class=" 69114102117114116"><span class="tei_settlement"><span class="tei_hi_underline1">Erfurt</span></span></span>. <span class=" 8710110510997114"><span class="tei_settlement"><span class="tei_hi_underline1">Weimar</span></span></span>. <span class=" 7410111097"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Jena</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e171">‡</a></span></span></span>. <span class=" 67104101109110105116122"><span class="tei_settlement"><span class="tei_hi_underline1">Chemnitz</span></span></span>. <span class=" 7910110010111497110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Oederan</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e182">‡</a></span></span></span>.</span><span class="verseLine"><span class=" 7011410112198101114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Freyberg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e189">‡</a></span></span></span>. <span class=" 7111111610497"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Gotha</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e195">‡</a></span></span></span>. <span class=" 691051151011109799104"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Eisenach</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e201">‡</a></span></span></span>. <span class=" 71105101115101110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Giesen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e207">‡</a></span></span></span>. <span class=" 77101105110117110103101110"><span class="tei_settlement"><span class="tei_hi_underline1">Meinungen</span></span></span></span><span class="verseLine"><span class=" 721051081009811711410310497117115101110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Hildburghausen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e218">‡</a></span></span></span>. <span class="tei_hi_latintype"><span class=" 6711198117114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Coburg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e225">‡</a></span></span></span></span>. <span class=" 72111102"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Hof</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e231">‡</a></span></span></span>. <span class=" 6697121114101117116104"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Bayreuth</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e237">‡</a></span></span></span>. <span class=" 669710998101114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Bamberg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e243">‡</a></span></span></span>.</span><span class="verseLine"><span class=" 7011497110107102117114116"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Frankfurt</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e250">‡</a></span></span></span>. <span class=" 7797105110122"><span class="tei_settlement"><span class="tei_hi_underline1">Mainz</span></span></span>. <span class=" 689711410911511697100116"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Darmstadt</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e261">‡</a></span></span></span>. <span class=" 7210110510010110898101114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Heidelberg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e267">‡</a></span></span></span>.</span><span class="verseLine"><span class=" 7797110110104101105109"><span class="tei_settlement"><span class="tei_hi_underline1">Mannheim</span></span></span>. <span class=" 8725211412298117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Würzburg</span></span></span>. <span class=" 6510998101114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Amberg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e284">‡</a></span></span></span>. <span class=" 7825211411098101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Nürnberg</span></span></span>.</span><span class="verseLine"><span class=" 651101151129799104"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Anspach</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e296">‡</a></span></span></span>. <span class=" 8011497103"><span class="tei_settlement"><span class="tei_hi_underline1">Prag</span></span></span>. <span class=" 80105108115101110"><span class="tei_settlement"><span class="tei_hi_underline1">Pilsen</span></span></span>. <span class=" 82101103101110115112117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Regenspurg</span></span></span>.</span><span class="verseLine"><span class="tei_hi_latintype"><span class=" 6797114108115114117104101"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Carlsruhe</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e319">‡</a></span></span></span></span>. <span class=" 8311611711611610397114116"><span class="tei_settlement"><span class="tei_hi_underline1">Stuttgart</span></span></span>. <span class=" 831161149722398117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Straßburg</span></span></span>. <span class=" 7011412198117114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Fryburg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e335">‡</a></span></span></span>. <span class="tei_supplied" id="d8181e339">[gemeint <span class=" 70114101105981171141033210546326611446"><span class="tei_settlement">Freiburg i. Br.</span></span>]</span></span><span class="verseLine"><span class=" 83991049710210497117115101110"><span class="tei_settlement"><span class="tei_hi_underline1">Schafhausen</span></span></span>. <span class=" 6697115101108"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Basel</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e353">‡</a></span></span></span>. <span class=" 6511497117"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Arau</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e359">‡</a></span></span></span>. <span class=" 83111108111116104117114110"><span class="tei_settlement"><span class="tei_hi_underline1">Solothurn</span></span></span>.</span><span class="verseLine"><span class="tei_choice"><span class="tei_corr"><span class=" 7810111710299104226116101108"><span class="tei_settlement">Neufchâtel</span></span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e369">‡</a></span>, <span class=" 769711711597110110101"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Lausanne</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e382">‡</a></span></span></span>. <span class=" 71101110102"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Genf</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e388">‡</a></span></span></span>. <span class="tei_choice"><span class="tei_corr"><span class=" 7011410598111117114103"><span class="tei_settlement">Fribourg</span></span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e392">‡</a></span>.</span><span class="verseLine"><span class=" 6610111411046"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Bern</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e407">‡</a></span>.</span></span>. <span class=" 76117122101114110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Luzern</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e414">‡</a></span></span></span>. <span class=" 9025211499104"><span class="tei_settlement"><span class="tei_hi_underline1">Zürch</span></span></span>. <span class=" 87105110116101114116104117114"><span class="tei_settlement"><span class="tei_hi_underline1">Winterthur</span></span></span>. <span class=" 8358327197108108101110"><span class="tei_settlement"><span class="tei_hi_underline1">S: Gallen</span></span></span></span><span class="verseLine"><span class=" 82111114115991049799104"><span class="tei_settlement"><span class="tei_hi_underline1">Ro<span class="tei_supplied" id="d8181e437">[r]</span>schach</span></span></span>. <span class=" 85108109"><span class="tei_settlement"><span class="tei_hi_underline1">Ulm</span></span></span>. <span class=" 6511710311598117114103"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Augsburg</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e448">‡</a></span></span></span>. <span class=" 7725211099104101110"><span class="tei_settlement"><span class="tei_hi_underline1">München</span></span></span>. <span class=" 839710812298117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Salzburg</span></span></span>.</span><span class="verseLine"><span class=" 7311011598114117107"><span class="tei_settlement"><span class="tei_hi_underline1">Insbruk</span></span></span>. <span class=" 809722397117"><span class="tei_settlement"><span class="tei_hi_underline1">Paßau</span></span></span> – <span class=" 76105110122"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Linz</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e475">‡</a></span></span></span>. <span class=" 87105101110"><span class="tei_settlement"><span class="tei_hi_underline1">Wien</span></span></span>. <span class=" 66114252110110"><span class="tei_settlement"><span class="tei_del"><span class="tei_hi_underline1">Brünn</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e486">‡</a></span></span></span>.</span><span class="verseLine"><span class="tei_subst"><span class="tei_add"><span class=" 79108108109252116122"><span class="tei_settlement"><span class="tei_hi_underline1">Ollmütz</span></span></span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e491">‡</a></span>.&#160;&#160;&#160;&#160;&#160;76.</span></span><span class="lg"><span class="verseLine"><span class=" 6510998101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Amberg</span></span></span>. <span class=" 651101151129799104"><span class="tei_settlement"><span class="tei_hi_underline1">Anspach</span></span></span>. <span class=" 6511497117"><span class="tei_settlement"><span class="tei_hi_underline1">Arau</span></span></span>. <span class=" 6511710311598117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Augsburg</span></span></span>.</span><span class="verseLine"><span class=" 66101114108105110"><span class="tei_settlement"><span class="tei_hi_underline1">Berlin</span></span></span>. <span class=" 66114101109101110"><span class="tei_settlement"><span class="tei_hi_underline1">Bremen</span></span></span>. <span class=" 661149711010010111098117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Brandenburg</span></span></span>. <span class=" 66105101108101102101108100"><span class="tei_settlement"><span class="tei_hi_underline1">Bielefeld</span></span></span>. <span class=" 661149711711011599104119101105103"><span class="tei_settlement"><span class="tei_hi_underline1">Braunschweig</span></span></span><span class="tei_supplied" id="d8181e552">[.]</span><span class=" 6611410111510897117"><span class="tei_settlement"><span class="tei_hi_underline1">Breslau</span></span></span></span><span class="verseLine"><span class=" 6697121114101117116104"><span class="tei_settlement"><span class="tei_hi_underline1">Bayreuth</span></span></span>, <span class=" 669710998101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Bamberg</span></span></span>. <span class=" 6697115101108"><span class="tei_settlement"><span class="tei_hi_underline1">Basel</span></span></span>. <span class=" 66101114110"><span class="tei_settlement"><span class="tei_hi_underline1">Bern</span></span></span>. <span class=" 66114252110110"><span class="tei_settlement"><span class="tei_hi_underline1">Brünn</span></span></span>.</span><span class="verseLine"><span class=" 67104101109110105116122"><span class="tei_settlement"><span class="tei_hi_underline1">Chemnitz</span></span></span>. <span class=" 68114101115100101110"><span class="tei_settlement"><span class="tei_hi_underline1">Dresden</span></span></span>. <span class=" 689711410911511697100116"><span class="tei_settlement"><span class="tei_hi_underline1">Darmstadt</span></span></span>.</span><span class="verseLine"><span class=" 69117116105110"><span class="tei_settlement"><span class="tei_hi_underline1">Eutin</span></span></span>. <span class=" 69114102117114116"><span class="tei_settlement"><span class="tei_hi_underline1">Erfurt</span></span></span><span class="tei_supplied" id="d8181e610">[.]</span><span class=" 691051151011109799104"><span class="tei_settlement"><span class="tei_hi_underline1">Eisenach</span></span></span>.</span><span class="verseLine"><span class=" 7011410112198101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Fr<span class="tei_supplied" id="d8181e622">[e]</span>yberg</span></span></span>. <span class=" 7011497110107102117114116"><span class="tei_settlement"><span class="tei_hi_underline1">Frankfurt</span></span></span>. <span class=" 7011412198117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Fryburg</span></span></span>. <span class=" 7011412198117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Fryburg</span></span></span>.</span><span class="verseLine"><span class=" 71114111223101110"><span class="tei_settlement"><span class="tei_hi_underline1">Großen</span></span></span>. <span class=" 7111111610497"><span class="tei_settlement"><span class="tei_hi_underline1">Gotha</span></span></span>. <span class=" 71101110102"><span class="tei_settlement"><span class="tei_hi_underline1"><span class="tei_del">Genf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8181e655">‡</a></span></span></span></span>. <span class=" 8358327197108108101110"><span class="tei_settlement"><span class="tei_hi_underline1">S: Gallen</span></span></span>. <span class=" 71105101223101110"><span class="tei_settlement"><span class="tei_hi_underline1">Gießen</span></span></span>.</span><span class="verseLine"><span class=" 729710998117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Hamburg</span></span></span>. <span class=" 7297110111118101114"><span class="tei_settlement"><span class="tei_hi_underline1">Hanover</span></span></span>. <span class=" 7297108108101"><span class="tei_settlement"><span class="tei_hi_underline1">Halle</span></span></span>. <span class=" 721051081009811711410310497117115101110"><span class="tei_settlement"><span class="tei_hi_underline1">Hildburghausen</span></span></span>. <span class=" 72111102"><span class="tei_settlement"><span class="tei_hi_underline1">Hof</span></span></span>.</span><span class="verseLine"><span class=" 7210110510010110898101114103"><span class="tei_settlement"><span class="tei_hi_underline1">Heidelberg</span></span></span>.</span><span class="verseLine"><span class=" 7410111097"><span class="tei_settlement"><span class="tei_hi_underline1">Jena</span></span></span>. <span class=" 7311011598114117107"><span class="tei_settlement"><span class="tei_hi_underline1">Insbruk</span></span></span>.</span><span class="verseLine"><span class=" 7597223101108"><span class="tei_settlement"><span class="tei_hi_underline1">Kaßel</span></span></span>. <span class=" 7511198117114103"><span class="tei_settlement"><span class="tei_hi_underline1">Koburg</span></span></span>. <span class=" 7597114108115114117104101"><span class="tei_settlement"><span class="tei_hi_underline1">Karlsruhe</span></span></span>.</span><span class="verseLine"><span class=" 7625298101107"><span class="tei_settlement"><span class="tei_hi_underline1">Lübek</span></span></span>. <span class=" 76101105112122105103"><span class="tei_settlement"><span class="tei_hi_underline1">Leipzig</span></span></span>. <span class=" 76105101103110105116122"><span class="tei_settlement"><span class="tei_hi_underline1">Liegnitz</span></span></span>. <span class=" 769711711597110110101"><span class="tei_settlement"><span class="tei_hi_underline1">Lausanne</span></span></span>. <span class=" 76117122101114110"><span class="tei_settlement"><span class="tei_hi_underline1">Luzern</span></span></span>. <span class=" 76105110122"><span class="tei_settlement"><span class="tei_hi_underline1">Linz</span></span></span>.</span></span>
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="editorial">
+                        <h2>Apparat</h2>
+                        <!--<div>
+                            <h3 data-template="lang:translate">series</h3>
+                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
+                        </div>-->
+                        
+                        <div>
+                            <h3 class="media-heading">Zusammenfassung</h3>
+                            <p>Weber listet hier verschiedene Städte Deutschlands und des Auslands auf, die er mit in sein Noth- und Hülfsbüchlein aufnehmen möchte</p>
+                        </div>
+                        
+                        
+                        
+                        <div>
+                            <h3 class="media-heading">Generalvermerk</h3>
+                            <div>
+                                        <p>Das Städteverzeichnis gehört zu Webers Projekt "Not- und Hülfsbüchlein für reisende Musiker; vgl. <span class="writings A031148 A031151 A031155">Weber-Schriften</span> und Solveig Schreiter, Dornröschen in der falschen Hecke. Neues über Webers musikalischen Baedecker, in: Weberiana 16 (2006), S. 63–68. 
+            </p>
+                                    </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="media-heading">Entstehung</h3>
+                            <p><span class="tei_date">September 1811?</span>
+                                    </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="media-heading">Verantwortlichkeiten</h3>
+                            <dl></dl>
+                        </div>
+                        
+                        <div>
+                            <h3 class="media-heading">Überlieferung</h3>
+                            <div>
+                                <h4 class="media-heading">Textzeuge</h4>
+                                <div>
+                                            <p>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. II A, Abt. k, Nr. 1</p>
+                                            <h4 class="media-heading">Quellenbeschreibung</h4>
+                                            <ul>
+                                                <li>Manuskript ohne Titel [im Katalog der Webersammlung von Jähns notierte dieser unter der Rubrik „Reisen Weber’s betreffend" dazu: „Städte-Verzeichniß für reisende Tonkünstler" und datierte  mit „(Zürich.) (1811.) (Sept. Oct.)"] ; Incipit: "Hamburg. Lübek. Eutin. Schwerin. Berlin. Bremen"</li>
+                                                <li>auf 1 r von einzelnem Bl. (Format 19,2x11,3 cm, WZ: Posthorn in Wappenschild, in einer „4" auslaufend, darunter Buchstabenfolge „[F.] H. F."                     
+                  </li>
+                                            </ul>
+                                        </div>
+                                <!-- Processing tei:additional for every source -->
+                                <div>
+                                    
+                                        <h5 class="media-heading">Weitere Textquellen</h5>
+                                    
+                                    <ul class="tei_list">
+                                        <li>
+                                            <span class="biblio-entry"><span class="author">Carl Maria von Weber</span>, <span class="title">ohne Titel</span>, in: <span class="journalTitle">Weberiana</span>, Heft&#160;16 (2006), S.&#160;65–67</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apparatus">
+                                    <h3 class="media-heading">Textkonstitution</h3>
+                                    <ul class="textConstitution">
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e7" data-title="del">"<span class="tei_hi_underline1">Hamburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e13" data-title="del">"<span class="tei_hi_underline1">Lübek</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e19" data-title="del">"<span class="tei_hi_underline1">Eutin</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e30" data-title="del">"<span class="tei_hi_underline1">Berlin</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e36" data-title="del">"<span class="tei_hi_underline1">Bremen</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e47" data-title="del">"<span class="tei_hi_underline1">Hanover</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e53" data-title="del">"<span class="tei_hi_underline1">Brandenburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e64" data-title="del">"<span class="tei_hi_underline1">Bielefeld</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e70" data-title="del">"<span class="tei_hi_underline1">Braunschweig</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e87" data-title="del">"<span class="tei_hi_underline1">Cassel</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e102" data-title="del">"<span class="tei_hi_underline1">Halle</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e108" data-title="del">"<span class="tei_hi_underline1">Leipzig</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e114" data-title="del">"<span class="tei_hi_underline1">Dresden</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e122" data-title="del">"<span class="tei_hi_underline1">Großen</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e129" data-title="add">"Budißin. Schmiedeberg.": Hinzufügung</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e142" data-title="del">"<span class="tei_hi_underline1">Liegnitz</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e146" data-title="add">"Hirschberg.": Hinzufügung</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e155" data-title="del">"<span class="tei_hi_underline1">Breslau</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e171" data-title="del">"<span class="tei_hi_underline1">Jena</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e182" data-title="del">"<span class="tei_hi_underline1">Oederan</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e189" data-title="del">"<span class="tei_hi_underline1">Freyberg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e195" data-title="del">"<span class="tei_hi_underline1">Gotha</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e201" data-title="del">"<span class="tei_hi_underline1">Eisenach</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e207" data-title="del">"<span class="tei_hi_underline1">Giesen</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e218" data-title="del">"<span class="tei_hi_underline1">Hildburghausen</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e225" data-title="del">"<span class="tei_hi_underline1">Coburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e231" data-title="del">"<span class="tei_hi_underline1">Hof</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e237" data-title="del">"<span class="tei_hi_underline1">Bayreuth</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e243" data-title="del">"<span class="tei_hi_underline1">Bamberg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e250" data-title="del">"<span class="tei_hi_underline1">Frankfurt</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e261" data-title="del">"<span class="tei_hi_underline1">Darmstadt</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e267" data-title="del">"<span class="tei_hi_underline1">Heidelberg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e284" data-title="del">"<span class="tei_hi_underline1">Amberg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e296" data-title="del">"<span class="tei_hi_underline1">Anspach</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e319" data-title="del">"<span class="tei_hi_underline1">Carlsruhe</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e335" data-title="del">"<span class="tei_hi_underline1">Fryburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e353" data-title="del">"<span class="tei_hi_underline1">Basel</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e359" data-title="del">"<span class="tei_hi_underline1">Arau</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e382" data-title="del">"<span class="tei_hi_underline1">Lausanne</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e388" data-title="del">"<span class="tei_hi_underline1">Genf</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e396" data-title="del">"<span class="tei_hi_underline1">Fryburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e407" data-title="del">"<span class="tei_hi_underline1">Bern</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e414" data-title="del">"<span class="tei_hi_underline1">Luzern</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e448" data-title="del">"<span class="tei_hi_underline1">Augsburg</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e475" data-title="del">"<span class="tei_hi_underline1">Linz</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e486" data-title="del">"<span class="tei_hi_underline1">Brünn</span>":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e491" data-title="subst">"<span class="tei_add"><span class=" 79108108109252116122"><span class="tei_settlement"><span class="tei_hi_underline1">Ollmütz</span></span></span></span>": "Ollmüz" überschrieben.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e655" data-title="del">"Genf":  durchgestrichen.</div>
+                                        </li>
+                                    </ul>
+                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
+                                    <ul class="commentary">
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e118" data-title="choice">recte "Crossen": eigentlich "Großen"</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e369" data-title="choice">recte "Neufchâtel": eigentlich "Neufschachtel"</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d8181e392" data-title="choice">recte "Fribourg": eigentlich "Fryburg"</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031149/manifest.json"></div>
+                    </div>
+                    <div class="tab-pane fade" id="XMLPreview">
+                        <h2>XML</h2>
+                        <!-- loaded via AJAX request to ./xml.html -->
+                    </div>
+                    <div class="tab-pane fade" id="XMLDownload">
+                        <h2>XML Download</h2>
+                        <!-- Download initiated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container documentFooter">
+        <div class="row permaLink">
+            <div class="col-md-9">
+                <h4>Empfohlene Zitierweise</h4>
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031149</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                    <br />
+                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                </p>
+            </div>
+            
+        </div>
+        <div class="row bugreport">
+            <div class="col-md-9">
+                <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br />so bitten wir um eine kurze Nachricht an
+                    <a href="#" class="obfuscate-email">bugs [@] weber-gesamtausgabe.de</a>.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="greyLight">
+            <div class="container footer">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.uni-paderborn.de/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.hfm-detmold.de/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://staatsbibliothek-berlin.de/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.adwmainz.de/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://exist-db.org/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://validator.w3.org/check?uri=referer">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.tei-c.org/">
+                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="greyDark footerbottom">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="footerNav">
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                            </li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Projekt/Impressum.html">Impressum</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        
+        
+        
+        
+    </body>
+</html>
