@@ -546,13 +546,29 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            $item
+            if(sort:has-index('thematicCommentaries')) then ()
+            else (wdt:thematicCommentaries(())('init-sortIndex')()),
+            for $i in wdt:thematicCommentaries($item)('filter')() order by sort:index('thematicCommentaries', $i)  ascending return $i
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('thematicCommentaries')/descendant::tei:text[@type='thematicCom']/root()
         },
         'init-sortIndex' := function() as item()* {
-            ()
+            wdt:create-index-callback('thematicCommentaries', wdt:thematicCommentaries(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
+        },
+        'title' := function() as xs:string {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            return
+                string-join(
+                    wega-util:txtFromTEI(
+                        ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
+                    ),
+                    ''
+                )
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
