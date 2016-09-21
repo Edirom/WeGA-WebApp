@@ -46,7 +46,7 @@
     </xsl:template>
 
     <xsl:template name="popover">
-        <xsl:param name="marker"/>
+        <xsl:param name="marker" as="xs:string?"/>
         <xsl:variable name="id">
             <xsl:choose>
                 <xsl:when test="@xml:id">
@@ -59,7 +59,7 @@
         </xsl:variable>
         <xsl:element name="a">
             <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
-            <xsl:attribute name="id" select="concat('ref-', @xml:id)"/>
+            <xsl:attribute name="id" select="concat('ref-', $id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
