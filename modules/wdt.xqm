@@ -630,7 +630,8 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
             core:data-collection('news')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('news', $personID, true()) |
             core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
-            core:data-collection('biblio')//tei:term[.=$personID]/root()
+            core:data-collection('biblio')//tei:term[.=$personID]/root() |
+            core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('thematicCommentaries', $personID, true())
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
