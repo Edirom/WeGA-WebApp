@@ -211,6 +211,18 @@
         </xsl:choose>
     </xsl:function>
     
+    <xsl:function name="wega:isThematicCom" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A09\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
@@ -250,6 +262,9 @@
             <xsl:when test="wega:isOrg($docID)">
                 <xsl:value-of select="'orgs'"/>
             </xsl:when>
+            <xsl:when test="wega:isThematicCom($docID)">
+                <xsl:value-of select="'thematicCommentaries'"/>
+            </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
     </xsl:function>
@@ -282,6 +297,9 @@
                 </xsl:when>
                 <xsl:when test="wega:isDiary($docID)">
                     <xsl:value-of select="wega:getLanguageString('diaries', $lang)"/>
+                </xsl:when>
+                <xsl:when test="wega:isThematicCom($docID)">
+                    <xsl:value-of select="wega:getLanguageString('thematicCommentaries', $lang)"/>
                 </xsl:when>
                 <xsl:otherwise/>
             </xsl:choose>
