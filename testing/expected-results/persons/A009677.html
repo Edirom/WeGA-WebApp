@@ -105,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -116,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -328,6 +332,8 @@
                                 </li>
                                 <li><a class="deactivated"></a>
                                 </li>
+                                <li><a class="deactivated"></a>
+                                </li>
                                 <li><a href="#backlinks" data-target="A009677/backlinks.html">Rückverweise<small> (1)</small></a>
                                 </li>
                             </ul>
@@ -407,7 +413,7 @@
                                                             </li>
                                                             <li><a title="Aus der Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_allmovie/118587684">All Movie Guide</a>
                                                             </li>
-                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118587684">Bayerische Staatsbibliothek (240)</a>
+                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118587684">Bayerische Staatsbibliothek (241)</a>
                                                             </li>
                                                             <li><a title="Biographie in der Ostdeutschen Biographie (Kulturportal West-Ost) [Nicolai, Otto (Organist, Komponist, Kapellmeister; * 1810, 09.06.; † 1849, 11.05.)]" href="http://kulturportal-west-ost.eu/persons/nicolai-otto/">Biographie in der Ostdeutschen Biographie (Kulturportal West-Ost) [Nicolai, Otto (Organist, Komponist, Kapellmeister; * 1810, 09.06.; † 1849, 11.05.)]</a>
                                                             </li>
@@ -435,7 +441,7 @@
                                                             </li>
                                                             <li><a title="Mapping from GND ID IDs to Freebase ID IDs [Q154602]" href="https://g.co/kg/m/01mmhzd">Freebase ID</a>
                                                             </li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118587684">HBZ-Verbundkatalog (277)</a>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118587684">HBZ-Verbundkatalog (5)</a>
                                                             </li>
                                                             <li><a title="ICCU / OPAC SBN - Istituto Centrale per il Catalogo Unico / Catalogo del Servizio Bibliotecario Nazionale (mapping provided by VIAF) [CUBV\119441]" href="http://www.sbn.it/opacsbn/opaclib?db=solr_iccu&amp;resultForward=opac/iccu/brief.jsp&amp;from=1&amp;nentries=10&amp;searchForm=opac/iccu/error.jsp&amp;do_cmd=search_show_cmd&amp;item:5032:BID=IT%5CICCU%5CCUBV\119441">ICCU [by http://viaf.org/viaf/24788088]</a>
                                                             </li>
@@ -530,6 +536,10 @@
                                 </div>
                                 <!-- biblio (= Literatur) -->
                                 <div class="biblio paddingTopIcon paddingBottomIcon textBlock" id="biblio">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- thematicCommentaries -->
+                                <div class="thematicCommentaries paddingTopIcon paddingBottomIcon textBlock" id="thematicCommentaries">
                                     <!-- loaded via ajax -->
                                 </div>
                                 <!-- news -->
@@ -646,8 +656,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
