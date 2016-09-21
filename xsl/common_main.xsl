@@ -66,7 +66,7 @@
             <xsl:attribute name="data-ref" select="$id"/>
             <xsl:choose>
                 <xsl:when test="$marker eq 'arabic'">
-                    <xsl:value-of select="count(preceding::tei:note) + 1"/>
+                    <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
                 </xsl:when>
                 <xsl:when test="not($marker) and self::tei:note">
                     <xsl:text>*</xsl:text>
@@ -581,6 +581,14 @@
         <xsl:element name="div">
             <xsl:attribute name="class">tei_postscript</xsl:attribute>
             <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:note[@type='thematicCom']">
+        <xsl:element name="a">
+            <xsl:attribute name="class" select="'thematicCommentaries'"/>
+            <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
+            <xsl:text>T</xsl:text>
         </xsl:element>
     </xsl:template>
 

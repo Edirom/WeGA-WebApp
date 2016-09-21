@@ -180,7 +180,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:note">
+    <xsl:template match="tei:note[@type=('commentary','definition','textConst')]">
         <xsl:call-template name="popover">
             <xsl:with-param name="marker" select="'arabic'"/>
         </xsl:call-template>
@@ -280,7 +280,7 @@
             </xsl:element>
             <xsl:element name="ol">
                 <xsl:attribute name="class">endNotes</xsl:attribute>
-                <xsl:for-each select="//tei:note">
+                <xsl:for-each select="//tei:note[@type=('commentary','definition','textConst')]">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="./@xml:id"/>
                         <xsl:element name="a">

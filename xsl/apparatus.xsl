@@ -33,13 +33,8 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst', 'thematicCom')]">
-      <xsl:choose>
-         <xsl:when test="@type='thematicCom'"/>
-         <xsl:otherwise>
-            <xsl:call-template name="popover"/>
-         </xsl:otherwise>
-      </xsl:choose>
+   <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
+      <xsl:call-template name="popover"/>
    </xsl:template>
    
    <xsl:template match="tei:note" mode="apparatus">
