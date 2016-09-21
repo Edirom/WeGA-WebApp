@@ -71,11 +71,11 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
     [
         for $i in $collection
         group by $docTypePrefix := substring($i/*/@xml:id, 1, 3)
-        let $docType := lang:get-language-string($config:wega-docTypes-inverse($docTypePrefix), $lang)
+        let $docType := config:get-doctype-by-id($docTypePrefix || '0000')
         return 
             map {
-                'value' := $config:wega-docTypes-inverse($docTypePrefix),
-                'label' := $docType,
+                'value' := $docType,
+                'label' := lang:get-language-string($docType, $lang),
                 'frequency' := count($i)
             }
     ]

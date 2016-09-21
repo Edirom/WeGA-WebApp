@@ -62,26 +62,6 @@ declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
 declare variable $config:default-entries-per-page as xs:int := 10; 
 
-declare variable $config:wega-docTypes := map {
-    'biblio'        := 'A11',
-    'iconography'   := 'A01',
-    'letters'       := 'A04',
-    'diaries'       := 'A06',
-    'news'          := 'A05',
-    'persons'       := 'A00', 
-    'places'        := 'A13',
-    'writings'      := 'A03',
-    'sources'       := 'A22',
-    'var'           := 'A07',
-    'works'         := 'A02',
-    'orgs'          := 'A08',
-    (: dummy entry for creation of filter facets, see facets:document-allFilter :)
-    'characterNames'    := 'A17' 
-};
-
-declare variable $config:wega-docTypes-inverse := map:new(
-    map:keys($config:wega-docTypes) ! map:entry(map:get($config:wega-docTypes, .), .) 
-);
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
