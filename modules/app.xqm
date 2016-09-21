@@ -745,6 +745,7 @@ declare
         'news' := core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
         'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+        'thematicCommentaries' := core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
         
         'source' := $model('doc')/tei:person/data(@source),
         'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')

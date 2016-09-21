@@ -133,7 +133,7 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('wri
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
-(: Bibliograpie :)
+(: Bibliographie :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
@@ -141,6 +141,10 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('bib
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
+(: Themenkommentare :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+    
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
