@@ -50,9 +50,11 @@ declare function html-meta:each-meta($node as node(), $model as map(*), $key as 
  : Helper function for creating the page description
 ~:)
 declare %private function html-meta:DC.description($model as map(*), $lang as xs:string) as xs:string? {
-    if($model('docID') = 'indices') then lang:get-language-string('metaDescriptionIndex-' || $model('docType'), $lang)
-    else if($model('docID') = 'home') then lang:get-language-string('metaDescriptionIndex', $lang)
-    else if(config:get-doctype-by-id($model('docID'))) then 
+    switch($model('docID'))
+    case 'indices' return lang:get-language-string('metaDescriptionIndex-' || $model('docType'), $lang)
+    case 'home' return lang:get-language-string('metaDescriptionIndex', $lang)
+    case 'search' return lang:get-language-string('metaDescriptionSearch', $lang)
+    default return
         switch($model('docType'))
         case 'persons' return 
             let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang))
@@ -71,32 +73,35 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         case 'letters' case 'writings' return str:normalize-space($model('doc')//tei:note[@type='summary'])
         case 'diaries' case 'news' case 'var' case 'thematicCommentaries'  return str:shorten-text($model('doc')/tei:ab | $model('doc')//tei:text, 200)
         case 'orgs' return wdt:orgs($model('doc'))('title')() || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
-        default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType'))
-    else()
+        default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
 (:~
  : Helper function for creating the page title
 ~:)
 declare %private function html-meta:page-title($model as map(*), $lang as xs:string) as xs:string? {
-    if($model('docID') = 'indices') then 'Carl-Maria-von-Weber-Gesamtausgabe – ' || lang:get-language-string('metaTitleIndex-' || $model('docType'), $lang)
-    else if($model('docID') = 'home') then lang:get-language-string('metaTitleIndex-home', $lang)
-    else  
+    switch($model('docID'))
+    case 'indices' return 'Carl-Maria-von-Weber-Gesamtausgabe – ' || lang:get-language-string('metaTitleIndex-' || $model('docType'), $lang)
+    case 'home' return lang:get-language-string('metaTitleIndex-home', $lang)
+    case 'search' return lang:get-language-string('metaTitleIndex-search', $lang)
+    default return  
         switch($model('docType'))
         case 'persons' return concat(str:printFornameSurname(query:get-reg-name($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
         case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return str:normalize-space(string-join(app:document-title(<a/>, $model, $lang)[not(normalize-space(.) = '')], '. '))
         case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', str:normalize-space(string-join(app:document-title(<a/>, $model, $lang), ' ')), $lang))
         case 'orgs' return query:get-reg-name($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
-        default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType'))
+        default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
 (:~
  : Helper function for creating the page title
 ~:)
 declare %private function html-meta:DC.subject($model as map(*), $lang as xs:string) as xs:string? {
-    if($model('docID') = 'indices') then 'Index'
-    else if($model('docID') = 'home') then 'Carl Maria von Weber; Digitale Edition; Gesamtausgabe; Collected Works; Digital Edition'
-    else if(config:get-doctype-by-id($model('docID'))) then 
+    switch($model('docID'))
+    case 'indices' return 'Index'
+    case 'home' return 'Carl Maria von Weber; Digitale Edition; Gesamtausgabe; Collected Works; Digital Edition'
+    case 'search' return lang:get-language-string('search', $lang)
+    default return
         switch($model('docType'))
         case 'persons' return lang:get-language-string('bio', $lang)
         case 'letters' case 'thematicCommentaries' return lang:get-language-string($model('doc')//tei:text/@type, $lang)
@@ -106,7 +111,6 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
         case 'var' return 'Varia'
         case 'orgs' return lang:get-language-string('orgs', $lang)
         default return ()
-    else ()
 };
 
 (:~
@@ -121,7 +125,7 @@ declare %private function html-meta:DC.rights($model as map(*)) as xs:anyURI {
  : Helper function for collecting creator information
 ~:)
 declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
-    if($model('docID') = ('indices', 'home')) then 'Carl-Maria-von-Weber-Gesamtausgabe'
+    if($model('docID') = ('indices', 'home', 'search')) then 'Carl-Maria-von-Weber-Gesamtausgabe'
     else if(config:get-doctype-by-id($model('docID'))) then map:get(config:get-svn-props($model('docID')), 'author')
     else ()
 };
@@ -130,7 +134,7 @@ declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
  : Helper function for collecting date information
 ~:)
 declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
-    if($model('docID') = ('indices', 'home')) then string(config:getDateTimeOfLastDBUpdate())
+    if($model('docID') = ('indices', 'home', 'search')) then string(config:getDateTimeOfLastDBUpdate())
     else if(config:get-doctype-by-id($model('docID')) and exists(config:get-svn-props($model('docID')))) then map:get(config:get-svn-props($model('docID')), 'dateTime')
     else ()
 };
@@ -139,7 +143,7 @@ declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
  : Helper function for collecting identifier information
 ~:)
 declare %private function html-meta:DC.identifier($model as map(*)) as xs:string? {
-    if($model('docID') = 'indices') then request:get-url()
+    if($model('docID') = ('indices', 'search')) then request:get-url()
     else if($model('docID') = 'home') then 'http://weber-gesamtausgabe.de'
     else if(config:get-doctype-by-id($model('docID'))) then core:permalink($model('docID'))
     else ()
