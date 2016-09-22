@@ -1450,9 +1450,9 @@ declare
 
 declare 
     %templates:wrap
-    %templates:default("lang", "en")
-    function app:preview-diary-teaser($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:shorten-text($model('doc'), 200)
+    %templates:default("max", "200")
+    function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
+        str:shorten-text($model('doc')/tei:ab | $model('doc')//tei:body, number($max))
 };
 
 
@@ -1509,12 +1509,6 @@ declare function app:register-dispatch($node as node(), $model as map(*)) {
     case 'persons' case 'personsPlus' return templates:include($node, $model, 'templates/ajax/contacts.html')
     case 'letters' return templates:include($node, $model, 'templates/ajax/correspondence.html')
     default return templates:include($node, $model, 'templates/ajax/' || $model('docType') || '.html')
-};
-
-declare 
-    %templates:wrap
-    function app:news-teaser-text($node as node(), $model as map(*)) as xs:string {
-        str:shorten-text($model('doc')//tei:text, 200)
 };
 
 declare 
