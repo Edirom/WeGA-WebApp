@@ -194,7 +194,14 @@ declare %private function search:exact-date($dates as xs:date*, $filters as map(
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else ()
-    let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates ! string(.)] ! core:doc(./@docID)
+    let $date-search :=
+        switch($docType)
+        case 'thematicCommentaries' return core:getOrCreateColl('thematicCommentaries', 'indices', true())//tei:date[@when castable as xs:date][@when = $dates]/root()
+        case 'news' return core:getOrCreateColl('news', 'indices', true())//tei:date[@when castable as xs:date][@when = $dates]/root()
+        case 'personsPlus' return 
+            core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $dates]/root() |
+            core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $dates]/root()
+        default return norm:get-norm-doc($docType)//norm:entry[. = $dates ! string(.)] ! core:doc(./@docID)
     let $docs :=
         if($coll) then $coll intersect $date-search
         else $date-search
