@@ -369,13 +369,14 @@ declare
     %templates:default("lang", "en")
     function app:ajax-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
         let $beacon := 
-            try {map:keys($model('beaconMap'))}
+            try {string-join(map:keys($model('beaconMap')), ' ')}
             catch * {()}
         let $ajax-url :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
-            case 'wikipedia-article' return if($beacon = 'wikipedia') then 'wikipedia.html' else ()
-            case 'adb-article' return if($beacon = 'Allgemeine Deutsche Biographie (Wikisource)') then 'adb.html' else ()
+            case 'wikipedia-article' return if(matches($beacon, ' wikipedia ')) then 'wikipedia.html' else ()
+            case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
+            case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
             default return ()
         return
@@ -890,37 +891,38 @@ declare
         else ()
 };
 
+
 (:~
- : Main Function for adb.html
- : Creates the ADB model
+ : Main Function for ndb.html and adb.html
+ : Creates the Deutsche Biographie model
  :
  : @author Peter Stadler 
- : @return map with key:'adbContent'
+ : @return map with key:'adbndbContent'
  :)
 declare 
     %templates:wrap
-    function app:adb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    function app:deutsche-biographie($node as node(), $model as map(*)) as map(*) {
         map {
-            'adbContent' := wega-util:grabExternalResource('adb', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
+            'adbndbContent' := wega-util:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
         }
 };
-
 
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:adb-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $adbText := wega-util:transform($model('adbContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))/node()
+    function app:deutsche-biographie-text($node as node(), $model as map(*), $type as xs:string, $lang as xs:string) as item()* {
+        let $deutsche-biographie-text := 
+            if($type = 'ndb') then wega-util:transform($model('adbndbContent')//xhtml:div[@id='ndbcontent'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
+            else wega-util:transform($model('adbndbContent')//xhtml:div[@id='adbcontent'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
         return 
-            if(exists($adbText)) then $adbText
+            if(exists($deutsche-biographie-text)) then $deutsche-biographie-text
             else lang:get-language-string('failedToLoadExternalResource', $lang)
 };
 
 declare 
     %templates:wrap
-    function app:adb-disclaimer($node as node(), $model as map(*)) as element()? {
-        if($model('adbContent')//xhtml:html) then wega-util:transform($model('adbContent')//xhtml:div[@id='adbcite'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(map {'mode' := 'appendix'}))
-        else ()
+    function app:deutsche-biographie-disclaimer($node as node(), $model as map(*), $type as xs:string) as item()* {
+        ($model('adbndbContent')//xhtml:p[preceding-sibling::xhtml:h4[@id=concat($type, 'content_zitierweise')]])[1]/node()
 };
 
 declare 

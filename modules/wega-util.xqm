@@ -36,6 +36,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
         switch($resource)
         case 'wikipedia' return replace(wega-util:beacon-map($gnd, $docType)('wikipedia')[1], 'dewiki', $lang || 'wiki')
         case 'dnb' return concat(config:get-option($resource), $gnd, '/about/rdf')
+        case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
     let $today := current-date()
