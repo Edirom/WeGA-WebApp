@@ -679,6 +679,20 @@ declare
         date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang)
 };
 
+declare 
+    %templates:default("lang", "en")
+    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(option)* {
+        <option value="all">{lang:get-language-string('all', $lang)}</option>,
+        for $docType in $search:wega-docTypes
+        let $displayTitle := lang:get-language-string($docType, $lang)
+        order by $displayTitle
+        return
+            element {name($node)} {
+                attribute value {$docType},
+                $displayTitle
+            }
+};
+
 (:
  : ****************************
  : Person pages
@@ -731,6 +745,7 @@ declare
         'news' := core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
         'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+        'thematicCommentaries' := core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
         
         'source' := $model('doc')/tei:person/data(@source),
         'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
@@ -1031,8 +1046,7 @@ declare
             case 'letters' return doc(concat($config:xsl-collection-path, '/letters.xsl'))
             case 'news' case 'writings' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
-            case 'var' return doc(concat($config:xsl-collection-path, '/var.xsl'))
-            default return ()
+            default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
         let $xslt2 :=
             switch($docType)
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl'))
@@ -1041,6 +1055,7 @@ declare
             switch($docType)
             case 'diaries' return $doc/tei:ab
             case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen)
+            case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
             default return $doc//tei:text/tei:body
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
@@ -1435,9 +1450,9 @@ declare
 
 declare 
     %templates:wrap
-    %templates:default("lang", "en")
-    function app:preview-diary-teaser($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:shorten-text($model('doc'), 200)
+    %templates:default("max", "200")
+    function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
+        str:shorten-text($model('doc')/tei:ab | $model('doc')//tei:body, number($max))
 };
 
 
@@ -1491,15 +1506,9 @@ declare
 
 declare function app:register-dispatch($node as node(), $model as map(*)) {
     switch($model('docType'))
-    case 'persons' return templates:include($node, $model, 'templates/ajax/contacts.html')
+    case 'persons' case 'personsPlus' return templates:include($node, $model, 'templates/ajax/contacts.html')
     case 'letters' return templates:include($node, $model, 'templates/ajax/correspondence.html')
     default return templates:include($node, $model, 'templates/ajax/' || $model('docType') || '.html')
-};
-
-declare 
-    %templates:wrap
-    function app:news-teaser-text($node as node(), $model as map(*)) as xs:string {
-        str:shorten-text($model('doc')//tei:text, 200)
 };
 
 declare 

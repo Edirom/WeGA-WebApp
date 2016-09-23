@@ -108,6 +108,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +120,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -336,14 +340,14 @@
                                         </p>
                                     </div>
                                     <div class="writingSession">
-                                        <div class="teiLetter_opener">Hochverehrter Herr Capellmeister<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a>,</div>
+                                        <div class="teiLetter_opener">Hochverehrter Herr Capellmeister<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a>,</div>
                                         <p class="blockParagraph noIndent"><span> […]</span>
                                         </p>
                                         <p class="blockParagraph indented">Doch auch in dem Falle, daß <a class="persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> realisiert, werde ich meinerseits Alles anwenden, daß Sie die fragliche Oper erhalten, (was ja auch <a class="persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> höchst erwünscht seyn muß) und Ihnen sodann 
                einige Ansichten, die ich bei dieser Dichtung im Auge gehabt, zur Prüfung vorlegen. Welche Freude würde es mir machen, wenn mir nocheinmal Tage und Stunden zurückkehrten, wie ich sie
             bei Gelegenheit des <span class="tei_hi_underline1"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span></span> mit <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria Weber</a> verlebte! Diesen dichtete ich nur mit einem gewissen dunkeln Gefühl, wie so etwas seyn müsse; seitdem habe ich viel über
             die Oper, besonders, wie sie der Deutsche verlangt, nachgedacht, darüber mir klar zu werden gesucht, und nach den, von mir für richtig gehaltenen Principien<a href="#footnote01">*</a>, die beiden neuern 
-               Opern (verschiedener Gattung) mit Lust und Liebe gedichtet. Mein alter, bewährter Freund <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> hat beide geprüft und genehmigt, auch mir nahmentlich wegen der „Buschmutter“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_002">*</a> geschrieben,
+               Opern (verschiedener Gattung) mit Lust und Liebe gedichtet. Mein alter, bewährter Freund <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> hat beide geprüft und genehmigt, auch mir nahmentlich wegen der „Buschmutter“<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_002">*</a> geschrieben,
             daß nach seiner Ueberzeugung schwerlich schon ein Finale existire, wie das am Schlusse des dritten Acts.</p>
                                         <p class="blockParagraph indented">Doch genug für heute! Ein Mehres den 5<span class="tei_hi_superscript">ten</span> März! Für jetzt nur noch die Versicherung meiner aufrichtigen Hochachtung und Verehrung!
                <span class="tei_segBlock textAlign-right"><a class="persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">F. <span class="tei_hi_spaced_out">Kind</span></a>.</span>
@@ -352,7 +356,7 @@
                                     </div>
                                     <div id="endNotes">
                                         <ul>
-                                            <li id="footnote01">Ich habe diese in „Aphoristischen Briefen“ über die Oper, welche sobald sich ein solider Verleger dazu findet, erscheinen sollen, näher ausgeführt. Mein Anforderung (?) an Dichter und Tonsetzer sind nicht gering; die Oper muß ein vollkommenes <span class="tei_hi_underline2andMore">musikalisches</span><span class="tei_hi_underline1">Drama</span> seyn; Dicht<span class="tei_supplied" id="d21832e58">[ung]</span> und Tonkunst Hand in Hand gehen!</li>
+                                            <li id="footnote01">Ich habe diese in „Aphoristischen Briefen“ über die Oper, welche sobald sich ein solider Verleger dazu findet, erscheinen sollen, näher ausgeführt. Mein Anforderung (?) an Dichter und Tonsetzer sind nicht gering; die Oper muß ein vollkommenes <span class="tei_hi_underline2andMore">musikalisches</span><span class="tei_hi_underline1">Drama</span> seyn; Dicht<span class="tei_supplied" id="d19700e58">[ung]</span> und Tonkunst Hand in Hand gehen!</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -535,8 +539,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

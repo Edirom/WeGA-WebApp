@@ -13,6 +13,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 (: 
@@ -51,8 +52,9 @@ declare
 ~:)
 declare 
     %templates:wrap
-    function search:results-count($node as node(), $model as map(*)) as xs:string {
-        count($model('search-results')) || ' Suchergebnisse'
+    %templates:default("lang", "en")
+    function search:results-count($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        count($model('search-results')) || ' ' || lang:get-language-string('searchResults', $lang)
 };
 
 (:~

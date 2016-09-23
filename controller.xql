@@ -103,7 +103,7 @@ else if ($exist:resource = 'correspDesc.xml') then
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
    if(config:get-combined-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = $search:wega-docTypes) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
-   else controller:forward-html('/templates/search.html', $exist-vars)
+   else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
@@ -133,7 +133,7 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('wri
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
-(: Bibliograpie :)
+(: Bibliographie :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
@@ -141,6 +141,10 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('bib
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
+(: Themenkommentare :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+    
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

@@ -360,7 +360,7 @@ declare function wdt:news($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
         },
-        'memberOf' := ('search', 'sitemap'),
+        'memberOf' := ('search', 'sitemap', 'indices'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)]
@@ -456,7 +456,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                     tokenize($node//tei:author, '\s+')[last()]
                 }, ())
         },
-        'memberOf' := 'search',
+        'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
             $item[tei:biblStruct]//tei:biblStruct[ft:query(., $query)] | 
             $item[tei:biblStruct]//tei:title[ft:query(., $query)] | 
@@ -531,6 +531,54 @@ declare function wdt:sources($item as item()*) as map(*) {
     }
 };
 
+declare function wdt:thematicCommentaries($item as item()*) as map(*) {
+    map {
+        'name' := 'thematicCommentaries',
+        'prefix' := 'A09',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A09\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item/root()/descendant::tei:text[range:eq(@type, 'thematicCom')]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('thematicCommentaries')) then ()
+            else (wdt:thematicCommentaries(())('init-sortIndex')()),
+            for $i in wdt:thematicCommentaries($item)('filter')() order by sort:index('thematicCommentaries', $i)  ascending return $i
+        },
+        'init-collection' := function() as document-node()* {
+            core:data-collection('thematicCommentaries')/descendant::tei:text[@type='thematicCom']/root()
+        },
+        'init-sortIndex' := function() as item()* {
+            wdt:create-index-callback('thematicCommentaries', wdt:thematicCommentaries(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
+        },
+        'title' := function() as xs:string {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            return
+                string-join(
+                    wega-util:txtFromTEI(
+                        ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
+                    ),
+                    ''
+                )
+        },
+        'memberOf' := ('search', 'indices', 'sitemap'),
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]/tei:TEI[ft:query(., $query)]
+        }
+    }
+};
+
 declare function wdt:contacts($item as item()*) as map(*) {
     map {
         'name' := 'contacts',
@@ -582,7 +630,8 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
             core:data-collection('news')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('news', $personID, true()) |
             core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
-            core:data-collection('biblio')//tei:term[.=$personID]/root()
+            core:data-collection('biblio')//tei:term[.=$personID]/root() |
+            core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('thematicCommentaries', $personID, true())
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item

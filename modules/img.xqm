@@ -95,12 +95,12 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
     return 
         for $div in $pics
-        let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img/@src
+        let $tmpPicURI := ($div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img[not(@class='thumbimage')]/@src)[1]
         let $thumbURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
             if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
-        let $tmpLinkTarget := $div/xhtml:a/@href | $div[self::xhtml:table]//xhtml:a[xhtml:img]/@href
+        let $tmpLinkTarget := ($div/xhtml:a/@href | $div[self::xhtml:table]//xhtml:a[xhtml:img]/@href)[1]
         let $linkTarget := 
             (: Create a link to Wikipedia, e.g. https://de.wikipedia.org/wiki/Datei:Constanze_mozart.jpg :)
             (: NB, not all images are found at wikimedia commons due to copyright issues :)

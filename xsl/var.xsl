@@ -8,25 +8,38 @@
     <xsl:param name="collapseBlock" select="false()"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space
-        elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName"/>
+    <xsl:preserve-space elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="tei:text">
+    <!-- wir nie benutzt, oder?! -->
+    <!--<xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'docText'"/>
             <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
+    </xsl:template>-->
+    
+    <xsl:template match="tei:body">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:back">
+        <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="tei:divGen[@type='toc']">
         <xsl:call-template name="createToc">
             <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:divGen[@type='endNotes']">
+        <xsl:call-template name="createEndnotesFromNotes"/>
     </xsl:template>
 
     <xsl:template match="tei:div">
@@ -166,6 +179,24 @@
             </xsl:choose>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:note[@type=('commentary','definition','textConst')]">
+        <xsl:call-template name="popover">
+            <xsl:with-param name="marker" select="'arabic'"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:listBibl">
+        <xsl:element name="ul">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:bibl[parent::tei:listBibl]">
+        <xsl:element name="li">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- Create section numbers for headings   -->
     <xsl:template name="createSecNo">
@@ -194,11 +225,21 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
+                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat('#', generate-id())"/>
+                                <xsl:choose>
+                                    <xsl:when test="parent::tei:div[@xml:id]">
+                                        <xsl:value-of select="concat('#', parent::tei:div/@xml:id)"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::tei:divGen">
+                                        <xsl:value-of select="concat('#', @type)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat('#', generate-id())"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:attribute>
                             <xsl:if test="$createSecNos">
                                 <xsl:call-template name="createSecNo">
@@ -207,7 +248,14 @@
                                 </xsl:call-template>
                                 <xsl:text> </xsl:text>
                             </xsl:if>
-                            <xsl:value-of select="."/>
+                            <xsl:choose>
+                                <xsl:when test="self::tei:divGen">
+                                    <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                     </xsl:element>
                 </xsl:for-each>
@@ -221,6 +269,29 @@
         <xsl:element name="span">
             <xsl:attribute name="class" select="'para-label'"/>
             <xsl:value-of select="concat('§ ', $no)"/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template name="createEndnotesFromNotes">
+        <xsl:element name="div">
+            <xsl:attribute name="id" select="'endNotes'"/>
+            <xsl:element name="h2">
+                <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+            </xsl:element>
+            <xsl:element name="ol">
+                <xsl:attribute name="class">endNotes</xsl:attribute>
+                <xsl:for-each select="//tei:note[@type=('commentary','definition','textConst')]">
+                    <xsl:element name="li">
+                        <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:element name="a">
+                            <xsl:attribute name="class">endnote_backlink</xsl:attribute>
+                            <xsl:attribute name="href" select="concat('#ref-', @xml:id)"/>
+                            <xsl:value-of select="position()"/>
+                        </xsl:element>
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
         </xsl:element>
     </xsl:template>
 

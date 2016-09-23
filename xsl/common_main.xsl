@@ -46,7 +46,7 @@
     </xsl:template>
 
     <xsl:template name="popover">
-        <!--<xsl:param name="id"/>-->
+        <xsl:param name="marker" as="xs:string?"/>
         <xsl:variable name="id">
             <xsl:choose>
                 <xsl:when test="@xml:id">
@@ -58,13 +58,17 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:element name="a">
-            <xsl:attribute name="class">noteMarker</xsl:attribute>
+            <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
+            <xsl:attribute name="id" select="concat('ref-', $id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
             <xsl:attribute name="data-ref" select="$id"/>
             <xsl:choose>
-                <xsl:when test="self::tei:note">
+                <xsl:when test="$marker eq 'arabic'">
+                    <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
+                </xsl:when>
+                <xsl:when test="not($marker) and self::tei:note">
                     <xsl:text>*</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -577,6 +581,14 @@
         <xsl:element name="div">
             <xsl:attribute name="class">tei_postscript</xsl:attribute>
             <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:note[@type='thematicCom']">
+        <xsl:element name="a">
+            <xsl:attribute name="class" select="'thematicCommentaries'"/>
+            <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
+            <xsl:text>T</xsl:text>
         </xsl:element>
     </xsl:template>
 

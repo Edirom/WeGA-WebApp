@@ -30,12 +30,10 @@ import module namespace functx="http://www.functx.com";
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     return 
-        if($config:wega-docTypes($docType)) then
-            try {
-                core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
-            }
-            catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
-        else core:logToFile('warn', 'norm:get-norm-doc: Unsupported docType "' || $docType || '". Please refer to those defined in $config:wega-docTypes')
+        try {
+            core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
+        }
+        catch * { core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $err:code, $err:description), ' ;; ')) }
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {

@@ -17,6 +17,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare function controller:forward-html($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
@@ -98,8 +99,9 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
  : Dispatch pages for tab "Indices"
  :)
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
+    let $indexDocTypes := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :)
     let $docType := 
-        if($exist-vars('resource')) then lang:reverse-language-string-lookup(xmldb:decode($exist-vars('resource')), $exist-vars('lang'))[. = (map:keys($config:wega-docTypes), 'indices', 'project')]
+        if($exist-vars('resource')) then lang:reverse-language-string-lookup(replace(xmldb:decode($exist-vars('resource')), '_', ' '), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
         else 'indices'
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
     let $updated-exist-vars := 
@@ -208,7 +210,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
  : Indices can be under "Register (Indices)" or "Projekt (Project)" 
 ~:)
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
-    if($docType = ('letters', 'diaries', 'orgs', 'persons', 'writings', 'works')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
+    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), replace(lang:get-language-string($docType, $lang), '\s+', '_')))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
     else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))
@@ -319,6 +321,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
     case 'html' return
         switch($exist-vars('docType'))
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
+        case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
     default return controller:error($exist-vars, 404)
