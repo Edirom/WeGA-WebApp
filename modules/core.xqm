@@ -34,7 +34,7 @@ declare function core:doc($docID as xs:string) as document-node()? {
         if(doc-available($docURL)) then
             let $doc := doc($docURL) 
             return
-                if($doc/tei:*/tei:ref/@target) then core:doc($doc/tei:*/tei:ref/@target)
+                if($doc/*/*:ref/@target) then core:doc($doc/*/*:ref/@target)
                 else $doc
         else ()
 };
