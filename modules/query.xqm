@@ -188,6 +188,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
     case 'docTypeSubClass' return $collection//tei:text/@type
+    case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
     default return ()
 };
 
