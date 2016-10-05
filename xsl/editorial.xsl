@@ -52,6 +52,10 @@
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
         <xsl:element name="p">
+            <xsl:if test="ancestor-or-self::tei:msDesc/@rend">
+                <xsl:value-of select="wega:getLanguageString(ancestor-or-self::tei:msDesc/@rend, $lang)"/>
+                <xsl:text>: </xsl:text>
+            </xsl:if>
             <xsl:if test="tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
                 <xsl:text> </xsl:text>
