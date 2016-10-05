@@ -53,7 +53,7 @@ declare
             if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(count(map:keys($beaconMap)[.= 'wikipedia']) gt 0) then img:wikipedia-images($model, $lang)
+            if(count(map:keys($beaconMap)[.= 'Wikipedia-Personenartikel']) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)

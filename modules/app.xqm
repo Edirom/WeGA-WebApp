@@ -374,7 +374,7 @@ declare
         let $ajax-url :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
-            case 'wikipedia-article' return if(matches($beacon, ' wikipedia ')) then 'wikipedia.html' else ()
+            case 'wikipedia-article' return if(matches($beacon, 'Wikipedia-Personenartikel')) then 'wikipedia.html' else ()
             case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
             case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
