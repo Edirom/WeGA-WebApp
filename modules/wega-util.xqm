@@ -34,7 +34,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $url := 
         switch($resource)
-        case 'wikipedia' return replace(wega-util:beacon-map($gnd, $docType)('wikipedia')[1], 'dewiki', $lang || 'wiki')
+        case 'wikipedia' return replace(wega-util:beacon-map($gnd, $docType)('Wikipedia-Personenartikel')[1], 'dewiki', $lang || 'wiki')
         case 'dnb' return concat(config:get-option($resource), $gnd, '/about/rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
