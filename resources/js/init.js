@@ -370,7 +370,7 @@ $('.greedy').greedyNav();
 $('.allFilter input').change(
   function() {
     var key = $(this).attr('value');
-    $('.' + key).toggleClass('hi')
+    $('.' + key).toggleClass('hi-' + key);
   }
 )
 
