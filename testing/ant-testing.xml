@@ -61,6 +61,12 @@
         </fail>
     </target>
     
+    <target name="check-html">
+        <java jar="${vnu.jar}" failonerror="true" fork="true">
+            <arg value="testing/expected-results"/>
+        </java>
+    </target>
+    
     <macrodef name="regressiontest">
         <attribute name="doctype"/>
         <sequential>
