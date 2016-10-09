@@ -237,6 +237,7 @@
             <xsl:element name="table">
                 <xsl:apply-templates select="@xml:id"/>
                 <xsl:attribute name="class">table</xsl:attribute>
+                <xsl:apply-templates select="tei:head"/>
                 <xsl:element name="tbody">
                     <xsl:variable name="currNode" select="."/>
                     <!-- Bestimmung der Breite der Tabellenspalten -->
@@ -271,7 +272,7 @@
                             <xsl:value-of select="round-half-to-even(100 div (sum($define-width-of-cells) div .), 2)"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    <xsl:apply-templates>
+                    <xsl:apply-templates select="tei:row">
                         <xsl:with-param name="widths" select="$widths" tunnel="yes"/>
                     </xsl:apply-templates>
                 </xsl:element>
