@@ -203,7 +203,8 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        <xsl:element name="span">
+        <!-- breaks are not allowed within lists as they are in TEI. We need to workaround this … -->
+        <xsl:element name="{if(parent::tei:list) then 'li' else 'span'}">
             <xsl:attribute name="class" select="concat('tei_', local-name())"/>
             <!-- breaks between block level elements -->
             <xsl:if test="parent::tei:div or parent::tei:body">
