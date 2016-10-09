@@ -175,7 +175,7 @@ declare function facets:filter-body($node as node(), $model as map(*)) as elemen
 
 declare 
     %templates:default("lang", "en") 
-    function facets:filter-head($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
+    function facets:filter-head($node as node(), $model as map(*), $lang as xs:string) as element() {
         element {name($node)} {
             $node/@*[not(name(.) = 'href')],
             (: That should be safe because there's always only one key in filterSection :)

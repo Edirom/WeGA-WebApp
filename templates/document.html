@@ -33,11 +33,11 @@
                 
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="app:if-matches" data-template-key="docType" data-template-value="diaries">
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="true" href="#datePicker" data-template="lang:translate">calendar</h2>
+                        <h2><a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">calendar</a></h2>
                         <div class="panel-collapse collapse" id="datePicker" aria-expanded="true" data-dev-url="$dev/api.xql"/>
                     </div>
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument" data-template="lang:translate">document</h2>
+                        <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div data-template="app:if-matches" data-template-key="docType" data-template-value="letters">
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#kontext" data-template="lang:translate">context</h2>
+                        <h2><a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             <div data-template="app:context-letter">
                                 <h3 data-template="lang:translate">absouluteChronology</h3>
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a></h2>
                         <div class="panel-collapse collapse" data-template="facets:filter-body">
                             <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
                                 <label class="btn gradient-light" data-template="app:each" data-template-from="filterOptions" data-template-to="filterOption">
