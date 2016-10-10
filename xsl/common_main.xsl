@@ -443,11 +443,11 @@
     </xsl:template>
 
     <!-- Überschriften innerhalb einer floatingText-Umgebung -->
-    <xsl:template match="tei:head[ancestor::tei:floatingText][not(parent::tei:list)]" priority="0.6">
+    <xsl:template match="tei:head[parent::tei:body][ancestor::tei:floatingText]" priority="0.6">
         <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
         <xsl:variable name="increments" as="xs:integer">
             <!-- Wenn es ein Untertitel ist bzw. der Titel einer Linegroup wird der Level hochgezählt -->
-            <xsl:value-of select="count(parent::tei:lg | .[@type='sub'])"/>
+            <xsl:value-of select="count(.[@type='sub'])"/>
         </xsl:variable>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
@@ -476,6 +476,20 @@
     <!-- Überschriften innerhalb einer table-Umgebung -->
     <xsl:template match="tei:head[parent::tei:table]">
         <xsl:element name="caption">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <!-- Überschriften innerhalb einer lg-Umgebung -->
+    <xsl:template match="tei:head[parent::tei:lg]">
+        <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
+        <xsl:variable name="increments" as="xs:integer">
+            <!-- Verschachtelungstiefe hochgezählt -->
+            <xsl:value-of select="count(ancestor::tei:lg)"/>
+        </xsl:variable>
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="concat('heading', $minHeadLevel + $increments)"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
