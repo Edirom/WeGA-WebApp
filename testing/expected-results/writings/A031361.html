@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Berlin, "Oberon" von Carl Maria von Weber am 2. Juli 1828</title>
         
-        <meta name="DC.title" content="Aufführungsbesprechung Berlin, &#34;Oberon&#34; von Carl Maria von Weber am 2. Juli 1828" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Anonymus" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Jakob, Charlene" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031361" />
-        <meta name="DC.description" content="Besprechung des Oberon von Carl Maria von Weber" />
+        <meta property="dc:title" content="Aufführungsbesprechung Berlin, &#34;Oberon&#34; von Carl Maria von Weber am 2. Juli 1828" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Anonymus" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Jakob, Charlene" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-10-10T14:19:44.452022Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031361" />
+        <meta property="dc:description" content="Besprechung des Oberon von Carl Maria von Weber" />
         <meta name="description" content="Besprechung des Oberon von Carl Maria von Weber" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -285,7 +289,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -299,7 +304,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -329,7 +335,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -366,11 +373,9 @@
                     Berliner Conversation.
                 </h2>
                                         <h3 class="docHeader">
-                    <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Webers</a> <span class="works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span>,
-                </h3>
-                                        <h3 class="docHeader">
-                    <div class="poem"><span class="lg"><span class="verseLine">im <span class=" 10724611010510310846327911210111411010497117115101">königl. Opernhause</span>. Erste Vorstellung, Mittwoch den 2. Juli.</span><span class="verseLine">- Das „Alle-Rufen“ und die vorläufigen Studien. –</span></span>
-                                            </div>
+                   <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Webers</a> <span class="works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span>,<br />
+                   im <span class=" 10724611010510310846327911210111411010497117115101">königl. Opernhause</span>. Erste Vorstellung, Mittwoch den 2. Juli.<br />
+                   – Das „Alle-Rufen“ und die vorläufigen Studien. –
                 </h3>
                                         <p>
                     Wir durften diesmal eine ganz ausgezeichnete Aufführung erwarten, und in vieler Hinsicht sind unsere Erwartungen noch übertroffen worden. Die großen Räume des Opernhauses sind zu so geschmackvollen und prächtigen Dekorationen verwendet worden, wie wir sie kaum in <span class="works A020608" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020608.html">Alcidor</span> und <span class="works A020435" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020435.html">Nurmahal</span> gesehen haben. Nicht nur die Erde und das Wasser, selbst die Lüfte sind mit Genien bevölkert und <span class=" 7998101114111110115">Oberons</span> Zauberstab ruft Gärten und Prachtgebäude hervor, wo eben noch öde Wüste war; besonders überraschend wirkte die Aussicht auf Bagdad. Haben wir uns von dem Staunen über die äußere Pracht erholt, so macht nun auch die innere Pracht, das was sonst oft als Nebensache bei einer großen Oper behandelt wird, die Musik, ihr Recht geltend. Schon die Ouvertüre wurde mit einem Feuer, mit einer Lust und Liebe von unserer  Königl. Kapelle ausgeführt, als ob der, der deutschen Kunst allzufrüh entrissene <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Meister</a> selbst noch gegenwärtig sei, und gewiß, für die, welche <span class="tei_hi_spaced_out">mit seinem Geist</span> sich vertraut gemacht haben, war er auch gegenwärtig. Unter stürmischem Applaus wurde die Ouvertüre <span class="tei_hi_italic"><span class="tei_hi_bold">da capo</span></span> verlangt, und <a class="persons A001720" href="/exist/apps/WeGA-WebApp/de/A001720.html">Hrn. Kapellmeister <span class="tei_hi_spaced_out">Schneider</span></a> hierdurch die unzweideutigste Anerkennung seiner großen und gewissenhaften Bemühungen zu Theil. Die Rollen waren so vertheilt, daß <a class="persons A000074" href="/exist/apps/WeGA-WebApp/de/A000074.html">Herr Bader</a> den <span class=" 7998101114111110">Oberon</span>, <a class="persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Mad. Seidler</a> die <span class=" 8210112210597">Rezia</span>, Mlle. Hoffmann <span class=" 7097116105109101">Fatime</span>, <a class="persons A001920" href="/exist/apps/WeGA-WebApp/de/A001920.html">Hr. Stümer</a> den <span class=" 72252111110">Hüon</span>, <a class="persons A000380" href="/exist/apps/WeGA-WebApp/de/A000380.html">Hr. Devrient d. j.</a> den <span class=" 7410111497115109105110">Jerasmin</span> sang. Die Rollen des <span class=" 6510810997110115111114">Al<span class="tei_cb"> ¦ </span>mansor</span>, dessen Gemahlin und des <span class=" 80117107">Puk</span>, die nur zu sprechen haben, waren Hrn. Krüger, <a class="persons A002002" href="/exist/apps/WeGA-WebApp/de/A002002.html">Mad. Unzelmann</a> und Mlle. Leonhardt anvertraut, und so auch von dieser Seite für eine gelungene Darstellung gesorgt, obwohl wir immer die Schauspieler aus der Tragödie beklagen, die bei der Oper als Statisten verwendet werden. Mehrere Musikstücke wurden <span class="tei_hi_italic"><span class="tei_hi_bold">da capo</span></span> gerufen, und trotz der <span class="tei_hi_italic"><span class="tei_hi_bold">35°</span></span> Reaumür auch gesungen. Als <span class="tei_hi_spaced_out">Fräulein von Schätzel</span>, als Sylphide [sic?], noch hinter der Scene den schönen Gesang begann, ward eine allgemeine Aufmerksamkeit rege; „ist das nicht ganz der <a class="persons A009647" href="/exist/apps/WeGA-WebApp/de/A009647.html">Schechner</a> ihre Stimme?“ hörte man hie und da halblaut fragen; es that uns sehr wohl, diese jugendliche, kräftige, gesunde und reine Stimme nach so manchem Mißklange zu vernehmen. – Am Schluß wurden Alle gerufen und wirklich erschienen auch Alle, selbst <span class="tei_hi_spaced_out"><span class=" 7597114108321001011143271114111223101">Karl der Große</span></span> fehlte nicht. Dies <span class="tei_hi_spaced_out">„Alle-Rufen,“</span>  welches in der Königstadt eingeführt worden ist, sollte in den Königl. Schauspielhäusern nicht nachgeahmt werden, es ist wenigstens als kein günstiges Zeichen für die Schauspieler und Sänger, oder auch für die Dichter und Componisten anzusehen. Wenn man das ganze Personal so nivelliren und gleichmachen darf, gewinnt es leicht den Anschein, als sei keine ausgezeichnete Leistung bemerkbar geworden.
@@ -414,7 +419,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Berliner Conversations-Blatt für Posie, Literatur und Kritik</span>, Jg.&#160;2, Nr.&#160;130 (5. Juli 1828), S.&#160;514</p>
+                                <p><span class="journalTitle">Berliner Conversations-Blatt für Poesie, Literatur und Kritik</span>, Jg.&#160;2, Nr.&#160;130 (5. Juli 1828), S.&#160;514</p>
                                 <!-- Processing tei:additional for every source -->
                                 <div>
                                     
@@ -452,7 +457,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031361</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 10. Oktober 2016 durch Peter Stadler</span>
                 </p>
             </div>
             
@@ -484,21 +489,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -539,8 +539,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

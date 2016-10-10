@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>„Handbuch beim Studium der Harmonie“ von Heinrich Christoph Koch (Teil 2/2)</title>
         
-        <meta name="DC.title" content="„Handbuch beim Studium der Harmonie“ von Heinrich Christoph Koch (Teil 2/2)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="„Handbuch beim Studium der Harmonie“ von Heinrich Christoph Koch (Teil 2/2)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -315,7 +319,7 @@
                     Grunde liegenden Harmonie näher ist, das <span class="tei_hi_italic">gis</span>&#160;in <span class="tei_hi_italic">g</span>, oder das <span class="tei_hi_italic">f</span> in <span class="tei_hi_italic">fis</span>&#160;verwandelt wird, um die Nebennote der wesentlichern bis auf eine
                     große Stufe näher zu bringen.</p>
                                         <p>Diese flüchtige Andeutung einer Idee, welche Rec. ehestens <span class="tei_ptr"></span>an einem andern Orte
-                    näher ausführen wird<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, soll und kann übrigens ihrer Natur nach nichts weniger
+                    näher ausführen wird<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, soll und kann übrigens ihrer Natur nach nichts weniger
                     seyn, als ein Tadel gegen das <span class=" 751119910410511599104101">Kochische</span> Werk, welches
                     vielmehr die bis jetzt allgemein recipirte Lehrart mit aller der Klarheit und
                     Consequenz ausführt, deren sie ihrer Natur nach fähig ist.</p>
@@ -324,7 +328,7 @@
                     consonirenden, dann die dissonirenden Accorde, erst in ihrer Urgestalt kennen,
                     dann in ihren Umstaltungen durch Verdoppelung, Auslassung und Verwechslung; von
                     diesem allen weiß Rec. im ganzen nur Gutes zu sagen, und nur wenige Bemerkungen
-                    mögen hier einzeln stehn. Bey Gelegenheit der <span class="tei_ptr"></span>Auslassung der Terz<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> hätte Rec.
+                    mögen hier einzeln stehn. Bey Gelegenheit der <span class="tei_ptr"></span>Auslassung der Terz<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> hätte Rec.
                     gewünscht, die Bemerkung zu finden, daß die Terz des Dreyklanges auf der
                     Dominante weit eher ausgelassen werden kann, als die des tonischen Accordes, bey
                     welchem sie eigentlich nur zugleich mit der Quinte fehlen darf, so daß c 0
@@ -333,7 +337,7 @@
                                         <p>Bey der Lehre von den Verwechselungen der Accorde muß Rec. warnen, sich nicht
                     durch den Ausdruck <span class="tei_hi_spaced_out">Grundton</span> irre machen zu lassen,
                     welchen der Verf. jedem Baßtone, auch der verwechselten Accorde beylegt. (<span class="tei_ptr"></span>§. 55.
-                    57<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>). Weniger Anlaß zu Mißverstand gäbe es, wenn man hier dem unzweydeutigen
+                    57<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>). Weniger Anlaß zu Mißverstand gäbe es, wenn man hier dem unzweydeutigen
                     Ausdrucke Baßton treu bliebe, da so viele Tonlehrer den Ausdruck Grundton zu
                     etwas ganz andern aufsparen. Auch ist es so ziemlich allgemein hergebracht, den
                     Ausdruck <span class="tei_hi_spaced_out">Umkehrung</span> nicht von Versetzungen des Baßtons
@@ -346,10 +350,10 @@
                                         <p> Die Lehre von den dissonirenden Accorden stellt der Verf. vom sogenannten
                     dissonirenden Dreyklange an, nach <a class="persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgs</a>
                     Grundzügen, bis zum Terzdecimenaccorde, mit alle der Ideenklarheit dar, welche
-                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10777e179">‡</a></span> complicirte Lehre leicht faßlich zu
+                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" id="ref-d74438e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74438e179">‡</a></span> complicirte Lehre leicht faßlich zu
                     machen: um aber auch denen nützlich zu werden, welche nicht nach diesem, sondern
                     nach dem einfachern Systeme der Aufhaltungen lernen, oder lehren wollen, fügt
-                    der Verf. <span class="tei_ptr"></span>als Anhang eine Tabelle<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> bey, welche alle bisher nach dem <a class="persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgischen</a> System abgehandelten Tonverbindungen,
+                    der Verf. <span class="tei_ptr"></span>als Anhang eine Tabelle<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> bey, welche alle bisher nach dem <a class="persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgischen</a> System abgehandelten Tonverbindungen,
                     auch nach dem Systeme der Aufhaltungen erklärt, wodurch das Lehrbuch denn
                     begreiflich an Gemeinnützigkeit außerordentlich gewinnt, indem es dadurch beyden
                     Hauptparteyen beynahe gleich brauchbar wird. </p>
@@ -358,44 +362,44 @@
                     übergegangen zu dem, was der Verf. harmonischen Syntax nennt, nämlich zur Lehre
                     von Verbindung der Accorde und zur Fortschreitung der sie constituirenden
                     Intervalle, erst der Consonanzen, (Quinten- und Octavenverbot, sehr ausführlich
-                    <span class="tei_ptr"></span>S. 72<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>-189), Folgen und Reihen der in der Tonleiter liegenden Dreyklänge in
+                    <span class="tei_ptr"></span>S. 72<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>-189), Folgen und Reihen der in der Tonleiter liegenden Dreyklänge in
                     verschiedenen Lagen und Verwechselungen (S. 190-205), von der Quarte und
                     derselben Fortschreitung vielleicht zuviel (da selbst der Gang</p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>5 – 6 – 7</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">3 – 4 – 5</span>
                                         </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a></span>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G</span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a></span>
                                         </p>
-                                        <p>als eine <span class="tei_ptr"></span>Freyheit des Satzes<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, oder doch etwas besonderes angeführt, und
+                                        <p>als eine <span class="tei_ptr"></span>Freyheit des Satzes<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, oder doch etwas besonderes angeführt, und
                     entschuldigt wird). Dann die Lehre von Fortschreitung der dissonirenden
                     Intervalle.</p>
                                         <p>Diese letztere beginnt wie billig mit der Lehre von Vorbereitung und Auflösung.
                     Vorbereiten nennt der Verf., und dieß freylich wieder im Einklange mit seinen
                     Vorgängern: <span class="tei_ptr"></span>den Ton, der als Dissonanz erscheinen soll, unmittelbar vorher als
-                    <span class="tei_hi_spaced_out">Consonanz</span> hören lassen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> (§. 141). Die Definition
+                    <span class="tei_hi_spaced_out">Consonanz</span> hören lassen<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> (§. 141). Die Definition
                     ist aber zu eng, wie gleich folgendes Beyspiel:</p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 3</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 8</span>
                                         </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span> –<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a></span>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span> –<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a></span>
                                         </p>
                                         <p>beweist. Statt „als Consonanz“ hätte Rec. lieber gelesen: als ein Intervall,
                     welches unvorbereitet eintreten darf, wohin denn manche Dissonanzen gehören, wie
                     z. B. die Septime <span class="tei_hi_italic">f</span>&#160;zum <span class="tei_hi_italic">g </span>&#160;des
-                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10777e257">‡</a></span> die dissonirende Quarte (Undecime) zum
+                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" id="ref-d74438e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74438e257">‡</a></span> die dissonirende Quarte (Undecime) zum
                     folgenden <span class="tei_hi_italic">C</span>&#160;accorde vorbereitet.</p>
                                         <p>Ebenfalls zu eng ist die gemeinübliche und vom Verf. ebenfalls beybehaltne
                     Definition vom Auflößen, wornach diese Operation darauf beruht, <span class="tei_ptr"></span>„daß derjenige
-                    Ton, der als Dissonanz erschienen ist, im folgenden Accorde in <span class="tei_hi_spaced_out">eine Consonanz</span> trete“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> (§. 141). Auch hier zeigt das
+                    Ton, der als Dissonanz erschienen ist, im folgenden Accorde in <span class="tei_hi_spaced_out">eine Consonanz</span> trete“<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> (§. 141). Auch hier zeigt das
                     Beyspiel:</p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 7</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 5</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span>
-                    <span class="tei_hi_italic">Fis</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a></span>
+                    <span class="tei_hi_italic">Fis</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a></span>
                                         </p>
                                         <p>daß die dissonirende Quarte <span class="tei_hi_italic">f </span>&#160;ganz fehlerfrey in das
                     dissonirende <span class="tei_hi_italic">e</span>&#160;übergehen kann, weil diese Septime selbst
@@ -412,7 +416,7 @@
                     Vereinfachung des Lehrsystems.</p>
                                         <p>In §. 144 findet sich ein Satz, dessen zureichenden Grund Rec. durchaus nicht
                     einzusehen, noch demselben beyzupflichten vermag. <span class="tei_ptr"></span>Die Vorbereitung einer
-                    Dissonanz<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, heißt es dort, kann mittelst aller consonirenden Intervalle, die
+                    Dissonanz<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, heißt es dort, kann mittelst aller consonirenden Intervalle, die
                     Quarte ausgenommen, geschehen; man vergleiche folgende gewiß tadellose
                     Sätze:</p>
                                         <p><span class="tei_segBlock textAlign-center">6 – 5 – 5 6 – 5 – 5</span>
@@ -422,7 +426,7 @@
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | G</span> – <span class="tei_hi_italic">C | C</span>
                         –</span>
                                         </p>
-                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10777e341">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
+                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" id="ref-d74438e341" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74438e341">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
                     an, und erklärt sie sehr kunstreich als Ausnahmen von der Regel; allein Rec.
                     scheint es, als würden mit der unnöthigen Regel auch die unnöthigen Ausnahmen
                     füglich hinwegfallen.</p>
@@ -438,7 +442,7 @@
                     Dreyklang komme doch nur auf der zweyten Stufe der weichen Tonleiter vor, und
                     die auf andern Stufen vorkommenden dem verminderten Dreyklange ähnlichen
                     Tonverbindungen seyen eigentlich nicht wahre verminderte Dreyklänge, sondern nur
-                    erste Verwechselungen des Dominantenaccordes mit ausgelassenem Grundton<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a>.
+                    erste Verwechselungen des Dominantenaccordes mit ausgelassenem Grundton<a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a>.
                     Freylich eine Behauptung, über welche mancher ältere Tonlehrer einen Stein auf
                     den Verf. werfen wird, mit welcher aber Rec. gern einverstanden ist.</p>
                                         <p>Den Schluß dessen, was der Verf. musikalische Rhetorik nennt, macht die Lehre von
@@ -454,7 +458,7 @@
                     über, welcher Lehre er jedoch erst noch einige Vorkenntnisse von Tact,
                     Modulation, Ruhepuncten (Periodenendungen, Absätzen u. dgl.) und sonstige Regeln
                     und Maximen im Allgemeinen vorausschickt. Vorzüglich rühmenswerth ist die
-                    Klarheit, mit welcher <span class="tei_ptr"></span>der Abschnitt von Tact und Rhythmus<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> abgehandelt ist.</p>
+                    Klarheit, mit welcher <span class="tei_ptr"></span>der Abschnitt von Tact und Rhythmus<a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> abgehandelt ist.</p>
                                         <p>Hiernächst wird der Schüler endlich zu praktischen Uebungen im Contrapunctiren
                     übergeführt. Der Verf. bleibt hier seiner frühern, in seiner Anleitung zur
                     Composition angewendeten Methode treu, mit dem zweystimmigen Satze anzufangen,
@@ -463,7 +467,7 @@
                     grade entgegengesetzten Weg, beginnen mit dem vierstimmigen Satze, und enden mit
                     dem zweystimmigen. Jene Methode soll <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>
                     befolgt haben, <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> hingegen meint, man
-                    solle <span class="tei_ptr"></span>erst Most keltern, ehe man Weingeist abdestillirt<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>. Anerkannt ist es, daß
+                    solle <span class="tei_ptr"></span>erst Most keltern, ehe man Weingeist abdestillirt<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>. Anerkannt ist es, daß
                     der zweystimmige Satz seine eignen Schwierigkeiten hat, wäre es auch nur, weil
                     darin kein Accord vorkommt, in welchem nicht wenigstens Ein oder zwey Intervalle
                     ausgelassen werden müssen, und es also eine eigne Schwierigkeit ist, die Stimmen
@@ -479,7 +483,7 @@
                     einmal disponiren soll, dadurch in ein gewisses Embarras versetzt, und nicht
                     wissen wird, wo hinaus mit alle den Reichthümern; des häufigern Anlasses zu
                     fehlerhaften Verdoppelungen und verbotenen Fortschreitungen nicht zu gedenken.
-                    <span class="tei_ptr"></span>Vielleicht wäre auch hier der Mittelweg golden<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>. Drey Stimmen sind leichter zu
+                    <span class="tei_ptr"></span>Vielleicht wäre auch hier der Mittelweg golden<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>. Drey Stimmen sind leichter zu
                     übersehen, geben weniger Anlaß zu Verdoppelungen und unrichtigen
                     Fortschreitungen, als viere, und bieten doch auch dem Tonsetzer mehr Mittel zu
                     Vervollständigung der, der Harmonie wesentlichen Töne, als bloß zweye.
@@ -519,7 +523,7 @@
                     das, was er zu geben sich vorsetzte, mit so vielem Glücke gethan, und so
                     günstige Beweise seines Berufes zum Tonlehrer abgelegt, daß man wünschen muß, er
                     möge die oben angedeuteten Fächer in einem Gegenstücke zu dem vorliegenden Werke
-                    <span class="tei_ptr"></span>bald ebenfalls abhandeln<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a>.</p>
+                    <span class="tei_ptr"></span>bald ebenfalls abhandeln<a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a>.</p>
                                         <p class="tei_closer">
                     <span class="tei_segBlock textAlign-right"><a class="persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a>.</span>
                 </p>
@@ -595,7 +599,7 @@
                                             <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">§. 55. 57</span>": a. a. O., Sp.&#160;65-67</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10777e179" data-title="choice">recte "und": eigentlich "nnd"</div>
+                                            <div class="apparatusEntry" id="d74438e179" data-title="choice">recte "und": eigentlich "nnd"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary">"<span class="tei_lemma">als Anhang eine Tabelle</span>": <span class="tei_hi_italic">Tabellarisches Verzeichniß der im Satz vorkommenden Aufhaltungen</span>; vgl. a. a. O., Sp. 143-158</div>
@@ -617,7 +621,7 @@
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">7 ⌒ 4 … | C –</span>": vgl. a. a. O., Sp.&#160;224, fig. 19</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10777e257" data-title="choice">recte "fehlerfrey": eigentlich "fehlerley"</div>
+                                            <div class="apparatusEntry" id="d74438e257" data-title="choice">recte "fehlerfrey": eigentlich "fehlerley"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_10" data-title="note commentary">"<span class="tei_lemma">„daß derjenige Ton, … eine Consonanz trete“</span>": G. Weber zitiert wiederum verkürzt, vgl. a. a. O., Sp. 219: <span class="tei_hi_italic">Die Auflösung einer Dissonanz bestehet endlich darin, daß derjenige Ton, der in dieser oder jener Stimme als eine Dissonanz erschienen ist, in eben derselben Stimme in dem folgenden Akkorde eine Stufe der Tonleiter abwärts (bey einigen dissonirenden Intervallen eine Stufe aufwärts) tritt, und daß sich dieser abwärts tretende Ton als eine Konsonanz hören läßt.</span>
@@ -632,7 +636,7 @@
                                             <div class="apparatusEntry" id="C_12" data-title="note commentary">"<span class="tei_lemma">Die Vorbereitung einer Dissonanz</span>": vgl. a. a. O., Sp.&#160;221</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10777e341" data-title="choice">recte "Ähnliche": eigentlich "Ahnliche"</div>
+                                            <div class="apparatusEntry" id="d74438e341" data-title="choice">recte "Ähnliche": eigentlich "Ahnliche"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_13" data-title="note commentary">"<span class="tei_lemma">Behauptung wagt, der … mit ausgelassenem Grundton</span>": vgl. § 159, a. a. O., Sp.&#160;244</div>
@@ -705,21 +709,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -760,8 +759,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

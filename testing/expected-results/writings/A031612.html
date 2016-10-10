@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Stückbesprechung der "Euryanthe" von Carl Maria von Weber, Berlin, Teil 2/6</title>
         
-        <meta name="DC.title" content="Stückbesprechung der &#34;Euryanthe&#34; von Carl Maria von Weber, Berlin, Teil 2/6" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Amadeus Wendt" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Jakob, Charlene" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031612" />
-        <meta name="DC.description" content="Aufführungsbesprechung Berlin, &#34;Euryanthe&#34; von Carl Maria von Weber am ?. Januar 1826. Fortsetzung. Teil 2/6" />
+        <meta property="dc:title" content="Stückbesprechung der &#34;Euryanthe&#34; von Carl Maria von Weber, Berlin, Teil 2/6" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Amadeus Wendt" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Jakob, Charlene" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031612" />
+        <meta property="dc:description" content="Aufführungsbesprechung Berlin, &#34;Euryanthe&#34; von Carl Maria von Weber am ?. Januar 1826. Fortsetzung. Teil 2/6" />
         <meta name="description" content="Aufführungsbesprechung Berlin, &#34;Euryanthe&#34; von Carl Maria von Weber am ?. Januar 1826. Fortsetzung. Teil 2/6" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -271,7 +275,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -283,7 +288,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -295,7 +301,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -339,7 +346,7 @@
                     (<a class="writings A031652" href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031652.html">Fortzsetzung</a>.)
                 </h3>
                                         <p>
-                    Die Introduktion, welche die Friedensfeier am Hofe des <span class=" 75246110105103115">Königs</span> schildert, gewährt uns das Gefühl der ungetrübten Fröhlichkeit, die aber durch adle Sitte des Ritterthums gemässigt ist. Chor und Tanz haben, ich möchte sagen, einen noblen gravitätischen Karakter <a href="#footnote01">*)</a>; der gar sehr geschwächt wird, wenn das Tempo, wie bei der Aufführung in <span class=" 76101105112122105103"><span class="tei_settlement">Leipzig</span></span>, zu schnell genommen wird. <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nimmt zur ersten Zeitbewegung ein Moderato, welches den Violinen die graziösen Figuren, welche schon im Ritornell vorkommen, ganz vollkommen und rund auszubilden gestattet. Er lässt das Orchester in einer genialen Freiheit walten, anhalten und schneller gehen, wie es das feinere Gefühl will. Dieses war schon bei dem Laufer, welchen das Violoncell der Violine nachbildet, dann <span class="tei_choice"><span class="tei_corr">noch</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d9477e37">‡</a></span> mehr in den leicht abgestossenen Noten der Flöten, Fagotte u. s. w. welche zwischen den Frauenchor fallen, und in den gebundenen Sechzehntheilen der Violinen wahrzunehmen. Die Sänger verstanden das Orchester und man hörte keinen steifen Takt. Um so markirter trat nun die Tanzmelodie ein. Wer diese <span class="tei_hi_spaced_out">schnell</span> nehmen könnte, der würde beweisen, dass er nicht feinen Sinn genug hat, sie von einem <span class="tei_hi_spaced_out">gemeinen Tempo</span> zu unterscheiden. Da übrigens im Rhythmus dieses Tempo’s etwas so höchst Karakteristisches liegt, so lohnt es sich wol der Mühe zu bemerken, dass sich wenn man ihn in seine Glieder auflöst, folgendes Verhältnis findet:<span class="tei_cb"> ¦ </span>
+                    Die Introduktion, welche die Friedensfeier am Hofe des <span class=" 75246110105103115">Königs</span> schildert, gewährt uns das Gefühl der ungetrübten Fröhlichkeit, die aber durch adle Sitte des Ritterthums gemässigt ist. Chor und Tanz haben, ich möchte sagen, einen noblen gravitätischen Karakter <a href="#footnote01">*)</a>; der gar sehr geschwächt wird, wenn das Tempo, wie bei der Aufführung in <span class=" 76101105112122105103"><span class="tei_settlement">Leipzig</span></span>, zu schnell genommen wird. <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nimmt zur ersten Zeitbewegung ein Moderato, welches den Violinen die graziösen Figuren, welche schon im Ritornell vorkommen, ganz vollkommen und rund auszubilden gestattet. Er lässt das Orchester in einer genialen Freiheit walten, anhalten und schneller gehen, wie es das feinere Gefühl will. Dieses war schon bei dem Laufer, welchen das Violoncell der Violine nachbildet, dann <span class="tei_choice"><span class="tei_corr">noch</span><a class="noteMarker" id="ref-d73112e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73112e37">‡</a></span> mehr in den leicht abgestossenen Noten der Flöten, Fagotte u. s. w. welche zwischen den Frauenchor fallen, und in den gebundenen Sechzehntheilen der Violinen wahrzunehmen. Die Sänger verstanden das Orchester und man hörte keinen steifen Takt. Um so markirter trat nun die Tanzmelodie ein. Wer diese <span class="tei_hi_spaced_out">schnell</span> nehmen könnte, der würde beweisen, dass er nicht feinen Sinn genug hat, sie von einem <span class="tei_hi_spaced_out">gemeinen Tempo</span> zu unterscheiden. Da übrigens im Rhythmus dieses Tempo’s etwas so höchst Karakteristisches liegt, so lohnt es sich wol der Mühe zu bemerken, dass sich wenn man ihn in seine Glieder auflöst, folgendes Verhältnis findet:<span class="tei_cb"> ¦ </span>
                 </p>
                                         <div class="poem"><span class="lg"><span class="verseLine">Dreivierteltakt:</span></span><span class="lg"><span class="verseLine">1. Klausel: 4 Takte | 4 Takte :||:</span><span class="verseLine">2. Klausel: 2 Takte | 2 Takte | 4 Takte | 4 Takte :||:</span><span class="verseLine">3. Klausel D-dur: 2 T. | 2 T. | 2 Takte | 2 Takte :||:</span><span class="verseLine">4. Klausel: Ebenso :||:</span><span class="verseLine">5. Klausel: wie die 1. :||:</span><span class="verseLine">6. Klausel: wie die 2. nebst Koda.</span></span>
                                         </div>
@@ -427,7 +434,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d9477e37" data-title="choice">recte "noch": eigentlich "noc"</div>
+                                            <div class="apparatusEntry" id="d73112e37" data-title="choice">recte "noch": eigentlich "noc"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -485,21 +492,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -540,8 +542,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

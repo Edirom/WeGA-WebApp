@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tonkünstlers Leben. Fragment VI (Entwurf)</title>
         
-        <meta name="DC.title" content="Tonkünstlers Leben. Fragment VI (Entwurf)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Carl Maria von Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Solveig Schreiter" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-07-15T15:22:21.532507Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031595" />
-        <meta name="DC.description" content="Felix gerät in einen Maskenball (Redoute); auf dem Karneval wird eine Satire über die italienische, französische und deutsche Oper mit Kommentaren von Hanswurst dargeboten" />
+        <meta property="dc:title" content="Tonkünstlers Leben. Fragment VI (Entwurf)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Carl Maria von Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-09-20T07:48:33.058022Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031595" />
+        <meta property="dc:description" content="Felix gerät in einen Maskenball (Redoute); auf dem Karneval wird eine Satire über die italienische, französische und deutsche Oper mit Kommentaren von Hanswurst dargeboten" />
         <meta name="description" content="Felix gerät in einen Maskenball (Redoute); auf dem Karneval wird eine Satire über die italienische, französische und deutsche Oper mit Kommentaren von Hanswurst dargeboten" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -274,21 +278,21 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
-                                    <div class="docPart"><span class="tei_dateline"><span class="tei_add"><span class="tei_hi_underline1">d. 24<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">September</span> 1810 in <span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span></span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e4">‡</a></span></span>
-                                        <p>Ich hatte eben die lezte Note geschrieben und ergözte mich an den Schnörkeln des Schlußzeichens, die meine Hand geschäftig verfielfältigte, <span class="tei_del">und wobey<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e19">‡</a></span> <span class="tei_add tei_hi_superscript">während<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e22">‡</a></span>
-         mein Geist das ganze Stük noch einmal vor sich schweben ließ, und eine Art <span class="tei_del">dumpfen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e25">‡</a></span> <span class="tei_add tei_hi_superscript">zerstreuten<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e28">‡</a></span> Brütens, mit der <span class="tei_choice"><span class="tei_corr">zufriedenen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e31">‡</a></span> Empfindung einer vollendeten Arbeit verbunden, sich erzeugte, als mein munterer Dichter in Domino und Larve zur Thüre herein trat, und mich mit freundschaftlichem Ungestüm beym Ermel faßte. das ewige Arbeiten taugt den Teufel nicht, fort, auf, Heut ist Redoute, glänzende Redoute, die zweite, <span class="tei_del">denn<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e38">‡</a></span> die erste besucht nie­mand; da giebts schöne Mädchen, Punsch, Musik, zwar schlecht aber doch lär­mend, da kann man Grobheit für Wiz ausgeben, und unter der schüzenden Maske sogar einmal den Weibern die Wahrheit sagen – <span class="tei_hi_latintype">allons</span>, auf! der Wagen steht vor der Thür, hier ist alles nöthige und nun Marsch!</p>
-                                        <p>Ehe ich noch selbst recht wußte ob ich wollte oder nicht saß <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e46">‡</a></span> im Wagen, wurde von den geschäftigen Händen meines lokeren Freundes bemäntelt und verkappt, <span class="tei_del">und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e49">‡</a></span> eben so 
-         <span class="tei_add tei_hi_superscript">schnell<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e52">‡</a></span> wieder aus dem Wagen ge­hoben, und da stand ich nun in der wirbel<span class="tei_supplied" id="d8554e55">[n]</span>den Menge bunter Geschöpfe die heute das Recht hatten <span class="tei_hi_underline1">öffentlich</span> nicht zu scheinen was sie sind.</p>
-                                        <p>die Rippenstöße einiger Walzenden Paare <span class="tei_del">brachten mich bald zu mir<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e63">‡</a></span> <span class="tei_add tei_hi_subscript">wekten mich bald kräftigst aus meinen Träumen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e66">‡</a></span>, und <span class="tei_del">nun<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e69">‡</a></span> <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e72">‡</a></span> fieng <span class="tei_add tei_hi_superscript">nun<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e75">‡</a></span> <span class="tei_add tei_hi_subscript">nach und nach<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e79">‡</a></span> <span class="tei_del">ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e82">‡</a></span> an mir in dem Gewirre zu <span class="tei_del">behagen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e85">‡</a></span> <span class="tei_add tei_hi_superscript">gefallen.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e88">‡</a></span> Unter der Maske ist man ein anderes <span class="tei_del">Mensch<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e91">‡</a></span> <span class="tei_add tei_hi_subscript">Geschöpf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e94">‡</a></span>, <span class="tei_hi_underline1">hier</span> zeigt sich deutlich wie sehr in das Wesen <span class="tei_add tei_hi_superscript">und Treiben<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e101">‡</a></span> des Menschen, <span class="tei_del">seine Achtung<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e104">‡</a></span> <span class="tei_add tei_hi_subscript">die Anhänglichkeit an<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e107">‡</a></span> die Formen <span class="tei_del">eingeprägt<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e110">‡</a></span> <span class="tei_add tei_hi_superscript">verwebt<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e113">‡</a></span> ist, alles Denken alles Reden ist freyer so bald man das bischen Wachspapier vor dem Gesichte weis; der <span class="tei_add tei_hi_superscript">blöde<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e117">‡</a></span> Verliebte wagt es zuerst seiner Schönen Liebe zu gestehen; – das schüchterne Mädchen fürchtet sein Erröthen nicht <span class="tei_add tei_hi_superscript">mehr<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e120">‡</a></span>, weil es es ungesehen glaubt, <span class="tei_del">sogar<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e123">‡</a></span>
-         <span class="tei_add tei_hi_superscript">selbst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e126">‡</a></span> der Freund zum Freunde spricht derber, und ein Feiger wagt es vielleicht sogar an einem seiner <span class="tei_hi_latintype">Maecene</span> <span class="tei_del">seinen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e132">‡</a></span> Witz zu üben. Mein lokerer Führer ermangelte nicht die vorbey­strei­fen­den Bäuerinnen, Vestalinnen, Türkinnen und Nonnen, zu beäugeln, und mit beißenden Anmerkungen zu <span class="tei_hi_latintype">regaliren</span>, <span class="tei_del">so<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e139">‡</a></span> ich zog mich etwas zurük <span class="tei_del">und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e142">‡</a></span> der Strom trennte uns <span class="tei_del">bald<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e145">‡</a></span> und ich sah mich ein paar freundlichen FlederMäusen gegenüber die mich anpipten, lange nicht Klavier gespielt. Nein! o wir kennen dich viel Ehre.! ein GärtnerMädchen zupfte mich bot mir eine Pomeranze, für dein Schönes Spiel vor einigen Tagen. ein Teufel <span class="tei_pb"> | </span> drängte sich zu mir, und sagte <span class="tei_hi_latintype">componire</span> mir dieß, ich las, an <span class="tei_hi_underline1">Emilien</span>, <span class="tei_del">und mit<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e157">‡</a></span> ergriff es mit Hast <span class="tei_del">ergriff ich es<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e160">‡</a></span> und sprach, <span class="tei_del">auf der<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e163">‡</a></span> selbst vom Teufel verehre ich was Ihren Nahmen trägt, auf der nächsten Redoute bekomst du es.</p>
-                                        <p>eine Nonne hieng sich an meinen Arm; die schlechte Musik muß dein Kenner Ohr beleidigen. Nein, Beste, aber das beleidigt meine Ohren daß die ganze Welt nichts anderes mit einem Künstler zu sprechen weis, als wovon er nie gern <span class="tei_hi_underline1">spricht</span>, sondern <span class="tei_add tei_hi_superscript">nur<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e171">‡</a></span> <span class="tei_hi_underline1">fühlt</span>, von seiner Kunst. und ergrimmt <span class="tei_hi_underline1">mich</span> beynah von jeder Maske erkannt zu sehen zog ich mich in eine Loge zurük.</p>
-                                        <p>Doch bald lokte <span class="tei_del">mich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e182">‡</a></span> ein sonderbarer Aufzug <span class="tei_add tei_hi_superscript">mich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e185">‡</a></span> wieder näher. <span class="tei_del">die Tanz<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e188">‡</a></span> Ein großer Schwarm von Masken kam zu der weit geöffneten Thüre herein. die sonderbarsten baroksten Karikaturen und Phantome, klein und groß, in den verschiedensten Gestalten und Formen, die TanzMusik schwieg, <span class="tei_add">ein Hanswurst bat das Publikum um Erlaubniß, eine große deklamatorische, dramatische<span class="tei_supplied" id="d8554e193">[[?]]</span>, Melodramische <span class="tei_del">Vorstellung<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e196">‡</a></span><span class="tei_del">Oper in Versen auf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e198">‡</a></span>, Allegorische Darstellung in Versen geben zu dürfen, <span class="tei_del">und hervor<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e201">‡</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e191">‡</a></span>          
-         <span class="tei_del">Oper in Versen auf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e204">‡</a></span>, Allegorische Darstellung in Versen geben zu dürfen, <span class="tei_del">und hervor<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e208">‡</a></span>m  und hervor trat ein geregeltes kaltes Wesen welches auf der <span class="tei_del">Brust<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e211">‡</a></span>
-         <span class="tei_add tei_hi_superscript">Stirn<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e214">‡</a></span> ein Schild mit dem Wort, <span class="tei_hi_underline1">Unpartheilichkeit</span>, am Munde die Phrase, <span class="tei_hi_underline1">Eifer für die Kunst</span> <span class="tei_del">unzählige male<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e223">‡</a></span>, <span class="tei_del">hatte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e227">‡</a></span> <span class="tei_add tei_hi_superscript">und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e230">‡</a></span> am Herzen einen gespikten Musik<span class="tei_hi_latintype">Catalog</span> <span class="tei_add tei_hi_superscript">hatte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e236">‡</a></span>, <span class="tei_del">und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e239">‡</a></span> in der Tasche ein Schnippchen schlug, <span class="tei_del">mit einem Wort als Musikalische Zeitung erschien und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e242">‡</a></span> <span class="tei_add tei_hi_superscript">und daß ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e246">‡</a></span> <span class="tei_add">bey erstem Blik als eine gewiße Zeitschrift erkannte, die sich anschikte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e249">‡</a></span> folgenden Prolog <span class="tei_add tei_hi_superscript">zu<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e252">‡</a></span>
+                                    <div class="docPart"><span class="tei_dateline"><span class="tei_add"><span class="tei_hi_underline1">d. 24<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">September</span> 1810 in <span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span></span>.<a class="noteMarker" id="ref-d72143e4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e4">‡</a></span></span>
+                                        <p>Ich hatte eben die lezte Note geschrieben und ergözte mich an den Schnörkeln des Schlußzeichens, die meine Hand geschäftig verfielfältigte, <span class="tei_del">und wobey<a class="noteMarker" id="ref-d72143e19" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e19">‡</a></span> <span class="tei_add tei_hi_superscript">während<a class="noteMarker" id="ref-d72143e22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e22">‡</a></span>
+         mein Geist das ganze Stük noch einmal vor sich schweben ließ, und eine Art <span class="tei_del">dumpfen<a class="noteMarker" id="ref-d72143e25" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e25">‡</a></span> <span class="tei_add tei_hi_superscript">zerstreuten<a class="noteMarker" id="ref-d72143e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e28">‡</a></span> Brütens, mit der <span class="tei_choice"><span class="tei_corr">zufriedenen</span><a class="noteMarker" id="ref-d72143e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e31">‡</a></span> Empfindung einer vollendeten Arbeit verbunden, sich erzeugte, als mein munterer Dichter in Domino und Larve zur Thüre herein trat, und mich mit freundschaftlichem Ungestüm beym Ermel faßte. das ewige Arbeiten taugt den Teufel nicht, fort, auf, Heut ist Redoute, glänzende Redoute, die zweite, <span class="tei_del">denn<a class="noteMarker" id="ref-d72143e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e38">‡</a></span> die erste besucht nie­mand; da giebts schöne Mädchen, Punsch, Musik, zwar schlecht aber doch lär­mend, da kann man Grobheit für Wiz ausgeben, und unter der schüzenden Maske sogar einmal den Weibern die Wahrheit sagen – <span class="tei_hi_latintype">allons</span>, auf! der Wagen steht vor der Thür, hier ist alles nöthige und nun Marsch!</p>
+                                        <p>Ehe ich noch selbst recht wußte ob ich wollte oder nicht saß <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" id="ref-d72143e46" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e46">‡</a></span> im Wagen, wurde von den geschäftigen Händen meines lokeren Freundes bemäntelt und verkappt, <span class="tei_del">und<a class="noteMarker" id="ref-d72143e49" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e49">‡</a></span> eben so 
+         <span class="tei_add tei_hi_superscript">schnell<a class="noteMarker" id="ref-d72143e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e52">‡</a></span> wieder aus dem Wagen ge­hoben, und da stand ich nun in der wirbel<span class="tei_supplied" id="d72143e55">[n]</span>den Menge bunter Geschöpfe die heute das Recht hatten <span class="tei_hi_underline1">öffentlich</span> nicht zu scheinen was sie sind.</p>
+                                        <p>die Rippenstöße einiger Walzenden Paare <span class="tei_del">brachten mich bald zu mir<a class="noteMarker" id="ref-d72143e63" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e63">‡</a></span> <span class="tei_add tei_hi_subscript">wekten mich bald kräftigst aus meinen Träumen<a class="noteMarker" id="ref-d72143e66" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e66">‡</a></span>, und <span class="tei_del">nun<a class="noteMarker" id="ref-d72143e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e69">‡</a></span> <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" id="ref-d72143e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e72">‡</a></span> fieng <span class="tei_add tei_hi_superscript">nun<a class="noteMarker" id="ref-d72143e75" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e75">‡</a></span> <span class="tei_add tei_hi_subscript">nach und nach<a class="noteMarker" id="ref-d72143e79" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e79">‡</a></span> <span class="tei_del">ich<a class="noteMarker" id="ref-d72143e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e82">‡</a></span> an mir in dem Gewirre zu <span class="tei_del">behagen<a class="noteMarker" id="ref-d72143e85" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e85">‡</a></span> <span class="tei_add tei_hi_superscript">gefallen.<a class="noteMarker" id="ref-d72143e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e88">‡</a></span> Unter der Maske ist man ein anderes <span class="tei_del">Mensch<a class="noteMarker" id="ref-d72143e91" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e91">‡</a></span> <span class="tei_add tei_hi_subscript">Geschöpf<a class="noteMarker" id="ref-d72143e94" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e94">‡</a></span>, <span class="tei_hi_underline1">hier</span> zeigt sich deutlich wie sehr in das Wesen <span class="tei_add tei_hi_superscript">und Treiben<a class="noteMarker" id="ref-d72143e101" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e101">‡</a></span> des Menschen, <span class="tei_del">seine Achtung<a class="noteMarker" id="ref-d72143e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e104">‡</a></span> <span class="tei_add tei_hi_subscript">die Anhänglichkeit an<a class="noteMarker" id="ref-d72143e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e107">‡</a></span> die Formen <span class="tei_del">eingeprägt<a class="noteMarker" id="ref-d72143e110" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e110">‡</a></span> <span class="tei_add tei_hi_superscript">verwebt<a class="noteMarker" id="ref-d72143e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e113">‡</a></span> ist, alles Denken alles Reden ist freyer so bald man das bischen Wachspapier vor dem Gesichte weis; der <span class="tei_add tei_hi_superscript">blöde<a class="noteMarker" id="ref-d72143e117" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e117">‡</a></span> Verliebte wagt es zuerst seiner Schönen Liebe zu gestehen; – das schüchterne Mädchen fürchtet sein Erröthen nicht <span class="tei_add tei_hi_superscript">mehr<a class="noteMarker" id="ref-d72143e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e120">‡</a></span>, weil es es ungesehen glaubt, <span class="tei_del">sogar<a class="noteMarker" id="ref-d72143e123" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e123">‡</a></span>
+         <span class="tei_add tei_hi_superscript">selbst<a class="noteMarker" id="ref-d72143e126" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e126">‡</a></span> der Freund zum Freunde spricht derber, und ein Feiger wagt es vielleicht sogar an einem seiner <span class="tei_hi_latintype">Maecene</span> <span class="tei_del">seinen<a class="noteMarker" id="ref-d72143e132" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e132">‡</a></span> Witz zu üben. Mein lokerer Führer ermangelte nicht die vorbey­strei­fen­den Bäuerinnen, Vestalinnen, Türkinnen und Nonnen, zu beäugeln, und mit beißenden Anmerkungen zu <span class="tei_hi_latintype">regaliren</span>, <span class="tei_del">so<a class="noteMarker" id="ref-d72143e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e139">‡</a></span> ich zog mich etwas zurük <span class="tei_del">und<a class="noteMarker" id="ref-d72143e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e142">‡</a></span> der Strom trennte uns <span class="tei_del">bald<a class="noteMarker" id="ref-d72143e145" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e145">‡</a></span> und ich sah mich ein paar freundlichen FlederMäusen gegenüber die mich anpipten, lange nicht Klavier gespielt. Nein! o wir kennen dich viel Ehre.! ein GärtnerMädchen zupfte mich bot mir eine Pomeranze, für dein Schönes Spiel vor einigen Tagen. ein Teufel <span class="tei_pb"> | </span> drängte sich zu mir, und sagte <span class="tei_hi_latintype">componire</span> mir dieß, ich las, an <span class="tei_hi_underline1">Emilien</span>, <span class="tei_del">und mit<a class="noteMarker" id="ref-d72143e157" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e157">‡</a></span> ergriff es mit Hast <span class="tei_del">ergriff ich es<a class="noteMarker" id="ref-d72143e160" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e160">‡</a></span> und sprach, <span class="tei_del">auf der<a class="noteMarker" id="ref-d72143e163" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e163">‡</a></span> selbst vom Teufel verehre ich was Ihren Nahmen trägt, auf der nächsten Redoute bekomst du es.</p>
+                                        <p>eine Nonne hieng sich an meinen Arm; die schlechte Musik muß dein Kenner Ohr beleidigen. Nein, Beste, aber das beleidigt meine Ohren daß die ganze Welt nichts anderes mit einem Künstler zu sprechen weis, als wovon er nie gern <span class="tei_hi_underline1">spricht</span>, sondern <span class="tei_add tei_hi_superscript">nur<a class="noteMarker" id="ref-d72143e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e171">‡</a></span> <span class="tei_hi_underline1">fühlt</span>, von seiner Kunst. und ergrimmt <span class="tei_hi_underline1">mich</span> beynah von jeder Maske erkannt zu sehen zog ich mich in eine Loge zurük.</p>
+                                        <p>Doch bald lokte <span class="tei_del">mich<a class="noteMarker" id="ref-d72143e182" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e182">‡</a></span> ein sonderbarer Aufzug <span class="tei_add tei_hi_superscript">mich<a class="noteMarker" id="ref-d72143e185" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e185">‡</a></span> wieder näher. <span class="tei_del">die Tanz<a class="noteMarker" id="ref-d72143e188" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e188">‡</a></span> Ein großer Schwarm von Masken kam zu der weit geöffneten Thüre herein. die sonderbarsten baroksten Karikaturen und Phantome, klein und groß, in den verschiedensten Gestalten und Formen, die TanzMusik schwieg, <span class="tei_add">ein Hanswurst bat das Publikum um Erlaubniß, eine große deklamatorische, dramatische<span class="tei_supplied" id="d72143e193">[[?]]</span>, Melodramische <span class="tei_del">Vorstellung<a class="noteMarker" id="ref-d72143e196" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e196">‡</a></span><span class="tei_del">Oper in Versen auf<a class="noteMarker" id="ref-d72143e198" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e198">‡</a></span>, Allegorische Darstellung in Versen geben zu dürfen, <span class="tei_del">und hervor<a class="noteMarker" id="ref-d72143e201" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e201">‡</a></span><a class="noteMarker" id="ref-d72143e191" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e191">‡</a></span>          
+         <span class="tei_del">Oper in Versen auf<a class="noteMarker" id="ref-d72143e204" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e204">‡</a></span>, Allegorische Darstellung in Versen geben zu dürfen, <span class="tei_del">und hervor<a class="noteMarker" id="ref-d72143e208" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e208">‡</a></span>m  und hervor trat ein geregeltes kaltes Wesen welches auf der <span class="tei_del">Brust<a class="noteMarker" id="ref-d72143e211" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e211">‡</a></span>
+         <span class="tei_add tei_hi_superscript">Stirn<a class="noteMarker" id="ref-d72143e214" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e214">‡</a></span> ein Schild mit dem Wort, <span class="tei_hi_underline1">Unpartheilichkeit</span>, am Munde die Phrase, <span class="tei_hi_underline1">Eifer für die Kunst</span> <span class="tei_del">unzählige male<a class="noteMarker" id="ref-d72143e223" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e223">‡</a></span>, <span class="tei_del">hatte<a class="noteMarker" id="ref-d72143e227" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e227">‡</a></span> <span class="tei_add tei_hi_superscript">und<a class="noteMarker" id="ref-d72143e230" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e230">‡</a></span> am Herzen einen gespikten Musik<span class="tei_hi_latintype">Catalog</span> <span class="tei_add tei_hi_superscript">hatte<a class="noteMarker" id="ref-d72143e236" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e236">‡</a></span>, <span class="tei_del">und<a class="noteMarker" id="ref-d72143e239" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e239">‡</a></span> in der Tasche ein Schnippchen schlug, <span class="tei_del">mit einem Wort als Musikalische Zeitung erschien und<a class="noteMarker" id="ref-d72143e242" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e242">‡</a></span> <span class="tei_add tei_hi_superscript">und daß ich<a class="noteMarker" id="ref-d72143e246" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e246">‡</a></span> <span class="tei_add">bey erstem Blik als eine gewiße Zeitschrift erkannte, die sich anschikte<a class="noteMarker" id="ref-d72143e249" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e249">‡</a></span> folgenden Prolog <span class="tei_add tei_hi_superscript">zu<a class="noteMarker" id="ref-d72143e252" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e252">‡</a></span>
          halten.</p>
-                                        <p>Prolog.</p><span class="verseLine">Verehrtes Kunstliebendes Publikum<br />Es war uns zu allen Zeiten drum</span><span class="verseLine"><span class="tei_del">der Kunst und den Freuden<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e262">‡</a></span></span><span class="verseLine">dir deutlich und glaubbar einzubeizen</span><span class="verseLine">daß nie nach schnödem Gewinn wir geizen.</span><span class="verseLine">Ja! durch unpartheiische Rezensionen</span><span class="verseLine">Können wir beweisen in allen Zonen</span><span class="verseLine">daß stets wir die Kunst nur aus Liebe gepflegt,</span><span class="verseLine">daß selbst oft mit Schaden wir Werke verlegt.</span><span class="verseLine">Auch werden wir niemals aufhören zu Streben</span><span class="verseLine">Euch neue Beweise von Eifer zu geben.</span><span class="verseLine">Ein größeres Werk verlegen wir jährlich,</span><span class="verseLine">obwohl es in dieser Zeit wirklich gefährlich</span><span class="verseLine">mit so <span class="tei_hi_latintype">Partituren</span> sich abzugeben,</span><span class="verseLine">doch wollen die Herrn <span class="tei_hi_latintype">Componisten</span> auch leben.</span><span class="verseLine">das Stük hier, wir wollens nicht loben nicht Tadeln,</span><span class="verseLine">Es wird sich hat’s wahren Werth, selber schon adeln,</span><span class="verseLine">Bemerken nur können wir bey unsern Sachen</span><span class="verseLine">daß wir sie gemeinnüzig suchen zu machen,</span><span class="verseLine">Wovon wohl unstreitig der klärste Beweis,</span><span class="verseLine">dies schöne Papier, und der niedrige Preiß.</span>
-                                        <p><span class="tei_hi_underline1">Hanswurst /: springt hervor</span> :/</p><span class="verseLine"><span class="tei_add">1.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e313">‡</a></span> Erlauben’s mir auch ein paar Worte zum Schluß</span><span class="verseLine">nur die große Oper tritt hier vor die Welt,</span><span class="verseLine"><span class="tei_add">2. Hier ist<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e319">‡</a></span><span class="tei_del">daher<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e321">‡</a></span> nicht vonnöthen daß alles <span class="tei_hi_underline1">ein Guß</span>,</span><span class="tei_pb_block"> | </span><span class="verseLine"><span class="tei_hi_underline1">Effekte</span> nur sind hier zusammengestellt.</span><span class="verseLine">die Sängerin will <span class="tei_add tei_hi_superscript">Sie<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e335">‡</a></span> durch Gurgeln verführen,</span><span class="verseLine">der Heldenspieler <span class="tei_del">Sie<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e340">‡</a></span> durch Wahnsinn rühren.</span><span class="verseLine">der Narr, Sie durch Wahrheit lachen machen,</span><span class="verseLine">das <span class="tei_hi_latintype">Orchester</span> wird <span class="tei_add tei_hi_superscript">schreklich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e350">‡</a></span> wüthen und krachen,</span><span class="verseLine">die Tänzerin schöne Waden zeigen</span><span class="verseLine">der <span class="tei_hi_latintype">Prim’ Violino</span>, <span class="tei_hi_latintype">Solo</span> geigen,</span><span class="verseLine">der TheaterMeister donnern und blizen,</span><span class="verseLine">um auch etwas Ihre Gunst zu besizen.</span><span class="verseLine">Ja! wird Sie dieß alles nicht pakken, nicht greiffen,</span><span class="verseLine">Werden wir zu den lezten Mitteln greifen.</span><span class="verseLine">Mit Pferden, Kamelen, Sie <span class="tei_hi_latintype">regaliren</span>,</span><span class="verseLine">kein Thier soll unsern Kunstdrang <span class="tei_hi_latintype">geniren</span>.</span><span class="verseLine">Kurz <span class="tei_add tei_hi_superscript">durch<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e384">‡</a></span> alles was das Schenie je aushekte,</span><span class="verseLine">durch all diese goldenen, großen Effekte,</span><span class="verseLine">Wollen wir blos Effektuiren,</span><span class="verseLine">daß Sie sich sollen <span class="tei_hi_latintype">amusiren</span>,</span><span class="verseLine">/: die große Tendenz unserer Zeiten :/ –</span><span class="verseLine">Auch ohne zu Wißen ob’s was zu bedeuten,</span><span class="verseLine">Wenn nur nach dem Theater, am <span class="tei_hi_latintype">Table D’hote</span>,</span><span class="verseLine">im Munde die Kunst und das Abendbrot,</span><span class="verseLine">Sie finden, daß die und die schön angezogen,</span><span class="verseLine">der Larifari heut vortrefflich geflogen,</span><span class="verseLine">daß eigentlich ’s Ganze, Sie nicht recht verstehn,</span><span class="verseLine">und deswegen ’s nächste Mal wieder hingehn.</span>
-                                        <p><span class="tei_hi_underline1">Er entfernt sich unter einer Verbeugung</span>, und <span class="tei_hi_underline1">die große Italienische Oper tritt auf</span>. – Eine lange, hagere, durchsichtige Figur, Karakterloses Gesicht, das als Held, <span class="tei_del">als<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e423">‡</a></span> <span class="tei_hi_latintype">Seladon</span> <span class="tei_del">und<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e429">‡</a></span> <span class="tei_hi_latintype">Barbar</span> sich immer gleich bleibt, und nur eine ungemeine Süßlichkeit über sich verbreitet hat. Sie trägt ein dünnes SchleppKleid, deßen Farbe eigentlich keine Farbe zu nennen ist, und auf dem hin und wieder kleine blizende Steinchen sizzen, die die Augen des Publikums auf sich ziehen. <span class="tei_add">bey Ihrem Auftritt <span class="tei_del">entsteht<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e438">‡</a></span><span class="tei_add tei_hi_superscript">wird im <span class="tei_hi_latintype">Orchester</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e440">‡</a></span><span class="tei_del">wird<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e444">‡</a></span> ein Geräusch gemacht um die Zuhörer zur Stille zu bewegen, und das <span class="tei_add tei_hi_superscript">in Italien<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e447">‡</a></span> Ouverture genannt wird.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e436">‡</a></span> <a href="#footnote_01">(#)</a>
+                                        <p>Prolog.</p><span class="verseLine">Verehrtes Kunstliebendes Publikum<br />Es war uns zu allen Zeiten drum</span><span class="verseLine"><span class="tei_del">der Kunst und den Freuden<a class="noteMarker" id="ref-d72143e262" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e262">‡</a></span></span><span class="verseLine">dir deutlich und glaubbar einzubeizen</span><span class="verseLine">daß nie nach schnödem Gewinn wir geizen.</span><span class="verseLine">Ja! durch unpartheiische Rezensionen</span><span class="verseLine">Können wir beweisen in allen Zonen</span><span class="verseLine">daß stets wir die Kunst nur aus Liebe gepflegt,</span><span class="verseLine">daß selbst oft mit Schaden wir Werke verlegt.</span><span class="verseLine">Auch werden wir niemals aufhören zu Streben</span><span class="verseLine">Euch neue Beweise von Eifer zu geben.</span><span class="verseLine">Ein größeres Werk verlegen wir jährlich,</span><span class="verseLine">obwohl es in dieser Zeit wirklich gefährlich</span><span class="verseLine">mit so <span class="tei_hi_latintype">Partituren</span> sich abzugeben,</span><span class="verseLine">doch wollen die Herrn <span class="tei_hi_latintype">Componisten</span> auch leben.</span><span class="verseLine">das Stük hier, wir wollens nicht loben nicht Tadeln,</span><span class="verseLine">Es wird sich hat’s wahren Werth, selber schon adeln,</span><span class="verseLine">Bemerken nur können wir bey unsern Sachen</span><span class="verseLine">daß wir sie gemeinnüzig suchen zu machen,</span><span class="verseLine">Wovon wohl unstreitig der klärste Beweis,</span><span class="verseLine">dies schöne Papier, und der niedrige Preiß.</span>
+                                        <p><span class="tei_hi_underline1">Hanswurst /: springt hervor</span> :/</p><span class="verseLine"><span class="tei_add">1.<a class="noteMarker" id="ref-d72143e313" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e313">‡</a></span> Erlauben’s mir auch ein paar Worte zum Schluß</span><span class="verseLine">nur die große Oper tritt hier vor die Welt,</span><span class="verseLine"><span class="tei_add">2. Hier ist<a class="noteMarker" id="ref-d72143e319" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e319">‡</a></span><span class="tei_del">daher<a class="noteMarker" id="ref-d72143e321" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e321">‡</a></span> nicht vonnöthen daß alles <span class="tei_hi_underline1">ein Guß</span>,</span><span class="tei_pb_block"> | </span><span class="verseLine"><span class="tei_hi_underline1">Effekte</span> nur sind hier zusammengestellt.</span><span class="verseLine">die Sängerin will <span class="tei_add tei_hi_superscript">Sie<a class="noteMarker" id="ref-d72143e335" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e335">‡</a></span> durch Gurgeln verführen,</span><span class="verseLine">der Heldenspieler <span class="tei_del">Sie<a class="noteMarker" id="ref-d72143e340" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e340">‡</a></span> durch Wahnsinn rühren.</span><span class="verseLine">der Narr, Sie durch Wahrheit lachen machen,</span><span class="verseLine">das <span class="tei_hi_latintype">Orchester</span> wird <span class="tei_add tei_hi_superscript">schreklich<a class="noteMarker" id="ref-d72143e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e350">‡</a></span> wüthen und krachen,</span><span class="verseLine">die Tänzerin schöne Waden zeigen</span><span class="verseLine">der <span class="tei_hi_latintype">Prim’ Violino</span>, <span class="tei_hi_latintype">Solo</span> geigen,</span><span class="verseLine">der TheaterMeister donnern und blizen,</span><span class="verseLine">um auch etwas Ihre Gunst zu besizen.</span><span class="verseLine">Ja! wird Sie dieß alles nicht pakken, nicht greiffen,</span><span class="verseLine">Werden wir zu den lezten Mitteln greifen.</span><span class="verseLine">Mit Pferden, Kamelen, Sie <span class="tei_hi_latintype">regaliren</span>,</span><span class="verseLine">kein Thier soll unsern Kunstdrang <span class="tei_hi_latintype">geniren</span>.</span><span class="verseLine">Kurz <span class="tei_add tei_hi_superscript">durch<a class="noteMarker" id="ref-d72143e384" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e384">‡</a></span> alles was das Schenie je aushekte,</span><span class="verseLine">durch all diese goldenen, großen Effekte,</span><span class="verseLine">Wollen wir blos Effektuiren,</span><span class="verseLine">daß Sie sich sollen <span class="tei_hi_latintype">amusiren</span>,</span><span class="verseLine">/: die große Tendenz unserer Zeiten :/ –</span><span class="verseLine">Auch ohne zu Wißen ob’s was zu bedeuten,</span><span class="verseLine">Wenn nur nach dem Theater, am <span class="tei_hi_latintype">Table D’hote</span>,</span><span class="verseLine">im Munde die Kunst und das Abendbrot,</span><span class="verseLine">Sie finden, daß die und die schön angezogen,</span><span class="verseLine">der Larifari heut vortrefflich geflogen,</span><span class="verseLine">daß eigentlich ’s Ganze, Sie nicht recht verstehn,</span><span class="verseLine">und deswegen ’s nächste Mal wieder hingehn.</span>
+                                        <p><span class="tei_hi_underline1">Er entfernt sich unter einer Verbeugung</span>, und <span class="tei_hi_underline1">die große Italienische Oper tritt auf</span>. – Eine lange, hagere, durchsichtige Figur, Karakterloses Gesicht, das als Held, <span class="tei_del">als<a class="noteMarker" id="ref-d72143e423" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e423">‡</a></span> <span class="tei_hi_latintype">Seladon</span> <span class="tei_del">und<a class="noteMarker" id="ref-d72143e429" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e429">‡</a></span> <span class="tei_hi_latintype">Barbar</span> sich immer gleich bleibt, und nur eine ungemeine Süßlichkeit über sich verbreitet hat. Sie trägt ein dünnes SchleppKleid, deßen Farbe eigentlich keine Farbe zu nennen ist, und auf dem hin und wieder kleine blizende Steinchen sizzen, die die Augen des Publikums auf sich ziehen. <span class="tei_add">bey Ihrem Auftritt <span class="tei_del">entsteht<a class="noteMarker" id="ref-d72143e438" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e438">‡</a></span><span class="tei_add tei_hi_superscript">wird im <span class="tei_hi_latintype">Orchester</span><a class="noteMarker" id="ref-d72143e440" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e440">‡</a></span><span class="tei_del">wird<a class="noteMarker" id="ref-d72143e444" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e444">‡</a></span> ein Geräusch gemacht um die Zuhörer zur Stille zu bewegen, und das <span class="tei_add tei_hi_superscript">in Italien<a class="noteMarker" id="ref-d72143e447" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e447">‡</a></span> Ouverture genannt wird.<a class="noteMarker" id="ref-d72143e436" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e436">‡</a></span> <a href="#footnote_01">(#)</a>
                                         </p>
                                         <p>Sie fängt an zu singen</p><br /><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Scena</span></span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Recit</span>: Oh Dio   –    –    –   addio    –    –</span><br /></span><span class="verseLine">–     –     –     –     –     –     –    –    –<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Arioso</span>. ah non pianger mio bene </span><br /></span><span class="verseLine">–     –     –     –     –     –<br /><span class="tei_hi_latintype">Ti lascio     –      –      Idol mio     –</span><br />–     –     –     <span class="tei_hi_latintype">oimé</span>    –     –      –<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Allegro</span>: già la Tromba suona     –     –</span><br /></span><span class="verseLine">–     –     –      –     –      –<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">colla parte</span>, per te morir io voglio     –</span><br /></span><span class="verseLine">–     –     –     –     –  <br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">più stretto</span>,    –     O Felicitá     –     –</span><br />/: auf <span class="tei_hi_latintype">tá</span> ein Triller von zehn Takten; das Publikum applaudirt unmenschlich :/<br /></span><span class="verseLine"><br /><span class="tei_hi_latintype"><span class="tei_hi_underline1">Duetto</span></span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype">–   Caro   –   –   – </span>  !
          <br /><span class="tei_hi_latintype">–   Cara   –   –   – </span>  !<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">a Due</span> Sorte amara   –   –</span><br />/: auf <span class="tei_hi_latintype">amara</span>, wegen des <span class="tei_hi_latintype">a</span>, die süßesten TerzenPaßagen :/<br /><span class="tei_pb"> | </span><span class="tei_hi_latintype"><span class="tei_hi_underline1">Allegro</span>: – ah Barbaro tormento   –   –</span></span>
@@ -297,8 +301,8 @@
                                         </p><span class="verseLine">Nein! es geht doch nichts über Melodie!</span><span class="verseLine">durch sie allein beweißt sich das <span class="tei_hi_latintype">Genie</span>,</span><span class="verseLine">das ist das wahrhaft Reine,</span><span class="verseLine">das Hohe, allgemeine,</span><span class="verseLine">wenn der Gesang so ungezwungen fließt</span><span class="verseLine">daß jeder Schneider, – Koch – verstehen ihn genießt.</span><span class="verseLine">Wo man bey Arien, Duetten aller Sorten</span><span class="verseLine">fast glaubt, man habe sie gehört an 1000 Orten</span><span class="verseLine">Wo Ohr und Herz zugleich von Wonneschauern bebt,</span><span class="verseLine">wo alles mit Natur so inniglich verwebt,</span><span class="verseLine">das ’s Wollust scheint, sich umzubringen</span><span class="verseLine">hört man den Held noch sterbend singen.</span><span class="verseLine">die deutschen Komponisten zwar,</span><span class="verseLine">die laßen fast kein gutes Haar</span><span class="verseLine">an unsern armen Opera.</span><span class="verseLine">besonders an der <span class="tei_hi_latintype">Seria</span>.</span><span class="verseLine">KarakterZeichnung fehle,</span><span class="verseLine">der Göze sey die Kehle</span><span class="verseLine">des Sängers, der wir huld’gen</span><span class="verseLine">und vieles andre noch, deß man uns will beschuld’gen.</span><span class="verseLine">Bey dieser Oper hier, da war’s ein wahres Glük</span><span class="verseLine">daß nicht <span class="tei_hi_underline1">so einseiti</span>g berechnet war das Stük.</span><span class="verseLine">die schönste Arie hat darinn der Kaiser,</span><span class="verseLine">darüber wird die <span class="tei_hi_latintype">PrimaDonna</span> heiser,</span><span class="verseLine">weil Sie sie nicht zu singen hat.</span><span class="verseLine">der arme <span class="tei_hi_latintype">Componist</span> fast desperat</span><span class="verseLine">sein schönes Werk unaufgeführt zu sehen,</span><span class="verseLine">muß sich nun schon zu kleiner Änderung verstehen,</span><span class="verseLine">wenn er die besten Sachen nicht will ausgelaßen wißen.</span><span class="verseLine">Er läßt sich ein’ge Mühe nicht verdrießen </span><span class="verseLine">paßt alles, was die <span class="tei_hi_latintype">Donna</span> Singen sollte,</span><span class="verseLine">und nun aus Zartgefühl nicht thuen wollte</span><span class="verseLine"><span class="tei_hi_underline1">Fünf Töne tiefer</span> in des <span class="tei_hi_latintype">PrimoBasso</span> Kehle,</span><span class="verseLine">und deßen, Sang, daß er nicht Todt sich quäle</span><span class="verseLine">fünf Töne höher, der <span class="tei_hi_latintype">Seconda Donna</span> zu Befehle.</span><span class="verseLine">Und sieh, das Stük gefällt, wird applaudirt</span><span class="verseLine">Kein Mensch sich um das bischen Transponiren schiert,</span><span class="verseLine">und der Charakter sich alles <span class="tei_hi_latintype">arrangirt</span>.</span><span class="verseLine">Ja, meine Herren seht, –</span><span class="verseLine"><span class="tei_hi_underline1">das</span> ists was ewig steht,</span><span class="verseLine">– ich sags auf dieser Stelle,</span><span class="verseLine"><span class="tei_hi_underline1">das ächt Universelle</span>,</span><span class="verseLine">Wenn die Musik gefällt, es sing sie wer da will,</span><span class="verseLine">Hoch oder tief, aus <span class="tei_hi_latintype">C</span> – aus <span class="tei_hi_latintype">Gis</span> – aus <span class="tei_hi_latintype">D</span>, – gleichviel;</span><span class="verseLine">in Kerkers Nacht, im grünen Feld</span><span class="verseLine">Thier oder Mensch, Bär oder Held,</span><span class="verseLine">Wenns <span class="tei_hi_underline1">singt! nur recht ins Ohr</span>,</span><span class="verseLine">das ist das wahre HerzensThor.</span><span class="tei_pb_block"> | </span><span class="verseLine">daher ichs behaupte vor der ganzen Welt,</span><span class="verseLine">die Italienische Oper mir <span class="tei_hi_underline1">allein</span> gefällt.</span><span class="verseLine">das ist ein wahrer und ächter Schluß, –</span><span class="verseLine"><span class="tei_hi_underline1">alles übrige gilt keine taube Nuß</span>.</span>
                                         <p>/: <span class="tei_hi_underline1">er&#160;tritt ab.</span> :/</p><br />
                                         <p><span class="tei_hi_underline1">die große Französische Oper erscheint</span>.</p>
-                                        <p><span class="tei_add">Eine wohlgebohrene Pariserin, <span class="tei_del">...<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e756">‡</a></span><span class="tei_add tei_hi_superscript">geht auf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e758">‡</a></span> dem Sokkus einher, und bewegt sich sehr höflich in dem sie etwas unbequem <span class="tei_del"><span class="tei_hi_underline1">griechischen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e761">‡</a></span> beengenden <span class="tei_del">Gewande<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e765">‡</a></span> griechischen Gewande.<br />
-            Das <span class="tei_del">.....<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e770">‡</a></span><span class="tei_hi_latintype">Corps d: Ballet</span> umgiebt sie beständig, verschiedene Götter lauern im Hintergrunde. die Handlung spielt zwischen 12 Uhr und Mittag.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e754">‡</a></span>
+                                        <p><span class="tei_add">Eine wohlgebohrene Pariserin, <span class="tei_del">...<a class="noteMarker" id="ref-d72143e756" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e756">‡</a></span><span class="tei_add tei_hi_superscript">geht auf<a class="noteMarker" id="ref-d72143e758" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e758">‡</a></span> dem Sokkus einher, und bewegt sich sehr höflich in dem sie etwas unbequem <span class="tei_del"><span class="tei_hi_underline1">griechischen</span><a class="noteMarker" id="ref-d72143e761" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e761">‡</a></span> beengenden <span class="tei_del">Gewande<a class="noteMarker" id="ref-d72143e765" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e765">‡</a></span> griechischen Gewande.<br />
+            Das <span class="tei_del">.....<a class="noteMarker" id="ref-d72143e770" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e770">‡</a></span><span class="tei_hi_latintype">Corps d: Ballet</span> umgiebt sie beständig, verschiedene Götter lauern im Hintergrunde. die Handlung spielt zwischen 12 Uhr und Mittag.<a class="noteMarker" id="ref-d72143e754" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e754">‡</a></span>
                                         </p><span class="verseLine"><span class="tei_hi_underline1">Erster Akt</span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">La Princesse</span>. cher Prince on nous unit</span>.<br /><span class="tei_hi_latintype"><span class="tei_hi_underline1">Le Prince</span> j’en suis ravi, Princesse</span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype">Peuple, chantez, danses, montres votre allegresse</span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Choeur</span></span><br /></span><span class="verseLine"><span class="tei_hi_latintype">Chantons, dansons, montrons notre allegresse</span>.<br /></span><span class="verseLine"><span class="tei_hi_underline1">Ende des ersten Akts</span>.<br /><span class="tei_hi_underline1"><span class="tei_hi_latintype">Zweiter</span> Akt</span>.<br /></span><span class="verseLine"><span class="tei_hi_latintype"><span class="tei_hi_underline1">La Princesse</span>. Amour</span>!
          <br />/: Kriegerisches Getöße, Sie fällt in Ohnmacht. der Prinz erscheint Kämpfend gegen seine Feinde, und wird erschlagen. :/<br /><span class="tei_hi_latintype"><span class="tei_hi_underline1">La Princ</span>: cher prince!<br />
          <span class="tei_hi_underline1">Le Pr</span>: Helas!<br />
@@ -316,37 +320,37 @@
                                         <p>
          <span class="tei_hi_underline1">Hanswurst</span> /: tritt mit brüstendem Anstande hervor, und spricht mit erhobener Stimme :/<br />
                                         </p>
-                                        <p><span class="tei_add"><span class="tei_date">d: 12<span class="tei_hi_superscript">t</span> Juny 1813.</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e948">‡</a></span>
-                                        </p><span class="verseLine"><br />Leidenschaft, Worte<span class="tei_del">prunk<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e957">‡</a></span><span class="tei_add tei_hi_superscript">Sturm<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e959">‡</a></span> Deklamation
+                                        <p><span class="tei_add"><span class="tei_date">d: 12<span class="tei_hi_superscript">t</span> Juny 1813.</span><a class="noteMarker" id="ref-d72143e948" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e948">‡</a></span>
+                                        </p><span class="verseLine"><br />Leidenschaft, Worte<span class="tei_del">prunk<a class="noteMarker" id="ref-d72143e957" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e957">‡</a></span><span class="tei_add tei_hi_superscript">Sturm<a class="noteMarker" id="ref-d72143e959" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e959">‡</a></span> Deklamation
             <br />das ist das Höchste, all anderm Hohn!
             <br />Sieben mal höher gestrichene Noten
             <br />sind unsrer Leidenschaft kreischende Boten!
             <br />Hinauf in die Höhe
             <br />Mein ehrlicher Baß
             <br />das Kühnste begehe
-            <br />Tenor <span class="tei_del">. . .<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e977">‡</a></span> Rechte Faß!
-            <br />der <span class="tei_del">Helden<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e983">‡</a></span> stets tapfere Jüngling
+            <br />Tenor <span class="tei_del">. . .<a class="noteMarker" id="ref-d72143e977" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e977">‡</a></span> Rechte Faß!
+            <br />der <span class="tei_del">Helden<a class="noteMarker" id="ref-d72143e983" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e983">‡</a></span> stets tapfere Jüngling
             <br />der wird sich schon wehren
             <br />und von den Altisten das Nöthge begehren!
             <br />und so geh es fort und fort
-            <br /><span class="tei_del">höher und höher<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e993">‡</a></span> immer hinauf <span class="tei_pb"> | </span><br />verdrängt der gemeinen Natürlichkeit Lauf.
+            <br /><span class="tei_del">höher und höher<a class="noteMarker" id="ref-d72143e993" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e993">‡</a></span> immer hinauf <span class="tei_pb"> | </span><br />verdrängt der gemeinen Natürlichkeit Lauf.
             <br />und seid ihr so endlich zum höchsten gestiegen
             <br />gelingt es gewiß fallt ihr nicht, auch zu fliegen.
-            <br />die <span class="tei_del">flüchtigen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1006">‡</a></span> Füße der Tänzer die fühlen dann weiter
+            <br />die <span class="tei_del">flüchtigen<a class="noteMarker" id="ref-d72143e1006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1006">‡</a></span> Füße der Tänzer die fühlen dann weiter
             <br />die edlen Gefühle die Eure Begleiter. 
             <br />Klopftt nicht süß verwirt fränkisches Herz
             <br />wenn in dem <span class="tei_hi_latintype">Entrechats</span> tobet der Schmerz
             <br />Wenn aus des <span class="tei_hi_latintype">Pirrouets</span> wirbelndem Drehen
             <br />deutlich die heiligste Freundschaft zu sehen
-            <br /><span class="tei_del">Tanzen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1028">‡</a></span> Singen und Tanzen und tanzen und Singen
+            <br /><span class="tei_del">Tanzen<a class="noteMarker" id="ref-d72143e1028" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1028">‡</a></span> Singen und Tanzen und tanzen und Singen
             <br />das nur kann wahrhaft das Höchste erringen.
-            <br /><span class="tei_add">2 ja<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1034">‡</a></span><span class="tei_del">doch<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1036">‡</a></span> nicht vergeßen <span class="tei_del">auch das Nöthige<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1040">‡</a></span><span class="tei_add tei_hi_superscript">in ihrem<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1042">‡</a></span><span class="tei_hi_latintype">Orchester</span>.
-            <br /><span class="tei_add">1.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1048">‡</a></span> Trommeln, Posaunen, 4 Hörner, mein Bester,
-            <br /><span class="tei_del">das ist das Wenigste<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1052">‡</a></span><span class="tei_add tei_hi_superscript"><span class="tei_del">Mindeste<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1055">‡</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1054">‡</a></span><span class="tei_del">was  Sie vonnöthen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1057">‡</a></span><span class="tei_add tei_hi_superscript"><span class="tei_del">gebrauchen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1061">‡</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1060">‡</a></span><span class="tei_del"><br /><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1063">‡</a></span><span class="tei_add">Siebenmal moduliert in einem Takte 
+            <br /><span class="tei_add">2 ja<a class="noteMarker" id="ref-d72143e1034" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1034">‡</a></span><span class="tei_del">doch<a class="noteMarker" id="ref-d72143e1036" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1036">‡</a></span> nicht vergeßen <span class="tei_del">auch das Nöthige<a class="noteMarker" id="ref-d72143e1040" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1040">‡</a></span><span class="tei_add tei_hi_superscript">in ihrem<a class="noteMarker" id="ref-d72143e1042" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1042">‡</a></span><span class="tei_hi_latintype">Orchester</span>.
+            <br /><span class="tei_add">1.<a class="noteMarker" id="ref-d72143e1048" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1048">‡</a></span> Trommeln, Posaunen, 4 Hörner, mein Bester,
+            <br /><span class="tei_del">das ist das Wenigste<a class="noteMarker" id="ref-d72143e1052" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1052">‡</a></span><span class="tei_add tei_hi_superscript"><span class="tei_del">Mindeste<a class="noteMarker" id="ref-d72143e1055" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1055">‡</a></span><a class="noteMarker" id="ref-d72143e1054" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1054">‡</a></span><span class="tei_del">was  Sie vonnöthen<a class="noteMarker" id="ref-d72143e1057" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1057">‡</a></span><span class="tei_add tei_hi_superscript"><span class="tei_del">gebrauchen<a class="noteMarker" id="ref-d72143e1061" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1061">‡</a></span><a class="noteMarker" id="ref-d72143e1060" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1060">‡</a></span><span class="tei_del"><br /><a class="noteMarker" id="ref-d72143e1063" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1063">‡</a></span><span class="tei_add">Siebenmal moduliert in einem Takte 
             <br />Wer frägt nach Ursach mehr, wenn es nur pakte
-            <br />Wenn auch des Hörers Seel ohne Ursach knakte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1065">‡</a></span><br /></span><span class="verseLine">blasen <span class="tei_del">dann<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1074">‡</a></span> Hoboen, Klarinetten und Flöten
-         <br />mehr als zu <span class="tei_add tei_hi_superscript">3<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1079">‡</a></span> andern <span class="tei_del">3<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1082">‡</a></span> Opern vonnöthen
-         <br /><span class="tei_del">Geigen die Bass<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1086">‡</a></span><br />wüthen die Bäße und Geigen zum rauchen
+            <br />Wenn auch des Hörers Seel ohne Ursach knakte<a class="noteMarker" id="ref-d72143e1065" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1065">‡</a></span><br /></span><span class="verseLine">blasen <span class="tei_del">dann<a class="noteMarker" id="ref-d72143e1074" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1074">‡</a></span> Hoboen, Klarinetten und Flöten
+         <br />mehr als zu <span class="tei_add tei_hi_superscript">3<a class="noteMarker" id="ref-d72143e1079" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1079">‡</a></span> andern <span class="tei_del">3<a class="noteMarker" id="ref-d72143e1082" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1082">‡</a></span> Opern vonnöthen
+         <br /><span class="tei_del">Geigen die Bass<a class="noteMarker" id="ref-d72143e1086" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1086">‡</a></span><br />wüthen die Bäße und Geigen zum rauchen
          <br />können sie gar noch den Tamtam gebrauchen
          <br />dann seien Sie ruhig und ganz außer Sorgen
          <br />Ruf ist ihr Eigenthum, Sie sind geborgen.
@@ -354,53 +358,53 @@
          <br /></span>
                                         <p>Es entsteht eine Pause. das Publikum fängt an nach und nach unruhig zu werden. wiederholte Pause. Neuer verstärkter Tumult. die deutsche Oper will noch immer nicht zum Vorschein kommen. die Direktion kömt bey dem zunehmenden Lärm in die gröste Verlegenheit, endlich erscheint Hanswurst ganz erschöpft und in Schweiß gebadet, und spricht<br />
       </p>
-                                        <p>Hochverehrtes Publikum verzeihe wenn ich keine Zeit habe dir kürzlich zu sagen was ich in der Geschwindigkeit vorbringen soll: Ich begreiffe dich wahrlich nicht, ich weiß nicht wie du mir vorkomst wo bleibt deine so oft erwiesene Geduld die sonst alles so ruhig abwartet <span class="tei_add tei_hi_subscript">wenn man es dir nur sicher versprochen hat.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1111">‡</a></span>  ich glaube gar du bildest dir am Ende ein Rechte zu haben? Nun warte nur noch ein bischen es ist <span class="tei_add tei_hi_superscript">fast<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1114">‡</a></span> billig dir auch zu sagen warum du warten sollst. <br />Es geht ehrlich gesagt der deutschen Oper sehr übel. Sie leidet an Krämpfen und ist durchaus nicht fest auf die Beine zu bringen. Eine Menge Hülfeleistender sind um sie beschäftiget, sie fällt aber von einer Ohnmacht in die Andere. auch ist sie dabey so von <span class="tei_add tei_hi_superscript">denen an sie gemachten<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1119">‡</a></span> Prätensionen aufgedunsen, daß kein Kleid ihr mehr recht paßen will. Vergebens ziehen die Herren Verarbeiter bald der Französischen bald der Italienischen einen Rok aus, um sie damit zu schmükken, das paßt alles hinten und vorne nicht. und je mehr frische Ärmel eingesezt, Schleppen beschnitten, und Vordertheile angenäht werden, je weniger will es halten. Nun endlich sind einige Romantische Schneider auf die glükliche Idee gefallen einen vaterländischen Stoff zu wählen, und in diesen wo möglich alles zu verweben, was Ahnung, Glaube, Kontraste und Gefühle je bei anderen Nationen wirkten und wirbelten. Hörst du Publikum? schon rollt der donner über unserm Haupte, jezt wirds gleich los gehen. /:&#160;<span class="tei_hi_underline1">Er zieht sich erschöpft zurük, und murmelt vor sich im Abgehen</span>&#160;[:/]. die verdamte Prosa wird einem so sauer wenn man nun mal gewohnt ist ein poetischer Hanswurst zu sein.<br /> <span class="tei_pb"> | </span>
-         <span class="tei_add"><span class="tei_del">........<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1131">‡</a></span>  Göth. Wahlv: 2<span class="tei_hi_superscript">t</span>T: <span class="tei_hi_latintype">pag</span>. 103.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1130">‡</a></span> Man weicht der Welt nicht sicherer aus als durch die Kunst, und man verknüpft sich nicht sicherer mit ihr als durch die Kunst.<br />
-         <span class="tei_add"><span class="tei_hi_underline1">Allgemeine feyerliche Stille <span class="tei_del">eine<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1146">‡</a></span> gespannte Erwartung im Publikum</span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1143">‡</a></span>
+                                        <p>Hochverehrtes Publikum verzeihe wenn ich keine Zeit habe dir kürzlich zu sagen was ich in der Geschwindigkeit vorbringen soll: Ich begreiffe dich wahrlich nicht, ich weiß nicht wie du mir vorkomst wo bleibt deine so oft erwiesene Geduld die sonst alles so ruhig abwartet <span class="tei_add tei_hi_subscript">wenn man es dir nur sicher versprochen hat.<a class="noteMarker" id="ref-d72143e1111" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1111">‡</a></span>  ich glaube gar du bildest dir am Ende ein Rechte zu haben? Nun warte nur noch ein bischen es ist <span class="tei_add tei_hi_superscript">fast<a class="noteMarker" id="ref-d72143e1114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1114">‡</a></span> billig dir auch zu sagen warum du warten sollst. <br />Es geht ehrlich gesagt der deutschen Oper sehr übel. Sie leidet an Krämpfen und ist durchaus nicht fest auf die Beine zu bringen. Eine Menge Hülfeleistender sind um sie beschäftiget, sie fällt aber von einer Ohnmacht in die Andere. auch ist sie dabey so von <span class="tei_add tei_hi_superscript">denen an sie gemachten<a class="noteMarker" id="ref-d72143e1119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1119">‡</a></span> Prätensionen aufgedunsen, daß kein Kleid ihr mehr recht paßen will. Vergebens ziehen die Herren Verarbeiter bald der Französischen bald der Italienischen einen Rok aus, um sie damit zu schmükken, das paßt alles hinten und vorne nicht. und je mehr frische Ärmel eingesezt, Schleppen beschnitten, und Vordertheile angenäht werden, je weniger will es halten. Nun endlich sind einige Romantische Schneider auf die glükliche Idee gefallen einen vaterländischen Stoff zu wählen, und in diesen wo möglich alles zu verweben, was Ahnung, Glaube, Kontraste und Gefühle je bei anderen Nationen wirkten und wirbelten. Hörst du Publikum? schon rollt der donner über unserm Haupte, jezt wirds gleich los gehen. /:&#160;<span class="tei_hi_underline1">Er zieht sich erschöpft zurük, und murmelt vor sich im Abgehen</span>&#160;[:/]. die verdamte Prosa wird einem so sauer wenn man nun mal gewohnt ist ein poetischer Hanswurst zu sein.<br /> <span class="tei_pb"> | </span>
+         <span class="tei_add"><span class="tei_del">........<a class="noteMarker" id="ref-d72143e1131" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1131">‡</a></span>  Göth. Wahlv: 2<span class="tei_hi_superscript">t</span>T: <span class="tei_hi_latintype">pag</span>. 103.<a class="noteMarker" id="ref-d72143e1130" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1130">‡</a></span> Man weicht der Welt nicht sicherer aus als durch die Kunst, und man verknüpft sich nicht sicherer mit ihr als durch die Kunst.<br />
+         <span class="tei_add"><span class="tei_hi_underline1">Allgemeine feyerliche Stille <span class="tei_del">eine<a class="noteMarker" id="ref-d72143e1146" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1146">‡</a></span> gespannte Erwartung im Publikum</span>.<a class="noteMarker" id="ref-d72143e1143" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1143">‡</a></span>
          <br />
          <br />
       </p>
                                         <p>
-         <span class="tei_hi_underline1">Erste <span class="tei_hi_latintype">Scene</span>: Verwandlung</span>. dann Zimmer<span class="tei_supplied" id="d8554e1164">[[?]]</span><br />
-      </p><span class="verseLine"><span class="tei_hi_underline1">Agnes</span>. ach! Meine Seele ist müde, matt, und abgetragen.<br /></span><span class="verseLine"><span class="tei_hi_underline1">Brunhilde</span>, O Herrin! trage nicht ab der Menschenleiden Felssteile Untiefen,  <span class="tei_add">wenn des Geistwidrigens erfaßen Ihr mir des Gefühls für Sie wogendes . . . .theilen könntet – – <a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1177">‡</a></span><br /><span class="tei_hi_underline1">Agnes</span>, kom in den SchloßGarten, dort im dunklen Schauerhayne wird mich leichter <span class="tei_del">. . .<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1183">‡</a></span> die nothwendige Ahndung meines Schiksals befallen.  ab. <br /></span>
+         <span class="tei_hi_underline1">Erste <span class="tei_hi_latintype">Scene</span>: Verwandlung</span>. dann Zimmer<span class="tei_supplied" id="d72143e1164">[[?]]</span><br />
+      </p><span class="verseLine"><span class="tei_hi_underline1">Agnes</span>. ach! Meine Seele ist müde, matt, und abgetragen.<br /></span><span class="verseLine"><span class="tei_hi_underline1">Brunhilde</span>, O Herrin! trage nicht ab der Menschenleiden Felssteile Untiefen,  <span class="tei_add">wenn des Geistwidrigens erfaßen Ihr mir des Gefühls für Sie wogendes . . . .theilen könntet – – <a class="noteMarker" id="ref-d72143e1177" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1177">‡</a></span><br /><span class="tei_hi_underline1">Agnes</span>, kom in den SchloßGarten, dort im dunklen Schauerhayne wird mich leichter <span class="tei_del">. . .<a class="noteMarker" id="ref-d72143e1183" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1183">‡</a></span> die nothwendige Ahndung meines Schiksals befallen.  ab. <br /></span>
                                         <p>
-         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1189">‡</a></span>
+         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" id="ref-d72143e1189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1189">‡</a></span>
          <br />
-      </p><span class="verseLine"><span class="tei_hi_underline1">Herzog</span>. Ritter folgt mir in den Prunk<span class="tei_del">saal<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1200">‡</a></span><span class="tei_add tei_hi_superscript">d...<span class="tei_supplied" id="d8554e1204">[[?]]</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1202">‡</a></span> heute noch soll sie euch die Hand darreichen, oder Ottern und Schlangen im Burgverließ ihrer Gewohnheit nach – ihr versteht mich – <span class="tei_hi_underline1">ab.</span><br /></span>
+      </p><span class="verseLine"><span class="tei_hi_underline1">Herzog</span>. Ritter folgt mir in den Prunk<span class="tei_del">saal<a class="noteMarker" id="ref-d72143e1200" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1200">‡</a></span><span class="tei_add tei_hi_superscript">d...<span class="tei_supplied" id="d72143e1204">[[?]]</span><a class="noteMarker" id="ref-d72143e1202" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1202">‡</a></span> heute noch soll sie euch die Hand darreichen, oder Ottern und Schlangen im Burgverließ ihrer Gewohnheit nach – ihr versteht mich – <span class="tei_hi_underline1">ab.</span><br /></span>
                                         <p>
-         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1212">‡</a></span>
+         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" id="ref-d72143e1212" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1212">‡</a></span>
          <br />
       </p>
                                         <p>
          <span class="tei_hi_underline1">Albrecht.</span> <span class="tei_hi_underline1">tritt auf</span>. Kaspar du folgst mir.<br />
       </p>
                                         <p>
-         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1231">‡</a></span>
+         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" id="ref-d72143e1231" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1231">‡</a></span>
          <br />
       </p>
                                         <p>
          <span class="tei_hi_underline1">Ein Geist erscheint warnend</span>.<br />
-      </p><span class="verseLine"><span class="tei_supplied" id="d8554e1246">[<span class="tei_hi_underline1">Albrecht</span>]</span> wer bist du unbegreiffliches Wesen.<br /></span>
+      </p><span class="verseLine"><span class="tei_supplied" id="d72143e1246">[<span class="tei_hi_underline1">Albrecht</span>]</span> wer bist du unbegreiffliches Wesen.<br /></span>
                                         <p>
-         <span class="tei_hi_underline1">Geist</span>. ich habe Macht alles zu thun, <span class="tei_add tei_hi_superscript">Eile<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1257">‡</a></span> aber, <span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">edler Jüngling</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1260">‡</a></span> später werde ich dich schon retten.<br />
-      </p><span class="verseLine"><span class="tei_hi_underline1">Albrecht</span>. Sie retten oder sterben.<br /></span><span class="verseLine"><span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">2</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1272">‡</a></span><span class="tei_hi_underline1">Minnesänger tretten auf</span>, wartet Edler Herr wir singen Euch die Geschichte.<br /></span>
+         <span class="tei_hi_underline1">Geist</span>. ich habe Macht alles zu thun, <span class="tei_add tei_hi_superscript">Eile<a class="noteMarker" id="ref-d72143e1257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1257">‡</a></span> aber, <span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">edler Jüngling</span><a class="noteMarker" id="ref-d72143e1260" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1260">‡</a></span> später werde ich dich schon retten.<br />
+      </p><span class="verseLine"><span class="tei_hi_underline1">Albrecht</span>. Sie retten oder sterben.<br /></span><span class="verseLine"><span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">2</span><a class="noteMarker" id="ref-d72143e1272" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1272">‡</a></span><span class="tei_hi_underline1">Minnesänger tretten auf</span>, wartet Edler Herr wir singen Euch die Geschichte.<br /></span>
                                         <p>
-         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1281">‡</a></span>
+         <span class="tei_add"><span class="tei_hi_underline1">Verwandlung</span>.<a class="noteMarker" id="ref-d72143e1281" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1281">‡</a></span>
          <br />
          <span class="tei_hi_underline1"><span class="tei_hi_latintype">Finale</span></span>.<br />
       </p>
-                                        <p>Waldige FelsenGegend, Links im Hintergrunde ein Schloß <span class="tei_add">gegenüber ein Weinberg. weiter vor<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1296">‡</a></span>
-         <span class="tei_del">Rechts<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1299">‡</a></span> eine Einsiedler hütte. links vorn eine Höle, weiter <span class="tei_add tei_hi_superscript">vorn<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1302">‡</a></span> eine Laube, in der Mitte 2 Hole Bäume weiter vorn ein unterirdischer Gang<br />
+                                        <p>Waldige FelsenGegend, Links im Hintergrunde ein Schloß <span class="tei_add">gegenüber ein Weinberg. weiter vor<a class="noteMarker" id="ref-d72143e1296" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1296">‡</a></span>
+         <span class="tei_del">Rechts<a class="noteMarker" id="ref-d72143e1299" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1299">‡</a></span> eine Einsiedler hütte. links vorn eine Höle, weiter <span class="tei_add tei_hi_superscript">vorn<a class="noteMarker" id="ref-d72143e1302" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1302">‡</a></span> eine Laube, in der Mitte 2 Hole Bäume weiter vorn ein unterirdischer Gang<br />
       </p>
                                         <p>
          <span class="tei_hi_underline1">Einsiedler</span>
          <br />
       </p>
-                                        <p>singt<span class="tei_supplied" id="d8554e1316">[[?]]</span> <span class="tei_del">auf<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1319">‡</a></span> ein<span class="tei_supplied" id="d8554e1322">[[?]]</span> Gebet.<br />
+                                        <p>singt<span class="tei_supplied" id="d72143e1316">[[?]]</span> <span class="tei_del">auf<a class="noteMarker" id="ref-d72143e1319" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1319">‡</a></span> ein<span class="tei_supplied" id="d72143e1322">[[?]]</span> Gebet.<br />
       </p>
                                         <p>Agnes singt eine Arie im Schloße wozu Chor von Winzerinnen auf der andern Seite 
          <br />in der Laube schlumert 
-         <br /><span class="tei_hi_underline1">Albrecht</span> und singt <span class="tei_add tei_hi_superscript">träumend<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1335">‡</a></span>in abgebrochenen Tönen, Kaspar singt vor Furcht <span class="tei_add tei_hi_superscript">eine Polonaise<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1338">‡</a></span> in den holen Bäumen. Räuber in der Höle einen wilden Chor. Genien schüzzend schweben über Albrecht. Kriegs Getümel hinter der Szene, Ferner Marsch von der andern Seite, alles zugleich. <br />Zwei <span class="tei_hi_underline1">Blizze fahren von verschiedenen Seiten herab</span> <span class="tei_add tei_hi_subscript">und zerschmettern einiges<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1347">‡</a></span>
+         <br /><span class="tei_hi_underline1">Albrecht</span> und singt <span class="tei_add tei_hi_superscript">träumend<a class="noteMarker" id="ref-d72143e1335" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1335">‡</a></span>in abgebrochenen Tönen, Kaspar singt vor Furcht <span class="tei_add tei_hi_superscript">eine Polonaise<a class="noteMarker" id="ref-d72143e1338" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1338">‡</a></span> in den holen Bäumen. Räuber in der Höle einen wilden Chor. Genien schüzzend schweben über Albrecht. Kriegs Getümel hinter der Szene, Ferner Marsch von der andern Seite, alles zugleich. <br />Zwei <span class="tei_hi_underline1">Blizze fahren von verschiedenen Seiten herab</span> <span class="tei_add tei_hi_subscript">und zerschmettern einiges<a class="noteMarker" id="ref-d72143e1347" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1347">‡</a></span>
          <br />
          <span class="tei_hi_underline1">Alle</span>. Ha.<br />
       </p>
@@ -411,19 +415,19 @@
          <br />Albrecht tritt auf mit Reisigen.<br />
       </p>
                                         <p>
-         <span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">Eingelegte Arie</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1372">‡</a></span>
+         <span class="tei_add tei_hi_subscript"><span class="tei_hi_underline1">Eingelegte Arie</span><a class="noteMarker" id="ref-d72143e1372" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1372">‡</a></span>
          
-      </p><span class="verseLine">Rezitativ. auf Freunde keine Zeit ist zu verliehren, ein Augenblik Verzug, raubt Ihr das Leben. <br /></span><span class="verseLine">Schwört!<br /></span><span class="verseLine"><span class="tei_hi_underline1">Chor</span>. wir Schwören.<br /><span class="tei_hi_underline1">Albrecht</span>. o Schwur !!<br /></span><span class="verseLine"><span class="tei_hi_underline1">All<span class="tei_supplied" id="d8554e1395">[egr]</span>o</span>: Ueber Felsen und Meere
+      </p><span class="verseLine">Rezitativ. auf Freunde keine Zeit ist zu verliehren, ein Augenblik Verzug, raubt Ihr das Leben. <br /></span><span class="verseLine">Schwört!<br /></span><span class="verseLine"><span class="tei_hi_underline1">Chor</span>. wir Schwören.<br /><span class="tei_hi_underline1">Albrecht</span>. o Schwur !!<br /></span><span class="verseLine"><span class="tei_hi_underline1">All<span class="tei_supplied" id="d72143e1395">[egr]</span>o</span>: Ueber Felsen und Meere
          <br /></span>
                                         <p>durch blinkende Speere
          <br />Rett ich dich auf Ehre
          <br />daß keiner es wehre
          <br />Sonst schnitte die Scheere
          <br />des Todes ihn ab. 
-         <br />Ich sehe dich <span class="tei_del">schon<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1413">‡</a></span> winken
+         <br />Ich sehe dich <span class="tei_del">schon<a class="noteMarker" id="ref-d72143e1413" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1413">‡</a></span> winken
          <br />die Thränen dir blinken
          <br />o warte doch Grab.<br />
-      </p><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Arioso</span></span>. O<span class="tei_supplied" id="d8554e1427">[[?]]</span> Mägdlein<br /></span><span class="verseLine">O Blümlein<br />so wunderschön stille<br />das Niemals was wille<br /></span><span class="tei_pb_block"> | </span><span class="verseLine">Chor  Seht – den – Helden<br /></span><span class="verseLine">Seht – ihn – rasen<br /></span><span class="verseLine"><span class="tei_hi_underline1">Albrecht</span>, doch welch wundervolles Stöhnen<br /></span><span class="verseLine">hör ich tief in mir so klöhnen<br />banger Ahndung SchauerWehen<br />Muß ich in mir wachsen sehen.<br /></span><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Più Stretta</span></span> doch Nein ich eile dich zu retten.<br /><span class="tei_hi_underline1">Chor</span>, Eile.<br />[<span class="tei_hi_underline1">Albrecht</span>] Ja, ja ich eile dich zu retten.<br /><span class="tei_hi_underline1">Chor</span>. Eile.<br /><span class="tei_hi_underline1">Albrecht</span>, rettend will <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1481">‡</a></span> eilen dich zu retten<br /><span class="tei_hi_underline1">Chor</span>  Ja.<br /><span class="tei_hi_underline1">Albrecht</span> eilend rettend dich will retten,<br />         rettend eilend sprengen Ketten<br /><span class="tei_hi_underline1">Paßa</span>g<span class="tei_hi_underline1">e</span>  /: ei ei ei ei – eilen ei <br /></span><span class="verseLine">ei –––– len.<br /></span><span class="verseLine"><span class="tei_hi_underline1">Chor</span> Sieg oder Tod.<br />Sie schwimen alle durchs Waßer, der Kanzler spießt sich selbst an eine Stakete, Albrecht trägt die Geliebte auf seinen Armen herbey, der Herzog kömt wütend <span class="tei_del">ist aber<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1512">‡</a></span><br /><span class="tei_hi_underline1">Albrecht ruft</span>  Vater!<br /><span class="tei_hi_underline1">der Herzog ist sogleich gerührt</span><br />und segnet das naße Paar<br /></span><span class="verseLine"><span class="tei_hi_underline1">SchlußChor</span><br /></span><span class="verseLine">Nach Regen folget Sonnenschein. <br /></span>
+      </p><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Arioso</span></span>. O<span class="tei_supplied" id="d72143e1427">[[?]]</span> Mägdlein<br /></span><span class="verseLine">O Blümlein<br />so wunderschön stille<br />das Niemals was wille<br /></span><span class="tei_pb_block"> | </span><span class="verseLine">Chor  Seht – den – Helden<br /></span><span class="verseLine">Seht – ihn – rasen<br /></span><span class="verseLine"><span class="tei_hi_underline1">Albrecht</span>, doch welch wundervolles Stöhnen<br /></span><span class="verseLine">hör ich tief in mir so klöhnen<br />banger Ahndung SchauerWehen<br />Muß ich in mir wachsen sehen.<br /></span><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Più Stretta</span></span> doch Nein ich eile dich zu retten.<br /><span class="tei_hi_underline1">Chor</span>, Eile.<br />[<span class="tei_hi_underline1">Albrecht</span>] Ja, ja ich eile dich zu retten.<br /><span class="tei_hi_underline1">Chor</span>. Eile.<br /><span class="tei_hi_underline1">Albrecht</span>, rettend will <span class="tei_add tei_hi_superscript">ich<a class="noteMarker" id="ref-d72143e1481" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1481">‡</a></span> eilen dich zu retten<br /><span class="tei_hi_underline1">Chor</span>  Ja.<br /><span class="tei_hi_underline1">Albrecht</span> eilend rettend dich will retten,<br />         rettend eilend sprengen Ketten<br /><span class="tei_hi_underline1">Paßa</span>g<span class="tei_hi_underline1">e</span>  /: ei ei ei ei – eilen ei <br /></span><span class="verseLine">ei –––– len.<br /></span><span class="verseLine"><span class="tei_hi_underline1">Chor</span> Sieg oder Tod.<br />Sie schwimen alle durchs Waßer, der Kanzler spießt sich selbst an eine Stakete, Albrecht trägt die Geliebte auf seinen Armen herbey, der Herzog kömt wütend <span class="tei_del">ist aber<a class="noteMarker" id="ref-d72143e1512" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1512">‡</a></span><br /><span class="tei_hi_underline1">Albrecht ruft</span>  Vater!<br /><span class="tei_hi_underline1">der Herzog ist sogleich gerührt</span><br />und segnet das naße Paar<br /></span><span class="verseLine"><span class="tei_hi_underline1">SchlußChor</span><br /></span><span class="verseLine">Nach Regen folget Sonnenschein. <br /></span>
                                         <p>
          <span class="tei_hi_underline1">die Brükke verwandelt sich in eine Glorie, und alles ist gut</span>.<br />
       </p><br />
@@ -431,42 +435,42 @@
          <span class="tei_hi_underline1">Hanswurst.</span> trit tiefsinnig und grübelnd ein.
          <br />Ich ahnde was, und weis nicht was
          <br />des Auges Blume ist Schmerztropf naß.
-         <br />Ich sehe es <span class="tei_del">gähren<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1551">‡</a></span> <span class="tei_add tei_hi_superscript">kochen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1555">‡</a></span> und überall gähren
-         <br />als wollt die Meer <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1560">‡</a></span> noch ein<span class="tei_supplied" id="d8554e1563">[e]</span> Meer <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1566">‡</a></span> gebähren
+         <br />Ich sehe es <span class="tei_del">gähren<a class="noteMarker" id="ref-d72143e1551" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1551">‡</a></span> <span class="tei_add tei_hi_superscript">kochen<a class="noteMarker" id="ref-d72143e1555" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1555">‡</a></span> und überall gähren
+         <br />als wollt die Meer <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" id="ref-d72143e1560" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1560">‡</a></span> noch ein<span class="tei_supplied" id="d72143e1563">[e]</span> Meer <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" id="ref-d72143e1566" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1566">‡</a></span> gebähren
          <br />O ehrliches deutsches Vaterland
          <br />mich hast du verfolgt, mich hast du verbannt
-         <br />um <span class="tei_del">andere<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1576">‡</a></span> fremdartige ärgere Narren zu pflegen –
+         <br />um <span class="tei_del">andere<a class="noteMarker" id="ref-d72143e1576" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1576">‡</a></span> fremdartige ärgere Narren zu pflegen –
          <br />sprich war dies zum Heile, ward dies zum Segen?
          <br />den Engländer, Spanier, Welschen und Franken
-         <br />beseelt <span class="tei_del">und befeuert nur stets<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1586">‡</a></span> <span class="tei_add tei_hi_superscript">stets nur der Flug<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1589">‡</a></span> des Gedanken
+         <br />beseelt <span class="tei_del">und befeuert nur stets<a class="noteMarker" id="ref-d72143e1586" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1586">‡</a></span> <span class="tei_add tei_hi_superscript">stets nur der Flug<a class="noteMarker" id="ref-d72143e1589" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1589">‡</a></span> des Gedanken
          <br />Sich selber und seinem Volk würdig zu bleiben
-         <br />und du deutsche <span class="tei_del">Kraft<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1596">‡</a></span> <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1599">‡</a></span> schwächst <span class="tei_del">die Treiben<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1603">‡</a></span> <span class="tei_add tei_hi_superscript"><span class="tei_del">....<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1607">‡</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1606">‡</a></span> im unschlüß’gen Treiben,<br />Was göttliches dir nur <span class="tei_del">gespendet<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1612">‡</a></span> vor Allen <span class="tei_add tei_hi_subscript">verliehen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1615">‡</a></span>
-         <br />Erkenntniß und Anstoß aus Fremden <span class="tei_add tei_hi_subscript">zu ziehen.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1621">‡</a></span>
+         <br />und du deutsche <span class="tei_del">Kraft<a class="noteMarker" id="ref-d72143e1596" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1596">‡</a></span> <span class="tei_add tei_hi_superscript">Kunst<a class="noteMarker" id="ref-d72143e1599" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1599">‡</a></span> schwächst <span class="tei_del">die Treiben<a class="noteMarker" id="ref-d72143e1603" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1603">‡</a></span> <span class="tei_add tei_hi_superscript"><span class="tei_del">....<a class="noteMarker" id="ref-d72143e1607" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1607">‡</a></span><a class="noteMarker" id="ref-d72143e1606" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1606">‡</a></span> im unschlüß’gen Treiben,<br />Was göttliches dir nur <span class="tei_del">gespendet<a class="noteMarker" id="ref-d72143e1612" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1612">‡</a></span> vor Allen <span class="tei_add tei_hi_subscript">verliehen<a class="noteMarker" id="ref-d72143e1615" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1615">‡</a></span>
+         <br />Erkenntniß und Anstoß aus Fremden <span class="tei_add tei_hi_subscript">zu ziehen.<a class="noteMarker" id="ref-d72143e1621" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1621">‡</a></span>
          <br />
-         <span class="tei_del">das frohe Erfühlen des fremden Verdienstes<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1626">‡</a></span> <span class="tei_del">des fremden Verdienst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1629">‡</a></span>
+         <span class="tei_del">das frohe Erfühlen des fremden Verdienstes<a class="noteMarker" id="ref-d72143e1626" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1626">‡</a></span> <span class="tei_del">des fremden Verdienst<a class="noteMarker" id="ref-d72143e1629" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1629">‡</a></span>
          <br />
          <span class="tei_add">das hast du mißbraucht in der eigenen Kraft,
-            <br />die herrlich <span class="tei_del">genug<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1638">‡</a></span> und rein aus sich wirket und schaft
+            <br />die herrlich <span class="tei_del">genug<a class="noteMarker" id="ref-d72143e1638" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1638">‡</a></span> und rein aus sich wirket und schaft
             <br />Wenn frey von der Nachäffung eitelem Streben
-            <br /><span class="tei_del">der Geist sich erheben wird frey aus sich waltend<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1644">‡</a></span><br />Sie mengen<span class="tei_supplied" id="d8554e1649">[[?]]</span> will göttlichen Stoff <span class="tei_del">mehr hin<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1652">‡</a></span><span class="tei_supplied" id="d8554e1654">[[?]]</span> in das Leben.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1634">‡</a></span>
+            <br /><span class="tei_del">der Geist sich erheben wird frey aus sich waltend<a class="noteMarker" id="ref-d72143e1644" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1644">‡</a></span><br />Sie mengen<span class="tei_supplied" id="d72143e1649">[[?]]</span> will göttlichen Stoff <span class="tei_del">mehr hin<a class="noteMarker" id="ref-d72143e1652" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1652">‡</a></span><span class="tei_supplied" id="d72143e1654">[[?]]</span> in das Leben.<a class="noteMarker" id="ref-d72143e1634" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1634">‡</a></span>
          <br />das Publikum wird unruhig, pocht und ruft ungestüm, der Hanswurst ist ein Narr geworden, Moral unnüz <span class="tei_hi_latintype">pp</span> Schiksale Maschinen, Posaunen <span class="tei_hi_latintype">pp</span>.
          <br />Hanswurst macht einen Kreuzsprung und ruft,<br />Ach verzeihn’s Ihr Gnaden, bitt schön <br />wär mir bald was erschrekliches geschehn. 
-         <br /><span class="tei_del">wenn<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1675">‡</a></span> Plagt <span class="tei_del">mich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1678">‡</a></span> manchmal <span class="tei_del">ich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1681">‡</a></span> <span class="tei_add tei_hi_superscript">mich<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1684">‡</a></span> weiß <span class="tei_add tei_hi_superscript">selbst<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1687">‡</a></span>
+         <br /><span class="tei_del">wenn<a class="noteMarker" id="ref-d72143e1675" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1675">‡</a></span> Plagt <span class="tei_del">mich<a class="noteMarker" id="ref-d72143e1678" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1678">‡</a></span> manchmal <span class="tei_del">ich<a class="noteMarker" id="ref-d72143e1681" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1681">‡</a></span> <span class="tei_add tei_hi_superscript">mich<a class="noteMarker" id="ref-d72143e1684" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1684">‡</a></span> weiß <span class="tei_add tei_hi_superscript">selbst<a class="noteMarker" id="ref-d72143e1687" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1687">‡</a></span>
          nicht wie, <br />
       </p>
-                                        <p>so eine Art <span class="tei_del">von<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1695">‡</a></span> Philosophie 
-         <br />‘ne <span class="tei_del">eine<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1700">‡</a></span> <span class="tei_add tei_hi_superscript">alte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1703">‡</a></span> üble deutsche Gewohnheit, 
+                                        <p>so eine Art <span class="tei_del">von<a class="noteMarker" id="ref-d72143e1695" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1695">‡</a></span> Philosophie 
+         <br />‘ne <span class="tei_del">eine<a class="noteMarker" id="ref-d72143e1700" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1700">‡</a></span> <span class="tei_add tei_hi_superscript">alte<a class="noteMarker" id="ref-d72143e1703" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1703">‡</a></span> üble deutsche Gewohnheit, 
          <br />verliehrt sich zuweilen 
          <span class="tei_pb"> | </span>
          <br />bin so dumm gewesen zu früh zu kommen 
          <br />in 10 Jahren wirds vielleicht beßer g’nommen
          <br />sind’s nit bös auf den armen Kasperl 
-         <br />Morgen spiel <span class="tei_add tei_hi_superscript">i<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1719">‡</a></span> den H. von Hasperl 
+         <br />Morgen spiel <span class="tei_add tei_hi_superscript">i<a class="noteMarker" id="ref-d72143e1719" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1719">‡</a></span> den H. von Hasperl 
          <br />hat mich ein Art Volksthum ergriffen, 
          <br />hätten wohl recht, hättens mir pfiffen. 
-         <br />Morgen bitt ich wieder um die Ehr <br /><span class="tei_choice"><span class="tei_corr">ich</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1730">‡</a></span> spiel den Schneider mit der Scheer<br />
+         <br />Morgen bitt ich wieder um die Ehr <br /><span class="tei_choice"><span class="tei_corr">ich</span><a class="noteMarker" id="ref-d72143e1730" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1730">‡</a></span> spiel den Schneider mit der Scheer<br />
       </p>
-                                        <p>/ wüthendes <span class="tei_del">Aplaus<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8554e1740">‡</a></span> <span class="tei_hi_underline1">bravo rufen</span>. der Hanswurst wird 4 mal heraus gerufen. spricht von Nachsicht und Streben und<br />
+                                        <p>/ wüthendes <span class="tei_del">Aplaus<a class="noteMarker" id="ref-d72143e1740" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72143e1740">‡</a></span> <span class="tei_hi_underline1">bravo rufen</span>. der Hanswurst wird 4 mal heraus gerufen. spricht von Nachsicht und Streben und<br />
       </p>
                                         <p>[Fortsetzung fehlt] <br />
                                         </p><br />
@@ -476,12 +480,12 @@
                                         <p>
                <span class="tei_hi_underline1">Hanswurst</span> tritt auch auf.<br />
             </p>
-                                        <p>Ich erlaube mir auch ein paar Worte zum Schluß<br />von einer großen Oper ist hier die Rede daher nicht zu verlangen daß alles in einem Guß, nur Effekte sind hier zusammen gestellt, denn Sängerinnen wollen gurgeln, der Theater Meister blizen, das Orchester will wüthen der Schauspieler durch Wahnsinn rühren der Komiker, durch Dummheiten wirken kurz durch alle die Effekte wollen wir erlangen<span class="tei_supplied" id="d8554e1776">[[?]]</span> daß das Publikum sich soll amüsiren<span class="tei_supplied" id="d8554e1779">[[?]]</span> die große Tendenz unserer Zeiten wenn Sie auch nicht wißen was Sie gesehen haben, wenn Sie nur sagen können Abends an der <span class="tei_hi_latintype">Thabel D’hote</span> das und das war gar zu schön. <br />
+                                        <p>Ich erlaube mir auch ein paar Worte zum Schluß<br />von einer großen Oper ist hier die Rede daher nicht zu verlangen daß alles in einem Guß, nur Effekte sind hier zusammen gestellt, denn Sängerinnen wollen gurgeln, der Theater Meister blizen, das Orchester will wüthen der Schauspieler durch Wahnsinn rühren der Komiker, durch Dummheiten wirken kurz durch alle die Effekte wollen wir erlangen<span class="tei_supplied" id="d72143e1776">[[?]]</span> daß das Publikum sich soll amüsiren<span class="tei_supplied" id="d72143e1779">[[?]]</span> die große Tendenz unserer Zeiten wenn Sie auch nicht wißen was Sie gesehen haben, wenn Sie nur sagen können Abends an der <span class="tei_hi_latintype">Thabel D’hote</span> das und das war gar zu schön. <br />
             </p>
                                     </div>
                                     <div id="endNotes">
                                         <ul>
-                                            <li id="footnote_01">(#) Siehe <span class="tei_hi_underline1">Briefe über den Geschmak in der Musik. von <span class="tei_hi_latintype">J: B: Schaul. Carlsr</span>: Maklot</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>.</li>
+                                            <li id="footnote_01">(#) Siehe <span class="tei_hi_underline1">Briefe über den Geschmak in der Musik. von <span class="tei_hi_latintype">J: B: Schaul. Carlsr</span>: Maklot</span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -523,7 +527,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <div>
-                                            <p>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, Abt. I, Bl. 8a/r–10b/r</p>
+                                            <p>Entwurf: Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, Abt. I, Bl. 8a/r–10b/r</p>
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                             <ul>
                                                 <li>3 DBl. (9 b. S.)</li>
@@ -549,506 +553,506 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e4" data-title="add">"d. 24t September 1810 in Darmstadt.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e4" data-title="add">"d. 24t September 1810 in Darmstadt.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e19" data-title="del">"und wobey":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e19" data-title="del">"und wobey":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e22" data-title="add">"während": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e22" data-title="add">"während": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e25" data-title="del">"dumpfen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e25" data-title="del">"dumpfen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e28" data-title="add">"zerstreuten": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e28" data-title="add">"zerstreuten": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e38" data-title="del">"denn":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e38" data-title="del">"denn":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e46" data-title="add">"ich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e46" data-title="add">"ich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e49" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e49" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e52" data-title="add">"schnell": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e52" data-title="add">"schnell": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e63" data-title="del">"brachten mich bald zu mir":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e63" data-title="del">"brachten mich bald zu mir":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e66" data-title="add">"wekten mich bald … aus meinen Träumen": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e66" data-title="add">"wekten mich bald … aus meinen Träumen": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e69" data-title="del">"nun":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e69" data-title="del">"nun":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e72" data-title="add">"ich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e72" data-title="add">"ich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e75" data-title="add">"nun": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e75" data-title="add">"nun": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e79" data-title="add">"nach und nach": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e79" data-title="add">"nach und nach": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e82" data-title="del">"ich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e82" data-title="del">"ich":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e85" data-title="del">"behagen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e85" data-title="del">"behagen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e88" data-title="add">"gefallen.": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e88" data-title="add">"gefallen.": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e91" data-title="del">"Mensch":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e91" data-title="del">"Mensch":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e94" data-title="add">"Geschöpf": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e94" data-title="add">"Geschöpf": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e101" data-title="add">"und Treiben": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e101" data-title="add">"und Treiben": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e104" data-title="del">"seine Achtung":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e104" data-title="del">"seine Achtung":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e107" data-title="add">"die Anhänglichkeit an": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e107" data-title="add">"die Anhänglichkeit an": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e110" data-title="del">"eingeprägt":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e110" data-title="del">"eingeprägt":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e113" data-title="add">"verwebt": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e113" data-title="add">"verwebt": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e117" data-title="add">"blöde": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e117" data-title="add">"blöde": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e120" data-title="add">"mehr": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e120" data-title="add">"mehr": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e123" data-title="del">"sogar":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e123" data-title="del">"sogar":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e126" data-title="add">"selbst": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e126" data-title="add">"selbst": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e132" data-title="del">"seinen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e132" data-title="del">"seinen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e139" data-title="del">"so":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e139" data-title="del">"so":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e142" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e142" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e145" data-title="del">"bald":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e145" data-title="del">"bald":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e157" data-title="del">"und mit":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e157" data-title="del">"und mit":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e160" data-title="del">"ergriff ich es":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e160" data-title="del">"ergriff ich es":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e163" data-title="del">"auf der":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e163" data-title="del">"auf der":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e171" data-title="add">"nur": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e171" data-title="add">"nur": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e182" data-title="del">"mich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e182" data-title="del">"mich":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e185" data-title="add">"mich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e185" data-title="add">"mich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e188" data-title="del">"die Tanz":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e188" data-title="del">"die Tanz":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e191" data-title="add">"ein Hanswurst bat … dürfen, und hervor‡": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e191" data-title="add">"ein Hanswurst bat … dürfen, und hervor‡": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e196" data-title="del">"Vorstellung":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e196" data-title="del">"Vorstellung":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e198" data-title="del">"Oper in Versen auf":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e198" data-title="del">"Oper in Versen auf":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e201" data-title="del">"und hervor":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e201" data-title="del">"und hervor":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e204" data-title="del">"Oper in Versen auf":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e204" data-title="del">"Oper in Versen auf":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e208" data-title="del">"und hervor":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e208" data-title="del">"und hervor":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e211" data-title="del">"Brust":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e211" data-title="del">"Brust":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e214" data-title="add">"Stirn": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e214" data-title="add">"Stirn": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e223" data-title="del">"unzählige male":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e223" data-title="del">"unzählige male":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e227" data-title="del">"hatte":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e227" data-title="del">"hatte":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e230" data-title="add">"und": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e230" data-title="add">"und": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e236" data-title="add">"hatte": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e236" data-title="add">"hatte": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e239" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e239" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e242" data-title="del">"mit einem Wort als Musikalische Zeitung erschien und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e242" data-title="del">"mit einem Wort als Musikalische Zeitung erschien und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e246" data-title="add">"und daß ich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e246" data-title="add">"und daß ich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e249" data-title="add">"bey erstem Blik … die sich anschikte": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e249" data-title="add">"bey erstem Blik … die sich anschikte": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e252" data-title="add">"zu": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e252" data-title="add">"zu": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e262" data-title="del">"der Kunst und den Freuden":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e262" data-title="del">"der Kunst und den Freuden":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e313" data-title="add">"1.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e313" data-title="add">"1.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e319" data-title="add">"2. Hier ist": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e319" data-title="add">"2. Hier ist": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e321" data-title="del">"daher":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e321" data-title="del">"daher":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e335" data-title="add">"Sie": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e335" data-title="add">"Sie": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e340" data-title="del">"Sie":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e340" data-title="del">"Sie":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e350" data-title="add">"schreklich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e350" data-title="add">"schreklich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e384" data-title="add">"durch": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e384" data-title="add">"durch": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e423" data-title="del">"als":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e423" data-title="del">"als":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e429" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e429" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e436" data-title="add">"bey Ihrem Auftritt … Ouverture genannt wird.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e436" data-title="add">"bey Ihrem Auftritt … Ouverture genannt wird.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e438" data-title="del">"entsteht":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e438" data-title="del">"entsteht":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e440" data-title="add">"wird im Orchester": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e440" data-title="add">"wird im Orchester": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e444" data-title="del">"wird":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e444" data-title="del">"wird":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e447" data-title="add">"in Italien": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e447" data-title="add">"in Italien": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e754" data-title="add">"Eine wohlgebohrene Pariserin, … Uhr und Mittag.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e754" data-title="add">"Eine wohlgebohrene Pariserin, … Uhr und Mittag.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e756" data-title="del">"...":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e756" data-title="del">"...":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e758" data-title="add">"geht auf": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e758" data-title="add">"geht auf": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e761" data-title="del">"<span class="tei_hi_underline1">griechischen</span>":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e761" data-title="del">"griechischen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e765" data-title="del">"Gewande":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e765" data-title="del">"Gewande":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e770" data-title="del">".....":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e770" data-title="del">".....":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e948" data-title="add">"d: 12t Juny 1813.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e948" data-title="add">"d: 12t Juny 1813.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e957" data-title="del">"prunk":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e957" data-title="del">"prunk":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e959" data-title="add">"Sturm": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e959" data-title="add">"Sturm": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e977" data-title="del">". . .":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e977" data-title="del">". . .":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e983" data-title="del">"Helden":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e983" data-title="del">"Helden":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e993" data-title="del">"höher und höher":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e993" data-title="del">"höher und höher":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1006" data-title="del">"flüchtigen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1006" data-title="del">"flüchtigen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1028" data-title="del">"Tanzen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1028" data-title="del">"Tanzen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1034" data-title="add">"2 ja": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1034" data-title="add">"2 ja": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1036" data-title="del">"doch":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1036" data-title="del">"doch":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1040" data-title="del">"auch das Nöthige":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1040" data-title="del">"auch das Nöthige":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1042" data-title="add">"in ihrem": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1042" data-title="add">"in ihrem": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1048" data-title="add">"1.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1048" data-title="add">"1.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1052" data-title="del">"das ist das Wenigste":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1052" data-title="del">"das ist das Wenigste":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1054" data-title="add">"Mindeste‡": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1054" data-title="add">"Mindeste‡": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1055" data-title="del">"Mindeste":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1055" data-title="del">"Mindeste":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1057" data-title="del">"was  Sie vonnöthen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1057" data-title="del">"was  Sie vonnöthen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1060" data-title="add">"gebrauchen‡": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1060" data-title="add">"gebrauchen‡": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1061" data-title="del">"gebrauchen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1061" data-title="del">"gebrauchen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1063" data-title="del">"<br />":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1063" data-title="del">" ":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1065" data-title="add">"Siebenmal moduliert in … ohne Ursach knakte": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1065" data-title="add">"Siebenmal moduliert in … ohne Ursach knakte": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1074" data-title="del">"dann":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1074" data-title="del">"dann":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1079" data-title="add">"3": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1079" data-title="add">"3": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1082" data-title="del">"3":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1082" data-title="del">"3":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1086" data-title="del">"Geigen die Bass":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1086" data-title="del">"Geigen die Bass":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1111" data-title="add">"wenn man es … sicher versprochen hat.": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1111" data-title="add">"wenn man es … sicher versprochen hat.": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1114" data-title="add">"fast": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1114" data-title="add">"fast": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1119" data-title="add">"denen an sie gemachten": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1119" data-title="add">"denen an sie gemachten": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1130" data-title="add">"........‡  Göth. Wahlv: 2tT: pag. 103.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1130" data-title="add">"........‡  Göth. Wahlv: 2tT: pag. 103.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1131" data-title="del">"........":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1131" data-title="del">"........":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1143" data-title="add">"Allgemeine feyerliche Stille … Erwartung im Publikum.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1143" data-title="add">"Allgemeine feyerliche Stille … Erwartung im Publikum.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1146" data-title="del">"eine":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1146" data-title="del">"eine":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1177" data-title="add">"wenn des Geistwidrigens … – – ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1177" data-title="add">"wenn des Geistwidrigens … – – ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1183" data-title="del">". . .":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1183" data-title="del">". . .":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1189" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1189" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1200" data-title="del">"saal":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1200" data-title="del">"saal":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1202" data-title="add">"d...[[?]]": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1202" data-title="add">"d...[[?]]": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1212" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1212" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1231" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1231" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1257" data-title="add">"Eile": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1257" data-title="add">"Eile": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1260" data-title="add">"edler Jüngling": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1260" data-title="add">"edler Jüngling": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1272" data-title="add">"2": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1272" data-title="add">"2": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1281" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1281" data-title="add">"Verwandlung.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1296" data-title="add">"gegenüber ein Weinberg. weiter vor": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1296" data-title="add">"gegenüber ein Weinberg. weiter vor": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1299" data-title="del">"Rechts":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1299" data-title="del">"Rechts":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1302" data-title="add">"vorn": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1302" data-title="add">"vorn": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1319" data-title="del">"auf":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1319" data-title="del">"auf":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1335" data-title="add">"träumend": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1335" data-title="add">"träumend": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1338" data-title="add">"eine Polonaise": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1338" data-title="add">"eine Polonaise": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1347" data-title="add">"und zerschmettern einiges": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1347" data-title="add">"und zerschmettern einiges": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1372" data-title="add">"Eingelegte Arie": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1372" data-title="add">"Eingelegte Arie": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1413" data-title="del">"schon":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1413" data-title="del">"schon":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1481" data-title="add">"ich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1481" data-title="add">"ich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1512" data-title="del">"ist aber":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1512" data-title="del">"ist aber":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1551" data-title="del">"gähren":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1551" data-title="del">"gähren":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1555" data-title="add">"kochen": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1555" data-title="add">"kochen": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1560" data-title="add">"Kunst": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1560" data-title="add">"Kunst": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1566" data-title="add">"Kunst": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1566" data-title="add">"Kunst": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1576" data-title="del">"andere":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1576" data-title="del">"andere":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1586" data-title="del">"und befeuert nur stets":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1586" data-title="del">"und befeuert nur stets":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1589" data-title="add">"stets nur der Flug": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1589" data-title="add">"stets nur der Flug": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1596" data-title="del">"Kraft":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1596" data-title="del">"Kraft":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1599" data-title="add">"Kunst": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1599" data-title="add">"Kunst": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1603" data-title="del">"die Treiben":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1603" data-title="del">"die Treiben":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1606" data-title="add">"....‡": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1606" data-title="add">"....‡": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1607" data-title="del">"....":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1607" data-title="del">"....":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1612" data-title="del">"gespendet":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1612" data-title="del">"gespendet":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1615" data-title="add">"verliehen": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1615" data-title="add">"verliehen": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1621" data-title="add">"zu ziehen.": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1621" data-title="add">"zu ziehen.": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1626" data-title="del">"das frohe Erfühlen des fremden Verdienstes":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1626" data-title="del">"das frohe Erfühlen des fremden Verdienstes":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1629" data-title="del">"des fremden Verdienst":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1629" data-title="del">"des fremden Verdienst":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1634" data-title="add">"das hast du … in das Leben.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d72143e1634" data-title="add">"das hast du … in das Leben.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1638" data-title="del">"genug":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1638" data-title="del">"genug":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1644" data-title="del">"der Geist sich erheben wird frey aus sich waltend":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1644" data-title="del">"der Geist sich erheben wird frey aus sich waltend":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1652" data-title="del">"mehr hin":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1652" data-title="del">"mehr hin":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1675" data-title="del">"wenn":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1675" data-title="del">"wenn":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1678" data-title="del">"mich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1678" data-title="del">"mich":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1681" data-title="del">"ich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1681" data-title="del">"ich":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1684" data-title="add">"mich": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1684" data-title="add">"mich": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1687" data-title="add">"selbst": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1687" data-title="add">"selbst": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1695" data-title="del">"von":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1695" data-title="del">"von":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1700" data-title="del">"eine":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1700" data-title="del">"eine":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1703" data-title="add">"alte": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1703" data-title="add">"alte": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1719" data-title="add">"i": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d72143e1719" data-title="add">"i": Hinzufügung</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1740" data-title="del">"Aplaus":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d72143e1740" data-title="del">"Aplaus":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e31" data-title="choice">recte "zufriedenen": eigentlich "zufrienden"</div>
+                                            <div class="apparatusEntry" id="d72143e31" data-title="choice">recte "zufriedenen": eigentlich "zufrienden"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… B: Schaul. Carlsr : Maklot": </span>vgl. auch Webers <a class="writings A031107" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031107.html">Rezension über Schauls Buch</a>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8554e1730" data-title="choice">recte "ich": eigentlich "im"</div>
+                                            <div class="apparatusEntry" id="d72143e1730" data-title="choice">recte "ich": eigentlich "im"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -1074,7 +1078,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031595</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 15. Juli 2016 durch Solveig Schreiter</span>
+                <span>Letzte Änderung dieses Dokuments am 20. September 2016 durch Peter Stadler</span>
                 </p>
             </div>
             
@@ -1106,21 +1110,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -1161,8 +1160,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

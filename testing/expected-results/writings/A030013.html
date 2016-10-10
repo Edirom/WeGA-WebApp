@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Über die Oper „Undine“ von Motte-Fouqué und Hoffmann</title>
         
-        <meta name="DC.title" content="Über die Oper „Undine“ von Motte-Fouqué und Hoffmann" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Weber, Carl Maria von" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013" />
-        <meta name="DC.description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
+        <meta property="dc:title" content="Über die Oper „Undine“ von Motte-Fouqué und Hoffmann" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Weber, Carl Maria von" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013" />
+        <meta property="dc:description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
         <meta name="description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -239,7 +241,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -260,7 +263,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -282,7 +286,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -294,7 +299,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -304,7 +310,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -414,7 +421,7 @@
 					und Instrumentation, die, ihm stets treu bleibend, seine unheimliche Nähe verkündet. Da er, wo nicht als das Schicksal selbst, doch als dessen nächster 
 					Willens-Vollstrekker  erscheint, so ist dies auch sehr richtig. Nächst ihm, 
 					das liebliche Wellenkind <span class="tei_hi_italic"><span class=" 85110100105110101">Undine</span></span>, deren Tonwellen bald lieblich gaukeln und kräuseln, bald auch mächtig gebietend ihre Herrscherkraft<span class="tei_cb"> ¦ </span> 
-					künden. Höchst gelungen, und ihren ganzen Charakter umfassend, dünkt Ref. die <span class=" 65114105101">Arie</span> im 2ten Act<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_006">*</a>, die so ungemein lieblich und geistvoll behandelt ist, dass sie als ein 
+					künden. Höchst gelungen, und ihren ganzen Charakter umfassend, dünkt Ref. die <span class=" 65114105101">Arie</span> im 2ten Act<a class="noteMarker" id="ref-c_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_006">*</a>, die so ungemein lieblich und geistvoll behandelt ist, dass sie als ein 
             kleiner Vorgeschmack des Ganzen dienen kann, und daher hier als Beylage erscheint <a href="#footnote02">*)</a>. 
             – Der feurig wogende, schwankende, jedem Liebeszuge sich hinneigende <span class="tei_hi_italic"><span class=" 721171081001019811497110100">Huldebrand</span></span>, und der 
 					fromme, einfache <span class="tei_hi_italic"><span class=" 7110110511511610810599104101">Geistliche</span></span> mit seiner ernsten Choral-Melodie, sind dann am bedeutendsten. Mehr in den Hintergrund treten 
@@ -458,7 +465,7 @@
                                     <div id="endNotes">
                                         <ul>
                                             <li id="footnote01">*) Künstlerleben.</li>
-                                            <li id="footnote02">*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_002">*</a>
+                                            <li id="footnote02">*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" id="ref-c_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_002">*</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -508,8 +515,26 @@
                                 <!-- Processing tei:additional for every source -->
                                 <div>
                                     
+                                        <h5 class="media-heading">Weitere Textquellen</h5>
+                                    
                                     <ul class="tei_list">
-                                        
+                                        <li>
+                                            <div>
+                                                        <p>Entwurf: Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (VI) Bl. 47b/v - 48v</p>
+                                                        <h4 class="media-heading">Quellenbeschreibung</h4>
+                                                        <ul>
+                                                            <li>auf Bl. 2v von DBl.,  Format 34,8x20,8 cm, WZ: Lilienblüte, Gegenmarke durch Beschnitt nicht mehr vollständig: B?, Kettlinien ca. 2,5 cm; Forts. auf einzelnem Bl. r und v, Format. 33,1x20,8 cm, WZ: NHEUSLER VON BASEL, Kettlinien 2,5-2,7 cm </li>
+                                                            <li>(Bl. 47b/v nach „größtenteils ausspricht.“ Vermerk von Weber: /: vide Künstlerleben am 25t. Xb. 1816 bis [?] :/; auf Bl. 48r links neben Textabschnitt „Die Bearbeitung erscheint Ref.“ von Weber weitere Datierung: d: 8t.
+                        </li>
+                                                        </ul>
+                                                    </div>
+                                        </li>
+                                                <li>
+                                            <span>HellS III, S. 3-12</span>
+                                        </li>
+                                                <li>
+                                            <span>MMW III, S. 121-126</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -581,21 +606,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -636,8 +656,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

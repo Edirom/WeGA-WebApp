@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Kunsturteile: "Isacco", Oratorium von Francesco Morlacchi</title>
         
-        <meta name="DC.title" content="Kunsturteile: &#34;Isacco&#34;, Oratorium von Francesco Morlacchi" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Carl Maria von Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Andreas Fukerider" />
-        <meta name="DC.creator" content="Solveig Schreiter" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-07-11T13:54:00.636810Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030494" />
-        <meta name="DC.description" content="Rezension von &#34;Isacco&#34; von Morlacci; Weber verteitigt Morlacchis fremdländisch geschriebenes Werk" />
+        <meta property="dc:title" content="Kunsturteile: &#34;Isacco&#34;, Oratorium von Francesco Morlacchi" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Carl Maria von Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Andreas Fukerider" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-07-11T13:54:00.636810Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030494" />
+        <meta property="dc:description" content="Rezension von &#34;Isacco&#34; von Morlacci; Weber verteitigt Morlacchis fremdländisch geschriebenes Werk" />
         <meta name="description" content="Rezension von &#34;Isacco&#34; von Morlacci; Weber verteitigt Morlacchis fremdländisch geschriebenes Werk" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -273,7 +277,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -283,7 +288,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -308,11 +314,11 @@
                                         <p>Wie weise umfassen die kirchlichen Gebräuche die menschliche Empfindung: das höchste Leid in schauerlich feiernder Stille, das wiedergegebene Heil, mit des Tones freiem Aufschwung zum Schöpfer.</p>
                                         <p>Herrlich und erhebend ist es, für diesen Zweck seine Kräfte versuchen zu dürfen, und befriedigend könnte dem Künstler das Bewußtsein, gewirkt zu haben, genügen; aber wohl ist es ihm doch auch nicht zu verargen, wenn er das, was er mit Liebe schuf, auch dem Sinne seiner Zuhörer näher bringen möchte.</p>
                                         <p>Selten erscheinend, schnell vorüberwandelnd ist das Resultat langer Anstrengung; vergönnt mag es also seyn, es gleichsam im Vorüberfluge etwas aufzuhalten, zumal wenn man glaubt, in der Behandlung des Stoffes sich anderer Mittel als die Vorgänger bedient zu haben, deren Wirkung durch nähere Bezeichnung derselben, weniger zweifelhaft den Zuhörer überraschen soll.</p>
-                                        <p>Herr Kapellmeister <span class="tei_hi_spaced_out"><a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlacchi</a></span> hat <a class="persons A002353" href="/exist/apps/WeGA-WebApp/de/A002353.html">Me<span class="tei_supplied" id="d10660e51">[ta]</span>stasio’s</a> Oratorium, <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><span class=" 731159799991113210210510311711497321001011083282101100101110116111114101">Isacco figura del Redentore</span></span></span> neu bearbeitet. Mit freundlich ehrendem Zutrauen hat er den Wunsch geäußert, daß ich in meines Vaterlandes Sprache das Organ seyn möge, das seine Ansicht und Absicht bei der Composition dieses Oratoriums den Hörern desselben entwickle, und mit <span class="tei_cb"> ¦ </span>Freude und kunstbrüderlichem Eifer, will ich es versuchen, seinem Willen zu entsprechen.</p>
+                                        <p>Herr Kapellmeister <span class="tei_hi_spaced_out"><a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlacchi</a></span> hat <a class="persons A002353" href="/exist/apps/WeGA-WebApp/de/A002353.html">Me<span class="tei_supplied" id="d74310e51">[ta]</span>stasio’s</a> Oratorium, <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><span class=" 731159799991113210210510311711497321001011083282101100101110116111114101">Isacco figura del Redentore</span></span></span> neu bearbeitet. Mit freundlich ehrendem Zutrauen hat er den Wunsch geäußert, daß ich in meines Vaterlandes Sprache das Organ seyn möge, das seine Ansicht und Absicht bei der Composition dieses Oratoriums den Hörern desselben entwickle, und mit <span class="tei_cb"> ¦ </span>Freude und kunstbrüderlichem Eifer, will ich es versuchen, seinem Willen zu entsprechen.</p>
                                         <p>Die Masse der Hörer beurtheilt sehr oft eine Arbeit blos deshalb lieblos oder hart, weil sie nicht <span class="tei_hi_spaced_out">den</span> Maasstab anlegt, nach dessen Verhältniß das Werk geschrieben ist, oder es nicht aus <span class="tei_hi_spaced_out">dem</span> Gesichtspunkte ansieht, wie der Componist vermöge seiner Talente, Bildung und daraus entspringenden Ueberzeugung und Willen, es nothwendig nur sehen <span class="tei_hi_spaced_out">kann</span>. Im gewöhnlichen und allgemeinen Sinne ist deutsches Werk italischem Sinne so fremd und unbehaglich, wie italisches dem deutschen. Kunstbildung und Vertrautheit unterscheidet und liebt an jedem das in <span class="tei_hi_spaced_out">seiner Art</span> Vorzügliche. <span class="tei_hi_spaced_out">Vollendete Wahrheit</span> aber behauptet in allen Zonen ihre Rechte siegend über alle kritische Ansichten die am Ende doch auch nur in <span class="tei_hi_spaced_out">einer</span> Wahrheit sich auflösen müssen. Wünschenswerth und wahrhaft befördernd ist aber jene Kritik, die wohlwollend mit den Augen des Componisten sehen will, es ihm aber zugleich sagt, und denselben dadurch sich selbst entschleiernd, ihm sein eignes Geheimniß enträthselt; da jedes Wesen in der verzeihlichen und natürlichen Befangenheit des eigenen Gesichts- und Fähigkeits-Kreises lebt.</p>
                                         <p>Rühmlich und volle Anerkennung verdienend ist es schon, wenn nach dem Kunstglauben und Bedarf eines fremden Landes gebildet, man fühlen lernt, daß dieses nicht ausreiche auf anderm Boden. Es ist dies schon ein schöner Schritt vorwärts auf der Bahn, und man hat dabei nur die Schwierigkeit noch zu beachten, die Form nicht für die Sache zu nehmen.</p>
                                         <p>Herr Kapellmeister <a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlacchi</a> hat dieses rühmliche Streben schon in seinen letzteren Arbeiten an den Tag gelegt, und bei diesem Oratorium noch mehr im Sinne und Auge gehabt.</p>
-                                        <p>Die frühere Behandlung des Textes war nach seiner Ansicht auch nur den Forderungen früherer Zeit angemessen. Die <span class="tei_hi_antiqua">Secco Recitativi</span>, vielen Arien, und wenigen Chöre, verbreiteten eine Leere, die dem an musikalischen Reichthum gewöhnten Ohre der jetzigen Musikwelt, kaum g<span class="tei_supplied" id="d10660e96">[e]</span>nügen würde. Er hat also das Ganze in musikalisch bestimmtere Formen gekleidet; die Worte, außer denen sich als Arien, Duetten, ce. aussprechenden Musikstücken, nicht sowohl blos als accompagnirtes Recitativ behandelt, (wo die Wahrheit des Ausdruckes doch noch größtentheils das Verdienst des Sängers ist) sondern er hat dieselben an eine bestimmtere musikalisch-rhythmische Declamation gefesselt, wodurch das Ganze mehr zu <span class="tei_hi_spaced_out">einem</span> großen in verschiedenen Takt- und Tempoarten sich bewegenden Musikstück wird.</p>
+                                        <p>Die frühere Behandlung des Textes war nach seiner Ansicht auch nur den Forderungen früherer Zeit angemessen. Die <span class="tei_hi_antiqua">Secco Recitativi</span>, vielen Arien, und wenigen Chöre, verbreiteten eine Leere, die dem an musikalischen Reichthum gewöhnten Ohre der jetzigen Musikwelt, kaum g<span class="tei_supplied" id="d74310e96">[e]</span>nügen würde. Er hat also das Ganze in musikalisch bestimmtere Formen gekleidet; die Worte, außer denen sich als Arien, Duetten, ce. aussprechenden Musikstücken, nicht sowohl blos als accompagnirtes Recitativ behandelt, (wo die Wahrheit des Ausdruckes doch noch größtentheils das Verdienst des Sängers ist) sondern er hat dieselben an eine bestimmtere musikalisch-rhythmische Declamation gefesselt, wodurch das Ganze mehr zu <span class="tei_hi_spaced_out">einem</span> großen in verschiedenen Takt- und Tempoarten sich bewegenden Musikstück wird.</p>
                                         <p>Nächstdem lag ihm bestimmte Charakterzeichnung der handelnden Personen am Herzen, und sinnreich suchte er mehreren Stellen des Textes, die nur für Eine Stimme berechnet waren, Stoff zu Duetten, Terzetten und Chören abzugewinnen. Ein Verfahren, was wohl lobenswerth erscheinen kann, in dem Gefühl des Bedürfnisses desselben, und daß es Frevel gewesen wäre, eines <a class="persons A002353" href="/exist/apps/WeGA-WebApp/de/A002353.html">Metastasio</a> Dichtung mit fremen Einschiebseln zu verunstalten, welches weniger durch einige Abkürzung derselben zu befürchten war.</p>
                                         <p>Hiermit glaube ich nun den Willen und die Ansicht des Componisten ausgesprochen zu haben, und es würde mich innig freuen, wenn ich dadurch zur erhöhten Wirkung seiner Absicht beizutragen im Stande war. Der Weg zum Ziel ist breit und mannigfach gestaltet: wir haben Alle Platz darauf. Er ist auch steil, wohl uns, wenn wir uns Alle die Hände bieten; Freude, Friede und Gedeihen der hohen Kunst seyen der Erfolg: so rufe ich im Namen aller mit ihr es redlich meinenden Künstler aus. <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>, im März 1817.</p><span class="tei_signed textAlign-right"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>.</span>
                                     </div>
@@ -358,8 +364,27 @@
                                 <!-- Processing tei:additional for every source -->
                                 <div>
                                     
+                                        <h5 class="media-heading">Weitere Textquellen</h5>
+                                    
                                     <ul class="tei_list">
-                                        
+                                        <li>
+                                            <div>
+                                                        <p>Entwurf: Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Sgl. Weberiana Cl. II A f 3. 23 c</p>
+                                                        <h4 class="media-heading">Quellenbeschreibung</h4>
+                                                        <ul>
+                                                            <li>über dem Ms Titel: "Das Oratorium am Heil: Oster Vorabend."; Incipit: "Wenn das erhabenste Höchste und Heiligste des Lebens angeregt wird, und die erhabenen Bilder"; datiert: "Dresden d: 21t. März 1817."; unterzeichnet: "C. M. vWeber"</li>
+                                                            <li>von Jähns pag. mit 1; auf Bl. 1r und v von DBl. (Format 33,3x20,6 cm, WZ: bekröntes Wappenschild, Gegenmarke: KIRCHBERG, Kettlinien ca. 2,5 cm);
+                           bei MMW und Kaiser datiert mit 20. März 1817; laut TB 20. März 1817: ich arbeitete am Aufsaz über 
+                           Morlachis Oratorium.; 21. März: Aufsaz vollendet.</li>
+                                                        </ul>
+                                                    </div>
+                                        </li>
+                                                <li>
+                                            <span>HellS III, S. 13-17</span>
+                                        </li>
+                                                <li>
+                                            <span>MMW III, S. 138-140</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -424,21 +449,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -479,8 +499,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

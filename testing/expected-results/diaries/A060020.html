@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Carl Maria von Weber – Tagebucheintrag vom Montag, 20. Januar 1817 Dresden</title>
         
-        <meta name="DC.title" content="Carl Maria von Weber – Tagebucheintrag vom Montag, 20. Januar 1817 Dresden" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
+        <meta property="dc:title" content="Carl Maria von Weber – Tagebucheintrag vom Montag, 20. Januar 1817 Dresden" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
         
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-18T14:56:38.094531Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060020" />
-        <meta name="DC.description" content="d: 20t um 9 Uhr Probe von Egmont mit ganzem Orchester. um 10 Uhr mit Chor von Joseph. bis 1 Uhr. an Lina geschrieben und abgeschikt No: 19. Verdruß …" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-18T14:56:38.094531Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060020" />
+        <meta property="dc:description" content="d: 20t um 9 Uhr Probe von Egmont mit ganzem Orchester. um 10 Uhr mit Chor von Joseph. bis 1 Uhr. an Lina geschrieben und abgeschikt No: 19. Verdruß …" />
         <meta name="description" content="d: 20t um 9 Uhr Probe von Egmont mit ganzem Orchester. um 10 Uhr mit Chor von Joseph. bis 1 Uhr. an Lina geschrieben und abgeschikt No: 19. Verdruß …" />
-        <meta name="DC.subject" content="Tagebuch; Carl Maria von Weber" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="https://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Tagebuch; Carl Maria von Weber" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -51,7 +49,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -62,7 +60,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -238,11 +236,13 @@
                 
                 <div class="allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="true" href="#datePicker">Kalender</h2>
-                        <div class="panel-collapse collapse" id="datePicker" aria-expanded="true" data-dev-url="/exist/apps/WeGA-WebApp/dev/api.xql"></div>
+                        <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a>
+                        </h2>
+                        <div class="panel-collapse collapse" id="datePicker" data-dev-url="/exist/apps/WeGA-WebApp/dev/api.xql"></div>
                     </div>
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -263,7 +263,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -281,7 +282,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -293,7 +295,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -303,7 +306,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -320,19 +324,19 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="A060020" class="tableLeft">
                                     <p>
-    <span class="date"><span class="tei_supplied" id="d91937e4">[d]</span>: 20<span class="tei_hi_superscript">t</span></span> 
+    <span class="date"><span class="tei_supplied" id="d66869e4">[d]</span>: 20<span class="tei_hi_superscript">t</span></span> 
     <span><span class="tei_hi_underline1">um 9 Uhr Probe von <span class="works A020236" data-ref="/exist/apps/WeGA-WebApp/de/A000117/Werke/A020236.html">Egmont</span></span> mit ganzem <span class="tei_hi_latintype">Orchester</span>.</span> <br />
     <span><span class="tei_hi_underline1">um 10 Uhr mit <span class="tei_hi_latintype">Chor</span> von <span class="works A020386" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020386.html">Joseph</span>. bis 1 Uhr</span>.</span> 
     <span>an <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Lina</a> geschrieben <br />
-        <span class="tei_hi_underline1"><span class="tei_supplied" id="d91937e41">[un]</span>d abgeschikt <span class="tei_hi_latintype">No</span>: 19</span>.</span>
+        <span class="tei_hi_underline1"><span class="tei_supplied" id="d66869e41">[un]</span>d abgeschikt <span class="tei_hi_latintype">No</span>: 19</span>.</span>
     <span>Verdruß abermaliger wegen meiner <br />
-        <span class="tei_supplied" id="d91937e54">[A]</span>nstellung. Entschluß keine Zurüksezung zu dulden.</span> <br />
-    <span id="meeting01"><span class="tei_supplied" id="d91937e61">[M]</span>ittag 4 Uhr beim <a class="persons A000201" href="/exist/apps/WeGA-WebApp/de/A000201.html">Östereichischen Gesandten Graf <span class="tei_hi_latintype">Bombell</span></a>. gespielt, <br />
-        <span class="tei_supplied" id="d91937e71">[un]</span>d die <a class="persons A000200" href="/exist/apps/WeGA-WebApp/de/A000200.html">Gräfin</a> sang, sehr hübsch. angenehmes Haus, und un<span class="break_inWord">-</span><br />gemein freundlich aufgenommen.</span> 
+        <span class="tei_supplied" id="d66869e54">[A]</span>nstellung. Entschluß keine Zurüksezung zu dulden.</span> <br />
+    <span id="meeting01"><span class="tei_supplied" id="d66869e61">[M]</span>ittag 4 Uhr beim <a class="persons A000201" href="/exist/apps/WeGA-WebApp/de/A000201.html">Östereichischen Gesandten Graf <span class="tei_hi_latintype">Bombell</span></a>. gespielt, <br />
+        <span class="tei_supplied" id="d66869e71">[un]</span>d die <a class="persons A000200" href="/exist/apps/WeGA-WebApp/de/A000200.html">Gräfin</a> sang, sehr hübsch. angenehmes Haus, und un<span class="break_inWord">-</span><br />gemein freundlich aufgenommen.</span> 
     <span>mit ihnen ins Theater <br />
-        <span class="tei_supplied" id="d91937e84">[g]</span>efahren, <span class="tei_hi_underline1"><span class=" 839910497991041099711599104105110101">Schachmaschine</span></span>, <a class="persons A002148" href="/exist/apps/WeGA-WebApp/de/A002148.html">H: Wilhelmi</a> aus 
+        <span class="tei_supplied" id="d66869e84">[g]</span>efahren, <span class="tei_hi_underline1"><span class=" 839910497991041099711599104105110101">Schachmaschine</span></span>, <a class="persons A002148" href="/exist/apps/WeGA-WebApp/de/A002148.html">H: Wilhelmi</a> aus 
         <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement">Cassel</span></span></span> den <br />
-        <span class=" 75971141083282117102"><span class="tei_supplied" id="d91937e103">[K]</span>arl Ruf</span>.</span>
+        <span class=" 75971141083282117102"><span class="tei_supplied" id="d66869e103">[K]</span>arl Ruf</span>.</span>
     <span>dann zu <a class="persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Schmidl</a>.</span> 
     <span><span class="tei_hi_underline1">Brief von <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Lina</a> <span class="tei_hi_latintype">No</span>. 21.</span> erhalten</span> 
 </p>
@@ -441,21 +445,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">

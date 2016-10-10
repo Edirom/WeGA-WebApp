@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Korrespondenz-Nachrichten aus Mannheim, 6. Dezember 1810</title>
         
-        <meta name="DC.title" content="Korrespondenz-Nachrichten aus Mannheim, 6. Dezember 1810" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Korrespondenz-Nachrichten aus Mannheim, 6. Dezember 1810" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-10-10T12:24:23.339538Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -280,11 +284,14 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020212" /> <span title="Konzert für Klavier und Orchester Nr.1 C-Dur">Konzert für Klavier und Orches…</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020640" /> <span title="Psalm 130">Psalm 130</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020036" /> <span title="Silvana, romantische Oper in drei Aufzügen">Silvana, romantische Oper in d…</span> 
                                 </label>
@@ -292,7 +299,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -312,7 +320,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -336,25 +345,25 @@
                                         <p><span class="tei_hi_spaced_out"><span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span></span>, <span class="tei_date">6. Dec.</span>
                                         </p>
                                         <p>Der schon lange mit Auszeichnung bekannte Schauspieler 
-               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="persons A002170" href="/exist/apps/WeGA-WebApp/de/A002170.html">Wohlbrück</a></span> gab hier mehrere Gastrollen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, in welchen er sich nicht nur als denkender Künstler bewies, sondern auch ein reif ausgebildetes Talent der Darstellung entfaltete. Vorzüglich verdiente er als <span class="tei_hi_italic"><span class=" 6598982333210010132108821769112233101">Abbé de l’Epée</span></span> und dann als <span class=" 70114971101223277111111114">Franz Moor</span> in den <span class=" 8222811798101114110">Räubern</span> den Beyfall des hiesigen Publikum, der ihm so reichlich gezollt wurde; er besitzt eine seltne Reinheit der Deklamation, und wird besonders in dieser Hinsicht dem hiesigen 
-               <span class="tei_ptr"></span>Museum, wo er <span class="tei_hi_spaced_out"><a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a></span> treffliches <span class=" 761051011003211811111032100101114327110811199107101">Lied <span class="tei_hi_spaced_out">von der Glocke</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> meisterhaft deklamirte, unvergeßlich bleiben. – Er ist bey dem <span class=" 7211110211610410197116101114321051103287105101110">Hoftheater <span class="tei_ptr"></span>in <span class="tei_settlement">Wien</span></span> angestellt<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, und wird über <span class=" 7011497110107102117114116"><span class="tei_settlement">Frankfurt</span></span>, <span class=" 729710998117114103"><span class="tei_settlement">Hamburg</span></span>, <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> und <span class=" 8011497103"><span class="tei_settlement">Prag</span></span> dahin zurückkehren.</p>
+               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="persons A002170" href="/exist/apps/WeGA-WebApp/de/A002170.html">Wohlbrück</a></span> gab hier mehrere Gastrollen<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, in welchen er sich nicht nur als denkender Künstler bewies, sondern auch ein reif ausgebildetes Talent der Darstellung entfaltete. Vorzüglich verdiente er als <span class="tei_hi_italic"><span class=" 6598982333210010132108821769112233101">Abbé de l’Epée</span></span> und dann als <span class=" 70114971101223277111111114">Franz Moor</span> in den <span class=" 8222811798101114110">Räubern</span> den Beyfall des hiesigen Publikum, der ihm so reichlich gezollt wurde; er besitzt eine seltne Reinheit der Deklamation, und wird besonders in dieser Hinsicht dem hiesigen 
+               <span class="tei_ptr"></span>Museum, wo er <span class="tei_hi_spaced_out"><a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a></span> treffliches <span class=" 761051011003211811111032100101114327110811199107101">Lied <span class="tei_hi_spaced_out">von der Glocke</span></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> meisterhaft deklamirte, unvergeßlich bleiben. – Er ist bey dem <span class=" 7211110211610410197116101114321051103287105101110">Hoftheater <span class="tei_ptr"></span>in <span class="tei_settlement">Wien</span></span> angestellt<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, und wird über <span class=" 7011497110107102117114116"><span class="tei_settlement">Frankfurt</span></span>, <span class=" 729710998117114103"><span class="tei_settlement">Hamburg</span></span>, <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> und <span class=" 8011497103"><span class="tei_settlement">Prag</span></span> dahin zurückkehren.</p>
                                         <p>Der eben so geniale Komponist als trefliche Klavierspieler <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hr. Karl Maria <span class="tei_hi_spaced_out">von Weber</span></a> hat uns mit 
-               <span class="tei_ptr"></span>mehrern seiner Kunstausstellungen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> erfreut; besonders merkwürdig war aber die am <span class="tei_date">19&#160;Nov.</span> im hiesigen <span class=" 77117115101117109327597114108328311610111210497110105101">Museum <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. Er trug 
-               <span class="tei_ptr"></span><span class="works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">ein neues Konzert<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a></span> von seiner Komposition vor, das, wie wir hören, 
-               <span class="tei_ptr"></span>nächstens im Drucke erscheinen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> wird, und die Aufmerksamkeit aller Kunstfreunde verdient. Die Neuheit, Kraft, Lieblichkeit und Originalität des Werkes, sowol in der Anlage des Ganzen, als in der Ausführung des Einzelnen, die schöne Abründung und Verflechtung der Solosätze des kurzen ersten Allegro mit den vortrefflich geleiteten Eintritten des Orchesters, die schwärmerische Haltung des von lauter tiefen Instrumenten begleiteten Adagio, und die entzückende und zur Aufmerksamkeit unwiderstehlich hinreißende Laune und Neuheit des letzten Allegro, in welchem man den eingeflochtenen kurzen Walzer eine Tanzmusik höherer Wesen nennen möchte, zeichnen diese Komposition, wol mit die gelungenste ihrer Art, vor dem Trosse gewöhnlicher Konzerte sehr vortheilhaft aus, und erregten hier im Vortrage des Meisters allgemeine und gerechte Bewunderung. Auch wurde von ihm 
-               <span class="tei_ptr"></span><span class=" 101105110101321041011141141081059910410132791171181011141162521141011089711711632846632118111109324957463278111118101109981011143249564948321011051101013279117118101114116589125211410193329711711532691154432971081151113210010510132971081153271114971101001013279117118101114116117114101322243211210811711510510111711411532105110115116114117109101110116115321171091031019711498101105116101116101327911711810111411625211410132122117328010111610111432839910410911110810832407486160535241">eine herrliche Ouvertüre<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a></span> von imponirender Kraft gegeben. – Dann trug er auf Verlangen der anwesenden 
-               <span class="tei_ptr"></span><a class="persons A001888" href="/exist/apps/WeGA-WebApp/de/A001888.html">Frau Erbgroßherzoginn</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> einige 
-               <span class="tei_ptr"></span><span class=" 10511697108105101110105115991041013276105101100101114">italienische Lieder</span> mit Guitarre-Begleitung<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> vor, und erntete den schmeichelhaftesten Beyfall. Wir hoffen 
-               <span class="tei_ptr"></span>nächstens seine Oper <span class="tei_hi_spaced_out"><span class="works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> zu hören<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>. – Außer den Kompositionen des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hrn. <span class="tei_hi_spaced_out">von Weber</span></a> erfreute uns auch das herrliche 
-               <span class="tei_ptr"></span><span class=" 7911497116111114105117109">Oratorium</span> (der 130ste Psalm: <span class="tei_hi_italic">de profundis</span>, in deutscher freyer Bearbeitung) von der Komposition des <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a> aus <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Diese Arbeit gehört unstreitig zu den gelungensten des in unsern allzu modernisirten Zeiten so seltenen strengen 
-               <span class="tei_ptr"></span>Kirchenstils<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, aber nicht des steifen, an trockenen Formen und verschrobenen Regeln klebenden, sondern des veredelten, durch tiefes Gefühl geläuterten Stils, welcher seinen Gegenstand kräftig auffaßt, unverrückt im Auge behält, alles Spielen mit gefälligen Nebengegenständen verschmäht, das Gemüth zur unzerstreuten Aufmerksamkeit auf den Hauptgegenstand zwingt, und den Zuhörer nicht losläßt, bevor er ihn die ganze Würde des Gegenstandes, die ganze Tiefe der Empfindung hat fühlen lassen, und bis er ihn ganz zu der Stufe der Verklärung erhoben hat, deren das menschliche Gemüth fähig ist. – Ins schöne Detail uns einzulassen verbietet uns der Raum; hier stehe vielmehr ein kleiner Tadel. Uns fielen einige prosodie-widrige Accentuationen auf, z.&#160;B. wăchēnde – dēn Mŏrgēn – Dieser Psalm soll nächstens mit mehrern andern Kompositionen des <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a> (eines Zöglings <span class="tei_hi_spaced_out"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a></span>) 
-               <span class="tei_ptr"></span>im Berliner <span class="tei_hi_italic">Concert spirituel</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> aufgeführt werden. </p>
+               <span class="tei_ptr"></span>mehrern seiner Kunstausstellungen<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> erfreut; besonders merkwürdig war aber die am <span class="tei_date">19&#160;Nov.</span> im hiesigen <span class=" 77117115101117109327597114108328311610111210497110105101">Museum <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. Er trug 
+               <span class="tei_ptr"></span><span class="works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">ein neues Konzert<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a></span> von seiner Komposition vor, das, wie wir hören, 
+               <span class="tei_ptr"></span>nächstens im Drucke erscheinen<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> wird, und die Aufmerksamkeit aller Kunstfreunde verdient. Die Neuheit, Kraft, Lieblichkeit und Originalität des Werkes, sowol in der Anlage des Ganzen, als in der Ausführung des Einzelnen, die schöne Abründung und Verflechtung der Solosätze des kurzen ersten Allegro mit den vortrefflich geleiteten Eintritten des Orchesters, die schwärmerische Haltung des von lauter tiefen Instrumenten begleiteten Adagio, und die entzückende und zur Aufmerksamkeit unwiderstehlich hinreißende Laune und Neuheit des letzten Allegro, in welchem man den eingeflochtenen kurzen Walzer eine Tanzmusik höherer Wesen nennen möchte, zeichnen diese Komposition, wol mit die gelungenste ihrer Art, vor dem Trosse gewöhnlicher Konzerte sehr vortheilhaft aus, und erregten hier im Vortrage des Meisters allgemeine und gerechte Bewunderung. Auch wurde von ihm 
+               <span class="tei_ptr"></span><span class=" 101105110101321041011141141081059910410132791171181011141162521141011089711711632846632118111109324957463278111118101109981011143249564948321011051101013279117118101114116589125211410193329711711532691154432971081151113210010510132971081153271114971101001013279117118101114116117114101322243211210811711510510111711411532105110115116114117109101110116115321171091031019711498101105116101116101327911711810111411625211410132122117328010111610111432839910410911110810832407486160535241">eine herrliche Ouvertüre<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a></span> von imponirender Kraft gegeben. – Dann trug er auf Verlangen der anwesenden 
+               <span class="tei_ptr"></span><a class="persons A001888" href="/exist/apps/WeGA-WebApp/de/A001888.html">Frau Erbgroßherzoginn</a><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> einige 
+               <span class="tei_ptr"></span><span class=" 10511697108105101110105115991041013276105101100101114">italienische Lieder</span> mit Guitarre-Begleitung<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> vor, und erntete den schmeichelhaftesten Beyfall. Wir hoffen 
+               <span class="tei_ptr"></span>nächstens seine Oper <span class="tei_hi_spaced_out"><span class="works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> zu hören<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>. – Außer den Kompositionen des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hrn. <span class="tei_hi_spaced_out">von Weber</span></a> erfreute uns auch das herrliche 
+               <span class="tei_ptr"></span><span class=" 7911497116111114105117109">Oratorium</span> (der <span class="works A020640" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020640.html">130ste Psalm: <span class="tei_hi_italic">de profundis</span></span>, in deutscher freyer Bearbeitung) von der Komposition des <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a> aus <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Diese Arbeit gehört unstreitig zu den gelungensten des in unsern allzu modernisirten Zeiten so seltenen strengen 
+               <span class="tei_ptr"></span>Kirchenstils<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, aber nicht des steifen, an trockenen Formen und verschrobenen Regeln klebenden, sondern des veredelten, durch tiefes Gefühl geläuterten Stils, welcher seinen Gegenstand kräftig auffaßt, unverrückt im Auge behält, alles Spielen mit gefälligen Nebengegenständen verschmäht, das Gemüth zur unzerstreuten Aufmerksamkeit auf den Hauptgegenstand zwingt, und den Zuhörer nicht losläßt, bevor er ihn die ganze Würde des Gegenstandes, die ganze Tiefe der Empfindung hat fühlen lassen, und bis er ihn ganz zu der Stufe der Verklärung erhoben hat, deren das menschliche Gemüth fähig ist. – Ins schöne Detail uns einzulassen verbietet uns der Raum; hier stehe vielmehr ein kleiner Tadel. Uns fielen einige prosodie-widrige Accentuationen auf, z.&#160;B. wăchēnde – dēn Mŏrgēn – Dieser Psalm soll nächstens mit mehrern andern Kompositionen des <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a> (eines Zöglings <span class="tei_hi_spaced_out"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a></span>) 
+               <span class="tei_ptr"></span>im Berliner <span class="tei_hi_italic">Concert spirituel</span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> aufgeführt werden. </p>
                                         <p>Wir haben hier durch den 
-               <span class="tei_ptr"></span>Tod des <a class="persons A001014" href="/exist/apps/WeGA-WebApp/de/A001014.html">Hrn. Geheimenraths von <span class="tei_hi_spaced_out">Klein</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> einen Mitbürger verloren, der von einem sehr regen Sinne für Literatur und Kunst beseelt war. – In der Literatur hat er gesucht sich durch mehrere Arbeiten, besonders im Fache der Dichtkunst, bekannt zu machen, denen wenigstens nicht alles Verdienst abzusprechen ist. Sein 
-               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 65116104101110111114">Athenor</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a> hat einzelne gelungene Stellen: wenn er auch die höhern Werke des Genies nicht erreicht, und der Kritik allerdings viele Blößen gibt. – Unter seinen Epigrammen gibt es manche recht schätzbare. – Sein 
-               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 8097110116104101111110329810111425210410911610111432772281101101011143211711010032701149711710111065110116111110321181111103275108101105110443276101981011103211711010032661051081001101051151151013210010111432103114111223101110326810111711611599104101110443252326610010146443277971101101041011051093249555654455750">Pantheon berühmter Männer und Frauen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a></span></span> enthält manche gute biographische Skizze, und sein 
-               <span class="tei_ptr"></span><span class=" 11010111710111511610111532100114971099711611711410310511599104101115328710111410765110116111110321181111103275108101105110443268114971099711611711410310511599104101328399104114105102116101110443266100463249443270114971101071021171141163297463277463211711010032761011051121221051033249564857">neuestes dramaturgisches Werk<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a></span> gibt mehrere Beweise, daß es ihm weder an Beobachtungsgeist, noch an Sclebharfsinn fehlte; manches darin verdient wol eine nähere Beherzigung. – Seine Kupferstichsammlung war für einen Privatmann vorzüglich, so wie unter seinen (unlängst der hiesigen Galerie verkauften) Gemählden viel Gutes und einiges Vorzügliches sich befand. – 
-               Um die wissenschaftliche Kultur Süd-Deutschlandes, und besonders um die Reinigung der Sprache hat er sich unstreitig Verdienst erworben, da er der Stifter und ein sehr thätiges Mitglied der ehemals zu <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span> blühenden <span class="tei_ptr"></span><span class="tei_hi_spaced_out">deutschen Gesellschaft</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_18">*</a> war. Auch ist er einer der Mitstifter des jetzigen <span class=" 77117115101117109115327597114108328311610111210497110105101">Museums <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. – Als Mensch zeichnete ihn eine außerordentliche Dienstfertigkeit und rege Theilnahme an Allem, was er für gut, schön und nützlich erkannte, vortheilhaft aus.</p>
+               <span class="tei_ptr"></span>Tod des <a class="persons A001014" href="/exist/apps/WeGA-WebApp/de/A001014.html">Hrn. Geheimenraths von <span class="tei_hi_spaced_out">Klein</span></a><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> einen Mitbürger verloren, der von einem sehr regen Sinne für Literatur und Kunst beseelt war. – In der Literatur hat er gesucht sich durch mehrere Arbeiten, besonders im Fache der Dichtkunst, bekannt zu machen, denen wenigstens nicht alles Verdienst abzusprechen ist. Sein 
+               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 65116104101110111114">Athenor</span></span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a> hat einzelne gelungene Stellen: wenn er auch die höhern Werke des Genies nicht erreicht, und der Kritik allerdings viele Blößen gibt. – Unter seinen Epigrammen gibt es manche recht schätzbare. – Sein 
+               <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 8097110116104101111110329810111425210410911610111432772281101101011143211711010032701149711710111065110116111110321181111103275108101105110443276101981011103211711010032661051081001101051151151013210010111432103114111223101110326810111711611599104101110443252326610010146443277971101101041011051093249555654455750">Pantheon berühmter Männer und Frauen<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a></span></span> enthält manche gute biographische Skizze, und sein 
+               <span class="tei_ptr"></span><span class=" 11010111710111511610111532100114971099711611711410310511599104101115328710111410765110116111110321181111103275108101105110443268114971099711611711410310511599104101328399104114105102116101110443266100463249443270114971101071021171141163297463277463211711010032761011051121221051033249564857">neuestes dramaturgisches Werk<a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a></span> gibt mehrere Beweise, daß es ihm weder an Beobachtungsgeist, noch an Sclebharfsinn fehlte; manches darin verdient wol eine nähere Beherzigung. – Seine Kupferstichsammlung war für einen Privatmann vorzüglich, so wie unter seinen (unlängst der hiesigen Galerie verkauften) Gemählden viel Gutes und einiges Vorzügliches sich befand. – 
+               Um die wissenschaftliche Kultur Süd-Deutschlandes, und besonders um die Reinigung der Sprache hat er sich unstreitig Verdienst erworben, da er der Stifter und ein sehr thätiges Mitglied der ehemals zu <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span> blühenden <span class="tei_ptr"></span><span class="tei_hi_spaced_out">deutschen Gesellschaft</span><a class="noteMarker" id="ref-C_18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_18">*</a> war. Auch ist er einer der Mitstifter des jetzigen <span class=" 77117115101117109115327597114108328311610111210497110105101">Museums <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. – Als Mensch zeichnete ihn eine außerordentliche Dienstfertigkeit und rege Theilnahme an Allem, was er für gut, schön und nützlich erkannte, vortheilhaft aus.</p>
                                     </div>
                                 </div>
                     </div>
@@ -376,7 +385,7 @@
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
                                         <p>G. Weber nennt sich in <span class="tei_hi_italic">AMZ,</span> Jg.&#160;15, Nr.&#160;4 (27. Januar 1813), Sp.&#160;58, als Autor, indem er angibt, er habe Deklamationsfehler in Meyerbeers Werken <span class="tei_hi_italic">schon an einem andern Ort (No. 300 des Morgenblatts v. 1810) an einem grössern Werke des Meisters gerügt.</span> Die Zuschreibung an Dusch, die Becker (Meyerbeer), Bd. 1, S.&#160;597, Anm. 80,1, ohne Belege vorgenommen hat, trifft also nicht zu. Becker bezieht sich vermutlich auf eine Notiz im TB am 6. Dezember 1810: <span class="tei_hi_italic">an <span class="tei_hi_underline1">Reinbek</span>. und Aufs:[atz] von Dusch über <span class="tei_hi_underline1">Archiv</span><span class="tei_hi_underline1">und Wohlbrük geschikt</span>.</span> Ein Aufsatz über Johann Gottfried Wohlbrück und das <span class="tei_hi_italic">Archiv für Literatur, Kunst und Politik</span> ist im Morgenblatt nicht erschienen, bei dem vorliegenden Text ist hingegen im Redaktionsexemplar im DLA Marbach <span class="tei_hi_italic">v. Weber</span>&#160;als Honorarempfänger für Z. 1-9 und <span class="tei_hi_italic">Reinbeck</span> ab Z. 10 vermerkt. Damit ist davon auszugehen, daß C. M. v. Weber diesen Text am 6. Dezember 1810 an den Redakteur Georg Reinbeck schickte, der gemäß der Cottaschen Praxis, jene Texte, die ein Eigenlob des Einsenders enthielten, nicht zu honorieren, das Honorar für die Zeilen 10ff. selbst einkassierte. Die Frage der Autorschaft des möglicherweise von Reinbeck in dieser Form zusammengestellten Gesamttextes bleibt damit aber unklar, auch wenn G. Weber ausdrücklich seine Autorschaft für die Z. 26-39 erklärt und damit Z. 10-25 ebenfalls von ihm stammen dürften. Denkbar ist durchaus, daß C. M. v. Weber in seiner Bemerkung im TB (s. o.) die Z. 1-9 dieses Beitrags meinte, und daß die nicht erwähnten Z.&#160;40-56 über Anton Klein ebenfalls von Dusch, G. Weber oder sogar von Reinbeck selbst stammen, obwohl der mit den Mannheimer Verhältnissen vertraute Verfasser sicherlich eher im Kreise der harmonischen Brüder zu suchen ist. Der in C. M. v. Webers Bemerkung genannte Aufsatz über das Hamburger <span class="tei_hi_italic">Archiv für Literatur, Kunst und Politik</span> ist dagegen im <span class="tei_hi_italic">Morgenblatt</span>&#160;nicht erschienen.</p>
-                                        <p>Meyerbeers Freund Eduard Kley schrieb über diese Rezension am 15. Januar 1811 an Meyerbeer: <span class="tei_hi_italic">Mit gleichem Intresse hab ich 3 der vortheilhaftesten Rezensionen über Ihren 130t Psalm gelesen, und die letzte (Morgenblatt No 300) scheint mir trotz des kleinen Fehlers wider die Skansion, den sie rügte, doch die schönste. Ich suchte es Ihren Eltern begreiflich zu machen, daß dieses keines weges ein eigentlicher Tadel, sondern wie es dort steht, mehr als ein Lob klinge,</span> Becker (Meyerbeer), Bd. 1, S.&#160;91. Zuvor hatte G. Weber bereits eine kurze Kritik in der Schreibtafel von Mannheim veröffentlicht (1810-V-23).</p>
+                                        <p>Meyerbeers Freund Eduard Kley schrieb über diese Rezension am 15. Januar 1811 an Meyerbeer: <span class="tei_hi_italic">Mit gleichem Intresse hab ich 3 der vortheilhaftesten Rezensionen über Ihren <span class="works A020640" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020640.html">130t Psalm</span> gelesen, und die letzte (Morgenblatt No 300) scheint mir trotz des kleinen Fehlers wider die Skansion, den sie rügte, doch die schönste. Ich suchte es Ihren Eltern begreiflich zu machen, daß dieses keines weges ein eigentlicher Tadel, sondern wie es dort steht, mehr als ein Lob klinge,</span> Becker (Meyerbeer), Bd. 1, S.&#160;91. Zuvor hatte G. Weber bereits eine kurze Kritik in der Schreibtafel von Mannheim veröffentlicht (1810-V-23).</p>
                                     </div>
                         </div>
                         
@@ -489,7 +498,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 10. Oktober 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             
@@ -521,21 +530,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -576,8 +580,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

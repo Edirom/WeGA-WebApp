@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rezensionen: Preciosa, Abu Hassan und Natur und Liebe (Klavierauszüge)</title>
         
-        <meta name="DC.title" content="Rezensionen: Preciosa, Abu Hassan und Natur und Liebe (Klavierauszüge)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="anonym" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Mo, Ran" />
-        <meta name="DC.creator" content="Solveig Schreiter" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-06-29T13:21:46.312411Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030876" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Rezensionen: Preciosa, Abu Hassan und Natur und Liebe (Klavierauszüge)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="anonym" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Mo, Ran" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-06-29T13:21:46.312411Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030876" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -281,7 +285,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -297,7 +302,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -311,7 +317,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -328,9 +335,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><span class="tei_hi_italic"><span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span>, Romantisches Schauspiel, in four Acten; Dichtung Von <span class="tei_choice"><span class="tei_corr">Pius</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e9">‡</a></span> Alex. Wolff; Music Von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Von Weber</a>.</span> <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Schlesingerschen <span class="tei_choice"><span class="tei_corr">Buch</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e26">‡</a></span> und <span class="tei_choice"><span class="tei_corr">Musikhandlung</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e32">‡</a></span>.</p>
+                                        <p><span class="tei_hi_italic"><span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span>, Romantisches Schauspiel, in four Acten; Dichtung Von <span class="tei_choice"><span class="tei_corr">Pius</span><a class="noteMarker" id="ref-d72542e9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e9">‡</a></span> Alex. Wolff; Music Von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Von Weber</a>.</span> <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Schlesingerschen <span class="tei_choice"><span class="tei_corr">Buch</span><a class="noteMarker" id="ref-d72542e26" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e26">‡</a></span> und <span class="tei_choice"><span class="tei_corr">Musikhandlung</span><a class="noteMarker" id="ref-d72542e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e32">‡</a></span>.</p>
                                         <p><span class="tei_hi_italic"><span class="works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abon Hassan</span>, a celebrated Musical Drama, performed at the <span class=" 84104101971161141013282111121971084432681141171141214510897110101">Theatre Royal, Drury-lane</span>; composed by <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Von Weber</a>, and adapted to the English Stage by <span class=" 84463267111111107101">T. Cooke</span>.</span> Clementi and Co.</p>
-                                        <p><span class="tei_hi_italic"><span class="works A020023" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020023.html">Natur und Liebe</span>, Cantate zur <span class="tei_choice"><span class="tei_corr">Feyer</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e58">‡</a></span> des Augustus Tages in <span class=" 80105108108117105116122"><span class="tei_settlement">Pilluitz</span></span>; Dichtung Von <span class="tei_choice"><span class="tei_corr">Friedrich</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e69">‡</a></span> Kind; in Musik <span class="tei_choice"><span class="tei_corr">gesetzt</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e76">‡</a></span> fur 2 Soprane, 2 Tenore, and 2 Basse; Von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Von Weber</a>.</span> <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Schlesingerschen <span class="tei_choice"><span class="tei_corr">Buch</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e90">‡</a></span> u<span class="tei_supplied" id="d8942e96">[nd]</span> <span class="tei_choice"><span class="tei_corr">Musikhandlung</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e99">‡</a></span>.<br />
+                                        <p><span class="tei_hi_italic"><span class="works A020023" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020023.html">Natur und Liebe</span>, Cantate zur <span class="tei_choice"><span class="tei_corr">Feyer</span><a class="noteMarker" id="ref-d72542e58" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e58">‡</a></span> des Augustus Tages in <span class=" 80105108108117105116122"><span class="tei_settlement">Pilluitz</span></span>; Dichtung Von <span class="tei_choice"><span class="tei_corr">Friedrich</span><a class="noteMarker" id="ref-d72542e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e69">‡</a></span> Kind; in Musik <span class="tei_choice"><span class="tei_corr">gesetzt</span><a class="noteMarker" id="ref-d72542e76" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e76">‡</a></span> fur 2 Soprane, 2 Tenore, and 2 Basse; Von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Von Weber</a>.</span> <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>. Schlesingerschen <span class="tei_choice"><span class="tei_corr">Buch</span><a class="noteMarker" id="ref-d72542e90" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e90">‡</a></span> u<span class="tei_supplied" id="d72542e96">[nd]</span> <span class="tei_choice"><span class="tei_corr">Musikhandlung</span><a class="noteMarker" id="ref-d72542e99" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e99">‡</a></span>.<br />
                                         </p>
                                     </div>
                                     <div class="docPart">
@@ -345,7 +352,7 @@
                   <span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html"><span class="tei_hi_italic">Preciosa</span></span>. <span class="tei_hi_italic"><span class="works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abon Hassan</span></span> we have seen,
                but we cannot imagine that the defects of the one composition, or the merits of the
                other, have assisted, except in a small degree, to the rejection of the former or the
-               repute of the latter. There are, indeed, in the story of <span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html"><span class="tei_hi_italic">Preciosa</span></span>, abundant materials for a dramatist <span class="tei_choice"><span class="tei_corr">of <span class="tei_pb"> | </span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e141">‡</a></span> power to work into a
+               repute of the latter. There are, indeed, in the story of <span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html"><span class="tei_hi_italic">Preciosa</span></span>, abundant materials for a dramatist <span class="tei_choice"><span class="tei_corr">of <span class="tei_pb"> | </span></span><a class="noteMarker" id="ref-d72542e141" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e141">‡</a></span> power to work into a
                piece, interesting as well for its situations and sentiments, as for its picturesque
                characters and scenery; but of the disposition of the fable we know nothing - we have
                only to do with the music. The story is from <a class="persons A007857" href="/exist/apps/WeGA-WebApp/de/A007857.html">Cervantes</a>. A child
@@ -402,7 +409,7 @@
                                         <p>On the whole, though we cannot assent to <span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span> being a decided failure on the part of <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, yet we must think he has not added to his fame by its production. There are some strong proofs of superior ability and originality of design, and the test of our belief that the music was not the primary cause of its failure is, that the overture and its two best pieces still continue before the public, in the orchestra and on the stage, whilst the numerous arrangements of the rest indicate a favourable opinion in the general.</p>
                                         <p>The music in <span class="tei_hi_italic"><span class="works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abon Hassan</span></span>
                has but little to recommend it to notice, in comparison
-               with the other compositions of its <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">author</a>; nevertheless it has <span class="tei_choice"><span class="tei_corr">stood its</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8942e245">‡</a></span> ground in
+               with the other compositions of its <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">author</a>; nevertheless it has <span class="tei_choice"><span class="tei_corr">stood its</span><a class="noteMarker" id="ref-d72542e245" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72542e245">‡</a></span> ground in
                the <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> theatres. The two best
                pieces in it are the chorusses, which we have already noticed as being introduced
                from <span class="tei_hi_italic"><span class="works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span></span>. The overture
@@ -497,34 +504,34 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e9" data-title="choice">recte "Pius": eigentlich "Paris"</div>
+                                            <div class="apparatusEntry" id="d72542e9" data-title="choice">recte "Pius": eigentlich "Paris"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e26" data-title="choice">recte "Buch": eigentlich "Buck"</div>
+                                            <div class="apparatusEntry" id="d72542e26" data-title="choice">recte "Buch": eigentlich "Buck"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e32" data-title="choice">recte "Musikhandlung": eigentlich "Musikandlung"</div>
+                                            <div class="apparatusEntry" id="d72542e32" data-title="choice">recte "Musikhandlung": eigentlich "Musikandlung"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e58" data-title="choice">recte "Feyer": eigentlich "Teyer"</div>
+                                            <div class="apparatusEntry" id="d72542e58" data-title="choice">recte "Feyer": eigentlich "Teyer"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e69" data-title="choice">recte "Friedrich": eigentlich "Sriedrich"</div>
+                                            <div class="apparatusEntry" id="d72542e69" data-title="choice">recte "Friedrich": eigentlich "Sriedrich"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e76" data-title="choice">recte "gesetzt": eigentlich "gesetz"</div>
+                                            <div class="apparatusEntry" id="d72542e76" data-title="choice">recte "gesetzt": eigentlich "gesetz"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e90" data-title="choice">recte "Buch": eigentlich "Buck"</div>
+                                            <div class="apparatusEntry" id="d72542e90" data-title="choice">recte "Buch": eigentlich "Buck"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e99" data-title="choice">recte "Musikhandlung": eigentlich "Musikandlung"</div>
+                                            <div class="apparatusEntry" id="d72542e99" data-title="choice">recte "Musikhandlung": eigentlich "Musikandlung"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e141" data-title="choice">recte "of ": eigentlich "of of"</div>
+                                            <div class="apparatusEntry" id="d72542e141" data-title="choice">recte "of ": eigentlich "of of"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8942e245" data-title="choice">recte "stood its": eigentlich "stoodi ts"</div>
+                                            <div class="apparatusEntry" id="d72542e245" data-title="choice">recte "stood its": eigentlich "stoodi ts"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -582,21 +589,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -637,8 +639,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

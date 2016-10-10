@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Übersicht der musikalischen Produktionen in Mannheim. Winterhalbjahr 1811-1812 (Teil 4/4)</title>
         
-        <meta name="DC.title" content="Übersicht der musikalischen Produktionen in Mannheim. Winterhalbjahr 1811-1812 (Teil 4/4)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Sebastian Schaffer" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-07-18T10:03:06.745361Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031245" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Übersicht der musikalischen Produktionen in Mannheim. Winterhalbjahr 1811-1812 (Teil 4/4)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Sebastian Schaffer" />
+        <meta property="dc:date" content="2016-07-18T10:03:06.745361Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031245" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -298,7 +302,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -312,7 +317,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -330,7 +336,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -356,24 +363,24 @@
                                         <h2 class="docHeader"> IV. </h2>
                                         <p><span class="tei_hi_italic">Das Museum</span> gab nur weniges Bedeutendere. Am bedeutendsten
                     war die Aufführung von <span class="tei_ptr"></span><a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">J.&#160;Haydns</a>
-                    <span class="tei_hi_italic"><span class="works A020712" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020712.html">Jahreszeiten</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, welche, mit Ausnahme
-                    des <span class="tei_ptr"></span>Jagdstücks, der Spinnstube und des Chors der Bauern<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, ganz gegeben wurden –
+                    <span class="tei_hi_italic"><span class="works A020712" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020712.html">Jahreszeiten</span></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, welche, mit Ausnahme
+                    des <span class="tei_ptr"></span>Jagdstücks, der Spinnstube und des Chors der Bauern<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, ganz gegeben wurden –
                     ein seit mehrern Jahren entbehrter Genuss. Ref. fand übrigens auch diesmal seine
                     Meynung bestätigt, dass wol der grösste Theil dieses Werks tiefer steht, als die
                     <span class="tei_hi_italic"><span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span></span> im Ganzen – dass aber
                     mehrere einzelne grosse Stücke des erstern noch grösser sind, als selbst das
                     Höchste im letztern. Welche Macht und Grösse z. B. im Sonnen-Aufgang: in dem:
-                    <span class="tei_ptr"></span>„dann bricht der grosse Morgen an“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a> mit der Schlussfuge – „uns leite deine Hand –
+                    <span class="tei_ptr"></span>„dann bricht der grosse Morgen an“<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a> mit der Schlussfuge – „uns leite deine Hand –
                     des Himmels Pforten öffnen sich – dann singen wir – dann gehn wir ein“ – Wie
                     unendlich gross und erhebend tritt, vorbereitet durch den Wechselgesang: <span class="tei_ptr"></span>„o wie
-                    lieblich,“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> der Chor: <span class="tei_ptr"></span>Ewiger, mächtiger, gütiger Gott<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, ein, und gleich darauf,
-                    nach dem Gebete: <span class="tei_ptr"></span>„Von deinem Segensmahle“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> – die <span class="tei_ptr"></span>Fuge: „Ehre Lob und Preis sey
-                    dir“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a> – Ref. behauptet es nochmals: gar weniges ist in der <span class="tei_hi_italic"><span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span></span>, was mit <span class="tei_hi_italic">dieser</span> Grösse sich messen
+                    lieblich,“<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> der Chor: <span class="tei_ptr"></span>Ewiger, mächtiger, gütiger Gott<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, ein, und gleich darauf,
+                    nach dem Gebete: <span class="tei_ptr"></span>„Von deinem Segensmahle“<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> – die <span class="tei_ptr"></span>Fuge: „Ehre Lob und Preis sey
+                    dir“<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a> – Ref. behauptet es nochmals: gar weniges ist in der <span class="tei_hi_italic"><span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span></span>, was mit <span class="tei_hi_italic">dieser</span> Grösse sich messen
                     dürfte.</p>
-                                        <p>Eine willkommne Wiederholung war die des declamatorischen Stücks: <span class="tei_ptr"></span><span class="works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html"><span class="works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Der erste Ton</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, von <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a>, mit Musik von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v.
-                            Weber</a>. <span class="tei_ptr"></span>Ref. war der erste<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>, welcher dieses, vom Dichter und
+                                        <p>Eine willkommne Wiederholung war die des declamatorischen Stücks: <span class="tei_ptr"></span><span class="works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html"><span class="works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Der erste Ton</span></span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, von <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a>, mit Musik von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v.
+                            Weber</a>. <span class="tei_ptr"></span>Ref. war der erste<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>, welcher dieses, vom Dichter und
                     Componisten gleich schön gedachte und aufgefassete Werk öffentlich ankündigte,
-                    (allgem. mus. Zeitung 1810) und das Urtheil mehrerer <span class="tei_ptr"></span>andrer öffentl. Blätter<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> hat
+                    (allgem. mus. Zeitung 1810) und das Urtheil mehrerer <span class="tei_ptr"></span>andrer öffentl. Blätter<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> hat
                     das seinige seitdem bestätigt. Unser vortrefflicher Schauspieler, <a class="persons A000459" href="/exist/apps/WeGA-WebApp/de/A000459.html">Esslair</a>, welcher die Partie der Declamation
                     übernommen hatte, sprach das Gedicht mit unübertrefflicher Schönheit. Sein
                     Vortrag athmete verschmolzen den doppelten Geist der Poesie und Musik, wie er
@@ -381,63 +388,63 @@
                     sprach, war schon eine Skizze der darauf folgenden Musik. Vorzüglich galt dieses
                     von den Stellen: <span class="tei_ptr"></span>Wolken bauen den Himmel – Nun kommen die Stürme brausend daher
                     gezogen – Und es ward der Mensch – Ich bin, bin glücklich, und bin es nicht
-                    allein<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a>. Seine überaus schöne und mächtige Stimme that dabey die wohlthätigste
+                    allein<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a>. Seine überaus schöne und mächtige Stimme that dabey die wohlthätigste
                     Wirkung, und liess ihn bey manchen Stellen, wo es nöthig war, leicht über die
                     Musik herrschen. Kurz, er schien ganz dazu gemacht, den Menschen die Schöpfung
                     des ersten Tones zu verkünden. – Gleich schön sprach er an einem der folgenden
                     Abende im Museum <span class="tei_ptr"></span>die <span class="tei_hi_italic"><span class=" 98101121100101110327111422898101114">beyden Gräber</span></span>
-                    von <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html">Klopstock</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, <span class="tei_ptr"></span><span class=" 671041144632839910411410110598101114115">Chr.
+                    von <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html">Klopstock</a><a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, <span class="tei_ptr"></span><span class=" 671041144632839910411410110598101114115">Chr.
                         Schreibers</span>
-                    <span class="tei_hi_italic">Ballade</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a>, und <span class="tei_ptr"></span><a class="persons A000409" href="/exist/apps/WeGA-WebApp/de/A000409.html">Alexander von
+                    <span class="tei_hi_italic">Ballade</span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a>, und <span class="tei_ptr"></span><a class="persons A000409" href="/exist/apps/WeGA-WebApp/de/A000409.html">Alexander von
                         Dusch’s</a> Gedicht: <span class="tei_hi_italic">der Leichnam aus der
-                            Eisengrube in Falun</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a>.</p>
+                            Eisengrube in Falun</span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a>.</p>
                                         <p>Das Museum hat sich übrigens wieder das Verdienst erworben, die <span class="tei_ptr"></span>früher erwähnten
-                    Symphonien von <a class="persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a> und <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a> zuerst hier gegeben zu haben.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>
+                    Symphonien von <a class="persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a> und <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a> zuerst hier gegeben zu haben.<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>
                                         </p>
                                     </div>
                                     <div class="docPart">
                                         <h2 class="docHeader"> V. </h2>
                                         <p>Auch die <span class="tei_hi_italic">Kirchenmusik</span> an der obern catholischen
-                    Pfarrkirche erhält sich durch die Thätigkeit der hiesigen Dilettanten. <span class="tei_ptr"></span><a class="persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini’s</a> grosse dreystimmige Messe<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>, und <span class="tei_ptr"></span>eine von
-                    <a class="persons A001274" href="/exist/apps/WeGA-WebApp/de/A001274.html">Maschek</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a>, wurden neu gegeben. (Letztere,
+                    Pfarrkirche erhält sich durch die Thätigkeit der hiesigen Dilettanten. <span class="tei_ptr"></span><a class="persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini’s</a> grosse dreystimmige Messe<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>, und <span class="tei_ptr"></span>eine von
+                    <a class="persons A001274" href="/exist/apps/WeGA-WebApp/de/A001274.html">Maschek</a><a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a>, wurden neu gegeben. (Letztere,
                     weniger öffentlich bekannt, als sie es verdiente, kann Ref. allen
                     Kirchenmusik-Vorstehern als sehr gefällig und doch gründlich, als leicht
                     ausführbar und doch sehr effectuirend, empfehlen. Sie ist bey Gombard in
                             <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span> verlegt.) – In
                     der heiligen Woche hörten wir <span class="tei_ptr"></span><a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn’s</a>
-                    <span class="tei_hi_italic"><span class=" 8397108118101328210110310511097">Salve Regina</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_18">*</a> – wol die anmuthigste,
+                    <span class="tei_hi_italic"><span class=" 8397108118101328210110310511097">Salve Regina</span></span><a class="noteMarker" id="ref-C_18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_18">*</a> – wol die anmuthigste,
                     edelste und frömmste Kirchenmusik, die ich je hörte; <span class="tei_ptr"></span><a class="persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händels</a>
-                    <span class="tei_hi_italic"><span class=" 6510810810110811710697">Alleluja</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_19">*</a>, die Grösse selbst, durch
+                    <span class="tei_hi_italic"><span class=" 6510810810110811710697">Alleluja</span></span><a class="noteMarker" id="ref-C_19" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_19">*</a>, die Grösse selbst, durch
                     die höchste Einfachheit erreicht – und <span class="tei_ptr"></span>ein <span class="tei_hi_italic"><span class=" 841013268101117109">Te
-                        Deum</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_20">*</a>, welches <span class="tei_hi_italic">ich</span>, – aus Gründen
+                        Deum</span></span><a class="noteMarker" id="ref-C_20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_20">*</a>, welches <span class="tei_hi_italic">ich</span>, – aus Gründen
                     – mit Stillschweigen übergehe.</p>
                                     </div>
                                     <div class="docPart">
                                         <h2 class="docHeader"> VI. </h2>
-                                        <p>Von <span class="tei_hi_italic">fremden Concerten</span> kann Ref. nur das, des <span class="tei_ptr"></span><a class="persons A001309" href="/exist/apps/WeGA-WebApp/de/A001309.html">Hrn. Metzger</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_21">*</a> aus
+                                        <p>Von <span class="tei_hi_italic">fremden Concerten</span> kann Ref. nur das, des <span class="tei_ptr"></span><a class="persons A001309" href="/exist/apps/WeGA-WebApp/de/A001309.html">Hrn. Metzger</a><a class="noteMarker" id="ref-C_21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_21">*</a> aus
                             <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span> heraus heben.
                     (Am 24. Jan.) Die Reputation dieses Flötenkünstlers (auch eines Kindes unsrer
                     Stadt,) ist schon begründet; auch wir kannten schon sein Verdienst, und
                     bewunderten auch diesmal vorzüglich die Präcision, Deutlichkeit und <span class="tei_hi_italic">Ruhe</span>, mit welcher er seine Passagen heraus bringt, seinen
                     glänzenden Zungenstoss, und den dicken, vollen Ton. Dass ihm das Brillante mehr
-                    zusagt, als das Cantabile, ist eine <span class="tei_ptr"></span>schon oft gemachte Bemerkung<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_22">*</a>, aber auch eine
+                    zusagt, als das Cantabile, ist eine <span class="tei_ptr"></span>schon oft gemachte Bemerkung<a class="noteMarker" id="ref-C_22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_22">*</a>, aber auch eine
                     wahre. – </p>
                                         <p>So weit mein Bericht über das Verflossne. Im gegenwärtigen Augenblicke sehen wir
-                    reichen Genüssen entgegen. <span class="tei_ptr"></span><a class="persons A001754" href="/exist/apps/WeGA-WebApp/de/A001754.html">Mad. Schüler</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_23">*</a>, vom
+                    reichen Genüssen entgegen. <span class="tei_ptr"></span><a class="persons A001754" href="/exist/apps/WeGA-WebApp/de/A001754.html">Mad. Schüler</a><a class="noteMarker" id="ref-C_23" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_23">*</a>, vom
                             <span class=" 7597115115101108101114"><span class="tei_settlement">Kasseler</span></span> Hoftheater,
                     besucht hier ihre Familie. Man hofft, sie werde für unsre Bühne gewonnen werden.
                     Die reiche und volle Stimme, die geschmackvolle und dabey höchst schulgerechte
                     Methode dieser Künstlerin, machen die Erfüllung dieser Hoffnung um so
-                    wünschenswerther, da <span class="tei_ptr"></span><a class="persons A000517" href="/exist/apps/WeGA-WebApp/de/A000517.html">Dem. Frank</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_24">*</a> uns durch das
+                    wünschenswerther, da <span class="tei_ptr"></span><a class="persons A000517" href="/exist/apps/WeGA-WebApp/de/A000517.html">Dem. Frank</a><a class="noteMarker" id="ref-C_24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_24">*</a> uns durch das
                             <span class=" 6897114109115116228100116101114"><span class="tei_settlement">Darmstädter</span></span> Hoftheater
                     entzogen wird. Dass <a class="persons A001754" href="/exist/apps/WeGA-WebApp/de/A001754.html">Mad. Schüler</a> jene
                     Vorzüge, die wir aus frühern Zeiten kennen und schätzen, noch fortwährend
-                    besitze, hat sie in der <span class="tei_ptr"></span>letzten musikal. Aufführung im Museum<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_25">*</a> bewiesen, wo sie,
+                    besitze, hat sie in der <span class="tei_ptr"></span>letzten musikal. Aufführung im Museum<a class="noteMarker" id="ref-C_25" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_25">*</a> bewiesen, wo sie,
                     beehrt durch die Anwesenheit der <a class="persons A001888" href="/exist/apps/WeGA-WebApp/de/A001888.html">Frau Grossherzogin kaiserl. Hoheit</a>, mehreres
                     vortrug, welches ich jedoch, als nicht mehr ins Wintersemester gehörend, hier
                     nicht ausführlich berühre.</p>
                                         <p>Ja, auch <span class="tei_ptr"></span><a class="persons A000231" href="/exist/apps/WeGA-WebApp/de/A000231.html">Brizzi</a> ist hier, und wird – man hofft
-                    nicht blos Concert, sondern auch den <span class="tei_hi_italic"><span class=" 6599104105108108101115">Achilles</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_26">*</a> geben.</p>
+                    nicht blos Concert, sondern auch den <span class="tei_hi_italic"><span class=" 6599104105108108101115">Achilles</span></span><a class="noteMarker" id="ref-C_26" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_26">*</a> geben.</p>
                                     </div>
                                 </div>
                     </div>
@@ -689,21 +696,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -744,8 +746,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

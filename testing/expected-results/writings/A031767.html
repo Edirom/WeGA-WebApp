@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rezension Adolf Henselts neuer Bearbeitung von Weber'scher Klavierkompositionen, 1874</title>
         
-        <meta name="DC.title" content="Rezension Adolf Henselts neuer Bearbeitung von Weber'scher Klavierkompositionen, 1874" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Louis Köhler" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Jakob, Charlene" />
-        <meta name="DC.creator" content="Charlene Jakob" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-09-02T16:36:06.800040Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031767" />
-        <meta name="DC.description" content="Rezension einer Bearbeitung Weber'scher Klavierkompositionen von Adolf Henselt" />
+        <meta property="dc:title" content="Rezension Adolf Henselts neuer Bearbeitung von Weber'scher Klavierkompositionen, 1874" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Louis Köhler" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Jakob, Charlene" />
+        <meta property="dc:creator" content="Charlene Jakob" />
+        <meta property="dc:date" content="2016-09-02T16:36:06.800040Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031767" />
+        <meta property="dc:description" content="Rezension einer Bearbeitung Weber'scher Klavierkompositionen von Adolf Henselt" />
         <meta name="description" content="Rezension einer Bearbeitung Weber'scher Klavierkompositionen von Adolf Henselt" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -287,7 +291,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -311,7 +316,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -332,7 +338,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader"><span class="tei_segBlock textAlign-center">Adolf Henselt<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="tC_001">*</a></span>
+                                        <h2 class="docHeader"><span class="tei_segBlock textAlign-center">Adolf Henselt<a class="noteMarker" id="ref-tC_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="tC_001">*</a></span>
                                         </h2>
                                         <h3 class="docHeader"><span class="tei_segBlock textAlign-center">und seine neue Bearbeitung <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’scher</a> Klavierkompositionen.</span>
                                         </h3>
@@ -342,7 +348,7 @@
                                         <p>Daß ich das Bild der Erinnerung hier mit voller Staffage ausmalte, geschah lediglich zur Aufmunterung meiner Herren Kollegen; sie sehen darin, wie weit es ein „Pianist“ bringen kann. – Natürlich spielte uns <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Adolf Henselt</a> vor und zwar so, wie Keiner außer ihm spielt, was die Spielart betrifft. Jeder Takt war ein Stück solider Architektur, jeder Anschlag formte einen wohlgemeißelten Baustein, die Claves beugten sich in tiefer Demuth unter dem wuchtig elastischem Drucke von Fingern, wie sie eben nur an solchen fast überlebensgroßen und doch (der Gestalt dieses russischen „Großen“ angemessenen) wohlproportionirten Händen erwachsen konnten.</p>
                                         <p><a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> spielt nicht gern vor, wie dies auch bei manchem Andern seines Faches, der eben nicht Leierkasten sein mag gefunden wird. Aber wir bekamen dennoch ein hübsches Konzertprogramm zu hören. Und welches war wohl die erste Piece? Sie rathen es nicht, und wenn Sie sämmtliche klassische und romantische Werke der ganzen Literatur citiren! Darum sei’s gesagt! Hört Ihr Pianisten, hört Ihr Dilettanten, Ihr Vergnügungssüchtigen, die Ihr nur naschen, nicht speisen wollt und gern viel können, aber nicht lernen möget! Da saß der mächtige, den eine Welt der Besten bewundert und spielte uns zuerst „seine“ <span class="tei_hi_spaced_out">Fingerübungen</span> vor! Ja: „<span class="tei_hi_spaced_out">vor</span>“, nicht nur für sich; wir sollten hören, <span class="tei_hi_spaced_out">wie er zu üben pflegt</span>. Und wir hörten denn auch seine Fingerübungen – nicht nur mit Interesse, sondern auch mit Nutzen. Diese Fingerübungen waren <span class="tei_hi_spaced_out">nicht</span> etwa, wie es zu sagen wohl nöthig sein könnte, die „<span class="tei_hi_spaced_out">Etüden</span>“ des Meisters – Poesien im Passagengewande – sondern sie heißen ganz angemessen: „<span class="tei_hi_antiqua">Exercices préparatoires</span>“ und sind in <span class=" 8010111610111411598117114103"><span class="tei_settlement">Petersburg</span></span> bei <span class=" 8311611497108108111119115107121">Strallowsky</span> zu kaufen – weshalb ich über den Inhalt schweige und nur Etwas über die Ausführung sage. Diese war im Tempo meist sehr gemessen, fast ruhig und dabei äußerst gewichtig im Anschlagdrucke, so fast, als ob drei Orgelmanuale bei vollem Werke gekoppelt unter den Fingern des gewaltigen Klaviaturbeherrschers zu dulden gehabt hätten. Dies galt der Ausbildung der Finger-<span class="tei_hi_spaced_out">Mechanik</span>. Wie fein dagegen das <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt’sche</a> Pianissimo und überhaupt seine Schattirungskunst war, ist zu sagen wohl überflüssig. – Die Vortragsweise der von <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> gespielten <span class="tei_hi_spaced_out">Stücke</span> hatte einen merkwürdig <span class="tei_hi_spaced_out">festen Typus</span>; der Totaleffekt war etwa, wie wenn die Musik, in gediegenes Silber gegossen, gleichsam in vollendeter Form sichtbar vor uns stände.</p>
                                         <p>Das Programm, zuerst namentlich <a class="persons A003154" href="/exist/apps/WeGA-WebApp/de/A003154.html"><span class="tei_hi_spaced_out">Chopin</span></a> und <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html"><span class="tei_hi_spaced_out">Henselt</span></a> enthaltend, wäre aber nicht so ergiebig ausgefallen, wenn wir nicht auf <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. <span class="tei_hi_spaced_out">Weber</span></a> gekommen wären. Es stellte sich bald heraus, daß <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> sich ganz vorwiegend (außer seinen eigenen Kompositionen) <a class="persons A003154" href="/exist/apps/WeGA-WebApp/de/A003154.html">Chopin</a> und <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zuwendet, mit <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> aber geradezu eine Art Kultus treibt. Gewiß stehe ich nicht vereinzelt mit der Ansicht, daß <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, den Uebergang vom Klassischen zum Modernen im Klaviersatze vertretend, mit der neuen Breite auch die alte Enge des Satzes vielfach unproportionirlich verbindet – eine Enge, die im Klassischen nicht eine solche ist, sondern nur im Modernen empfunden wird, wo das <span class="tei_hi_spaced_out">Princip</span>, das speciell in <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> Handnatur ein geeignetes Organ fand und zudem auch in der Beseelung des etwas üppig empfindenden <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthenkomponisten</span> fruchtbaren Boden fand. Hier sind <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> und <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> offenbar innerlich verwandt und sie reichen einander die <span class="tei_hi_spaced_out">Hände</span> –  zum <span class="tei_hi_spaced_out">Hand</span>werk in klaviristischer Beziehung.</p>
-                                        <p><a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html"><span class="tei_hi_spaced_out">Henselt</span></a> hat nun in <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> Satze eine Art technischer und <span class="tei_hi_spaced_out">klanglicher Ausgleichung</span> vorgenommen; er spielte uns zum Theil die <span class="works A020318" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020318.html"><span class="tei_hi_antiqua">As-dur</span>-Sonate <span class="tei_hi_antiqua">op. 39</span></span> und das <span class="works A020231" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020231.html">Konzertstück <span class="tei_hi_antiqua">op. 79</span></span> mit seiner Retouche und erzielte damit einen prachtvollen Effekt, so, daß ich eifrig zur Veröffentlichung der Arbeit (die überaus wählerisch gemacht ist) zuredete. <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> aber sprach sich auffallend bescheiden, fast scheu dagegen aus. Er meinte etwa, er habe seines <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Lieblings</a> Schöpfungen nur für <span class="tei_hi_spaced_out">sich</span> retouchirt; er fühlte, er stehe von Herzen so innig mit dem <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Originalschöpfer</a>, daß er der freundlichen Gewährung desselben, falls er auferstände, gewiß sei; aber mit der Arbeit vor’s Publikum zu treten, könne Mißverständnisse erzeugen. Wahrhaft fürchterlich schien <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> der Gedanke zu sein, man könne glauben, er wolle als ein „Verbesserer“ <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> gehalten werden, wo er doch in dessen Architektur höchstens nur eine Draperie anzubringen beabsichtigte. Kurz, nur mehrfache Beschwichtigung (dahin lauernd, daß die Verständigen wohl den richtigen Standpunkt einnehmen würden) schien <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> der Herausgabe ein wenig geneigter zu machen<span class="tei_supplied" id="d9960e220">[.]</span> Nun ist sie – nach 20 Jahren – geschehen. Es erschienen bei <span class=" 8399104108101115105110103101114">Schlesinger</span> in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> folgende <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>-<a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a>’sche Werke:</p>
+                                        <p><a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html"><span class="tei_hi_spaced_out">Henselt</span></a> hat nun in <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> Satze eine Art technischer und <span class="tei_hi_spaced_out">klanglicher Ausgleichung</span> vorgenommen; er spielte uns zum Theil die <span class="works A020318" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020318.html"><span class="tei_hi_antiqua">As-dur</span>-Sonate <span class="tei_hi_antiqua">op. 39</span></span> und das <span class="works A020231" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020231.html">Konzertstück <span class="tei_hi_antiqua">op. 79</span></span> mit seiner Retouche und erzielte damit einen prachtvollen Effekt, so, daß ich eifrig zur Veröffentlichung der Arbeit (die überaus wählerisch gemacht ist) zuredete. <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> aber sprach sich auffallend bescheiden, fast scheu dagegen aus. Er meinte etwa, er habe seines <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Lieblings</a> Schöpfungen nur für <span class="tei_hi_spaced_out">sich</span> retouchirt; er fühlte, er stehe von Herzen so innig mit dem <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Originalschöpfer</a>, daß er der freundlichen Gewährung desselben, falls er auferstände, gewiß sei; aber mit der Arbeit vor’s Publikum zu treten, könne Mißverständnisse erzeugen. Wahrhaft fürchterlich schien <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> der Gedanke zu sein, man könne glauben, er wolle als ein „Verbesserer“ <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> gehalten werden, wo er doch in dessen Architektur höchstens nur eine Draperie anzubringen beabsichtigte. Kurz, nur mehrfache Beschwichtigung (dahin lauernd, daß die Verständigen wohl den richtigen Standpunkt einnehmen würden) schien <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> der Herausgabe ein wenig geneigter zu machen<span class="tei_supplied" id="d73599e220">[.]</span> Nun ist sie – nach 20 Jahren – geschehen. Es erschienen bei <span class=" 8399104108101115105110103101114">Schlesinger</span> in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> folgende <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>-<a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a>’sche Werke:</p>
                                         <p>
                     <span class="verseLine"><span class="works A020330" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020330.html"><span class="tei_hi_antiqua">Op. 12. Momento capriccioso</span></span> 17½ Sgr.</span>
                     <span class="verseLine"><span class="works A020210" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020210.html"><span class="tei_hi_antiqua">Op. 24.</span> Sonate in <span class="tei_hi_antiqua">C-dur</span></span> 2 Thlr.</span>
@@ -353,7 +359,7 @@
                     <span class="verseLine"><span class="works A020331" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020331.html"><span class="tei_hi_antiqua">Op. 72.</span> Große Polonaise in <span class="tei_hi_antiqua">E-dur</span></span> 1 Thlr.</span>
                     <span class="verseLine"><span class="works A020231" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020231.html"><span class="tei_hi_antiqua">Op. 79.</span> Konzertstück in <span class="tei_hi_antiqua">F-moll</span></span> 2 Thlr. 15 Sgr.</span>
                 </p>
-                                        <p><a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html"><span class="tei_hi_spaced_out">Henselt’s</span></a> Arbeit besteht <span class="tei_choice"><span class="tei_corr">namentlich</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d9960e309">‡</a></span> in stellenweise erhöhter harmonischer Füllung und in Hinzufügung einzelner Klanglichter, in dem Sinne, in welchem <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> es heute wohl vielfach selber thun würde. Außerdem hat <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> noch Vortragsbezeichnung und guten Fingersatz hinzugefügt, wie auch die Verzierungen genau in Noten geschrieben; er erfüllt vielleicht noch meine Bitte, für eine neue Auflage auch die <span class="tei_choice"><span class="tei_corr">Metronomisirung</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d9960e321">‡</a></span> (lediglich dem Hauptthema angepaßt) <span class="tei_choice"><span class="tei_corr">anzubringenden</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d9960e330">‡</a></span> Originaltext hat <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> überall in <span class="tei_hi_spaced_out">großen</span> Noten fortlaufend gegeben und seine (oft wenig abweichende) Spielart in <span class="tei_hi_spaced_out">kleineren</span> Noten stehen lassen.</p>
+                                        <p><a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html"><span class="tei_hi_spaced_out">Henselt’s</span></a> Arbeit besteht <span class="tei_choice"><span class="tei_corr">namentlich</span><a class="noteMarker" id="ref-d73599e309" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73599e309">‡</a></span> in stellenweise erhöhter harmonischer Füllung und in Hinzufügung einzelner Klanglichter, in dem Sinne, in welchem <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> es heute wohl vielfach selber thun würde. Außerdem hat <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> noch Vortragsbezeichnung und guten Fingersatz hinzugefügt, wie auch die Verzierungen genau in Noten geschrieben; er erfüllt vielleicht noch meine Bitte, für eine neue Auflage auch die <span class="tei_choice"><span class="tei_corr">Metronomisirung</span><a class="noteMarker" id="ref-d73599e321" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73599e321">‡</a></span> (lediglich dem Hauptthema angepaßt) <span class="tei_choice"><span class="tei_corr">anzubringenden</span><a class="noteMarker" id="ref-d73599e330" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73599e330">‡</a></span> Originaltext hat <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> überall in <span class="tei_hi_spaced_out">großen</span> Noten fortlaufend gegeben und seine (oft wenig abweichende) Spielart in <span class="tei_hi_spaced_out">kleineren</span> Noten stehen lassen.</p>
                                         <p>Wie ich über dergleichen Hinzufügen von Füllung und resp. Varianten überhaupt denke, dürfte wohl im Sinne der meisten Musiker sein, welche nicht aller individuellen Freiheit feindlich gesinnt sind. Zunächst möchte es wohl als festgestellt gelten, daß <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> Satz an sich überhaupt keine solche Bedeutung hat, wie der von <a class="persons A002618" href="/exist/apps/WeGA-WebApp/de/A002618.html">Bach</a>, <a class="persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händel</a>, <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>, <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>, <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a> – abgesehen vom Inhalte. Bei diesen Meistern ist daher eine Retouche nur selten angebracht und macht leicht böses Blut. Ich meine dann weiter zur Sache: daß jede Aenderung begründet sein müßte und daß das <span class="tei_hi_spaced_out">Original</span>, mit allen seinen wirklichen oder eingebildeten Schwächen, immer bestehen bleibe und seine <span class="tei_hi_spaced_out">oberste Bedeutung</span> behalte, daß man also die Retouche nie als das absolut Vorzuziehende gebe oder nehme, sondern als Etwas, das <span class="tei_hi_spaced_out">neben</span> dem Original beliebig und mit Wahl acceptirt werden könne.</p>
                                         <p>Es giebt Fälle, in welchen eine Ausgleichung der Harmoniefülle, wenn sie sonst im Sinne des <span class="tei_hi_spaced_out">Ganzen</span> ist, wünschenswerth sein kann, wie z. B. im Konzertsaal.</p>
                                         <p>An den eigentlichen gedanklichen Text hat <a class="persons A003295" href="/exist/apps/WeGA-WebApp/de/A003295.html">Henselt</a> nur in ganz ver<span class="tei_pb"> | </span>einzelten Fällen geändert, und zwar meiner Meinung nach, gebessert, nämlich da, wo <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gewisse kleine Dilettantismen begeht, z. B.</p>
@@ -418,13 +424,13 @@
                                             <div class="apparatusEntry" id="tC_001" data-title="note commentary"><span class="tei_lemma">"… Adolf Henselt": </span>Im Folgenden wird vom Autor auch die Schreibweise Adolph Henselt verwendet</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d9960e309" data-title="choice">recte "namentlich": eigentlich "namenttich"</div>
+                                            <div class="apparatusEntry" id="d73599e309" data-title="choice">recte "namentlich": eigentlich "namenttich"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d9960e321" data-title="choice">recte "Metronomisirung": eigentlich "Metrvnomisirung"</div>
+                                            <div class="apparatusEntry" id="d73599e321" data-title="choice">recte "Metronomisirung": eigentlich "Metrvnomisirung"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d9960e330" data-title="choice">recte "anzubringenden": eigentlich "anzubringenDen"</div>
+                                            <div class="apparatusEntry" id="d73599e330" data-title="choice">recte "anzubringenden": eigentlich "anzubringenDen"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -482,21 +488,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -537,8 +538,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

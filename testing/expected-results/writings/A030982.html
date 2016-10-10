@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung: „Leon oder Das Schloss von Montenero“ von Nicolas Dalayrac am 25. August 1811 in Mannheim</title>
         
-        <meta name="DC.title" content="Aufführungsbesprechung: „Leon oder Das Schloss von Montenero“ von Nicolas Dalayrac am 25. August 1811 in Mannheim" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030982" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Aufführungsbesprechung: „Leon oder Das Schloss von Montenero“ von Nicolas Dalayrac am 25. August 1811 in Mannheim" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030982" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -276,7 +280,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -286,7 +291,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -304,38 +310,38 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p><span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>, den 26. August. Auf
-                    unserm Theater sahen wir gestern: <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 7610111111044321111001011143210097115328399104108111223321181111103277111110116101110101114111">Leon, oder das Schloß von Montenero</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, Singspiel in drey Aufzügen, aus dem Französischen übersetzt
+                    unserm Theater sahen wir gestern: <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 7610111111044321111001011143210097115328399104108111223321181111103277111110116101110101114111">Leon, oder das Schloß von Montenero</span></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, Singspiel in drey Aufzügen, aus dem Französischen übersetzt
                     von <span class="tei_hi_spaced_out"><span class=" 73104108101101">Ihlee</span></span>.</p>
                                         <p>Eine ausführliche Kunstbeurtheilung dieser würdigen Produktion haben wir bereits
                     in <span class="tei_ptr"></span>Nro.&#160;14 und 15 der <span class="tei_hi_spaced_out">Mannheimer
-                        Schreibtafel</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> niedergelegt; wir dürfen daher unsere Leser dahin
+                        Schreibtafel</span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> niedergelegt; wir dürfen daher unsere Leser dahin
                     verweisen, und begnügen uns mit einigen Worten über die neueste <span class="tei_hi_spaced_out">Aufführung</span> dieser Oper. – Sie war im Ganzen gelungen,
                     und sowohl Orchester als Sänger hielten sich brav; gleich die Ouvertüre wurde
                     mit seltener Präcision ausgeführt, und <span class="tei_ptr"></span>der darauf folgende
-                        Chor<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, welcher heute etwas mehr <span class="tei_hi_spaced_out">Fleisch</span>
+                        Chor<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, welcher heute etwas mehr <span class="tei_hi_spaced_out">Fleisch</span>
                     angelegt zu haben schien, glänzte mit einem nicht gewöhnlichen <span class="tei_hi_italic">embonpoint</span>; waren auch die hohen Töne etwas schreiend, so wurde doch
                     besonders von den weiblichen Stimmen rein gesungen; und daß (freilich) die Chöre
-                    an sich keine große Schwierigkeiten darbieten, vermindert ja den Werth bey <span class="tei_hi_spaced_out">absoluter</span> Beurtheilung nicht. – <span class="tei_ptr"></span><a class="persons A000517" href="/exist/apps/WeGA-WebApp/de/A000517.html">Mlle. <span class="tei_hi_spaced_out">Frank</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> war in ihrem Gesang voll lieblicher Anmuth,
+                    an sich keine große Schwierigkeiten darbieten, vermindert ja den Werth bey <span class="tei_hi_spaced_out">absoluter</span> Beurtheilung nicht. – <span class="tei_ptr"></span><a class="persons A000517" href="/exist/apps/WeGA-WebApp/de/A000517.html">Mlle. <span class="tei_hi_spaced_out">Frank</span></a><a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> war in ihrem Gesang voll lieblicher Anmuth,
                     und gewann sehr dadurch, daß sie bey ihren Coloraturen nichts versuchte, was die
                     Kräfte ihrer Kehle überstiegen hätte; indessen verdient es eine Rüge, daß sie
                     durchgehends in allen Musikstücken das Tempo trainirte, und dadurch im Contraste
-                    mit dem Orchester das Ohr des Zuhörers peinigend hin und her zog. Daß <span class="tei_ptr"></span><a class="persons A000953" href="/exist/apps/WeGA-WebApp/de/A000953.html">Herr <span class="tei_hi_spaced_out">Kaibel</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> keine Recitative singen kann, ist
+                    mit dem Orchester das Ohr des Zuhörers peinigend hin und her zog. Daß <span class="tei_ptr"></span><a class="persons A000953" href="/exist/apps/WeGA-WebApp/de/A000953.html">Herr <span class="tei_hi_spaced_out">Kaibel</span></a><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> keine Recitative singen kann, ist
                     zu entschuldigen, denn er ist nicht Sänger; über sein Spiel und dessen Sphäre
-                    haben wir schon oft genug <span class="tei_ptr"></span>unser Urtheil ausgesprochen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>. Nur das sey noch
+                    haben wir schon oft genug <span class="tei_ptr"></span>unser Urtheil ausgesprochen<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>. Nur das sey noch
                     gesagt, daß wir schon seit längerer Zeit mit Bedauern einen Stillstand (und
                     stille stehen ist rückwärts gehen) in seiner Kunstbildung wahrnehmen; möchte er
                     sich warnen lassen, und zu neuem Fleiße zurückkehren! Bey seinem Alter heißt das
-                    denn doch etwas zu früh feiern! <span class="tei_ptr"></span><a class="persons A002124" href="/exist/apps/WeGA-WebApp/de/A002124.html">Herr <span class="tei_hi_spaced_out">Weygand</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>
+                    denn doch etwas zu früh feiern! <span class="tei_ptr"></span><a class="persons A002124" href="/exist/apps/WeGA-WebApp/de/A002124.html">Herr <span class="tei_hi_spaced_out">Weygand</span></a><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>
                     zeichnete sich im zweiten Akte sehr aus, indem er das Recitativ:</p>
-                                        <p><span class="tei_ptr"></span><span class="tei_segBlock textAlign-center">„Wir finden keine Seele“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a></span>
+                                        <p><span class="tei_ptr"></span><span class="tei_segBlock textAlign-center">„Wir finden keine Seele“<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a></span>
                                         </p>
                                         <p>(die Antwort auf den Befehl seines Herrn, das Gewölbe noch einmal zu
                     durchsuchen,) um <span class="tei_hi_spaced_out">einige</span> Töne zu hoch anstimmte, und
                     mit vieler Haltung durchführte. Bey dergleichen musikalischen Licenzen und
                     kleinen Fieber-Abweichungen, that dem Ohre der beruhigende determinirte Gesang
-                    des <span class="tei_ptr"></span><a class="persons A001833" href="/exist/apps/WeGA-WebApp/de/A001833.html">Hr. <span class="tei_hi_spaced_out">Singers</span></a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> doppelt wohl, welcher sich auch heute als fester Musiker
+                    des <span class="tei_ptr"></span><a class="persons A001833" href="/exist/apps/WeGA-WebApp/de/A001833.html">Hr. <span class="tei_hi_spaced_out">Singers</span></a><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> doppelt wohl, welcher sich auch heute als fester Musiker
                     und angenehmer Sänger bewährte, aber auch seinen nunmehr gewissen Verlust für
-                    die hiesige Bühne um desto fühlbarer machte. – <span class="tei_ptr"></span><span class=" 72101114114327211110210997110110">Herr <span class="tei_hi_spaced_out">Hofmann</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>
+                    die hiesige Bühne um desto fühlbarer machte. – <span class="tei_ptr"></span><span class=" 72101114114327211110210997110110">Herr <span class="tei_hi_spaced_out">Hofmann</span></span><a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>
                     that das seinige, die erbärmliche Role des
                         <span class=" 76111110103105110111">Longino</span> amüsant zu machen. Auch ihn sollen
                     wir dem Vernehmen nach verlieren.</p>
@@ -535,21 +541,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -590,8 +591,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

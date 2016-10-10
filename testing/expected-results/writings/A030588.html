@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Rezension: Klavierauszug zu "Abu Hassan" von Carl Maria von Weber (Bonn: Simrock)</title>
         
-        <meta name="DC.title" content="Rezension: Klavierauszug zu &#34;Abu Hassan&#34; von Carl Maria von Weber (Bonn: Simrock)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Anonymus" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Mo, Ran" />
-        <meta name="DC.creator" content="Solveig Schreiter" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-06-01T13:55:17.297817Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030588" />
-        <meta name="DC.description" content="Rezension des Erstdrucks des Klavierauszugs zu &#34;Abu Hassan&#34; von Carl Maria von Weber, erschienen bei Simrock in Bonn" />
+        <meta property="dc:title" content="Rezension: Klavierauszug zu &#34;Abu Hassan&#34; von Carl Maria von Weber (Bonn: Simrock)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Anonymus" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Mo, Ran" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-06-01T13:55:17.297817Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030588" />
+        <meta property="dc:description" content="Rezension des Erstdrucks des Klavierauszugs zu &#34;Abu Hassan&#34; von Carl Maria von Weber, erschienen bei Simrock in Bonn" />
         <meta name="description" content="Rezension des Erstdrucks des Klavierauszugs zu &#34;Abu Hassan&#34; von Carl Maria von Weber, erschienen bei Simrock in Bonn" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -271,7 +275,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -281,7 +286,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -293,7 +299,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -317,7 +324,7 @@
                                         <h2 class="docHeader">Uebersicht neuer Musikalien.</h2><span class="tei_dateline_right"><span class="tei_date">L. im October 1820.</span></span>
                                         <p>Unter den neuen Verlagsartikeln <span class="tei_hi_spaced_out"><a class="orgs A080009" href="/exist/apps/WeGA-WebApp/de/A080009.html">N. Simrocks</a></span> zu <span class=" 66111110110"><span class="tei_settlement">Bonn</span></span> und <span class=" 67246108110"><span class="tei_settlement">Cöln</span></span>, von denen ich hier eine Uebersicht geben will, mache ich zunächst auf ein sehr interessantes Werk unsers hochgeschätzten Capellmeisters <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">von Weber</span></a> das musikalische Publikum aufmerksam. Ich meine folgendes:</p>
                                         <p><span class="tei_hi_spaced_out"><span class="works A020039" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020039.html">Abu Hassan</span></span>, Oper in einem Act, Gedicht von <a class="persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">J. F. <span class="tei_hi_spaced_out">Hiemer</span></a>, Musik von <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>. Vollständiger Clavierauszug vom Componisten. Preis 10 Fr. Eigenthum des Verlegers. 66 S.</p>
-                                        <p>Diese kleine Oper ist reich an anziehender Abwechselung des Ausdrucks der Affecte, der dem vortrefflichen <span class="tei_pb"> | </span>Componisten so schön gelungen ist. Eine heitere, frische, ansprechende Melodie, die feinste und kräftigste Schilderung jeder Empfindung und Situation, einsichtsvoller, aber nicht überladener oder gezwungener Gebrauch der Harmonie und der Begleitung, und überhaupt charakteristische Behandlung und Ausführung im Einzelnen und Ganzen, sind Vorzüge dieser Composition, die ich Andern noch besser nach ihrem wahren Kunstwerth zu rühmen überlassen muß. Genug ihr freier, gewandter, origineller Styl giebt ihr Verwandtschaft mit den schönsten Arbeiten dieser heiteren Gattung. Ich begnüge mich bloß noch die singenden Personen, und die verschiedenen Gesangstücke anzugeben. Jene sind <span class=" 7097116105109101">Fatime</span> (Sopran), <span class=" 729711511597110">Hassan</span> (Tenor) und <span class=" 7910997114">Omar</span> (Baß). Auf die sehr muntere <span class=" 791171181011141162521141013240653210911110810844325047523284979911644328011410111511611141">Ouvertüre (<span class="tei_hi_antiqua">A</span> moll, 2/4 Tact, <span class="tei_hi_antiqua">Presto</span>)</span>, welche schon für sich ein Lieblingstück werden wird, und deren Melodie am Schluß der Oper willkommen wiederkehrt, folgt ein sehr gefälliges <span class=" 68117101116116583234761051019810111532871011059899104101110321141011059910410132871011051105934">Duett: "<span class="tei_hi_spaced_out">Liebes Weibchen reiche Wein</span>;"</span> dann <span class=" 729711511597110115326511410510158323473991043210310198101327197115116101114101105391104434">Hassans Arie: "<span class="tei_hi_spaced_out">Ich gebe Gasterei’n</span>,"</span> welche voll lebendigen Ausdrucks ist. Der <span class=" 6710411111432100101114327110822811798105103101114583234711011081004432711011081004432711011081003334">Chor der Gläubiger: "<span class="tei_hi_spaced_out">Geld, Geld, Geld</span>!"</span> das <span class=" 681171011161165832841041142281101011103211511110810811511632100117321101059910411632118101114103105101223101110">Duett: <span class="tei_hi_spaced_out">Thränen sollst du nicht vergießen</span></span>; die <span class=" 6511410510158323487105114100328010410510811110910110810132116114971171011141105934">Arie: "<span class="tei_hi_spaced_out">Wird Philomele trauern</span>;<span class="tei_supplied" id="d11116e91">["]</span></span> das <span class=" 681171011161165832831051011041151163210011732100105101115101321031141112231013277101110103101">Duett: <span class="tei_hi_spaced_out">Siehst du diese große Menge</span></span>; das <span class=" 841011141221011161165832739910432115117991043932117110100321151179910439321051103297108108101110326999107101110">Terzett: <span class="tei_hi_spaced_out">Ich such’ und such’ in allen Ecken</span></span>; das <span class=" 841011141221011161163211711010032671041111143240119111114101105110321011051103211599104246110101114327797114115991043211810111411910198116321051151164146326510111010311511610810599104321071081111121021163210111532109105114321051093272101114122101110">Terzett und Chor (worein ein schöner Marsch verwebt ist). <span class="tei_hi_spaced_out">Aengstlich klopft es mir im Herzen</span></span>, und endlich, der <span class=" 671041111145832721011051083210511511632100101109327297117115329810111599104105101100101110">Chor: <span class="tei_hi_spaced_out">Heil ist dem Haus beschieden</span></span>;" alle diese Parthien haben mannichfachen Reiz, sowohl in der Wahrheit des Ausdrucks, als in der Eigenthümlichkeit und Schönheit der Melodie und der harmonischen Kunst. Der Clavierauszug ist, wie er sich von dem Meister erwarten läßt, deutlich und bequem zur Ausführung, wozu auch Papier und Stich (vorzüglich, wie man von dem Verleger gewohnt ist), das Ihre beitragen.</p>
+                                        <p>Diese kleine Oper ist reich an anziehender Abwechselung des Ausdrucks der Affecte, der dem vortrefflichen <span class="tei_pb"> | </span>Componisten so schön gelungen ist. Eine heitere, frische, ansprechende Melodie, die feinste und kräftigste Schilderung jeder Empfindung und Situation, einsichtsvoller, aber nicht überladener oder gezwungener Gebrauch der Harmonie und der Begleitung, und überhaupt charakteristische Behandlung und Ausführung im Einzelnen und Ganzen, sind Vorzüge dieser Composition, die ich Andern noch besser nach ihrem wahren Kunstwerth zu rühmen überlassen muß. Genug ihr freier, gewandter, origineller Styl giebt ihr Verwandtschaft mit den schönsten Arbeiten dieser heiteren Gattung. Ich begnüge mich bloß noch die singenden Personen, und die verschiedenen Gesangstücke anzugeben. Jene sind <span class=" 7097116105109101">Fatime</span> (Sopran), <span class=" 729711511597110">Hassan</span> (Tenor) und <span class=" 7910997114">Omar</span> (Baß). Auf die sehr muntere <span class=" 791171181011141162521141013240653210911110810844325047523284979911644328011410111511611141">Ouvertüre (<span class="tei_hi_antiqua">A</span> moll, 2/4 Tact, <span class="tei_hi_antiqua">Presto</span>)</span>, welche schon für sich ein Lieblingstück werden wird, und deren Melodie am Schluß der Oper willkommen wiederkehrt, folgt ein sehr gefälliges <span class=" 68117101116116583234761051019810111532871011059899104101110321141011059910410132871011051105934">Duett: "<span class="tei_hi_spaced_out">Liebes Weibchen reiche Wein</span>;"</span> dann <span class=" 729711511597110115326511410510158323473991043210310198101327197115116101114101105391104434">Hassans Arie: "<span class="tei_hi_spaced_out">Ich gebe Gasterei’n</span>,"</span> welche voll lebendigen Ausdrucks ist. Der <span class=" 6710411111432100101114327110822811798105103101114583234711011081004432711011081004432711011081003334">Chor der Gläubiger: "<span class="tei_hi_spaced_out">Geld, Geld, Geld</span>!"</span> das <span class=" 681171011161165832841041142281101011103211511110810811511632100117321101059910411632118101114103105101223101110">Duett: <span class="tei_hi_spaced_out">Thränen sollst du nicht vergießen</span></span>; die <span class=" 6511410510158323487105114100328010410510811110910110810132116114971171011141105934">Arie: "<span class="tei_hi_spaced_out">Wird Philomele trauern</span>;<span class="tei_supplied" id="d74801e91">["]</span></span> das <span class=" 681171011161165832831051011041151163210011732100105101115101321031141112231013277101110103101">Duett: <span class="tei_hi_spaced_out">Siehst du diese große Menge</span></span>; das <span class=" 841011141221011161165832739910432115117991043932117110100321151179910439321051103297108108101110326999107101110">Terzett: <span class="tei_hi_spaced_out">Ich such’ und such’ in allen Ecken</span></span>; das <span class=" 841011141221011161163211711010032671041111143240119111114101105110321011051103211599104246110101114327797114115991043211810111411910198116321051151164146326510111010311511610810599104321071081111121021163210111532109105114321051093272101114122101110">Terzett und Chor (worein ein schöner Marsch verwebt ist). <span class="tei_hi_spaced_out">Aengstlich klopft es mir im Herzen</span></span>, und endlich, der <span class=" 671041111145832721011051083210511511632100101109327297117115329810111599104105101100101110">Chor: <span class="tei_hi_spaced_out">Heil ist dem Haus beschieden</span></span>;" alle diese Parthien haben mannichfachen Reiz, sowohl in der Wahrheit des Ausdrucks, als in der Eigenthümlichkeit und Schönheit der Melodie und der harmonischen Kunst. Der Clavierauszug ist, wie er sich von dem Meister erwarten läßt, deutlich und bequem zur Ausführung, wozu auch Papier und Stich (vorzüglich, wie man von dem Verleger gewohnt ist), das Ihre beitragen.</p>
                                     </div>
                                 </div>
                     </div>
@@ -424,21 +431,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -479,8 +481,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

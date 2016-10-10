@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Carl Maria von Weber – Tagebucheintrag vom Sonntag, 1. März 1818 Dresden</title>
         
-        <meta name="DC.title" content="Carl Maria von Weber – Tagebucheintrag vom Sonntag, 1. März 1818 Dresden" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
+        <meta property="dc:title" content="Carl Maria von Weber – Tagebucheintrag vom Sonntag, 1. März 1818 Dresden" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
         
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2014-05-29T20:45:23.200991Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060425" />
-        <meta name="DC.description" content="Der Erste März. Sonntag. gearbeitet, Copie der Meße Partitur für Se: Majestät 2 rh: 8 – Papier aus der Papier Mühle erhalten dem Träger 4 – Schmidl …" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2014-05-29T20:45:23.200991Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060425" />
+        <meta property="dc:description" content="Der Erste März. Sonntag. gearbeitet, Copie der Meße Partitur für Se: Majestät 2 rh: 8 – Papier aus der Papier Mühle erhalten dem Träger 4 – Schmidl …" />
         <meta name="description" content="Der Erste März. Sonntag. gearbeitet, Copie der Meße Partitur für Se: Majestät 2 rh: 8 – Papier aus der Papier Mühle erhalten dem Träger 4 – Schmidl …" />
-        <meta name="DC.subject" content="Tagebuch; Carl Maria von Weber" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="https://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Tagebuch; Carl Maria von Weber" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -51,7 +49,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -62,7 +60,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -238,11 +236,13 @@
                 
                 <div class="allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="true" href="#datePicker">Kalender</h2>
-                        <div class="panel-collapse collapse" id="datePicker" aria-expanded="true" data-dev-url="/exist/apps/WeGA-WebApp/dev/api.xql"></div>
+                        <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a>
+                        </h2>
+                        <div class="panel-collapse collapse" id="datePicker" data-dev-url="/exist/apps/WeGA-WebApp/dev/api.xql"></div>
                     </div>
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -263,7 +263,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -283,7 +284,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -310,7 +312,7 @@
             <span class="works A020002" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020002.html">Meße</span> Partitur für <a class="persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">Se: Majestät</a>   </span> <br /> 
         <span class="payment_3">Papier aus der Papier Mühle erhalten dem Träger  </span> <br /> 
         <span><span class="tei_hi_underline1"><a class="persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Schmidl</a> gratulirt</span>.</span>
-        <span>&#160;&#160;&#160;&#160;&#160;Mittag, <span class="tei_add">Jos<a class="noteMarker" id="ref-d92271e62" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d92271e62">‡</a></span> Schubert, <a class="persons A002384" href="/exist/apps/WeGA-WebApp/de/A002384.html">Steudel</a> <br />
+        <span>&#160;&#160;&#160;&#160;&#160;Mittag, <span class="tei_add">Jos<a class="noteMarker" id="ref-d67203e62" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d67203e62">‡</a></span> Schubert, <a class="persons A002384" href="/exist/apps/WeGA-WebApp/de/A002384.html">Steudel</a> <br />
             <a class="persons A002406" href="/exist/apps/WeGA-WebApp/de/A002406.html">Scholz</a>, <a class="persons A002848" href="/exist/apps/WeGA-WebApp/de/A002848.html">Morgenroth</a> gehabt.</span>
         <span><span class=" 82104111100101">Rhode</span> die <span class="tei_hi_latintype"><span class="works A020002" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020002.html">Missa</span></span> vorgespielt</span> <br />
         <span>abends <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><span class="works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Blaubart</span></span></span>. nicht sehr gut.</span>
@@ -366,7 +368,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d92271e62" data-title="add">"Jos": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d67203e62" data-title="add">"Jos": Hinzufügung in der Zeile.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -426,21 +428,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">

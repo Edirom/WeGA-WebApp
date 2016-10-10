@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Mannheim: Die Winter-Konzerte zu Mannheim (1)</title>
         
-        <meta name="DC.title" content="Aufführungsbesprechung Mannheim: Die Winter-Konzerte zu Mannheim (1)" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030863" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Aufführungsbesprechung Mannheim: Die Winter-Konzerte zu Mannheim (1)" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030863" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -272,7 +276,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -290,11 +295,11 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader">
-                    <span class="tei_hi_spaced_out">Die <span class="tei_ptr"></span>Winter-Konzerte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> zu
+                    <span class="tei_hi_spaced_out">Die <span class="tei_ptr"></span>Winter-Konzerte<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> zu
                             <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span> (1)</span>
                 </h2>
                                         <p>Das <span class="tei_hi_spaced_out">erste</span> unserer diesjährigen Winter-Konzerte, am
-                        <span class="tei_ptr"></span>15ten d. M.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, berechtigt zur
+                        <span class="tei_ptr"></span>15ten d. M.<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, berechtigt zur
                     Erwartung, daß dieses an sich so treffliche Institut dieses Jahr eine
                     erfreulichere Ausbeute gewähren werde, als voriges Jahr der Fall war. Sichtbare
                     Anzeichen bessern Einverständnisses zwischen der Hofmusik und dem bedeutendern
@@ -303,26 +308,26 @@
                     entgegengesetzten Grunde hatte unberührt liegen lassen, da er lieber schweigt,
                     wo er des Lobenswerthen nicht genug findet.</p>
                                         <p>Eine <span class="tei_ptr"></span>neue Simphonie (<span class="tei_hi_italic">B</span><span class="tei_hi_superscript">dur</span>) des musikalischen <span class=" 7410197110328097117108">Jean
-                        Paul</span> – <span class="tei_hi_spaced_out"><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a></span>, eröffnete den
+                        Paul</span> – <span class="tei_hi_spaced_out"><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a><a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a></span>, eröffnete den
                     Abend; ein Werk, vom Componisten mit eben der Originalität und Energie
                     ausgestattet, welche die frühern Produktionen seiner Muse bezeichnen, ohne der
                     Klarheit durch Bizarrerien zu schaden, welche manches seiner Werke, vorzüglich
-                    z. B. seine <span class="tei_ptr"></span><span class=" 8097115116111114971084583105109112104111110105101">Pastoral-Simphonie</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> und seine <span class="tei_hi_italic"><span class=" 691141111059997">Eroica</span></span>, entstellen – ein Werk, welches an
+                    z. B. seine <span class="tei_ptr"></span><span class=" 8097115116111114971084583105109112104111110105101">Pastoral-Simphonie</span><a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> und seine <span class="tei_hi_italic"><span class=" 691141111059997">Eroica</span></span>, entstellen – ein Werk, welches an
                     Genialität, Feuer und Effekt nur der <span class="tei_ptr"></span>frühern Simphonie <span class="tei_hi_italic">C</span><span class="tei_hi_superscript">moll</span>, an Klarheit nur der
-                    noch ältern <span class="tei_hi_italic">C</span><span class="tei_hi_superscript">dur</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> nachsteht – an Schwierigkeit der Execution aber
+                    noch ältern <span class="tei_hi_italic">C</span><span class="tei_hi_superscript">dur</span><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> nachsteht – an Schwierigkeit der Execution aber
                         <span class="tei_hi_spaced_out">keiner</span>; sie wurde – und dies ist immer kein
                     unbedeutendes Lob – mit großer Kraft, nicht wenig Präzision, und nicht ohne
                     Delikatesse aufgeführt; besonders wohlthätig wirkten die hier noch so gut
                     besetzten Blase-Instrumente: und so war denn auch die Wirkung auf die Zuhörer
                     erwünscht; das Publikum applaudirte jeden Satz, und bewies dadurch von neuem,
                     wie empfänglich es für gute Ensembles ist.</p>
-                                        <p><span class="tei_ptr"></span><a class="persons A000437" href="/exist/apps/WeGA-WebApp/de/A000437.html">Hr. <span class="tei_hi_spaced_out">Eisenmenger</span></a> und <span class=" 72114463265114110111108100">Hr. <span class="tei_hi_spaced_out">Arnold</span></span> trugen Solo-Konzerte<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> jeder auf seinem Instrumente mit
+                                        <p><span class="tei_ptr"></span><a class="persons A000437" href="/exist/apps/WeGA-WebApp/de/A000437.html">Hr. <span class="tei_hi_spaced_out">Eisenmenger</span></a> und <span class=" 72114463265114110111108100">Hr. <span class="tei_hi_spaced_out">Arnold</span></span> trugen Solo-Konzerte<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> jeder auf seinem Instrumente mit
                     der Virtuosität vor, welche man von diesen Künstlern längst gewohnt ist.</p>
                                         <p>Den Beschluß machte <span class="tei_ptr"></span><span class=" 75971121011081081091011051151161011143272105109109101108115">Kapellmeister
-                        Himmels</span> Trauer-Cantate<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a> auf den Tod <span class=" 7011410510110011410599104115321181111103280114101117223101110">Friedrichs von Preußen</span>, eine
+                        Himmels</span> Trauer-Cantate<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a> auf den Tod <span class=" 7011410510110011410599104115321181111103280114101117223101110">Friedrichs von Preußen</span>, eine
                     Composition welche <span class="tei_ptr"></span>jüngst bey der Todtenfeier des
                     hochseligen <span class=" 71114111223104101114122111103115326797114108327011410510110011410599104">Großherzogs <span class="tei_hi_spaced_out">Carl
-                        Friedrich</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> benutzt
+                        Friedrich</span></span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> benutzt
                     worden war, allgemeinen Eindruck gemacht hatte, und welche auch hier zu hören
                     dem Publikum allerdings interessant und erwünscht seyn mußte, eine Composition
                     freilich ohne sehr hohen artistischen Werthe, aber doch von sehr vielem Effekte,
@@ -331,7 +336,7 @@
                     nicht zu rechnen) glücklich benutzt ist, und das Ganze mit einem rauschenden,
                     zum Theil auch feurigen Allegro schließt.</p>
                                         <p>Am meisten der Auszeichnung werth möchte der erste Chor <span class="tei_hi_italic">C</span><span class="tei_hi_superscript">moll</span> seyn, dessen kurze
-                    Sopran-Solostellen <span class="tei_ptr"></span>„Opfert Thränen<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>
+                    Sopran-Solostellen <span class="tei_ptr"></span>„Opfert Thränen<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a>
                     <span class="tei_hi_italic">ec</span>.“ mit der einfachsten Horn-Begleitung erst in <span class="tei_hi_italic">Es</span> dann in <span class="tei_hi_italic">C</span><span class="tei_hi_superscript">dur</span> Theilnahme und Rührung erwecken; und das kurze Quartett <span class="tei_hi_italic">G</span><span class="tei_hi_superscript">dur</span> (Neuer Lebenshauch
                     erscheint,) – Dann einzelne Stellen des Schluß-Chors, z. B.</p>
                                         <p><span class="tei_ptr"></span><span class="tei_segBlock textAlign-center">Kinder, Gatten, Freunde, Brüder</span>
@@ -340,16 +345,16 @@
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">Jubelklang füllt ihre Lieder</span>
                                         </p>
-                                        <p><span class="tei_segBlock textAlign-center">Strahlenglanz ihr Angesicht.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a></span>
+                                        <p><span class="tei_segBlock textAlign-center">Strahlenglanz ihr Angesicht.<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a></span>
                                         </p>
                                         <p>wo die Tonart <span class="tei_hi_italic">As</span> wohlthätige Wirkung hervorbringt. Die
                         <span class="tei_ptr"></span>Ariette mit Chor <span class="tei_hi_italic">B</span><span class="tei_hi_superscript">dur</span> 3/4</p>
-                                        <p><span class="tei_segBlock textAlign-center">„Völker die ihn Vater nannten <span class="tei_hi_italic">ec</span>.“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a></span>
+                                        <p><span class="tei_segBlock textAlign-center">„Völker die ihn Vater nannten <span class="tei_hi_italic">ec</span>.“<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a></span>
                                         </p>
                                         <p>ist wohl etwas zu profan, besonders die wiederholenden Schlußformeln; und der
                     Eingang derselben erweckt eine gar zu naheliegende Reminiscenz an das Duett im
-                    ersten Akte der Oper <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 65120117114">Axur</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> (gleichfalls <span class="tei_hi_italic">B</span> 3/4.) Auch die <span class="tei_ptr"></span>Baß-Ariette<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> ist
-                    etwas zu alltäglich und obenhin behandelt: Am wenigsten Wirkung that das <span class="tei_ptr"></span>Duett in <span class="tei_hi_italic">Es</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>, da die Parthieen der 4 Fagotte und 4 Flöten nicht <span class="tei_hi_spaced_out">durchgängig</span> mit zuverläßigen Subjekten besetzt, und
+                    ersten Akte der Oper <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 65120117114">Axur</span></span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> (gleichfalls <span class="tei_hi_italic">B</span> 3/4.) Auch die <span class="tei_ptr"></span>Baß-Ariette<a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> ist
+                    etwas zu alltäglich und obenhin behandelt: Am wenigsten Wirkung that das <span class="tei_ptr"></span>Duett in <span class="tei_hi_italic">Es</span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>, da die Parthieen der 4 Fagotte und 4 Flöten nicht <span class="tei_hi_spaced_out">durchgängig</span> mit zuverläßigen Subjekten besetzt, und
                     auffallende Beweise von Unsicherheit Einzelner nicht vermieden werden konnten.
                     Der Choral blos für Blase-Instrumente wurde ausgelassen, und wohl mit Recht, da
                     er nur darauf berechnet ist, den Zeitraum auszufüllen, welchen die Einsenkung
@@ -370,7 +375,7 @@
                                             <li id="f01">*). Es
                         war an diesem Tage nicht nur das Orchester bedeutend verstärkt, sondern auch
                         in Beziehung auf Gesang ward den Zuhörern das so selten gewordene Vergnügen
-                        zu Theil, <span class="tei_ptr"></span><span class=" 779710097109101328710198101114">Madame Weber</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>, welche seit einigen
+                        zu Theil, <span class="tei_ptr"></span><span class=" 779710097109101328710198101114">Madame Weber</span><a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>, welche seit einigen
                         Jahren von den hiesigen Hofmusik-Akademien sich zurückgezogen und ihr Talent
                         ausschließlich den musikalischen Aufführungen im Museum gewidmet hatte, die
                         erste Sopran-Parthie wieder übernehmen zu sehen. <span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out">d. H.</span></span>
@@ -488,11 +493,11 @@
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_07" data-title="note commentary">"<span class="tei_lemma">Kapellmeister Himmels Trauer-Cantate</span>": Friedrich Heinrich Himmel, <span class="tei_hi_italic">Trauer-Cantate</span>&#160;auf den Tod von Friedrich Wilhelm II. von
-                            <span class="tei_choice"><span class="tei_corr">Preußen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d9076e164">‡</a></span>
+                            <span class="tei_choice"><span class="tei_corr">Preußen</span><a class="noteMarker" id="ref-d72676e164" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72676e164">‡</a></span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d9076e164" data-title="choice">recte "Preußen": eigentlich "Preus- |sen"</div>
+                                            <div class="apparatusEntry" id="d72676e164" data-title="choice">recte "Preußen": eigentlich "Preus- |sen"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_08" data-title="note commentary">"<span class="tei_lemma">jüngst bey der … Großherzogs Carl Friedrich</span>": Großherzog Karl Friedrich von Baden starb am 10. Juni 1811.</div>
@@ -575,21 +580,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -630,8 +630,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

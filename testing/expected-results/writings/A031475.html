@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ankündigung der Klopstock-Säkularfeier in Quedlinburg</title>
         
-        <meta name="DC.title" content="Ankündigung der Klopstock-Säkularfeier in Quedlinburg" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="unbekannt" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Frank Ziegler" />
-        <meta name="DC.contributor" content="Eveline Bartlitz" />
-        <meta name="DC.creator" content="Solveig Schreiter" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-06-22T13:23:10.572830Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031475" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Ankündigung der Klopstock-Säkularfeier in Quedlinburg" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="unbekannt" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Frank Ziegler" />
+        <meta property="dc:contributor" content="Eveline Bartlitz" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-06-22T13:23:10.572830Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031475" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -55,7 +53,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -66,7 +64,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -109,6 +107,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -120,6 +119,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -239,7 +241,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -260,7 +263,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -278,7 +282,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -310,7 +315,7 @@
                                         <p>Am Nachmittage des zweiten Julius hält das hiesige Gymnasium zur Feier des Tages eine öffentliche Redeübung und am Abend desselben wird eine große Harmonie-Musik in dem bei der Stadt belegenen Lustwäldchen, der <span class=" 66114252104108">Brühl</span> genannt, veranstaltet, in welchem künftig <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> Brustbild aufgestellt werden soll. Die Kosten dieses Denkmals werden aus dem Ertrage des Musikfestes und aus den noch einzusammelnden Beiträgen bestritten werden.</p>
                                         <p>Für billiges Unterkommen zahlreicher Fremden in hiesigen Gast- und Privathäusern wird gesorgt werden, und die umliegende schöne Harzgegend in der freundlichsten Jahreszeit manchen Genuß darbieten.</p>
                                         <p>Der unterzeichnete <a class="orgs A080004" href="/exist/apps/WeGA-WebApp/de/A080004.html">Verein</a> ladet demnach alle Verehrer <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a>, alle Freunde der Musik und Dichtkunst zu dieser Gedächtnißfeier hierdurch ein. Möge sie auf eine, des großen Dichters würdige Weise begangen werden! Möge sie in den Gemüthern aller Theilnehmer die Liebe zur Kunst und die fromme, ächt vaterländische Gesinnung erwecken und nähren, welche in <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> unvergänglichen Werken lebt!</p><span class="lg"><span class="verseLine"><span class=" 8111710110010810511098117114103"><span class="tei_settlement">Quedlinburg</span></span>, den 27. Mai 1824.</span><span class="verseLine">Der <a class="orgs A080004" href="/exist/apps/WeGA-WebApp/de/A080004.html">Verein</a> für <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> Denkmal.</span></span>
-                                        <p>Wir eilen, das Publikum zu benachrichtigen, daß an dem hier vorstehenden Musikfeste zu <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> Säcularfeier außer einer ausgezeichneten Dilettantin<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="ftn87">*</a>, welche bereits früher ihre gütige Zusage ertheilt hat, nun auch noch eine große Kunstsängerin Theil nehmen wird; indem nach einem heute eingegangenen Schreiben des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn Capellmeisters <span class="tei_hi_spaced_out">Carl Maria von Weber</span></a>, <a class="persons A000565" href="/exist/apps/WeGA-WebApp/de/A000565.html">Demoiselle <span class="tei_hi_spaced_out">Funk</span></a>, erste Sängerin der Königl. Sächsischen italienischen Oper zu <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>, ihre Mitwirkung versprochen hat.</p>
+                                        <p>Wir eilen, das Publikum zu benachrichtigen, daß an dem hier vorstehenden Musikfeste zu <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> Säcularfeier außer einer ausgezeichneten Dilettantin<a class="noteMarker" id="ref-ftn87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="ftn87">*</a>, welche bereits früher ihre gütige Zusage ertheilt hat, nun auch noch eine große Kunstsängerin Theil nehmen wird; indem nach einem heute eingegangenen Schreiben des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn Capellmeisters <span class="tei_hi_spaced_out">Carl Maria von Weber</span></a>, <a class="persons A000565" href="/exist/apps/WeGA-WebApp/de/A000565.html">Demoiselle <span class="tei_hi_spaced_out">Funk</span></a>, erste Sängerin der Königl. Sächsischen italienischen Oper zu <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>, ihre Mitwirkung versprochen hat.</p>
                                         <p>Nach diesem Schreiben dürfen wir auch darauf rechnen, den berühmten Flötisten, <a class="persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Herrn Kammer-Musikus <span class="tei_hi_spaced_out">Fürstenau</span></a>, zu hören.</p>
                                         <p><span class=" 8111710110010810511098117114103"><span class="tei_settlement">Quedlinburg</span></span>, den 3. Juni 1824.</p>
                                         <p>Der <a class="orgs A080004" href="/exist/apps/WeGA-WebApp/de/A080004.html">Verein</a> für <a class="persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html"><span class="tei_hi_spaced_out">Klopstock’s</span></a> Denkmal.</p>
@@ -355,8 +360,12 @@
                                 <!-- Processing tei:additional for every source -->
                                 <div>
                                     
+                                        <h5 class="media-heading">Weitere Textquellen</h5>
+                                    
                                     <ul class="tei_list">
-                                        
+                                        <li>
+                                            <span class="biblio-entry">Klopstock᾽s hundertjähriges Ehrengedächtniß, gefeiert in seiner Vaterstadt am zweiten Julius 1824. Allen Verehrern des Barden gewidmet . </span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -425,21 +434,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -480,8 +484,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

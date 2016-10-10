@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung, London: "Der Freischütz" von Carl Maria von Weber, August 1824</title>
         
-        <meta name="DC.title" content="Aufführungsbesprechung, London: &#34;Der Freischütz&#34; von Carl Maria von Weber, August 1824" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Anonymus" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.contributor" content="Jakob, Charlene" />
-        <meta name="DC.creator" content="Charlene Jakob" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-05-13T17:36:44.229632Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388" />
-        <meta name="DC.description" content="Rezension und Aufführungsbesprechung vom &#34;Freischütz&#34;" />
+        <meta property="dc:title" content="Aufführungsbesprechung, London: &#34;Der Freischütz&#34; von Carl Maria von Weber, August 1824" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Anonymus" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Jakob, Charlene" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-10-10T15:02:03.654178Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388" />
+        <meta property="dc:description" content="Rezension und Aufführungsbesprechung vom &#34;Freischütz&#34;" />
         <meta name="description" content="Rezension und Aufführungsbesprechung vom &#34;Freischütz&#34;" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -54,7 +52,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +63,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -108,6 +106,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -119,6 +118,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -238,7 +240,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -259,7 +262,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -277,7 +281,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -287,7 +292,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -323,10 +329,8 @@
                                         <p>
                     <span class=" 75105109111">Kimo</span>, and old huntsman, lives in<span class="tei_cb"> ¦ </span> the forest with his wife and daughter, on a farm which he holds as a tried marksman. He resolves that his daughter <span class=" 65103110101115">Agnes</span> shall marry a good shot, as the farm will only be kept in the family by such a prudent match. The girl is attached to <span class=" 82111100111108112104">Rodolph</span>, a forest youth, who is all the father can desire: – she is beloved, however, by a huntsman, named <span class=" 679711511297114">Caspar</span>, who has made a compact with an evil spirit, and uses magic balls. <span class=" 82111100111108112104">Rodolph</span>, at the opening of the drama, is under the malignant influence of a charm, which frustrates all his sports, and turns aside every bullet he fires. The trial day is at hand, on which occasion his skill, as a shot, is to be proved – and on his success depends his union with <span class=" 65103110101115">Agnes</span>. <span class=" 679711511297114">Caspar</span>, who is jealous of his fortune with the girl, hints that he might secure her if he would have recourse to the magic balls – and the hope of securing his love leads him to promise a meeting with <span class=" 679711511297114">Caspar</span> at the glen, at night. <span class=" 82111100111108112104">Rodolph</span> frames and excuse to his love as the hour approaches, and, in spite of mysterious warnings, keeps his fatal promise. <span class=" 679711511297114">Caspar</span>, in the mean time, whose days are numbered, offers <span class=" 9097109105101108">Zamiel</span>, the evil spirit, a fresh victim if he may be spared a three year’s longer existence. The bargain is made: in a magic circle the seven bullets are cast, by the owl’s shriek and to unearthly light! – 
                 </p>
-                                        <p>
-                   <div class="poem"><span class="lg"><span class="verseLine">Six shall go true!</span><span class="verseLine">And the seventh askew!</span><span class="verseLine">Six shall achieve,</span><span class="verseLine">And the seventh deceive!</span></span>
-                                            </div> 
-                </p>
+                                        <div class="poem"><span class="lg"><span class="verseLine">Six shall go true!</span><span class="verseLine">And the seventh askew!</span><span class="verseLine">Six shall achieve,</span><span class="verseLine">And the seventh deceive!</span></span>
+                                        </div>
                                         <p>
                     The trial day comes, and the six sure bullets have been expended – the seventh, which the spirit is to direct, <span class=" 679711511297114">Caspar</span> trusts will kill the bride, <span class=" 65103110101115">Agnes</span>; but the spirit directs it on <span class=" 679711511297114">Caspar</span> himself – and the desolator is laid desolate! – The piece concludes with the wedding of the young hunter and his <span class=" 65103110101115">Agnes</span>!
                 </p>
@@ -416,7 +420,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. Mai 2016 durch Charlene Jakob</span>
+                <span>Letzte Änderung dieses Dokuments am 10. Oktober 2016 durch Peter Stadler</span>
                 </p>
             </div>
             
@@ -448,21 +452,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -503,8 +502,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

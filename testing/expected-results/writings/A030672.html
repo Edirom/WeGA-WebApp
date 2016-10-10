@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Fünf Lieder op. 13 und „Momento capriccioso“ von Carl Maria von Weber, „Wiedersehn“ von Johann Gänsbacher</title>
         
-        <meta name="DC.title" content="Fünf Lieder op. 13 und „Momento capriccioso“ von Carl Maria von Weber, „Wiedersehn“ von Johann Gänsbacher" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030672" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Fünf Lieder op. 13 und „Momento capriccioso“ von Carl Maria von Weber, „Wiedersehn“ von Johann Gänsbacher" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030672" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -278,7 +282,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -292,7 +297,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -314,13 +320,13 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader">
-                    <span class="tei_ptr"></span>Fünf Lieder mit Guitarrenbegleitung und ein Canon mit drei Singstimmen von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von <span class="tei_hi_spaced_out">Weber</span></a>,<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span>, bei <span class="tei_hi_spaced_out">Gombard</span>.
+                    <span class="tei_ptr"></span>Fünf Lieder mit Guitarrenbegleitung und ein Canon mit drei Singstimmen von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von <span class="tei_hi_spaced_out">Weber</span></a>,<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span>, bei <span class="tei_hi_spaced_out">Gombard</span>.
                 </h2>
                                         <p>Unzählige Male ist die Guitarre als Belustigungsmittel des frivolsten Dilettantismus gemißbraucht worden, und wahrlich, es thut noth, daß <span class="tei_hi_spaced_out">bessere</span> Componisten anfangen, diesem zu Begleitung deklamatorischen Gesanges so höchst geeigneten Instrumente durch gedachte und gefühlte Compositionen wieder Ansehen zu verschaffen. Vorzüglich und vor allen andern in dieser Sammlung enthaltnen Liedern hebt Ref. das höhere süße Wollust athmende erste aus, „<span class="works A020126" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020126.html">die Schäferstunde</span>,“ womit der Componist, herrlich, wie durch einen Triumphbogen der Liebe seinen Einzug feiert, dann das <span class="works A020128" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020128.html">Wiegenlied</span>, (
-                    <span class="tei_ptr"></span>es folgt am Schlusse dieser Anzeige<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>) die Einfachheit selbst, und doch tief zur Seele gehend, so wie 
-                    <span class="tei_ptr"></span>der herrliche Text dazu<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a> von <span class="tei_hi_spaced_out"><a class="persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">Hiemer</a></span>. Mittelmäßig ist nur Eines dieser Lieder: „
-                    <span class="tei_ptr"></span><span class="works A020111" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020111.html">Mädel schau mir ins Gesicht</span>“<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> – den angehängten 
-                    <span class="tei_ptr"></span>Canon<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> wird jeder lieb gewinnen, der ihn einmal gehört hat, und mehr und mehr, je öfter er ihn hört; bei der strengsten Consequenz die höchste Lieblichkeit.</p>
+                    <span class="tei_ptr"></span>es folgt am Schlusse dieser Anzeige<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>) die Einfachheit selbst, und doch tief zur Seele gehend, so wie 
+                    <span class="tei_ptr"></span>der herrliche Text dazu<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a> von <span class="tei_hi_spaced_out"><a class="persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">Hiemer</a></span>. Mittelmäßig ist nur Eines dieser Lieder: „
+                    <span class="tei_ptr"></span><span class="works A020111" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020111.html">Mädel schau mir ins Gesicht</span>“<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> – den angehängten 
+                    <span class="tei_ptr"></span>Canon<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> wird jeder lieb gewinnen, der ihn einmal gehört hat, und mehr und mehr, je öfter er ihn hört; bei der strengsten Consequenz die höchste Lieblichkeit.</p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Wiegenlied von <a class="persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">Hiemer</a></span>.</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">Schlaf Herzenssöhnchen, mein Liebling bist du,</span>
@@ -339,7 +345,7 @@
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">Herzchen da schläft sichs ruhig nicht mehr.</span>
                                         </p>
-                                        <p><span class="tei_segBlock textAlign-center">Engel <span class="tei_choice"><span class="tei_corr">vom</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10200e113">‡</a></span> Himmel so lieblich wie du,</span>
+                                        <p><span class="tei_segBlock textAlign-center">Engel <span class="tei_choice"><span class="tei_corr">vom</span><a class="noteMarker" id="ref-d73839e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73839e113">‡</a></span> Himmel so lieblich wie du,</span>
                                         </p>
                                         <p><span class="tei_segBlock textAlign-center">Schweben ums Bettchen und lächeln dir zu;</span>
                                         </p>
@@ -356,13 +362,13 @@
                                         <p><span class="tei_segBlock textAlign-center">Mutterlieb, Herzchen, entschlummert doch nie.</span>
                                         </p>
                                         <p><br />
-                    <span class="tei_ptr"></span><span class="tei_hi_italic">Momento Capricioso, per il pianoforte, comp. e ded. à Meyer Beer da Carlo Maria di Weber, presso Gombard.</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>
+                    <span class="tei_ptr"></span><span class="tei_hi_italic">Momento Capricioso, per il pianoforte, comp. e ded. à Meyer Beer da Carlo Maria di Weber, presso Gombard.</span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>
                                         </p>
                                         <p><br />Wenn ein Componist und Clavierspieler, wie <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herr von <span class="tei_hi_spaced_out">Weber</span></a>, einem Manne wie <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Herrn <span class="tei_hi_spaced_out">Meyer Beer</span></a>, der schon als Jüngling durch öffentliche Blätter als der erste Clavierspieler <span class=" 66101114108105110115"><span class="tei_settlement">Berlins</span></span> bekannt war, und jetzt als Componist berühmt zu werden anfängt, eine Clavierfantasie widmet, so versteht sich wohl von selbst, daß die Liebhaber des Instrumentes etwas mehr als gewöhnliches zu erwarten haben. Schwer ist es nun freilich, aber gar nicht gegen des Instrumentes Eigenheit, und kein Spieler wird es ohne Nutzen aus der Hand legen, wenn er es nicht zu früh thut.</p>
                                         <p><br />
-                    <span class="tei_ptr"></span><span class="tei_hi_spaced_out">Wiedersehen</span>, Gedicht von <a class="persons A001055" href="/exist/apps/WeGA-WebApp/de/A001055.html">Kosegarten</a>, componirt für eine Singstimme mit Begleitung des Pianoforte, von <span class="tei_hi_spaced_out"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>.</p>
+                    <span class="tei_ptr"></span><span class="tei_hi_spaced_out">Wiedersehen</span>, Gedicht von <a class="persons A001055" href="/exist/apps/WeGA-WebApp/de/A001055.html">Kosegarten</a>, componirt für eine Singstimme mit Begleitung des Pianoforte, von <span class="tei_hi_spaced_out"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>.</p>
                                         <p><br />Ein höchst liebliches, warm und richtig gefühltes Ganzes, recht aus Einem Gusse, und dem Charakter 
-                    <span class="tei_ptr"></span>des so ansprechenden Gedichtes<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> ganz entsprechend, dabei auch für Nichtvirtuosen leicht ausführbar und ganz gemacht im engeren Zirkel wahrer Kunstfreunde schönen Genuß zu gewähren. <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>, im Mai.</p>
+                    <span class="tei_ptr"></span>des so ansprechenden Gedichtes<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> ganz entsprechend, dabei auch für Nichtvirtuosen leicht ausführbar und ganz gemacht im engeren Zirkel wahrer Kunstfreunde schönen Genuß zu gewähren. <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>, im Mai.</p>
                                         <p class="tei_closer">
                     <span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><a class="persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a></span>.</span>
                 </p>
@@ -437,7 +443,7 @@
                                             <div class="apparatusEntry" id="C_05" data-title="note commentary">"<span class="tei_lemma">Canon</span>": „Mädchen, ach meide“ (JV 35), Text von Breiting</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10200e113" data-title="choice">recte "vom": eigentlich "von"</div>
+                                            <div class="apparatusEntry" id="d73839e113" data-title="choice">recte "vom": eigentlich "von"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_06" data-title="note commentary">"<span class="tei_lemma">Momento Capricioso, per … Weber, presso Gombard.</span>": <span class="tei_hi_italic">Momento Capricioso | per il | Piano-Forte | Composto e dedicato | al suo Amico | MEYER BEER | Compositore e Professore di Cembalo | di | CARLO MARIA de WEBER. | Augusta | presso Gombart et Comp: Editori et Scultori di Musica | Opera 12 Prezzo- f –45</span> [PN 533] (JV 56)</div>
@@ -504,21 +510,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -559,8 +560,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

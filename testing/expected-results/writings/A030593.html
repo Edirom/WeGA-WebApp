@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Korrespondenz-Nachrichten aus Mannheim, 30. September 1811</title>
         
-        <meta name="DC.title" content="Korrespondenz-Nachrichten aus Mannheim, 30. September 1811" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Alexander von Dusch" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030593" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Korrespondenz-Nachrichten aus Mannheim, 30. September 1811" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Alexander von Dusch" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030593" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -272,7 +276,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -282,7 +287,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -311,8 +317,8 @@
                 </h2>
                                         <p>Die letzten fünf Tage waren für alle Freunde der Kunst eine reiche Erntezeit. <span class="tei_hi_spaced_out"><a class="persons A000904" href="/exist/apps/WeGA-WebApp/de/A000904.html">Iffland</a></span>, der
                     Veteran und Zögling unserer Bühne, gab vier Gastrollen, reichen Ersatz für seine
-                    <span class="tei_ptr"></span>siebenjährige Abwesenheit<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>. Er trat <span class="tei_ptr"></span>im <span class="tei_hi_spaced_out"><span class=" 70114105100111108105110">Fridolin</span></span> als <span class=" 711149710232118111110328397118101114110"><span class="tei_hi_spaced_out">Graf</span> von <span class="tei_hi_spaced_out">Savern</span></span>, im <span class="tei_hi_spaced_out"><span class=" 789711610497110">Nathan</span></span> als <span class="tei_hi_spaced_out"><span class=" 789711610497110">Nathan</span></span>, in der <span class="tei_hi_spaced_out"><span class=" 86101114115246104110117110103">Versöhnung</span></span> als <span class="tei_hi_spaced_out"><span class=" 8710511611698117114103">Wittburg</span></span> und in dem
-                        <span class="tei_hi_spaced_out"><span class=" 1031171161041011141221051031011103280111108116101114101114">gutherzigen Polterer</span></span> als <span class="tei_hi_spaced_out"><span class=" 77111114104111102">Morhof</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> auf. Ueber das
+                    <span class="tei_ptr"></span>siebenjährige Abwesenheit<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>. Er trat <span class="tei_ptr"></span>im <span class="tei_hi_spaced_out"><span class=" 70114105100111108105110">Fridolin</span></span> als <span class=" 711149710232118111110328397118101114110"><span class="tei_hi_spaced_out">Graf</span> von <span class="tei_hi_spaced_out">Savern</span></span>, im <span class="tei_hi_spaced_out"><span class=" 789711610497110">Nathan</span></span> als <span class="tei_hi_spaced_out"><span class=" 789711610497110">Nathan</span></span>, in der <span class="tei_hi_spaced_out"><span class=" 86101114115246104110117110103">Versöhnung</span></span> als <span class="tei_hi_spaced_out"><span class=" 8710511611698117114103">Wittburg</span></span> und in dem
+                        <span class="tei_hi_spaced_out"><span class=" 1031171161041011141221051031011103280111108116101114101114">gutherzigen Polterer</span></span> als <span class="tei_hi_spaced_out"><span class=" 77111114104111102">Morhof</span></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> auf. Ueber das
                     Spiel dieses vortrefflichen Künstlers viel sagen zu wollen, wäre
                     überflüssig.</p>
                                         <p>Du sahest ihn ja selbst bey seiner letzten Anwesenheit. Sein Ausdruck in Ton,
@@ -320,23 +326,23 @@
                     gefunden werden.</p>
                                         <p>Der seltenen Erscheinung des Kometen gleich, steht er unter den Mitgenossen
                     seiner Kunst. – Außer diesen theatralischen Vorstellungen deklamirte er in einem
-                    <span class="tei_ptr"></span>Concerte, das <span class=" 7597112101108108109101105115116101114328710198101114">Kapellmeister <span class="tei_hi_spaced_out">Weber</span></span> gab<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, das <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillersche</a> Gedicht: <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 70114105100111108105110">Fridolin</span></span> oder der Gang nach dem Eisenhammer<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>.
+                    <span class="tei_ptr"></span>Concerte, das <span class=" 7597112101108108109101105115116101114328710198101114">Kapellmeister <span class="tei_hi_spaced_out">Weber</span></span> gab<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, das <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillersche</a> Gedicht: <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 70114105100111108105110">Fridolin</span></span> oder der Gang nach dem Eisenhammer<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>.
                     Die von <span class="tei_ptr"></span><span class=" 7211411046328710198101114">Hrn. <span class="tei_hi_spaced_out">Weber</span></span> dazu gesetzte
-                    Begleitung des Orchesters<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> mag wol ihre Schönheit haben und an einigen Stellen
+                    Begleitung des Orchesters<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a> mag wol ihre Schönheit haben und an einigen Stellen
                     hinreissen; dennoch schien sie mir an einigen andern nicht richtig gedacht, und
                     auf das Individuelle <span class="tei_hi_spaced_out"><a class="persons A000904" href="/exist/apps/WeGA-WebApp/de/A000904.html">Ifflands</a></span> berechnet.</p>
                                         <p>Außerdem sehen wir mit froher Erwartung wieder einem neuen Werke, der Frucht des
                     hohen Talents unsers braven <a class="persons A001584" href="/exist/apps/WeGA-WebApp/de/A001584.html">Kapellmeisters <span class="tei_hi_spaced_out">Ritter</span></a>, entgegen, der seit der
                     Erscheinung seines <span class="tei_ptr"></span>Urtheils Salomons noch drey sehr artige kleine Opern: der
                         <span class="tei_hi_spaced_out"><span class=" 9010511611610111411599104108228103101114">Zitterschläger</span></span>, die beyden
-                        <span class="tei_hi_spaced_out"><span class=" 69114101109105116101110">Eremiten</span></span> und <span class="tei_hi_spaced_out"><span class=" 70101111100111114101">Feodore</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> komponirte. Indessen
+                        <span class="tei_hi_spaced_out"><span class=" 69114101109105116101110">Eremiten</span></span> und <span class="tei_hi_spaced_out"><span class=" 70101111100111114101">Feodore</span></span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a> komponirte. Indessen
                     sein neuestes Werk: <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class=" 68971181051001153269114104246104117110103">Davids
-                        Erhöhung</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, eine große Oper, welche er im Einverständnisse mit
-                    dem <span class="tei_ptr"></span>Verfasser des Stücks<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> bearbeitet, und die in kurzer Zeit nun beendigt wird,
+                        Erhöhung</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, eine große Oper, welche er im Einverständnisse mit
+                    dem <span class="tei_ptr"></span>Verfasser des Stücks<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> bearbeitet, und die in kurzer Zeit nun beendigt wird,
                     ist die Krone aller seiner bisherigen Kompositionen, was sich auch erwarten
                     läßt, da er mit besonderer Liebe daran arbeitet.</p>
                                         <p>Man vermuthet, daß diese Oper zum Empfang unserer geliebten
-                    <span class="tei_ptr"></span><span class=" 71114111223104101114122111103105110">Großherzogin</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> bestimmt sey.</p>
+                    <span class="tei_ptr"></span><span class=" 71114111223104101114122111103105110">Großherzogin</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> bestimmt sey.</p>
                                     </div>
                                 </div>
                     </div>
@@ -497,21 +503,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -552,8 +553,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

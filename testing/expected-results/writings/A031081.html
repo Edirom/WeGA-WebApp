@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Korrespondenz-Nachrichten aus Prag, 17. März 1812</title>
         
-        <meta name="DC.title" content="Korrespondenz-Nachrichten aus Prag, 17. März 1812" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Johann Gänsbacher" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031081" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Korrespondenz-Nachrichten aus Prag, 17. März 1812" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Johann Gänsbacher" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-09-30T13:29:28.299138Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031081" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -276,7 +280,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -303,23 +308,23 @@
                     lange ein Wunsch der gebildetsten Kunstfreunde, der sich gewöhnlich an den,
                     einer eigentlichen Bildungsanstalt für junge Musiker, anschloss. Dass dieser
                     letzte Wunsch durch unser Conservatorium seit einigen Jahren ebenfalls erfüllet
-                    sey, wissen Ihre Leser durch <span class="tei_ptr"></span>den Bericht<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, der bey der Stiftung und Gründung
+                    sey, wissen Ihre Leser durch <span class="tei_ptr"></span>den Bericht<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, der bey der Stiftung und Gründung
                     desselben, ertheilt worden ist. Es sey erlaubt, darüber hier nur noch
                     beyzubringen, dass dies Institut sich als ein schönes und gewiss nicht
-                    <span class="tei_app"><span class="tei_lem">unwichtiges <span class="tei_hi_italic">Privat</span>-Unternehmen</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10852e24">‡</a></span> immer mehr bewährt. Die
+                    <span class="tei_app"><span class="tei_lem">unwichtiges <span class="tei_hi_italic">Privat</span>-Unternehmen</span><a class="noteMarker" id="ref-d74524e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e24">‡</a></span> immer mehr bewährt. Die
                     wiederholten Prüfungen der Fortschritte der Zöglinge übertrafen die Erwartung
                     und erregen mit Recht die Hoffnung wahrhaft ausgezeichneter Resultate.
                     Erfreulich ist gewiss jedem Kunstfreunde, auch dem auswärtigen, dieser Beweis,
                     was ächter kunstliebender Sinn, wenn er beharrlich ist, auch gegen nicht geringe
                     Hindernisse vermag. – Auch die Liebhaber-Concerte fanden anfänglich manche
-                    Schwierigkeiten. <span class="tei_app"><span class="tei_lem">Welches neue Unternehmen bliebe frey davon!</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10852e37">‡</a></span> Da man aber blos
+                    Schwierigkeiten. <span class="tei_app"><span class="tei_lem">Welches neue Unternehmen bliebe frey davon!</span><a class="noteMarker" id="ref-d74524e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e37">‡</a></span> Da man aber blos
                     die Sache berücksichtigte, und alle kleinlichen Nebenumstände entfernet hielt,
                     so gelang es, den wohlgefassten Plan ausgeführt zu sehen, der darauf angelegt
                     war, gesellschaftliches Vergnügen durch Musik zu befördern, zu welcher alle
                     Freunde und Freundinnen der Tonkunst, aus allen Ständen, wenn sie
                     Geschicklichkeit zur Ausführung besässen, thätig mitwirken sollten. Die Kosten
                     sind durch mehrere Subscribenten gedeckt; der Ueberschuss dient zur
-                    Unterstützung der Zöglinge des <span class="tei_ptr"></span>Conservatoriums<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>: und so wird mit dem Angenehmen
+                    Unterstützung der Zöglinge des <span class="tei_ptr"></span>Conservatoriums<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>: und so wird mit dem Angenehmen
                     auch das Nützliche gepaart. Alle Freunde der Tonkunst lernen sich nun hier
                     kennen, nähern sich einander, sind vereinigt zu Einem Zweck: da leuchtet es denn
                     von selbst in die Augen, wie vieles Angenehme und Vortheilhafte, und sogar nicht
@@ -328,9 +333,9 @@
                     mehr, als durch alle vereinzelte Cirkel, worin man in dem Umfange immer, in der
                     Wahl der auszuführenden Stücke oft, sehr beschränkt ist. Wir haben uns diesmal
                     zwar nur vier solche Concerte zu versprechen: jeder wahre Musikfreund wünscht
-                    und hofft aber, die Vereinigung werde auch für künftige Jahre bestehen. Am <span class="tei_ptr"></span>13ten<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>
+                    und hofft aber, die Vereinigung werde auch für künftige Jahre bestehen. Am <span class="tei_ptr"></span>13ten<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>
                     wurde das erste Concert im Redoutensaale gegeben. Dies war der Inhalt: <span class="tei_ptr"></span>Symphonie
-                    von <a class="persons A005419" href="/exist/apps/WeGA-WebApp/de/A005419.html">Wilms</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>, <span class="tei_ptr"></span>Scene und Arie von <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, <span class="tei_ptr"></span>Klavierconc. von <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>, drey Sätze aus <span class="tei_ptr"></span><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethovens</a> Septett<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, <span class="tei_ptr"></span>Duett aus Titus<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, <span class="tei_ptr"></span>Symphonie von <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>. Die Ausführung gelang zu allgemeiner
+                    von <a class="persons A005419" href="/exist/apps/WeGA-WebApp/de/A005419.html">Wilms</a><a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>, <span class="tei_ptr"></span>Scene und Arie von <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, <span class="tei_ptr"></span>Klavierconc. von <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>, drey Sätze aus <span class="tei_ptr"></span><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethovens</a> Septett<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, <span class="tei_ptr"></span>Duett aus Titus<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, <span class="tei_ptr"></span>Symphonie von <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>. Die Ausführung gelang zu allgemeiner
                     Zufriedenheit, und die, einiger Stücke, wirklich ausgezeichnet. Eine detaillirte
                     Kritik derselben erwarten Sie aber von mir nicht. So wenig ich die
                     Bedenklichkeiten derer theile, welche, sey es nun aus missverstandenem
@@ -338,7 +343,7 @@
                     öffentlicher Productionen der Künstler von Profession Aergernis nehmen; so wenig
                     halte ichs für recht und human, die Bestrebungen der Liebhaber vor das Forum der
                     Kritik zu ziehen, und an dieselben wol gar einen Maasstab zu legen, der nur für
-                    Virtuosen oder ein <span class="tei_app"><span class="tei_lem">jahrelang</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10852e104">‡</a></span> eingeübtes Orchester passt, und überdies gewöhnlich
+                    Virtuosen oder ein <span class="tei_app"><span class="tei_lem">jahrelang</span><a class="noteMarker" id="ref-d74524e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e104">‡</a></span> eingeübtes Orchester passt, und überdies gewöhnlich
                     die allgemeine Theilnahme, wie den Muth und die Freude der Theilnehmenden
                     selbst, stört. Ist es doch durch solches Hervorziehen ins Publicum schon dahin
                     gekommen, dass die männlichen und weiblichen Dilettanten die Kritik als ein
@@ -354,7 +359,7 @@
                     als einer der Tonkunst ausgezeichnet befreundeten Stadt, von neuem
                     behaupten.</p>
                                         <p class="tei_closer">
-                    <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Tr–le</a>.</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d10852e120">‡</a></span></span>
+                    <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Tr–le</a>.</span></span><a class="noteMarker" id="ref-d74524e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e120">‡</a></span></span>
                 </p>
                                     </div>
                                 </div>
@@ -424,11 +429,11 @@
                                             <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">den Bericht</span>": <span class="tei_hi_italic">AMZ</span>, Jg. 12, Nr. 50 (12. September 1810), Sp. 803-807</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10852e24" data-title="app">"unwichtiges Privat-Unternehmen": Lesart in anderer Quelle: <span class="tei_rdg">unwichtiger <span class="tei_hi_italic">Privat</span>-Unterricht</span>
+                                            <div class="apparatusEntry" id="d74524e24" data-title="app">"unwichtiges Privat-Unternehmen": Lesart in anderer Quelle: <span class="tei_rdg">unwichtiger <span class="tei_hi_italic">Privat</span>-Unterricht</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10852e37" data-title="app">"Welches neue Unternehmen bliebe frey davon!": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d74524e37" data-title="app">"Welches neue Unternehmen bliebe frey davon!": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
@@ -456,11 +461,11 @@
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">Symphonie von Haydn</span>": nicht ermittelt</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10852e104" data-title="app">"jahrelang": Lesart in anderer Quelle: <span class="tei_rdg">lang</span>
+                                            <div class="apparatusEntry" id="d74524e104" data-title="app">"jahrelang": Lesart in anderer Quelle: <span class="tei_rdg">lang</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10852e120" data-title="app">"Tr–le.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d74524e120" data-title="app">"Tr–le.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                     </ul>
@@ -487,7 +492,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031081</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 30. September 2016 durch Peter Stadler</span>
                 </p>
             </div>
             
@@ -519,21 +524,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -574,8 +574,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>

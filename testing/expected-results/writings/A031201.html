@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Wichtige Verbesserung des Horns</title>
         
-        <meta name="DC.title" content="Wichtige Verbesserung des Horns" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Gottfried Weber" />
-        <meta name="DC.contributor" content="Veit, Joachim" />
-        <meta name="DC.contributor" content="Stadler, Peter" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T20:06:38.872633Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201" />
-        <meta name="DC.description" content="" />
+        <meta property="dc:title" content="Wichtige Verbesserung des Horns" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Gottfried Weber" />
+        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201" />
+        <meta property="dc:description" content="" />
         <meta name="description" content="" />
-        <meta name="DC.subject" content="Historic Newspaper; Writing" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Historic Newspaper; Writing" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -53,7 +51,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,7 +62,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -107,6 +105,7 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
@@ -118,6 +117,9 @@
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
@@ -237,7 +239,8 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokument">Dokument</h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -258,7 +261,8 @@
                     </div>
                     
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -274,7 +278,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -297,42 +302,42 @@
                     <span class="tei_hi_italic"><span class="tei_hi_spaced_out">Wichtige Verbesserung des Horns.</span></span>
                 </h2>
                                         <p>Das Erfinden <span class="tei_hi_italic">neuer</span> Instrumente, wenigstens das Sinnen darauf, ist jetzt an der Tagesordnung: eine Erscheinung, welche, bey dem täglich steigenden Luxus der Instrumentation und den immer höher gespannten Forderungen der Componisten, nicht ausbleiben konnte. Allein noch keinem von so manchen in neuern Zeiten erfundnen Instrumenten, von der 
-                    <span class="tei_ptr"></span>Harmonika<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> und dem 
-                    <span class="tei_ptr"></span>Euphon<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, 
-                    <span class="tei_ptr"></span>Callipson<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, 
-                    <span class="tei_ptr"></span>Melodion<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>, 
-                    <span class="tei_ptr"></span>Anemochord<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, 
-                    <span class="tei_ptr"></span>Clavicylinder<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>, 
-                    <span class="tei_ptr"></span>Triphon<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, 
-                    <span class="tei_ptr"></span>Xylosistron<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, 
-                    <span class="tei_ptr"></span>Uranion<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>, bis zum 
-                    <span class="tei_ptr"></span>Harmonichord<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> und 
-                    <span class="tei_ptr"></span>Panmelodion<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a>, von der als unentbehrlich vorgeschlagnen sogenannten 
-                    <span class="tei_ptr"></span>Tenorviola<span class="tei_app"><span class="tei_lem">, (man sehe meine Abhandlung darüber, oder vielmehr dagegen, im 5ten Jahrgang d.&#160;m. Zeit. von 1803)</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e120">‡</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a> bis zum allerneuest erfundnen 
-                    <span class="tei_ptr"></span><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic">Kriegsbass</span> –</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e134">‡</a></span>,<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> noch keinem hat es bis jetzt gelingen wollen, sich ein ständiges Bürgerrecht in unsern Orchestern, eine feststehende Zeile in den Partituren unsrer Componisten zu erwerben. Noch immer begnügen diese sich, auch um die grössten Instrumental-Effecte hervorzubringen, mit den gewöhnlichen Orchester-Instrumenten, und die neuen Aspiranten alle irren noch als heimlose Neulinge umher, darauf beschränkt, sich bald hier bald dort einmal als Soloinstrumente den Neugierigen zu produciren; <span class="tei_app"><span class="tei_lem">noch sieht man keines bedeutend mitwirken, um den Effect der Productionen unsrer jetzt vorhandenen Meisterwerke der Composition zu erhöhen, so dass man – da der Werth von Tonwerkzeugen am Ende doch hauptsächlich nach ihrer Brauchbarkeit und Anwendbarkeit zu messen ist – die Frage nicht unbedingt verneinen möchte</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e151">‡</a></span>: ob eine bedeutende Verbesserung eines schon eingeführten <span class="tei_app"><span class="tei_lem">Instruments</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e158">‡</a></span> nicht wichtiger, wenigstens vor der Hand praktisch nützlicher sey, als das Erfinden neuer Arten?</p>
-                                        <p><span class="tei_app"><span class="tei_lem">Besonders wohlthätig erscheinen, aus diesem Gesichtspunkte betrachtet, Verbesserungen an solchen Instrumenten, die an sich selbst, vermöge ihres eigenthümlichen Tones, von vorzüglicher Wirksamkeit, aber wegen Beschränktheit ihres Wirkungskreises nicht überall zu brauchen, und darum einer Vervollkommnung so werth, als bedürftig sind. Das bedeutendste unter diesen ist ohne Zweifel das Horn – ein Instrument, welchem gleich <span class="tei_hi_italic">kein</span> anderes mehr so schmelzende Weichheit mit eben so viel ausfüllender und durchschlagender, man möchte sagen, colossaler Kraft in sich vereinet</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e164">‡</a></span>; und doch, wie beschränkt ist der Kreis seiner Thätigkeit! Der ganze Reichthum von Tönen, welche es mit Kraft u. Nachdruck anzugeben vermag, beschränkt sich auf die lückenhafte Tonreihe: C, c, g, c’, e’, g’, b’, c’’, d’’, e’’, f’’, g’’, as’’; (<span class="tei_app"><span class="tei_lem">ich bezeichne hier die Töne</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e173">‡</a></span> überall so, wie sie für das Horn im <span class="tei_app"><span class="tei_lem">Violinschlüssel</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e179">‡</a></span> geschrieben zu werden pflegen, nicht, wie sie eigentlich klingen;) <span class="tei_app"><span class="tei_lem">und selbst von diesen Tönen gehört das untere Drittheil eigentlich nur dem <span class="tei_hi_italic">Secundarius</span>, das obere dem <span class="tei_hi_italic">Primarius</span> ausschliessend an; ja mehrere der höhern sind, bey etwas hohen Toneinsätzen, z. B. auf dem G-Horn, selbst vom <span class="tei_hi_italic">Primarius</span>, nicht mehr zu bändigen und gehörig zu temperiren. Die zwischen den oben angeführten Tonstufen liegenden ganzen und sogenannten halben Töne, wol gegen 30 an der Zahl, fehlen dem Instrumente ganz, und sind theils gar nicht herauszubringen, theils nur durch das sogenannte Stopfen zu erkünsteln, welche letztere dann aber durch die unverhältnismässige Schwäche und Dumpfheit ihres Klanges auffallend gegen ihre stärkern Nachbarn abstehen, dass sie zu Hervorbringung von Instrumental-Effecten sowol dem Componisten völlig unbrauchbar sind, als selbst den Solo-Vortrag durch unvermeidliche Tonungleichheit entstellen. Wieder andre Töne sind von Natur falsch, wie f’’ und fis’’, und vorzüglich a’’, welcher letztere schon auf E- und F-Horn gar nicht mehr zu bändigen ist.</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e185">‡</a></span> Dazu kommt noch das leidige Bedürfnis des häufigen und unbequemen Mutirens – <span class="tei_app"><span class="tei_lem">welches alles zusammengenommen das prächtige Instrument doch zu einem höchst unvollkommnen und beschränkten macht, so dass es von gebräuchlichen Instrumenten nur Trompete und Pauke an Unbehülflichkeit noch übertreffen.</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e199">‡</a></span> Eine Erfindung, welche diese unangenehmen Unvollkommenheiten zum bey weitem grössten Theile durch eine leichte und einfache Vorrichtung beseitigt, muss also nicht allein den Künstlern auf diesem Instrumente, sondern auch Componisten und Musikdirectoren eine höchst willkommne Erscheinung, und besonders letztern die Einführung derselben in den Orchestern angelegen seyn. </p>
-                                        <p>Eine solche Erfindung, oder vielmehr der erste Versuch, sich eine, jedem naheliegende Idee auszuführen, ist vor kurzem dem <span class="tei_app"><span class="tei_lem">hiesigen Hofmusiker</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e206">‡</a></span>, <a class="persons A000383" href="/exist/apps/WeGA-WebApp/de/A000383.html">Hrn. <span class="tei_hi_italic">Dikhuth</span></a>, gelungen. Die Vorrichtung, welche er an seinem Horn (von <span class=" 701149711012232779712212211110397116116111">Franz Mazzogatto</span> in <span class=" 87105101110"><span class="tei_settlement">Wien</span></span>) angebracht, ist folgende:</p>
-                                        <p>Die innere erste, grosse Windung des Horns ist an <span class="tei_hi_italic">der</span> Stelle des Zirkels, welche von der rechten Schulter des Spielers (vorausgesetzt, dass er die Stürze zur rechten Seite hält,) am entferntesten ist, senkrecht durchgeschnitten, die abgeschnittnen Enden sind einwärts umgebogen, und beyde in paralleler Richtung gegen die rechte Schulter zu, (d. h. in derselben Richtung, wie die Enden, in welche die Einsetzbogen gesteckt werden,) um etwa eine halbe Spanne verlängert. In diese zwey Enden passet ein Bogen, ganz wie ein Posaunenzug im Kleinen gestaltet, und eben so leicht hin und her beweglich, von der Länge einer kleinen Spanne (besser noch etwas länger) dem Aufschnitt gegenüber. Nämlich in der Gegend der rechten Schulter des Spielers ist ein <span class="tei_app"><span class="tei_lem">Uhrfederhaus</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e229">‡</a></span> befestigt und um dieses eine Saite oder Schnur aufgerollt, welche, mit dem andern Ende an den Posaunenzug in der Mitte seiner Länge befestigt, denselben beständig aufwärts zieht und folglich immer bis auf den äussersten Punkt herausgezogen hält, so lange der Daumen der linken Hand ihn nicht wieder abwärts und herein zieht, welcher letztere zu dem Ende immer in einem, am gedachten Zug für ihn angebrachten Haken ruht. </p>
-                                        <p>Was und wie diese Vorrichtung wirkt, und den eminenten Vortheil derselben, hat wol jeder Kenner jetzt schon auf den ersten Blick errathen und überschaut. Ganz heraus gelassen, wirkt der Zug einen halben Ton; durch Herauslassen desselben können folglich alle nächst unter den natürlichen Tönen liegenden <span class="tei_app"><span class="tei_lem">Semitöne</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e237">‡</a></span>, folglich <span class="tei_app"><span class="tei_lem">H, fis, h, dis’, fis’, a’, h’, cis’’, dis’’, fis’’, ja selbst das unglückselige a’’</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e243">‡</a></span>, die Klippe, an der auch die Geschicktesten so oft, so leicht scheitern, u.&#160;a.&#160;m. eben so rein und leicht, und mit gleicher Tonfülle und Kraft angegeben werden, wie die sogenannten Naturtöne; die übrigen, welche sonst nur durch <span class="tei_hi_italic">arges</span> Stopfen dem Instrumente abzubetteln waren, wie <span class="tei_app"><span class="tei_lem">b, d’, f’, as’</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e252">‡</a></span>, werden jetzt unter Mithülfe des Stimmzuges durch <span class="tei_hi_italic">mässiges</span> Stopfen eben so leicht und gut hervorgebracht, als zuvor die zuerst erwähnten <span class="tei_app"><span class="tei_lem">Semitöne</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e262">‡</a></span>, (d. h. sie werden nur um einen halben Ton gestopft, nicht, wie sonst, um einen ganzen.)</p>
+                    <span class="tei_ptr"></span>Harmonika<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> und dem 
+                    <span class="tei_ptr"></span>Euphon<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, 
+                    <span class="tei_ptr"></span>Callipson<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>, 
+                    <span class="tei_ptr"></span>Melodion<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>, 
+                    <span class="tei_ptr"></span>Anemochord<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>, 
+                    <span class="tei_ptr"></span>Clavicylinder<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>, 
+                    <span class="tei_ptr"></span>Triphon<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, 
+                    <span class="tei_ptr"></span>Xylosistron<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>, 
+                    <span class="tei_ptr"></span>Uranion<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>, bis zum 
+                    <span class="tei_ptr"></span>Harmonichord<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> und 
+                    <span class="tei_ptr"></span>Panmelodion<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a>, von der als unentbehrlich vorgeschlagnen sogenannten 
+                    <span class="tei_ptr"></span>Tenorviola<span class="tei_app"><span class="tei_lem">, (man sehe meine Abhandlung darüber, oder vielmehr dagegen, im 5ten Jahrgang d.&#160;m. Zeit. von 1803)</span><a class="noteMarker" id="ref-d72387e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e120">‡</a></span><a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a> bis zum allerneuest erfundnen 
+                    <span class="tei_ptr"></span><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic">Kriegsbass</span> –</span><a class="noteMarker" id="ref-d72387e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e134">‡</a></span>,<a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a> noch keinem hat es bis jetzt gelingen wollen, sich ein ständiges Bürgerrecht in unsern Orchestern, eine feststehende Zeile in den Partituren unsrer Componisten zu erwerben. Noch immer begnügen diese sich, auch um die grössten Instrumental-Effecte hervorzubringen, mit den gewöhnlichen Orchester-Instrumenten, und die neuen Aspiranten alle irren noch als heimlose Neulinge umher, darauf beschränkt, sich bald hier bald dort einmal als Soloinstrumente den Neugierigen zu produciren; <span class="tei_app"><span class="tei_lem">noch sieht man keines bedeutend mitwirken, um den Effect der Productionen unsrer jetzt vorhandenen Meisterwerke der Composition zu erhöhen, so dass man – da der Werth von Tonwerkzeugen am Ende doch hauptsächlich nach ihrer Brauchbarkeit und Anwendbarkeit zu messen ist – die Frage nicht unbedingt verneinen möchte</span><a class="noteMarker" id="ref-d72387e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e151">‡</a></span>: ob eine bedeutende Verbesserung eines schon eingeführten <span class="tei_app"><span class="tei_lem">Instruments</span><a class="noteMarker" id="ref-d72387e158" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e158">‡</a></span> nicht wichtiger, wenigstens vor der Hand praktisch nützlicher sey, als das Erfinden neuer Arten?</p>
+                                        <p><span class="tei_app"><span class="tei_lem">Besonders wohlthätig erscheinen, aus diesem Gesichtspunkte betrachtet, Verbesserungen an solchen Instrumenten, die an sich selbst, vermöge ihres eigenthümlichen Tones, von vorzüglicher Wirksamkeit, aber wegen Beschränktheit ihres Wirkungskreises nicht überall zu brauchen, und darum einer Vervollkommnung so werth, als bedürftig sind. Das bedeutendste unter diesen ist ohne Zweifel das Horn – ein Instrument, welchem gleich <span class="tei_hi_italic">kein</span> anderes mehr so schmelzende Weichheit mit eben so viel ausfüllender und durchschlagender, man möchte sagen, colossaler Kraft in sich vereinet</span><a class="noteMarker" id="ref-d72387e164" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e164">‡</a></span>; und doch, wie beschränkt ist der Kreis seiner Thätigkeit! Der ganze Reichthum von Tönen, welche es mit Kraft u. Nachdruck anzugeben vermag, beschränkt sich auf die lückenhafte Tonreihe: C, c, g, c’, e’, g’, b’, c’’, d’’, e’’, f’’, g’’, as’’; (<span class="tei_app"><span class="tei_lem">ich bezeichne hier die Töne</span><a class="noteMarker" id="ref-d72387e173" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e173">‡</a></span> überall so, wie sie für das Horn im <span class="tei_app"><span class="tei_lem">Violinschlüssel</span><a class="noteMarker" id="ref-d72387e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e179">‡</a></span> geschrieben zu werden pflegen, nicht, wie sie eigentlich klingen;) <span class="tei_app"><span class="tei_lem">und selbst von diesen Tönen gehört das untere Drittheil eigentlich nur dem <span class="tei_hi_italic">Secundarius</span>, das obere dem <span class="tei_hi_italic">Primarius</span> ausschliessend an; ja mehrere der höhern sind, bey etwas hohen Toneinsätzen, z. B. auf dem G-Horn, selbst vom <span class="tei_hi_italic">Primarius</span>, nicht mehr zu bändigen und gehörig zu temperiren. Die zwischen den oben angeführten Tonstufen liegenden ganzen und sogenannten halben Töne, wol gegen 30 an der Zahl, fehlen dem Instrumente ganz, und sind theils gar nicht herauszubringen, theils nur durch das sogenannte Stopfen zu erkünsteln, welche letztere dann aber durch die unverhältnismässige Schwäche und Dumpfheit ihres Klanges auffallend gegen ihre stärkern Nachbarn abstehen, dass sie zu Hervorbringung von Instrumental-Effecten sowol dem Componisten völlig unbrauchbar sind, als selbst den Solo-Vortrag durch unvermeidliche Tonungleichheit entstellen. Wieder andre Töne sind von Natur falsch, wie f’’ und fis’’, und vorzüglich a’’, welcher letztere schon auf E- und F-Horn gar nicht mehr zu bändigen ist.</span><a class="noteMarker" id="ref-d72387e185" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e185">‡</a></span> Dazu kommt noch das leidige Bedürfnis des häufigen und unbequemen Mutirens – <span class="tei_app"><span class="tei_lem">welches alles zusammengenommen das prächtige Instrument doch zu einem höchst unvollkommnen und beschränkten macht, so dass es von gebräuchlichen Instrumenten nur Trompete und Pauke an Unbehülflichkeit noch übertreffen.</span><a class="noteMarker" id="ref-d72387e199" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e199">‡</a></span> Eine Erfindung, welche diese unangenehmen Unvollkommenheiten zum bey weitem grössten Theile durch eine leichte und einfache Vorrichtung beseitigt, muss also nicht allein den Künstlern auf diesem Instrumente, sondern auch Componisten und Musikdirectoren eine höchst willkommne Erscheinung, und besonders letztern die Einführung derselben in den Orchestern angelegen seyn. </p>
+                                        <p>Eine solche Erfindung, oder vielmehr der erste Versuch, sich eine, jedem naheliegende Idee auszuführen, ist vor kurzem dem <span class="tei_app"><span class="tei_lem">hiesigen Hofmusiker</span><a class="noteMarker" id="ref-d72387e206" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e206">‡</a></span>, <a class="persons A000383" href="/exist/apps/WeGA-WebApp/de/A000383.html">Hrn. <span class="tei_hi_italic">Dikhuth</span></a>, gelungen. Die Vorrichtung, welche er an seinem Horn (von <span class=" 701149711012232779712212211110397116116111">Franz Mazzogatto</span> in <span class=" 87105101110"><span class="tei_settlement">Wien</span></span>) angebracht, ist folgende:</p>
+                                        <p>Die innere erste, grosse Windung des Horns ist an <span class="tei_hi_italic">der</span> Stelle des Zirkels, welche von der rechten Schulter des Spielers (vorausgesetzt, dass er die Stürze zur rechten Seite hält,) am entferntesten ist, senkrecht durchgeschnitten, die abgeschnittnen Enden sind einwärts umgebogen, und beyde in paralleler Richtung gegen die rechte Schulter zu, (d. h. in derselben Richtung, wie die Enden, in welche die Einsetzbogen gesteckt werden,) um etwa eine halbe Spanne verlängert. In diese zwey Enden passet ein Bogen, ganz wie ein Posaunenzug im Kleinen gestaltet, und eben so leicht hin und her beweglich, von der Länge einer kleinen Spanne (besser noch etwas länger) dem Aufschnitt gegenüber. Nämlich in der Gegend der rechten Schulter des Spielers ist ein <span class="tei_app"><span class="tei_lem">Uhrfederhaus</span><a class="noteMarker" id="ref-d72387e229" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e229">‡</a></span> befestigt und um dieses eine Saite oder Schnur aufgerollt, welche, mit dem andern Ende an den Posaunenzug in der Mitte seiner Länge befestigt, denselben beständig aufwärts zieht und folglich immer bis auf den äussersten Punkt herausgezogen hält, so lange der Daumen der linken Hand ihn nicht wieder abwärts und herein zieht, welcher letztere zu dem Ende immer in einem, am gedachten Zug für ihn angebrachten Haken ruht. </p>
+                                        <p>Was und wie diese Vorrichtung wirkt, und den eminenten Vortheil derselben, hat wol jeder Kenner jetzt schon auf den ersten Blick errathen und überschaut. Ganz heraus gelassen, wirkt der Zug einen halben Ton; durch Herauslassen desselben können folglich alle nächst unter den natürlichen Tönen liegenden <span class="tei_app"><span class="tei_lem">Semitöne</span><a class="noteMarker" id="ref-d72387e237" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e237">‡</a></span>, folglich <span class="tei_app"><span class="tei_lem">H, fis, h, dis’, fis’, a’, h’, cis’’, dis’’, fis’’, ja selbst das unglückselige a’’</span><a class="noteMarker" id="ref-d72387e243" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e243">‡</a></span>, die Klippe, an der auch die Geschicktesten so oft, so leicht scheitern, u.&#160;a.&#160;m. eben so rein und leicht, und mit gleicher Tonfülle und Kraft angegeben werden, wie die sogenannten Naturtöne; die übrigen, welche sonst nur durch <span class="tei_hi_italic">arges</span> Stopfen dem Instrumente abzubetteln waren, wie <span class="tei_app"><span class="tei_lem">b, d’, f’, as’</span><a class="noteMarker" id="ref-d72387e252" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e252">‡</a></span>, werden jetzt unter Mithülfe des Stimmzuges durch <span class="tei_hi_italic">mässiges</span> Stopfen eben so leicht und gut hervorgebracht, als zuvor die zuerst erwähnten <span class="tei_app"><span class="tei_lem">Semitöne</span><a class="noteMarker" id="ref-d72387e262" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e262">‡</a></span>, (d. h. sie werden nur um einen halben Ton gestopft, nicht, wie sonst, um einen ganzen.)</p>
                                         <p><span class="tei_ptr"></span>Freylich wirkt zwar bey tiefen Toneinsatzbogen der Zug weniger stark, als bey höhern: allein zum Glück ist bey tiefen Einsätzen das Stopfen am leichtesten und wirksamsten, die volle Wirksamkeit des Zuges also weniger nöthig, indess bey höhern Einsätzen, wo das Stopfen mühevoller ist, der Zug gerade desto wirksamere Hülfe gewährt.</p>
                                         <p>Wie unendlich mehr sich nun durch ein so hergerichtetes Horn effectuiren lässt, übersieht jeder auf den ersten Blick. Die ganze Tonreihe</p>
                                         <p></p>
                                         <p>kann durchgängig gleich, voll, stark, mit einem Wort, durchaus in sogenannten Naturtönen angegeben werden – und Sätze wie</p>
                                         <p></p>
                                         <p>gerade eben so gut, kräftig, und erstere beynahe, letztrer ganz so leicht, wie sonst dieselben Figuren im ewigen C dur. Auf diesem Horn sind nun Figuren, wie z. B. im Finale aus <a class="persons A001647" href="/exist/apps/WeGA-WebApp/de/A001647.html">Sarti’s</a> 
-                    <span class="tei_ptr"></span><span class="tei_hi_italic">fra due litiganti</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a>  nicht mehr dem Misslingen ausgesetzt; und Ref. kann kaum sagen, wie sehr er 
-                    <span class="tei_ptr"></span>jüngst überrascht war,<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a> 
-                    <span class="tei_ptr"></span>in <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethovens</a> <span class="tei_hi_italic"><span class=" 8310511010211111010597321011141111059997">Sinfonia eroica</span></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a> über den Effect der Hornstelle:</p>
+                    <span class="tei_ptr"></span><span class="tei_hi_italic">fra due litiganti</span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a>  nicht mehr dem Misslingen ausgesetzt; und Ref. kann kaum sagen, wie sehr er 
+                    <span class="tei_ptr"></span>jüngst überrascht war,<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a> 
+                    <span class="tei_ptr"></span>in <a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethovens</a> <span class="tei_hi_italic"><span class=" 8310511010211111010597321011141111059997">Sinfonia eroica</span></span><a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a> über den Effect der Hornstelle:</p>
                                         <p></p>
-                                        <p>welche sonst kaum gehört wird, auf <span class="tei_hi_italic">diesem</span> Instrument aber die frappanteste, durchgreifendste Wirkung that.<a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_31">*</a>
+                                        <p>welche sonst kaum gehört wird, auf <span class="tei_hi_italic">diesem</span> Instrument aber die frappanteste, durchgreifendste Wirkung that.<a class="noteMarker" id="ref-C_31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_31">*</a>
                                         </p>
-                                        <p>Als nicht unwichtige Nebenvortheile kommen noch in Anschlag: dass die Vorrichtung nicht nur zuweilen das Mutiren, z. B. aus E nach Es, aus F nach E, ganz erspart, indem durch blosses Loslassen des Zugs das Horn auf der Stelle um einen halben Ton tiefer steht, so dass man auf diese Art nöthigen Falls leicht As-Horn, Fis-Horn und H-Horn machen kann, dergleichen nicht allzuselten wirklich vorkommen (z. B. in der <span class="tei_app"><span class="tei_lem"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglerschen</a></span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d8798e337">‡</a></span> <span class=" 8097115116111114971084577101115115101">Pastoral-Messe</span>) und wozu die Hornisten selten die erforderlichen Bogen besitzen; sondern auch das wirkliche Transponiren um einige Töne ist ohne Vergleich, gegen zuvor, erleichtert durch den grössern Reichthum an natürlichen Tönen. Man kann, im Fall des Bedürfnisses, um beliebige Schwebungen höher oder tiefer stimmen, ohne das Instrument von den Lippen abzusetzen u.&#160;s.&#160;w. </p>
+                                        <p>Als nicht unwichtige Nebenvortheile kommen noch in Anschlag: dass die Vorrichtung nicht nur zuweilen das Mutiren, z. B. aus E nach Es, aus F nach E, ganz erspart, indem durch blosses Loslassen des Zugs das Horn auf der Stelle um einen halben Ton tiefer steht, so dass man auf diese Art nöthigen Falls leicht As-Horn, Fis-Horn und H-Horn machen kann, dergleichen nicht allzuselten wirklich vorkommen (z. B. in der <span class="tei_app"><span class="tei_lem"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglerschen</a></span><a class="noteMarker" id="ref-d72387e337" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72387e337">‡</a></span> <span class=" 8097115116111114971084577101115115101">Pastoral-Messe</span>) und wozu die Hornisten selten die erforderlichen Bogen besitzen; sondern auch das wirkliche Transponiren um einige Töne ist ohne Vergleich, gegen zuvor, erleichtert durch den grössern Reichthum an natürlichen Tönen. Man kann, im Fall des Bedürfnisses, um beliebige Schwebungen höher oder tiefer stimmen, ohne das Instrument von den Lippen abzusetzen u.&#160;s.&#160;w. </p>
                                         <p>Die Manipulation des Zuges ist so einfach, dass jeder geübte Spieler sich in dieselbe, so wie in die etwas veränderte Haltung der rechten Hand, leicht und bald finden wird. Uebrigens bleibt ein so hergerichtetes Instrument nach wie vor auch für den brauchbar, welcher sich des Zugs <span class="tei_hi_italic">nicht</span> zu bedienen versteht. </p>
                                         <p>Dass es durch den beweglichen Zug im Ganzen etwas an Tonstärke verlieren werde, schien zwar im voraus zu befürchten: der Erfolg hat aber gezeigt, dass, wenn er so fleissig gearbeitet wird, wie diesen der hiesige Uhrmacher <span class=" 77111108105110103101114">Molinger</span> gearbeitet hat, der Klang nicht im mindesten leidet.</p>
                                         <p>Eine ganz detaillirte und nach Zoll und Linien bestimmte Beschreibung der Mechanik habe ich um deswillen nicht gegeben, weil jeder Musiker, mit Hülfe eines geschickten Arbeiters, die einmal gegebne Idee an seinem Instrumente leicht ausführen kann, und die Details der Ausführung nach dem individuellen Bau des Instruments, der bald so bald anders geführten Windungen, und dem Ort, wo die Einsatzbögen angebracht sind, modificirt werden muss. Uebrigens wäre zu rathen, den Zug eher länger als kürzer machen zu lassen, um ihn so weit herauslassen zu können, als der Daumen zu reichen vermag. </p>
                                         <p>Rechnet man nun das Gesagte zusammen – bedenkt man, wie mühsam man oft, um auf andern Blasinstrumenten einen einzigen Ton zu gewinnen oder zu verbessern, eine oder wol mehrere, schwer zu behandelnde Klappen anbringt, indess <a class="persons A000383" href="/exist/apps/WeGA-WebApp/de/A000383.html">Hr. Dikhuth</a> durch die einfachste und leichteste Vorrichtung seinem Instrumente ganze Tonreihen auf Einmal neu gewonnen, die Tongleichheit unendlich verbessert, und dabey die Spielart nicht nur nicht erschwert, sondern bedeutend erleichtert hat: so möchte man beynahe bedauern, dass die Erfindung in <span class=" 681011171161159910410897110100"><span class="tei_country">Deutschland</span></span> gemacht worden, wo Prämien und Patente für dergleichen nicht – hergebracht sind, wo der bescheidne Erfinder sich durch die, sich selbst gewonnene Erleichterung und grössere Vollkommenheit seines Spiels schon belohnt achten muss, und sich am Ende etwa gar noch wundert, dass seine Erfindung einer öffentlichen Erwähnung gewürdigt ward.</p>
                                         <p class="tei_closer">
-                    <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>, im October 1812. <span class="tei_segBlock textAlign-right"><span class="tei_ptr"></span><span class="tei_hi_italic">Gottfried Weber.</span><a class="noteMarker" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_32">*</a></span>
+                    <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>, im October 1812. <span class="tei_segBlock textAlign-right"><span class="tei_ptr"></span><span class="tei_hi_italic">Gottfried Weber.</span><a class="noteMarker" id="ref-C_32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_32">*</a></span>
                 </p>
                                     </div>
                                 </div>
@@ -435,69 +440,69 @@
                                             <div class="apparatusEntry" id="C_11" data-title="note definition">"<span class="tei_lemma">Panmelodion</span>": Über das von Franz Leppich erfundene Panmelodikon hatte G. Weber ausführlich berichtet; vgl. 1811-V-06.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e120" data-title="app">", (man sehe meine Abhandlung darüber, oder vielmehr dagegen, im 5ten Jahrgang d.&#160;m. Zeit. von 1803)": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d72387e120" data-title="app">", (man sehe meine Abhandlung darüber, oder vielmehr dagegen, im 5ten Jahrgang d.&#160;m. Zeit. von 1803)": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_12" data-title="note commentary">"<span class="tei_lemma">Tenorviola , (man … Zeit. von 1803)</span>": In der <span class="tei_hi_italic">AMZ,</span> Jg.&#160;5, Nr.&#160;42 (13. Juli 1803), Sp.&#160;699-701, war ein Streichinstrument gefordert worden, dessen Umfang zwischen Bratsche und Violoncello liegen und das durch ein anderes Timbre den Streichersatz analog zu den Stimmlagen Sopran, Alt, Tenor und Baß auffüllen sollte. Dagegen hatte sich G. Weber in der <span class="tei_hi_italic">AMZ,</span> Jg.&#160;5, Nr.&#160;49 (31. August 1803), Sp.&#160;809-813, ausgesprochen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e134" data-title="app">"Kriegsbass –": Lesart in anderer Quelle: <span class="tei_rdg">Kriegs-Bass-Instrument mit Kanonen</span>
+                                            <div class="apparatusEntry" id="d72387e134" data-title="app">"Kriegsbass –": Lesart in anderer Quelle: <span class="tei_rdg">Kriegs-Bass-Instrument mit Kanonen</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_13" data-title="note commentary">"<span class="tei_lemma">Kriegsbass – Kriegs-Bass-Instrument mit Kanonen ,</span>": Die <span class="tei_hi_italic">Musicalische Zeitung für die oesterreichischen Staaten</span>&#160;gibt einen Hinweis, indem der Begriff dort durch <span class="tei_hi_italic">Kriegs-Bass-Instrument mit Kanonen</span> ersetzt ist; vgl. Lesarten Z.&#160;9.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e151" data-title="app">"noch sieht man keines bedeutend mitwirken, um den Effect der Productionen unsrer jetzt vorhandenen Meisterwerke der Composition zu erhöhen, so dass man – da der Werth von Tonwerkzeugen am Ende doch hauptsächlich nach ihrer Brauchbarkeit und Anwendbarkeit zu messen ist – die Frage nicht unbedingt verneinen möchte": Lesart in anderer Quelle: <span class="tei_rdg">– es entstehet daher die Frage</span>
+                                            <div class="apparatusEntry" id="d72387e151" data-title="app">"noch sieht man keines bedeutend mitwirken, um den Effect der Productionen unsrer jetzt vorhandenen Meisterwerke der Composition zu erhöhen, so dass man – da der Werth von Tonwerkzeugen am Ende doch hauptsächlich nach ihrer Brauchbarkeit und Anwendbarkeit zu messen ist – die Frage nicht unbedingt verneinen möchte": Lesart in anderer Quelle: <span class="tei_rdg">– es entstehet daher die Frage</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e158" data-title="app">"Instruments": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d72387e158" data-title="app">"Instruments": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e164" data-title="app">"Besonders wohlthätig erscheinen, aus diesem Gesichtspunkte betrachtet, Verbesserungen an solchen Instrumenten, die an sich selbst, vermöge ihres eigenthümlichen Tones, von vorzüglicher Wirksamkeit, aber wegen Beschränktheit ihres Wirkungskreises nicht überall zu brauchen, und darum einer Vervollkommnung so werth, als bedürftig sind. Das bedeutendste unter diesen ist ohne Zweifel das Horn – ein Instrument, welchem gleich kein anderes mehr so schmelzende Weichheit mit eben so viel ausfüllender und durchschlagender, man möchte sagen, colossaler Kraft in sich vereinet": Lesart in anderer Quelle: <span class="tei_rdg">Unter den eingeführten Instrumenten ist gewiss das Horn eines der bedeutendsten</span>
+                                            <div class="apparatusEntry" id="d72387e164" data-title="app">"Besonders wohlthätig erscheinen, aus diesem Gesichtspunkte betrachtet, Verbesserungen an solchen Instrumenten, die an sich selbst, vermöge ihres eigenthümlichen Tones, von vorzüglicher Wirksamkeit, aber wegen Beschränktheit ihres Wirkungskreises nicht überall zu brauchen, und darum einer Vervollkommnung so werth, als bedürftig sind. Das bedeutendste unter diesen ist ohne Zweifel das Horn – ein Instrument, welchem gleich kein anderes mehr so schmelzende Weichheit mit eben so viel ausfüllender und durchschlagender, man möchte sagen, colossaler Kraft in sich vereinet": Lesart in anderer Quelle: <span class="tei_rdg">Unter den eingeführten Instrumenten ist gewiss das Horn eines der bedeutendsten</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e173" data-title="app">"ich bezeichne hier die Töne": Lesart in anderer Quelle: <span class="tei_rdg">die Töne sind hier</span>
+                                            <div class="apparatusEntry" id="d72387e173" data-title="app">"ich bezeichne hier die Töne": Lesart in anderer Quelle: <span class="tei_rdg">die Töne sind hier</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e179" data-title="app">"Violinschlüssel": Lesart in anderer Quelle: <span class="tei_rdg">G-Schlüssel</span>
+                                            <div class="apparatusEntry" id="d72387e179" data-title="app">"Violinschlüssel": Lesart in anderer Quelle: <span class="tei_rdg">G-Schlüssel</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e185" data-title="app">"und selbst von diesen Tönen gehört das untere Drittheil eigentlich nur dem Secundarius, das obere dem Primarius ausschliessend an; ja mehrere der höhern sind, bey etwas hohen Toneinsätzen, z. B. auf dem G-Horn, selbst vom Primarius, nicht mehr zu bändigen und gehörig zu temperiren. Die zwischen den oben angeführten Tonstufen liegenden ganzen und sogenannten halben Töne, wol gegen 30 an der Zahl, fehlen dem Instrumente ganz, und sind theils gar nicht herauszubringen, theils nur durch das sogenannte Stopfen zu erkünsteln, welche letztere dann aber durch die unverhältnismässige Schwäche und Dumpfheit ihres Klanges auffallend gegen ihre stärkern Nachbarn abstehen, dass sie zu Hervorbringung von Instrumental-Effecten sowol dem Componisten völlig unbrauchbar sind, als selbst den Solo-Vortrag durch unvermeidliche Tonungleichheit entstellen. Wieder andre Töne sind von Natur falsch, wie f'' und fis'', und vorzüglich a'', welcher letztere schon auf E- und F-Horn gar nicht mehr zu bändigen ist.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d72387e185" data-title="app">"und selbst von diesen Tönen gehört das untere Drittheil eigentlich nur dem Secundarius, das obere dem Primarius ausschliessend an; ja mehrere der höhern sind, bey etwas hohen Toneinsätzen, z. B. auf dem G-Horn, selbst vom Primarius, nicht mehr zu bändigen und gehörig zu temperiren. Die zwischen den oben angeführten Tonstufen liegenden ganzen und sogenannten halben Töne, wol gegen 30 an der Zahl, fehlen dem Instrumente ganz, und sind theils gar nicht herauszubringen, theils nur durch das sogenannte Stopfen zu erkünsteln, welche letztere dann aber durch die unverhältnismässige Schwäche und Dumpfheit ihres Klanges auffallend gegen ihre stärkern Nachbarn abstehen, dass sie zu Hervorbringung von Instrumental-Effecten sowol dem Componisten völlig unbrauchbar sind, als selbst den Solo-Vortrag durch unvermeidliche Tonungleichheit entstellen. Wieder andre Töne sind von Natur falsch, wie f'' und fis'', und vorzüglich a'', welcher letztere schon auf E- und F-Horn gar nicht mehr zu bändigen ist.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e199" data-title="app">"welches alles zusammengenommen das prächtige Instrument doch zu einem höchst unvollkommnen und beschränkten macht, so dass es von gebräuchlichen Instrumenten nur Trompete und Pauke an Unbehülflichkeit noch übertreffen.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d72387e199" data-title="app">"welches alles zusammengenommen das prächtige Instrument doch zu einem höchst unvollkommnen und beschränkten macht, so dass es von gebräuchlichen Instrumenten nur Trompete und Pauke an Unbehülflichkeit noch übertreffen.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e206" data-title="app">"hiesigen Hofmusiker": Lesart in anderer Quelle: <span class="tei_rdg">königl: Hofmusiker zu Mannheim</span>
+                                            <div class="apparatusEntry" id="d72387e206" data-title="app">"hiesigen Hofmusiker": Lesart in anderer Quelle: <span class="tei_rdg">königl: Hofmusiker zu Mannheim</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e229" data-title="app">"Uhrfederhaus": Lesart in anderer Quelle: <span class="tei_rdg">Ohrfederhaus</span>
+                                            <div class="apparatusEntry" id="d72387e229" data-title="app">"Uhrfederhaus": Lesart in anderer Quelle: <span class="tei_rdg">Ohrfederhaus</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e237" data-title="app">"Semitöne": Lesart in anderer Quelle: <span class="tei_rdg">halben Töne</span>
+                                            <div class="apparatusEntry" id="d72387e237" data-title="app">"Semitöne": Lesart in anderer Quelle: <span class="tei_rdg">halben Töne</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e243" data-title="app">"H, fis, h, dis', fis', a', h', cis'', dis'', fis'', ja selbst das unglückselige a''": Lesart in anderer Quelle: <span class="tei_rdg">B (h), fis, b, eingestrichene dis, fis, a, b, zweigestrichene cis, dis, fis, ja selbst das a</span>
+                                            <div class="apparatusEntry" id="d72387e243" data-title="app">"H, fis, h, dis', fis', a', h', cis'', dis'', fis'', ja selbst das unglückselige a''": Lesart in anderer Quelle: <span class="tei_rdg">B (h), fis, b, eingestrichene dis, fis, a, b, zweigestrichene cis, dis, fis, ja selbst das a</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e252" data-title="app">"b, d', f', as'": Lesart in anderer Quelle: <span class="tei_rdg">bes, eingestrichene d, f, as</span>
+                                            <div class="apparatusEntry" id="d72387e252" data-title="app">"b, d', f', as'": Lesart in anderer Quelle: <span class="tei_rdg">bes, eingestrichene d, f, as</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e262" data-title="app">"Semitöne": Lesart in anderer Quelle: <span class="tei_rdg">Halbtöne</span>
+                                            <div class="apparatusEntry" id="d72387e262" data-title="app">"Semitöne": Lesart in anderer Quelle: <span class="tei_rdg">Halbtöne</span>
                                             </div>
                                         </li>
                                         <li>
@@ -513,7 +518,7 @@
                                             <div class="apparatusEntry" id="C_31" data-title="note commentary">"<span class="tei_lemma">Freylich wirkt zwar … durchgreifendste Wirkung that.</span>": Diese Passage wurde in der <span class="tei_hi_italic">Musicalischen Zeitung für die österreichischen Staaten</span> weggelassen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d8798e337" data-title="app">"Voglerschen": Lesart in anderer Quelle: <span class="tei_rdg">Abt Voglers</span>
+                                            <div class="apparatusEntry" id="d72387e337" data-title="app">"Voglerschen": Lesart in anderer Quelle: <span class="tei_rdg">Abt Voglers</span>
                                             </div>
                                         </li>
                                         <li>
@@ -575,21 +580,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
@@ -630,8 +630,8 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/datepicker.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/minified/i18n/datepicker-de.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
