@@ -1,29 +1,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head data-template="html-meta:metadata">
+    <head data-template="html-meta:metadata" prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8"/>
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title data-template="app:print" data-template-key="meta-page-title">Carl-Maria-von-Weber-Gesamtausgabe</title>
         
-        <meta name="DC.title" data-template="app:set-attr" data-template-attr="content" data-template-key="meta-page-title"/>
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType"/>
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT"/>
-        <meta name="DC.contributor" data-template="html-meta:each-meta" data-template-key="DC.contributor"/>
-        <meta name="DC.creator" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.date"/>
-        <meta name="DC.identifier" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
-        <meta name="DC.description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
+        <meta property="dc:title" data-template="app:set-attr" data-template-attr="content" data-template-key="meta-page-title"/>
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
+        <meta property="dc:type" content="Text"/>
+        <meta property="dc:format" content="text/html"/>
+        <meta property="dc:contributor" data-template="html-meta:each-meta" data-template-key="DC.contributor"/>
+        <meta property="dc:creator" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
+        <meta property="dc:date" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.date"/>
+        <meta property="dc:identifier" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
+        <meta property="dc:description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
         <meta name="description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
-        <meta name="DC.subject" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.subject"/>
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
-        <meta name="DC.rights" content="http://creativecommons.org/licenses/by-nc-sa/3.0/" scheme="DCTERMS.URI" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.rights"/>
+        <meta property="dc:subject" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.subject"/>
+        <meta property="dc:language" content="de"/>
+        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.rights"/>
         <meta name="google-site-verification" data-template="app:set-attr" data-template-attr="content" data-template-key="google-site-verification"/>
         <meta name="msvalidate.01" data-template="app:set-attr" data-template-attr="content" data-template-key="ms-site-verification"/>
         <meta name="robots" content="noimageindex"/>
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"/>
