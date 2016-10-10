@@ -99,10 +99,10 @@
          <!-- Need to take care of whitespace when there are multiple <add> -->
          <xsl:choose>
             <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()"/>
+               <xsl:apply-templates select="tei:add | text()" mode="#current"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:apply-templates select="tei:add"/>
+               <xsl:apply-templates select="tei:add" mode="#current"/>
             </xsl:otherwise>
          </xsl:choose>
          <xsl:call-template name="popover"/>
@@ -120,10 +120,10 @@
          <!-- Need to take care of whitespace when there are multiple <add> -->
          <xsl:choose>
             <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()"/>
+               <xsl:apply-templates select="tei:add | text()" mode="plain-text-output"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:apply-templates select="tei:add"/>
+               <xsl:apply-templates select="tei:add" mode="plain-text-output"/>
             </xsl:otherwise>
          </xsl:choose>
          <xsl:text>": </xsl:text>
@@ -172,7 +172,7 @@
          <xsl:attribute name="class">
             <xsl:text>tei_app</xsl:text>
          </xsl:attribute>
-         <xsl:apply-templates select="tei:lem"/>
+         <xsl:apply-templates select="tei:lem" mode="#current"/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -339,7 +339,7 @@
          <xsl:attribute name="class" select="'tei_choice'"/>
          <xsl:choose>
             <xsl:when test="tei:sic">
-               <xsl:apply-templates select="tei:corr"/>
+               <xsl:apply-templates select="tei:corr" mode="#current"/>
             </xsl:when>
             <xsl:when test="tei:unclear">
                <xsl:variable name="opts" as="element()*">
@@ -400,7 +400,7 @@
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="#current"/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -410,7 +410,7 @@
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:text>[</xsl:text>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="#current"/>
          <xsl:text>]</xsl:text>
       </xsl:element>
    </xsl:template>
@@ -423,7 +423,7 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="plain-text-output"/>
          <xsl:text>": sic!</xsl:text>
       </xsl:element>
    </xsl:template>
@@ -449,7 +449,7 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="plain-text-output"/>
          <xsl:text>": </xsl:text>
          <xsl:choose>
             <xsl:when test="tei:gap">
@@ -466,6 +466,20 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
+   </xsl:template>
+    
+   <xsl:template match="tei:del" mode="plain-text-output"/>
+   <xsl:template match="tei:note" mode="plain-text-output"/>
+   <xsl:template match="tei:lb" mode="plain-text-output">
+      <xsl:text> </xsl:text>
+   </xsl:template>
+   <xsl:template match="tei:q" mode="plain-text-output">
+      <xsl:text>"</xsl:text>
+      <xsl:apply-templates mode="#current"/>
+      <xsl:text>"</xsl:text>
+   </xsl:template>
+   <xsl:template match="tei:*" mode="plain-text-output">
+      <xsl:apply-templates mode="#current"/>
    </xsl:template>
    
    <xsl:function name="wega:createID">

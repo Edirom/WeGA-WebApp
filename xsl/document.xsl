@@ -72,7 +72,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:head[not(ancestor::tei:floatingText)]" priority="1">
+    <xsl:template match="tei:head[parent::tei:div]" priority="1">
         <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
         <xsl:variable name="increments" as="xs:integer">
             <!-- Wenn es ein Untertitel ist wird der Level hochgezählt -->
