@@ -124,6 +124,14 @@ $.fn.initDatepicker = function () {
     })
 };
 
+/* Run Google Code Prettifyer for code examples */
+$.fn.googlecodeprettify = function ()
+{
+    prettyPrint();
+}
+
+$('.prettyprint').googlecodeprettify();
+
 // remove popovers when clicking somewhere
 $('body').on('click', function (e) {
     $('[data-original-title]').each(function () {
@@ -595,3 +603,4 @@ $('#create-newID').on('click', function() {
         $('#newID-result span').show();
     });
 });
+
