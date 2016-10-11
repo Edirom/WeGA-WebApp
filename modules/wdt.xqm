@@ -273,7 +273,7 @@ declare function wdt:works($item as item()*) as map(*) {
             $item/root()[mei:mei][descendant::mei:meiHead]
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr')][ancestor::mei:fileDesc]/root() 
+            $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('works')) then ()
