@@ -2,6 +2,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
+    xmlns:teix="http://www.tei-c.org/ns/Examples"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:param name="createSecNos" select="false()"/>
