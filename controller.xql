@@ -197,7 +197,7 @@ else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002
     </dispatch>:)
 
 (: GND Resolver :)
-else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) then
+else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$'))) then
     controller:redirect-by-gnd($exist-vars)
 
 (: Shortcut für fffi-db :)
