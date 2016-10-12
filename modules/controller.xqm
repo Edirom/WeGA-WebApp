@@ -90,8 +90,8 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 (:    let $log := util:log-system-out($exist-vars('path')):)
 (:    let $log := util:log-system-out($path):)
     return 
-        if($exist-vars('path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
-        else if($path) then controller:redirect-absolute($path || '.' || $media-type)
+        if($media-type and $exist-vars('path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
+        else if($media-type and $path) then controller:redirect-absolute($path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
@@ -261,11 +261,12 @@ declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:st
         core:link-to-current-app(replace(str:join-path-elements(($targetLang,$translated-tokens)), '\s+', '_'))
 };
 
-declare function controller:redirect-by-gnd($exist-vars as map(*)) {
-    let $doc := query:doc-by-gnd($exist-vars('resource'))
+declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
+    let $doc := query:doc-by-gnd(functx:substring-before-if-contains($exist-vars('resource'), '.'))
+    let $media-type := controller:media-type($exist-vars)
     return
-        if(exists($doc)) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')))
-        else controller:error($exist-vars('resource'), '404')
+        if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')) || '.' || $media-type)
+        else controller:error($exist-vars, 404)
 };
 
 declare function controller:lookup-url-mappings($exist-vars as map(*)) {
@@ -298,13 +299,32 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
         else ()
 };
 
+(:~
+ : Figure out the requested mime type for a resource by looking at its file extension and HTTP request headers.
+ : The file extension gets precedence over HTTP headers; 
+ : when no supported file extension nor HTTP headers are given, the empty sequence is returned.
+ : 
+ : @author Peter Stadler
+ : @param $exist-vars a map containing various stuff, here we need the requested resource, i.e. $exist-vars('resource')
+ : @return a string {html|xml} or empty sequence
+ :)
 declare %private function controller:media-type($exist-vars as map(*)) as xs:string? {
     let $suffix := functx:substring-after-last($exist-vars('resource'), '.')
     let $header := tokenize(request:get-header('Accept'), ',')
     return
-        controller:canonical-mime-type(($suffix, $header))
+        if($suffix and $suffix ne $exist-vars('resource')) then controller:canonical-mime-type($suffix)
+        else controller:canonical-mime-type($header)
 };
 
+(:~
+ : Helper function for controller:media-type()
+ : Recursively loop through a sequence of strings and see whether some string matches a defined pattern. 
+ : Return the first matching string.
+ : 
+ : @author Peter Stadler
+ : @param $mime-type some string representation of a mime type, e.g. "xml" or "application/xml"
+ : @return a string {html|xml} or empty sequence
+ :)
 declare %private function controller:canonical-mime-type($mime-type as xs:string*) as xs:string? {
     switch($mime-type[1])
     case 'html' case 'htm' return 'html'
