@@ -373,7 +373,9 @@
             <xsl:when test="tei:sic">
                <xsl:text>recte "</xsl:text>
                <xsl:value-of select="tei:corr"/>
-               <xsl:text>": eigentlich "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceCorr', $lang)"/>
+               <xsl:text> "</xsl:text>
                <xsl:value-of select="tei:sic"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
