@@ -62,8 +62,14 @@
     </target>
     
     <target name="check-html">
+        <!-- need to do some extra copying and replacing because we're using the non-valid color attribute for Safari pinned tabs -->
+        <copy todir="${tmp.dir}/html-check">
+            <fileset dir="testing/expected-results"/>
+        </copy>
+        <replace dir="${tmp.dir}/html-check" token="color=&quot;#0066cc&quot;"/>
         <java jar="${vnu.jar}" failonerror="true" fork="true">
-            <arg value="testing/expected-results"/>
+            <arg value="${tmp.dir}/html-check"/>
+            <arg value="--skip-non-html"/>
         </java>
     </target>
     
