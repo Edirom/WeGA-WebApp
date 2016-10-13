@@ -187,7 +187,8 @@
          <xsl:text>"</xsl:text>
          <xsl:value-of select="tei:lem"/>
          <xsl:text>": </xsl:text>
-         <xsl:text>Lesart in anderer Quelle: </xsl:text>
+         <xsl:value-of select="wega:getLanguageString('appRdg', $lang)"/>
+         <xsl:text>: </xsl:text>
          <xsl:variable name="rdg">
             <xsl:apply-templates select="tei:rdg"/>
          </xsl:variable>
@@ -253,7 +254,9 @@
                <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
             </xsl:when>
             <!-- TODO translate -->
-            <xsl:otherwise>Hinzufügung</xsl:otherwise>
+            <xsl:otherwise>
+               <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
+            </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
    </xsl:template>
@@ -292,7 +295,7 @@
             </xsl:otherwise>
          </xsl:choose>
          <xsl:text>": </xsl:text>
-         <xsl:text>Unsichere Lesung</xsl:text>
+         <xsl:value-of select="wega:getLanguageString('unclearDefault', $lang)"/>
       </xsl:element>
    </xsl:template>
    
@@ -322,7 +325,9 @@
             <xsl:text> </xsl:text>
             <xsl:value-of select="@reason"/>
          </xsl:attribute>
-         <xsl:text> Unleserliche Stelle </xsl:text>
+         <xsl:text> </xsl:text>
+         <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
+         <xsl:text> </xsl:text>
          <xsl:if test="@unit and @quantity">
             <xsl:text>(ca. </xsl:text>
             <xsl:value-of select="@quantity"/>
@@ -380,7 +385,9 @@
                </xsl:variable>
                <xsl:text>"</xsl:text>
                <xsl:value-of select="$opts[1]"/>
-               <xsl:text>": weitere mögliche Lesarten: "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceUnclear', $lang)"/>
+               <xsl:text>: "</xsl:text>
                <!-- Eventuell noch @cert mit ausgeben?!? -->
                <xsl:value-of select="string-join(subsequence($opts, 2), '&#34;, &#34;')"/>
                <xsl:text>"</xsl:text>
@@ -388,7 +395,9 @@
             <xsl:when test="tei:abbr">
                <xsl:text>"</xsl:text>
                <xsl:value-of select="tei:abbr"/>
-               <xsl:text>": Abk. von "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceAbbr', $lang)"/>
+               <xsl:text> "</xsl:text>
                <xsl:value-of select="tei:expan"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
