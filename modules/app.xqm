@@ -1227,33 +1227,31 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
     let $docID := $model('docID')
     let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
     let $addresseeID := ($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
-    let $normDates := norm:get-norm-doc('letters')
+    let $authorColl := core:getOrCreateColl('letters', $authorID, true())
+    let $indexOfCurrentLetter := sort:index('letters', $doc)
     
     (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
-    let $prevLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][1]
+    let $prevLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[last()]
     (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
-    let $prevLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    let $prevLetterToSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[last()]
     (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
-    let $nextLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][not(functx:all-whitespace(.))][1] 
+    let $nextLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[1]
     (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
-    let $nextLetterToSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    let $nextLetterToSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[1]
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
-    let $prevLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    let $prevLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[last()]
     (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
-    let $prevLetterFromAuthorToAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/preceding-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][1]
+    let $prevLetterFromAuthorToAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[last()]
     (: Direkter Antwortbrief des Adressaten:)
-    let $replyLetterFromAddressee := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $addresseeID][@addresseeID = $authorID][not(functx:all-whitespace(.))][1]
+    let $replyLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[1]
     (: Antwort des Autors auf die Antwort des Adressaten :)
-    let $replyLetterFromSender := $normDates//norm:entry[@docID = $docID][not(functx:all-whitespace(.))]/following-sibling::norm:entry[@authorID = $authorID][@addresseeID = $addresseeID][not(functx:all-whitespace(.))][1] 
+    let $replyLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[1]
     
-    let $create-map := function($norm-entry as element(norm:entry)?, $fromTo as xs:string) as map()? {
-        if($norm-entry) then
+    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
+        if($letter) then
             map {
-                'norm-date' := $norm-entry/text(),
                 'fromTo' := $fromTo,
-                'docID' := $norm-entry/data(@docID),
-                (: There may be multiple addressees or senders! :)
-                'partnerID' := $norm-entry/(@addresseeID,@authorID)[not(contains(.,$authorID))]/tokenize(., '\s+')[1]
+                'doc' := $letter
             }
         else ()
     }
@@ -1270,14 +1268,21 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
 declare 
     %templates:default("lang", "en")
     function app:print-letter-context($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $letter := core:doc($model('letter-norm-entry')('docID'))
-        let $partner := try { core:doc($model('letter-norm-entry')('partnerID')) } catch * {()}
+        let $letter := $model('letter-norm-entry')('doc')
+        let $partnerID := 
+            switch($model('letter-norm-entry')('fromTo')) 
+            (: There may be multiple addressees or senders! :)
+            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
+            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
+            default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
+        let $partner := try { core:doc($partnerID) } catch * { core:logToFile('error', 'app:print-letter-context(): failed to get person data for &quot;' || $partnerID || '&quot;') }
+        let $normDate := query:get-normalized-date($letter)
         return (
-            app:createDocLink($letter, $model('letter-norm-entry')('norm-date'), $lang, ()), 
+            app:createDocLink($letter, $normDate, $lang, ()), 
             ": ",
             lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
             " ",
-            if($partner) then app:createDocLink($partner, query:get-reg-name($model('letter-norm-entry')('partnerID')), $lang, ())
+            if($partner) then app:createDocLink($partner, query:get-reg-name($partnerID), $lang, ())
             else lang:get-language-string('unknown', $lang)
         )
 };
