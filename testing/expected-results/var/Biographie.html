@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Carl Maria von Weber – Biographie</title>
         
-        <meta name="DC.title" content="Carl Maria von Weber – Biographie" />
-        <meta name="DC.publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta name="DC.type" content="Text" scheme="DCTERMS.DCMIType" />
-        <meta name="DC.format" content="text/html" scheme="DCTERMS.IMT" />
-        <meta name="DC.contributor" content="Frank Ziegler" />
-        <meta name="DC.creator" content="Peter Stadler" />
-        <meta name="DC.date" scheme="DCTERMS.W3CDTF" content="2016-04-25T19:31:57.680629Z" />
-        <meta name="DC.identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070003" />
-        <meta name="DC.description" content="geb. 18./19.(?) November 1786 in Eutin Aufenthalt der Familie ab Mitte 1787 in Hamburg bzw. Wien, ab Mai 1789 in Kassel und Marburg Carl Maria von …" />
+        <meta property="dc:title" content="Carl Maria von Weber – Biographie" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Frank Ziegler" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2016-04-25T19:31:57.680629Z" />
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070003" />
+        <meta property="dc:description" content="geb. 18./19.(?) November 1786 in Eutin Aufenthalt der Familie ab Mitte 1787 in Hamburg bzw. Wien, ab Mai 1789 in Kassel und Marburg Carl Maria von …" />
         <meta name="description" content="geb. 18./19.(?) November 1786 in Eutin Aufenthalt der Familie ab Mitte 1787 in Hamburg bzw. Wien, ab Mai 1789 in Kassel und Marburg Carl Maria von …" />
-        <meta name="DC.subject" content="Varia" />
-        <meta name="DC.language" content="de" scheme="DCTERMS.RFC3066" />
-        <meta name="DC.rights" scheme="DCTERMS.URI" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta property="dc:subject" content="Varia" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
         <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
         
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
@@ -51,7 +49,7 @@
 
     </head>
     <body>
-        <nav role="navigation" class="navbar navbar-default">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -62,7 +60,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
-                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" />
+                            <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     <!-- Collection of nav links and other content for toggling -->
@@ -238,8 +236,9 @@
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">Dokumente</h2>
-                        <div id="dokumente" class="panel-collapse collapse ">
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
+                        <div id="dokument" class="panel-collapse collapse ">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
@@ -252,7 +251,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -364,7 +364,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -396,7 +397,8 @@
                         </div>
                     </div>
                             <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -551,30 +553,30 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li><a href="#d68853e3">Biographische Kurzübersicht</a>
+                                        <li><a href="#d23566e3">Biographische Kurzübersicht</a>
                                         </li>
-                                        <li><a href="#d68853e87">Frühe Kindheit (1786–1789)</a>
+                                        <li><a href="#d23566e87">Frühe Kindheit (1786–1789)</a>
                                         </li>
-                                        <li><a href="#d68853e222">Wanderungen der Weberschen Theatergesellschaft (1789–1796)</a>
+                                        <li><a href="#d23566e222">Wanderungen der Weberschen Theatergesellschaft (1789–1796)</a>
                                         </li>
-                                        <li><a href="#d68853e381">Jahre der Ausbildung (1796–1804)</a>
+                                        <li><a href="#d23566e381">Jahre der Ausbildung (1796–1804)</a>
                                         </li>
-                                        <li><a href="#d68853e661">Schlesien (1804–1807)</a>
+                                        <li><a href="#d23566e661">Schlesien (1804–1807)</a>
                                         </li>
-                                        <li><a href="#d68853e759">Württemberg (1807–1810)</a>
+                                        <li><a href="#d23566e759">Württemberg (1807–1810)</a>
                                         </li>
-                                        <li><a href="#d68853e932">Reisejahre (1810–1813)</a>
+                                        <li><a href="#d23566e932">Reisejahre (1810–1813)</a>
                                         </li>
-                                        <li><a href="#d68853e1268">Prag (1813–1816)</a>
+                                        <li><a href="#d23566e1268">Prag (1813–1816)</a>
                                         </li>
-                                        <li><a href="#d68853e1423">Dresden (1817–1826)</a>
+                                        <li><a href="#d23566e1423">Dresden (1817–1826)</a>
                                         </li>
-                                        <li><a href="#d68853e1456">London-Reise und Tod (1826)</a>
+                                        <li><a href="#d23566e1456">London-Reise und Tod (1826)</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="d68853e2">
-                                    <h2 id="d68853e3">Biographische Kurzübersicht</h2>
+                                <div id="d23566e2">
+                                    <h2 id="d23566e3">Biographische Kurzübersicht</h2>
                                     <ul class="tei_list">
                                         <li>Kind aus einer Musikerfamilie, frühe Ausbildung beim Vater <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a> und beim ältesten Halbbruder
                      <a class="persons A002075" href="/exist/apps/WeGA-WebApp/de/A002075.html">Fridolin von Weber</a>
@@ -610,16 +612,16 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="d68853e86">
-                                    <h2 id="d68853e87">Frühe Kindheit (1786–1789)</h2>
-                                    <div id="d68853e89" class="abstract">
+                                <div id="d23566e86">
+                                    <h2 id="d23566e87">Frühe Kindheit (1786–1789)</h2>
+                                    <div id="d23566e89" class="abstract">
                                         <p>geb. 18./19.(?) November 1786 in <span class=" 69117116105110"><span class="tei_settlement">Eutin</span></span>
                                         </p>
                                         <p>Aufenthalt der Familie ab Mitte 1787 in <span class=" 729710998117114103"><span class="tei_settlement">Hamburg</span></span> bzw. <span class=" 87105101110"><span class="tei_settlement">Wien</span></span>, ab Mai 1789 in
                   <span class=" 7597115115101108"><span class="tei_settlement">Kassel</span></span> und <span class=" 779711498117114103"><span class="tei_settlement">Marburg</span></span>
                                         </p>
                                     </div>
-                                    <div id="d68853e112">
+                                    <div id="d23566e112">
                                         <p>Carl Maria von Weber wurde vermutlich am 18.
                   oder 19.&#160;November 1786 in <span class=" 69117116105110"><span class="tei_settlement">Eutin</span></span>
                   geboren. Verbürgt ist lediglich der Tag seiner Taufe in der dortigen
@@ -658,9 +660,9 @@
                      Weber</a>)</p>
                                     </div>
                                 </div>
-                                <div id="d68853e221">
-                                    <h2 id="d68853e222">Wanderungen der Weberschen Theatergesellschaft (1789–1796)</h2>
-                                    <div id="d68853e224" class="abstract">
+                                <div id="d23566e221">
+                                    <h2 id="d23566e222">Wanderungen der Weberschen Theatergesellschaft (1789–1796)</h2>
+                                    <div id="d23566e224" class="abstract">
                                         <p><a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a> versuchte dreimal, sich
                als Direktor einer eigenen Theatergesellschaft zu etablieren:</p>
                                         <ul class="tei_list">
@@ -672,7 +674,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div id="d68853e261">
+                                    <div id="d23566e261">
                                         <p>Bereits in <span class=" 7597115115101108"><span class="tei_settlement">Kassel</span></span> plante <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a> die Gründung einer eigenen Schauspieltruppe, mit der er zwischen 19.&#160;September 1789 und 19.&#160;April 1790 im
                   Schloss Elisabethenburg im thüringischen <span class=" 77101105110105110103101110"><span class="tei_settlement">Meiningen</span></span> auftrat und die anfangs
                   überwiegend aus Familienmitgliedern bestand. Finanzielle Schwierigkeiten beendeten
@@ -704,9 +706,9 @@
                   in der nahegelegenen, zum Fürsterzbistum gehörigen Stadt <span class=" 7297108108101105110"><span class="tei_settlement">Hallein</span></span>.</p>
                                     </div>
                                 </div>
-                                <div id="d68853e380">
-                                    <h2 id="d68853e381">Jahre der Ausbildung (1796–1804)</h2>
-                                    <div id="d68853e383" class="abstract">
+                                <div id="d23566e380">
+                                    <h2 id="d23566e381">Jahre der Ausbildung (1796–1804)</h2>
+                                    <div id="d23566e383" class="abstract">
                                         <p>Unterricht </p>
                                         <ul class="tei_list">
                                             <li>in <span class=" 721051081009811711410310497117115101110"><span class="tei_settlement">Hildburghausen</span></span> 1796/97 bei <a class="persons A000835" href="/exist/apps/WeGA-WebApp/de/A000835.html">Johann Peter Heuschkel</a>
@@ -721,7 +723,7 @@
                                         <p>zwischenzeitlich Projekt einer lithographischen Officin in <span class=" 701141011059810111410347839799104115101110"><span class="tei_settlement">Freiberg/Sachsen</span></span>
                   (1800/01), Aufenthalte in <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span> (1801) und <span class=" 839710812298117114103"><span class="tei_settlement">Salzburg</span></span> (1801/02), Konzertreise durch Mittel- und Norddeutschland (1802), Aufenthalt in <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span> (1802/03)</p>
                                     </div>
-                                    <div id="d68853e440">
+                                    <div id="d23566e440">
                                         <p>Nachdem das Projekt einer selbständigen Weberschen Theatertruppe endgültig
                   gescheitert war, widmete sich <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a> in den folgenden Jahren
                   insbesondere der musikalischen Ausbildung seines Sohnes Carl Maria in der
@@ -773,13 +775,13 @@
                   Fortschritte.</p>
                                     </div>
                                 </div>
-                                <div id="d68853e660">
-                                    <h2 id="d68853e661">Schlesien (1804–1807)</h2>
-                                    <div id="d68853e663" class="abstract">
+                                <div id="d23566e660">
+                                    <h2 id="d23566e661">Schlesien (1804–1807)</h2>
+                                    <div id="d23566e663" class="abstract">
                                         <p>1804–1806 Musikdirektor am Theater in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span>, ab Juni 1806 ohne Stellung,
                   mehrmonatiger Aufenthalt im schlesischen <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span> (heute <span class=" 80111107243106"><span class="tei_settlement">Pokój</span></span>) bis Februar 1807</p>
                                     </div>
-                                    <div id="d68853e678">
+                                    <div id="d23566e678">
                                         <p>Als sich die Direktion des <span class=" 6611410111510897117101114"><span class="tei_settlement">Breslauer</span></span> Theaters 1804 auf der Suche nach einem neuen musikalischen Leiter an <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> wandte, empfahl dieser seinen Schüler Weber für das
                   Musikdirektorenamt, das der noch nicht Achtzehnjährige tatsächlich erhielt. Ende
                   Mai reiste er über <span class=" 839710812298117114103"><span class="tei_settlement">Salzburg</span></span>, <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span>, <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span> (5. bis 14.&#160;Juni) und vermutlich
@@ -806,14 +808,14 @@
                   <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span> am 23.&#160;Februar 1807 verließ. </p>
                                     </div>
                                 </div>
-                                <div id="d68853e758">
-                                    <h2 id="d68853e759">Württemberg (1807–1810)</h2>
-                                    <div id="d68853e761" class="abstract">
+                                <div id="d23566e758">
+                                    <h2 id="d23566e759">Württemberg (1807–1810)</h2>
+                                    <div id="d23566e761" class="abstract">
                                         <p>Konzertreise über Sachsen und <span class=" 7011497110107101110"><span class="tei_settlement">Franken</span></span> (März bis Juli 1807) nach <span class=" 8725211411611610110998101114103"><span class="tei_settlement">Württemberg</span></span>, dort
                   Anstellung als Geheimer Sekretär bei  <a class="persons A001210" href="/exist/apps/WeGA-WebApp/de/A001210.html">Herzog Louis von Württemberg</a>; </p>
                                         <p>in Finanzaffären seines Dienstherren verstrickt und nach Prozess 1810 des Landes verwiesen</p>
                                     </div>
-                                    <div id="d68853e777">
+                                    <div id="d23566e777">
                                         <p>Auf der Suche nach einer neuen Beschäftigung begab sich Weber im März 1807 von
                   <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> aus auf die bereits im Vorjahr geplante Konzertreise, als deren Hauptziel
                   <span class=" 8311611711611610397114116"><span class="tei_settlement">Stuttgart</span></span> vorgesehen war, wohin ihm sein Gastgeber vom Winter 1806/07, 
@@ -853,9 +855,9 @@
                   wurde mit seinem <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> des Landes verwiesen.</p>
                                     </div>
                                 </div>
-                                <div id="d68853e931">
-                                    <h2 id="d68853e932">Reisejahre (1810–1813)</h2>
-                                    <div id="d68853e934" class="abstract">
+                                <div id="d23566e931">
+                                    <h2 id="d23566e932">Reisejahre (1810–1813)</h2>
+                                    <div id="d23566e934" class="abstract">
                                         <p>Konzerttätigkeit im Raum <span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span>/<span class=" 7210110510010110898101114103"><span class="tei_settlement">Heidelberg</span></span>, ab April 1810 erneuter Unterricht
                   bei <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> in <span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span>; Gründung des Harmonischen Vereins, der sich aus Webers dortigem Freundeskreis sowie Mitschülern bei <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> rekrutierte</p>
                                         <p>ab Februar 1811 Reisen auf der Suche nach einer neuen Anstellung, zahlreiche
@@ -863,7 +865,7 @@
                   <span class=" 76101105112122105103"><span class="tei_settlement">Leipzig</span></span>, <span class=" 7111111610497"><span class="tei_settlement">Gotha</span></span>, <span class=" 8710110510997114"><span class="tei_settlement">Weimar</span></span>, <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span> und <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>
                                         </p>
                                     </div>
-                                    <div id="d68853e989">
+                                    <div id="d23566e989">
                                         <p>Die negativen Erfahrungen der zurückliegenden <span class=" 8311611711611610397114116101114"><span class="tei_settlement">Stuttgarter</span></span> Zeit, besonders aber die
                   enormen finanziellen Verpflichtungen, die nun abzutragen waren, führten zu einem
                   Umdenken: Als Akt der Selbstdisziplinierung begann Weber, ein Tagebuch zu führen,
@@ -919,12 +921,12 @@
                   engagieren zu können.</p>
                                     </div>
                                 </div>
-                                <div id="d68853e1267">
-                                    <h2 id="d68853e1268">Prag (1813–1816)</h2>
-                                    <div id="d68853e1270" class="abstract">
+                                <div id="d23566e1267">
+                                    <h2 id="d23566e1268">Prag (1813–1816)</h2>
+                                    <div id="d23566e1270" class="abstract">
                                         <p>Kapellmeister am Ständetheater</p>
                                     </div>
-                                    <div id="d68853e1273">
+                                    <div id="d23566e1273">
                                         <p>Weber hatte zunächst große Vorbehalte, das <span class=" 8011497103101114"><span class="tei_settlement">Prager</span></span> Amt zu übernehmen; er notierte
                   in seinem <a class="diaries A062269" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062269.html">Tagebuch am 15.&#160;Januar 1813</a>: „ich entschloß mich endlich mit schwerem
                   Herzen ja zu sagen, und auf 3 Jahre <span class="tei_hi_italic">Contract </span>zu machen“;
@@ -983,21 +985,21 @@
 </span></span> Hoftheater.</p>
                                     </div>
                                 </div>
-                                <div id="d68853e1422">
-                                    <h2 id="d68853e1423">Dresden (1817–1826)</h2>
-                                    <div id="d68853e1425" class="abstract">
+                                <div id="d23566e1422">
+                                    <h2 id="d23566e1423">Dresden (1817–1826)</h2>
+                                    <div id="d23566e1425" class="abstract">
                                         <p>Hofkapellmeister, Aufbau des deutschen Departements des Hoftheaters</p>
                                         <p>Komposition der Opern <span class="tei_hi_italic"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischütz</span></span> (UA 1821 <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>), <span class="tei_hi_italic"><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> (UA 1823 <span class=" 87105101110"><span class="tei_settlement">Wien</span></span>) und <span class="tei_hi_italic"><span class="works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> (UA 1826 <span class=" 76111110100111110"><span class="tei_settlement">London</span></span>)</p>
                                     </div>
                                 </div>
-                                <div id="d68853e1455">
-                                    <h2 id="d68853e1456">London-Reise und Tod (1826)</h2>
-                                    <div id="d68853e1458" class="abstract">
+                                <div id="d23566e1455">
+                                    <h2 id="d23566e1456">London-Reise und Tod (1826)</h2>
+                                    <div id="d23566e1458" class="abstract">
                                         <p>Reise zur Einstudierung des <span class="tei_hi_italic"><span class="works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> nach <span class=" 76111110100111110"><span class="tei_settlement">London</span></span>,
                   umfangreiche Konzert- und Dirigierverpflichtungen</p>
                                         <p>Tod am 5.&#160;Juni</p>
                                     </div>
-                                    <div id="d68853e1471">
+                                    <div id="d23566e1471">
                                         <p>Angebote, eine Oper für <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> zu schreiben, hatte Weber bereits 1822, kurz nach
                   dem Sensationserfolg seines <span class="tei_hi_italic"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>, erhalten;
                   konkretere Gestalt nahmen die Planungen allerdings erst 1824 an, als er den
@@ -1078,21 +1080,16 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://www.adwmainz.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
-                        </a>
-                    </div>
-                    <div class="col-md-3 col-xs-6">
-                        <a href="http://validator.w3.org/check?uri=referer">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_w3c_farbe.png" alt="W3C Validator logo" />
                         </a>
                     </div>
                     <div class="col-md-3 col-xs-6">
