@@ -1227,28 +1227,30 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
     let $docID := $model('docID')
     let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
     let $addresseeID := ($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
-    let $authorColl := core:getOrCreateColl('letters', $authorID, true())
+    let $authorColl := 
+        if($authorID) then core:getOrCreateColl('letters', $authorID, true())
+        else ()
     let $indexOfCurrentLetter := sort:index('letters', $doc)
     
     (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
-    let $prevLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[last()]
+    let $prevLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[last()]/root()
     (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
-    let $prevLetterToSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[last()]
+    let $prevLetterToSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[last()]/root()
     (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
-    let $nextLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[1]
+    let $nextLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[1]/root()
     (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
-    let $nextLetterToSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$authorID])('sort')(())[1]
+    let $nextLetterToSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[1]/root()
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
-    let $prevLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[last()]
+    let $prevLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[last()]/root()
     (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
-    let $prevLetterFromAuthorToAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[last()]
+    let $prevLetterFromAuthorToAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[last()]/root()
     (: Direkter Antwortbrief des Adressaten:)
-    let $replyLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[1]
+    let $replyLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[1]/root()
     (: Antwort des Autors auf die Antwort des Adressaten :)
-    let $replyLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter][.//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key=$addresseeID])('sort')(())[1]
+    let $replyLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[1]/root()
     
     let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
-        if($letter) then
+        if($letter and exists(query:get-normalized-date($letter))) then
             map {
                 'fromTo' := $fromTo,
                 'doc' := $letter
@@ -1275,7 +1277,9 @@ declare
             case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
             case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
-        let $partner := try { core:doc($partnerID) } catch * { core:logToFile('error', 'app:print-letter-context(): failed to get person data for &quot;' || $partnerID || '&quot;') }
+        let $partner := 
+            if($partnerID) then core:doc($partnerID)
+            else ()
         let $normDate := query:get-normalized-date($letter)
         return (
             app:createDocLink($letter, $normDate, $lang, ()), 
