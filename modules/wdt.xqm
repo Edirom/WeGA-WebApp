@@ -44,9 +44,9 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'title' := function() as xs:string {
             typeswitch($item)
-            case xs:string return str:normalize-space(core:doc($item)//tei:orgName[range:eq(@type,'reg')])
-            case document-node() return str:normalize-space($item//tei:orgName[range:eq(@type,'reg')])
-            case element() return str:normalize-space($item/root()//tei:orgName[range:eq(@type,'reg')])
+            case xs:string return str:normalize-space(core:doc($item)//tei:orgName[@type = 'reg'])
+            case document-node() return str:normalize-space($item//tei:orgName[@type = 'reg'])
+            case element() return str:normalize-space($item/root()//tei:orgName[@type = 'reg'])
             default return ''
             
         },
@@ -122,11 +122,11 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[range:eq(@type, ('albumblatt', 'letter', 'guestbookEntry'))]/root()
+            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()//tei:persName[range:eq(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
-            $item/root()//tei:orgName[range:eq(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
+            $item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
+            $item/root()//tei:orgName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
             $item/root()//tei:rs[ancestor::tei:correspAction][contains(@key, $personID)][not(ancestor-or-self::tei:note)]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
@@ -135,7 +135,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[range:eq(@type,('albumblatt', 'letter', 'guestbookEntry'))]/root()
+            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -196,10 +196,10 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
                 let $sortName :=
-                    if($node/tei:org) then str:normalize-space($node//tei:orgName[range:eq(@type,'reg')])
-                    else if(functx:all-whitespace($node//tei:persName[range:eq(@type,'reg')]/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[range:eq(@type,'reg')], '\s?,'))
-                    else str:normalize-space($node//tei:persName[range:eq(@type,'reg')]/tei:surname[1])
-                let $name := str:normalize-space($node//tei:persName[range:eq(@type,'reg')])
+                    if($node/tei:org) then str:normalize-space($node//tei:orgName[@type = 'reg'])
+                    else if(functx:all-whitespace($node//tei:persName[@type = 'reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type = 'reg'], '\s?,'))
+                    else str:normalize-space($node//tei:persName[@type = 'reg']/tei:surname[1])
+                let $name := str:normalize-space($node//tei:persName[@type = 'reg'])
                 return $sortName || $name
             }, ())
         },
@@ -225,7 +225,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root() 
+            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('writings')) then ()
@@ -540,10 +540,10 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[range:eq(@type, 'thematicCom')]/root()
+            $item/root()/descendant::tei:text[@type = 'thematicCom']/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()//tei:author[range:eq(@key, $personID)][ancestor::tei:fileDesc]/root()
+            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('thematicCommentaries')) then ()
