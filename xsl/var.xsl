@@ -134,6 +134,13 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="tei:ab">
+        <xsl:element name="div">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
     <xsl:template match="tei:code">
         <xsl:element name="code">
             <xsl:apply-templates select="@xml:id"/>
