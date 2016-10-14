@@ -65,13 +65,6 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:head[parent::tei:div]" priority="1">
         <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
         <xsl:variable name="increments" as="xs:integer">

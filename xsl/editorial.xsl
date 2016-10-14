@@ -179,13 +179,6 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <!--<xsl:template match="tei:biblStruct[parent::tei:listBibl]">
         <xsl:sequence select="wega:printCitation(., 'li', $lang)"/>
     </xsl:template>-->

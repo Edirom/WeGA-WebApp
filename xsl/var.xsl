@@ -109,13 +109,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:eg">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>

@@ -12,13 +12,6 @@
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
 
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:note[parent::document-node()]" priority="1">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>

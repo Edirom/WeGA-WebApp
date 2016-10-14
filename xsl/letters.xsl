@@ -63,7 +63,7 @@
         </xsl:element>
     </xsl:template>
    
-    <xsl:template match="tei:p">
+    <!--<xsl:template match="tei:p">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
@@ -71,12 +71,12 @@
                     <xsl:when test="following-sibling::node()[1][name() = 'closer'][@rend='inline']">
                         <xsl:text>inlineParagraph</xsl:text>
                     </xsl:when>
-                    <!--<xsl:when test="following-sibling::node()[name() = 'closer' or name() = 'p'][1][@rend='inline'] or ./@rend='inline' or (. = ../tei:p[position()=last() and ])">
+                    <!-\-<xsl:when test="following-sibling::node()[name() = 'closer' or name() = 'p'][1][@rend='inline'] or ./@rend='inline' or (. = ../tei:p[position()=last() and ])">
                         <xsl:text>inlineParagraph</xsl:text>
                         <xsl:if test="not(./@rend='inline') and not(. = ../tei:p[position()=1])">
                             <xsl:text> indented</xsl:text>
                         </xsl:if>
-                    </xsl:when>-->
+                    </xsl:when>-\->
                     <xsl:otherwise>
                         <xsl:text>blockParagraph</xsl:text>
                     </xsl:otherwise>
@@ -92,7 +92,7 @@
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
 
     <xsl:template match="tei:opener">
         <xsl:element name="div">
