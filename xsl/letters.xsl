@@ -136,14 +136,9 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:text>teiLetter_closer</xsl:text>
-                <xsl:choose>
-                    <xsl:when test="@rend='inline'">
-                        <xsl:text> inlineParagraph</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text> blockParagraph indented</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="@rend='inline'">
+                    <xsl:text> inlineStart</xsl:text>
+                </xsl:if>
             </xsl:attribute>
             <xsl:if test="@rend='right'">
                 <xsl:attribute name="style" select="'text-align: right;'"/>

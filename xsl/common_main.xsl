@@ -610,7 +610,7 @@
     
     <xsl:template match="tei:p">
         <xsl:variable name="inlineEnd" as="xs:string?">
-            <xsl:if test="following-sibling::node()[1][name() = 'closer'][@rend='inline']">
+            <xsl:if test="following-sibling::node()[1][self::tei:closer[@rend='inline']]">
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
