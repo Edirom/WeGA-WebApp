@@ -68,8 +68,8 @@
                             <li data-template="app:set-active-nav">
                                 <a href="$link/index">Home</a>
                             </li>
-                            <li data-template="app:set-active-nav">
-                                <a href="$link/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li data-template="app:set-active-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
                                     <li>
                                         <a href="$link/A002068/bio.html" data-template="lang:translate">bio</a>
@@ -88,8 +88,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li data-template="app:set-active-nav">
-                                <a href="$link/indices" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown" data-template="lang:translate">indices</a>
+                            <li data-template="app:set-active-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">indices</a>
                                 <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
                                     <li>
                                         <a href="$link/indices/persons" data-template="lang:translate">persons</a>
@@ -114,8 +114,8 @@
                             <li data-template="app:set-active-nav">
                                 <a href="$link/search" data-template="lang:translate">search</a>
                             </li>
-                           <li data-template="app:set-active-nav" id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" data-template="lang:translate">project</a>
+                           <li data-template="app:set-active-nav" id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">project</a>
                                 <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
                                     <li>
                                         <a href="$link/project/news" data-template="lang:translate">news</a>
@@ -143,8 +143,8 @@
                                     </li>-->
                                 </ul>
                             </li>
-                            <li data-template="app:set-active-nav" id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" data-template="lang:translate">help</a>
+                            <li data-template="app:set-active-nav" id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">help</a>
                                 <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
                                     <li>
                                         <a href="$link/help/faq.html" data-template="lang:translate">faq</a>
@@ -157,7 +157,7 @@
                             <div data-template="app:if-matches" data-template-key="environment" data-template-value="development" data-template-wrap="false">
                             <li class="divider"/>
                             <li data-template="app:set-active-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="$link/dev/test-html.html">Test-HTML</a>
