@@ -1416,7 +1416,8 @@ declare
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
             'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
-            'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type)
+            'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
+            'workType' := $model('result-page-entry')//mei:term/data(@classcode)
         }
 };
 

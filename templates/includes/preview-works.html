@@ -1,7 +1,8 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
     <div class="preview-icon">
         <span class="pull-left">
-            <img src="$resources/img/icons/icon_works.png" class="img-responsive" alt="preview-icon"/>
+            <img src="$resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" data-template="app:if-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
+            <img src="$resources/img/icons/icon_works.png" class="img-responsive" alt="preview-icon" data-template="app:if-not-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
         </span>
     </div>
     <div class="media-body">
