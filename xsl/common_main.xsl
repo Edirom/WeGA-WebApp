@@ -137,6 +137,13 @@
         </xsl:if>
         <xsl:element name="br"/>
     </xsl:template>
+    
+    <xsl:template match="tei:ptr[starts-with(@target, 'http')]">
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="@target"/>
+            <xsl:value-of select="@target"/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- 
         tei:seg und tei:signed mit @rend werden schon als block-level-Elemente gesetzt, 
