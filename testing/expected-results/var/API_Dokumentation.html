@@ -33,7 +33,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -70,8 +69,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -95,8 +94,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -127,8 +126,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -164,8 +163,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav" class="active">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown active">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -180,7 +179,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -260,18 +259,18 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li><a href="#d99324e3">Content Negotiation</a>
+                                        <li><a href="#d112645e3">Content Negotiation</a>
                                         </li>
                                         <li><a href="#sprachwahl">Sprachauswahl</a>
                                         </li>
-                                        <li><a href="#d99324e84">Abfragen von GND IDs</a>
+                                        <li><a href="#d112645e84">Abfragen von GND IDs</a>
                                         </li>
-                                        <li><a href="#d99324e119">Correspondence Metadata Interchange-Format</a>
+                                        <li><a href="#d112645e119">Correspondence Metadata Interchange-Format</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="d99324e2">
-                                    <h2 id="d99324e3">Content Negotiation</h2>
+                                <div id="d112645e2">
+                                    <h2 id="d112645e3">Content Negotiation</h2>
                                     <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
                Aktuell werden HTML und TEI-XML unterstützt, wobei das gewünschte Ausgabeformat entweder 
                über ein Suffix (<code>.html</code>/<code>.htm</code> oder <code>.tei</code>/<code>.xml</code>) oder über den HTTP Accept Header 
@@ -293,7 +292,7 @@
                                     <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt.</p>
                                 </div>
                                 <div id="sprachwahl">
-                                    <h2 id="d99324e61">Sprachauswahl</h2>
+                                    <h2 id="d112645e61">Sprachauswahl</h2>
                                     <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
                Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
                Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
@@ -308,8 +307,8 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d99324e83">
-                                    <h2 id="d99324e84">Abfragen von GND IDs</h2>
+                                <div id="d112645e83">
+                                    <h2 id="d112645e84">Abfragen von GND IDs</h2>
                                     <p> 
                Von der API werden aktuell GNDs vom Typ „Person“ unterstützt, welche über einen PND-Beacon zur Verfügung gestellt werden. 
                Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/pnd_beacon.txt</code>.
@@ -328,8 +327,8 @@
                                     </div>
                                     <p>Detaillierte Informationen zum PND-Beacon-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link"></i></a>.</p>
                                 </div>
-                                <div id="d99324e118">
-                                    <h2 id="d99324e119">Correspondence Metadata Interchange-Format</h2>
+                                <div id="d112645e118">
+                                    <h2 id="d112645e119">Correspondence Metadata Interchange-Format</h2>
                                     <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMI)
                zur Verfügung. Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/correspDesc.xml</code>.
             </p>
