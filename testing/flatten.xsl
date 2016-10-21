@@ -60,14 +60,15 @@
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
     <xsl:template match="html:small[matches(., '^ \(\d+\)$')]"/><!-- Anzahl der jeweiligen Dokumente (Backlinks, Briefe, etc.) in den Personentabs -->
     <xsl:template match="html:a[matches(., '^HBZ-Verbundkatalog( \(\d+\))?$')]"/><!-- HBZ varies its display of matches … -->
+    <xsl:template match="html:a[@class='page-link'][matches(@href, '\?page=\d+')]"/>
     
     <xsl:template match="@id"/>
     <xsl:template match="@data-ref"/>
     <xsl:template match="processing-instruction() | comment()"/>
     
-    <xsl:template match="html:meta[@name='DC.identifier'][not(normalize-space(@content) eq '')]"/>
-    <xsl:template match="html:meta[@name='DC.date'][not(normalize-space(@content) eq '')]"/>
-    <xsl:template match="html:meta[@name='DC.creator'][not(normalize-space(@content) eq '')]"/>
+    <xsl:template match="html:meta[@property='dc:identifier'][not(normalize-space(@content) eq '')]"/>
+    <xsl:template match="html:meta[@property='dc:date'][not(normalize-space(@content) eq '')]"/>
+    <xsl:template match="html:meta[@property='dc:creator'][not(normalize-space(@content) eq '')]"/>
     <xsl:template match="html:script"/>
     <xsl:template match="html:noscript"/>
     
