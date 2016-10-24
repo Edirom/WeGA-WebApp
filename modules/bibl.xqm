@@ -38,6 +38,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     (: Trying to guess … :)
     else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='m']) then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='j']) then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/tei:monogr/tei:title[@level='m']) then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     (: Fallback :)
     else bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
@@ -89,7 +90,8 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             $title,
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
-            $pubPlaceNYear
+            $pubPlaceNYear,
+            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
         }
 };
 
