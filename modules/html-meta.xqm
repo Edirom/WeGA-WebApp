@@ -88,7 +88,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
     default return  
         switch($model('docType'))
         case 'persons' return concat(str:printFornameSurname(query:get-reg-name($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
-        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return str:normalize-space(string-join(app:document-title(<a/>, $model, $lang)[not(normalize-space(.) = '')], '. '))
+        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return str:normalize-space(string-join(app:document-title(<a/>, $model, $lang)[not(normalize-space(.) = '')] ! normalize-space(.), '. '))
         case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', str:normalize-space(string-join(app:document-title(<a/>, $model, $lang), ' ')), $lang))
         case 'orgs' return query:get-reg-name($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
         default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
