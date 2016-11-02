@@ -455,9 +455,9 @@ declare
             <li>{
                 if($page le 1) then (
                     attribute {'class'}{'disabled'},
-                    <span>&#x00AB; previous</span>
+                    <span>{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</span>
                 )
-                else $a-element($page - 1, '&#x00AB; previous') 
+                else $a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) 
             }</li>,
             if($page gt 3) then <li>{$a-element(1, '1')}</li> else (),
             if($page gt 4) then <li>{$a-element(2, '2')}</li> else (),
@@ -471,9 +471,9 @@ declare
             <li>{
                 if($page ge $last-page) then (
                     attribute {'class'}{'disabled'},
-                    <span>next &#x00BB;</span>
+                    <span>{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</span>
                 )
-                else $a-element($page + 1, 'next &#x00BB;')
+                else $a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')
             }</li>
         )
 };
