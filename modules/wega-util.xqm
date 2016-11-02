@@ -103,7 +103,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
 };
 
 (:~
- : Identity transformation with stripping off XML comments and processing instructions
+ : Identity transformation with stripping off XML comments 
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform
@@ -120,6 +120,33 @@ declare function wega-util:remove-comments($nodes as node()*) as node()* {
                 wega-util:remove-comments($node/node())
             }
         else if($node instance of document-node()) then wega-util:remove-comments($node/node())
+        else $node
+};
+
+(:~
+ : Recursively remove idiosyncratic WeGA elements ('workName', 'characterName') and turn them into generic TEI <rs> elements
+ :
+ : @author Peter Stadler 
+ : @param $nodes the nodes to transform
+ : @return transformed nodes
+~:)
+declare function wega-util:substitute-wega-element-additions($nodes as node()*) as node()* {
+    for $node in $nodes
+    return
+        if($node instance of processing-instruction()) then $node
+        else if($node instance of comment()) then $node
+        else if($node instance of element(tei:workName) or $node instance of element(tei:characterName)) then
+            element {QName('http://www.tei-c.org/ns/1.0', 'rs')} {
+                $node/@*,
+                attribute type { substring-before(local-name($node), 'Name') },
+                wega-util:substitute-wega-element-additions($node/node())
+            }
+        else if($node instance of element()) then 
+            element {node-name($node)} {
+                $node/@*,
+                wega-util:substitute-wega-element-additions($node/node())
+            }
+        else if($node instance of document-node()) then wega-util:substitute-wega-element-additions($node/node())
         else $node
 };
 
