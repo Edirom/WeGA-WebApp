@@ -124,9 +124,31 @@ $.fn.initDatepicker = function () {
     })
 };
 
+/* 
+ * Activate bootstrap remote nav tabs (on letters) 
+ * "For further details see editorial"  
+ */
+$('#transcription a[href$=#editorial]').on('click', function (e) {
+    // code taken from the bootstrap remote nav tabs plugin
+    var url = $(e)[0].target.href,
+        hash = url.substring(url.indexOf('#')+1),
+        hasTab = $('[data-toggle=tab][href*='+hash+']'),
+        hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
+
+    if (hasTab) {
+        hasTab.tab('show');
+    }
+    
+    if (hasAccordion) {
+        // for some reason we cannot execute the 'show' event for an accordion properly, so here's a workaround
+        if (hasAccordion[0] != $('[data-toggle=collapse]:first')[0]) {
+            hasAccordion.click();
+        }
+    }
+});
+
 /* Run Google Code Prettifyer for code examples */
-$.fn.googlecodeprettify = function ()
-{
+$.fn.googlecodeprettify = function () {
     prettyPrint();
 }
 

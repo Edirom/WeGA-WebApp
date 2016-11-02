@@ -1061,16 +1061,15 @@ declare
             default return $doc//tei:text/tei:body
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
-             then (
-                let $text := 
-                    if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
-                    else lang:get-language-string('correspondenceTextNotYetAvailable', $lang)
-                return
-                    element p {
+             then 
+                element p {
                         attribute class {'notAvailable'},
-                        $text
-                    }
-             )
+                        if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+                        else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
+                        (: adding link to editorial :)
+                        lang:get-language-string('forFurtherDetailsSee', $lang), ' ',
+                        <a href="#editorial">{lang:get-language-string('editorial', $lang)}.</a>
+                }
              else (
                 wega-util:transform($textRoot, $xslt1, $xslParams),
                 if($xslt2) then wega-util:transform($textRoot, $xslt2, $xslParams) else ()
