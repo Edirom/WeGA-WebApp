@@ -1,0 +1,170 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "ViFE API",
+        "description": "The API for all projects of the Virtual Research Group Edirom",
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "basePath": "/exist/apps/WeGA-WebApp/api/v1",
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "paths": {
+        "/documents": {
+            "get": {
+                "summary": "Documents",
+                "description": "The Documents endpoint returns a list of all documents in a repository.\n",
+                "tags": [
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/documents/{docType}": {
+            "get": {
+                "description": "This endpoint returns a list of documents filtered by document type\n",
+                "tags": [
+                    "Documents"
+                ],
+                "parameters": [
+                    {
+                        "name": "docType",
+                        "in": "path",
+                        "description": "The document type",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                       }
+                   ]
+               }
+           },
+           "/documents/{docType}/facets/{facet}": {
+            "get": {
+                "summary": "Facets",
+                "description": "The Facets endpoint returns a list of all facets for a collection.\n",
+                "tags": [
+                    "Facets"
+                ],
+                "parameters": [
+                    {
+                        "name": "docType",
+                        "in": "path",
+                        "description": "The document type",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "facet",
+                        "in": "query",
+                        "description": "The document type",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "$ref": "#/parameters/fromDateParam"
+                    },
+                    {
+                        "$ref": "#/parameters/toDateParam"
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Document": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific document"
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "skipParam": {
+            "name": "skip",
+            "in": "query",
+            "description": "number of items to skip",
+            "type": "integer",
+            "format": "int32"
+        },
+        "limitParam": {
+            "name": "limit",
+            "in": "query",
+            "description": "max records to return",
+            "type": "integer",
+            "format": "int32"
+        },
+        "fromDateParam": {
+            "name": "fromDate",
+            "in": "query",
+            "description": "the minimum date",
+            "type": "string",
+            "format": "date"
+        },
+        "toDateParam": {
+            "name": "toDate",
+            "in": "query",
+            "description": "the maximum date",
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

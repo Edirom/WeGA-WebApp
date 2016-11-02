@@ -27,13 +27,15 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
             <view>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}">
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}" method="get">
                     <set-attribute name="docID" value="{$exist-vars('docID')}"/>
                     <set-attribute name="lang" value="{$exist-vars('lang')}"/>
                     <!-- Need to provoke 304 error in view-html.xql if unmodified -->
                     <set-attribute name="modified" value="{$modified cast as xs:string}"/>
                     <!-- Needed for register pages -->
                     <set-attribute name="docType" value="{$exist-vars('docType')}"/>
+                    <!-- Overriding the default attribute. This is especially needed for subsequent controllers, e.g. api/v1/ -->
+                    <set-attribute name="$exist:controller" value="{$exist-vars('controller')}"/>
                 </forward>
                 {if($modified) then 
                 <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
