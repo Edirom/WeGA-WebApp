@@ -54,6 +54,9 @@
         <exec executable="${lessc.cmd}">
             <arg line="resources/less/styles.less ${dist.dir}/resources/css/styles.css"/>
         </exec>
+        <exec executable="${lessc.cmd}">
+            <arg line="resources/less/swagger.less ${dist.dir}/resources/css/swagger.css"/>
+        </exec>
     </target>
     
     <target name="dist" depends="init, download-smufl-font, bower, less">
