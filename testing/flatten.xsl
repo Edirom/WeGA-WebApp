@@ -59,8 +59,8 @@
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
     <xsl:template match="html:small[matches(., '^ \(\d+\)$')]"/><!-- Anzahl der jeweiligen Dokumente (Backlinks, Briefe, etc.) in den Personentabs -->
-    <xsl:template match="html:a[matches(., '^HBZ-Verbundkatalog( \(\d+\))?$')]"/><!-- HBZ varies its display of matches … -->
     <xsl:template match="html:a[@class='page-link'][matches(@href, '\?page=\d+')]"/>
+    <xsl:template match="html:div[@id='gnd-beacon'][count(html:ul/html:li) gt 1]"/><!-- Beacon Links verändern sich gerne in Kleinigkeiten, daher hier entfernt -->
     
     <xsl:template match="@id"/>
     <xsl:template match="@data-ref"/>
