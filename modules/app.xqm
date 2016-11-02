@@ -1068,7 +1068,7 @@ declare
                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
                         (: adding link to editorial :)
                         lang:get-language-string('forFurtherDetailsSee', $lang), ' ',
-                        <a href="#editorial">{lang:get-language-string('editorial', $lang)}.</a>
+                        <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
                 wega-util:transform($textRoot, $xslt1, $xslParams),
