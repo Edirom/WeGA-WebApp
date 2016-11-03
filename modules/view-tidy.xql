@@ -28,6 +28,7 @@ declare function local:tidy($node as node()) as node()? {
                     for $attr in $node/@* return local:tidy-attr($attr),
                     for $child in $node/node() return local:tidy($child)
                 }
+        case comment() return ()
                     
         default return 
             $node
