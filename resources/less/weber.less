@@ -70,43 +70,34 @@ h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,.heading3 a:hover,.heading4 a:hover
     text-decoration: none;
 }
 
-p
-{
-    font-family: 'CamingoDos-Regular';
+#transcription {
+    font-family: @font-family-serif;
     color: @gray;
-    margin-top: 0px;
-}
+    
+    p {
+        margin-top: 0px;
+    }
+    
+    a {
+        color:@brand-primary;
+    }
 
-a span
-{
-    color:@brand-primary;
-}
+    .authorDate {
+        text-align: right;
+    }
 
-.documentText p, .documentText ul, .documentText ol, .documentText table
-{
-    font-family: 'Georgia';
-}
+    .teiLetter_address {
+        margin-bottom: 0px;
+    }
 
-.authorDate {
-    text-align: right;
+    .teiLetter_opener {
+        margin-bottom: 0px;
+    }
+    
+    .teiLetter_datelineOpenerBlockRight, span.textAlign-right {
+        text-align: right;
+    }
 }
-
-.teiLetter_address p
-{
-margin-bottom: 0px;
-}
-
-.teiLetter_opener p
-{
-   margin-bottom: 0px;
- 
-}
-
-.teiLetter_datelineOpenerBlockRight, span.textAlign-right
-{
-  text-align: right;
-}
-
 
 span.tag {
     color: #3a88d5;
@@ -177,7 +168,7 @@ ol.breadcrumb li
     display: inline-block;
     margin-top: 10px;
     text-align: right;
-    font-family: 'CamingoDos-Regular';
+    font-family: @font-family-sans-serif;
    
 }
 
@@ -726,33 +717,26 @@ padding: 20px 25px;
 }
 
 
-.searchResults
-{
+.searchResults {
+    li {
+        margin-bottom: 30px;
+    }
 
-}
+    h3, p {
+        margin-bottom: 0px;
+    }
 
-.searchResults li
-{
-    margin-bottom: 30px;
-}
-
-.searchResults h3, .searchResults p
-{
-    margin-bottom: 0px;
-}
-
-.searchResults .pull-left
-{
-    margin-top: 2px;
-    width: 5%;
-    margin-right: 3%;
-}
-
-.searchResults  .media-body .pull-left
-{
-    margin-top: 0px;
-    width: 20px;
-    margin-right: 10px;
+    .pull-left {
+        margin-top: 2px;
+        width: 5%;
+        margin-right: 3%;
+    }
+        
+    .media-body .pull-left {
+        margin-top: 0px;
+        width: 20px;
+        margin-right: 10px;
+    }
 }
 
 .inner-shadow-light, .gradient-light.open , .gradient-light.active a, .gradient-light.active 
@@ -787,21 +771,10 @@ padding: 20px 25px;
 
 // Select
 
-.allFilter .bootstrap-select 
-{
-    width: 100%!important;
-
-
-}
-
-.allFilter .btn
-{
-    width: 100%!important;
-}
-
-.allFilter .btn-group 
-{
-    width: 100%!important;
+.allFilter {
+    .bootstrap-select, .btn, .btn-group  {
+        width: 100%!important;
+    }
 }
 
 // Filter
@@ -1060,10 +1033,10 @@ margin-left: 0px;
     margin-left: 0px;
 }
 
-.history p
-{
+.history p {
     margin-bottom: 0px;
     font-family: 'CamingoDos-Bold';
+    color: @gray;
 }
 
 
@@ -1281,4 +1254,3 @@ li.media div.pull-left {
 }
 
 }
-
