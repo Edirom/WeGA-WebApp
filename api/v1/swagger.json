@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "ViFE API",
-        "description": "The API for all projects of the Virtual Research Group Edirom",
+        "title": "WeGA API",
+        "description": "The API doumentation for the Carl-Maria-von-Weber-Gesamtausgabe",
         "version": "1.0.0"
     },
     "host": "localhost:8080",
@@ -11,10 +11,6 @@
         "http"
     ],
     "basePath": "/exist/apps/WeGA-WebApp/api/v1",
-    "produces": [
-        "application/json",
-        "application/xml"
-    ],
     "paths": {
         "/documents": {
             "get": {
@@ -22,6 +18,10 @@
                 "description": "The Documents endpoint returns a list of all documents in a repository.\n",
                 "tags": [
                     "Documents"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
                 ],
                 "parameters": [
                     {
@@ -56,37 +56,101 @@
                 "tags": [
                     "Documents"
                 ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
                 "parameters": [
                     {
-                        "name": "docType",
-                        "in": "path",
-                        "description": "The document type",
-                        "type": "string",
-                        "required": true
+                        "$ref": "#/parameters/docTypeParam"
                     },
                     {
                         "$ref": "#/parameters/skipParam"
                     },
                     {
                         "$ref": "#/parameters/limitParam"
-                       }
-                   ]
-               }
-           },
-           "/documents/{docType}/facets/{facet}": {
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/documents/{docType}/findByDate": {
+            "get": {
+                "description": "This endpoint returns a list of documents filtered by document type and related to the given date\n",
+                "tags": [
+                    "Documents"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/docTypeParam"
+                    },
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "the date to search for",
+                        "type": "string",
+                        "format": "date"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/documents/{docType}/facets/{facet}": {
             "get": {
                 "summary": "Facets",
                 "description": "The Facets endpoint returns a list of all facets for a collection.\n",
                 "tags": [
                     "Facets"
                 ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
                 "parameters": [
                     {
-                        "name": "docType",
-                        "in": "path",
-                        "description": "The document type",
-                        "type": "string",
-                        "required": true
+                        "$ref": "#/parameters/docTypeParam"
                     },
                     {
                         "name": "facet",
@@ -107,7 +171,24 @@
                     {
                         "$ref": "#/parameters/toDateParam"
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
             }
         }
     },
@@ -118,6 +199,10 @@
                 "uri": {
                     "type": "string",
                     "description": "Unique identifier representing a specific document"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "The title of the document"
                 }
             }
         },
@@ -165,6 +250,28 @@
             "description": "the maximum date",
             "type": "string",
             "format": "date"
+        },
+        "docTypeParam": {
+            "name": "docType",
+            "in": "path",
+            "description": "The document type",
+            "type": "array",
+                "items": {
+                    "type": "string",
+                    "enum": [
+                        "biblio",
+                        "diaries",
+                        "documents",
+                        "letters",
+                        "news",
+                        "persons",
+                        "thematicCommentaries",
+                        "works",
+                        "writings"
+                    ],
+                    "default": "letters"
+                },
+            "required": true
         }
     }
 }

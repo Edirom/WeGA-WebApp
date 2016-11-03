@@ -30,7 +30,8 @@ declare variable $local:model as map() := map:new((
         'exist:path' := $exist:path, 
         'exist:resource' := $exist:resource, 
         'exist:controller' := $exist:controller, 
-        'exist:prefix' := $exist:prefix
+        'exist:prefix' := $exist:prefix,
+        'swagger:config' := $local:swagger-config
     },
     for $i in request:get-parameter-names() return map:entry($i, request:get-parameter($i, ''))
 ));
