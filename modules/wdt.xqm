@@ -14,6 +14,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 declare function wdt:orgs($item as item()*) as map(*) {
@@ -327,6 +328,26 @@ declare function wdt:diaries($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
+        },
+        'title' := function() as item()* {
+            let $ab := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:ab
+                case document-node() return $item/tei:ab
+                default return $item/root()/tei:ab
+            let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
+            let $dateFormat := '%A, %B %d, %Y'
+            return concat(
+                date:strfdate(xs:date($ab/@n), 'en', $dateFormat),
+                ' (',
+                switch(array:size($diaryPlaces))
+                case 0 return ()
+                case 1 return $diaryPlaces(1)
+                case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
+                case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
+                default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)),
+                ')'
+            )
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {

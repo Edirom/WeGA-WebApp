@@ -507,9 +507,9 @@ function initFacsimile() {
 
 function jump2diary(dateText) {
     var lang = getLanguage(),
-        url = $('#datePicker').attr('data-dev-url') + "?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
+        url = $('#datePicker').attr('data-api-url') + "/documents/diaries/findByDate?limit=1&date=" + dateText ;
     $.getJSON(url, function(data) {
-        self.location=data.url + '.html';
+        self.location=data.uri + '.html';
     })
 };
 

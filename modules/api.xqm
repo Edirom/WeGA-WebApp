@@ -72,13 +72,14 @@ declare %private function api:subsequence($seq as item()*, $model as map()) {
 declare %private function api:document($documents as document-node()*, $model as map()) as map()* {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
+    let $scheme := $model('swagger:config')?schemes[1]
     return 
         for $doc in $documents
         let $id := $doc/*/data(@xml:id)
         let $docType := config:get-doctype-by-id($id)
         return
             map { 
-                'uri' := $host || substring-before($basePath, 'api') || $id,
+                'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
                 'title' := wdt:lookup($docType, $doc)('title')()
             } 
 };
