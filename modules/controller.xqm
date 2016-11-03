@@ -212,7 +212,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
  : Indices can be under "Register (Indices)" or "Projekt (Project)" 
 ~:)
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
-    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), replace(lang:get-language-string($docType, $lang), '\s+', '_')))
+    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries', 'documents')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), replace(lang:get-language-string($docType, $lang), '\s+', '_')))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
     else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))

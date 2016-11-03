@@ -579,6 +579,58 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
     }
 };
 
+declare function wdt:documents($item as item()*) as map(*) {
+    map {
+        'name' := 'documents',
+        'prefix' := 'A10',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A10\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $item/root()/descendant::tei:text[@type = ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            if(sort:has-index('documents')) then ()
+            else (wdt:documents(())('init-sortIndex')()),
+            for $i in wdt:documents($item)('filter')() order by sort:index('documents', $i)  ascending return $i
+        },
+        'init-collection' := function() as document-node()* {
+            core:data-collection('documents')/descendant::tei:text[@type=('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+        },
+        'init-sortIndex' := function() as item()* {
+            wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
+        },
+        'title' := function($serialization as xs:string) as item()* {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            return
+                switch($serialization)
+                case 'txt' return
+                    string-join(
+                        wega-util:txtFromTEI(
+                            ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
+                        ),
+                        ''
+                    )
+                case 'html' return () 
+                default return core:logToFile('error', 'wdt:documents()("title"): unsupported serialization "' || $serialization || '"')
+        },
+        'memberOf' := ('search', 'indices', 'sitemap'),
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]/tei:TEI[ft:query(., $query)]
+        }
+    }
+};
+
 declare function wdt:contacts($item as item()*) as map(*) {
     map {
         'name' := 'contacts',

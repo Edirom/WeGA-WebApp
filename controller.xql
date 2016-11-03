@@ -144,6 +144,10 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('new
 (: Themenkommentare :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+
+(: Dokumente :)
+else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then

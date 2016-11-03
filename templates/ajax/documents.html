@@ -1,0 +1,36 @@
+<div xmlns="http://www.w3.org/1999/xhtml" class="row" data-template="search:results" data-template-docType="documents">
+    <div class="col-md-3 col-md-push-9">
+        <!-- Facetten Filter-->
+        <div class="allFilter">
+            <h2 data-template="lang:translate">filter</h2>
+            <!--<h4 data-template="lang:translate">chronology</h4>
+            <input type="text" class="rangeSlider" name="chronology-slider" data-template="app:set-slider-range"/>-->
+            
+            <h4 data-template="lang:translate">persons</h4>
+            <select multiple="multiple" data-template="facets:select" name="persons"/>
+            
+            <h4 data-template="lang:translate">works</h4>
+            <select multiple="multiple" data-template="facets:select" name="works"/>
+            
+            <h4 data-template="lang:translate">places</h4>
+            <select multiple="multiple" data-template="facets:select" name="places"/>
+            
+            <!-- <h4 data-template="lang:translate">docStatus</h4>
+            <select multiple="multiple" data-template="facets:select" name="docStatus"/>-->
+        </div>
+    </div>
+    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page" data-template-docType="documents">
+        <h2 data-template="search:results-count">124 Suchergebnisse</h2>
+        <ul class="pagination" data-template="app:pagination">
+            <li><a href="#">&lt;</a></li>
+        </ul>
+        <ul class="media-list">
+            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+                <div data-template="search:dispatch-preview"/>
+            </li>
+        </ul>
+        <ul class="pagination" data-template="app:pagination">
+            <li><a href="#">&lt;</a></li>
+        </ul>
+    </div>
+</div>
