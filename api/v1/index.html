@@ -1,40 +1,207 @@
-<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
-    <div class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Swagger</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="colored borderBottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-10">
-                    <ol class="breadcrumb">
-                        <li><a href="$link/index">Home</a></li>
-                    </ol>
-                </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
-                    <i class="fa fa-arrow-left"/>
-                    <span data-template="lang:translate">back</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container documentText paddingTopIcon paddingBottomIcon">
-        <div class="row swagger-section">
-            <div class="col-md-12">
-                <div id="message-bar" class="swagger-ui-wrap" data-sw-translate="">&#160;</div>
-                <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
-            </div>
-        </div>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
+        <meta charset="UTF-8"/>
+        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>API documentation of the Carl-Maria-von-Weber-Gesamtausgabe</title>
         
-    </div>
-    
-    <div class="container documentFooter">
-        <!--<div class="row permaLink">
+        <meta property="dc:title" content="API documentation of the Carl-Maria-von-Weber-Gesamtausgabe"/>
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
+        <meta property="dc:type" content="Text"/>
+        <meta property="dc:format" content="text/html"/>
+        <meta property="dc:creator" content="Peter Stadler"/>
+        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/api/v1/"/>
+        <meta property="dc:description" content="A RESTful OpenAPI for accessing the digital edition of Carl Maria von Weber's diaries, writings and letters"/>
+        <meta name="description" content="A RESTful OpenAPI for accessing the digital edition of Carl Maria von Weber's diaries, writings and letters"/>
+        <meta property="dc:subject" content="API, interface"/>
+        <meta property="dc:language" content="en"/>
+        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" />
+        <meta name="robots" content="noimageindex"/>
+        
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"/>
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"/>
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16"/>
+        <link rel="manifest" href="/manifest.json"/>
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0066cc"/>
+        <meta name="msapplication-TileColor" content="#2d89ef"/>
+        <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="stylesheet" type="text/css" href="$resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/lib/selectize/dist/css/selectize.bootstrap3.css"/>
+        <link rel="stylesheet" type="text/css" href="$resources/lib/google-code-prettify/bin/prettify.min.css"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/swagger.css"/>
+<!--        <link rel="stylesheet" type="text/css" href="$resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css"/>-->
+<!--        <link rel="stylesheet" type="text/css" href="$resources/lib/ionrangeslider/css/ion.rangeSlider.css"/>-->
+<!--        <link rel="stylesheet" type="text/css" href="$resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css"/>-->
+<!--        <link rel="stylesheet" type="text/css" href="$resources/lib/ionrangeslider/css/normalize.css"/>-->
+<!--        <link rel="stylesheet" type="text/css" href="$resources/lib/leaflet/dist/leaflet.css"/>-->
+        
+<!--        <link href='$resources/lib/swagger-ui/dist/lib/css/reset.css' media='screen' rel='stylesheet' type='text/css'/>-->
+<!--        <link href='$resources/lib/swagger-ui/dist/lib/css/screen.css' media='screen' rel='stylesheet' type='text/css'/>-->
+<!--        <link href='$resources/lib/swagger-ui/dist/lib/css/reset.css' media='print' rel='stylesheet' type='text/css'/>-->
+<!--        <link href='$resources/lib/swagger-ui/dist/lib/css/print.css' media='print' rel='stylesheet' type='text/css'/>-->
+        
+
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header col-md-3 navbar-right">
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                            <span class="icon-bar"/>
+                            <span class="icon-bar"/>
+                            <span class="icon-bar"/>
+                        </button>
+                        <a href="$link/index" class="navbar-right">
+                            <img src="$resources/img/logo_weber.png" class="brand" alt="navbar-background-image"/>
+                        </a>
+                    </div>
+                    <!-- Collection of nav links and other content for toggling -->
+                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                        <ul class="nav navbar-nav" data-template="app:active-nav">
+
+                            <li>
+                                <a href="$link/index">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                    <li>
+                                        <a href="$link/A002068/bio.html" data-template="lang:translate">bio</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/A002068.html#correspondence" data-template="lang:translate">correspondence</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/A002068.html#writings" data-template="lang:translate">writings</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/A002068.html#diaries" data-template="lang:translate">diaries</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/A002068.html#works" data-template="lang:translate">works</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">indices</a>
+                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                    <li>
+                                        <a href="$link/indices/persons" data-template="lang:translate">persons</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/indices/letters" data-template="lang:translate">letters</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/indices/writings" data-template="lang:translate">writings</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/indices/diaries" data-template="lang:translate">diaries</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/indices/works" data-template="lang:translate">works</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/indices/thematicCommentaries" data-template="lang:translate">thematicCommentaries</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="$link/search" data-template="lang:translate">search</a>
+                            </li>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">project</a>
+                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                    <li>
+                                        <a href="$link/project/news" data-template="lang:translate">news</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/volContents.html" data-template="lang:translate">volContents</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/bibliography" data-template="lang:translate">bibliography</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/editorialGuidelines-music.html" data-template="lang:translate">editorialGuidelines-music</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/editorialGuidelines-text.html" data-template="lang:translate">editorialGuidelines-text</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/contact.html" data-template="lang:translate">contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/project/projectDescription.html" data-template="lang:translate">projectDescription</a>
+                                    </li>
+                                    <!--<li>
+                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
+                                    </li>-->
+                                </ul>
+                            </li>
+                            <li id="help-nav" class="active dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">help</a>
+                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                    <li>
+                                        <a href="$link/help/faq.html" data-template="lang:translate">faq</a>
+                                    </li>
+                                    <li>
+                                        <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="divider"/>
+                            <li><a href="#">De</a></li>
+                            <li><a href="#">En</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="content">
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>API-Dokumentation</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="colored borderBottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <ol class="breadcrumb">
+                                <li><a href="$link/index">Home</a></li>
+                            </ol>
+                        </div>
+                        <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                            <i class="fa fa-arrow-left"/>
+                            <span data-template="lang:translate">back</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container paddingTopIcon paddingBottomIcon">
+                <div class="row swagger-section">
+                    <div class="col-md-12">
+                        <div id="message-bar" class="swagger-ui-wrap" data-sw-translate="">&#160;</div>
+                        <div id="swagger-ui-container" class="swagger-ui-wrap"/>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="container documentFooter">
+                <!--<div class="row permaLink">
             <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
@@ -48,13 +215,135 @@
                     <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
         </div>-->
-        <div class="row bugreport">
-            <div class="col-md-9">
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-                    <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                    <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                <div class="row bugreport">
+                    <div class="col-md-9">
+                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="greyLight">
+            <div class="container footer">
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.uni-paderborn.de/">
+                            <img class="img-responsive" src="$resources/img/logo_uni_paderborn_sw.png" data-hovered-src="$resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn"/>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.hfm-detmold.de/">
+                            <img class="img-responsive" src="$resources/img/logo_hfm_detmold_sw.png" data-hovered-src="$resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold"/>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://staatsbibliothek-berlin.de/">
+                            <img class="img-responsive" src="$resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="$resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.adwmainz.de/">
+                            <img class="img-responsive" src="$resources/img/logo_akademie_mainz_sw.png" data-hovered-src="$resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz"/>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://exist-db.org/">
+                            <img class="img-responsive" src="$resources/img/logo_existdb_sw.png" data-hovered-src="$resources/img/logo_existdb_farbe.png" alt="eXist-db logo"/>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <a href="http://www.tei-c.org/">
+                            <img class="img-responsive" src="$resources/img/logo_tei_sw.png" data-hovered-src="$resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="greyDark footerbottom">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="footerNav">
+                            <li>
+                                <a href="$link/project/contact.html" data-template="lang:translate">contact</a>
+                            </li>
+                            <li>
+                                <a href="$link/project/about.html" data-template="lang:translate">about</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="$resources/lib/jquery/jquery.min.js"/>
+        <script type="text/javascript" src="$resources/lib/FitText.js/jquery.fittext.js"/>
+        <script type="text/javascript" src="$resources/lib/bootstrap/dist/js/bootstrap.min.js"/>
+        <script type="text/javascript" src="$resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"/>
+        <script type="text/javascript" src="$resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"/>
+<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>-->
+<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>-->
+<!--        <script type="text/javascript" src="$resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"/>-->
+<!--        <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"/>-->
+<!--        <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"/>-->
+        <script type="text/javascript" src="$resources/lib/google-code-prettify/bin/prettify.min.js"/>
+        <script type="text/javascript" src="$resources/lib/selectize/dist/js/standalone/selectize.min.js"/>
+        <script type="text/javascript" src="$resources/lib/moment/min/moment-with-locales.min.js"/>
+        <script type="text/javascript" src="$resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"/>
+<!--        <script type="text/javascript" src="$resources/lib/leaflet/dist/leaflet.js"/>-->
+<!--        <script type="text/javascript" src="$resources/lib/leaflet-iiif/leaflet-iiif.js"/>-->
+        <script type="text/javascript" src="$resources/lib/flip/dist/jquery.flip.min.js"/>
+        <script type="text/javascript" src="$resources/js/greedynav.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/greedynav-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/object-assign-pollyfill.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jquery.slideto.min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jquery.wiggle.min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jquery.ba-bbq.min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/handlebars-4.0.5.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/lodash.min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/backbone-min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/highlight.9.1.0.pack.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/highlight.9.1.0.pack_extended.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jsoneditor.min.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/marked.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/swagger-ui.min.js"/>
+        <!--        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/swagger-oauth.js"/>-->
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lang/translator.js"/>
+        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lang/de.js"/>
+        <script type="text/javascript" src="$resources/js/swagger.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/swagger-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+            
+        
+        
+        <div data-template="app:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
+            <!-- Piwik -->
+            <script type="text/javascript">
+                var _paq = _paq || [];
+                _paq.push(["setDomains", ["*.www.weber-gesamtausgabe.de"]]);
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                  var u="//www.weber-gesamtausgabe.de/piwik/";
+                  _paq.push(['setTrackerUrl', u+'piwik.php']);
+                  _paq.push(['setSiteId', 1]);
+                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                  g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                })();
+            </script>
+            <noscript><p><img src="//www.weber-gesamtausgabe.de/piwik/piwik.php?idsite=1" style="border:0;" alt=""/></p></noscript>
+            <!-- End Piwik Code -->
+        </div>
+        
+    </body>
+</html>
