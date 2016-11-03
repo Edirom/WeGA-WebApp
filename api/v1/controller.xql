@@ -46,7 +46,7 @@ declare function local:serialize-json($response as item()*) {
     let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
     let $setHeader2 := response:set-header('pragma','no-cache')
-    let $setHeader3 := if($response?code) then response:set-status-code($response?code) else ()
+    let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
     (:let $setHeader3 := 
         if(exists($response)) then response:set-header('ETag', util:hash($response, 'md5'))
         else ():)
@@ -69,14 +69,16 @@ declare function local:serialize-json($response as item()*) {
  :  @return          an XML fragment 
 ~:)
 declare function local:serialize-xml($response as item()*, $root as xs:string) as element() {
-    element {$root} {
-        for $i in $response
-        return 
-            typeswitch($i)
-            case map() return $i?* ! local:serialize-xml($i(.), .)
-            case function() as item() return <array>{ for $j in $i?* return local:serialize-xml($j, 'root')/node() }</array>
-            default return $response
-    }
+    let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
+    return
+        element {$root} {
+            for $i in $response
+            return 
+                typeswitch($i)
+                case map() return $i?* ! local:serialize-xml($i(.), .)
+                case function() as item() return <array>{ for $j in $i?* return local:serialize-xml($j, 'root')/node() }</array>
+                default return $response
+        }
 };
 
 (:~
