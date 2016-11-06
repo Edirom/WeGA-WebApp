@@ -191,7 +191,7 @@ function activateTab() {
         url = activeTab.attr('data-target');
 
         // Do not load the page twice
-        if ($(container).contents()[1].nodeType !== 1) {
+        if ($(container).contents().length === 1 || $(container).contents()[1].nodeType !== 1) {
             ajaxCall(container, url)
         }
         /* update facets */
