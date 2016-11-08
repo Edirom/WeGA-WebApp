@@ -270,7 +270,7 @@ declare
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
                 if($href and not($authorID = config:get-option('anonymusID'))) then attribute href {$href} else (),
-                str:printFornameSurname(query:get-reg-name($authorID))
+                str:printFornameSurname(query:title($authorID))
             }
 };
 
@@ -622,7 +622,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
                 concat(date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
                 if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
                 (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-                else (app:createDocLink($teiDate/root(), str:printFornameSurname(query:get-reg-name($teiDate/ancestor::tei:person/@xml:id)), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+                else (app:createDocLink($teiDate/root(), str:printFornameSurname(query:title($teiDate/ancestor::tei:person/@xml:id)), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
             }
 };
 
@@ -657,7 +657,7 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return 
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
-     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:get-reg-name($persName/@key)), $lang, ('class=persons'))
+     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:title($persName/@key)), $lang, ('class=persons'))
         (:wega:createPersonLink($persName/string(@key), $lang, $order):)
      else if (not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
@@ -703,13 +703,13 @@ declare
 declare 
     %templates:wrap
     function app:person-title($node as node(), $model as map(*)) as xs:string {
-        query:get-reg-name($model('docID'))
+        query:title($model('docID'))
 };
 
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        str:printFornameSurname(query:get-reg-name($model('docID')))
+        str:printFornameSurname(query:title($model('docID')))
 };
 
 declare 
@@ -999,35 +999,12 @@ declare
 
 declare
     %templates:wrap
-    %templates:default("lang", "en")
-    function app:document-title($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $title-element := query:get-title-element($model('doc'), $lang)
-        let $dateFormat := if ($lang eq 'en')
-            then '%A, %B %d, %Y'
-            else '%A, %d. %B %Y'
-        let $title := 
-            typeswitch($title-element)
-            case element(tei:title) return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
-            case element(mei:title) return str:normalize-space($title-element)
-            case element(tei:date) return 
-                if($title-element castable as xs:date) then
-                    let $diaryPlaces as array(xs:string) := query:place-of-diary-day($model('doc'))
-                    return (
-                        date:strfdate(xs:date($title-element), $lang, $dateFormat),
-                        <xhtml:br/>,
-                        switch(array:size($diaryPlaces))
-                        case 0 return ()
-                        case 1 return $diaryPlaces(1)
-                        case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
-                        case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
-                        default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces))
-                    )
-                else ()
-            default return wega-util:transform(app:construct-title($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
+    function app:document-title($node as node(), $model as map(*)) as item()* {
+        let $docID := $model('doc')/*/data(@xml:id) (: need to check because of index.html :)
+        let $title := wdt:lookup(config:get-doctype-by-id($docID), $model('doc'))?title('html') 
         return
-            typeswitch($title)
-            case element() return $title/node()
-            default return $title
+            if($title instance of xs:string) then $title
+            else $title/node()
 };
 
 declare 
@@ -1286,7 +1263,7 @@ declare
             ": ",
             lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
             " ",
-            if($partner) then app:createDocLink($partner, query:get-reg-name($partnerID), $lang, ())
+            if($partner) then app:createDocLink($partner, query:title($partnerID), $lang, ())
             else lang:get-language-string('unknown', $lang)
         )
 };
@@ -1428,9 +1405,12 @@ declare
             $node/@*[not(name(.) = 'href')],
             if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
             else (),
-            if(config:is-person($model('docID'))) then query:get-reg-name($model('docID'))
-            else if(config:is-org($model('docID'))) then query:get-reg-name($model('docID'))
+            wdt:lookup(config:get-doctype-by-id($model('docID')), $model('docID'))('title')('html')
+            (:
+            if(config:is-person($model('docID'))) then query:title($model('docID'))
+            else if(config:is-org($model('docID'))) then query:title($model('docID'))
             else app:document-title($node, $model, $lang)
+            :)
     }
 };
 
@@ -1505,7 +1485,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        if($model('relator')/@dbkey) then query:get-reg-name($model('relator')/@dbkey)
+        if($model('relator')/@dbkey) then query:title($model('relator')/@dbkey)
         else str:normalize-space($model('relator'))
 };
 

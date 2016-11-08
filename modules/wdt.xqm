@@ -48,6 +48,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             let $org := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:org
+                case xdt:untypedAtomic return core:doc($item)/tei:org
                 case document-node() return $item/tei:org
                 default return $item/root()/tei:org
             return
@@ -60,6 +61,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             let $doc := 
                 typeswitch($item)
                 case xs:string return core:doc($item)
+                case xdt:untypedAtomic return core:doc($item)
                 case document-node() return $item
                 default return $item/root()
             return
@@ -108,6 +110,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             let $person := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:person
+                case xdt:untypedAtomic return core:doc($item)/tei:person
                 case document-node() return $item/tei:person
                 default return $item/root()/tei:person
             return
@@ -119,6 +122,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         'label-facets' := function() as xs:string? {
             typeswitch($item)
                 case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+                case xdt:untypedAtomic return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
                 case document-node() return str:normalize-space(($item//tei:persName[@type = 'reg']))
                 case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
                 default return core:logToFile('error', 'wdt:persons()("label-facests"): failed to get string')
@@ -134,9 +138,15 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $id := $TEI/data(@xml:id)
         let $date := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], 'de')
         let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-        let $sender := if($senderElem[@key]) then str:printFornameSurname(query:get-reg-name($senderElem/@key)) else str:normalize-space($senderElem) 
+        let $sender := 
+            if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
+            else if(functx:all-whitespace($senderElem)) then 'unbekannt' 
+            else str:normalize-space($senderElem) 
         let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-        let $addressee := if($addresseeElem[@key]) then str:printFornameSurname(query:get-reg-name($addresseeElem/@key)) else str:normalize-space($addresseeElem)
+        let $addressee := 
+            if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
+            else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
+            else str:normalize-space($addresseeElem)
         let $placeSender := str:normalize-space(($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         return (
@@ -185,6 +195,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := 
@@ -285,6 +296,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -339,6 +351,7 @@ declare function wdt:works($item as item()*) as map(*) {
             let $mei := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/mei:mei
+                case xdt:untypedAtomic return core:doc($item)/mei:mei
                 case document-node() return $item/mei:mei
                 default return $item/root()/mei:mei
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
@@ -351,6 +364,7 @@ declare function wdt:works($item as item()*) as map(*) {
         'label-facets' := function() as xs:string? {
             typeswitch($item)
             case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case xdt:untypedAtomic return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
             case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return core:logToFile('error', 'wdt:works()("label-facests"): failed to get string')
@@ -393,26 +407,23 @@ declare function wdt:diaries($item as item()*) as map(*) {
             let $ab := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:ab
+                case xdt:untypedAtomic return core:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
-                default return $item/root()/tei:ab
+                default return ()
             let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
             let $dateFormat := '%A, %d. %B %Y'
-            let $title :=  
-                concat(
-                    date:strfdate(xs:date($ab/@n), 'de', $dateFormat),
-                    ' (',
-                    switch(array:size($diaryPlaces))
-                    case 0 return ()
-                    case 1 return $diaryPlaces(1)
-                    case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
-                    case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
-                    default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)),
-                    ')'
-                )
+            let $formattedDate := date:strfdate(xs:date($ab/@n), 'de', $dateFormat)
+            let $formattedPlaces := 
+                switch(array:size($diaryPlaces))
+                case 0 return ()
+                case 1 return $diaryPlaces(1)
+                case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
+                case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
+                default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces))
             return 
                 switch($serialization)
-                    case 'txt' return $title
-                    case 'html' return <span>{$title}</span> 
+                    case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
+                    case 'html' return <span>{$formattedDate}<br/>{$formattedPlaces}</span> 
                     default return core:logToFile('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
@@ -451,6 +462,7 @@ declare function wdt:news($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -525,6 +537,7 @@ declare function wdt:var($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -573,6 +586,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             let $biblStruct := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:biblStruct
+                case xdt:untypedAtomic return core:doc($item)/tei:biblStruct
                 case document-node() return $item/tei:biblStruct
                 default return $item/root()/tei:biblStruct
             let $html-title := bibl:printCitation($biblStruct, 'p', 'de')
@@ -621,6 +635,7 @@ declare function wdt:places($item as item()*) as map(*) {
             let $place := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:place
+                case xdt:untypedAtomic return core:doc($item)/tei:place
                 case document-node() return $item/tei:place
                 default return $item/root()/tei:place
             return
@@ -694,6 +709,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -741,6 +757,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]

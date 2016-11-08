@@ -17,12 +17,15 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace functx="http://www.functx.com";
 
 (:~
- : Print the regularised name for a given person or place ID
+ : Print the regularised title for a given WeGA ID
+ : The function serves as a convenient shortcut to the wdt:* title functions, 
+ : e.g. wdt:persons($key)('title')('txt')
  :
+ : @param $key the WeGA ID, e.g. A002068
  : @author Peter Stadler
  : @return xs:string
  :)
-declare function query:get-reg-name($key as xs:string) as xs:string {
+declare function query:title($key as xs:string) as xs:string {
     let $docType := config:get-doctype-by-id($key) 
     let $response := wdt:lookup($docType, $key)('title')('txt')
     return 
@@ -50,7 +53,7 @@ declare function query:get-authorID($doc as document-node()?) as xs:string {
 
 (:~
  : Grabs the first author from a TEI document and returns its name (as noted in the document)
- : For the regularized name see query:get-reg-name()
+ : For the regularized name see query:title()
  :
  : @author Peter Stadler 
  : @param $item the id of the TEI document (or the document node itself) to grab the author from
@@ -211,7 +214,7 @@ declare function query:place-of-diary-day($diaryDay as document-node()) as array
     let $placeIDs := tokenize($diaryDay/tei:ab/@where, '\s+')[config:is-place(.)]
     return
         array {
-            $placeIDs ! query:get-reg-name(.)
+            $placeIDs ! query:title(.)
         }
 };
 
