@@ -56,7 +56,7 @@ declare function lang:get-language-string($key as xs:string, $lang as xs:string)
     let $lookup := normalize-space($catalogue//id($key))
     return
         if($lookup) then $lookup
-        else ('',core:logToFile('warn', 'No dictinonary entry found for ' || $key))
+        else ('',core:logToFile('warn', 'No dictionary entry found for ' || $key))
 };
 
 (:~
@@ -81,7 +81,7 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
         return $x
     return 
         if($catalogueEntry) then functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
-        else ('',core:logToFile('warn', 'No dictinonary entry found for ' || $key))
+        else ('',core:logToFile('warn', 'No dictionary entry found for ' || $key))
 };
 
 (:~
