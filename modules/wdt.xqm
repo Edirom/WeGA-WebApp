@@ -16,6 +16,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
@@ -41,24 +42,28 @@ declare function wdt:orgs($item as item()*) as map(*) {
             core:data-collection('orgs')[descendant::tei:org][descendant-or-self::tei:orgName]
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')() }, ())
+            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')('txt') }, ())
         },
-        'title' := function() as xs:string {
-            typeswitch($item)
-            case xs:string return str:normalize-space(core:doc($item)//tei:orgName[@type = 'reg'])
-            case document-node() return str:normalize-space($item//tei:orgName[@type = 'reg'])
-            case element() return str:normalize-space($item/root()//tei:orgName[@type = 'reg'])
-            default return ''
-            
+        'title' := function($serialization as xs:string) as item()? {
+            let $org := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:org
+                case document-node() return $item/tei:org
+                default return $item/root()/tei:org
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space($org/tei:orgName[@type = 'reg'])
+                case 'html' return <span>{str:normalize-space($org/tei:orgName[@type = 'reg'])}</span> 
+                default return core:logToFile('error', 'wdt:orgs()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string {
             let $doc := 
                 typeswitch($item)
                 case xs:string return core:doc($item)
                 case document-node() return $item
-                default return ()
+                default return $item/root()
             return
-                wdt:orgs($doc)('title')() || ' (' || string-join($doc//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
+                wdt:orgs($doc)('title')('txt') || ' (' || string-join($doc//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
         },
         'undated' := (),
         'date' := (),
@@ -68,14 +73,6 @@ declare function wdt:orgs($item as item()*) as map(*) {
 };
 
 declare function wdt:persons($item as item()*) as map(*) {
-    let $title := function() as xs:string {
-        typeswitch($item)
-            case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case document-node() return str:normalize-space($item//tei:persName[@type='reg'])
-            case element() return str:normalize-space($item/root()//tei:persName[@type='reg'])
-            default return ''
-    }
-    return
     map {
         'name' := 'persons',
         'prefix' := 'A00',
@@ -107,14 +104,52 @@ declare function wdt:persons($item as item()*) as map(*) {
                 return $sortName || $name
             }, ())
         },
-        'title' := $title,
-        'label-facets' := $title,
+        'title' := function($serialization as xs:string) as item()? {
+            let $person := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:person
+                case document-node() return $item/tei:person
+                default return $item/root()/tei:person
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space($person/tei:persName[@type = 'reg'])
+                case 'html' return <span>{str:normalize-space($person/tei:persName[@type = 'reg'])}</span> 
+                default return core:logToFile('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
+        },
+        'label-facets' := function() as xs:string? {
+            typeswitch($item)
+                case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+                case document-node() return str:normalize-space(($item//tei:persName[@type = 'reg']))
+                case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
+                default return core:logToFile('error', 'wdt:persons()("label-facests"): failed to get string')
+        },
         'memberOf' := ('sitemap'),
         'search' := ()
     }
 };
 
 declare function wdt:letters($item as item()*) as map(*) {
+    let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
+        (: Support for Albumblätter?!? :)
+        let $id := $TEI/data(@xml:id)
+        let $date := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], 'de')
+        let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+        let $sender := if($senderElem[@key]) then str:printFornameSurname(query:get-reg-name($senderElem/@key)) else str:normalize-space($senderElem) 
+        let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+        let $addressee := if($addresseeElem[@key]) then str:printFornameSurname(query:get-reg-name($addresseeElem/@key)) else str:normalize-space($addresseeElem)
+        let $placeSender := str:normalize-space(($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
+        let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
+        return (
+            element tei:title {
+                concat($sender, ' ', 'an', ' ', $addressee),
+                if($placeAddressee) then concat(' ', 'in', ' ', $placeAddressee) else(),
+                <tei:lb/>,
+                if($placeSender) then string-join(($placeSender, $date), ', ')
+                else $date
+            }
+        )
+    }
+    return 
     map {
         'name' := 'letters',
         'prefix' := 'A04',
@@ -146,19 +181,20 @@ declare function wdt:letters($item as item()*) as map(*) {
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
         },
-        'title' := function() as xs:string {
+        'title' := function($serialization as xs:string) as item()? {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
+            let $title-element := 
+                if(functx:all-whitespace(($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1])) then $constructLetterHead($TEI)
+                else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
-                string-join(
-                    wega-util:txtFromTEI(
-                        ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
-                    ),
-                    ''
-                )
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
@@ -245,6 +281,19 @@ declare function wdt:writings($item as item()*) as map(*) {
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal
             }, ())
         },
+        'title' := function($serialization as xs:string) as item()? {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+        },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
@@ -255,14 +304,6 @@ declare function wdt:writings($item as item()*) as map(*) {
 };
 
 declare function wdt:works($item as item()*) as map(*) {
-    let $title := function() as xs:string {
-        typeswitch($item)
-            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            default return ''
-    }
-    return
     map {
         'name' := 'works',
         'prefix' := 'A02',
@@ -293,8 +334,27 @@ declare function wdt:works($item as item()*) as map(*) {
                 ($node//mei:title)[1]
             }, ())
         },
-        'title' := $title,
-        'label-facets' := $title,
+        (: Sollte beim Titel noch der Komponist etc. angegeben werden? :)
+        'title' := function($serialization as xs:string) as item()? {
+            let $mei := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/mei:mei
+                case document-node() return $item/mei:mei
+                default return $item/root()/mei:mei
+            let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
+        },
+        'label-facets' := function() as xs:string? {
+            typeswitch($item)
+            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            default return core:logToFile('error', 'wdt:works()("label-facests"): failed to get string')
+        },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
             $item[mei:mei]/mei:mei[ft:query(., $query)] | 
@@ -329,25 +389,31 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
         },
-        'title' := function() as item()* {
+        'title' := function($serialization as xs:string) as item()? {
             let $ab := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
                 default return $item/root()/tei:ab
             let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
-            let $dateFormat := '%A, %B %d, %Y'
-            return concat(
-                date:strfdate(xs:date($ab/@n), 'en', $dateFormat),
-                ' (',
-                switch(array:size($diaryPlaces))
-                case 0 return ()
-                case 1 return $diaryPlaces(1)
-                case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
-                case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
-                default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)),
-                ')'
-            )
+            let $dateFormat := '%A, %d. %B %Y'
+            let $title :=  
+                concat(
+                    date:strfdate(xs:date($ab/@n), 'de', $dateFormat),
+                    ' (',
+                    switch(array:size($diaryPlaces))
+                    case 0 return ()
+                    case 1 return $diaryPlaces(1)
+                    case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
+                    case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
+                    default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces)),
+                    ')'
+                )
+            return 
+                switch($serialization)
+                    case 'txt' return $title
+                    case 'html' return <span>{$title}</span> 
+                    default return core:logToFile('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
@@ -380,6 +446,19 @@ declare function wdt:news($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
+        },
+        'title' := function($serialization as xs:string) as item()? {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'sitemap', 'indices'),
         'search' := function($query as element(query)) {
@@ -442,6 +521,19 @@ declare function wdt:var($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             ()
         },
+        'title' := function($serialization as xs:string) as item()? {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+        },
         'memberOf' := (),
         'search' := ()
     }
@@ -476,6 +568,19 @@ declare function wdt:biblio($item as item()*) as map(*) {
                     (if(exists($date)) then $date else '0000') ||
                     tokenize($node//tei:author, '\s+')[last()]
                 }, ())
+        },
+        'title' := function($serialization as xs:string) as item()? {
+            let $biblStruct := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:biblStruct
+                case document-node() return $item/tei:biblStruct
+                default return $item/root()/tei:biblStruct
+            let $html-title := bibl:printCitation($biblStruct, 'p', 'de')
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space($html-title)
+                case 'html' return $html-title 
+                default return core:logToFile('error', 'wdt:biblio()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices'),
         'search' := function($query as element(query)) {
@@ -512,12 +617,17 @@ declare function wdt:places($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) }, ())
         },
-        'title' := function() as item()* {
-            typeswitch($item)
-            case xs:string return str:normalize-space(core:doc($item)//tei:placeName[@type='reg'])
-            case document-node() return str:normalize-space($item//tei:placeName[@type='reg'])
-            case element() return str:normalize-space($item/root()//tei:placeName[@type='reg'])
-            default return ''
+        'title' := function($serialization as xs:string) as item()? {
+            let $place := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:place
+                case document-node() return $item/tei:place
+                default return $item/root()/tei:place
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space($place/tei:placeName[@type = 'reg'])
+                case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
+                default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := (),
         'search' := ()
@@ -545,6 +655,9 @@ declare function wdt:sources($item as item()*) as map(*) {
             ()
         },
         'init-sortIndex' := function() as item()* {
+            ()
+        },
+        'title' := function($serialization as xs:string) as item()? {
             ()
         },
         'memberOf' := (),
@@ -577,19 +690,18 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('thematicCommentaries', wdt:thematicCommentaries(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
         },
-        'title' := function() as xs:string {
+        'title' := function($serialization as xs:string) as item()? {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
-                string-join(
-                    wega-util:txtFromTEI(
-                        ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
-                    ),
-                    ''
-                )
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:thematicCommentaries()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices', 'sitemap'),
         'search' := function($query as element(query)) {
@@ -625,22 +737,17 @@ declare function wdt:documents($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
         },
-        'title' := function($serialization as xs:string) as item()* {
+        'title' := function($serialization as xs:string) as item()? {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return
-                    string-join(
-                        wega-util:txtFromTEI(
-                            ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] 
-                        ),
-                        ''
-                    )
-                case 'html' return () 
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:documents()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('search', 'indices', 'sitemap'),

@@ -24,7 +24,7 @@ import module namespace functx="http://www.functx.com";
  :)
 declare function query:get-reg-name($key as xs:string) as xs:string {
     let $docType := config:get-doctype-by-id($key) 
-    let $response := wdt:lookup($docType, $key)('title')()
+    let $response := wdt:lookup($docType, $key)('title')('txt')
     return 
         if(exists($response)) then $response
         else ''

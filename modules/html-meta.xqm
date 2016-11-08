@@ -18,7 +18,6 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 declare 
@@ -73,7 +72,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         case 'letters' case 'writings' return str:normalize-space($model('doc')//tei:note[@type='summary'])
         case 'diaries' return str:shorten-text($model('doc')/tei:ab, 150)
         case 'news' case 'var' case 'thematicCommentaries' return str:shorten-text(string-join($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], ' '), 150)
-        case 'orgs' return wdt:orgs($model('doc'))('title')() || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
+        case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
         default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
@@ -88,8 +87,8 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
     default return  
         switch($model('docType'))
         case 'persons' return concat(str:printFornameSurname(query:get-reg-name($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
-        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return str:normalize-space(string-join(app:document-title(<a/>, $model, $lang)[not(normalize-space(.) = '')] ! normalize-space(.), '. '))
-        case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', str:normalize-space(string-join(app:document-title(<a/>, $model, $lang), ' ')), $lang))
+        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
+        case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
         case 'orgs' return query:get-reg-name($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
         default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };

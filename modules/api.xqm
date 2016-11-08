@@ -80,6 +80,6 @@ declare %private function api:document($documents as document-node()*, $model as
         return
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                'title' := wdt:lookup($docType, $doc)('title')()
+                'title' := wdt:lookup($docType, $doc)('title')('txt')
             } 
 };

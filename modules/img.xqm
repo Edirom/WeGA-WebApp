@@ -293,7 +293,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
     let $doc := core:doc($docID)
     let $baseURL := config:get-option('iiifServer')
     let $id := $baseURL || $docID 
-    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')()
+    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
     return
         map {
