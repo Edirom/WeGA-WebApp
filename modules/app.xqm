@@ -993,7 +993,8 @@ declare
                 'hasFacsimile' := 
                     if($config:isDevelopment) then exists($model('doc')//tei:facsimile/tei:graphic/@url)
                     else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
-                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'api-base' := core:link-to-current-app('/api/v1')
             }
 };
 

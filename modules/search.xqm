@@ -36,7 +36,7 @@ declare
     %templates:default("docType", "letters")
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
-        let $filters := map { 'filters' := search:create-filters() }
+        let $filters := map { 'filters' := search:create-filters(), 'api-base' := core:link-to-current-app('/api/v1')}
         return
             switch($docType)
             (: search page :)

@@ -34,7 +34,7 @@
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="app:if-matches" data-template-key="docType" data-template-value="diaries">
                         <h2><a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">calendar</a></h2>
-                        <div class="panel-collapse collapse" id="datePicker" data-api-url="$link/../api/v1"/>
+                        <div class="panel-collapse collapse" id="datePicker" data-template="app:set-attr" data-template-attr="data-api-url" data-template-key="api-base"/>
                     </div>
                     <div>
                         <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
