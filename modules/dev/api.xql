@@ -31,7 +31,7 @@ import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules
 
 
 declare function local:get-reg-name($params as map(*)) as xs:string {
-    query:get-reg-name($params('id'))
+    query:title($params('id'))
 };
 
 declare function local:get-new-id($params as map(*)) as xs:string {
