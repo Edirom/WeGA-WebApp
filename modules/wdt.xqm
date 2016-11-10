@@ -141,12 +141,12 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $sender := 
             if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
             else if(functx:all-whitespace($senderElem)) then 'unbekannt' 
-            else str:normalize-space($senderElem) 
+            else str:printFornameSurname(str:normalize-space($senderElem)) 
         let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
         let $addressee := 
             if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
             else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
-            else str:normalize-space($addresseeElem)
+            else str:printFornameSurname(str:normalize-space($addresseeElem))
         let $placeSender := str:normalize-space(($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         return (
