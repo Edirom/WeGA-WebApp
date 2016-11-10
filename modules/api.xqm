@@ -53,6 +53,38 @@ declare function api:documents-findByDate($model as map()) {
         api:document(api:subsequence($documents, $model), $model)
 };
 
+declare function api:ant-currentSvnRev($model as map()) as xs:int? {
+    config:getCurrentSvnRev()
+};
+
+declare function api:ant-deleteResources($model as map()) {
+    ()
+    (:
+    for $path in tokenize(normalize-space(util:binary-to-string($model('data'))), '\s+')
+    let $fullPathResource:= local:get-resource-path($path)
+    let $fullPathCollection := local:get-collection-path($path)
+    return 
+        if(count(($fullPathCollection, $fullPathResource)) eq 1) then
+            if($fullPathResource) then xmldb:remove(functx:substring-before-last($fullPathResource, '/'), functx:substring-after-last($fullPathResource, '/'))
+            else xmldb:remove($fullPathCollection)
+        else if(count(($fullPathCollection, $fullPathResource)) eq 0) then core:logToFile('info', 'Resource ' || $path || ' not available')
+        else error(QName('wega','error'), 'ambigious delete target: ' || $path)
+    :)
+};
+
+declare function api:ant-patchSvnHistory($model as map()) as map()? {
+    if($model('data')/*/@head castable as xs:integer) then (
+        update value $config:svn-change-history-file/dictionary/@head with $model('data')/*/data(@head),
+        for $entry in $model('data')//entry
+        let $id := $entry/data(@xml:id)
+        let $old := $config:svn-change-history-file//id($id)
+        return 
+            if($old) then update replace $old with $entry
+            else update insert $entry into $config:svn-change-history-file/dictionary
+        )
+    else map {'code' := 400, 'message' := 'could not parse XML fragment', 'fields' := 'invalid format'}
+};
+
 (:~
  :  Helper function for creating a subsequence based on external parameters
 ~:)

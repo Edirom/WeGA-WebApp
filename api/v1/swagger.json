@@ -9,6 +9,20 @@
     "schemes": [
         "http"
     ],
+    "tags": [
+        {
+            "name": "Ant",
+            "description": "Functions needed for various ANT tasks for updating and deleting database records.\nThis is only available in the development version."
+        },
+        {
+            "name": "Documents",
+            "description": "Access to the documents of the WeGA digital edition"
+        },
+        {
+            "name": "Facets",
+            "description": "Facets available for several collections of documents"
+        }
+    ],
     "basePath": "/exist/apps/WeGA-WebApp/api/v1",
     "paths": {
         "/documents": {
@@ -189,6 +203,98 @@
                     }
                 }
             }
+        },
+        "/ant/currentSvnRev": {
+            "get": {
+                "summary": "Current Subversion revision",
+                "description": "Retrieves the current Subversion revision of the data in the eXist-db.\nThis is only available in the development version.\n",
+                "tags": [
+                    "Ant"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {"type": "integer"}
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/ant/deleteResources": {
+            "post": {
+                "summary": "Delete resources",
+                "description": "Delete database resources by posting a list of database URIs",
+                "tags": [
+                    "Ant"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/ant/patchSvnHistory": {
+            "post": {
+                "summary": "Update the Subversion history",
+                "description": "Update the Subversion history by posting an XML or JSON file",
+                "tags": [
+                    "Ant"
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "data",
+                    "description": "subversion history patches",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "xml": {
+                            "name": "patches"
+                        },
+                        "properties": {
+                            "head": {
+                                "type": "integer"
+                            },
+                            "items": {
+                                "type": "array",
+                                "items": {"$ref": "#/definitions/svnHistoryPatch"}
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "404": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -217,6 +323,34 @@
                 },
                 "fields": {
                     "type": "string"
+                }
+            }
+        },
+        "svnHistoryPatch": {
+            "type": "object",
+            "xml": {
+                "name": "patch"
+            },
+            "properties": {
+                "uri": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific document"
+                },
+                "author": {
+                    "type": "string",
+                    "description": "The Subversion commit author"
+                },
+                "rev": {
+                    "type": "integer",
+                    "description": "The Subversion commit revision"
+                },
+                "dateTime": {
+                    "type": "string",
+                    "description": "The Subversion commit dateTime"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "The Subversion path, starting from the repository root"
                 }
             }
         }
