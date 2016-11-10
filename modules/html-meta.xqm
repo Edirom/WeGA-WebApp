@@ -69,7 +69,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
                 lang:get-language-string('placesOfAction', $lang), ': ', 
                 $placesOfAction
             )
-        case 'letters' case 'writings' return str:normalize-space($model('doc')//tei:note[@type='summary'])
+        case 'letters' case 'writings' case 'documents' return str:normalize-space($model('doc')//tei:note[@type='summary'])
         case 'diaries' return str:shorten-text($model('doc')/tei:ab, 150)
         case 'news' case 'var' case 'thematicCommentaries' return str:shorten-text(string-join($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], ' '), 150)
         case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
@@ -87,7 +87,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
     default return  
         switch($model('docType'))
         case 'persons' return concat(str:printFornameSurname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
-        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
+        case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
         case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
         case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
         default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
@@ -104,7 +104,7 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
     default return
         switch($model('docType'))
         case 'persons' return lang:get-language-string('bio', $lang)
-        case 'letters' case 'thematicCommentaries' return lang:get-language-string($model('doc')//tei:text/@type, $lang)
+        case 'letters' case 'thematicCommentaries' case 'documents' return lang:get-language-string($model('doc')//tei:text/@type, $lang)
         case 'writings' return 'Historic Newspaper; Writing'
         case 'diaries' return string-join((lang:get-language-string('diary', $lang), query:get-authorName($model('doc'))), '; ')
         case 'news' return string-join($model('doc')//tei:keywords/tei:term, '; ')
