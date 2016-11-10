@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Berlin, Schauspielhaus: "Der Freischütz" von Carl Maria von Weber am 18. Juni 1821 (Teil 2 von 2)</title>
         
@@ -36,7 +36,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -55,7 +54,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -66,15 +65,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -98,9 +97,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -109,6 +109,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -130,8 +133,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -141,9 +144,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -167,8 +168,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -183,7 +184,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -243,7 +244,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -324,26 +325,21 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader">Correspondenz-Nachrichten.</h2>
-                                        <h3 class="docHeader"><span class="tei_hi_spaced_out"><span class="tei_supplied" id="d72782e7">[[<a class="writings A030435" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030435.html">(Schluß.)</a>]]</span></span>Berlin.</h3>
+                                        <h3 class="docHeader"><span class="tei_hi_spaced_out"><span class="tei_supplied" id="d35632e7">[[<a class="writings A030435" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030435.html">(Schluß.)</a>]]</span></span>Berlin.</h3>
                                         <p>Ein ausführliches Urtheil über das vortreffliche, neuste und größte <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Werk</span> muß ich mir leider! für einen Raum ersparen, der der Musik mehr ausschließlich gewidmet ist, als diese Blätter, und eine Erzählung des Inhaltes werde ich meinen Lesern noch weniger geben, denn Ihre <span class=" 87105101110101114"><span class="tei_settlement">Wiener</span></span> Bühne wird sich eine so geniale, gar angenehme Oper nicht lange fremd seyn lassen, und die Überraschung und die Theaterkoups sind bey diesem dramatischen Produkte auch zu etwas anzuschlagen. Nur so viel, daß alle die Eigenschaften, die <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span></a> schon seit seinem ersten Auftreten charakteristisch von allen andern Musikern der Mit- und Vor-Zeit unterschieden, ich meine jenes Genie, das mit den Regeln und Gesetzen spielt und kühn scherzt, ohne sie je zu verletzen, jene <span class="tei_hi_spaced_out">kaustische</span> Kraft der Melodien, die unwiderruflich in’s Herz gehen, jene Ge<span class="tei_pb">|</span>wandtheit im Behandeln der Harmonien, und vor allen jene Geschicklichkeit – man erlaube uns eine triviale, aber bezeichnende Redensart – jene Geschicklichkeit, <span class="tei_hi_spaced_out">den Nagel überall auf den Kopf zu treffen</span>, alle diese Prädikate glänzen höchst erfreulich in dem „<span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschütz,</span>“ und erheben das Werk auf eine Höhe, auf der es, wie einer unserer Recensenten ganz richtig bemerkt hat, „seit <span class="tei_hi_spaced_out"><a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>’s Tode mit <span class="tei_hi_spaced_out"><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>’s „<span class="works A020491" data-ref="/exist/apps/WeGA-WebApp/de/A000117/Werke/A020491.html">Fidelio</span>“ einzig dasteht.“ Wollte ich Ihnen auch nur die bedeutendsten und vollendetsten Stücke der Oper hervorheben, so würde ich eine Analyse des ganzen Werkes schreiben müssen, deren ich mich enthalten soll; im Allgemeinen ernteten den rauschendsten Beyfall gleich das erste Lied des komischen Bauern (<span class="tei_hi_antiqua">g-dur</span>) mit einem ganz neu behandelten Mädchenchore, alle Jägerchöre des Stückes, ein wildes, schön gemahltes Lied des <span class=" 7011410112111599104252116122101110">Freyschützen</span> (<span class="tei_hi_antiqua">h-moll</span>), den Hr. <span class="tei_hi_spaced_out"><a class="persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Blume</a></span> sehr brav spielt und singt, die lyrische, ganz vortrefflich gemahlte große Scene der <span class=" 6510397116104101">Agathe</span>, von Mad. <span class="tei_hi_spaced_out"><a class="persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Seidler</a></span> wie die ganze Rolle, mit gewohnter Meisterschaft gesungen, derselben süße und elegische Kavatine (<span class="tei_hi_antiqua">As-dur</span>) im dritten Akte; das unübertreffliche, einfache und ungemein geniale Volkslied: „wir winden dir den Jungfernkranz“ und der Schluß der Oper. Genug vom Einzelnen. Sie werden das Ganze ohne Zweifel bald hören, und Ihre Leser sollen hoffentlich ihrem Berliner Korrespondenten noch danken, daß er sie schon vorläufig auf einen großen Genuß aufmerksam gemacht hat.</p>
                                         <p><span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> gab am letzten Montage auch, vielen Menschen sich fügend, ein Konzert, und wir hatten seit Jahren nun auch wieder einmahl Gelegenheit, den vollendeten Pianisten in ihm zu bewundern. Er spielte mit der Elasticität des Anschlages, der perlenrunden Geläufigkeit, und dem originellen Geiste, die wir an ihm gewohnt waren, eine schwierige Konzertscene von eigner Komposition, ein Rondo brillante, in welchen beyden Stücken er sich denselben rauschenden, warmen und wahrhaft südlichen Beyfall gewann, den er den Zuhörern mit seiner Oper entlockt hatte, und endlich <span class="works A020312" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020312.html">Variationen auf ein norwegisches Lied</span> mit dem wunderlich merkwürdigen Violinisten <a class="persons A000209" href="/exist/apps/WeGA-WebApp/de/A000209.html">Alex. <span class="tei_hi_spaced_out">Boucher</span></a>, der immer noch bey uns ist, und immer wieder, wenn er auftritt, den Saal füllt, die Leute erst unterhält, dann ergetzt, und damit endet, sie hinzureißen. Wie dieser höchst interessante und bizarre Mensch denn einmahl immer seinen eigenthümlichen Weg geht, so machte er sich auch den Spaß, in einer Fermate den begleitenden Kapellmeister <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> um einen Augenblick Pause zu einer Kadenz zu ersuchen, und nun gab er in dieser <span class="tei_hi_spaced_out">improvisirt</span> eine wahre Perlenschnur von Thematen aus dem "„<span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschütz,</span>“ die er, wie alle Musikfreunde, im Kopfe behalten hatte, und nun als originelles, artiges Zeichen seiner Aufmerksamkeit und Verehrung dem Komponisten auf diese geistreiche Art zurückgab; das Publikum erkannte die Originalität, wie die Artigkeit, und die Meisterschaft der unvorbereiteten Ausführung mit lebhaftem Applaus an.</p>
-                                        <p><span> […]</span>
-                                        </p>
                                     </div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -372,7 +368,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Jg.&#160;6, Nr.&#160;89 (26. Juli 1821), S.&#160;758–759</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -393,11 +389,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Übertragung des Liedes "Non far la smorfiosa" aus dem Italienischen (1810)</title>
         
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -264,11 +265,11 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
-                                    <div class="docPart"><span class="lg"><span class="verseLine"><span class="tei_hi_antiqua">Non far la smorfiosa</span><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a></span><span class="verseLine"><span class="tei_supplied" id="d74038e13">[Non far la smorfiosa,]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e16">[Ninetta, mio cor!]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e19">[Un baso via da me]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e22">[per segno d’amor.]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e25">[Ma via cosa fai tu,]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e28">[me voi tu tradir]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e31">[Ahi, ahi! Me sento morir.]</span></span></span><span class="lg"><span class="verseLine"><span class="tei_supplied" id="d74038e35">[Che caldo, che foco,]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e38">[Che smania, che ardor]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e41">[Consola Ninetta]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e44">[Sto misero cor.]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e47">[Più tanto tormento]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e50">[Non posso soffrir.]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e53">[Ahi, ahi! Me sento morir.]</span></span></span><span class="lg"><span class="verseLine"><span class="tei_supplied" id="d74038e57">[No xe un gran delitto]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e60">[Se un baso te dà]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e63">[A chi tel dimanda]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e66">[Per sola pietà.]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e69">[Non farme più smorfie!]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e72">[Mi vedi a languir.]</span></span><span class="verseLine"><span class="tei_supplied" id="d74038e75">[Ahi, ahi! Me sento morir.]</span></span></span>
+                                    <div class="docPart"><span class="lg"><span class="verseLine"><span class="tei_hi_antiqua">Non far la smorfiosa</span><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a></span><span class="verseLine"><span class="tei_supplied" id="d36845e13">[Non far la smorfiosa,]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e16">[Ninetta, mio cor!]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e19">[Un baso via da me]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e22">[per segno d’amor.]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e25">[Ma via cosa fai tu,]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e28">[me voi tu tradir]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e31">[Ahi, ahi! Me sento morir.]</span></span></span><span class="lg"><span class="verseLine"><span class="tei_supplied" id="d36845e35">[Che caldo, che foco,]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e38">[Che smania, che ardor]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e41">[Consola Ninetta]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e44">[Sto misero cor.]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e47">[Più tanto tormento]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e50">[Non posso soffrir.]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e53">[Ahi, ahi! Me sento morir.]</span></span></span><span class="lg"><span class="verseLine"><span class="tei_supplied" id="d36845e57">[No xe un gran delitto]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e60">[Se un baso te dà]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e63">[A chi tel dimanda]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e66">[Per sola pietà.]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e69">[Non farme più smorfie!]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e72">[Mi vedi a languir.]</span></span><span class="verseLine"><span class="tei_supplied" id="d36845e75">[Ahi, ahi! Me sento morir.]</span></span></span>
                                     </div>
                                     <div class="docPart"><span class="lg"><span class="verseLine">Jetzt sey nit so sprödig,</span><span class="verseLine">Lisettl mi Schaz,</span><span class="verseLine">i bin ja so büllig</span><span class="verseLine">und nur en Schmaz.</span><span class="verseLine">Was Teufel, was machst denn,</span><span class="verseLine">du schaust mi nit an,</span><span class="verseLine">ahi, ahi, i g’schlagener Mann.</span></span><span class="lg"><span class="verseLine">O Hize, o Schmerze</span><span class="verseLine">o Feuer, o Brand,</span><span class="verseLine">o tröste mein Herze</span><span class="verseLine">und reich mir die Hand.</span><span class="verseLine">Nein solchen Spektakel</span><span class="verseLine">ertrag i nit mehr</span><span class="verseLine">ahi, ahi, i lieb dir zu sehr.</span></span><span class="lg"><span class="verseLine">Ein einziges Schmazerl </span><span class="verseLine">von dir will i hahn,</span><span class="verseLine">drum gib mir dein Tazerl,</span><span class="verseLine">sonst kannst mi begrabn;</span><span class="verseLine">Jezt sey net so gremli,</span><span class="verseLine">du siehst wie i rehr –</span><span class="verseLine">ahi, ahi, gibs Göscherl doch her. :,:</span></span>
                                     </div>
@@ -276,10 +277,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -312,7 +310,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Hell S I (Vorwort)</span> (1828), S.&#160;LXXI–LXXIII</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -349,11 +347,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

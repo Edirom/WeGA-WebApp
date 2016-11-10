@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Korrespondenz-Nachrichten aus Prag, 17. März 1812</title>
         
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -293,7 +294,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -311,13 +312,13 @@
                     sey, wissen Ihre Leser durch <span class="tei_ptr"></span>den Bericht<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>, der bey der Stiftung und Gründung
                     desselben, ertheilt worden ist. Es sey erlaubt, darüber hier nur noch
                     beyzubringen, dass dies Institut sich als ein schönes und gewiss nicht
-                    <span class="tei_app"><span class="tei_lem">unwichtiges <span class="tei_hi_italic">Privat</span>-Unternehmen</span><a class="noteMarker" id="ref-d74524e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e24">‡</a></span> immer mehr bewährt. Die
+                    <span class="tei_app"><span class="tei_lem">unwichtiges <span class="tei_hi_italic">Privat</span>-Unternehmen</span><a class="noteMarker" id="ref-d37331e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37331e24">‡</a></span> immer mehr bewährt. Die
                     wiederholten Prüfungen der Fortschritte der Zöglinge übertrafen die Erwartung
                     und erregen mit Recht die Hoffnung wahrhaft ausgezeichneter Resultate.
                     Erfreulich ist gewiss jedem Kunstfreunde, auch dem auswärtigen, dieser Beweis,
                     was ächter kunstliebender Sinn, wenn er beharrlich ist, auch gegen nicht geringe
                     Hindernisse vermag. – Auch die Liebhaber-Concerte fanden anfänglich manche
-                    Schwierigkeiten. <span class="tei_app"><span class="tei_lem">Welches neue Unternehmen bliebe frey davon!</span><a class="noteMarker" id="ref-d74524e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e37">‡</a></span> Da man aber blos
+                    Schwierigkeiten. <span class="tei_app"><span class="tei_lem">Welches neue Unternehmen bliebe frey davon!</span><a class="noteMarker" id="ref-d37331e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37331e37">‡</a></span> Da man aber blos
                     die Sache berücksichtigte, und alle kleinlichen Nebenumstände entfernet hielt,
                     so gelang es, den wohlgefassten Plan ausgeführt zu sehen, der darauf angelegt
                     war, gesellschaftliches Vergnügen durch Musik zu befördern, zu welcher alle
@@ -343,7 +344,7 @@
                     öffentlicher Productionen der Künstler von Profession Aergernis nehmen; so wenig
                     halte ichs für recht und human, die Bestrebungen der Liebhaber vor das Forum der
                     Kritik zu ziehen, und an dieselben wol gar einen Maasstab zu legen, der nur für
-                    Virtuosen oder ein <span class="tei_app"><span class="tei_lem">jahrelang</span><a class="noteMarker" id="ref-d74524e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e104">‡</a></span> eingeübtes Orchester passt, und überdies gewöhnlich
+                    Virtuosen oder ein <span class="tei_app"><span class="tei_lem">jahrelang</span><a class="noteMarker" id="ref-d37331e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37331e104">‡</a></span> eingeübtes Orchester passt, und überdies gewöhnlich
                     die allgemeine Theilnahme, wie den Muth und die Freude der Theilnehmenden
                     selbst, stört. Ist es doch durch solches Hervorziehen ins Publicum schon dahin
                     gekommen, dass die männlichen und weiblichen Dilettanten die Kritik als ein
@@ -359,17 +360,14 @@
                     als einer der Tonkunst ausgezeichnet befreundeten Stadt, von neuem
                     behaupten.</p>
                                         <p class="tei_closer">
-                    <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Tr–le</a>.</span></span><a class="noteMarker" id="ref-d74524e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74524e120">‡</a></span></span>
+                    <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_italic"><a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Tr–le</a>.</span></span><a class="noteMarker" id="ref-d37331e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37331e120">‡</a></span></span>
                 </p>
                                     </div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -400,7 +398,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg.&#160;14, Nr.&#160;14 (01. April 1812), Sp.&#160;229–231</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -411,7 +409,7 @@
                                     <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="author">ohne Verfasserangabe</span>, <span class="title">Nachrichten</span>, in: <span class="journalTitle">Musicalische Zeitung für die österreichischen Staaten</span>, Jg.&#160;1, Nr.&#160;2 (30. April 1812), S.&#160;9–10</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -429,11 +427,11 @@
                                             <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">den Bericht</span>": <span class="tei_hi_italic">AMZ</span>, Jg. 12, Nr. 50 (12. September 1810), Sp. 803-807</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74524e24" data-title="app">"unwichtiges Privat-Unternehmen": Lesart in anderer Quelle: <span class="tei_rdg">unwichtiger <span class="tei_hi_italic">Privat</span>-Unterricht</span>
+                                            <div class="apparatusEntry" id="d37331e24" data-title="app">"unwichtiges Privat-Unternehmen": Lesart in anderer Quelle: <span class="tei_rdg">unwichtiger <span class="tei_hi_italic">Privat</span>-Unterricht</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74524e37" data-title="app">"Welches neue Unternehmen bliebe frey davon!": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d37331e37" data-title="app">"Welches neue Unternehmen bliebe frey davon!": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                         <li>
@@ -461,11 +459,11 @@
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">Symphonie von Haydn</span>": nicht ermittelt</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74524e104" data-title="app">"jahrelang": Lesart in anderer Quelle: <span class="tei_rdg">lang</span>
+                                            <div class="apparatusEntry" id="d37331e104" data-title="app">"jahrelang": Lesart in anderer Quelle: <span class="tei_rdg">lang</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74524e120" data-title="app">"Tr–le.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
+                                            <div class="apparatusEntry" id="d37331e120" data-title="app">"Tr–le.": Lesart in anderer Quelle: <span class="tei_rdg"></span>
                                             </div>
                                         </li>
                                     </ul>
@@ -476,11 +474,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Aufführungsbesprechung Leipzig: „Der Freischütz“ von Carl Maria von Weber am 23. Dezember 1821</title>
         
-        <meta property="dc:title" content="Aufführungsbesprechung Leipzig: „Der Freischütz“ von Carl Maria von Weber am 23. Dezember 1821" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Aufführungsbesprechung Leipzig: "Der Freischütz" von Carl Maria von Weber am 23. Dezember 1821</title>
+        
+        <meta property="dc:title" content="Aufführungsbesprechung Leipzig: &#34;Der Freischütz&#34; von Carl Maria von Weber am 23. Dezember 1821" />
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
@@ -36,7 +36,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -55,7 +54,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -66,15 +65,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -98,9 +97,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -109,6 +109,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -130,8 +133,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -141,9 +144,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -167,8 +168,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -183,7 +184,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -243,7 +244,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -326,7 +327,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -353,7 +354,7 @@
                     Verbindung eine erschütternde Wirkung nicht verfehlen, ist unbezweifelt. Dieß
                     ist in der Schlußmusik des zweyten Akts der Fall, wo die Musik das Geräusch der
                     höllischen Jagd darstellt, und in allen den Momenten, wo der <span class="tei_hi_spaced_out">schwarze Jäger</span> (<span class="tei_hi_spaced_out">Hier</span> dem
-                            <span class="tei_add">An<span class="tei_pb">|</span>scheine<a class="noteMarker" id="ref-d72569e43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d72569e43">‡</a></span> nach eher für das
+                            <span class="tei_add">An<span class="tei_pb">|</span>scheine<a class="noteMarker" id="ref-d35414e43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35414e43">‡</a></span> nach eher für das
                     Gespenst eines <span class="tei_hi_spaced_out">rothen Husaren</span> zu halten) Verderben
                     drohend über die Scene geht. Die dumpfen, abgerißnen Paukenschläge, welche hier
                     in das Zittern der Saiten gleichsam hineingeworfen werden, sind von großer
@@ -396,8 +397,6 @@
                     Spiels in naiven Rollen dieser Art, auch die lobenswertheste Sorgfalt im Gesang.
                     Chöre und Orchester werden, was noch mangelt, durch öftere Wiederholungen
                     gewinnen.</p>
-                                        <p><span> […]</span>
-                                        </p>
                                         <p class="tei_closer"><span class="tei_signed textAlign-right"><span class="tei_segBlock textAlign-right"><a class="persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">A. W.</a></span></span>
                                         </p>
                                     </div>
@@ -405,10 +404,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -437,7 +433,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg.&#160;16, Nr.&#160;32 (6. Februar 1822), S.&#160;127–128</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -450,7 +446,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d72569e43" data-title="unclear">"An|scheine": Unsichere Lesung</div>
+                                            <div class="apparatusEntry" id="d35414e43" data-title="unclear">"An|scheine": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -462,11 +458,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

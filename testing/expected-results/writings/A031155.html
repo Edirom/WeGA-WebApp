@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Notizen über Sachsen und Dresden. Ein Beitrag zur musikalischen Topographie</title>
         
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -322,7 +323,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -332,8 +333,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>„<span class="tei_hi_underline1">Sachsen</span>.</td>
-                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="persons A003577" href="/exist/apps/WeGA-WebApp/de/A003577.html">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="persons A000756" href="/exist/apps/WeGA-WebApp/de/A000756.html">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d74882e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74882e32">‡</a></span> <a class="persons A004394" href="/exist/apps/WeGA-WebApp/de/A004394.html">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a>. <a class="persons A002416" href="/exist/apps/WeGA-WebApp/de/A002416.html">Seidelmann</a> und <a class="persons A006381" href="/exist/apps/WeGA-WebApp/de/A006381.html">Schuster</a>
-                     gleichsam <span class=" 8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d74882e59">[<span class="tei_hi_superscript">t</span>]</span> <a class="persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a>, <a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlachi</a>.</td>
+                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="persons A003577" href="/exist/apps/WeGA-WebApp/de/A003577.html">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="persons A000756" href="/exist/apps/WeGA-WebApp/de/A000756.html">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d37680e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37680e32">‡</a></span> <a class="persons A004394" href="/exist/apps/WeGA-WebApp/de/A004394.html">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a>. <a class="persons A002416" href="/exist/apps/WeGA-WebApp/de/A002416.html">Seidelmann</a> und <a class="persons A006381" href="/exist/apps/WeGA-WebApp/de/A006381.html">Schuster</a>
+                     gleichsam <span class=" 8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d37680e59">[<span class="tei_hi_superscript">t</span>]</span> <a class="persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a>, <a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlachi</a>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Dresden</span>.<br />Oboe dominirte wegen 
@@ -343,11 +344,11 @@
                      <a class="persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a> liebte sie sehr
                      und brachte es mit 
                      Mühe dahin.                        
-                     <span class="tei_add tei_hi_subscript">12. Jahr.<a class="noteMarker" id="ref-d74882e94" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74882e94">‡</a></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>
+                     <span class="tei_add tei_hi_subscript">12. Jahr.<a class="noteMarker" id="ref-d37680e94" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37680e94">‡</a></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>
                   </td>
                                                         <td>in jeder Stadt, StadtMusizi. daher 
                      KirchenMusik vorherrschend. nur 1 Hof. der blos am Italienischen hängt und am 
-                     alten.     Choräle. Kirchlicher Vol<span class="tei_supplied" id="d74882e101">[k]</span>sGesang.
+                     alten.     Choräle. Kirchlicher Vol<span class="tei_supplied" id="d37680e101">[k]</span>sGesang.
                      ästhetischer Mangel, aus übermaß<br />auf jeder Seite, lauter Italienisches 
                      oder lauter Choräle.
                      Cantor. StadtMusikus. Stadtschulen
@@ -362,7 +363,7 @@
                      oder <a class="persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html"><span class="tei_hi_latintype">Babi</span></a>. neuerdings befohlen daß kein 
                      E: gegeben wird ohne Protektion, oder 
                      hinlängliche Subsc:<br />
-                     in der Stadt ohne C:<span class="tei_supplied" id="d74882e124">[apelle?]</span> PolizeiE: vom 
+                     in der Stadt ohne C:<span class="tei_supplied" id="d37680e124">[apelle?]</span> PolizeiE: vom 
                      <span class="tei_hi_latintype">Polizei Direktor</span>.
                   </td>
                                                     </tr>
@@ -372,20 +373,20 @@
                      ist so klein, daß Tr: und P: unter dem 
                      Orch: stehen.
                   </td>
-                                                        <td>das beste im <span class="tei_hi_latintype">Ho:</span><span class="tei_supplied" id="d74882e139">[tel]</span> de <span class="tei_hi_latintype">P:</span><span class="tei_supplied" id="d74882e144">[ologne]</span> die Kapelle spielt in kein
-                     anderen. er ist auch am beliebtest<span class="tei_supplied" id="d74882e147">[en]</span> besonders
+                                                        <td>das beste im <span class="tei_hi_latintype">Ho:</span><span class="tei_supplied" id="d37680e139">[tel]</span> de <span class="tei_hi_latintype">P:</span><span class="tei_supplied" id="d37680e144">[ologne]</span> die Kapelle spielt in kein
+                     anderen. er ist auch am beliebtest<span class="tei_supplied" id="d37680e147">[en]</span> besonders
                      der Adel will sonst nirgends hin.<br />
                      Saal des Gewandhauses, groß, lang 
                      und niedrig. <span class="tei_hi_latintype">Orchester</span> steht auch da. 
-                     der Dillett: <span class="tei_hi_latintype">C:</span><span class="tei_supplied" id="d74882e158">[hor?]</span> ist da.<br />
+                     der Dillett: <span class="tei_hi_latintype">C:</span><span class="tei_supplied" id="d37680e158">[hor?]</span> ist da.<br />
                      <span class="tei_hi_latintype">Conversat</span>: Saal vor dem Seethor<br /> 
                      manchmal <span class="tei_hi_latintype">Conc</span>: gehört der <span class="tei_hi_latintype">Conver</span>. 
                      Gesellsch: und muß von dieser besonders 
                      Erlaubt werden. nicht groß aber 
                      gut akustisch.<br />
                      Saal der Harmonie. Schmahl und niedrig.
-                     gehört der Gesellsch: die <span class="tei_del">wöchentlich<a class="noteMarker" id="ref-d74882e177" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74882e177">‡</a></span> 
-                     alle 14 T. C:<span class="tei_supplied" id="d74882e180">[onzert]</span> g: und
+                     gehört der Gesellsch: die <span class="tei_del">wöchentlich<a class="noteMarker" id="ref-d37680e177" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37680e177">‡</a></span> 
+                     alle 14 T. C:<span class="tei_supplied" id="d37680e180">[onzert]</span> g: und
                      zu großen Aufführungen sind die <span class="tei_hi_underline1">Kreutzkirche</span> und 
                      FraunKirche<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> die besten.
                   </td>
@@ -409,20 +410,20 @@
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Kapelle</span>.<br />das beste Orch: ist das das auf    
                      dem Bade spielt. die sogenanten 
-                     JagdPfeiffer.<span class="tei_add tei_hi_superscript">12<a class="noteMarker" id="ref-d74882e209" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74882e209">‡</a></span> Obergeiger <span class="tei_hi_underline1"><span class=" 7722811011099104101110">Männchen</span></span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>.
+                     JagdPfeiffer.<span class="tei_add tei_hi_superscript">12<a class="noteMarker" id="ref-d37680e209" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37680e209">‡</a></span> Obergeiger <span class="tei_hi_underline1"><span class=" 7722811011099104101110">Männchen</span></span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a>.
                      alles gut besezzen. geschikte und 
                      willige Leute.
-                     3 Posaun. 4 Horn.<br />außer ihnen wird aus dem Militair<span class="tei_supplied" id="d74882e227">[,]</span>
+                     3 Posaun. 4 Horn.<br />außer ihnen wird aus dem Militair<span class="tei_supplied" id="d37680e227">[,]</span>
                      der Garde, und Artillerie Musik 
                      recht braves <span class="tei_hi_latintype">Ensemble</span> zusammen
                      Gebracht.                                               gem:
                       
-                     <span class="tei_add tei_hi_subscript">Fräulein aus dem <a class="persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. Harfe.<a class="noteMarker" id="ref-d74882e233" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d74882e233">‡</a></span><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>
+                     <span class="tei_add tei_hi_subscript">Fräulein aus dem <a class="persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. Harfe.<a class="noteMarker" id="ref-d37680e233" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37680e233">‡</a></span><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>
                   </td>
                                                         <td><span class="tei_hi_latintype"><a class="persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html">Babbi</a></span> oder <span class="tei_hi_underline1"><a class="persons A000388" href="/exist/apps/WeGA-WebApp/de/A000388.html">Dietsch</a></span>.   alles gut 
                      besezt. außer Trompete u Paukken, die 
                      bezahlt werden müßen.
-                     Dilletante<span class="tei_supplied" id="d74882e250">[n]</span>. Mlle <span class="tei_hi_underline1"><span class=" 7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, <a class="persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Zucker</a> 
+                     Dilletante<span class="tei_supplied" id="d37680e250">[n]</span>. Mlle <span class="tei_hi_underline1"><span class=" 7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, <a class="persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Zucker</a> 
                      <span class=" 75972231011159910411410110598101114">Kaßeschreiber</span> <span class=" 71246122">Göz</span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a>. <span class="tei_hi_underline1"><a class="persons A002856" href="/exist/apps/WeGA-WebApp/de/A002856.html">Pischel</a></span>. <span class="tei_hi_latintype">Violoncell</span>: 
                      <a class="persons A000400" href="/exist/apps/WeGA-WebApp/de/A000400.html">Dozauer</a>. <a class="persons A008053" href="/exist/apps/WeGA-WebApp/de/A008053.html">Prinz</a>. Flöte. <a class="persons A009849" href="/exist/apps/WeGA-WebApp/de/A009849.html">Jäckel</a>
                      Oboe. <span class="persons A001623 A001619">Br. Rothe</span>, Clar: <a class="persons A009669" href="/exist/apps/WeGA-WebApp/de/A009669.html">Mieksch</a>. und
@@ -441,7 +442,7 @@
                      Opern sind beliebt.
                      Große Vorliebe für <span class=" 80228114821711599104101">Pär’sche</span> Musik.
                      <a class="persons A004163" href="/exist/apps/WeGA-WebApp/de/A004163.html">Dreißig</a> ein Erard:sches, und H: 
-                     <span class=" 70105101100108101114">Fiedler</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> ein Streichersches <span class="tei_supplied" id="d74882e342">[Pianoforte]</span>.
+                     <span class=" 70105101100108101114">Fiedler</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a> ein Streichersches <span class="tei_supplied" id="d37680e342">[Pianoforte]</span>.
                      Magazin von Instr. im Adreß<span class="tei_hi_latintype">Comptoir</span>“
                   </td>
                                                     </tr>
@@ -453,10 +454,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -496,7 +494,7 @@
                   </li>
                                             </ul>
                                         </div>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -516,19 +514,19 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d74882e32" data-title="add">"unter": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d37680e32" data-title="add">"unter": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74882e94" data-title="add">"12. Jahr.": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d37680e94" data-title="add">"12. Jahr.": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74882e177" data-title="del">"wöchentlich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d37680e177" data-title="del">"wöchentlich":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74882e209" data-title="add">"12": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d37680e209" data-title="add">"12": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d74882e233" data-title="add">"Fräulein aus dem Winkel. Harfe.": Hinzufügung</div>
+                                            <div class="apparatusEntry" id="d37680e233" data-title="add">"Fräulein aus dem Winkel. Harfe.": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -568,11 +566,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

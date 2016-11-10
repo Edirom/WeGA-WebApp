@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung: „Makdonald" von Nicolas Dalayrac am 25. Juli 1811 in München</title>
         
@@ -13,8 +13,8 @@
         <meta property="dc:contributor" content="Carl Maria von Weber" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-09-13T14:09:06.070130Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-10-18T11:08:35.907635Z" />
         <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031145" />
         <meta property="dc:description" content="lobt die vortreffliche Komposition des Werkes, u.a. die spannende Ouvertüre und die klassischen Chöre; empfand die gesehene Aufführung allerdings weniger geglückt und etwas lethargisch" />
         <meta name="description" content="lobt die vortreffliche Komposition des Werkes, u.a. die spannende Ouvertüre und die klassischen Chöre; empfand die gesehene Aufführung allerdings weniger geglückt und etwas lethargisch" />
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -278,6 +279,19 @@
                         </div>
                     </div>
                             <div>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
+                        <div class="panel-collapse collapse" id="works">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020835" /> <span title="Léhéman ou la tour de Neustadt">Léhéman ou la tour de Neustadt</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020851" /> <span title="Léon ou le château de Monténéro">Léon ou le château de Monténér…</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
                         </h2>
                         <div class="panel-collapse collapse" id="places">
@@ -308,13 +322,13 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader">Dramaturgische Bruchstücke.</h2>
-                                        <p><span class="tei_hi_spaced_out">Donnerstags</span>, den 25. July sahen wir die Oper <span class="tei_hi_spaced_out"><span class=" 779710710011111097108100">Makdonald</span></span> mit Musik von <span class="tei_hi_spaced_out"><a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dallayrac</a></span> auf unserer Bühne. Nächst dem <span class=" 83991041081112231013277111110116101110101114111"><span class="tei_hi_spaced_out">Schloße Montenero</span></span> ist diese Oper unstreitig zu den vollendetsten Arbeiten <a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dallayrac</a>’s zu rechnen, indem sich darin sein sonst vorzüglich zum Naiven und Munteren neigendes Gemüth, zu einer ihm ungewöhnlichen Kraft emporschwingt, und kaum den Componisten einer <span class=" 7810511097">Nina</span> etc. etc. wieder erkennen läßt. Es ist auch sehr charakteristisch, daß diese beyden obigen Opern in <span class=" 701149711010711410110599104"><span class="tei_settlement">Frankreich</span></span> nicht zu seinen Beßten gezählt werden und es hauptsächlich uns Deutschen vorbehalten war, sie gehörig zu würdigen, welches auch beynahe auf allen Theatern, besonders mit <span class="tei_hi_spaced_out"><span class=" 779710710011111097108100">Makdonald</span></span> (der an andern Orten unter dem Titel: <span class="tei_hi_spaced_out"><span class=" 7610110410997110110321111001011143210010111432841041171141093298101121327810111711511697100116">Lehmann oder der Thurm bey Neu<span class="tei_pb">|</span>stadt</span></span>, auch als <span class="tei_hi_spaced_out">der Thurm von Gothenburg</span> bekannt ist) der Fall war.</p>
+                                        <p><span class="tei_hi_spaced_out">Donnerstags</span>, den 25. July sahen wir die Oper <span class="tei_hi_spaced_out"><span class="works A020835" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020835.html">Makdonald</span></span> mit Musik von <span class="tei_hi_spaced_out"><a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dallayrac</a></span> auf unserer Bühne. Nächst dem <span class="works A020851" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020851.html"><span class="tei_hi_spaced_out">Schloße Montenero</span></span> ist diese Oper unstreitig zu den vollendetsten Arbeiten <a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dallayrac</a>’s zu rechnen, indem sich darin sein sonst vorzüglich zum Naiven und Munteren neigendes Gemüth, zu einer ihm ungewöhnlichen Kraft emporschwingt, und kaum den Componisten einer <span class=" 7810511097">Nina</span> etc. etc. wieder erkennen läßt. Es ist auch sehr charakteristisch, daß diese beyden obigen Opern in <span class=" 701149711010711410110599104"><span class="tei_settlement">Frankreich</span></span> nicht zu seinen Beßten gezählt werden und es hauptsächlich uns Deutschen vorbehalten war, sie gehörig zu würdigen, welches auch beynahe auf allen Theatern, besonders mit <span class="tei_hi_spaced_out"><span class="works A020835" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020835.html">Makdonald</span></span> (der an andern Orten unter dem Titel: <span class="tei_hi_spaced_out"><span class=" 7610110410997110110321111001011143210010111432841041171141093298101121327810111711511697100116">Lehmann oder der Thurm bey Neu<span class="tei_pb">|</span>stadt</span></span>, auch als <span class="tei_hi_spaced_out">der Thurm von Gothenburg</span> bekannt ist) der Fall war.</p>
                                         <p>Die Ouverture versetzt uns sogleich mitten in das Leben des Stücks, durch ihre herzlichen – spannenden und kräftig auflodernden Stellen, und wenn es an ihr etwas zu tadeln gäbe, so würde Ref. sie etwas fragmentarisch durch das öftere Unterbrechen des Tempos finden.</p>
                                         <p>Die Romanze, "ein Pilger irrt" wird besonders durch ihre innige Verwebung mit dem Gang der ganzen Handlung interessant. Bey den gespanntesten, entscheidendsten Szenen erscheint die freundliche Melodie, wie ein tröstender Stern, und verheißt den erwartungsvollen Zuhörern Rettung seiner Lieben. Solche Stücke sind die zarten Fäden im Gewebe einer Oper, die von einem wahren dramatischen Componisten so gesponnen, wie hier, unwiderstehlich die Herzen der Zuhörer fesseln müssen.</p>
                                         <p>Nächst diesen sind alle Chöre in dieser Oper wirklich klassisch zu nennen; besonders der Trink-Chor im zweyten Akt, der so populär und soldatisch kräftig gedacht ist, und in dem die sorglose Fröhlichkeit mit dem ängstlichen Flüstern <span class="tei_hi_spaced_out"><span class=" 779710710011111097108100">Makdonald</span>’s</span> und seiner Tochter in so herrlichen Contrasten steht. Aber eben dieses Contrastes willen kann dieser Chor nicht kräftig genug gesungen werden, und ergreiffend muß jedesmal der Moment seyn, wo selbst nach der Ermahnung nicht so zu schreyen, der Frohsinn sie hinreißt, und Alles wieder in Jubel ausbricht. Es möchte dies einer der wenigen Fälle seyn, wo man beynahe Schreyen, statt singen dürfte.</p>
@@ -328,10 +342,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -362,7 +373,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Gesellschaftsblatt für gebildete Stände</span>, Jg.&#160;1, Nr.&#160;59 (27. Juli 1811), Sp.&#160;478–479</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -401,11 +412,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
@@ -417,7 +428,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031145</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. September 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 18. Oktober 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             

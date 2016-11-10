@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3)</title>
         
@@ -16,8 +16,8 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-10-11T13:09:58.843778Z" />
         <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301" />
         <meta property="dc:description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
         <meta name="description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
@@ -38,7 +38,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -57,7 +56,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -68,15 +67,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -100,9 +99,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -111,6 +111,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -132,8 +135,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -143,9 +146,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -169,8 +170,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -185,7 +186,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -245,7 +246,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -292,9 +293,11 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020960" /> <span title="Die Jungfrau von Orleans">Die Jungfrau von Orleans</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020539" /> <span title="Elisabetta regina d'Inghilterra">Elisabetta regina d'Inghilterr…</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020573" /> <span title="Raoul Blaubart">Raoul Blaubart</span> 
+                                    <input type="checkbox" name="options" value="A020573" /> <span title="Raoul barbe-bleue">Raoul barbe-bleue</span> 
                                 </label>
                             </div>
                         </div>
@@ -330,14 +333,14 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <div class="docPart">
                                             <p><span class="tei_date">Am 29. Oct.</span> <span class="tei_hi_spaced_out"><span class=" 68105101321031141112231011103275105110100101114">Die großen Kinder</span></span>. Dem. <span class="tei_hi_spaced_out">Radicke</span>, die jüngere, besitzt von der Natur  durchaus nichts, was zu der naiven <span class=" 7797110111110">Manon</span> gehört, und die Kunst ersetzte hier es auch nicht, so daß die ganze Darstellung dadurch nicht das gewohnte lebendige Colorit erhielt. Hierauf die komische Oper: <span class="tei_hi_spaced_out"><span class=" 68971153271101104101105109110105223">Das Geheimniß</span></span>, worin Dem. <span class=" 829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span>, die ältere, die <span class=" 72111102114228116104105110">Hofräthin</span> gab. Sie zeigte abermals, daß sie oft auf der Bühne gesungen habe, und verzierte am unrechten Orte, brachte Variazionen an, wo keine hingehören, suchte dadurch zu bestechen, gewann sich aber nur getheilten Beifall damit. Als Spielrolle ist diese unbedeutend.</p>
-                                            <p><span class="tei_date">Am 31. Oct.</span> <span class="tei_hi_spaced_out"><span class=" 741111049711011010132118111110326511499">Johanne von Arc</span></span>. So heißt bei uns die Jungfrau von Orleans. Dem <span class="tei_hi_spaced_out">Radicke</span> d. ä. beschloß ihre Gastdarstellungen mit dieser Rolle. Allerdings ein kühnes Unternehmen. Doch liegt wieder auf der andern Seite in diesem Charakter ein so unwiderstehlicher Zauber, daß, wenn auf der einen Seite eine höchstgebildete Künstlerin dazu nöthig ist, um ihn würdig darzustellen, auf der andern eben wieder die einfachste Sitte, ein fast schüchternes Talent ihm auch wieder einen eigenen Reiz würde ertheilen können. Dem <span class=" 829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span> wird sich selbst unter die Classe der erstern nicht stellen, und was das Letztre betrifft, trat ihr eben hier jene Routine, die ihr sonst zu manchem Guten verhalf, recht störend in den Weg. Schon im Vorspiele, wo das ruhigste Spiel durch die Situation selbst bedingt ist, machte sie sich sehr viel auf dem Theater zu thun, und so begleitete sie Unruhe durch das ganze Stück. Uebrigens zwingt sie ihre an sich recht verständliche Stimme zu einer gewaltigen Höhe, wodurch sie sich nicht selten überschreiet, und stellt ihren wohlgewachsnen Körper in so schiefe Lagen, daß nur Verdrehungen daraus hervorgehn können. Möchte sie auf eine Bühne kommen, wo seltnes und gemessenes Spiel und ein Kunstrichter ihr zu Theil würde, der sie auf ihre angenommenen Fehler aufmerksam machte, und durch deren Wegräumung das wahre Gute, das in ihr liegt, wieder aufkeimen ließe.</p>
+                                            <p><span class="tei_date">Am 31. Oct.</span> <span class="tei_hi_spaced_out"><span class=" 741111049711011010132118111110326511499">Johanne von Arc</span></span>. So heißt bei uns die <span class="works A020960" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020960.html">Jungfrau von Orleans</span>. Dem <span class="tei_hi_spaced_out">Radicke</span> d. ä. beschloß ihre Gastdarstellungen mit dieser Rolle. Allerdings ein kühnes Unternehmen. Doch liegt wieder auf der andern Seite in diesem Charakter ein so unwiderstehlicher Zauber, daß, wenn auf der einen Seite eine höchstgebildete Künstlerin dazu nöthig ist, um ihn würdig darzustellen, auf der andern eben wieder die einfachste Sitte, ein fast schüchternes Talent ihm auch wieder einen eigenen Reiz würde ertheilen können. Dem <span class=" 829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span> wird sich selbst unter die Classe der erstern nicht stellen, und was das Letztre betrifft, trat ihr eben hier jene Routine, die ihr sonst zu manchem Guten verhalf, recht störend in den Weg. Schon im Vorspiele, wo das ruhigste Spiel durch die Situation selbst bedingt ist, machte sie sich sehr viel auf dem Theater zu thun, und so begleitete sie Unruhe durch das ganze Stück. Uebrigens zwingt sie ihre an sich recht verständliche Stimme zu einer gewaltigen Höhe, wodurch sie sich nicht selten überschreiet, und stellt ihren wohlgewachsnen Körper in so schiefe Lagen, daß nur Verdrehungen daraus hervorgehn können. Möchte sie auf eine Bühne kommen, wo seltnes und gemessenes Spiel und ein Kunstrichter ihr zu Theil würde, der sie auf ihre angenommenen Fehler aufmerksam machte, und durch deren Wegräumung das wahre Gute, das in ihr liegt, wieder aufkeimen ließe.</p>
                                             <p><span class="tei_date">Am 3, Nov.</span> <span class="tei_hi_spaced_out"><span class="works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul, der Blaubart</span></span>. Oper von <a class="persons A000673" href="/exist/apps/WeGA-WebApp/de/A000673.html">Gretry</a>.</p>
                                             <p><span class="tei_date">Am 4. Nov.</span> <span class="tei_hi_antiqua"><span class="works A020539" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020539.html">Elisabetta</span></span>.</p>
                                         </div>
@@ -351,10 +354,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -383,7 +383,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Abend-Zeitung</span>, Jg.&#160;2, Nr.&#160;281 (25. November 1818), S.&#160;2v</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -404,11 +404,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
@@ -420,7 +420,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 11. Oktober 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             

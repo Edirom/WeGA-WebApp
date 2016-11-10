@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Wien, Kärtnertor: "Der Freischütz" von Carl Maria von Weber am 7. März 1822</title>
         
@@ -36,7 +36,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -55,7 +54,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -66,15 +65,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -98,9 +97,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -109,6 +109,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -130,8 +133,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -141,9 +144,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -167,8 +168,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -183,7 +184,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -243,7 +244,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -320,15 +321,13 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader"><span class="tei_hi_spaced_out">Theater-Anzeige.</span>
                                         </h2>
-                                        <p><span> […]</span>
-                                        </p>
                                         <p>K. k. Hoftheater nächst dem Kärnthnerthore. Am 7. März zum Vortheil der Dlle. <span class="tei_hi_spaced_out"><a class="persons A001747" href="/exist/apps/WeGA-WebApp/de/A001747.html">Schröder</a></span> und unter der persönlichen Orchesterführung des Tonsetzers: <span class="tei_hi_spaced_out"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">der Freyschütze.</span></span> Das bey dieser Lieblingsoper unsers Publicums stets volle Haus war heute überfüllt; viele zu spät Kommende konnten ihre gesperrten Sitze nicht mehr erreichen, und gegen Einlaßkarten war schon eine halbe Stunde vor Anfang kein Unterkommen zu finden. Unser verehrter <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. <span class="tei_hi_spaced_out">Weber</span></a> (wir nennen ihn unser, da sein gediegenes Werk <span class="tei_hi_spaced_out">der ganzen deutschen Nation</span> angehört) wurde bey seinem Erscheinen mit wiederholter lauter und allgemeiner Begrüßung empfangen. Die meisterhafte Ouverture, heute wie die ganze Oper mit dem größten Eifer und der wärmsten Liebe ausgeführt, fand gleiche Auszeichnung. Der Lachchor und das Trinklied im ersten Aufzuge wurde wiederholt, und schon nach dem ersten Aufzuge rief man den Componisten hervor. Zugleich fiel ein Gedicht<a href="#footnote_01">*)</a> zu den Füßen des inniggerührten Mannes nieder. Die folgenden zwey Acte unterhielten würdig diese Stimmung. Überrascht wurden wir durch eine Cavatine Annchens im dritten Aufzuge, die sich an ihre Traumgeschichte anschließt und uns bis jetzt unbekannt geblieben war. Die Zahl der Brautjungfern war vermehrt worden; dem Jägerchor widerfuhr sein herkömmliches Recht: er mußte wiederholt werden u. s. w. Nach dem Schlusse erschien der Componist wieder zwey Mal, denn nachdem er sich zuerst in der Mitte der Schlußgruppe gezeigt und einen Theil des Gelingens den Darstellenden pantomimisch zugeschrieben hatte, wollte die Versammlung <span class="tei_hi_spaced_out">heute</span> ihm <span class="tei_hi_spaced_out">allein</span> die Zeichen ihrer Verehrung widmen. So erhielt dieser seltene zweymalige Ruf einen tieferen Sinn, als man sonst hinein zu legen pflegt.</p>
                                         <p>Dlle. <span class="tei_hi_spaced_out"><a class="persons A001747" href="/exist/apps/WeGA-WebApp/de/A001747.html">Schröder</a></span> und Hr. <span class="tei_hi_spaced_out"><a class="persons A000511" href="/exist/apps/WeGA-WebApp/de/A000511.html">Forti</a></span> zeichneten sich unter den Hauptpersonen verzüglich aus. Erstere ersetzt durch ihre passende angenehme Persönlichkeit, was sie im Gesange stellenweise schuldig bleibt. Des letztern Darstellung ist sehr verdienstlich; hin und wieder nur zu stark aufgetragen, denn wer sich dem Bösen ergab, lacht nicht mehr laut, sondern verschließt scheu sein Trachten und Thun vor den Menschen. <span class=" 6511011099104101110">Annchen</span> (Dlle. <span class="tei_hi_spaced_out"><span class=" 86105111">Vio</span></span>) spielte heute genügender als sonst. Demnach läge es nur am <span class="tei_hi_spaced_out">Wollen</span>, um eine höhere Stufe des Kunstwerthes und des Gefallens zu erreichen. <span class=" 7797120">Max</span> (Hr. <span class="tei_hi_spaced_out"><a class="persons A001614" href="/exist/apps/WeGA-WebApp/de/A001614.html">Rosner</a></span>) ist stellenweise seiner Rolle mächtig, die außer der Gestalt und Jugend auch <span class="tei_hi_spaced_out">geistige</span> Erfordernisse hat, wie sie die gangbare italienische Operngattung, in welcher dieser Sänger mehr Glück macht, freylich minder erfordert. Wie viel auf mehreren oder minderen Fleiß in der <span class="tei_hi_spaced_out">Darstellung</span> des Gesungenen ankomme, zeigte Maxens erste, heute sehr ausgezeichnete Arie, die sonst kälter gegeben, auch kälter empfangen ward.</p>
                                         <p>Den Freunden der Tonkunst war es interessant, zu hören, in wie weit das <span class="tei_hi_spaced_out">Zeitmaß</span> der Musikstücke und andere kleine <span class="tei_hi_spaced_out">Nuancen</span> darin von den frühern Aufführungen verschieden seyn würden. Die große Wirkung von Heute ist aber wohl mehr dem allgemeinen Enthusiasmus zuzuschreiben, der die Ausübenden und die Anhörenden zugleich belebte, als beudeutenden Abänderungen. Die Oper wurde beym ersten Einstudieren, wie wir schon früher erwähnten, so umsichtig und sorgsam behandelt, daß grobe Irrthümer nicht möglich waren. Und wenn einige Tempi schneller als in Berlin gegriffen wurden, z. B. das Allegro der Ouverture und der Jägerchor: so liegt der Hauptgrund wohl in der größeren Beweglichkeit des wärmeren Süden, gegen den kalten Norden, und der Puls- und Herzensschlag ist zuletzt doch der erste und beste Metronom.</p>
@@ -350,10 +349,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -382,7 +378,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Jg.&#160;7, Nr.&#160;34 (19. März 1822), S.&#160;279–280</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -403,11 +399,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

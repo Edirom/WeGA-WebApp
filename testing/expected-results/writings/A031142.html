@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gedicht zu Bärmanns Namenstag, 15. Juli 1811</title>
         
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -287,22 +288,19 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader">Zu Bärmanns Namenstag.</h2><span class="lg"><span class="verseLine">Wohlauf denn Ihr Geigen! Trompeten und Pfeiffen!</span><span class="verseLine">Heut müßt ihr euch einmal ganz extra angreiffen.</span><span class="verseLine">Zu preisen und loben den heutigen Tag</span><span class="verseLine">Der <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html"><span class="tei_hi_spaced_out">Heinrich</span> den Bärmann</a> zu nennen vermag.</span></span><span class="lg"><span class="verseLine">Auf! auf! meine Muse, ich steig in den Bügel,</span><span class="verseLine">Genir dich nicht, lauf nur, ich laß dir den Zügel.</span><span class="verseLine">Erkläre Ihm durch dein wahrsagend Genie,</span><span class="verseLine">Wie ho<span class="tei_supplied" id="d74607e29">[c]</span>h Er geliebt sey von Menschen und Vieh!</span><span class="verseLine">Der Rührung Thränen!</span><span class="verseLine">Ein banges Stöhnen</span><span class="verseLine">Der Lust</span><span class="verseLine">Füllt die Brust!</span></span><span class="lg"><span class="verseLine">Zieht auf aller Thränen Schleußen,</span><span class="verseLine">Hier ist nicht die Red’ von dem König von Preußen,</span><span class="verseLine">Nein, nein, von dem <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Heinrich</a>, dem dicken, dem fetten,</span><span class="verseLine">Von <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> dem lieblichen, freundlichen, netten.</span><span class="verseLine">O Sonne!!!</span><span class="verseLine">O Tag der Wonne</span><span class="verseLine">O Allmacht</span><span class="verseLine">wie’s in mir kracht!</span></span><span class="lg"><span class="verseLine">Die Wünsche, die stürzen in mir übereinander</span><span class="verseLine">wie Fenchel, wie Kümmel und Koriander,</span><span class="verseLine">Ich weiß nicht, was ich zuerst sagen soll,</span><span class="verseLine">Ich bin so zu sagen vor Rührung ganz toll.</span></span><span class="lg"><span class="verseLine">Vor allem wünsch ich ihm ’ne höllische Lunge,</span><span class="verseLine">Womit sich verbind’ unermüdliche Zunge.</span><span class="verseLine">Die Lippen so dauernd wie Elendsleder,</span><span class="verseLine">Die Finger so springend wie eine Uhrfeder.</span></span><span class="lg"><span class="verseLine">Sodann eine G’sundheit von eigener Art,</span><span class="verseLine">Sie sey nicht zu bäurisch, sie sey nicht zu zart,</span><span class="verseLine">Auch darf er zu tief nicht in’s Alter n’ein rennen, </span><span class="verseLine">Mit hundert Jahr denk ich, wird Er z’frieden seyn können,</span><span class="verseLine">wobey (immer jung und gesund wie ein Fisch)</span><span class="verseLine">Nie fehle ein tüchtig besozzener Tisch. </span><span class="verseLine">Geld wünsche ich ihm nur soviel als er mag,</span><span class="verseLine">so <span class="tei_hi_antiqua">circa</span> ein paar Million alle Tag,</span><span class="verseLine">Da kauf Er was ich Ihm zu wünschen vergessen,</span><span class="verseLine">Das Uebrige leg’ Er bei Jungfern auf Intressen.</span><span class="verseLine">Auch wünsch ich Ihm ferner –</span><span class="verseLine">Ein’ Kopf ohne Hörner,</span><span class="verseLine">Eine Brust voller Lust</span><span class="verseLine">Und ein Herz</span><span class="verseLine">Ohne Schmerz,</span><span class="verseLine">Einen Magen</span><span class="verseLine">Zum Ertragen</span><span class="verseLine">von Weinen</span><span class="verseLine">und Steinen</span><span class="verseLine">– – –</span><span class="verseLine">– – –</span><span class="verseLine">Und etwas andres noch,</span><span class="verseLine">ich wag es nicht zu sagen.</span><span class="verseLine">Und etwas andres noch?</span><span class="verseLine">Wer wird nach allem fragen.</span></span><span class="lg"><span class="verseLine">Und da jeder Triller einst doch schließen muß, </span><span class="verseLine">so eil ich auch mit meinen Wünschen zum Schluß,</span><span class="verseLine">Und wünsche nur noch, daß er bleib in der That –</span><span class="verseLine">Der Freund seines <span class="tei_hi_spaced_out">wahren Freundes</span></span></span><span class="tei_signed textAlign-right"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Krautsalat.</a></span><span class="tei_dateline_left"><span class=" 7725211099104101110"><span class="tei_settlement">München</span></span>, den fünfzehnten July [1811]<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a><br />
+                                        <h2 class="docHeader">Zu Bärmanns Namenstag.</h2><span class="lg"><span class="verseLine">Wohlauf denn Ihr Geigen! Trompeten und Pfeiffen!</span><span class="verseLine">Heut müßt ihr euch einmal ganz extra angreiffen.</span><span class="verseLine">Zu preisen und loben den heutigen Tag</span><span class="verseLine">Der <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html"><span class="tei_hi_spaced_out">Heinrich</span> den Bärmann</a> zu nennen vermag.</span></span><span class="lg"><span class="verseLine">Auf! auf! meine Muse, ich steig in den Bügel,</span><span class="verseLine">Genir dich nicht, lauf nur, ich laß dir den Zügel.</span><span class="verseLine">Erkläre Ihm durch dein wahrsagend Genie,</span><span class="verseLine">Wie ho<span class="tei_supplied" id="d37415e29">[c]</span>h Er geliebt sey von Menschen und Vieh!</span><span class="verseLine">Der Rührung Thränen!</span><span class="verseLine">Ein banges Stöhnen</span><span class="verseLine">Der Lust</span><span class="verseLine">Füllt die Brust!</span></span><span class="lg"><span class="verseLine">Zieht auf aller Thränen Schleußen,</span><span class="verseLine">Hier ist nicht die Red’ von dem König von Preußen,</span><span class="verseLine">Nein, nein, von dem <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Heinrich</a>, dem dicken, dem fetten,</span><span class="verseLine">Von <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> dem lieblichen, freundlichen, netten.</span><span class="verseLine">O Sonne!!!</span><span class="verseLine">O Tag der Wonne</span><span class="verseLine">O Allmacht</span><span class="verseLine">wie’s in mir kracht!</span></span><span class="lg"><span class="verseLine">Die Wünsche, die stürzen in mir übereinander</span><span class="verseLine">wie Fenchel, wie Kümmel und Koriander,</span><span class="verseLine">Ich weiß nicht, was ich zuerst sagen soll,</span><span class="verseLine">Ich bin so zu sagen vor Rührung ganz toll.</span></span><span class="lg"><span class="verseLine">Vor allem wünsch ich ihm ’ne höllische Lunge,</span><span class="verseLine">Womit sich verbind’ unermüdliche Zunge.</span><span class="verseLine">Die Lippen so dauernd wie Elendsleder,</span><span class="verseLine">Die Finger so springend wie eine Uhrfeder.</span></span><span class="lg"><span class="verseLine">Sodann eine G’sundheit von eigener Art,</span><span class="verseLine">Sie sey nicht zu bäurisch, sie sey nicht zu zart,</span><span class="verseLine">Auch darf er zu tief nicht in’s Alter n’ein rennen, </span><span class="verseLine">Mit hundert Jahr denk ich, wird Er z’frieden seyn können,</span><span class="verseLine">wobey (immer jung und gesund wie ein Fisch)</span><span class="verseLine">Nie fehle ein tüchtig besozzener Tisch. </span><span class="verseLine">Geld wünsche ich ihm nur soviel als er mag,</span><span class="verseLine">so <span class="tei_hi_antiqua">circa</span> ein paar Million alle Tag,</span><span class="verseLine">Da kauf Er was ich Ihm zu wünschen vergessen,</span><span class="verseLine">Das Uebrige leg’ Er bei Jungfern auf Intressen.</span><span class="verseLine">Auch wünsch ich Ihm ferner –</span><span class="verseLine">Ein’ Kopf ohne Hörner,</span><span class="verseLine">Eine Brust voller Lust</span><span class="verseLine">Und ein Herz</span><span class="verseLine">Ohne Schmerz,</span><span class="verseLine">Einen Magen</span><span class="verseLine">Zum Ertragen</span><span class="verseLine">von Weinen</span><span class="verseLine">und Steinen</span><span class="verseLine">– – –</span><span class="verseLine">– – –</span><span class="verseLine">Und etwas andres noch,</span><span class="verseLine">ich wag es nicht zu sagen.</span><span class="verseLine">Und etwas andres noch?</span><span class="verseLine">Wer wird nach allem fragen.</span></span><span class="lg"><span class="verseLine">Und da jeder Triller einst doch schließen muß, </span><span class="verseLine">so eil ich auch mit meinen Wünschen zum Schluß,</span><span class="verseLine">Und wünsche nur noch, daß er bleib in der That –</span><span class="verseLine">Der Freund seines <span class="tei_hi_spaced_out">wahren Freundes</span></span></span><span class="tei_signed textAlign-right"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Krautsalat.</a></span><span class="tei_dateline_left"><span class=" 7725211099104101110"><span class="tei_settlement">München</span></span>, den fünfzehnten July [1811]<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a><br />
             am Namenstag des Clarinettgenie.</span>
                                     </div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -333,7 +331,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Musikerbriefe</span> (1867), S.&#160;202</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -370,11 +368,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

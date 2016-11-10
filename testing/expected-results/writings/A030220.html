@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Chronik der Königl. Schaubühne zu Dresden vom 2. bis 8. Dezember 1817</title>
         
@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="?" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-10-20T14:03:17.888939Z" />
         <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030220" />
         <meta property="dc:description" content="Aufführungsberichte Dresden: 2. bis 8. 12. 1817 (darunter &#34;Der Schatzgräber&#34; von Méhul am 2.12. u. &#34;Der Weinberg an der Elbe&#34; am 7.12.)" />
         <meta name="description" content="Aufführungsberichte Dresden: 2. bis 8. 12. 1817 (darunter &#34;Der Schatzgräber&#34; von Méhul am 2.12. u. &#34;Der Weinberg an der Elbe&#34; am 7.12.)" />
@@ -36,7 +36,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -55,7 +54,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -66,15 +65,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -98,9 +97,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -109,6 +109,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -130,8 +133,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -141,9 +144,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -167,8 +168,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -183,7 +184,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -243,7 +244,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -322,6 +323,8 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020497" /> <span title="Das Waisenhaus">Das Waisenhaus</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020763" /> <span title="Der Shawl">Der Shawl</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020567" /> <span title="Le nozze di Figaro">Le nozze di Figaro</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020399" /> <span title="Le trésor supposé ou Le Danger d'écouter aux portes">Le trésor supposé ou Le Danger…</span> 
@@ -359,7 +362,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -370,7 +373,7 @@
                                         <p>Am <span class="tei_date">4. Decemb.</span>. <span class="works A020497" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020497.html"><span class="tei_hi_spaced_out">Das Waisenhaus</span></span>. Oper in 2 Akten, mit Musik von <a class="persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl</a>. <a class="persons A000799" href="/exist/apps/WeGA-WebApp/de/A000799.html">Herr <span class="tei_hi_spaced_out">Hellwig</span></a> gab heute, nach <a class="persons A000604" href="/exist/apps/WeGA-WebApp/de/A000604.html">Herrn Genast’s</a> Abgange, den <span class=" 8710110810810997110110">Wellmann</span> mit vieler Innigkeit.</p>
                                         <p>Am <span class="tei_date">6. Decemb.</span> <span class=" 7111410511510110810097"><span class="tei_hi_antiqua">Griselda</span></span>, von <a class="persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Paer</a>! Die innige Seelensprache dieser Musik ergreift und rührt stets auf’s neue, und bei jedem Hören wird man immer mehr treffende und sinnige Charakterzüge in dieser Oper finden. Wie richtig und fein gefühlt ist es z. B. nicht, daß vom Anfang an <span class=" 711141051151011081009739115">Griselda’s</span> Gesang immer vorherrschend von der Violine begleitet wird, deren Ton doch der weichste, seelenvollste, anschmiegendste ist, besonders wie <a class="persons A001502" href="/exist/apps/WeGA-WebApp/de/A001502.html">Polledro</a> sie spielt, bis zuletzt in der herrlichen Scene und <span class=" 65114105101">Arie</span> mit dem schönen Violinsolo, der aus innigstem Gefühl hinströmende Gesang und der süße Schmerz der Saitenklänge sich gegenseitig verklären und heben; ja selbst wo die tieferschütterte holde Dulderin nur aus gepreßtem Herzen, im ersten Finale sowohl als im letzten, die rührenden, halbgebrochnen Worte ausspricht, selbst da, wo alle andern Instrumente verstummen, begleiten die treuen Saitenklänge sie noch im bebend leisen pizzicato. So ist es herrlich, wie da, wo sie zuerst die Tochter erblickt, nach diesem: „<span class="tei_hi_antiqua">Sogno, o son desta?</span>“ die himmlischen Töne des Waldhorns wie ein Echo einer schönern, längstentflohnen Zeit verhallen. Den <span class=" 779711499104101115101">Marchese</span> scheint die Oboe am meisten zu begleiten, und gewiß am passendsten. <a class="persons A001644" href="/exist/apps/WeGA-WebApp/de/A001644.html">Sgra. Sandrini</a> spielte mit so innigem Gefühl, wie stets, doch schien sie etwas angegriffen; das Chor unterstützte sie bei der großen Scene im ersten Akt nicht gehörig, und es gehörte ihre und des Orchesters Festigkeit dazu, um das Ganze vor Verwirrung zu schützen. Alle übrigen gaben sich auch Mühe, besonders ist das lebhafte Spiel der <a class="persons A001320" href="/exist/apps/WeGA-WebApp/de/A001320.html">Sgra. Miksch</a>, als <span class=" 7610511510111611697">Lisetta</span>, und der Gesang des <a class="persons A001321" href="/exist/apps/WeGA-WebApp/de/A001321.html">Hrn. Miksch</a>, als <span class=" 7610111598105110111">Lesbino</span>, zu loben. <a class="persons A002265" href="/exist/apps/WeGA-WebApp/de/A002265.html">Sgnr.  Ricci</a> bleibt seelenlos und unbeholfen im Spiel, doch muß man ihm Fertigkeit im Gesang zuerkennen. <a class="persons A000133" href="/exist/apps/WeGA-WebApp/de/A000133.html">Si<span class="tei_cb">¦</span>gnor Benincasa</a> hätte zuletzt wohl mehr großväterliche Freude über das gefundene Enkelchen äußern können.</p>
                                         <p>Am <span class="tei_date">7. Decemb.</span> Auf vielseitiges Begehren, <span class=" 68101114328710110511098101114103329711032100101114326910898101"><span class="tei_hi_spaced_out">Der Weinberg an der Elbe</span></span>. Ländliches Lust- und Festspiel in einem Akt, erfunden und gedichtet von <a class="persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Fr. Kind</a>. Vorher ging folgender , von <a class="persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html">Th. Hell</a> gedichteter und von <a class="persons A000749" href="/exist/apps/WeGA-WebApp/de/A000749.html">Mad. Hartwig</a> mit Gefühl und Wahrheit vorgetragener, Prolog:</p><span class="lg"><span class="verseLine">Giebts wohl ein höheres Gefühl in unsrer Brust,</span><span class="verseLine">Wenn sich Empfindungen der reinsten Erdenlust</span><span class="verseLine">Mit sel’gem Flügelschlag begeistert drinnen regen,</span><span class="verseLine">Als heißer Vaterlandesliebe reichen Segen?</span></span><span class="lg"><span class="verseLine">Es trägt das Vaterland in seinem theuern Schoos</span><span class="verseLine">Ja jedes hohe Glück und jedes schöne Loos,</span><span class="verseLine">Das aus der Urne des Geschicks uns ward gezogen,</span><span class="verseLine">Uns aufrecht haltend in der Lebensstürme Wogen.</span></span><span class="lg"><span class="verseLine">Da tritt entgegen uns der Kindheit frohes Spiel,</span><span class="verseLine">Der Jugendjahre Gluth, des Alters still Asyl,</span><span class="verseLine">Und alles was mit Lieb’ und Freundschaft wir umfingen,</span><span class="verseLine">Und alle Theuern, die einst Hand in Hand uns gingen.</span></span><span class="lg"><span class="verseLine">Und über alles glüht im reinsten, vollsten Glanz,</span><span class="verseLine">Der schönste Blumenschmuck im reichgewundnen Kranz,</span><span class="verseLine">Der lebensvollste Strahl der heimathlichen Sonne,</span><span class="verseLine">Ein seliger Verein, des Vaterlandes Wonne,</span></span><span class="lg"><span class="verseLine"><span class="tei_hi_spaced_out">Das theure Königshaus! – </span>Ja, um des Königs Thron,</span><span class="verseLine">Wo Milde wohnt bei Recht, und bei Verdienst der Lohn,</span><span class="verseLine">Schlingt sich mit Liebestreu der Sachsenraute Ranke,</span><span class="verseLine">Daß <span class="tei_hi_spaced_out">ihm </span>sie jedes Glück und jeden Segen danke.</span></span><span class="lg"><span class="verseLine">Und in der tiefsten Brust ruht <span class="tei_hi_spaced_out">jeder hohe Zweig</span></span><span class="verseLine">In Lieb’ und Herzlichkeit dem Vaterstamme gleich,</span><span class="verseLine">Und schön’re Feste weiß kein Sachse zu begehen,</span><span class="verseLine">Als wenn <span class="tei_hi_spaced_out">sie</span> glücklich sind, zu <span class="tei_hi_spaced_out">ihnen</span> aufzusehen. –</span></span><span class="lg"><span class="verseLine">So weide dann der Blick sich noch einmal auch heut</span><span class="verseLine">An jenem Kunstgebild, dem Kind’ der Feierzeit,</span><span class="verseLine">Wo Hymenäen an der Elbe Ufer schallten</span><span class="verseLine">Und an der Arno Strom entzückend wiederhallten.</span></span><span class="lg"><span class="verseLine">Das Herz, das sich in Lieb’ zum Vaterland berauscht,</span><span class="verseLine">Hat mit den Tagen nicht auch das Gefühl getauscht,</span><span class="verseLine">Ihm tönt durch’s Leben hin, in seligen Akkorden,</span><span class="verseLine">Was da ein hohes Fest auf ew’ge Zeit geworden.</span></span><span class="lg"><span class="verseLine">Was braucht’s der Worte noch? In jedem Auge glänzt</span><span class="verseLine">Die Freude schon, die sich mit der Erinnrung kränzt,</span><span class="verseLine">In jedem Herzen klopft die alte Lieb’ und Treue,</span><span class="verseLine">Daß so sich immerdar Vergangenes erneue.</span></span><span class="lg"><span class="verseLine">Daß so kein Augenblick, wo das Vertrauen nicht</span><span class="verseLine">Um unser Königshaus der Liebe Kränze flicht;</span><span class="verseLine">Und jeder Pulsschlag soll die Bürgschaft uns erwerben:</span><span class="verseLine"><span class="tei_hi_spaced_out">Für König, Vaterland, zu leben und zu sterben!</span></span></span>
-                                        <p>Zum Schlusse der heutigen Vorstellung: <span class=" 6810111432831049711910846"><span class="tei_hi_spaced_out">Der Shawl</span>.</span>
+                                        <p>Zum Schlusse der heutigen Vorstellung: <span class="works A020763" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020763.html"><span class="tei_hi_spaced_out">Der Shawl</span>.</span>
                                         </p>
                                         <p>Am <span class="tei_date">8. Decb.</span> <span class=" 681011143211810111498971101101161013265109111114"><span class="tei_hi_spaced_out">Der verbannte Amor</span></span>. Lustspiel in 4 Akten von <a class="persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">Kotzebue</a>. Ward mit Leben und Geist aufgeführt und gefiel sehr.</p>
                                     </div>
@@ -378,10 +381,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -411,7 +411,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Abend-Zeitung</span>, Jg.&#160;1, Nr.&#160;306 (23. Dezember 1817), S.&#160;2v</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -432,11 +432,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
@@ -448,7 +448,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030220</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 20. Oktober 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             

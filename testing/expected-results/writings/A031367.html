@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Über das mechanische Klavier des Leopold Sauer</title>
         
@@ -39,7 +39,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -58,7 +57,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -69,15 +68,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -101,9 +100,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -112,6 +112,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -133,8 +136,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -144,9 +147,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,8 +171,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -186,7 +187,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -246,7 +247,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -297,7 +298,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -305,7 +306,7 @@
                                         <h2 class="docHeader"><span class="tei_hi_spaced_out">Neue Erfindungen</span>
                                         </h2>
                                         <p>Der rühmlich bekannte Prager Mechanicus, H<span class="tei_hi_superscript">r.</span> <a class="persons A001BE7" href="/exist/apps/WeGA-WebApp/de/A001BE7.html">Leopold <span class="tei_hi_spaced_out">Sauer</span></a>, hat in diesem Augenblicke im <span class=" 77252108108101114"><span class="tei_hi_spaced_out">Müller</span></span>schen Gebäude, nächst dem rothen Thurm, ein kunstreiches <span class="tei_hi_spaced_out">Fortepiano</span> aufgestellt, das, als gelungenes Resultat eines zwanzigjährigen Fleißes, die Aufmerksamkeit aller Freunde der Tonkunst und Mechanik auf sich zieht. Es ist aus Mahagonyholz verfertigt, und stellt aufrechtstehend einen Tempel vor, der mit 20, aus Florentiner Marmor und vergoldeter Bronze bestehenden Säulen und Pilastern geziert ist. An der Vorderseite sieht man die von zwei Karyathiden getragene, 80 Töne umfassende Claviatur (sie fängt mit <span class="tei_hi_antiqua">Contra C</span> in der Tiefe an und reicht in der Höhe bis zum viermal gestrichenen <span class="tei_hi_antiqua">G</span>). Die Ausladungen der Gesimse sind sämmtlich von schwarzem Ebenholze und in der untern Abtheilung des Ganzen ist ein Flötenwerk aus Buxbaumholz von 44 Tönen angebracht. Doch so zierlich und reich die Außenseite seyn mag, so bilden doch die innern Vorzüge den Hauptwerth dieses Meisterstücks, das als ein wahrhafter Fortschritt in der Instrumental-Mechanik betrachtet werden kann. Der Künstler hat nämlich die unsichern Drathfäden der gewöhnlichen Fortepiano’s durch eigens gestählte und gekerpte Uhrfedern ersetzt, das Hammerwerk, ohne alle wandelbare Stefte, ganz aus Elfenbein verfertigt, statt der bisher üblichen Tuchunterlagen einen eigens erfundenen, bleibenden Stoff gebracht, und endlich bei dem Flöten<span class="tei_cb">¦</span>werk den bisher allgemeinen Fehler des Windstoßes glücklich vermieden. Bereits im August v. J. ordnete die höchste Landesstelle zu <span class=" 8011497103"><span class="tei_settlement"><span class="tei_hi_spaced_out">Prag</span></span></span> eine Gubernial-Commission zur Prüfung dieses Werkes an, wobei die vorzüglichsten Tonkünstler und Compositeurs von <span class=" 8011497103"><span class="tei_settlement"><span class="tei_hi_spaced_out">Prag</span></span></span> Theil nahmen, welche dem Künstler folgendes ehrenvolle Zeugniß ausstellten:</p>
-                                        <p>Die Endesgefertigten bezeugen hiermit, daß Vorzeiger dieses, H<span class="tei_hi_superscript">r.</span> <a class="persons A001BE7" href="/exist/apps/WeGA-WebApp/de/A001BE7.html">Leopold <span class="tei_hi_spaced_out">Sauer</span></a>, ein aufrechtstehendes Pianoforte mit Flötenwerk verfertigte, welches sowohl in Hinsicht der besonders schönen äußern Form als auch der innern, auf Leichtigkeit und Dauer auf eine neue Art eingerichtete Mechanik, und des reinen, vollen und starken Tones die Aufmerksamkeit eines jeden Kunstfreundes und Musikliebhabers in vollem Maaße verdient, und in jedem Betracht als ein vorzüglich gelungenes Kunstwerk anzusehen ist, dessen <span class="tei_sic">reeler<a class="noteMarker" id="ref-d73879e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73879e52">‡</a></span> Werth bei der am 12. Aug. d. J. auf Anordnung des hochlobl Guberniums deßhalb abgehaltenen Commission auf 500 Species-Ducaten geschätzt wurde. <span class=" 8011497103"><span class="tei_settlement"><span class="tei_hi_spaced_out">Prag</span></span></span>, den 8. October 1814.</p>
+                                        <p>Die Endesgefertigten bezeugen hiermit, daß Vorzeiger dieses, H<span class="tei_hi_superscript">r.</span> <a class="persons A001BE7" href="/exist/apps/WeGA-WebApp/de/A001BE7.html">Leopold <span class="tei_hi_spaced_out">Sauer</span></a>, ein aufrechtstehendes Pianoforte mit Flötenwerk verfertigte, welches sowohl in Hinsicht der besonders schönen äußern Form als auch der innern, auf Leichtigkeit und Dauer auf eine neue Art eingerichtete Mechanik, und des reinen, vollen und starken Tones die Aufmerksamkeit eines jeden Kunstfreundes und Musikliebhabers in vollem Maaße verdient, und in jedem Betracht als ein vorzüglich gelungenes Kunstwerk anzusehen ist, dessen <span class="tei_sic">reeler<a class="noteMarker" id="ref-d36696e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d36696e52">‡</a></span> Werth bei der am 12. Aug. d. J. auf Anordnung des hochlobl Guberniums deßhalb abgehaltenen Commission auf 500 Species-Ducaten geschätzt wurde. <span class=" 8011497103"><span class="tei_settlement"><span class="tei_hi_spaced_out">Prag</span></span></span>, den 8. October 1814.</p>
                                         <p>(L.S)<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a> <span class=" 741111151011121043282111116104">Joseph Roth</span> <span class="tei_hi_antiqua">mp</span>. bürgerl. Orgelbauer.<br />
             (L.S.) <span class=" 749799111983287101105109101115">Jacob Weimes</span> <span class="tei_hi_antiqua">mp</span>. bürgerl. Fortepianomacher.<br />
                (L.S.) <a class="persons A002164" href="/exist/apps/WeGA-WebApp/de/A002164.html">Joh. A. Wittasseck</a> <span class="tei_hi_antiqua">mp</span>. Kapellmeister an der Domkirche.<br /> 
@@ -315,17 +316,14 @@
             <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a> <span class="tei_hi_antiqua">mp</span>.<br />
                <a class="persons A001971" href="/exist/apps/WeGA-WebApp/de/A001971.html">Wenzl J. Tomascheck</a>, Compositeur beim H<span class="tei_hi_superscript">rn.</span> <span class=" 71101111114103327111497102101110321181111103266117113117111121">Georg Grafen von Buquoy</span>.
             </span>
-               <span class="tei_segBlock textAlign-left">Auch hier hat H<span class="tei_hi_superscript">r.</span> <a class="persons A001BE7" href="/exist/apps/WeGA-WebApp/de/A001BE7.html"><span class="tei_hi_spaced_out">Sauer</span></a> von den Compositeurs und Musikfreunden bereits reichen Beifall eingeerntet. Möge er so glücklich seyn, bald einen würdigen Kunstfreund zu finden, der ihn für seinen Fleiß und seine Erfindsamkeit nach Würden lohne und <span class="tei_sic">ihn<a class="noteMarker" id="ref-d73879e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73879e134">‡</a></span> auf diese Weise Gelegenheit zu weitern Unternehmungen verschaffe!</span>
+               <span class="tei_segBlock textAlign-left">Auch hier hat H<span class="tei_hi_superscript">r.</span> <a class="persons A001BE7" href="/exist/apps/WeGA-WebApp/de/A001BE7.html"><span class="tei_hi_spaced_out">Sauer</span></a> von den Compositeurs und Musikfreunden bereits reichen Beifall eingeerntet. Möge er so glücklich seyn, bald einen würdigen Kunstfreund zu finden, der ihn für seinen Fleiß und seine Erfindsamkeit nach Würden lohne und <span class="tei_sic">ihn<a class="noteMarker" id="ref-d36696e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d36696e134">‡</a></span> auf diese Weise Gelegenheit zu weitern Unternehmungen verschaffe!</span>
             </p>
                                     </div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -356,7 +354,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Österreichischer Beobachter</span>, Jg.&#160;5, Nr.&#160;62 (3. März 1815), S.&#160;344</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -369,10 +367,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d73879e52" data-title="sic">"reeler": sic!</div>
+                                            <div class="apparatusEntry" id="d36696e52" data-title="sic">"reeler": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73879e134" data-title="sic">"ihn": sic!</div>
+                                            <div class="apparatusEntry" id="d36696e134" data-title="sic">"ihn": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -388,11 +386,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>

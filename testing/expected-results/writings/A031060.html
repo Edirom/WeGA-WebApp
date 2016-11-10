@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Aufführungsbesprechung Prag, Theater zu Prag: 11. März 1824 (Euryanthe) (Teil 2 von 2)</title>
         
@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Dubke, Esther" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2016-11-02T14:43:29.591724Z" />
         <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031060" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -36,7 +36,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -55,7 +54,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -66,15 +65,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -98,9 +97,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -109,6 +109,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -130,8 +133,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -141,9 +144,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -167,8 +168,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -183,7 +184,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -243,7 +244,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -267,11 +268,17 @@
                         <div class="panel-collapse collapse" id="persons">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A00287E" /> <span title="Binder, Sebastian">Binder, Sebastian</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000288" /> <span title="Chézy, Helmina von">Chézy, Helmina von</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000B8D" /> <span title="Comet, Katharina">Comet, Katharina</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000453" /> <span title="Ernst, Marianne Katharine">Ernst, Marianne Katharine</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000954" /> <span title="Kainz, Josef Wolfgang">Kainz, Josef Wolfgang</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000F27" /> <span title="Michalesi, Wenzel">Michalesi, Wenzel</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -286,9 +293,9 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020531" /> <span title="Die Vestalin">Die Vestalin</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020531" /> <span title="La Vestale">La Vestale</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020074" /> <span title="Lützows wilde Jagd &#34;Was glänzt dort im Walde im Sonneschein&#34;">Lützows wilde Jagd "Was glänzt…</span> 
                                 </label>
@@ -342,15 +349,15 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader"><span class="tei_hi_spaced_out">Aus <span class=" 8011497103"><span class="tei_settlement">Prag</span></span></span>.</h2>
                                         <h3 class="docHeader">(Beschluß.)</h3>
-                                        <p><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> in allen ihren Einzelnheiten und zugleich als majestätisches Ganze betrachtet, ist wohl nichts Anderes, als ein kräftiger, praktischer Beweis für den Satz: wie der Tondichter sich aus dem Labyrinthe seiner Ideen, worin er sich selbst mit Willen eingeschlossen, zum Triumphe seiner Kunst mit höchster Klarheit herausfinden könne. Liegt vielleicht in diesem Satze das Ganze der neuen <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>’schen <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Schöpfung</span> eingeschlossen, so muß man andererseits auch zugeben, daß der Künstler, selbst bei der größten Genialität, bei einem solchen Unternehmen viel wage und Gefahr laufe, von den Meisten verkannt und unverstanden zu bleiben. Inwiefern diese Behauptung wahr oder unwahr sey, beweist wohl <span class="tei_hi_spaced_out"><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> am deutlichsten. Man erlaube uns einige nähere Details. Die Ouvertüre ist wohl selbst dem Kenner das schwierigste Problem; diese ungeheure Tonmasse ist, wenn ich mich so ausdrücken darf, eine stürzende Schneelavine, zu blendend und zu schnell, um gehörig aufgefaßt werden zu können. Die herrlichsten Motive der <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> selbst ruhen, als Embryonen, darin und sind, bei all’ ihrem Reize, doch zu unentwickelt und in zu großer Menge. Man hat über diese <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> von den Wiener Correspondenten schon so Vieles und größtentheils so Wahres gelesen, daß ich alle Einzelnheiten zu berühren überflüssig halte. <span class=" 6510011110897114115">Adolars</span> Minnelied (1ter Akt), Terzett zwischen <span class=" 6510011110897114">Adolar</span>, <span class=" 7612111510597114116">Lysiart</span> und dem <span class=" 75246110105103">König</span>, gefiel größtentheils und wurde sehr beklatscht. <span class=" 6911711412197110116104101">Euryanthe</span>’s Arie und Duett mit <span class=" 6910310897110116105110101110">Eglantinen</span> erhielt auch vielen Beifall. – Der Chor, welcher so viel zu dem wahren Glanz dieser <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> beiträgt, war äusserst mittelmäßig und wir finden diese Nachlässigkeit der Direktion und des musikalischen Lenkers einer öffentlichen Rüge würdig, denn es ist nicht genug, daß man uns 12 dergleichen Subjekte auf die <span class="tei_sic">Breter<a class="noteMarker" id="ref-d73095e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73095e55">‡</a></span> stelle, sondern man muß auch dafür sorgen, daß es sich die Besagten nicht allzukomode machen und ihre Zungen lieber zum Tändeln mit den Bühnen-Bajaderen, als zum reinen Gesange gebrauchen. – <span class=" 7612111510597114116115">Lysiarts</span> Arie im zweiten Akt griff in vielen Momenten durch, jedoch das Publikum war verstimmt und irre geleitet – und schwieg, daher auch bei dem herrlichen Finale des zweiten Aufzuges still. Das Duett des 3ten Aktes zwischen <span class=" 6510011110897114">Adolar</span> und <span class=" 6911711412197110116104101">Euryanthe</span> ist ein schöner Beweis der Genialität <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>, und der neue Jägerchor, der doch wieder, wie alle seine beliebten Brüder, (im <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>, <span class="works A020074" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020074.html">wilde Jagd Lützow’s</span> u. s. w.) den sichtbaren Stempel der Originalität trägt, ist überraschend. Wir haben <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a> schon vor Erscheinen seines <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> für eine Zierde der deutschen Compositeurs erklärt, und haben an seinen Gesang-Quartetten einen tiefen Beweisgrund hiezu aufzuweisen. Inwiefern der <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> diese unsre Meinung bestätigt habe, ist wohl jedem unpartheiischen Musikfreunde kein Zweifel mehr, und <span class=" 8011497103"><span class="tei_settlement">Prag</span></span>, wo diese <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span> über sechszigmal wiederholt<span class="tei_cb"> ¦ </span> worden, hat seine Meinung auf das lauteste ausgesprochen. Und wir können nicht umhin, <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>, nach Anhörung seiner <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>, noch um ein Bedeutendes mehr zu bewundern, da die Kraft und Klarheit in der Lösung selbstgeschaffener Schweirigkeiten uns mit Staunen erfüllt. Zwar erübrigt uns der Beweis, wie ein solches Werk sein Ziel nicht ganz erreichen konnte? und wir glauben einen Theil dieser Frage schon im Eingange dieses Aufsatzes beantwortet zu haben, und es wird uns um so leichter, das Ganze zu erhellen. Erwägen wir die Form, die der <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichter</a> für seine <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> gewählt, wir meinen das durchaus durchgeführte <span class="tei_hi_spaced_out">Recitativ</span>, und lassen wir zugleich einen scharfen Blick auf den Zustand dieser Gesangart in <span class=" 681011171161159910410897110100"><span class="tei_country">Deutschland</span></span> fallen, so finden wir, daß diese Form einem Werke gegenwärtiger Schöpfung nicht die zusagendste seyn kann, weil wir noch immer auf dem Punkte sind, um behaupten zu können: "deutsche Sänger und Sängerinnen können bisher noch keine Recitative singen." Was wir unter <span class="tei_hi_spaced_out">dem</span> Namen von ihnen hören, kann man unmöglich dem Effekte einer Oper zuträglich wähnen, besonders wenn es das verknüpfende Band des Ganzen ausmachen soll. – Es ist ziemlich deutlich am Tage, daß durch diese Gesangart bei uns die Verständlichkeit der Worte verhindert und der klaren Auffassung des Stoffes ein Hinderniß in den Weg gelegt werde. Beides war der Fall bei der Aufführung der <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>; und wir hoffen von der Zeit das Beßte, weil wir uns wohl erinnern, daß es auch einmal der <span class="works A020531" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020531.html">Vestalin</span> bei ihrem ersten Erscheinen nicht um vieles besser ergangen sey, und wir uns, ohne einer Ueberschätzung angeschuldigt zu werden befürchten, erkühnen, <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthen</span> zur <span class="works A020531" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020531.html">Vestalin</span> in keine unvortheilhafte Parallele zu setzen.</p>
-                                        <p>Die Aufführung von Seiten unserer Sänger war nicht die ausgezeichnetste. <span class=" 68101109463267111109101116">Dem. <span class="tei_hi_spaced_out">Comet</span></span> <span class=" 40691171141219711011610410141">(Euryanthe)</span> und <span class=" 72114463266105110100101114">Hr. <span class="tei_hi_spaced_out">Binder</span></span>  <span class=" 40651001111089711441">(Adolar)</span> nebst <a class="persons A000954" href="/exist/apps/WeGA-WebApp/de/A000954.html">Hrn. <span class="tei_hi_spaced_out">Kainz</span></a> <span class=" 40761211151059711411641">(Lysiart)</span> waren brav, um nicht ausgezeichnet zu sagen. Mlle. <span class="tei_hi_spaced_out"><a class="persons A000453" href="/exist/apps/WeGA-WebApp/de/A000453.html">Ernst</a></span> <span class=" 40691031089711011610511010141">(Eglantine)</span> war ziemlich. <span class=" 7210111411432771059910497108101115105">Herr <span class="tei_hi_spaced_out">Michalesi</span></span> <span class=" 407524611010510341">(König)</span> ganz ohne Verdienst.</p>
+                                        <p><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> in allen ihren Einzelnheiten und zugleich als majestätisches Ganze betrachtet, ist wohl nichts Anderes, als ein kräftiger, praktischer Beweis für den Satz: wie der Tondichter sich aus dem Labyrinthe seiner Ideen, worin er sich selbst mit Willen eingeschlossen, zum Triumphe seiner Kunst mit höchster Klarheit herausfinden könne. Liegt vielleicht in diesem Satze das Ganze der neuen <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>’schen <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Schöpfung</span> eingeschlossen, so muß man andererseits auch zugeben, daß der Künstler, selbst bei der größten Genialität, bei einem solchen Unternehmen viel wage und Gefahr laufe, von den Meisten verkannt und unverstanden zu bleiben. Inwiefern diese Behauptung wahr oder unwahr sey, beweist wohl <span class="tei_hi_spaced_out"><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> am deutlichsten. Man erlaube uns einige nähere Details. Die Ouvertüre ist wohl selbst dem Kenner das schwierigste Problem; diese ungeheure Tonmasse ist, wenn ich mich so ausdrücken darf, eine stürzende Schneelavine, zu blendend und zu schnell, um gehörig aufgefaßt werden zu können. Die herrlichsten Motive der <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> selbst ruhen, als Embryonen, darin und sind, bei all’ ihrem Reize, doch zu unentwickelt und in zu großer Menge. Man hat über diese <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> von den Wiener Correspondenten schon so Vieles und größtentheils so Wahres gelesen, daß ich alle Einzelnheiten zu berühren überflüssig halte. <span class=" 6510011110897114115">Adolars</span> Minnelied (1ter Akt), Terzett zwischen <span class=" 6510011110897114">Adolar</span>, <span class=" 7612111510597114116">Lysiart</span> und dem <span class=" 75246110105103">König</span>, gefiel größtentheils und wurde sehr beklatscht. <span class=" 6911711412197110116104101">Euryanthe</span>’s Arie und Duett mit <span class=" 6910310897110116105110101110">Eglantinen</span> erhielt auch vielen Beifall. – Der Chor, welcher so viel zu dem wahren Glanz dieser <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> beiträgt, war äusserst mittelmäßig und wir finden diese Nachlässigkeit der Direktion und des musikalischen Lenkers einer öffentlichen Rüge würdig, denn es ist nicht genug, daß man uns 12 dergleichen Subjekte auf die <span class="tei_sic">Breter<a class="noteMarker" id="ref-d35935e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35935e55">‡</a></span> stelle, sondern man muß auch dafür sorgen, daß es sich die Besagten nicht allzukomode machen und ihre Zungen lieber zum Tändeln mit den Bühnen-Bajaderen, als zum reinen Gesange gebrauchen. – <span class=" 7612111510597114116115">Lysiarts</span> Arie im zweiten Akt griff in vielen Momenten durch, jedoch das Publikum war verstimmt und irre geleitet – und schwieg, daher auch bei dem herrlichen Finale des zweiten Aufzuges still. Das Duett des 3ten Aktes zwischen <span class=" 6510011110897114">Adolar</span> und <span class=" 6911711412197110116104101">Euryanthe</span> ist ein schöner Beweis der Genialität <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>, und der neue Jägerchor, der doch wieder, wie alle seine beliebten Brüder, (im <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>, <span class="works A020074" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020074.html">wilde Jagd Lützow’s</span> u. s. w.) den sichtbaren Stempel der Originalität trägt, ist überraschend. Wir haben <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a> schon vor Erscheinen seines <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> für eine Zierde der deutschen Compositeurs erklärt, und haben an seinen Gesang-Quartetten einen tiefen Beweisgrund hiezu aufzuweisen. Inwiefern der <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> diese unsre Meinung bestätigt habe, ist wohl jedem unpartheiischen Musikfreunde kein Zweifel mehr, und <span class=" 8011497103"><span class="tei_settlement">Prag</span></span>, wo diese <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span> über sechszigmal wiederholt<span class="tei_cb"> ¦ </span> worden, hat seine Meinung auf das lauteste ausgesprochen. Und wir können nicht umhin, <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>, nach Anhörung seiner <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>, noch um ein Bedeutendes mehr zu bewundern, da die Kraft und Klarheit in der Lösung selbstgeschaffener Schweirigkeiten uns mit Staunen erfüllt. Zwar erübrigt uns der Beweis, wie ein solches Werk sein Ziel nicht ganz erreichen konnte? und wir glauben einen Theil dieser Frage schon im Eingange dieses Aufsatzes beantwortet zu haben, und es wird uns um so leichter, das Ganze zu erhellen. Erwägen wir die Form, die der <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichter</a> für seine <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> gewählt, wir meinen das durchaus durchgeführte <span class="tei_hi_spaced_out">Recitativ</span>, und lassen wir zugleich einen scharfen Blick auf den Zustand dieser Gesangart in <span class=" 681011171161159910410897110100"><span class="tei_country">Deutschland</span></span> fallen, so finden wir, daß diese Form einem Werke gegenwärtiger Schöpfung nicht die zusagendste seyn kann, weil wir noch immer auf dem Punkte sind, um behaupten zu können: "deutsche Sänger und Sängerinnen können bisher noch keine Recitative singen." Was wir unter <span class="tei_hi_spaced_out">dem</span> Namen von ihnen hören, kann man unmöglich dem Effekte einer Oper zuträglich wähnen, besonders wenn es das verknüpfende Band des Ganzen ausmachen soll. – Es ist ziemlich deutlich am Tage, daß durch diese Gesangart bei uns die Verständlichkeit der Worte verhindert und der klaren Auffassung des Stoffes ein Hinderniß in den Weg gelegt werde. Beides war der Fall bei der Aufführung der <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>; und wir hoffen von der Zeit das Beßte, weil wir uns wohl erinnern, daß es auch einmal der <span class="works A020531" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020531.html">Vestalin</span> bei ihrem ersten Erscheinen nicht um vieles besser ergangen sey, und wir uns, ohne einer Ueberschätzung angeschuldigt zu werden befürchten, erkühnen, <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthen</span> zur <span class="works A020531" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020531.html">Vestalin</span> in keine unvortheilhafte Parallele zu setzen.</p>
+                                        <p>Die Aufführung von Seiten unserer Sänger war nicht die ausgezeichnetste. <a class="persons A000B8D" href="/exist/apps/WeGA-WebApp/de/A000B8D.html">Dem. <span class="tei_hi_spaced_out">Comet</span></a> <span class=" 40691171141219711011610410141">(Euryanthe)</span> und <a class="persons A00287E" href="/exist/apps/WeGA-WebApp/de/A00287E.html">Hr. <span class="tei_hi_spaced_out">Binder</span></a>  <span class=" 40651001111089711441">(Adolar)</span> nebst <a class="persons A000954" href="/exist/apps/WeGA-WebApp/de/A000954.html">Hrn. <span class="tei_hi_spaced_out">Kainz</span></a> <span class=" 40761211151059711411641">(Lysiart)</span> waren brav, um nicht ausgezeichnet zu sagen. Mlle. <span class="tei_hi_spaced_out"><a class="persons A000453" href="/exist/apps/WeGA-WebApp/de/A000453.html">Ernst</a></span> <span class=" 40691031089711011610511010141">(Eglantine)</span> war ziemlich. <a class="persons A000F27" href="/exist/apps/WeGA-WebApp/de/A000F27.html">Herr <span class="tei_hi_spaced_out">Michalesi</span></a> <span class=" 407524611010510341">(König)</span> ganz ohne Verdienst.</p>
                                         <p>Was wir über das Buch selbst zu sagen denken, beträgt wenig, und unsere Meinung richtet sich dahin: daß die Dichtung jene Geringschätzung nicht verdiene, womit sie von den Wiener Correspondenten behandelt worden. Uebrigens ist sie ein Eigenthum der literarischen Welt, da die <a class="persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Verfasserin</a> sie dem Druck bereits übergab.</p>
                                         <p>Gern statten wir dem <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Compositeur</a> nochmals unsern Dank für sein <span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Werk</span> ab und erwarten vom gesammten deutschen Publikum, wenn es erst dieses Tongedicht durchstudirt und erfaßt haben wird, jenes Urtheil, das wir bisher noch nicht vernommen haben, denn noch immer könnte man den Tönen der <span class="tei_hi_spaced_out"><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> folgende Verse als Motto anpassen:</p>
                                         <p>    
@@ -364,10 +371,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -396,7 +400,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Abend-Zeitung</span>, Jg.&#160;8, Nr.&#160;69 (20. März 1824), S.&#160;276</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -409,7 +413,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d73095e55" data-title="sic">"Breter": sic!</div>
+                                            <div class="apparatusEntry" id="d35935e55" data-title="sic">"Breter": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -421,11 +425,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
@@ -437,7 +441,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031060</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
+                <span>Letzte Änderung dieses Dokuments am 2. November 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             

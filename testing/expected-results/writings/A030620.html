@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Korrespondenz-Nachrichten aus Mannheim, September 1810 (Teil 3 von 3)</title>
         
@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-05-27T15:06:29.772036Z" />
+        <meta property="dc:date" content="2016-10-18T10:59:41.074598Z" />
         <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030620" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -307,6 +308,8 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020495" /> <span title="Die Schweizer Familie">Die Schweizer Familie</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020851" /> <span title="Léon ou le château de Monténéro">Léon ou le château de Monténér…</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020697" /> <span title="Marie von Montalban">Marie von Montalban</span> 
                                 </label>
                             </div>
@@ -347,7 +350,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -358,7 +361,7 @@
                <span class="tei_ptr"></span><span class=" 8411410511010710810510110065114105101321001011153270101114114971101003210910511632671041111143240651071163273737344327811446160494132822272105101114321161141011059811632100101114328410111710210110832115101108981151163211510110511032831121051011088220">Trinklied<a class="noteMarker" id="ref-C_39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_39">*</a></span> der Reisigen <span class=" 761011111108217115">Leon’s</span> gelungen, wobei der <span class=" 66117114103118111103116">Burgvogt</span> präsidirt, und <span class=" 76117100119105103">Ludwig</span> als Schildwache hinter dem Gitter mit einstimmt, um sich mit seinen dermaligen Kameraden vertraut zu machen. Lieblich und zur Fröhlichkeit einladend schmiegt sich die schnellende Figur der Violinen und ersten Flöte an das taktmäßige Geklingel der Gläser, und das in seiner Art witzige Gespräch der Leute dazwischen erhebt die Scene zu einer der interessantesten in dieser Gattung, so daß man, als schon der Sturm im Anbruche ist, die liebliche Melodie gerne noch einige Zeit im Orchester nachklingen hört.</p>
                                         <p>Die übrigen weniger bedeutenden Stücke der beiden letzten Akte übergehe ich.</p>
                                         <p>Ueberhaupt ist in diesen beiden Akten der Musik viel zu wenig, und des Gesprächsels, besonders bei dem geringen dramatischen Werthe des Stückes, viel zu viel; indessen wären die oben ausgehobenen Stücke, hätte auch <a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">d’Alayrac</a> nie etwas anderes geschrieben, schon hinreichend, seinen Ruhm als gründlich denkender und tief fühlender Komponist zu begründen. Merkwürdig ist es übrigens, daß seine Landsleute gerade die vorzüglichsten Werke ihrer eigenen Komponisten nicht kennen. Mit der Anzeige seines vor einiger Zeit erfolgten Todes verbanden die 
-               <span class="tei_ptr"></span>französischen Journale<a class="noteMarker" id="ref-C_40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_40">*</a> eine Aufzählung seiner Kompositionen, welche übrigens recht vollständig seyn mag, nur daß der Oper <span class=" 76101111110321111001011143210097115328399104108111223321181111103277111110116101110101114111">Leon oder das Schloß von Montenero</span> darin mit keiner Sylbe gedacht ist.</p>
+               <span class="tei_ptr"></span>französischen Journale<a class="noteMarker" id="ref-C_40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_40">*</a> eine Aufzählung seiner Kompositionen, welche übrigens recht vollständig seyn mag, nur daß der Oper <span class="works A020851" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020851.html">Leon oder das Schloß von Montenero</span> darin mit keiner Sylbe gedacht ist.</p>
                                         <p>Ueber <span class="tei_hi_spaced_out"><a class="persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl’s</a> 
                <span class="tei_ptr"></span><span class="works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span><a class="noteMarker" id="ref-C_41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_41">*</a></span>, wovon ich ebenfalls einer Aufführung beiwohnte, sage ich Ihnen nichts vollständiges; es ist darüber schon oft und ausführlich genug in öffentlichen Blättern gesprochen worden, und das allgemeine Urtheil hat sich schon festgesetzt. Nur Eines, nämlich die vortreffliche Darstellung der Emmeline durch <a class="persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a>, kann ich nicht mit Stillschweigen übergehen. Wenige Theater <span class=" 681011171161159910410897110100115"><span class="tei_country">Deutschlands</span></span> möchten sich der Darstellung einer solchen <span class=" 69109109101108105110101">Emmeline</span> zu erfreuen haben. <a class="persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a> ist von der Natur nicht eben reichlich ausgestattet, aber die Kunst hat sie als Adoptivkind desto sorgfältiger gepflegt. Ihrer von Natur etwas ungleichen Stimme hat sie durch Studium Klang und Rundung gegeben, und in einer vortrefflichen Schule gebildet, herrscht sie vollkommen über ihre Kehle. Bald durch ernsten Anstand, bald durch leichte Grazie weiß sie ihre Figur geltend zu machen, und einigt so, in seltenem Grade, anmuthigen Gesang mit seelenvollem Spiele. Besonders in dieser Oper entfaltete sie ihr zweifaches Talent mit dem größtem Beifalle, und in der Arie:</p><span class="lg"><span class="verseLine"><span class="tei_ptr"></span>„Wer hat mich je klagen gehört?“<a class="noteMarker" id="ref-C_42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_42">*</a></span></span>
                                         <p>opferte sie, sehr zweckmäßig, nicht selten, den Klang ihrer Stimme dem wilden Ausbruche der Leidenschaft. Wäre <a class="persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a> auch nicht Sängerin, so verdiente sie schon um ihrer mimischen Kunst allein allgemein geschätzt zu werden. – Uebrigens ist auch 
@@ -386,10 +389,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -418,7 +418,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Rheinische Correspondenz</span>, Bd.&#160;2, Heft&#160;15 (17. Oktober 1810)</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -486,11 +486,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
@@ -502,7 +502,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030620</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Mai 2016 durch Solveig Schreiter</span>
+                <span>Letzte Änderung dieses Dokuments am 18. Oktober 2016 durch Solveig Schreiter</span>
                 </p>
             </div>
             

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
-        <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Über Kirchenmusik in Konzerten</title>
         
@@ -35,7 +35,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -54,7 +53,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
+                    
                     <div class="navbar-header col-md-3 navbar-right">
                         <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                             <span class="icon-bar"></span>
@@ -65,15 +64,15 @@
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
-                    <!-- Collection of nav links and other content for toggling -->
+                    
                     <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
                         <ul class="nav navbar-nav">
 
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Weber</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -97,9 +96,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Register" class="dropdown-secondlevel-nav disabled" data-toggle="dropdown">Register</a>
+                            <li class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
+                                    
                                     
                                     
                                     
@@ -108,6 +108,9 @@
                                     
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -129,8 +132,8 @@
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Projekt</a>
+                           <li id="project-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -140,9 +143,7 @@
                                     
                                     
                                     
-                                <!--<li>
-                                        <a href="$link/project/credits.html" data-template="lang:translate">credits</a>
-                                    </li>-->
+                                
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -166,8 +167,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Hilfe</a>
+                            <li id="help-nav" class="dropdown">
+                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -182,7 +183,7 @@
                             
                             <li class="divider"></li>
                             <li>
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown">Dev</a>
+                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/dev/test-html.html">Test-HTML</a>
@@ -242,7 +243,7 @@
                         <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
-                            <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
@@ -318,7 +319,7 @@
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
-                <!-- Tab panes -->
+                
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
@@ -326,7 +327,7 @@
                                         <h2 class="docHeader">
                     <span class="tei_hi_italic">Ueber Kirchenmusik in Concerten.</span>
                 </h2>
-                                        <p>Wenn ich Missen, Psalmen, Te Deum etc. hören will, <span class="tei_app"><span class="tei_lem">geh’</span><a class="noteMarker" id="ref-d73029e10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e10">‡</a></span> ich in die Kirche; im
+                                        <p>Wenn ich Missen, Psalmen, Te Deum etc. hören will, <span class="tei_app"><span class="tei_lem">geh’</span><a class="noteMarker" id="ref-d35869e10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e10">‡</a></span> ich in die Kirche; im
                     Concertsaal verschone man mich damit! Hier machen die Sachen schon gar den
                     Effect nicht, wie in der Kirche; sie sind auf die gottesdienstliche Handlung
                     berechnet, welche während der Musik vorgeht: wo jene fehlt, verliert diese ihre
@@ -334,7 +335,7 @@
                                         <p>„Das ist, wie aus meinem Herzen gesprochen!“ höre ich neun Zehntheile meiner
                     Leser ausrufen; und was noch mehr ist, ich sehe unter diesen neun Zehntheilen
                     keineswegs blos oberflächliche Dilettanten – nein, auch raisonnirende
-                    Aesthetiker, Tongeber, Sprachführer und <span class="tei_app"><span class="tei_lem">Vorfechter</span><a class="noteMarker" id="ref-d73029e18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e18">‡</a></span> des öffentlichen
+                    Aesthetiker, Tongeber, Sprachführer und <span class="tei_app"><span class="tei_lem">Vorfechter</span><a class="noteMarker" id="ref-d35869e18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e18">‡</a></span> des öffentlichen
                     Urtheils.</p>
                                         <p>Ich werde plötzlich unter zehen Stimmen neun gegen mich haben, wenn ich bekenne,
                     dass der Eingang dieses Aufsatzes nichts weniger ist, als aus <span class="tei_hi_italic">meinem</span> Herzen gesprochen; ja, dass ich Kirchenmusik für das Concert
@@ -388,16 +389,16 @@
                     selten das erste Finale aus <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a>
                     <span class=" 68111110327411797110">Don Juan</span>. Wie viel Handlung geht in dieser Musik vor! nur
                     in der Catastrophe: während des Getümmels eines Balls lockt <span class=" 68111110327411797110">Don
-                        Juan</span> das Mädchen in ein <span class="tei_app"><span class="tei_lem">Nebengemach</span><a class="noteMarker" id="ref-d73029e62" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e62">‡</a></span>, wird zudringlich, ihr
+                        Juan</span> das Mädchen in ein <span class="tei_app"><span class="tei_lem">Nebengemach</span><a class="noteMarker" id="ref-d35869e62" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e62">‡</a></span>, wird zudringlich, ihr
                     Angstgeschrey dringt durch das Ballgetöse und verräth ihn; der Bräutigam tobt,
                     die Ballgäste stürmen und sprengen die Thür; er sucht die Schuld auf seinen
                     Diener zu schieben; man glaubt ihm nicht, dringt auf ihn ein; er schlägt sich
                     durch, wie ein Rasender; alle ihm nach: der Vorhang fällt! – Nun frage ich: muss
                     eine Musik, auf diese ganze Kettenfolge von Handlungen berechnet, aber von aller
                     Handlung isolirt im Concertsaale gegeben, nicht gar zu viel – ja, gerade ihr
-                    Bestes, einbüssen<a href="#f01">*)</a><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d73029e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e71">‡</a></span> – nicht unendlich mehr, als eine geistliche
+                    Bestes, einbüssen<a href="#f01">*)</a><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d35869e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e71">‡</a></span> – nicht unendlich mehr, als eine geistliche
                     Musik durch den Mangel kirchlicher Umgebungen? Man kann gar füglich ausrufen:
-                    Heilig ist Gott Sabaoth! ohne durch die <span class="tei_app"><span class="tei_lem">Klingel</span><a class="noteMarker" id="ref-d73029e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e87">‡</a></span> des Ministranten dazu
+                    Heilig ist Gott Sabaoth! ohne durch die <span class="tei_app"><span class="tei_lem">Klingel</span><a class="noteMarker" id="ref-d35869e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e87">‡</a></span> des Ministranten dazu
                     aufgefordert zu werden: weit widerstrebender aber ist es: O Dio, io moro! von
                     einer schön geputzten, von Gesundheit strotzenden Sängerin mit dem Notenblatte
                     in der Hand im Concertsaale singen zu hören. Das macht: der Sänger, indem er
@@ -405,9 +406,9 @@
                     hübsch am Leben. Dennoch findet dies Niemand anstössig, und das Publicum
                     applaudirt. Ich tadle es nicht, klatsche wol selbst mit; aber ich frage: warum
                     sind denn die Herren so nachsichtig gegen die aus ihrer Sphäre herausgerissne
-                    Opern-Musik, und wollen es gar nicht seyn <span class="tei_app"><span class="tei_lem">gegen ein Kirchenstück</span><a class="noteMarker" id="ref-d73029e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e95">‡</a></span>? warum taxiren
+                    Opern-Musik, und wollen es gar nicht seyn <span class="tei_app"><span class="tei_lem">gegen ein Kirchenstück</span><a class="noteMarker" id="ref-d35869e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e95">‡</a></span>? warum taxiren
                     sie nur dieses, so wie es sich im Concertsaal blicken lässt, so unbarmherzig für
-                    ein <span class="tei_hi_italic">hors d’oeuvre</span>? <span class="tei_app"><span class="tei_lem">warum wollen sie</span><a class="noteMarker" id="ref-d73029e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d73029e104">‡</a></span> gerade nur diesen
+                    ein <span class="tei_hi_italic">hors d’oeuvre</span>? <span class="tei_app"><span class="tei_lem">warum wollen sie</span><a class="noteMarker" id="ref-d35869e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35869e104">‡</a></span> gerade nur diesen
                     Gegenstand ausschliessen, indess sie sonst jeden andern im Concerte dulden?</p>
                                         <p>Im Herzen der Herren (sie lassen’s nur nicht gern lesen,) steht die Antwort
                     geschrieben: Uns langweilt nun einmal Kirchenmusik’, nicht blos im Concerte,
@@ -453,10 +454,7 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
-                        <!--<div>
-                            <h3 data-template="lang:translate">series</h3>
-                            <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
-                        </div>-->
+                        
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -485,7 +483,7 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg.&#160;14, Nr.&#160;22 (27. Mai 1812), Sp.&#160;355–359</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -496,7 +494,7 @@
                                     <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p><span class="author">ohne Verfasserangabe</span>, <span class="title"></span>, in: <span class="journalTitle">Musicalische Zeitung für die österreichischen Staaten</span>, Jg.&#160;1, Nr.&#160;6 (30. Juni 1812), S.&#160;43–46</p>
-                                <!-- Processing tei:additional for every source -->
+                                
                                 <div>
                                     
                                     <ul class="tei_list">
@@ -511,19 +509,19 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e10" data-title="app">"geh’": Lesart in anderer Quelle: <span class="tei_rdg">so geh’</span>
+                                            <div class="apparatusEntry" id="d35869e10" data-title="app">"geh’": Lesart in anderer Quelle: <span class="tei_rdg">so geh’</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e18" data-title="app">"Vorfechter": Lesart in anderer Quelle: <span class="tei_rdg">Vorsteher</span>
+                                            <div class="apparatusEntry" id="d35869e18" data-title="app">"Vorfechter": Lesart in anderer Quelle: <span class="tei_rdg">Vorsteher</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e62" data-title="app">"Nebengemach": Lesart in anderer Quelle: <span class="tei_rdg">Nebenzimmer</span>
+                                            <div class="apparatusEntry" id="d35869e62" data-title="app">"Nebengemach": Lesart in anderer Quelle: <span class="tei_rdg">Nebenzimmer</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e71" data-title="app">"*) Anm. Wenn der Zuhörer, wie in den
+                                            <div class="apparatusEntry" id="d35869e71" data-title="app">"*) Anm. Wenn der Zuhörer, wie in den
                         leipziger Concerten, den Text in der Hand, und die Oper von der Bühne im
                         Andenken hat, so ersetzt die Phantasie den Mangel genügend; ja, ist die
                         Musik, wie im aufgeführten Beyspiele, gearbeitet,
@@ -533,15 +531,15 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e87" data-title="app">"Klingel": Lesart in anderer Quelle: <span class="tei_rdg">Klinge <span class="tei_hi_italic">(Druckfehler)</span></span>
+                                            <div class="apparatusEntry" id="d35869e87" data-title="app">"Klingel": Lesart in anderer Quelle: <span class="tei_rdg">Klinge <span class="tei_hi_italic">(Druckfehler)</span></span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e95" data-title="app">"gegen ein Kirchenstück": Lesart in anderer Quelle: <span class="tei_rdg">gegen Kirchenmusik</span>
+                                            <div class="apparatusEntry" id="d35869e95" data-title="app">"gegen ein Kirchenstück": Lesart in anderer Quelle: <span class="tei_rdg">gegen Kirchenmusik</span>
                                             </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d73029e104" data-title="app">"warum wollen sie": Lesart in anderer Quelle: <span class="tei_rdg">warum wollen wir</span>
+                                            <div class="apparatusEntry" id="d35869e104" data-title="app">"warum wollen sie": Lesart in anderer Quelle: <span class="tei_rdg">warum wollen wir</span>
                                             </div>
                                         </li>
                                     </ul>
@@ -552,11 +550,11 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        <!-- loaded via AJAX request to ./xml.html -->
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLDownload">
                         <h2>XML Download</h2>
-                        <!-- Download initiated -->
+                        
                     </div>
                 </div>
             </div>
