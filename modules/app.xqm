@@ -1402,17 +1402,15 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-title($node as node(), $model as map(*), $lang as xs:string) as element() {
-        element {name($node)} {
-            $node/@*[not(name(.) = 'href')],
-            if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
-            else (),
-            wdt:lookup(config:get-doctype-by-id($model('docID')), $model('docID'))('title')('html')
-            (:
-            if(config:is-person($model('docID'))) then query:title($model('docID'))
-            else if(config:is-org($model('docID'))) then query:title($model('docID'))
-            else app:document-title($node, $model, $lang)
-            :)
-    }
+        let $title := wdt:lookup(config:get-doctype-by-id($model('docID')), $model('doc'))?title('html')
+        return
+            element {name($node)} {
+                $node/@*[not(name(.) = 'href')],
+                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
+                else (),
+                if($title instance of xs:string) then $title
+                else $title/node()
+            }
 };
 
 declare 
