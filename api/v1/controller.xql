@@ -124,6 +124,7 @@ let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 
 return
     if($exist:resource eq 'swagger.json') then ()
+    else if($exist:path eq '/') then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:model, map {'lang' := 'en', 'path' := $exist:path, 'controller' := $exist:controller || '/../../' } )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
