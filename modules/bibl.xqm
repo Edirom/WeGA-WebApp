@@ -189,13 +189,13 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
     concat(
-        if($parent/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@type = 'vol']) else (),
-        if($parent/tei:biblScope[@type = 'jg']) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@type = 'jg']) else (),
-        if($parent/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@type = 'issue']) else (),
-        if($parent/tei:biblScope[@type = 'nr']) then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
+        if($parent/tei:biblScope/@type = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@type = 'vol']) else (),
+        if($parent/tei:biblScope/@type = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@type = 'jg']) else (),
+        if($parent/tei:biblScope/@type = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@type = 'issue']) else (),
+        if($parent/tei:biblScope/@type = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
         if(exists($parent/tei:date)) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($parent/tei:biblScope[@type = 'col']) then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
+        if($parent/tei:biblScope/@type = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
+        if($parent/tei:biblScope/@type = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
     )
 };
 
