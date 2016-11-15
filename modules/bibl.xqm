@@ -36,9 +36,9 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     else if($biblStruct/@type eq 'review') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'phdthesis') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     (: Trying to guess … :)
-    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='m']) then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title[@level='j']) then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
-    else if($biblStruct/tei:monogr/tei:title[@level='m']) then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/tei:analytic and $biblStruct/tei:monogr/tei:title/@level eq 'm') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/tei:monogr/tei:title/@level eq 'j') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
+    else if($biblStruct/tei:monogr/tei:title/@level eq 'm') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     (: Fallback :)
     else bibl:printGenericCitation($biblStruct, $wrapperElement, $lang)
 };
@@ -106,15 +106,13 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
  :)
 declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang) 
-    let $articleTitle := <span class="title">{string-join($biblStruct/tei:analytic/tei:title/str:normalize-space(.), '. ')}</span>
+    let $articleTitle := $biblStruct/tei:analytic/tei:title (: could be several subtitles:)
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
     return 
         element {$wrapperElement} {
             if(exists($authors)) then ($authors, ', ') else (), 
-            if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] '
-            else (),
-            $articleTitle,
-            ', in: ',
+            if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
+            if($articleTitle ne '') then (<span class="title">{string-join($articleTitle/str:normalize-space(.), '. ')}</span>, ', in: ') else (),
             $journalCitation/span,
             $journalCitation/text()
         }
