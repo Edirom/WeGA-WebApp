@@ -287,9 +287,12 @@ declare function wdt:writings($item as item()*) as map(*) {
             wdt:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
                 let $source := query:get-main-source($node)
-                let $journal :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
+                let $journal := string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
+                let $jg := functx:pad-integer-to-length(number($source//tei:biblScope[@type='jg'][1]), 6)
+                let $nr := functx:pad-integer-to-length(number($source//tei:biblScope[@type='nr'][1]), 6)
+                let $pp := functx:pad-integer-to-length(number(functx:substring-before-if-contains($source//tei:biblScope[@type='pp'][1], '-')), 6)
                 return
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp 
             }, ())
         },
         'title' := function($serialization as xs:string) as item()? {
