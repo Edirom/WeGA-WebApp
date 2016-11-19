@@ -112,7 +112,7 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
         element {$wrapperElement} {
             if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
-            if($articleTitle ne '') then (<span class="title">{string-join($articleTitle/str:normalize-space(.), '. ')}</span>, ', in: ') else (),
+            if($articleTitle) then (<span class="title">{string-join($articleTitle/str:normalize-space(.), '. ')}</span>, ', in: ') else (),
             $journalCitation/span,
             $journalCitation/text()
         }
