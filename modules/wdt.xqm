@@ -564,7 +564,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)]/root() | $item[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
+            $item[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $item[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() 

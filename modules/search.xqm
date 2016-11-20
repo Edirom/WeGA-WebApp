@@ -331,12 +331,9 @@ declare %private function search:date-filter($collection as document-node()*, $d
  : Applies textType filter for backlinks
 ~:)
 declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
-    let $filter := map:keys($filters)[1]
-    return 
-        wdt:lookup($filters($filter), 
-            $collection
-        )('sort')(map {})
-        (:$collection/*/@xml:id[config:get-doctype-by-id(.) = $filters($filter)]/root():)
+    wdt:lookup($filters?textType, 
+        $collection
+    )('sort')(map {})
 };
 
 (:~
