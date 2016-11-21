@@ -23,7 +23,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
  : @param $lang the language to set
  : @return xs:string the (newly) set language variable 
  :)
-declare function lang:get-set-language($lang as xs:string?) as xs:string {
+declare function lang:guess-language($lang as xs:string?) as xs:string {
     if($lang = $config:valid-languages) then $lang
     (: else try to guess from the URL path segment :)
     else if(tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  

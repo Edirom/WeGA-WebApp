@@ -384,7 +384,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
 :)
 declare function config:get-xsl-params($params as map()?) as element(parameters) {
     <parameters>
-        <param name="lang" value="{lang:get-set-language(())}"/>
+        <param name="lang" value="{lang:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>

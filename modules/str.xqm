@@ -67,20 +67,47 @@ declare function str:printFornameSurnameFromTEIpersName($persName as element(tei
 };
 
 (:~ 
- : Surround a string with typographic quotes
+ : Surround a string with typographic double quotes
  :
+ : @param $str the string to enquote
+ : @param $lang the language switch (en|de)
  : @author Peter Stadler
- : @return xs:string
+ : @return a single string if the input was a single string, a sequence of strings if the input was a sequence (where the quotes are then the first and the last item) 
  :)
-declare function str:enquote($str as xs:string?, $lang as xs:string) as xs:string? {
-    let $quotes :=
+declare function str:enquote($str as xs:string*, $lang as xs:string) as xs:string* {
+    if(count($str) = 1) then 
         switch ($lang)
-        case 'de' return '&#x201E;%1&#x201C;'
-        default return '&#x201C;%1&#x201D;'
-    return 
-        if($str) then replace($quotes, '%1', $str)
-        else ()
-    
+        case 'de' return concat('&#x201E;', $str, '&#x201C;')
+        case 'en' return concat('&#x201C;', $str, '&#x201D;')
+        default return concat('&quot;', $str, '&quot;')
+    else if(count($str) gt 1) then 
+        switch ($lang)
+        case 'de' return ('&#x201E;', $str, '&#x201C;')
+        case 'en' return ('&#x201C;', $str, '&#x201D;')
+        default return ('&quot;', $str, '&quot;')
+    else ()
+};
+
+(:~ 
+ : Surround a string with typographic single quotes
+ :
+ : @param $str the string to enquote
+ : @param $lang the language switch (en|de)
+ : @author Peter Stadler
+ : @return a single string if the input was a single string, a sequence of strings if the input was a sequence (where the quotes are then the first and the last item) 
+ :)
+declare function str:enquote-single($str as xs:string*, $lang as xs:string) as xs:string* {
+    if(count($str) = 1) then 
+        switch ($lang)
+        case 'de' return concat('&#x201A;', $str, '&#x2018;')
+        case 'en' return concat('&#x2018;', $str, '&#x2019;')
+        default return concat('&#x0027;', $str, '&#x0027;')
+    else if(count($str) gt 1) then 
+        switch ($lang)
+        case 'de' return ('&#x201A;', $str, '&#x2018;')
+        case 'en' return ('&#x2018;', $str, '&#x2019;')
+        default return ('&#x0027;', $str, '&#x0027;')
+    else ()
 };
 
 (:~

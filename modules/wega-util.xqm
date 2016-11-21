@@ -19,6 +19,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
@@ -242,7 +243,10 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:del) return ()
         case element(tei:note) return ()
         case element(tei:lb) return '&#10;'
-        case element(tei:q) return (' &quot;', $node/child::node() ! wega-util:txtFromTEI(.), '&quot; ')
+        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case element(tei:quote) return 
+            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
         case text() return replace($node, '\n+', ' ')
         case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
         case processing-instruction() return ()

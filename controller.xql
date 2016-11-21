@@ -18,7 +18,7 @@ declare variable $exist:resource external;
 declare variable $exist:controller external;
 declare variable $exist:prefix external;
 
-let $lang := lang:get-set-language(())
+let $lang := lang:guess-language(())
 let $exist-vars := map {
     'path' := $exist:path,
     'resource' := $exist:resource,
