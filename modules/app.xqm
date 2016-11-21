@@ -622,7 +622,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
                 concat(date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
                 if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
                 (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-                else (app:createDocLink($teiDate/root(), str:printFornameSurname(query:title($teiDate/ancestor::tei:person/@xml:id)), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+                else (app:createDocLink($teiDate/root(), str:printFornameSurnameFromTEIpersName($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
             }
 };
 
