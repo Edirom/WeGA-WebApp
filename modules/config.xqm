@@ -24,7 +24,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
     Determine the application root collection from the current module load path.
 :)
 declare variable $config:app-root as xs:string := 
-    let $rawPath := system:get-module-load-path()
+    let $rawPath := replace(system:get-module-load-path(), '/null/', '//')
     let $modulePath :=
         (: strip the xmldb: part :)
         if (starts-with($rawPath, "xmldb:exist://")) then
