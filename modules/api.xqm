@@ -16,6 +16,8 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/fac
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 declare variable $api:WRONG_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 
@@ -51,6 +53,21 @@ declare function api:documents-findByDate($model as map()) {
             core:getOrCreateColl($docType, 'indices', true())//mei:date[@isodate=$model('date')]/root()
     return
         api:document(api:subsequence($documents, $model), $model)
+};
+
+(:~
+ :  Find document by ID.
+ :  IDs are accepted in the following formats:
+ :  * WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068
+ :  * VIAF, e.g. http://viaf.org/viaf/310642461
+ :  * GND, e.g. http://d-nb.info/gnd/118629662
+~:)
+declare function api:findByID($model as map()) {
+    if(matches(normalize-space($model?id), '^A[A-F0-9]{6}$')) then api:document(core:doc($model?id), $model)
+    else if(matches(normalize-space($model?id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then api:document(core:doc(substring-after($model?id, 'de/')), $model)
+    else if(starts-with(normalize-space($model?id), 'http://d-nb.info/gnd/')) then api:document(query:doc-by-gnd(substring($model?id, 22)), $model)
+    else if(starts-with(normalize-space($model?id), 'http://viaf.org/viaf/')) then api:document(query:doc-by-gnd(wega-util:viaf2gnd(substring($model?id, 22))), $model)
+    else util:log-system-out('no match')
 };
 
 declare function api:ant-currentSvnRev($model as map()) as xs:int? {

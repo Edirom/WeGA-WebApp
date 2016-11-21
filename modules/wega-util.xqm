@@ -11,6 +11,9 @@ declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace http="http://expath.org/ns/http-client";
 declare namespace math="http://www.w3.org/2005/xpath-functions/math";
+declare namespace owl="http://www.w3.org/2002/07/owl#";
+declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace schema="http://schema.org/";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -39,7 +42,8 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
             let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')])[1]
             return
                 replace($url, 'dewiki', $lang || 'wiki')
-        case 'dnb' return concat(config:get-option($resource), $gnd, '/about/rdf')
+        case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
+        case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
@@ -311,4 +315,20 @@ declare function wega-util:distance-between-places($placeID1 as xs:string, $plac
    let $latLon2 := array { tokenize($places/id($placeID2)//tei:geo, '\s+') ! . cast as xs:double }
    return 
       wega-util:spherical-law-of-cosines-distance($latLon1, $latLon2)
+};
+
+(:~
+ :  Lookup viaf ID by calling an external service.
+ :  Currently, we are using the rdf serialization from the DNB.
+~:)
+declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
+    wega-util:grabExternalResource('dnb', $gnd, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://viaf.org/viaf/')]/substring(., 22)
+};
+
+(:~
+ :  Lookup gnd ID by calling an external service.
+ :  Currently, we are using the rdf serialization from viaf.org.
+~:)
+declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
+    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
 };

@@ -63,6 +63,52 @@
                 }
             }
         },
+        "/findByID": {
+            "get": {
+                "description": "This endpoint returns a document, indicated by an ID \nAccepted ID formats are WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068, VIAF, e.g. http://viaf.org/viaf/310642461, or  GND, e.g. http://d-nb.info/gnd/118629662\n",
+                "tags": [
+                    "Documents"
+                ],
+                "produces": [
+                    "application/xml",
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "the id to search for",
+                        "type": "string",
+                        "format": "uri",
+                        "required": true,
+                        "example": "A002068"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
         "/documents/{docType}": {
             "get": {
                 "description": "This endpoint returns a list of documents filtered by document type\n",
