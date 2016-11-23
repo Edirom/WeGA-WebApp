@@ -48,7 +48,6 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
-    let $today := current-date()
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response

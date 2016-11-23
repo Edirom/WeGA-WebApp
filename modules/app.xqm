@@ -932,13 +932,20 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
+        let $lease := 
+            try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('app:dnb', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+        let $dnbOccupations := 
+            for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
+            let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease)
+            return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
                 'dnbContent' := $dnbContent,
                 'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.)),
                 'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
                 'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
-                'dnbOccupations' := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
+                'dnbOccupations' := ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
                 'dnbOtherNames' := ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody/str:normalize-space(.)),
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
