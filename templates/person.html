@@ -34,7 +34,7 @@
                             <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
                         </div>
                         <div class="back colored">
-                            <h3>Bildquelle</h3>
+                            <h3 data-template="lang:translate">imageSource</h3>
                             <p data-template="app:portrait-credits">This is the source</p>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie" data-template="app:if-not-exists" data-template-key="addrLines">
-                    <h2>Ikonographie</h2>
+                    <h2 data-template="lang:translate">iconography</h2>
                     <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
@@ -167,7 +167,7 @@
                                 <li><a data-template="app:person-main-tab" href="#contacts" data-target="$docID/contacts.html">contacts</a></li>
                                 <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                             </ul>
-                            <button>Mehr</button>
+                            <button data-template="lang:translate">more</button>
                             <ul class="hidden-links hidden"/>
                         </nav>
                     </div>
