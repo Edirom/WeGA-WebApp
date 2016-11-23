@@ -420,9 +420,9 @@
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:text>[</xsl:text>
+         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>[</xsl:text></xsl:element>
          <xsl:apply-templates mode="#current"/>
-         <xsl:text>]</xsl:text>
+         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>]</xsl:text></xsl:element>
       </xsl:element>
    </xsl:template>
    
