@@ -96,8 +96,10 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
-                <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                <xsl:text> </xsl:text>
+                <xsl:if test="not(matches(@key, '\s'))">
+                    <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                    <xsl:text> </xsl:text>
+                </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@key">
                         <xsl:value-of select="@key"/>
