@@ -188,6 +188,10 @@ else if (contains($exist:path, '/IIIF')) then
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
     controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
 
+(: Bartlitz Sonderband :)
+else if ($exist:path eq '/de/Sonderband.html' or $exist:path eq '/en/Special_Volume.html') then
+    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
+    
 (: Weber-Studien Einzelansicht:)
 (:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
