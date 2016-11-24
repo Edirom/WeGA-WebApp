@@ -58,7 +58,10 @@ declare
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
             else ()
-        let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images)
+        let $munich-stadtmuseum-images := 
+            if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
+            else ()
+        let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
         let $portrait := 
             if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
             else ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
@@ -93,6 +96,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
         else ()
     (: Look for images in wikipedia infobox (for organizations) and thumbnails  :)
     let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:wikipedia-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $tmpPicURI := ($div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img[not(@class='thumbimage')]/@src)[1]
@@ -155,6 +159,7 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
         if($gnd) then wega-util:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:portraitindex-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $picURI := $div//xhtml:img/data(@src)
@@ -185,6 +190,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
         if($gnd) then wega-util:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:tripota-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
@@ -201,6 +207,36 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
             else ()
 };
 
+(:~
+ : Helper function for grabbing images from the Münchner Stadtmuseum
+ :
+ : @author Peter Stadler 
+ : @param 
+ : @param $lang the language variable (de|en)
+ : @return 
+ :)
+declare %private function img:munich-stadtmuseum-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $gnd := query:get-gnd($model('doc'))
+    let $page := 
+        if($gnd) then wega-util:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        else ()
+    let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:munich-stadtmuseum-images(): no images found for GND ' || $gnd) else ()
+    return 
+        for $a in $pics
+        let $picURI := concat('https://stadtmuseum.bayerische-landesbibliothek-online.de', $a/xhtml:img/@src)
+        return 
+            if($picURI castable as xs:anyURI) then
+                map {
+                    'caption' := str:normalize-space($a/xhtml:img/@title) || ' (Quelle: Münchner Stadtmuseum)',
+                    'linkTarget' := 'https://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/' || $gnd,
+                    'source' := 'Münchner Stadtmuseum',
+                    'url' := function($size) {
+                        $picURI
+                    }
+                }
+            else ()
+};
 
 (:~
  : Helper function for adding local (= from the WeGA) images

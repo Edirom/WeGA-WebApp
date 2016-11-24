@@ -48,7 +48,11 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
-    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
+    let $response := 
+        (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
+        switch($resource)
+        case 'munich-stadtmuseum' return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:httpclient-get#1, xs:anyURI($url), $lease)
+        default return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
@@ -82,6 +86,28 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
                     {$response[2]}
                 </httpclient:body>
             </httpclient:response>
+        </wega:externalResource>
+};
+
+(:~
+ : Helper function for wega:grabExternalResource()
+ :
+ : @author Peter Stadler 
+ : @param $url the URL as xs:anyURI
+ : @return element wega:externalResource, a wrapper around httpclient:response
+ :)
+declare function wega-util:httpclient-get($url as xs:anyURI) as element(wega:externalResource) {
+    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
+    let $response := 
+        try { httpclient:get($url, true(), <Headers/>)  }
+        catch * {core:logToFile('warn', string-join(('wega-util:httpclient-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+    (:let $response := 
+        if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
+        else $response:)
+(:    let $statusCode := $response[1]/data(@status):)
+    return
+        <wega:externalResource date="{current-date()}">
+            { $response }
         </wega:externalResource>
 };
 
