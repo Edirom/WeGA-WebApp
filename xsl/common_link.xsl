@@ -59,7 +59,7 @@
     <xsl:template match="tei:ref">
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="href" select="@target"/>
+            <xsl:apply-templates select="@target"/>
             <xsl:apply-templates/>
             <xsl:if test="@type = 'hyperLink'">
                 <xsl:text> </xsl:text>
@@ -68,6 +68,19 @@
                 </xsl:element>
             </xsl:if>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="@target">
+        <xsl:attribute name="href">
+            <xsl:choose>
+                <xsl:when test="starts-with(.,'wega:')">
+                    <xsl:value-of select="wega:createLinkToDoc(substring(., 6), $lang)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:attribute>
     </xsl:template>
 
     <xsl:template name="createLink">
