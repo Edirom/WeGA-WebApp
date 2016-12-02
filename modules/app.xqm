@@ -1001,7 +1001,8 @@ declare
                     if($config:isDevelopment) then exists($model('doc')//tei:facsimile/tei:graphic/@url)
                     else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'api-base' := core:link-to-current-app('/api/v1')
+                'api-base' := core:link-to-current-app('/api/v1'),
+                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']
             }
 };
 
@@ -1190,6 +1191,17 @@ declare
             else element p {
                 if(exists($generalRemark)) then $generalRemark
                 else '–'
+            }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+        let $thematicCom := core:doc(substring-after($model('thematicCom')/@target, 'wega:'))
+        return
+            element { node-name($node) } {
+                attribute href { app:createUrlForDoc($thematicCom, $lang) },
+                wdt:thematicCommentaries($thematicCom)('title')('html')
             }
 };
 
