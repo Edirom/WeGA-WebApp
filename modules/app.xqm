@@ -1042,7 +1042,7 @@ declare
         let $textRoot :=
             switch($docType)
             case 'diaries' return $doc/tei:ab
-            case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen)
+            case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
             default return $doc//tei:text/tei:body
         let $body := 
