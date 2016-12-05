@@ -622,7 +622,7 @@
             </xsl:if>
         </xsl:variable>
         <xsl:for-each-group select="node()" group-ending-with="tei:list">
-            <xsl:if test="count(current-group()[not(self::tei:list)]) gt 1 or current-group()[not(self::tei:list)][matches(., '\S')]">
+            <xsl:if test="current-group()[not(self::tei:list)][matches(., '\S')] or current-group()[not(self::tei:list)][self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
                         <xsl:apply-templates select="parent::tei:p/@xml:id"/>
