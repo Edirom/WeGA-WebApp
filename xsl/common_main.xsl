@@ -369,7 +369,17 @@
     </xsl:template>
     
     <xsl:template match="tei:graphic">
-        <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
+        <xsl:variable name="figureSize">
+            <!-- There's more to do here: different images for different screen sizes and resolutions, etc. -->
+            <xsl:choose>
+                <xsl:when test="parent::tei:*/@rend='maxSize'">
+                    <xsl:value-of select="'600,'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat(',',wega:getOption('figureHeight'))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="localURL">
             <xsl:choose>
                 <!-- Need to double encode for old Apache at euryanthe.de; see also img.xqm!! -->
@@ -390,7 +400,7 @@
             <xsl:element name="img">
                 <!--<xsl:attribute name="title" select="$title"/>-->
                 <xsl:attribute name="alt" select="$title"/>
-                <xsl:attribute name="src" select="concat($localURL, '/full/,', $figureHeight, '/0/native.jpg')"/>
+                <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
