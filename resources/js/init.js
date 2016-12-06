@@ -155,7 +155,7 @@ $.fn.googlecodeprettify = function () {
 $('.prettyprint').googlecodeprettify();
 
 // remove popovers when clicking somewhere
-$('body').on('click', function (e) {
+$('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
         //the 'is' for buttons that trigger popups
         //the 'has' for icons within a button that triggers a popup
