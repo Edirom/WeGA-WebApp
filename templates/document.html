@@ -44,6 +44,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <div data-template="app:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li></div>
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:facsimile-tab" id="facsimile-tab">facsimile</a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="remoteTabsCallback">backlinks</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                                 <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
                             </ul>
@@ -151,7 +152,7 @@
                             </div>
                         </div>
                         
-                        <div data-template="app:if-exists" data-template-key="thematicCommentaries" >
+                        <div data-template="app:if-exists" data-template-key="thematicCommentaries">
                             <h3 data-template="lang:translate" class="media-heading">thematicCommentaries</h3>
                             <ul class="tei_list">
                                 <li data-template="app:each" data-template-from="thematicCommentaries" data-template-to="thematicCom">
@@ -164,6 +165,10 @@
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" data-template="app:init-facsimile" data-url="" data-originalMaxSize="" style="width:100%;height:100%;position:relative;"/>
+                    </div>
+                    <div class="tab-pane fade" id="backlinks">
+                        <h2 data-template="lang:translate">backlinks</h2>
+                        <!-- loaded via AJAX request to ./backlinks.html -->
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>

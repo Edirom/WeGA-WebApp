@@ -378,6 +378,7 @@ declare
             case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
             case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
+            case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             default return ()
         return
             if($ajax-url) then 
@@ -1002,7 +1003,8 @@ declare
                     else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'api-base' := core:link-to-current-app('/api/v1'),
-                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']
+                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom'],
+                'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
             }
 };
 

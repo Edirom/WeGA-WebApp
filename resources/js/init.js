@@ -165,6 +165,13 @@ $('body').on('click touchstart', function (e) {
     });
 });
 
+/* callback function for doing stuff after loading ajax pages from the remote nav tabs */
+function remoteTabsCallback(html, trigger, container, data) {
+    /*$('select', html).hide();*/
+    $('select', html).facets();
+/*    console.log($(html).find('select'));*/
+};
+
 // set the right tab and location for person pages 
 $.fn.toggleTab = function () {
     /* make "biographies" the default if no fragment identifier is given*/

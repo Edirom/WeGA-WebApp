@@ -114,7 +114,7 @@ declare %private function core:put-cache($cacheName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare %private function core:createColl($collName as xs:string, $cacheKey as xs:string) as document-node()* {
-    let $func := 
+    (:let $func := 
         try { function-lookup(xs:QName('wdt:' || $collName), 1) }
         catch * { core:logToFile('error', 'core:createColl(): failed to lookup function "' || $collName || '"') }
     let $coll := $func(())('init-collection')()
@@ -122,7 +122,10 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
         if(config:is-person($cacheKey) or config:is-org($cacheKey)) then 
             $func($coll)('filter-by-person')($cacheKey)
         else if($cacheKey eq 'indices') then $coll
-        else ()
+        else ():)
+    if($cacheKey eq 'indices') then wdt:lookup($collName, ())('init-collection')()
+    else if($collName eq 'backlinks') then wdt:backlinks(())('filter-by-person')($cacheKey)
+    else wdt:lookup($collName, core:getOrCreateColl($collName, 'indices', true()))('filter-by-person')($cacheKey)
 };
 
 (:~
