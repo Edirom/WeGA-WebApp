@@ -241,10 +241,27 @@
     <xsl:template match="tei:table">
         <xsl:element name="div">
             <xsl:attribute name="class">table-wrapper</xsl:attribute>
-            <xsl:element name="table">
-                <xsl:apply-templates select="@xml:id"/>
-                <xsl:attribute name="class">table</xsl:attribute>
+            <xsl:if test="@rend='collapsible'">
                 <xsl:apply-templates select="tei:head"/>
+            </xsl:if>
+            <xsl:element name="table">
+                <xsl:choose>
+                    <xsl:when test="@xml:id">
+                        <xsl:apply-templates select="@xml:id"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="id" select="generate-id()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:attribute name="class">
+                    <xsl:text>table</xsl:text>
+                    <xsl:if test="@rend='collapsible'">
+                        <xsl:text> collapse</xsl:text>
+                    </xsl:if>
+                </xsl:attribute>
+                <xsl:if test="not(@rend='collapsible')">
+                    <xsl:apply-templates select="tei:head"/>
+                </xsl:if>
                 <xsl:element name="tbody">
                     <xsl:variable name="currNode" select="."/>
                     <!-- Bestimmung der Breite der Tabellenspalten -->
@@ -270,6 +287,9 @@
                             -->
                             <xsl:when test="$docID = 'A070011'">
                                 <xsl:copy-of select="(1,8,1)"/>
+                            </xsl:when>
+                            <xsl:when test="$docID = 'A090102'">
+                                <xsl:copy-of select="(2, 8)"/>
                             </xsl:when>
                             <xsl:otherwise/>
                         </xsl:choose>
@@ -492,9 +512,22 @@
     
     <!-- Überschriften innerhalb einer table-Umgebung -->
     <xsl:template match="tei:head[parent::tei:table]">
-        <xsl:element name="caption">
-            <xsl:apply-templates/>
-        </xsl:element>
+        <xsl:choose>
+            <xsl:when test="parent::tei:table[@rend='collapsible']">
+                <xsl:element name="h4">
+                    <xsl:attribute name="data-target" select="concat('#', generate-id(parent::tei:table))"/>
+                    <xsl:attribute name="data-toggle">collapse</xsl:attribute>
+                    <xsl:attribute name="class">collapseMarker</xsl:attribute>
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="caption">
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:template>
     
     <!-- Überschriften innerhalb einer lg-Umgebung -->

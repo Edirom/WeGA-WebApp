@@ -224,3 +224,27 @@ h2.resp-accordion {
         min-height: 7 * @line-height-computed;
     }
 }
+
+.collapseMarker, .collapseMarker:hover {
+    cursor:pointer;
+    color:inherit;
+    text-decoration:none;
+}
+
+.collapseMarker.collapsed:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f13a";
+    margin-left: 10px;
+}
+
+.collapseMarker:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f139";
+    margin-left: 10px;
+}
