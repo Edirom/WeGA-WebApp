@@ -55,7 +55,9 @@ declare function local:get-collection-path($partialPath as xs:string) as xs:stri
 };
 
 declare function local:reindex($docType as xs:string) as xs:boolean {
-    if($docType = $local:wega-docTypes) then xmldb:reindex(str:join-path-elements(($config:data-collection-path,$docType)))
+    if($docType = 'persons') then xmldb:reindex(str:join-path-elements(($config:data-collection-path,'persons'))) 
+    else if($docType = 'orgs') then xmldb:reindex(str:join-path-elements(($config:data-collection-path,'orgs')))
+    else if($docType = $local:wega-docTypes) then xmldb:reindex(str:join-path-elements(($config:data-collection-path,$docType)))
     else false()
 };
 
