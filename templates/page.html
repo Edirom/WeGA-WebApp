@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" data-template="app:set-attr" data-template-key="lang" data-template-attr="lang">
     <head data-template="html-meta:metadata" prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8"/>
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
@@ -22,7 +22,7 @@
         <meta name="msvalidate.01" data-template="app:set-attr" data-template-attr="content" data-template-key="ms-site-verification"/>
         <meta name="robots" content="noimageindex"/>
         
-        
+        <link rel="alternate" data-template="html-meta:hreflang"/>
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"/>
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"/>
@@ -159,18 +159,6 @@
                             </li>
                             <li class="divider"/>
                             <li data-template="app:set-active-nav"><a href="$link/specialVolume.html" data-template="lang:translate">specialVolume</a></li>
-                            <!--<div data-template="app:if-matches" data-template-key="environment" data-template-value="development" data-template-wrap="false">
-                            <li class="divider"/>
-                            <li data-template="app:set-active-nav">
-                                <a class="dropdown-secondlevel-nav" data-toggle="dropdown" href="#">Dev</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="$link/dev/test-html.html">Test-HTML</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            </div>-->
-                            <li class="divider"/>
                             <li data-template="app:set-active-lang">De</li>
                             <li data-template="app:set-active-lang">En</li>
                         </ul>

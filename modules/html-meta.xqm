@@ -18,6 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 declare 
@@ -43,6 +44,21 @@ declare
 ~:)
 declare function html-meta:each-meta($node as node(), $model as map(*), $key as xs:string) as element(meta)* {
     $model($key) ! element {name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
+};
+
+declare 
+    %templates:default("lang", "en") 
+    function html-meta:hreflang($node as node(), $model as map(*), $lang as xs:string) as element()* {
+        for $l in $config:valid-languages 
+        return
+            element { name($node) } { 
+                $node/@*,
+                attribute href {
+                    if($l eq $lang) then config:get-option('permaLinkPrefix') || request:get-uri()
+                    else config:get-option('permaLinkPrefix') || controller:translate-URI(request:get-uri(), $lang, $l)
+                },
+                attribute hreflang {$l}
+            }
 };
 
 (:~

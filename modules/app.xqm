@@ -506,7 +506,8 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(li) {
-        let $isActive := $lang = lower-case(normalize-space($node))
+        let $curLang := lower-case(normalize-space($node))
+        let $isActive := $lang = $curLang
         return
             element {name($node)} {
                 if($isActive) then (
@@ -521,6 +522,8 @@ declare
                         if($isActive) then '#'
                         else controller:translate-URI(request:get-uri(), $lang, lower-case(normalize-space($node)))
                     },
+                    attribute hreflang { $curLang },
+                    attribute lang { $curLang },
                     normalize-space($node)
                 }
             }
