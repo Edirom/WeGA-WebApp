@@ -445,9 +445,9 @@ declare
             element a {
                 attribute class {'page-link'},
                 (: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
-                if(config:get-combined-doctype-by-id($model('docID')) = 'personsPlus') then attribute data-url {$page-link($page)}
+                if($model('docID') = 'indices') then attribute href {$page-link($page)}
                 (: for index pages there is no javascript needed but a direct refresh of the page :)
-                else attribute href {$page-link($page)},
+                else attribute data-url {$page-link($page)},
                 $text
             }
         }

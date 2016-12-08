@@ -832,7 +832,17 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
             core:data-collection('biblio')//tei:term[.=$personID]/root() |
             core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('thematicCommentaries', $personID, true()) |
-            core:data-collection('documents')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('documents', $personID, true())
+            core:data-collection('documents')//tei:*[contains(@key,$personID)]/root() except core:getOrCreateColl('documents', $personID, true()) |
+            (: <ref target="wega:A002068"/> :)
+            core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
+            core:data-collection('diaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('writings')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('persons')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('news')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('orgs')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('biblio')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('thematicCommentaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+            core:data-collection('documents')//tei:*[contains(@target,'wega:' || $personID)]/root() 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item

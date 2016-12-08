@@ -167,9 +167,12 @@ $('body').on('click touchstart', function (e) {
 
 /* callback function for doing stuff after loading ajax pages from the remote nav tabs */
 function remoteTabsCallback(html, trigger, container, data) {
-    /*$('select', html).hide();*/
-    $('select', html).facets();
-/*    console.log($(html).find('select'));*/
+    /* currently, we simply remove all filters  */
+    $('.col-md-3', html).remove();
+    
+    /* and adjust the width of the remains  */
+    html.removeClass('row');
+    $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
 };
 
 // set the right tab and location for person pages 
