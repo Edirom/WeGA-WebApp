@@ -87,8 +87,8 @@ declare function local:create-beacon($params as map(*)) as xs:string {
             default return ()
         let $feed := 
             switch($type)
-            case 'pnd' return '#FEED: http://www.weber-gesamtausgabe.de/pnd_beacon.txt'
-            case 'gkd' return '#FEED: http://www.weber-gesamtausgabe.de/gkd_beacon.txt'
+            case 'pnd' return '#FEED: http://weber-gesamtausgabe.de/pnd_beacon.txt'
+            case 'gkd' return '#FEED: http://weber-gesamtausgabe.de/gkd_beacon.txt'
             default return ()
         let $header := (
             '#FORMAT: BEACON',
