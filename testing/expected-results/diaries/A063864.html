@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         
@@ -13,7 +13,7 @@
         
         <meta property="dc:creator" content="Peter Stadler" />
         <meta property="dc:date" content="2016-06-06T13:24:31.994264Z" />
-        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063864" />
+        <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063864" />
         <meta property="dc:description" content="d: 7t ½ 5 – 6 ¼ Steinsdorf. 2. 7. Jenikau. ¾ 8 2. 7. Czaslau. ½ 10 2. 7. Collin. ½ 12 2. 7. Laterne 10. 8. Mittag 10 – Planian. 1 – 2 2. 7. …" />
         <meta name="description" content="d: 7t ½ 5 – 6 ¼ Steinsdorf. 2. 7. Jenikau. ¾ 8 2. 7. Czaslau. ½ 10 2. 7. Collin. ½ 12 2. 7. Laterne 10. 8. Mittag 10 – Planian. 1 – 2 2. 7. …" />
         <meta property="dc:subject" content="Tagebuch; Carl Maria von Weber" />
@@ -23,7 +23,8 @@
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher/A063864.html" hreflang="de" />
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/en/A002068/Diaries/A063864.html" hreflang="en" />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -181,11 +182,10 @@
                             <li class="divider"></li>
                             <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            
                             <li class="divider"></li>
-                            <li class="active"><a href="#">De</a>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
                             </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Diaries/A063864.html">En</a>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Diaries/A063864.html" hreflang="en" lang="en">En</a>
                             </li>
                         </ul>
                     </div>
@@ -246,6 +246,8 @@
                                     <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
                                     </li>
                                 
+                                <li class="gradient-light"><a class="deactivated"></a>
+                                </li>
                                 <li class="gradient-light"><a class="deactivated"></a>
                                 </li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063864/xml.html">XML-Vorschau</a>
@@ -313,7 +315,7 @@
  <span class="payment_6">Mittag					        </span><br />
  <span class="payment_7"><span class="tei_hi_underline1"><span class=" 801089711010597110"><span class="tei_settlement">Planian</span></span></span>. 1 – 2				     </span><br />
  <span class="payment_8"><span class="tei_hi_underline1"><span class=" 662461041091051159910498114111100"><span class="tei_settlement">Böhmischbrod</span></span></span>. ½ 4			     </span><br />
- <span class="payment_9"><span class="tei_hi_underline1"><span class=" 77105114115991041111191051161226610199104111119105116122"><span class="tei_settlement"><span class="tei_choice"><span class="tei_corr">Bechowitz</span><a class="noteMarker" id="ref-d99709e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d99709e112">‡</a></span></span></span></span>. 5 ¼.			     </span><br />
+ <span class="payment_9"><span class="tei_hi_underline1"><span class=" 77105114115991041111191051161226610199104111119105116122"><span class="tei_settlement"><span class="tei_choice"><span class="tei_corr">Bechowitz</span><a class="noteMarker" id="ref-d46521e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d46521e112">‡</a></span></span></span></span>. 5 ¼.			     </span><br />
  <span class="payment_10"><span class="tei_hi_underline2andMore"><span class=" 8011497103"><span class="tei_settlement">Prag</span></span></span>. 6. ½				     </span><br />
  <span class="payment_11">am Thor					        </span><br />
  <span>ins <span class=" 8410410197116101114">Theater</span>.</span> <span>zu <span class="A000946 A000947">Junghs</span>.</span> <span><span class="tei_hi_underline1">Brief von <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Lina</a> erhalten</span>.</span><span class="tei_pb">Seitenumbruch</span>
@@ -361,19 +363,26 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution"></ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d99709e112" data-title="choice">recte "Bechowitz": in der Vorlage "Mirschowitz"</div>
+                                            <div class="apparatusEntry" id="d46521e112" data-title="choice">recte "Bechowitz": in der Vorlage "Mirschowitz"</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A063864/manifest.json"></div>
+                    </div>
+                    <div class="tab-pane fade" id="backlinks">
+                        <h2>Rückverweise</h2>
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
@@ -391,7 +400,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063864</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063864</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am 6. Juni 2016 durch Peter Stadler</span>
                 </p>

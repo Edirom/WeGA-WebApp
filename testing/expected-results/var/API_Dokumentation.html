@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
     <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8" />
         
@@ -13,7 +13,7 @@
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:creator" content="Peter Stadler" />
         <meta property="dc:date" content="2016-05-04T14:51:35.146376Z" />
-        <meta property="dc:identifier" content="http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
+        <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
         <meta property="dc:description" content="Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. Aktuell werden HTML und TEI-XML unterstützt, wobei das …" />
         <meta name="description" content="Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. Aktuell werden HTML und TEI-XML unterstützt, wobei das …" />
         <meta property="dc:subject" content="Varia" />
@@ -23,7 +23,8 @@
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html" hreflang="de" />
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/en/Help/API_Documentation.html" hreflang="en" />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -181,11 +182,10 @@
                             <li class="divider"></li>
                             <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            
                             <li class="divider"></li>
-                            <li class="active"><a href="#">De</a>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
                             </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Help/API_Documentation.html">En</a>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/Help/API_Documentation.html" hreflang="en" lang="en">En</a>
                             </li>
                         </ul>
                     </div>
@@ -237,6 +237,8 @@
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
                                 </li>
+                                <li class="gradient-light"><a class="deactivated"></a>
+                                </li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml">XML-Download</a>
@@ -254,18 +256,18 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li><a href="#d83149e3">Content Negotiation</a>
+                                        <li><a href="#d50350e3">Content Negotiation</a>
                                         </li>
                                         <li><a href="#sprachwahl">Sprachauswahl</a>
                                         </li>
-                                        <li><a href="#d83149e84">Abfragen von GND IDs</a>
+                                        <li><a href="#d50350e84">Abfragen von GND IDs</a>
                                         </li>
-                                        <li><a href="#d83149e119">Correspondence Metadata Interchange-Format</a>
+                                        <li><a href="#d50350e119">Correspondence Metadata Interchange-Format</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="d83149e2">
-                                    <h2 id="d83149e3">Content Negotiation</h2>
+                                <div id="d50350e2">
+                                    <h2 id="d50350e3">Content Negotiation</h2>
                                     <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
                Aktuell werden HTML und TEI-XML unterstützt, wobei das gewünschte Ausgabeformat entweder 
                über ein Suffix (<code>.html</code>/<code>.htm</code> oder <code>.tei</code>/<code>.xml</code>) oder über den HTTP Accept Header 
@@ -287,7 +289,7 @@
                                     <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt.</p>
                                 </div>
                                 <div id="sprachwahl">
-                                    <h2 id="d83149e61">Sprachauswahl</h2>
+                                    <h2 id="d50350e61">Sprachauswahl</h2>
                                     <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
                Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
                Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
@@ -302,8 +304,8 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d83149e83">
-                                    <h2 id="d83149e84">Abfragen von GND IDs</h2>
+                                <div id="d50350e83">
+                                    <h2 id="d50350e84">Abfragen von GND IDs</h2>
                                     <p> 
                Von der API werden aktuell GNDs vom Typ „Person“ unterstützt, welche über einen PND-Beacon zur Verfügung gestellt werden. 
                Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/pnd_beacon.txt</code>.
@@ -322,8 +324,8 @@
                                     </div>
                                     <p>Detaillierte Informationen zum PND-Beacon-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link"></i></a>.</p>
                                 </div>
-                                <div id="d83149e118">
-                                    <h2 id="d83149e119">Correspondence Metadata Interchange-Format</h2>
+                                <div id="d50350e118">
+                                    <h2 id="d50350e119">Correspondence Metadata Interchange-Format</h2>
                                     <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMI)
                zur Verfügung. Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/correspDesc.xml</code>.
             </p>
@@ -332,6 +334,10 @@
                Siehe auch die <a class="news A050122" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050122.html">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
             </p>
                                 </div>
+                    </div>
+                    <div class="tab-pane fade" id="backlinks">
+                        <h2>Rückverweise</h2>
+                        
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
@@ -351,7 +357,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://www.weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am 4. Mai 2016 durch Peter Stadler</span>
                 </p>
