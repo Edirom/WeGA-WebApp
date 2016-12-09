@@ -1235,21 +1235,30 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
     let $indexOfCurrentLetter := sort:index('letters', $doc)
     
     (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
-    let $prevLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[last()]/root()
+    (: Need to create the collection outside of the call to wdt:letters() because of performance issues :)
+    let $prevLetterFromSenderColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $prevLetterFromSender := wdt:letters($prevLetterFromSenderColl)('sort')(())[last()]/root()
     (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
-    let $prevLetterToSender := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[last()]/root()
+    let $prevLetterToSenderColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $prevLetterToSender := wdt:letters($prevLetterToSenderColl)('sort')(())[last()]/root()
     (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
-    let $nextLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[1]/root()
+    let $nextLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $nextLetterFromSender := wdt:letters($nextLetterFromSenderColl)('sort')(())[1]/root()
     (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
-    let $nextLetterToSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID])('sort')(())[1]/root()
+    let $nextLetterToSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $nextLetterToSender := wdt:letters($nextLetterToSenderColl)('sort')(())[1]/root()
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
-    let $prevLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[last()]/root()
+    let $prevLetterFromAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $prevLetterFromAddressee := wdt:letters($prevLetterFromAddresseeColl)('sort')(())[last()]/root()
     (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
-    let $prevLetterFromAuthorToAddressee := wdt:letters($authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[last()]/root()
+    let $prevLetterFromAuthorToAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $prevLetterFromAuthorToAddressee := wdt:letters($prevLetterFromAuthorToAddresseeColl)('sort')(())[last()]/root()
     (: Direkter Antwortbrief des Adressaten:)
-    let $replyLetterFromAddressee := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[1]/root()
+    let $replyLetterFromAddresseeColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $replyLetterFromAddressee := wdt:letters($replyLetterFromAddresseeColl)('sort')(())[1]/root()
     (: Antwort des Autors auf die Antwort des Adressaten :)
-    let $replyLetterFromSender := wdt:letters($authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID])('sort')(())[1]/root()
+    let $replyLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $replyLetterFromSender := wdt:letters($replyLetterFromSenderColl)('sort')(())[1]/root()
     
     let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
         if($letter and exists(query:get-normalized-date($letter))) then
