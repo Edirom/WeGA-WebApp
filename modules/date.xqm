@@ -158,7 +158,7 @@ declare function date:parse-date($input as xs:string) as element(tei:date)* {
  :)
 declare function date:printDate($date as element(tei:date)?, $lang as xs:string) as xs:string? {
     if($date) then (
-        let $dateFormat := if($lang = 'en') then '%d %B %Y' else '%d. %B %Y'
+        let $dateFormat := if($lang = 'en') then '%B %d, %Y' else '%d. %B %Y'
         let $notBefore  := if($date/@notBefore) then date:getCastableDate(data($date/@notBefore),false()) else()
         let $notAfter   := if($date/@notAfter)  then date:getCastableDate(data($date/@notAfter),true()) else()
         let $from       := if($date/@from) then date:getCastableDate(data($date/@from),false()) else()
@@ -176,7 +176,7 @@ declare function date:printDate($date as element(tei:date)?, $lang as xs:string)
                             if(day-from-date($notBefore) = 1 and day-from-date($notAfter) = functx:days-in-month($notAfter)) then concat(lang:get-language-string(concat('month',month-from-date($notAfter)),$lang),' ',year-from-date($notAfter))                  (: August 1879 :)
                             else lang:get-language-string('dateBetween',(xs:string(day-from-date($notBefore)),date:getNiceDate($notAfter,$lang)),$lang)                       (: Zwischen 1. und 7. August 1801 :)
                         else if(ends-with($notBefore, '01-01') and ends-with($notAfter, '12-31')) then year-from-date($notBefore)                                            (: 1879 :)
-                        else lang:get-language-string('dateBetween', (date:strfdate($notBefore,$lang,$dateFormat), date:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
+                        else lang:get-language-string('dateBetween', (replace(date:strfdate($notBefore,$lang,$dateFormat), '(,\s+)?' || year-from-date($notBefore), ''), date:getNiceDate($notAfter,$lang)), $lang) (: Zwischen 1. Juli 1789 und 4. August 1789 :)
                     else lang:get-language-string('dateBetween', (date:getNiceDate($notBefore,$lang), date:getNiceDate($notAfter,$lang)), $lang)                     (: Zwischen 1. Juli 1709 und 4. August 1789 :)
                 else lang:get-language-string('dateNotBefore', (date:getNiceDate($notBefore,$lang)), $lang)                                                           (: Frühestens am 1.Juli 1709 :)
             else if(exists($notAfter)) then lang:get-language-string('dateNotAfter', (date:getNiceDate($notAfter, $lang)), $lang)                                     (: Spätestens am 1.Juli 1709 :)
@@ -187,7 +187,7 @@ declare function date:printDate($date as element(tei:date)?, $lang as xs:string)
                             if(day-from-date($from) = 1 and day-from-date($to) = functx:days-in-month($to)) then concat(lang:get-language-string(concat('month',month-from-date($from)),$lang),' ',year-from-date($from))                  (: August 1879 :)
                             else lang:get-language-string('fromTo',(xs:string(day-from-date($from)),date:getNiceDate($to,$lang)),$lang)                       (: Vom 1. bis 7. August 1801 :)
                         else if(ends-with($from, '01-01') and ends-with($to, '12-31')) then year-from-date($from)                                            (: 1879 :)
-                        else lang:get-language-string('fromTo', (date:strfdate($from,$lang,$dateFormat), date:getNiceDate($to,$lang)), $lang) (: Vom 1. Juli 1789 bis 4. August 1789 :)
+                        else lang:get-language-string('fromTo', (replace(date:strfdate($from,$lang,$dateFormat), '(,\s+)?' || year-from-date($from), ''), date:strfdate($to,$lang,$dateFormat)), $lang) (: Vom 1. Juli bis 4. August 1789 :)
                     else lang:get-language-string('fromTo', (date:getNiceDate($from,$lang), date:getNiceDate($to,$lang)), $lang)                     (: Vom 1. Juli 1709 bis 4. August 1789 :)
                 else lang:get-language-string('from', (date:getNiceDate($from,$lang)), $lang) || ' bis unbekannt'                                                           (: Vom 1.Juli 1709 :)
             else if(exists($to)) then lang:get-language-string('chronoTo', (date:getNiceDate($to, $lang)), $lang) || ' bis unbekannt'                                     (: Bis 1.Juli 1709 :)
