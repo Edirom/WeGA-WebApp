@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "WeGA API",
-        "description": "The API doumentation for the Carl-Maria-von-Weber-Gesamtausgabe",
+        "description": "The API documentation for the Carl-Maria-von-Weber-Gesamtausgabe",
         "version": "1.0.0"
     },
     "host": "localhost:8080",
@@ -11,32 +11,37 @@
     ],
     "tags": [
         {
-            "name": "Ant",
-            "description": "Functions needed for various ANT tasks for updating and deleting database records.\nThis is only available in the development version."
-        },
-        {
             "name": "Documents",
             "description": "Access to the documents of the WeGA digital edition"
         },
         {
-            "name": "Facets",
-            "description": "Facets available for several collections of documents"
+            "name": "Correspondence",
+            "description": "Access to correspondence related information from the WeGA digital edition"
+        },
+        {
+            "name": "Code Samples",
+            "description": "Access to encoding features"
         }
     ],
     "basePath": "/exist/apps/WeGA-WebApp/api/v1",
     "paths": {
         "/documents": {
             "get": {
-                "summary": "Documents",
-                "description": "The Documents endpoint returns a list of all documents in a repository.\n",
+                "summary": "Lists all documents",
+                "description": "The Documents endpoint returns a list of all documents from the WeGA digital edition.\n",
                 "tags": [
                     "Documents"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/docTypeParam",
+                        "in": "query",
+                        "required": false
+                    },
                     {
                         "$ref": "#/parameters/skipParam"
                     },
@@ -63,29 +68,23 @@
                 }
             }
         },
-        "/findByID": {
+        "/documents/{docID}": {
             "get": {
-                "description": "This endpoint returns a document, indicated by an ID \nAccepted ID formats are WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068, VIAF, e.g. http://viaf.org/viaf/310642461, or  GND, e.g. http://d-nb.info/gnd/118629662\n",
+                "summary": "Returns a single document",
+                "description": "This endpoint returns a document, indicated by an ID.\n Accepted ID formats are WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068, VIAF, e.g. http://viaf.org/viaf/310642461, or  GND, e.g. http://d-nb.info/gnd/118629662\n",
                 "tags": [
                     "Documents"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/skipParam"
-                    },
-                    {
-                        "$ref": "#/parameters/limitParam"
-                    },
-                    {
-                        "name": "id",
-                        "in": "query",
-                        "description": "the id to search for",
+                        "name": "docID",
+                        "in": "path",
+                        "description": "The document identifier to search for",
                         "type": "string",
-                        "format": "uri",
                         "required": true,
                         "example": "A002068"
                     }
@@ -109,59 +108,22 @@
                 }
             }
         },
-        "/documents/{docType}": {
+        "/documents/findByDate": {
             "get": {
-                "description": "This endpoint returns a list of documents filtered by document type\n",
+                "summary": "Finds documents by date",
+                "description": "This endpoint returns a list of documents related to the given date – optionally filtered by document type. \n",
                 "tags": [
                     "Documents"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/docTypeParam"
-                    },
-                    {
-                        "$ref": "#/parameters/skipParam"
-                    },
-                    {
-                        "$ref": "#/parameters/limitParam"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "An array of documents",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Document"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/documents/{docType}/findByDate": {
-            "get": {
-                "description": "This endpoint returns a list of documents filtered by document type and related to the given date\n",
-                "tags": [
-                    "Documents"
-                ],
-                "produces": [
-                    "application/xml",
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/docTypeParam"
+                        "$ref": "#/parameters/docTypeParam",
+                        "in": "query",
+                        "required": false
                     },
                     {
                         "$ref": "#/parameters/skipParam"
@@ -172,7 +134,7 @@
                     {
                         "name": "date",
                         "in": "query",
-                        "description": "the date to search for",
+                        "description": "The date to search for",
                         "type": "string",
                         "format": "date"
                     }
@@ -196,39 +158,35 @@
                 }
             }
         },
-        "/documents/{docType}/facets/{facet}": {
+        "/documents/findByMention/{docID}": {
             "get": {
-                "summary": "Facets",
-                "description": "The Facets endpoint returns a list of all facets for a collection.\n",
+                "summary": "Finds documents by reference",
+                "description": "This endpoint returns a list of documents that reference a particular docID – optionally filtered by document type. \n",
                 "tags": [
-                    "Facets"
+                    "Documents"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/docTypeParam"
-                    },
-                    {
-                        "name": "facet",
-                        "in": "query",
-                        "description": "The document type",
+                        "name": "docID",
+                        "in": "path",
+                        "description": "The document ID that is to be mentioned",
                         "type": "string",
                         "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/docTypeParam",
+                        "in": "query",
+                        "required": false
                     },
                     {
                         "$ref": "#/parameters/skipParam"
                     },
                     {
                         "$ref": "#/parameters/limitParam"
-                    },
-                    {
-                        "$ref": "#/parameters/fromDateParam"
-                    },
-                    {
-                        "$ref": "#/parameters/toDateParam"
                     }
                 ],
                 "responses": {
@@ -250,21 +208,45 @@
                 }
             }
         },
-        "/ant/currentSvnRev": {
+        "/documents/findByAuthor/{authorID}": {
             "get": {
-                "summary": "Current Subversion revision",
-                "description": "Retrieves the current Subversion revision of the data in the eXist-db.\nThis is only available in the development version.\n",
+                "summary": "Finds documents by author",
+                "description": "This endpoint returns a list of documents by a given author – optionally filtered by document type \n",
                 "tags": [
-                    "Ant"
+                    "Documents"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorID",
+                        "in": "path",
+                        "description": "The author to search for",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/docTypeParam",
+                        "in": "query"
+                    },
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "An array of documents",
-                        "schema": {"type": "integer"}
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Document"
+                            }
+                        }
                     },
                     "default": {
                         "description": "Unexpected error",
@@ -275,65 +257,55 @@
                 }
             }
         },
-        "/ant/deleteResources": {
-            "post": {
-                "summary": "Delete resources",
-                "description": "Delete database resources by posting a list of database URIs",
+        "/code/findByElement/{element}": {
+            "get": {
+                "summary": "Finds code samples by XML element",
+                "description": "",
                 "tags": [
-                    "Ant"
+                    "Code Samples"
                 ],
                 "produces": [
-                    "application/xml",
-                    "application/json"
-                ],
-                "responses": {
-                    "404": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/ant/patchSvnHistory": {
-            "post": {
-                "summary": "Update the Subversion history",
-                "description": "Update the Subversion history by posting an XML or JSON file",
-                "tags": [
-                    "Ant"
-                ],
-                "consumes": [
                     "application/json",
                     "application/xml"
                 ],
-                "produces": [
-                    "application/xml",
-                    "application/json"
+                "parameters": [
+                    {
+                        "name": "element",
+                        "in": "path",
+                        "description": "The XML element to search for",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "namespace",
+                        "in": "query",
+                        "description": "The element namespace. Defaults to the TEI namespace",
+                        "type": "string",
+                        "required": false,
+                        "default": "http://www.tei-c.org/ns/1.0"
+                    },
+                    {
+                        "$ref": "#/parameters/docTypeParam",
+                        "in": "query"
+                    },
+                    {
+                        "$ref": "#/parameters/skipParam"
+                    },
+                    {
+                        "$ref": "#/parameters/limitParam"
+                    }
                 ],
-                "parameters": [{
-                    "in": "body",
-                    "name": "data",
-                    "description": "subversion history patches",
-                    "required": true,
-                    "schema": {
-                        "type": "object",
-                        "xml": {
-                            "name": "patches"
-                        },
-                        "properties": {
-                            "head": {
-                                "type": "integer"
-                            },
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
                             "items": {
-                                "type": "array",
-                                "items": {"$ref": "#/definitions/svnHistoryPatch"}
+                                "$ref": "#/definitions/CodeSample"
                             }
                         }
-                    }
-                }],
-                "responses": {
-                    "404": {
+                    },
+                    "default": {
                         "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
@@ -351,9 +323,41 @@
                     "type": "string",
                     "description": "Unique identifier representing a specific document"
                 },
+                "docID": {
+                    "type": "string",
+                    "description": "The WeGA document identifier representing a specific document"
+                },
+                "docType": {
+                    "type": "string",
+                    "description": "The WeGA document type"
+                },
                 "title": {
                     "type": "string",
                     "description": "The title of the document"
+                },
+                "supportedFormats" : {
+                    "type": "array",
+                    "collectionFormat": "csv",
+                    "items" : {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "CodeSample": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific document"
+                },
+                "docID": {
+                    "type": "string",
+                    "description": "The WeGA document identifier representing a specific document"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "The code snippet"
                 }
             }
         },
@@ -405,52 +409,55 @@
         "skipParam": {
             "name": "skip",
             "in": "query",
-            "description": "number of items to skip",
+            "description": "Number of items to skip",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "default": 1
         },
         "limitParam": {
             "name": "limit",
             "in": "query",
-            "description": "max records to return",
+            "description": "Max records to return",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "default": 10
         },
         "fromDateParam": {
             "name": "fromDate",
             "in": "query",
-            "description": "the minimum date",
+            "description": "The earliest date",
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "1817-01-01"
         },
         "toDateParam": {
             "name": "toDate",
             "in": "query",
-            "description": "the maximum date",
+            "description": "The latest date",
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "1817-12-31"
         },
         "docTypeParam": {
             "name": "docType",
-            "in": "path",
-            "description": "The document type",
+            "description": "The WeGA document type",
             "type": "array",
-                "items": {
-                    "type": "string",
-                    "enum": [
-                        "biblio",
-                        "diaries",
-                        "documents",
-                        "letters",
-                        "news",
-                        "persons",
-                        "thematicCommentaries",
-                        "works",
-                        "writings"
-                    ],
-                    "default": "letters"
-                },
-            "required": true
+            "collectionFormat": "csv",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "biblio",
+                    "diaries",
+                    "documents",
+                    "letters",
+                    "news",
+                    "persons",
+                    "thematicCommentaries",
+                    "works",
+                    "writings"
+                ],
+                "example": "letters"
+            }
         }
     }
 }

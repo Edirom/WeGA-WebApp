@@ -20,11 +20,13 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 declare variable $api:WRONG_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
+declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
 declare function api:documents($model as map()) {
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $ids := 
-        if($model('docType') = $wega-docTypes) then core:getOrCreateColl($model('docType'), 'indices', true())
+    let $ids :=
+        if($model('docID')) then api:findByID(xmldb:decode-uri($model('docID')))
+        else if($model('docType') = $wega-docTypes) then core:getOrCreateColl($model('docType'), 'indices', true())
         else if($model('docType')) then error($api:WRONG_PARAMETER, 'There is no document type "' || $model('docType') || '"')
         else for $docType in $wega-docTypes return core:getOrCreateColl($docType, 'indices', true())
     return
@@ -33,11 +35,12 @@ declare function api:documents($model as map()) {
 
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?works=A020062&fromDate=1798-10-10&toDate=1982-06-08&func=facets&format=json&facet=persons&docID=indices&docType=writings:)
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?&fromDate=1801-01-15&toDate=1982-06-08&func=facets&format=json&facet=places&docID=A002068&docType=writings:)
-declare function api:facets($model as map()) {
+(:declare function api:facets($model as map()) {
     let $search := search:results(<span/>, map { 'docID' := $model('docID') }, tokenize($model(exist:resource), '/')[last() -2])
     return 
         facets:facets($search?search-results, $model('facet'), -1, 'de')
 };
+:)
 
 declare function api:documents-findByDate($model as map()) {
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
@@ -55,6 +58,55 @@ declare function api:documents-findByDate($model as map()) {
         api:document(api:subsequence($documents, $model), $model)
 };
 
+declare function api:documents-findByMention($model as map()) {
+    let $mentioned-doc := api:findByID($model('docID'))
+    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $requested-docTypes := 
+        if($model('docType')) then tokenize($model('docType'),',')
+        else $wega-docTypes
+    let $backlinks :=core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
+    let $documents := 
+        for $docType in $requested-docTypes[. = $wega-docTypes]
+        return wdt:lookup($docType, $backlinks)('filter')()
+    return
+        api:document(api:subsequence($documents, $model), $model)
+};
+
+declare function api:documents-findByAuthor($model as map()) {
+    let $author := api:findByID($model('authorID'))
+    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $requested-docTypes := 
+        if($model('docType')) then tokenize($model('docType'),',')
+        else $wega-docTypes
+    let $documents := 
+        for $docType in $requested-docTypes[. = $wega-docTypes]
+        return core:getOrCreateColl($docType, $author/tei:person/data(@xml:id), true())
+    return
+        api:document(api:subsequence($documents, $model), $model)
+};
+
+declare function api:code-findByElement($model as map()) {
+    let $test-input := if(matches($model('element'), '^[a-z]+$')) then () else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
+    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $requested-docTypes := 
+        if($model('docType')) then tokenize($model('docType'),',')
+        else $wega-docTypes
+    let $documents := 
+        for $docType in $requested-docTypes[. = $wega-docTypes]
+        return core:getOrCreateColl($docType,'indices', true())
+    let $ns-prefix := 
+        switch($model('namespace'))
+        case 'http://www.music-encoding.org/ns/mei' return 'mei'
+        case 'http://www.tei-c.org/ns/1.0' return 'tei'
+        default return () 
+    let $eval := 
+        if($ns-prefix) then util:eval('$documents//' || $ns-prefix || ':' || $model('element')) (: TEI or MEI elements :)
+        else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()=' || $model('namespace') || ']') (: other namespaces :)
+        else util:eval('$documents//' || $model('element')) (: empty namespace :)
+    return
+        api:codeSample(api:subsequence($eval, $model), $model)
+};
+
 (:~
  :  Find document by ID.
  :  IDs are accepted in the following formats:
@@ -62,21 +114,22 @@ declare function api:documents-findByDate($model as map()) {
  :  * VIAF, e.g. http://viaf.org/viaf/310642461
  :  * GND, e.g. http://d-nb.info/gnd/118629662
 ~:)
-declare function api:findByID($model as map()) {
-    if(matches(normalize-space($model?id), '^A[A-F0-9]{6}$')) then api:document(core:doc($model?id), $model)
-    else if(matches(normalize-space($model?id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then api:document(core:doc(substring-after($model?id, 'de/')), $model)
-    else if(starts-with(normalize-space($model?id), 'http://d-nb.info/gnd/')) then api:document(query:doc-by-gnd(substring($model?id, 22)), $model)
-    else if(starts-with(normalize-space($model?id), 'http://viaf.org/viaf/')) then api:document(query:doc-by-gnd(wega-util:viaf2gnd(substring($model?id, 22))), $model)
-    else util:log-system-out('no match')
+declare %private function api:findByID($id as xs:string) as document-node()* {
+    if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then core:doc($id)
+    else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then core:doc(substring-after($id, 'de/'))
+    else if(starts-with(normalize-space($id), 'http://d-nb.info/gnd/')) then query:doc-by-gnd(substring($id, 22))
+    else if(starts-with(normalize-space($id), 'http://viaf.org/viaf/')) then query:doc-by-gnd(wega-util:viaf2gnd(substring($id, 22)))
+    else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
 };
 
+(:
 declare function api:ant-currentSvnRev($model as map()) as xs:int? {
     config:getCurrentSvnRev()
 };
 
 declare function api:ant-deleteResources($model as map()) {
     ()
-    (:
+    (\:
     for $path in tokenize(normalize-space(util:binary-to-string($model('data'))), '\s+')
     let $fullPathResource:= local:get-resource-path($path)
     let $fullPathCollection := local:get-collection-path($path)
@@ -86,8 +139,9 @@ declare function api:ant-deleteResources($model as map()) {
             else xmldb:remove($fullPathCollection)
         else if(count(($fullPathCollection, $fullPathResource)) eq 0) then core:logToFile('info', 'Resource ' || $path || ' not available')
         else error(QName('wega','error'), 'ambigious delete target: ' || $path)
-    :)
+    :\)
 };
+:)
 
 declare function api:ant-patchSvnHistory($model as map()) as map()? {
     if($model('data')/*/@head castable as xs:integer) then (
@@ -126,9 +180,31 @@ declare %private function api:document($documents as document-node()*, $model as
         for $doc in $documents
         let $id := $doc/*/data(@xml:id)
         let $docType := config:get-doctype-by-id($id)
+        let $supportsHTML := $docType = ('letters', 'persons', 'diaries', 'writings', 'news', 'documents', 'thematicCommentaries')
         return
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                'title' := wdt:lookup($docType, $doc)('title')('txt')
+                'docID' := $id,
+                'docType' := $docType,
+                'title' := wdt:lookup($docType, $doc)('title')('txt'),
+                'supportedFormats' := ( 'xml', if($supportsHTML) then 'html' else ())
             } 
+};
+
+(:~
+ :  Helper function for creating a CodeSample object 
+~:)
+declare %private function api:codeSample($nodes as node()*, $model as map()) as map()* {
+    let $host := $model('swagger:config')?host
+    let $basePath := $model('swagger:config')?basePath
+    let $scheme := $model('swagger:config')?schemes[1]
+    return 
+        for $node in $nodes
+        let $docID := $node/root()/*/data(@xml:id)
+        return
+            map { 
+                'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
+                'docID' := $docID,
+                'code' := serialize($node)
+            }
 };

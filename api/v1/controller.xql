@@ -92,7 +92,7 @@ let $lookup :=
     for $swagger-path in map:keys($local:swagger-config?paths)
     let $swagger-path-tokens := tokenize($swagger-path, '/')
     let $path-regex := '^' || replace($swagger-path, '\{[^\}]+\}', '[^/]+') || '$'
-(:    let $log := util:log-system-out(string-join(($path, $path-regex, $func-name, $exist:path), ' ; ')):)
+(:    let $log := util:log-system-out(string-join(($path-regex, $exist:path), ' ; ')):)
     return
         if(matches($exist:path, $path-regex)) then 
             let $func-name := string-join($swagger-path-tokens ! replace(., '\{[^\}]+\}', '')[.], '-')
@@ -112,6 +112,7 @@ let $lookup :=
 let $response := 
     typeswitch($lookup[1])
     case empty() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''}
+    case map() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''} (: failed function lookup but params are present:)
     default return 
         try { $lookup[1](map:new(($local:model, $lookup[2]))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
