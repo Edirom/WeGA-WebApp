@@ -194,6 +194,16 @@ $.fn.toggleTab = function () {
     if($(this).length !== 0) { activateTab(); }
 };
 
+$.fn.A090280 = function () {
+    if(getID() === 'A090280') {
+        $(this).addClass('bg-info');
+        $(this).css({'margin-bottom': '0px'});
+    }
+};
+
+/* Some special treatment of headings here */
+$('h3').A090280();
+
 // load and activate person tab
 function activateTab() {
     var activeTab = $('li.resp-tab-active a'),
@@ -614,7 +624,7 @@ function getDiaryDate() {
 
 /* Get the document ID from the breadcrumb */
 function getID() {
-    return $('.breadcrumb li:last').html()
+    return $('.breadcrumb li:last').text().trim()
 };
 
 /* Add search option for advanced search */
