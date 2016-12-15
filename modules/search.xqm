@@ -194,16 +194,7 @@ declare %private function search:exact-date($dates as xs:date*, $filters as map(
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else ()
-    let $stringDates := $dates ! string(.) (: Need to do a string comparison to boost index performance :)
-    let $date-search :=
-        switch($docType)
-        case 'writings' case 'letters' case 'diaries' return 
-            norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID) | 
-            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
-        case 'personsPlus' return 
-            core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
-            core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()
-        default return core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+    let $date-search := query:exact-date($dates, $docType)
     let $docs :=
         if($coll) then $coll intersect $date-search
         else $date-search

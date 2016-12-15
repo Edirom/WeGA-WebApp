@@ -249,3 +249,20 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
     return
         $contributors ! data(.)
 };
+
+(:~
+ : Search for exact dates within collections
+ : This function should probably be moved into the wdt module sometimes …
+~:)
+declare function query:exact-date($dates as xs:date*, $docType as xs:string) as document-node()* {
+    let $stringDates := $dates ! string(.) (: Need to do a string comparison to boost index performance :)
+    return
+        switch($docType)
+        case 'writings' case 'letters' case 'diaries' return 
+            norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID) | 
+            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+        case 'personsPlus' return 
+            core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
+            core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()
+        default return core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+};

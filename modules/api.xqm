@@ -23,11 +23,11 @@ declare variable $api:WRONG_PARAMETER := QName("http://xquery.weber-gesamtausgab
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
 declare function api:documents($model as map()) {
+    let $test-input := api:validateInput($model)
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
     let $ids :=
         if($model('docID')) then api:findByID(xmldb:decode-uri($model('docID')))
-        else if($model('docType') = $wega-docTypes) then core:getOrCreateColl($model('docType'), 'indices', true())
-        else if($model('docType')) then error($api:WRONG_PARAMETER, 'There is no document type "' || $model('docType') || '"')
+        else if($model('docType')) then for $docType in tokenize($model('docType'),',') return core:getOrCreateColl($docType, 'indices', true())
         else for $docType in $wega-docTypes return core:getOrCreateColl($docType, 'indices', true())
     return
         api:document(api:subsequence($ids, $model), $model)
@@ -43,22 +43,17 @@ declare function api:documents($model as map()) {
 :)
 
 declare function api:documents-findByDate($model as map()) {
+    let $test-input := api:validateInput($model)
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
     let $documents := 
-        if($model('docType') = $wega-docTypes) then 
-            core:getOrCreateColl($model('docType'), 'indices', true())/tei:ab[@n=$model('date')]/root() |
-            core:getOrCreateColl($model('docType'), 'indices', true())//tei:date[@when=$model('date')]/root() |
-            core:getOrCreateColl($model('docType'), 'indices', true())//mei:date[@isodate=$model('date')]/root()
-        else if($model('docType')) then error($api:WRONG_PARAMETER, 'There is no document type "' || $model('docType') || '"')
-        else for $docType in $wega-docTypes return 
-            core:getOrCreateColl($docType, 'indices', true())/tei:ab[@n=$model('date')]/root() |
-            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when=$model('date')]/root() |
-            core:getOrCreateColl($docType, 'indices', true())//mei:date[@isodate=$model('date')]/root()
+        if($model('docType')) then for $docType in tokenize($model('docType'),',') return query:exact-date(xs:date($model('date')), $docType)
+        else for $docType in $wega-docTypes return query:exact-date(xs:date($model('date')), $docType)
     return
         api:document(api:subsequence($documents, $model), $model)
 };
 
 declare function api:documents-findByMention($model as map()) {
+    let $test-input := api:validateInput($model)
     let $mentioned-doc := api:findByID($model('docID'))
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
     let $requested-docTypes := 
@@ -86,7 +81,7 @@ declare function api:documents-findByAuthor($model as map()) {
 };
 
 declare function api:code-findByElement($model as map()) {
-    let $test-input := if(matches($model('element'), '^[a-z]+$')) then () else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
+    let $test-input := if(matches($model('element'), '^[-a-zA-Z]+$')) then () else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
     let $requested-docTypes := 
         if($model('docType')) then tokenize($model('docType'),',')
@@ -205,6 +200,48 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
                 'docID' := $docID,
-                'code' := serialize($node)
+                'codeSample' := serialize(wega-util:remove-comments($node))
             }
+};
+
+(:~
+ : Helper function for validating user input (= function parameters)
+~:)
+declare %private function api:validateInput($model as map()) as empty() {
+    for $param in $model?*
+    return
+        switch($param)
+        case 'docType' return api:check-docType($model)
+        case 'element' return api:check-elementName($model)
+        case 'date' return api:check-date($model)
+        default return ()
+};
+
+(:~
+ : Check docType
+~:)
+declare %private function api:check-docType($model as map()) as empty() {
+    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $requested-docTypes := tokenize($model('docType'),',')
+    return 
+        for $docType in $requested-docTypes
+        return
+            if($docType = $wega-docTypes) then ()
+            else error($api:WRONG_PARAMETER, 'There is no document type "' || $model('docType') || '"')
+};
+
+(:~
+ : Check element name
+~:)
+declare %private function api:check-elementName($model as map()) as empty() {
+    if(matches($model('element'), '^[-a-zA-Z]+$')) then () 
+    else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
+};
+
+(:~
+ : Check date format
+~:)
+declare %private function api:check-date($model as map()) as empty() {
+    if($model('date') castable as xs:date) then () 
+    else error($api:WRONG_PARAMETER, 'Wrong date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
 };
