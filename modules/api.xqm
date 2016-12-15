@@ -19,16 +19,13 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
-declare variable $api:WRONG_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
+declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
 declare function api:documents($model as map()) {
-    let $test-input := api:validateInput($model)
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
     let $ids :=
-        if($model('docID')) then api:findByID(xmldb:decode-uri($model('docID')))
-        else if($model('docType')) then for $docType in tokenize($model('docType'),',') return core:getOrCreateColl($docType, 'indices', true())
-        else for $docType in $wega-docTypes return core:getOrCreateColl($docType, 'indices', true())
+        if(exists($model('docID'))) then api:findByID($model('docID'))
+        else for $docType in api:resolve-docTypes($model) return core:getOrCreateColl($docType, 'indices', true())
     return
         api:document(api:subsequence($ids, $model), $model)
 };
@@ -43,25 +40,16 @@ declare function api:documents($model as map()) {
 :)
 
 declare function api:documents-findByDate($model as map()) {
-    let $test-input := api:validateInput($model)
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $documents := 
-        if($model('docType')) then for $docType in tokenize($model('docType'),',') return query:exact-date(xs:date($model('date')), $docType)
-        else for $docType in $wega-docTypes return query:exact-date(xs:date($model('date')), $docType)
+    let $documents := for $docType in api:resolve-docTypes($model) return query:exact-date(xs:date($model('date')), $docType)
     return
         api:document(api:subsequence($documents, $model), $model)
 };
 
 declare function api:documents-findByMention($model as map()) {
-    let $test-input := api:validateInput($model)
     let $mentioned-doc := api:findByID($model('docID'))
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $requested-docTypes := 
-        if($model('docType')) then tokenize($model('docType'),',')
-        else $wega-docTypes
     let $backlinks :=core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
     let $documents := 
-        for $docType in $requested-docTypes[. = $wega-docTypes]
+        for $docType in api:resolve-docTypes($model)
         return wdt:lookup($docType, $backlinks)('filter')()
     return
         api:document(api:subsequence($documents, $model), $model)
@@ -69,25 +57,16 @@ declare function api:documents-findByMention($model as map()) {
 
 declare function api:documents-findByAuthor($model as map()) {
     let $author := api:findByID($model('authorID'))
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $requested-docTypes := 
-        if($model('docType')) then tokenize($model('docType'),',')
-        else $wega-docTypes
     let $documents := 
-        for $docType in $requested-docTypes[. = $wega-docTypes]
+        for $docType in api:resolve-docTypes($model)
         return core:getOrCreateColl($docType, $author/tei:person/data(@xml:id), true())
     return
         api:document(api:subsequence($documents, $model), $model)
 };
 
 declare function api:code-findByElement($model as map()) {
-    let $test-input := if(matches($model('element'), '^[-a-zA-Z]+$')) then () else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $requested-docTypes := 
-        if($model('docType')) then tokenize($model('docType'),',')
-        else $wega-docTypes
     let $documents := 
-        for $docType in $requested-docTypes[. = $wega-docTypes]
+        for $docType in api:resolve-docTypes($model)
         return core:getOrCreateColl($docType,'indices', true())
     let $ns-prefix := 
         switch($model('namespace'))
@@ -96,7 +75,7 @@ declare function api:code-findByElement($model as map()) {
         default return () 
     let $eval := 
         if($ns-prefix) then util:eval('$documents//' || $ns-prefix || ':' || $model('element')) (: TEI or MEI elements :)
-        else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()=' || $model('namespace') || ']') (: other namespaces :)
+        else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
         api:codeSample(api:subsequence($eval, $model), $model)
@@ -138,7 +117,7 @@ declare function api:ant-deleteResources($model as map()) {
 };
 :)
 
-declare function api:ant-patchSvnHistory($model as map()) as map()? {
+(:declare function api:ant-patchSvnHistory($model as map()) as map()? {
     if($model('data')/*/@head castable as xs:integer) then (
         update value $config:svn-change-history-file/dictionary/@head with $model('data')/*/data(@head),
         for $entry in $model('data')//entry
@@ -149,6 +128,15 @@ declare function api:ant-patchSvnHistory($model as map()) as map()? {
             else update insert $entry into $config:svn-change-history-file/dictionary
         )
     else map {'code' := 400, 'message' := 'could not parse XML fragment', 'fields' := 'invalid format'}
+};
+:)
+
+(:~
+ : Helper function for resolving docTypes
+~:)
+declare %private function api:resolve-docTypes($model as map()) as xs:string* {
+    if(exists($model('docType'))) then $model('docType')
+    else for $func in wdt:members('indices') return $func(())('name')
 };
 
 (:~
@@ -207,7 +195,7 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
 (:~
  : Helper function for validating user input (= function parameters)
 ~:)
-declare %private function api:validateInput($model as map()) as empty() {
+(:declare %private function api:validateInput($model as map()) as empty() {
     for $param in $model?*
     return
         switch($param)
@@ -216,32 +204,83 @@ declare %private function api:validateInput($model as map()) as empty() {
         case 'date' return api:check-date($model)
         default return ()
 };
+:)
 
 (:~
- : Check docType
+ : Check parameter docType and split comma separated value into a sequence
 ~:)
-declare %private function api:check-docType($model as map()) as empty() {
+declare function api:validate-docType($model as map()) as map()? {
     let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
-    let $requested-docTypes := tokenize($model('docType'),',')
-    return 
-        for $docType in $requested-docTypes
-        return
-            if($docType = $wega-docTypes) then ()
-            else error($api:WRONG_PARAMETER, 'There is no document type "' || $model('docType') || '"')
+    return
+        map:entry(
+            'docType',
+            for $docType in tokenize($model('docType'),',')
+            return
+                if($docType = $wega-docTypes) then $docType
+                else error($api:INVALID_PARAMETER, 'There is no document type "' || $docType || '"')
+        )
 };
 
 (:~
- : Check element name
+ : Check parameter element
 ~:)
-declare %private function api:check-elementName($model as map()) as empty() {
-    if(matches($model('element'), '^[-a-zA-Z]+$')) then () 
-    else error($api:WRONG_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
+declare function api:validate-element($model as map()) as map()? {
+    if(matches($model('element'), '^[-a-zA-Z]+$')) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported element name "' || $model('element') || '"')
 };
 
 (:~
- : Check date format
+ : Check parameter namespace
 ~:)
-declare %private function api:check-date($model as map()) as empty() {
-    if($model('date') castable as xs:date) then () 
-    else error($api:WRONG_PARAMETER, 'Wrong date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
+declare function api:validate-namespace($model as map()) as map()? {
+    if(xmldb:decode-uri($model('namespace')) castable as xs:anyURI and matches(xmldb:decode-uri($model('namespace')), '^[-\.:#+/a-zA-Z0-9]+$')) then 
+        map { 'namespace' := xmldb:decode-uri($model?namespace) }
+    else 
+        error($api:INVALID_PARAMETER, 'Unsupported namespace notation: "' || $model('namespace') || '". 
+            The namespace should be castable to an xs:anyURI, e.g. "http://www.tei-c.org/ns/1.0" und must not contain some special characters.'
+        )
+};
+
+(:~
+ : Check parameter skip
+~:)
+declare function api:validate-skip($model as map()) as map()? {
+    if($model('skip') castable as xs:positiveInteger) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "skip". It should be a positive integer.')
+};
+
+(:~
+ : Check parameter limit
+~:)
+declare function api:validate-limit($model as map()) as map()? {
+    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le 200) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to 200.')
+};
+
+(:~
+ : Check parameter date
+~:)
+declare function api:validate-date($model as map()) as map()? {
+    if($model('date') castable as xs:date) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter docID
+~:)
+declare function api:validate-docID($model as map()) as map()? {
+    (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
+    map { 'docID' := xmldb:decode-uri($model?authorID) }
+};
+
+(:~
+ : Check parameter authorID
+~:)
+declare function api:validate-authorID($model as map()) as map()? {
+    (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
+    map { 'authorID' := xmldb:decode-uri($model?authorID) }
+};
+
+declare function api:validate-unknown-param($model as map()) as map()? {
+    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || $model?* || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
 };
