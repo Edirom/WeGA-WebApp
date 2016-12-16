@@ -288,7 +288,11 @@
                             <xsl:when test="$docID = 'A070011'">
                                 <xsl:copy-of select="(1,8,1)"/>
                             </xsl:when>
-                            <xsl:when test="$docID = 'A090102'">
+                            <!-- Noch ein hack für die Spielpläne -->
+                            <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and descendant::tei:table">
+                                <xsl:copy-of select="(.6, .6, 8.8)"/>
+                            </xsl:when>
+                            <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and ancestor::tei:table">
                                 <xsl:copy-of select="(2, 8)"/>
                             </xsl:when>
                             <xsl:otherwise/>
@@ -517,7 +521,7 @@
                 <xsl:element name="h4">
                     <xsl:attribute name="data-target" select="concat('#', generate-id(parent::tei:table))"/>
                     <xsl:attribute name="data-toggle">collapse</xsl:attribute>
-                    <xsl:attribute name="class">collapseMarker</xsl:attribute>
+                    <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
