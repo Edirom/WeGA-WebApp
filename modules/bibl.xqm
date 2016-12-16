@@ -183,7 +183,7 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
         if($parent/tei:biblScope/@type = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
         (: Alle anderen Datumsausgaben hier :)
         if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@type = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:note/@type = 'additional') then concat(' [', $parent/tei:note[@type = 'additional'], ']') else (),
+        if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
         if($parent/tei:biblScope/@type = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
         if($parent/tei:biblScope/@type = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
     )
