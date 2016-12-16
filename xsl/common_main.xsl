@@ -419,14 +419,25 @@
             <!-- desc within notatedMusic and figDesc within figures -->
             <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
         </xsl:variable>
-        <xsl:element name="a">
-            <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
-            <xsl:element name="img">
-                <!--<xsl:attribute name="title" select="$title"/>-->
-                <xsl:attribute name="alt" select="$title"/>
-                <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
-            </xsl:element>
-        </xsl:element>
+        <xsl:choose>
+            <xsl:when test="starts-with(@url, 'http')">
+                <xsl:element name="img">
+                    <xsl:attribute name="title" select="$title"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="@url"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="a">
+                    <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
+                    <xsl:element name="img">
+                        <!--<xsl:attribute name="title" select="$title"/>-->
+                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="tei:list">
