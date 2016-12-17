@@ -154,12 +154,13 @@ let $validate-params := function($params as map()?) as map()? {
  :   Sending one parameter to the function of type map()
  :   If $lookup is empty, return a map() with error message and code
 ~:)
-let $response := 
+let $response := function() { 
     typeswitch($lookup?func)
     case empty() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''}
     default return 
         try { $lookup?func(map:new(($local:defaults, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
+}
 
 (:~
  :  Check HTTP header for 'Accept' key. 
@@ -167,9 +168,12 @@ let $response :=
 ~:)
 let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 
-return
+return (:(
+    util:log-system-out($exist:path),
+    util:log-system-out($exist:resource)
+    ):)
     if($exist:resource eq 'swagger.json') then ()
-    else if($exist:path eq '/') then controller:redirect-absolute('/index.html')
+    else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en', 'path' := $exist:path, 'controller' := $exist:controller || '/../../' } )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -177,6 +181,6 @@ return
                 <set-header name="Cache-Control" value="max-age=3600,public"/>
             </forward>
         </dispatch>
-    else if($accept-header[.='application/xml']) then local:serialize-xml($response, if(empty($lookup)) then 'Error' else $exist:resource )
-    else if($accept-header[.='application/json']) then local:serialize-json($response)
+    else if($accept-header[.='application/xml']) then local:serialize-xml($response(), if(empty($lookup)) then 'Error' else $exist:resource )
+    else if($accept-header[.='application/json']) then local:serialize-json($response())
     else ()

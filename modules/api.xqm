@@ -143,11 +143,11 @@ declare %private function api:resolve-docTypes($model as map()) as xs:string* {
  :  Helper function for creating a subsequence based on external parameters
 ~:)
 declare %private function api:subsequence($seq as item()*, $model as map()) {
-    let $skip := if($model('skip') castable as xs:integer) then $model('skip') cast as xs:integer else 0
+    let $offset := if($model('offset') castable as xs:integer) then $model('offset') cast as xs:integer else 0
     let $limit := if($model('limit') castable as xs:integer) then $model('limit') cast as xs:integer else 0
     return
-        if($skip gt 0 and $limit gt 0) then subsequence($seq, $skip, $limit)
-        else if($skip gt 0) then subsequence($seq, $skip)
+        if($offset gt 0 and $limit gt 0) then subsequence($seq, $offset, $limit)
+        else if($offset gt 0) then subsequence($seq, $offset)
         else if($limit gt 0) then subsequence($seq, 1, $limit)
         else $seq
 }; 
@@ -169,8 +169,7 @@ declare %private function api:document($documents as document-node()*, $model as
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
                 'docID' := $id,
                 'docType' := $docType,
-                'title' := wdt:lookup($docType, $doc)('title')('txt'),
-                'supportedFormats' := ( 'xml', if($supportsHTML) then 'html' else ())
+                'title' := wdt:lookup($docType, $doc)('title')('txt')
             } 
 };
 
@@ -242,11 +241,11 @@ declare function api:validate-namespace($model as map()) as map()? {
 };
 
 (:~
- : Check parameter skip
+ : Check parameter offset
 ~:)
-declare function api:validate-skip($model as map()) as map()? {
-    if($model('skip') castable as xs:positiveInteger) then $model 
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "skip". It should be a positive integer.')
+declare function api:validate-offset($model as map()) as map()? {
+    if($model('offset') castable as xs:positiveInteger) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "offset". It should be a positive integer.')
 };
 
 (:~
@@ -270,7 +269,7 @@ declare function api:validate-date($model as map()) as map()? {
 ~:)
 declare function api:validate-docID($model as map()) as map()? {
     (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
-    map { 'docID' := xmldb:decode-uri($model?authorID) }
+    map { 'docID' := xmldb:decode-uri($model?docID) }
 };
 
 (:~
