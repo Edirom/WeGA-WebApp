@@ -17,6 +17,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
@@ -544,7 +545,8 @@ declare function wdt:var($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
-            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            let $lang := lang:guess-language(())
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
