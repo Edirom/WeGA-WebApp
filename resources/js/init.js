@@ -173,6 +173,16 @@ function remoteTabsCallback(html, trigger, container, data) {
     /* and adjust the width of the remains  */
     html.removeClass('row');
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
+    
+    /* Load portraits via AJAX */
+    $('.searchResults .portrait', html).loadPortrait();
+            
+    /* Listen for click events on pagination */
+    $('.page-link', html).on('click', 
+        function() {
+            $(this).activatePagination($('#backlinks'));
+        }
+    );
 };
 
 // set the right tab and location for person pages 
@@ -437,18 +447,28 @@ function ajaxCall(container,url) {
             /* Listen for click events on pagination */
             $('.page-link:visible').on('click', 
                 function() {
-                    var activeTab = $('li.resp-tab-active a'),
-                        baseUrl = activeTab.attr('data-target'),
-                        url = baseUrl + $(this).attr('data-url');
-                    //console.log(url);
-                    ajaxCall(container,url);
+                    $(this).activatePagination(container);
                 }
             );
+            //console.log(container);
+            if($('ul.nav-tabs li.active a').length === 1) {
+                remoteTabsCallback($(container).children(), '', container);
+            }
             /* Load portraits via AJAX */
             $('.searchResults .portrait').loadPortrait();
             $("#datePicker").initDatepicker();
         }
     });
+};
+        
+$.fn.activatePagination = function(container) {
+    /*  Two possible locations:  */
+    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
+    /*  with different attributes */
+        baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
+        url = baseUrl + $(this).attr('data-url');
+    //console.log(url);
+    ajaxCall(container,url);
 };
 
 /* Farbige Support Badges im footer (page.html) */
