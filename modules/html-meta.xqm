@@ -89,6 +89,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         case 'diaries' return str:shorten-text($model('doc')/tei:ab, 150)
         case 'news' case 'var' case 'thematicCommentaries' return str:shorten-text(string-join($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], ' '), 150)
         case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
+        case 'error' return lang:get-language-string('metaDescriptionError', $lang)
         default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
@@ -106,6 +107,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
         case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
         case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
         case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
+        case 'error' return lang:get-language-string('metaTitleError', $lang)
         default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
