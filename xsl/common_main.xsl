@@ -46,7 +46,7 @@
     </xsl:template>
 
     <xsl:template name="popover">
-        <!--<xsl:param name="id"/>-->
+        <xsl:param name="marker" as="xs:string?"/>
         <xsl:variable name="id">
             <xsl:choose>
                 <xsl:when test="@xml:id">
@@ -58,13 +58,17 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:element name="a">
-            <xsl:attribute name="class">noteMarker</xsl:attribute>
+            <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
+            <xsl:attribute name="id" select="concat('ref-', $id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
             <xsl:attribute name="data-ref" select="$id"/>
             <xsl:choose>
-                <xsl:when test="self::tei:note">
+                <xsl:when test="$marker eq 'arabic'">
+                    <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
+                </xsl:when>
+                <xsl:when test="not($marker) and self::tei:note">
                     <xsl:text>*</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
@@ -133,6 +137,13 @@
         </xsl:if>
         <xsl:element name="br"/>
     </xsl:template>
+    
+    <xsl:template match="tei:ptr[starts-with(@target, 'http')]">
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="@target"/>
+            <xsl:value-of select="@target"/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- 
         tei:seg und tei:signed mit @rend werden schon als block-level-Elemente gesetzt, 
@@ -199,7 +210,8 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        <xsl:element name="span">
+        <!-- breaks are not allowed within lists as they are in TEI. We need to workaround this … -->
+        <xsl:element name="{if(parent::tei:list) then 'li' else 'span'}">
             <xsl:attribute name="class" select="concat('tei_', local-name())"/>
             <!-- breaks between block level elements -->
             <xsl:if test="parent::tei:div or parent::tei:body">
@@ -229,9 +241,27 @@
     <xsl:template match="tei:table">
         <xsl:element name="div">
             <xsl:attribute name="class">table-wrapper</xsl:attribute>
+            <xsl:if test="@rend='collapsible'">
+                <xsl:apply-templates select="tei:head"/>
+            </xsl:if>
             <xsl:element name="table">
-                <xsl:apply-templates select="@xml:id"/>
-                <xsl:attribute name="class">table</xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="@xml:id">
+                        <xsl:apply-templates select="@xml:id"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="id" select="generate-id()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:attribute name="class">
+                    <xsl:text>table</xsl:text>
+                    <xsl:if test="@rend='collapsible'">
+                        <xsl:text> collapse</xsl:text>
+                    </xsl:if>
+                </xsl:attribute>
+                <xsl:if test="not(@rend='collapsible')">
+                    <xsl:apply-templates select="tei:head"/>
+                </xsl:if>
                 <xsl:element name="tbody">
                     <xsl:variable name="currNode" select="."/>
                     <!-- Bestimmung der Breite der Tabellenspalten -->
@@ -258,6 +288,13 @@
                             <xsl:when test="$docID = 'A070011'">
                                 <xsl:copy-of select="(1,8,1)"/>
                             </xsl:when>
+                            <!-- Noch ein hack für die Spielpläne -->
+                            <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and descendant::tei:table">
+                                <xsl:copy-of select="(.6, .6, 8.8)"/>
+                            </xsl:when>
+                            <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and ancestor::tei:table">
+                                <xsl:copy-of select="(2, 8)"/>
+                            </xsl:when>
                             <xsl:otherwise/>
                         </xsl:choose>
                     </xsl:variable>
@@ -266,7 +303,7 @@
                             <xsl:value-of select="round-half-to-even(100 div (sum($define-width-of-cells) div .), 2)"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    <xsl:apply-templates>
+                    <xsl:apply-templates select="tei:row">
                         <xsl:with-param name="widths" select="$widths" tunnel="yes"/>
                     </xsl:apply-templates>
                 </xsl:element>
@@ -356,7 +393,17 @@
     </xsl:template>
     
     <xsl:template match="tei:graphic">
-        <xsl:variable name="figureHeight" select="wega:getOption('figureHeight')"/>
+        <xsl:variable name="figureSize">
+            <!-- There's more to do here: different images for different screen sizes and resolutions, etc. -->
+            <xsl:choose>
+                <xsl:when test="parent::tei:*/@rend='maxSize'">
+                    <xsl:value-of select="'600,'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat(',',wega:getOption('figureHeight'))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="localURL">
             <xsl:choose>
                 <!-- Need to double encode for old Apache at euryanthe.de; see also img.xqm!! -->
@@ -372,14 +419,25 @@
             <!-- desc within notatedMusic and figDesc within figures -->
             <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
         </xsl:variable>
-        <xsl:element name="a">
-            <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
-            <xsl:element name="img">
-                <!--<xsl:attribute name="title" select="$title"/>-->
-                <xsl:attribute name="alt" select="$title"/>
-                <xsl:attribute name="src" select="concat($localURL, '/full/,', $figureHeight, '/0/native.jpg')"/>
-            </xsl:element>
-        </xsl:element>
+        <xsl:choose>
+            <xsl:when test="starts-with(@url, 'http')">
+                <xsl:element name="img">
+                    <xsl:attribute name="title" select="$title"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="@url"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="a">
+                    <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
+                    <xsl:element name="img">
+                        <!--<xsl:attribute name="title" select="$title"/>-->
+                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="tei:list">
@@ -437,11 +495,11 @@
     </xsl:template>
 
     <!-- Überschriften innerhalb einer floatingText-Umgebung -->
-    <xsl:template match="tei:head[ancestor::tei:floatingText][not(parent::tei:list)]" priority="0.6">
+    <xsl:template match="tei:head[parent::tei:body][ancestor::tei:floatingText]" priority="0.6">
         <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
         <xsl:variable name="increments" as="xs:integer">
             <!-- Wenn es ein Untertitel ist bzw. der Titel einer Linegroup wird der Level hochgezählt -->
-            <xsl:value-of select="count(parent::tei:lg | .[@type='sub'])"/>
+            <xsl:value-of select="count(.[@type='sub'])"/>
         </xsl:variable>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
@@ -469,7 +527,34 @@
     
     <!-- Überschriften innerhalb einer table-Umgebung -->
     <xsl:template match="tei:head[parent::tei:table]">
-        <xsl:element name="caption">
+        <xsl:choose>
+            <xsl:when test="parent::tei:table[@rend='collapsible']">
+                <xsl:element name="h4">
+                    <xsl:attribute name="data-target" select="concat('#', generate-id(parent::tei:table))"/>
+                    <xsl:attribute name="data-toggle">collapse</xsl:attribute>
+                    <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="caption">
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+    <!-- Überschriften innerhalb einer lg-Umgebung -->
+    <xsl:template match="tei:head[parent::tei:lg]">
+        <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
+        <xsl:variable name="increments" as="xs:integer">
+            <!-- Verschachtelungstiefe hochgezählt -->
+            <xsl:value-of select="count(ancestor::tei:lg)"/>
+        </xsl:variable>
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="concat('heading', $minHeadLevel + $increments)"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -578,6 +663,36 @@
             <xsl:attribute name="class">tei_postscript</xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:note[@type='thematicCom']">
+        <xsl:element name="a">
+            <xsl:attribute name="class" select="'thematicCommentaries'"/>
+            <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
+            <xsl:text>T</xsl:text>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:p">
+        <xsl:variable name="inlineEnd" as="xs:string?">
+            <xsl:if test="following-sibling::node()[1][self::tei:closer[@rend='inline']]">
+                <xsl:text>inlineEnd</xsl:text>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:for-each-group select="node()" group-ending-with="tei:list">
+            <xsl:if test="current-group()[not(self::tei:list)][matches(., '\S')] or current-group()[not(self::tei:list)][self::element()]">
+                <xsl:element name="p">
+                    <xsl:if test="position() eq 1">
+                        <xsl:apply-templates select="parent::tei:p/@xml:id"/>
+                    </xsl:if>
+                    <xsl:if test="$inlineEnd">
+                        <xsl:attribute name="class" select="$inlineEnd"/>
+                    </xsl:if>
+                    <xsl:apply-templates select="current-group()[not(self::tei:list)]"/>
+                </xsl:element>
+            </xsl:if>
+            <xsl:apply-templates select="current-group()[self::tei:list]"/>
+        </xsl:for-each-group>
     </xsl:template>
 
     <!-- Default template for TEI elements -->

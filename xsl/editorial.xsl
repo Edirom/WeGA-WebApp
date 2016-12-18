@@ -2,7 +2,7 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footnote tei:head"/>
+    <xsl:preserve-space elements="tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footnote tei:head tei:orgName"/>
     
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
@@ -52,6 +52,10 @@
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
         <xsl:element name="p">
+            <xsl:if test="ancestor-or-self::tei:msDesc/@rend">
+                <xsl:value-of select="wega:getLanguageString(ancestor-or-self::tei:msDesc/@rend, $lang)"/>
+                <xsl:text>: </xsl:text>
+            </xsl:if>
             <xsl:if test="tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
                 <xsl:text> </xsl:text>
@@ -160,7 +164,7 @@
                     <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
                 </xsl:element>-->
                 <xsl:choose>
-                    <xsl:when test="./tei:p">
+                    <xsl:when test="tei:p">
                         <xsl:apply-templates/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -174,7 +178,7 @@
             </xsl:if>
         </xsl:element>
     </xsl:template>
-
+    
     <!--<xsl:template match="tei:biblStruct[parent::tei:listBibl]">
         <xsl:sequence select="wega:printCitation(., 'li', $lang)"/>
     </xsl:template>-->

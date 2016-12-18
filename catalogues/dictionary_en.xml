@@ -31,7 +31,7 @@
     <!--  Headings person_SingleView  -->
     <entry xml:id="bioSummary">Biographical Summary</entry>
     <entry xml:id="contacts">Contacts</entry>
-    <entry xml:id="album">Iconography</entry>
+    <entry xml:id="iconography">Iconography</entry>
     <entry xml:id="family">Family</entry>
     <entry xml:id="worksDocuments">Works and Documents</entry>
     <entry xml:id="travels">Travels</entry>
@@ -45,6 +45,8 @@
     <!--  Tabs person_SingleView  -->
     <entry xml:id="bio">Biography</entry>
     <entry xml:id="tabTitle_bio">Biographical information from the WeGA</entry>
+    <entry xml:id="tabTitle_bioOrgs">Historical information from the WeGA</entry>
+    <entry xml:id="history">History</entry>
     <entry xml:id="tabTitle_xml">XML-View of this entry</entry>
     <entry xml:id="tabTitle_wikipedia">This person's article in Wikipedia</entry>
     <entry xml:id="tabTitle_ADB">This person's article in the german ADB</entry>
@@ -123,6 +125,7 @@
     <!--  XSL-Ausgaben  -->
     <entry xml:id="addMargin">Addition in the margin.</entry>
     <entry xml:id="addInline">Addition in the line.</entry>
+    <entry xml:id="addInline">Addition.</entry>
     <entry xml:id="substInline">Substitution in the line.</entry>
     <entry xml:id="substAbove">Substitution above the line.</entry>
     <entry xml:id="substBelow">Substitution below the line.</entry>
@@ -131,6 +134,12 @@
     <entry xml:id="delGap">Deleted text illegible.</entry>
     <entry xml:id="delStrikethrough"> crossed out.</entry>
     <entry xml:id="delOverwritten"> overwritten.</entry>
+    <entry xml:id="choiceCorr">in the copy text</entry>
+    <entry xml:id="choiceUnclear">further possible transcriptions</entry>
+    <entry xml:id="choiceAbbr">abbreviation of</entry>
+    <entry xml:id="appRdg">Reading from other witness</entry>
+    <entry xml:id="unclearDefault">Uncertain transcription.</entry>
+    <entry xml:id="gapDefault">Illegible text</entry>
     <!--  doc_singleView  -->
     <entry xml:id="docSingleViewTitle">Document view of %1</entry>
     <entry xml:id="textOfDoc">Text of document</entry>
@@ -215,6 +224,9 @@
     <entry xml:id="editorial_assistant">Editorial Assistant</entry>
     <entry xml:id="lyr">Lyricist</entry>
     <entry xml:id="trl">Translator</entry>
+    <entry xml:id="aut">Author</entry>
+    <entry xml:id="arr">Arranger</entry>
+    <entry xml:id="chr">Choreographer</entry>
     <!--  Facets  -->
     <entry xml:id="filter">Filter</entry>
     <entry xml:id="dedicatees">Dedicatees</entry>
@@ -246,12 +258,13 @@
     <!--<entry xml:id="metaDiariesPersons">A list of diary entries from the diaries of %1, collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>-->
     <!--<entry xml:id="metaWritingsPersons">A list of writings of %1, collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>-->
     <!--<entry xml:id="metaWorksPersons">A list of works of %1, collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>-->
-    <entry xml:id="metaDescriptionIndex-persons">A list of (historic) persons from the editions of the Carl-Maria-von-Weber-Gesamtausgabe</entry>
+    <entry xml:id="metaDescriptionIndex-personsPlus">A list of (historic) persons from the editions of the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-news">A list of news items published by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-works">A list of works, collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-writings">A list of writings, collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-diaries">A list of diary entries, collected and edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-letters">A list of correspondence material (mostly letters), collected and (partially) edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
+    <entry xml:id="metaDescriptionIndex-documents">A list of documents, collected and edited by the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-indices">A complete index of all documents of the digital edition of the Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <!--<entry xml:id="WeGAPublications">Publications of the Carl-Maria-von-Weber-Gesamtausgabe</entry>-->
     <!--<entry xml:id="metaWeberStudiesPublications">The series Weber-Studies is devoted to Carl Maria von Weber and accompanies the edition of his collected works, writings, letters and diaries.</entry>-->
@@ -261,16 +274,22 @@
     <entry xml:id="metaDescriptionIndex-biblio">A bibliography of Weber-Literature. This bibliography functions as a continuation and addition to:
         Donald G. und Alice H. Henderson, Carl Maria von Weber. A Guide to Research (Garland Composer Resource Manuals, Vol. 24) (Garland Reference Library of the Humanities, Vol. 1006), New York and London 1990.
         There you'll find (a selection of) the Weber-Literature until 1988. So is this bibliography to be understood as a selection.</entry>
+    <entry xml:id="metaDescriptionIndex-thematicCommentaries">A list of thematic commentaries published by the Carl-Maria-von-Weber-Gesamtausgabe.
+        These thematic commentaries provide additional information about various events and facts that exceed regular notes within the text.</entry>
+    <entry xml:id="metaDescriptionSearch">Search across all the persons, letters, diaries, writings, commentaries, etc. of the Digital Edition of the Carl-Maria-von-Weber-Gesamtausgabe.</entry>
     <!-- HTML Meta Daten (title) -->
     <entry xml:id="metaTitleIndex-home">Digital Edition of the Carl-Maria-von-Weber-Gesamtausgabe</entry>
-    <entry xml:id="metaTitleIndex-persons">Index of persons</entry>
+    <entry xml:id="metaTitleIndex-search">Search page of the Carl-Maria-von-Weber-Gesamtausgabe</entry>
+    <entry xml:id="metaTitleIndex-personsPlus">Index of persons</entry>
     <entry xml:id="metaTitleIndex-letters">Index of letters</entry>
     <entry xml:id="metaTitleIndex-writings">Index of writings</entry>
     <entry xml:id="metaTitleIndex-diaries">Index of diaries</entry>
     <entry xml:id="metaTitleIndex-works">Index of works</entry>
     <entry xml:id="metaTitleIndex-news">Index of website news</entry>
     <entry xml:id="metaTitleIndex-biblio">Index of bibliographic entries</entry>
+    <entry xml:id="metaTitleIndex-documents">Index of documents</entry>
     <entry xml:id="metaTitleIndex-indices">Complete Index</entry>
+    <entry xml:id="metaTitleIndex-thematicCommentaries">Index of thematic commentaries</entry>
     <!--<entry xml:id="metaTitleDiscoBiblio">Discography – Bibliography</entry>-->
     <!--<entry xml:id="metaTitleScoresBiblio">Scores – Bibliography</entry>-->
     <!--<entry xml:id="metaTitleWeberStudiesPublications">Weber-Studies – Publications</entry>-->
@@ -302,8 +321,10 @@
     <entry xml:id="documents">Documents</entry>
     <entry xml:id="document">Document</entry>
     <entry xml:id="persons">Persons</entry>
+    <entry xml:id="personsPlus">Persons</entry><!-- inkl. orgs, families -->
     <entry xml:id="letter">Letter</entry>
     <entry xml:id="letters">Letters</entry>
+    <entry xml:id="orgs">Organizations</entry>
     <entry xml:id="unknown">unknown</entry>
     <entry xml:id="placesOfAction">Places of action</entry>
     <entry xml:id="pseudonyme">Pen Names</entry>
@@ -378,6 +399,7 @@
     <entry xml:id="XML-Preview">XML-Preview</entry>
     <entry xml:id="wikipedia-article">Wikipedia Article</entry>
     <entry xml:id="adb-article">ADB Article</entry>
+    <entry xml:id="ndb-article">NDB Article</entry>
     <entry xml:id="gnd-entry">GND entry</entry>
     <entry xml:id="gotoletter">View letter</entry>
     <entry xml:id="wordOfTheDay">Word of the day</entry>
@@ -406,9 +428,32 @@
     <entry xml:id="commentary">Commentary</entry>
     <entry xml:id="additionalSources">Additional Sources</entry>
     <entry xml:id="apiDocumentation">API Documentation</entry>
+    <entry xml:id="openapiDocumentation">Swagger OpenAPI Documentation</entry>
     <entry xml:id="faq">FAQ</entry>
-    <entry xml:id="api">API</entry>
     <entry xml:id="pleaseEnterSearchTerms">Please enter search terms</entry>
     <entry xml:id="credits">Credits</entry>
     <entry xml:id="calendar">Calendar</entry>
+    <entry xml:id="thematicCommentaries">Thematic Commentaries</entry>
+    <entry xml:id="thematicCom">Thematic Commentary</entry>
+    <entry xml:id="endNotes">Endnotes</entry>
+    <entry xml:id="searchResults">Search Results</entry>
+    <entry xml:id="sex">Sex</entry>
+    <entry xml:id="sex_m">Male</entry>
+    <entry xml:id="sex_f">Female</entry>
+    <entry xml:id="sex_unknown">Unknown</entry>
+    <entry xml:id="draft">Draft</entry>
+    <entry xml:id="copy">Copy</entry>
+    <entry xml:id="autograph_copy">Copy by the author</entry>
+    <entry xml:id="authorized_copy">Authorized Copy</entry>
+    <entry xml:id="forFurtherDetailsSee">For further details see</entry>
+    <entry xml:id="paginationNext">next</entry>
+    <entry xml:id="paginationPrevious">previous</entry>
+    <entry xml:id="personal_document">genealogic, personal documents, e.g. passports, baptismal certificates</entry>
+    <entry xml:id="financial_document">receipts, bills, etc.</entry>
+    <entry xml:id="varia_document">business cards, tickets, entrance cards, etc.</entry>
+    <entry xml:id="notification_document">notifications of concerts or visits in journals and news papers</entry>
+    <entry xml:id="konzertzettel_document">Konzertzettel, Theaterzettel</entry>
+    <entry xml:id="work-related_document">documents related to musical works</entry>
+    <entry xml:id="imageSource">Image source</entry>
+    <entry xml:id="specialVolume">Special Volume</entry>
 </dictionary>

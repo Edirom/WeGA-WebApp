@@ -42,13 +42,18 @@
     letter-spacing: 0.15em;
 }
 
-.tei_hiSuperscript {
+.tei_hi_superscript {
     vertical-align: super;
     font-size: 0.8em;
     line-height: 0.7em;
 }
 
-.tei_hiSubscript {
+.endnote_backlink {
+    padding-right:0.5em;
+    .tei_hi_superscript;
+}
+
+.tei_hi_subscript {
     vertical-align: sub;
     font-size: 0.8em;
     line-height: 0.7em;
@@ -149,15 +154,16 @@ div.poem h3 {
 }
 */
 li.listTitle {
-    list-style: none;
-    font-size: 1.2em;
-    font-weight: 600;
+    .heading3;
+    font-size: @font-size-h3;
+    list-style:none;
+    margin-bottom:0px;
 }
 
 li.listSubTitle {
-    list-style: none;
-    font-size: 1em;
-    font-weight: 600;
+    .heading4;
+    font-size: @font-size-h4;
+    list-style:none;
 }
 
 .tei_simpleList {
@@ -166,6 +172,11 @@ li.listSubTitle {
 
 .tei_list {
     list-style: disc;
+    margin-left:1em;
+}
+
+.tei_orderedList {
+    list-style: decimal;
     margin-left:1em;
 }
 
@@ -255,4 +266,13 @@ li.listSubTitle {
 .teiLetter_datelineCloser {
     display: block;
     margin-top:@line-height-computed;
+}
+/* treatment of inline closers */
+.inlineEnd, .inlineStart {
+    display: inline;
+}
+
+/* square brackets should always be recte, never slanted */
+.brackets_supplied {
+    font-style:normal;
 }

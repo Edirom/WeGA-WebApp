@@ -7,19 +7,12 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
 
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date"/>
+        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date tei:orgName"/>
     
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
 
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="tei:note[@type='bioSummary']" priority="1">
+    <xsl:template match="tei:note[parent::document-node()]" priority="1">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>

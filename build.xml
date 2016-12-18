@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="xar" name="WeGA-WebApp">
+<project default="xar" name="WeGA-WebApp" xmlns:unless="ant:unless">
     
     <!-- import default properties from file -->
     <property file="local.build.properties"/>
     <property file="build.properties"/>
+    
+    <!-- import ANT file for tests -->
+    <import file="testing/ant-testing.xml"/>
     
     <target name="all" depends="xar"/>
     <target name="rebuild" depends="clean,all"/>
@@ -24,6 +27,17 @@
         <mkdir dir="${dist.dir}"/>
     </target>
     
+    <target name="test">
+        <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
+        <regressiontest doctype="letters"/>
+        <regressiontest doctype="persons"/>
+        <regressiontest doctype="diaries"/>
+        <regressiontest doctype="news"/>
+        <regressiontest doctype="thematicCommentaries"/>
+        <regressiontest doctype="var"/>
+        <regressiontest doctype="writings"/>
+    </target>
+    
     <target name="download-smufl-font" depends="init">
         <description>Download Bravura font from the official website</description>
         <get src="${smufl.font}" dest="${tmp.dir}/bravura.zip" skipexisting="yes"/>
@@ -32,7 +46,7 @@
     
     <target name="bower" depends="init">
         <description>Update javascript libraries via bower</description>
-        <exec executable="${bower.cmd}">
+        <exec executable="${bower.cmd}" failonerror="yes">
             <arg value="update"/>
         </exec>
     </target>
@@ -41,6 +55,9 @@
         <description>Create CSS files via less</description>
         <exec executable="${lessc.cmd}">
             <arg line="resources/less/styles.less ${dist.dir}/resources/css/styles.css"/>
+        </exec>
+        <exec executable="${lessc.cmd}">
+            <arg line="resources/less/swagger.less ${dist.dir}/resources/css/swagger.css"/>
         </exec>
     </target>
     
@@ -56,6 +73,7 @@
         <copy todir="${dist.dir}">
             <fileset dir=".">
                 <include name="*.*"/>
+                <include name="api/**"/>
                 <include name="modules/**"/>
                 <include name="resources/**"/>
                 <include name="catalogues/**"/>
@@ -131,6 +149,14 @@
             <mapper type="glob" from="*.js" to="*-min.js"/>
             <targetfile/>
         </apply>
+        <apply executable="java" parallel="false" dest="${dist.dir}/resources/lib/datepicker-fr/ui/widgets">
+            <fileset dir="${dist.dir}/resources/lib/datepicker-fr/ui/widgets" includes="datepicker.js" excludes="*min.js"/>
+            <arg line="-jar ${yuicompress.jar} -v"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <mapper type="glob" from="*.js" to="*-min.js"/>
+            <targetfile/>
+        </apply>
     </target>
     
     <target name="xar" depends="init, dist, yuicompress">
@@ -177,4 +203,6 @@
             )
         </xdb:xquery>
     </target>
+    
+    
 </project>

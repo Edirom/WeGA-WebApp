@@ -14,6 +14,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 (:import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";:)
 import module namespace functx="http://www.functx.com";
@@ -29,12 +30,10 @@ import module namespace functx="http://www.functx.com";
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     return 
-        if($config:wega-docTypes($docType)) then
-            try {
-                core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
-            }
-            catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
-        else core:logToFile('warn', 'norm:get-norm-doc: Unsupported docType "' || $docType || '". Please refer to those defined in $config:wega-docTypes')
+        try {
+            core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
+        }
+        catch * { core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $err:code, $err:description), ' ;; ')) }
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
@@ -46,9 +45,21 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         case 'persons' return norm:create-norm-doc-persons()
         case 'writings' return norm:create-norm-doc-writings()
         case 'works' return norm:create-norm-doc-works()
-        case 'places' return norm:create-norm-doc-places()
-        default return ()
+(:        case 'places' return norm:create-norm-doc-places():)
+        case 'orgs' return norm:create-norm-doc-orgs()
+        default return core:logToFile('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
 };
+
+(:~
+ : This variable serves as a shortcut to reduce function calls when creating facets
+ : see wdt:persons(())('label-title') 
+~:)
+(:declare variable $norm:persons :=
+    try {
+        core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'normFile-persons.xml')), norm:create-norm-doc#1, 'persons', xs:dayTimeDuration('P999D'))
+    }
+    catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
+;:)
 
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
@@ -57,7 +68,8 @@ declare %private function norm:create-norm-doc-biblio() as element(norm:catalogu
         let $normDate := query:get-normalized-date($doc)
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author/@key | $doc//tei:editor/@key)
-        order by $normDate descending
+(:   collections are already sorted!     :)
+(:        order by $normDate descending:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -77,7 +89,7 @@ declare %private function norm:create-norm-doc-diaries() as element(norm:catalog
         for $doc in core:getOrCreateColl('diaries', 'indices', true())
         let $docID := $doc/tei:ab/data(@xml:id)
         let $normDate := query:get-normalized-date($doc)
-        order by $normDate
+(:        order by $normDate:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -100,7 +112,7 @@ declare %private function norm:create-norm-doc-letters() as element(norm:catalog
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
         let $addresseeIDs := distinct-values($doc//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])
-        order by $normDate, $n
+(:        order by $normDate, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -124,7 +136,7 @@ declare %private function norm:create-norm-doc-news() as element(norm:catalogue)
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
         let $normDate := query:get-normalized-date($doc) (:datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)):)
-        order by $normDate descending
+(:        order by $normDate descending:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -145,13 +157,27 @@ declare %private function norm:create-norm-doc-persons() as element(norm:catalog
         let $docID := $doc/tei:person/data(@xml:id)
         let $sex := str:normalize-space($doc//tei:sex)
         let $name := str:normalize-space($doc//tei:persName[@type='reg'])
-        let $sortName := core:create-sort-persname($doc/tei:person) 
-        order by $sortName ascending, $name ascending
+(:        let $sortName := core:create-sort-persname($doc/tei:person) :)
+(:        order by $sortName ascending, $name ascending:)
         return 
             element entry {
                 attribute docID {$docID},
                 attribute sex {$sex},
-                attribute sortName {$sortName},
+(:                attribute sortName {$sortName},:)
+                $name
+            }
+    }</catalogue>
+};
+
+declare %private function norm:create-norm-doc-orgs() as element(norm:catalogue) {
+    <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
+        for $doc in core:getOrCreateColl('orgs', 'indices', true())
+        let $docID := $doc/tei:org/data(@xml:id)
+        let $name := str:normalize-space($doc//tei:orgName[@type='reg'])
+(:        order by $name ascending:)
+        return 
+            element entry {
+                attribute docID {$docID},
                 $name
             }
     }</catalogue>
@@ -166,7 +192,7 @@ declare %private function norm:create-norm-doc-writings() as element(norm:catalo
         let $n :=  string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
         (: $authorIDs should be in sync with the definition at core:createColl()  :)
         let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
-        order by $normDate, $n
+(:        order by $normDate, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -187,12 +213,12 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
         for $doc in core:getOrCreateColl('works', 'indices', true())
         let $docID := $doc/mei:mei/data(@xml:id)
 (:        let $normDate := $doc//mei:seriesStmt/mei:title[@level='s']/xs:int(@n):)
-        let $title := str:normalize-space(query:get-title-element($doc, 'de')[1])
+        let $title := wdt:works($doc)('title')('txt')
         let $n := $doc//mei:altId[@type = 'WeV']
         (:let $sortCategory02 := $doc//mei:altId[@type = 'WeV']/string(@subtype):) 
         (:let $sortCategory03 := $doc//mei:altId[@type = 'WeV']/xs:int(@n):) 
         (:order by $normDate, $sortCategory02, $sortCategory03, $n:)
-        order by $title, $n
+(:        order by $title, $n:)
         return 
             element entry {
                 attribute docID {$docID},
@@ -203,13 +229,13 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
     }</catalogue>
 };
 
-declare %private function norm:create-norm-doc-places() as element(norm:catalogue) {
+(:declare %private function norm:create-norm-doc-places() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
         for $doc in core:getOrCreateColl('places', 'indices', true())
         let $docID := $doc/tei:place/data(@xml:id)
-        let $name := str:normalize-space($doc//tei:placeName[@type='reg'])
+        let $name := wdt:places($doc)('title')()
         let $n := $doc//tei:idno[@type='geonames']
-        order by $name
+(\:        order by $name:\)
         return 
             element entry {
                 attribute docID {$docID},
@@ -217,4 +243,4 @@ declare %private function norm:create-norm-doc-places() as element(norm:catalogu
                 $name
             }
     }</catalogue>
-};
+};:)

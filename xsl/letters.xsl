@@ -6,7 +6,7 @@
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date tei:subst tei:add tei:note"/>
+    <xsl:preserve-space elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date tei:subst tei:add tei:note tei:orgName"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="apparatus.xsl"/>
@@ -63,7 +63,7 @@
         </xsl:element>
     </xsl:template>
    
-    <xsl:template match="tei:p">
+    <!--<xsl:template match="tei:p">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
@@ -71,12 +71,12 @@
                     <xsl:when test="following-sibling::node()[1][name() = 'closer'][@rend='inline']">
                         <xsl:text>inlineParagraph</xsl:text>
                     </xsl:when>
-                    <!--<xsl:when test="following-sibling::node()[name() = 'closer' or name() = 'p'][1][@rend='inline'] or ./@rend='inline' or (. = ../tei:p[position()=last() and ])">
+                    <!-\-<xsl:when test="following-sibling::node()[name() = 'closer' or name() = 'p'][1][@rend='inline'] or ./@rend='inline' or (. = ../tei:p[position()=last() and ])">
                         <xsl:text>inlineParagraph</xsl:text>
                         <xsl:if test="not(./@rend='inline') and not(. = ../tei:p[position()=1])">
                             <xsl:text> indented</xsl:text>
                         </xsl:if>
-                    </xsl:when>-->
+                    </xsl:when>-\->
                     <xsl:otherwise>
                         <xsl:text>blockParagraph</xsl:text>
                     </xsl:otherwise>
@@ -92,7 +92,7 @@
             </xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
 
     <xsl:template match="tei:opener">
         <xsl:element name="div">
@@ -136,14 +136,9 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:text>teiLetter_closer</xsl:text>
-                <xsl:choose>
-                    <xsl:when test="@rend='inline'">
-                        <xsl:text> inlineParagraph</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text> blockParagraph indented</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="@rend='inline'">
+                    <xsl:text> inlineStart</xsl:text>
+                </xsl:if>
             </xsl:attribute>
             <xsl:if test="@rend='right'">
                 <xsl:attribute name="style" select="'text-align: right;'"/>

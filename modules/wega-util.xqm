@@ -10,36 +10,49 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace http="http://expath.org/ns/http-client";
+declare namespace math="http://www.w3.org/2005/xpath-functions/math";
+declare namespace owl="http://www.w3.org/2002/07/owl#";
+declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace schema="http://schema.org/";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
  : If the date does match with today's date then the result will be taken from the cache; otherwise the external resource will be queried.
- : ATTENTION: Wikipedia sends HTMl pages without namespace
  :
  : @author Peter Stadler 
  : @param $resource the external resource (wikipedia|adb|dnb|beacon)
- : @param $pnd the PND number
+ : @param $gnd the PND number
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- declare function wega-util:grabExternalResource($resource as xs:string, $pnd as xs:string, $lang as xs:string?) as element(httpclient:response)? {
+ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(httpclient:response)? {
     let $lease := 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $url := 
         switch($resource)
-        case 'wikipedia' return replace(wega-util:beacon-map($pnd)('wikipedia')[1], 'dewiki', $lang || 'wiki')
-        case 'dnb' return concat(config:get-option($resource), $pnd, '/about/rdf')
-        default return config:get-option($resource) || $pnd
-    let $fileName := string-join(($pnd, $lang, 'xml'), '.')
-    let $today := current-date()
-    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
+        case 'wikipedia' return
+            let $beaconMap := wega-util:beacon-map($gnd, $docType)
+            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')])[1]
+            return
+                replace($url, 'dewiki', $lang || 'wiki')
+        case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
+        case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
+        case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
+        default return config:get-option($resource) || $gnd
+    let $fileName := string-join(($gnd, $lang, 'xml'), '.')
+    let $response := 
+        (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
+        switch($resource)
+        case 'munich-stadtmuseum' return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:httpclient-get#1, xs:anyURI($url), $lease)
+        default return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
@@ -76,8 +89,33 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
         </wega:externalResource>
 };
 
-declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
-    let $findbuchResponse := wega-util:grabExternalResource('beacon', $gnd, 'de')
+(:~
+ : Helper function for wega:grabExternalResource()
+ :
+ : @author Peter Stadler 
+ : @param $url the URL as xs:anyURI
+ : @return element wega:externalResource, a wrapper around httpclient:response
+ :)
+declare function wega-util:httpclient-get($url as xs:anyURI) as element(wega:externalResource) {
+    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
+    let $response := 
+        try { httpclient:get($url, true(), <Headers/>)  }
+        catch * {core:logToFile('warn', string-join(('wega-util:httpclient-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+    (:let $response := 
+        if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
+        else $response:)
+(:    let $statusCode := $response[1]/data(@status):)
+    return
+        <wega:externalResource date="{current-date()}">
+            { $response }
+        </wega:externalResource>
+};
+
+declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
+    let $findbuchResponse := 
+        switch($docType)
+        case 'persons' return wega-util:grabExternalResource('beacon', $gnd, $docType, 'de')
+        default return wega-util:grabExternalResource('gnd-beacon', $gnd, $docType, 'de')
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 
@@ -93,14 +131,13 @@ declare function wega-util:beacon-map($gnd as xs:string) as map(*) {
                 let $text  := str:normalize-space($jxml?2?($i))
                 return
                     if(matches($link,"weber-gesamtausgabe.de")) then ()
-                    else if(matches($title,"Wikipedia-Personenartikel")) then map:entry('wikipedia', ($link, $text))
                     else map:entry($title, ($link, $text))
             )
         else map:new()
 };
 
 (:~
- : Identity transformation with stripping off XML comments and processing instructions
+ : Identity transformation with stripping off XML comments 
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform
@@ -121,7 +158,35 @@ declare function wega-util:remove-comments($nodes as node()*) as node()* {
 };
 
 (:~
+ : Recursively remove idiosyncratic WeGA elements ('workName', 'characterName') and turn them into generic TEI <rs> elements
+ :
+ : @author Peter Stadler 
+ : @param $nodes the nodes to transform
+ : @return transformed nodes
+~:)
+declare function wega-util:substitute-wega-element-additions($nodes as node()*) as node()* {
+    for $node in $nodes
+    return
+        if($node instance of processing-instruction()) then $node
+        else if($node instance of comment()) then $node
+        else if($node instance of element(tei:workName) or $node instance of element(tei:characterName)) then
+            element {QName('http://www.tei-c.org/ns/1.0', 'rs')} {
+                $node/@*,
+                attribute type { substring-before(local-name($node), 'Name') },
+                wega-util:substitute-wega-element-additions($node/node())
+            }
+        else if($node instance of element()) then 
+            element {node-name($node)} {
+                $node/@*,
+                wega-util:substitute-wega-element-additions($node/node())
+            }
+        else if($node instance of document-node()) then wega-util:substitute-wega-element-additions($node/node())
+        else $node
+};
+
+(:~
  : Helper function for guessing a mime-type from a file extension
+ : (Should be expanded to read in $exist.home$/mime-types.xml)
  :
  : @author Peter Stadler 
  : @param $suffix the file extension
@@ -132,6 +197,7 @@ declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as x
         case 'xml' return 'application/xml'
         case 'jpg' return 'image/jpeg'
         case 'png' return 'image/png'
+        case 'txt' return 'text/plain'
         default return error(xs:QName(wega-util:error), 'unknown file suffix "' || $suffix || '"')
 };
 
@@ -191,16 +257,28 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
 (:~
  : Creates a simple text version of a TEI document (or fragment)
  : by resolving choices, substitutions and removing notes
+ : (used for e.g. wordOfTheDay and several titles)
+ :
+ : @param $nodes the nodes to transform
 ~:)
-declare function wega-util:txtFromTEI($node as node()?) as xs:string* {
-    typeswitch($node)
-    case element() return 
-        switch(local-name($node))
-        case 'del' case 'note' return ()
+declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
+    for $node in $nodes
+    return
+        typeswitch($node)
+        case element(tei:del) return ()
+        case element(tei:note) return ()
+        case element(tei:lb) return 
+            if($node[@type='inWord']) then ()
+            else '&#10;'
+        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case element(tei:quote) return 
+            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case text() return replace($node, '\n+', ' ')
+        case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
+        case processing-instruction() return ()
+        case comment() return ()
         default return $node/child::node() ! wega-util:txtFromTEI(.)
-    case text() return $node
-    case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
-    default return ()
 };
 
 (:~
@@ -220,4 +298,68 @@ declare function wega-util:remove-elements-by-class($nodes as node()*, $classes 
                 }
         case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
         default return $node
+};
+
+(:~
+ : Helper function for computing geo loc distances 
+~:)
+declare %private function wega-util:deg2rad($deg as xs:double) as xs:double {
+   $deg * ( math:pi() div 180 )
+};
+
+(:~
+ : The haversine distance of two points on the Earth
+ : NB: The implementation seems buggy!
+ : Compare with http://www.movable-type.co.uk/scripts/latlong.html
+~:)
+declare function wega-util:haversine-distance($lat1 as xs:double, $lon1 as xs:double, $lat2 as xs:double, $lon2 as xs:double) as xs:double {
+   let $radius-of-earth := 6371 (: Radius of the earth in km :)
+   let $p := 0.017453292519943295 (: Math.PI / 180 :)
+   let $dLat := $lat2 - $lat1 (:local:deg2rad($lat2 - $lat1):)
+   let $dLon := $lon2 - $lon1 (:local:deg2rad($lon2 - $lon1):)
+   let $a :=
+      0.5 - math:cos($dLat * $p) div 2 +
+      math:cos($lat1 * $p) * math:cos($lat2 * $p) *
+      (1 - math:cos($dLon * $p)) div 2
+   return
+      2 * $radius-of-earth * math:sin(math:sqrt($a))
+};
+
+(:~
+ : The "Spherical Law of Cosines" distance of two points on the Earth
+ : Outlined at http://www.movable-type.co.uk/scripts/latlong.html
+~:)
+declare function wega-util:spherical-law-of-cosines-distance($latLon1 as array(*), $latLon2 as array(*)) as xs:double {
+   let $radius-of-earth := 6371 (: Radius of the earth in km :)
+   let $dLon := wega-util:deg2rad($latLon2(2) - $latLon1(2))
+   let $a :=
+      math:sin(wega-util:deg2rad($latLon1(1))) * math:sin(wega-util:deg2rad($latLon2(1))) +
+      math:cos(wega-util:deg2rad($latLon1(1))) * math:cos(wega-util:deg2rad($latLon2(1))) *
+      math:cos($dLon)
+   return
+      math:acos($a) * $radius-of-earth 
+};
+
+declare function wega-util:distance-between-places($placeID1 as xs:string, $placeID2 as xs:string) as xs:double {
+   let $places := core:getOrCreateColl('places', 'indices', true())
+   let $latLon1 := array { tokenize($places/id($placeID1)//tei:geo, '\s+') ! . cast as xs:double }
+   let $latLon2 := array { tokenize($places/id($placeID2)//tei:geo, '\s+') ! . cast as xs:double }
+   return 
+      wega-util:spherical-law-of-cosines-distance($latLon1, $latLon2)
+};
+
+(:~
+ :  Lookup viaf ID by calling an external service.
+ :  Currently, we are using the rdf serialization from the DNB.
+~:)
+declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
+    wega-util:grabExternalResource('dnb', $gnd, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://viaf.org/viaf/')]/substring(., 22)
+};
+
+(:~
+ :  Lookup gnd ID by calling an external service.
+ :  Currently, we are using the rdf serialization from viaf.org.
+~:)
+declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
+    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
 };

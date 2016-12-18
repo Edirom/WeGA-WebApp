@@ -14,6 +14,7 @@ import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" a
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "lang.xqm";
 
 declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
 
@@ -21,11 +22,12 @@ declare variable $local:languages := ('en', 'de');
 declare variable $local:defaultCompression := 'gz'; (: gz or zip :)
 declare variable $local:host := config:get-option('permaLinkPrefix');
 declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography');
-declare variable $local:databaseEntries := ('persons', 'letters', 'writings', 'diaries', (:'works',:) 'news'(:, 'biblio':));
+declare variable $local:databaseEntries := for $func in wdt:members('sitemap') return $func(())('name');
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
-    let $lastmod := $config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime)
+    (: In rare cases (when a file was deleted from a wrong folder and a file with the same name exists) there are two svn entries :)
+    let $lastmod := max($config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime))
     let $loc := $local:host || app:createUrlForDoc($x, $lang)
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{

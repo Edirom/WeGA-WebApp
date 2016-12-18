@@ -9,6 +9,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -20,7 +21,7 @@ import module namespace functx="http://www.functx.com";
  : @return xs:string
  :)
 declare function str:normalize-space($string as xs:string?) as xs:string {
-    normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;', ' '))
+    normalize-unicode(normalize-space(replace($string, '&#160;|&#8194;|&#8195;|&#8201;', ' ')))
 };
 
 (:~
@@ -36,8 +37,9 @@ declare function str:join-path-elements($segs as xs:string*) as xs:string {
 };
 
 (:~ 
- : Print forename surname
+ : Print forename surname by simply checking for a comma and reversing the tokens at this point
  :
+ : @param $name the name as a simple string
  : @author Peter Stadler
  : @return xs:string
  :)
@@ -50,20 +52,62 @@ declare function str:printFornameSurname($name as xs:string?) as xs:string? {
 };
 
 (:~ 
- : Surround a string with typographic quotes
+ : Print forename surname from a TEI persName element
+ : In contrast to str:printFornameSurname() this function checks the appearance of forenames, i.e.
+ : <persName type="reg"><forename>Eugen</forename> <forename>Friedrich</forename> <forename>Heinrich</forename>, <roleName>Herzog</roleName> <nameLink>von</nameLink> Württemberg</persName>
+ : is turned into "Eugen Friedrich Heinrich, Herzog von Württemberg" rather than "Herzog von Württemberg Eugen Friedrich Heinrich"
  :
+ : @param $name a tei persName element
  : @author Peter Stadler
  : @return xs:string
  :)
-declare function str:enquote($str as xs:string?, $lang as xs:string) as xs:string? {
-    let $quotes :=
+declare function str:printFornameSurnameFromTEIpersName($persName as element(tei:persName)?) as xs:string? {
+    if(($persName/element()[1])[self::tei:forename]) then str:normalize-space($persName)
+    else str:printFornameSurname(string($persName))
+};
+
+(:~ 
+ : Surround a string with typographic double quotes
+ :
+ : @param $str the string to enquote
+ : @param $lang the language switch (en|de)
+ : @author Peter Stadler
+ : @return a single string if the input was a single string, a sequence of strings if the input was a sequence (where the quotes are then the first and the last item) 
+ :)
+declare function str:enquote($str as xs:string*, $lang as xs:string) as xs:string* {
+    if(count($str) = 1) then 
         switch ($lang)
-        case 'de' return '&#x201E;%1&#x201C;'
-        default return '&#x201C;%1&#x201D;'
-    return 
-        if($str) then replace($quotes, '%1', $str)
-        else ()
-    
+        case 'de' return concat('&#x201E;', $str, '&#x201C;')
+        case 'en' return concat('&#x201C;', $str, '&#x201D;')
+        default return concat('&quot;', $str, '&quot;')
+    else if(count($str) gt 1) then 
+        switch ($lang)
+        case 'de' return ('&#x201E;', $str, '&#x201C;')
+        case 'en' return ('&#x201C;', $str, '&#x201D;')
+        default return ('&quot;', $str, '&quot;')
+    else ()
+};
+
+(:~ 
+ : Surround a string with typographic single quotes
+ :
+ : @param $str the string to enquote
+ : @param $lang the language switch (en|de)
+ : @author Peter Stadler
+ : @return a single string if the input was a single string, a sequence of strings if the input was a sequence (where the quotes are then the first and the last item) 
+ :)
+declare function str:enquote-single($str as xs:string*, $lang as xs:string) as xs:string* {
+    if(count($str) = 1) then 
+        switch ($lang)
+        case 'de' return concat('&#x201A;', $str, '&#x2018;')
+        case 'en' return concat('&#x2018;', $str, '&#x2019;')
+        default return concat('&#x0027;', $str, '&#x0027;')
+    else if(count($str) gt 1) then 
+        switch ($lang)
+        case 'de' return ('&#x201A;', $str, '&#x2018;')
+        case 'en' return ('&#x2018;', $str, '&#x2019;')
+        default return ('&#x0027;', $str, '&#x0027;')
+    else ()
 };
 
 (:~
@@ -98,4 +142,11 @@ declare function str:sanitize($str as xs:string) as xs:string {
    else if(contains($str, '{')) then str:sanitize(replace($str, '{', '{{'))
    else if(contains($str, '}')) then str:sanitize(replace($str, '}', '}}'))
    else :)$str
+};
+
+declare function str:list($items as xs:string*, $lang as xs:string, $maxLength as xs:int) as xs:string? {
+    let $count := count($items)
+    return
+        if($count le 2) then string-join($items, ', ')
+        else string-join(subsequence($items, 1, $count -1), ', ') || ' ' || lang:get-language-string('and', $lang) || ' ' || $items[$count]
 };

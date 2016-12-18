@@ -33,13 +33,8 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst', 'thematicCom')]">
-      <xsl:choose>
-         <xsl:when test="@type='thematicCom'"/>
-         <xsl:otherwise>
-            <xsl:call-template name="popover"/>
-         </xsl:otherwise>
-      </xsl:choose>
+   <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
+      <xsl:call-template name="popover"/>
    </xsl:template>
    
    <xsl:template match="tei:note" mode="apparatus">
@@ -104,10 +99,10 @@
          <!-- Need to take care of whitespace when there are multiple <add> -->
          <xsl:choose>
             <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()"/>
+               <xsl:apply-templates select="tei:add | text()" mode="#current"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:apply-templates select="tei:add"/>
+               <xsl:apply-templates select="tei:add" mode="#current"/>
             </xsl:otherwise>
          </xsl:choose>
          <xsl:call-template name="popover"/>
@@ -125,10 +120,10 @@
          <!-- Need to take care of whitespace when there are multiple <add> -->
          <xsl:choose>
             <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()"/>
+               <xsl:apply-templates select="tei:add | text()" mode="plain-text-output"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:apply-templates select="tei:add"/>
+               <xsl:apply-templates select="tei:add" mode="plain-text-output"/>
             </xsl:otherwise>
          </xsl:choose>
          <xsl:text>": </xsl:text>
@@ -177,7 +172,7 @@
          <xsl:attribute name="class">
             <xsl:text>tei_app</xsl:text>
          </xsl:attribute>
-         <xsl:apply-templates select="tei:lem"/>
+         <xsl:apply-templates select="tei:lem" mode="#current"/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -192,7 +187,8 @@
          <xsl:text>"</xsl:text>
          <xsl:value-of select="tei:lem"/>
          <xsl:text>": </xsl:text>
-         <xsl:text>Lesart in anderer Quelle: </xsl:text>
+         <xsl:value-of select="wega:getLanguageString('appRdg', $lang)"/>
+         <xsl:text>: </xsl:text>
          <xsl:variable name="rdg">
             <xsl:apply-templates select="tei:rdg"/>
          </xsl:variable>
@@ -209,10 +205,10 @@
             <xsl:text>tei_add</xsl:text>
             <xsl:choose>
                <xsl:when test="@place='above'">
-                  <xsl:text> tei_hiSuperscript</xsl:text>
+                  <xsl:text> tei_hi_superscript</xsl:text>
                </xsl:when>
                <xsl:when test="@place='below'">
-                  <xsl:text> tei_hiSubscript</xsl:text>
+                  <xsl:text> tei_hi_subscript</xsl:text>
                </xsl:when>
                <!--<xsl:when test="./tei:add[@place='margin']">
                         <xsl:text>Ersetzung am Rand. </xsl:text>
@@ -258,7 +254,9 @@
                <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
             </xsl:when>
             <!-- TODO translate -->
-            <xsl:otherwise>Hinzufügung</xsl:otherwise>
+            <xsl:otherwise>
+               <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
+            </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
    </xsl:template>
@@ -297,7 +295,7 @@
             </xsl:otherwise>
          </xsl:choose>
          <xsl:text>": </xsl:text>
-         <xsl:text>Unsichere Lesung</xsl:text>
+         <xsl:value-of select="wega:getLanguageString('unclearDefault', $lang)"/>
       </xsl:element>
    </xsl:template>
    
@@ -327,7 +325,9 @@
             <xsl:text> </xsl:text>
             <xsl:value-of select="@reason"/>
          </xsl:attribute>
-         <xsl:text> Unleserliche Stelle </xsl:text>
+         <xsl:text> </xsl:text>
+         <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
+         <xsl:text> </xsl:text>
          <xsl:if test="@unit and @quantity">
             <xsl:text>(ca. </xsl:text>
             <xsl:value-of select="@quantity"/>
@@ -344,7 +344,7 @@
          <xsl:attribute name="class" select="'tei_choice'"/>
          <xsl:choose>
             <xsl:when test="tei:sic">
-               <xsl:apply-templates select="tei:corr"/>
+               <xsl:apply-templates select="tei:corr" mode="#current"/>
             </xsl:when>
             <xsl:when test="tei:unclear">
                <xsl:variable name="opts" as="element()*">
@@ -373,7 +373,9 @@
             <xsl:when test="tei:sic">
                <xsl:text>recte "</xsl:text>
                <xsl:value-of select="tei:corr"/>
-               <xsl:text>": eigentlich "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceCorr', $lang)"/>
+               <xsl:text> "</xsl:text>
                <xsl:value-of select="tei:sic"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
@@ -385,7 +387,9 @@
                </xsl:variable>
                <xsl:text>"</xsl:text>
                <xsl:value-of select="$opts[1]"/>
-               <xsl:text>": weitere mögliche Lesarten: "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceUnclear', $lang)"/>
+               <xsl:text>: "</xsl:text>
                <!-- Eventuell noch @cert mit ausgeben?!? -->
                <xsl:value-of select="string-join(subsequence($opts, 2), '&#34;, &#34;')"/>
                <xsl:text>"</xsl:text>
@@ -393,7 +397,9 @@
             <xsl:when test="tei:abbr">
                <xsl:text>"</xsl:text>
                <xsl:value-of select="tei:abbr"/>
-               <xsl:text>": Abk. von "</xsl:text>
+               <xsl:text>": </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('choiceAbbr', $lang)"/>
+               <xsl:text> "</xsl:text>
                <xsl:value-of select="tei:expan"/>
                <xsl:text>"</xsl:text>
             </xsl:when>
@@ -405,7 +411,7 @@
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="#current"/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -414,9 +420,9 @@
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:text>[</xsl:text>
-         <xsl:apply-templates/>
-         <xsl:text>]</xsl:text>
+         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>[</xsl:text></xsl:element>
+         <xsl:apply-templates mode="#current"/>
+         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>]</xsl:text></xsl:element>
       </xsl:element>
    </xsl:template>
    
@@ -428,7 +434,7 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="plain-text-output"/>
          <xsl:text>": sic!</xsl:text>
       </xsl:element>
    </xsl:template>
@@ -454,7 +460,7 @@
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="plain-text-output"/>
          <xsl:text>": </xsl:text>
          <xsl:choose>
             <xsl:when test="tei:gap">
@@ -471,6 +477,20 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
+   </xsl:template>
+    
+   <xsl:template match="tei:del" mode="plain-text-output"/>
+   <xsl:template match="tei:note" mode="plain-text-output"/>
+   <xsl:template match="tei:lb" mode="plain-text-output">
+      <xsl:text> </xsl:text>
+   </xsl:template>
+   <xsl:template match="tei:q" mode="plain-text-output">
+      <xsl:text>"</xsl:text>
+      <xsl:apply-templates mode="#current"/>
+      <xsl:text>"</xsl:text>
+   </xsl:template>
+   <xsl:template match="tei:*" mode="plain-text-output">
+      <xsl:apply-templates mode="#current"/>
    </xsl:template>
    
    <xsl:function name="wega:createID">

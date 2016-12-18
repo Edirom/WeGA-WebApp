@@ -13,12 +13,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-10">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" data-template="app:if-matches" data-template-key="docType" data-template-value="var">
                         <li><a href="$link/index">Home</a></li>
                         <li data-template="app:if-not-matches" data-template-key="docID" data-template-value="A070003"><a data-template="app:breadcrumb-var"/></li>
                         <li data-template="app:if-matches" data-template-key="docID" data-template-value="A070003"><a href="$link/A002068.html">Carl Maria von Weber</a></li>
                         <li data-template="app:if-not-matches" data-template-key="docID" data-template-value="A070003"><span data-template="app:print" data-template-key="docID">A040080</span></li>
                         <li data-template="app:if-matches" data-template-key="docID" data-template-value="A070003"><span data-template="lang:translate">bio</span></li>
+                    </ol>
+                    <ol class="breadcrumb" data-template="app:if-matches" data-template-key="docType" data-template-value="thematicCommentaries">
+                        <li><a href="$link/index">Home</a></li>
+                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
+                        <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
+                        <li><span data-template="app:print" data-template-key="docID">A040080</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -33,18 +39,19 @@
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" href="#dokumente">Dokumente</h2>
-                        <div id="dokumente" class="panel-collapse collapse ">
+                        <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
+                        <div id="dokument" class="panel-collapse collapse ">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="remoteTabsCallback">backlinks</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                                 <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
-                        <h2 class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head">Personen</h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a></h2>
                         <div class="panel-collapse collapse" data-template="facets:filter-body">
                             <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
                                 <label class="btn gradient-light" data-template="app:each" data-template-from="filterOptions" data-template-to="filterOption">
@@ -61,6 +68,10 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app:output" data-template-key="transcription"/>
                     </div>
+                    <div class="tab-pane fade" id="backlinks">
+                        <h2 data-template="lang:translate">backlinks</h2>
+                        <!-- loaded via AJAX request to ./backlinks.html -->
+                    </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
                         <!-- loaded via AJAX request to ./xml.html -->
@@ -75,7 +86,7 @@
         <div class="row" data-template="app:if-matches" data-template-key="docID" data-template-value="A070002">
             <div class="col-md-9 piwik-opt-out">
                 <h2>Piwik Webanalyse</h2>
-                <iframe src="http://www.weber-gesamtausgabe.de/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;language=de" scrolling="no"></iframe>
+                <iframe src="http://www.weber-gesamtausgabe.de/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;language=de"/>
             </div>
         </div>
     </div>

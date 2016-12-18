@@ -1,0 +1,11 @@
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:html="http://www.w3.org/1999/xhtml">
+        <range>
+            <create qname="html:a">
+                <field name="a-href" match="@href" type="xs:string"/>
+            </create>
+            <create qname="@class" type="xs:string"/>
+        </range>
+        <fulltext default="none" attributes="false"/>
+    </index>
+</collection>

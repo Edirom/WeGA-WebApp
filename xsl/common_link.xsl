@@ -1,12 +1,16 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
-    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName')"/>
+    <!-- 
+        because HTML does not support nested links (aka a elements) we need to attach the link to the deepest element; 
+        thus exclude all elements with the following child elements 
+    -->
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'note', 'unclear', 'app')"/>
 
 
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author">
+    <xsl:template match="tei:persName | tei:author | tei:orgName">
         <xsl:choose>
             <xsl:when test="@key and not($suppressLinks)">
                 <xsl:call-template name="createLink"/>
@@ -55,7 +59,7 @@
     <xsl:template match="tei:ref">
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="href" select="@target"/>
+            <xsl:apply-templates select="@target"/>
             <xsl:apply-templates/>
             <xsl:if test="@type = 'hyperLink'">
                 <xsl:text> </xsl:text>
@@ -64,6 +68,19 @@
                 </xsl:element>
             </xsl:if>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="@target">
+        <xsl:attribute name="href">
+            <xsl:choose>
+                <xsl:when test="starts-with(.,'wega:')">
+                    <xsl:value-of select="wega:createLinkToDoc(substring(., 6), $lang)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:attribute>
     </xsl:template>
 
     <xsl:template name="createLink">
@@ -92,8 +109,10 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
-                <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                <xsl:text> </xsl:text>
+                <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
+                    <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                    <xsl:text> </xsl:text>
+                </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@key">
                         <xsl:value-of select="@key"/>

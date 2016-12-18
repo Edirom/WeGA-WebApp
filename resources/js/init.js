@@ -14,14 +14,45 @@ $.fn.h1FitText = function () {
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
 {
-     this.selectize({
-        plugins: ['remove_button'],
-        hideSelected: true,
-        onChange: function(e){
-            /* Get active facets to append as URL params */
-            var params = active_facets();
-            updatePage(params);
-        }
+    $(this).each( function(a, b) {
+        $(b).selectize({
+            plugins: ['remove_button'],
+            hideSelected: true,
+            onChange: function(e){
+                /* Get active facets to append as URL params */
+                var params = active_facets();
+                //console.log(params.toString());
+                updatePage(params);
+            },
+            preload: "focus",
+            valueField: "value",
+            labelField: "label",
+            sortField: "label",
+            searchField: ["label"],
+            loadThrottle: 100,
+            load: function(query, callback) {
+                if (query.length) return callback();
+                
+                var params = active_facets(),
+                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type');
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    error: function() {
+                        callback();
+                    },
+                    success: function(res) {
+                        callback(res);
+                    }
+                });
+            },
+            render: {
+                option: function (item, escape) {
+                    return '<div>' + escape(item.label) + ' (' + escape(item.frequency) + ')</div>';
+                }
+            }
+        })
     })
 };
 
@@ -93,8 +124,38 @@ $.fn.initDatepicker = function () {
     })
 };
 
+/* 
+ * Activate bootstrap remote nav tabs (on letters) 
+ * "For further details see editorial"  
+ */
+$('#transcription a[href$=#editorial]').on('click', function (e) {
+    // code taken from the bootstrap remote nav tabs plugin
+    var url = $(e)[0].target.href,
+        hash = url.substring(url.indexOf('#')+1),
+        hasTab = $('[data-toggle=tab][href*='+hash+']'),
+        hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
+
+    if (hasTab) {
+        hasTab.tab('show');
+    }
+    
+    if (hasAccordion) {
+        // for some reason we cannot execute the 'show' event for an accordion properly, so here's a workaround
+        if (hasAccordion[0] != $('[data-toggle=collapse]:first')[0]) {
+            hasAccordion.click();
+        }
+    }
+});
+
+/* Run Google Code Prettifyer for code examples */
+$.fn.googlecodeprettify = function () {
+    prettyPrint();
+}
+
+$('.prettyprint').googlecodeprettify();
+
 // remove popovers when clicking somewhere
-$('body').on('click', function (e) {
+$('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
         //the 'is' for buttons that trigger popups
         //the 'has' for icons within a button that triggers a popup
@@ -103,6 +164,26 @@ $('body').on('click', function (e) {
         }
     });
 });
+
+/* callback function for doing stuff after loading ajax pages from the remote nav tabs */
+function remoteTabsCallback(html, trigger, container, data) {
+    /* currently, we simply remove all filters  */
+    $('.col-md-3', html).remove();
+    
+    /* and adjust the width of the remains  */
+    html.removeClass('row');
+    $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
+    
+    /* Load portraits via AJAX */
+    $('.searchResults .portrait', html).loadPortrait();
+            
+    /* Listen for click events on pagination */
+    $('.page-link', html).on('click', 
+        function() {
+            $(this).activatePagination($('#backlinks'));
+        }
+    );
+};
 
 // set the right tab and location for person pages 
 $.fn.toggleTab = function () {
@@ -123,6 +204,16 @@ $.fn.toggleTab = function () {
     if($(this).length !== 0) { activateTab(); }
 };
 
+$.fn.A090280 = function () {
+    if(getID() === 'A090280') {
+        $(this).addClass('bg-info');
+        $(this).css({'margin-bottom': '0px'});
+    }
+};
+
+/* Some special treatment of headings here */
+$('h3').A090280();
+
 // load and activate person tab
 function activateTab() {
     var activeTab = $('li.resp-tab-active a'),
@@ -130,7 +221,7 @@ function activateTab() {
         url = activeTab.attr('data-target');
 
         // Do not load the page twice
-        if ($(container).contents()[1].nodeType !== 1) {
+        if ($(container).contents().length === 1 || $(container).contents()[1].nodeType !== 1) {
             ajaxCall(container, url)
         }
         /* update facets */
@@ -139,7 +230,7 @@ function activateTab() {
 };
 
 // create popovers for document types which already have single views
-$('a.persons, a.writings, a.diaries, a.letters, a.news').on('click', function() {
+$('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents').on('click', function() {
     var popoverClass =  "popover-" + $.now();
     $(this).popover({
         "html": true,
@@ -223,7 +314,7 @@ function active_facets() {
         fromDate:'',
         toDate:'',
         toString:function(){
-            return '?' + this.facets.join('&') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
+            return '?' + ( this.facets.length !== 0 ? this.facets.join('&') : '') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
         }
      };
     /* Set filters */
@@ -247,7 +338,7 @@ function active_facets() {
         var facet = $(this).attr('name'),
             value = $(this).attr('value');
 /*        console.log(facet + '=' + value);*/
-        params['facets'].push(facet + '=' + encodeURI(value))
+        if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
     })
     if($('#query-input').val()) {
         params['facets'].push('q=' + $('#query-input').val());
@@ -339,7 +430,7 @@ $('.greedy').greedyNav();
 $('.allFilter input').change(
   function() {
     var key = $(this).attr('value');
-    $('.' + key).toggleClass('hi')
+    $('.' + key).toggleClass('hi-' + key);
   }
 )
 
@@ -356,18 +447,28 @@ function ajaxCall(container,url) {
             /* Listen for click events on pagination */
             $('.page-link:visible').on('click', 
                 function() {
-                    var activeTab = $('li.resp-tab-active a'),
-                        baseUrl = activeTab.attr('data-target'),
-                        url = baseUrl + $(this).attr('data-url');
-                    //console.log(url);
-                    ajaxCall(container,url);
+                    $(this).activatePagination(container);
                 }
             );
+            //console.log(container);
+            if($('ul.nav-tabs li.active a').length === 1) {
+                remoteTabsCallback($(container).children(), '', container);
+            }
             /* Load portraits via AJAX */
             $('.searchResults .portrait').loadPortrait();
             $("#datePicker").initDatepicker();
         }
     });
+};
+        
+$.fn.activatePagination = function(container) {
+    /*  Two possible locations:  */
+    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
+    /*  with different attributes */
+        baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
+        url = baseUrl + $(this).attr('data-url');
+    //console.log(url);
+    ajaxCall(container,url);
 };
 
 /* Farbige Support Badges im footer (page.html) */
@@ -445,10 +546,9 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var lang = getLanguage(),
-        url = $('#datePicker').attr('data-dev-url') + "?func=get-diary-by-date&format=json&date=" + dateText + "&lang=" + lang ;
+    var url = $('#datePicker').attr('data-api-url') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
     $.getJSON(url, function(data) {
-        self.location=data.url + '.html';
+        self.location=data.uri + '.html';
     })
 };
 
@@ -518,7 +618,7 @@ function getLanguage() {
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
-    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace('<br>', '') : $('h1.document').html().replace('<br>', '') ,
+    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace(/<br.+/, '') : $('h1.document').html().replace(/<br.+/, '') ,
 		 lang = getLanguage(),
 		 format,
 		 date = '';
@@ -544,55 +644,16 @@ function getDiaryDate() {
 
 /* Get the document ID from the breadcrumb */
 function getID() {
-    return $('.breadcrumb li:last').html()
+    return $('.breadcrumb li:last').text().trim()
 };
 
-/* Various functions */
-function showEntries(that)
-{
-    $("#filter span").removeClass("activeFilterElement");
-    $(that).addClass("activeFilterElement");
-};
-
-function changeIconCollapse(that)
-{
-    if ($(that).children("i").first().hasClass("fa-caret-up"))
-    {
-        $(that).children("i").first().removeClass("fa-caret-up");
-        $(that).children("i").first().addClass("fa-caret-down");
-
-        $(that).removeClass("inner-shadow-light");
-        $(that).addClass("gradient-light");
-
-    }
-
-    else if ($(that).children("i").first().hasClass("fa-caret-down"))
-    {
-        $(that).children("i").first().removeClass("fa-caret-down");
-        $(that).children("i").first().addClass("fa-caret-up");
-
-        $(that).removeClass("gradient-light");
-        $(that).addClass("inner-shadow-light");
-    }
-
-    else if ($(that).children("i").first().hasClass("fa-plus-circle"))
-    {
-        $(that).children("i").first().removeClass("fa-plus-circle");
-        $(that).children("i").first().addClass("fa-minus-circle");
-    }
-
-    else if ($(that).children("i").first().hasClass("fa-minus-circle"))
-    {
-        $(that).children("i").first().removeClass("fa-minus-circle");
-        $(that).children("i").first().addClass("fa-plus-circle");
-    }
-};
-
+/* Add search option for advanced search */
 function addSearchOption(that)
 {
     $(that).closest(".col-md-9").append("<div class='searchform'>"+$(that).closest(".searchform").html()+"</div>");
 }
 
+/* Development only: request a new ID */
 $('#create-newID').on('click', function() {
     $('#newID-result span').hide();
     $('#newID-result i').show();
@@ -603,3 +664,4 @@ $('#create-newID').on('click', function() {
         $('#newID-result span').show();
     });
 });
+

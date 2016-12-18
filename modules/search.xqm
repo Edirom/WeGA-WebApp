@@ -12,18 +12,21 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
-
-(: params for filtering the result set :)
-declare variable $search:valid-params := ('biblioType', 'editors', 'authors' , 'works', 'persons', 
-    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'docTypeSubClass');
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 (: 
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
  :)
-declare variable $search:wega-docTypes := ('persons', 'letters', 'diaries', 'writings', 'works', 'biblio', 'news');
+declare variable $search:wega-docTypes := for $func in wdt:members('search') return $func(())('name');
+
+(: params for filtering the result set :)
+declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
+    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
+    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
+    'fromDate', 'toDate', 'undated', 'docTypeSubClass', 'sex');
 
 (:~
  : Main function called from the templating module
@@ -33,14 +36,15 @@ declare
     %templates:default("docType", "letters")
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
-        let $filters := map { 'filters' := search:create-filters() }
-(:        let $log := util:log-system-out($docType):)
+        let $filters := map { 'filters' := search:create-filters(), 'api-base' := core:link-to-current-app('/api/v1')}
         return
             switch($docType)
             (: search page :)
             case 'search' return search:search(map:new(($model, $filters, map:entry('docID', 'indices'))))
+            (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
+            case 'persons' return search:list(map:new(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
-            default return search:list(map:new(($model, $filters, map:entry('docType', $docType))))
+            default return search:list(map:new(($filters, map:put($model, 'docType', $docType))))
 };
 
 (:~
@@ -48,8 +52,9 @@ declare
 ~:)
 declare 
     %templates:wrap
-    function search:results-count($node as node(), $model as map(*)) as xs:string {
-        count($model('search-results')) || ' Suchergebnisse'
+    %templates:default("lang", "en")
+    function search:results-count($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        count($model('search-results')) || ' ' || lang:get-language-string('searchResults', $lang)
 };
 
 (:~
@@ -86,9 +91,14 @@ declare
 declare 
     %templates:default("usage", "")
     function search:dispatch-preview($node as node(), $model as map(*), $usage as xs:string) {
-        let $docType := config:get-doctype-by-id($model('result-page-entry')/*/data(@xml:id))
+        let $docID := $model('result-page-entry')/*/data(@xml:id)
+        let $docType := 
+            (: Preview orgs with the person template :)
+            if(config:is-org($docID)) then 'persons'
+            else config:get-doctype-by-id($docID)
+(:        let $log := util:log-system-out($model('docType') || ' - ' || $model('docID')):)
         (: Need to distinguish between contacts and other person previews :)
-        let $usage := if(config:is-person($model('docID')) and $model('docType') = 'persons') then 'contacts' else ''
+        let $usage := if(wdt:personsPlus(($model('docID')))('check')() and $model('docType') = 'contacts') then 'contacts' else ''
         (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
         let $newModel := map:new(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
         return
@@ -102,7 +112,7 @@ declare
 declare 
     %templates:wrap
     function search:kwic($node as node(), $model as map(*)) {
-        for $hit in $model($model('docID'))
+        for $hit in $model($model('docID'))[.//exist:match]
         return
             kwic:get-summary($hit, ($hit//exist:match)[1], <config width="40"/>)
 };
@@ -127,20 +137,17 @@ declare %private function search:list($model as map(*)) as map(*) {
     let $search-results := 
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
-    let $filtered-results := 
-        if ($model('docType') = 'persons' and $model('docID') ne 'indices') then core:sortColl($search-results, 'persons', $model('docID'))
-        else if ($model('docType') = 'letters' and $model('docID') ne 'indices') then core:sortColl($search-results, 'letters', $model('docID'))
-        else if ($model('docType') = 'writings' and $model('docID') ne 'indices') then core:sortColl($search-results, 'writings', $model('docID'))
-        else if ($model('docType') = 'diaries' and $model('docID') ne 'indices') then core:sortColl($search-results, 'diaries', $model('docID'))
-        else if ($model('docType') = 'biblio' and $model('docID') ne 'indices') then core:sortColl($search-results, 'biblio', $model('docID'))
-        else $search-results
+    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' := $model('docID')} )
     return
-        map {
-            'filters' := $model('filters'),
-            'search-results' := $filtered-results,
-            'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
-            'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
-        }
+        map:merge((
+            $model,
+            map {
+                'filters' := $model('filters'),
+                'search-results' := $sorted-results,
+                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
+                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
+            }
+        ))
 };  
 
 
@@ -177,27 +184,17 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else core:getOrCreateColl($docType, 'indices', true())
+(:    let $log := util:log-system-out($docType):)
     return
-        switch($docType)
-        case 'persons' return $coll/tei:person[ft:query(., $query)] | $coll//tei:persName[ft:query(., $query)][@type]
-        case 'letters' return $coll//tei:body[ft:query(., $query)] | 
-            $coll//tei:correspDesc[ft:query(., $query)] | 
-            $coll//tei:title[ft:query(., $query)] |
-            $coll//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $coll//tei:note[ft:query(., $query)][@type = 'summary']
-        case 'diaries' return $coll/tei:ab[ft:query(., $query)]
-        case 'writings' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
-        case 'works' return $coll/mei:mei[ft:query(., $query)] | $coll//mei:title[ft:query(., $query)]
-        case 'news' return $coll//tei:body[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)]
-        case 'biblio' return $coll//tei:biblStruct[ft:query(., $query)] | $coll//tei:title[ft:query(., $query)] | $coll//tei:author[ft:query(., $query)] | $coll//tei:editor[ft:query(., $query)]
-        default return ()
+        try { function-lookup(xs:QName('wdt:' || $docType), 1)($coll)('search')($query) }
+        catch * { core:logToFile('warn', 'failed to search collection "' || $docType || '"') }
 };
 
 declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as map(*)* {
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
         else ()
-    let $date-search := norm:get-norm-doc($docType)//norm:entry[. = $dates] ! core:doc(./@docID)
+    let $date-search := query:exact-date($dates, $docType)
     let $docs :=
         if($coll) then $coll intersect $date-search
         else $date-search
@@ -239,7 +236,7 @@ declare %private function search:filter-result($collection as document-node()*, 
       if($filter) then 
         if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
         else if($filter = 'textType') then search:textType-filter($collection, $docType, $filters)
-        else query:get-facets($collection, $filter)[.=$filters($filter)]/root()
+        else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
     let $newFilter := 
         try { map:remove($filters, $filter) }
@@ -259,25 +256,62 @@ declare %private function search:date-filter($collection as document-node()*, $d
         switch($docType)
         case 'biblio' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint]/root()
-            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint]/root()
+            else if ($filter = 'fromDate') then ( 
+                (: checking only the year for the lower threshold otherwise we'll miss date=1810 when checking 1810-01-01 :)
+                $collection//tei:date[range:field-ge('date-when', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-notBefore', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-notAfter', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-from', substring($filters($filter), 1, 4))] |
+                $collection//tei:date[range:field-ge('date-to', substring($filters($filter), 1, 4))]
+                )[parent::tei:imprint]/root()
+            else ( 
+                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-to', $filters($filter))]
+                )[parent::tei:imprint]/root()
         case 'diaries' return 
             if ($filter = 'fromDate') then $collection//tei:ab[@n >= $filters($filter)]/root()
             else $collection//tei:ab[@n <= $filters($filter)]/root()
         case 'letters' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][ancestor::tei:correspDesc]/root()
-            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][ancestor::tei:correspDesc]/root()
+            else if ($filter = 'fromDate') then ( 
+                $collection//tei:date[range:field-ge('date-when', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-notBefore', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-notAfter', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-from', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-to', $filters($filter))]
+                )[parent::tei:correspAction]/root()
+            else ( 
+                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-to', $filters($filter))]
+                )[parent::tei:correspAction]/root()
         case 'news' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             (: news enthalten dateTime im date/@when :)
             else  if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
             else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
-        case 'persons' return ()
+        case 'persons' case 'orgs' return ()
         case 'writings' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) >= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
-            else $collection//tei:date[(@when, @notBefore, @notAfter, @from, @to) <= $filters($filter)][parent::tei:imprint][ancestor::tei:sourceDesc]/root()
+            else if ($filter = 'fromDate') then ( 
+                $collection//tei:date[range:field-ge('date-when', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-notBefore', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-notAfter', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-from', $filters($filter))] |
+                $collection//tei:date[range:field-ge('date-to', $filters($filter))]
+                )[parent::tei:imprint][ancestor::tei:sourceDesc]/root()
+            else ( 
+                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
+                $collection//tei:date[range:field-le('date-to', $filters($filter))]
+                )[parent::tei:imprint][ancestor::tei:sourceDesc]/root()
         case 'works' return ()
         case 'places' return ()
         default return $collection
@@ -288,9 +322,9 @@ declare %private function search:date-filter($collection as document-node()*, $d
  : Applies textType filter for backlinks
 ~:)
 declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
-    let $filter := map:keys($filters)[1]
-    return 
-        $collection/*/@xml:id[config:get-doctype-by-id(.) = $filters($filter)]/root()
+    wdt:lookup($filters?textType, 
+        $collection
+    )('sort')(map {})
 };
 
 (:~
@@ -305,15 +339,15 @@ declare %private function search:get-earliest-date($docType as xs:string, $cache
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
+                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
             case 'news' case 'biblio' return
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
-            case 'persons' return ()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
+            case 'persons' case 'orgs' return ()
             case 'writings' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
             case 'works' return ()
             case 'places' return ()
             default return ()
@@ -331,15 +365,15 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
                 else ()
             case 'letters' return 
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
+                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
             case 'news' case 'biblio' return
                 (: reverse order :)
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[1]/text()
-            case 'persons' return ()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
+            case 'persons' case 'orgs' return ()
             case 'writings' return
                 if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[contains(@authorID, $cacheKey)][text()])[last()]/text()
+                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
             case 'works' return ()
             case 'places' return ()
             default return ()

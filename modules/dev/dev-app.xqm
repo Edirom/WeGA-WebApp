@@ -15,12 +15,14 @@ declare namespace templates="http://exist-db.org/xquery/templates";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util="http://exist-db.org/xquery/util";
+declare namespace repo="http://exist-db.org/xquery/repo";
 import module namespace functx="http://www.functx.com";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "../app.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "../date.xqm";
 
 declare 
     %templates:wrap
@@ -66,4 +68,10 @@ declare
             'ant-log-success' := ($logLines = 'BUILD SUCCESSFUL'),
             'ant-log-url' := core:link-to-current-app('logs/' || $rev || '.log')
         }
+};
+
+declare function dev-app:app-status($node as node(), $model as map(*)) as map(*) {
+    map {
+        'deployment-date' := date:strfdate(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, 'de', ())
+    }
 };

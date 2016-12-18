@@ -9,6 +9,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "modules/lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "modules/str.xqm";
+import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "modules/search.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "modules/controller.xqm";
 import module namespace functx="http://www.functx.com";
 
@@ -17,7 +18,7 @@ declare variable $exist:resource external;
 declare variable $exist:controller external;
 declare variable $exist:prefix external;
 
-let $lang := lang:get-set-language(())
+let $lang := lang:guess-language(())
 let $exist-vars := map {
     'path' := $exist:path,
     'resource' := $exist:resource,
@@ -101,8 +102,8 @@ else if ($exist:resource = 'correspDesc.xml') then
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
-   if(config:get-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ('letters','writings','persons','news','diaries')) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
-   else controller:forward-html('/templates/search.html', $exist-vars)
+   if(config:get-combined-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ($search:wega-docTypes, 'var')) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
+   else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
@@ -117,7 +118,7 @@ else if (contains($exist:path, concat('/', lang:get-language-string('help', $lan
     controller:dispatch-help($exist-vars)
 
 (: Korrespondenz :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
@@ -125,21 +126,29 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || encode-for-uri(lang:get-langu
     controller:redirect-absolute(replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
 
 (: Werke :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
-(: Bibliograpie :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
+(: Bibliographie :)
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
 (: News :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
+(: Themenkommentare :)
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+
+(: Dokumente :)
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
+    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
+    
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -179,6 +188,10 @@ else if (contains($exist:path, '/IIIF')) then
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
     controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
 
+(: Bartlitz Sonderband :)
+else if ($exist:path eq '/de/Sonderband.html' or $exist:path eq '/en/Special_Volume.html') then
+    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
+    
 (: Weber-Studien Einzelansicht:)
 (:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
@@ -192,7 +205,7 @@ else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002
     </dispatch>:)
 
 (: GND Resolver :)
-else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) then
+else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$'))) then
     controller:redirect-by-gnd($exist-vars)
 
 (: Shortcut für fffi-db :)
@@ -207,11 +220,25 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+$'))) the
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/pnd_beacon.xql')}">
+    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
+    	   <add-parameter name="func" value="create-beacon"/>
+    	   <add-parameter name="type" value="pnd"/>
+    	   <add-parameter name="format" value="txt"/>
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
 
+(: GKD Beacon :)
+else if (matches($exist:path, '^/gkd_beacon.txt$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
+    	   <add-parameter name="func" value="create-beacon"/>
+    	   <add-parameter name="type" value="gkd"/>
+    	   <add-parameter name="format" value="txt"/>
+    	   <cache-control cache="yes"/>
+    	</forward>
+    </dispatch>
+    
 (: correspDesc Beacon :)
 else if (matches($exist:path, '^/correspDesc.xml$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

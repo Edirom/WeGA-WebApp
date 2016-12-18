@@ -16,12 +16,15 @@ import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
 :)
 declare variable $config:app-root as xs:string := 
-    let $rawPath := system:get-module-load-path()
+    let $rawPath := replace(system:get-module-load-path(), '/null/', '//')
     let $modulePath :=
         (: strip the xmldb: part :)
         if (starts-with($rawPath, "xmldb:exist://")) then
@@ -46,7 +49,7 @@ declare variable $config:tmp-collection-path as xs:string := $config:app-root ||
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
 
-declare variable $config:isDevelopment as xs:boolean := config:get-option('environment') eq 'development';
+declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
 declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
@@ -59,25 +62,6 @@ declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
 declare variable $config:default-entries-per-page as xs:int := 10; 
 
-declare variable $config:wega-docTypes := map {
-    'biblio'        := 'A11',
-    'iconography'   := 'A01',
-    'letters'       := 'A04',
-    'diaries'       := 'A06',
-    'news'          := 'A05',
-    'persons'       := 'A00', 
-    'places'        := 'A13',
-    'writings'      := 'A03',
-    'sources'       := 'A22',
-    'var'           := 'A07',
-    'works'         := 'A02',
-    (: dummy entry for creation of filter facets, see facets:document-allFilter :)
-    'characterNames'    := 'A17' 
-};
-
-declare variable $config:wega-docTypes-inverse := map:new(
-    map:keys($config:wega-docTypes) ! map:entry(map:get($config:wega-docTypes, .), .) 
-);
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
@@ -114,54 +98,23 @@ declare %templates:wrap function config:app-title($node as node(), $model as map
     $config:expath-descriptor/expath:title/text()
 };
 
-declare function config:app-meta($node as node(), $model as map(*)) as element()* {
-    <meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="{$config:repo-descriptor/repo:description/text()}"/>,
-    for $author in $config:repo-descriptor/repo:author
-    return
-        <meta xmlns="http://www.w3.org/1999/xhtml" name="creator" content="{$author/text()}"/>
-};
-
-(:~
- : For debugging: generates a table showing all properties defined
- : in the application descriptors.
- :)
-(:declare function config:app-info($node as node(), $model as map(*)) {
-    let $expath := config:expath-descriptor()
-    let $repo := config:repo-descriptor()
-    return
-        <table class="app-info">
-            <tr>
-                <td>app collection:</td>
-                <td>{$config:app-root}</td>
-            </tr>
-            {
-                for $attr in ($expath/@*, $expath/*, $repo/*)
-                return
-                    <tr>
-                        <td>{node-name($attr)}:</td>
-                        <td>{$attr/string()}</td>
-                    </tr>
-            }
-            <tr>
-                <td>Controller:</td>
-                <td>{ request:get-attribute("$exist:controller") }</td>
-            </tr>
-        </table>
-};:)
-
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
  :  
  : @author Peter Stadler
  : @param $key the key to look for in the options file
- : @return xs:string the option value as string identified by the key otherwise the empty string
+ : @return xs:string the option value as string identified by the key otherwise the empty sequence
  :)
-declare function config:get-option($key as xs:string?) as xs:string {
-    switch ($key)
-        (: this serves as a shortcut for legacy code :)
-        (: Please use core:link-to-current-app() directly! :)
-        case 'baseHref' return core:link-to-current-app(())
-        default return str:normalize-space($config:options-file/id($key))
+declare function config:get-option($key as xs:string?) as xs:string? {
+    let $result :=
+        switch ($key)
+            (: this serves as a shortcut for legacy code :)
+            (: Please use core:link-to-current-app() directly! :)
+            case 'baseHref' return core:link-to-current-app(())
+            default return str:normalize-space($config:options-file/id($key))
+    return
+        if($result) then $result
+        else core:logToFile('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
 };
 
 (:~
@@ -191,18 +144,17 @@ declare function config:get-option($key as xs:string?, $replacements as xs:strin
  : @return xs:string document type
 :)
 declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
-    if(config:is-person($id)) then 'persons'
-    else if(config:is-writing($id)) then 'writings'
-    else if(config:is-work($id)) then 'works'
-    else if(config:is-diary($id)) then 'diaries'
-    else if(config:is-letter($id)) then 'letters'
-    else if(config:is-news($id)) then 'news'
-    else if(config:is-iconography($id)) then 'iconography'
-    else if(config:is-var($id)) then 'var'
-    else if(config:is-biblio($id)) then 'biblio'
-    else if(config:is-place($id)) then 'places'
-    else if(config:is-source($id)) then 'sources'
-    else ()
+    for $func in $wdt:functions
+    return 
+        if($func($id)('check')() and $func($id)('prefix')) then $func($id)('name')
+        else ()
+};
+
+declare function config:get-combined-doctype-by-id($id as xs:string?) as xs:string* {
+    for $func in $wdt:functions
+    return 
+        if($func($id)('check')()) then $func($id)('name')
+        else ()
 };
 
 (:~
@@ -326,6 +278,16 @@ declare function config:is-source($docID as xs:string?) as xs:boolean {
     matches($docID, '^A22\d{4}$')
 };
 
+(:~
+ : Checks whether a given id matches the WeGA pattern of org ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-org($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A08[0-9A-F]{4}$')
+};
 
 (:~
  : Checks whether a given document is from the series "Weber-Studien" published by the WeGA
@@ -422,7 +384,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
 :)
 declare function config:get-xsl-params($params as map()?) as element(parameters) {
     <parameters>
-        <param name="lang" value="{lang:get-set-language(())}"/>
+        <param name="lang" value="{lang:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>

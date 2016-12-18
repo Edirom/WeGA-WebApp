@@ -59,7 +59,7 @@ declare %private function dev:addFffiEntry($IDFile as document-node(), $id as xs
     let $newNode := <entry xml:id="{$id}" dateTime="{$currentdateTime}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
     let $storeNode := 
         if (config:get-doctype-by-id(substring($id, 2))) then update insert $newNode into $IDFile/dev:dictionary
-        else error(xs:QName('dev:error'), 'got wrong ID: ' || $id)
+        else core:logToFile('error', 'dev:addFffiEntry(): got wrong ID: ' || $id || '. Request was: ' || request:get-uri() || '?' || request:get-query-string())
     return 
         $IDFile//id($id)/string(@xml:id)
 };
@@ -92,7 +92,7 @@ declare %private function dev:removeOldEntries($IDFile as document-node()) as em
  : @return xs:string
  :)
 declare %private function dev:getNewID($max as xs:integer, $coll1 as xs:string+, $coll2 as xs:string+) as xs:string {
-    let $IDPrefix := substring($coll1[22], 1, 3) (: use a higher element diary summaries, e.g. diary_Weber_1817 :)
+    let $IDPrefix := substring($coll1[1], 1, 3)
     let $rand := 
         if(config:is-person($coll1[22])) then dev:pad-hex-to-length(dev:int2hex(util:random($max)), 4)
         else functx:pad-integer-to-length(util:random($max), 4)

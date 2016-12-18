@@ -8,7 +8,7 @@
 
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date"/>
+        elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName"/>
 
     <xsl:param name="headerMode" select="false()"/>
 
@@ -65,14 +65,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="tei:head[not(ancestor::tei:floatingText)]" priority="1">
+    <xsl:template match="tei:head[parent::tei:div]" priority="1">
         <xsl:variable name="minHeadLevel" as="xs:integer" select="2"/>
         <xsl:variable name="increments" as="xs:integer">
             <!-- Wenn es ein Untertitel ist wird der Level hochgezählt -->

@@ -34,7 +34,7 @@
                             <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
                         </div>
                         <div class="back colored">
-                            <h3>Bildquelle</h3>
+                            <h3 data-template="lang:translate">imageSource</h3>
                             <p data-template="app:portrait-credits">This is the source</p>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         </li>
                         <li class="media baptism" data-template="app:if-exists" data-template-key="baptism">
                             <div class="pull-left">
-                                <img src="$resources/img/baptism.gif"/>
+                                <img src="$resources/img/baptism.gif" alt="baptism-icon"/>
                             </div>
                             <div class="media-body">
                                 <span data-template="app:print" data-template-key="baptism">20.11.1786</span>
@@ -108,7 +108,7 @@
                         </li>
                         <li class="media funeral" data-template="app:if-exists" data-template-key="funeral">
                             <div class="pull-left">
-                                <img src="$resources/img/funeral.gif"/>
+                                <img src="$resources/img/funeral.gif" alt="funeral-icon"/>
                             </div>
                             <div class="media-body">
                                 <span data-template="app:print" data-template-key="funeral">20.11.1786</span>
@@ -134,7 +134,7 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie" data-template="app:if-not-exists" data-template-key="addrLines">
-                    <h2>Ikonographie</h2>
+                    <h2 data-template="lang:translate">iconography</h2>
                     <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
@@ -154,17 +154,20 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="persons"><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="orgs"><a data-template="app:person-main-tab" href="#biographies">history</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
                                 <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
                                 <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
                                 <li><a data-template="app:person-main-tab" href="#works" data-target="$docID/works.html">works</a></li>
                                 <li><a data-template="app:person-main-tab" href="#biblio" data-target="$docID/biblio.html">biblio</a></li>
+                                <li><a data-template="app:person-main-tab" href="#thematicCommentaries" data-target="$docID/thematicCommentaries.html">thematicCommentaries</a></li>
+                                <li><a data-template="app:person-main-tab" href="#documents" data-target="$docID/documents.html">documents</a></li>
                                 <li><a data-template="app:person-main-tab" href="#news" data-target="$docID/news.html">news</a></li>
                                 <li><a data-template="app:person-main-tab" href="#contacts" data-target="$docID/contacts.html">contacts</a></li>
                                 <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                             </ul>
-                            <button>Mehr</button>
+                            <button data-template="lang:translate">more</button>
                             <ul class="hidden-links hidden"/>
                         </nav>
                     </div>
@@ -193,10 +196,13 @@
                                                         <a data-toggle="tab" href="#gndText" data-template="app:ajax-tab">gnd-entry</a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a data-toggle="tab" href="#ndbText" data-template="app:ajax-tab">ndb-article</a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#adbText" data-template="app:ajax-tab">adb-article</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#pnd-beacon" data-template="app:tab">PND Beacon Links</a>
+                                                        <a data-toggle="tab" href="#gnd-beacon" data-template="app:tab">GND Beacon Links</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
@@ -211,7 +217,8 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
-                                                    <h2 data-template="lang:translate">tabTitle_bio</h2>
+                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
+                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
                                                     <div data-template="app:if-matches" data-template-key="source" data-template-value="Bach">
                                                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
                                                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
@@ -234,13 +241,16 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
+                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="pnd-beacon">
+                                                <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
                                                     <ul data-template="app:print-beacon-links"/>
                                                 </div>
@@ -273,6 +283,14 @@
                                 </div>
                                 <!-- biblio (= Literatur) -->
                                 <div class="biblio paddingTopIcon paddingBottomIcon textBlock" id="biblio">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- thematicCommentaries -->
+                                <div class="thematicCommentaries paddingTopIcon paddingBottomIcon textBlock" id="thematicCommentaries">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- documents -->
+                                <div class="documents paddingTopIcon paddingBottomIcon textBlock" id="documents">
                                     <!-- loaded via ajax -->
                                 </div>
                                 <!-- news -->

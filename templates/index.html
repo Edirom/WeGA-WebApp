@@ -8,7 +8,7 @@
                     <h3 class="unterschriftweber">
                         <a href="index.html#" data-template="app:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL">
                             <span data-template="lang:translate">gotoletter</span> <i class="fa fa-arrow-right"/>
-                        </a> | <span data-template="lang:translate">wordOfTheDay</span> | <img src="$resources/img/unterschrift-weber.png"/>
+                        </a> | <img src="$resources/img/unterschrift-weber.png"/>
                     </h3>
                 </div>
             </div>
@@ -22,14 +22,14 @@
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
                                 <select class="input-group-addon gradient-light bootstrap-select form-control" name="d">
-                                    <option value="all" data-template="lang:translate">all</option>
-                                    <option value="persons" data-template="lang:translate">persons</option>
+                                    <option value="all" data-template="app:search-options">all</option>
+                                    <!--<option value="personsPlus" data-template="lang:translate">personsPlus</option>
                                     <option value="letters" data-template="lang:translate">correspondence</option>
                                     <option value="diaries" data-template="lang:translate">diaries</option>
                                     <option value="writings" data-template="lang:translate">writings</option>
                                     <option value="works" data-template="lang:translate">works</option>
                                     <option value="news" data-template="lang:translate">news</option>
-                                    <option value="biblio" data-template="lang:translate">bibliography</option>
+                                    <option value="biblio" data-template="lang:translate">bibliography</option>-->
                                 </select>
                             </div>
                             <input type="text" class="form-control" placeholder="Standard Suche" name="q" id="query-input"/>
@@ -49,13 +49,18 @@
     <div class="colored borderBottom" data-template="app:if-matches" data-template-key="environment" data-template-value="development">
         <div class="container">
             <form role="form" class="form-inline">
-                <div class="row paddingTopIcon paddingBottomIcon">
+                <div class="row paddingTopIcon paddingBottomIcon history">
                     <h3>Development Tools</h3>
-                    <div class="col-md-4" data-template="dev-app:ant-log">
-                        <h4>Commit Status</h4>
-                        <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                    <div class="col-md-3" data-template="dev-app:ant-log">
+                        <h4>Subversion Commit Status</h4>
+                        <p data-template="app:if-exists" data-template-key="ant-log-rev">
+                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                        </p>
+                        <p data-template="app:if-not-exists" data-template-key="ant-log-rev">
+                            Keine Log-Datei verfügbar.
+                        </p>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-3 form-group">
                         <h4>Neue ID</h4>
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
@@ -80,9 +85,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <h4>Codesharing</h4>
                         <a href="https://euryanthe.de/wega/apps/codesharing/index.htm">Codesharing WeGA-data</a>
+                    </div>
+                    <div class="col-md-3" data-template="dev-app:app-status">
+                        <h4>WebApp Status</h4>
+                        <p>Deployed: <span data-template="app:print" data-template-key="deployment-date">31. August 2016</span></p>
+                        <!--<p>Version: <a href="#">71737434</a></p>-->
                     </div>
                 </div>
             </form>
@@ -113,7 +123,7 @@
                     <h2>
                         <a href="$link/A002068.html">Carl Maria von Weber</a>
                     </h2>
-                    <ul data-template="app:order-list-items">
+                    <ul data-template="app:order-list-items" class="teaser-list">
                         <li><a href="$link/A002068.html"><span data-template="lang:translate">webers_person</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/A002068.html#correspondence"><span data-template="lang:translate">webers_correspondence</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/A002068.html#diaries"><span data-template="lang:translate">webers_diaries</span> <i class="fa fa-arrow-right"/></a></li>

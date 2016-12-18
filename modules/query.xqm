@@ -13,39 +13,24 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
- : Print the regularised name for a given person or place ID
+ : Print the regularised title for a given WeGA ID
+ : The function serves as a convenient shortcut to the wdt:* title functions, 
+ : e.g. wdt:persons($key)('title')('txt')
  :
+ : @param $key the WeGA ID, e.g. A002068
  : @author Peter Stadler
  : @return xs:string
  :)
-declare function query:get-reg-name($key as xs:string) as xs:string {
-    (:
-    Leider zu langsam
-    
-    let $regName := collection('/db/persons')//id($key)/tei:persName[@type='reg']
-    return wega:cleanString($regName)
-    :)
-    let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($key)) 
-    let $response := $dictionary//@docID[. = $key]
+declare function query:title($key as xs:string) as xs:string {
+    let $docType := config:get-doctype-by-id($key) 
+    let $response := wdt:lookup($docType, $key)('title')('txt')
     return 
-        if(exists($response)) then $response/parent::norm:entry/text()
-        else ''
-};
-
-(:~
- : Print the regularised title for a given doc ID (works, writings, etc.)
- :
- : @author Peter Stadler
- : @return xs:string
- :)
-declare function query:get-reg-title($docID as xs:string) as xs:string {
-    let $dictionary := norm:get-norm-doc(config:get-doctype-by-id($docID)) 
-    let $response := $dictionary//@docID[. = $docID]
-    return 
-        if(exists($response)) then $response/parent::norm:entry/text()
+        if(exists($response)) then $response
         else ''
 };
 
@@ -69,7 +54,7 @@ declare function query:get-authorID($doc as document-node()?) as xs:string {
 
 (:~
  : Grabs the first author from a TEI document and returns its name (as noted in the document)
- : For the regularized name see query:get-reg-name()
+ : For the regularized name see query:title()
  :
  : @author Peter Stadler 
  : @param $item the id of the TEI document (or the document node itself) to grab the author from
@@ -97,7 +82,27 @@ declare function query:get-author-element($doc as document-node()?) as element()
 :)
 declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
     core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
+    core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
     core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
+};
+
+
+(:~
+ : Retrieves a document by VIAF identifier
+ :
+ : @author Peter Stadler
+ : @param $viaf the VIAF (Virtual International Authority File) identifier
+ : @return xs:string
+:)
+declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
+    let $gnd := wega-util:viaf2gnd($viaf)
+    return
+        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
+        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
+        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$viaf][@type='viaf']/root() |
+        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
+        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
+        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
 };
 
 (:~
@@ -105,14 +110,13 @@ declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
  :
  : @author Peter Stadler
  : @param $item may be xs:string (the WeGA ID), document-node() (of a person file), or a tei:person element
- : @return the GND as xs:string, empty string or empty sequence if nothing was found 
+ : @return the GND as xs:string, or empty sequence if nothing was found 
 :)
 declare function query:get-gnd($item as item()) as xs:string? {
     typeswitch($item)
-        case xs:string return core:doc($item)//tei:idno[@type = 'gnd']/string()
-        case document-node() return $item//tei:idno[@type = 'gnd']/string()
-        case element(tei:person) return $item/tei:idno[@type = 'gnd']/string()
-        default return ()
+        (: there might be several gnd IDs in organizations :)
+        case xs:string return (core:doc($item)//tei:idno[@type = 'gnd']/text())[1]
+        default return ($item//tei:idno[@type = 'gnd']/text())[1]
 };
 
 (:~ 
@@ -125,10 +129,10 @@ declare function query:get-gnd($item as item()) as xs:string? {
 declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
     let $day := functx:pad-integer-to-length(day-from-date($date), 2)
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
-    let $date-regex := concat('^', string-join(('\d{4}',$month,$day),'-'), '$')
+    let $month-day := concat('-', $month, '-', $day)
     return 
-        collection(config:get-option('letters'))//tei:correspAction[@type='sent']/tei:date[matches(@when, $date-regex)][not(functx:all-whitespace(following::tei:text))] union
-        collection(config:get-option('persons'))//tei:date[matches(@when, $date-regex)][not(preceding-sibling::tei:date[matches(@when, $date-regex)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
+        core:getOrCreateColl('letters', 'indices', true())//tei:correspAction[@type='sent']/tei:date[contains(@when, $month-day)][following::tei:text//tei:p] union
+        core:getOrCreateColl('persons', 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']
 };
 
 (:~
@@ -143,7 +147,7 @@ declare function query:get-title-element($doc as document-node(), $lang as xs:st
     return
         if(config:is-diary($docID)) then <tei:date>{$doc/tei:ab/data(@n)}</tei:date>
         else if(config:is-work($docID)) then ($doc//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
-        else if(config:is-var($docID)) then $doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@xml:lang = $lang]
+        else if(config:is-var($docID)) then ($doc//tei:title[@level = 'a'][@xml:lang = $lang])[1]
         else ($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
 };
 
@@ -170,7 +174,7 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
         switch(config:get-doctype-by-id($docID))
         case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
         case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], false())
-        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint/tei:date, false())
+        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, false())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
         default return () 
@@ -184,8 +188,8 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
 ~:)
 declare function query:get-facets($collection as node()*, $facet as xs:string) as item()* {
     switch($facet)
-    case 'sender' return $collection//tei:correspAction[@type='sent']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
-    case 'addressee' return $collection//tei:correspAction[@type='received']//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+    case 'sender' return $collection//tei:correspAction[range:eq(@type,'sent')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+    case 'addressee' return $collection//tei:correspAction[range:eq(@type,'received')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
     case 'placeOfSender' return $collection//tei:placeName[parent::tei:correspAction/@type='sent']
     case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:correspAction/@type='received']
@@ -202,17 +206,18 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
             probably need to change to ft:query() someday?!
         :)
     case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key)
-    case 'works' return ($collection//tei:workName/@key[not(contains(., ' '))] | $collection//tei:rs[@type='work']/@key[not(contains(., ' '))])
+    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
     case 'docTypeSubClass' return $collection//tei:text/@type
+    case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
     default return ()
 };
 
 declare function query:correspondence-partners($id as xs:string) as map(*) {
     map:new(
-        for $i in (norm:get-norm-doc('letters')//@addresseeID[contains(., $id)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $id)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+') 
+        for $i in (norm:get-norm-doc('letters')//norm:entry[contains(@addresseeID, $id)] | norm:get-norm-doc('letters')//norm:entry[contains(@authorID, $id)])/(@authorID, @addresseeID)/tokenize(., '\s+') 
         group by $partnerID := data($i)
         return
             map:entry($partnerID, count($i))
@@ -229,7 +234,7 @@ declare function query:place-of-diary-day($diaryDay as document-node()) as array
     let $placeIDs := tokenize($diaryDay/tei:ab/@where, '\s+')[config:is-place(.)]
     return
         array {
-            $placeIDs ! query:get-reg-name(.)
+            $placeIDs ! query:title(.)
         }
 };
 
@@ -243,4 +248,21 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
         $doc//mei:respStmt/mei:persName
     return
         $contributors ! data(.)
+};
+
+(:~
+ : Search for exact dates within collections
+ : This function should probably be moved into the wdt module sometimes …
+~:)
+declare function query:exact-date($dates as xs:date*, $docType as xs:string) as document-node()* {
+    let $stringDates := $dates ! string(.) (: Need to do a string comparison to boost index performance :)
+    return
+        switch($docType)
+        case 'writings' case 'letters' case 'diaries' return 
+            norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID) | 
+            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+        case 'personsPlus' return 
+            core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
+            core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()
+        default return core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
 };

@@ -20,6 +20,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace functx="http://www.functx.com";
@@ -41,23 +42,34 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
+        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
         let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
             if(exists($model('beaconMap'))) then $model('beaconMap')
             else try { 
-                wega-util:beacon-map(query:get-gnd($model('doc')))
+                wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')))
                 }
                 catch * { map:new() } 
         let $portraitindex-images := 
             if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(count(map:keys($beaconMap)[.= 'wikipedia']) gt 0) then img:wikipedia-images($model, $lang)
+            if(count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
             else ()
+        let $munich-stadtmuseum-images := 
+            if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
+            else ()
+        let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
+        let $portrait := 
+            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
+            else ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
         return
-            map { 'iconographyImages' := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images) }
+            map { 
+                'iconographyImages' := $iconographyImages,
+                'portrait' := $portrait
+            }
 };
 
 (:~
@@ -78,32 +90,38 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
  : @return 
  :)
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $wikiArticle := 
-        if($pnd) then wega-util:grabExternalResource('wikipedia', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
-    let $pics := $wikiArticle//xhtml:div[@class='thumbinner']
+    (: Look for images in wikipedia infobox (for organizations) and thumbnails  :)
+    let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:wikipedia-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
-        let $tmpPicURI := $div//xhtml:img[@class='thumbimage']/string(@src)
+        let $tmpPicURI := ($div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img[not(@class='thumbimage')]/@src)[1]
         let $thumbURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
             if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
+        let $tmpLinkTarget := ($div/xhtml:a/@href | $div[self::xhtml:table]//xhtml:a[xhtml:img]/@href)[1]
         let $linkTarget := 
             (: Create a link to Wikipedia, e.g. https://de.wikipedia.org/wiki/Datei:Constanze_mozart.jpg :)
             (: NB, not all images are found at wikimedia commons due to copyright issues :)
             switch($lang) 
-            case 'de' return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://de.wikipedia.org/wiki/Datei:'), '&amp;')
-            default return functx:substring-before-if-contains(replace($div/xhtml:a/@href, '.+:', 'https://en.wikipedia.org/wiki/File:'), '&amp;')
+            case 'de' return functx:substring-before-if-contains(replace($tmpLinkTarget, '.+:', 'https://de.wikipedia.org/wiki/Datei:'), '&amp;')
+            default return functx:substring-before-if-contains(replace($tmpLinkTarget, '.+:', 'https://en.wikipedia.org/wiki/File:'), '&amp;')
         (:  Wikimedia IIIF
             siehe https://groups.google.com/forum/?hl=en#!topic/iiif-discuss/UTD181dxKtU
             https://github.com/Toollabs/zoomviewer
         :)
+        let $caption := 
+            if($div[self::xhtml:table]) then $div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr[1] 
+            else $div/xhtml:div[@class='thumbcaption']
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
-                    'caption' := normalize-space(concat($div/xhtml:div[@class='thumbcaption'],' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
                     'linkTarget' := $linkTarget,
                     'source' := 'Wikimedia',
                     'url' := function($size) {
@@ -136,11 +154,12 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
  : @return 
  :)
 declare %private function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($pnd) then wega-util:grabExternalResource('portraitindex', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:portraitindex-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $picURI := $div//xhtml:img/data(@src)
@@ -166,11 +185,12 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
  : @return 
  :)
 declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $pnd := query:get-gnd($model('doc'))
+    let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($pnd) then wega-util:grabExternalResource('tripota', $pnd, $lang)
+        if($gnd) then wega-util:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:tripota-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
@@ -187,6 +207,36 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
             else ()
 };
 
+(:~
+ : Helper function for grabbing images from the Münchner Stadtmuseum
+ :
+ : @author Peter Stadler 
+ : @param 
+ : @param $lang the language variable (de|en)
+ : @return 
+ :)
+declare %private function img:munich-stadtmuseum-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $gnd := query:get-gnd($model('doc'))
+    let $page := 
+        if($gnd) then wega-util:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        else ()
+    let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
+    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:munich-stadtmuseum-images(): no images found for GND ' || $gnd) else ()
+    return 
+        for $a in $pics
+        let $picURI := concat('https://stadtmuseum.bayerische-landesbibliothek-online.de', $a/xhtml:img/@src)
+        return 
+            if($picURI castable as xs:anyURI) then
+                map {
+                    'caption' := str:normalize-space($a/xhtml:img/@title) || ' (Quelle: Münchner Stadtmuseum)',
+                    'linkTarget' := 'https://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/' || $gnd,
+                    'source' := 'Münchner Stadtmuseum',
+                    'url' := function($size) {
+                        $picURI
+                    }
+                }
+            else ()
+};
 
 (:~
  : Helper function for adding local (= from the WeGA) images
@@ -234,22 +284,20 @@ http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd7
 declare 
     %templates:default("lang", "en")
     function img:portrait($node as node(), $model as map(*), $lang as xs:string, $size as xs:string) as element() {
-        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
-        let $portrait := 
-            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
-            else ($model('iconographyImages'), img:get-generic-portrait($model, $lang))[1]
-        let $url := $portrait('url')($size)
+        let $url := $model('portrait')('url')($size)
         return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) = ('src', 'title', 'alt'))],
-                attribute title {$portrait('caption')},
-                attribute alt {$portrait('caption')},
+                attribute title {$model('portrait')('caption')},
+                attribute alt {$model('portrait')('caption')},
                 attribute src {$url}
             }
 };
 
 declare %private function img:get-generic-portrait($model as map(*), $lang as xs:string) as map(*) {
-    let $sex := $model('doc')//tei:sex/text()
+    let $sex := 
+        if(config:is-org($model('docID'))) then 'org'
+        else $model('doc')//tei:sex/text()
     return
         map {
             'caption' := 'no portrait available',
@@ -261,11 +309,13 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     switch($sex)
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
+                    case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs.png')
                     default return core:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
+                    case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }
@@ -279,7 +329,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
     let $doc := core:doc($docID)
     let $baseURL := config:get-option('iiifServer')
     let $id := $baseURL || $docID 
-    let $label := query:get-reg-title($docID)
+    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
     return
         map {

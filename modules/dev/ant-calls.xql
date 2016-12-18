@@ -8,8 +8,9 @@ import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 
-declare variable $local:wega-docTypes as xs:string+ := tokenize('biblio diaries iconography letters news persons places sources var works writings', '\s+');
+declare variable $local:wega-docTypes as xs:string+ := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :);
 
 declare function local:patch-subversion-history($patch as document-node()) {
     if($patch/dictionary/@head castable as xs:integer) then (
@@ -54,7 +55,9 @@ declare function local:get-collection-path($partialPath as xs:string) as xs:stri
 };
 
 declare function local:reindex($docType as xs:string) as xs:boolean {
-    if($docType = $local:wega-docTypes) then xmldb:reindex(str:join-path-elements(($config:data-collection-path,$docType)))
+    if($docType = 'persons') then xmldb:reindex(str:join-path-elements(($config:data-collection-path,'persons'))) 
+    else if($docType = 'orgs') then xmldb:reindex(str:join-path-elements(($config:data-collection-path,'orgs')))
+    else if($docType = $local:wega-docTypes) then xmldb:reindex(str:join-path-elements(($config:data-collection-path,$docType)))
     else false()
 };
 

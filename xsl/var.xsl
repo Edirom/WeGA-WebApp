@@ -2,31 +2,45 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0"
+    xmlns:teix="http://www.tei-c.org/ns/Examples"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:param name="createSecNos" select="false()"/>
     <xsl:param name="collapseBlock" select="false()"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space
-        elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date"/>
+    <xsl:preserve-space elements="tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
+    
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="tei:text">
+    <!-- wir nie benutzt, oder?! -->
+    <!--<xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'docText'"/>
             <xsl:apply-templates select="./tei:body/tei:div[@xml:lang=$lang] | ./tei:body/tei:divGen"/>
         </xsl:element>
+    </xsl:template>-->
+    
+    <xsl:template match="tei:body">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
+    <xsl:template match="tei:back">
+        <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="tei:divGen[@type='toc']">
         <xsl:call-template name="createToc">
             <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:divGen[@type='endNotes']">
+        <xsl:call-template name="createEndnotesFromNotes"/>
     </xsl:template>
 
     <xsl:template match="tei:div">
@@ -95,13 +109,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-
     <xsl:template match="tei:eg">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
@@ -111,6 +118,26 @@
                 <xsl:attribute name="class" select="'panel-body'"/>
                 <xsl:apply-templates select="node()[not(self::tei:gloss)]"/>
             </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="teix:egXML">
+        <xsl:element name="div">
+            <xsl:attribute name="class" select="'panel'"/>
+            <xsl:element name="pre">
+                <xsl:attribute name="class">prettyprint</xsl:attribute>
+                <xsl:element name="code">
+                    <xsl:attribute name="class">language-xml</xsl:attribute>
+                    <xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
+                </xsl:element>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:ab">
+        <xsl:element name="div">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
@@ -166,6 +193,24 @@
             </xsl:choose>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:note[@type=('commentary','definition','textConst')]">
+        <xsl:call-template name="popover">
+            <xsl:with-param name="marker" select="'arabic'"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="tei:listBibl">
+        <xsl:element name="ul">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:bibl[parent::tei:listBibl]">
+        <xsl:element name="li">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <!-- Create section numbers for headings   -->
     <xsl:template name="createSecNo">
@@ -194,11 +239,21 @@
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][not(following::tei:divGen)][parent::tei:div]">
+                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
                         <xsl:element name="a">
                             <xsl:attribute name="href">
-                                <xsl:value-of select="concat('#', generate-id())"/>
+                                <xsl:choose>
+                                    <xsl:when test="parent::tei:div[@xml:id]">
+                                        <xsl:value-of select="concat('#', parent::tei:div/@xml:id)"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::tei:divGen">
+                                        <xsl:value-of select="concat('#', @type)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat('#', generate-id())"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:attribute>
                             <xsl:if test="$createSecNos">
                                 <xsl:call-template name="createSecNo">
@@ -207,7 +262,14 @@
                                 </xsl:call-template>
                                 <xsl:text> </xsl:text>
                             </xsl:if>
-                            <xsl:value-of select="."/>
+                            <xsl:choose>
+                                <xsl:when test="self::tei:divGen">
+                                    <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                     </xsl:element>
                 </xsl:for-each>
@@ -222,6 +284,120 @@
             <xsl:attribute name="class" select="'para-label'"/>
             <xsl:value-of select="concat('§ ', $no)"/>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template name="createEndnotesFromNotes">
+        <xsl:element name="div">
+            <xsl:attribute name="id" select="'endNotes'"/>
+            <xsl:element name="h2">
+                <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
+            </xsl:element>
+            <xsl:element name="ol">
+                <xsl:attribute name="class">endNotes</xsl:attribute>
+                <xsl:for-each select="//tei:note[@type=('commentary','definition','textConst')]">
+                    <xsl:element name="li">
+                        <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:element name="a">
+                            <xsl:attribute name="class">endnote_backlink</xsl:attribute>
+                            <xsl:attribute name="href" select="concat('#ref-', @xml:id)"/>
+                            <xsl:value-of select="position()"/>
+                        </xsl:element>
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="verbatim">
+        <xsl:param name="indent-increment" select="'   '"/>
+        <xsl:param name="indent" select="'&#xA;'"/>
+        
+        <!-- indent the opening tag; unless it's the root element -->
+        <xsl:if test="not(parent::teix:egXML)">
+            <xsl:value-of select="$indent"/>
+        </xsl:if>
+        
+        <!-- Begin opening tag -->
+        <xsl:text>&lt;</xsl:text>
+        <xsl:value-of select="name()"/>
+        
+        <!-- Namespaces -->
+        <xsl:for-each select="namespace::*[not(starts-with(., 'http://www.tei-c.org') or . eq 'http://www.w3.org/XML/1998/namespace')]">
+            <xsl:text> xmlns</xsl:text>
+            <xsl:if test="name() != ''">
+                <xsl:text>:</xsl:text>
+                <xsl:value-of select="name()"/>
+            </xsl:if>
+            <xsl:text>='</xsl:text>
+            <xsl:call-template name="verbatim-xml">
+                <xsl:with-param name="text" select="."/>
+            </xsl:call-template>
+            <xsl:text>'</xsl:text>
+        </xsl:for-each>
+        
+        <!-- Attributes -->
+        <xsl:for-each select="@*">
+            <xsl:text> </xsl:text>
+            <xsl:value-of select="name()"/>
+            <xsl:text>='</xsl:text>
+            <xsl:call-template name="verbatim-xml">
+                <xsl:with-param name="text" select="."/>
+            </xsl:call-template>
+            <xsl:text>'</xsl:text>
+        </xsl:for-each>
+        
+        <!-- End opening tag -->
+        <xsl:text>&gt;</xsl:text>
+        
+        <!-- Content (child elements, text nodes, and PIs) -->
+        <xsl:apply-templates select="node()" mode="verbatim">
+            <xsl:with-param name="indent" select="concat($indent, $indent-increment)"/>
+        </xsl:apply-templates>
+        
+        <xsl:if test="*">
+            <xsl:value-of select="$indent"/>
+        </xsl:if>
+        
+        <!-- Closing tag -->
+        <xsl:text>&lt;/</xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:text>&gt;</xsl:text>
+    </xsl:template>
+    
+    <xsl:template match="text()" mode="verbatim">
+        <xsl:call-template name="verbatim-xml">
+            <xsl:with-param name="text" select="."/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="processing-instruction()" mode="verbatim">
+        <xsl:text>&lt;?</xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:text> </xsl:text>
+        <xsl:call-template name="verbatim-xml">
+            <xsl:with-param name="text" select="."/>
+        </xsl:call-template>
+        <xsl:text>?&gt;</xsl:text>
+    </xsl:template>
+    
+    <xsl:template name="verbatim-xml">
+        <xsl:param name="text"/>
+        <xsl:if test="$text != ''">
+            <xsl:variable name="head" select="substring($text, 1, 1)"/>
+            <xsl:variable name="tail" select="substring($text, 2)"/>
+            <xsl:choose>
+                <xsl:when test="$head = '&amp;'">&amp;amp;</xsl:when>
+                <xsl:when test="$head = '&lt;'">&amp;lt;</xsl:when>
+                <xsl:when test="$head = '&gt;'">&amp;gt;</xsl:when>
+                <xsl:when test="$head = '&#34;'">&amp;quot;</xsl:when>
+                <xsl:when test="$head = &#34;'&#34;">&amp;apos;</xsl:when>
+                <xsl:otherwise><xsl:value-of select="$head"/></xsl:otherwise>
+            </xsl:choose>
+            <xsl:call-template name="verbatim-xml">
+                <xsl:with-param name="text" select="$tail"/>
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -218,11 +218,11 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="td">
-        <xsl:element name="td">
+    <xsl:template match="td | th">
+        <xsl:copy>
             <xsl:copy-of select="@style"/>
             <xsl:apply-templates/>
-        </xsl:element>
+        </xsl:copy>
     </xsl:template>
     <xsl:template match="img">
         <xsl:element name="img">

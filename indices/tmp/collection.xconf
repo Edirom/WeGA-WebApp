@@ -1,17 +1,21 @@
 <collection xmlns="http://exist-db.org/collection-config/1.0">
     <index xmlns:norm="http://xquery.weber-gesamtausgabe.de/modules/norm">
-        <create qname="width" type="xs:string"/>
-        <create qname="height" type="xs:string"/>
-        <create qname="localFile" type="xs:string"/>
-        <create qname="norm:entry" type="xs:string"/>
-        <create qname="@docID" type="xs:string"/>
-        <create qname="@n" type="xs:string"/>
-        <create qname="@authorID" type="xs:string"/>
-        <create qname="@addresseeID" type="xs:string"/>
-        <create qname="@year" type="xs:string"/>
-        <create qname="@month" type="xs:string"/>
-        <create qname="@day" type="xs:string"/>
-        <create qname="@class" type="xs:string"/>
+        <range>
+            <create qname="width" type="xs:string"/>
+            <create qname="height" type="xs:string"/>
+            <create qname="localFile" type="xs:string"/>
+            <create qname="norm:entry">
+                <field name="norm-docID" match="@docID" type="xs:string"/>
+            </create>
+            <create qname="@n" type="xs:string"/>
+            <create qname="@docID" type="xs:string"/>
+            <create qname="@authorID" type="xs:string"/>
+            <create qname="@addresseeID" type="xs:string"/>
+            <create qname="@year" type="xs:string"/>
+            <create qname="@month" type="xs:string"/>
+            <create qname="@day" type="xs:string"/>
+            <create qname="@class" type="xs:string"/>
+        </range>
         <fulltext default="none" attributes="false"/>
     </index>
 </collection>

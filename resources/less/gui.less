@@ -58,7 +58,21 @@
 
 .popover p {
     margin-bottom: 5px;
-    font-family: 'CamingoDos-Regular';
+    font-family: @font-family-sans-serif;
+}
+
+.popover-content .endnote_backlink {
+    display:none;
+}
+
+ol.endNotes {
+    margin:0px;
+}
+
+/* hanging indent for bibliographies*/
+.bibliography li {
+    text-indent:-2em;
+    padding-left:2em;
 }
 
 /* adds space between work title and opus number  */
@@ -80,7 +94,7 @@
     margin: 0px 1em;
 }
 
-.hi, .hi * {
+*[class*="hi-"], *[class*="hi-"] *, .kwic .hi {
     color: #ffffff !important;
     background-color: @brand-primary !important;
 }
@@ -107,45 +121,52 @@
 .panel-heading {
     border-radius: @border-radius-base;
 }
+
 /* Some datePicker settings */
 #datePicker .ui-datepicker {
     width: 100%;
     background: #fff none repeat scroll 0 0;
     border-radius: @border-radius-base;
     border: none;
-    font-family: @font-family-sans-serif;
-}
-#datePicker .ui-widget-header {
-    border-radius: @border-radius-base;
-    background: @gray-lighter none repeat scroll 0 0;
     color: @gray;
-}
-#datePicker .ui-widget-content {
-    color: @gray;
-}
-#datePicker a {
-    color: @brand-primary;
-}
-#datePicker a.ui-state-active {
-    color: #fff;
-}
-#datePicker select {
-    border-radius: @border-radius-base;
-    font-family: @font-family-sans-serif;
+    .ui-widget-header {
+        border-radius: @border-radius-base;
+        background: @gray-lighter none repeat scroll 0 0;
+    }
+    a {
+        color: @brand-primary;
+    }
+    a.ui-state-active {
+        color: #fff;
+    }
+    select {
+        border-radius: @border-radius-base;
+    }
+    table, select {
+        font-family: @font-family-sans-serif;
+    }
 }
 
-a.noteMarker
+a.noteMarker, a.thematicCommentaries
 {
     background-color: @gray-light;
     cursor:pointer;
     padding: 0px 2px;
     margin-left: 2px;
-    color:#fff;
+    color:#fff !important;
+    &.arabic {
+        background-color: inherit;
+        padding: 0px 1px;
+        margin-left: 0px;
+        color:@brand-primary  !important;
+        .tei_hi_superscript;
+    }
 }
 .documentFooter {
     font-size: 85%;
     line-height: 1.2em;
     padding-top: 2ex;
+    color: @gray;
 }
 .piwik-opt-out iframe {
     border: none;
@@ -185,4 +206,74 @@ a.noteMarker
 }
 h2.resp-accordion {
     display:none;
+}
+/* loading spinner for selectize plugin */
+.loading::before {
+    content: "\f110";
+	color:@gray-dark;
+	z-index: 2;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+    .fa-spin;
+    .fa;
+}
+
+@media (max-width: @screen-sm-max) and (min-width: @screen-sm)  {
+    .teaser-list {
+        min-height: 7 * @line-height-computed;
+    }
+}
+
+.collapseMarker, .collapseMarker:hover {
+    cursor:pointer;
+    color:inherit;
+    text-decoration:none;
+}
+
+.collapseMarker.collapsed:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f13a";
+    margin-left: 10px;
+}
+
+.collapseMarker:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f139";
+    margin-left: 10px;
+}
+
+/* some special treatment for Prager Spielpläne */
+div.table-wrapper {
+    h4.collapseMarker {
+        line-height: 1.875;
+        margin-bottom:0px;
+    }
+    table.collapse {
+        margin-bottom:0px;
+    }
+}
+
+/* large images (600px) within running text */
+.maxSize img {
+    display:block;
+    margin: auto;
+}
+
+.float-left img {
+    float:left;
+    margin: 0px 2em 1em 0px;
+    padding: .5em 1em;
+}
+
+.float-right img {
+    float:right;
+    margin: 0px 0px 1em 2em;
+    padding: .5em 1em;
 }
