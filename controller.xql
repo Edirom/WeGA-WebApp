@@ -102,7 +102,7 @@ else if ($exist:resource = 'correspDesc.xml') then
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
-   if(config:get-combined-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = $search:wega-docTypes) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
+   if(config:get-combined-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ($search:wega-docTypes, 'var')) then controller:dispatch(map:put($exist-vars, 'resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
    else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)
@@ -126,27 +126,27 @@ else if (matches($exist:path, 'A00[A-F0-9]{4}/' || encode-for-uri(lang:get-langu
     controller:redirect-absolute(replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
 
 (: Werke :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
 (: Bibliographie :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
 (: News :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
 (: Themenkommentare :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
 
 (: Dokumente :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
+else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
     controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
