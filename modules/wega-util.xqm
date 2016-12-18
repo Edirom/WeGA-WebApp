@@ -40,7 +40,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
         switch($resource)
         case 'wikipedia' return
             let $beaconMap := wega-util:beacon-map($gnd, $docType)
-            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')])[1]
+            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')][1])[1]
             return
                 replace($url, 'dewiki', $lang || 'wiki')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
