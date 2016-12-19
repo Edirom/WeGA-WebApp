@@ -127,7 +127,13 @@
         <!-- Copy libs from bower components -->
         <copy todir="${dist.dir}/resources/lib">
             <fileset dir="bower_components">
-               <exclude name="**/*.html"/>
+                <include name="**/*.js"/>
+                <include name="**/*.css"/>
+                <!-- exclude html files. non-well-formed html makes eXist choke -->
+                <exclude name="**/*.html"/>
+                <!-- exclude tests to reduce file size -->
+                <exclude name="**/test/**"/>
+                <exclude name="**/tests.js"/>
             </fileset>
         </copy>
     </target>
