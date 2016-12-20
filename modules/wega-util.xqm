@@ -70,7 +70,7 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
     let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { http:send-request($req) }
-        catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+        catch * {core:logToFile(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
         else $response:)
@@ -207,7 +207,9 @@ declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
 };
 
 declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)* {
-    let $url := 'https://tools.wmflabs.org/zoomviewer/iiif.php?f=' || $wikiFilename
+    (: kanonische Adresse wäre eigentlich https://tools.wmflabs.org/zoomviewer/iiif.php?f=$DATEINAME$, bestimmte Weiterleitungen funktionieren dann aber nicht :)
+    (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
+    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $wikiFilename || '/info.json'
     let $lease := xs:dayTimeDuration('P1D')
     let $fileName := util:hash($wikiFilename, 'md5') || '.xml'
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
