@@ -179,7 +179,7 @@ declare %private function api:document($documents as document-node()*, $model as
 declare %private function api:codeSample($nodes as node()*, $model as map()) as map()* {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
-    let $scheme := $model('swagger:config')?schemes[1]
+    let $scheme := $model('swagger:config')?schemes?1
     return 
         for $node in $nodes
         let $docID := $node/root()/*/data(@xml:id)
