@@ -80,7 +80,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :)
 
 (: Generelle Weiterleitung für Ressourcen :)    
-else if (matches($exist:resource, 'A\d{2}[0-9A-F]{4}')) then 
+else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,4})?$')) then 
     controller:dispatch($exist-vars)
     
 (:
