@@ -1477,9 +1477,8 @@ declare
     %templates:default("max", "200")
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
         let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body
-        let $textString := string-join(wega-util:txtFromTEI($textXML), '')
         return
-            str:shorten-text($textString, number($max))
+            str:shorten-TEI($textXML, number($max))
 };
 
 

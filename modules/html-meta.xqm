@@ -86,8 +86,8 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
                 $placesOfAction
             )
         case 'letters' case 'writings' case 'documents' return str:normalize-space($model('doc')//tei:note[@type='summary'])
-        case 'diaries' return str:shorten-text($model('doc')/tei:ab, 150)
-        case 'news' case 'var' case 'thematicCommentaries' return str:shorten-text(string-join($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], ' '), 150)
+        case 'diaries' return str:shorten-TEI($model('doc')/tei:ab, 150)
+        case 'news' case 'var' case 'thematicCommentaries' return str:shorten-TEI($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], 150)
         case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
         case 'error' return lang:get-language-string('metaDescriptionError', $lang)
         default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
