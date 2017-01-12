@@ -56,6 +56,10 @@
         </xsl:attribute>
     </xsl:template>
     
+    <xsl:template match="@data-target[matches(., '#[a-f0-9]+')]">
+        <xsl:attribute name="data-target">some_computed_id</xsl:attribute>
+    </xsl:template>
+    
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
     <xsl:template match="html:small[matches(., '^ \(\d+\)$')]"/><!-- Anzahl der jeweiligen Dokumente (Backlinks, Briefe, etc.) in den Personentabs -->

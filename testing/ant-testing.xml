@@ -5,6 +5,7 @@
     
     <target name="reset-expected-results">
         <delete dir="${expected.results.dir}/${docType}"/>
+        <mkdir dir="${expected.results.dir}/${docType}"/>
         <get dest="${expected.results.dir}/${docType}">
             <resourcelist>
                 <file file="testing/urls/${docType}.txt"/>
@@ -19,6 +20,7 @@
     
     <target name="get-results" depends="create-result-URLs">
         <delete dir="${tmp.dir}/results.raw/${docType}"/>
+        <mkdir dir="${tmp.dir}/results.raw/${docType}"/>
         <get dest="${tmp.dir}/results.raw/${docType}">
             <resourcelist>
                 <file file="${tmp.dir}/${docType}.txt"/>
