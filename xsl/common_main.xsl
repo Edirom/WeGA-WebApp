@@ -419,6 +419,13 @@
                     <xsl:attribute name="src" select="@url"/>
                 </xsl:element>
             </xsl:when>
+            <xsl:when test="starts-with(@url, 'wega:')">
+                <xsl:element name="img">
+                    <xsl:attribute name="title" select="$title"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifServer'))"/>
+                </xsl:element>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="a">
                     <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
