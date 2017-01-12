@@ -6,7 +6,7 @@
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date tei:subst tei:add tei:note tei:orgName"/>
+    <xsl:preserve-space elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:addrLine tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:l tei:head tei:salute tei:date tei:subst tei:add tei:note tei:orgName"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="apparatus.xsl"/>
