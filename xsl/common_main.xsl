@@ -405,15 +405,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="localURL">
-            <xsl:choose>
-                <!-- Need to double encode for old Apache at euryanthe.de; see also img.xqm!! -->
-                <xsl:when test="contains(wega:getOption('iiifServer'), 'euryanthe')">
-                    <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url)))))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
