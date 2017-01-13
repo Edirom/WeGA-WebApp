@@ -74,7 +74,8 @@
         <xsl:attribute name="href">
             <xsl:choose>
                 <xsl:when test="starts-with(.,'wega:')">
-                    <xsl:value-of select="wega:createLinkToDoc(substring(., 6), $lang)"/>
+                    <!-- part 1: standard link to doc; part 2: fragment identifier -->
+                    <xsl:value-of select="concat(wega:createLinkToDoc(substring(., 6, 7), $lang), substring(., 13))"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="."/>
