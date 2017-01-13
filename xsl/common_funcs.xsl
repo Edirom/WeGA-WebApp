@@ -287,6 +287,7 @@
     <xsl:function name="wega:createLinkToDoc" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:param name="lang" as="xs:string"/>
+        <xsl:variable name="docType" select="wega:get-doctype-by-id($docID)"/>
         <xsl:variable name="authorID">
             <xsl:choose>
                 <xsl:when test="wega:isPerson($docID)"/>
@@ -298,38 +299,24 @@
         </xsl:variable>
         <xsl:variable name="folder">
             <xsl:choose>
-                <xsl:when test="wega:isWork($docID)">
-                    <xsl:value-of select="wega:getLanguageString('works', $lang)"/>
-                </xsl:when>
-                <xsl:when test="wega:isWriting($docID)">
-                    <xsl:value-of select="wega:getLanguageString('writings', $lang)"/>
-                </xsl:when>
-                <xsl:when test="wega:isLetter($docID)">
+                <xsl:when test="$docType eq 'letters'">
                     <xsl:value-of select="wega:getLanguageString('correspondence', $lang)"/>
                 </xsl:when>
-                <xsl:when test="wega:isNews($docID)">
-                    <xsl:value-of select="wega:getLanguageString('news', $lang)"/>
-                </xsl:when>
-                <xsl:when test="wega:isDiary($docID)">
-                    <xsl:value-of select="wega:getLanguageString('diaries', $lang)"/>
-                </xsl:when>
-                <xsl:when test="wega:isThematicCom($docID)">
-                    <xsl:value-of select="wega:getLanguageString('thematicCommentaries', $lang)"/>
-                </xsl:when>
-                <xsl:when test="wega:isDocument($docID)">
-                    <xsl:value-of select="wega:getLanguageString('documents', $lang)"/>
-                </xsl:when>
-                <xsl:otherwise/>
+                <xsl:otherwise>
+                    <xsl:value-of select="wega:getLanguageString($docType, $lang)"/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="wega:isPerson($docID) or wega:isOrg($docID)">
+            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
-            <xsl:when test="exists($folder) and $authorID ne ''">
+            <xsl:when test="(exists($folder) and $authorID ne '') and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $authorID, $folder, $docID)), '.html')"/>
             </xsl:when>
-            <xsl:otherwise/>
+            <xsl:otherwise>
+                <xsl:message>XSLT Error in wega:createLinkToDoc(): Failed to create URL for ID <xsl:value-of select="$docID"/> (language: <xsl:value-of select="$lang"/>)</xsl:message>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
