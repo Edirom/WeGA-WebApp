@@ -88,7 +88,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
             $pubPlaceNYear,
-            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else ()
         }
 };
 
@@ -140,7 +140,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($editor)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editor) else (),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
-            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else ()
         }
 };
 
@@ -175,17 +175,17 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
     concat(
-        if($parent/tei:biblScope/@type = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@type = 'vol']) else (),
-        if($parent/tei:biblScope/@type = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@type = 'jg']) else (),
+        if($parent/tei:biblScope/@unit = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@unit = 'vol']) else (),
+        if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
-        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@type = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope/@type = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@type = 'issue']) else (),
-        if($parent/tei:biblScope/@type = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
+        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
+        if($parent/tei:biblScope/@unit = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@unit = 'issue']) else (),
+        if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
         (: Alle anderen Datumsausgaben hier :)
-        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@type = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
+        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@type = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($parent/tei:biblScope/@type = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
+        if($parent/tei:biblScope/@unit = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+        if($parent/tei:biblScope/@unit = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'col'], '-', '–')) else ()
     )
 };
 
@@ -201,8 +201,8 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $biblScope := concat(
-        if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
-        if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
+        if($series/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@unit = 'vol']) else (),
+        if($series/tei:biblScope[@unit = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@unit = 'issue']) else ()
     )
     return 
         element {$wrapperElement} {
