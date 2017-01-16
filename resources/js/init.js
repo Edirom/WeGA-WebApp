@@ -34,7 +34,7 @@ $.fn.facets = function ()
                 if (query.length) return callback();
                 
                 var params = active_facets(),
-                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type');
+                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
                 $.ajax({
                     url: url,
                     type: 'GET',
