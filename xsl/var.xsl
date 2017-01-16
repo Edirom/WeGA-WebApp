@@ -289,7 +289,7 @@
     <xsl:template name="createEndnotesFromNotes">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'endNotes'"/>
-            <xsl:element name="h2">
+            <xsl:element name="{concat('h', count(ancestor::tei:div) + 2)}">
                 <xsl:value-of select="wega:getLanguageString('endNotes', $lang)"/>
             </xsl:element>
             <xsl:element name="ol">
