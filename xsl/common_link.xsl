@@ -44,7 +44,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="tei:placeName">
+    <xsl:template match="tei:settlement">
         <xsl:call-template name="createSpan"/>
     </xsl:template>
 
@@ -110,12 +110,12 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
-                <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
-                    <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                    <xsl:text> </xsl:text>
-                </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@key">
+                        <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
+                            <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
                         <xsl:value-of select="@key"/>
                     </xsl:when>
                     <xsl:otherwise>
