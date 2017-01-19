@@ -1,5 +1,7 @@
 /* Init functions */
 
+var elements_with_popover = $('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents, span.persons');
+
 $('.dropdown-secondlevel-nav').dropdownHover();
 
 /* Adjust font size of h1 headings */
@@ -229,26 +231,102 @@ function activateTab() {
 /*        $(href).unmask;*/
 };
 
+$.fn.preview_popover = function() {
+    var url = $(this).attr('data-ref').replace('.html', '/popover.html'),
+        container = $(this);
+    
+    $.ajax({
+        url: url,
+        success: function(response){
+            var source = $('<div>' + response + '</div>'),
+                title = source.find('h3').children(),
+                content = source.children().children();
+            $('.item-title', container).html(title);
+            $('.item-content', container).html(content);
+            $('.item-title, .item-content', this).show();
+            $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
+                /*popover = $('#'+popoverID).data('bs.popover');
+            popover.options.content = source.children().children();
+            popover.options.title = source.find('h3').children();
+            $('#'+popoverID + ' h3.media-heading').remove();*/ // remove relicts of headings
+        /*            $('#'+popoverID).popover('show'); */
+        /*            $('#'+popoverID + ' .portrait').loadPortrait(); // AJAX load person portraits*/
+        }
+    });
+};
+
 // create popovers for document types which already have single views
-$('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents').on('click', function() {
-    var popoverClass =  "popover-" + $.now();
+elements_with_popover.on('click', function() {
+/*    var popoverClass =  "popover-" + $.now();*/
     $(this).popover({
         "html": true,
         "trigger": "manual",
-        container: 'body',
+        "container": 'body',
         'placement': 'auto top',
-        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
-        'title': function() {
+/*        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',*/
+        /*'title': function() {
             return 'Loading …'
-        },
-        "content": function(){
-            link = $(this).attr('href').replace('.html', '/popover.html');
-            return details_in_popup(link, popoverClass);
-        }
+        },*/
+        "content": popover_template
     });
     $(this).popover('show');
     return false;
 });
+
+elements_with_popover.on('inserted.bs.popover', popover_callBack);
+
+/* Check whether we need controls for carousel */
+function popover_template() {
+    var template = $('#carousel-popover').clone().removeAttr('id').removeAttr('style');
+    
+    $('.carousel-indicators', template).hide();
+    
+    return template;
+
+    /*if(undefined != href) {
+        $('.carousel-indicators', template).remove();
+        $('div.item:last', template).remove();
+        return template;
+    }
+    else if(undefined !=  dataRefs) {
+        if(dataRefs.split(/\s+/).length === 1) {
+            $('.carousel-indicators', template).remove();
+            $('div.item:last', template).remove();
+            return template;
+        }
+        else {
+            return template;
+        }
+    }
+    else return console.log('error :(')*/
+};
+
+function popover_callBack() {
+    var urls = [],
+        href = $(this).attr('href'),
+        dataRefs = $(this).attr('data-ref'),
+        popoverID = $(this).attr('aria-describedby'),
+        popover = $('#'+popoverID);
+    
+    if(undefined != href) {
+        $('div.active', popover).attr('data-ref', href);
+        $('div.active', popover).preview_popover();
+    }
+    else if(undefined !=  dataRefs) {
+        urls = dataRefs.split(/\s+/);
+        if(urls.length === 1) {
+            $('.carousel-indicators', template).remove();
+            $('div.item:last', template).remove();
+            return template;
+        }
+        else {
+            return template;
+        }
+    }
+    else return console.log('error :(')
+    
+   
+};
 
 // create popovers for document types which only have previews (but no single view)
 $('span.works, span.biblio').on('click', function() {
@@ -368,7 +446,7 @@ function updatePage(params) {
 
 // helper function to grab AJAX content for popovers
 function details_in_popup(link, popoverClass){
-    $.ajax({
+    /*$.ajax({
         url: link,
         success: function(response){
             var source = $('<div>' + response + '</div>'),
@@ -379,8 +457,9 @@ function details_in_popup(link, popoverClass){
             $('.'+popoverClass).popover('show'); 
             $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
         }
-    });
-    return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
+    });*/
+    /*return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';*/
+    return $('#carousel-example-generic');
 }
 
 /* only needed after ajax calls?!? --> see later */
