@@ -111,7 +111,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@key">
-                        <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
+                        <xsl:if test="not($suppressLinks)">
                             <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
                             <xsl:text> </xsl:text>
                         </xsl:if>
@@ -126,8 +126,13 @@
                 </xsl:choose>
             </xsl:attribute>
             <!-- Pluralformen wieder aussparen s.o. -->
-            <xsl:if test="@key and not($suppressLinks or string-length(@key) ne 7)">
-                <xsl:attribute name="data-ref" select="wega:createLinkToDoc(@key, $lang)"/>
+            <xsl:if test="@key and not($suppressLinks)">
+                <xsl:variable name="urls" as="xs:string+">
+                    <xsl:for-each select="tokenize(normalize-space(@key), '\s')">
+                        <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                <xsl:attribute name="data-ref" select="string-join($urls, ' ')"/>
             </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
