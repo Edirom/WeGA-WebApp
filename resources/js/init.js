@@ -1,6 +1,7 @@
 /* Init functions */
 
-var elements_with_popover = $('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents, span.persons');
+var elements_with_popover = $('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents, span.persons, span.works, span.biblio, span.writings, span.diaries, span.letters, span.news, span.orgs, span.thematicCommentaries, span.documents');
+elements_with_popover.addClass('common-link');
 
 $('.dropdown-secondlevel-nav').dropdownHover();
 
@@ -231,10 +232,13 @@ function activateTab() {
 /*        $(href).unmask;*/
 };
 
+/*
+ * Grab the URL from the $container$/@data-ref and replace it with the AJAX response
+ * Makes a nice popover for previews of pages :)
+ */
 $.fn.preview_popover = function() {
     var url = $(this).attr('data-ref').replace('.html', '/popover.html'),
         container = $(this);
-    
     $.ajax({
         url: url,
         success: function(response){
@@ -243,111 +247,87 @@ $.fn.preview_popover = function() {
                 content = source.children().children();
             $('.item-title', container).html(title);
             $('.item-content', container).html(content);
+            $('h3.media-heading', container).remove(); // remove relicts of headings
             $('.item-title, .item-content', this).show();
             $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
-                /*popover = $('#'+popoverID).data('bs.popover');
-            popover.options.content = source.children().children();
-            popover.options.title = source.find('h3').children();
-            $('#'+popoverID + ' h3.media-heading').remove();*/ // remove relicts of headings
-        /*            $('#'+popoverID).popover('show'); */
-        /*            $('#'+popoverID + ' .portrait').loadPortrait(); // AJAX load person portraits*/
         }
     });
 };
 
-// create popovers for document types which already have single views
+/* 
+ * Create initial popover with template from page.html#carousel-popover for the content
+ * Content will be loaded via AJAX with the next event 'inserted.bs.popover'
+ */
 elements_with_popover.on('click', function() {
-/*    var popoverClass =  "popover-" + $.now();*/
     $(this).popover({
         "html": true,
         "trigger": "manual",
         "container": 'body',
         'placement': 'auto top',
-/*        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',*/
-        /*'title': function() {
-            return 'Loading …'
-        },*/
         "content": popover_template
     });
     $(this).popover('show');
+    /*console.log($(this).attr('aria-describedby'));*/
+    popover_callBack.call($(this));
     return false;
 });
 
-elements_with_popover.on('inserted.bs.popover', popover_callBack);
+/*
+ * Listen to the insertion of a new popover and call popover_callBack
+ */
+/*elements_with_popover.on('inserted.bs.popover', popover_callBack);*/
 
-/* Check whether we need controls for carousel */
+/*
+ * A simple template for the popover base on page.html#carousel-popover
+ * NB: we do not make use of the generic popover-title since we want 
+ * to insert all AJAX content simply into popover-content
+ */
 function popover_template() {
-    var template = $('#carousel-popover').clone().removeAttr('id').removeAttr('style');
+    var carouselID = "carousel" + $.now(),
+        template = $('#carousel-popover').clone().attr('id', carouselID).removeAttr('style');
     
-    $('.carousel-indicators', template).hide();
-    
+    $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
+    $('a.carousel-control', template).attr('href', '#'+carouselID);
+    $('.carousel-indicators, a.carousel-control', template).hide();
     return template;
-
-    /*if(undefined != href) {
-        $('.carousel-indicators', template).remove();
-        $('div.item:last', template).remove();
-        return template;
-    }
-    else if(undefined !=  dataRefs) {
-        if(dataRefs.split(/\s+/).length === 1) {
-            $('.carousel-indicators', template).remove();
-            $('div.item:last', template).remove();
-            return template;
-        }
-        else {
-            return template;
-        }
-    }
-    else return console.log('error :(')*/
 };
 
+/*
+ * Prepare the container divs and the carousel controls (if needed) for the popover
+ * Then call preview_popover() for every container div
+ */
 function popover_callBack() {
     var urls = [],
         href = $(this).attr('href'),
         dataRefs = $(this).attr('data-ref'),
         popoverID = $(this).attr('aria-describedby'),
-        popover = $('#'+popoverID);
+        popover = $('#'+popoverID),
+        li_templ = $('.carousel-indicators li:last', popover),
+        li_clone,
+        popover_div;
     
     if(undefined != href) {
-        $('div.active', popover).attr('data-ref', href);
-        $('div.active', popover).preview_popover();
+        urls.push(href);
     }
     else if(undefined !=  dataRefs) {
         urls = dataRefs.split(/\s+/);
-        if(urls.length === 1) {
-            $('.carousel-indicators', template).remove();
-            $('div.item:last', template).remove();
-            return template;
-        }
-        else {
-            return template;
-        }
     }
-    else return console.log('error :(')
-    
-   
-};
-
-// create popovers for document types which only have previews (but no single view)
-$('span.works, span.biblio').on('click', function() {
-    var popoverClass =  "popover-" + $.now();
-    $(this).popover({
-        "html": true,
-        "trigger": "manual",
-        container: 'body',
-        'placement': 'auto top',
-        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
-        'title': function() {
-            return 'Loading …'
-        },
-        "content": function(){
-            link = $(this).attr('data-ref').replace('.html', '/popover.html');
-            return details_in_popup(link, popoverClass);
+    $(urls).each(function(i,e) {
+        popover_div = $('div.item:last', popover);
+        popover_div.attr('data-ref', e);
+        popover_div.preview_popover();
+        if(urls.length > i +1) {
+            popover_div.clone().removeClass('active').insertAfter(popover_div);
+            li_clone = li_templ.clone();
+            li_clone.attr('data-slide-to', i + 1);
+            li_clone.removeClass('active');
+            li_clone.insertAfter(li_templ);
         }
-    });
-    $(this).popover('show');
-    return false;
-});
+    })
+    if(urls.length > 1) {
+        $('.carousel-indicators, a.carousel-control', popover).show();
+    }
+};
 
 /* checkbox for display of undated documents */
 $(document).on('click', '.undated', function() {

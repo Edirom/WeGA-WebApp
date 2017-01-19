@@ -37,33 +37,70 @@
     margin: auto;
 }
 
-.popover div.media-body {
-    width: 75%;
-    margin: 0;
-    padding-left:3px;
-    float:left;
+/* Settings for popovers */
+.popover {
+    div.media-body {
+        width: 75%;
+        margin: 0;
+        padding-left:3px;
+        float:left;
+    }
+    div.preview-icon {
+        width: 25%;
+        margin: 0;
+        padding-right:3px;
+        float:left;
+        img {
+            width:100%;
+            padding-top: 1ex;
+        }
+    }
+    .popover-content {
+        padding: 0px;
+        .endnote_backlink {
+            display:none;
+        }
+        .item-title {
+            background-color: @popover-title-bg;
+            padding: 8px 14px;
+            border-bottom:1px solid @popover-border-color;
+            margin: 0px;
+            font-size:16px;
+            a:hover {
+                text-decoration:none;
+            }
+        }
+        .item-content {
+            padding: 8px 14px;
+            margin: 0px;
+            height: 250px;
+            overflow: scroll;
+        }
+        .carousel-indicators {
+            bottom:-60px;
+        }
+        margin-bottom:30px;
+    }
+    p {
+        margin-bottom: 5px;
+        font-family: @font-family-sans-serif;
+    }
 }
 
-.popover div.preview-icon {
-    width: 25%;
-    margin: 0;
-    padding-right:3px;
-    float:left;
-}
 
-.popover-content .preview-icon img {
+/*.popover-content .preview-icon img {
     width:100%;
     padding-top: 1ex;
 }
-
-.popover p {
+*/
+/*.popover p {
     margin-bottom: 5px;
     font-family: @font-family-sans-serif;
 }
-
-.popover-content .endnote_backlink {
+*/
+/*.popover-content .endnote_backlink {
     display:none;
-}
+}*/
 
 ol.endNotes {
     margin:0px;
@@ -99,9 +136,13 @@ ol.endNotes {
     background-color: @brand-primary !important;
 }
 
-.works, .biblio {
-    color: @brand-primary;
+.common-link {
+    color: @link-color;
     cursor:pointer;
+    white-space: nowrap;
+    :hover {
+        color: @link-hover-color;
+    }
 }
 
 .nameDesc::before {
