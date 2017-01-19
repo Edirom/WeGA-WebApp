@@ -5,6 +5,12 @@
         thus exclude all elements with the following child elements 
     -->
     <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'note', 'unclear', 'app')"/>
+    
+    <!--
+        Need to distinguish between docTypes with support for single views and those with tooltips only 
+    -->
+    <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document')"/>
+<!--    <xsl:variable name="rs-types-with-tooltip-only" as="xs:string+" select="('biblio', 'work')"/>-->
 
 
     <!--  *********************************************  -->
@@ -23,28 +29,20 @@
 
     <xsl:template match="tei:rs">
         <xsl:choose>
-            <xsl:when test="$suppressLinks">
+            <xsl:when test="@key and not($suppressLinks) and (@type=$rs-types-with-link)">
+                <xsl:call-template name="createLink"/>
+            </xsl:when>
+            <xsl:when test="@key and not($suppressLinks) and not(@type=$rs-types-with-link)">
                 <xsl:call-template name="createSpan"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:choose>
-                    <xsl:when test="matches(@type, '.+[yrnkg]s$|newsPl$')">
-                        <!-- Pluralformen werden aktuell noch ausgespart-->
-                        <xsl:call-template name="createSpan"/>
-                    </xsl:when>
-                    <xsl:when test="matches(@type, 'work|biblio')">
-                        <!-- Für Werke und Bibliographische Objekte gibt es aktuell noch keine Einzelansicht, lediglich einen Tooltip -->
-                        <xsl:call-template name="createSpan"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="createLink"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <!--<xsl:call-template name="createSpan"/>-->
+                <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="tei:placeName">
+    <xsl:template match="tei:settlement">
         <xsl:call-template name="createSpan"/>
     </xsl:template>
 
@@ -101,7 +99,8 @@
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates/>
+                <!--<xsl:apply-templates/>-->
+                <xsl:call-template name="createSpan"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -110,12 +109,12 @@
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
-                <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
-                    <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                    <xsl:text> </xsl:text>
-                </xsl:if>
                 <xsl:choose>
                     <xsl:when test="@key">
+                        <xsl:if test="not(matches(@key, '\s') or $suppressLinks)">
+                            <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
                         <xsl:value-of select="@key"/>
                     </xsl:when>
                     <xsl:otherwise>
