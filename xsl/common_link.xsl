@@ -1,24 +1,17 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <!-- 
-        because HTML does not support nested links (aka a elements) we need to attach the link to the deepest element; 
+        because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
         thus exclude all elements with the following child elements 
     -->
     <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'note', 'unclear', 'app')"/>
     
-    <!--
-        Need to distinguish between docTypes with support for single views and those with tooltips only 
-    -->
-    <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document')"/>
-<!--    <xsl:variable name="rs-types-with-tooltip-only" as="xs:string+" select="('biblio', 'work')"/>-->
-
-
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
     <xsl:template match="tei:persName | tei:author | tei:orgName">
         <xsl:choose>
-            <xsl:when test="@key and not($suppressLinks)">
+            <xsl:when test="@key">
                 <xsl:call-template name="createLink"/>
             </xsl:when>
             <xsl:otherwise>
@@ -28,15 +21,19 @@
     </xsl:template>
 
     <xsl:template match="tei:rs">
+        <!--
+            Need to distinguish between docTypes with support for single views and those with tooltips only 
+        -->
+        <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document')"/>
         <xsl:choose>
-            <xsl:when test="@key and not($suppressLinks) and (@type=$rs-types-with-link)">
+            <xsl:when test="@key and (@type=$rs-types-with-link)">
                 <xsl:call-template name="createLink"/>
             </xsl:when>
-            <xsl:when test="@key and not($suppressLinks) and not(@type=$rs-types-with-link)">
+            <!-- All plural forms, e.g. "persons" -->
+            <xsl:when test="@key and not(@type=$rs-types-with-link)">
                 <xsl:call-template name="createSpan"/>
             </xsl:when>
             <xsl:otherwise>
-                <!--<xsl:call-template name="createSpan"/>-->
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
@@ -84,12 +81,14 @@
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists(@key) and not(./descendant::*[local-name(.) = $linkableElements])">
+            <xsl:when test="exists(@key) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
-                        <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                        <xsl:text> </xsl:text>
-                        <xsl:value-of select="@key"/>
+                        <!-- Provide the preview popover on the top most element -->
+                        <xsl:if test="not(ancestor::*[local-name(.) = $linkableElements])">
+                            <xsl:text>preview </xsl:text>
+                        </xsl:if>
+                        <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
                         <!--<xsl:if test="$transcript">
                             <xsl:text> transcript</xsl:text>
                         </xsl:if>-->
@@ -111,11 +110,12 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@key">
-                        <xsl:if test="not($suppressLinks)">
-                            <xsl:value-of select="wega:get-doctype-by-id(substring(@key, 1, 7))"/>
-                            <xsl:text> </xsl:text>
+                        <!-- Provide the preview popover on the top most element -->
+                        <xsl:if test="not($suppressLinks or ancestor::*[local-name(.) = $linkableElements])">
+                            <xsl:text>preview </xsl:text>
                         </xsl:if>
-                        <xsl:value-of select="@key"/>
+                        <xsl:text>preview </xsl:text>
+                        <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="string-to-codepoints(normalize-space(.))">
@@ -125,11 +125,12 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <!-- Pluralformen wieder aussparen s.o. -->
             <xsl:if test="@key and not($suppressLinks)">
                 <xsl:variable name="urls" as="xs:string+">
-                    <xsl:for-each select="tokenize(normalize-space(@key), '\s')">
-                        <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                    <xsl:for-each select="descendant-or-self::*/@key">
+                        <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
+                            <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                        </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
                 <xsl:attribute name="data-ref" select="string-join($urls, ' ')"/>

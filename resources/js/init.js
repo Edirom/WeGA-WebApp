@@ -1,8 +1,5 @@
 /* Init functions */
 
-var elements_with_popover = $('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents, span.persons, span.works, span.biblio, span.writings, span.diaries, span.letters, span.news, span.orgs, span.thematicCommentaries, span.documents');
-elements_with_popover.addClass('common-link');
-
 $('.dropdown-secondlevel-nav').dropdownHover();
 
 /* Adjust font size of h1 headings */
@@ -238,47 +235,55 @@ function activateTab() {
  */
 $.fn.preview_popover = function() {
     var url = $(this).attr('data-ref').replace('.html', '/popover.html'),
-        container = $(this);
+        container = $(this),
+        popover_node = container.parents('div.popover'),
+        popover_data;
     $.ajax({
         url: url,
         success: function(response){
-            var source = $('<div>' + response + '</div>'),
+            var source = $(response),
                 title = source.find('h3').children(),
-                content = source.children().children();
+                content = source.children();
             $('.item-title', container).html(title);
             $('.item-content', container).html(content);
             $('h3.media-heading', container).remove(); // remove relicts of headings
-            $('.item-title, .item-content', this).show();
-            $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
+            
+            if(!$('.popover-content', popover_node).hasClass('popover-multi')) {
+                popover_data = popover_node.data('bs.popover');
+                popover_data.options.content = container.parents('div.popover-content').clone().children();
+                popover_node.popover('show');
+                $('.portrait', popover_node).loadPortrait(); // AJAX load person portraits*/
+            }
+            else {
+                $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
+            }
         }
     });
 };
 
 /* 
  * Create initial popover with template from page.html#carousel-popover for the content
- * Content will be loaded via AJAX with the next event 'inserted.bs.popover'
  */
-elements_with_popover.on('click', function() {
+$('.preview').on('click', function() {
     $(this).popover({
         "html": true,
         "trigger": "manual",
         "container": 'body',
         'placement': 'auto top',
+        "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
         "content": popover_template
     });
     $(this).popover('show');
-    /*console.log($(this).attr('aria-describedby'));*/
+    
+    /* Need to call this after popover('show') to get access to the popover options in a later step (in preview_popover) */
     popover_callBack.call($(this));
+    
+    /* Return false to suppress the default link mechanism on html:a */
     return false;
 });
 
 /*
- * Listen to the insertion of a new popover and call popover_callBack
- */
-/*elements_with_popover.on('inserted.bs.popover', popover_callBack);*/
-
-/*
- * A simple template for the popover base on page.html#carousel-popover
+ * A simple template for the popover based on page.html#carousel-popover
  * NB: we do not make use of the generic popover-title since we want 
  * to insert all AJAX content simply into popover-content
  */
@@ -289,6 +294,7 @@ function popover_template() {
     $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
     $('a.carousel-control', template).attr('href', '#'+carouselID);
     $('.carousel-indicators, a.carousel-control', template).hide();
+    template.removeClass('hidden');
     return template;
 };
 
@@ -326,6 +332,7 @@ function popover_callBack() {
     })
     if(urls.length > 1) {
         $('.carousel-indicators, a.carousel-control', popover).show();
+        $('.popover-content', popover).addClass('popover-multi');
     }
 };
 
