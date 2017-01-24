@@ -114,7 +114,6 @@
                         <xsl:if test="not($suppressLinks or ancestor::*[local-name(.) = $linkableElements])">
                             <xsl:text>preview </xsl:text>
                         </xsl:if>
-                        <xsl:text>preview </xsl:text>
                         <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
                     </xsl:when>
                     <xsl:otherwise>
