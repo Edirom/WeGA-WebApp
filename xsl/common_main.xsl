@@ -212,10 +212,26 @@
         </xsl:variable>
         <!-- breaks are not allowed within lists as they are in TEI. We need to workaround this … -->
         <xsl:element name="{if(parent::tei:list) then 'li' else 'span'}">
-            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-            <!-- breaks between block level elements -->
-            <xsl:if test="parent::tei:div or parent::tei:body">
-                <xsl:attribute name="class" select="concat('tei_', local-name(), '_block')"/>
+            <xsl:attribute name="class">
+                <xsl:text>tei_</xsl:text>
+                <xsl:value-of select="local-name()"/>
+                <!-- breaks between block level elements -->
+                <xsl:if test="parent::tei:div or parent::tei:body">
+                    <xsl:text>_block</xsl:text>
+                </xsl:if>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+                <xsl:choose>
+                    <xsl:when test="self::tei:pb">
+                        <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                    </xsl:when>
+                    <xsl:when test="self::tei:cb">
+                        <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:if test="@facs">
+                <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
             <xsl:choose>
                 <xsl:when test="@type='inWord'">
