@@ -199,14 +199,16 @@
     </xsl:template>
     
     <!--  Hier mit priority 0.5, da in Briefen und Tagebüchern unterschiedlich behandelt  -->
-    <xsl:template match="tei:pb|tei:cb" priority="0.5">
-        <xsl:variable name="division-sign" as="xs:string">
+    <xsl:template match="tei:pb | tei:cb" priority="0.5">
+        <xsl:variable name="division-sign" as="xs:string+">
             <xsl:choose>
-                <xsl:when test="local-name() eq 'pb'">
+                <xsl:when test="self::tei:pb">
                     <xsl:value-of select="' | '"/> <!-- senkrechter Strich („|“) aka pipe -->
+                    <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
                 </xsl:when>
-                <xsl:when test="local-name() eq 'cb'">
+                <xsl:when test="self::tei:cb">
                     <xsl:value-of select="' ¦ '"/> <!-- in der Mitte unterbrochener („¦“) senkrechter Strich -->
+                    <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -221,24 +223,20 @@
                 </xsl:if>
             </xsl:attribute>
             <xsl:attribute name="title">
-                <xsl:choose>
-                    <xsl:when test="self::tei:pb">
-                        <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="self::tei:cb">
-                        <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:value-of select="$division-sign[2]"/>
+                <xsl:if test="@n">
+                    <xsl:value-of select="concat(': ', @n)"/>
+                </xsl:if>
             </xsl:attribute>
             <xsl:if test="@facs">
                 <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
             <xsl:choose>
                 <xsl:when test="@type='inWord'">
-                    <xsl:value-of select="normalize-space($division-sign)"/>
+                    <xsl:value-of select="normalize-space($division-sign[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="$division-sign"/>
+                    <xsl:value-of select="$division-sign[1]"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
