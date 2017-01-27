@@ -1361,7 +1361,10 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
         element {name($node)} {
             if($image-url) then (
                 $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                attribute {'data-url'} {$image-url}
+                if($model?hasFacsimile) then (
+                    attribute {'data-url'} {$image-url}
+                )
+                else ()
 (:                attribute {'data-originalMaxSize'} {$image-originalMaxSize} :)
             )
             else $node/@*
