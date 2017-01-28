@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
@@ -8,7 +9,7 @@
 
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName"/>
+        elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName tei:note"/>
 
     <xsl:param name="headerMode" select="false()"/>
 
