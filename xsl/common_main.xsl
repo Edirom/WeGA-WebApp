@@ -204,11 +204,11 @@
             <xsl:choose>
                 <xsl:when test="self::tei:pb">
                     <xsl:value-of select="' | '"/> <!-- senkrechter Strich („|“) aka pipe -->
-                    <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                    <xsl:value-of select="wega:getLanguageString('pageBreakTo', $lang)"/>
                 </xsl:when>
                 <xsl:when test="self::tei:cb">
                     <xsl:value-of select="' ¦ '"/> <!-- in der Mitte unterbrochener („¦“) senkrechter Strich -->
-                    <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
+                    <xsl:value-of select="wega:getLanguageString('columnBreakTo', $lang)"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
