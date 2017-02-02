@@ -34,7 +34,7 @@ $.fn.facets = function ()
                 if (query.length) return callback();
                 
                 var params = active_facets(),
-                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
+                    url = $(b).attr('data-api-base') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
                 $.ajax({
                     url: url,
                     type: 'GET',
@@ -546,7 +546,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-url') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })
