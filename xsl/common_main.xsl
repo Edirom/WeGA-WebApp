@@ -200,15 +200,13 @@
     
     <!--  Hier mit priority 0.5, da in Briefen und Tagebüchern unterschiedlich behandelt  -->
     <xsl:template match="tei:pb | tei:cb" priority="0.5">
-        <xsl:variable name="division-sign" as="xs:string+">
+        <xsl:variable name="division-sign" as="xs:string">
             <xsl:choose>
                 <xsl:when test="self::tei:pb">
                     <xsl:value-of select="' | '"/> <!-- senkrechter Strich („|“) aka pipe -->
-                    <xsl:value-of select="wega:getLanguageString('pageBreakTo', $lang)"/>
                 </xsl:when>
                 <xsl:when test="self::tei:cb">
                     <xsl:value-of select="' ¦ '"/> <!-- in der Mitte unterbrochener („¦“) senkrechter Strich -->
-                    <xsl:value-of select="wega:getLanguageString('columnBreakTo', $lang)"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -223,20 +221,46 @@
                 </xsl:if>
             </xsl:attribute>
             <xsl:attribute name="title">
-                <xsl:value-of select="$division-sign[2]"/>
-                <xsl:if test="@n">
-                    <xsl:value-of select="concat(': ', @n)"/>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="@n">
+                        <xsl:choose>
+                            <xsl:when test="self::tei:pb">
+                                <xsl:choose>
+                                    <xsl:when test="$docID eq 'A100000'">
+                                        <!-- Special treatment for the Notizenbuch where we decided to label the pages as numbers, sigh … -->
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr.&#160;', @n)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), '&#160;', @n)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:when test="self::tei:cb">
+                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), '&#160;', @n)"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="self::tei:pb">
+                                <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                            </xsl:when>
+                            <xsl:when test="self::tei:cb">
+                                <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:attribute>
             <xsl:if test="@facs">
                 <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
             <xsl:choose>
                 <xsl:when test="@type='inWord'">
-                    <xsl:value-of select="normalize-space($division-sign[1])"/>
+                    <xsl:value-of select="normalize-space($division-sign)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="$division-sign[1]"/>
+                    <xsl:value-of select="$division-sign"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
