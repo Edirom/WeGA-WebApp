@@ -1,5 +1,5 @@
 $(function () {
-    var url = "http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/swagger.json";
+    var url = $('.swagger-section').attr('data-api-base') + "/swagger.json";
     
     hljs.configure({
         highlightSizeThreshold: 5000

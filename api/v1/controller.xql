@@ -18,11 +18,12 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 (: Change this line to point at your local api module :)
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "../../modules/api.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../../modules/config.xqm";
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
 
 (: Change this line to point at your swagger config file :)
-declare variable $local:swagger-config := json-doc('xmldb:exist:///db/apps/WeGA-WebApp/api/v1/swagger.json');
+declare variable $local:swagger-config := json-doc($config:swagger-config-path);
 
 (: Change this if you are using a different prefix for your module in line XX :)
 declare variable $local:api-module-prefix as xs:string := 'api'; 
