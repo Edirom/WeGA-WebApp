@@ -1005,7 +1005,6 @@ declare
                     if($config:isDevelopment) then exists($model('doc')//tei:facsimile/tei:graphic/@url)
                     else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'api-base' := core:link-to-current-app('/api/v1'),
                 'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom'],
                 'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
             }
@@ -1553,3 +1552,12 @@ declare
             'bugEmail' := config:get-option('bugEmail') 
         }
 }; 
+
+(:~
+ : Inject the @data-api-base attribute at the given node 
+ :
+ : @author Peter Stadler
+ :)
+declare function app:inject-api-base($node as node(), $model as map(*))  {
+    app:set-attr($node, map:new(($model, map {'api-base' := config:api-base()})), 'data-api-base', 'api-base')
+};
