@@ -1,4 +1,4 @@
-xquery version "3.0";
+xquery version "3.1";
 
 (:~
  : A set of helper functions to access the application context from
@@ -48,12 +48,13 @@ declare variable $config:svn-change-history-file as document-node()? :=
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
+declare variable $config:swagger-config-path as xs:string := $config:app-root || '/api/v1/swagger.json';
 
 declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
 declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
-declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
+(:declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;:)
 
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
@@ -90,13 +91,13 @@ declare function config:repo-descriptor() as element(repo:meta) {
 (:~
  : Returns the expath-pkg.xml descriptor for the current application.
  :)
-declare function config:expath-descriptor() as element(expath:package) {
+(:declare function config:expath-descriptor() as element(expath:package) {
     $config:expath-descriptor
-};
+};:)
 
-declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
+(:declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
     $config:expath-descriptor/expath:title/text()
-};
+};:)
 
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
@@ -402,4 +403,13 @@ declare function config:entries-per-page() as xs:int {
 (:    Klappt irgendwie nicht?!? :)
     (:$config:default-entries-per-page:)
     10
+};
+
+(:~
+ : Return the Swagger API base path
+~:)
+declare function config:api-base() as xs:string {
+    let $swagger-config := json-doc($config:swagger-config-path)
+    return
+        $swagger-config?schemes[1] || '://' || $swagger-config?host || $swagger-config?basePath 
 };
