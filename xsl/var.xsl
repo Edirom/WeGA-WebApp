@@ -242,6 +242,7 @@
             <xsl:element name="ul">
                 <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
+                    	<xsl:attribute name="class" select="concat('secLevel', count(ancestor::tei:div))"/>
                         <xsl:element name="a">
                             <xsl:attribute name="href">
                                 <xsl:choose>
