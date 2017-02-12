@@ -415,9 +415,12 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
                 default return ()
+            let $lang := lang:guess-language(())
             let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
-            let $dateFormat := '%A, %d. %B %Y'
-            let $formattedDate := date:strfdate(xs:date($ab/@n), 'de', $dateFormat)
+            let $dateFormat := if($lang eq 'en')
+            	then '%A, %B %d, %Y'
+            	else '%A, %d. %B %Y'
+            let $formattedDate := date:strfdate(xs:date($ab/@n), $lang, $dateFormat)
             let $formattedPlaces := 
                 switch(array:size($diaryPlaces))
                 case 0 return ()
