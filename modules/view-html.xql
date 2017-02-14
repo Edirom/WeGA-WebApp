@@ -30,13 +30,23 @@ let $config := map {
 }
 
 let $model := 
-    map {
+	map:new((
+		(
+		for $var in request:attribute-names()
+		return
+			map:entry($var, request:get-attribute($var))
+		),
+		map:entry('environment', config:get-option('environment')),
+		map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+	))
+   (: map {
         'docID' := request:get-attribute('docID'),
         'lang' := request:get-attribute('lang'),
         'docType' := request:get-attribute('docType'),
         'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()},
-        'environment' := config:get-option('environment')
-    }
+        'environment' := config:get-option('environment'),
+        'specID' := request:get-attribute('specID')
+    }:)
     
 (:
  : We have to provide a lookup function to templates:apply to help it

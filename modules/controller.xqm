@@ -20,33 +20,38 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace functx="http://www.functx.com";
 
+(:~
+ : HTML output. Forwards to a given template and takes care of ETag caching
+ :
+ : @param $html-template the HTML template for processing by the templating module. The path must be given relative to the app root collection
+ : @param $exist-vars the keys of this map object will get passed through to the following modules by sending them as request attributes
+~:)
 declare function controller:forward-html($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
-    let $etag := controller:etag($exist-vars('path'))
+    let $etag := controller:etag($exist-vars('exist:path'))
     let $modified := not(request:get-header('If-None-Match') = $etag)
     return (
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-            <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), $html-template))}"/>
+            <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), $html-template))}"/>
             <view>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-html.xql'))}" method="get">
-                    <set-attribute name="docID" value="{$exist-vars('docID')}"/>
-                    <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'modules/view-html.xql'))}" method="get">
+                	{
+                	for $var in map:keys($exist-vars) 
+                	return
+                		<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+                	}
                     <!-- Need to provoke 304 error in view-html.xql if unmodified -->
                     <set-attribute name="modified" value="{$modified cast as xs:string}"/>
-                    <!-- Needed for register pages -->
-                    <set-attribute name="docType" value="{$exist-vars('docType')}"/>
-                    <!-- Overriding the default attribute. This is especially needed for subsequent controllers, e.g. api/v1/ -->
-                    <set-attribute name="$exist:controller" value="{$exist-vars('controller')}"/>
                 </forward>
                 {if($modified) then 
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'modules/view-tidy.xql'))}">
                     <set-attribute name="lang" value="{$exist-vars('lang')}"/>
                 </forward>
                 else ()}
             </view>
             {if($modified) then
             <error-handler>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/templates/error-page.html'))}" method="get"/>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}"/>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/templates/error-page.html'))}" method="get"/>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/modules/view-html.xql'))}"/>
             </error-handler>
             else ()}
         </dispatch>,
@@ -57,7 +62,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
 
 declare function controller:forward-xml($exist-vars as map()*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-xml.xql'}">
+        <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-xml.xql'}">
             <set-attribute name="resource" value="{$exist-vars('docID')}"/>
         </forward>
     </dispatch>
@@ -79,7 +84,7 @@ declare function controller:redirect-absolute($path as xs:string) as element(exi
 
 declare function controller:dispatch($exist-vars as map(*)) as element(exist:dispatch) {
     let $media-type := controller:media-type($exist-vars)
-    let $docID := functx:substring-before-if-contains($exist-vars('resource'), '.')
+    let $docID := functx:substring-before-if-contains($exist-vars('exist:resource'), '.')
     let $updated-exist-vars := 
         map:new((
             $exist-vars, 
@@ -89,10 +94,10 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
         ))
     let $doc := core:doc($docID)
     let $path := controller:encode-path-segments-for-uri(controller:path-to-resource($doc, $exist-vars('lang')))
-(:    let $log := util:log-system-out($exist-vars('path')):)
+(:    let $log := util:log-system-out($exist-vars('exist:path')):)
 (:    let $log := util:log-system-out($path):)
     return 
-        if($media-type and $exist-vars('path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
+        if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
         else if($media-type and $path) then controller:redirect-absolute($path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
@@ -103,7 +108,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
     let $indexDocTypes := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :)
     let $docType := 
-        if($exist-vars('resource')) then lang:reverse-language-string-lookup(replace(xmldb:decode($exist-vars('resource')), '_', ' '), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
+        if($exist-vars('exist:resource')) then lang:reverse-language-string-lookup(replace(xmldb:decode($exist-vars('exist:resource')), '_', ' '), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
         else 'indices'
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
     let $updated-exist-vars := 
@@ -113,7 +118,7 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
             map:entry('docType', $docType)
         ))
     return 
-        if($exist-vars('path') eq $path) then controller:forward-html('/templates/register.html', $updated-exist-vars)
+        if($exist-vars('exist:path') eq $path) then controller:forward-html('/templates/register.html', $updated-exist-vars)
         else controller:error($exist-vars, 404)
 };
 
@@ -155,15 +160,15 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
 
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'templates/error-page.html'))}"/>
+    	<forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'templates/error-page.html'))}"/>
     	<view>
-         <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), '/modules/view-html.xql'))}">
+         <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/modules/view-html.xql'))}">
              <set-attribute name="lang" value="{$exist-vars('lang')}"/>
              <set-attribute name="docType" value="error"/>
              <set-attribute name="modified" value="true"/>
              <cache-control cache="yes"/>
          </forward>
-         <forward url="{str:join-path-elements((map:get($exist-vars, 'controller'), 'modules/view-tidy.xql'))}">
+         <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'modules/view-tidy.xql'))}">
             <set-attribute name="lang" value="{$exist-vars('lang')}"/>
          </forward>
      </view>
@@ -265,7 +270,7 @@ declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:st
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
-    let $doc := query:doc-by-gnd(functx:substring-before-if-contains($exist-vars('resource'), '.'))
+    let $doc := query:doc-by-gnd(functx:substring-before-if-contains($exist-vars('exist:resource'), '.'))
     let $media-type := controller:media-type($exist-vars)
     return
         if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')) || '.' || $media-type)
@@ -274,12 +279,12 @@ declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(ex
 
 declare function controller:lookup-url-mappings($exist-vars as map(*)) {
     let $lookup-table := doc($config:catalogues-collection-path || '/urlMappings.xml')
-    let $mapping := $lookup-table//mapping[controller:encode-path-segments-for-uri(@from) = $exist-vars('path')]
-(:    let $log := util:log-system-out($exist-vars('path')):)
+    let $mapping := $lookup-table//mapping[controller:encode-path-segments-for-uri(@from) = $exist-vars('exist:path')]
+(:    let $log := util:log-system-out($exist-vars('exist:path')):)
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri($mapping/normalize-space(@to)))
         (: zum debuggen rausgenommen um Fehler anzuzeigen:)
-        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
+        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 
@@ -291,14 +296,14 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
         else ()
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri(normalize-space($mapping)))
-        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('path'))
+        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 
 declare %private function controller:resource-id($exist-vars as map(*)) as xs:string? {
     let $regex := '^A\d{2}[0-9A-F]{4}\.' || string-join($config:valid-resource-suffixes, '|') || '$'
     return
-        if(matches($exist-vars('resource'), $regex)) then substring-before($exist-vars('resource'), '.')
+        if(matches($exist-vars('exist:resource'), $regex)) then substring-before($exist-vars('exist:resource'), '.')
         else ()
 };
 
@@ -308,14 +313,14 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
  : when no supported file extension nor HTTP headers are given, the empty sequence is returned.
  : 
  : @author Peter Stadler
- : @param $exist-vars a map containing various stuff, here we need the requested resource, i.e. $exist-vars('resource')
+ : @param $exist-vars a map containing various stuff, here we need the requested resource, i.e. $exist-vars('exist:resource')
  : @return a string {html|xml} or empty sequence
  :)
 declare %private function controller:media-type($exist-vars as map(*)) as xs:string? {
-    let $suffix := functx:substring-after-last($exist-vars('resource'), '.')
+    let $suffix := functx:substring-after-last($exist-vars('exist:resource'), '.')
     let $header := tokenize(request:get-header('Accept'), ',')
     return
-        if($suffix and $suffix ne $exist-vars('resource')) then controller:canonical-mime-type($suffix)
+        if($suffix and $suffix ne $exist-vars('exist:resource')) then controller:canonical-mime-type($suffix)
         else controller:canonical-mime-type($header)
 };
 

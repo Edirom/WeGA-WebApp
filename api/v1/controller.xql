@@ -45,9 +45,8 @@ declare variable $local:INVALID_PARAMETER := QName("http://xquery.weber-gesamtau
 declare variable $local:defaults as map() := map {
     'exist:path' := $exist:path, 
     'exist:resource' := $exist:resource, 
-    'exist:controller' := $exist:controller, 
-    'exist:prefix' := $exist:prefix,
-    'swagger:config' := $local:swagger-config
+    'exist:controller' := $exist:controller || '/../../', 
+    'exist:prefix' := $exist:prefix
 };
 
 (:~
@@ -159,7 +158,7 @@ let $response := function() {
     typeswitch($lookup?func)
     case empty() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''}
     default return 
-        try { $lookup?func(map:new(($local:defaults, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
+        try { $lookup?func(map:new(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
 }
 
@@ -175,7 +174,7 @@ return (:(
     ):)
     if($exist:resource eq 'swagger.json') then ()
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en', 'path' := $exist:path, 'controller' := $exist:controller || '/../../' } )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">

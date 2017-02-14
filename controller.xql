@@ -20,10 +20,10 @@ declare variable $exist:prefix external;
 
 let $lang := lang:guess-language(())
 let $exist-vars := map {
-    'path' := $exist:path,
-    'resource' := $exist:resource,
-    'controller' := $exist:controller,
-    'prefix' := $exist:prefix,
+    'exist:path' := $exist:path,
+    'exist:resource' := $exist:resource,
+    'exist:controller' := $exist:controller,
+    'exist:prefix' := $exist:prefix,
     'lang' := $lang
     }
 
