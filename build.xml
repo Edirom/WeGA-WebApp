@@ -220,11 +220,14 @@
             Create and copy compiled ODD files of the various WeGA TEI and MEI schemas to the schemas directory.
             Also copy the respective source file for later comparison.
         </description>
-        <ant dir="${odd.dir}"/>
+    	<!-- currently restricted to TEI only -->
+        <ant dir="${odd.dir}" target="tei"/>
         <copy todir="guidelines/compiledODD">
             <fileset dir="${odd.dir}/build">
                 <include name="*.processed"/>
             </fileset>
+        	<!-- change file extension so eXist treats the files as XML -->
+        	<mapper type="glob" from="*.processed" to="*.xml"/>
         </copy>
         <property file="${odd.dir}/local.build.properties"/>
         <property file="${odd.dir}/build.properties"/>
