@@ -158,6 +158,29 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
         default return controller:error($exist-vars, 404)
 };
 
+(:~
+ : Dispatch pages under "editorial guidelines text"
+~:)
+declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch) {
+	(: Needs to be fleshed out … :)
+	let $media-type := controller:media-type($exist-vars)
+    let $specID := functx:substring-before-if-contains($exist-vars('exist:resource'), '.')
+	let $specIdents := collection($config:app-root || '/guidelines/compiledODD')//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/@ident
+	let $schemaIdents := collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec/@ident
+	let $pathTokens := tokenize(substring-after($exist-vars('exist:path'), $exist-vars?controller), '/')[.]
+	(:let $path := core:link-to-current-app(str:join-path-elements(lang:get-language-string('editorialGuidelines-text', $lang), )):)
+(:    let $log := util:log-system-out($exist-vars('exist:path')):)
+(:    let $log := util:log-system-out(count( $specIdents)):)
+    return 
+        if(
+        	$media-type = 'html' 
+        	and $pathTokens[4] = $schemaIdents 
+        	and $specID = $specIdents
+        	and $pathTokens[5] = $specID || '.' || $media-type  ) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schema', $pathTokens[4]))))
+(:        else if($media-type and $path) then controller:redirect-absolute($path || '.' || $media-type):)
+        else controller:error($exist-vars, 404)
+};
+
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'templates/error-page.html'))}"/>
@@ -218,7 +241,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
  : Indices can be under "Register (Indices)" or "Projekt (Project)" 
 ~:)
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
-    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries', 'documents')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), replace(lang:get-language-string($docType, $lang), '\s+', '_')))
+    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries', 'documents')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
     else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))
@@ -266,7 +289,7 @@ declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:st
             else if($has-suffix) then lang:translate-language-string(replace(substring-before(xmldb:decode($token), '.'), '_', ' '), $sourceLang, $targetLang) || '.' || substring-after($token, '.')
             else lang:translate-language-string(replace(xmldb:decode($token), '_', ' '), $sourceLang, $targetLang)
     return
-        core:link-to-current-app(replace(str:join-path-elements(($targetLang,$translated-tokens)), '\s+', '_'))
+        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {

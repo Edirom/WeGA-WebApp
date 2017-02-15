@@ -109,6 +109,10 @@ else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string(
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
     controller:dispatch-register($exist-vars)
 
+(: Guidelines – need to go before the general 'project' dispatch :)
+else if (contains($exist:path, concat('/', replace(lang:get-language-string('editorialGuidelines-text', $lang), '\s+', '_'), '/'))) then 
+    controller:dispatch-editorialGuidelines-text($exist-vars)
+    
 (: Projekt :)
 else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/', $exist:resource))) then
     controller:dispatch-project($exist-vars)
@@ -215,7 +219,6 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch>   :) 
-
 
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then

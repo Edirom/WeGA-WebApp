@@ -34,7 +34,7 @@ declare function str:normalize-space($string as xs:string?) as xs:string {
  : @return the joined path as xs:string, the empty string when $segs was the empty sequence
  :)
 declare function str:join-path-elements($segs as xs:string*) as xs:string {
-    replace(string-join($segs, '/'), '/+' , '/')
+    replace(replace(string-join($segs, '/'), '/+' , '/'), '\s+', '_')
 };
 
 (:~ 
