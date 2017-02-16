@@ -63,7 +63,12 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
 declare function controller:forward-xml($exist-vars as map()*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-xml.xql'}">
-            <set-attribute name="resource" value="{$exist-vars('docID')}"/>
+            <!--<set-attribute name="resource" value="{$exist-vars('docID')}"/> -->
+            {
+                	for $var in map:keys($exist-vars) 
+                	return
+                		<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+                	}
         </forward>
     </dispatch>
 };
@@ -176,8 +181,20 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
         	$media-type = 'html' 
         	and $pathTokens[4] = $schemaIdents 
         	and $specID = $specIdents
-        	and $pathTokens[5] = $specID || '.' || $media-type  ) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schema', $pathTokens[4]))))
-(:        else if($media-type and $path) then controller:redirect-absolute($path || '.' || $media-type):)
+        	and $pathTokens[5] = $specID || '.' || $media-type  
+        	) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schema', $pathTokens[4]))))
+		else if (
+			$media-type = 'xml' 
+        	and $pathTokens[4] = $schemaIdents 
+        	and $specID = $specIdents
+        	and $pathTokens[5] = $specID || '.' || $media-type
+			) then controller:forward-xml(map:new(($exist-vars, map {'specID' := $specID, 'schemaID' := $pathTokens[4]} )))
+		else if(
+			$media-type 
+			and $specID = $specIdents 
+			and $pathTokens[4] = $schemaIdents
+			and $pathTokens[5] = $specID
+		) then controller:redirect-absolute($exist-vars?path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
