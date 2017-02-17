@@ -10,15 +10,40 @@ xquery version "3.1" encoding "UTF-8";
 module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace teieg="http://www.tei-c.org/ns/Examples";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
+
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 (:import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";:)
 (:import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";:)
-(:import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";:)
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
+import module namespace functx="http://www.functx.com";
+
+(:~
+ : Returns the (compiled) ODD specification for an element, class, datatype, or macro (this is the 2-arity version)
+ :
+ : @param $specID the identifier of the spec as defined on its @ident attribute, e.g. "p" or "model.pLike"
+ : @param $schemaID the identifier of the schema as defined on its @ident attribute, e.g. "wegaLetter"
+~:)
+declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as element()? {
+	collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec[@ident=$schemaID]/tei:*[@ident=$specID]
+};
+
+(:~
+ : Returns the (compiled) ODD specification for an element, class, datatype, or macro (this is the 1-arity version)
+ :
+ : @param $path the URL for the spec 
+~:)
+declare function gl:spec($path as xs:string?) as element()? {
+	let $pathTokens := tokenize(replace($path, '(/xml)?\.[xhtml]+$', ''), '/')
+	return
+		gl:spec($pathTokens[last()], $pathTokens[last() - 1])
+};
 
 declare 
 	%templates:wrap
@@ -34,17 +59,28 @@ declare
 		let $spec := $schemaSpec//tei:*[@ident=$model('specID')]
 		let $teiSpec := doc($config:app-root || '/guidelines/compiledODD/p5subset.xml')//tei:*[@ident=$model('specID')]
 		let $lang := $model?lang
-		
-(:		let $log := util:log-system-out(count($schemaSpecs//tei:*[@ident=$model('specID')] except $spec)):)
+		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/gl.xsl')), config:get-xsl-params(()))
 		return
 			map {
 				'gloss' := $spec/tei:gloss[@xml:lang=$lang],
 				'desc' := $spec/tei:desc[@xml:lang=$lang],
 				'spec' := $spec,
-				'customizations' := ($schemaSpecs//tei:*[@ident=$model('specID')] except $spec, $teiSpec)
+				'specIDDisplay' := if(contains($model('specID'), '.')) then $model('specID') else '<' || $model('specID') || '>',
+				'customizations' := ($schemaSpecs//tei:*[@ident=$model('specID')] except $spec, $teiSpec),
+				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
+				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.)
 			}
 };
 
+
+declare 
+	%templates:wrap
+	function gl:examples($node as node(), $model as map(*)) as map() {
+		map {
+			'sum' := 17
+		}
+};
+	
 declare function gl:print-customization($node as node(), $model as map(*)) {
 	let $modified := (:if(deep-equal($model?customization, $model?spec)):)
 		(: Just a simple heuristic since deep-equal is too slow :)
@@ -90,4 +126,14 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
 			'customizationIdent' := $customizationIdent,
 			'url' := $url
 		}
+};
+
+(:~
+ : Create examples from spec files
+ : Helper function for gl:spec-details()
+~:)
+declare %private function gl:print-exemplum($exemplum as element()) as item()* {
+	let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
+	return
+		util:serialize(core:change-namespace($exemplum, '', ())/*/*, $serializationParameters)
 };

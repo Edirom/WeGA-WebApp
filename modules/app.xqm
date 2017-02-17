@@ -23,6 +23,7 @@ import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl"
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
@@ -371,20 +372,25 @@ declare
         let $beacon := 
             try {string-join(map:keys($model('beaconMap')), ' ')}
             catch * {()}
-        let $ajax-url :=
+        let $ajax-resource :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
+            case 'examples' return 'examples.html'
             case 'wikipedia-article' return if(contains($beacon, 'Wikipedia-Personenartikel')) then 'wikipedia.html' else ()
             case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
             case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             default return ()
+        let $ajax-url :=
+        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-resource)
+        	else if(gl:spec($model('exist:path')) and $ajax-resource) then core:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
+        	else ()
         return
             if($ajax-url) then 
                 element {name($node)} {
                     $node/@*,
-                    attribute data-tab-url {core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-url)},
+                    attribute data-tab-url {$ajax-url},
                     lang:get-language-string(normalize-space($node), $lang)
                 }
             else
@@ -959,9 +965,12 @@ declare
 declare function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
         let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
+        let $doc :=
+        	if(config:get-doctype-by-id($docID)) then core:doc($docID)
+        	else gl:spec($model('exist:path'))
         return
-            if($config:isDevelopment) then util:serialize(core:doc($docID), $serializationParameters)
-            else util:serialize(wega-util:remove-comments(core:doc($docID)), $serializationParameters)
+            if($config:isDevelopment) then util:serialize($doc, $serializationParameters)
+            else util:serialize(wega-util:remove-comments($doc), $serializationParameters)
 };
 
 declare 
