@@ -1077,8 +1077,12 @@ declare
             }
 };
 
+(:~
+ : Outputs the raw value of $key, e.g. some HTML fragment 
+ : that's not being wrapped with the $node element but replaces it.
+~:)
 declare function app:output($node as node(), $model as map(*), $key as xs:string) as item()* {
-        $model($key)
+    $model($key)
 };
 
 declare 
