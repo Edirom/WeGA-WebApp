@@ -126,7 +126,7 @@ declare function query:get-gnd($item as item()) as xs:string? {
  : @param $date todays date
  : @return tei:date* tei:date elements that match given day and month of $date
  :)
-declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
+declare function query:getTodaysEvents($date as xs:date) as node()* {
     let $day := functx:pad-integer-to-length(day-from-date($date), 2)
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $month-day := concat('-', $month, '-', $day)

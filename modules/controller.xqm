@@ -50,8 +50,20 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
             </view>
             {if($modified) then
             <error-handler>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/templates/error-page.html'))}" method="get"/>
-                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/modules/view-html.xql'))}"/>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/templates/error-page.html'))}" method="get">
+                	{
+                	for $var in map:keys($exist-vars) 
+                	return
+                		<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+                	}
+                </forward>
+                <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/modules/view-html.xql'))}">
+                	{
+                	for $var in map:keys($exist-vars) 
+                	return
+                		<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+                	}
+                </forward>
             </error-handler>
             else ()}
         </dispatch>,
@@ -65,10 +77,10 @@ declare function controller:forward-xml($exist-vars as map()*) as element(exist:
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-xml.xql'}">
             <!--<set-attribute name="resource" value="{$exist-vars('docID')}"/> -->
             {
-                	for $var in map:keys($exist-vars) 
-                	return
-                		<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
-                	}
+            for $var in map:keys($exist-vars) 
+            return
+                <set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+            }
         </forward>
     </dispatch>
 };
@@ -103,7 +115,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 (:    let $log := util:log-system-out($path):)
     return 
         if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
-        else if($media-type and $path) then controller:redirect-absolute($path || '.' || $media-type)
+        else if($media-type and $path) then controller:redirect-absolute('/' || $exist-vars?prefix || '/' || $exist-vars?controller || $path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
@@ -133,7 +145,9 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
 declare function controller:dispatch-project($exist-vars as map(*)) as element(exist:dispatch) {
     let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='project-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
     let $request := request:get-uri()
-    let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars('lang'))) = $request]/parent::*)
+    let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars)) = $request]/parent::*)
+    let $log := util:log-system-out($request)
+    let $log := util:log-system-out(controller:resolve-link(($project-nav/@href)[5],$exist-vars))
     return
         switch($a)
         case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
@@ -154,7 +168,7 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
 declare function controller:dispatch-help($exist-vars as map(*)) as element(exist:dispatch) {
     let $help-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='help-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
     let $request := request:get-uri()
-    let $a := distinct-values($help-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars('lang'))) = $request]/parent::*)
+    let $a := distinct-values($help-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars)) = $request]/parent::*)
     return
         switch($a)
         (: Need to inject the corresponding IDs of special pages here :)
@@ -194,7 +208,7 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 			and $specID = $specIdents 
 			and $pathTokens[4] = $schemaIdents
 			and $pathTokens[5] = $specID
-		) then controller:redirect-absolute($exist-vars?path || '.' || $media-type)
+		) then controller:redirect-absolute('/' || $exist-vars?prefix || '/' || $exist-vars?controller || $exist-vars?path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
@@ -203,13 +217,21 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'templates/error-page.html'))}"/>
     	<view>
          <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), '/modules/view-html.xql'))}">
-             <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+         	{
+         		for $var in map:keys($exist-vars) 
+	            return
+	            	<set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+            }
              <set-attribute name="docType" value="error"/>
              <set-attribute name="modified" value="true"/>
              <cache-control cache="yes"/>
          </forward>
          <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'modules/view-tidy.xql'))}">
-            <set-attribute name="lang" value="{$exist-vars('lang')}"/>
+            {
+            for $var in map:keys($exist-vars) 
+            return
+                <set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+            }
          </forward>
      </view>
   </dispatch>,
@@ -279,20 +301,20 @@ declare function controller:docType-url-for-author($author as document-node(), $
  : these links are resolved here
  : 
  :)
-declare function controller:resolve-link($link as xs:string, $lang as xs:string) as xs:string? {
+declare function controller:resolve-link($link as xs:string, $exist-vars as map()) as xs:string? {
     let $tokens := 
         for $token in tokenize(substring-after($link, '$link/'), '/')
         let $has-suffix := contains($token, '.')
-        let $translation := 
+        return 
             if(matches($token, 'A[A-F0-9]{6}')) then $token
             else if(matches($token, 'dev|test-html')) then $token
-            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $lang) || '.' || substring-after($token, '.')
-            else lang:get-language-string($token, $lang)
-        return 
+            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $exist-vars?lang) || '.' || substring-after($token, '.')
+            else lang:get-language-string($token, $exist-vars?lang)
+        (:return 
             if($translation) then replace($translation, '\s+', '_') 
-            else $token
+            else $token:)
     return 
-        core:link-to-current-app(str:join-path-elements(($lang, $tokens)))
+        core:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
 };
 
 declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:string, $targetLang as xs:string) as xs:string {

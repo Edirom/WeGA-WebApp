@@ -483,7 +483,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:active-nav($node as node(), $model as map(*), $lang as xs:string) as map() {
-        let $active := $node//xhtml:a/@href[controller:encode-path-segments-for-uri(controller:resolve-link(functx:substring-before-if-contains(., '#'), $lang)) = request:get-uri()]
+        let $active := $node//xhtml:a/@href[controller:encode-path-segments-for-uri(controller:resolve-link(functx:substring-before-if-contains(., '#'), $model)) = request:get-uri()]
         return
             map {'active-nav': $active}
 };
