@@ -146,8 +146,6 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
     let $project-nav := doc(concat($config:app-root, '/templates/page.html'))//(xhtml:li[@id='project-nav']//xhtml:a | xhtml:ul[@class='footerNav']//xhtml:a) 
     let $request := request:get-uri()
     let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars)) = $request]/parent::*)
-    let $log := util:log-system-out($request)
-    let $log := util:log-system-out(controller:resolve-link(($project-nav/@href)[5],$exist-vars))
     return
         switch($a)
         case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
