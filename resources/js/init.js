@@ -176,11 +176,11 @@ function remoteTabsCallback(html, trigger, container, data) {
     
     /* Load portraits via AJAX */
     $('.searchResults .portrait', html).loadPortrait();
-            
+    
     /* Listen for click events on pagination */
     $('.page-link', html).on('click', 
         function() {
-            $(this).activatePagination($('#backlinks'));
+            $(this).activatePagination(trigger.attr('href'));
         }
     );
 };

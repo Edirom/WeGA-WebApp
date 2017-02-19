@@ -78,7 +78,8 @@ declare function api:code-findByElement($model as map()) {
         else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
-        api:codeSample(api:subsequence($eval, $model), $model)
+        if($model?total) then $eval
+        else api:codeSample(api:subsequence($eval, $model), $model) 
 };
 
 (:~
@@ -176,7 +177,7 @@ declare %private function api:document($documents as document-node()*, $model as
 (:~
  :  Helper function for creating a CodeSample object 
 ~:)
-declare %private function api:codeSample($nodes as node()*, $model as map()) as map()* {
+declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
     let $scheme := $model('swagger:config')?schemes?1
@@ -187,7 +188,7 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
                 'docID' := $docID,
-                'codeSample' := serialize(wega-util:remove-comments($node))
+                'codeSample' := serialize(core:change-namespace(wega-util:remove-comments($node), '', ()))
             }
 };
 

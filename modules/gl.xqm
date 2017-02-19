@@ -16,7 +16,7 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 (:import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";:)
-(:import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";:)
+import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -39,8 +39,8 @@ declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as elem
  :
  : @param $path the URL for the spec 
 ~:)
-declare function gl:spec($path as xs:string?) as element()? {
-	let $pathTokens := tokenize(replace($path, '(/xml)?\.[xhtml]+$', ''), '/')
+declare function gl:spec($path as xs:string) as element()? {
+	let $pathTokens := tokenize(replace($path, '(/xml|/examples)?\.[xhtml]+$', ''), '/')
 	return
 		gl:spec($pathTokens[last()], $pathTokens[last() - 1])
 };
@@ -48,14 +48,14 @@ declare function gl:spec($path as xs:string?) as element()? {
 declare 
 	%templates:wrap
 	function gl:title($node as node(), $model as map(*)) {
-	'Element: ' || $model('specID') || ' (' || $model('schema') || ')'
+	'Element: ' || $model('specID') || ' (' || $model('schemaID') || ')'
 };
 
 declare 
 	%templates:wrap
 	function gl:spec-details($node as node(), $model as map(*)) as map() {
 		let $schemaSpecs := collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec
-		let $schemaSpec := $schemaSpecs[@ident=$model('schema')]
+		let $schemaSpec := $schemaSpecs[@ident=$model('schemaID')]
 		let $spec := $schemaSpec//tei:*[@ident=$model('specID')]
 		let $teiSpec := doc($config:app-root || '/guidelines/compiledODD/p5subset.xml')//tei:*[@ident=$model('specID')]
 		let $lang := $model?lang
@@ -72,13 +72,47 @@ declare
 			}
 };
 
+(:~
+ : grab all examples from our data corpus for some element
+~:)
+declare 
+	%templates:wrap
+	function gl:examples($node as node(), $model as map(*)) as map()? {
+		let $spec := gl:spec($model('exist:path'))
+		let $map := map {
+			'element' := $spec/data(@ident), 
+			'docType' := gl:schemaIdent2docType($spec/ancestor::tei:schemaSpec/data(@ident)), 
+			'namespace' := 'http://www.tei-c.org/ns/1.0', 
+			'swagger:config' := json-doc($config:swagger-config-path), 
+			'total' := true() 
+		}
+		let $examples := api:code-findByElement($map)
+(:		let $log := util:log-system-out($model('exist:path')):)
+		return 
+			map:new((
+				$map,
+				map {
+					'search-results' := $examples
+				}
+			))
+};
 
 declare 
 	%templates:wrap
-	function gl:examples($node as node(), $model as map(*)) as map() {
-		map {
-			'sum' := 17
-		}
+	function gl:preview($node as node(), $model as map(*)) as map() {
+		let $codeSample := api:codeSample($model('result-page-entry'), $model)
+		let $doc := core:doc($codeSample?docID)
+		let $docType := config:get-doctype-by-id($codeSample?docID)
+		return
+			map {
+	            'doc' := $doc,
+	            'docID' := $codeSample?docID,
+	            'relators' := $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
+	            'biblioType' := $doc/tei:biblStruct/data(@type),
+	            'workType' := $doc//mei:term/data(@classcode),
+	            'codeSample' := $codeSample?codeSample,
+	            'icon-src' := '$resources/img/icons/icon_' || $docType || '.png'
+	        }
 };
 	
 declare function gl:print-customization($node as node(), $model as map(*)) {
@@ -136,4 +170,11 @@ declare %private function gl:print-exemplum($exemplum as element()) as item()* {
 	let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
 	return
 		util:serialize(core:change-namespace($exemplum, '', ())/*/*, $serializationParameters)
+};
+
+(:~
+ : A simple mapping from schemaSpec identifiers to WeGA document types
+~:)
+declare function gl:schemaIdent2docType($schemaID as xs:string) as xs:string {
+	lower-case(substring-after($schemaID, 'wega'))
 };

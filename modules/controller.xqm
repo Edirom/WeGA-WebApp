@@ -194,7 +194,7 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
         	and $pathTokens[4] = $schemaIdents 
         	and $specID = $specIdents
         	and $pathTokens[5] = $specID || '.' || $media-type  
-        	) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schema', $pathTokens[4]))))
+        	) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schemaID', $pathTokens[4]))))
 		else if (
 			$media-type = 'xml' 
         	and $pathTokens[4] = $schemaIdents 

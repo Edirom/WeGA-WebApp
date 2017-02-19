@@ -142,6 +142,14 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    function app:bugreport($node as node(), $model as map(*)) as map(*) {
+    	map {
+                'bugEmail' := config:get-option('bugEmail')
+            }
+};
+
 (:~
  : A non-wrapping alternative to the standard templates:each()
  : Gets rid of the superfluous first list item
@@ -375,7 +383,7 @@ declare
         let $ajax-resource :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
-            case 'examples' return 'examples.html'
+            case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
             case 'wikipedia-article' return if(contains($beacon, 'Wikipedia-Personenartikel')) then 'wikipedia.html' else ()
             case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
             case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
