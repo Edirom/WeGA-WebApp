@@ -177,35 +177,55 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
 
 (:~
  : Dispatch pages under "editorial guidelines text"
+ :
+ : Virtual directory structure for Guidelines:
+ : |- project/editorialGuidelines-text
+ :		|- index.html
+ :		|- chap1.html
+ :      |- wegaLetters
+ :      	|- elements
+ :      		|- index.html
+ :				|- p.html
 ~:)
-declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch) {
-	(: Needs to be fleshed out … :)
+declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch)? {
 	let $media-type := controller:media-type($exist-vars)
-    let $specID := functx:substring-before-if-contains($exist-vars('exist:resource'), '.')
+	let $subPathTokens := tokenize(substring-after($exist-vars('exist:path'), replace(lang:get-language-string('editorialGuidelines-text', $exist-vars?lang), '\s+', '_')), '/')[.]
+(:	let $log := util:log-system-out($subPathTokens[1]):)
+	return
+		if(count($subPathTokens) eq 1 and $exist-vars('exist:resource') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:forward-xml(map:new(($exist-vars, map {'dbPath' := str:join-path-elements(($config:app-root, 'guidelines', $exist-vars('exist:resource'))) } )))
+		else if(count($subPathTokens) eq 1 and replace($exist-vars('exist:resource'), '\.[html]+$', '.xml') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:forward-html('templates/guidelines.html', $exist-vars)
+		else if(count($subPathTokens) eq 1 and $media-type and ($exist-vars('exist:resource') || '.xml') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:redirect-absolute('/' || $exist-vars('exist:prefix') || '/' || $exist-vars('exist:controller') || $exist-vars('exist:path') || '.' || $media-type)
+		else if(count($subPathTokens) eq 3 and $subPathTokens[2] = lang:get-language-string('elements', $exist-vars?lang)) then controller:dispatch-editorialGuidelines-text-elements(map:new(($exist-vars, map { 'specID' := functx:substring-before-if-contains($exist-vars('exist:resource'), '.'), 'schemaID' := $subPathTokens[1], 'media-type' := $media-type } )))
+		else controller:error($exist-vars, 404)
+};
+
+(:~
+ : Dispatch pages under section "elements" of the "editorial guidelines text"
+~:)
+declare function controller:dispatch-editorialGuidelines-text-elements($exist-vars as map(*)) as element(exist:dispatch) {
+	let $media-type := $exist-vars('media-type')
+    let $specID := $exist-vars('specID') (:functx:substring-before-if-contains($exist-vars('exist:resource'), '.'):)
+    let $schemaID := $exist-vars('schemaID')
 	let $specIdents := collection($config:app-root || '/guidelines/compiledODD')//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/@ident
 	let $schemaIdents := collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec/@ident
-	let $pathTokens := tokenize(substring-after($exist-vars('exist:path'), $exist-vars?controller), '/')[.]
-	(:let $path := core:link-to-current-app(str:join-path-elements(lang:get-language-string('editorialGuidelines-text', $lang), )):)
-(:    let $log := util:log-system-out($exist-vars('exist:path')):)
-(:    let $log := util:log-system-out(count( $specIdents)):)
     return 
         if(
         	$media-type = 'html' 
-        	and $pathTokens[4] = $schemaIdents 
+        	and $schemaID = $schemaIdents 
         	and $specID = $specIdents
-        	and $pathTokens[5] = $specID || '.' || $media-type  
-        	) then controller:forward-html('/templates/specs.html', map:new(($exist-vars, map:entry('specID', $specID), map:entry('schemaID', $pathTokens[4]))))
+        	and $exist-vars('exist:resource') = $specID || '.' || $media-type  
+        	) then controller:forward-html('/templates/specs.html', $exist-vars)
 		else if (
 			$media-type = 'xml' 
-        	and $pathTokens[4] = $schemaIdents 
+        	and $schemaID = $schemaIdents 
         	and $specID = $specIdents
-        	and $pathTokens[5] = $specID || '.' || $media-type
-			) then controller:forward-xml(map:new(($exist-vars, map {'specID' := $specID, 'schemaID' := $pathTokens[4]} )))
+        	and $exist-vars('exist:resource') = $specID || '.' || $media-type
+			) then controller:forward-xml($exist-vars)
 		else if(
 			$media-type 
 			and $specID = $specIdents 
-			and $pathTokens[4] = $schemaIdents
-			and $pathTokens[5] = $specID
+			and $schemaID = $schemaIdents
+			and $exist-vars('exist:resource') = $specID
 		) then controller:redirect-absolute('/' || $exist-vars?prefix || '/' || $exist-vars?controller || $exist-vars?path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };

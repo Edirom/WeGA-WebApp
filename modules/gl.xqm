@@ -42,7 +42,7 @@ declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as elem
 declare function gl:spec($path as xs:string) as element()? {
 	let $pathTokens := tokenize(replace($path, '(/xml|/examples)?\.[xhtml]+$', ''), '/')
 	return
-		gl:spec($pathTokens[last()], $pathTokens[last() - 1])
+		gl:spec($pathTokens[last()], $pathTokens[last() - 2])
 };
 
 declare 
@@ -59,7 +59,7 @@ declare
 		let $spec := $schemaSpec//tei:*[@ident=$model('specID')]
 		let $teiSpec := doc($config:app-root || '/guidelines/compiledODD/p5subset.xml')//tei:*[@ident=$model('specID')]
 		let $lang := $model?lang
-		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/gl.xsl')), config:get-xsl-params(()))
+		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		return
 			map {
 				'gloss' := $spec/tei:gloss[@xml:lang=$lang],
@@ -95,6 +95,20 @@ declare
 					'search-results' := $examples
 				}
 			))
+};
+
+(:~
+ : Grabbing document details for Guidelines prose chapters 
+~:)
+declare 
+	%templates:wrap
+	function gl:doc-details($node as node(), $model as map(*)) as map()? {
+		let $docID := 'A550001'
+		let $doc := doc(str:join-path-elements(($config:app-root, 'guidelines', 'chap2.xml')))
+		return
+			map {
+				'transcription' := wega-util:transform($doc, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
+			}
 };
 
 declare 
@@ -154,7 +168,16 @@ declare %private function gl:tei-source($spec as element()) as map() {
 declare %private function gl:wega-customization($model as map(*)) as map() {
 	let $specID := $model?customization/@ident
 	let $customizationIdent := $model?customization/ancestor::tei:schemaSpec/data(@ident)
-	let $url := core:link-to-current-app(str:join-path-elements(($model?lang,lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang),$customizationIdent,$specID))) || '.html'
+	let $url := 
+		core:link-to-current-app(
+			str:join-path-elements((
+				$model?lang,
+				lang:get-language-string('project', $model?lang),
+				lang:get-language-string('editorialGuidelines-text', $model?lang),
+				$customizationIdent,
+				lang:get-language-string('elements', $model?lang),
+				$specID ))
+		) || '.html'
 	return
 		map {
 			'customizationIdent' := $customizationIdent,
