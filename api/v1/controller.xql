@@ -136,7 +136,7 @@ let $validate-unknown-param := function-lookup(xs:QName($local:api-module-prefix
 let $validate-params := function($params as map()?) as map()? {
     if(exists($params)) then
         map:new(
-            for $param in $params?*
+            for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
                 if(exists($lookup)) then $lookup(map:entry($param, $params($param)))
