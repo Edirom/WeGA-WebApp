@@ -335,14 +335,16 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
         core:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
 };
 
-declare function controller:translate-URI($uri as xs:string,$sourceLang as xs:string, $targetLang as xs:string) as xs:string {
+declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string {
     let $langRegex := '/(' || string-join($config:valid-languages, '|') || ')/'
     let $tokens := tokenize(functx:substring-after-match($uri, $langRegex), '/')
     let $translated-tokens := 
-        for $token in $tokens
+        for $token at $count in $tokens
         let $has-suffix := contains($token, '.')
         return
-            if(matches($token, 'A\d{2}[0-9A-F]')) then $token
+            if(matches($token, 'A\d{2}[0-9A-F]')) then $token (: pattern for document identifier :)
+            else if(matches($token, 'wega[A-Z][a-zA-Z]+')) then $token (: pattern for schema identifier as used in the Guidelines :)
+            else if($count = count($tokens) and $tokens[$count - 1] = (lang:get-language-string('elements', $sourceLang))) then $token
             else if($has-suffix) then lang:translate-language-string(replace(substring-before(xmldb:decode($token), '.'), '_', ' '), $sourceLang, $targetLang) || '.' || substring-after($token, '.')
             else lang:translate-language-string(replace(xmldb:decode($token), '_', ' '), $sourceLang, $targetLang)
     return
