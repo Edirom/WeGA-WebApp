@@ -115,7 +115,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 (:    let $log := util:log-system-out($path):)
     return 
         if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
-        else if($media-type and $path) then controller:redirect-absolute('/' || $exist-vars?prefix || '/' || $exist-vars?controller || $path || '.' || $media-type)
+        else if($media-type and $path) then controller:redirect-absolute('/' || $exist-vars('exist:prefix') || '/' || $exist-vars('exist:controller') || $path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
