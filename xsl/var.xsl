@@ -300,6 +300,7 @@
                 <xsl:for-each select="//tei:note[@type=('commentary','definition','textConst')]">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:attribute name="data-title" select="concat(wega:getLanguageString('endNote', $lang), '&#160;', position())"/>
                         <xsl:element name="a">
                             <xsl:attribute name="class">endnote_backlink</xsl:attribute>
                             <xsl:attribute name="href" select="concat('#ref-', @xml:id)"/>

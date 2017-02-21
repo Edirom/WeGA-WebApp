@@ -262,9 +262,10 @@ $.fn.preview_popover = function() {
 };
 
 /* 
- * Create initial popover with template from page.html#carousel-popover for the content
+ * Create initial popover for notes and previews 
+ * with template from page.html#carousel-popover for the content
  */
-$('.preview').on('click', function() {
+$('.preview, .noteMarker').on('click', function() {
     $(this).popover({
         "html": true,
         "trigger": "manual",
@@ -321,7 +322,17 @@ function popover_callBack() {
     $(urls).each(function(i,e) {
         popover_div = $('div.item:last', popover);
         popover_div.attr('data-ref', e);
-        popover_div.preview_popover();
+        
+        if(e.startsWith('#')) { // local references to endnotes and commentaries
+            $('.item-title', popover_div).html($(e).attr('data-title'));
+            $('.item-content', popover_div).html($(e).html());
+            var popover_data = popover.data('bs.popover');
+            popover_data.options.content = $('div.popover-content', popover).clone().children();
+            popover.popover('show');
+        }
+        else { // external content via AJAX
+            popover_div.preview_popover();
+        }
         if(urls.length > i +1) {
             popover_div.clone().removeClass('active').insertAfter(popover_div);
             li_clone = li_templ.clone();
@@ -431,28 +442,6 @@ function updatePage(params) {
     }
 }
 
-// helper function to grab AJAX content for popovers
-function details_in_popup(link, popoverClass){
-    /*$.ajax({
-        url: link,
-        success: function(response){
-            var source = $('<div>' + response + '</div>'),
-                popover = $('.'+popoverClass).data('bs.popover');
-            popover.options.content = source.children().children();
-            popover.options.title = source.find('h3').children();
-            $('.'+popoverClass+' h3.media-heading').remove(); // remove relicts of headings
-            $('.'+popoverClass).popover('show'); 
-            $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
-        }
-    });*/
-    /*return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';*/
-    return $('#carousel-example-generic');
-}
-
-/* only needed after ajax calls?!? --> see later */
-/* needed on index page for the search box, as well */
-//$('select').selectize({});
-
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
 
@@ -461,22 +450,6 @@ $('.allFilter:visible .rangeSlider').rangeSlider();
 
 
 $('h1').h1FitText();
-
-/* Initialise popovers for notes */
-$('.noteMarker').popover({
-  'html': true,
-  'placement': 'auto top',
-  'title': function(){
-      var noteID=$(this).attr('data-ref'),
-        note=$('#' + noteID);
-      return note.attr('data-title');
-  },
-  'content': function() {
-      var noteID=$(this).attr('data-ref'),
-        note=$('#' + noteID);
-      return note.html();
-  }
-});
 
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
