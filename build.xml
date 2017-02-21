@@ -62,7 +62,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, download-smufl-font, bower, less">
+    <target name="dist" depends="init, download-smufl-font, bower, less, guidelines">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -80,6 +80,7 @@
                 <include name="catalogues/**"/>
                 <include name="indices/**"/>
                 <include name="templates/**"/>
+                <include name="guidelines/**"/>
                 <include name="xsl/**"/>
                 <exclude name="build.xml"/>
                 <exclude name="*build.properties"/>
@@ -214,5 +215,23 @@
         </xdb:xquery>
     </target>
     
+    <target name="guidelines" unless="skip.guidelines">
+        <description>
+            Create and copy compiled ODD files of the various WeGA TEI and MEI schemas to the schemas directory.
+            Also copy the respective source file for later comparison.
+        </description>
+    	<!-- currently restricted to TEI only -->
+        <ant dir="${odd.dir}" target="tei"/>
+        <copy todir="guidelines/compiledODD">
+            <fileset dir="${odd.dir}/build">
+                <include name="*.processed"/>
+            </fileset>
+        	<!-- change file extension so eXist treats the files as XML -->
+        	<mapper type="glob" from="*.processed" to="*.xml"/>
+        </copy>
+        <property file="${odd.dir}/local.build.properties"/>
+        <property file="${odd.dir}/build.properties"/>
+        <copy todir="guidelines/compiledODD" file="${tei.source}"/>
+    </target>
     
 </project>

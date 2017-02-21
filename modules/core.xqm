@@ -228,8 +228,7 @@ declare function core:change-namespace($element as element(), $targetNamespace a
 };
 
 (:~
- : Serves as a shortcut to templates:link-to-app()
- : The assumed context is the current app
+ : Create a link within the current app context (this is the 1-arity version)
  :
  : @author Peter Stadler
  : @param $relLink a relative path to be added to the returned path
@@ -237,7 +236,19 @@ declare function core:change-namespace($element as element(), $targetNamespace a
  :)
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
-    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
+    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("exist:prefix"), request:get-attribute('exist:controller'), $relLink))
+};
+
+(:~
+ : Create a link within the current app context (this is the 2-arity version)
+ : 
+ : @param $relLink a relative path to be added to the returned path
+ : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
+ : @return the complete URL for $relLink
+~:)
+declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as map()) as xs:string {
+(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
 };
 
 (:~

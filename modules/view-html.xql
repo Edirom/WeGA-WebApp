@@ -21,6 +21,7 @@ import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/sea
 import module namespace html-meta="http://xquery.weber-gesamtausgabe.de/modules/html-meta" at "html-meta.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
+import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
@@ -30,13 +31,23 @@ let $config := map {
 }
 
 let $model := 
-    map {
+	map:new((
+		(
+		for $var in request:attribute-names()
+		return
+			map:entry($var, request:get-attribute($var))
+		),
+		map:entry('environment', config:get-option('environment')),
+		map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+	))
+   (: map {
         'docID' := request:get-attribute('docID'),
         'lang' := request:get-attribute('lang'),
         'docType' := request:get-attribute('docType'),
         'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()},
-        'environment' := config:get-option('environment')
-    }
+        'environment' := config:get-option('environment'),
+        'specID' := request:get-attribute('specID')
+    }:)
     
 (:
  : We have to provide a lookup function to templates:apply to help it

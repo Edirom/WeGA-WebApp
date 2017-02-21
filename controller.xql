@@ -20,10 +20,10 @@ declare variable $exist:prefix external;
 
 let $lang := lang:guess-language(())
 let $exist-vars := map {
-    'path' := $exist:path,
-    'resource' := $exist:resource,
-    'controller' := $exist:controller,
-    'prefix' := $exist:prefix,
+    'exist:path' := $exist:path,
+    'exist:resource' := $exist:resource,
+    'exist:controller' := $exist:controller,
+    'exist:prefix' := $exist:prefix,
     'lang' := $lang
     }
 
@@ -49,7 +49,7 @@ else if(starts-with($exist:path, '/digilib/')) then
  :  Nackte Server-URL (evtl. mit Angabe der Sprache)
 :)
 else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
-    controller:redirect-absolute('/' || $lang || '/Index')
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || '/' || $lang || '/Index')
 
 (: 
  :  Startseiten-Weiterleitung 2
@@ -57,7 +57,7 @@ else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
  :  Achtung: .php hier nicht aufnehmen, dies wird mit den typo3ContentMappings abgefragt
 :)
 else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
-    controller:redirect-absolute('/' || $lang || '/Index')
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || '/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docID', 'home'))))
@@ -109,6 +109,10 @@ else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string(
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
     controller:dispatch-register($exist-vars)
 
+(: Guidelines – need to go before the general 'project' dispatch :)
+else if (contains($exist:path, concat('/', replace(lang:get-language-string('editorialGuidelines-text', $lang), '\s+', '_'), '/'))) then 
+    controller:dispatch-editorialGuidelines-text($exist-vars)
+    
 (: Projekt :)
 else if (contains($exist:path, concat('/', lang:get-language-string('project', $lang), '/', $exist:resource))) then
     controller:dispatch-project($exist-vars)
@@ -119,35 +123,35 @@ else if (contains($exist:path, concat('/', lang:get-language-string('help', $lan
 
 (: Korrespondenz :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || encode-for-uri(lang:get-language-string('diaries', $lang)) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
 
 (: Werke :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
 (: Bibliographie :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
 (: News :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
 (: Themenkommentare :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
 
 (: Dokumente :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
-    controller:redirect-absolute(replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
+    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
@@ -179,10 +183,10 @@ else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     </dispatch>
     :)
     
-else if (contains($exist:path, '/IIIF')) then
+(:else if (contains($exist:path, '/IIIF')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF{replace(substring-after($exist:path, 'IIIF'), 'default', 'native')}"/>
-    </dispatch>
+    </dispatch>:)
 
 (: Ausführliche Weber-Biographie :)
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
@@ -215,7 +219,6 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$
     	   <cache-control cache="yes"/>
     	</redirect>
     </dispatch>   :) 
-
 
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then

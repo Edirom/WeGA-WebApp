@@ -176,11 +176,11 @@ function remoteTabsCallback(html, trigger, container, data) {
     
     /* Load portraits via AJAX */
     $('.searchResults .portrait', html).loadPortrait();
-            
+    
     /* Listen for click events on pagination */
     $('.page-link', html).on('click', 
         function() {
-            $(this).activatePagination($('#backlinks'));
+            $(this).activatePagination(trigger.attr('href'));
         }
     );
 };
@@ -612,7 +612,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-url') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })

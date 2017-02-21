@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
@@ -12,6 +13,7 @@
     <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
+	<xsl:include href="tagdocs.xsl"/>
     
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -241,6 +243,7 @@
             <xsl:element name="ul">
                 <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
+                    	<xsl:attribute name="class" select="concat('secLevel', count(ancestor::tei:div))"/>
                         <xsl:element name="a">
                             <xsl:attribute name="href">
                                 <xsl:choose>

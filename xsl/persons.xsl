@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
@@ -7,7 +8,7 @@
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes"/>
 
     <xsl:preserve-space
-        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date tei:orgName"/>
+        elements="tei:item tei:cell tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:head tei:date tei:orgName tei:note"/>
     
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
