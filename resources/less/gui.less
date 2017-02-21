@@ -37,32 +37,83 @@
     margin: auto;
 }
 
-.popover div.media-body {
-    width: 75%;
-    margin: 0;
-    padding-left:3px;
-    float:left;
+/* Settings for popovers */
+.popover {
+    div.media-body {
+        width: 75%;
+        margin: 0;
+        padding-left:3px;
+        float:left;
+    }
+    div.preview-icon {
+        width: 25%;
+        margin: 0;
+        padding-right:3px;
+        float:left;
+        img {
+            width:100%;
+            padding-top: 1ex;
+        }
+    }
+    .popover-title {
+        display:none;
+    }
+    .popover-content {
+        padding: 0px;
+        .endnote_backlink {
+            display:none;
+        }
+        .item-title {
+            background-color: @popover-title-bg;
+            padding: 8px 14px;
+            border-bottom:1px solid @popover-border-color;
+            margin: 0px;
+            font-size:16px;
+            a:hover {
+                text-decoration:none;
+            }
+        }
+        .item-content {
+            padding: 8px 14px;
+            margin: 0px;
+            max-height: 250px;
+            overflow: scroll;
+        }
+        .carousel-indicators {
+            bottom:-60px;
+        }
+    }
+    .popover-multi {
+        .carousel-inner {
+            height:250px;
+            margin-bottom: 25px;
+        }
+        .carousel-control {
+            bottom: -20px;
+            text-shadow: none;
+            color: @gray;
+            span {
+                position: absolute;
+                bottom: 0;
+            }
+            &.left,
+            &.right {
+                background: none !important;
+            }
+            .fa-angle-double-left {
+                left: 5px !important;
+            }
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        font-family: @font-family-sans-serif;
+    }
 }
 
-.popover div.preview-icon {
-    width: 25%;
-    margin: 0;
-    padding-right:3px;
-    float:left;
-}
-
-.popover-content .preview-icon img {
-    width:100%;
-    padding-top: 1ex;
-}
-
-.popover p {
-    margin-bottom: 5px;
-    font-family: @font-family-sans-serif;
-}
-
-.popover-content .endnote_backlink {
-    display:none;
+/* This class toggles the popovers for previews */
+.preview {
+    .common-link
 }
 
 ol.endNotes {
@@ -99,9 +150,13 @@ ol.endNotes {
     background-color: @brand-primary !important;
 }
 
-.works, .biblio {
-    color: @brand-primary;
+.common-link {
+    color: @link-color;
     cursor:pointer;
+    white-space: nowrap;
+    :hover {
+        color: @link-hover-color;
+    }
 }
 
 .nameDesc::before {

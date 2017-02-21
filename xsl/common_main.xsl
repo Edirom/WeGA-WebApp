@@ -63,7 +63,7 @@
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
-            <xsl:attribute name="data-ref" select="$id"/>
+            <xsl:attribute name="data-ref" select="concat('#', $id)"/>
             <xsl:choose>
                 <xsl:when test="$marker eq 'arabic'">
                     <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
