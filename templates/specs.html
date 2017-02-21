@@ -15,7 +15,8 @@
                     <ol class="breadcrumb">
                         <li><a href="$link/index">Home</a></li>
                     	<li><a href="$link/project/editorialGuidelines-text.html" data-template="lang:translate">editorialGuidelines-text</a></li>
-                        <li><a>elements</a></li>
+                        <li><a data-template="app:print" data-template-key="schemaID">wegaLetters</a></li>
+                        <li><a data-template="lang:translate">elements</a></li>
                         <li><span data-template="app:print" data-template-key="specID">div</span> </li>
                     </ol>
                 </div>
@@ -37,7 +38,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="remoteTabsCallback">examples</a></li>
+                            	<li class="gradient-light"><a href="#examples" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="remoteTabsCallback">examples</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                                 <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
                             </ul>
@@ -95,13 +96,13 @@
                         <div class="row">
                         	<div class="col-md-12">
                         		<p>
-                        			<span data-template="app:print" data-template-key="specID">castGroup</span> (<span data-template="app:print" data-template-key="gloss">cast list grouping</span>) <span data-template="app:print" data-template-key="desc">groups one or more individual castItem elements within a cast list.</span>
+                        			<b data-template="app:print" data-template-key="specIDDisplay">castGroup</b> (<span data-template="app:print" data-template-key="gloss">cast list grouping</span>) <span data-template="app:print" data-template-key="desc">groups one or more individual castItem elements within a cast list.</span>
                         		</p>
                         	</div>
                         </div>
                         <div class="row customizations">
                             <div class="col-md-2">
-                                <p>Related Customizations</p>
+                            	<p data-template="lang:translate">other_customizations</p>
                             </div>
                             <div class="col-md-10">
                                 <!--<p>unmodified – this is the original usage as defined by the TEI Guidelines version 3.1.0.</p>-->
@@ -112,32 +113,36 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-md-2">
                                 <p>Module</p>
                             </div>
                             <div class="col-md-10">
                                 <p>drama — Performance Texts</p>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div>-->
+                    	<div class="row" data-template="app:each" data-template-from="remarks" data-template-to="remark">
                             <div class="col-md-2">
-                                <p>Note</p>
+                            	<p data-template="lang:translate">gl_note</p>
                             </div>
                             <div class="col-md-10">
-                                <p>The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
+                            	<div>
+                            		<p data-template="app:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                     Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
+                            	</div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <p>Example</p>
-                            </div>
-                            <div class="col-md-10">
-                                <div id="index-egXML-d53e65018" class="pre egXML_valid"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
-                                </div>
-                            </div>
-                        </div>
+                    	<div class="row" data-template="app:each" data-template-from="examples" data-template-to="example">
+                    		<div class="col-md-2">
+                    			<p data-template="lang:translate">example</p>
+                    		</div>
+                    		<div class="col-md-10">
+                    			<div>
+                    				<pre class="prettyprint"><code data-template="app:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
+                    				</code></pre>
+                    			</div>
+                    		</div>
+                    	</div>
                     </div>
                     <div class="tab-pane fade" id="examples">
                         <h2 data-template="lang:translate">examples</h2>
@@ -155,22 +160,25 @@
             </div>
         </div>
     </div>
-    <!--<div class="container documentFooter" data-template="app:documentFooter">
+    <div class="container documentFooter">
         <div class="row permaLink">
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+        	<div class="col-md-9">
+        		<p>Source Code can be found on our <a href="https://github.com/edirom/WeGA-ODD">GitHub</a>.</p>
+        	</div>
+            <!--<div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
                 <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
-            </div>
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+            </div>-->
+            <!--<div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
                 <h4>Proposed citation</h4>
                 <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
                 <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
-            </div>
+            </div>-->
         </div>
-        <div class="row bugreport">
+    	<div class="row bugreport" data-template="app:bugreport">
             <div class="col-md-9">
                 <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
@@ -178,5 +186,5 @@
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>

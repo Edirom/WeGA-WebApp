@@ -289,18 +289,20 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
  : Inspired by functx:remove-elements-deep
 ~:)
 declare function wega-util:remove-elements-by-class($nodes as node()*, $classes as xs:string*) as node()* {
-    for $node in $nodes
-    return
-        typeswitch($node)
-        case element() return
-            if ($node[@class = tokenize($classes, '\s+')]) then ()
-            else 
-                element { node-name($node) } { 
-                    $node/@*,
-                    wega-util:remove-elements-by-class($node/node(), $classes)
-                }
-        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
-        default return $node
+	if($nodes/descendant-or-self::*[@class = tokenize($classes, '\s+')]) then
+	    for $node in $nodes
+	    return
+	        typeswitch($node)
+	        case element() return
+	            if ($node[@class = tokenize($classes, '\s+')]) then ()
+	            else 
+	                element { node-name($node) } { 
+	                    $node/@*,
+	                    wega-util:remove-elements-by-class($node/node(), $classes)
+	                }
+	        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
+	        default return $node
+    else $nodes
 };
 
 (:~

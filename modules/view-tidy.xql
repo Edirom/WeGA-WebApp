@@ -35,7 +35,12 @@ declare function local:tidy($node as node()) as node()? {
 };
 
 declare function local:tidy-attr($node as node()) as node()? {
-    let $lang := request:get-attribute('lang')
+    let $exist-vars := 
+    	map { 
+    		'lang' := request:get-attribute('lang'),
+    		'exist:prefix' := request:get-attribute('exist:prefix'),
+    		'exist:controller' := request:get-attribute('exist:controller')
+    	}
     return 
         if(starts-with(node-name($node), 'data-template')) then ()
         
@@ -43,7 +48,7 @@ declare function local:tidy-attr($node as node()) as node()? {
             attribute { node-name($node) } {core:link-to-current-app(substring-after($node, '$'))}
         
         else if(starts-with($node, '$link')) then 
-            attribute { node-name($node) } {controller:resolve-link(data($node), $lang)}
+            attribute { node-name($node) } {controller:resolve-link(data($node), $exist-vars)}
 
         else if(starts-with($node, '$dev')) then 
             attribute { node-name($node) } {core:link-to-current-app(substring($node, 2))}
