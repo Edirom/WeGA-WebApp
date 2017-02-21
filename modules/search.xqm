@@ -15,6 +15,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace functx="http://www.functx.com";
 
 (: 
  : a subset of $config:wega-docTypes. 
@@ -207,10 +208,28 @@ declare %private function search:create-lucene-query-element($searchString as xs
     return
         <query>
             <bool>
-                <bool boost="2">{$tokens ! <term occur="must">{.}</term>}</bool>
-                <bool>{$tokens ! <wildcard occur="must">{lower-case(.)}*</wildcard>}</bool>
+                <bool boost="5">{$tokens ! <term occur="must">{.}</term>}</bool>
+                <bool boost="2">{$tokens ! <wildcard occur="must">{lower-case(.)}*</wildcard>}</bool>
+                <bool>{$tokens ! search:additional-mappings(lower-case(.))}</bool>
             </bool>
         </query>
+};
+
+(:~
+ : Helper function for search:create-lucene-query-element()
+ : Adds additional character mappings to the search, e.g. "Rowenstrunk -> Roewenstrunk"
+ : This is applied *after* the unicode normalization, so the input $str is already without diacritics
+ :
+ : @param $str a search token, derived from the input query string
+ : @return a <regex> element for use in XML lucene syntax
+~:)
+declare %private function search:additional-mappings($str as xs:string) as element(regex) {
+    <regex occur="must">{
+        functx:replace-multi($str, 
+            ('"', '[ck]', 'ae?', 'oe?', 'ue?', 'ß'), 
+            ('', '(c|k)', 'ae?', 'oe?', 'ue?', 'ss') 
+        )
+    }.*</regex>
 };
 
 (:~
@@ -392,7 +411,7 @@ declare %private function search:prepare-search-string() as map(*) {
         else ():)
     return
         map {
-            'query-string' := $query-string, 
+            'query-string' := replace(normalize-unicode($query-string, 'NFKD'),  '[\p{M}]', ''), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
             'query-docTypes' := $query-docTypes,
             'dates' := $dates
         }
