@@ -196,7 +196,7 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
  : Helper function for validating user input (= function parameters)
 ~:)
 (:declare %private function api:validateInput($model as map()) as empty() {
-    for $param in $model?*
+    for $param in map:keys($model)
     return
         switch($param)
         case 'docType' return api:check-docType($model)
@@ -281,6 +281,10 @@ declare function api:validate-authorID($model as map()) as map()? {
     map { 'authorID' := xmldb:decode-uri($model?authorID) }
 };
 
+(:~
+ : Fallback for unknown API parameters 
+ : Simply returns an error message
+~:)
 declare function api:validate-unknown-param($model as map()) as map()? {
-    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || $model?* || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
+    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model), '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
 };
