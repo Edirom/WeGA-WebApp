@@ -42,7 +42,7 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
-        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
+        let $suppressWikipediaPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
         let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
             if(exists($model('beaconMap'))) then $model('beaconMap')
             else try { 
@@ -53,7 +53,7 @@ declare
             if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
+            if(not($suppressWikipediaPortrait) and count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
@@ -62,9 +62,7 @@ declare
             if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
             else ()
         let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
-        let $portrait := 
-            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
-            else ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
+        let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
         return
             map { 
                 'iconographyImages' := $iconographyImages,
