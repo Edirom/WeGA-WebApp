@@ -64,7 +64,7 @@ declare
 declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
     element {name($node)} {
         $node/@*[not(name(.) = 'value')],
-        if($model('query-string') ne '') then attribute {'value'} {$model('query-string')}
+        if($model('query-string-org') ne '') then attribute {'value'} {$model('query-string-org')}
         else ()
     }
 };
@@ -405,7 +405,8 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
 ~:)
 declare %private function search:prepare-search-string() as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
-    let $query-string := str:sanitize(string-join(request:get-parameter('q', ''), ' '))
+    let $query-string-org := request:get-parameter('q', '')
+    let $query-string := str:sanitize(string-join($query-string-org, ' '))
     let $dates := analyze-string($query-string, '\d{4}-\d{2}-\d{2}')/fn:match/text()
         (:if(string-length($query-string) ge 400) then date:parse-date($query-string)
         else ():)
@@ -413,6 +414,7 @@ declare %private function search:prepare-search-string() as map(*) {
         map {
             'query-string' := replace(normalize-unicode($query-string, 'NFKD'),  '[\p{M}]', ''), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
             'query-docTypes' := $query-docTypes,
+            'query-string-org' := $query-string-org, 
             'dates' := $dates
         }
 };
