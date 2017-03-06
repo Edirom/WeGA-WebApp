@@ -123,9 +123,14 @@ declare
     %templates:default("lang", "en") 
     %templates:wrap
     function facets:document-allFilter($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $suppressLinks := year-from-date(xs:date($model('doc')/tei:ab/@n)) = $config:diaryYearsToSuppress
+        let $filterSections := 
+            if($suppressLinks) then ('places', 'characterNames')
+            else ('personsPlus', 'works', 'places', 'characterNames')
+        return
         map {
             'filterSections' := 
-                for $filter in ('personsPlus', 'works', 'places', 'characterNames')
+                for $filter in $filterSections
                 let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
                 let $places := 
                     if($filter = 'places') then distinct-values($model('doc')//tei:settlement[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
