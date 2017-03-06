@@ -99,13 +99,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             core:data-collection('persons')[descendant::tei:person][descendant-or-self::tei:persName]
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('persons', wdt:persons(())('init-collection')(), function($node) { 
-                let $sortName :=
-                    if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,'))
-                    else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
-                let $name := str:normalize-space($node//tei:persName[@type='reg'])
-                return $sortName || $name
-            }, ())
+            wdt:create-index-callback('persons', wdt:persons(())('init-collection')(), wdt:sort-key-person#1, ())
         },
         'title' := function($serialization as xs:string) as item()? {
             let $person := 
@@ -245,12 +239,8 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
-                let $sortName :=
-                    if($node/tei:org) then str:normalize-space($node//tei:orgName[@type = 'reg'])
-                    else if(functx:all-whitespace($node//tei:persName[@type = 'reg']/tei:surname[1])) then str:normalize-space(functx:substring-before-match($node//tei:persName[@type = 'reg'], '\s?,'))
-                    else str:normalize-space($node//tei:persName[@type = 'reg']/tei:surname[1])
-                let $name := str:normalize-space($node//tei:persName[@type = 'reg'])
-                return $sortName || $name
+                if($node/tei:org) then lower-case(str:normalize-space($node//tei:orgName[@type = 'reg']))
+                else wdt:sort-key-person($node)
             }, ())
         },
         'memberOf' := ('search', 'indices'),
@@ -915,6 +905,19 @@ declare %private function wdt:create-index-callback($id as xs:string, $item as i
     sort:create-index-callback($id, $item, $callback, $options)
 };
 
+(:~
+ : Helper function for creating a sort key for persons
+ : Called by wdt:persons and wdt:personsPlus
+~:)
+declare %private function wdt:sort-key-person($node as node()) as xs:string? {
+    let $sortName :=
+        if(functx:all-whitespace($node//tei:persName[@type='reg']/tei:surname[1])) then replace(str:normalize-space(functx:substring-before-match($node//tei:persName[@type='reg'], '\s?,')), '(v[oa][nm]( der)? )|(d[uea]( la)? )', '')
+        else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
+    let $name := str:normalize-space($node//tei:persName[@type='reg'])
+    return 
+        lower-case(replace(wega-util:strip-diacritics($sortName || $name), "'", ""))
+};
+
 declare function wdt:members($memberOf as xs:string+) as item()* {
     for $func in $wdt:functions
     return
@@ -925,7 +928,7 @@ declare function wdt:members($memberOf as xs:string+) as item()* {
 declare variable $wdt:functions := 
     for $func in inspect:module-functions()
     return 
-        if(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:create-index-callback'))) then ()
+        if(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:create-index-callback'), xs:QName('wdt:sort-key-person'))) then ()
         else $func
 ;
 
