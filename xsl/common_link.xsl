@@ -4,7 +4,8 @@
         because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
         thus exclude all elements with the following child elements 
     -->
-    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'note', 'unclear', 'app')"/>
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app')"/>
+    <xsl:variable name="inlineNoteTypes" as="xs:string+" select="('commentary', 'textConst', 'definition')"/>
     
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
@@ -81,11 +82,11 @@
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists(@key) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
+            <xsl:when test="exists(@key) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks or ancestor::tei:note[@type = $inlineNoteTypes])">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
                         <!-- Provide the preview popover on the top most element -->
-                        <xsl:if test="not(ancestor::*[local-name(.) = $linkableElements])">
+                        <xsl:if test="not(ancestor::*[local-name(.) = $linkableElements or ancestor::tei:note[@type = $inlineNoteTypes]])">
                             <xsl:text>preview </xsl:text>
                         </xsl:if>
                         <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
@@ -111,7 +112,7 @@
                 <xsl:choose>
                     <xsl:when test="@key">
                         <!-- Provide the preview popover on the top most element -->
-                        <xsl:if test="not($suppressLinks or ancestor::*[local-name(.) = $linkableElements])">
+                        <xsl:if test="not($suppressLinks or ancestor::*[local-name(.) = $linkableElements] or ancestor::tei:note[@type = $inlineNoteTypes])">
                             <xsl:text>preview </xsl:text>
                         </xsl:if>
                         <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
