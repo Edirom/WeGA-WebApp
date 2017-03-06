@@ -12,7 +12,6 @@ declare namespace pdr="http://pdr.bbaw.de/namespaces/pdrws/";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
-(:import module namespace wega="http://xquery.weber-gesamtausgabe.de/modules/wega" at "wega.xqm";:)
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace functx="http://www.functx.com";
 

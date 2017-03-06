@@ -741,10 +741,10 @@ declare
             'realnames' := $model('doc')//tei:persName[@type = 'real'],
             'altnames' := $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] | $model('doc')//tei:orgName[@type = 'alt'],
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'],
-            'births' := date:printDate(($model('doc')//tei:birth/tei:date[not(@type)])[1], $lang),
-            'baptism' := date:printDate(($model('doc')//tei:birth/tei:date[@type='baptism'])[1], $lang),
-            'deaths' := date:printDate(($model('doc')//tei:death/tei:date[not(@type)])[1], $lang),
-            'funeral' := date:printDate(($model('doc')//tei:death/tei:date[@type = 'funeral'])[1], $lang),
+            'birth' := $model('doc')//tei:birth[count(tei:* except tei:date[@type]) gt 0],
+            'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
+            'death' := $model('doc')//tei:death[count(tei:* except tei:date[@type]) gt 0],
+            'funeral' := $model('doc')//tei:death/tei:date[@type = 'funeral'],
             'occupations' := $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
             'residences' := $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
             'addrLines' := $model('doc')//tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']//tei:addrLine 
@@ -820,7 +820,7 @@ declare
         case 'death' return $model('doc')//tei:placeName[parent::tei:death]
         default return ()
     return
-        for $placeName at $count in $placeNames
+        for $placeName at $count in core:order-by-cert($placeNames)
         let $preposition :=
             if(matches(normalize-space($placeName), '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
             else concat(' ', lower-case(lang:get-language-string('in', $model('lang'))), ' ')
@@ -829,6 +829,31 @@ declare
             if($count eq count($placeNames)) then ()
             else concat(' ',lang:get-language-string('or', $model('lang')),' ')
         )
+};
+
+declare 
+    %templates:wrap
+    function app:printDatesOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as xs:string {
+        let $dates :=
+            switch($key)
+            case 'birth' return $model('doc')//tei:birth/tei:date[not(@type)]
+            case 'baptism' return $model('doc')//tei:birth/tei:date[@type = 'baptism']
+            case 'death' return $model('doc')//tei:death/tei:date[not(@type)]
+            case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
+            default return ()
+        let $orderedDates := core:order-by-cert($dates)
+        return
+            date:printDate($orderedDates[1], $model?lang) || 
+            (
+            if(count($orderedDates) gt 1) then
+                ' (Andere Angaben: ' ||
+                string-join(
+                    for $date in subsequence($orderedDates, 2)
+                    return date:printDate($date, $model?lang)
+                , ', ') ||
+                ')'
+            else ()
+            )
 };
 
 declare

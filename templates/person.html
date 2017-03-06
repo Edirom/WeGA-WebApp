@@ -78,12 +78,12 @@
                             </div>
                             <div class="media-body"> <span data-template="app:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
                         </li>
-                        <li class="media" data-template="app:each" data-template-from="births" data-template-to="birth">
+                        <li class="media" data-template="app:if-exists" data-template-key="birth">
                             <div class="pull-left">
                                 <i class="fa fa-asterisk  media-object"/>
                             </div>
                             <div class="media-body">
-                                <span data-template="app:print" data-template-key="birth">20.11.1786</span>
+                                <span data-template="app:printDatesOfBirthOrDeath" data-template-key="birth">20.11.1786</span>
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
                                 <!--Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
                                 in Eudin Unsicher: 22.10.1786 in Eudin--> </div>
@@ -93,16 +93,16 @@
                                 <img src="$resources/img/baptism.gif" alt="baptism-icon"/>
                             </div>
                             <div class="media-body">
-                                <span data-template="app:print" data-template-key="baptism">20.11.1786</span>
+                                <span data-template="app:printDatesOfBirthOrDeath" data-template-key="baptism">20.11.1786</span>
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
                             </div>
                         </li>
-                        <li class="media" data-template="app:each" data-template-from="deaths" data-template-to="death">
+                        <li class="media" data-template="app:if-exists" data-template-key="death">
                             <div class="pull-left">
                                 <strong>†</strong>
                             </div>
                             <div class="media-body">
-                                <span data-template="app:print" data-template-key="death">20.11.1786</span>
+                                <span data-template="app:printDatesOfBirthOrDeath" data-template-key="death">20.11.1786</span>
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
                             </div>
                         </li>
@@ -111,7 +111,7 @@
                                 <img src="$resources/img/funeral.gif" alt="funeral-icon"/>
                             </div>
                             <div class="media-body">
-                                <span data-template="app:print" data-template-key="funeral">20.11.1786</span>
+                                <span data-template="app:printDatesOfBirthOrDeath" data-template-key="funeral">20.11.1786</span>
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
                             </div>
                         </li>

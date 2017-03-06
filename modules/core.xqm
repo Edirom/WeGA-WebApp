@@ -304,3 +304,22 @@ declare function core:cache-doc($docURI as xs:string, $callback as function() as
         else if(wega-util:doc-available($docURI)) then doc($docURI)
         else ()
 };
+
+(:~
+ : Sort items by their cert-attribute
+ : Primarily used for sorting birth and death dates    
+~:)
+declare function core:order-by-cert($items as item()*) as item()* {
+    let $order := map {
+        'high' := 1,
+        'medium' := 2,
+        'low' := 3,
+        'unknown' := 4,
+        '' := 4
+    }
+    return
+        for $i in $items
+        let $cert := $i/string(@cert)
+        order by $order($cert)
+        return $i
+};
