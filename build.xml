@@ -19,6 +19,7 @@
     
     <target name="clean-all" depends="clean">
         <delete dir="bower_components"/>
+        <delete dir="guidelines/compiledODD"/>
     </target>
     
     <target name="init">
@@ -215,7 +216,7 @@
         </xdb:xquery>
     </target>
     
-    <target name="guidelines" unless="skip.guidelines">
+    <target name="guidelines" if="include.guidelines">
         <description>
             Create and copy compiled ODD files of the various WeGA TEI and MEI schemas to the schemas directory.
             Also copy the respective source file for later comparison.
