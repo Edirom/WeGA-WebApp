@@ -880,7 +880,7 @@ declare
             date:printDate($orderedDates[1], $model?lang) || 
             (
             if(count($orderedDates) gt 1) then
-                ' (Andere Angaben: ' ||
+                ' (' || lang:get-language-string('otherSources', $model?lang) || ': ' ||
                 string-join(
                     for $date in subsequence($orderedDates, 2)
                     return date:printDate($date, $model?lang)
