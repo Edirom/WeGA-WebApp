@@ -412,7 +412,7 @@ declare %private function search:prepare-search-string() as map(*) {
         else ():)
     return
         map {
-            'query-string' := replace(normalize-unicode($query-string, 'NFKD'),  '[\p{M}]', ''), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+            'query-string' := wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
             'query-docTypes' := $query-docTypes,
             'query-string-org' := $query-string-org, 
             'dates' := $dates

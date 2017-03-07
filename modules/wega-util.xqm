@@ -368,3 +368,12 @@ declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
     wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
 };
+
+(:~
+ : create a flattened version of strings without diacritics, e.g. "Méhul" --> "Mehul"
+ : see http://exist.2174344.n4.nabble.com/stripping-diacritics-with-fn-normalize-unicode-tp4657960.html
+~:)
+declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
+    for $i in $str
+    return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
+};
