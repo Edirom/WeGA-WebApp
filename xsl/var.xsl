@@ -19,7 +19,7 @@
         <xsl:apply-templates/>
     </xsl:template>
 
-    <!-- wir nie benutzt, oder?! -->
+    <!-- wird nie benutzt, oder?! -->
     <!--<xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'docText'"/>
@@ -226,7 +226,7 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)]/tei:head[ancestor::tei:div/@xml:lang=$lang]) + 1"/>
+        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head][ancestor-or-self::tei:div/@xml:lang=$lang]) + 1"/>
         <xsl:if test="$dot">
             <xsl:text>. </xsl:text>
         </xsl:if>
