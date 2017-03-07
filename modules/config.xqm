@@ -61,8 +61,6 @@ declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm'
 (: The first language is the default language :)
 declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
-declare variable $config:default-entries-per-page as xs:int := 10; 
-
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
@@ -399,10 +397,18 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
     </parameters>
 };
 
+(:~
+ : get (from URL parameter, or session, or options file) and set (to the session) the default entries per page
+~:)
 declare function config:entries-per-page() as xs:int {
-(:    Klappt irgendwie nicht?!? :)
-    (:$config:default-entries-per-page:)
-    10
+    let $urlParam := request:get-parameter('limit', ())
+    let $sessionParam := session:get-attribute('limit')
+    let $default-option := config:get-option('entriesPerPage')
+    return
+        if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
+        else if($sessionParam castable as xs:int) then $sessionParam
+        else if($default-option castable as xs:int) then xs:int($default-option)
+        else (10, core:logToFile('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
 };
 
 (:~
