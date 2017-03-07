@@ -42,7 +42,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
             let $beaconMap := wega-util:beacon-map($gnd, $docType)
             let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')][1])[1]
             return
-                replace($url, 'dewiki', $lang || 'wiki')
+                replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'

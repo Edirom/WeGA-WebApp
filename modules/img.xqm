@@ -92,8 +92,8 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $wikiArticle := 
         if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
-    (: Look for images in wikipedia infobox (for organizations) and thumbnails  :)
-    let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
+    (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
+    let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:wikipedia-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
@@ -114,7 +114,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
             https://github.com/Toollabs/zoomviewer
         :)
         let $caption := 
-            if($div[self::xhtml:table]) then $div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr[1] 
+            if($div[self::xhtml:table]) then ($div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr)[1] 
             else $div/xhtml:div[@class='thumbcaption']
         return 
             if($thumbURI castable as xs:anyURI) then
