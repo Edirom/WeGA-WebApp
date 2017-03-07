@@ -25,18 +25,5 @@
             <select multiple="multiple" data-template="facets:select" name="docStatus"/>
         </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 textBlock searchResults" data-template="search:result-page">
-        <h2 data-template="search:results-count">256 Suchergebnisse</h2>
-        <ul class="pagination" data-template="app:pagination">
-            <li><a href="#">&lt;</a></li>
-        </ul>
-        <ul class="media-list">
-            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
-                <div data-template="search:dispatch-preview"/>
-            </li>
-        </ul>
-        <ul class="pagination" data-template="app:pagination">
-            <li><a href="#">&lt;</a></li>
-        </ul>
-    </div>
+	<div data-template="templates:include" data-template-path="templates/includes/search-results.html"/>
 </div>

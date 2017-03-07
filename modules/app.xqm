@@ -443,25 +443,13 @@ declare
     %templates:default("lang", "en")
     function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
-(:        let $url := controller:docType-url-for-author($model('doc'), $model('docType'), $lang):)
-        let $params := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
-        let $paramsMap := map:new(($model('filters'), $params ! map:entry(., request:get-parameter(., ()))))
-        let $page-link := function($page as xs:int){
-            (:$url ||:) '?page=' || $page || string-join(
-                map:keys($paramsMap) ! (
-                    '&amp;' || string(.) || '=' || string-join(
-                        $paramsMap(.),
-                        '&amp;' || string(.) || '=')
-                    ), 
-                '')
-            }
         let $a-element := function($page as xs:int, $text as xs:string) {
             element a {
                 attribute class {'page-link'},
                 (: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
-                if($model('docID') = 'indices') then attribute href {$page-link($page)}
+                if($model('docID') = 'indices') then attribute href {app:page-link($model, map { 'page': $page} )}
                 (: for index pages there is no javascript needed but a direct refresh of the page :)
-                else attribute data-url {$page-link($page)},
+                else attribute data-url {app:page-link($model, map { 'page': $page} )},
                 $text
             }
         }
@@ -490,6 +478,52 @@ declare
                 )
                 else $a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')
             }</li>
+        )
+};
+
+declare
+    %templates:wrap
+    function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
+		map {
+			'limit' := config:entries-per-page()
+		}
+};
+
+declare function app:switch-limit($node as node(), $model as map(*)) as element() {
+	element {name($node)} {
+		if($model?limit = number($node)) then attribute class {'active'} else (),
+		element a {
+			attribute class {'page-link'},
+			(: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
+            if($model('docID') = 'indices') then attribute href {app:page-link($model, map { 'limit': string($node) } )}
+            (: for index pages there is no javascript needed but a direct refresh of the page :)
+            else attribute data-url {app:page-link($model, map { 'limit': string($node) } )},
+			string($node)
+		}
+	}
+};
+
+(:~
+ : construct a link to the current page consisting of URL parameters only
+ : helper function for pagination
+ :
+ : @param $model the current model map with filters etc.
+ : @param $params the new parameters that will override (eventually existing parameters from $model)
+ : @return a string starting with "?"
+~:)
+declare %private function app:page-link($model as map(), $params as map()) as xs:string {
+	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
+    let $paramsMap := map:new(($model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
+    return
+        replace(
+	        string-join(
+	            map:keys($paramsMap) ! (
+	                '&amp;' || string(.) || '=' || string-join(
+	                    $paramsMap(.),
+	                    '&amp;' || string(.) || '=')
+	                ), 
+	            ''),
+            '^&amp;', '?'
         )
 };
 
