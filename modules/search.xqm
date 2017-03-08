@@ -27,7 +27,7 @@ declare variable $search:wega-docTypes := for $func in wdt:members('search') ret
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'docTypeSubClass', 'sex');
+    'fromDate', 'toDate', 'undated', 'docTypeSubClass', 'sex', 'surnames', 'forenames');
 
 (:~
  : Main function called from the templating module
@@ -254,7 +254,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filtered-coll := 
       if($filter) then 
         if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
-        else if($filter = 'textType') then search:textType-filter($collection, $docType, $filters)
+        else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
     let $newFilter := 
@@ -340,7 +340,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
  : Helper function for search:filter-result()
  : Applies textType filter for backlinks
 ~:)
-declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
+declare %private function search:textType-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
     wdt:lookup($filters?textType, 
         $collection
     )('sort')(map {})

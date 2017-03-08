@@ -119,6 +119,10 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
     default return str:normalize-space($term)
 };
 
+(:~
+ : Create "Allfilter" section on document pages
+ : allows highlighting of names in the text
+~:)
 declare 
     %templates:default("lang", "en") 
     %templates:wrap
