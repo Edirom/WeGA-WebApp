@@ -704,7 +704,7 @@
     
     <xsl:template match="tei:note[@type='thematicCom']">
         <xsl:element name="a">
-            <xsl:attribute name="class" select="'thematicCommentaries'"/>
+            <xsl:attribute name="class" select="'noteMarker'"/>
             <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
             <xsl:text>T</xsl:text>
         </xsl:element>
