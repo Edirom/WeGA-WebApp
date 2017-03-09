@@ -442,6 +442,9 @@ function updatePage(params) {
     }
 }
 
+/* activate tooltips for jubilees on start page */
+$('.jubilee').tooltip();
+
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
 

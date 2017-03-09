@@ -70,8 +70,10 @@ declare
         }
 };
 
-declare function dev-app:app-status($node as node(), $model as map(*)) as map(*) {
-    map {
-        'deployment-date' := date:strfdate(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, 'de', ())
-    }
+declare 
+	%templates:wrap 
+	function dev-app:app-status($node as node(), $model as map(*)) as map(*) {
+	    map {
+	        'deployment-date' := date:strfdate(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, 'de', ())
+	    }
 };

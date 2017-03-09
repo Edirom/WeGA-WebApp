@@ -653,7 +653,7 @@ declare
         }
 };
 
-declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span) {
+declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
     let $date := current-date()
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
@@ -664,18 +664,24 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
         else if($teiDate[@type='funeral']) then 'wasBuried'
         else if($teiDate/parent::tei:death) then 'dies'
         else ()
-    return
+    return (
         element span {
-                if($isJubilee) then (
-                    attribute class {'jubilee'},
-                    attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)}
-                )
-                else (),
-                concat(date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang), ': '),
-                if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
-                (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-                else (app:createDocLink($teiDate/root(), str:printFornameSurnameFromTEIpersName($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
-            }
+            if($isJubilee) then (
+                attribute class {'jubilee event-year'},
+                attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)},
+                attribute data-toggle {'tooltip'},
+                attribute data-container {'body'}
+            )
+            else attribute class {'event-year'},
+            date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang)
+        },
+        element span {
+        	attribute class {'event-text'},
+            if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
+            (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
+            else (app:createDocLink($teiDate/root(), str:printFornameSurnameFromTEIpersName($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+        }
+    )
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {

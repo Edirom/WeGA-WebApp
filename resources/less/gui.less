@@ -273,12 +273,6 @@ h2.resp-accordion {
     .fa;
 }
 
-@media (max-width: @screen-sm-max) and (min-width: @screen-sm)  {
-    .teaser-list {
-        min-height: 7 * @line-height-computed;
-    }
-}
-
 .collapseMarker, .collapseMarker:hover {
     cursor:pointer;
     color:inherit;
@@ -337,7 +331,7 @@ div.table-wrapper {
 
 /* hide search docType filter on index page */
 @media (max-width: @screen-xs-max) {
-    .input-group-btn.dropdown {
+    .docType-search-filter {
         display:none;
     }
 }
@@ -374,5 +368,25 @@ div.table-wrapper {
 		span {
 			white-space:nowrap;
 		}
+	}
+}
+
+/* settings for "What happened on?" on start page */
+.history {
+	p {
+	    margin-bottom: 0px;
+	    font-family: 'CamingoDos-Bold';
+	    color: @gray;
+    }
+    .event-year, .event-text {
+		display: table-cell;
+		padding-right: 0.5em;
+	}
+	.event-year::after {
+		content:":";
+	}
+	.jubilee {
+		text-decoration: underline dotted;
+		cursor: help;
 	}
 }
