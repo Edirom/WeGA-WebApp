@@ -84,14 +84,7 @@
             <xsl:when test="exists(@key) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
-                        <!-- Provide the preview popover on the top most element -->
-                        <xsl:if test="not(ancestor::*[local-name(.) = $linkableElements])">
-                            <xsl:text>preview </xsl:text>
-                        </xsl:if>
-                        <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
-                        <!--<xsl:if test="$transcript">
-                            <xsl:text> transcript</xsl:text>
-                        </xsl:if>-->
+                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
                     </xsl:attribute>
                     <xsl:attribute name="href" select="wega:createLinkToDoc(@key, $lang)"/>
                     <xsl:apply-templates/>
@@ -110,11 +103,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@key">
-                        <!-- Provide the preview popover on the top most element -->
-                        <xsl:if test="not($suppressLinks or ancestor::*[local-name(.) = $linkableElements])">
-                            <xsl:text>preview </xsl:text>
-                        </xsl:if>
-                        <xsl:value-of select="string-join((wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
+                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="string-to-codepoints(normalize-space(.))">
