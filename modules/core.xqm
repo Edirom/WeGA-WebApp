@@ -315,7 +315,7 @@ declare function core:order-by-cert($items as item()*) as item()* {
         'medium' := 2,
         'low' := 3,
         'unknown' := 4,
-        '' := 4
+        '' := 0
     }
     return
         for $i in $items
