@@ -18,7 +18,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">textConstitution</xsl:attribute>
-            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)]">
+            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
@@ -30,7 +30,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">commentary</xsl:attribute>
-            <xsl:for-each select=".//tei:app | .//tei:note | .//tei:choice">
+            <xsl:for-each select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
