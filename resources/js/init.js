@@ -230,7 +230,7 @@ function activateTab() {
 };
 
 /*
- * Grab the URL from the $container$/@data-ref and replace it with the AJAX response
+ * Grab the URL from the $container$/@data-ref and replace the container div with the AJAX response
  * Makes a nice popover for previews of pages :)
  */
 $.fn.preview_popover = function() {
@@ -248,15 +248,16 @@ $.fn.preview_popover = function() {
             $('.item-content', container).html(content);
             $('h3.media-heading', container).remove(); // remove relicts of headings
             
-            if(!$('.popover-content', popover_node).hasClass('popover-multi')) {
+            /*  when this is the last div container we push it to the popover and show it
+             *  unfinished ajax calls will still update the popover, though.
+             */
+            if(container.next().length === 0) {
                 popover_data = popover_node.data('bs.popover');
-                popover_data.options.content = container.parents('div.popover-content').clone().children();
+                popover_data.options.content = container.parents('div.popover-content').children();
                 popover_node.popover('show');
-                $('.portrait', popover_node).loadPortrait(); // AJAX load person portraits*/
             }
-            else {
-                $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
-            }
+            
+            $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
         }
     });
 };
@@ -313,6 +314,12 @@ function popover_callBack() {
         li_clone,
         popover_div;
     
+	/* 
+	 * break out of this function if we already created some content 
+	 * (and removed the progress bar from the template) 
+	 */
+    if($('.progress', popover).length === 0) { return }
+    
     if(undefined != href) {
         urls.push(href);
     }
@@ -333,6 +340,10 @@ function popover_callBack() {
         else { // external content via AJAX
             popover_div.preview_popover();
         }
+        
+		/*
+		 * if there are further URLs --> clone the latest div and add the carousel controls 
+		 */
         if(urls.length > i +1) {
             popover_div.clone().removeClass('active').insertAfter(popover_div);
             li_clone = li_templ.clone();

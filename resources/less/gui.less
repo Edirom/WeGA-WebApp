@@ -85,8 +85,12 @@
     }
     .popover-multi {
         .carousel-inner {
-            height:250px;
+            height:275px;
             margin-bottom: 25px;
+        }
+        // override max-height because we need to subtract the bottom carousel controls 
+        .item-content {
+            max-height: 234px !important;
         }
         .carousel-control {
             bottom: -20px;
