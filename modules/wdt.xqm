@@ -262,7 +262,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
+            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert-announcement')]/root() 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
@@ -273,7 +273,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
+            core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert-announcement')]/root() 
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
