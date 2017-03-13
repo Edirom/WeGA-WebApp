@@ -267,6 +267,9 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
     for $node in $nodes
     return
         typeswitch($node)
+        case element(tei:forename) return 
+        	if($node/@cert) then ($node/child::node() ! wega-util:txtFromTEI(.), '(?)') 
+        	else $node/child::node() ! wega-util:txtFromTEI(.)
         case element(tei:del) return ()
         case element(tei:note) return ()
         case element(tei:lb) return 

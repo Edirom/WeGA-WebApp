@@ -110,8 +110,8 @@ declare function wdt:persons($item as item()*) as map(*) {
                 default return $item/root()/tei:person
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space($person/tei:persName[@type = 'reg'])
-                case 'html' return <span>{str:normalize-space($person/tei:persName[@type = 'reg'])}</span> 
+                case 'txt' return str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))
+                case 'html' return <span>{str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))}</span> 
                 default return core:logToFile('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
@@ -262,7 +262,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert-announcement')]/root() 
+            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
@@ -273,7 +273,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert-announcement')]/root() 
+            core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
