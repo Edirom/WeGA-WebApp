@@ -394,7 +394,12 @@ div.table-wrapper {
 		content:":";
 	}
 	.jubilee {
+	    /* 
+	     * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
+	     * can't use border bottom because of cell display
+	     */
 		text-decoration: underline dotted;
+		-webkit-text-decoration: underline dotted;
 		cursor: help;
 	}
 }
