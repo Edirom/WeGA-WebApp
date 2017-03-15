@@ -226,8 +226,8 @@ declare %private function search:create-lucene-query-element($searchString as xs
 declare %private function search:additional-mappings($str as xs:string) as element(regex) {
     <regex occur="must">{
         functx:replace-multi($str, 
-            ('"', '[ck]', 'ae?', 'oe?', 'ue?', 'ß'), 
-            ('', '(c|k)', 'ae?', 'oe?', 'ue?', 'ss') 
+            ('"', '[ck]', 'ae?', 'oe?', 'ue?', 'ß', 'th?', '((ph)|f)', '[yi]e?'), 
+            ('', '(c|k)', 'ae?', 'oe?', 'ue?', 'ss', 'th?', '((ph)|f)', '[yi]e?') 
         )
     }.*</regex>
 };
