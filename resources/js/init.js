@@ -106,6 +106,11 @@ $.fn.loadPortrait = function () {
 
 /* Initialise datepicker for diaries */
 $.fn.initDatepicker = function () {
+    // set language for datepicker widget
+    var lang = getLanguage();
+    if(lang === 'de') { $.datepicker.setDefaults( $.datepicker.regional[ "de" ] ) }
+    else { $.datepicker.setDefaults( $.datepicker.regional[ "" ]) }
+    
     $(this).each(function(a,b) {
         $(b).datepicker({
             dateFormat: "yy-mm-dd",
