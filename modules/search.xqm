@@ -203,16 +203,38 @@ declare %private function search:exact-date($dates as xs:date*, $filters as map(
         $docs ! map { 'doc' := . }
 };
 
+(:~
+ : Parse the query string and create an XML query element for the lucene search
+~:)
 declare %private function search:create-lucene-query-element($searchString as xs:string) as element(query) {
-    let $tokens := tokenize($searchString, '\s+')
-    return
+    let $groups := analyze-string($searchString, '(-?"(.+?)")')/* (: split into fn:match – for expressions in parentheses – and fn:non-match elements :)
+    let $queryElement := function($elementName as xs:string, $token as item()) as element() {
+        element {$elementName} {
+            attribute occur {
+                if(starts-with($token, '-')) then 'not'
+                else if($token instance of node() and $token/ancestor::fn:group[starts-with(., '-')]) then 'not'
+                else 'must'
+            },
+            if(starts-with($token, '-')) then substring($token, 2)
+            else string($token)
+        }
+    }
+    let $term-search := <bool boost="5">{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! $queryElement('term', .)))}</bool>
+    (:  Suppress additional searches when the search string consists of expressions in parentheses only  :)
+    let $wildcard-search := if($groups[not(functx:all-whitespace(self::fn:non-match))]) then <bool boost="2">{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! $queryElement('wildcard', lower-case(.) || '*')))}</bool> else ()
+    let $regex-search := if($groups[not(functx:all-whitespace(self::fn:non-match))]) then <bool>{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! search:additional-mappings(lower-case(.))))}</bool> else ()
+    let $q :=
         <query>
-            <bool>
-                <bool boost="5">{$tokens ! <term occur="must">{.}</term>}</bool>
-                <bool boost="2">{$tokens ! <wildcard occur="must">{lower-case(.)}*</wildcard>}</bool>
-                <bool>{$tokens ! search:additional-mappings(lower-case(.))}</bool>
-            </bool>
+            <bool>{
+                $term-search,
+                $wildcard-search,
+                $regex-search
+            }</bool>
         </query>
+(:    let $log := util:log-system-out($groups):)
+(:    let $log := util:log-system-out($q):)
+    return 
+        $q
 };
 
 (:~
