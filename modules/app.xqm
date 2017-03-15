@@ -189,7 +189,7 @@ declare
 declare 
     %templates:default("wrap", "yes")
     function app:if-exists($node as node(), $model as map(*), $key as xs:string, $wrap as xs:string) as node()* {
-        if($model($key)) then 
+        if(count($model($key)) gt 0) then 
             if($wrap = 'yes') then
                 element {node-name($node)} {
                     $node/@*,
@@ -205,7 +205,7 @@ declare
  : @author Peter Stadler
  :)
 declare function app:if-not-exists($node as node(), $model as map(*), $key as xs:string) as node()? {
-    if(not($model($key))) then 
+    if(count($model($key)) eq 0) then 
         element {node-name($node)} {
             $node/@*,
             templates:process($node/node(), $model)
