@@ -307,7 +307,14 @@ function popover_template() {
 
 /*
  * Prepare the container divs and the carousel controls (if needed) for the popover
- * Then call preview_popover() for every container div
+ * because we are not using the default bootstrap popover title and content 
+ * but move everything into the content (to be able to 'slide' those popovers)
+ * we need to take care of several methods ourselves:
+ * - grabbing external content from href or data-ref (could be a whitespace separated list) attributes
+ * - internal links from href or data-ref (prefixed with '#')
+ * - content provided on data-popover-content and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
+ * 
+ * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-content"/>  
  */
 function popover_callBack() {
     var urls = [],
@@ -360,6 +367,16 @@ function popover_callBack() {
     if(urls.length > 1) {
         $('.carousel-indicators, a.carousel-control', popover).show();
         $('.popover-content', popover).addClass('popover-multi');
+    }
+    
+    // content provided via data-popover-content and data-popover-title attributes on the anchor element
+    if(undefined != $(this).attr('data-popover-content')) {
+        popover_div = $('div.item:last', popover);
+        $('.item-title', popover_div).html($(this).attr('data-popover-title'));
+        $('.item-content', popover_div).html($(this).attr('data-popover-content'));
+        var popover_data = popover.data('bs.popover');
+        popover_data.options.content = $('div.popover-content', popover).children();
+        popover.popover('show');
     }
 };
 
