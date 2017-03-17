@@ -779,7 +779,11 @@ declare
             'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(wega-util:txtFromTEI(.), ''),
             'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(wega-util:txtFromTEI(.), ''),
             'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'altnames' := $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] | $model('doc')//tei:orgName[@type = 'alt'] ! string-join(wega-util:txtFromTEI(.), ''),
+            'altnames' := 
+                (
+                $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(wega-util:txtFromTEI(.), ''),  
+                $model('doc')//tei:orgName[@type = 'alt'] ! string-join(wega-util:txtFromTEI(.), '')
+                ),
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(wega-util:txtFromTEI(.), ''),
             'birth' := $model('doc')//tei:birth[count(tei:* except tei:date[@type]) gt 0],
             'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
