@@ -261,8 +261,11 @@ declare function query:exact-date($dates as xs:date*, $docType as xs:string) as 
     return
         switch($docType)
         case 'writings' case 'letters' case 'diaries' return 
-            norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID) | 
-            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+            let $normDates := norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID)
+            let $otherHits := core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+            return
+                (: pushing the normdates to the top of the result set :)
+                ($normDates, $otherHits except $normDates) 
         case 'personsPlus' return 
             core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
             core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()
