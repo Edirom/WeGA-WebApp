@@ -63,11 +63,13 @@ declare
     let $logLines := tokenize(util:binary-to-string($logFile), '\n')
     let $rev := substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')
     return
-        map {
-            'ant-log-rev' := $rev,
-            'ant-log-success' := ($logLines = 'BUILD SUCCESSFUL'),
-            'ant-log-url' := core:link-to-current-app('logs/' || $rev || '.log')
-        }
+        if($rev) then 
+            map {
+                'ant-log-rev' := $rev,
+                'ant-log-success' := ($logLines = 'BUILD SUCCESSFUL'),
+                'ant-log-url' := core:link-to-current-app('logs/' || $rev || '.log')
+            }
+        else map {}
 };
 
 declare 
