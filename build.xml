@@ -19,7 +19,7 @@
     
     <target name="clean-all" depends="clean">
         <delete dir="bower_components"/>
-        <delete dir="guidelines/compiledODD"/>
+        <delete dir="guidelines"/>
     </target>
     
     <target name="init">
@@ -222,18 +222,29 @@
             Create and copy compiled ODD files of the various WeGA TEI and MEI schemas to the schemas directory.
             Also copy the respective source file for later comparison.
         </description>
-    	<!-- currently restricted to TEI only -->
+        
+        <!-- read property files from the ODD repo -->
+        <property file="${odd.dir}/local.build.properties"/>
+        <property file="${odd.dir}/build.properties"/>
+        
+    	<!-- 
+    	    call the tei target from the ODD build file
+    	    (currently restricted to TEI only) 
+    	-->
         <ant dir="${odd.dir}" target="tei"/>
-        <copy todir="guidelines/compiledODD">
+        
+        <!-- Copy the processed (= compiled) ODD files -->
+        <copy todir="guidelines">
             <fileset dir="${odd.dir}/build">
                 <include name="*.processed"/>
             </fileset>
         	<!-- change file extension so eXist treats the files as XML -->
         	<mapper type="glob" from="*.processed" to="*.xml"/>
         </copy>
-        <property file="${odd.dir}/local.build.properties"/>
-        <property file="${odd.dir}/build.properties"/>
-        <copy todir="guidelines/compiledODD" file="${tei.source}"/>
+        
+        <!-- Additionally, copy the TEI source (${tei.source} is set in the ODD repo property file) -->
+        <copy todir="guidelines" file="${tei.source}"/>
+        
     </target>
     
 </project>
