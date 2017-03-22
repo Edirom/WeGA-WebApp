@@ -24,6 +24,44 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 import module namespace functx="http://www.functx.com";
 
+declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
+
+(:~
+ : Returns the available chapter identifier
+~:)
+declare function gl:chapter-idents() as xs:string* {
+    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wegaBiblio.xml')))//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
+};
+
+(:~
+ : Returns the chapter indicated by $chapID
+~:)
+declare function gl:chapter($chapID as xs:string) as element(tei:div)? {
+    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wegaBiblio.xml')))//(tei:div, tei:divGen)[@xml:id=$chapID]
+};
+
+(:~
+ : Returns the available schemaSpec identifier
+~:)
+declare function gl:schemaSpec-idents() as xs:string* {
+    collection($gl:guidelines-collection-path)//tei:schemaSpec/data(@ident)
+};
+
+(:~
+ : Returns the schemaSpec indicated by $schemaID
+~:)
+declare function gl:schemaSpec($schemaID as xs:string?) as element(tei:schemaSpec)? {
+    collection($gl:guidelines-collection-path)//tei:schemaSpec[@ident = $schemaID]
+};
+
+(:~
+ : Returns the available spec identifier for elements, classes, datatypes, and macros
+ : for the schemaSpec indicated by $schemaID
+~:)
+declare function gl:spec-idents($schemaID as xs:string) as xs:string* {
+     gl:schemaSpec($schemaID)//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
+};
+
 (:~
  : Returns the (compiled) ODD specification for an element, class, datatype, or macro (this is the 2-arity version)
  :
@@ -31,18 +69,19 @@ import module namespace functx="http://www.functx.com";
  : @param $schemaID the identifier of the schema as defined on its @ident attribute, e.g. "wegaLetter"
 ~:)
 declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as element()? {
-	collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec[@ident=$schemaID]/tei:*[@ident=$specID]
+	gl:schemaSpec($schemaID)/tei:*[@ident=$specID]
 };
 
 (:~
  : Returns the (compiled) ODD specification for an element, class, datatype, or macro (this is the 1-arity version)
+ : Helper function for gl:examples() and app:xml-prettify(), where the request is made via AJAX
  :
  : @param $path the URL for the spec 
 ~:)
 declare function gl:spec($path as xs:string) as element()? {
 	let $pathTokens := tokenize(replace($path, '(/xml|/examples)?\.[xhtml]+$', ''), '/')
 	return
-		gl:spec($pathTokens[last()], $pathTokens[last() - 2])
+		gl:spec($pathTokens[last()], $pathTokens[last() - 1])
 };
 
 declare 
@@ -54,10 +93,10 @@ declare
 declare 
 	%templates:wrap
 	function gl:spec-details($node as node(), $model as map(*)) as map() {
-		let $schemaSpecs := collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec
-		let $schemaSpec := $schemaSpecs[@ident=$model('schemaID')]
-		let $spec := $schemaSpec//tei:*[@ident=$model('specID')]
-		let $teiSpec := doc($config:app-root || '/guidelines/compiledODD/p5subset.xml')//tei:*[@ident=$model('specID')]
+		let $schemaSpecs := collection($gl:guidelines-collection-path)//tei:schemaSpec
+		let $schemaSpec := gl:schemaSpec($model('schemaID'))
+		let $spec := gl:spec($model('specID'), $model('schemaID'))
+		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//tei:*[@ident=$model('specID')]
 		let $lang := $model?lang
 		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		return
@@ -98,16 +137,16 @@ declare
 };
 
 (:~
- : Grabbing document details for Guidelines prose chapters 
+ : Outputting Guidelines prose chapters 
 ~:)
 declare 
 	%templates:wrap
 	function gl:doc-details($node as node(), $model as map(*)) as map()? {
-		let $docID := 'A550001'
-		let $doc := doc(str:join-path-elements(($config:app-root, 'guidelines', 'chap2.xml')))
+(:		let $docID := 'A550001':)
+		let $chapter := gl:chapter($model?chapID)
 		return
 			map {
-				'transcription' := wega-util:transform($doc, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
+				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 			}
 };
 
@@ -175,8 +214,7 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
 				lang:get-language-string('project', $model?lang),
 				lang:get-language-string('editorialGuidelines-text', $model?lang),
 				$customizationIdent,
-				lang:get-language-string('elements', $model?lang),
-				$specID ))
+				'ref-' || $specID ))
 		) || '.html'
 	return
 		map {

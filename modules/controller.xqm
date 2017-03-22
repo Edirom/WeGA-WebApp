@@ -18,6 +18,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -115,7 +116,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 (:    let $log := util:log-system-out($path):)
     return 
         if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
-        else if($media-type and $path) then controller:redirect-absolute('/' || $exist-vars('exist:prefix') || '/' || $exist-vars('exist:controller') || $path || '.' || $media-type)
+        else if($media-type and $path) then controller:redirect-absolute('/' || $path || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 
@@ -181,53 +182,54 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
  : Virtual directory structure for Guidelines:
  : |- project/editorialGuidelines-text
  :		|- index.html
- :		|- chap1.html
+ :		|- chap-DT.html
  :      |- wegaLetters
- :      	|- elements
- :      		|- index.html
- :				|- p.html
+ :          |- ref-ab.html
+ :     		|- index-elements.html
+ :     		|- index-macros.html
+ :			|- ref-p.html
 ~:)
 declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch)? {
-	let $media-type := controller:media-type($exist-vars)
+    let $media-type := controller:media-type($exist-vars)
 	let $subPathTokens := tokenize(substring-after($exist-vars('exist:path'), replace(lang:get-language-string('editorialGuidelines-text', $exist-vars?lang), '\s+', '_')), '/')[.]
-(:	let $log := util:log-system-out($subPathTokens[1]):)
+(:	let $log := util:log-system-out(gl:spec-idents($subPathTokens[1])):)
 	return
-		if(count($subPathTokens) eq 1 and $exist-vars('exist:resource') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:forward-xml(map:new(($exist-vars, map {'dbPath' := str:join-path-elements(($config:app-root, 'guidelines', $exist-vars('exist:resource'))) } )))
-		else if(count($subPathTokens) eq 1 and replace($exist-vars('exist:resource'), '\.[html]+$', '.xml') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:forward-html('templates/guidelines.html', $exist-vars)
-		else if(count($subPathTokens) eq 1 and $media-type and ($exist-vars('exist:resource') || '.xml') = xmldb:get-child-resources($config:app-root || '/guidelines')) then controller:redirect-absolute('/' || $exist-vars('exist:prefix') || '/' || $exist-vars('exist:controller') || $exist-vars('exist:path') || '.' || $media-type)
-		else if(count($subPathTokens) eq 3 and $subPathTokens[2] = lang:get-language-string('elements', $exist-vars?lang)) then controller:dispatch-editorialGuidelines-text-elements(map:new(($exist-vars, map { 'specID' := functx:substring-before-if-contains($exist-vars('exist:resource'), '.'), 'schemaID' := $subPathTokens[1], 'media-type' := $media-type } )))
-		else controller:error($exist-vars, 404)
+	(: count=1: index and chapters, the direct children of editorialGuidelines-text :)
+	   if( (: xml :)
+	       count($subPathTokens) eq 1 
+	       and $media-type='xml' 
+	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
+	       ) then controller:forward-xml(map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+	   else if( (: html :)
+	       count($subPathTokens) eq 1 
+	       and $media-type='html' 
+	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
+	       ) then controller:forward-html('templates/guidelines.html', map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+       else if( (: Redirects für htm o.ä. :)
+           count($subPathTokens) eq 1 
+           and $media-type 
+           and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
+           ) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $media-type)
+	   
+   (: count=2: elements, classes and other specs underneath some schemaSpec :)
+	   else if(
+	       count($subPathTokens) eq 2
+	       and $subPathTokens[1] = gl:schemaSpec-idents()
+	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents($subPathTokens[1])
+	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := $subPathTokens[1], 'media-type' := $media-type } )))
+	   
+   (: resorting to the error page if all of the above tests fail :)
+	   else controller:error($exist-vars, 404)
 };
 
 (:~
- : Dispatch pages under section "elements" of the "editorial guidelines text"
+ : Dispatch pages for the specs of the "editorial guidelines text"
 ~:)
-declare function controller:dispatch-editorialGuidelines-text-elements($exist-vars as map(*)) as element(exist:dispatch) {
-	let $media-type := $exist-vars('media-type')
-    let $specID := $exist-vars('specID') (:functx:substring-before-if-contains($exist-vars('exist:resource'), '.'):)
-    let $schemaID := $exist-vars('schemaID')
-	let $specIdents := collection($config:app-root || '/guidelines/compiledODD')//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/@ident
-	let $schemaIdents := collection($config:app-root || '/guidelines/compiledODD')//tei:schemaSpec/@ident
-    return 
-        if(
-        	$media-type = 'html' 
-        	and $schemaID = $schemaIdents 
-        	and $specID = $specIdents
-        	and $exist-vars('exist:resource') = $specID || '.' || $media-type  
-        	) then controller:forward-html('/templates/specs.html', $exist-vars)
-		else if (
-			$media-type = 'xml' 
-        	and $schemaID = $schemaIdents 
-        	and $specID = $specIdents
-        	and $exist-vars('exist:resource') = $specID || '.' || $media-type
-			) then controller:forward-xml($exist-vars)
-		else if(
-			$media-type 
-			and $specID = $specIdents 
-			and $schemaID = $schemaIdents
-			and $exist-vars('exist:resource') = $specID
-		) then controller:redirect-absolute('/' || $exist-vars?prefix || '/' || $exist-vars?controller || $exist-vars?path || '.' || $media-type)
-        else controller:error($exist-vars, 404)
+declare %private function controller:dispatch-editorialGuidelines-text-specs($exist-vars as map(*)) as element(exist:dispatch) {
+    if($exist-vars('media-type') = 'html') then controller:forward-html('/templates/specs.html', $exist-vars)
+	else if ($exist-vars('media-type') = 'xml') then controller:forward-xml($exist-vars)
+	else if($exist-vars('media-type')) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $exist-vars('media-type'))
+    else controller:error($exist-vars, 404)
 };
 
 declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
@@ -271,6 +273,11 @@ declare function controller:encode-path-segments-for-uri($uri-string as xs:strin
     default return ()
 };
 
+(:~
+ : Warning: 
+ : * No URL encoding here, see controller:encode-path-segments-for-uri()
+ : * resulting paths do not include exist:prefix, see core:link-to-current-app()
+~:)
 declare function controller:path-to-resource($doc as document-node()?, $lang as xs:string) as xs:string? {
     let $docID := $doc/*/@xml:id
     let $docType := config:get-doctype-by-id($docID) (: Die originale Darstellung der doctypes, also 'persons', 'letters' etc:)
@@ -326,7 +333,7 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
         return 
             if(matches($token, 'A[A-F0-9]{6}')) then $token
             else if(matches($token, 'dev|test-html')) then $token
-            else if($has-suffix) then lang:get-language-string(substring-before($token, '.'), $exist-vars?lang) || '.' || substring-after($token, '.')
+            else if($has-suffix) then lang:get-language-string(controller:basename($token), $exist-vars?lang) || '.' || controller:suffix($token)
             else lang:get-language-string($token, $exist-vars?lang)
         (:return 
             if($translation) then replace($translation, '\s+', '_') 
@@ -352,7 +359,7 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
-    let $doc := query:doc-by-gnd(functx:substring-before-if-contains($exist-vars('exist:resource'), '.'))
+    let $doc := query:doc-by-gnd(controller:basename($exist-vars('exist:resource')))
     let $media-type := controller:media-type($exist-vars)
     return
         if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')) || '.' || $media-type)
@@ -399,10 +406,10 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
  : @return a string {html|xml} or empty sequence
  :)
 declare %private function controller:media-type($exist-vars as map(*)) as xs:string? {
-    let $suffix := functx:substring-after-last($exist-vars('exist:resource'), '.')
+    let $suffix := controller:suffix($exist-vars('exist:resource'))
     let $header := tokenize(request:get-header('Accept'), ',')
     return
-        if($suffix and $suffix ne $exist-vars('exist:resource')) then controller:canonical-mime-type($suffix)
+        if($suffix) then controller:canonical-mime-type($suffix)
         else controller:canonical-mime-type($header)
 };
 
@@ -445,4 +452,23 @@ declare %private function controller:etag($path as xs:string) as xs:string {
     let $urlParams := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
     return
         util:hash($path || $lastChanged || $urlParams, 'md5')
+};
+
+(:~
+ : Returns the basename of a filename, i.e. the filename without extension
+ : If $filename does not contain a dot (= has no extension), the entire $filename is returned. 
+ : If $filename is the empty sequence, the empty sequence is returned.
+~:)
+declare %private function controller:basename($filename as xs:string?) as xs:string? {
+    functx:substring-before-last-match($filename, '\.')
+};
+
+(:~
+ : Returns the filename extension (= the suffix) of a filename
+ : The filename extension is the substring after the last dot. 
+ : If $filename contains no dot, the empty sequence is returned. 
+~:)
+declare %private function controller:suffix($filename as xs:string?) as xs:string? {
+    if(contains($filename, '.')) then functx:substring-after-last($filename, '.')
+    else ()
 };

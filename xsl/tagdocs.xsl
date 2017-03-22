@@ -31,14 +31,13 @@
 	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
 		<xsl:value-of select="wega:join-path-elements((
-				$baseHref, 
-				$lang, 
-				wega:getLanguageString('project', $lang), 
-				replace(wega:getLanguageString('editorialGuidelines-text', $lang), '\s+', '_'), 
-				'wegaGeneric', 
-				wega:getLanguageString('elements', $lang), 
-				concat($specID, '.html')
-				))"/>
+			$baseHref,
+			$lang,
+			wega:getLanguageString('project', $lang),
+			replace(wega:getLanguageString('editorialGuidelines-text', $lang), '\s+', '_'),
+			'wegaGeneric',
+			concat('ref-', $specID, '.html')
+			))"/>
 	</xsl:function>
 	
 </xsl:stylesheet>

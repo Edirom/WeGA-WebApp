@@ -30,6 +30,10 @@ let $config := map {
     $templates:CONFIG_STOP_ON_ERROR := true()
 }
 
+(:~
+ : Initialise the model map for the templating 
+ : with the attributes that are passed by the controller
+~:)
 let $model := 
 	map:new((
 		(
@@ -40,29 +44,21 @@ let $model :=
 		map:entry('environment', config:get-option('environment')),
 		map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
 	))
-   (: map {
-        'docID' := request:get-attribute('docID'),
-        'lang' := request:get-attribute('lang'),
-        'docType' := request:get-attribute('docType'),
-        'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()},
-        'environment' := config:get-option('environment'),
-        'specID' := request:get-attribute('specID')
-    }:)
     
-(:
+(:~
  : We have to provide a lookup function to templates:apply to help it
  : find functions in the imported application modules. The templates
  : module cannot see the application modules, but the inline function
  : below does see them.
- :)
+~:)
 let $lookup := function($functionName as xs:string, $arity as xs:int) {
     try { function-lookup(xs:QName($functionName), $arity) } 
     catch * {()}
 }
-(:
+(:~
  : The HTML is passed in the request from the controller.
  : Run it through the templating system and return the result.
- :)
+~:)
 let $content := request:get-data()
 let $modified := request:get-attribute('modified') = 'true'
 return 

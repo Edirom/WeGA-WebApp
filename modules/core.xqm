@@ -235,8 +235,12 @@ declare function core:change-namespace($element as element(), $targetNamespace a
  : @return the complete URL for $relLink
  :)
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
-(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
-    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("exist:prefix"), request:get-attribute('exist:controller'), $relLink))
+    (:  
+        for the 1-arity version we need to use the default eXist attributes (= prefixed with "$") 
+        because our unprefixed WeGA versions are being set only at a later stage.
+        Thus, redirects would fail …
+    :)
+    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
 };
 
 (:~

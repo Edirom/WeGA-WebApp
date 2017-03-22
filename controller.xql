@@ -49,7 +49,7 @@ else if(starts-with($exist:path, '/digilib/')) then
  :  Nackte Server-URL (evtl. mit Angabe der Sprache)
 :)
 else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || '/' || $lang || '/Index')
+    controller:redirect-absolute('/' || $lang || '/Index')
 
 (: 
  :  Startseiten-Weiterleitung 2
@@ -57,7 +57,7 @@ else if (matches($exist:path, '^/?(en/?|de/?)?$')) then
  :  Achtung: .php hier nicht aufnehmen, dies wird mit den typo3ContentMappings abgefragt
 :)
 else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || '/' || $lang || '/Index')
+    controller:redirect-absolute('/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
     controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docID', 'home'))))
@@ -123,35 +123,35 @@ else if (contains($exist:path, concat('/', lang:get-language-string('help', $lan
 
 (: Korrespondenz :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
 else if (matches($exist:path, 'A00[A-F0-9]{4}/' || encode-for-uri(lang:get-language-string('diaries', $lang)) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || encode-for-uri(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
 
 (: Werke :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
 (: Bibliographie :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
 (: News :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
 (: Themenkommentare :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('thematicCommentaries', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('thematicCommentaries', $lang), '.html#thematicCommentaries'))
 
 (: Dokumente :)
 else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
-    controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
