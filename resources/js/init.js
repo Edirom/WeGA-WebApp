@@ -324,7 +324,8 @@ function popover_callBack() {
         popover = $('#'+popoverID),
         li_templ = $('.carousel-indicators li:last', popover),
         li_clone,
-        popover_div;
+        popover_div,
+        popover_data;
     
 	/* 
 	 * break out of this function if we already created some content 
@@ -345,7 +346,7 @@ function popover_callBack() {
         if(e.startsWith('#')) { // local references to endnotes and commentaries
             $('.item-title', popover_div).html($(e).attr('data-title'));
             $('.item-content', popover_div).html($(e).html());
-            var popover_data = popover.data('bs.popover');
+            popover_data = popover.data('bs.popover');
             popover_data.options.content = $('div.popover-content', popover).clone().children();
             popover.popover('show');
         }
@@ -374,7 +375,7 @@ function popover_callBack() {
         popover_div = $('div.item:last', popover);
         $('.item-title', popover_div).html($(this).attr('data-popover-title'));
         $('.item-content', popover_div).html($(this).attr('data-popover-content'));
-        var popover_data = popover.data('bs.popover');
+        popover_data = popover.data('bs.popover');
         popover_data.options.content = $('div.popover-content', popover).children();
         popover.popover('show');
     }
