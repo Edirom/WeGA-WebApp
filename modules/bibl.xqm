@@ -304,5 +304,5 @@ declare %private function bibl:printNote($notes as element(tei:note)*) as elemen
         else generate-id($note)
     let $content := wega-util:txtFromTEI($note/node())
     return
-        <a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" xml:id="{$id}" data-popover-content="{$content}">*</a>
+        <a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="{$id}" data-popover-content="{$content}">*</a>
 };
