@@ -69,7 +69,7 @@ declare function gl:spec-idents($schemaID as xs:string) as xs:string* {
  : @param $schemaID the identifier of the schema as defined on its @ident attribute, e.g. "wegaLetter"
 ~:)
 declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as element()? {
-	gl:schemaSpec($schemaID)/tei:*[@ident=$specID]
+	gl:schemaSpec($schemaID)/(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$specID]
 };
 
 (:~
@@ -96,7 +96,7 @@ declare
 		let $schemaSpecs := collection($gl:guidelines-collection-path)//tei:schemaSpec
 		let $schemaSpec := gl:schemaSpec($model('schemaID'))
 		let $spec := gl:spec($model('specID'), $model('schemaID'))
-		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//tei:*[@ident=$model('specID')]
+		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')]
 		let $lang := $model?lang
 		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		return
@@ -105,7 +105,7 @@ declare
 				'desc' := $spec/tei:desc[@xml:lang=$lang],
 				'spec' := $spec,
 				'specIDDisplay' := if(contains($model('specID'), '.')) then $model('specID') else '<' || $model('specID') || '>',
-				'customizations' := ($schemaSpecs//tei:*[@ident=$model('specID')] except $spec, $teiSpec),
+				'customizations' := ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec),
 				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.)
 			}
