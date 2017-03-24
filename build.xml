@@ -51,7 +51,7 @@
         <regressiontest doctype="writings"/>
     </target>
     
-    <target name="download-smufl-font" depends="init" if="${update.smufl-font}">
+    <target name="download-smufl-font" depends="bower" if="${update.smufl-font}">
         <description>Download Bravura font from the official website</description>
         <get src="${smufl.font}" dest="${bower_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
