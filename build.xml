@@ -18,7 +18,7 @@
     </target>
     
     <target name="clean-all" depends="clean">
-        <delete dir="bower_components"/>
+        <delete dir="${bower_components.dir}"/>
         <delete dir="guidelines"/>
     </target>
     
@@ -26,6 +26,16 @@
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
+        <condition property="update.bower">
+            <not>
+                <available file="${bower_components.dir}" type="dir"/>
+            </not>
+        </condition>
+        <condition property="update.smufl-font">
+            <not>
+                <available file="${bower_components.dir}/bravura.zip"/>
+            </not>
+        </condition>
     </target>
     
     <target name="test">
@@ -41,13 +51,12 @@
         <regressiontest doctype="writings"/>
     </target>
     
-    <target name="download-smufl-font" depends="init">
+    <target name="download-smufl-font" depends="init" if="${update.smufl-font}">
         <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${tmp.dir}/bravura.zip" skipexisting="yes"/>
-        <unzip src="${tmp.dir}/bravura.zip" dest="${tmp.dir}"/>
+        <get src="${smufl.font}" dest="${bower_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
     
-    <target name="bower" depends="init">
+    <target name="bower" depends="init" if="${update.bower}">
         <description>Update javascript libraries via bower</description>
         <exec executable="${bower.cmd}" failonerror="yes">
             <arg value="update"/>
@@ -64,7 +73,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, download-smufl-font, bower, less, guidelines">
+    <target name="dist" depends="init, download-smufl-font, bower, less">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -93,6 +102,10 @@
                 <exclude name="**/less/**"/>
             </fileset>
         </copy>
+        
+        <!-- extract smufl fonts -->
+        <unzip src="${bower_components.dir}/bravura.zip" dest="${tmp.dir}"/>
+        
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts">
             <fileset dir="${tmp.dir}/eot/">
@@ -114,10 +127,10 @@
             <fileset dir="${wega.fonts.dir}">
                 <include name="2B*.*"/>
             </fileset>
-            <fileset dir="bower_components/bootstrap/dist/fonts/">
+            <fileset dir="${bower_components.dir}/bootstrap/dist/fonts/">
                 <include name="*.*"/>
             </fileset>
-            <fileset dir="bower_components/fontawesome/fonts/">
+            <fileset dir="${bower_components.dir}/fontawesome/fonts/">
                 <include name="fontawesome-webfont.*"/>
             </fileset>
         </copy>
@@ -130,7 +143,7 @@
         
         <!-- Copy libs from bower components -->
         <copy todir="${dist.dir}/resources/lib">
-            <fileset dir="bower_components">
+            <fileset dir="${bower_components.dir}">
                 <include name="**/*.js"/>
                 <include name="**/*.css"/>
                 <include name="**/*.gif"/>
@@ -141,6 +154,14 @@
                 <!-- exclude tests to reduce file size -->
                 <exclude name="**/test/**"/>
                 <exclude name="**/tests.js"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy compiled TEI Guidelines from bower components -->
+        <!-- TODO: include p5subset.xml as a reference -->
+        <copy todir="${dist.dir}/guidelines">
+            <fileset dir="${bower_components.dir}/WeGA-ODD/compiled-ODD">
+                <include name="*.xml"/>
             </fileset>
         </copy>
     </target>
@@ -215,36 +236,6 @@
             repo:install-and-deploy-from-db("/db/tmp/${project.app}-${project.version}.xar")
             )
         </xdb:xquery>
-    </target>
-    
-    <target name="guidelines" if="include.guidelines">
-        <description>
-            Create and copy compiled ODD files of the various WeGA TEI and MEI schemas to the schemas directory.
-            Also copy the respective source file for later comparison.
-        </description>
-        
-        <!-- read property files from the ODD repo -->
-        <property file="${odd.dir}/local.build.properties"/>
-        <property file="${odd.dir}/build.properties"/>
-        
-    	<!-- 
-    	    call the tei target from the ODD build file
-    	    (currently restricted to TEI only) 
-    	-->
-        <ant dir="${odd.dir}" target="tei"/>
-        
-        <!-- Copy the processed (= compiled) ODD files -->
-        <copy todir="guidelines">
-            <fileset dir="${odd.dir}/build">
-                <include name="*.processed"/>
-            </fileset>
-        	<!-- change file extension so eXist treats the files as XML -->
-        	<mapper type="glob" from="*.processed" to="*.xml"/>
-        </copy>
-        
-        <!-- Additionally, copy the TEI source (${tei.source} is set in the ODD repo property file) -->
-        <copy todir="guidelines" file="${tei.source}"/>
-        
     </target>
     
 </project>
