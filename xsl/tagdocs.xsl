@@ -35,7 +35,7 @@
 			$lang,
 			wega:getLanguageString('project', $lang),
 			replace(wega:getLanguageString('editorialGuidelines-text', $lang), '\s+', '_'),
-			'wegaGeneric',
+			'wega_all',
 			concat('ref-', $specID, '.html')
 			))"/>
 	</xsl:function>

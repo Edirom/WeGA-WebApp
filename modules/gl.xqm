@@ -30,14 +30,14 @@ declare variable $gl:guidelines-collection-path as xs:string := $config:app-root
  : Returns the available chapter identifier
 ~:)
 declare function gl:chapter-idents() as xs:string* {
-    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wegaBiblio.xml')))//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
+    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml')))//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
 };
 
 (:~
  : Returns the chapter indicated by $chapID
 ~:)
 declare function gl:chapter($chapID as xs:string) as element(tei:div)? {
-    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wegaBiblio.xml')))//(tei:div, tei:divGen)[@xml:id=$chapID]
+    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml')))//(tei:div, tei:divGen)[@xml:id=$chapID]
 };
 
 (:~
