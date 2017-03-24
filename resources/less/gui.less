@@ -243,27 +243,23 @@ a.noteMarker {
     margin-bottom:1ex;
 }
 /* some styling for the flip images */
-.portrait.large {
-    height:300px;
-    margin-bottom:3ex;
+.portrait {
+    &.large {
+        margin-bottom:3ex;
+    }
+    .back {
+        padding: 20px;
+        word-wrap:break-word;
+    }
+    .front {
+        img {
+            margin:0px auto;
+            max-height:100%;
+            max-width:100%;
+        }
+    }
 }
 
-.portrait .back {
-    padding: 20px;
-    word-wrap:break-word;
-}
-.creditsButton {
-    bottom: 0px;
-    right: 0px;
-    z-index: 2;
-    position:absolute;
-    cursor:pointer;
-}
-.portrait .front img {
-    margin:0px auto;
-    max-height:100%;
-    max-width:100%;
-}
 /* extra styling for pagination on person pages because there's no @href */
 .pagination > li > a {
     cursor:pointer;
