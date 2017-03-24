@@ -70,7 +70,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'undated' := (),
         'date' := (),
-        'memberOf' := ('sitemap'), (: index, search :)
+        'memberOf' := ('sitemap', 'unary-docTypes'), (: index, search :)
         'search' := ()
     }
 };
@@ -122,7 +122,7 @@ declare function wdt:persons($item as item()*) as map(*) {
                 case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
                 default return core:logToFile('error', 'wdt:persons()("label-facests"): failed to get string')
         },
-        'memberOf' := ('sitemap'),
+        'memberOf' := ('sitemap', 'unary-docTypes'),
         'search' := ()
     }
 };
@@ -203,7 +203,7 @@ declare function wdt:letters($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices', 'sitemap'),
+        'memberOf' := ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:correspDesc[ft:query(., $query)] | 
@@ -301,7 +301,7 @@ declare function wdt:writings($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices', 'sitemap'),
+        'memberOf' := ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
@@ -364,7 +364,7 @@ declare function wdt:works($item as item()*) as map(*) {
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return core:logToFile('error', 'wdt:works()("label-facests"): failed to get string')
         },
-        'memberOf' := ('search', 'indices'),
+        'memberOf' := ('search', 'indices', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[mei:mei]/mei:mei[ft:query(., $query)] | 
             $item[mei:mei]//mei:title[ft:query(., $query)]
@@ -424,7 +424,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
                     case 'html' return <span>{$formattedDate}<br/>{$formattedPlaces}</span> 
                     default return core:logToFile('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices', 'sitemap'),
+        'memberOf' := ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:ab]/tei:ab[ft:query(., $query)]
         }
@@ -470,7 +470,7 @@ declare function wdt:news($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'sitemap', 'indices'),
+        'memberOf' := ('search', 'sitemap', 'indices', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)]
@@ -503,7 +503,7 @@ declare function wdt:iconography($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('iconography', wdt:iconography(())('init-collection')(), function($node) { $node//tei:person/data(@corresp) }, ())
         },
-        'memberOf' := (),
+        'memberOf' := ('unary-docTypes'),
         'search' := ()
     }
 };
@@ -546,7 +546,7 @@ declare function wdt:var($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := (),
+        'memberOf' := ('unary-docTypes'),
         'search' := ()
     }
 };
@@ -595,7 +595,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                 case 'html' return $html-title 
                 default return core:logToFile('error', 'wdt:biblio()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices'),
+        'memberOf' := ('search', 'indices', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:biblStruct]//tei:biblStruct[ft:query(., $query)] | 
             $item[tei:biblStruct]//tei:title[ft:query(., $query)] | 
@@ -643,7 +643,7 @@ declare function wdt:places($item as item()*) as map(*) {
                 case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := (),
+        'memberOf' := ('unary-docTypes'),
         'search' := ()
     }
 };
@@ -674,7 +674,7 @@ declare function wdt:sources($item as item()*) as map(*) {
         'title' := function($serialization as xs:string) as item()? {
             ()
         },
-        'memberOf' := (),
+        'memberOf' := ('unary-docTypes'),
         'search' := ()
     }
 };
@@ -718,7 +718,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:thematicCommentaries()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices', 'sitemap'),
+        'memberOf' := ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
@@ -766,7 +766,7 @@ declare function wdt:documents($item as item()*) as map(*) {
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:documents()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('search', 'indices', 'sitemap'),
+        'memberOf' := ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |

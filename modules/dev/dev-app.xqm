@@ -21,8 +21,10 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "../app.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "../date.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 
 declare 
     %templates:wrap
@@ -78,4 +80,24 @@ declare
 	    map {
 	        'deployment-date' := date:strfdate(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, 'de', ())
 	    }
+};
+
+declare
+    %templates:wrap
+    function dev-app:newID-docTypes($node as node(), $model as map(*)) as map() {
+        let $wega-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name')
+        return 
+            map {
+                'newID-docTypes' := $wega-docTypes
+            }
+};
+
+declare
+    %templates:wrap
+    function dev-app:newID-option($node as node(), $model as map(*)) as element() {
+        element { node-name($node) } {
+            $node/@class,
+            attribute value { $model?newID-docType },
+            lang:get-language-string($model?newID-docType, $model?lang)
+        }
 };
