@@ -350,8 +350,8 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
         let $has-suffix := contains($token, '.')
         return
             if(matches($token, 'A\d{2}[0-9A-F]')) then $token (: pattern for document identifier :)
-            else if(matches($token, 'wega[A-Z][a-zA-Z]+')) then $token (: pattern for schema identifier as used in the Guidelines :)
-            else if($count = count($tokens) and $tokens[$count - 1] = (lang:get-language-string('elements', $sourceLang))) then $token
+            else if($token = gl:schemaSpec-idents()) then $token (: pattern for schema identifier as used in the Guidelines :)
+            else if($count = count($tokens) and starts-with($token, 'ref-')) then $token (: Guidelines specs :)
             else if($has-suffix) then lang:translate-language-string(replace(substring-before(xmldb:decode($token), '.'), '_', ' '), $sourceLang, $targetLang) || '.' || substring-after($token, '.')
             else lang:translate-language-string(replace(xmldb:decode($token), '_', ' '), $sourceLang, $targetLang)
     return
