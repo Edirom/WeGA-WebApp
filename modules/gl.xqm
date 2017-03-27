@@ -130,7 +130,10 @@ declare
 	function gl:attributes($node as node(), $model as map(*)) as map()? {
 	   let $spec := $model?spec
 	   let $attClasses := $spec/tei:classes/tei:memberOf[starts-with(@key, 'att.')]/@key
-	   let $localAtts :=  $spec//tei:attDef[not(@mode='delete')] | $spec//tei:attRef
+	   let $attRefs := 
+	       for $att in $spec//tei:attRef
+	       return $spec/ancestor::tei:schemaSpec/tei:classSpec[@ident = $att/@class]//tei:attDef[@ident=$att/@name]
+	   let $localAtts :=  $spec//tei:attDef[not(@mode='delete')] | $attRefs
 	   return
 	       if(count($attClasses | $localAtts) gt 0) then
     	       map {
@@ -145,12 +148,12 @@ declare
 	%templates:wrap
 	function gl:members($node as node(), $model as map(*)) as map()? {
 	   let $spec := $model?spec
-	   let $schema := $spec/ancestor::tei:schemaSpec
-	   let $members := $schema//tei:elementSpec[tei:classes/tei:memberOf/@key = $spec/@ident]
+(:	   let $schema := $spec/ancestor::tei:schemaSpec:)
+	   let $members := gl:class-members($spec)
 	   return
 	       if(count($members) gt 0) then
     	       map {
-    	           'members' := $members 
+    	           'members' := for $i in $members order by $i/@ident return $i 
     	       }
            else ()
 };
@@ -162,7 +165,13 @@ declare
             attribute href {
                 gl:link-to-spec(($model?member)/data(@ident), $model?lang, $model?schemaID) || '.html'
             },
-            ($model?member)/data(@ident)
+            if(($model?member)/self::tei:classSpec) then (
+                ($model?member)/data(@ident),
+                ' [',
+                gl:class-members($model?member)/@ident/data(),
+                ']'
+            )
+            else ($model?member)/data(@ident)
         }
 };
 
@@ -241,15 +250,16 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 };
 
 declare function gl:print-attributeClass($node as node(), $model as map(*)) {
-    let $att2span := function($attID as node()) {
+    let $att2span := function($spec as element()) {
         element span {
             attribute class {
-                if($model?spec//tei:attDef[@ident=$attID]) then 'unusedattribute'
+                if($model?spec//tei:attDef[@ident=$spec/@ident]) then 'unusedattribute'
                 else 'attribute'
             },
-            data($attID)
+            data($spec/@ident)
         }
     }
+    let $atts := for $att in gl:spec($model?attClass, $model?schemaID)//tei:attDef order by $att/@ident return $att
     return
         element a {
             attribute href {
@@ -257,7 +267,12 @@ declare function gl:print-attributeClass($node as node(), $model as map(*)) {
             },
             data($model?attClass),
             ' (',
-            gl:spec($model?attClass, $model?schemaID)//tei:attDef/@ident ! ($att2span(.))
+            for $att at $count in $atts
+            return (
+                $att2span($att),
+                if(count($atts) eq $count) then ''
+                else ', '
+            )
             ,')'
         }
 };
@@ -322,4 +337,8 @@ declare %private function gl:print-exemplum($exemplum as element()) as item()* {
 ~:)
 declare function gl:schemaIdent2docType($schemaID as xs:string) as xs:string {
 	lower-case(substring-after($schemaID, 'wega'))
+};
+
+declare %private function gl:class-members($spec as element()) as element()* {
+    $spec/ancestor::tei:schemaSpec//(tei:elementSpec, tei:classSpec)[tei:classes/tei:memberOf[@key = $spec/@ident][not(@mode='delete')]]
 };
