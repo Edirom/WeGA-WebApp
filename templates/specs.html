@@ -96,11 +96,13 @@
                         <div class="row">
                         	<div class="col-md-12">
                         		<p>
-                        			<b data-template="app:print" data-template-key="specIDDisplay">castGroup</b> (<span data-template="app:print" data-template-key="gloss">cast list grouping</span>) <span data-template="app:print" data-template-key="desc">groups one or more individual castItem elements within a cast list.</span>
+                        			<b data-template="app:print" data-template-key="specIDDisplay">castGroup</b> 
+                        		    <span data-template="app:print" data-template-key="gloss" class="gloss">cast list grouping</span> 
+                        		    <span data-template="app:print" data-template-key="desc" class="desc">groups one or more individual castItem elements within a cast list.</span>
                         		</p>
                         	</div>
                         </div>
-                        <div class="row customizations">
+                        <div class="row customizations" data-template="gl:spec-customizations">
                             <div class="col-md-2">
                             	<p data-template="lang:translate">other_customizations</p>
                             </div>
@@ -113,17 +115,44 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row" data-template="app:if-exists" data-template-key="attClasses">
+                        <div class="row members" data-template="gl:members">
+                            <div class="col-md-2">
+                                <p data-template="lang:translate">members</p>
+                            </div>
+                            <div class="col-md-10">
+                                <ul>
+                                    <li data-template="app:each" data-template-from="members" data-template-to="member">
+                                        <span data-template="gl:print-member" data-template-key="member"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row attributes" data-template="gl:attributes">
                             <div class="col-md-2">
                                 <p data-template="lang:translate">attributes</p>
                             </div>
                             <div class="col-md-10">
-                                <div>
-                                    <ul>
+                                <div class="attClasses">
+                                    <ul data-template="app:if-exists" data-template-key="attClasses">
                                         <li data-template="app:each" data-template-from="attClasses" data-template-to="attClass">
-                                            <span data-template="gl:print-attributeClass" data-template-key="attClass"></span>
+                                            <span data-template="gl:print-attributeClass" data-template-key="attClass"/>
                                         </li>
                                     </ul>
+                                </div>
+                                <div class="localAtts">
+                                    <div data-template="app:each" data-template-from="localAtts" data-template-to="localAtt" class="row">
+                                        <div data-template="gl:spec-details" data-template-specKey="localAtt">
+                                            <div class="col-md-2">
+                                                <p data-template="app:print" data-template-key="specIDDisplay" class="attribute">att</p>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    <span data-template="app:print" data-template-key="gloss" class="gloss">gloss</span>
+                                                    <span data-template="app:print" data-template-key="desc" class="desc">desc</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -95,24 +95,75 @@ declare
 
 declare 
 	%templates:wrap
-	function gl:spec-details($node as node(), $model as map(*)) as map() {
-		let $schemaSpecs := collection($gl:guidelines-collection-path)//tei:schemaSpec
-		let $schemaSpec := gl:schemaSpec($model('schemaID'))
-		let $spec := gl:spec($model('specID'), $model('schemaID'))
-		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')]
+	%templates:default("specKey", "")
+	function gl:spec-details($node as node(), $model as map(*), $specKey as xs:string) as map() {
+		let $spec := 
+		  if($specKey) then $model($specKey)
+		  else gl:spec($model('specID'), $model('schemaID'))
 		let $lang := $model?lang
 		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		return
 			map {
-				'gloss' := $spec/tei:gloss[@xml:lang=$lang],
+				'gloss' := $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
 				'desc' := $spec/tei:desc[@xml:lang=$lang],
 				'spec' := $spec,
-				'specIDDisplay' := if(contains($model('specID'), '.')) then $model('specID') else '<' || $model('specID') || '>',
-				'customizations' := ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec),
-				'attClasses' := $spec/tei:classes/tei:memberOf[starts-with(@key, 'att.')]/data(@key), 
+				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
 				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.)
 			}
+};
+
+declare 
+	%templates:wrap
+	function gl:spec-customizations($node as node(), $model as map(*)) as map() {
+		let $schemaSpecs := collection($gl:guidelines-collection-path)//tei:schemaSpec
+		let $spec := $model?spec (:gl:spec($model('specID'), $model('schemaID')):)
+		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')]
+		return
+			map {
+				'customizations' := ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec)
+			}
+};
+
+declare 
+	%templates:wrap
+	function gl:attributes($node as node(), $model as map(*)) as map()? {
+	   let $spec := $model?spec
+	   let $attClasses := $spec/tei:classes/tei:memberOf[starts-with(@key, 'att.')]/@key
+	   let $localAtts :=  $spec//tei:attDef[not(@mode='delete')] | $spec//tei:attRef
+	   return
+	       if(count($attClasses | $localAtts) gt 0) then
+    	       map {
+    				'attributes' := $attClasses | $localAtts,
+    				'attClasses' := $attClasses,
+    				'localAtts' := $localAtts
+    			}
+    		else ()
+};
+
+declare 
+	%templates:wrap
+	function gl:members($node as node(), $model as map(*)) as map()? {
+	   let $spec := $model?spec
+	   let $schema := $spec/ancestor::tei:schemaSpec
+	   let $members := $schema//tei:elementSpec[tei:classes/tei:memberOf/@key = $spec/@ident]
+	   return
+	       if(count($members) gt 0) then
+    	       map {
+    	           'members' := $members 
+    	       }
+           else ()
+};
+
+declare 
+	%templates:wrap
+	function gl:print-member($node as node(), $model as map(*)) {
+	   element a {
+            attribute href {
+                gl:link-to-spec(($model?member)/data(@ident), $model?lang, $model?schemaID) || '.html'
+            },
+            ($model?member)/data(@ident)
+        }
 };
 
 (:~
@@ -146,7 +197,6 @@ declare
 declare 
 	%templates:wrap
 	function gl:doc-details($node as node(), $model as map(*)) as map()? {
-(:		let $docID := 'A550001':)
 		let $chapter := gl:chapter($model?chapID)
 		return
 			map {
@@ -190,15 +240,25 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 	    }
 };
 
-declare 
-    
-    function gl:print-attributeClass($node as node(), $model as map(*)) {
-        util:log-system-out($model?attClass || $model?schemaID),
+declare function gl:print-attributeClass($node as node(), $model as map(*)) {
+    let $att2span := function($attID as node()) {
+        element span {
+            attribute class {
+                if($model?spec//tei:attDef[@ident=$attID]) then 'unusedattribute'
+                else 'attribute'
+            },
+            data($attID)
+        }
+    }
+    return
         element a {
             attribute href {
-                gl:link-to-spec($model?attClass, $model?lang, ()) || '.html'
+                gl:link-to-spec($model?attClass, $model?lang, $model?schemaID) || '.html'
             },
-            $model?attClass || ' (' || string-join(gl:spec($model?attClass, $model?schemaID)//tei:attDef/@ident, ', ') || ')'
+            data($model?attClass),
+            ' (',
+            gl:spec($model?attClass, $model?schemaID)//tei:attDef/@ident ! ($att2span(.))
+            ,')'
         }
 };
 

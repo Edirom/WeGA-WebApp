@@ -366,17 +366,6 @@ div.table-wrapper {
     padding: 0 0.5em 0 0;
 }
 
-/* settings for guidelines*/
-.customizations {
-	li {
-		display: inline;
-		margin-right: 1em;
-		span {
-			white-space:nowrap;
-		}
-	}
-}
-
 /* settings for "What happened on?" on start page */
 .history {
 	p {
@@ -400,4 +389,25 @@ div.table-wrapper {
 		-webkit-text-decoration: underline dotted;
 		cursor: help;
 	}
+}
+
+/* 
+ * Guidelines Spec pages
+ */
+.customizations, .attributes {
+	li {
+		display: inline;
+		margin-right: 1em;
+		span {
+			white-space:nowrap;
+		}
+	}
+}
+
+.attribute:before, .unusedattribute:before {
+    content:"@";
+}
+
+.unusedattribute {
+    text-decoration:line-through;
 }
