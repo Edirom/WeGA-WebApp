@@ -113,6 +113,20 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="row" data-template="app:if-exists" data-template-key="attClasses">
+                            <div class="col-md-2">
+                                <p data-template="lang:translate">attributes</p>
+                            </div>
+                            <div class="col-md-10">
+                                <div>
+                                    <ul>
+                                        <li data-template="app:each" data-template-from="attClasses" data-template-to="attClass">
+                                            <span data-template="gl:print-attributeClass" data-template-key="attClass"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <!--<div class="row">
                             <div class="col-md-2">
                                 <p>Module</p>

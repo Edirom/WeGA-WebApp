@@ -25,19 +25,22 @@ import module namespace templates="http://exist-db.org/xquery/templates" at "/db
 import module namespace functx="http://www.functx.com";
 
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
+declare variable $gl:main-source as document-node() := 
+    try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
+    catch * {core:logToFile('error', 'failed to load main Guidelines source')};
 
 (:~
  : Returns the available chapter identifier
 ~:)
 declare function gl:chapter-idents() as xs:string* {
-    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml')))//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
+    $gl:main-source//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
 };
 
 (:~
  : Returns the chapter indicated by $chapID
 ~:)
 declare function gl:chapter($chapID as xs:string) as element(tei:div)? {
-    doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml')))//(tei:div, tei:divGen)[@xml:id=$chapID]
+    $gl:main-source//(tei:div, tei:divGen)[@xml:id=$chapID]
 };
 
 (:~
@@ -106,6 +109,7 @@ declare
 				'spec' := $spec,
 				'specIDDisplay' := if(contains($model('specID'), '.')) then $model('specID') else '<' || $model('specID') || '>',
 				'customizations' := ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec),
+				'attClasses' := $spec/tei:classes/tei:memberOf[starts-with(@key, 'att.')]/data(@key), 
 				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.)
 			}
@@ -186,6 +190,34 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 	    }
 };
 
+declare 
+    
+    function gl:print-attributeClass($node as node(), $model as map(*)) {
+        util:log-system-out($model?attClass || $model?schemaID),
+        element a {
+            attribute href {
+                gl:link-to-spec($model?attClass, $model?lang, ()) || '.html'
+            },
+            $model?attClass || ' (' || string-join(gl:spec($model?attClass, $model?schemaID)//tei:attDef/@ident, ', ') || ')'
+        }
+};
+
+(:~
+ : Create a link to $specID (without file extension suffix)
+ : When $schemaID is given the link is created to this specific schema,
+ : otherwise the main Guidelines source ($gl:main-source) is targeted.
+~:)
+declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:string, $schemaID as xs:string?) as xs:string? {
+    core:link-to-current-app(
+		str:join-path-elements((
+			$lang,
+			lang:get-language-string('project', $lang),
+			lang:get-language-string('editorialGuidelines-text', $lang),
+			if($schemaID) then $schemaID else $gl:main-source/@ident,
+			'ref-' || $specID ))
+	)
+};
+
 (:~
  : Helper function for gl:print-customization()
 ~:)
@@ -207,15 +239,7 @@ declare %private function gl:tei-source($spec as element()) as map() {
 declare %private function gl:wega-customization($model as map(*)) as map() {
 	let $specID := $model?customization/@ident
 	let $customizationIdent := $model?customization/ancestor::tei:schemaSpec/data(@ident)
-	let $url := 
-		core:link-to-current-app(
-			str:join-path-elements((
-				$model?lang,
-				lang:get-language-string('project', $model?lang),
-				lang:get-language-string('editorialGuidelines-text', $model?lang),
-				$customizationIdent,
-				'ref-' || $specID ))
-		) || '.html'
+	let $url := gl:link-to-spec($specID, $model?lang, $customizationIdent) || '.html'
 	return
 		map {
 			'customizationIdent' := $customizationIdent,
