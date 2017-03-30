@@ -241,21 +241,6 @@
         </xsl:choose>
     </xsl:template>-->
 
-    <xsl:template match="tei:bibl">
-        <!--        <p class="teiLetter_bibl">-->
-        <xsl:if test="./tei:author">
-            <xsl:value-of select="normalize-space(./tei:author)"/>
-            <xsl:text>,&#160;</xsl:text>
-            <span class="teiLetter_hiItalics">
-                <xsl:value-of select="normalize-space(./tei:name)"/>
-            </span>
-        </xsl:if>
-        <xsl:if test="./tei:rs">
-            <xsl:apply-templates/>
-        </xsl:if>
-        <!--        </p>-->
-    </xsl:template>
-   
     <!--<xsl:template match="tei:title[@level='a']">
         <xsl:apply-templates/>
     </xsl:template>-->
