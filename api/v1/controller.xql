@@ -173,7 +173,7 @@ return (:(
     util:log-system-out($exist:resource)
     ):)
     if($exist:resource eq 'swagger.json') then ()
-    else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/' || $exist:prefix || '/' || $exist:controller || '/index.html')
+    else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
