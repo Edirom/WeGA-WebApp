@@ -93,6 +93,12 @@ declare
 	'Element: ' || $model('specID') || ' (' || $model('schemaID') || ')'
 };
 
+
+(:~
+ : Collecting details about a TEI specification
+ : A specification ($spec) could be some tei:*Spec (e.g. tei:elementSpec, or tei:classSpec) 
+ : or some descendant tei:attDef or tei:valItem (i.e. everything that might have nested tei:desc, tei:gloss and tei:remarks)
+~:)
 declare 
 	%templates:wrap
 	%templates:default("specKey", "")
@@ -109,7 +115,10 @@ declare
 				'spec' := $spec,
 				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
 				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
-				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.)
+				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.),
+				'usage' := lang:get-language-string('usage_' || $spec/data(@usage), $model?lang),
+				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
+				'closed_values' := $spec/tei:valList[@type='closed']/tei:valItem
 			}
 };
 
