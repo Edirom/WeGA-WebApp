@@ -840,6 +840,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('biblio')//tei:term[.=$personID]/root() |
                 core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('documents')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('var')//tei:*[contains(@key,$personID)]/root() |
                 (: <ref target="wega:A002068"/> :)
                 core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
                 core:data-collection('diaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
@@ -849,7 +850,8 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('orgs')//tei:*[contains(@target,'wega:' || $personID)]/root() |
                 core:data-collection('biblio')//tei:*[contains(@target,'wega:' || $personID)]/root() |
                 core:data-collection('thematicCommentaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
-                core:data-collection('documents')//tei:*[contains(@target,'wega:' || $personID)]/root() 
+                core:data-collection('documents')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+                core:data-collection('var')//tei:*[contains(@target,'wega:' || $personID)]/root() 
             return
                 $docsMentioned except $docsAuthor
         },
