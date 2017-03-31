@@ -547,7 +547,10 @@ declare function wdt:var($item as item()*) as map(*) {
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('unary-docTypes'),
-        'search' := ()
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)]
+        }
     }
 };
 

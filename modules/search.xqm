@@ -96,6 +96,7 @@ declare
         let $docType := 
             (: Preview orgs with the person template :)
             if(config:is-org($docID)) then 'persons'
+            else if(config:is-var($docID)) then 'documents'
             else config:get-doctype-by-id($docID)
 (:        let $log := util:log-system-out($model('docType') || ' - ' || $model('docID')):)
         (: Need to distinguish between contacts and other person previews :)
@@ -156,7 +157,7 @@ declare %private function search:query($model as map(*)) as map(*)* {
     let $searchString := $model('query-string')
     let $docTypes := $model('query-docTypes')
     let $docTypes := 
-        if($docTypes = 'all') then $search:wega-docTypes
+        if($docTypes = 'all') then ($search:wega-docTypes, 'var') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
         else $search:wega-docTypes[.=$docTypes]
     return 
         if($model('dates')) then $docTypes ! search:exact-date($model('dates'), $model('filters'), .)
