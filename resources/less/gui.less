@@ -176,6 +176,12 @@ ol.endNotes {
     content:")";
 }
 
+
+/* Hide parantheses for empty docStatus */
+.docStatus:empty {
+    display:none;
+}
+
 .docStatus::before {
     content:"(";
 }
