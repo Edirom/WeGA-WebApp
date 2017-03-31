@@ -401,8 +401,8 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
  : get (from URL parameter, or session, or options file) and set (to the session) the default entries per page
 ~:)
 declare function config:entries-per-page() as xs:int {
-    let $urlParam := request:get-parameter('limit', ())
-    let $sessionParam := session:get-attribute('limit')
+    let $urlParam := if(request:exists()) then request:get-parameter('limit', ()) else ()
+    let $sessionParam := if(session:exists()) then session:get-attribute('limit') else ()
     let $default-option := config:get-option('entriesPerPage')
     return
         if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
