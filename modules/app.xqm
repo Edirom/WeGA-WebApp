@@ -278,7 +278,6 @@ declare
 
 declare function app:set-line-wrap($node as node(), $model as map(*)) as element() {
     element {name($node)} {
-        util:log-system-out('foo-' || $model('line-wrap')),
         if($model('line-wrap')) then ( 
             $node/@*[not(name(.)='class')],
             attribute class {string-join(($node/@class, 'line-wrap'), ' ')}
