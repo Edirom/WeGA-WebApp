@@ -264,6 +264,32 @@ declare function app:order-list-items($node as node(), $model as map(*)) as elem
     }
 };
 
+(:~
+ : get and set line-wrap variable
+ : (whether a user prefers code examples with or without wrapped lines)
+ :)
+declare 
+    %templates:wrap
+    function app:line-wrap($node as node(), $model as map(*)) as map(*)? {
+        map {
+            'line-wrap' := config:line-wrap()
+        }
+};
+
+declare function app:set-line-wrap($node as node(), $model as map(*)) as element() {
+    element {name($node)} {
+        util:log-system-out('foo-' || $model('line-wrap')),
+        if($model('line-wrap')) then ( 
+            $node/@*[not(name(.)='class')],
+            attribute class {string-join(($node/@class, 'line-wrap'), ' ')}
+        )
+        else $node/@*,
+        templates:process($node/node(), $model)
+    }
+};
+
+
+
 (:
  : ****************************
  : Breadcrumbs 

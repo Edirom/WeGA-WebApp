@@ -417,3 +417,30 @@ div.table-wrapper {
 .unusedattribute {
     text-decoration:line-through;
 }
+
+/* 
+ * toggle for XML preview line wrap  
+ */
+/* styling of the control */
+.line-wrap-toggle {
+    position:absolute;
+    top: 33px;
+    right: (@grid-gutter-width / 2);
+    > div {
+        height: auto !important;
+    }
+    .btn {
+        padding: 1px 5px;
+    }
+}
+
+/* overwrite the default to force no line break on Safari */
+.prettyprint {
+    word-wrap:normal;
+};
+
+/* the class that toggles the line wrap */
+.line-wrap {
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}

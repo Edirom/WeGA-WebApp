@@ -412,6 +412,22 @@ declare function config:entries-per-page() as xs:int {
 };
 
 (:~
+ : get (from URL parameter, or session, or options file) and set (to the session) the line wrap preference of the user
+~:)
+declare function config:line-wrap() as xs:boolean {
+    let $urlParam := if(request:exists()) then request:get-parameter('line-wrap', ()) else ()
+    let $sessionParam := if(session:exists()) then session:get-attribute('line-wrap') else ()
+    let $default-option := true() (:config:get-option('line-wrap'):)
+    return
+        if($urlParam) then 
+            if($urlParam = ('true', '1', 'yes')) then (true(), session:set-attribute('line-wrap', true()))
+            else (false(), session:set-attribute('line-wrap', false()))
+        else if($sessionParam instance of xs:boolean) then $sessionParam
+        else if($default-option instance of xs:boolean) then $default-option
+        else (true(), core:logToFile('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
+};
+
+(:~
  : Return the Swagger API base path
 ~:)
 declare function config:api-base() as xs:string {

@@ -1,7 +1,10 @@
-<div>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="app:line-wrap">
     <h2 data-template="lang:translate">XML-Preview</h2>
-    <pre class="prettyprint"><code class="language-xml" data-template="app:xml-prettify"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>
+    <label class="line-wrap-toggle">Line wrap <input data-size="mini" type="checkbox" checked="checked" data-toggle="toggle"/></label>
+    <pre class="prettyprint" data-template="app:set-line-wrap"><code class="language-xml" data-template="app:xml-prettify"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>
+    <script src="$resources/lib/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
     <script type="text/javascript">
         prettyPrint();
+        init_line_wrap_toggle();
     </script>
 </div>
