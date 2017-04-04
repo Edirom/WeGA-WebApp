@@ -96,7 +96,7 @@ else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templ
 ~:)
 else if ($exist:resource = 'correspDesc.xml') then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/correspDesc.xql'}"/>
+        <forward url="{concat($exist:controller, '/modules/correspDesc.xql')}"/>
     </dispatch>
 
 (: Suche :)
@@ -156,7 +156,7 @@ else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('
 (: IIIF manifest meta data :)
 else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+        <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
             <set-attribute name="docID" value="{substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/')}"/>
             <set-attribute name="type" value="manifest"/>
         </forward>
@@ -165,7 +165,7 @@ else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
 (: IIIF resource meta data :)
 (:else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/[^/]+/info.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+        <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
             <set-attribute name="docID" value="{substring-before(substring-after($exist:path, 'IIIF/'), '/')}"/>
             <set-attribute name="image" value="{functx:substring-after-last(util:unescape-uri(substring-before($exist:path, '/info.json'), 'UTF-8'), '/')}"/>
             <set-attribute name="type" value="resource"/>
@@ -174,9 +174,9 @@ else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
     
 (:else if (contains($exist:path, '/IIIF') and $exist:resource eq 'level0.json') then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{map:get($exist-vars, 'controller') || '/templates/ajax/dnb.html'}"/>
+        <forward url="{concat($exist:controller, '/templates/ajax/dnb.html')}"/>
         <view>
-            <forward url="{map:get($exist-vars, 'controller') || '/modules/view-json.xql'}">
+            <forward url="{concat($exist:controller, '/modules/view-json.xql)'}">
                 <set-attribute name="resource" value="{substring-before($exist:resource, '.json')}"/>
             </forward>
         </view>
