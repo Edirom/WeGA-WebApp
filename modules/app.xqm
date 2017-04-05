@@ -314,7 +314,7 @@ declare
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
         let $authorID := query:get-authorID($model('doc'))
         let $href := core:link-to-current-app(functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/'))
-        let $display-name := functx:substring-after-last($href, '/')
+        let $display-name := replace(functx:substring-after-last($href, '/'), '_', ' ')
         return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
