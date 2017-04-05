@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -245,15 +246,15 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li class="secLevel1"><a href="#d61139e3">Content Negotiation</a></li>
+                                        <li class="secLevel1"><a href="#d124630e3">Content Negotiation</a></li>
                                         <li class="secLevel1"><a href="#sprachwahl">Sprachauswahl</a></li>
-                                        <li class="secLevel1"><a href="#d61139e87">Abfragen von GND IDs</a></li>
-                                        <li class="secLevel1"><a href="#d61139e122">Correspondence Metadata Interchange-Format</a></li>
-                                        <li class="secLevel1"><a href="#d61139e147">Swagger OpenAPI</a></li>
+                                        <li class="secLevel1"><a href="#d124630e87">Abfragen von GND IDs</a></li>
+                                        <li class="secLevel1"><a href="#d124630e122">Correspondence Metadata Interchange-Format</a></li>
+                                        <li class="secLevel1"><a href="#d124630e147">Swagger OpenAPI</a></li>
                                     </ul>
                                 </div>
-                                <div id="d61139e2">
-                                    <h2 id="d61139e3">Content Negotiation</h2>
+                                <div id="d124630e2">
+                                    <h2 id="d124630e3">Content Negotiation</h2>
                                     <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
                Aktuell werden HTML und TEI-XML unterstützt, wobei das gewünschte Ausgabeformat entweder 
                über ein Suffix (<code>.html</code>/<code>.htm</code> oder <code>.tei</code>/<code>.xml</code>) oder über den HTTP Accept Header 
@@ -275,7 +276,7 @@
                                     <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt.</p>
                                 </div>
                                 <div id="sprachwahl">
-                                    <h2 id="d61139e64">Sprachauswahl</h2>
+                                    <h2 id="d124630e64">Sprachauswahl</h2>
                                     <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
                Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
                Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
@@ -290,8 +291,8 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d61139e86">
-                                    <h2 id="d61139e87">Abfragen von GND IDs</h2>
+                                <div id="d124630e86">
+                                    <h2 id="d124630e87">Abfragen von GND IDs</h2>
                                     <p> 
                Von der API werden aktuell GNDs vom Typ „Person“ unterstützt, welche über einen PND-Beacon zur Verfügung gestellt werden. 
                Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/pnd_beacon.txt</code>.
@@ -310,8 +311,8 @@
                                     </div>
                                     <p>Detaillierte Informationen zum PND-Beacon-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link"></i></a>.</p>
                                 </div>
-                                <div id="d61139e121">
-                                    <h2 id="d61139e122">Correspondence Metadata Interchange-Format</h2>
+                                <div id="d124630e121">
+                                    <h2 id="d124630e122">Correspondence Metadata Interchange-Format</h2>
                                     <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMI)
                zur Verfügung. Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/correspDesc.xml</code>.
             </p>
@@ -320,8 +321,8 @@
                Siehe auch die <a class="preview news A050122" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050122.html">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
             </p>
                                 </div>
-                                <div id="d61139e146">
-                                    <h2 id="d61139e147">Swagger OpenAPI</h2>
+                                <div id="d124630e146">
+                                    <h2 id="d124630e147">Swagger OpenAPI</h2>
                                     <p>Die WeGA bietet unter <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> 
                ebenfalls eine REST-Schnittstelle nach der <a href="http://swagger.io/specification/">Swagger OpenAPI Spezifikation 2.0 <i class="fa fa-external-link"></i></a> an. 
                Diese Schnittstelle soll ein schnelles und komfortables 
