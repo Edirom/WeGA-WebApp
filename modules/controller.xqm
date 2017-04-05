@@ -126,7 +126,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
 declare function controller:dispatch-register($exist-vars as map(*)) as element(exist:dispatch) {
     let $indexDocTypes := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :)
     let $docType := 
-        if($exist-vars('exist:resource')) then lang:reverse-language-string-lookup(replace(xmldb:decode($exist-vars('exist:resource')), '_', ' '), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
+        if($exist-vars('exist:resource')) then lang:reverse-language-string-lookup(controller:url-decode($exist-vars('exist:resource')), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
         else 'indices'
     let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
     let $updated-exist-vars := 
@@ -265,12 +265,8 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
  : @author Peter Stadler
  : @param $uri
  :)
-declare function controller:encode-path-segments-for-uri($uri-string as xs:string?) as xs:string? {
-    typeswitch($uri-string)
-    case xs:string return 
-        if(matches($uri-string, '^[a-zA-Z0-9/]+$')) then $uri-string
-        else str:join-path-elements(tokenize($uri-string, '/') ! encode-for-uri(.))
-    default return ()
+declare function controller:encode-path-segments-for-uri($uri-string as xs:string?) as xs:string {
+    str:join-path-elements(tokenize($uri-string, '/') ! controller:url-encode(.))
 };
 
 (:~
@@ -347,13 +343,13 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
     let $tokens := tokenize(functx:substring-after-match($uri, $langRegex), '/')
     let $translated-tokens := 
         for $token at $count in $tokens
-        let $has-suffix := contains($token, '.')
+        let $suffix := controller:suffix($token)
         return
             if(matches($token, 'A\d{2}[0-9A-F]')) then $token (: pattern for document identifier :)
             else if($token = gl:schemaSpec-idents()) then $token (: pattern for schema identifier as used in the Guidelines :)
             else if($count = count($tokens) and starts-with($token, 'ref-')) then $token (: Guidelines specs :)
-            else if($has-suffix) then lang:translate-language-string(replace(substring-before(xmldb:decode($token), '.'), '_', ' '), $sourceLang, $targetLang) || '.' || substring-after($token, '.')
-            else lang:translate-language-string(replace(xmldb:decode($token), '_', ' '), $sourceLang, $targetLang)
+            else if($suffix) then lang:translate-language-string(controller:url-decode(substring-before($token, '.' || $suffix)), $sourceLang, $targetLang) || '.' || $suffix
+            else lang:translate-language-string(controller:url-decode($token), $sourceLang, $targetLang)
     return
         core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
 };
@@ -387,6 +383,21 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri(normalize-space($mapping)))
         else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
+};
+
+(:~
+ : URL decoding with replacement of underscores to blanks
+~:)
+declare function controller:url-decode($string as xs:string?) as xs:string {
+    if($string) then replace(xmldb:decode($string), '_', ' ')
+    else ''
+};
+
+(:~
+ : URL encoding with replacement of whitespace to underscores
+~:)
+declare function controller:url-encode($string as xs:string?) as xs:string {
+    encode-for-uri(replace($string, ' ', '_'))
 };
 
 declare %private function controller:resource-id($exist-vars as map(*)) as xs:string? {
