@@ -1073,7 +1073,7 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
         	else gl:spec($model('exist:path'))
         return
             if($config:isDevelopment) then util:serialize($doc, $serializationParameters)
-            else util:serialize(wega-util:remove-comments($doc), $serializationParameters)
+            else util:serialize(wega-util:inject-version-info(wega-util:remove-comments($doc)), $serializationParameters)
 };
 
 declare 

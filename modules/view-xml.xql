@@ -16,10 +16,12 @@ let $schemaID := request:get-attribute('schemaID')
 let $chapID := request:get-attribute('chapID')
 let $dbPath := request:get-attribute('dbPath')
 let $content := 
-	if(config:get-doctype-by-id($docID)) then try { core:doc(request:get-attribute($docID)) } catch  * {()}
+	if(config:get-doctype-by-id($docID)) then try { core:doc($docID) } catch  * {()}
 	else if($specID) then gl:spec($specID, $schemaID)
 	else if($chapID) then gl:chapter($chapID)
 	else if($dbPath) then try {doc($dbPath)} catch * { core:logToFile('error', 'Failed to load XML document at "' || $dbPath  || '"') }
 	else ()
 return
-    wega-util:remove-comments($content)
+    wega-util:inject-version-info(
+        wega-util:remove-comments($content)
+    )

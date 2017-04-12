@@ -20,6 +20,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
@@ -155,6 +156,100 @@ declare function wega-util:remove-comments($nodes as node()*) as node()* {
             }
         else if($node instance of document-node()) then wega-util:remove-comments($node/node())
         else $node
+};
+
+(:~
+ : Add current version information to a TEI file
+ : If the file contains a tei:fileDesc a tei:editionStmt is injected,
+ : otherwise a comment is written after the root element 
+ :
+ : @author Peter Stadler 
+ : @param $nodes the nodes to transform
+ : @return transformed nodes
+ :)
+declare function wega-util:inject-version-info($nodes as node()*) as item()* {
+    for $node in $nodes
+    return
+        if($node instance of processing-instruction()) then (
+            (: replace the schema location from development to current stable version :)
+            if($node[ancestor::node()]) then $node
+            else (
+                processing-instruction xml-model {replace($node, '(master|develop)', 'v' || config:get-option('ODDversion'))}
+            )
+        )
+        (: inject editionStmt element after the titleStmt :)
+        else if($node instance of element(tei:titleStmt)) then (
+            if($node/parent::tei:fileDesc/parent::tei:teiHeader/parent::tei:TEI) then ( (: make sure we're dealing with the right titleStmt :)
+                let $editionStmt := wega-util:editionStmt()
+                return (
+                    $node,
+                    '&#10;&#9;&#9;&#9;', (: Indentation :)
+                    element {QName('http://www.tei-c.org/ns/1.0', 'editionStmt')} {
+                        '&#10;&#9;&#9;&#9;&#9;',
+                        element {QName('http://www.tei-c.org/ns/1.0', 'p')} {
+                            $editionStmt?version
+                        },
+                        '&#10;&#9;&#9;&#9;&#9;',
+                        element {QName('http://www.tei-c.org/ns/1.0', 'p')} {
+                            $editionStmt?download
+                        },
+                        '&#10;&#9;&#9;&#9;'
+                    }
+                )
+            )
+            else $node
+        )
+        
+        else if($node instance of element(tei:text)) then $node (: shortcut :)
+        
+        (: inject version information as comment after the root element :)
+        else if($node instance of element(tei:ab)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:person)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:place)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:biblStruct)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:org)) then wega-util:editionStmt2comment($node)
+        
+        (: fallback: identity transformation :)
+        else if($node instance of element()) then 
+            element {node-name($node)} {
+                $node/@*,
+                wega-util:inject-version-info($node/node())
+            }
+        else if($node instance of document-node()) then wega-util:inject-version-info($node/node())
+        else $node
+};
+
+(:~
+ : Helper function for wega-util:inject-version-info()
+~:)
+declare %private function wega-util:editionStmt() as map() {
+    map {
+        'version' :=    lang:get-language-string(
+                            'versionInformation', (
+                                config:get-option('version'), 
+                                date:strfdate(xs:date(config:get-option('versionDate')), lang:guess-language(()), ())
+                            ), 
+                            lang:guess-language(())
+                        ),
+        'download' := lang:get-language-string('downloaded_on', lang:guess-language(())) || ': ' || current-dateTime()
+    }
+};
+
+(:~
+ : Helper function for wega-util:inject-version-info()
+~:)
+declare %private function wega-util:editionStmt2comment($node as node()?) as node()? {
+    if($node[ancestor::node()]) then $node
+    else (
+        let $editionStmt := wega-util:editionStmt()
+        return (
+            element {node-name($node)} {
+                $node/@*,
+                comment {$editionStmt?version || '. ' || $editionStmt?download },
+                $node/node()
+            }
+        )
+    )
 };
 
 (:~
