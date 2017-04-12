@@ -636,11 +636,26 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:dateline" priority="0.5">
+        <xsl:variable name="default-textAlignment">
+            <!-- datelines werden im closer standardmäßig linksbündig gesetzt, ansonsten rechtsbündig. Immer in eine eigene Zeile (display:block)-->
+            <xsl:choose>
+                <xsl:when test="ancestor::tei:closer">left</xsl:when>
+                <xsl:otherwise>right</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="string-join(('tei_dateline', wega:getTextAlignment(@rend, $default-textAlignment)), ' ')"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:closer" priority="0.5">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_closer'"/>
+            <xsl:attribute name="class" select="string-join(('tei_closer', wega:getTextAlignment(@rend, 'left'), if(@rend='inline') then 'inlineStart' else ()), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>

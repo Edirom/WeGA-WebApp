@@ -63,37 +63,6 @@
         </xsl:element>
     </xsl:template>
    
-    <!--<xsl:template match="tei:p">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="following-sibling::node()[1][name() = 'closer'][@rend='inline']">
-                        <xsl:text>inlineParagraph</xsl:text>
-                    </xsl:when>
-                    <!-\-<xsl:when test="following-sibling::node()[name() = 'closer' or name() = 'p'][1][@rend='inline'] or ./@rend='inline' or (. = ../tei:p[position()=last() and ])">
-                        <xsl:text>inlineParagraph</xsl:text>
-                        <xsl:if test="not(./@rend='inline') and not(. = ../tei:p[position()=1])">
-                            <xsl:text> indented</xsl:text>
-                        </xsl:if>
-                    </xsl:when>-\->
-                    <xsl:otherwise>
-                        <xsl:text>blockParagraph</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <xsl:choose>
-                    <xsl:when test="not(@n='1' or . = ../tei:p[position()=1])">
-                        <xsl:text> indented</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text> noIndent</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>-->
-
     <xsl:template match="tei:opener">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
@@ -107,53 +76,6 @@
     <xsl:template match="tei:head[parent::tei:div[@type='writingSession']]" priority="1">
         <xsl:element name="h2">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-   
-    <xsl:template match="tei:dateline[ancestor::tei:opener]">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:choose>
-                    <xsl:when test="@rend='left'">
-                        <xsl:text>teiLetter_datelineOpenerBlockLeft</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="@rend='inline'">
-                        <xsl:text>teiLetter_datelineOpenerInline</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:text>teiLetter_datelineOpenerBlockRight</xsl:text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-   
-    <xsl:template match="tei:closer" priority="1">
-        <xsl:element name="p">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">
-                <xsl:text>teiLetter_closer</xsl:text>
-                <xsl:if test="@rend='inline'">
-                    <xsl:text> inlineStart</xsl:text>
-                </xsl:if>
-            </xsl:attribute>
-            <xsl:if test="@rend='right'">
-                <xsl:attribute name="style" select="'text-align: right;'"/>
-            </xsl:if>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-   
-    <xsl:template match="tei:dateline[ancestor::tei:closer]">
-        <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class">teiLetter_datelineCloser</xsl:attribute>
-            <xsl:if test="@rend='right'">
-                <xsl:attribute name="style" select="'text-align: right;'"/>
-            </xsl:if>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>

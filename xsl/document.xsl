@@ -74,7 +74,7 @@
         </xsl:variable>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'docHeader'"/>
+            <xsl:attribute name="class" select="string-join(('docHeader', wega:getTextAlignment(@rend, 'left')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
