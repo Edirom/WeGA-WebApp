@@ -811,9 +811,9 @@ declare
                 $model('doc')//tei:orgName[@type = 'alt'] ! string-join(wega-util:txtFromTEI(.), '')
                 ),
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'birth' := $model('doc')//tei:birth[count(tei:* except tei:date[@type]) gt 0],
+            'birth' := $model('doc')//tei:birth[not(tei:date[@type])],
             'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
-            'death' := $model('doc')//tei:death[count(tei:* except tei:date[@type]) gt 0],
+            'death' := $model('doc')//tei:death[not(tei:date[@type])],
             'funeral' := $model('doc')//tei:death/tei:date[@type = 'funeral'],
             'occupations' := $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
             'residences' := $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
