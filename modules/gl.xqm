@@ -33,14 +33,14 @@ declare variable $gl:main-source as document-node() :=
  : Returns the available chapter identifier
 ~:)
 declare function gl:chapter-idents() as xs:string* {
-    $gl:main-source//(tei:div, tei:divGen)[not(ancestor::tei:div)]/data(@xml:id)
+    $gl:main-source//tei:div[not(ancestor::tei:div)]/data(@xml:id)
 };
 
 (:~
  : Returns the chapter indicated by $chapID
 ~:)
 declare function gl:chapter($chapID as xs:string) as element(tei:div)? {
-    $gl:main-source//(tei:div, tei:divGen)[@xml:id=$chapID]
+    $gl:main-source//tei:div[@xml:id=$chapID]
 };
 
 (:~
@@ -220,6 +220,45 @@ declare
 			map {
 				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 			}
+};
+
+declare 
+    %templates:wrap 
+    %templates:default("type", "toc")
+    function gl:divGen($node as node(), $model as map(*), $type as xs:string) as map(*) {
+        let $recurse := function($div as element(tei:div), $callBack as function() as map()?) as map()? {
+            map {
+                'label' := str:normalize-space($div/tei:head[not(@type='sub')]),
+                'url' := ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $callBack)
+            }
+        }
+        let $items :=  
+            for $div in $gl:main-source//tei:body/tei:div[@xml:lang = $model?lang]
+            return 
+                $recurse($div, $recurse)
+        
+        return
+            map {
+                 'divGen-items' := $items
+            }
+};
+
+declare function gl:print-divGen-item($node as node(), $model as map(*)) {
+    element {node-name($node)} {
+        $node/@*,
+        element a {
+            attribute href {$model?divGen-item?url},
+            $model?divGen-item?label
+        }
+    },
+    if(count($model?divGen-item?sub-items) gt 0) then 
+        element ul {
+            for $item in $model?divGen-item?sub-items
+            return
+                <li>{gl:print-divGen-item($node, map {'divGen-item' := $item})}</li>
+        }
+    else ()
 };
 
 declare 

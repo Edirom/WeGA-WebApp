@@ -200,15 +200,19 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 	       and $media-type='xml' 
 	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
 	       ) then controller:forward-xml(map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+       else if( (: index.html :)
+	       count($subPathTokens) eq 1 
+	       and $exist-vars('exist:resource') = 'index.html'
+	       ) then controller:forward-html('templates/guidelines-toc.html', map:new(($exist-vars, map {'chapID' := 'toc' } )))
 	   else if( (: html :)
 	       count($subPathTokens) eq 1 
 	       and $media-type='html' 
 	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
-	       ) then controller:forward-html('templates/guidelines.html', map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+	       ) then controller:forward-html('templates/guidelines-chapters.html', map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
        else if( (: Redirects für htm o.ä. :)
            count($subPathTokens) eq 1 
            and $media-type 
-           and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
+           and controller:basename($exist-vars('exist:resource')) = (gl:chapter-idents(), 'index')
            ) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $media-type)
 	   
    (: count=2: elements, classes and other specs underneath some schemaSpec :)
@@ -226,7 +230,7 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
  : Dispatch pages for the specs of the "editorial guidelines text"
 ~:)
 declare %private function controller:dispatch-editorialGuidelines-text-specs($exist-vars as map(*)) as element(exist:dispatch) {
-    if($exist-vars('media-type') = 'html') then controller:forward-html('/templates/specs.html', $exist-vars)
+    if($exist-vars('media-type') = 'html') then controller:forward-html('/templates/guidelines-specs.html', $exist-vars)
 	else if ($exist-vars('media-type') = 'xml') then controller:forward-xml($exist-vars)
 	else if($exist-vars('media-type')) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $exist-vars('media-type'))
     else controller:error($exist-vars, 404)

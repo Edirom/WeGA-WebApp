@@ -1,0 +1,71 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 data-template="lang:translate">editorialGuidelines-text</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="colored borderBottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10">
+					<ol class="breadcrumb">
+						<li><a href="$link/index">Home</a></li>
+						<li><a data-template="lang:translate">project</a></li>
+						<li data-template="lang:translate">editorialGuidelines-text</li>
+					</ol>
+				</div>
+				<div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+					<i class="fa fa-arrow-left"/>
+					<span data-template="lang:translate">back</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
+		<div class="row">
+			<div class="col-md-6 toc">
+				<h2>Table of Contents</h2>
+				<ul data-template="gl:divGen" data-template.type="toc">
+					<li data-template="app:each" data-template-from="divGen-items" data-template-to="divGen-item">
+						<span data-template="gl:print-divGen-item">Elements</span>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6 appendix">
+				<h2>Appendix</h2>
+				<ul>
+					<!--<li data-template="app:each" data-template-from="divGen-items" data-template-to="divGen-item">
+						<span data-template="gl:print-divGen-item">Elements</span>
+					</li>-->
+					<li>Attribute classes</li>
+					<li>
+						<ul>
+							<li>some nested structure</li>
+							<li>more sub items</li>
+						</ul>
+					</li>
+					<li>level 1 again</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container documentFooter">
+		<div class="row permaLink">
+			<div class="col-md-9">
+				<p>Source Code can be found on our <a href="https://github.com/edirom/WeGA-ODD">GitHub</a>.</p>
+			</div>
+		</div>
+		<div class="row bugreport" data-template="app:bugreport">
+			<div class="col-md-9">
+				<p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+					<a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+				<p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+					<a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+			</div>
+		</div>
+	</div>
+</div>
