@@ -226,17 +226,19 @@ declare
     %templates:wrap 
     %templates:default("type", "toc")
     function gl:divGen($node as node(), $model as map(*), $type as xs:string) as map(*) {
-        let $recurse := function($div as element(tei:div), $callBack as function() as map()?) as map()? {
-            map {
-                'label' := str:normalize-space($div/tei:head[not(@type='sub')]),
-                'url' := ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
-                'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $callBack)
-            }
+        let $recurse := function($div as element(tei:div), $depth as xs:string?, $callBack as function() as map()?) as map()? {
+            let $new-depth := string-join(($depth, count($div/preceding-sibling::tei:div) + 1), '.')
+            return
+                map {
+                    'label' := $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
+                    'url' := ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
+                }
         }
         let $items :=  
             for $div in $gl:main-source//tei:body/tei:div[@xml:lang = $model?lang]
             return 
-                $recurse($div, $recurse)
+                $recurse($div, (), $recurse)
         
         return
             map {

@@ -170,6 +170,20 @@ $('body').on('click touchstart', function (e) {
     });
 });
 
+/*
+ * hide/reveal sub items of the table of contents of the Guidelines 
+ */
+$('.toggle-toc-item').on('click', 
+    function(a,b) {
+        var subItem = $(this).siblings('ul');
+        if(subItem.length === 1) {
+            subItem.toggle();
+            $('ul', subItem).toggle();
+            $('i', this).toggle();
+        }
+    }
+);
+
 /* callback function for doing stuff after loading ajax pages from the remote nav tabs */
 function remoteTabsCallback(html, trigger, container, data) {
     /* currently, we simply remove all filters  */
