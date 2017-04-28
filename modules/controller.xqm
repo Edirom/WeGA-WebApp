@@ -192,6 +192,9 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
 declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch)? {
     let $media-type := controller:media-type($exist-vars)
 	let $subPathTokens := tokenize(substring-after($exist-vars('exist:path'), replace(lang:get-language-string('editorialGuidelines-text', $exist-vars?lang), '\s+', '_')), '/')[.]
+	let $schemaID := 
+	   if(request:get-parameter('schemaID', ()) = gl:schemaSpec-idents()) then request:get-parameter('schemaID', ())
+	   else $gl:main-source//tei:schemaSpec/data(@ident)
 	return
 	(: count=1: index and chapters, the direct children of editorialGuidelines-text :)
 	   if( (: xml :)
@@ -218,15 +221,15 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
            and controller:basename($exist-vars('exist:resource')) = (gl:chapter-idents())
            ) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $media-type)
 	   
-   (: count=2: elements, classes and other specs underneath some schemaSpec :)
+   (: count=2: elements, classes and other specs :)
 	   else if(
 	       count($subPathTokens) eq 2
-	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents(request:get-parameter('schema', $gl:main-source//tei:schemaSpec/data(@ident)))
-	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := request:get-parameter('schema', 'wega_all'), 'media-type' := $media-type } )))
+	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents($schemaID, lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang))
+	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := $schemaID, 'media-type' := $media-type } )))
 	   else if(
 	       $subPathTokens[1] = (lang:get-language-string('elements', $exist-vars?lang), lang:get-language-string('attributes', $exist-vars?lang), lang:get-language-string('classes', $exist-vars?lang))
 	       and $exist-vars('exist:resource') = 'Index'
-	       ) then controller:forward-html('templates/guidelines-spec-index.html', map:new(($exist-vars, map {'index' := lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang) } )))
+	       ) then controller:forward-html('templates/guidelines-spec-index.html', map:new(($exist-vars, map {'chapID' := 'index-' || lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang), 'schemaID' := $schemaID } )))
 	   
    (: resorting to the error page if all of the above tests fail :)
 	   else controller:error($exist-vars, 404)

@@ -62,9 +62,18 @@ declare function gl:schemaSpec($schemaID as xs:string?) as element(tei:schemaSpe
  : Returns the available spec identifier for elements, classes, datatypes, and macros
  : for the schemaSpec indicated by $schemaID
 ~:)
-declare function gl:spec-idents($schemaID as xs:string?) as xs:string* {
-    if($schemaID) then gl:schemaSpec($schemaID)//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
-    else $gl:main-source//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
+declare function gl:spec-idents($schemaID as xs:string?, $specType as xs:string?) as xs:string* {
+    let $schemaSpec := 
+        if($schemaID) then gl:schemaSpec($schemaID)
+        else $gl:main-source
+    return
+        switch($specType)
+        case 'elements' return $schemaSpec//tei:elementSpec/data(@ident)
+        case 'models' return $schemaSpec//tei:classSpec[@type='model']/data(@ident)
+        case 'attributes' return $schemaSpec//tei:classSpec[@type='atts']/data(@ident)
+        case 'datatypes' return $schemaSpec//tei:dataSpec/data(@ident)
+        case 'macros' return $schemaSpec//tei:macroSpec/data(@ident)
+        default return $schemaSpec//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
 };
 
 (:~
@@ -85,8 +94,11 @@ declare function gl:spec($specID as xs:string?, $schemaID as xs:string?) as elem
 ~:)
 declare function gl:spec($path as xs:string) as element()? {
 	let $pathTokens := tokenize(replace($path, '(/xml|/examples)?\.[xhtml]+$', ''), '/')
+	let $schemaID := 
+	   if(request:get-parameter('schemaID', ()) = gl:schemaSpec-idents()) then request:get-parameter('schemaID', ())
+	   else $gl:main-source//tei:schemaSpec/data(@ident)
 	return
-		gl:spec($pathTokens[last()], $pathTokens[last() - 1])
+		gl:spec(substring-after($pathTokens[last()], 'ref-'), $schemaID)
 };
 
 declare 
@@ -118,7 +130,7 @@ declare
 				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
 				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.),
-				'usage' := lang:get-language-string('usage_' || $spec/data(@usage), $model?lang),
+				'usage' := if($spec/@usage) then lang:get-language-string('usage_' || $spec/data(@usage), $model?lang) else (),
 				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
 				'closed_values' := $spec/tei:valList[@type='closed']/tei:valItem
 			}
@@ -332,10 +344,52 @@ declare function gl:print-attributeClass($node as node(), $model as map(*)) {
 declare 
     %templates:wrap
     function gl:chapter-heading($node as node(), $model as map(*)) as xs:string {
-        let $chapter := gl:chapter($model?chapID)
+        let $chapter-heading := 
+            if(starts-with($model?chapID, 'index-')) then lang:get-language-string(substring-after($model?chapID, 'index-'), $model?lang) 
+            else gl:chapter($model?chapID)/tei:head[not(@type='sub')]
         return
-            str:normalize-space($chapter/tei:head[not(@type='sub')])
+            str:normalize-space($chapter-heading)
 };
+
+(:~
+ : List all specs to be displayed on an e.g. "index of elements"
+~:)
+declare 
+    %templates:wrap
+    function gl:spec-list($node as node(), $model as map(*)) as map()? {
+        let $specType := substring-after($model?chapID, 'index-')
+        let $specIDs := gl:spec-idents($model?schemaID, $specType)
+        return 
+            map {
+                'spec-list' := 
+                    for $id in $specIDs
+                    group by $initial := lower-case(substring($id, 1, 1))
+                    order by $initial
+                    return 
+                         map {
+                            'label' := $initial,
+                            'items' := $id
+                         }
+                        
+            }
+};
+
+declare function gl:spec-list-items($node as node(), $model as map(*)) as map()? {
+    let $links := 
+        for $i in $model?specs-by-initial?items
+        let $url := gl:link-to-spec($i, $model?lang, 'html', $model?schemaID)
+        return 
+            element a {
+                attribute href {$url},
+                $i
+            }
+    return 
+    map {
+        'label' := $model?specs-by-initial?label,
+        'items' := $links
+    }
+};
+
 
 (:~
  : Create a link to $specID
@@ -348,7 +402,7 @@ declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:stri
         else if(starts-with($specID, 'model.')) then lang:get-language-string('classes', $lang)
         (: to be continued :)
         else lang:get-language-string('elements', $lang)
-    let $url-param := if($schemaID) then ('?schema=' || $schemaID) else ()
+    let $url-param := if($schemaID) then ('?schemaID=' || $schemaID) else ()
     return
         core:link-to-current-app(
     		str:join-path-elements((

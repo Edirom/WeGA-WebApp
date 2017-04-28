@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="document">elements</h1>
+					<h1 class="document" data-template="gl:chapter-heading">elements</h1>
 				</div>
 			</div>
 		</div>
@@ -14,8 +14,9 @@
 				<div class="col-sm-10">
 					<ol class="breadcrumb">
 						<li><a href="$link/index">Home</a></li>
+						<li><a data-template="lang:translate">project</a></li>
 						<li><a href="$link/project/editorialGuidelines-text/index" data-template="lang:translate">editorialGuidelines-text</a></li>
-						<li><span>elements</span> </li>
+						<li><span data-template="gl:chapter-heading">elements</span> </li>
 					</ol>
 				</div>
 				<div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -27,8 +28,17 @@
 	</div>
 	<div class="container documentText paddingTopIcon paddingBottomIcon">
 		<div class="row">
-			<div class="col-md-9">
-				<h2>Elemente</h2>
+			<div class="col-md-9" data-template="gl:spec-list">
+				<div class="spec-list" data-template="app:each" data-template-from="spec-list" data-template-to="specs-by-initial">
+					<div data-template="gl:spec-list-items">
+						<h3 data-template="app:print" data-template-key="label">a</h3>
+						<ul>
+							<li data-template="app:each" data-template-from="items" data-template-to="item">
+								<a data-template="app:output" data-template-key="item">anchor</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<form>
 				<div class="col-md-3">
