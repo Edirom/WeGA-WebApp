@@ -183,16 +183,15 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
  : |- project/editorialGuidelines-text
  :		|- index.html
  :		|- chap-DT.html
- :      |- wegaLetters
- :          |- ref-ab.html
- :     		|- index-elements.html
- :     		|- index-macros.html
- :			|- ref-p.html
+ :      |- Elements
+ :          |- Index
+ :          |- wegaLetters
+ :              |- ref-ab.html
+ :		    	|- ref-p.html
 ~:)
 declare function controller:dispatch-editorialGuidelines-text($exist-vars as map(*)) as element(exist:dispatch)? {
     let $media-type := controller:media-type($exist-vars)
 	let $subPathTokens := tokenize(substring-after($exist-vars('exist:path'), replace(lang:get-language-string('editorialGuidelines-text', $exist-vars?lang), '\s+', '_')), '/')[.]
-(:	let $log := util:log-system-out(gl:spec-idents($subPathTokens[1])):)
 	return
 	(: count=1: index and chapters, the direct children of editorialGuidelines-text :)
 	   if( (: xml :)
@@ -200,10 +199,14 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 	       and $media-type='xml' 
 	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
 	       ) then controller:forward-xml(map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
-       else if( (: index.html :)
+       else if( (: Index :)
 	       count($subPathTokens) eq 1 
-	       and $exist-vars('exist:resource') = 'index.html'
+	       and $exist-vars('exist:resource') = 'Index'
 	       ) then controller:forward-html('templates/guidelines-toc.html', map:new(($exist-vars, map {'chapID' := 'toc' } )))
+       else if( (: redirect for index.html etc. :)
+	       count($subPathTokens) eq 1 
+	       and matches($exist-vars('exist:resource'), '[Ii]ndex\.html?')
+	       ) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), 'Index')))
 	   else if( (: html :)
 	       count($subPathTokens) eq 1 
 	       and $media-type='html' 
@@ -212,15 +215,18 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
        else if( (: Redirects für htm o.ä. :)
            count($subPathTokens) eq 1 
            and $media-type 
-           and controller:basename($exist-vars('exist:resource')) = (gl:chapter-idents(), 'index')
+           and controller:basename($exist-vars('exist:resource')) = (gl:chapter-idents())
            ) then controller:redirect-absolute(str:join-path-elements((substring-before($exist-vars('exist:path'), $exist-vars('exist:resource')), controller:basename($exist-vars('exist:resource')))) || '.' || $media-type)
 	   
    (: count=2: elements, classes and other specs underneath some schemaSpec :)
 	   else if(
 	       count($subPathTokens) eq 2
-	       and $subPathTokens[1] = gl:schemaSpec-idents()
-	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents($subPathTokens[1])
-	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := $subPathTokens[1], 'media-type' := $media-type } )))
+	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents(request:get-parameter('schema', $gl:main-source//tei:schemaSpec/data(@ident)))
+	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := request:get-parameter('schema', 'wega_all'), 'media-type' := $media-type } )))
+	   else if(
+	       $subPathTokens[1] = (lang:get-language-string('elements', $exist-vars?lang), lang:get-language-string('attributes', $exist-vars?lang), lang:get-language-string('classes', $exist-vars?lang))
+	       and $exist-vars('exist:resource') = 'Index'
+	       ) then controller:forward-html('templates/guidelines-spec-index.html', map:new(($exist-vars, map {'index' := lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang) } )))
 	   
    (: resorting to the error page if all of the above tests fail :)
 	   else controller:error($exist-vars, 404)

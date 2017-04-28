@@ -30,12 +30,19 @@
 	
 	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
+		<xsl:variable name="specType">
+			<xsl:choose>
+				<xsl:when test="starts-with($specID, 'att.')"><xsl:value-of select="wega:getLanguageString('attributes', $lang)"/></xsl:when>
+				<xsl:when test="starts-with($specID, 'model.')"><xsl:value-of select="wega:getLanguageString('classes', $lang)"/></xsl:when>
+				<xsl:otherwise><xsl:value-of select="wega:getLanguageString('elements', $lang)"/></xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 		<xsl:value-of select="wega:join-path-elements((
 			$baseHref,
 			$lang,
 			wega:getLanguageString('project', $lang),
 			replace(wega:getLanguageString('editorialGuidelines-text', $lang), '\s+', '_'),
-			'wega_all',
+			$specType,
 			concat('ref-', $specID, '.html')
 			))"/>
 	</xsl:function>

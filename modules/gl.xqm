@@ -54,15 +54,17 @@ declare function gl:schemaSpec-idents() as xs:string* {
  : Returns the schemaSpec indicated by $schemaID
 ~:)
 declare function gl:schemaSpec($schemaID as xs:string?) as element(tei:schemaSpec)? {
-    collection($gl:guidelines-collection-path)//tei:schemaSpec[@ident = $schemaID]
+    if($schemaID) then collection($gl:guidelines-collection-path)//tei:schemaSpec[@ident = $schemaID]
+    else $gl:main-source//tei:schemaSpec
 };
 
 (:~
  : Returns the available spec identifier for elements, classes, datatypes, and macros
  : for the schemaSpec indicated by $schemaID
 ~:)
-declare function gl:spec-idents($schemaID as xs:string) as xs:string* {
-     gl:schemaSpec($schemaID)//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
+declare function gl:spec-idents($schemaID as xs:string?) as xs:string* {
+    if($schemaID) then gl:schemaSpec($schemaID)//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
+    else $gl:main-source//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)/data(@ident)
 };
 
 (:~
@@ -172,7 +174,7 @@ declare
 	function gl:print-member($node as node(), $model as map(*)) {
 	   element a {
             attribute href {
-                gl:link-to-spec(($model?member)/data(@ident), $model?lang, $model?schemaID) || '.html'
+                gl:link-to-spec(($model?member)/data(@ident), $model?lang, 'html', $model?schemaID)
             },
             if(($model?member)/self::tei:classSpec) then (
                 ($model?member)/data(@ident),
@@ -313,7 +315,7 @@ declare function gl:print-attributeClass($node as node(), $model as map(*)) {
     return
         element a {
             attribute href {
-                gl:link-to-spec($model?attClass, $model?lang, $model?schemaID) || '.html'
+                gl:link-to-spec($model?attClass, $model?lang, 'html', $model?schemaID)
             },
             data($model?attClass),
             ' (',
@@ -327,20 +329,36 @@ declare function gl:print-attributeClass($node as node(), $model as map(*)) {
         }
 };
 
+declare 
+    %templates:wrap
+    function gl:chapter-heading($node as node(), $model as map(*)) as xs:string {
+        let $chapter := gl:chapter($model?chapID)
+        return
+            str:normalize-space($chapter/tei:head[not(@type='sub')])
+};
+
 (:~
- : Create a link to $specID (without file extension suffix)
+ : Create a link to $specID
  : When $schemaID is given the link is created to this specific schema,
  : otherwise the main Guidelines source ($gl:main-source) is targeted.
 ~:)
-declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:string, $schemaID as xs:string?) as xs:string? {
-    core:link-to-current-app(
-		str:join-path-elements((
-			$lang,
-			lang:get-language-string('project', $lang),
-			lang:get-language-string('editorialGuidelines-text', $lang),
-			if($schemaID) then $schemaID else $gl:main-source/@ident,
-			'ref-' || $specID ))
-	)
+declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:string, $suffix as xs:string, $schemaID as xs:string?) as xs:string? {
+    let $spec-type := 
+        if(starts-with($specID, 'att.')) then lang:get-language-string('attributes', $lang)
+        else if(starts-with($specID, 'model.')) then lang:get-language-string('classes', $lang)
+        (: to be continued :)
+        else lang:get-language-string('elements', $lang)
+    let $url-param := if($schemaID) then ('?schema=' || $schemaID) else ()
+    return
+        core:link-to-current-app(
+    		str:join-path-elements((
+    			$lang,
+    			lang:get-language-string('project', $lang),
+    			lang:get-language-string('editorialGuidelines-text', $lang),
+    			$spec-type,
+    			'ref-' || $specID || '.' || $suffix))
+    	) 
+    	|| $url-param
 };
 
 (:~
@@ -364,7 +382,7 @@ declare %private function gl:tei-source($spec as element()) as map() {
 declare %private function gl:wega-customization($model as map(*)) as map() {
 	let $specID := $model?customization/@ident
 	let $customizationIdent := $model?customization/ancestor::tei:schemaSpec/data(@ident)
-	let $url := gl:link-to-spec($specID, $model?lang, $customizationIdent) || '.html'
+	let $url := gl:link-to-spec($specID, $model?lang, 'html', $customizationIdent)
 	return
 		map {
 			'customizationIdent' := $customizationIdent,
@@ -385,8 +403,9 @@ declare %private function gl:print-exemplum($exemplum as element()) as item()* {
 (:~
  : A simple mapping from schemaSpec identifiers to WeGA document types
 ~:)
-declare function gl:schemaIdent2docType($schemaID as xs:string) as xs:string {
-	lower-case(substring-after($schemaID, 'wega'))
+declare function gl:schemaIdent2docType($schemaID as xs:string?) as xs:string? {
+	if($schemaID) then lower-case(substring-after($schemaID, 'wega'))
+	else ()
 };
 
 declare %private function gl:class-members($spec as element()) as element()* {

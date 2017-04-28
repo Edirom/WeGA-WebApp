@@ -28,28 +28,22 @@
 	<div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
 		<div class="row">
 			<div class="col-md-6 toc">
-				<h2>Table of Contents</h2>
+				<h2 data-template="lang:translate">toc</h2>
 				<ul data-template="gl:divGen" data-template.type="toc">
 					<li data-template="app:each" data-template-from="divGen-items" data-template-to="divGen-item">
-						<span class="toggle-toc-item"><i class="fa fa-plus-square" aria-hidden="true"></i><i class="fa fa-minus-square" aria-hidden="true" style="display:none;"></i></span>
-						<span data-template="gl:print-divGen-item">Elements</span>
+						<span class="toggle-toc-item"><i class="fa fa-plus-square" aria-hidden="true"/><i class="fa fa-minus-square" aria-hidden="true" style="display:none;"/></span>
+						<span data-template="gl:print-divGen-item">some element name</span>
 					</li>
 				</ul>
 			</div>
 			<div class="col-md-6 appendix">
-				<h2>Appendix</h2>
+				<h2 data-template="lang:translate">appendix</h2>
 				<ul>
 					<!--<li data-template="app:each" data-template-from="divGen-items" data-template-to="divGen-item">
 						<span data-template="gl:print-divGen-item">Elements</span>
 					</li>-->
-					<li>Attribute classes</li>
-					<li>
-						<ul>
-							<li>some nested structure</li>
-							<li>more sub items</li>
-						</ul>
-					</li>
-					<li>level 1 again</li>
+					<li><a href="$link/project/editorialGuidelines-text/elements/index"><span data-template="lang:translate">elements</span></a></li>
+					<li><a href="$link/project/editorialGuidelines-text/attributes/index"><span data-template="lang:translate">attributes</span></a></li>
 				</ul>
 			</div>
 		</div>
