@@ -185,10 +185,12 @@ $('.toggle-toc-item').on('click',
 );
 
 /* 
- * callback function for doing stuff after loading ajax pages from the remote nav tabs
- * mostly needed for backlinks on documents(?) 
+ * callback function for removing the filter container from the AJAX page
+ * this is called by the nav-tabs remote data plugin via the data-tab-callback attribute on the documents page (once)
+ * as well as ajaxCall() (all subsequent calls by clicks on the pagination).
+ * At present this is only needed for backlinks. 
  */
-function remoteTabsCallback(html, trigger, container, data) {
+function removeFilter(html, trigger, container, data) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
     
@@ -196,12 +198,16 @@ function remoteTabsCallback(html, trigger, container, data) {
     html.removeClass('row');
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
-    /* Load portraits via AJAX */
+    /* 
+     * Load portraits via AJAX
+     * NB: Needed when called via data-tab-callback attribute
+     */
     $('.searchResults .portrait', html).loadPortrait();
     
     /* 
      * Listen for click events on pagination
-     * trigger is the nav-tab (e.g. "backlinks") so only defined at the first call  
+     * NB: Needed when called via data-tab-callback attribute
+     * trigger is the clicked nav-tab (e.g. "backlinks")  
      */
     if(trigger.length !== 0) {
         $('.page-link', html).on('click', 
@@ -573,7 +579,9 @@ $('h1').h1FitText();
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
 
-/* Responsive Tabs für person.html */
+/* 
+ * Initialise easyResponsiveTabs for person.html 
+ */
 $('#details').easyResponsiveTabs({
     activate: activateTab
 });
@@ -592,7 +600,7 @@ $('.allFilter input').change(
   }
 )
 
-function ajaxCall(container,url) {
+function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
         if ( status == "error" ) {
@@ -608,10 +616,15 @@ function ajaxCall(container,url) {
                     $(this).activatePagination(container);
                 }
             );
-            //console.log(container);
-            if($('ul.nav-tabs li.active a').length === 1) {
-                remoteTabsCallback($(container).children(), '', container);
+            
+            /* 
+             * Not very generic but at present only needed for backlinks,
+             * see removeFilter()
+             */
+            if(typeof callback === 'function') {
+                callback($(container).children(), '', container);
             }
+            
             /* Load portraits via AJAX */
             $('.searchResults .portrait').loadPortrait();
             $("#datePicker").initDatepicker();
@@ -624,9 +637,20 @@ $.fn.activatePagination = function(container) {
     var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
     /*  with different attributes */
         baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
-        url = baseUrl + $(this).attr('data-url');
-    //console.log(url);
-    ajaxCall(container,url);
+        url = baseUrl + $(this).attr('data-url'),
+        callback;
+    
+    /* 
+     * the data-tab-callback attribute may contain the name of a callback function
+     * this is provided by the nav-tabs remote data plugin 
+     * and we use it to remove filters from the backlinks AJAX page
+     */
+    if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
+        callback = window[$('.nav-tabs .active a').attr('data-tab-callback')];
+    }    
+    
+    ajaxCall(container,url,callback);
+    return this
 };
 
 /* Farbige Support Badges im footer (page.html) */
