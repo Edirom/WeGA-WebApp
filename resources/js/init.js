@@ -184,7 +184,10 @@ $('.toggle-toc-item').on('click',
     }
 );
 
-/* callback function for doing stuff after loading ajax pages from the remote nav tabs */
+/* 
+ * callback function for doing stuff after loading ajax pages from the remote nav tabs
+ * mostly needed for backlinks on documents(?) 
+ */
 function remoteTabsCallback(html, trigger, container, data) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
@@ -196,12 +199,17 @@ function remoteTabsCallback(html, trigger, container, data) {
     /* Load portraits via AJAX */
     $('.searchResults .portrait', html).loadPortrait();
     
-    /* Listen for click events on pagination */
-    $('.page-link', html).on('click', 
-        function() {
-            $(this).activatePagination(trigger.attr('href'));
-        }
-    );
+    /* 
+     * Listen for click events on pagination
+     * trigger is the nav-tab (e.g. "backlinks") so only defined at the first call  
+     */
+    if(trigger.length !== 0) {
+        $('.page-link', html).on('click', 
+            function() {
+                $(this).activatePagination(trigger.attr('href'));
+            }
+        );
+    }
 };
 
 /*
