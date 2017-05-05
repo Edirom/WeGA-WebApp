@@ -204,23 +204,56 @@ function remoteTabsCallback(html, trigger, container, data) {
     );
 };
 
-// set the right tab and location for person pages 
+/*
+ * set the right tab and location for person pages
+ */
 $.fn.toggleTab = function () {
-    /* make "biographies" the default if no fragment identifier is given*/
-    var tabHash = (location.hash.length == 0? '#biographies': location.hash);
+    var tabHash = location.hash,
+        tabRef,
+        target;
     
+    /* make "biographies" the default if no fragment identifier is given */
+    if($(tabHash).length === 0) { target = '#biographies' }
+    
+    /* 
+     * targets within biographies, e.g. wikipediaText, need special treatment
+     * since the nested Bootstrap remote data tabs plugin prefixes those targets with "bs-tab-"
+     */
+    else if($('#biographies ' + tabHash).length !== 0) { 
+        target = '#biographies';
+        /* adjust location.hash */
+        if(history.pushState) {
+            history.pushState(null, null, '#bs-tab-' + tabHash);
+        }
+        else {
+            location.hash = '#bs-tab-' + tabHash;
+        }
+    }
+    
+    /* check for a valid fragment */
+    else if($(tabHash).length !== 0) { target = tabHash }
+    
+    /* make "biographies" the default if no _valid_ fragment identifier is given */
+    else { target = '#biographies' }
+    
+    /* 
+     * now walk through the tabs and containers 
+     * and set the active class appropriately 
+     */
     $(this).each(function(n,tab) {
-        var tabId = tab.href.substring(tab.href.indexOf('#'));
-        if(tab.href.endsWith(tabHash)) {
+        tabRef = tab.href.substring(tab.href.indexOf('#'));
+        if(tabRef == target) {
             $(tab).parent().addClass('resp-tab-active');
-            $(tabId).addClass('resp-tab-content-active');
+            $(tabRef).addClass('resp-tab-content-active');
         }else {
             $(tab).parent().removeClass('resp-tab-active');
-            $(tabId).removeClass('resp-tab-content-active');
-            $(tabId).hide();
+            $(tabRef).removeClass('resp-tab-content-active');
+            $(tabRef).hide();
         }
     });
     if($(this).length !== 0) { activateTab(); }
+    
+    return this;
 };
 
 $.fn.A090280 = function () {
