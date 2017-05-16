@@ -58,7 +58,7 @@ declare function local:createSitemapIndex($fileNames as xs:string*) as element(s
 
 declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary {
     let $sitemapLang := substring-after(substring-before($fileName, '.'), '_')
-    let $folderName := config:get-option('sitemapDir')
+    let $folderName := $config:tmp-collection-path || '/sitemap'
     let $currentDateTimeOfFile := 
         if(xmldb:collection-available($folderName)) then xmldb:last-modified($folderName, $fileName) 
         else local:createSitemapCollection($folderName) 
