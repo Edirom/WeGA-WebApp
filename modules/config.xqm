@@ -117,21 +117,29 @@ declare function config:get-option($key as xs:string?) as xs:string? {
 };
 
 (:~
- : Get options from options file
- :
- : @author Peter Stadler
- : @param $key
- : @param $replacements
- : @return xs:string
- :)
-declare function config:get-option($key as xs:string?, $replacements as xs:string*) as xs:string {
-    let $dic := $config:options-file
-    let $item := $dic//id($key)
-    let $placeHolders := 
-        for $i at $count in $replacements
-        let $x := concat('%',$count)
-        return $x
-    return functx:replace-multi($item,$placeHolders,$replacements)
+ :  Set or add a preference for the WeGA WebApp
+ :  This can be used by a trigger to inject options on startup or to change options dynamically during runtime
+ :  NB: You have to be logged in as admin to be able to update preferences!
+ : 
+ :  @param $key the key to update or insert 
+ :  @param $value the value for $key
+ :  @return the new value if succesfull, the empty sequence otherwise
+~:)
+declare function config:set-option($key as xs:string, $value as xs:string) as xs:string? {
+    let $old := $config:options-file/id($key)
+    return
+        if($old) then try {(
+            update value $old with $value,
+            core:logToFile('debug', 'set preference "' || $key || '" to "' || $value || '"'),
+            $value
+            )}
+            catch * { core:logToFile('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+        else try {( 
+            update insert <entry xml:id="{$key}">{$value}</entry> into $config:options-file/id('various'),
+            core:logToFile('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
+            $value
+            )}
+            catch * { core:logToFile('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
 };
 
 (:~
