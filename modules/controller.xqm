@@ -353,6 +353,15 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
 
 declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string {
     let $langRegex := '/(' || string-join($config:valid-languages, '|') || ')/'
+    let $URLparams :=
+        if (count(request:get-parameter-names()) gt 0) then  
+            '?' ||
+            string-join(
+                for $i in request:get-parameter-names() 
+                return ($i || '=' || request:get-parameter($i, '')),
+                '&amp;'
+            ) 
+        else ()
     let $tokens := tokenize(functx:substring-after-match($uri, $langRegex), '/')
     let $translated-tokens := 
         for $token at $count in $tokens
@@ -364,7 +373,7 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
             else if($suffix) then lang:translate-language-string(controller:url-decode(substring-before($token, '.' || $suffix)), $sourceLang, $targetLang) || '.' || $suffix
             else lang:translate-language-string(controller:url-decode($token), $sourceLang, $targetLang)
     return
-        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens)))
+        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens))) || $URLparams
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
