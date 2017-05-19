@@ -25,6 +25,7 @@
     <xsl:param name="transcript"/>
     <xsl:param name="smufl-decl"/>
     <xsl:param name="data-collection-path"/>
+    <xsl:param name="catalogues-collection-path"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
     
     <xsl:include href="common_funcs.xsl"/>

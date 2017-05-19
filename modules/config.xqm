@@ -395,6 +395,7 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
+        <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
         {if(exists($params)) then 
             for $i in map:keys($params)

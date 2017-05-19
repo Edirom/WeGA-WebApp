@@ -64,7 +64,7 @@
     <xsl:function name="wega:getLanguageString" as="xs:string">
         <xsl:param name="key" as="xs:string"/>
         <xsl:param name="lang" as="xs:string"/>
-        <xsl:value-of select="wega:doc(wega:getOption(concat('dic_', $lang)))//entry[@xml:id = $key]/text()"/>
+        <xsl:value-of select="wega:doc(concat($catalogues-collection-path, '/dictionary_', $lang, '.xml'))//entry[@xml:id = $key]/text()"/>
     </xsl:function>
 
     <xsl:function name="wega:isPerson" as="xs:boolean">
