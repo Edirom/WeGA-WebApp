@@ -457,6 +457,10 @@ $('.searchDocTypeFilter').on('change', 'label', function() {
     }
 })
 
+$('.glSchemaIDFilter').on('change', 'input', function(a) {
+    self.location = '?schemaID=' + a.target.value;
+})
+
 $('.obfuscate-email').obfuscateEMail();
 
 $.fn.initPortraitCredits = function() {

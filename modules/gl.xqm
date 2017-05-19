@@ -104,7 +104,7 @@ declare function gl:spec($path as xs:string) as element()? {
 declare 
 	%templates:wrap
 	function gl:title($node as node(), $model as map(*)) {
-	'Element: ' || $model('specID') || ' (' || $model('schemaID') || ')'
+	   $model('specID') || ' (' || $model('schemaID') || ')'
 };
 
 
@@ -134,6 +134,46 @@ declare
 				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
 				'closed_values' := $spec/tei:valList[@type='closed']/tei:valItem
 			}
+};
+
+declare 
+	%templates:wrap
+	function gl:breadcrumb($node as node(), $model as map(*)) as map() {
+	   (:util:log-system-out(request:get-parameter-names()),:)
+	   map {
+	       'specType' := lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
+	       'editorialGuidelines-text_elements_url' := core:link-to-current-app(str:join-path-elements((
+	           lang:get-language-string('project', $model?lang),
+	           lang:get-language-string('editorialGuidelines-text', $model?lang),
+	           lang:get-language-string('elements', $model?lang),
+	           lang:get-language-string('index', $model?lang)
+	       ))) || '?schemaID=' || $model?schemaID
+	   }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function gl:schemaID-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
+        let $selected-schema := request:get-parameter('schemaID', ()) 
+        return 
+            for $schema in gl:schemaSpec-idents()
+            let $class := 
+                if($schema = $selected-schema) then normalize-space($node/@class) || ' active'
+                else normalize-space($node/@class)
+(:            let $displayTitle := lang:get-language-string($docType, $lang):)
+            order by $schema
+            return
+                element {name($node)} {
+                    $node/@*[not(name(.) = 'class')],
+                    attribute class {$class},
+                    element input {
+                        $node/xhtml:input/@*[not(name(.) = 'value')],
+                        attribute value {$schema},
+                        if($schema = $selected-schema) then attribute checked {'checked'}
+                        else ()
+                    },
+                    $schema
+                }
 };
 
 declare 
@@ -345,7 +385,9 @@ declare
     %templates:wrap
     function gl:chapter-heading($node as node(), $model as map(*)) as xs:string {
         let $chapter-heading := 
-            if(starts-with($model?chapID, 'index-')) then lang:get-language-string(substring-after($model?chapID, 'index-'), $model?lang) 
+            (: elements and attributes index :)
+            if(starts-with($model?chapID, 'index-')) then lang:get-language-string(substring-after($model?chapID, 'index-'), $model?lang) || ' (' || $model?schemaID || ')'
+            (: 'normal' chapters from the Guidelines :)
             else gl:chapter($model?chapID)/tei:head[not(@type='sub')]
         return
             str:normalize-space($chapter-heading)
@@ -464,4 +506,13 @@ declare function gl:schemaIdent2docType($schemaID as xs:string?) as xs:string? {
 
 declare %private function gl:class-members($spec as element()) as element()* {
     $spec/ancestor::tei:schemaSpec//(tei:elementSpec, tei:classSpec)[tei:classes/tei:memberOf[@key = $spec/@ident][not(@mode='delete')]]
+};
+
+declare %private function gl:specType($spec as element()) as xs:string? {
+    if($spec/self::tei:elementSpec) then 'elements'
+    else if($spec/self::tei:classSpec[@type='model']) then 'models'
+    else if($spec/self::tei:classSpec[@type='atts']) then 'attributes'
+    else if($spec/self::tei:dataSpec) then 'datatypes'
+    else if($spec/self::tei:macroSpec) then 'macros'
+    else ()
 };
