@@ -118,7 +118,7 @@ let $lookup as map()? :=
     let $possible-matches :=
         if(matches($exist:path, $path-regex)) then 
             let $func-name := string-join($swagger-path-tokens ! replace(., '\{[^\}]+\}', '')[.], '-')
-            let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), tokenize($exist:path, '/')[$pos]) else ()
+            let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
             return
                 map {
                     'func' := function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
