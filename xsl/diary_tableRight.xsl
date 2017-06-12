@@ -13,6 +13,7 @@
     <xsl:param name="docID"/>
     <xsl:param name="transcript"/>
     <xsl:param name="data-collection-path"/>
+    <xsl:param name="catalogues-collection-path"/>
     
     <xsl:include href="common_funcs.xsl"/>
     
