@@ -98,9 +98,8 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare function wega-util:httpclient-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
-        try { httpclient:get($url, true(), <Headers/>)  }
+        try { httpclient:get($url, true(), <headers><header name="Connection" value="close"/></headers>)  }
         catch * {core:logToFile('warn', string-join(('wega-util:httpclient-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
