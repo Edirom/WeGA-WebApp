@@ -358,7 +358,8 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
             '?' ||
             string-join(
                 for $i in request:get-parameter-names() 
-                return ($i || '=' || request:get-parameter($i, '')),
+                    for $j in request:get-parameter($i, '')
+                        return ($i || '=' || $j),
                 '&amp;'
             ) 
         else ()
