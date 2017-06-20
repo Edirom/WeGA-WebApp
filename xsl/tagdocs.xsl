@@ -1,6 +1,15 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet 
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+	xmlns:tei="http://www.tei-c.org/ns/1.0" 
+	xmlns:functx="http://www.functx.com" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	exclude-result-prefixes="xs" version="2.0">
 	
 	<!-- XSL module for the TEI tagdocs element set --> 
+	
+	<xsl:param name="main-source-path" as="xs:string?"/>
 		
 	<xsl:template match="tei:elementSpec">
 		<xsl:element name="div">
@@ -37,13 +46,13 @@
 	</xsl:template>
 	
 	<xsl:template match="tei:specDesc">
-		<xsl:variable name="spec" select="doc(replace(concat('http://localhost:8080', wega:spec-link(@key)), 'html$', 'xml'))"/>
+		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
 		<xsl:element name="li">
 			<xsl:variable name="gi">
 				<tei:gi><xsl:value-of select="@key"/></tei:gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
-			<xsl:apply-templates select="$spec/*/tei:desc[@xml:lang=$lang]"/>
+			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
 		</xsl:element>
 	</xsl:template>
 	
