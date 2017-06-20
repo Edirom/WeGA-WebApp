@@ -7,6 +7,7 @@
     xmlns:rng="http://relaxng.org/ns/structure/1.0" 
     xmlns:functx="http://www.functx.com" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:teieg="http://www.tei-c.org/ns/Examples" 
     xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
@@ -735,8 +736,8 @@
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:for-each-group select="node()" group-ending-with="tei:list">
-            <xsl:if test="current-group()[not(self::tei:list)][matches(., '\S')] or current-group()[not(self::tei:list)][self::element()]">
+        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teieg:egXML">
+            <xsl:if test="current-group()[not(self::tei:list or self::tei:specList or self::teieg:egXML)][matches(., '\S')] or current-group()[not(self::tei:list or self::tei:specList or self::teieg:egXML)][self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
                         <xsl:apply-templates select="parent::tei:p/@xml:id"/>
@@ -744,10 +745,10 @@
                     <xsl:if test="$inlineEnd">
                         <xsl:attribute name="class" select="$inlineEnd"/>
                     </xsl:if>
-                    <xsl:apply-templates select="current-group()[not(self::tei:list)]"/>
+                    <xsl:apply-templates select="current-group()[not(self::tei:list or self::tei:specList or self::teieg:egXML)]"/>
                 </xsl:element>
             </xsl:if>
-            <xsl:apply-templates select="current-group()[self::tei:list]"/>
+            <xsl:apply-templates select="current-group()[self::tei:list or self::tei:specList or self::teieg:egXML]"/>
         </xsl:for-each-group>
     </xsl:template>
 

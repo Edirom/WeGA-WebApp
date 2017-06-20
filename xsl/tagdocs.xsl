@@ -28,6 +28,25 @@
 		</xsl:element>
 	</xsl:template>
 	
+	<xsl:template match="tei:specList">
+		<xsl:element name="ul">
+			<xsl:apply-templates select="@xml:id"/>
+			<xsl:attribute name="class">tei_specList</xsl:attribute>
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	
+	<xsl:template match="tei:specDesc">
+		<xsl:variable name="spec" select="doc(replace(concat('http://localhost:8080', wega:spec-link(@key)), 'html$', 'xml'))"/>
+		<xsl:element name="li">
+			<xsl:variable name="gi">
+				<tei:gi><xsl:value-of select="@key"/></tei:gi>
+			</xsl:variable>
+			<xsl:apply-templates select="$gi"/>
+			<xsl:apply-templates select="$spec/*/tei:desc[@xml:lang=$lang]"/>
+		</xsl:element>
+	</xsl:template>
+	
 	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
 		<xsl:variable name="specType">
