@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
 	xmlns:tei="http://www.tei-c.org/ns/1.0" 
 	xmlns:functx="http://www.functx.com" 
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:teix="http://www.tei-c.org/ns/Examples"
 	exclude-result-prefixes="xs" version="2.0">
 	
 	<!-- XSL module for the TEI tagdocs element set --> 
@@ -53,6 +55,48 @@
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
 			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
+		</xsl:element>
+	</xsl:template>
+	
+	<xsl:template match="tei:tag">
+		<xsl:element name="span">
+			<xsl:attribute name="class">tei_tag</xsl:attribute>
+			<xsl:text>&lt;</xsl:text>
+			<xsl:apply-templates/>
+			<xsl:text>&gt;</xsl:text>
+		</xsl:element>
+	</xsl:template>
+	
+	<xsl:template match="tei:att">
+		<xsl:element name="span">
+			<xsl:attribute name="class">tei_att</xsl:attribute>
+			<xsl:text>@</xsl:text>
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	
+	<xsl:template match="tei:eg">
+		<xsl:element name="div">
+			<xsl:apply-templates select="@xml:id"/>
+			<xsl:attribute name="class" select="'panel panel-info'"/>
+			<xsl:apply-templates select="tei:gloss"/>
+			<xsl:element name="div">
+				<xsl:attribute name="class" select="'panel-body'"/>
+				<xsl:apply-templates select="node()[not(self::tei:gloss)]"/>
+			</xsl:element>
+		</xsl:element>
+	</xsl:template>
+	
+	<xsl:template match="teix:egXML">
+		<xsl:element name="div">
+			<xsl:attribute name="class" select="'panel tei_egXML'"/>
+			<xsl:element name="pre">
+				<xsl:attribute name="class">prettyprint</xsl:attribute>
+				<xsl:element name="code">
+					<xsl:attribute name="class">language-xml</xsl:attribute>
+					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
+				</xsl:element>
+			</xsl:element>
 		</xsl:element>
 	</xsl:template>
 	

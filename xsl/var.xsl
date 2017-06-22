@@ -111,31 +111,6 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:eg">
-        <xsl:element name="div">
-            <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'panel panel-info'"/>
-            <xsl:apply-templates select="tei:gloss"/>
-            <xsl:element name="div">
-                <xsl:attribute name="class" select="'panel-body'"/>
-                <xsl:apply-templates select="node()[not(self::tei:gloss)]"/>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
-    
-    <xsl:template match="teix:egXML">
-        <xsl:element name="div">
-            <xsl:attribute name="class" select="'panel'"/>
-            <xsl:element name="pre">
-                <xsl:attribute name="class">prettyprint</xsl:attribute>
-                <xsl:element name="code">
-                    <xsl:attribute name="class">language-xml</xsl:attribute>
-                    <xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
-                </xsl:element>
-            </xsl:element>
-        </xsl:element>
-    </xsl:template>
-    
     <xsl:template match="tei:ab">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
