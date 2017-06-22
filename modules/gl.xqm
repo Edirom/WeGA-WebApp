@@ -272,7 +272,7 @@ declare
 		let $chapter := gl:chapter($model?chapID)
 		return
 			map {
-				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
+				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(map { 'main-source-path' := document-uri($gl:main-source) }))
 			}
 };
 
