@@ -97,6 +97,20 @@
 					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
 				</xsl:element>
 			</xsl:element>
+			<xsl:if test="@source">
+				<xsl:variable name="rs">
+					<tei:rs>
+						<xsl:attribute name="key" select="@source"/>
+						<xsl:value-of select="@source"/>
+					</tei:rs>
+				</xsl:variable>
+				<xsl:element name="span">
+					<xsl:attribute name="class">tei_egXML_source</xsl:attribute>
+					<xsl:value-of select="wega:getLanguageString('source', $lang)"/>
+					<xsl:text>: </xsl:text>
+					<xsl:apply-templates select="$rs"/>
+				</xsl:element>
+			</xsl:if>
 		</xsl:element>
 	</xsl:template>
 	
