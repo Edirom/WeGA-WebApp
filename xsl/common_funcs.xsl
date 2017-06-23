@@ -442,24 +442,39 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-        
-    <!--  *********************************************  -->
-    <!--  * Functx - Funktionen http://www.functx.com *  -->
-    <!--  *********************************************  -->
-    <xsl:function name="functx:replace-multi" as="xs:string?">
-        <xsl:param name="arg" as="xs:string?"/>
-        <xsl:param name="changeFrom" as="xs:string*"/>
-        <xsl:param name="changeTo" as="xs:string*"/>
-        <xsl:sequence select="
-            if (count($changeFrom) &gt; 0) then functx:replace-multi(replace($arg, $changeFrom[1], functx:if-absent($changeTo[1],'')), $changeFrom[position() &gt; 1], $changeTo[position() &gt; 1])
-            else $arg"
-        />
-    </xsl:function>
     
-    <xsl:function name="functx:if-absent" as="item()*">
-        <xsl:param name="arg" as="item()*"/>
-        <xsl:param name="value" as="item()*"/>
-        <xsl:sequence select="if (exists($arg)) then $arg else $value"/>
+    <!--
+        This is recursive whitespace normalization of whitspace only nodes
+        Used for comparing the deep-equality of nodes
+    -->
+    <xsl:function name="wega:normalize-whitespace-deep">
+        <xsl:param name="nodes" as="node()*"/>
+        <xsl:for-each select="$nodes">
+            <xsl:variable name="node" select="."/>
+            <xsl:choose>
+                <xsl:when test="$node instance of element()">
+                    <xsl:element name="{local-name($node)}" namespace="{namespace-uri($node)}">
+                        <xsl:sequence select="$node/@*"/>
+                        <xsl:sequence select="wega:normalize-whitespace-deep($node/node())"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$node instance of document-node()">
+                    <xsl:document>
+                        <xsl:sequence select="wega:normalize-whitespace-deep($node/node())"/>
+                    </xsl:document>
+                </xsl:when>
+                <xsl:when test="$node instance of text()">
+                    <xsl:choose>
+                        <xsl:when test="functx:all-whitespace($node)">
+                            <xsl:value-of select="normalize-space($node)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:sequence select="$node"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:function>
     
 </xsl:stylesheet>
