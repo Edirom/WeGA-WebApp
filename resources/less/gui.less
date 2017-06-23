@@ -481,12 +481,13 @@ div.toc {
  * styling for source links at egXML examples
  */
 .tei_egXML {
-/*    background-color:@gray-lighter;*/
-/*    border: 1px solid @gray;*/
+    &.panel {
+        border:none;
+        box-shadow:unset;
+    }
     pre, .prettyprint {
-/*        border:none;*/
-/*        background-color:inherit;*/
         margin-bottom:0px;
+        border-color:@gray-light;
     }
     .tei_egXML_source {
         display:block;
