@@ -9,6 +9,9 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     
+    <!-- include functx library from the default location when installed as a xar-package within eXist -->
+    <xsl:include href="xmldb:exist:///db/system/repo/functx-1.0/functx/functx.xsl"/>
+    
     <!--  *********************************************  -->
     <!--  *             Global Functions              *  -->
     <!--  *********************************************  -->

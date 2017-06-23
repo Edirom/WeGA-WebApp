@@ -90,7 +90,8 @@
 	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'panel tei_egXML'"/>
-			<xsl:if test="@source and wega:getOption('environment') eq 'develop'">
+			<xsl:if test="@source and wega:getOption('environment') eq 'development'">
+				<!-- output warnings for broken examples (in development mode only) -->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>
 				<xsl:variable name="myEgXML" select="functx:change-element-ns-deep(./*, 'http://www.tei-c.org/ns/1.0', '')" as="node()*"/>
 				<xsl:if test="not(functx:is-node-among-descendants-deep-equal(wega:normalize-whitespace-deep($myEgXML), wega:normalize-whitespace-deep($mySource)))">
