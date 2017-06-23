@@ -7,7 +7,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:param name="createSecNos" select="false()"/>
-    <xsl:param name="collapseBlock" select="false()"/>
+    <xsl:param name="secNoOffset" select="0"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note"/>
@@ -71,8 +71,8 @@
     </xsl:template>
 
     <xsl:template match="tei:head[not(@type='sub')][parent::tei:div]">
-        <xsl:choose>
-            <xsl:when test="//tei:divGen">
+<!--        <xsl:choose>-->
+<!--            <xsl:when test="//tei:divGen">-->
                 <!-- Überschrift h2 für Editionsrichtlinien und Weber-Biographie -->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:attribute name="id">
@@ -86,22 +86,22 @@
                         </xsl:choose>
                     </xsl:attribute>
                     <xsl:if test="$createSecNos and not(./following::tei:divGen)">
-                    <xsl:call-template name="createSecNo">
-                        <xsl:with-param name="div" select="parent::tei:div"/>
-                        <xsl:with-param name="lang" select="$lang"/>
-                    </xsl:call-template>
-                    <xsl:text> </xsl:text>
+                        <xsl:call-template name="createSecNo">
+                            <xsl:with-param name="div" select="parent::tei:div"/>
+                            <xsl:with-param name="lang" select="$lang"/>
+                        </xsl:call-template>
+                        <xsl:text> </xsl:text>
                     </xsl:if>
                     <xsl:apply-templates/>
                 </xsl:element>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- Ebenfalls h2 für Indexseite und Impressum -->
+<!--            </xsl:when>-->
+            <!--<xsl:otherwise>
+                <!-\- Ebenfalls h2 für Indexseite und Impressum -\->
                 <xsl:element name="{concat('h', count(ancestor::tei:div) +1)}">
                     <xsl:apply-templates/>
                 </xsl:element>
-            </xsl:otherwise>
-        </xsl:choose>
+            </xsl:otherwise>-->
+        <!--</xsl:choose>-->
     </xsl:template>
 
     <xsl:template match="tei:head[@type='sub']">
@@ -194,6 +194,16 @@
         <xsl:param name="div"/>
         <xsl:param name="lang"/>
         <xsl:param name="dot" select="false()"/>
+        <xsl:variable name="offset" as="xs:integer">
+            <xsl:choose>
+                <xsl:when test="$div/ancestor::tei:div">
+                    <xsl:value-of select="0"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$secNoOffset"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:if test="$div/parent::tei:div">
             <xsl:call-template name="createSecNo">
                 <xsl:with-param name="div" select="$div/parent::tei:div"/>
@@ -201,9 +211,9 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head][ancestor-or-self::tei:div/@xml:lang=$lang]) + 1"/>
+        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head][ancestor-or-self::tei:div/@xml:lang=$lang]) + 1 +$offset"/>
         <xsl:if test="$dot">
-            <xsl:text>. </xsl:text>
+            <xsl:text>.&#8201;</xsl:text>
         </xsl:if>
     </xsl:template>
 

@@ -270,9 +270,10 @@ declare
 	%templates:wrap
 	function gl:doc-details($node as node(), $model as map(*)) as map()? {
 		let $chapter := gl:chapter($model?chapID)
+		let $secNoOffset := count($chapter/preceding-sibling::tei:div)
 		return
 			map {
-				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(map { 'main-source-path' := document-uri($gl:main-source) }))
+				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(map { 'main-source-path' := document-uri($gl:main-source), 'createSecNos' := 'true', 'secNoOffset' := $secNoOffset }))
 			}
 };
 
@@ -281,7 +282,7 @@ declare
     %templates:default("type", "toc")
     function gl:divGen($node as node(), $model as map(*), $type as xs:string) as map(*) {
         let $recurse := function($div as element(tei:div), $depth as xs:string?, $callBack as function() as map()?) as map()? {
-            let $new-depth := string-join(($depth, count($div/preceding-sibling::tei:div) + 1), '.')
+            let $new-depth := string-join(($depth, count($div/preceding-sibling::tei:div) + 1), '.&#8201;')
             return
                 map {
                     'label' := $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
