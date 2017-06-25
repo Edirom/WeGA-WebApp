@@ -94,7 +94,7 @@
 				<!-- output warnings for broken examples (in development mode only) -->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>
 				<xsl:variable name="myEgXML" select="functx:change-element-ns-deep(./*, 'http://www.tei-c.org/ns/1.0', '')" as="node()*"/>
-				<xsl:if test="not(functx:is-node-among-descendants-deep-equal(wega:normalize-whitespace-deep($myEgXML), wega:normalize-whitespace-deep($mySource)))">
+				<xsl:if test="not(@valid or functx:is-node-among-descendants-deep-equal(wega:normalize-whitespace-deep($myEgXML), wega:normalize-whitespace-deep($mySource)))">
 					<xsl:attribute name="style">border:1px solid red</xsl:attribute>
 				</xsl:if>
 			</xsl:if>

@@ -9,9 +9,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     
-    <!-- include functx library from the default location when installed as a xar-package within eXist -->
-    <xsl:include href="xmldb:exist:///db/system/repo/functx-1.0/functx/functx.xsl"/>
-    
     <!--  *********************************************  -->
     <!--  *             Global Functions              *  -->
     <!--  *********************************************  -->
@@ -478,6 +475,70 @@
                 </xsl:when>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:function>
+    
+    <!--  *********************************************  -->
+    <!--  * Functx - Funktionen http://www.functx.com *  -->
+    <!--  *********************************************  -->
+    <xsl:function name="functx:replace-multi" as="xs:string?">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="changeFrom" as="xs:string*"/>
+        <xsl:param name="changeTo" as="xs:string*"/>
+        <xsl:sequence select="
+            if (count($changeFrom) &gt; 0) then functx:replace-multi(replace($arg, $changeFrom[1], functx:if-absent($changeTo[1],'')), $changeFrom[position() &gt; 1], $changeTo[position() &gt; 1])
+            else $arg"
+        />
+    </xsl:function>
+    
+    <xsl:function name="functx:if-absent" as="item()*">
+        <xsl:param name="arg" as="item()*"/>
+        <xsl:param name="value" as="item()*"/>
+        <xsl:sequence select="if (exists($arg)) then $arg else $value"/>
+    </xsl:function>
+    
+    <xsl:function name="functx:change-element-ns-deep" as="node()*"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="nodes" as="node()*"/>
+        <xsl:param name="newns" as="xs:string"/>
+        <xsl:param name="prefix" as="xs:string"/>
+        
+        <xsl:for-each select="$nodes">
+            <xsl:variable name="node" select="."/>
+            <xsl:choose>
+                <xsl:when test="$node instance of element()">
+                    <xsl:element name="{concat($prefix,
+                        if ($prefix = '')
+                        then ''
+                        else ':',
+                        local-name($node))}"
+                        namespace="{$newns}">
+                        <xsl:sequence select="($node/@*,
+                            functx:change-element-ns-deep($node/node(),
+                            $newns, $prefix))"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$node instance of document-node()">
+                    <xsl:document>
+                        <xsl:sequence select="functx:change-element-ns-deep(
+                            $node/node(), $newns, $prefix)"/>
+                    </xsl:document>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="$node"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:function>
+    
+    <xsl:function name="functx:all-whitespace" as="xs:boolean">
+        <xsl:param name="arg" as="xs:string?"/> 
+        <xsl:sequence select="normalize-space($arg)=''"/>
+    </xsl:function>
+    
+    <xsl:function name="functx:is-node-among-descendants-deep-equal" as="xs:boolean">
+        <xsl:param name="node" as="node()?"/> 
+        <xsl:param name="seq" as="node()*"/>
+        <xsl:sequence select="some $nodeInSeq in $seq/descendant-or-self::*/(.|@*) satisfies deep-equal($nodeInSeq,$node)"/>
     </xsl:function>
     
 </xsl:stylesheet>
