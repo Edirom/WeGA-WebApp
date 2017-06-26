@@ -248,10 +248,7 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
     let $iiifServer := config:get-option('iiifServer')
     return
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
-        (:  Need to double encode URI due to old Apache front end  :)
-        let $iiifURI := 
-            if(contains($iiifServer, 'euryanthe')) then $iiifServer || encode-for-uri(encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/')))
-            else $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+        let $iiifURI := $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
@@ -342,8 +339,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
                 "canvases" := array {
                     for $i at $counter in $doc//tei:facsimile/tei:graphic
                     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-                    (:  Need to double encode URI due to old Apache front end  :)
-                    let $image-id := $baseURL || encode-for-uri(encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url))))
+                    let $image-id := $baseURL || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
                     let $page-label := 
                         if($i/@xml:id) then $i/string(@xml:id)
                         else 'page' || $counter 
