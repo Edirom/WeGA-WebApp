@@ -753,7 +753,12 @@ declare function wdt:documents($item as item()*) as map(*) {
             core:data-collection('documents')/descendant::tei:text[@type=('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
         },
         'init-sortIndex' := function() as item()* {
-            wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
+            wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) {
+                let $normDate := query:get-normalized-date($node)
+                let $title := replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '')
+                return 
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $title
+            }, ())
         },
         'title' := function($serialization as xs:string) as item()? {
             let $TEI := 
