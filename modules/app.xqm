@@ -1545,7 +1545,7 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
+            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
         }
@@ -1630,8 +1630,10 @@ declare
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:preview-relator-role($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        lang:get-language-string($model('relator')/data(@role), $lang)
+    function app:preview-relator-role($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
+        if($model('relator')/self::mei:*/@role) then lang:get-language-string($model('relator')/data(@role), $lang)
+        else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
+        else core:logToFile('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
 
 declare 
@@ -1639,6 +1641,7 @@ declare
     %templates:default("lang", "en")
     function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string) as xs:string {
         if($model('relator')/@dbkey) then query:title($model('relator')/@dbkey)
+        else if($model('relator')/@key) then query:title($model('relator')/@key)
         else str:normalize-space($model('relator'))
 };
 
