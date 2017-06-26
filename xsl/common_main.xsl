@@ -124,6 +124,34 @@
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:template name="enquote">
+        <xsl:param name="double" select="true()"/>
+        <xsl:choose>
+            <!-- German double quotation marks -->
+            <xsl:when test="$lang eq 'de' and $double">
+                <xsl:text>„</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>“</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and $double">
+                <xsl:text>“</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>”</xsl:text>
+            </xsl:when>
+            <!-- German single quotation marks -->
+            <xsl:when test="$lang eq 'de' and not($double)">
+                <xsl:text>‚</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>‘</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and not($double)">
+                <xsl:text>‘</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>’</xsl:text>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
 
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
@@ -667,52 +695,30 @@
     
     <xsl:template match="tei:q" priority="0.5">
         <!-- Always(!) surround with quotation marks -->
-        <xsl:choose>
-            <!-- German (double) quotation marks -->
-            <xsl:when test="$lang eq 'de'">
-                <xsl:text>&#x201E;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201C;</xsl:text>
-            </xsl:when>
-            <!-- English (double) quotation marks as default -->
-            <xsl:otherwise>
-                <xsl:text>&#x201C;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201D;</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="enquote">
+            <xsl:with-param name="double" select="true()"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="tei:quote" priority="0.5">
-        <!-- Surround with quotation marks if @rend is set -->
         <xsl:choose>
-            <!-- German double quotation marks -->
-            <xsl:when test="$lang eq 'de' and @rend='double-quotes'">
-                <xsl:text>&#x201E;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201C;</xsl:text>
-            </xsl:when>
-            <xsl:when test="$lang eq 'en' and @rend='double-quotes'">
-                <xsl:text>&#x201C;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201D;</xsl:text>
-            </xsl:when>
-            <!-- German single quotation marks -->
-            <xsl:when test="$lang eq 'de' and @rend='single-quotes'">
-                <xsl:text>&#x201A;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x2018;</xsl:text>
-            </xsl:when>
-            <xsl:when test="$lang eq 'en' and @rend='single-quotes'">
-                <xsl:text>&#x2018;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x2019;</xsl:text>
+            <!-- Surround with quotation marks if @rend is set -->
+            <xsl:when test="@rend">
+                <xsl:call-template name="enquote">
+                    <xsl:with-param name="double" select="@rend='double-quotes'"/>
+                </xsl:call-template>
             </xsl:when>
             <!-- no quotation marks as default -->
             <xsl:otherwise>
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:soCalled">
+        <xsl:call-template name="enquote">
+            <xsl:with-param name="double" select="false()"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="tei:postscript">
