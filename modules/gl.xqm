@@ -269,7 +269,12 @@ declare
 declare 
 	%templates:wrap
 	function gl:doc-details($node as node(), $model as map(*)) as map()? {
-		let $chapter := gl:chapter($model?chapID)
+        let $chapter := (
+            gl:chapter($model?chapID),
+            (: inject divGen for creating chapter endnotes :)
+            if(gl:chapter($model?chapID)//tei:note) then <tei:back><tei:divGen type="endNotes"/></tei:back>
+            else ()
+        )
 		let $secNoOffset := count($chapter/preceding-sibling::tei:div)
 		return
 			map {
