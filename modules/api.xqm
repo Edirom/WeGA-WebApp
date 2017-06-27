@@ -137,7 +137,7 @@ declare function api:ant-deleteResources($model as map()) {
 ~:)
 declare %private function api:resolve-docTypes($model as map()) as xs:string* {
     if(exists($model('docType'))) then $model('docType')
-    else for $func in wdt:members('indices') return $func(())('name')
+    else for $func in wdt:members('unary-docTypes') return $func(())('name')
 };
 
 (:~
@@ -210,7 +210,7 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
  : Check parameter docType and split comma separated value into a sequence
 ~:)
 declare function api:validate-docType($model as map()) as map()? {
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $wega-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name')
     return
         map:entry(
             'docType',
