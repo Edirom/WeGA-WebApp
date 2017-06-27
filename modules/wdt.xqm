@@ -262,7 +262,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news')]/root() 
+            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
