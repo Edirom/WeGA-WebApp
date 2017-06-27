@@ -13,13 +13,19 @@
             <strong>†</strong> <span data-template="app:print" data-template-key="dataDeath">dataDeath</span>
         </dd>
     </dl>
-    <dl>
+    <dl data-template="app:if-exists" data-template-key="dnbOccupations">
         <dt data-template="lang:translate">pnd_occupation</dt>
         <dd data-template="templates:each" data-template-from="dnbOccupations" data-template-to="dnbOccupation">
             <span data-template="app:print" data-template-key="dnbOccupation">Musiker</span>
         </dd>
     </dl>
-    <dl>
+    <dl data-template="app:if-exists" data-template-key="biographicalOrHistoricalInformations">
+        <dt data-template="lang:translate">pnd_biographicalOrHistoricalInformation</dt>
+        <dd data-template="templates:each" data-template-from="biographicalOrHistoricalInformations" data-template-to="biographicalOrHistoricalInformation">
+            <span data-template="app:print" data-template-key="biographicalOrHistoricalInformation">Musiker</span>
+        </dd>
+    </dl>
+    <dl data-template="app:if-exists" data-template-key="dnbOtherNames">
         <dt data-template="lang:translate">pnd_otherNames</dt>
         <dd data-template="templates:each" data-template-from="dnbOtherNames" data-template-to="dnbOtherName">
             <span data-template="app:print" data-template-key="dnbOtherName">Musiker</span>

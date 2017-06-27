@@ -1056,10 +1056,22 @@ declare
             map {
                 'dnbContent' := $dnbContent,
                 'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.)),
-                'dnbBirths' := if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang) else(),
-                'dnbDeaths' := if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang) else(),
+                'dnbBirths' := 
+                    if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang)
+                    else if($dnbContent//gndo:dateOfBirth castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfBirth, $lang)
+                    else(),
+                'dnbDeaths' := 
+                    if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang)
+                    else if($dnbContent//gndo:dateOfDeath castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfDeath, $lang)
+                    else(),
                 'dnbOccupations' := ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
-                'dnbOtherNames' := ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody/str:normalize-space(.)),
+                'biographicalOrHistoricalInformations' := $dnbContent//gndo:biographicalOrHistoricalInformation,
+                'dnbOtherNames' := (
+                    for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody)
+                    return
+                        if(functx:all-whitespace($name)) then ()
+                        else str:normalize-space($name)
+                ),
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
             }
