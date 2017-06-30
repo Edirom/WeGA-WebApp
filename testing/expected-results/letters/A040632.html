@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-06-27T21:13:10.687713Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040632" />
         <meta property="dc:description" content="berichtet über Wienreise, dortige Kunstverhältnisse, neue Stücke (Salem, David); über Selbstverständnis des Künstlers; über seine Krankheit; über Aufsätze in der AMZ (u.a. Silvana-Rezension) und Operntexte." />
         <meta name="description" content="berichtet über Wienreise, dortige Kunstverhältnisse, neue Stücke (Salem, David); über Selbstverständnis des Künstlers; über seine Krankheit; über Aufsätze in der AMZ (u.a. Silvana-Rezension) und Operntexte." />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040632.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040632.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A040632</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A040632</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040632.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -270,7 +260,7 @@
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040631.html">1813-07-29</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001987.html">Türke, Friedrich Gottlieb</a>
                                     </li>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001088/Korrespondenz/A040571.html">1813-03-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001088.html">Kühnel, Ambrosius</a>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A001987/Korrespondenz/A045769.html">1813-07-30</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001987.html">Türke, Friedrich Gottlieb</a>
                                     </li>
                                 </ul>
                                 <h4>Folgend</h4>
@@ -288,6 +278,9 @@
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040608.html">1813-03-12</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
                                     </li>
+                                        <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A001590/Korrespondenz/A046232.html">1813-04-13</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
+                                    </li>
                                 </ul>
                                 <h4>Folgend</h4>
                                 <ul>
@@ -295,16 +288,15 @@
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040642.html">1813-11-13</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
                                     </li>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001590/Korrespondenz/A042402.html">1825-05-25</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A001590/Korrespondenz/A045481.html">1813-08-07</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
                                     </li>
                                 </ul>
                             
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000077" /> <span title="Baermann, Heinrich">Baermann, Heinrich</span> 
@@ -331,19 +323,21 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020858" /> <span title="David, oder Goliaths Tod">David, oder Goliaths Tod</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020559" /> <span title="Salem">Salem</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020037" /> <span title="Silvana, romantische Oper in drei Aufzügen (Klavierauszug)">Silvana, romantische Oper in d…</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -355,8 +349,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -378,83 +371,81 @@
             Zeit nicht in der Stimmung war meinen Gefühlen Worte zu geben. Ich war neben einer
             großen unabsehbaren Zahl von Geschäften auch in eine gewiße Stumpfheit und Trübsinn
             versunken, wo ich mir mein Gewißen daraus gemacht hätte Sie theuerster
-            <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Freund</a> damit
+            <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Freund</a> damit
             anzustekken. Ich weiß wohl daß nur Mittheilung das Herz erleichert, aber es giebt auch
             Momente wo man selbst dieser nicht fähig ist. Physische Ursachen haben nebstdem freylich
             auch auf mich gewirkt.</p>
                                         <p>Ihren <span class="tei_hi_underline1">lieben</span>
-            Brief vom 13<span class="tei_hi_superscript">t</span> Aprill 
+            <a class="preview letters A046232" href="/exist/apps/WeGA-WebApp/de/A001590/Korrespondenz/A046232.html">Brief vom 13<span class="tei_hi_superscript">t</span> Aprill</a>
             erhielt ich d: 26<span class="tei_hi_superscript">t</span> in
-            <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span>.
+            <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span>.
             Wohin ich in Direktions Geschäften schon d: 27<span class="tei_hi_superscript">t</span> März abgegangen war.
             diese Reise war mir in Jeder Hinsicht sehr
-            angenehm. <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span>
+            angenehm. <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span>
             behauptet doch den bedeutendsten Rang unter denen
             Musikliebenden und treibenden Städten.
-            <span class="tei_subst"><span class="tei_add">Seit</span><a class="noteMarker" id="ref-d35627e39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e39">‡</a></span>
-            
+            <span class="tei_subst"><span class="tei_add">Seit</span><a class="noteMarker" id="ref-d54858e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e37">‡</a></span>
+           
             meinem lezten Aufenthalt da /: 1804 :/
             konnte und muste sich manches geändert haben, und ich konnte auf jeden Fall
-            <span class="tei_del"><span class="tei_choice"><span class="tei_unclear">neue</span><a class="noteMarker" id="ref-d35627e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e51">‡</a></span><a class="noteMarker" id="ref-d35627e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e50">‡</a></span>
-            wichtige Erfahrungen zu meiner neuen <span class="tei_hi_latintype">Oragnisation</span> sammeln.
+            <span class="tei_del"><span class="tei_choice"><span class="tei_unclear">neue</span><a class="noteMarker" id="ref-d54858e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e47">‡</a></span><a class="noteMarker" id="ref-d54858e46" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e46">‡</a></span>
+            wichtige Erfahrungen zu meiner neuen <span class="tei_hi_latintype">Organisation</span> sammeln.
             Ueberdieß zog mich die Anwesenheit
-            <span class="tei_hi_latintype"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a>,
-               <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">MeyerBeers</a>,
-               <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmanns</a>, pp</span>
+            <span class="tei_hi_latintype"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a>,
+               <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">MeyerBeers</a>,
+               <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmanns</a>, pp</span>
             auch sehr an, und nebenher wollte ich
             denn auch meine Wenigkeit den H: <span class="tei_hi_latintype">Wienern</span> bekannt zu machen
             suchen. Diese Zwekke habe ich meist alle zu meiner vollkommensten Zufriedenheit
             erreicht. ich sah und hörte viel und mit Nuzzen. ich lernte intereßante Menschen kennen, und schäzzen, und manchen gepriesenen
-            <span class="tei_ptr"></span>Helden des Auslandes<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>
+            <span class="tei_ptr"></span>Helden des Auslandes<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
             nicht eben vortheilhaft in
             der Nähe beurtheilen. Mein Nahme war schon bekannter da als ich hoffen durfte, und durch
             mein <span class="tei_hi_latintype">Concert</span>
             das ich d: 25<span class="tei_hi_superscript">t</span> Aprill gab,
             denke ich ihm eben keine Unehre
-            <span class="tei_subst"><span class="tei_add">gemacht</span><a class="noteMarker" id="ref-d35627e98" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e98">‡</a></span>
-            
+            <span class="tei_subst"><span class="tei_add">gemacht</span><a class="noteMarker" id="ref-d54858e90" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e90">‡</a></span>
             zu haben, obwohl ich schon manchmal
             <span class="tei_hi_underline1">beßer spielte</span>, und namentlich einmal abends in einer großen
             Gesellschaft wo alle Klavierspieler <span class="tei_hi_latintype">Wiens</span> versamelt waren, von
-            jener glüklichen Stimmung beseelt, die vielleicht nur alle 10 Jahre einmal erscheint und
+            jener<span class="tei_pb" title="Seitenumbruch"> | </span> glüklichen Stimmung beseelt, die vielleicht nur alle 10 Jahre einmal erscheint und
             dann aber den Künstler über sich selbst erhebt. Der Sinn für die Kunst ist noch immer in
-            <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span> derselbe, rege, warmer, hellauflodernder Enthusiasmus
+            <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span> derselbe, rege, warmer, hellauflodernder Enthusiasmus
             wie ehemals. aber unter den Priestern der Kunst fand ich eine große Schlaffheit. Sie
             sind alle da so eingebürgert so blos von ihrer nächsten Ungebung befangen, als wenn Sie
             auf einer Insel in der Kunstwelt lebten. Es ist freylich schwer in
-            <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span>, wo das Menschliche im Menschen so sehr in Anspruch genommen und
+            <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span>, wo das Menschliche im Menschen so sehr in Anspruch genommen und
             bestochen wird, dem reinen Kunstfreund die Oberhand zu laßen, und ich habe mich da
             neuerdings überzeugt, und noch fester meinen Grundsazz gestellt,
             daß der Künstler <span class="tei_hi_underline1">nie</span> sehr lange an einem Orte leben dürfe. Schütteln Sie nicht den
-            Kopf; ich weiß alles was Sie dagegen sagen können, ich fühle es mit Ihnen, aber ich kann
+            Kopf; ich weiß alles was Sie dagegen sagen können, ich fühle es mit Ihnen, aber <span class="tei_seg">ich kann
             mich von der traurigen Ueberzeugung nicht los machen, daß der Künstler will er
             <span class="tei_hi_underline1">ganz</span> und rein <span class="tei_hi_underline1">der Kunst</span> leben,
             sein Glük
-            als Mensch daran sezzen muß. doch stille davon ich verliehre mich sonst in mich und will
-            Ihnen doch nur von <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span> erzählen. Von neuen KunstProdukten ist
-            <span class="tei_ptr"></span><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class=" 8397108101109">Salem</span></span></span> 
-            von <span class="tei_hi_latintype"><a class="persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel</a></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>
+            als Mensch daran sezzen muß.</span> doch stille davon ich verliehre mich sonst in mich und will
+            Ihnen doch nur von <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span> erzählen. Von neuen KunstProdukten ist
+            <span class="tei_ptr"></span><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020559" data-ref="/exist/apps/WeGA-WebApp/de/A001355/Werke/A020559.html">Salem</span></span></span> 
+            von <span class="tei_hi_latintype"><a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel</a></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>
             das einzig intereßante. die <span class="tei_hi_latintype">Intention</span> darinn ist durchaus trefflich, nicht
             ganz so die <span class="tei_hi_latintype">Conception</span>.
             Es ist viel Verstand aber wenig <span class="tei_hi_latintype">Genius</span>
             und deßhalb läßt es immer etwas kalt.
-            <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class=" 6897118105100">David</span></span></span> 
+            <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020858" data-ref="/exist/apps/WeGA-WebApp/de/A001186/Werke/A020858.html">David</span></span></span> 
             ist ein rechtes Modegetöne, wo die Leute immer mit Felsstükken im
-            Munde sprechen, wo die Erde zittert vor Instrumenten Sturm, wenn der <span class=" 75246110105103">König</span> 
+            Munde sprechen, wo die Erde zittert vor Instrumenten Sturm, wenn der <span class="75246110105103">König</span> 
             nießt oder sich sezzen will. Mit einem Worte
-            <span class="tei_ptr"></span>H: <span class="tei_hi_latintype"><a class="persons A001186" href="/exist/apps/WeGA-WebApp/de/A001186.html">Liverati</a></span> scheint ein
+            <span class="tei_ptr"></span>H: <span class="tei_hi_latintype"><a class="preview persons A001186" href="/exist/apps/WeGA-WebApp/de/A001186.html">Liverati</a></span> scheint ein
             gebohrener Posaunist, und in seiner Jugend Stiefelpuzzer bey
-            <span class="tei_hi_latintype"><a class="persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> gewesen zu seyn.<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>
+            <span class="tei_hi_latintype"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> gewesen zu seyn.<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>
             – Man 
-            kann von ihm dabey mit unserm <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> sagen,</p>
-                                        <div class="poem"><span class="lg"><span class="verseLine">wie er räuspert und wie er spukt</span><span class="verseLine">das hat er ihm trefflich abgekukt.</span></span>
-                                        </div>
+            kann von ihm dabey mit unserm <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> sagen,</p>
+                                        <div class="poem"><span class="lg"><span class="verseLine">wie er räuspert und wie er spukt</span><span class="verseLine">das hat er ihm trefflich abgekukt.</span></span></div><a class="noteMarker" id="ref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>
                                         <p>Er hat wie alle Nachahmer das Schlechte
-            <span class="tei_hi_latintype"><a class="persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontinis</a></span>
+            <span class="tei_hi_latintype"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontinis</a></span>
             ohne sein <span class="tei_hi_latintype">Genie</span> zu haben. –</p>
                                         <p>den 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span> wurde ich schnell zurükberufen,
-            weil man glaubte daß die Anwesenheit der hohen Häupter in
-            <span class=" 8011497103"><span class="tei_settlement">Prag</span></span> manches Musikalische Arrangement erfordern würde.
+            weil<span class="tei_pb" title="Seitenumbruch"> | </span>man glaubte daß die Anwesenheit der hohen Häupter in
+            <span class="tei_placeName"><span class="8011497103">Prag</span></span> manches Musikalische Arrangement erfordern würde.
             d: 6<span class="tei_hi_superscript">t</span> kam ich an, und d: 12<span class="tei_hi_superscript">t</span> warf mich
             ein heftiges 
             Gallicht Reuhmatisches Fieber 
@@ -466,25 +457,25 @@
             die ganz wieder erholt, und nur ein immerwährendes doch meist leises Kopfweh errinnert
             mich noch zuweilen an das Vergangene.</p>
                                         <p>
-            <span class="tei_damage"><span> […]<a class="noteMarker" id="ref-d35627e266" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e266">‡</a></span></span>
+            <span class="tei_damage"><span> […]<a class="noteMarker" id="ref-d54858e254" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e254">‡</a></span></span>
             ersten Tagen meiner Genesung
-            habe ich eine <span class="tei_damage"><span class="tei_choice"><span class="tei_unclear">Ge-</span><a class="noteMarker" id="ref-d35627e269" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e269">‡</a></span><span> […]<a class="noteMarker" id="ref-d35627e274" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e274">‡</a></span></span>
+            habe ich eine <span class="tei_damage"><span class="tei_choice"><span class="tei_unclear">Ge-</span><a class="noteMarker" id="ref-d54858e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e257">‡</a></span><span> […]<a class="noteMarker" id="ref-d54858e262" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e262">‡</a></span></span>
          </p>
                                         <p>aber für einen vertrauten Umgang gar nicht geeignet. ich habe darauf auch
             verzichtet – so sehr es mir auch Bedürfniß ist. ich werde
             <span class="tei_hi_underline1">arbeiten</span> und alle Jahre meinen Urlaub benuzzen mich zu erholen.</p>
                                         <p>Die <span class="tei_hi_latintype">Recension</span> 
-            des <span class="works A020037" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020037.html">KlavierAusz: v: <span class="tei_hi_latintype">Silvana</span></span>
-            habe ich gelesen und bin sehr damit
+            des <span class="preview works A020037" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020037.html">KlavierAusz: v: <span class="tei_hi_latintype">Silvana</span></span>
+            habe ich gelesen<a class="noteMarker" id="ref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> und bin sehr damit
             zufrieden, denn ich habe es gerne wenn eine <span class="tei_hi_latintype">Rec:</span> fest und
             bedächtig auftritt. die <span class="tei_hi_latintype">Quinten</span> habe ich nicht finden können.
             den Aufsaz in <span class="tei_hi_latintype">No</span>. 13 
-            habe ich noch nicht gelesen. ich bekomme die Zeitung leider nur immer zufällig.
+            habe ich noch nicht gelesen. ich bekomme die Zeitung leider nur immer zufällig.<a class="noteMarker" id="ref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>
             die Aufforderung an Dichter hat ein paar elende
-            Produkte zu mir gebracht. H: Direktor <a class="persons A000615" href="/exist/apps/WeGA-WebApp/de/A000615.html">Gerle</a> scheint auch nicht dazu gemacht zu seyn.
-            aber ein anderer junger hier, aus <span class="tei_hi_latintype"><span class=" 87105101110"><span class="tei_settlement">Wien</span></span></span>,
-            <a class="persons A001444" href="/exist/apps/WeGA-WebApp/de/A001444.html">Joseph <span class="tei_hi_latintype">Passy</span></a> arbeitet an einem
-            Opern Text für mich von dem ich mir <span class="tei_damage"><span class="tei_choice"><span class="tei_unclear">et-</span><a class="noteMarker" id="ref-d35627e324" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e324">‡</a></span><span> […]<a class="noteMarker" id="ref-d35627e329" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d35627e329">‡</a></span></span>
+            Produkte zu mir gebracht. H: Direktor <a class="preview persons A000615" href="/exist/apps/WeGA-WebApp/de/A000615.html">Gerle</a> scheint auch nicht dazu gemacht zu seyn.
+            aber ein anderer junger hier, aus <span class="tei_hi_latintype"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span>,
+            <a class="preview persons A001444" href="/exist/apps/WeGA-WebApp/de/A001444.html">Joseph <span class="tei_hi_latintype">Passy</span></a> arbeitet an einem
+            Opern Text für mich von dem ich mir <span class="tei_damage"><span class="tei_choice"><span class="tei_unclear">et-</span><a class="noteMarker" id="ref-d54858e317" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e317">‡</a></span><span> […]<a class="noteMarker" id="ref-d54858e322" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54858e322">‡</a></span></span>
             
             </p>
                                         <p class="clearer"></p>
@@ -546,46 +537,52 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e39" data-title="subst">"Seit": "seit" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d54858e37" data-title="subst">"Seit": "seit" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e50" data-title="del">"neuenur":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d54858e46" data-title="del">"neuenur":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e98" data-title="subst">"gemacht": Gelöschter Text nicht lesbar.</div>
+                                            <div class="apparatusEntry" id="d54858e90" data-title="subst">"gemacht": "zu machen" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e102" data-title="gap "> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d54858e254" data-title="gap "> Unleserliche Stelle </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e266" data-title="gap "> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d54858e262" data-title="gap "> Unleserliche Stelle </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e274" data-title="gap "> Unleserliche Stelle </div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="d35627e329" data-title="gap "> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d54858e322" data-title="gap "> Unleserliche Stelle </div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e51" data-title="choice">"neue": weitere mögliche Lesungen: "nur"</div>
+                                            <div class="apparatusEntry" id="d54858e47" data-title="choice">"neue": weitere mögliche Lesungen: "nur"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary">"<span class="tei_lemma">Helden des Auslandes</span>": vgl. Brief <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Johann Gänsbacher</a> vom 16. April 1813</div>
+                                            <div class="apparatusEntry" id="C_01" data-title="note commentary">"<span class="tei_lemma">Helden des Auslandes</span>": vgl. <span class="preview letters A040616" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040616.html /exist/apps/WeGA-WebApp/de/A002068.html /exist/apps/WeGA-WebApp/de/A000584.html">Brief <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Johann Gänsbacher</a> vom 16. April 1813</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Salem von Mosel</span>": vgl. dazu Brief <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel</a> vom 03. Juni 1813</div>
+                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Salem von Mosel</span>": vgl. dazu <span class="preview letters A040619" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040619.html /exist/apps/WeGA-WebApp/de/A002068.html /exist/apps/WeGA-WebApp/de/A001355.html">Brief <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel</a> vom 03. Juni 1813</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">H: Liverati scheint … gewesen zu seyn.</span>": vgl. dazu das fast gleichlautende Urteil im Brief <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Johann Gänsbacher</a> vom 16. April 1813</div>
+                                            <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">H: Liverati scheint … gewesen zu seyn.</span>": vgl. dazu das fast gleichlautende Urteil im <span class="preview letters A040616" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040616.html /exist/apps/WeGA-WebApp/de/A002068.html /exist/apps/WeGA-WebApp/de/A000584.html">Brief <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> an <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Johann Gänsbacher</a> vom 16. April 1813</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e269" data-title="choice">"Ge-": weitere mögliche Lesungen: "Ge"</div>
+                                            <div class="apparatusEntry" id="note01" data-title="note commentary"><span class="tei_lemma">"… hat er ihm trefflich abgekukt.": </span>Wallensteins Lager, 6. Auftritt, 1. Jäger: "wie er räuspert und wie er spuckt / Das habt ihr ihm glücklich abgeguckt"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d35627e324" data-title="choice">"et-": weitere mögliche Lesungen: "et"</div>
+                                            <div class="apparatusEntry" id="d54858e257" data-title="choice">"Ge-": weitere mögliche Lesungen: "Ge"</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="note02" data-title="note commentary"><span class="tei_lemma">"… v: Silvana habe ich gelesen": </span>Allgemeine musikalische Zeitung, Jg. 15, Nr. 14 (7. April 1813), Sp. 239–242</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="note03" data-title="note commentary"><span class="tei_lemma">"… Zeitung leider nur immer zufällig.": </span>In der Allgemeinen musikalischen Zeitung, Jg. 15, Nr. 13 vom 31. März 1813 steht auf den Sp. 226f. eine Kritik über Webers Konzert vom 6. März in Prag</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d54858e317" data-title="choice">"et-": weitere mögliche Lesungen: "et"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -613,10 +610,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040632</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040632</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -642,6 +638,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -652,6 +649,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -686,6 +684,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

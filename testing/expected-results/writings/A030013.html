@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013" />
         <meta property="dc:description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
         <meta name="description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A030013.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A030013.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,14 +213,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
-                        </li>
-                        <li><span>A030013</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a></li>
+                        <li><span>A030013</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,33 +233,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002369" /> <span title="Callot, Jacques">Callot, Jacques</span> 
@@ -282,8 +272,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -295,8 +284,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -306,8 +294,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -340,9 +327,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader">
-            <span class="tei_hi_italic">Ueber die Oper, <span class="tei_hi_spaced_out"><span class="works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span>, nach dem Märchen gleiches Namens von <a class="persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Fried. Baron de la Motte-Fouqué</a> 
-               selbst bearbeitet, mit Musik von <a class="persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">E. T. A. Hoffmann</a>, und zuerst auf dem königl. Theater zu Berlin erschienen</span>.
+                                        <h2 class="docHeader textAlign-left">
+            <span class="tei_hi_italic">Ueber die Oper, <span class="tei_hi_spaced_out"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span>, nach dem Märchen gleiches Namens von <a class="preview persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Fried. Baron de la Motte-Fouqué</a> 
+               selbst bearbeitet, mit Musik von <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">E. T. A. Hoffmann</a>, und zuerst auf dem königl. Theater zu Berlin erschienen</span>.
          </h2>
                                         <p>Als ich den Vorsatz fasste, etwas über dieses schöne Werk öffentlich zu sagen, wandelte unwillkürlich die Form der Anzeigen, Recensionen, oder wie man 
 					es immer nennen will, gleichen Zweckes, vor meinem Innern vorüber, indem sich mir zugleich vergegenwärtigte, wie ungemein schwierig es sey, 
@@ -353,20 +340,20 @@
 					ein in die Einzelnheiten des musikal. Baues in technischer Hinsicht, bey so grossen Werken, die nicht sogleich in jedermanns Hände kommen können. 
 					Die grössten Wirkungen und Schönheiten gehen nur aus der Art ihrer Auf- und Zusammenstellung hervor; verlieren meist immer einzeln herausgehoben 
 					ihre ganze Eigenthümlichkeit, ja, zeugen oft scheinbar wider sich selbst, indem sie, so allein betrachtet, fast bedeutungslos werden. Ihr wahres 
-					organisch-verbundenes Zusammenleben mit dem Uebrigen, vermag doch auch die lebendigste Be<span class="tei_cb">¦</span>schreibung nur höchst selten ganz fühlbar zu machen. 
+					organisch-verbundenes Zusammenleben mit dem Uebrigen, vermag doch auch die lebendigste Be<span class="tei_cb" title="Spaltenumbruch">¦</span>schreibung nur höchst selten ganz fühlbar zu machen. 
 					Es versteht sich von selbst, dass diese Meynung auch vielfältiger Beschränkung unterliegt, und namentlich bey schon allgemein verbreiteten Kunstwerken,
 					deren Bau und Structur zu zergliedern, nur heilbringend für die Belehrung-Suchenden seyn kann. In vorliegendem Falle aber, wo es blos Zweck ist,
 					das Publicum auf ein Werk aufmerksam zu machen, indem man die geistige Region anzudeuten sucht, in der es sich bewegt, und die Gestalt, 
 					die der Componist ihm verliehen hat, in bezeichnenden Umrissen darstellen will, scheint es mir nothwendig erst auseinander zu setzen, 
 					wie der Beurtheiler selbst sehe, glaube, und denke, woraus dann leicht das Resultat für Jeden zu ziehen ist, in wiefern er seinen hieraus 
 					entspringenden Urtheilen beypflichten könne. In dieser Hinsicht glaube ich das folgende Bruchstück aus einer grössern Arbeit von mir <a href="#footnote01">*)</a>,
-					noch der eigentlichen Anzeige der Oper voranschicken zu müssen, weil es auch überdies die Gestaltung der Oper <span class="tei_hi_italic"><span class="works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> 
+					noch der eigentlichen Anzeige der Oper voranschicken zu müssen, weil es auch überdies die Gestaltung der Oper <span class="tei_hi_italic"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> 
 					grösstentheils ausspricht. – </p>
                                         <p>Um ein sich in der Zeit bewegendes Kunstwerk richtig zu beurtheilen, wird jene ruhige, unbefangene Stimmung erfordert, die, jeder Art des 
 					Eindrucks empfänglich, sorgfältig vor bestimmter Meynung oder Richtung des Gefühls bewahrt seyn soll; ein gewisses Aufschliessen der Seele für den 
 					behandelten Stoff ausgenommen. Nur so ist dem Künstler die reine Gewalt über unser Gemüth gegeben, es mit Seinen Gefühlen und Gestalten fortzuziehen 
 					in die Welt, die Er geschaffen, und in welcher Er, ein mächtiger Herrscher aller leidenschaftlichen Erregung, uns mit Ihm und durch Ihn, Schmerz, Lust, 
-					Grauen, Freude, Hoffnung und Liebe empfinden lässt. Sehr bald und klar wird es sich dann beweisen, ob er<span class="tei_cb"> ¦ </span> im Stande war, ein grosses Gebilde, das wir 
+					Grauen, Freude, Hoffnung und Liebe empfinden lässt. Sehr bald und klar wird es sich dann beweisen, ob er<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> im Stande war, ein grosses Gebilde, das wir 
 					bleibend im Herzen tragen, zu erschaffen, oder ob Er, nur von unstät wandelnden Geistesblitzen zusammengesetzt, uns Einzelnes liebgewinnen und das 
 					Ganze darüber vergessen liess.</p>
                                         <p>In keiner Art von Kunstwerken ist dieses schwieriger zu vermeiden, und daher auch so häufig vorhanden, als in der Oper. Es versteht sich von selbst, 
@@ -383,10 +370,10 @@
       				des Zornes und der Liebe, des wonnigen Schmerzes, wo Salamander und Sylphen sich umarmend in einander fliessen, sind hier vereint. Mit einem Worte, 
       				was die Liebe dem Menschen, ist die Musik den Künsten und dem Menschen, denn sie ist ja wahrlich die Liebe selbst, die reinste, ätherischste, Sprache 
       				der Leidenschaften, tausendseitig allen Farbenwechsel derselben in allen Gefühlsarten enthaltend und doch nur <span class="tei_hi_italic">einmal wahr</span>, 
-      				doch von tausend verschieden fühlenden Menschen zugleich zu verstehen.</p><span class="tei_cb_block"> ¦ </span>
+      				doch von tausend verschieden fühlenden Menschen zugleich zu verstehen.</p><span class="tei_cb_block" title="Spaltenumbruch"> ¦ </span>
                                         <p>Diese Wahrheit der musikal. Rede, erscheine sie unter welcher neuen, ungewöhnlichen Form sie wolle, behauptet doch endlich siegend ihre Rechte. 
 					Die Schicksale aller Epochen schaffender oder bezeichnender Kunstwerke beweisen dies hinlänglich und häufig. Es konnte wol z. B. nichts fremdartigeres 
-					erscheinen, als <a class="persons A000646" href="/exist/apps/WeGA-WebApp/de/A000646.html">Glucks</a> <span class="tei_hi_italic">Schöpfungen</span> in jener Zeit, wo die italisch-wollüstigen Ton-Meere alle Gemüther überschwemmt und 
+					erscheinen, als <a class="preview persons A000646" href="/exist/apps/WeGA-WebApp/de/A000646.html">Glucks</a> <span class="tei_hi_italic">Schöpfungen</span> in jener Zeit, wo die italisch-wollüstigen Ton-Meere alle Gemüther überschwemmt und 
 					verweichlicht hatten. Wir sind jetzt, auf zwar ganz andre Weise, aber vielleicht nicht weniger gefährlich, daran, in gewissen Kunstirrthümern 
 					unterzugehen. Die allwirkenden Zeitumstände haben nur die Extreme, Tod und Lust, als Herrscher aufgeworfen. 
 					Niedergedrückt von den Gräueln des Krieges, vertraut geworden mit allem Elende, suchte man nur Erheiterung in den gröblichst aufreizenden Kunstlüsten. Das 
@@ -395,33 +382,33 @@
 					Zweck und Sinn. Gewohnt im Leben täglich frappirt zu werden, that auch hier nur das Frappante Wirkung. Einer stufenweissen 
 					Entwickelung der Leidenschaft, einer geistreich herbeygeführten Steigerung aller Interessen zu folgen, heißt <span class="tei_hi_italic">anspannend, langweilig</span> 
 					und, in der Folge der Unaufmerksamkeit, <span class="tei_hi_italic">unverständlich</span>. – –</p>
-                                        <p>Urtheile, in aller Art sich widersprechend (aus eben berührten Gründen erzeugt), hatte ich über die Oper <span class="tei_hi_italic"><span class="works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> hören 
+                                        <p>Urtheile, in aller Art sich widersprechend (aus eben berührten Gründen erzeugt), hatte ich über die Oper <span class="tei_hi_italic"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> hören 
      				müssen. Ich suchte so viel als möglich einer gänzlichen Unbefangenheit theilhaftig zu werden, wenn ich gleich der Erwartung von etwas Bedeutendem 
-     				mich nicht erwehren konnte, zu welchem auch die Schriften <a class="persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hrn. Hoffmanns</a> vollkommen berechtigen mussten. Wer mit diesem Phantasien-Glut-Strome und 
-     				tiefem Gemüthe, so <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Geist erfühlen konnte wie (Erster Teil der <span class=" 80104971101169711510510111511625299107101">Phantasiestücke</span> in <a class="persons A002369" href="/exist/apps/WeGA-WebApp/de/A002369.html">Callots</a> Manier) in dem Aufsatz über den <span class="tei_hi_italic"><span class="works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span>
+     				mich nicht erwehren konnte, zu welchem auch die Schriften <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hrn. Hoffmanns</a> vollkommen berechtigen mussten. Wer mit diesem Phantasien-Glut-Strome und 
+     				tiefem Gemüthe, so <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Geist erfühlen konnte wie (Erster Teil der <span class="80104971101169711510510111511625299107101">Phantasiestücke</span> in <a class="preview persons A002369" href="/exist/apps/WeGA-WebApp/de/A002369.html">Callots</a> Manier) in dem Aufsatz über den <span class="tei_hi_italic"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span>
      				geschehen ist, der kann nichts unbedingt Mittelmässiges leisten; höchstens die Gränze drängen, ja wol umbiegen, aber nicht leer in ihr wandeln.</p>
-                                        <p>Die <span class=" 661019711498101105116117110103">Bearbeitung</span> erscheint Ref. als ein dramatisirtes Märchen, in dem wol mancher innere Zusammenhang bestimmter und klarer hätte<span class="tei_cb"> ¦ </span> verdeutlicht 
-            werden können. <a class="persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Hr. von Fouqué</a> kannte das Märchen gar zu gut, und da ist denn oft eine Art von Selbsttäuschung möglich, die auch die Andern wissend 
+                                        <p>Die <span class="661019711498101105116117110103">Bearbeitung</span> erscheint Ref. als ein dramatisirtes Märchen, in dem wol mancher innere Zusammenhang bestimmter und klarer hätte<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> verdeutlicht 
+            werden können. <a class="preview persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Hr. von Fouqué</a> kannte das Märchen gar zu gut, und da ist denn oft eine Art von Selbsttäuschung möglich, die auch die Andern wissend 
      				glaubt. Doch ist es keineswegs unverständlich, wie Viele behaupten wollen.</p>
                                         <p>Desto deutlicher, und klarer in bestimmten Farben und Umrissen hat der Componist die Oper ins Leben treten lassen. Sie ist wirklich <span class="tei_hi_italic">ein 
     				Guss</span>, und Ref. erinnert sich bey oftmaligem Anhören keiner einzigen  Stelle, die ihn nur einen Augenblick dem magischen 
     				Bilderkreise, den der Tondichter in seiner Seele hervorrief, entrückt hätte. Ja, Er erregt so gewaltig vom Anfang bis zu Ende das Interesse für die musikal. 
     				Entwicklung, dass man nach dem ersten Anhören wirklich das Ganze erfasst hat und das Einzelne in wahrer Kunst-Unschuld und Bescheidenheit verschwindet.</p>
                                         <p>Mit einer seltenen Entsagung, deren Grösse nur derjenige ganz zu würdigen versteht, der weiss, was es heisst, die Glorie des momentanen Beyfalls zu 
-            opfern, hat <a class="persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hr. Hoffmann</a> es verschmähet, einzelne Tonstücke auf Unkosten der übrigen zu bereichern, welches so leicht ist, wenn man die Aufmerksamkeit auf 
+            opfern, hat <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hr. Hoffmann</a> es verschmähet, einzelne Tonstücke auf Unkosten der übrigen zu bereichern, welches so leicht ist, wenn man die Aufmerksamkeit auf 
 					sie lenkt durch breitere Ausführung und Ausspinnen, als es ihnen eigentlich als Gliedern des Kunstkörpers zukommt. Unaufhaltsam schreitet er fort, von dem 
 					sichtbaren Streben geleitet, nur immer <span class="tei_hi_italic">wahr</span> zu seyn, und das dramatische Leben zu erhöhen, statt es in seinem raschen Gange 
 					aufzuhalten oder zu fesseln. So verschieden und treffend bezeichnet die mannigfaltigen Charaktere der handelnden Personen erscheinen, so umgiebt sie, oder 
 					ergiebt sich vielmehr, doch aus allem jenes gespensterhafte, fabelnde Leben, dessen süsse Schauererregungen das Eigenthümliche des Märchenhaften sind. – 
-					Am mächtigsten springt <span class="tei_hi_italic"><span class=" 7525210410810198111114110">Kühleborn</span></span> hervor, (Ref. setzt, wie <a class="persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Fouqué</a>, die Bekanntschaft mit dem Märchen voraus) durch Melodien-Wahl 
+					Am mächtigsten springt <span class="tei_hi_italic"><span class="7525210410810198111114110">Kühleborn</span></span> hervor, (Ref. setzt, wie <a class="preview persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Fouqué</a>, die Bekanntschaft mit dem Märchen voraus) durch Melodien-Wahl 
 					und Instrumentation, die, ihm stets treu bleibend, seine unheimliche Nähe verkündet. Da er, wo nicht als das Schicksal selbst, doch als dessen nächster 
 					Willens-Vollstrekker  erscheint, so ist dies auch sehr richtig. Nächst ihm, 
-					das liebliche Wellenkind <span class="tei_hi_italic"><span class=" 85110100105110101">Undine</span></span>, deren Tonwellen bald lieblich gaukeln und kräuseln, bald auch mächtig gebietend ihre Herrscherkraft<span class="tei_cb"> ¦ </span> 
-					künden. Höchst gelungen, und ihren ganzen Charakter umfassend, dünkt Ref. die <span class=" 65114105101">Arie</span> im 2ten Act<a class="noteMarker" id="ref-c_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_006">*</a>, die so ungemein lieblich und geistvoll behandelt ist, dass sie als ein 
+					das liebliche Wellenkind <span class="tei_hi_italic"><span class="85110100105110101">Undine</span></span>, deren Tonwellen bald lieblich gaukeln und kräuseln, bald auch mächtig gebietend ihre Herrscherkraft<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> 
+					künden. Höchst gelungen, und ihren ganzen Charakter umfassend, dünkt Ref. die <span class="65114105101">Arie</span> im 2ten Act<a class="noteMarker" id="ref-c_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_006">*</a>, die so ungemein lieblich und geistvoll behandelt ist, dass sie als ein 
             kleiner Vorgeschmack des Ganzen dienen kann, und daher hier als Beylage erscheint <a href="#footnote02">*)</a>. 
-            – Der feurig wogende, schwankende, jedem Liebeszuge sich hinneigende <span class="tei_hi_italic"><span class=" 721171081001019811497110100">Huldebrand</span></span>, und der 
-					fromme, einfache <span class="tei_hi_italic"><span class=" 7110110511511610810599104101">Geistliche</span></span> mit seiner ernsten Choral-Melodie, sind dann am bedeutendsten. Mehr in den Hintergrund treten 
-					<span class="tei_hi_italic"><span class=" 661011141161049710810097">Berthalda</span>, <span class=" 7010511599104101114">Fischer</span></span> und <span class="tei_hi_italic"><span class=" 7010511599104101114105110">Fischerin</span>, <span class=" 72101114122111103">Herzog</span></span> und <span class="tei_hi_italic"><span class=" 72101114122111103105110">Herzogin</span></span>. Die Chöre des Gefolges 
+            – Der feurig wogende, schwankende, jedem Liebeszuge sich hinneigende <span class="tei_hi_italic"><span class="721171081001019811497110100">Huldebrand</span></span>, und der 
+					fromme, einfache <span class="tei_hi_italic"><span class="7110110511511610810599104101">Geistliche</span></span> mit seiner ernsten Choral-Melodie, sind dann am bedeutendsten. Mehr in den Hintergrund treten 
+					<span class="tei_hi_italic"><span class="661011141161049710810097">Berthalda</span>, <span class="7010511599104101114">Fischer</span></span> und <span class="tei_hi_italic"><span class="7010511599104101114105110">Fischerin</span>, <span class="72101114122111103">Herzog</span></span> und <span class="tei_hi_italic"><span class="72101114122111103105110">Herzogin</span></span>. Die Chöre des Gefolges 
 				   	atmen heiteres, reges Leben, das sich in einigen Stücken zu ungemein wohlthuender Frische und Lust erhebt und entfaltet, im Gegensatze zu den 
 				   	schauerlichen Chören der Erd- und Wasser-Geister in gedrängten, seltsamen Fortschreitungen.</p>
                                         <p>Am gelungensten und wirklich gross gedacht erscheint Ref. der Schluss der Oper, wo der Componist noch als Krone und Schluss-Stein alle 
@@ -434,35 +421,33 @@
      				überlegten Ideengang und Berechnung der Wirkungen alles Kunst-Materials, zum Werke der schönen Kunst gestempelt durch schön und innig gedachte 
      				Melodien.</p>
                                         <p>Es spricht sich hierdurch von selbst aus, dass grosse Instrumental-Effecte, Harmoniekenntnis und oft neue Zusammenstellung, richtige Declamation 
-	    			etc. darin enthalten sind, als die nothwendig jedem wahren Meister zu Gebot stehenden Mittel, ohne deren geläufige Handhabung<span class="tei_cb"> ¦ </span> keine 
+	    			etc. darin enthalten sind, als die nothwendig jedem wahren Meister zu Gebot stehenden Mittel, ohne deren geläufige Handhabung<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> keine 
 	    			Freyheit der Geistes-Bewegung denkbar ist.</p>
                                         <p>Um nun aber gleich für die Folge etwas zu bemerken, denn Lob und Tadel muss ja seyn, so will Ref. einige Wünsche nicht bergen, obwol er eben  
-    				in <span class="works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span> <span class="tei_hi_italic">nichts</span> anders haben möchte, da alles, wie es einmal dasteht, unbedingt so, und nicht anders nothwendig ist, und man eigentlich 
+    				in <span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span> <span class="tei_hi_italic">nichts</span> anders haben möchte, da alles, wie es einmal dasteht, unbedingt so, und nicht anders nothwendig ist, und man eigentlich 
     				wol abwarten sollte, ob in einem andern Werke dasselbe sich offenbare. Aber man kann einem Componisten doch wol ungefähr auch in <span class="tei_hi_italic">einem</span> 
     				Werke ablauschen, was seine Lieblingswendungen sind, vor denen ehrliche Freunde immer warnen sollen, als am Ende Manier erzeugend.</p>
                                         <p>So ist Ref. aufgefallen, und er wünscht vermieden die Vorliebe für kleine, kurze Figuren, denen es sowol leicht an Mannigfaltigkeit fehlt, als sie 
     				leicht die Cantilena verdrängen oder verdunkeln, die dann heraustreten zu machen grosse Kenntnis und Sorgfalt von Seiten des Dirigirenden voraussetzt. 
     				Dann, die Vorliebe für Violoncelle und Bratschen, für verminderte Septimen-Accorde, und oft zu schnell abgebrochene Schlüsse, die, wenigstens beym 
     				ersten Anhören, etwas Störendes mit sich bringen, und wenn auch keineswegs unrichtig, doch ungenügend sind; – und endlich gewisse Mittelstimmen, die 
-    				wegen ihrer öftern Benutzung von <a class="persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>, den Haufen sehr geneigt machen, Aehnlichkeiten erspähen zu wollen.</p>
+    				wegen ihrer öftern Benutzung von <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>, den Haufen sehr geneigt machen, Aehnlichkeiten erspähen zu wollen.</p>
                                         <p>Die Aufführung ist in Hinsicht der Decorationen und Garderobe prächtig, rücksichtlich des Gesanges und Spieles, gelungen zu nennen. Das 
     				fortwährend gedrängtvolle Haus beweist den Antheil, den das Publicum, stets gleich, ja immer mehr und mehr an der Oper nimmt. Uebelgesinnte wollen den 
     				Decorationen viel zuschreiben; wenn aber Ref. bemerkt, dass in andern Stücken, wo dieses der Fall ist, die Leute nur diese Momente ablauern und dann 
     				wieder gehen, hier aber mit steter, gleicher Aufmerksamkeit vom Anfange bis zum Ende bleiben: so beweist dies schon hinlänglich für das Interesse, 
     				das ihnen die Sache selbst einflösst. Rauschenden Beyfall könnte der Componist fast allen Musikstücken durch wenig vermehrte Schlusstakte verschaffen, 
     				da hingegen sich hier alles immer raschhandelnd vorwärts drängt.</p>
-                                        <p>Möge <a class="persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hr. Hoffmann</a> der Welt bald wieder etwas so Gediegenes, als diese Oper ist, schenken, und sein vielseitiger Geist, der ihm als Schriftsteller 
-    				in kurzer Frist Ruhm verschaffte, und als<span class="tei_cb"> ¦ </span> Geschäftsmann (königl. preuss. Kammer-Gerichts-Rath in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>) die Achtung seiner Collegen 
+                                        <p>Möge <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hr. Hoffmann</a> der Welt bald wieder etwas so Gediegenes, als diese Oper ist, schenken, und sein vielseitiger Geist, der ihm als Schriftsteller 
+    				in kurzer Frist Ruhm verschaffte, und als<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Geschäftsmann (königl. preuss. Kammer-Gerichts-Rath in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>) die Achtung seiner Collegen 
     				sichert, auch in diesem Kunstzweige thätig wirken und schaffen.</p>
-                                        <p>Geschrieben <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> im Januar 1817.</p>
-                                        <p>(Eingegangen, Ende Febr.s.)</p><span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.
-         </span>
-                                    </div>
+                                        <p>Geschrieben <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> im Januar 1817.</p>
+                                        <p>(Eingegangen, Ende Febr.s.)</p><span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.
+         </span></div>
                                     <div id="endNotes">
                                         <ul>
                                             <li id="footnote01">*) Künstlerleben.</li>
-                                            <li id="footnote02">*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" id="ref-c_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_002">*</a>
-                                            </li>
+                                            <li id="footnote02">*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" id="ref-c_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_002">*</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -486,13 +471,12 @@
                         <div>
                             <h3 class="media-heading">Entstehung</h3>
                             <p><span class="tei_date">Niederschrift 
-               <a class="diaries A064278" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064278.html">25. Dezember 1816</a>, 
-               <a class="diaries A060007" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060007.html">7.</a>/
-               <a class="diaries A060008" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060008.html">8. Januar 1817</a> und 
-               <a class="diaries A060051" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060051.html">20. Februar 1817</a>; lt. Entwurf 8. Januar 1817; 20. Februar 1817; 
-               <a class="diaries A060051" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060051.html">20. Februar 1817</a> (Versand laut TB)
-            </span>
-                                    </p>
+               <a class="preview diaries A064278" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064278.html">25. Dezember 1816</a>, 
+               <a class="preview diaries A060007" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060007.html">7.</a>/
+               <a class="preview diaries A060008" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060008.html">8. Januar 1817</a> und 
+               <a class="preview diaries A060051" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060051.html">20. Februar 1817</a>; lt. Entwurf 8. Januar 1817; 20. Februar 1817; 
+               <a class="preview diaries A060051" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060051.html">20. Februar 1817</a> (Versand laut TB)
+            </span></p>
                         </div>
                         
                         <div>
@@ -504,7 +488,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg.&#160;19, Nr.&#160;12 (19. März 1817), Sp.&#160;201–208</p>
+                                <p><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 19, Nr. 12 (19. März 1817), Sp. 201–208</p>
                                 
                                 <div>
                                     
@@ -544,13 +528,13 @@
                                             <div class="apparatusEntry" id="c_006" data-title="note commentary"><span class="tei_lemma">"… die Arie im 2ten Act": </span>Akt II, Nr. 10, Arie der Undine "Wer traut des laun’gen Glückes Flügeln"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="c_002" data-title="note commentary"><span class="tei_lemma">"… in einigen Wochen geliefert werden.": </span>Der Verleger Härtel weigerte sich offensichtlich, diese Beilage abzudrucken, vgl. den Brief an Rochlitz vom <a class="letters A041058" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041058.html">27. Februar 1817</a>.</div>
+                                            <div class="apparatusEntry" id="c_002" data-title="note commentary"><span class="tei_lemma">"… in einigen Wochen geliefert werden.": </span>Der Verleger Härtel weigerte sich offensichtlich, diese Beilage abzudrucken, vgl. den Brief an Rochlitz vom <a class="preview letters A041058" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041058.html">27. Februar 1817</a>.</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A030013/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -572,10 +556,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -601,6 +584,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -611,6 +595,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -645,6 +630,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

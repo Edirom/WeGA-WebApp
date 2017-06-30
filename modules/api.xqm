@@ -78,7 +78,8 @@ declare function api:code-findByElement($model as map()) {
         else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
-        api:codeSample(api:subsequence($eval, $model), $model)
+        if($model?total) then $eval
+        else api:codeSample(api:subsequence($eval, $model), $model) 
 };
 
 (:~
@@ -136,7 +137,7 @@ declare function api:ant-deleteResources($model as map()) {
 ~:)
 declare %private function api:resolve-docTypes($model as map()) as xs:string* {
     if(exists($model('docType'))) then $model('docType')
-    else for $func in wdt:members('indices') return $func(())('name')
+    else for $func in wdt:members('unary-docTypes') return $func(())('name')
 };
 
 (:~
@@ -176,10 +177,10 @@ declare %private function api:document($documents as document-node()*, $model as
 (:~
  :  Helper function for creating a CodeSample object 
 ~:)
-declare %private function api:codeSample($nodes as node()*, $model as map()) as map()* {
+declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
-    let $scheme := $model('swagger:config')?schemes[1]
+    let $scheme := $model('swagger:config')?schemes?1
     return 
         for $node in $nodes
         let $docID := $node/root()/*/data(@xml:id)
@@ -187,7 +188,7 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
                 'docID' := $docID,
-                'codeSample' := serialize(wega-util:remove-comments($node))
+                'codeSample' := serialize(core:change-namespace(wega-util:remove-comments($node), '', ()))
             }
 };
 
@@ -195,7 +196,7 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
  : Helper function for validating user input (= function parameters)
 ~:)
 (:declare %private function api:validateInput($model as map()) as empty() {
-    for $param in $model?*
+    for $param in map:keys($model)
     return
         switch($param)
         case 'docType' return api:check-docType($model)
@@ -209,7 +210,7 @@ declare %private function api:codeSample($nodes as node()*, $model as map()) as 
  : Check parameter docType and split comma separated value into a sequence
 ~:)
 declare function api:validate-docType($model as map()) as map()? {
-    let $wega-docTypes := for $func in wdt:members('indices') return $func(())('name')
+    let $wega-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name')
     return
         map:entry(
             'docType',
@@ -280,6 +281,10 @@ declare function api:validate-authorID($model as map()) as map()? {
     map { 'authorID' := xmldb:decode-uri($model?authorID) }
 };
 
+(:~
+ : Fallback for unknown API parameters 
+ : Simply returns an error message
+~:)
 declare function api:validate-unknown-param($model as map()) as map()? {
-    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || $model?* || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
+    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model), '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
 };

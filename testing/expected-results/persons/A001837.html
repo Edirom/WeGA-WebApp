@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2016-02-03T15:38:47.295989Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001837" />
         <meta property="dc:description" content="Biographische Informationen zu Franz Anton Soistmann. Lebensdaten: –1838. Tätigkeiten: Musiker (Flötist, Hornist). Wirkorte: Darmstadt" />
         <meta name="description" content="Biographische Informationen zu Franz Anton Soistmann. Lebensdaten: –1838. Tätigkeiten: Musiker (Flötist, Hornist). Wirkorte: Darmstadt" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A001837.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A001837.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,8 +209,7 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
                         <li>Franz Anton Soistmann</li>
 
                     </ol>
@@ -283,29 +284,18 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li><a href="#biographies">Biographien</a>
-                                </li>
+                                <li><a href="#biographies">Biographien</a></li>
                                 
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a href="#backlinks" data-target="A001837/backlinks.html">Rückverweise<small> (3)</small></a>
-                                </li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A001837/backlinks.html">Rückverweise<small> (3)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -326,7 +316,7 @@
                                                 <h2>Dokumente</h2>
                                                 
                                                 <ul class="nav nav-tabs">
-                                                    <li class="gradient-light">
+                                                    <li class="gradient-light active">
                                                         <a data-toggle="tab" href="#wegaText">WeGA Text</a>
                                                     </li>
                                                     <li class="gradient-light">
@@ -363,10 +353,9 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-          <li>seit 1810 Mitglied der großherzoglich hessischen Hofkapelle in <span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span> (vgl. AmZ 1817, Sp.&#160;659f., dort als Hofmusikus bezeichnet)</li>
+          <li>seit 1810 Mitglied der großherzoglich hessischen Hofkapelle in <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> (vgl. AmZ 1817, Sp. 659f., dort als Hofmusikus bezeichnet)</li>
           <li>G. S. Thomas, <span class="tei_hi_italic">Die großherzogliche Hofkapelle, deren Personalbestand und Wirken unter Ludewig I.</span>, Darmstadt 1858, S. 78: Kammermusikus, blies sehr gut Flöte, Concertist und ein tüchtiger Waldhornist im Orchester</li>
-          <li>unternahm von <span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span> aus Konzertreisen u.&#160;a. nach <span class=" 6510911511610111410097109"><span class="tei_settlement">Amsterdam</span></span> (1822), Köln (1823), <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>, <p><span class="tei_settlement">Dresden</span>
-                                                                    </p>, <span class=" 7297110110111118101114"><span class="tei_settlement">Hannover</span></span> (1824)</li>
+          <li>unternahm von <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> aus Konzertreisen u. a. nach <span class="tei_placeName"><span class="6510911511610111410097109">Amsterdam</span></span> (1822), Köln (1823), <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, <p><span class="68114101115100101110">Dresden</span></p>, <span class="tei_placeName"><span class="7297110110111118101114">Hannover</span></span> (1824)</li>
          
       </ul>
    </div>
@@ -450,10 +439,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001837</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001837</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 3. Februar 2016 durch Eveline Bartlitz</span>
-                        </p>
+                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>
@@ -481,6 +469,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -491,6 +480,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -525,6 +515,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

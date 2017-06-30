@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2015-09-30T11:11:18.277990Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008451" />
         <meta property="dc:description" content="Biographische Informationen zu Friedrich Theodor Kaufmann. Lebensdaten: 9. April 1823–5. Februar 1872. Tätigkeiten: Uhrmacher, Instrumentenbauer. Wirkorte: Dresden" />
         <meta name="description" content="Biographische Informationen zu Friedrich Theodor Kaufmann. Lebensdaten: 9. April 1823–5. Februar 1872. Tätigkeiten: Uhrmacher, Instrumentenbauer. Wirkorte: Dresden" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A008451.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A008451.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,8 +209,7 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
                         <li>Friedrich Theodor Kaufmann</li>
 
                     </ol>
@@ -291,29 +292,18 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li><a href="#biographies">Biographien</a>
-                                </li>
+                                <li><a href="#biographies">Biographien</a></li>
                                 
-                                <li><a href="#correspondence" data-target="A008451/correspondence.html">Korrespondenz<small> (1)</small></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a class="deactivated"></a>
-                                </li>
-                                <li><a href="#contacts" data-target="A008451/contacts.html">Kontakte<small> (1)</small></a>
-                                </li>
-                                <li><a href="#backlinks" data-target="A008451/backlinks.html">Rückverweise<small> (2)</small></a>
-                                </li>
+                                <li><a href="#correspondence" data-target="A008451/correspondence.html">Korrespondenz<small> (1)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#contacts" data-target="A008451/contacts.html">Kontakte<small> (1)</small></a></li>
+                                <li><a href="#backlinks" data-target="A008451/backlinks.html">Rückverweise<small> (2)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -334,7 +324,7 @@
                                                 <h2>Dokumente</h2>
                                                 
                                                 <ul class="nav nav-tabs">
-                                                    <li class="gradient-light">
+                                                    <li class="gradient-light active">
                                                         <a data-toggle="tab" href="#wegaText">WeGA Text</a>
                                                     </li>
                                                     <li class="gradient-light">
@@ -370,11 +360,11 @@
                                                     
                                                     
                                                     <div>
-                                                            <p>Sohn von <a class="persons A000983" href="/exist/apps/WeGA-WebApp/de/A000983.html">Johann Friedrich Kaufmann</a>, mit dem er 1842–1844 eine Kunstreise durch <span class=" 21411511610111411410110599104"><span class="tei_country">Österreich</span></span>, <span class=" 6697121101114110"><span class="tei_country">Bayern</span></span>, <span class=" 8211711511510897110100"><span class="tei_country">Russland</span></span> und <span class=" 6822811010110997114107"><span class="tei_country">Dänemark</span></span> unternahm; 
-      auf der Rückreise von <span class=" 7511111210111010497103101110"><span class="tei_settlement">Kopenhagen</span></span> erlitten sie Schiffbruch, konnten gerettet werden, aber verloren alle Instrumente; 
+                                                            <p>Sohn von <a class="preview persons A000983" href="/exist/apps/WeGA-WebApp/de/A000983.html">Johann Friedrich Kaufmann</a>, mit dem er 1842–1844 eine Kunstreise durch <span class="tei_placeName"><span class="tei_country">Österreich</span></span>, <span class="tei_placeName"><span class="tei_country">Bayern</span></span>, <span class="tei_placeName"><span class="tei_country">Russland</span></span> und <span class="tei_placeName"><span class="tei_country">Dänemark</span></span> unternahm; 
+      auf der Rückreise von <span class="tei_placeName"><span class="7511111210111010497103101110">Kopenhagen</span></span> erlitten sie Schiffbruch, konnten gerettet werden, aber verloren alle Instrumente; 
       1844 bis 1851 Neubau der verlorenen Instrumente unter Anwendung neuer Ideen und Erfahrungen, so erfand er das „Orchestrion“; 
-      1851 und 1852 unternahmen beide abermals eine Reise, und zwar nach <span class="tei_settlement"><span class="tei_country">England</span></span>, <span class=" 7311410897110100"><span class="tei_country">Irland</span></span> und <span class="tei_settlement"><span class="tei_country">Schottland</span></span>. 
-      Danach lebten beide nur noch in <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>, ihr sogen. „akustisches Cabinet“ wurde von vielen Fremden aufgesucht.
+      1851 und 1852 unternahmen beide abermals eine Reise, und zwar nach <span class="6911010310897110100"><span class="tei_country">England</span></span>, <span class="tei_placeName"><span class="tei_country">Irland</span></span> und <span class="839910411111611610897110100"><span class="tei_country">Schottland</span></span>. 
+      Danach lebten beide nur noch in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>, ihr sogen. „akustisches Cabinet“ wurde von vielen Fremden aufgesucht.
    </p>
                                                         </div>
                                                     
@@ -394,14 +384,10 @@
                                                 <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
                                                     <ul>
-                                                            <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/116193220">Allgemeine Deutsche Biographie (Wikisource)</a>
-                                                            </li>
-                                                            <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers [sfz40188]" href="http://www.deutsche-biographie.de/pnd116193220.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register [sfz40188]</a>
-                                                            </li>
-                                                            <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01076632]" href="http://thesaurus.cerl.org/record/cnp01076632">CERL Thesaurus</a>
-                                                            </li>
-                                                            <li><a title="Staatsbibliothek zu Berlin – Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=116193220">Kalliope-Verbund für Nachlaesse, Autographen und Verlagsarchive</a>
-                                                            </li>
+                                                            <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/116193220">Allgemeine Deutsche Biographie (Wikisource)</a></li>
+                                                            <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd116193220.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
+                                                            <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01076632]" href="http://thesaurus.cerl.org/record/cnp01076632">CERL Thesaurus</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=116193220">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
@@ -466,10 +452,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008451</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008451</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 30. September 2015 durch Solveig Schreiter</span>
-                        </p>
+                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>
@@ -497,6 +482,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -507,6 +493,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -541,6 +528,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

@@ -13,8 +13,8 @@
         <meta property="dc:contributor" content="Carl Maria von Weber" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-05-11T13:32:28.634183Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031117" />
         <meta property="dc:description" content="zusammenfassende Worte über die Feierlichkeiten zu Abbé Voglers 61. Geburtstag" />
         <meta name="description" content="zusammenfassende Worte über die Feierlichkeiten zu Abbé Voglers 61. Geburtstag" />
@@ -48,6 +48,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -80,8 +81,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -182,13 +187,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031117.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031117.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -209,14 +211,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
-                        </li>
-                        <li><span>A031117</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a></li>
+                        <li><span>A031117</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -233,33 +231,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031117.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Gänsbacher, Johann">Gänsbacher, Johann</span> 
@@ -274,8 +264,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -296,11 +285,10 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader">Rheinische Bundes-Staaten.</h2><span class="tei_opener"><span class="tei_seg">[...]</span><br />
-               <span class="tei_dateline_center"><span class="tei_hi_spaced_out"><span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span></span>, den 16. Juni.<br /></span></span>
-                                        <p>Die einfache herzliche Feier eines Tages, der jedem Kunstfreunde werth seyn muß, verdient auch öffentlich gekannt zu seyn, und deswegen ergreift Ref. die Feder um das kleine musikalische Fest zu beschreiben, das an des hochgeschätzten großen Künstlers und Tongelehrten, des geh. Rath, <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt <span class="tei_hi_spaced_out">Voglers</span></a> Geburtstage den 15ten Juni 1810 von seinen in Darmstadt anwesenden Schülern veranstaltet wurde. Der Name eines Festes ist wohl hier uneigentlich, denn das Ganze sprach sich als reine Ergießung einer herzlichen Anhänglichkeit an einen Mann aus, der als Mensch und Künstler gleich achtenswerth, durch nichts mehr erfreut werden konnte, als von dem Streben seiner Zöglinge, Ihm diese an den Tag zu legen; und wodurch konnte dies besser geschehen, als durch eine von allen mit gleicher Theilnahme unternommene Arbeit? Am Morgen des festlichen Tages wurde seine <span class="tei_hi_spaced_out">Büste</span> mit dem Ihm längst von der Welt zuerkannten Lorbeerkranz geschmückt, mit Rosen umgeben, und bei seinem Eintritt in das Zimmer, (das ein kleiner Zirkel seiner Freunde belebte), tönte Ihm eine kurze <a class="writings A030834" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030834.html">Kantate</a> von den Herren <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html"><span class="tei_hi_spaced_out">Meyer Beer</span></a> aus <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>, und <a class="persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html"><span class="tei_hi_spaced_out">Gänsbacher</span></a> aus <span class="tei_pb"> | </span> <span class=" 8011497103"><span class="tei_settlement">Prag</span></span> komponirt, entgegen, deren Text von Hrn. <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Marie von <span class="tei_hi_spaced_out">Weber</span></a> das Verdienst der Wahrheit und Gefühl seines Stoffes hat, und von den beiden Künstler mit sehr braver, Schüler eines solchen Lehrers würdigen Musik begleitet wurde. Sie verfehlte auch ihre Wirkung nicht, die sich in einer herzlichen freudigen Stimmung, die den ganzen Morgen noch die Gesellschaft belebte, zeigte; und mit dem allgemeinen Wunsche schloß, daß noch oft dieser Tag zur Freude und zum Gewinn der Kunst wiederkehren möge.              
-            </p><span class="tei_signed textAlign-right"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M – s</a>.</span>
-                                    </div>
+                                        <h2 class="docHeader textAlign-left">Rheinische Bundes-Staaten.</h2><span class="tei_opener"><span class="tei_seg">[...]</span><br />
+               <span class="tei_dateline textAlign-center"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span></span>, den 16. Juni.<br /></span></span>
+                                        <p>Die einfache herzliche Feier eines Tages, der jedem Kunstfreunde werth seyn muß, verdient auch öffentlich gekannt zu seyn, und deswegen ergreift Ref. die Feder um das kleine musikalische Fest zu beschreiben, das an des hochgeschätzten großen Künstlers und Tongelehrten, des geh. Rath, <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt <span class="tei_hi_spaced_out">Voglers</span></a> Geburtstage den 15ten Juni 1810 von seinen in Darmstadt anwesenden Schülern veranstaltet wurde. Der Name eines Festes ist wohl hier uneigentlich, denn das Ganze sprach sich als reine Ergießung einer herzlichen Anhänglichkeit an einen Mann aus, der als Mensch und Künstler gleich achtenswerth, durch nichts mehr erfreut werden konnte, als von dem Streben seiner Zöglinge, Ihm diese an den Tag zu legen; und wodurch konnte dies besser geschehen, als durch eine von allen mit gleicher Theilnahme unternommene Arbeit? Am Morgen des festlichen Tages wurde seine <span class="tei_hi_spaced_out">Büste</span> mit dem Ihm längst von der Welt zuerkannten Lorbeerkranz geschmückt, mit Rosen umgeben, und bei seinem Eintritt in das Zimmer, (das ein kleiner Zirkel seiner Freunde belebte), tönte Ihm eine kurze <a class="preview writings A030834" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030834.html">Kantate</a> von den Herren <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html"><span class="tei_hi_spaced_out">Meyer Beer</span></a> aus <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, und <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html"><span class="tei_hi_spaced_out">Gänsbacher</span></a> aus <span class="tei_pb" title="Seitenumbruch"> | </span> <span class="tei_placeName"><span class="8011497103">Prag</span></span> komponirt, entgegen, deren Text von Hrn. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Marie von <span class="tei_hi_spaced_out">Weber</span></a> das Verdienst der Wahrheit und Gefühl seines Stoffes hat, und von den beiden Künstler mit sehr braver, Schüler eines solchen Lehrers würdigen Musik begleitet wurde. Sie verfehlte auch ihre Wirkung nicht, die sich in einer herzlichen freudigen Stimmung, die den ganzen Morgen noch die Gesellschaft belebte, zeigte; und mit dem allgemeinen Wunsche schloß, daß noch oft dieser Tag zur Freude und zum Gewinn der Kunst wiederkehren möge.              
+            </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M – s</a>.</span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -317,7 +305,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: Sigle (M-s.); lt. <a class="diaries A064512" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064512.html">TB, 18. Juni 1810</a> an Ferdinand Kaufmann geschickt; veröffentlicht in: Becker (Meyerbeer), Bd. 1, S. 593
+                                        <p>Zuschreibung: Sigle (M-s.); lt. <a class="preview diaries A064512" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064512.html">TB, 18. Juni 1810</a> an Ferdinand Kaufmann geschickt; veröffentlicht in: Becker (Meyerbeer), Bd. 1, S. 593
             </p>
                                     </div>
                         </div>
@@ -325,9 +313,8 @@
                         <div>
                             <h3 class="media-heading">Entstehung</h3>
                             <p><span class="tei_date">16. Juni 1810; Versand am 
-               <a class="diaries A064512" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064512.html">18. Juni 1810</a> (laut TB)
-            </span>
-                                    </p>
+               <a class="preview diaries A064512" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064512.html">18. Juni 1810</a> (laut TB)
+            </span></p>
                         </div>
                         
                         <div>
@@ -339,7 +326,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Rheinische Correspondenz</span>, Bd.&#160;2, Heft&#160;171 (22. Juni 1810), S.&#160;681–682</p>
+                                <p><span class="journalTitle">Rheinische Correspondenz</span>, Bd. 2, Heft 171 (22. Juni 1810), S. 681–682</p>
                                 
                                 <div>
                                     
@@ -360,7 +347,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031117/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -382,10 +369,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031117</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031117</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 11. Mai 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -411,6 +397,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -421,6 +408,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -455,6 +443,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

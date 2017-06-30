@@ -16,7 +16,7 @@
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T20:06:38.872633Z" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448" />
         <meta property="dc:description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber" />
         <meta name="description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber" />
@@ -50,6 +50,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -82,8 +83,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -184,13 +189,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030448.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030448.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,14 +213,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Anonymus</a>
-                        </li>
-                        <li><a>Schriften</a>
-                        </li>
-                        <li><span>A030448</span> <span class="docStatus">in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Anonymus</a></li>
+                        <li><a>Schriften</a></li>
+                        <li><span>A030448</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,33 +233,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001864" /> <span title="Spontini, Gaspare">Spontini, Gaspare</span> 
@@ -272,8 +262,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -290,12 +279,10 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><span> […]</span>
-                                        </p>
-                                        <p>Im Gebiete der <span class="tei_hi_spaced_out">Oper</span> hatten wir den <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_spaced_out">Freischütz</span></span> als einzige neue und wichtige Erscheinung. Die Melodien der Chöre sind Eigenthum des Volks geworden; und das beweist am schlagendsten für die Trefflichkeit solcher Musik, die nicht zum großen historischen Styl, sondern zu den Genrestücken gehört. Die lustige Baßarie, die das ABC des Lüderlichen aufweiset, steht an echter Jovialität der musikalischen Erfindung jenen Chören nicht nach. Von den übrigen Arien sage<span class="tei_cb"> ¦ </span> ich nur, daß sie bei weitem den Vergleich mit dem bereits bezeichneten nicht aushalten. – Die Instrumentirung ist durchgehends vortrefflich; sie enthält einen Reichthum von Imitationen in den Mittelstimmen – eine Fülle feiner psychologischer Beziehungen zu der Situation der Singenden – und endlich in der Nachahmung von Naturstimmen ein so tiefes Ergründen des Mysteriums jedes Blasinstrumentes, daß dieser Theil der Arbeit allein schon die Krone verdient, wenn auch für die <span class="tei_hi_spaced_out">Bässe</span> mehr Charakteristisches gethan seyn könnte.</p>
-                                        <p>Wir hofften, <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> würde hieher für immer engagirt werden, und ein herrlich reiches musikalische Leben wäre uns aufgegangen durch den Besitz <a class="persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a>’s für die große historische Oper und Balletmusik, und dann <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s für Genrestücke und Instrumentalscenen. Aber unbesonnene, unberufene täppische Freunde <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria</a>’s thaten ihr Möglichstes, um durch Seitenhiebe auf Andere Unwillen und Zwietracht zu erregen. Und deshalb geschah natürlich von Seiten dieser Andern kein Schritt, um die hier im Publikum bekannt gewordenen Schwierigkeiten vermittelnd zu heben, welche jenem Engagement im Wege standen. Gott schütze jeden ausgezeichneten Mann gegen seine Freunde!</p>
-                                        <p><span> […]</span>
-                                        </p>
+                                        <p><span> […]</span></p>
+                                        <p>Im Gebiete der <span class="tei_hi_spaced_out">Oper</span> hatten wir den <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_spaced_out">Freischütz</span></span> als einzige neue und wichtige Erscheinung. Die Melodien der Chöre sind Eigenthum des Volks geworden; und das beweist am schlagendsten für die Trefflichkeit solcher Musik, die nicht zum großen historischen Styl, sondern zu den Genrestücken gehört. Die lustige Baßarie, die das ABC des Lüderlichen aufweiset, steht an echter Jovialität der musikalischen Erfindung jenen Chören nicht nach. Von den übrigen Arien sage<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ich nur, daß sie bei weitem den Vergleich mit dem bereits bezeichneten nicht aushalten. – Die Instrumentirung ist durchgehends vortrefflich; sie enthält einen Reichthum von Imitationen in den Mittelstimmen – eine Fülle feiner psychologischer Beziehungen zu der Situation der Singenden – und endlich in der Nachahmung von Naturstimmen ein so tiefes Ergründen des Mysteriums jedes Blasinstrumentes, daß dieser Theil der Arbeit allein schon die Krone verdient, wenn auch für die <span class="tei_hi_spaced_out">Bässe</span> mehr Charakteristisches gethan seyn könnte.</p>
+                                        <p>Wir hofften, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> würde hieher für immer engagirt werden, und ein herrlich reiches musikalische Leben wäre uns aufgegangen durch den Besitz <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a>’s für die große historische Oper und Balletmusik, und dann <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s für Genrestücke und Instrumentalscenen. Aber unbesonnene, unberufene täppische Freunde <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria</a>’s thaten ihr Möglichstes, um durch Seitenhiebe auf Andere Unwillen und Zwietracht zu erregen. Und deshalb geschah natürlich von Seiten dieser Andern kein Schritt, um die hier im Publikum bekannt gewordenen Schwierigkeiten vermittelnd zu heben, welche jenem Engagement im Wege standen. Gott schütze jeden ausgezeichneten Mann gegen seine Freunde!</p>
+                                        <p><span> […]</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -329,7 +316,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg.&#160;22, Nr.&#160;34 (16. Februar 1822), Sp.&#160;270–272</p>
+                                <p><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 22, Nr. 34 (16. Februar 1822), Sp. 270–272</p>
                                 
                                 <div>
                                     
@@ -350,7 +337,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A030448/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -372,10 +359,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -401,6 +387,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -411,6 +398,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -445,6 +433,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

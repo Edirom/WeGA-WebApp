@@ -21,6 +21,7 @@ import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/sea
 import module namespace html-meta="http://xquery.weber-gesamtausgabe.de/modules/html-meta" at "html-meta.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
+import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
@@ -29,29 +30,35 @@ let $config := map {
     $templates:CONFIG_STOP_ON_ERROR := true()
 }
 
+(:~
+ : Initialise the model map for the templating 
+ : with the attributes that are passed by the controller
+~:)
 let $model := 
-    map {
-        'docID' := request:get-attribute('docID'),
-        'lang' := request:get-attribute('lang'),
-        'docType' := request:get-attribute('docType'),
-        'doc' := try { core:doc(request:get-attribute('docID')) } catch * {()},
-        'environment' := config:get-option('environment')
-    }
+	map:new((
+		(
+		for $var in request:attribute-names()
+		return
+			map:entry($var, request:get-attribute($var))
+		),
+		map:entry('environment', config:get-option('environment')),
+		map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+	))
     
-(:
+(:~
  : We have to provide a lookup function to templates:apply to help it
  : find functions in the imported application modules. The templates
  : module cannot see the application modules, but the inline function
  : below does see them.
- :)
+~:)
 let $lookup := function($functionName as xs:string, $arity as xs:int) {
     try { function-lookup(xs:QName($functionName), $arity) } 
     catch * {()}
 }
-(:
+(:~
  : The HTML is passed in the request from the controller.
  : Run it through the templating system and return the result.
- :)
+~:)
 let $content := request:get-data()
 let $modified := request:get-attribute('modified') = 'true'
 return 

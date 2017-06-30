@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-04-14T16:05:20.174156Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042284" />
         <meta property="dc:description" content="Weber übermittelt in Abschrift Teile der Korrespondenz mit Spontini betr. Aufführung der Euryanthe in Berlin (=Spontini an Weber 27.3.1824 u. Weber an ds.: 12.4.1824);" />
         <meta name="description" content="Weber übermittelt in Abschrift Teile der Korrespondenz mit Spontini betr. Aufführung der Euryanthe in Berlin (=Spontini an Weber 27.3.1824 u. Weber an ds.: 12.4.1824);" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A042284.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A042284.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A042284</span> <span class="docStatus">in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A042284</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -289,7 +279,7 @@
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042275.html">1824-03-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
                                     </li>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041677.html">1821-06-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
                                     </li>
                                 </ul>
                                 <h4>Folgend</h4>
@@ -305,9 +295,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000235" /> <span title="Brühl, Carl Graf von">Brühl, Carl Graf von</span> 
@@ -320,8 +309,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -331,8 +319,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -351,30 +338,27 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
-                                        <p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d34853e5" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e5">‡</a></span>
-                                        </p>
+                                        <p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d53919e5" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e5">‡</a></span></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <p class="teiLetter_salute"><span class="tei_app"><span class="tei_lem">Hochgebohrener Herr Graf!</span><a class="noteMarker" id="ref-d34853e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e24">‡</a></span><br />
-                  <span class="tei_app"><span class="tei_lem">Hochzuehrendster Herr <span class="tei_hi_latintype">General-Intendant</span>!</span><a class="noteMarker" id="ref-d34853e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e31">‡</a></span>
+               <p class="teiLetter_salute"><span class="tei_app"><span class="tei_lem">Hochgebohrener Herr Graf!</span><a class="noteMarker" id="ref-d53919e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e24">‡</a></span><br />
+                  <span class="tei_app"><span class="tei_lem">Hochzuehrendster Herr <span class="tei_hi_latintype">General-Intendant</span>!</span><a class="noteMarker" id="ref-d53919e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e31">‡</a></span>
                </p>
             </div>
-                                        <p>Da ich die Aufführung meiner Oper <span class="tei_hi_latintype"><span class="works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> auf dem <span class=" 7524611010510310846328410410197116101114321221173266101114108105110">Königl. Theater zu <span class="tei_hi_latintype">Berlin</span></span> herannahen glaubte, so war es in der Ordnung, und der Achtung die ich seiner Stellung und seinem KünstlerRuhm schuldig bin, -- gemäß, daß ich an den <span class="tei_app"><span class="tei_lem">H: General MusikDirektor</span><a class="noteMarker" id="ref-d34853e54" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e54">‡</a></span> <span class="tei_hi_latintype"><a class="persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> schrieb, /: unterm 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span>
+                                        <p>Da ich die Aufführung meiner Oper <span class="tei_hi_latintype"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> auf dem <span class="tei_placeName">Königl. Theater zu <span class="tei_hi_latintype">Berlin</span></span> herannahen glaubte, so war es in der Ordnung, und der Achtung die ich seiner Stellung und seinem KünstlerRuhm schuldig bin, -- gemäß, daß ich an den <span class="tei_app"><span class="tei_lem">H: General MusikDirektor</span><a class="noteMarker" id="ref-d53919e54" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e54">‡</a></span> <span class="tei_hi_latintype"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> schrieb, /: unterm 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span>
                <span class="tei_hi_latintype">a:</span>
-               <span class="tei_hi_latintype">c:</span> :/ und seine Theilnahme und <span class="tei_app"><span class="tei_lem">Freundlichkeit für meine Oper in Anspruch nahm.</span><a class="noteMarker" id="ref-d34853e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e81">‡</a></span>
-                                        </p>
-                                        <p>Hierauf wurde ich von demselben mit einer Antwort beehrt, deren offiziellen Theil, so wie meine Beantwortung deßelben, ich Ew: Hochgebohren mitzutheilen für Pflicht halte<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a>.</p>
-                                        <p>Ich enthalte mich aller weitern Bemerkungen, indem ich hoffe E. Hochgebohren sind überzeugt, daß es für mich <span class="tei_app"><span class="tei_lem">nicht leicht</span><a class="noteMarker" id="ref-d34853e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e102">‡</a></span> etwas schmerzlicheres geben kann, als <span class="tei_hi_underline1">Ihnen</span> einen unangenehmen <span class="tei_app"><span class="tei_lem">Augenblik</span><a class="noteMarker" id="ref-d34853e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e112">‡</a></span> verursachen zu müßen.</p>
-                                        <p class="teiLetter_closer">Genehmigen Hochdieselben die Gesinnungen der innigsten Hochachtung und Verehrung, mit welchen ich unwandelbar bin<br />
-               <span class="tei_app"><span class="tei_lem">E: Hochgebohren</span><a class="noteMarker" id="ref-d34853e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e124">‡</a></span>
-               <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem">ganz ergebener</span><a class="noteMarker" id="ref-d34853e132" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e132">‡</a></span><br />
-                  <span class="tei_app"><span class="tei_lem"><span class="tei_hi_latintype"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvonWeber</a></span></span><a class="noteMarker" id="ref-d34853e145" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e145">‡</a></span></span>
-               <span class="teiLetter_datelineCloser"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_latintype"><span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span></span></span><a class="noteMarker" id="ref-d34853e155" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e155">‡</a></span> d: 12<span class="tei_hi_superscript">t</span> Aprill 1824.</span>
+               <span class="tei_hi_latintype">c:</span> :/ und seine Theilnahme und <span class="tei_app"><span class="tei_lem">Freundlichkeit für meine Oper in Anspruch nahm.</span><a class="noteMarker" id="ref-d53919e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e81">‡</a></span></p>
+                                        <p>Hierauf wurde ich von demselben mit einer Antwort beehrt, deren offiziellen Theil, so wie meine Beantwortung deßelben, ich Ew: Hochgebohren mitzutheilen für Pflicht halte<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.</p>
+                                        <p>Ich enthalte mich aller weitern Bemerkungen, indem ich hoffe E. Hochgebohren sind überzeugt, daß es für mich <span class="tei_app"><span class="tei_lem">nicht leicht</span><a class="noteMarker" id="ref-d53919e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e102">‡</a></span> etwas schmerzlicheres geben kann, als <span class="tei_hi_underline1">Ihnen</span> einen unangenehmen <span class="tei_app"><span class="tei_lem">Augenblik</span><a class="noteMarker" id="ref-d53919e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e112">‡</a></span> verursachen zu müßen.</p>
+                                        <p class="tei_closer textAlign-left">Genehmigen Hochdieselben die Gesinnungen der innigsten Hochachtung und Verehrung, mit welchen ich unwandelbar bin<br />
+               <span class="tei_app"><span class="tei_lem">E: Hochgebohren</span><a class="noteMarker" id="ref-d53919e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e124">‡</a></span>
+               <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem">ganz ergebener</span><a class="noteMarker" id="ref-d53919e132" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e132">‡</a></span><br />
+                  <span class="tei_app"><span class="tei_lem"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvonWeber</a></span></span><a class="noteMarker" id="ref-d53919e145" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e145">‡</a></span></span>
+               <span class="tei_dateline textAlign-left"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span></span></span><a class="noteMarker" id="ref-d53919e155" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e155">‡</a></span> d: 12<span class="tei_hi_superscript">t</span> Aprill 1824.</span>
             </p>
                                         <div class="tei_postscript">
-                                            <p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d34853e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34853e171">‡</a></span>
-                                            </p>
+                                            <p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d53919e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53919e171">‡</a></span></p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -387,7 +371,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>Weber übermittelt in Abschrift Teile der Korrespondenz mit Spontini betr. Aufführung der Euryanthe in Berlin (=<a class="letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Spontini an Weber 27.3.1824</a> u. <a class="letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Weber an ds.: 12.4.1824</a>);
+                                        <p>Weber übermittelt in Abschrift Teile der Korrespondenz mit Spontini betr. Aufführung der Euryanthe in Berlin (=<a class="preview letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Spontini an Weber 27.3.1824</a> u. <a class="preview letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Weber an ds.: 12.4.1824</a>);
             </p>
                                     </div>
                         </div>
@@ -417,8 +401,8 @@
                                             <p>Dresden (D), Sächsische Landesbibliothek - Staats- und Universitätsbibliothek (D-Dl)<br /><i>Signatur</i>: Mscr.Dresd. App. 514 A, 2344</p>
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                             <ul>
-                                                <li>1 DBl. (1 b.&#160;S. o.&#160;Adr.)</li>
-                                                <li>mit Beilagen: Abschrift eines Briefes von <a class="letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Spontini an Weber vom 27. März</a> und <a class="letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Webers Antwort vom 12. April 1824</a> (beide gekürzt)
+                                                <li>1 DBl. (1 b. S. o. Adr.)</li>
+                                                <li>mit Beilagen: Abschrift eines Briefes von <a class="preview letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Spontini an Weber vom 27. März</a> und <a class="preview letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Webers Antwort vom 12. April 1824</a> (beide gekürzt)
                         </li>
                                                 <li>Vermerk von Brühl auf 1r: <span class="tei_hi_italic">praes d 20 April 1824 / ad Acta Brühl</span>
                         </li>
@@ -453,88 +437,76 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e59" data-title="del">"": Gelöschter Text nicht lesbar.</div>
+                                            <div class="apparatusEntry" id="d53919e59" data-title="del">"": Gelöschter Text nicht lesbar.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e60" data-title="gap illegible"> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d53919e60" data-title="gap illegible"> Unleserliche Stelle </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e61" data-title="add">"Ge: MusikD:": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d53919e61" data-title="add">"Ge: MusikD:": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e86" data-title="del">"in Anspruch nehmen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d53919e86" data-title="del">"in Anspruch nehmen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e106" data-title="add">"nicht leicht": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d53919e106" data-title="add">"nicht leicht": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e117" data-title="del">"zu":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d53919e117" data-title="del">"zu":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e136" data-title="subst">"ganz": "herzlichst" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d53919e136" data-title="subst">"ganz": "herzlichst" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e175" data-title="add">"von": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d53919e175" data-title="add">"von": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e5" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_underline1">An den H: Grafen <span class="tei_hi_latintype"><a class="persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a></span> in</span><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span></span></span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e5" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_underline1">An den H: Grafen <span class="tei_hi_latintype"><a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a></span> in</span><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></span></span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e24" data-title="app">"Hochgebohrener Herr Graf!": Lesart in anderer Quelle: <span class="tei_rdg">Hochg: H: Gr:</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e24" data-title="app">"Hochgebohrener Herr Graf!": Lesart in anderer Quelle: <span class="tei_rdg">Hochg: H: Gr:</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e31" data-title="app">"Hochzuehrendster Herr General-Intendant!": Lesart in anderer Quelle: <span class="tei_rdg">Hochzuehrendster H: G: I:</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e31" data-title="app">"Hochzuehrendster Herr General-Intendant!": Lesart in anderer Quelle: <span class="tei_rdg">Hochzuehrendster H: G: I:</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e54" data-title="app">"H: General MusikDirektor": Lesart in anderer Quelle: <span class="tei_rdg">H: <span class="tei_del"><span> […]</span></span><span class="tei_add">Ge: MusikD:</span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e54" data-title="app">"H: General MusikDirektor": Lesart in anderer Quelle: <span class="tei_rdg">H: <span class="tei_del"><span> […]</span></span><span class="tei_add">Ge: MusikD:</span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e81" data-title="app">"Freundlichkeit für meine Oper in Anspruch nahm.": Lesart in anderer Quelle: <span class="tei_rdg">Freundlichkeit <span class="tei_del">in Anspruch nehmen</span> für meine Oper in Anspruch nahm.</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e81" data-title="app">"Freundlichkeit für meine Oper in Anspruch nahm.": Lesart in anderer Quelle: <span class="tei_rdg">Freundlichkeit <span class="tei_del">in Anspruch nehmen</span> für meine Oper in Anspruch nahm.</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… Hochgebohren mitzutheilen für Pflicht halte": </span>vgl. Beilagen zum Brief: <a class="letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Brief von Spontini an Weber vom 27. März 1824</a> und <a class="letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Brief von Weber an Spontini vom 12. April 1824</a> </div>
+                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… Hochgebohren mitzutheilen für Pflicht halte": </span>vgl. Beilagen zum Brief: <a class="preview letters A042246" href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">Brief von Spontini an Weber vom 27. März 1824</a> und <a class="preview letters A042285" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">Brief von Weber an Spontini vom 12. April 1824</a> </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e102" data-title="app">"nicht leicht": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_add">nicht leicht</span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e102" data-title="app">"nicht leicht": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_add">nicht leicht</span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e112" data-title="app">"Augenblik": Lesart in anderer Quelle: <span class="tei_rdg">Augenblik <span class="tei_del">zu</span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e112" data-title="app">"Augenblik": Lesart in anderer Quelle: <span class="tei_rdg">Augenblik <span class="tei_del">zu</span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e124" data-title="app">"E: Hochgebohren": Lesart in anderer Quelle: <span class="tei_rdg">E: H:</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e124" data-title="app">"E: Hochgebohren": Lesart in anderer Quelle: <span class="tei_rdg">E: H:</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e132" data-title="app">"ganz ergebener": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_subst"><span class="tei_add">ganz</span></span> ergebener</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e132" data-title="app">"ganz ergebener": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_subst"><span class="tei_add">ganz</span></span> ergebener</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e145" data-title="app">"CMvonWeber": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_latintype">CMvW:</span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e145" data-title="app">"CMvonWeber": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_latintype">CMvW:</span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e155" data-title="app">"Dresden": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_latintype">Dr:</span></span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e155" data-title="app">"Dresden": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_latintype">Dr:</span></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34853e171" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">Hiebei eine Abschrift mitgeschikt <span class="tei_add tei_hi_superscript">von</span> denen mit roth bezeichneten Stellen in <span class="tei_hi_latintype"><a class="persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontinis</a></span> und meinem Briefe.</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="d53919e171" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">Hiebei eine Abschrift mitgeschikt <span class="tei_add tei_hi_superscript">von</span> denen mit roth bezeichneten Stellen in <span class="tei_hi_latintype"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontinis</a></span> und meinem Briefe.</span></div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A042284/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -556,10 +528,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042284</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042284</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -585,6 +556,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -595,6 +567,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -629,6 +602,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

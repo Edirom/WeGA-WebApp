@@ -106,7 +106,7 @@ declare %private function facets:createFacets($nodes as node()*, $facet as xs:st
 ~:)
 declare %private function facets:display-term($facet as xs:string, $term as xs:string, $lang as xs:string) as xs:string {
     switch($facet)
-    case 'persons' case 'sender' case 'addressee' 
+    case 'persons' case 'personsPlus' case 'sender' case 'addressee' 
     case 'dedicatees' case 'lyricists' case 'librettists' 
     case 'composers' case 'authors' case 'editors' return
         if(wdt:persons($term)('check')()) then wdt:persons($term)('label-facets')() (:$facets:persons-norm-file//norm:entry[range:eq(@docID,$term)]/normalize-space():)
@@ -119,14 +119,23 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
     default return str:normalize-space($term)
 };
 
+(:~
+ : Create "Allfilter" section on document pages
+ : allows highlighting of names in the text
+~:)
 declare 
     %templates:default("lang", "en") 
     %templates:wrap
     function facets:document-allFilter($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $suppressLinks := year-from-date(xs:date($model('doc')/tei:ab/@n)) = $config:diaryYearsToSuppress
+        let $filterSections := 
+            if($suppressLinks) then ('places', 'characterNames')
+            else ('personsPlus', 'works', 'places', 'characterNames')
+        return
         map {
             'filterSections' := 
-                for $filter in ('persons', 'works', 'places', 'characterNames')
-                let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-doctype-by-id(.) = $filter])
+                for $filter in $filterSections
+                let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
                 let $places := 
                     if($filter = 'places') then distinct-values($model('doc')//tei:settlement[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
                     else ()
@@ -150,11 +159,7 @@ declare
                 (: iterating over filterSection although there's only one key in this map :)
                 for $i in map:keys($model('filterSection'))
                     for $j in $model('filterSection')($i)
-                    let $label :=
-                        switch($i)
-                        case 'persons' return query:title($j)
-                        case 'works' return wdt:works($j)('title')('txt')
-                        default return $j
+                    let $label := facets:display-term($i, $j, $lang)
                     let $key :=
                         switch($i)
                         case 'places' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')

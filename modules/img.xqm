@@ -42,7 +42,7 @@ declare
     %templates:wrap
     function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
         let $local-image := img:wega-images($model, $lang)
-        let $suppressExternalPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
+        let $suppressWikipediaPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
         let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
             if(exists($model('beaconMap'))) then $model('beaconMap')
             else try { 
@@ -53,7 +53,7 @@ declare
             if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
             else ()
         let $wikipedia-images := 
-            if(count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
+            if(not($suppressWikipediaPortrait) and count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
             else ()
         let $tripota-images := 
             if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
@@ -62,9 +62,7 @@ declare
             if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
             else ()
         let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
-        let $portrait := 
-            if($suppressExternalPortrait) then img:get-generic-portrait($model, $lang)
-            else ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
+        let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
         return
             map { 
                 'iconographyImages' := $iconographyImages,
@@ -94,8 +92,8 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $wikiArticle := 
         if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
-    (: Look for images in wikipedia infobox (for organizations) and thumbnails  :)
-    let $pics := $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
+    (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
+    let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:wikipedia-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
@@ -116,7 +114,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
             https://github.com/Toollabs/zoomviewer
         :)
         let $caption := 
-            if($div[self::xhtml:table]) then $div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr[1] 
+            if($div[self::xhtml:table]) then ($div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr)[1] 
             else $div/xhtml:div[@class='thumbcaption']
         return 
             if($thumbURI castable as xs:anyURI) then
@@ -250,10 +248,7 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
     let $iiifServer := config:get-option('iiifServer')
     return
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
-        (:  Need to double encode URI due to old Apache front end  :)
-        let $iiifURI := 
-            if(contains($iiifServer, 'euryanthe')) then $iiifServer || encode-for-uri(encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/')))
-            else $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+        let $iiifURI := $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
@@ -344,8 +339,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
                 "canvases" := array {
                     for $i at $counter in $doc//tei:facsimile/tei:graphic
                     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-                    (:  Need to double encode URI due to old Apache front end  :)
-                    let $image-id := $baseURL || encode-for-uri(encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url))))
+                    let $image-id := $baseURL || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
                     let $page-label := 
                         if($i/@xml:id) then $i/string(@xml:id)
                         else 'page' || $counter 

@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2016-06-10T15:13:01.839535Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031372" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031372.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031372.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,14 +212,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Anonymus</a>
-                        </li>
-                        <li><a>Schriften</a>
-                        </li>
-                        <li><span>A031372</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Anonymus</a></li>
+                        <li><a>Schriften</a></li>
+                        <li><span>A031372</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,33 +232,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031372/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031372.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031372/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031372.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A0028D1" /> <span title="Bröckelmann, Friederike">Bröckelmann, Friederike</span> 
@@ -287,8 +277,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -298,8 +287,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -309,8 +297,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -338,8 +325,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
-                                    <div class="docPart"><span class="tei_opener"><span class="tei_dateline"><span class=" 8211111511611199107"><span class="tei_settlement">Rostock</span></span>, den <span class="tei_date">23.&#160;November</span>.</span></span>
-                                        <p>So ist denn nun auch uns endlich das Vergnügen geworden <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a></span> herrliches Tongemälde <span class="tei_hi_spaced_out">„<span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">der
+                                    <div class="docPart"><span class="tei_opener"><span class="tei_dateline textAlign-right"><span class="tei_placeName"><span class="8211111511611199107">Rostock</span></span>, den <span class="tei_date">23. November</span>.</span></span>
+                                        <p>So ist denn nun auch uns endlich das Vergnügen geworden <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a></span> herrliches Tongemälde <span class="tei_hi_spaced_out">„<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">der
                Freischütz</span>“</span>, das längst in allen deutschen Gauen rühmlichst bekannt ist,
                und dessen einzelne Klänge in jeder Stadt, fast in jedem Flecken, ja selbst in
                vielen Dörfern Deutschlands, durch die ambulanten Drehorgeln expedirt, erschallen zu
@@ -348,12 +335,12 @@
                förderte, das sich durch Lieblichkeit und Kraft, Einfachheit und Fülle, Originalität
                und Genialität, Karakteristik und musikalische Malerei zu einem der bedeutendsten
                unserer Zeit erhebt und sich daher auf den Repertoirs deutscher Bühnen an der Seite
-               der bis jetzt unübertroffenen Meisterwerke eines <span class="tei_hi_spaced_out"><a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span> bleibend erhalten wird. ‒ Durch den Abgang der <a class="persons A0028D1" href="/exist/apps/WeGA-WebApp/de/A0028D1.html">Madame <span class="tei_hi_spaced_out">Bröckelmann</span></a> von unserm Theater, war der eigentlich seit Jahren schon
+               der bis jetzt unübertroffenen Meisterwerke eines <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span> bleibend erhalten wird. – Durch den Abgang der <a class="preview persons A0028D1" href="/exist/apps/WeGA-WebApp/de/A0028D1.html">Madame <span class="tei_hi_spaced_out">Bröckelmann</span></a> von unserm Theater, war der eigentlich seit Jahren schon
                vakante Platz einer ersten Sängerin erledigt, weshalb diese Oper hier bis jetzt
-               nicht zur Aufführung gebracht werden konnte; die Anwesenheit der <a class="persons A009214" href="/exist/apps/WeGA-WebApp/de/A009214.html">Mad. <span class="tei_hi_spaced_out">Thomassini</span></a>, aus der Strelitzischen Hofkapelle, (die uns
+               nicht zur Aufführung gebracht werden konnte; die Anwesenheit der <a class="preview persons A009214" href="/exist/apps/WeGA-WebApp/de/A009214.html">Mad. <span class="tei_hi_spaced_out">Thomassini</span></a>, aus der Strelitzischen Hofkapelle, (die uns
                beiläufig gesagt als Großh. Meckl. Schwerinsche Kammersängerin <span class="tei_hi_spaced_out">Toscani</span> in den Zeitungen angekündigt war) führte endlich die Gelegenheit
-               herbei. Sie hatte die Parthie der <span class="tei_hi_spaced_out"><span class=" 6510397116104101">Agathe</span></span> übernommen, und <a class="persons A009571" href="/exist/apps/WeGA-WebApp/de/A009571.html">ihr Gatte</a> unterstützte das Orchester durch sein bekanntes treffliches Violinspiel. Die
-               erste Aufführung fand am <span class="tei_date">19ten d.&#160;M.</span> statt und sie wurde bis heute zweimal bei stets
+               herbei. Sie hatte die Parthie der <span class="tei_hi_spaced_out"><span class="6510397116104101">Agathe</span></span> übernommen, und <a class="preview persons A009571" href="/exist/apps/WeGA-WebApp/de/A009571.html">ihr Gatte</a> unterstützte das Orchester durch sein bekanntes treffliches Violinspiel. Die
+               erste Aufführung fand am <span class="tei_date">19ten d. M.</span> statt und sie wurde bis heute zweimal bei stets
                vollem Hause und Abonnement <span class="tei_hi_italic">suspendu</span> wiederholt. Referent
                hatte nur die Gelegenheit den beiden ersten Vorstellungen beizuwohnen und bezieht
                sich sein Bericht daher nur auf diese. Zwar ließen diese Aufführungen in der
@@ -362,53 +349,53 @@
                höchst miserables Lokal jeder Bemühung in dieser Beziehung feindlich entgegentritt)
                besonders die erste manches zu wünschen übrig, jedoch schien uns ein Streben der
                Darsteller nach Vervollkommnung sichtbar. Die überaus schöne Ouvertüre, die allein
-               schon eine ganze <a class="persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossinische</a> Oper aufwiegt, ist die Krone des Ganzen und wurde mit
+               schon eine ganze <a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossinische</a> Oper aufwiegt, ist die Krone des Ganzen und wurde mit
                einer, bei uns seltenen, lobenswerthen Stille und Aufmerksamkeit aufgenommen und
                ergriff beide Male ausserordentlich. Die Chöre wollten uns durchweg nicht recht
                gefallen, unser Opernpersonale ist zu schwach, um einen Chor gut zu besetzen; der so
                berühmt gewordene Jägerchor wollte beide Male nicht recht ansprechen. Das herrliche
-               Terzett nebst Chor No.&#160;3, im 1sten Akte, hätten wir präziser gewünscht. Doch der
+               Terzett nebst Chor No. 3, im 1sten Akte, hätten wir präziser gewünscht. Doch der
                Raum gestattet es hier nicht, uns über das Ensemble weiter zu verbreiten, daher nur
-               einiges über die Leistungen der Hauptpersonen. <a class="persons A009214" href="/exist/apps/WeGA-WebApp/de/A009214.html">Mad. Thomassini</a>, die, wie schon
-               erwähnt, die <span class=" 6510397116104101">Agathe</span> sang, ist unläugbar eine routinirte Sängerin, die ihre Stimme ‒
-               welche kräftig und volltönend, jedoch nicht von bedeutendem Umfange ist ‒ ganz in
+               einiges über die Leistungen der Hauptpersonen. <a class="preview persons A009214" href="/exist/apps/WeGA-WebApp/de/A009214.html">Mad. Thomassini</a>, die, wie schon
+               erwähnt, die <span class="6510397116104101">Agathe</span> sang, ist unläugbar eine routinirte Sängerin, die ihre Stimme –
+               welche kräftig und volltönend, jedoch nicht von bedeutendem Umfange ist – ganz in
                ihrer Gewalt hat und sicher und rein intonirt. Was wir besonders an ihr loben, ist,
                daß sie die musikalischen Schnörkeleien und den Modetand verachtet, ihren Gesang
                nicht überflüssig verziert und überladet, sondern die Noten so singt, wie sie der
-               Komponist vorgeschrieben. Möchten <span class="tei_supplied" id="d57017e64"><span class="brackets_supplied">[</span>sich<span class="brackets_supplied">]</span></span> doch manche Sängerinnen hieran ein Beispiel
+               Komponist vorgeschrieben. Möchten <span class="tei_supplied" id="d42221e64"><span class="brackets_supplied">[</span>sich<span class="brackets_supplied">]</span></span> doch manche Sängerinnen hieran ein Beispiel
                nehmen! Auf den Brettern scheint sie zwar nicht recht zu Hause zu seyn, jedoch ist
                dies auch von einer <span class="tei_hi_spaced_out">Kammersängerin</span> nicht zu verlangen. Wir
-               können immerhin mit dieser <span class="tei_hi_spaced_out"><span class=" 6510397116104101">Agathe</span></span> zufrieden seyn, obgleich
+               können immerhin mit dieser <span class="tei_hi_spaced_out"><span class="6510397116104101">Agathe</span></span> zufrieden seyn, obgleich
                ihre Darstellung im allgemeinen kalt ließ. Wir nennen als ausgezeichnet, ihren
-               Vortrag der rührenden Kavatine des 3ten Akts: „Und <span class="tei_cb"> ¦ </span> ob die Wolke sich
-               verhülle“. Bemerken wollen wir noch, daß jedesmal, wenn <span class=" 6510397116104101">Agathe</span> sang, sich ausser dem
+               Vortrag der rührenden Kavatine des 3ten Akts: „Und <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ob die Wolke sich
+               verhülle“. Bemerken wollen wir noch, daß jedesmal, wenn <span class="6510397116104101">Agathe</span> sang, sich ausser dem
                privilegirten Taktstock noch ein zweiter Taktmesser aufthat. Wir können dies unter
                keinerlei Vorwand billigen, da nur dann in das musikalische Regiment Einheit kommen
                kann, wenn der Kommandostab von <span class="tei_hi_spaced_out">einem</span> Dirigenten geführt
-               wird. ‒ Das harmlose muntere <span class="tei_hi_spaced_out"><span class=" 6511011099104101110">Annchen</span></span> fand in <a class="persons A009499" href="/exist/apps/WeGA-WebApp/de/A009499.html">Dem. <span class="tei_hi_spaced_out">Korradini</span></a> eine würdige Repräsentantin und wir müssen ihrer
+               wird. – Das harmlose muntere <span class="tei_hi_spaced_out"><span class="6511011099104101110">Annchen</span></span> fand in <a class="preview persons A009499" href="/exist/apps/WeGA-WebApp/de/A009499.html">Dem. <span class="tei_hi_spaced_out">Korradini</span></a> eine würdige Repräsentantin und wir müssen ihrer
                Leistung, sowohl als Sängerin als Actrice alle Gerechtigkeit wiederfahren [sic]
-               lassen. ‒ Die Partie des <span class="tei_hi_spaced_out"><span class=" 7797120">Max</span></span> war in den Händen des <a class="persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hrn. <span class="tei_hi_spaced_out">Mühling</span></a>; eines Tenoristen, über dessen Besitz wir uns zu
+               lassen. – Die Partie des <span class="tei_hi_spaced_out"><span class="7797120">Max</span></span> war in den Händen des <a class="preview persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hrn. <span class="tei_hi_spaced_out">Mühling</span></a>; eines Tenoristen, über dessen Besitz wir uns zu
                freuen alle Ursache haben. Obgleich er zuweilen falsch intonirte, so sang er seine
                Stimme doch brav und gewiß zur Zufriedenheit der Zuhörer. Zwar laborirte er am
                zweiten Abend an einer Heiserkeit, wie dies auch vorher verkündet wurde, jedoch that
                er sein Mögliches, um die Darstellung nicht zu stören. Beiläufig wollen wir ihm
-               anrathen, sich die Art und Weise, eine Büchse zu führen, mehr anzueignen. <a class="persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hr. M.</a>
+               anrathen, sich die Art und Weise, eine Büchse zu führen, mehr anzueignen. <a class="preview persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hr. M.</a>
                wurde am 2ten Abend gerufen, wozu wir, und gewiß die Mehrzahl der Zuhörer mit uns,
                an diesem Abend keine Ursache fanden; doch ein paar Stimmen wollten es, das Paradies
-               sekundirte und der Künstler mußte sich bequemen. Wir traueten <a class="persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hrn. M.</a> Bescheidenheit
+               sekundirte und der Künstler mußte sich bequemen. Wir traueten <a class="preview persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hrn. M.</a> Bescheidenheit
                genug zu, es zu fühlen, daß er an diesem Abend keinen Anspruch auf diese
                Auszeichnung machen könnte und wir fanden uns in diesem Glauben auch nicht
-               getäuscht. <a class="persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hr. M.</a> gab uns einen Begriff seines feinen Gefühls, indem er ohne ein
+               getäuscht. <a class="preview persons A008880" href="/exist/apps/WeGA-WebApp/de/A008880.html">Hr. M.</a> gab uns einen Begriff seines feinen Gefühls, indem er ohne ein
                Wort des Dankes zu sprechen, die Gastdarstellerin vorführte, der, unsers Bedünkens,
                diese Auszeichnung auch nur gebührte. Beifallsbezeugungen lohnten seiner
-               Bescheidenheit. ‒ <a class="persons A003524" href="/exist/apps/WeGA-WebApp/de/A003524.html">Hr. <span class="tei_hi_spaced_out">Fries</span></a> führte die äusserst angreifende
-               Rolle des <span class="tei_hi_spaced_out"><span class=" 7597115112101114">Kasper</span></span> brav und gut durch und gefiel uns besonders
-               sein Vortrag der Arie: „Schweig, schweig! damit dich niemand warnt!“ ‒ Die
-               Darstellung des <span class="tei_hi_spaced_out"><span class=" 75117110111">Kuno</span></span> durch <span class=" 72114110463277252108108101114">Hrn. <span class="tei_hi_spaced_out">Müller</span></span> war lobenswert; <span class="tei_hi_spaced_out"><span class=" 7911611611110797114">Ottokar</span></span> verdarb wenigstens nichts. <span class="tei_hi_spaced_out"><span class=" 8397109105101108">Samiel</span> (<span class=" 72114463283101105100101108">Hr. Seidel</span>)</span> half! doch wollte uns die Art und Weise
+               Bescheidenheit. – <a class="preview persons A003524" href="/exist/apps/WeGA-WebApp/de/A003524.html">Hr. <span class="tei_hi_spaced_out">Fries</span></a> führte die äusserst angreifende
+               Rolle des <span class="tei_hi_spaced_out"><span class="7597115112101114">Kasper</span></span> brav und gut durch und gefiel uns besonders
+               sein Vortrag der Arie: „Schweig, schweig! damit dich niemand warnt!“ – Die
+               Darstellung des <span class="tei_hi_spaced_out"><span class="75117110111">Kuno</span></span> durch <span class="72114110463277252108108101114">Hrn. <span class="tei_hi_spaced_out">Müller</span></span> war lobenswert; <span class="tei_hi_spaced_out"><span class="7911611611110797114">Ottokar</span></span> verdarb wenigstens nichts. <span class="tei_hi_spaced_out"><span class="8397109105101108">Samiel</span> (<span class="72114463283101105100101108">Hr. Seidel</span>)</span> half! doch wollte uns die Art und Weise
                seines Einschreitens in die Handlung nicht recht gefallen. Sein Kostüm hätte wohl
                zweckmäßiger seyn können. Wir beziehen uns in dieser Hinsicht auf das, was der
-               Dichter dieser Oper, <span class="tei_hi_spaced_out"><a class="persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">F. Kind</a></span>, in seinem Aufsatz: „Auch eine
-               Stimme über die Aufführung des Freischützen &amp;c.“ in <a class="writings A030321" href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030321.html">No. 46 u. s. f. der
+               Dichter dieser Oper, <span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">F. Kind</a></span>, in seinem Aufsatz: „Auch eine
+               Stimme über die Aufführung des Freischützen &amp;c.“ in <a class="preview writings A030321" href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030321.html">No. 46 u. s. f. der
                Dresdener Abendzeitung von d. J.</a> über diesen Gegenstand sagt; welcher Aufsatz
                überhaupt jeder Theaterdirektion und auch nebenbei denjenigen, welche an der
                Dichtung so manches zu tadeln wissen, zur Beherzigung zu empfehlen ist! Schließlich
@@ -416,8 +403,8 @@
                gefallen wollte. Am 3ten Abend sollen die holden Jungfrauen vom Parterre aus bei
                ihrem Vortrage unterstützt worden seyn.</p>
                                         <p>Wie verlautet, haben wir bald wieder die Aufführung des
-               <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>, wahrscheinlich mit einer anderweitigen Besetzung der Parthie der <span class="tei_hi_spaced_out"><span class=" 6510397116104101">Agathe</span></span> zu erwarten, da hoffentlich die verschriebene, neue
-               Sängerin noch vor dem Abgange der Gesellschaft von hier eintreffen wird<a class="noteMarker" id="ref-ftn4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="ftn4">*</a>. Wir wünschen, daß dann von Seiten der
+               <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>, wahrscheinlich mit einer anderweitigen Besetzung der Parthie der <span class="tei_hi_spaced_out"><span class="6510397116104101">Agathe</span></span> zu erwarten, da hoffentlich die verschriebene, neue
+               Sängerin noch vor dem Abgange der Gesellschaft von hier eintreffen wird<a class="noteMarker" id="ref-ftn4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn4">*</a>. Wir wünschen, daß dann von Seiten der
                Regie mehr Aufmerksamkeit, besonders auf die Schlußszenen verwendet werde.</p>
                                     </div>
                                 </div>
@@ -452,7 +439,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Freimüthiges Abendblatt</span>, Jg.&#160;4, Nr.&#160;204 (29.&#160;November 1822), Sp.&#160;821f.</p>
+                                <p><span class="journalTitle">Freimüthiges Abendblatt</span>, Jg. 4, Nr. 204 (29. November 1822), Sp. 821f.</p>
                                 
                                 <div>
                                     
@@ -472,17 +459,17 @@
                                     <ul class="commentary">
                                         <li>
                                             <div class="apparatusEntry" id="ftn4" data-title="note commentary"><span class="tei_lemma">"… Gesellschaft von hier eintreffen wird": </span>
-                  Vor Abschluss der <span class=" 8211111511611199107101114"><span class="tei_settlement">Rostocker</span></span> Saison (<span class="tei_date">22.&#160;Dezember 1822</span>) und Übersiedlung
-                  der Gesellschaft nach <span class=" 8399104119101114105110"><span class="tei_settlement">Schwerin</span></span> gab es weder weitere <span class="tei_hi_italic"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>-Aufführungen in <span class=" 8211111511611199107"><span class="tei_settlement">Rostock</span></span> noch wurde eine neue erste
-                  Sängerin engagiert. Vielmehr rückte <a class="persons A009499" href="/exist/apps/WeGA-WebApp/de/A009499.html">Dem. Corradini</a> auf diese Position
-                  nach und übernahm nachfolgend die Partie der <span class=" 6510397116104101">Agathe</span>; vgl. <span class="tei_hi_italic">Freimüthiges Abendblatt</span>, 
-                  Jg.&#160;5, Nr.&#160;235 (<span class="tei_date">4.&#160;Juli 1823</span>), Sp.&#160;448.</div>
+                  Vor Abschluss der <span class="tei_placeName"><span class="8211111511611199107101114">Rostocker</span></span> Saison (<span class="tei_date">22. Dezember 1822</span>) und Übersiedlung
+                  der Gesellschaft nach <span class="tei_placeName"><span class="8399104119101114105110">Schwerin</span></span> gab es weder weitere <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>-Aufführungen in <span class="tei_placeName"><span class="8211111511611199107">Rostock</span></span> noch wurde eine neue erste
+                  Sängerin engagiert. Vielmehr rückte <a class="preview persons A009499" href="/exist/apps/WeGA-WebApp/de/A009499.html">Dem. Corradini</a> auf diese Position
+                  nach und übernahm nachfolgend die Partie der <span class="6510397116104101">Agathe</span>; vgl. <span class="tei_hi_italic">Freimüthiges Abendblatt</span>, 
+                  Jg. 5, Nr. 235 (<span class="tei_date">4. Juli 1823</span>), Sp. 448.</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031372/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -504,10 +491,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031372</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031372</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2016 durch Eveline Bartlitz</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -533,6 +519,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -543,6 +530,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -577,6 +565,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

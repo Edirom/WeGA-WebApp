@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-01-08T10:11:31.051596Z" />
+        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050101" />
         <meta property="dc:description" content="Auch im Jahr 2011 haben sich die Mitarbeiter der WeGA an zahlreichen Tagungen und Vortragsveranstaltungen beteiligt: Auf Bitten der AG …" />
         <meta name="description" content="Auch im Jahr 2011 haben sich die Mitarbeiter der WeGA an zahlreichen Tagungen und Vortragsveranstaltungen beteiligt: Auf Bitten der AG …" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050101.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050101.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,14 +209,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
-                        </li>
-                        <li><span>A050101</span> 
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a></li>
+                        <li><span>A050101</span> </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -231,30 +229,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050101/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050101.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050101/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050101.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000040" /> <span title="Apel, August">Apel, August</span> 
@@ -271,8 +262,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -284,8 +274,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -320,24 +309,24 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Auch <span class="tei_hi_bold">im Jahr 2011</span> haben sich die Mitarbeiter der WeGA an zahlreichen <span class="tei_hi_bold">Tagungen und Vortragsveranstaltungen</span> beteiligt: Auf Bitten der AG <span class="tei_hi_italic">Textauszeichnung von Editionen</span> stellte <span class=" 80101116101114328311697100108101114"><span class="tei_hi_bold">Peter Stadler</span></span> am 4./5. Februar 2011 im Musikwissenschaftlichen Seminar <span class=" 68101116109111108100"><span class="tei_settlement">Detmold</span></span>/<span class=" 809710010111498111114110"><span class="tei_settlement">Paderborn</span></span> die digitale Edition der Textteile der Weber-Ausgabe zur Diskussion, wobei auch über dringlich nötige Erweiterungen im Bereich der Normdaten diskutiert wurde. Im Mai referierte er im Luxemburgischen Literaturarchiv <span class=" 7710111411599104"><span class="tei_settlement">Mersch</span></span> zum Thema <span class="tei_hi_italic">Elektronische Briefeditionen – Möglichkeiten der Vernetzung von Forschungseinrichtung und Bibliothek</span>.</p>
-                                        <p><a class="persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html"><span class="tei_hi_bold">Joachim Veit</span></a> führte im Sommersemester 2011
-               in <span class=" 68101116109111108100"><span class="tei_settlement">Detmold</span></span> ein Seminar zum <span class="tei_hi_italic">Freischütz</span>
+                                        <p>Auch <span class="tei_hi_bold">im Jahr 2011</span> haben sich die Mitarbeiter der WeGA an zahlreichen <span class="tei_hi_bold">Tagungen und Vortragsveranstaltungen</span> beteiligt: Auf Bitten der AG <span class="tei_hi_italic">Textauszeichnung von Editionen</span> stellte <span class="80101116101114328311697100108101114"><span class="tei_hi_bold">Peter Stadler</span></span> am 4./5. Februar 2011 im Musikwissenschaftlichen Seminar <span class="tei_placeName"><span class="68101116109111108100">Detmold</span></span>/<span class="tei_placeName"><span class="809710010111498111114110">Paderborn</span></span> die digitale Edition der Textteile der Weber-Ausgabe zur Diskussion, wobei auch über dringlich nötige Erweiterungen im Bereich der Normdaten diskutiert wurde. Im Mai referierte er im Luxemburgischen Literaturarchiv <span class="tei_placeName"><span class="7710111411599104">Mersch</span></span> zum Thema <span class="tei_hi_italic">Elektronische Briefeditionen – Möglichkeiten der Vernetzung von Forschungseinrichtung und Bibliothek</span>.</p>
+                                        <p><a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html"><span class="tei_hi_bold">Joachim Veit</span></a> führte im Sommersemester 2011
+               in <span class="tei_placeName"><span class="68101116109111108100">Detmold</span></span> ein Seminar zum <span class="tei_hi_italic">Freischütz</span>
                im Kontext seiner frühen Rezeption durch und beschäftigt sich im laufenden
                Wintersemester in einem Seminar mit Problemen der digitalen Edition des Werkes. Im
-               Juni referierte er beim 100. Bibliothekarstag in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> zum
+               Juni referierte er beim 100. Bibliothekarstag in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> zum
                Thema <span class="tei_hi_italic">Geisteswissenschaftliche Forschung und Anforderungen an eine
                   virtuelle Forschungsumgebung</span> sowie im Ostholstein-Museum in
-                  <span class=" 69117116105110"><span class="tei_settlement">Eutin</span></span> über Aspekte des Weber-Bildes und im Kulturgut
-                  <span class=" 69114109108105116122"><span class="tei_settlement">Ermlitz</span></span> bei <span class=" 76101105112122105103"><span class="tei_settlement">Leipzig</span></span> über Webers
-               Beziehungen zu <a class="persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">August Apel</a>. Bei der Jahrestagung
-               der Gesellschaft für Musikforschung in <span class=" 75105101108"><span class="tei_settlement">Kiel</span></span> stellte er in der
+                  <span class="tei_placeName"><span class="69117116105110">Eutin</span></span> über Aspekte des Weber-Bildes und im Kulturgut
+                  <span class="tei_placeName"><span class="69114109108105116122">Ermlitz</span></span> bei <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> über Webers
+               Beziehungen zu <a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">August Apel</a>. Bei der Jahrestagung
+               der Gesellschaft für Musikforschung in <span class="tei_placeName"><span class="75105101108">Kiel</span></span> stellte er in der
                AG Musikerbriefe die digitale Weber-Briefausgabe vor. Mitte Oktober leitete er beim
                internationalen TEI-Members-Meeting an der Universität
-                  <span class=" 8725211412298117114103"><span class="tei_settlement">Würzburg</span></span> die Sitzung der <span class="tei_hi_italic">Special Interest
+                  <span class="tei_placeName"><span class="8725211412298117114103">Würzburg</span></span> die Sitzung der <span class="tei_hi_italic">Special Interest
                   Group Correspondence</span>.</p>
-                                        <p><a class="persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html"><span class="tei_hi_bold">Frank Ziegler</span></a> beteiligte sich Anfang Juli an einer Einführungsveranstaltung der Semper-Oper in <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span> anläßlich der Wiederaufführung der Kantate <span class="tei_hi_italic"><span class="works A020021" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020021.html">L’Accoglienza</span></span> und des <span class="tei_hi_italic"><span class="works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Ersten Tons</span></span>. Im September referierte er im Rahmen der Tagung „Das Amt des Hofkapellmeisters um 1800“ an der Königlich Dänischen Akademie der Wissenschaften in Kopenhagen über die Amtsführung von Vater <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton</a> und Sohn Carl Maria von Weber in <span class=" 69117116105110"><span class="tei_settlement">Eutin</span></span> bzw. <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>. Während des Dresdner Symposiums zu Weber und dem Virtuosentum seiner Zeit sprach er Ende Oktober an der Dresdner Musikhochschule zum Thema <span class="tei_hi_italic"><a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Carl Maria von Weber</a> als Klaviervirtuose – eine Bestandsaufnahme</span>.</p>
-                                        <p><a class="persons A009004" href="/exist/apps/WeGA-WebApp/de/A009004.html"><span class="tei_hi_bold">Solveig Schreiter</span></a> referierte bei der gleichen Tagung über <span class="tei_hi_italic">Webers Plan eines "musikalischen Baedeker" als Dokument des öffentlichen Konzertwesens</span>. Das geplante Referat von <span class=" 7797114107117115326697110100117114"><span class="tei_hi_bold">Markus Bandur</span></span> <span class="tei_hi_italic">Virtuosität als kompositorisches Problem. Zu Webers <span class=" 751089711810510111411511111097116101110">Klaviersonaten</span></span> musste aus Krankheitsgründen leider entfallen.</p>
+                                        <p><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html"><span class="tei_hi_bold">Frank Ziegler</span></a> beteiligte sich Anfang Juli an einer Einführungsveranstaltung der Semper-Oper in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> anläßlich der Wiederaufführung der Kantate <span class="tei_hi_italic"><span class="preview works A020021" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020021.html">L’Accoglienza</span></span> und des <span class="tei_hi_italic"><span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Ersten Tons</span></span>. Im September referierte er im Rahmen der Tagung „Das Amt des Hofkapellmeisters um 1800“ an der Königlich Dänischen Akademie der Wissenschaften in Kopenhagen über die Amtsführung von Vater <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton</a> und Sohn Carl Maria von Weber in <span class="tei_placeName"><span class="69117116105110">Eutin</span></span> bzw. <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>. Während des Dresdner Symposiums zu Weber und dem Virtuosentum seiner Zeit sprach er Ende Oktober an der Dresdner Musikhochschule zum Thema <span class="tei_hi_italic"><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Carl Maria von Weber</a> als Klaviervirtuose – eine Bestandsaufnahme</span>.</p>
+                                        <p><a class="preview persons A009004" href="/exist/apps/WeGA-WebApp/de/A009004.html"><span class="tei_hi_bold">Solveig Schreiter</span></a> referierte bei der gleichen Tagung über <span class="tei_hi_italic">Webers Plan eines "musikalischen Baedeker" als Dokument des öffentlichen Konzertwesens</span>. Das geplante Referat von <span class="7797114107117115326697110100117114"><span class="tei_hi_bold">Markus Bandur</span></span> <span class="tei_hi_italic">Virtuosität als kompositorisches Problem. Zu Webers Klaviersonaten</span> musste aus Krankheitsgründen leider entfallen.</p>
                                     </div>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Samstag, 12. November 2011</p>
@@ -390,7 +379,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A050101/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -412,10 +401,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050101</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050101</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 8. Januar 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -441,6 +429,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -451,6 +440,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -485,6 +475,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

@@ -55,11 +55,13 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
 declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $title := bibl:printTitles($biblStruct//tei:title)
+    let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
         element {$wrapperElement} {
             $authors,
             if(exists($authors)) then ', ' else (),
-            $title
+            $title,
+            $note
         }
 };
 
@@ -78,6 +80,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
     let $title := bibl:printTitles($biblStruct/tei:monogr/tei:title)
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
+    let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
         element {$wrapperElement} {
             attribute class {'book'},
@@ -88,7 +91,8 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
             $pubPlaceNYear,
-            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+            $note
         }
 };
 
@@ -105,13 +109,15 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang) 
     let $articleTitle := $biblStruct/tei:analytic/tei:title (: could be several subtitles:)
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, 'wrapper', $lang)
+    let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
         element {$wrapperElement} {
             if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
             if($articleTitle) then (bibl:printTitles($articleTitle), ', in: ') else (),
             $journalCitation/span,
-            $journalCitation/text()
+            $journalCitation/text(),
+            $note
         }
 };
 
@@ -131,6 +137,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $bookTitle := <span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, 'span', $lang) else ()
+    let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
         element {$wrapperElement} {
             if(exists($authors)) then ($authors, ', ') else (),
@@ -140,7 +147,8 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($editor)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editor) else (),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
-            if($biblStruct//tei:imprint/tei:biblScope[@type = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@type = 'pp'], '-', '–')) else ()
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+            $note
         }
 };
 
@@ -175,17 +183,17 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
     concat(
-        if($parent/tei:biblScope/@type = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@type = 'vol']) else (),
-        if($parent/tei:biblScope/@type = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@type = 'jg']) else (),
+        if($parent/tei:biblScope/@unit = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@unit = 'vol']) else (),
+        if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
-        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@type = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope/@type = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@type = 'issue']) else (),
-        if($parent/tei:biblScope/@type = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@type = 'nr']) else (),
+        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
+        if($parent/tei:biblScope/@unit = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@unit = 'issue']) else (),
+        if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
         (: Alle anderen Datumsausgaben hier :)
-        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@type = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
+        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@type = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'pp'], '-', '–')) else (),
-        if($parent/tei:biblScope/@type = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@type = 'col'], '-', '–')) else ()
+        if($parent/tei:biblScope/@unit = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+        if($parent/tei:biblScope/@unit = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'col'], '-', '–')) else ()
     )
 };
 
@@ -201,8 +209,8 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as xs:string, $lang as xs:string) as element() {
     let $biblScope := concat(
-        if($series/tei:biblScope[@type = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@type = 'vol']) else (),
-        if($series/tei:biblScope[@type = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@type = 'issue']) else ()
+        if($series/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@unit = 'vol']) else (),
+        if($series/tei:biblScope[@unit = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@unit = 'issue']) else ()
     )
     return 
         element {$wrapperElement} {
@@ -284,4 +292,17 @@ declare %private function bibl:printTitles($titles as element(tei:title)*) as el
                     default return ()
             }</span>
         else ()
+};
+
+(:~
+ : Create note marker and popover for notes which are a direct child of biblStruct
+~:)
+declare %private function bibl:printNote($notes as element(tei:note)*) as element(a)? {
+    for $note in $notes
+    let $id := 
+        if($note/@xml:id) then $note/data(@xml:id)
+        else generate-id($note)
+    let $content := wega-util:txtFromTEI($note/node())
+    return
+        <a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="{$id}" data-popover-content="{$content}">*</a>
 };

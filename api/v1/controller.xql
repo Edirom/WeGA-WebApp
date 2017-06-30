@@ -18,11 +18,12 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 (: Change this line to point at your local api module :)
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "../../modules/api.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../../modules/config.xqm";
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
 
 (: Change this line to point at your swagger config file :)
-declare variable $local:swagger-config := json-doc('xmldb:exist:///db/apps/WeGA-WebApp/api/v1/swagger.json');
+declare variable $local:swagger-config := json-doc($config:swagger-config-path);
 
 (: Change this if you are using a different prefix for your module in line XX :)
 declare variable $local:api-module-prefix as xs:string := 'api'; 
@@ -44,9 +45,8 @@ declare variable $local:INVALID_PARAMETER := QName("http://xquery.weber-gesamtau
 declare variable $local:defaults as map() := map {
     'exist:path' := $exist:path, 
     'exist:resource' := $exist:resource, 
-    'exist:controller' := $exist:controller, 
-    'exist:prefix' := $exist:prefix,
-    'swagger:config' := $local:swagger-config
+    'exist:controller' := $exist:controller || '/../../', 
+    'exist:prefix' := $exist:prefix
 };
 
 (:~
@@ -118,7 +118,7 @@ let $lookup as map()? :=
     let $possible-matches :=
         if(matches($exist:path, $path-regex)) then 
             let $func-name := string-join($swagger-path-tokens ! replace(., '\{[^\}]+\}', '')[.], '-')
-            let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), tokenize($exist:path, '/')[$pos]) else ()
+            let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
             return
                 map {
                     'func' := function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
@@ -136,7 +136,7 @@ let $validate-unknown-param := function-lookup(xs:QName($local:api-module-prefix
 let $validate-params := function($params as map()?) as map()? {
     if(exists($params)) then
         map:new(
-            for $param in $params?*
+            for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
                 if(exists($lookup)) then $lookup(map:entry($param, $params($param)))
@@ -158,7 +158,7 @@ let $response := function() {
     typeswitch($lookup?func)
     case empty() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''}
     default return 
-        try { $lookup?func(map:new(($local:defaults, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
+        try { $lookup?func(map:new(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
 }
 
@@ -174,7 +174,7 @@ return (:(
     ):)
     if($exist:resource eq 'swagger.json') then ()
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en', 'path' := $exist:path, 'controller' := $exist:controller || '/../../' } )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">

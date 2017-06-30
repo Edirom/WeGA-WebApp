@@ -10,6 +10,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -33,7 +34,7 @@ declare function str:normalize-space($string as xs:string?) as xs:string {
  : @return the joined path as xs:string, the empty string when $segs was the empty sequence
  :)
 declare function str:join-path-elements($segs as xs:string*) as xs:string {
-    replace(string-join($segs, '/'), '/+' , '/')
+    replace(replace(string-join($segs, '/'), '/+' , '/'), '\s+', '_')
 };
 
 (:~ 
@@ -124,6 +125,20 @@ declare function str:shorten-text($string as xs:string, $maxLength as xs:int) as
     return 
         if(string-length($maxString) lt $maxLength) then $maxString 
         else concat(functx:substring-before-last-match($maxString, $delimiterRegex), ' …')
+};
+
+(:~
+ : A simple shortcut to str:shorten-text() for creating teaser texts from TEI documents
+ :
+ : @author Peter Stadler
+ : @param $nodes the TEI nodes that make up the text to be truncated
+ : @param $maxLength the max length of the returned string as xs:int
+ : @return xs:string 
+~:)
+declare function str:shorten-TEI($nodes as node()*, $maxLength as xs:int) as xs:string {
+    let $strings := $nodes ! string-join(wega-util:txtFromTEI(.), '')
+    return
+        str:shorten-text(string-join($strings, ' '), $maxLength)
 };
 
 (:~ 

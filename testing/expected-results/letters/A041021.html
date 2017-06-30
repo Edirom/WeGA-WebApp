@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2016-07-18T15:09:06.124943Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-06-07T09:27:34.307482Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041021" />
         <meta property="dc:description" content="über die Probleme seiner Eingewöhnung in Dresden u. private Unstimmigkeiten; berichtet über den Erfolg des &#34;Joseph&#34; in Dresden u. Aufführung der &#34;Silvana&#34; in Prag; betr. Engagement Therese Grünbaums; mahnt Carolines Kündigung ihres Engagements am 1. April an; schickt Wechsel mit Anweisung, das Geld zu Ballabene zu geben; gibt sein Tagebuch 31. Januar bis 3. Februar wieder, erwähnt gesellschaftl. u. dienstl. Verpflichtungen; will am 4. Februar ein Diner für einige Kollegen geben." />
         <meta name="description" content="über die Probleme seiner Eingewöhnung in Dresden u. private Unstimmigkeiten; berichtet über den Erfolg des &#34;Joseph&#34; in Dresden u. Aufführung der &#34;Silvana&#34; in Prag; betr. Engagement Therese Grünbaums; mahnt Carolines Kündigung ihres Engagements am 1. April an; schickt Wechsel mit Anweisung, das Geld zu Ballabene zu geben; gibt sein Tagebuch 31. Januar bis 3. Februar wieder, erwähnt gesellschaftl. u. dienstl. Verpflichtungen; will am 4. Februar ein Diner für einige Kollegen geben." />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A041021.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A041021.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A041021</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A041021</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041021/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041021.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041021/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041021/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041021.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -270,7 +260,7 @@
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041020.html">1817-01-28</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000213.html">Weber, Caroline von</a>
                                     </li>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040963.html">1817-01-17</a>:  Von   unbekannt
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002020/Korrespondenz/A040995.html">1817-01-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002020.html">Vitzthum von Eckstädt, Heinrich Graf</a>
                                     </li>
                                 </ul>
                                 <h4>Folgend</h4>
@@ -302,11 +292,12 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080006" /> <span title="Ballabene und Comp (Bank- und Handelshaus)">Ballabene und Comp (Bank- und …</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000096" /> <span title="Bassi, Luigi">Bassi, Luigi</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000201" /> <span title="Bombelles, Louis Philippe Graf de">Bombelles, Louis Philippe Graf…</span> 
@@ -357,8 +348,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -370,8 +360,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -383,8 +372,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -401,28 +389,27 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
-                                        <p>An <span class="tei_hi_latintype">Mademoiselle</span>
-                                        </p>
-                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolina Brandt</a></span></span>.</p>
-                                        <p>Mitglied des Ständischen Thea-<br />ters zu</p>
-                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class=" 8011497103"><span class="tei_settlement">Prag</span></span></span></span>.</p>
+                                        <p>An <span class="tei_hi_latintype">Mademoiselle</span></p>
+                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolina Brandt</a></span></span>.</p>
+                                        <p>Mitglied des Ständischen Thea<span class="break_inWord">-</span><br />ters zu</p>
+                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="8011497103">Prag</span></span></span></span>.</p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-                    <p class="teiLetter_datelineOpenerBlockRight">
+                    <span class="tei_dateline textAlign-right">
                         <span class="tei_hi_underline2andMore">No: 23.</span> d: 3<span class="tei_hi_superscript">t</span>
-                        <span class="tei_hi_latintype">Februar</span> 1817. <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>.</p>
-                    <p class="teiLetter_salute">Mein vielgeliebtes <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">MukenVies</a>.</p>
+                        <span class="tei_hi_latintype">Februar</span> 1817. <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>.</span>
+                    <p class="teiLetter_salute">Mein vielgeliebtes <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">MukenVies</a>.</p>
                 </div>
                                         <p>Wie geht es dir? was machst du, bist du brav, heiter, Gesund, nicht
-						schwarzgalligt?<a class="noteMarker" id="ref-note_4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="note_4">*</a>
+						schwarzgalligt?<a class="noteMarker" id="ref-note_4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note_4">*</a>
 					sizzen keine Teufelen aufm Bett? <span class="tei_hi_latintype">pp pp</span> so hätte ich
 					freilich alle Tage Millionen Fragen zu thun.</p>
                                         <p>Ich lebe sehr zerstreut, und doch eben nicht sehr kurzweilig, das liegt aber wohl
 					mehr an mir als an den Menschen die wirklich von allen Seiten sich bemühen, und
 					wetteifern mich zu unterhalten und Beweise von Achtung zu geben. Aber freilich
-					einen <a class="persons A001166" href="/exist/apps/WeGA-WebApp/de/A001166.html">Lichtenstein</a>, <a class="persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmann</a>,
-                    <a class="persons A002180" href="/exist/apps/WeGA-WebApp/de/A002180.html">Wollank</a>, <a class="persons A001134" href="/exist/apps/WeGA-WebApp/de/A001134.html">Lauska</a>, <span class="tei_add"><a class="persons A000743" href="/exist/apps/WeGA-WebApp/de/A000743.html">Harlem</a><a class="noteMarker" id="ref-d37325e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37325e72">‡</a></span>  
+					einen <a class="preview persons A001166" href="/exist/apps/WeGA-WebApp/de/A001166.html">Lichtenstein</a>, <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmann</a>,
+                    <a class="preview persons A002180" href="/exist/apps/WeGA-WebApp/de/A002180.html">Wollank</a>, <a class="preview persons A001134" href="/exist/apps/WeGA-WebApp/de/A001134.html">Lauska</a>, <span class="tei_add"><a class="preview persons A000743" href="/exist/apps/WeGA-WebApp/de/A000743.html">Harlem</a><a class="noteMarker" id="ref-d56985e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56985e72">‡</a></span>  
                     <span class="tei_hi_latintype">pp</span> findet man nicht überall; obwohl es hier Dichter
 					giebt wie Sand am Meer. Vielleicht findet sich dann da doch mit der Zeit irgend
 					einer heraus der mir zusagt. daß ich in meinem Hause auch noch nicht ganz in
@@ -430,18 +417,18 @@
 					bequem fühle. ich habe noch nicht einmal ein <span class="tei_hi_latintype">Fortepiano</span>. Werde mich aber heute darnach umsehen. Die eine Kiste habe
 					ich auch noch nicht ausgepakt, und also meinen <span class="tei_hi_underline1">Schreibtisch</span> nur noch ganz unvollständig, und du weißt was das bei mir
 					sagen will, da er meine eigentliche Werkstatt ist, und der Ort, an dem ich einen
-					großen Theil meines Lebens zubringe. &#160;&#160;&#160;&#160;&#160;Selbst
-					daß ich nur vor der Hand in diesem <span class="tei_hi_latintype"><span class="tei_ptr"></span>Quartier</span><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a> bleibe, macht daß ich mich nicht ganz
+					großen Theil meines Lebens zubringe.      Selbst
+					daß ich nur vor der Hand in diesem <span class="tei_hi_latintype"><span class="tei_ptr"></span>Quartier</span><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a> bleibe, macht daß ich mich nicht ganz
 					drin festsezzen kann, und ich kenne nur <span class="tei_hi_underline1">eine</span>
 					Zeit wo mir ganz wohl sein wird, nehmlich <span class="tei_hi_underline1">die</span> wo
-					ich mich in meine stille Häuslichkeit, in die Arme meiner geliebten <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Lina</a> werde
+					ich mich in meine stille Häuslichkeit, in die Arme meiner geliebten <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Lina</a> werde
 					von allen Geschäften und der Welt flüchten können. –</p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-                    <p class="teiLetter_datelineOpenerBlockLeft">
+                    <span class="tei_dateline textAlign-left">
                         <span class="tei_hi_underline1">Nachmittage</span>
-                    </p>
+                    </span>
                 </div>
                                         <p>Es ist doch abscheulich daß ich keine Stunde für mich allein haben kann,
 					und so sehr von Besuchen überlauffen werde. Jezt soll mich aber gewiß <span class="tei_hi_underline1">Niemand</span> stören.</p>
@@ -470,8 +457,8 @@
 					geschwinder in Ordnung bringe als sie entstanden sind. und wenn ich auch bei dir
 					etwas darüber klage, so geschieht dieß nur um mir Luft zu machen bei dem
 					einzigen Wesen, von dem ich weiß daß es an jeder Kleinigkeit die mich betrifft
-					Theil nimmt. &#160;&#160;&#160;&#160;&#160;
-                    <a class="persons A000946" href="/exist/apps/WeGA-WebApp/de/A000946.html">Jungh</a> hätte wohl Recht dich zu
+					Theil nimmt.      
+                    <a class="preview persons A000946" href="/exist/apps/WeGA-WebApp/de/A000946.html">Jungh</a> hätte wohl Recht dich zu
 					verklagen, du thust das aber selbst am besten durch die Stimmung und den Ton der
 					jezt in deinem Briefe herrscht. – Ja ja, du hast ganz recht daß du mich
 					erheitern und erquikken sollst, aber freilich nicht erzwungen, das würde ich
@@ -482,63 +469,63 @@
 					Erfolg der schönen Liebe und Vereinigung zweyer Seelen wird verfehlt. – Doch nun
 					genug gebrummt, und nun auch dankbar anerkannt wie brav mein Muks übrigens ist,
 					und wofür ich ihm segnend meine Hände auf das liebe Haupt lege und + + + mache
-					mit einem aus dem Herzen kommenden Kuße. &#160;&#160;&#160;&#160;&#160;
+					mit einem aus dem Herzen kommenden Kuße.      
                     <span class="tei_ptr"></span>Aber für deine schlechten Zahlen must du Haue
-                    kriegen. wieviel hast du eingenommen? 112 ƒ? <span class="tei_pb"> | </span>sage, 
+                    kriegen. wieviel hast du eingenommen? 112 ƒ? <span class="tei_pb" title="Seitenumbruch" data-facs="facs_1v"> | </span>sage, 
                     <span class="tei_hi_underline1"><span class="tei_hi_latintype">Hundert</span> und <span class="tei_hi_latintype">zwölf Gulden</span></span>? 
                     Das begreiffe ich nicht. Nun der Abschluß wird mir es schon deutlicher
-						machen.<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_002">*</a> Du armer Hammel entschuldigst dich ordentlich
+						machen.<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a> Du armer Hammel entschuldigst dich ordentlich
 					daß du was davon nehmen must. geh dummer Kerl, sei doch nicht so kindisch. </p>
                                         <p>
-                    <span class="tei_ptr"></span>Ein großer Stein fällt mir vom Herzen, daß die <a class="persons A000214" href="/exist/apps/WeGA-WebApp/de/A000214.html">Mutter</a> sich gutwillig anläßt, Es ist für sie und uns das
-					Beste, und Gott gebe es so friedlich als möglich.<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_003">*</a> deine
+                    <span class="tei_ptr"></span>Ein großer Stein fällt mir vom Herzen, daß die <a class="preview persons A000214" href="/exist/apps/WeGA-WebApp/de/A000214.html">Mutter</a> sich gutwillig anläßt, Es ist für sie und uns das
+					Beste, und Gott gebe es so friedlich als möglich.<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a> deine
 					Handlungsweise mit dem Ausschlagen solcher Einladungen ist trefflich und
 					löblich. Laße dich durch nichts irre machen, und du wirst immer mehr einsehen
 					lernen, daß man <span class="tei_hi_underline2andMore">nichts in der Welt</span> zu fürchten
 					hat, wenn man tadellos seinen Weg geht, und dieses sich immer aufs herrlichste
-					belohnt. Fahre ferner so fort braver <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Muks</a>, aber <span class="tei_hi_underline2andMore">hüte </span>
+					belohnt. Fahre ferner so fort braver <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Muks</a>, aber <span class="tei_hi_underline2andMore">hüte </span>
                     <span class="tei_hi_underline1">dich</span> dabei den Stein auf Andere zu werfen, das
 					geht dich nichts an, und darfst du deinem Mäulchen schon etwas 
-                    <span class="tei_choice"><span class="tei_unclear">verwehren</span><a class="noteMarker" id="ref-d37325e224" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37325e224">‡</a></span>. Auch sind nicht alle Sachen so arg als die Welt sie gerne macht, <span class="tei_hi_underline1">denke daran</span>, und sei nachsichtsvoll, billig und
+                    <span class="tei_choice"><span class="tei_unclear">verwehren</span><a class="noteMarker" id="ref-d56985e224" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56985e224">‡</a></span>. Auch sind nicht alle Sachen so arg als die Welt sie gerne macht, <span class="tei_hi_underline1">denke daran</span>, und sei nachsichtsvoll, billig und
 						<span class="tei_hi_underline1">wohlwollend</span> gegen deine Neben Menschen.
-						&#160;&#160;&#160;&#160;&#160;den nächsten Beweiß hast du an der steigenden Liebe und Achtung des Publikums. Was unsre Angelegenheiten <span class="tei_hi_underline1">hier</span> betrifft, so wiederhole ich dir, daß du
+						     den nächsten Beweiß hast du an der steigenden Liebe und Achtung des Publikums. Was unsre Angelegenheiten <span class="tei_hi_underline1">hier</span> betrifft, so wiederhole ich dir, daß du
 					ruhig sein darfst, wenigstens so weit meine Einsicht geht. die ganze Stadt ist entzükt von der Vorstellung des
-                    <span class="works A020386" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020386.html">Josephs</span>
+                    <span class="preview works A020386" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020386.html">Josephs</span>
 					/: die Gestern wiederholt wurde bei vollen Hause, :/ und die Achtung und Liebe
 					gegen mich von allen Seiten des Hofes und der Stadt ist so ausgezeichnet als ich
 					sie nur verlangen kann. 
                     Also weg mit unnüzzen das Leben verbitternden Quälereyen.</p>
                                         <p>
                     Gestern Abend dachte ich viel nach
-					<span class=" 8011497103"><span class="tei_settlement">Prag</span></span> und an dich, und bin recht begierig wie es
+					<span class="tei_placeName"><span class="8011497103">Prag</span></span> und an dich, und bin recht begierig wie es
 					aufgenommen worden ist. du hast gewiß deine Sachen recht schön gemacht. Es freut
 					mich auch dabei von dir zu hören daß sie alle mit Liebe sich der Sache
 						annehmen.
-                    &#160;&#160;&#160;&#160;&#160;
-                    <span class="tei_ptr"></span>Von <span class="A000692 A000691">Grünbaums</span>
+                         
+                    <span class="tei_ptr"></span>Von <span class="preview persons A000692 A000691" data-ref="/exist/apps/WeGA-WebApp/de/A000692.html /exist/apps/WeGA-WebApp/de/A000691.html">Grünbaums</span>
 					habe ich noch immer keine Antwort, und es ist mir doch so viel daran gelegen,
 					und ich habe keine Zeit zu verliehren, auch <span class="tei_hi_underline1">Sie</span>
-					thäte sehr Unrecht ein so solides <span class="tei_choice"><span class="tei_unclear">Brod</span><a class="noteMarker" id="ref-d37325e272" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37325e272">‡</a></span> zu verscherzen.<a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_004">*</a>
-                    &#160;&#160;&#160;&#160;&#160;Du irrst dich <span class="tei_hi_underline1">sehr</span> wenn du glaubst daß ich gequält und <span class="tei_hi_latintype">chicannirt</span> werde. die Guten fangen schon an mich zu lieben, und die Bösen
+					thäte sehr Unrecht ein so solides <span class="tei_choice"><span class="tei_unclear">Brod</span><a class="noteMarker" id="ref-d56985e272" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56985e272">‡</a></span> zu verscherzen.<a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>
+                         Du irrst dich <span class="tei_hi_underline1">sehr</span> wenn du glaubst daß ich gequält und <span class="tei_hi_latintype">chicannirt</span> werde. die Guten fangen schon an mich zu lieben, und die Bösen
 					haben eine tüchtige Furcht, vor mir, weil sie wohl wißen daß mit mir nicht zu
-					spaßen ist. &#160;&#160;&#160;&#160;&#160;Wegen mir sei nur ganz ruhig, und
+					spaßen ist.      Wegen mir sei nur ganz ruhig, und
 					vor allem <span class="tei_hi_underline1">unterstehe dich nicht mehr</span> meinen
-					Briefen nicht zu glauben. &#160;&#160;&#160;&#160;&#160;habe ich dich schon
+					Briefen nicht zu glauben.      habe ich dich schon
 					jemals belogen? oder etwas schöner vorgemalt als es war? Ums Himmels willen thue
 					das nicht mehr, sonst würde ich immer denken, was hilfts wenn ich ihr auch das
 					und das schreibe sie glaubts ja doch nicht, sondern folgt nur den Eingebungen
 					ihres schwarzen Dämons. –</p>
                                         <p>
                     <span class="tei_ptr"></span>Dein Gebet den 30<span class="tei_hi_superscript">t</span> Abends hat seine Wirkung nicht
-						verfehlt<a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_005">*</a>, wie du jezt schon wißen wirst, und dein Muks Ehre und Freude
-					erlebt. &#160;&#160;&#160;&#160;&#160;
+						verfehlt<a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a>, wie du jezt schon wißen wirst, und dein Muks Ehre und Freude
+					erlebt.      
                     <span class="tei_ptr"></span>Du machst mich ja ordentlich neugierig
 					auf die alte 
-                        <span class="tei_hi_latintype"><span class="works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span><a class="noteMarker" id="ref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_006">*</a>, so viel Schönes erzählst du mir davon,
+                        <span class="tei_hi_latintype"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span><a class="noteMarker" id="ref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a>, so viel Schönes erzählst du mir davon,
 					wenn nur kein hinkender Bote nachkömt, es wäre recht schade für Eure viele Mühe.
-						&#160;&#160;&#160;&#160;&#160;Das Gute hat es für mich, daß ich mich <span class="tei_hi_underline1">recht</span> freuen werde wenn es gut ausfällt, und
+						     Das Gute hat es für mich, daß ich mich <span class="tei_hi_underline1">recht</span> freuen werde wenn es gut ausfällt, und
 					eben nicht todtschieße wenn es den H: Pragern <span class="tei_hi_underline1">nicht</span> gefällt.</p>
-                                        <p>Gesund bin ich Gottlob auch recht sehr, und fehlt mir nitz als <span class="tei_hi_underline1"><a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Muks</a></span> und die Million – 
+                                        <p>Gesund bin ich Gottlob auch recht sehr, und fehlt mir nitz als <span class="tei_hi_underline1"><a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Muks</a></span> und die Million – 
                     du weist schon. – Mit deinen dummen einfältigen <span class="tei_hi_underline1">Ahndungen</span> wirst du
 					mich einmal recht wild machen, wenn noch eine einzige von diesen Talkereyen
 					eingetroffen wäre, so wollte ich nichts sagen, aber so, da sie sich immer als
@@ -546,53 +533,53 @@
 					Vies ab, und hezt sich und jammert und fürchtet, und ich eße unterdeßen
 					vielleicht guten Muths eine Kartoffel oder trinke ein Glas Wein. bist ein
 					rechter <span class="tei_hi_underline2andMore">Oz</span>, und kömmst ganz wieder auf die <span class="tei_hi_underline2andMore">alten</span>
-                     <span class="tei_hi_underline1">Sprünge</span>.</p><span class="tei_pb_block"> | </span>
+                     <span class="tei_hi_underline1">Sprünge</span>.</p><span class="tei_pb_block" title="Seitenumbruch zu S. 2r" data-facs="facs_2r"> | </span>
                                         <p>Das ist ja eine alte, abgemachte Sache, daß du d: 1<span class="tei_hi_superscript">t</span>
                     <span class="tei_hi_latintype">Aprill</span> aufsagst, und zu Ende deines Kontraktes
-					bestimmt von <span class=" 8011497103"><span class="tei_settlement">Prag</span></span> und dem Theater abgehest, und ist es
+					bestimmt von <span class="tei_placeName"><span class="8011497103">Prag</span></span> und dem Theater abgehest, und ist es
 					mir nie einen Augenblik anderst eingefallen, als dich um diese Zeit im Triumph
-					heimzuholen. du wirst sehen, wenn mein <a class="persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> mich einmal
+					heimzuholen. du wirst sehen, wenn mein <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> mich einmal
 					kennt, er jagt mich nicht wieder fort. – und sollte er mich auch nicht behalten
 					wollen, so erfahre ich es ja zeitig genug und Gott wird schon für ein ander
 					Stükchen Brod sorgen, und vor der Hand, würden wir auch <span class="tei_hi_underline1">nicht verhungern</span>, drum laß uns sparen, denn mit Geld ist alles zu
 					machen, und braucht man es nicht, so ist schnell eingekauft.</p>
-                                        <p>Ich schikke dir hier den <span class="tei_ptr"></span>Hardischen Wechsel<a class="noteMarker" id="ref-C_007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_007">*</a> indem
+                                        <p>Ich schikke dir hier den <span class="tei_ptr"></span>Hardischen Wechsel<a class="noteMarker" id="ref-C_007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_007">*</a> indem
 					ich glaube daß es gut sein wird das Geld zu erheben nebst Intereßen also 530
-						<span class="tei_hi_latintype">f W:&#160;W:</span> und es in Gut Geld umgesezt auch zu <a class="orgs A080006" href="/exist/apps/WeGA-WebApp/de/A080006.html"><span class="tei_hi_latintype">Ballabene</span></a> zu thun, 
-                    damit alles beisammen ist. ich habe ihn auf meinen guten <span class=" 68114583271101114105115116"><span class="tei_hi_latintype">Dr: Gerist</span></span>
-                    <span class="tei_supplied" id="d37325e389"><span class="brackets_supplied">[</span>ausgestellt<span class="brackets_supplied">]</span></span>, 
+						<span class="tei_hi_latintype">f W: W:</span> und es in Gut Geld umgesezt auch zu <a class="preview orgs A080006" href="/exist/apps/WeGA-WebApp/de/A080006.html"><span class="tei_hi_latintype">Ballabene</span></a> zu thun, 
+                    damit alles beisammen ist. ich habe ihn auf meinen guten <span class="68114583271101114105115116"><span class="tei_hi_latintype">Dr: Gerist</span></span>
+                    <span class="tei_supplied" id="d56985e389"><span class="brackets_supplied">[</span>ausgestellt<span class="brackets_supplied">]</span></span>, 
 					weil es dir vielleicht nicht recht gewesen wäre das Geld selbst zu erheben, was
-						<a class="persons A000946" href="/exist/apps/WeGA-WebApp/de/A000946.html">Jungh</a>
+						<a class="preview persons A000946" href="/exist/apps/WeGA-WebApp/de/A000946.html">Jungh</a>
 					gerne gütigst besorgen wird. Grüße Ihn 1000 mal von mir und bezeige meine
-					innigste Freude über die Beßerung der guten <a class="persons A000947" href="/exist/apps/WeGA-WebApp/de/A000947.html">Fanny</a>, und seinen lieben Brief <span class="tei_ptr"></span>den
-					ich gewiß nächsten Posttag beantworte.<a class="noteMarker" id="ref-C_008" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_008">*</a>
+					innigste Freude über die Beßerung der guten <a class="preview persons A000947" href="/exist/apps/WeGA-WebApp/de/A000947.html">Fanny</a>, und seinen lieben Brief <span class="tei_ptr"></span>den
+					ich gewiß nächsten Posttag beantworte.<a class="noteMarker" id="ref-C_008" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_008">*</a>
                 </p>
                                         <p>Heute hat ich zu viel mit <span class="tei_hi_underline1">dir</span> zu zanken, und die
-                    Post geht. auch an meine gute Mama <a class="persons A008247" href="/exist/apps/WeGA-WebApp/de/A008247.html"><span class="tei_hi_latintype">Qualowsky</span></a> alles Erdenkliche.</p>
-                                        <p>Nun Geschwind <span class="tei_subst"><span class="tei_add">noch</span><a class="noteMarker" id="ref-d37325e417" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37325e417">‡</a></span> erzählen. d: 31<span class="tei_hi_superscript">t</span> Mittag <a class="persons A000096" href="/exist/apps/WeGA-WebApp/de/A000096.html"><span class="tei_hi_latintype">Bassi</span></a> mein Gast, im Engel. dann Visiten. <span class="tei_ptr"></span>Abends SingAkademie, dann Casino Ball.<a class="noteMarker" id="ref-C_009" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_009">*</a>
+                    Post geht. auch an meine gute Mama <a class="preview persons A008247" href="/exist/apps/WeGA-WebApp/de/A008247.html"><span class="tei_hi_latintype">Qualowsky</span></a> alles Erdenkliche.</p>
+                                        <p>Nun Geschwind <span class="tei_subst"><span class="tei_add">noch</span><a class="noteMarker" id="ref-d56985e417" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56985e417">‡</a></span> erzählen. d: 31<span class="tei_hi_superscript">t</span> Mittag <a class="preview persons A000096" href="/exist/apps/WeGA-WebApp/de/A000096.html"><span class="tei_hi_latintype">Bassi</span></a> mein Gast, im Engel. dann Visiten. <span class="tei_ptr"></span>Abends SingAkademie, dann Casino Ball.<a class="noteMarker" id="ref-C_009" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_009">*</a>
                 </p>
                                         <p class="inlineEnd">d: 1<span class="tei_hi_superscript">t</span>
-                    <span class="tei_hi_latintype">Febr:</span> Mit Besuchen überlaufen. <span class="tei_ptr"></span>dann 12 Uhr Verpflichtung mehrer<span class="tei_supplied" id="d37325e448"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Orchester</span> Mitglieder.<a class="noteMarker" id="ref-C_010" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_010">*</a> 
-                    Mittag bey S: Exellenz dem 1<span class="tei_hi_superscript">t</span> Marschall <a class="persons A001524" href="/exist/apps/WeGA-WebApp/de/A001524.html"><span class="tei_hi_latintype">v: Raknitz</span></a>. 
-                    ins Theater <a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html"><span class="tei_hi_latintype">Morlachis</span></a> <span class=" 79112101114">Oper</span><a class="noteMarker" id="ref-C_013" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_013">*</a>. 
-                    dann umgezogen, Große Gesellschaft beim <a class="persons A000201" href="/exist/apps/WeGA-WebApp/de/A000201.html">Östreichischen Gesandten</a>. 
+                    <span class="tei_hi_latintype">Febr:</span> Mit Besuchen überlaufen. <span class="tei_ptr"></span>dann 12 Uhr Verpflichtung mehrer<span class="tei_supplied" id="d56985e448"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Orchester</span> Mitglieder.<a class="noteMarker" id="ref-C_010" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_010">*</a> 
+                    Mittag bey S: Exellenz dem 1<span class="tei_hi_superscript">t</span> Marschall <a class="preview persons A001524" href="/exist/apps/WeGA-WebApp/de/A001524.html"><span class="tei_hi_latintype">v: Raknitz</span></a>. 
+                    ins Theater <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html"><span class="tei_hi_latintype">Morlachis</span></a> <span class="79112101114">Oper</span><a class="noteMarker" id="ref-C_013" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_013">*</a>. 
+                    dann umgezogen, Große Gesellschaft beim <a class="preview persons A000201" href="/exist/apps/WeGA-WebApp/de/A000201.html">Östreichischen Gesandten</a>. 
                     bis 12 Uhr, gespielt, <span class="tei_hi_latintype">accomp: pp</span> <span class="tei_hi_underline1">d: 2<span class="tei_hi_superscript">t</span></span> Besuche. 
-                    um 11 Uhr in die Kirche. Mittag bey <a class="persons A002273" href="/exist/apps/WeGA-WebApp/de/A002273.html">H: Tietz</a>. 
-                    Abends <span class=" 74111115101112104"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Joseph</span></span></span>. 
-                    dann zu <a class="persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Schmidl</a> und <span class="tei_damage"><span class="tei_supplied" id="d37325e499"><span class="brackets_supplied">[</span>von ihm v<span class="brackets_supplied">]</span></span></span>erführen laßen auf die Redoute, die <span class="tei_hi_underline1">elend war</span>, und wo ich <span class="tei_damage"><span class="tei_supplied" id="d37325e506"><span class="brackets_supplied">[</span>mich ent<span class="brackets_supplied">]</span></span></span>sezlich langweilte. aber ich wollte nicht gerne den Sonder<span class="tei_damage"><span class="tei_supplied" id="d37325e510"><span class="brackets_supplied">[</span>ling<span class="brackets_supplied">]</span></span></span> machen. 
-                    &#160;&#160;&#160;&#160;&#160;Heute früh Konzert Probe.
+                    um 11 Uhr in die Kirche. Mittag bey <a class="preview persons A002273" href="/exist/apps/WeGA-WebApp/de/A002273.html">H: Tietz</a>. 
+                    Abends <span class="74111115101112104"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Joseph</span></span></span>. 
+                    dann zu <a class="preview persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Schmidl</a> und <span class="tei_damage"><span class="tei_supplied" id="d56985e499"><span class="brackets_supplied">[</span>von ihm v<span class="brackets_supplied">]</span></span></span>erführen laßen auf die Redoute, die <span class="tei_hi_underline1">elend war</span>, und wo ich <span class="tei_damage"><span class="tei_supplied" id="d56985e506"><span class="brackets_supplied">[</span>mich ent<span class="brackets_supplied">]</span></span></span>sezlich langweilte. aber ich wollte nicht gerne den Sonder<span class="tei_damage"><span class="tei_supplied" id="d56985e510"><span class="brackets_supplied">[</span>ling<span class="brackets_supplied">]</span></span></span> machen. 
+                         Heute früh Konzert Probe.
 					Mittag im Engel. Abend Konzert im Theater zwischen den Akten.
-                    &#160;&#160;&#160;&#160;&#160;Morgen gebe ich ein großes <span class="tei_hi_latintype">Dinér</span> an meine <span class="tei_hi_latintype">dirigirenden
+                         Morgen gebe ich ein großes <span class="tei_hi_latintype">Dinér</span> an meine <span class="tei_hi_latintype">dirigirenden
 						Collegen</span> und die <span class="tei_hi_latintype">Regisseurs</span> im Engel. 
                     wird Geld kosten, aber Aufsehen machen, spreche ich mit <span class="tei_ptr"></span>
-                    <span class=" 7210511211210110811697110122">Hippeltanz</span><a class="noteMarker" id="ref-C_012" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_012">*</a>. &#160;&#160;&#160;&#160;&#160;es muß sein.</p>
-                                        <p class="teiLetter_closer inlineStart">Und nun gute Nacht geliebtes Leben, sei brav, heiter und froh, und kränke deinen armen Muks nicht durch deinen trüben Sinn, du
-					hast es wahrhaftig nicht Ursache. &#160;&#160;&#160;&#160;&#160;Gott erhalte dich Gesund. grüße die Mutter aufs beste. und alle Bekannte. ich buße dich
-                    Millionenmal behalte mich lieb so wie dich dein ewig treuer dich über alles liebender <span class="tei_hi_latintype"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>. + + +.
+                    <span class="7210511211210110811697110122">Hippeltanz</span><a class="noteMarker" id="ref-C_012" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_012">*</a>.      es muß sein.</p>
+                                        <p class="tei_closer textAlign-left inlineStart">Und nun gute Nacht geliebtes Leben, sei brav, heiter und froh, und kränke deinen armen Muks nicht durch deinen trüben Sinn, du
+					hast es wahrhaftig nicht Ursache.      Gott erhalte dich Gesund. grüße die Mutter aufs beste. und alle Bekannte. ich buße dich
+                    Millionenmal behalte mich lieb so wie dich dein ewig treuer dich über alles liebender <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>. + + +.
             </p>
                                         <div class="tei_postscript">
-                                            <p>Millionen Grüße von <span class="A001705 A002307"><span class="tei_hi_latintype">Schmidls</span></span> und <a class="persons A000096" href="/exist/apps/WeGA-WebApp/de/A000096.html"><span class="tei_hi_latintype">Bassi</span></a>, 
-                  <span class="tei_hi_latintype"><a class="persons A002227" href="/exist/apps/WeGA-WebApp/de/A002227.html">Burmeister</a> <a class="persons A000799" href="/exist/apps/WeGA-WebApp/de/A000799.html">Hellwig</a> pp</span>.</p>
+                                            <p>Millionen Grüße von <span class="preview persons A001705 A002307" data-ref="/exist/apps/WeGA-WebApp/de/A001705.html /exist/apps/WeGA-WebApp/de/A002307.html"><span class="tei_hi_latintype">Schmidls</span></span> und <a class="preview persons A000096" href="/exist/apps/WeGA-WebApp/de/A000096.html"><span class="tei_hi_latintype">Bassi</span></a>, 
+                  <span class="tei_hi_latintype"><a class="preview persons A002227" href="/exist/apps/WeGA-WebApp/de/A002227.html">Burmeister</a> <a class="preview persons A000799" href="/exist/apps/WeGA-WebApp/de/A000799.html">Hellwig</a> pp</span>.</p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -609,7 +596,7 @@
 					Unstimmigkeiten; berichtet über den Erfolg des "Joseph" in Dresden u. Aufführung
 					der "Silvana" in Prag; betr. Engagement Therese Grünbaums; mahnt Carolines
 					Kündigung ihres Engagements am 1. April an; schickt Wechsel mit Anweisung, das
-					Geld zu <a class="orgs A080006" href="/exist/apps/WeGA-WebApp/de/A080006.html">Ballabene</a> zu geben; gibt sein Tagebuch 31. Januar bis 3. Februar wieder,
+					Geld zu <a class="preview orgs A080006" href="/exist/apps/WeGA-WebApp/de/A080006.html">Ballabene</a> zu geben; gibt sein Tagebuch 31. Januar bis 3. Februar wieder,
 					erwähnt gesellschaftl. u. dienstl. Verpflichtungen; will am 4. Februar ein Diner
 					für einige Kollegen geben.</p>
                                     </div>
@@ -669,10 +656,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d37325e72" data-title="unclear">"Harlem": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d56985e72" data-title="unclear">"Harlem": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37325e417" data-title="subst">"noch": "sich" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d56985e417" data-title="subst">"noch": "sich" überschrieben.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -694,10 +681,10 @@
 						unterzubringen und ihr einen Unterhalt zu zahlen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37325e224" data-title="choice">"verwehren": weitere mögliche Lesungen: "ermahnen", "vermahnen"</div>
+                                            <div class="apparatusEntry" id="d56985e224" data-title="choice">"verwehren": weitere mögliche Lesungen: "ermahnen", "vermahnen"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37325e272" data-title="choice">"Brod": weitere mögliche Lesungen: "Brods"</div>
+                                            <div class="apparatusEntry" id="d56985e272" data-title="choice">"Brod": weitere mögliche Lesungen: "Brods"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_004" data-title="note commentary">"<span class="tei_lemma">Von Grünbaums habe … Brods zu verscherzen.</span>": Webers Bemühungen, die Prager Sopranistin
@@ -732,7 +719,7 @@
                                             <div class="apparatusEntry" id="C_013" data-title="note commentary"><span class="tei_lemma">"… . ins Theater Morlachis Oper": </span>Il barbiere di Siviglia</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_012" data-title="note commentary">"<span class="tei_lemma"> Hippeltanz</span>": Hippeldanz ist eine Figur in: <span class="tei_hi_italic"><span class=" 6897115326911210510311497109109">Das Epigramm</span></span>, Lustspiel in 4 Aufzügen von <a class="persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">August von Kotzebue</a>, jedoch kommt das Zitat nicht darin vor, aber in Kotzebues <span class=" 65114109117116104321171101003269100101108115105110110"><span class="tei_hi_italic">Armuth und Edelsinn</span></span>. Lustspiel in 3 Aufzügen. Vgl. August von Kotzebue, Theater, Bd. 5, Wien, Leipzig 1840, S. 11 (1. Akt, 3. Szene: Fabian Stöpsel: Wird viel Geld kosten. Peter Plum: wird aber Aufsehen machen) 
+                                            <div class="apparatusEntry" id="C_012" data-title="note commentary">"<span class="tei_lemma"> Hippeltanz</span>": Hippeldanz ist eine Figur in: <span class="tei_hi_italic"><span class="6897115326911210510311497109109">Das Epigramm</span></span>, Lustspiel in 4 Aufzügen von <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">August von Kotzebue</a>, jedoch kommt das Zitat nicht darin vor, aber in Kotzebues <span class="65114109117116104321171101003269100101108115105110110"><span class="tei_hi_italic">Armuth und Edelsinn</span></span>. Lustspiel in 3 Aufzügen. Vgl. August von Kotzebue, Theater, Bd. 5, Wien, Leipzig 1840, S. 11 (1. Akt, 3. Szene: Fabian Stöpsel: Wird viel Geld kosten. Peter Plum: wird aber Aufsehen machen) 
                     </div>
                                         </li>
                                     </ul>
@@ -761,10 +748,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041021</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041021</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 18. Juli 2016 durch Eveline Bartlitz</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 7. Juni 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -790,6 +776,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -800,6 +787,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -834,6 +822,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

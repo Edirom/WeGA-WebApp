@@ -20,6 +20,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
@@ -40,9 +41,9 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
         switch($resource)
         case 'wikipedia' return
             let $beaconMap := wega-util:beacon-map($gnd, $docType)
-            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')])[1]
+            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')][1])[1]
             return
-                replace($url, 'dewiki', $lang || 'wiki')
+                replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
@@ -70,7 +71,7 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
     let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { http:send-request($req) }
-        catch * {core:logToFile('warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+        catch * {core:logToFile(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('wega-util:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
         else $response:)
@@ -97,9 +98,8 @@ declare function wega-util:http-get($url as xs:anyURI) as element(wega:externalR
  : @return element wega:externalResource, a wrapper around httpclient:response
  :)
 declare function wega-util:httpclient-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
-        try { httpclient:get($url, true(), <Headers/>)  }
+        try { httpclient:get($url, true(), <headers><header name="Connection" value="close"/></headers>)  }
         catch * {core:logToFile('warn', string-join(('wega-util:httpclient-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     (:let $response := 
         if($response/httpclient:body[matches(@mimetype,"text/html")]) then wega:changeNamespace($response,'http://www.w3.org/1999/xhtml', 'http://exist-db.org/xquery/httpclient')
@@ -158,6 +158,100 @@ declare function wega-util:remove-comments($nodes as node()*) as node()* {
 };
 
 (:~
+ : Add current version information to a TEI file
+ : If the file contains a tei:fileDesc a tei:editionStmt is injected,
+ : otherwise a comment is written after the root element 
+ :
+ : @author Peter Stadler 
+ : @param $nodes the nodes to transform
+ : @return transformed nodes
+ :)
+declare function wega-util:inject-version-info($nodes as node()*) as item()* {
+    for $node in $nodes
+    return
+        if($node instance of processing-instruction()) then (
+            (: replace the schema location from development to current stable version :)
+            if($node[ancestor::node()]) then $node
+            else (
+                processing-instruction xml-model {replace($node, '(master|develop)', 'v' || config:get-option('ODDversion'))}
+            )
+        )
+        (: inject editionStmt element after the titleStmt :)
+        else if($node instance of element(tei:titleStmt)) then (
+            if($node/parent::tei:fileDesc/parent::tei:teiHeader/parent::tei:TEI) then ( (: make sure we're dealing with the right titleStmt :)
+                let $editionStmt := wega-util:editionStmt()
+                return (
+                    $node,
+                    '&#10;&#9;&#9;&#9;', (: Indentation :)
+                    element {QName('http://www.tei-c.org/ns/1.0', 'editionStmt')} {
+                        '&#10;&#9;&#9;&#9;&#9;',
+                        element {QName('http://www.tei-c.org/ns/1.0', 'p')} {
+                            $editionStmt?version
+                        },
+                        '&#10;&#9;&#9;&#9;&#9;',
+                        element {QName('http://www.tei-c.org/ns/1.0', 'p')} {
+                            $editionStmt?download
+                        },
+                        '&#10;&#9;&#9;&#9;'
+                    }
+                )
+            )
+            else $node
+        )
+        
+        else if($node instance of element(tei:text)) then $node (: shortcut :)
+        
+        (: inject version information as comment after the root element :)
+        else if($node instance of element(tei:ab)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:person)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:place)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:biblStruct)) then wega-util:editionStmt2comment($node)
+        else if($node instance of element(tei:org)) then wega-util:editionStmt2comment($node)
+        
+        (: fallback: identity transformation :)
+        else if($node instance of element()) then 
+            element {node-name($node)} {
+                $node/@*,
+                wega-util:inject-version-info($node/node())
+            }
+        else if($node instance of document-node()) then wega-util:inject-version-info($node/node())
+        else $node
+};
+
+(:~
+ : Helper function for wega-util:inject-version-info()
+~:)
+declare %private function wega-util:editionStmt() as map() {
+    map {
+        'version' :=    lang:get-language-string(
+                            'versionInformation', (
+                                config:get-option('version'), 
+                                date:strfdate(xs:date(config:get-option('versionDate')), lang:guess-language(()), ())
+                            ), 
+                            lang:guess-language(())
+                        ),
+        'download' := lang:get-language-string('downloaded_on', lang:guess-language(())) || ': ' || current-dateTime()
+    }
+};
+
+(:~
+ : Helper function for wega-util:inject-version-info()
+~:)
+declare %private function wega-util:editionStmt2comment($node as node()?) as node()? {
+    if($node[ancestor::node()]) then $node
+    else (
+        let $editionStmt := wega-util:editionStmt()
+        return (
+            element {node-name($node)} {
+                $node/@*,
+                comment {$editionStmt?version || '. ' || $editionStmt?download },
+                $node/node()
+            }
+        )
+    )
+};
+
+(:~
  : Recursively remove idiosyncratic WeGA elements ('workName', 'characterName') and turn them into generic TEI <rs> elements
  :
  : @author Peter Stadler 
@@ -207,7 +301,9 @@ declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
 };
 
 declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)* {
-    let $url := 'https://tools.wmflabs.org/zoomviewer/iiif.php?f=' || $wikiFilename
+    (: kanonische Adresse wäre eigentlich https://tools.wmflabs.org/zoomviewer/iiif.php?f=$DATEINAME$, bestimmte Weiterleitungen funktionieren dann aber nicht :)
+    (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
+    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $wikiFilename || '/info.json'
     let $lease := xs:dayTimeDuration('P1D')
     let $fileName := util:hash($wikiFilename, 'md5') || '.xml'
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
@@ -265,6 +361,9 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
     for $node in $nodes
     return
         typeswitch($node)
+        case element(tei:forename) return 
+        	if($node/@cert) then ($node/child::node() ! wega-util:txtFromTEI(.), '(?)') 
+        	else $node/child::node() ! wega-util:txtFromTEI(.)
         case element(tei:del) return ()
         case element(tei:note) return ()
         case element(tei:lb) return 
@@ -274,6 +373,7 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:quote) return 
             if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
             else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case element(tei:supplied) return ('[', $node/child::node() ! wega-util:txtFromTEI(.), ']') 
         case text() return replace($node, '\n+', ' ')
         case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
         case processing-instruction() return ()
@@ -286,18 +386,20 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
  : Inspired by functx:remove-elements-deep
 ~:)
 declare function wega-util:remove-elements-by-class($nodes as node()*, $classes as xs:string*) as node()* {
-    for $node in $nodes
-    return
-        typeswitch($node)
-        case element() return
-            if ($node[@class = tokenize($classes, '\s+')]) then ()
-            else 
-                element { node-name($node) } { 
-                    $node/@*,
-                    wega-util:remove-elements-by-class($node/node(), $classes)
-                }
-        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
-        default return $node
+	if($nodes/descendant-or-self::*[@class = tokenize($classes, '\s+')]) then
+	    for $node in $nodes
+	    return
+	        typeswitch($node)
+	        case element() return
+	            if ($node[@class = tokenize($classes, '\s+')]) then ()
+	            else 
+	                element { node-name($node) } { 
+	                    $node/@*,
+	                    wega-util:remove-elements-by-class($node/node(), $classes)
+	                }
+	        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
+	        default return $node
+    else $nodes
 };
 
 (:~
@@ -362,4 +464,13 @@ declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
 ~:)
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
     wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+};
+
+(:~
+ : create a flattened version of strings without diacritics, e.g. "Méhul" --> "Mehul"
+ : see http://exist.2174344.n4.nabble.com/stripping-diacritics-with-fn-normalize-unicode-tp4657960.html
+~:)
+declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
+    for $i in $str
+    return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
 };

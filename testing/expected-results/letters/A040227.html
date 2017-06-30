@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-04-14T15:40:27.296987Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040227" />
         <meta property="dc:description" content="Auflistung von Ausgaben" />
         <meta name="description" content="Auflistung von Ausgaben" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040227.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040227.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A040227</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A040227</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040227/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040227.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040227/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040227.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -295,9 +285,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000933" /> <span title="Johann">Johann</span> 
@@ -316,7 +305,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="table-wrapper">
-                                            <table id="d37567e4" class="table">
+                                            <table id="d57325e4" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>Pensions Fond</td>
@@ -331,13 +320,11 @@
                                                         <td>1.52.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Schloßer <span class=" 75111104108">Kohl</span>
-                                                        </td>
+                                                        <td>Schloßer <span class="75111104108">Kohl</span></td>
                                                         <td>5.15.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Rittlohn für <a class="persons A000933" href="/exist/apps/WeGA-WebApp/de/A000933.html">Johann</a>
-                                                        </td>
+                                                        <td>Rittlohn für <a class="preview persons A000933" href="/exist/apps/WeGA-WebApp/de/A000933.html">Johann</a></td>
                                                         <td>3.36.</td>
                                                     </tr>
                                                     <tr>
@@ -385,13 +372,11 @@
                                                         <td>52.22.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype"><a class="persons A002382" href="/exist/apps/WeGA-WebApp/de/A002382.html">Pentz</a></span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype"><a class="preview persons A002382" href="/exist/apps/WeGA-WebApp/de/A002382.html">Pentz</a></span></td>
                                                         <td>21.21.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Sigelen</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Sigelen</span></td>
                                                         <td>23448.</td>
                                                     </tr>
                                                     <tr>
@@ -427,18 +412,15 @@
                                                         <td>60</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><a class="persons A000933" href="/exist/apps/WeGA-WebApp/de/A000933.html">Johann</a>
-                                                        </td>
+                                                        <td><a class="preview persons A000933" href="/exist/apps/WeGA-WebApp/de/A000933.html">Johann</a></td>
                                                         <td>346.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_add">Handege<a class="noteMarker" id="ref-d37567e153" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e153">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_add">Handege<a class="noteMarker" id="ref-d57325e153" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e153">‡</a></span></td>
                                                         <td>273</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Bom</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Bom</span></td>
                                                         <td>5</td>
                                                     </tr>
                                                     <tr>
@@ -450,13 +432,11 @@
                                                         <td>6.8.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Sigelen</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Sigelen</span></td>
                                                         <td>499</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Frasch</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Frasch</span></td>
                                                         <td>217</td>
                                                     </tr>
                                                     <tr>
@@ -464,8 +444,7 @@
                                                         <td>125</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Nast</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Nast</span></td>
                                                         <td>842</td>
                                                     </tr>
                                                     <tr>
@@ -481,13 +460,11 @@
                                                         <td>730.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Eichler</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Eichler</span></td>
                                                         <td>18</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Porto</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Porto</span></td>
                                                         <td>17 9.</td>
                                                     </tr>
                                                     <tr>
@@ -531,8 +508,7 @@
                                                         <td>2</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class=" 68246114105110103">Döring</span>
-                                                        </td>
+                                                        <td><span class="68246114105110103">Döring</span></td>
                                                         <td>25</td>
                                                     </tr>
                                                     <tr>
@@ -548,8 +524,7 @@
                                                         <td>947.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Brand</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Brand</span></td>
                                                         <td>4155.</td>
                                                     </tr>
                                                     <tr>
@@ -569,34 +544,24 @@
                                                         <td>44</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_del">Wagen nach Offenbach<a class="noteMarker" id="ref-d37567e326" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e326">‡</a></span>
-                                                        </td>
-                                                        <td><span class="tei_del">44<a class="noteMarker" id="ref-d37567e329" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e329">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_del">Wagen nach Offenbach<a class="noteMarker" id="ref-d57325e326" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e326">‡</a></span></td>
+                                                        <td><span class="tei_del">44<a class="noteMarker" id="ref-d57325e329" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e329">‡</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_del">Gemälde<a class="noteMarker" id="ref-d37567e333" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e333">‡</a></span>
-                                                        </td>
-                                                        <td><span class="tei_del">4<a class="noteMarker" id="ref-d37567e336" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e336">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_del">Gemälde<a class="noteMarker" id="ref-d57325e333" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e333">‡</a></span></td>
+                                                        <td><span class="tei_del">4<a class="noteMarker" id="ref-d57325e336" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e336">‡</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_del">Barth<a class="noteMarker" id="ref-d37567e340" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e340">‡</a></span>
-                                                        </td>
-                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d37567e343" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e343">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_del">Barth<a class="noteMarker" id="ref-d57325e340" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e340">‡</a></span></td>
+                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d57325e343" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e343">‡</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_del">Hübsch<a class="noteMarker" id="ref-d37567e347" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e347">‡</a></span>
-                                                        </td>
-                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d37567e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e350">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_del">Hübsch<a class="noteMarker" id="ref-d57325e347" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e347">‡</a></span></td>
+                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d57325e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e350">‡</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_del">Lembert<a class="noteMarker" id="ref-d37567e354" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e354">‡</a></span>
-                                                        </td>
-                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d37567e357" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e357">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_del">Lembert<a class="noteMarker" id="ref-d57325e354" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e354">‡</a></span></td>
+                                                        <td><span class="tei_del">11<a class="noteMarker" id="ref-d57325e357" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e357">‡</a></span></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Kohlen</td>
@@ -615,8 +580,7 @@
                                                         <td>2642.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Conditor</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Conditor</span></td>
                                                         <td>-53</td>
                                                     </tr>
                                                     <tr>
@@ -648,8 +612,7 @@
                                                         <td>100</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Conditor</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Conditor</span></td>
                                                         <td>322</td>
                                                     </tr>
                                                     <tr>
@@ -657,8 +620,7 @@
                                                         <td>100</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_latintype">Nanz</span>
-                                                        </td>
+                                                        <td><span class="tei_hi_latintype">Nanz</span></td>
                                                         <td>50</td>
                                                     </tr>
                                                     <tr>
@@ -670,8 +632,7 @@
                                                         <td>20</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_add">Treut d: j:<a class="noteMarker" id="ref-d37567e451" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37567e451">‡</a></span>
-                                                        </td>
+                                                        <td><span class="tei_add">Treut d: j:<a class="noteMarker" id="ref-d57325e451" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57325e451">‡</a></span></td>
                                                         <td>40</td>
                                                     </tr>
                                                     <tr>
@@ -739,40 +700,40 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e153" data-title="unclear">"Handege": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d57325e153" data-title="unclear">"Handege": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e326" data-title="del">"Wagen nach Offenbach":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e326" data-title="del">"Wagen nach Offenbach":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e329" data-title="del">"44":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e329" data-title="del">"44":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e333" data-title="del">"Gemälde":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e333" data-title="del">"Gemälde":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e336" data-title="del">"4":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e336" data-title="del">"4":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e340" data-title="del">"Barth":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e340" data-title="del">"Barth":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e343" data-title="del">"11":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e343" data-title="del">"11":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e347" data-title="del">"Hübsch":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e347" data-title="del">"Hübsch":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e350" data-title="del">"11":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e350" data-title="del">"11":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e354" data-title="del">"Lembert":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e354" data-title="del">"Lembert":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e357" data-title="del">"11":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57325e357" data-title="del">"11":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d37567e451" data-title="unclear">"Treut d: j:": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d57325e451" data-title="unclear">"Treut d: j:": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -780,7 +741,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A040227/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -802,10 +763,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040227</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040227</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -831,6 +791,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -841,6 +802,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -875,6 +837,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

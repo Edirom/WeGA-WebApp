@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2016-12-08T16:32:37.982+01:00" />
+        <meta property="dc:date" content="2017-06-30T14:53:46.258+02:00" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Werke" />
         <meta property="dc:description" content="Eine Liste von Werken, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von Werken, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Works" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Works" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -208,10 +210,8 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a></li>
                         <li>Werke</li>
                     </ol>
                 </div>
@@ -250,29 +250,35 @@
             
         </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 searchResults">
-        <h2>1033 Suchergebnisse</h2>
-        <ul class="pagination">
-                                    <li class="disabled"><span>« zurück</span>
-                                    </li>
-                                    <li class="active"><span>1</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">2</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=3">3</a>
-                                    </li>
-                                    <li class="disabled"><span>…</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=103">103</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=104">104</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">weiter »</a>
-                                    </li>
-                                </ul>
-        <ul class="media-list">
-            <li class="media">
-                <div>
+	<div class="col-md-9 col-md-pull-3 searchResults">
+	<h2>1182 Suchergebnisse</h2>
+	<div class="row">
+		<div class="col-sm-8">
+			<ul class="pagination">
+                                            <li class="disabled"><span>« zurück</span></li>
+                                            <li class="active"><span>1</span></li>
+                                            <li><a class="page-link" href="?page=2">2</a></li>
+                                            <li><a class="page-link" href="?page=3">3</a></li>
+                                            <li class="disabled"><span>…</span></li>
+                                            <li><a class="page-link" href="?page=118">118</a></li>
+                                            <li><a class="page-link" href="?page=119">119</a></li>
+                                            <li><a class="page-link" href="?page=2">weiter »</a></li>
+                                        </ul>
+		</div>
+		<div class="col-sm-4">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">pro Seite</a></li>
+				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
+				<li><a class="page-link" href="?limit=25">25</a></li>
+				<li><a class="page-link" href="?limit=50">50</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul class="media-list">
+				<li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -285,17 +291,16 @@
             <span>(opus 16)</span>
         </h3>
         
-        <p><strong>Komponist</strong>: <span>Weber, Gottfried</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Weber, Gottfried</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020894</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -308,19 +313,17 @@
             
         </h3>
         
-        <p><strong>Komponist</strong>: <span>Meyerbeer, Giacomo</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Metastasio, Antonio Pietro</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Meyerbeer, Giacomo</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Metastasio, Antonio Pietro</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020590</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -333,19 +336,17 @@
             
         </h3>
         
-        <p><strong>Komponist</strong>: <span>Cherubini, Luigi</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Jouy, Étienne de</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Cherubini, Luigi</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Jouy, Étienne de</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020537</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -358,19 +359,17 @@
             
         </h3>
         <h4 class="media-heading">Oratorium in 2 Teilen</h4>
-        <p><strong>Komponist</strong>: <span>Danzi, Franz</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Niemeyer, August Hermann</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Danzi, Franz</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Niemeyer, August Hermann</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020387</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             
@@ -383,17 +382,16 @@
             
         </h3>
         <h4 class="media-heading">Trauerspiel in 5 Akten</h4>
-        <p><strong>Autor</strong>: <span>Zschokke, Heinrich</span>
-                                                </p>
+        <p><strong>Autor</strong>: <span>Zschokke, Heinrich</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020483</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -406,19 +404,17 @@
             
         </h3>
         <h4 class="media-heading">Dramma eroico per musica in due atti</h4>
-        <p><strong>Komponist</strong>: <span>Paër, Ferdinando</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Gamerra, Giovanni De</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Paër, Ferdinando</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Gamerra, Giovanni De</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020650</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -431,19 +427,17 @@
             <span>(HWV 49a)</span>
         </h3>
         
-        <p><strong>Komponist</strong>: <span>Händel, Georg Friedrich</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Gay, John</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Händel, Georg Friedrich</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Gay, John</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020418</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -456,17 +450,16 @@
             
         </h3>
         <h4 class="media-heading">ein episodisches Divertissement (Ballett)</h4>
-        <p><strong>Librettist</strong>: <span>Duport, Louis</span>
-                                                </p>
+        <p><strong>Librettist</strong>: <span>Duport, Louis</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020688</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" />
@@ -479,19 +472,17 @@
             
         </h3>
         <h4 class="media-heading">Lied für Sopran oder Tenor B-Dur op. 46 „Einsam wandelt dein Freund“</h4>
-        <p><strong>Komponist</strong>: <span>Beethoven, Ludwig van</span>
-                                                </p>
-                                                <p><strong>Librettist</strong>: <span>Matthisson, Friedrich von</span>
-                                                </p>
+        <p><strong>Komponist</strong>: <span>Beethoven, Ludwig van</span></p>
+                                                        <p><strong>Librettist</strong>: <span>Matthisson, Friedrich von</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020585</span>
         </p>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="preview-icon">
         <span class="pull-left">
             
@@ -504,35 +495,40 @@
             
         </h3>
         <h4 class="media-heading">romantisches Schauspiel in 4 Akten</h4>
-        <p><strong>Autor</strong>: <span>Franul von Weißenthurn, Johanna</span>
-                                                </p>
+        <p><strong>Autor</strong>: <span>Franul von Weißenthurn, Johanna</span></p>
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A020385</span>
         </p>
     </div>
 </div>
-            </li>
-        </ul>
-        <ul class="pagination">
-                                    <li class="disabled"><span>« zurück</span>
-                                    </li>
-                                    <li class="active"><span>1</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">2</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=3">3</a>
-                                    </li>
-                                    <li class="disabled"><span>…</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=103">103</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=104">104</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">weiter »</a>
-                                    </li>
-                                </ul>
-    </div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<ul class="pagination">
+                                            <li class="disabled"><span>« zurück</span></li>
+                                            <li class="active"><span>1</span></li>
+                                            <li><a class="page-link" href="?page=2">2</a></li>
+                                            <li><a class="page-link" href="?page=3">3</a></li>
+                                            <li class="disabled"><span>…</span></li>
+                                            <li><a class="page-link" href="?page=118">118</a></li>
+                                            <li><a class="page-link" href="?page=119">119</a></li>
+                                            <li><a class="page-link" href="?page=2">weiter »</a></li>
+                                        </ul>
+		</div>
+		<div class="col-sm-4">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">pro Seite</a></li>
+				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
+				<li><a class="page-link" href="?limit=25">25</a></li>
+				<li><a class="page-link" href="?limit=50">50</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 </div>
             </div>
         </div>
@@ -551,6 +547,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -561,6 +558,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -595,6 +593,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

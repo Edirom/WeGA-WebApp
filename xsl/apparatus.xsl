@@ -1,4 +1,10 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" exclude-result-prefixes="xs" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+   xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:tei="http://www.tei-c.org/ns/1.0" 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+   exclude-result-prefixes="xs" version="2.0">
    
    <xsl:template name="createApparatus">
       <xsl:element name="div">
@@ -12,7 +18,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">textConstitution</xsl:attribute>
-            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)]">
+            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
@@ -24,7 +30,7 @@
          </xsl:element>
          <xsl:element name="ul">
             <xsl:attribute name="class">commentary</xsl:attribute>
-            <xsl:for-each select=".//tei:app | .//tei:note | .//tei:choice">
+            <xsl:for-each select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>

@@ -7,6 +7,7 @@
     xmlns:rng="http://relaxng.org/ns/structure/1.0" 
     xmlns:functx="http://www.functx.com" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:teix="http://www.tei-c.org/ns/Examples" 
     xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
@@ -25,6 +26,7 @@
     <xsl:param name="transcript"/>
     <xsl:param name="smufl-decl"/>
     <xsl:param name="data-collection-path"/>
+    <xsl:param name="catalogues-collection-path"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
     
     <xsl:include href="common_funcs.xsl"/>
@@ -63,7 +65,7 @@
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
-            <xsl:attribute name="data-ref" select="$id"/>
+            <xsl:attribute name="data-ref" select="concat('#', $id)"/>
             <xsl:choose>
                 <xsl:when test="$marker eq 'arabic'">
                     <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
@@ -121,6 +123,34 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="enquote">
+        <xsl:param name="double" select="true()"/>
+        <xsl:choose>
+            <!-- German double quotation marks -->
+            <xsl:when test="$lang eq 'de' and $double">
+                <xsl:text>„</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>“</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and $double">
+                <xsl:text>“</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>”</xsl:text>
+            </xsl:when>
+            <!-- German single quotation marks -->
+            <xsl:when test="$lang eq 'de' and not($double)">
+                <xsl:text>‚</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>‘</xsl:text>
+            </xsl:when>
+            <xsl:when test="$lang eq 'en' and not($double)">
+                <xsl:text>‘</xsl:text>
+                <xsl:apply-templates/>
+                <xsl:text>’</xsl:text>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <!--  *********************************************  -->
@@ -199,23 +229,61 @@
     </xsl:template>
     
     <!--  Hier mit priority 0.5, da in Briefen und Tagebüchern unterschiedlich behandelt  -->
-    <xsl:template match="tei:pb|tei:cb" priority="0.5">
+    <xsl:template match="tei:pb | tei:cb" priority="0.5">
         <xsl:variable name="division-sign" as="xs:string">
             <xsl:choose>
-                <xsl:when test="local-name() eq 'pb'">
+                <xsl:when test="self::tei:pb">
                     <xsl:value-of select="' | '"/> <!-- senkrechter Strich („|“) aka pipe -->
                 </xsl:when>
-                <xsl:when test="local-name() eq 'cb'">
+                <xsl:when test="self::tei:cb">
                     <xsl:value-of select="' ¦ '"/> <!-- in der Mitte unterbrochener („¦“) senkrechter Strich -->
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <!-- breaks are not allowed within lists as they are in TEI. We need to workaround this … -->
         <xsl:element name="{if(parent::tei:list) then 'li' else 'span'}">
-            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-            <!-- breaks between block level elements -->
-            <xsl:if test="parent::tei:div or parent::tei:body">
-                <xsl:attribute name="class" select="concat('tei_', local-name(), '_block')"/>
+            <xsl:attribute name="class">
+                <xsl:text>tei_</xsl:text>
+                <xsl:value-of select="local-name()"/>
+                <!-- breaks between block level elements -->
+                <xsl:if test="parent::tei:div or parent::tei:body">
+                    <xsl:text>_block</xsl:text>
+                </xsl:if>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+                <xsl:choose>
+                    <xsl:when test="@n">
+                        <xsl:choose>
+                            <xsl:when test="self::tei:pb">
+                                <xsl:choose>
+                                    <xsl:when test="$docID eq 'A100000'">
+                                        <!-- Special treatment for the Notizenbuch where we decided to label the pages as numbers, sigh … -->
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr.&#160;', @n)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), '&#160;', @n)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:when test="self::tei:cb">
+                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), '&#160;', @n)"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="self::tei:pb">
+                                <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                            </xsl:when>
+                            <xsl:when test="self::tei:cb">
+                                <xsl:value-of select="wega:getLanguageString('columnBreak', $lang)"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:if test="@facs">
+                <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
             <xsl:choose>
                 <xsl:when test="@type='inWord'">
@@ -405,15 +473,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="localURL">
-            <xsl:choose>
-                <!-- Need to double encode for old Apache at euryanthe.de; see also img.xqm!! -->
-                <xsl:when test="contains(wega:getOption('iiifServer'), 'euryanthe')">
-                    <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url)))))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
@@ -425,6 +485,13 @@
                     <xsl:attribute name="title" select="$title"/>
                     <xsl:attribute name="alt" select="$title"/>
                     <xsl:attribute name="src" select="@url"/>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="starts-with(@url, 'wega:')">
+                <xsl:element name="img">
+                    <xsl:attribute name="title" select="$title"/>
+                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifServer'))"/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
@@ -599,63 +666,59 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:template match="tei:dateline" priority="0.5">
+        <xsl:variable name="default-textAlignment">
+            <!-- datelines werden im closer standardmäßig linksbündig gesetzt, ansonsten rechtsbündig. Immer in eine eigene Zeile (display:block)-->
+            <xsl:choose>
+                <xsl:when test="ancestor::tei:closer[not(@rend)]">left</xsl:when>
+                <xsl:when test="ancestor::tei:closer[@rend]">
+                    <xsl:value-of select="wega:getTextAlignment(ancestor::tei:closer/@rend, 'left')"/>
+                </xsl:when>
+                <xsl:otherwise>right</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="string-join(('tei_dateline', wega:getTextAlignment(@rend, $default-textAlignment)), ' ')"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:closer" priority="0.5">
         <xsl:element name="p">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'tei_closer'"/>
+            <xsl:attribute name="class" select="string-join(('tei_closer', wega:getTextAlignment(@rend, 'left'), if(@rend='inline') then 'inlineStart' else ()), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
     <xsl:template match="tei:q" priority="0.5">
         <!-- Always(!) surround with quotation marks -->
-        <xsl:choose>
-            <!-- German (double) quotation marks -->
-            <xsl:when test="$lang eq 'de'">
-                <xsl:text>&#x201E;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201C;</xsl:text>
-            </xsl:when>
-            <!-- English (double) quotation marks as default -->
-            <xsl:otherwise>
-                <xsl:text>&#x201C;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201D;</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="enquote">
+            <xsl:with-param name="double" select="true()"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="tei:quote" priority="0.5">
-        <!-- Surround with quotation marks if @rend is set -->
         <xsl:choose>
-            <!-- German double quotation marks -->
-            <xsl:when test="$lang eq 'de' and @rend='double-quotes'">
-                <xsl:text>&#x201E;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201C;</xsl:text>
-            </xsl:when>
-            <xsl:when test="$lang eq 'en' and @rend='double-quotes'">
-                <xsl:text>&#x201C;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x201D;</xsl:text>
-            </xsl:when>
-            <!-- German single quotation marks -->
-            <xsl:when test="$lang eq 'de' and @rend='single-quotes'">
-                <xsl:text>&#x201A;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x2018;</xsl:text>
-            </xsl:when>
-            <xsl:when test="$lang eq 'en' and @rend='single-quotes'">
-                <xsl:text>&#x2018;</xsl:text>
-                <xsl:apply-templates/>
-                <xsl:text>&#x2019;</xsl:text>
+            <!-- Surround with quotation marks if @rend is set -->
+            <xsl:when test="@rend">
+                <xsl:call-template name="enquote">
+                    <xsl:with-param name="double" select="@rend='double-quotes'"/>
+                </xsl:call-template>
             </xsl:when>
             <!-- no quotation marks as default -->
             <xsl:otherwise>
                 <xsl:apply-templates/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="tei:soCalled">
+        <xsl:call-template name="enquote">
+            <xsl:with-param name="double" select="false()"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="tei:postscript">
@@ -667,7 +730,7 @@
     
     <xsl:template match="tei:note[@type='thematicCom']">
         <xsl:element name="a">
-            <xsl:attribute name="class" select="'thematicCommentaries'"/>
+            <xsl:attribute name="class" select="'noteMarker'"/>
             <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
             <xsl:text>T</xsl:text>
         </xsl:element>
@@ -679,8 +742,8 @@
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:for-each-group select="node()" group-ending-with="tei:list">
-            <xsl:if test="current-group()[not(self::tei:list)][matches(., '\S')] or current-group()[not(self::tei:list)][self::element()]">
+        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML">
+            <xsl:if test="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)][matches(., '\S')] or current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)][self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
                         <xsl:apply-templates select="parent::tei:p/@xml:id"/>
@@ -688,10 +751,10 @@
                     <xsl:if test="$inlineEnd">
                         <xsl:attribute name="class" select="$inlineEnd"/>
                     </xsl:if>
-                    <xsl:apply-templates select="current-group()[not(self::tei:list)]"/>
+                    <xsl:apply-templates select="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)]"/>
                 </xsl:element>
             </xsl:if>
-            <xsl:apply-templates select="current-group()[self::tei:list]"/>
+            <xsl:apply-templates select="current-group()[self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText]"/>
         </xsl:for-each-group>
     </xsl:template>
 

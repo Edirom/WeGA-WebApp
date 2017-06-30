@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-10-25T11:42:16.661794Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030827" />
         <meta property="dc:description" content="Aufführungsbesprechung Dresden, Hoftheater: &#34;Die Braut von Messina&#34; von Schiller (Teil 1 von 3)" />
         <meta name="description" content="Aufführungsbesprechung Dresden, Hoftheater: &#34;Die Braut von Messina&#34; von Schiller (Teil 1 von 3)" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A000194/Writings/A030827.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A000194/Writings/A030827.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,14 +212,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000194.html">Karl August Böttiger</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften">Schriften</a>
-                        </li>
-                        <li><span>A030827</span> <span class="docStatus">in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A000194.html">Karl August Böttiger</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften">Schriften</a></li>
+                        <li><span>A030827</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,33 +232,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030827.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000157" /> <span title="Bethmann, Friederike">Bethmann, Friederike</span> 
@@ -289,8 +279,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -300,8 +289,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -336,17 +324,16 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Dienstags, den <span class="tei_date">13. Julius</span>. <span class="tei_hi_spaced_out"><span class="works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Die Braut von Messina</span></span>, von <span class="tei_hi_spaced_out"><a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a></span>, in vier Akten. Dritte Gastrolle von <a class="persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Mad. <span class="tei_hi_spaced_out">Schröder</span></a>.</p>
-                                        <p>Nicht bloß die, durch keine Scheingründe ganz zu rechtfertigende, Einführung des feindlich gespaltenen, in der Handlung viel zu sehr eingreifenden Doppelchors, auch die Aufstellung eines eisernen Fatums, das selbst durch <span class=" 68111110326710111597114115">Don Cesars</span> Selbstaufopferung <span class="tei_hi_spaced_out">keine</span> Versöhnung findet, hat längst das harte Urtheil über dieß Stück begründet, daß der Mißgriff, den <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> hier thut, durch keine einzelnen Schönheiten, durch keinen Glanz und Zauber der lyrischen Dichtung in den Chören, durch kein Interesse des schneidendsten Gegensatzes, ganz aufgewogen werden könne. So hoch die Erscheinung gestellt ist, das Gemüthlose geht nicht zum Gemüth. Aber darum ist doch unendlich viel an diesem Stücke selbst für die ausübende Bühnenkunst zu lernen, und erhalten nur die Chöre ihre vollkommene Gebühr, so ist auch schon für die <span class="tei_hi_spaced_out">Zuhörer</span> überschwenglich gesorgt. Darum eröffnete sich sehr verständig die neue Leipziger Bühne mit diesem Drama. Es ist das einzige Declamatorium, wie es seyn soll. Daher die Nothwendigkeit, den <span class="tei_hi_spaced_out">Ersten</span> in jedem Bühnenvereine die Chorsprecher zuzutheilen. Sie sind der Hebel und Strebepfeiler des Stücks. Bei der ganz neuen Besetzung dieses, seit sechs Jahren hier nicht gesehenen, Stücks war darauf, wie billig, die größte Rücksicht genommen worden. Die <a class="persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Herren <span class="tei_hi_spaced_out">Kanow</span></a> und <span class="tei_hi_spaced_out"><a class="persons A003074" href="/exist/apps/WeGA-WebApp/de/A003074.html">Pauli</a></span> als ältere und jüngere Choführer declamirten – das erste Erforderniß – mit der gediegensten Deutlichkeit und aller Tonhebung und Senkung, die der Inhalt gebietet. Vorzüglich gelangen <a class="persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Hrn. <span class="tei_hi_spaced_out">Kanow</span></a> dießmal auch die weichen Töne. Neben ihm wetteiferten in Vollendung des Vortrags als Mitsprechende die Herren <a class="persons A002227" href="/exist/apps/WeGA-WebApp/de/A002227.html"><span class="tei_hi_spaced_out">Burmeister</span></a> und <span class="tei_hi_spaced_out"><a class="persons A002119" href="/exist/apps/WeGA-WebApp/de/A002119.html">Werdy</a></span>. Das waren sehr erfreuliche Leistungen. Freilich wie <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> beim ersten Einstudiren, dem wir selbst beiwohnten, den rhythmischen Wechsel des Sylbentanzes, den Aeolssturm und Aeolshauch in einzelnen Stellen des Chors sich fantasirte, dieß möchte nur einer langen Uebung bei ungewöhnlichen innern und äußern Mitteln ganz gelingen! Wir erinnern uns nicht, über den Vortrag der Chöre in der <span class="works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Braut von Messina</span> als einem Tongemälde bei so unendlich vielen, was über dies Stück seit 20 Jahren geschrieben worden ist, eine ganz in’s Einzelne gehende Zergliederung und Anweisung irgend wo gefunden zu haben. <a href="#footnote01">*)</a>
-                                        </p>
-                                        <p>Was in Absicht auf die in der Handlung selbst betheilten Schauspieler bei einer <span class="tei_hi_spaced_out">so schnell</span> einstudirten Vorstellung gutes gesagt werden kann, ist, daß sie nicht in Manier und Uebertreibung ausarten. Aber das grandiose dieser Schicksalsfabel fodert freilich einen ganz andern idealen Aufschwung. Am meisten zu beklagen war, daß durch die Schuld eines nur durch den Ruf empfohlenen, aber einer sol<span class="tei_cb">¦</span>chen Rolle durchaus nicht gewachsenen Gastspielers, an dem unser <span class="tei_hi_spaced_out"><a class="persons A002247" href="/exist/apps/WeGA-WebApp/de/A002247.html">Julius</a></span> den <span class=" 68111110326710111597114">Don Cesar</span> abtrag, alle Gegensätze in den feindlichen Brüdern verloren gingen. Doch wir wollten ja am Ende heute auch nur die <span class=" 681111101109732731159798101108108101">Donna Isabelle</span> sehen. Auf dieser der <span class=" 731111079711511697">Iokasta</span> in <a class="persons A007903" href="/exist/apps/WeGA-WebApp/de/A007903.html">Euripides</a> <span class=" 80104246110105122105101114105110110101110">Phönizierinnen</span> nachgebildeten, zu einer Niobe gesteigerten Vermittlerin und Leidensmutter, hatte <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> selbst das dramatische Gelingen dieses Stücks gestellt. In ihr hatte sich der Dichter vor allen ein grandioses, hochtragisches Mutter-Ideal gedacht. Sie muß durch Erhabenheit imponiren. Und Erhabenheit ist nur in der gehaltensten Ruhe. Im höchsten Affect darf also diese Mutter doch nicht zur gewöhnlichen Mütterlichkeit herabgehn. Die gewaltsamsten Ausbrüche müssen durch edle Haltung, durch den Stolz der Fürstin, den tragischen Adel behaupten. Hier droht aber eine andere Klippe, erkältende Gezwungenheit und im Affect Affectation. Besonders muß ihr neben einer idealisirenden Mimik ein unendlicher Umfang und Wohllaut im ächt musikalischen Vortrag zu Gebote stehn. Selbst die bewunderte <a class="persons A000157" href="/exist/apps/WeGA-WebApp/de/A000157.html">Bethmann</a> blieb hier im Einzelnen zurück. <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> fühlte wohl, daß hier etwas Unnatur obwalte, die auch von den Zuschauern stets mehr oder weniger gefühlt wird. Darum schuf er zuletzt noch seine <span class=" 779711411597">Marsa</span> im <span class=" 68101109101116114105117115">Demetrius</span>. Hätten wir dieß Stück ganz, welche Mutter würde da von uns stehn! – Die Bekanntschaft mit den fast nie ganz zu beseitigenden Schwierigkeiten in der Rolle der Fürstin, bewog uns daher anderswo den Wunsch auszusprechen, daß sie von einer <a class="persons A007837" href="/exist/apps/WeGA-WebApp/de/A007837.html">Siddons</a> dargestellt werden möchte. <a href="#footnote02">**)</a> Was wir damals nicht zu erleben hoffen durften, es ist erfüllt worden. <a class="persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Mad. Schröder</a> ist uns in dieser Rolle wirklich als eine deutsche <a class="persons A007837" href="/exist/apps/WeGA-WebApp/de/A007837.html">Siddons</a> erschienen. Sie hat uns mit der edelsten Haltung in ächt tragischer Mimik und Declamation ein gerundetes Ganze durch die folgerechtesten Entwicklungen und Steigerungen erblicken lassen, sie hat uns erschüttert und – gerührt! Aber wir können hier nur Einiges ausheben, dem Ganzen inrgendwo eine besondere Entwickelung vorbehaltend.</p>
-                                        <p>Das Spiel der Fürstin-Mutter kann also, soll es gnügen, nur in sehr grandiosen Formen und in Anklängen und Abschattungen nach der Antike genommen werden. <a class="persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Schiller</a> selbst dachte sich immer eine <span class=" 7810511198101">Niobe</span> darunter, die in die, durch solchen Bruderzwist und durch <span class=" 661019711611410599101">Beatrice</span>, den Nachklang <span class=" 841041011071089739115">Thekla’s</span>, repräsentirte, romantische, neue Welt mit ihrer alterthümlichen Hoheit und ungebeugtem Frauenstolz eintritt. Denn wie <span class=" 7810511198101">Niobe</span>, die hellenische <span class="tei_hi_antiqua">mater dolorosa</span>, doch im höchsten Affecte, von aller Verzerrung fern, schön bleibt und selbst noch in ihrer Apolithose (Versteinung aus Schmerz) würdig erscheint: so darf auch <span class=" 73115979810110810897">Isabella</span> im furchtbarsten Kampfe mit dem eisernen Schicksale die <span class="tei_hi_spaced_out">hohe Frau</span> nie in sich verdunkeln lassen. Sie schmilzt nur einmal, als sie am Schlusse wieder heraustritt und dem Mörder <span class="tei_hi_spaced_out">ihres</span> <span class=" 7797110117101108115">Manuels</span> liebkosend zuspricht. Aber es ist auch schon von andern bemerkt worden, daß der Dichter hier dem tragischen Mitleid die Wahrheit der Rolle aufgeopfert hat. Je andringlicher und inniger die Bitte: lebe für uns! vorgetragen wird – und unsre <a class="persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Schröder</a> bot ihrem ganzen Schatz von sänftigendem Wohllaut und Schmeichelrede dazu auf – desto auffallender das Unzusammenhängende mit dem Totaleindruck, worauf bis dahin der Dichter in diesem unbezwinglichen Stolz hinarbeitete.</p>
-                                        <p>(Die <a class="writings A030644" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030644.html">Fortsetzung</a> folgt.)</p>
+                                        <p>Dienstags, den <span class="tei_date">13. Julius</span>. <span class="tei_hi_spaced_out"><span class="preview works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Die Braut von Messina</span></span>, von <span class="tei_hi_spaced_out"><a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a></span>, in vier Akten. Dritte Gastrolle von <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Mad. <span class="tei_hi_spaced_out">Schröder</span></a>.</p>
+                                        <p>Nicht bloß die, durch keine Scheingründe ganz zu rechtfertigende, Einführung des feindlich gespaltenen, in der Handlung viel zu sehr eingreifenden Doppelchors, auch die Aufstellung eines eisernen Fatums, das selbst durch <span class="68111110326710111597114115">Don Cesars</span> Selbstaufopferung <span class="tei_hi_spaced_out">keine</span> Versöhnung findet, hat längst das harte Urtheil über dieß Stück begründet, daß der Mißgriff, den <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> hier thut, durch keine einzelnen Schönheiten, durch keinen Glanz und Zauber der lyrischen Dichtung in den Chören, durch kein Interesse des schneidendsten Gegensatzes, ganz aufgewogen werden könne. So hoch die Erscheinung gestellt ist, das Gemüthlose geht nicht zum Gemüth. Aber darum ist doch unendlich viel an diesem Stücke selbst für die ausübende Bühnenkunst zu lernen, und erhalten nur die Chöre ihre vollkommene Gebühr, so ist auch schon für die <span class="tei_hi_spaced_out">Zuhörer</span> überschwenglich gesorgt. Darum eröffnete sich sehr verständig die neue Leipziger Bühne mit diesem Drama. Es ist das einzige Declamatorium, wie es seyn soll. Daher die Nothwendigkeit, den <span class="tei_hi_spaced_out">Ersten</span> in jedem Bühnenvereine die Chorsprecher zuzutheilen. Sie sind der Hebel und Strebepfeiler des Stücks. Bei der ganz neuen Besetzung dieses, seit sechs Jahren hier nicht gesehenen, Stücks war darauf, wie billig, die größte Rücksicht genommen worden. Die <a class="preview persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Herren <span class="tei_hi_spaced_out">Kanow</span></a> und <span class="tei_hi_spaced_out"><a class="preview persons A003074" href="/exist/apps/WeGA-WebApp/de/A003074.html">Pauli</a></span> als ältere und jüngere Choführer declamirten – das erste Erforderniß – mit der gediegensten Deutlichkeit und aller Tonhebung und Senkung, die der Inhalt gebietet. Vorzüglich gelangen <a class="preview persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Hrn. <span class="tei_hi_spaced_out">Kanow</span></a> dießmal auch die weichen Töne. Neben ihm wetteiferten in Vollendung des Vortrags als Mitsprechende die Herren <a class="preview persons A002227" href="/exist/apps/WeGA-WebApp/de/A002227.html"><span class="tei_hi_spaced_out">Burmeister</span></a> und <span class="tei_hi_spaced_out"><a class="preview persons A002119" href="/exist/apps/WeGA-WebApp/de/A002119.html">Werdy</a></span>. Das waren sehr erfreuliche Leistungen. Freilich wie <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> beim ersten Einstudiren, dem wir selbst beiwohnten, den rhythmischen Wechsel des Sylbentanzes, den Aeolssturm und Aeolshauch in einzelnen Stellen des Chors sich fantasirte, dieß möchte nur einer langen Uebung bei ungewöhnlichen innern und äußern Mitteln ganz gelingen! Wir erinnern uns nicht, über den Vortrag der Chöre in der <span class="preview works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Braut von Messina</span> als einem Tongemälde bei so unendlich vielen, was über dies Stück seit 20 Jahren geschrieben worden ist, eine ganz in’s Einzelne gehende Zergliederung und Anweisung irgend wo gefunden zu haben. <a href="#footnote01">*)</a></p>
+                                        <p>Was in Absicht auf die in der Handlung selbst betheilten Schauspieler bei einer <span class="tei_hi_spaced_out">so schnell</span> einstudirten Vorstellung gutes gesagt werden kann, ist, daß sie nicht in Manier und Uebertreibung ausarten. Aber das grandiose dieser Schicksalsfabel fodert freilich einen ganz andern idealen Aufschwung. Am meisten zu beklagen war, daß durch die Schuld eines nur durch den Ruf empfohlenen, aber einer sol<span class="tei_cb" title="Spaltenumbruch">¦</span>chen Rolle durchaus nicht gewachsenen Gastspielers, an dem unser <span class="tei_hi_spaced_out"><a class="preview persons A002247" href="/exist/apps/WeGA-WebApp/de/A002247.html">Julius</a></span> den <span class="68111110326710111597114">Don Cesar</span> abtrag, alle Gegensätze in den feindlichen Brüdern verloren gingen. Doch wir wollten ja am Ende heute auch nur die <span class="681111101109732731159798101108108101">Donna Isabelle</span> sehen. Auf dieser der <span class="731111079711511697">Iokasta</span> in <a class="preview persons A007903" href="/exist/apps/WeGA-WebApp/de/A007903.html">Euripides</a> <span class="80104246110105122105101114105110110101110">Phönizierinnen</span> nachgebildeten, zu einer Niobe gesteigerten Vermittlerin und Leidensmutter, hatte <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> selbst das dramatische Gelingen dieses Stücks gestellt. In ihr hatte sich der Dichter vor allen ein grandioses, hochtragisches Mutter-Ideal gedacht. Sie muß durch Erhabenheit imponiren. Und Erhabenheit ist nur in der gehaltensten Ruhe. Im höchsten Affect darf also diese Mutter doch nicht zur gewöhnlichen Mütterlichkeit herabgehn. Die gewaltsamsten Ausbrüche müssen durch edle Haltung, durch den Stolz der Fürstin, den tragischen Adel behaupten. Hier droht aber eine andere Klippe, erkältende Gezwungenheit und im Affect Affectation. Besonders muß ihr neben einer idealisirenden Mimik ein unendlicher Umfang und Wohllaut im ächt musikalischen Vortrag zu Gebote stehn. Selbst die bewunderte <a class="preview persons A000157" href="/exist/apps/WeGA-WebApp/de/A000157.html">Bethmann</a> blieb hier im Einzelnen zurück. <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a> fühlte wohl, daß hier etwas Unnatur obwalte, die auch von den Zuschauern stets mehr oder weniger gefühlt wird. Darum schuf er zuletzt noch seine <span class="779711411597">Marsa</span> im <span class="68101109101116114105117115">Demetrius</span>. Hätten wir dieß Stück ganz, welche Mutter würde da von uns stehn! – Die Bekanntschaft mit den fast nie ganz zu beseitigenden Schwierigkeiten in der Rolle der Fürstin, bewog uns daher anderswo den Wunsch auszusprechen, daß sie von einer <a class="preview persons A007837" href="/exist/apps/WeGA-WebApp/de/A007837.html">Siddons</a> dargestellt werden möchte. <a href="#footnote02">**)</a> Was wir damals nicht zu erleben hoffen durften, es ist erfüllt worden. <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Mad. Schröder</a> ist uns in dieser Rolle wirklich als eine deutsche <a class="preview persons A007837" href="/exist/apps/WeGA-WebApp/de/A007837.html">Siddons</a> erschienen. Sie hat uns mit der edelsten Haltung in ächt tragischer Mimik und Declamation ein gerundetes Ganze durch die folgerechtesten Entwicklungen und Steigerungen erblicken lassen, sie hat uns erschüttert und – gerührt! Aber wir können hier nur Einiges ausheben, dem Ganzen inrgendwo eine besondere Entwickelung vorbehaltend.</p>
+                                        <p>Das Spiel der Fürstin-Mutter kann also, soll es gnügen, nur in sehr grandiosen Formen und in Anklängen und Abschattungen nach der Antike genommen werden. <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Schiller</a> selbst dachte sich immer eine <span class="7810511198101">Niobe</span> darunter, die in die, durch solchen Bruderzwist und durch <span class="661019711611410599101">Beatrice</span>, den Nachklang <span class="841041011071089739115">Thekla’s</span>, repräsentirte, romantische, neue Welt mit ihrer alterthümlichen Hoheit und ungebeugtem Frauenstolz eintritt. Denn wie <span class="7810511198101">Niobe</span>, die hellenische <span class="tei_hi_antiqua">mater dolorosa</span>, doch im höchsten Affecte, von aller Verzerrung fern, schön bleibt und selbst noch in ihrer Apolithose (Versteinung aus Schmerz) würdig erscheint: so darf auch <span class="73115979810110810897">Isabella</span> im furchtbarsten Kampfe mit dem eisernen Schicksale die <span class="tei_hi_spaced_out">hohe Frau</span> nie in sich verdunkeln lassen. Sie schmilzt nur einmal, als sie am Schlusse wieder heraustritt und dem Mörder <span class="tei_hi_spaced_out">ihres</span> <span class="7797110117101108115">Manuels</span> liebkosend zuspricht. Aber es ist auch schon von andern bemerkt worden, daß der Dichter hier dem tragischen Mitleid die Wahrheit der Rolle aufgeopfert hat. Je andringlicher und inniger die Bitte: lebe für uns! vorgetragen wird – und unsre <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Schröder</a> bot ihrem ganzen Schatz von sänftigendem Wohllaut und Schmeichelrede dazu auf – desto auffallender das Unzusammenhängende mit dem Totaleindruck, worauf bis dahin der Dichter in diesem unbezwinglichen Stolz hinarbeitete.</p>
+                                        <p>(Die <a class="preview writings A030644" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030644.html">Fortsetzung</a> folgt.)</p>
                                     </div>
                                     <div id="endNotes">
                                         <ul>
-                                            <li id="footnote01">*) Einige feinere Bemerkungen finden wir in <span class=" 8710111010010839115"><span class="tei_hi_spaced_out">Wendl</span>’s</span> Andeutungen im 2ten Stück der viel zu früh verstummten Leipziger <span class="tei_hi_spaced_out">Kunstblätter</span> und in der Beurtheilung des von dem genialen Tonsetzer <span class="tei_hi_spaced_out"><a class="persons A001398" href="/exist/apps/WeGA-WebApp/de/A001398.html">Neukomm</a></span> gemachten Versuchs, diese Chöre auf eine ganz neue Weise zur musikalischen Declamation zu bearbeiten, in der <span class="tei_hi_spaced_out">musikalischen Zeitung</span> von 1815, Nr. 14.</li>
-                                            <li id="footnote02">**) In der <span class="tei_hi_spaced_out">Minerva</span> von 181<span class="tei_add">...<a class="noteMarker" id="ref-d57721e140" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d57721e140">‡</a></span>, S. 4<span class="tei_add">...<a class="noteMarker" id="ref-d57721e143" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d57721e143">‡</a></span>.</li>
+                                            <li id="footnote01">*) Einige feinere Bemerkungen finden wir in <span class="8710111010010839115"><span class="tei_hi_spaced_out">Wendl</span>’s</span> Andeutungen im 2ten Stück der viel zu früh verstummten Leipziger <span class="tei_hi_spaced_out">Kunstblätter</span> und in der Beurtheilung des von dem genialen Tonsetzer <span class="tei_hi_spaced_out"><a class="preview persons A001398" href="/exist/apps/WeGA-WebApp/de/A001398.html">Neukomm</a></span> gemachten Versuchs, diese Chöre auf eine ganz neue Weise zur musikalischen Declamation zu bearbeiten, in der <span class="tei_hi_spaced_out">musikalischen Zeitung</span> von 1815, Nr. 14.</li>
+                                            <li id="footnote02">**) In der <span class="tei_hi_spaced_out">Minerva</span> von 181<span class="tei_add">...<a class="noteMarker" id="ref-d41229e140" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41229e140">‡</a></span>, S. 4<span class="tei_add">...<a class="noteMarker" id="ref-d41229e143" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41229e143">‡</a></span>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -381,7 +368,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg.&#160;3, Nr.&#160;175 (23. Juli 1819), S.&#160;2v</p>
+                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 175 (23. Juli 1819), S. 2v</p>
                                 
                                 <div>
                                     
@@ -398,10 +385,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d57721e140" data-title="unclear">"...": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d41229e140" data-title="unclear">"...": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57721e143" data-title="unclear">"...": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d41229e143" data-title="unclear">"...": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -409,7 +396,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A030827/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -431,10 +418,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030827</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030827</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. Oktober 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -460,6 +446,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -470,6 +457,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -504,6 +492,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

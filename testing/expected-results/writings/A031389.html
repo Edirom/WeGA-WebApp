@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Ran, Mo" />
-        <meta property="dc:creator" content="Charlene Jakob" />
-        <meta property="dc:date" content="2016-05-12T13:36:03.172774Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031389" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031389.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031389.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,14 +212,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Anonymus</a>
-                        </li>
-                        <li><a>Schriften</a>
-                        </li>
-                        <li><span>A031389</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Anonymus</a></li>
+                        <li><a>Schriften</a></li>
+                        <li><span>A031389</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,33 +232,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031389.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000287" /> <span title="Cherubini, Luigi">Cherubini, Luigi</span> 
@@ -275,8 +265,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -286,8 +275,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -297,8 +285,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -327,19 +314,17 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader">Stimme aus <span class=" 87105101110"><span class="tei_settlement">Wien</span></span> über den genialen "<span class="tei_hi_spaced_out"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>" <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a></span> <a href="#footNote01">*)</a>
-                                        </h2>
-                                        <p>So wie der Wandersgeselle, der die Heimath zum ersten Male verläßt, nicht müde wird, sich umzudrehen und auf den Tummelplatz seiner Kindheit, auf den Aufenthalt seiner Lieben gerührte Blicke zu werfen, bis Berge und Wälder dazwischen treten und ihm den freundlichen Anblick des stillen Stättchens entziehen, so können wir, die der vollständige Triumph des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weberschen</a> <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Meisterwerkes</span> und die immer sich mehrende Theilnahme des Publikums an demselben innig erfreut, nicht umhin, die geniale Schöpfung des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichters</a> noch einmal ins Auge zu fassen, und, von einem andern Standpunkte ausgehend, neue Glanzpunkte in der jüngst aufgegangenen Kunstsonne zu sehen.</p>
-                                        <p>Was uns vor Allem in dieser herrlichen <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span> angesprochen, ist die Uebereinstimmung und Vereinigung aller Theile zu einem entzückenden, kunstgemäßen Total-Effekt, die im Ganzen herrschende Einheit, die durch wiederkehrende Sätze, nach Art von <a class="persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini’s</a> Tagen der Gefahr, auch dem gemeinen Zuhörer fühlbar wird, endlich die Charakteristik der handelnden Personen, welche durchaus einsichtsvoll gehalten, herrlich durchgeführt<span class="tei_cb"> ¦ </span> ist, und in welcher es der <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Komponist</a> dem theilweise schwachen <a class="persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichter</a> offenbar weit zuvorgethan hat. <span class=" 7797120101110115">Maxens</span>, nur durch äußere Eindrücke bestimmt werdende Passivität, <span class=" 6510397116104101110115">Agathens</span> ahnungsreiches, aber an elegischer Abspannung laborirendes Gemüth, wie stehen sie nach Lage, Geschlecht, Leidenschaften so verschieden da, und doch immer so eins mit sich selbst! Wie entfaltet sich ihr Inneres in anziehender Entwickelung durch das Tongebilde und macht selbst vom Dichter vernachlässigte Auftritte interessant! Wie herrlich kontrastiren <span class=" 759711511297114">Kaspar</span> und <span class=" 6511011097">Anna</span> mit beiden Hauptpersonen; er in frevelnder Lustigkeit, teuflische Rache im Herzen; sie in jugendlichem Frohsinn, den heitern Himmel der Unschuld im Busen bewahrend! Darum spricht sich <span class=" 759711511297114">Kaspar</span> bald in bizarr gemeinen, bald in Tönen verhaltenen Grimms oder gewaltsam ausbrechender Leidenschaft aus, während <span class=" 651101109739115">Anna’s</span> Munterkeit in frohe Geschwätzigkeit ausbricht, die sich mit <span class=" 6510397116104101110115">Agathens</span> klagenden Tönen wunderbar lieblich vereint. Die Instrumentirung ist durchaus vorzüglich und zeugt von des <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Komponisten</a> Einsicht und Kunsterfahrung. Die vier Hörner bringen seltenen Effekt hervor; hiervon liefern das Ensemblestück des ersten Aktes in <span class="tei_hi_antiqua">C dur</span>, das Finale des zweiten und der Jäger-Chor im dritten Akt herrliche Beweise. Die selten, aber mit vieler Umsicht angewandte Piccolo-Flöte, schneidend wie ein Hauch der Hölle, begleitet wirkungsvoll <span class=" 759711511297114115">Kaspars</span> grausiges Trinklied, und wirkt vorzüglich durch einige Töne bei der Beschwörungs-Scene in der Wolfsschlucht zum Total-Eindrucke mit. Auch die <span class="tei_choice"><span class="tei_corr">heterogen</span><a class="noteMarker" id="ref-d56799e110" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56799e110">‡</a></span> in <span class="tei_hi_antiqua">A</span> gestimmte Pauke, die mit dem dumpfen Murmeln der Violen als Repräsentativ des Teufels, der, unsichtbar wandelnd auf Erden, dasteht, ergreift das Gemüth und macht es schaudern mitten unter frohen Gegenständen. Vorzügliche Erwähnung verdient die Haltung der Mittelstimmen durch die ganze <span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span>, die, vom gewöhnlichen Kunstgebrauche ganz abweichend, immer originell hervortreten und dennoch den Gesang nie übertäuben; dies gilt besonders von den Violoncellen, die sich auch durch Vortrag auszeichnen.</p>
-                                        <p>Gehen wir nun das Einzelne durch, so finden wir zuerst in der Ouvertüre, die bei jeder Vorstellung immer verständlicher hervortritt, ein vollständiges Bild, gleichsam ein erschöpfendes Sachregister des Ganzen; ansprechend gereiht erscheinen, durch die Macht der Instrumente versinnlicht, alle Hauptmomente, und was am meisten zu loben ist, das Tonstück, obwohl aus vielen andern zusammengesetzt, ist in allen seinen Theilen eng verbunden, bildet ein vollständig gerundetes Ganzes. Ganz eigenthümlich ist der Spott-Chor in <span class="tei_hi_antiqua">G dur</span>, in welchem zuerst Einzelne den armen <span class=" 7797120">Max</span> auslachen, bis sich Alle vereinen und mit dem Beklagenswerthen ihren Scherz treiben. Das Publikum verlangt jedesmal die Wiederholung dieser herrlichen Nummer, die auch sehr gut ausgeführt wird. Wie beruhigend greift in der darauf folgenden das majestätische, harmonische Ensemble ein, wo sich zuerst die Männerstimmen mit den edlen<span class="tei_pb"> | </span> Lauten der Hörner vereinen, worauf dann Sopran und Alte in das große Ganze eintreten und die Wirkung bis zum höchsten Punkte steigern.</p>
-                                        <p>Das rauhe, barsche, höhnische Trinklied in <span class="tei_hi_antiqua">H mol</span> mit der frevelnden Ausweichung in <span class="tei_hi_antiqua">D dur</span> ist <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> würdig, und auch dieses verlangt das mitfühlende empfängliche Publikum, welches dadurch seine Kennerschaft beweist und glänzend beurkundet, wie es wohl irre geleitet, aber nicht ganz für das Bessere abgestumpft werden kann, bei jeder Vorstellung zweimal zu hören.</p>
-                                        <p>In <span class=" 759711511297114115">Kaspars</span> Schluß-Arie, welche den Sturm wilder Rachgier und teuflischer Lust, die auf Befriedigung hoffen, energisch malt, dringt der Stimme Gewalt durch die rauschende, brausende, aber zweckmäßig angewendete Instrumentirung, weil der Sänger fast immer auf den guten Takttheil seine Kraft legen kann und die Begleitung nur den Nachschlag hat, wodurch Beide einander unbeschadet wirken.</p>
-                                        <p><span class="tei_segBlock textAlign-center">(Der <a class="writings A031514" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031514.html">Schluß</a> folgt.)</span>
-                                        </p>
+                                        <h2 class="docHeader textAlign-left">Stimme aus <span class="tei_placeName"><span class="87105101110">Wien</span></span> über den genialen "<span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>" <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a></span> <a href="#footNote01">*)</a></h2>
+                                        <p>So wie der Wandersgeselle, der die Heimath zum ersten Male verläßt, nicht müde wird, sich umzudrehen und auf den Tummelplatz seiner Kindheit, auf den Aufenthalt seiner Lieben gerührte Blicke zu werfen, bis Berge und Wälder dazwischen treten und ihm den freundlichen Anblick des stillen Stättchens entziehen, so können wir, die der vollständige Triumph des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weberschen</a> <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Meisterwerkes</span> und die immer sich mehrende Theilnahme des Publikums an demselben innig erfreut, nicht umhin, die geniale Schöpfung des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichters</a> noch einmal ins Auge zu fassen, und, von einem andern Standpunkte ausgehend, neue Glanzpunkte in der jüngst aufgegangenen Kunstsonne zu sehen.</p>
+                                        <p>Was uns vor Allem in dieser herrlichen <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span> angesprochen, ist die Uebereinstimmung und Vereinigung aller Theile zu einem entzückenden, kunstgemäßen Total-Effekt, die im Ganzen herrschende Einheit, die durch wiederkehrende Sätze, nach Art von <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini’s</a> Tagen der Gefahr, auch dem gemeinen Zuhörer fühlbar wird, endlich die Charakteristik der handelnden Personen, welche durchaus einsichtsvoll gehalten, herrlich durchgeführt<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ist, und in welcher es der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Komponist</a> dem theilweise schwachen <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichter</a> offenbar weit zuvorgethan hat. <span class="7797120101110115">Maxens</span>, nur durch äußere Eindrücke bestimmt werdende Passivität, <span class="6510397116104101110115">Agathens</span> ahnungsreiches, aber an elegischer Abspannung laborirendes Gemüth, wie stehen sie nach Lage, Geschlecht, Leidenschaften so verschieden da, und doch immer so eins mit sich selbst! Wie entfaltet sich ihr Inneres in anziehender Entwickelung durch das Tongebilde und macht selbst vom Dichter vernachlässigte Auftritte interessant! Wie herrlich kontrastiren <span class="759711511297114">Kaspar</span> und <span class="6511011097">Anna</span> mit beiden Hauptpersonen; er in frevelnder Lustigkeit, teuflische Rache im Herzen; sie in jugendlichem Frohsinn, den heitern Himmel der Unschuld im Busen bewahrend! Darum spricht sich <span class="759711511297114">Kaspar</span> bald in bizarr gemeinen, bald in Tönen verhaltenen Grimms oder gewaltsam ausbrechender Leidenschaft aus, während <span class="651101109739115">Anna’s</span> Munterkeit in frohe Geschwätzigkeit ausbricht, die sich mit <span class="6510397116104101110115">Agathens</span> klagenden Tönen wunderbar lieblich vereint. Die Instrumentirung ist durchaus vorzüglich und zeugt von des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Komponisten</a> Einsicht und Kunsterfahrung. Die vier Hörner bringen seltenen Effekt hervor; hiervon liefern das Ensemblestück des ersten Aktes in <span class="tei_hi_antiqua">C dur</span>, das Finale des zweiten und der Jäger-Chor im dritten Akt herrliche Beweise. Die selten, aber mit vieler Umsicht angewandte Piccolo-Flöte, schneidend wie ein Hauch der Hölle, begleitet wirkungsvoll <span class="759711511297114115">Kaspars</span> grausiges Trinklied, und wirkt vorzüglich durch einige Töne bei der Beschwörungs-Scene in der Wolfsschlucht zum Total-Eindrucke mit. Auch die <span class="tei_choice"><span class="tei_corr">heterogen</span><a class="noteMarker" id="ref-d40246e110" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40246e110">‡</a></span> in <span class="tei_hi_antiqua">A</span> gestimmte Pauke, die mit dem dumpfen Murmeln der Violen als Repräsentativ des Teufels, der, unsichtbar wandelnd auf Erden, dasteht, ergreift das Gemüth und macht es schaudern mitten unter frohen Gegenständen. Vorzügliche Erwähnung verdient die Haltung der Mittelstimmen durch die ganze <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span>, die, vom gewöhnlichen Kunstgebrauche ganz abweichend, immer originell hervortreten und dennoch den Gesang nie übertäuben; dies gilt besonders von den Violoncellen, die sich auch durch Vortrag auszeichnen.</p>
+                                        <p>Gehen wir nun das Einzelne durch, so finden wir zuerst in der Ouvertüre, die bei jeder Vorstellung immer verständlicher hervortritt, ein vollständiges Bild, gleichsam ein erschöpfendes Sachregister des Ganzen; ansprechend gereiht erscheinen, durch die Macht der Instrumente versinnlicht, alle Hauptmomente, und was am meisten zu loben ist, das Tonstück, obwohl aus vielen andern zusammengesetzt, ist in allen seinen Theilen eng verbunden, bildet ein vollständig gerundetes Ganzes. Ganz eigenthümlich ist der Spott-Chor in <span class="tei_hi_antiqua">G dur</span>, in welchem zuerst Einzelne den armen <span class="7797120">Max</span> auslachen, bis sich Alle vereinen und mit dem Beklagenswerthen ihren Scherz treiben. Das Publikum verlangt jedesmal die Wiederholung dieser herrlichen Nummer, die auch sehr gut ausgeführt wird. Wie beruhigend greift in der darauf folgenden das majestätische, harmonische Ensemble ein, wo sich zuerst die Männerstimmen mit den edlen<span class="tei_pb" title="Seitenumbruch"> | </span> Lauten der Hörner vereinen, worauf dann Sopran und Alte in das große Ganze eintreten und die Wirkung bis zum höchsten Punkte steigern.</p>
+                                        <p>Das rauhe, barsche, höhnische Trinklied in <span class="tei_hi_antiqua">H mol</span> mit der frevelnden Ausweichung in <span class="tei_hi_antiqua">D dur</span> ist <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> würdig, und auch dieses verlangt das mitfühlende empfängliche Publikum, welches dadurch seine Kennerschaft beweist und glänzend beurkundet, wie es wohl irre geleitet, aber nicht ganz für das Bessere abgestumpft werden kann, bei jeder Vorstellung zweimal zu hören.</p>
+                                        <p>In <span class="759711511297114115">Kaspars</span> Schluß-Arie, welche den Sturm wilder Rachgier und teuflischer Lust, die auf Befriedigung hoffen, energisch malt, dringt der Stimme Gewalt durch die rauschende, brausende, aber zweckmäßig angewendete Instrumentirung, weil der Sänger fast immer auf den guten Takttheil seine Kraft legen kann und die Begleitung nur den Nachschlag hat, wodurch Beide einander unbeschadet wirken.</p>
+                                        <p><span class="tei_segBlock textAlign-center">(Der <a class="preview writings A031514" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031514.html">Schluß</a> folgt.)</span></p>
                                     </div>
                                     <div id="endNotes">
                                         <ul>
-                                            <li id="footNote01">* Der "<span class="tei_hi_spaced_out"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>" gehört zu den Opern, auf welche die Deutsche Bühne stolz, <span class="tei_hi_spaced_out">sehr stolz</span> sein muß. Die Musik ist rein Deutsch motivirt - d.h. großartig, und selbst da, wo der <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichter</a> zu scherzen scheint, erhaben. Die Vorsehung erhalte den Deutschen Tonkünstler <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>!<span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class=" 75117110104">Kunh</span></span></span>.</li>
+                                            <li id="footNote01">* Der "<span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>" gehört zu den Opern, auf welche die Deutsche Bühne stolz, <span class="tei_hi_spaced_out">sehr stolz</span> sein muß. Die Musik ist rein Deutsch motivirt – d.h. großartig, und selbst da, wo der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tondichter</a> zu scherzen scheint, erhaben. Die Vorsehung erhalte den Deutschen Tonkünstler <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>!<span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class="75117110104">Kunh</span></span></span>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -374,7 +359,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Zeitung für Theater und Musik zur Unterhaltung gebildeter, unbefangener Leser. Eine Begleiterin des Freimüthigen</span>, Bd.&#160;2, Heft&#160;3 (19. Januar 1822), S.&#160;11–12</p>
+                                <p><span class="journalTitle">Zeitung für Theater und Musik zur Unterhaltung gebildeter, unbefangener Leser. Eine Begleiterin des Freimüthigen</span>, Bd. 2, Heft 3 (19. Januar 1822), S. 11–12</p>
                                 
                                 <div>
                                     
@@ -393,13 +378,13 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d56799e110" data-title="choice">recte "heterogen": in der Vorlage "hetoregen"</div>
+                                            <div class="apparatusEntry" id="d40246e110" data-title="choice">recte "heterogen": in der Vorlage "hetoregen"</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031389/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -421,10 +406,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031389</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031389</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 12. Mai 2016 durch Charlene Jakob</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -450,6 +434,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -460,6 +445,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -494,6 +480,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-11-14T12:10:02.649757Z" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -48,6 +48,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -80,8 +81,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -182,13 +187,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002078/Writings/A031017.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002078/Writings/A031017.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -209,14 +211,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften">Schriften</a>
-                        </li>
-                        <li><span>A031017</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften">Schriften</a></li>
+                        <li><span>A031017</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -233,33 +231,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000777" /> <span title="Haydn, Joseph">Haydn, Joseph</span> 
@@ -283,15 +273,15 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader"> Handbuch beym Studium der Harmonie, von <a class="persons A005143" href="/exist/apps/WeGA-WebApp/de/A005143.html">Heinrich
+                                        <h2 class="docHeader textAlign-left"> Handbuch beym Studium der Harmonie, von <a class="preview persons A005143" href="/exist/apps/WeGA-WebApp/de/A005143.html">Heinrich
                         Christoph Koch</a> ec. </h2>
-                                        <h3 class="docHeader">(<a class="writings A030983" href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030983.html">Beschluß der in No. 66
+                                        <h3 class="docHeader textAlign-left">(<a class="preview writings A030983" href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030983.html">Beschluß der in No. 66
                         abgebrochenen Recension.</a>)</h3>
                                         <p>Daß die Regel trüglich sey, läßt sich leicht durch Beyspiele zeigen, man darf
-                    nur, ohne irgend die Tonart <span class="tei_hi_italic">A moll</span> zu verlassen, <span class="tei_hi_italic">A</span>&#160;mit 4 6  im
+                    nur, ohne irgend die Tonart <span class="tei_hi_italic">A moll</span> zu verlassen, <span class="tei_hi_italic">A</span> mit 4 6  im
                     Basse anschlagen, und die Melodie aufwärts etwa von <span class="tei_hi_italic">d</span>’’
                     bis <span class="tei_hi_italic">a</span>’’ führen, so werden die Stufen <span class="tei_hi_italic">f</span>’’ und <span class="tei_hi_italic">g</span>’’, und folglich grade das Umgekehrte
-                    der Regel nothwendig, nach welcher die Tonleiter aufsteigend <span class="tei_hi_italic">fis</span>&#160;und <span class="tei_hi_italic">gis</span>&#160;seyn soll. Ebenso wird, sobald der
+                    der Regel nothwendig, nach welcher die Tonleiter aufsteigend <span class="tei_hi_italic">fis</span> und <span class="tei_hi_italic">gis</span> seyn soll. Ebenso wird, sobald der
                     Dominantenaccord der Tonart, <span class="tei_hi_italic">E dur</span> mit der Septime, im
                     Basse liegt, eine von <span class="tei_hi_italic">a</span>’’ nach <span class="tei_hi_italic">e</span>’’
                     abwärts gehende Melodie <span class="tei_hi_italic">gis</span>’’ und <span class="tei_hi_italic">fis</span>’’ ergreifen müssen, also grade wieder das Umgekehrte der
@@ -301,22 +291,22 @@
                     ebenso die weiche zu construiren? Jene ist nichts anders, als die einzelnen
                     Töne, aus welchen die drey Hauptaccorde der harten Tonart bestehen, in eine
                     Reihe gestellt; stelle man dann ebenso auch die Elemente der drey Hauptaccorde
-                    der weichen Tonart in eine Reihe, die Töne, woraus die drey Accorde <span class="tei_hi_italic">A&#160;moll</span>, <span class="tei_hi_italic">D moll</span>&#160;und <span class="tei_hi_italic">E dur</span> bestehen (denn groß ist ja doch immer die Terz des
+                    der weichen Tonart in eine Reihe, die Töne, woraus die drey Accorde <span class="tei_hi_italic">A moll</span>, <span class="tei_hi_italic">D moll</span> und <span class="tei_hi_italic">E dur</span> bestehen (denn groß ist ja doch immer die Terz des
                     Dominantenaccords), und man erhält eine Tonleiter, welche freylich von der
                     bisher in den Lehrbüchern angegebenen abweicht, nämlich: <span class="tei_hi_italic">a</span>, <span class="tei_hi_italic">h</span>, <span class="tei_hi_italic">c</span>, <span class="tei_hi_italic">d</span>, <span class="tei_hi_italic">e</span>, <span class="tei_hi_italic">f</span>,
                         <span class="tei_hi_italic">gis</span>, <span class="tei_hi_italic">a</span>, welche aber dafür
                     nicht den Mangel wie jene hat, daß die drey wesentlichsten Accorde der Tonart
                     nicht ausgeübt werden können, ohne etwas an der angeblich natürlichen Tonleiter
-                    zu ändern. Der Grund, warum in <span class="tei_hi_italic">A moll</span> dennoch öfters <span class="tei_hi_italic">fis</span>&#160;statt <span class="tei_hi_italic">f</span>, und <span class="tei_hi_italic">g</span>&#160;statt <span class="tei_hi_italic">gis</span> vorkommt, ließe sich dann gar wohl
+                    zu ändern. Der Grund, warum in <span class="tei_hi_italic">A moll</span> dennoch öfters <span class="tei_hi_italic">fis</span> statt <span class="tei_hi_italic">f</span>, und <span class="tei_hi_italic">g</span> statt <span class="tei_hi_italic">gis</span> vorkommt, ließe sich dann gar wohl
                     aus der Lehre von durchgehenden Noten entwickeln, in welcher allein wohl der
                     zureichende Grund liegt, aus dem Gesetze, daß eine durchgehende Note von der
                     folgenden nur höchstens eine große Tonstufe entfernt seyn soll, weshalb denn, je
-                    nachdem <span class="tei_hi_italic">f</span>&#160;oder <span class="tei_hi_italic">gis</span> der eben zum
-                    Grunde liegenden Harmonie näher ist, das <span class="tei_hi_italic">gis</span>&#160;in <span class="tei_hi_italic">g</span>, oder das <span class="tei_hi_italic">f</span> in <span class="tei_hi_italic">fis</span>&#160;verwandelt wird, um die Nebennote der wesentlichern bis auf eine
+                    nachdem <span class="tei_hi_italic">f</span> oder <span class="tei_hi_italic">gis</span> der eben zum
+                    Grunde liegenden Harmonie näher ist, das <span class="tei_hi_italic">gis</span> in <span class="tei_hi_italic">g</span>, oder das <span class="tei_hi_italic">f</span> in <span class="tei_hi_italic">fis</span> verwandelt wird, um die Nebennote der wesentlichern bis auf eine
                     große Stufe näher zu bringen.</p>
                                         <p>Diese flüchtige Andeutung einer Idee, welche Rec. ehestens <span class="tei_ptr"></span>an einem andern Orte
-                    näher ausführen wird<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>, soll und kann übrigens ihrer Natur nach nichts weniger
-                    seyn, als ein Tadel gegen das <span class=" 751119910410511599104101">Kochische</span> Werk, welches
+                    näher ausführen wird<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>, soll und kann übrigens ihrer Natur nach nichts weniger
+                    seyn, als ein Tadel gegen das <span class="751119910410511599104101">Kochische</span> Werk, welches
                     vielmehr die bis jetzt allgemein recipirte Lehrart mit aller der Klarheit und
                     Consequenz ausführt, deren sie ihrer Natur nach fähig ist.</p>
                                         <p>Den Tonleitern folgt die Lehre von den Intervallen, und diesen endlich die
@@ -324,32 +314,32 @@
                     consonirenden, dann die dissonirenden Accorde, erst in ihrer Urgestalt kennen,
                     dann in ihren Umstaltungen durch Verdoppelung, Auslassung und Verwechslung; von
                     diesem allen weiß Rec. im ganzen nur Gutes zu sagen, und nur wenige Bemerkungen
-                    mögen hier einzeln stehn. Bey Gelegenheit der <span class="tei_ptr"></span>Auslassung der Terz<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a> hätte Rec.
+                    mögen hier einzeln stehn. Bey Gelegenheit der <span class="tei_ptr"></span>Auslassung der Terz<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> hätte Rec.
                     gewünscht, die Bemerkung zu finden, daß die Terz des Dreyklanges auf der
                     Dominante weit eher ausgelassen werden kann, als die des tonischen Accordes, bey
                     welchem sie eigentlich nur zugleich mit der Quinte fehlen darf, so daß c 0
                      wohl, schwerlich aber c 5
-                     ohne&#160;3 erlaubt ist.</p>
+                     ohne 3 erlaubt ist.</p>
                                         <p>Bey der Lehre von den Verwechselungen der Accorde muß Rec. warnen, sich nicht
                     durch den Ausdruck <span class="tei_hi_spaced_out">Grundton</span> irre machen zu lassen,
                     welchen der Verf. jedem Baßtone, auch der verwechselten Accorde beylegt. (<span class="tei_ptr"></span>§. 55.
-                    57<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_03">*</a>). Weniger Anlaß zu Mißverstand gäbe es, wenn man hier dem unzweydeutigen
+                    57<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>). Weniger Anlaß zu Mißverstand gäbe es, wenn man hier dem unzweydeutigen
                     Ausdrucke Baßton treu bliebe, da so viele Tonlehrer den Ausdruck Grundton zu
                     etwas ganz andern aufsparen. Auch ist es so ziemlich allgemein hergebracht, den
                     Ausdruck <span class="tei_hi_spaced_out">Umkehrung</span> nicht von Versetzungen des Baßtons
                     einzelner Accorde, sondern nur von Umkehrung einer ganzen Stimme über oder unter
                     die andre zu gebrauchen; um die ohnehin schon so schwankende musikalische
-                    Terminologie möglichst zu fixiren, hätte Rec. gewünscht, daß auch <span class=" 7211446327546">Hr.
+                    Terminologie möglichst zu fixiren, hätte Rec. gewünscht, daß auch <span class="7211446327546">Hr.
                         K.</span> nicht von Umkehrungen, sondern von Verwechselungen der Accorde
                     gesprochen, und den Ausdruck Umkehrung dem doppelten Contrapuncte aufgespart
                     hätte.</p>
                                         <p> Die Lehre von den dissonirenden Accorden stellt der Verf. vom sogenannten
-                    dissonirenden Dreyklange an, nach <a class="persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgs</a>
+                    dissonirenden Dreyklange an, nach <a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgs</a>
                     Grundzügen, bis zum Terzdecimenaccorde, mit alle der Ideenklarheit dar, welche
-                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" id="ref-d57656e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d57656e179">‡</a></span> complicirte Lehre leicht faßlich zu
+                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" id="ref-d40733e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e179">‡</a></span> complicirte Lehre leicht faßlich zu
                     machen: um aber auch denen nützlich zu werden, welche nicht nach diesem, sondern
                     nach dem einfachern Systeme der Aufhaltungen lernen, oder lehren wollen, fügt
-                    der Verf. <span class="tei_ptr"></span>als Anhang eine Tabelle<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a> bey, welche alle bisher nach dem <a class="persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgischen</a> System abgehandelten Tonverbindungen,
+                    der Verf. <span class="tei_ptr"></span>als Anhang eine Tabelle<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> bey, welche alle bisher nach dem <a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgischen</a> System abgehandelten Tonverbindungen,
                     auch nach dem Systeme der Aufhaltungen erklärt, wodurch das Lehrbuch denn
                     begreiflich an Gemeinnützigkeit außerordentlich gewinnt, indem es dadurch beyden
                     Hauptparteyen beynahe gleich brauchbar wird. </p>
@@ -358,47 +348,38 @@
                     übergegangen zu dem, was der Verf. harmonischen Syntax nennt, nämlich zur Lehre
                     von Verbindung der Accorde und zur Fortschreitung der sie constituirenden
                     Intervalle, erst der Consonanzen, (Quinten- und Octavenverbot, sehr ausführlich
-                    <span class="tei_ptr"></span>S. 72<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_05">*</a>-189), Folgen und Reihen der in der Tonleiter liegenden Dreyklänge in
+                    <span class="tei_ptr"></span>S. 72<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>-189), Folgen und Reihen der in der Tonleiter liegenden Dreyklänge in
                     verschiedenen Lagen und Verwechselungen (S. 190-205), von der Quarte und
                     derselben Fortschreitung vielleicht zuviel (da selbst der Gang</p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>5 – 6 – 7</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center">3 – 4 – 5</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G</span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_06">*</a></span>
-                                        </p>
-                                        <p>als eine <span class="tei_ptr"></span>Freyheit des Satzes<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_07">*</a>, oder doch etwas besonderes angeführt, und
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>5 – 6 – 7</span></p>
+                                        <p><span class="tei_segBlock textAlign-center">3 – 4 – 5</span></p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G</span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a></span></p>
+                                        <p>als eine <span class="tei_ptr"></span>Freyheit des Satzes<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>, oder doch etwas besonderes angeführt, und
                     entschuldigt wird). Dann die Lehre von Fortschreitung der dissonirenden
                     Intervalle.</p>
                                         <p>Diese letztere beginnt wie billig mit der Lehre von Vorbereitung und Auflösung.
                     Vorbereiten nennt der Verf., und dieß freylich wieder im Einklange mit seinen
                     Vorgängern: <span class="tei_ptr"></span>den Ton, der als Dissonanz erscheinen soll, unmittelbar vorher als
-                    <span class="tei_hi_spaced_out">Consonanz</span> hören lassen<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_08">*</a> (§. 141). Die Definition
+                    <span class="tei_hi_spaced_out">Consonanz</span> hören lassen<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> (§. 141). Die Definition
                     ist aber zu eng, wie gleich folgendes Beyspiel:</p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 3</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 8</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span> –<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a></span>
-                                        </p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 3</span></p>
+                                        <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 8</span></p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span> –<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a></span></p>
                                         <p>beweist. Statt „als Consonanz“ hätte Rec. lieber gelesen: als ein Intervall,
                     welches unvorbereitet eintreten darf, wohin denn manche Dissonanzen gehören, wie
-                    z. B. die Septime <span class="tei_hi_italic">f</span>&#160;zum <span class="tei_hi_italic">g </span>&#160;des
-                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" id="ref-d57656e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d57656e257">‡</a></span> die dissonirende Quarte (Undecime) zum
-                    folgenden <span class="tei_hi_italic">C</span>&#160;accorde vorbereitet.</p>
+                    z. B. die Septime <span class="tei_hi_italic">f</span> zum <span class="tei_hi_italic">g </span> des
+                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" id="ref-d40733e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e257">‡</a></span> die dissonirende Quarte (Undecime) zum
+                    folgenden <span class="tei_hi_italic">C</span> accorde vorbereitet.</p>
                                         <p>Ebenfalls zu eng ist die gemeinübliche und vom Verf. ebenfalls beybehaltne
                     Definition vom Auflößen, wornach diese Operation darauf beruht, <span class="tei_ptr"></span>„daß derjenige
-                    Ton, der als Dissonanz erschienen ist, im folgenden Accorde in <span class="tei_hi_spaced_out">eine Consonanz</span> trete“<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_10">*</a> (§. 141). Auch hier zeigt das
+                    Ton, der als Dissonanz erschienen ist, im folgenden Accorde in <span class="tei_hi_spaced_out">eine Consonanz</span> trete“<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> (§. 141). Auch hier zeigt das
                     Beyspiel:</p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 7</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 5</span>
-                                        </p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_ptr"></span>7 ⌒ 4 – 7</span></p>
+                                        <p><span class="tei_segBlock textAlign-center">5 ⌒ 9 – 5</span></p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | C</span>
-                    <span class="tei_hi_italic">Fis</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a></span>
-                                        </p>
-                                        <p>daß die dissonirende Quarte <span class="tei_hi_italic">f </span>&#160;ganz fehlerfrey in das
-                    dissonirende <span class="tei_hi_italic">e</span>&#160;übergehen kann, weil diese Septime selbst
+                    <span class="tei_hi_italic">Fis</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a></span></p>
+                                        <p>daß die dissonirende Quarte <span class="tei_hi_italic">f </span> ganz fehlerfrey in das
+                    dissonirende <span class="tei_hi_italic">e</span> übergehen kann, weil diese Septime selbst
                     frey anschlagen darf, und auch hier möchte statt „in eine Consonanz“ lieber zu
                     setzen seyn: in ein Intervall, welches unvorbereitet eintreten kann.</p>
                                         <p>Rec. weiß es zwar wohl, daß Fälle der oben erwähnten Art als Ausnahmen von der
@@ -412,17 +393,14 @@
                     Vereinfachung des Lehrsystems.</p>
                                         <p>In §. 144 findet sich ein Satz, dessen zureichenden Grund Rec. durchaus nicht
                     einzusehen, noch demselben beyzupflichten vermag. <span class="tei_ptr"></span>Die Vorbereitung einer
-                    Dissonanz<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>, heißt es dort, kann mittelst aller consonirenden Intervalle, die
+                    Dissonanz<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, heißt es dort, kann mittelst aller consonirenden Intervalle, die
                     Quarte ausgenommen, geschehen; man vergleiche folgende gewiß tadellose
                     Sätze:</p>
-                                        <p><span class="tei_segBlock textAlign-center">6 – 5 – 5 6 – 5 – 5</span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center">4 ⌒ 4 – 3 4 ⌒ 4 – 3</span>
-                                        </p>
+                                        <p><span class="tei_segBlock textAlign-center">6 – 5 – 5 6 – 5 – 5</span></p>
+                                        <p><span class="tei_segBlock textAlign-center">4 ⌒ 4 – 3 4 ⌒ 4 – 3</span></p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | G</span> – <span class="tei_hi_italic">C | C</span>
-                        –</span>
-                                        </p>
-                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" id="ref-d57656e341" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d57656e341">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
+                        –</span></p>
+                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" id="ref-d40733e342" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e342">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
                     an, und erklärt sie sehr kunstreich als Ausnahmen von der Regel; allein Rec.
                     scheint es, als würden mit der unnöthigen Regel auch die unnöthigen Ausnahmen
                     füglich hinwegfallen.</p>
@@ -430,7 +408,7 @@
                     gemeinübliche Regel: daß die übermäßigen Intervalle aufwärts aufgelöst werden,
                     und erinnert, daß ja z. B. bey der übermäßigen Quarte f h
                      nicht der obere Terminus dissonire, sondern
-                    der untere, folglich nur von Auflösung dieses <span class="tei_hi_italic">f</span>&#160;die Rede
+                    der untere, folglich nur von Auflösung dieses <span class="tei_hi_italic">f</span> die Rede
                     seyn könne, welches sich aber nicht aufwärts, sondern (am natürlichsten
                     wenigstens) abwärts auflöse. Dergleichen Ausmerzen altherkömmlicher, aber
                     unrichtiger Grundsätze macht dem klaren Sinne des Verf. Ehre. Ebenso freut es
@@ -438,48 +416,44 @@
                     Dreyklang komme doch nur auf der zweyten Stufe der weichen Tonleiter vor, und
                     die auf andern Stufen vorkommenden dem verminderten Dreyklange ähnlichen
                     Tonverbindungen seyen eigentlich nicht wahre verminderte Dreyklänge, sondern nur
-                    erste Verwechselungen des Dominantenaccordes mit ausgelassenem Grundton<a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_13">*</a>.
+                    erste Verwechselungen des Dominantenaccordes mit ausgelassenem Grundton<a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a>.
                     Freylich eine Behauptung, über welche mancher ältere Tonlehrer einen Stein auf
                     den Verf. werfen wird, mit welcher aber Rec. gern einverstanden ist.</p>
                                         <p>Den Schluß dessen, was der Verf. musikalische Rhetorik nennt, macht die Lehre von
                     den Nebennoten und Durchgängen, Anticipation und Retardition. Ungern vermißt
                     Rec. hier bey der Lehre von Durchgängen die Erklärung der Sätze:</p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">e f d e c d h</span></span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">c h a g </span>u. s. w.</span>
-                                        </p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">e f d e c d h</span></span></p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">c h a g </span>u. s. w.</span></p>
                                         <p>welche gewissermaßen eine Ausnahme bilden von dem Gesetze, wornach der
                     durchgehenden Note die folgende Note stufenweise angehängt seyn soll.</p>
                                         <p>Der Verf. geht nun von der Accordenlehre zu dem einfachen Contrapuncte selbst
                     über, welcher Lehre er jedoch erst noch einige Vorkenntnisse von Tact,
                     Modulation, Ruhepuncten (Periodenendungen, Absätzen u. dgl.) und sonstige Regeln
                     und Maximen im Allgemeinen vorausschickt. Vorzüglich rühmenswerth ist die
-                    Klarheit, mit welcher <span class="tei_ptr"></span>der Abschnitt von Tact und Rhythmus<a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_14">*</a> abgehandelt ist.</p>
+                    Klarheit, mit welcher <span class="tei_ptr"></span>der Abschnitt von Tact und Rhythmus<a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> abgehandelt ist.</p>
                                         <p>Hiernächst wird der Schüler endlich zu praktischen Uebungen im Contrapunctiren
                     übergeführt. Der Verf. bleibt hier seiner frühern, in seiner Anleitung zur
                     Composition angewendeten Methode treu, mit dem zweystimmigen Satze anzufangen,
                     von da zum drey- und vierstimmigen überzugehen. Vieles ist schon gegen diese
                     Methode eingewendet worden, und viele, ja die meisten Tonlehrer befolgen den
                     grade entgegengesetzten Weg, beginnen mit dem vierstimmigen Satze, und enden mit
-                    dem zweystimmigen. Jene Methode soll <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>
-                    befolgt haben, <a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> hingegen meint, man
-                    solle <span class="tei_ptr"></span>erst Most keltern, ehe man Weingeist abdestillirt<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_15">*</a>. Anerkannt ist es, daß
+                    dem zweystimmigen. Jene Methode soll <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>
+                    befolgt haben, <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> hingegen meint, man
+                    solle <span class="tei_ptr"></span>erst Most keltern, ehe man Weingeist abdestillirt<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>. Anerkannt ist es, daß
                     der zweystimmige Satz seine eignen Schwierigkeiten hat, wäre es auch nur, weil
                     darin kein Accord vorkommt, in welchem nicht wenigstens Ein oder zwey Intervalle
                     ausgelassen werden müssen, und es also eine eigne Schwierigkeit ist, die Stimmen
                     so zu führen, daß sie immer auf diejenigen Intervalle gelangen, welche nicht
                     ausgelassen werden dürfen; dann, daß der zweystimmige Satz in gar vielen Fällen
-                    die Grundharmonie zweifelhaft läßt, wie nur z.&#160;B. in dem Satze:</p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">c c</span></span>
-                                        </p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">C A</span></span>
-                                        </p>
-                                        <p>wo dem zweyten Accorde sowohl der Dreyklang <span class="tei_hi_italic">F</span> als <span class="tei_hi_italic">a</span>&#160;zum Grunde liegen kann. Von der andern Seite aber ist
+                    die Grundharmonie zweifelhaft läßt, wie nur z. B. in dem Satze:</p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">c c</span></span></p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">C A</span></span></p>
+                                        <p>wo dem zweyten Accorde sowohl der Dreyklang <span class="tei_hi_italic">F</span> als <span class="tei_hi_italic">a</span> zum Grunde liegen kann. Von der andern Seite aber ist
                     auch nicht zu leugnen, daß der Anfänger, welcher gleich über vier Stimmen auf
                     einmal disponiren soll, dadurch in ein gewisses Embarras versetzt, und nicht
                     wissen wird, wo hinaus mit alle den Reichthümern; des häufigern Anlasses zu
                     fehlerhaften Verdoppelungen und verbotenen Fortschreitungen nicht zu gedenken.
-                    <span class="tei_ptr"></span>Vielleicht wäre auch hier der Mittelweg golden<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_16">*</a>. Drey Stimmen sind leichter zu
+                    <span class="tei_ptr"></span>Vielleicht wäre auch hier der Mittelweg golden<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>. Drey Stimmen sind leichter zu
                     übersehen, geben weniger Anlaß zu Verdoppelungen und unrichtigen
                     Fortschreitungen, als viere, und bieten doch auch dem Tonsetzer mehr Mittel zu
                     Vervollständigung der, der Harmonie wesentlichen Töne, als bloß zweye.
@@ -496,12 +470,12 @@
                     darf; dann <span class="tei_hi_italic">b</span>) werden auch Verwechselungen dieser Accorde,
                     später erst <span class="tei_hi_italic">c</span>) die zufälligen Accorde der Tonart, noch
                     später erst <span class="tei_hi_italic">d</span>) dissonirende Harmonieen, und ganz zuletzt
-                        <span class="tei_hi_italic">e</span>) auch zufällige Ausweichungen angebracht. <span class="tei_hi_italic">B</span>.&#160;Dann folgt die Begleitung des festen Gesanges im
+                        <span class="tei_hi_italic">e</span>) auch zufällige Ausweichungen angebracht. <span class="tei_hi_italic">B</span>. Dann folgt die Begleitung des festen Gesanges im
                     einfachen zweystimmigen gleichen Contrapuncte mit einer Oberstimme, und dann
                     erst geht es 2) zum ungleichen einfachen zweystimmigen Contrapuncte, welche
-                    Uebung wieder in zwey den obigen <span class="tei_hi_italic">A</span>&#160;und <span class="tei_hi_italic">B</span>&#160;correspondirende Abtheilungen zerfällt, welches auch 3) beym
+                    Uebung wieder in zwey den obigen <span class="tei_hi_italic">A</span> und <span class="tei_hi_italic">B</span> correspondirende Abtheilungen zerfällt, welches auch 3) beym
                     vermischten Contrapuncte der Fall ist, welchem ebenfalls der Verf. erst die
-                    ganze Lehre vom einfachen zweystimmigen Contrapuncte bis er II.&#160;zum drey- und
+                    ganze Lehre vom einfachen zweystimmigen Contrapuncte bis er II. zum drey- und
                     III. vierstimmigen Satze übergeht, welchen er mit ähnlicher Sorgfalt und
                     Genauigkeit behandelt.</p>
                                         <p>Man sieht, wie vollständig und consequent das Schema ist, welches der Verf. hier
@@ -519,9 +493,9 @@
                     das, was er zu geben sich vorsetzte, mit so vielem Glücke gethan, und so
                     günstige Beweise seines Berufes zum Tonlehrer abgelegt, daß man wünschen muß, er
                     möge die oben angedeuteten Fächer in einem Gegenstücke zu dem vorliegenden Werke
-                    <span class="tei_ptr"></span>bald ebenfalls abhandeln<a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_17">*</a>.</p>
-                                        <p class="tei_closer">
-                    <span class="tei_segBlock textAlign-right"><a class="persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a>.</span>
+                    <span class="tei_ptr"></span>bald ebenfalls abhandeln<a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a>.</p>
+                                        <p class="tei_closer textAlign-left">
+                    <span class="tei_segBlock textAlign-right"><a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a>.</span>
                 </p>
                                     </div>
                                 </div>
@@ -541,16 +515,15 @@
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
                                         <p>Zuschreibung: Namentlich gezeichnet.</p>
-                                        <p>In der AMZ, Jg.&#160;12, Nr.&#160;63 (12. Dezember 1810), Sp.&#160;1001–1006, und Nr.&#160;65
-                        (26. Dezember 1810), Sp.&#160;1046–1052, waren Auszüge aus Kochs Werk vorab
+                                        <p>In der AMZ, Jg. 12, Nr. 63 (12. Dezember 1810), Sp. 1001–1006, und Nr. 65
+                        (26. Dezember 1810), Sp. 1046–1052, waren Auszüge aus Kochs Werk vorab
                         gedruckt worden. Eine ungezeichnete Rezension, die aus zwei bei der
-                        Redaktion eingegangenen Texten zusammengezogen wurde, erschien in: <span class="tei_hi_italic">AMZ</span>, Jg.&#160;13, Nr.&#160;46 (13. November 1811),
-                        Sp.&#160;765–775.</p>
+                        Redaktion eingegangenen Texten zusammengezogen wurde, erschien in: <span class="tei_hi_italic">AMZ</span>, Jg. 13, Nr. 46 (13. November 1811),
+                        Sp. 765–775.</p>
                                         <p>G. Weber entwickelte in seiner Rezension bereits zahlreiche Ideen, die er in
                         weiteren Besprechungen und auch später in seinem <span class="tei_hi_italic">Versuch
-                            einer geordneten Theorie der Tonsetzkunst ausführte. </span>
-                                        </p>
-                                    </div>
+                            einer geordneten Theorie der Tonsetzkunst ausführte. </span></p>
+            </div>
                         </div>
                         
                         <div>
@@ -567,7 +540,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Heidelbergische Jahrbücher der Literatur</span>, Bd.&#160;4, Heft&#160;67 (November 1811), S.&#160;1057–1064</p>
+                                <p><span class="journalTitle">Heidelbergische Jahrbücher der Literatur</span>, Bd. 4, Heft 67 (November 1811), S. 1057–1064</p>
                                 
                                 <div>
                                     
@@ -586,74 +559,72 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary">"<span class="tei_lemma">an einem andern … näher ausführen wird</span>": G. Weber leitet in seinem <span class="tei_hi_italic">Versuch einer Theorie der Tonsetzkunst</span>, Mainz 31830–32, Bd. 2, § 131 (<span class="tei_hi_italic">Weiche Normaltonleiter</span>), S. 13ff., die Molltonleiter in der hier beschriebenen Weise her und verweist auf diese Rezension (irrtümlich gibt er dort Nr.&#160;76 statt 67 der <span class="tei_hi_italic">Heidelbergischen Jahrbücher der Literatur</span> an).</div>
+                                            <div class="apparatusEntry" id="C_01" data-title="note commentary">"<span class="tei_lemma">an einem andern … näher ausführen wird</span>": G. Weber leitet in seinem <span class="tei_hi_italic">Versuch einer Theorie der Tonsetzkunst</span>, Mainz 31830–32, Bd. 2, § 131 (<span class="tei_hi_italic">Weiche Normaltonleiter</span>), S. 13ff., die Molltonleiter in der hier beschriebenen Weise her und verweist auf diese Rezension (irrtümlich gibt er dort Nr. 76 statt 67 der <span class="tei_hi_italic">Heidelbergischen Jahrbücher der Literatur</span> an).</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Auslassung der Terz</span>": vgl. § 52, Koch, a. a. O., Sp.&#160;63</div>
+                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Auslassung der Terz</span>": vgl. § 52, Koch, a. a. O., Sp. 63</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">§. 55. 57</span>": a. a. O., Sp.&#160;65–67</div>
+                                            <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">§. 55. 57</span>": a. a. O., Sp. 65–67</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57656e179" data-title="choice">recte "und": in der Vorlage "nnd"</div>
+                                            <div class="apparatusEntry" id="d40733e179" data-title="choice">recte "und": in der Vorlage "nnd"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary">"<span class="tei_lemma">als Anhang eine Tabelle</span>": <span class="tei_hi_italic">Tabellarisches Verzeichniß der im Satz vorkommenden Aufhaltungen</span>; vgl. a. a. O., Sp. 143–158</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_05" data-title="note commentary">"<span class="tei_lemma">S. 72</span>": rechte Sp.&#160;172</div>
+                                            <div class="apparatusEntry" id="C_05" data-title="note commentary">"<span class="tei_lemma">S. 72</span>": rechte Sp. 172</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_06" data-title="note commentary">"<span class="tei_lemma">5 – 6 … – 5 G</span>": zu dem Beispiel vgl. Koch, a. a. O., Sp.&#160;212, fig. 13 und 14 </div>
+                                            <div class="apparatusEntry" id="C_06" data-title="note commentary">"<span class="tei_lemma">5 – 6 … – 5 G</span>": zu dem Beispiel vgl. Koch, a. a. O., Sp. 212, fig. 13 und 14 </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_07" data-title="note commentary">"<span class="tei_lemma">Freyheit des Satzes</span>": vgl. § 137, a. a. O., Sp.&#160;211</div>
+                                            <div class="apparatusEntry" id="C_07" data-title="note commentary">"<span class="tei_lemma">Freyheit des Satzes</span>": vgl. § 137, a. a. O., Sp. 211</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_08" data-title="note commentary">"<span class="tei_lemma">den Ton, der … Consonanz hören lassen</span>": G. Weber zitiert hier verkürzt, vgl. § 141, a. a. O., Sp.&#160;217: <span class="tei_hi_italic">Eine Dissonanz vorbereiten heißt nichts anderes, als denjenigen Ton einer Stimme, der als Dissonanz erscheinen soll, in eben derselben Stimme unmittelbar vorher als eine Konsonanz hören lassen. </span>
-                                            </div>
+                                            <div class="apparatusEntry" id="C_08" data-title="note commentary">"<span class="tei_lemma">den Ton, der … Consonanz hören lassen</span>": G. Weber zitiert hier verkürzt, vgl. § 141, a. a. O., Sp. 217: <span class="tei_hi_italic">Eine Dissonanz vorbereiten heißt nichts anderes, als denjenigen Ton einer Stimme, der als Dissonanz erscheinen soll, in eben derselben Stimme unmittelbar vorher als eine Konsonanz hören lassen. </span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">7 ⌒ 4 … | C –</span>": vgl. a. a. O., Sp.&#160;224, fig. 19</div>
+                                            <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">7 ⌒ 4 … | C –</span>": vgl. a. a. O., Sp. 224, fig. 19</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57656e257" data-title="choice">recte "fehlerfrey": in der Vorlage "fehlerley"</div>
+                                            <div class="apparatusEntry" id="d40733e257" data-title="choice">recte "fehlerfrey": in der Vorlage "fehlerley"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_10" data-title="note commentary">"<span class="tei_lemma">„daß derjenige Ton, … eine Consonanz trete“</span>": G. Weber zitiert wiederum verkürzt, vgl. a. a. O., Sp. 219: <span class="tei_hi_italic">Die Auflösung einer Dissonanz bestehet endlich darin, daß derjenige Ton, der in dieser oder jener Stimme als eine Dissonanz erschienen ist, in eben derselben Stimme in dem folgenden Akkorde eine Stufe der Tonleiter abwärts (bey einigen dissonirenden Intervallen eine Stufe aufwärts) tritt, und daß sich dieser abwärts tretende Ton als eine Konsonanz hören läßt.</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="C_10" data-title="note commentary">"<span class="tei_lemma">„daß derjenige Ton, … eine Consonanz trete“</span>": G. Weber zitiert wiederum verkürzt, vgl. a. a. O., Sp. 219: <span class="tei_hi_italic">Die Auflösung einer Dissonanz bestehet endlich darin, daß derjenige Ton, der in dieser oder jener Stimme als eine Dissonanz erschienen ist, in eben derselben Stimme in dem folgenden Akkorde eine Stufe der Tonleiter abwärts (bey einigen dissonirenden Intervallen eine Stufe aufwärts) tritt, und daß sich dieser abwärts tretende Ton als eine Konsonanz hören läßt.</span></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_11" data-title="note commentary">"<span class="tei_lemma">7 ⌒ 4 … | C Fis</span>": Dieses Beispiel stammt von G. Weber in Anlehnung an Koch, a. a. O., Sp. 234, fig. 52: 
-                        <span class="tei_segBlock textAlign-center">f	e	–</span><span class="tei_segBlock textAlign-center">G	C	fis</span>
-                                            </div>
+                        <span class="tei_segBlock textAlign-center">f	e	–</span> 	
+                        <span class="tei_segBlock textAlign-center">G	C	fis</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_12" data-title="note commentary">"<span class="tei_lemma">Die Vorbereitung einer Dissonanz</span>": vgl. a. a. O., Sp.&#160;221</div>
+                                            <div class="apparatusEntry" id="C_12" data-title="note commentary">"<span class="tei_lemma">Die Vorbereitung einer Dissonanz</span>": vgl. a. a. O., Sp. 221</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57656e341" data-title="choice">recte "Ähnliche": in der Vorlage "Ahnliche"</div>
+                                            <div class="apparatusEntry" id="d40733e342" data-title="choice">recte "Ähnliche": in der Vorlage "Ahnliche"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_13" data-title="note commentary">"<span class="tei_lemma">Behauptung wagt, der … mit ausgelassenem Grundton</span>": vgl. § 159, a. a. O., Sp.&#160;244</div>
+                                            <div class="apparatusEntry" id="C_13" data-title="note commentary">"<span class="tei_lemma">Behauptung wagt, der … mit ausgelassenem Grundton</span>": vgl. § 159, a. a. O., Sp. 244</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_14" data-title="note commentary">"<span class="tei_lemma">der Abschnitt von Tact und Rhythmus</span>": vgl. a. a. O., Sp.&#160;350–358</div>
+                                            <div class="apparatusEntry" id="C_14" data-title="note commentary">"<span class="tei_lemma">der Abschnitt von Tact und Rhythmus</span>": vgl. a. a. O., Sp. 350–358</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_15" data-title="note commentary">"<span class="tei_lemma">erst Most keltern, … man Weingeist abdestillirt</span>": Vgl. Georg Joseph Vogler, <span class="tei_hi_italic">Handbuch zur Harmonielehre und für den Generalbaß, nach den Grundsätzen der Mannheimer Tonschule, zum Behuf der öffentlichen Vorlesungen im Orchestrions-Saale auf der k. k. Ferdinandeischen Universität zu Prag</span>, Prag: Barth, 1802, S. 67, wo Vogler unter Bezugnahme auf Fux’ <span class="tei_hi_italic">Gradus ad Parnassum </span>ausführt: <span class="tei_hi_italic">Ich dächte aber, man sollte erst Trauben auspressen, ehe man sich anschickt Weingeist zu destilliren, denn das bicinium ist die Quintessenz vom quatrocinium</span>.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_16" data-title="note commentary">"<span class="tei_lemma">Vielleicht wäre auch … der Mittelweg golden</span>": G. Weber empfiehlt in seinem <span class="tei_hi_italic">Versuch einer Theorie der Tonsetzkunst</span>, a. a. O., Bd. 1, § 30, S.&#160;177, den dreistimmigen Satz als jenen, <span class="tei_hi_italic">in welchem Anfänger sich am füglichsten zuerst versuchen</span>. </div>
+                                            <div class="apparatusEntry" id="C_16" data-title="note commentary">"<span class="tei_lemma">Vielleicht wäre auch … der Mittelweg golden</span>": G. Weber empfiehlt in seinem <span class="tei_hi_italic">Versuch einer Theorie der Tonsetzkunst</span>, a. a. O., Bd. 1, § 30, S. 177, den dreistimmigen Satz als jenen, <span class="tei_hi_italic">in welchem Anfänger sich am füglichsten zuerst versuchen</span>. </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_17" data-title="note commentary">"<span class="tei_lemma">bald ebenfalls abhandeln</span>": Koch hat diesen Vorschlag nicht aufgegriffen, nach dem <span class="tei_hi_italic">Handbuch </span>veröffentlichte er nur noch eine Modulationslehre, die G. Weber ebenfalls rezensierte; vgl. <span class="tei_hi_italic">Heidelbergische Jahrbücher der Literatur</span>, Jg.&#160;6, Nr.&#160;29 (Mai 1813), S.&#160;449–455.</div>
+                                            <div class="apparatusEntry" id="C_17" data-title="note commentary">"<span class="tei_lemma">bald ebenfalls abhandeln</span>": Koch hat diesen Vorschlag nicht aufgegriffen, nach dem <span class="tei_hi_italic">Handbuch </span>veröffentlichte er nur noch eine Modulationslehre, die G. Weber ebenfalls rezensierte; vgl. <span class="tei_hi_italic">Heidelbergische Jahrbücher der Literatur</span>, Jg. 6, Nr. 29 (Mai 1813), S. 449–455.</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031017/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -675,10 +646,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. November 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -704,6 +674,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -714,6 +685,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -748,6 +720,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

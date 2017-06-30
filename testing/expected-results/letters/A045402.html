@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402" />
         <meta property="dc:description" content="sieht dem Engagement bei Großmann in Hannover mit Freude entgegen, denkt 25./26. April einzutreffen, fügt sein Rollenverzeichnis bei und berichtet über Theater-Neuigkeiten in Meiningen" />
         <meta name="description" content="sieht dem Engagement bei Großmann in Hannover mit Freude entgegen, denkt 25./26. April einzutreffen, fügt sein Rollenverzeichnis bei und berichtet über Theater-Neuigkeiten in Meiningen" />
@@ -48,6 +48,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -80,8 +81,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -182,13 +187,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002129/Correspondence/A045402.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002129/Correspondence/A045402.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,14 +213,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129.html">Vincent Weyrauch</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A045402</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129.html">Vincent Weyrauch</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A045402</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,31 +233,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -295,9 +285,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009925" /> <span title="Friedrich II., Landgraf von Hessen-Kassel">Friedrich II., Landgraf von He…</span> 
@@ -324,8 +313,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -351,17 +339,16 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-            <p class="teiLetter_datelineOpenerBlockRight"><span class=" 83971204577101105110117110103101110"><span class="tei_settlement">Sax-Meinungen</span></span> d 10. Aprill 1790</p>
+            <span class="tei_dateline textAlign-right"><span class="tei_placeName"><span class="83971204577101105110117110103101110">Sax-Meinungen</span></span> d 10. Aprill 1790</span>
             <p class="teiLetter_salute">Verehrungswerther Herr Großmann!</p>
          </div>
-                                        <p class="inlineEnd">Ihr lezter Brief kam mir unerwartet aber der heutige vom 4.&#160;Aprill weit mehr – der Himmel gebe daß ich <span class="tei_hi_latintype">Ihnen</span> und den <span class="tei_hi_latintype">Ihrigen</span> mit meinem Eifer und Bereitwilligkeit so dienen kann als ich wünsche – Meinen innigsten Dank an Tag und Mann zu bringen erspar’ ich bis ich bey <span class="tei_hi_latintype">Ihnen</span> bin. Die <a class="persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Mama Großmann</a> hat also für <span class="tei_hi_latintype">Ihren</span> ergebenen Sohn so gesorgt? Dank <span class="tei_hi_latintype">Ihr</span> und der Hand die es gab. Aus meinem lezten werden <span class="tei_hi_latintype">Sie</span> gelesen haben daß wir noch gesinnt sind für Uns und sämtℓ Mitglieder 3. Vorstellungen zu geben – diese sind künftige Woche – dann soll mich nichts abhalten zu <span class="tei_hi_latintype">Ihnen</span> so geschwind als möglich zu eilen. Den 20: Aprill: geh’ ich von hier mit dem Nürnberger Boten bis<span class="tei_pb"> | </span>Braunschweig – von da nach dem lieben <span class="tei_hi_latintype">Hannover</span> – kann daher 25 oder 26: dieses bey <span class="tei_hi_latintype">Ihnen</span> meine 1<span class="tei_hi_superscript">e</span>&#160;Aufwartung machen – Hiebey folgt das verlangte Rollen Verzeichnüß – </p>
-                                        <p class="teiLetter_closer inlineStart">Sobald meine <a class="persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Frau</a> sich von der Reise erholt haben wird wird Sie nicht ermangeln in <span class="tei_hi_latintype">Ihrem</span> Zimmer eine Probe <span class="tei_hi_latintype">Ihrer</span> wenigen Singkunst abzulegen – Bis dahin verbleiben wir <span class="tei_hi_latintype">Ihre</span> Dankbahre Dieners
-               <span class="tei_segBlock textAlign-right"><span class="A002129 A002128">Vinzent &amp; <span class="tei_hi_latintype">Jeanette Weyrauchmp</span></span></span>
+                                        <p class="inlineEnd">Ihr lezter Brief kam mir unerwartet aber der heutige vom 4. Aprill weit mehr – der Himmel gebe daß ich <span class="tei_hi_latintype">Ihnen</span> und den <span class="tei_hi_latintype">Ihrigen</span> mit meinem Eifer und Bereitwilligkeit so dienen kann als ich wünsche – Meinen innigsten Dank an Tag und Mann zu bringen erspar’ ich bis ich bey <span class="tei_hi_latintype">Ihnen</span> bin. Die <a class="preview persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Mama Großmann</a> hat also für <span class="tei_hi_latintype">Ihren</span> ergebenen Sohn so gesorgt? Dank <span class="tei_hi_latintype">Ihr</span> und der Hand die es gab. Aus meinem lezten werden <span class="tei_hi_latintype">Sie</span> gelesen haben daß wir noch gesinnt sind für Uns und sämtℓ Mitglieder 3. Vorstellungen zu geben – diese sind künftige Woche – dann soll mich nichts abhalten zu <span class="tei_hi_latintype">Ihnen</span> so geschwind als möglich zu eilen. Den 20: Aprill: geh’ ich von hier mit dem Nürnberger Boten bis<span class="tei_pb" title="Seitenumbruch"> | </span>Braunschweig – von da nach dem lieben <span class="tei_hi_latintype">Hannover</span> – kann daher 25 oder 26: dieses bey <span class="tei_hi_latintype">Ihnen</span> meine 1<span class="tei_hi_superscript">e</span> Aufwartung machen – Hiebey folgt das verlangte Rollen Verzeichnüß – </p>
+                                        <p class="tei_closer textAlign-left inlineStart">Sobald meine <a class="preview persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Frau</a> sich von der Reise erholt haben wird wird Sie nicht ermangeln in <span class="tei_hi_latintype">Ihrem</span> Zimmer eine Probe <span class="tei_hi_latintype">Ihrer</span> wenigen Singkunst abzulegen – Bis dahin verbleiben wir <span class="tei_hi_latintype">Ihre</span> Dankbahre Dieners
+               <span class="tei_segBlock textAlign-right"><span class="preview persons A002129 A002128" data-ref="/exist/apps/WeGA-WebApp/de/A002129.html /exist/apps/WeGA-WebApp/de/A002128.html">Vinzent &amp; <span class="tei_hi_latintype">Jeanette Weyrauchmp</span></span></span>
             </p>
                                         <div class="tei_postscript">
-                                            <p class="inlineEnd">Neuigkeiten von hier sind: <span class="tei_hi_latintype"><a class="persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Carl Stamiz</a></span> der sich seit vorigen Sommer in <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement">Cassel</span></span></span> aufhielt ist gestern hier mit seiner <span class="tei_hi_latintype">Familie</span> angekommen – hatt sich bey Uns melden lassen und erzählte folgendes: Daß Hℓ: v <span class="tei_hi_latintype"><a class="persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> ihm viel versprochen und nicht das mindeste gehalten – schimpft daher gewaltig auf ihn – <a class="persons A009957" href="/exist/apps/WeGA-WebApp/de/A009957.html"><span class="tei_hi_latintype">Santorini</span></a> <span class="tei_hi_latintype"><a class="persons A009910" href="/exist/apps/WeGA-WebApp/de/A009910.html">Toscani</a></span> und <span class="tei_hi_latintype"><a class="persons A009636" href="/exist/apps/WeGA-WebApp/de/A009636.html">Neuhaus</a></span> sind Schuldenhalber <span class="tei_hi_latintype">arre</span>tirt auf 4. hundert Thaler sollen sich dieselben belaufen.<span class="tei_pb"> | </span>16. Zentℓ: alleine sind sie Talch an Hof Mezger schuldig &amp;&amp; ob der Mann nicht seine Nachrichten übertreibt steht dahin – Sie werden wohl die Verfassung der Hℓ: <span class="tei_hi_latintype"><span class=" 679711511510110897110101114"><span class="tei_settlement">Casselaner</span></span></span> am besten wissen da Hℓ: v <span class="tei_hi_latintype"><a class="persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> bey <span class="tei_hi_latintype">Ihnen</span> war – Er bestätigt die Nachricht – daß Sie <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement">Cassel</span></span></span> haben – <a class="persons A009778" href="/exist/apps/WeGA-WebApp/de/A009778.html">Mad:&#160;Laufer</a> soll schon nach <span class="tei_hi_latintype"><span class=" 84121114111108"><span class="tei_region">Tyrol</span></span></span> abgegangen seyn – Verzeihen Sie wenn ich Sie bitte mit <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement">Cassel</span></span></span> auf Ihrer Hut zu seyn – <span class="tei_hi_latintype"><span class=" 6797115115101108"><span class="tei_settlement">Cassel</span></span></span> ist nicht mehr der Ort wie er war als Sie bey Lebzeiten des vorigen <a class="persons A009925" href="/exist/apps/WeGA-WebApp/de/A009925.html">Hℓ:</a> es angetroffen – <span class="tei_hi_latintype"><a class="persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jassmund</a></span> ist ein guter braver Herr – aber er hatt leider den Fehler – daß er viel verspricht und – doch <span class="tei_hi_underline1">Sie</span> werden das wohl wissen besser als ich – daher bitt ich nochmahl um Vergebung daß <span class="tei_hi_underline1">ich</span> mich unterstand <span class="tei_hi_latintype"><span class="tei_hi_underline1">Ihnen</span></span> so was zu schreiben – s <span class="tei_hi_latintype">Publicum</span> alldort ist nicht so gut und anhänglich wis <span class=" 729711011024611811410511599104101"><span class="tei_settlement"><span class="tei_hi_latintype">Hannövri</span>sche</span></span> sieht zwar gerne was neues – aber Armuth in allen Eken – Oekonomie am Hof die<span class="tei_pb"> | </span>dem Geize mehr gleicht als ein Ey dem andern. Ich nehme die <span class="tei_hi_latintype">Tour</span> über <span class="tei_hi_latintype"><span class=" 661149711711011599104119101105103"><span class="tei_settlement">Braunschweig</span></span></span> – um nicht Zeuge des Mischmasches zu seyn – Aufhalten möcht ich mich wohl auch – folglich ist besser ich reise um bald an den Ort meiner Ruhe zu kommen – <br /><span class="tei_hi_latintype"><a class="persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Stamiz</a></span> will hier eine Oper seiner Arbeit aufführen – ich werdes nicht eingehen und wenn ich würklich was profitiren könnte – denn ich bin froh daß ich von dem <span class="tei_hi_latintype">Liliputer</span> Hof einmahl erlößt bin – </p>
-                                            <p class="teiLetter_closer inlineStart">Leben Sie wohl empfehlen Sie mich und mein <a class="persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Weib</a> Ihrer <a class="persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Frau Gemahlin</a> – ich unterschreibe mich nochmal und stets als <span class="tei_hi_latintype">Ihren</span><span class="tei_segBlock textAlign-right">bereitwilligsten und dankbarsten<br />Diener und Freund<br /><span class="tei_hi_latintype"><a class="persons A002129" href="/exist/apps/WeGA-WebApp/de/A002129.html">Weyrauch</a>mp</span></span>
-                                            </p>
+                                            <p class="inlineEnd">Neuigkeiten von hier sind: <span class="tei_hi_latintype"><a class="preview persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Carl Stamiz</a></span> der sich seit vorigen Sommer in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797115115101108">Cassel</span></span></span> aufhielt ist gestern hier mit seiner <span class="tei_hi_latintype">Familie</span> angekommen – hatt sich bey Uns melden lassen und erzählte folgendes: Daß Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> ihm viel versprochen und nicht das mindeste gehalten – schimpft daher gewaltig auf ihn – <a class="preview persons A009957" href="/exist/apps/WeGA-WebApp/de/A009957.html"><span class="tei_hi_latintype">Santorini</span></a> <span class="tei_hi_latintype"><a class="preview persons A009910" href="/exist/apps/WeGA-WebApp/de/A009910.html">Toscani</a></span> und <span class="tei_hi_latintype"><a class="preview persons A009636" href="/exist/apps/WeGA-WebApp/de/A009636.html">Neuhaus</a></span> sind Schuldenhalber <span class="tei_hi_latintype">arre</span>tirt auf 4. hundert Thaler sollen sich dieselben belaufen.<span class="tei_pb" title="Seitenumbruch"> | </span>16. Zentℓ: alleine sind sie Talch an Hof Mezger schuldig &amp;&amp; ob der Mann nicht seine Nachrichten übertreibt steht dahin – Sie werden wohl die Verfassung der Hℓ: <span class="tei_hi_latintype"><span class="tei_placeName"><span class="679711511510110897110101114">Casselaner</span></span></span> am besten wissen da Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> bey <span class="tei_hi_latintype">Ihnen</span> war – Er bestätigt die Nachricht – daß Sie <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797115115101108">Cassel</span></span></span> haben – <a class="preview persons A009778" href="/exist/apps/WeGA-WebApp/de/A009778.html">Mad: Laufer</a> soll schon nach <span class="tei_hi_latintype"><span class="tei_placeName"><span class="tei_region">Tyrol</span></span></span> abgegangen seyn – Verzeihen Sie wenn ich Sie bitte mit <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797115115101108">Cassel</span></span></span> auf Ihrer Hut zu seyn – <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797115115101108">Cassel</span></span></span> ist nicht mehr der Ort wie er war als Sie bey Lebzeiten des vorigen <a class="preview persons A009925" href="/exist/apps/WeGA-WebApp/de/A009925.html">Hℓ:</a> es angetroffen – <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jassmund</a></span> ist ein guter braver Herr – aber er hatt leider den Fehler – daß er viel verspricht und – doch <span class="tei_hi_underline1">Sie</span> werden das wohl wissen besser als ich – daher bitt ich nochmahl um Vergebung daß <span class="tei_hi_underline1">ich</span> mich unterstand <span class="tei_hi_latintype"><span class="tei_hi_underline1">Ihnen</span></span> so was zu schreiben – s <span class="tei_hi_latintype">Publicum</span> alldort ist nicht so gut und anhänglich wis <span class="tei_placeName"><span class="729711011024611811410511599104101"><span class="tei_hi_latintype">Hannövri</span>sche</span></span> sieht zwar gerne was neues – aber Armuth in allen Eken – Oekonomie am Hof die<span class="tei_pb" title="Seitenumbruch"> | </span>dem Geize mehr gleicht als ein Ey dem andern. Ich nehme die <span class="tei_hi_latintype">Tour</span> über <span class="tei_hi_latintype"><span class="tei_placeName"><span class="661149711711011599104119101105103">Braunschweig</span></span></span> – um nicht Zeuge des Mischmasches zu seyn – Aufhalten möcht ich mich wohl auch – folglich ist besser ich reise um bald an den Ort meiner Ruhe zu kommen – <br /><span class="tei_hi_latintype"><a class="preview persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Stamiz</a></span> will hier eine Oper seiner Arbeit aufführen – ich werdes nicht eingehen und wenn ich würklich was profitiren könnte – denn ich bin froh daß ich von dem <span class="tei_hi_latintype">Liliputer</span> Hof einmahl erlößt bin – </p>
+                                            <p class="tei_closer textAlign-left inlineStart">Leben Sie wohl empfehlen Sie mich und mein <a class="preview persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Weib</a> Ihrer <a class="preview persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Frau Gemahlin</a> – ich unterschreibe mich nochmal und stets als <span class="tei_hi_latintype">Ihren</span><span class="tei_segBlock textAlign-right">bereitwilligsten und dankbarsten<br />Diener und Freund<br /><span class="tei_hi_latintype"><a class="preview persons A002129" href="/exist/apps/WeGA-WebApp/de/A002129.html">Weyrauch</a>mp</span></span></p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -428,7 +415,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A045402/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -450,10 +437,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -479,6 +465,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -489,6 +476,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -523,6 +511,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

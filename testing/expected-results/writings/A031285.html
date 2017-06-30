@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-09-20T07:48:33.058022Z" />
+        <meta property="dc:date" content="2017-06-22T13:24:41.092126Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031285" />
         <meta property="dc:description" content="Protagonist schildert aus der Ich-Persektive einen Traum mit einer Versammlung der Orchester-Instrumente in Dialog-Form, die sich über die Sinfonien eines zeitgenössischen Komponisten (Anspielung auf Beethoven) echauffieren" />
         <meta name="description" content="Protagonist schildert aus der Ich-Persektive einen Traum mit einer Versammlung der Orchester-Instrumente in Dialog-Form, die sich über die Sinfonien eines zeitgenössischen Komponisten (Anspielung auf Beethoven) echauffieren" />
@@ -48,6 +48,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -80,8 +81,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -182,13 +187,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031285.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031285.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -209,14 +211,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
-                        </li>
-                        <li><span>A031285</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a></li>
+                        <li><span>A031285</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -233,33 +231,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000117" /> <span title="Beethoven, Ludwig van">Beethoven, Ludwig van</span> 
@@ -290,8 +280,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -301,8 +290,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -319,30 +307,27 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader"><span class="tei_add tei_hi_superscript">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird.<a class="noteMarker" id="ref-d56620e4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e4">‡</a></span>
-                                        </h2>
-                                        <p><span class="tei_add tei_hi_superscript"><a class="noteMarker" id="ref-d56620e7" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e7">‡</a></span>Voll Zufriedenheit über eine Vormittags glüklich geendete <span class="tei_hi_latintype">Sinphonie</span>, und ein vortreffliches Mittagsmahl, entschlummerte ich sanft, und sah mich im Traume plözlich in den <span class="tei_hi_latintype">Concert</span>Saal versezt, wo alle Instrumente belebt, große <span class="tei_hi_latintype">Assemblée</span> unter dem Vorsiz der gefühlvollen und mit <span class="tei_hi_latintype">naiver</span> Naseweis<span class="tei_del">ig<a class="noteMarker" id="ref-d56620e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e21">‡</a></span>keit erfüllten <span class="tei_hi_latintype">Oboe</span>, hielten<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e28">‡</a></span> <span class="tei_subst"><span class="tei_add">R</span><a class="noteMarker" id="ref-d56620e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e34">‡</a></span>echts hatte sich eine <span class="tei_del">Spiel<a class="noteMarker" id="ref-d56620e40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e40">‡</a></span><span class="tei_subst"><span class="tei_add">P</span><a class="noteMarker" id="ref-d56620e42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e42">‡</a></span>art<span class="tei_del">h<a class="noteMarker" id="ref-d56620e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e48">‡</a></span>ie aus einer <span class="tei_hi_latintype">Viola damour</span>, <span class="tei_hi_latintype">Bassethorn</span>, <span class="tei_hi_latintype">Violdi Gamba</span>, und <span class="tei_hi_latintype">Flöte Douce</span> <span class="tei_hi_latintype">arrangirt</span>, <span class="tei_add">die über die verfloßnen guten alten Zeiten Klagetönten,<a class="noteMarker" id="ref-d56620e67" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e67">‡</a></span> links hielt die Dame Hoboe Zirkel mit jungen und alten Klarinetten und Flöten, mit und ohne unzählige Modeklappen, und <span class="tei_add tei_hi_superscript">in der Mitte war<a class="noteMarker" id="ref-d56620e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e71">‡</a></span> das galante Klavier, <span class="tei_subst"><span class="tei_add">von</span><a class="noteMarker" id="ref-d56620e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e74">‡</a></span> einigen süßen <span class="tei_hi_latintype">Violinen</span> die sich nach <a class="persons A001491" href="/exist/apps/WeGA-WebApp/de/A001491.html">Pleyel</a> und <a class="persons A000712" href="/exist/apps/WeGA-WebApp/de/A000712.html">Girowetz</a> gebildet hatten umgeben<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e89">‡</a></span> <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d56620e96" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e96">‡</a></span>ie Trompeten und H<span class="tei_subst"><span class="tei_add">ö</span><a class="noteMarker" id="ref-d56620e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e102">‡</a></span>rn<span class="tei_add">er<a class="noteMarker" id="ref-d56620e108" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e108">‡</a></span> zechten in einer Eke, und die PikoloFlöten und Flagoletchens durchschrien den Saal mit ihren <span class="tei_hi_latintype">naiven</span> kindlichen Einfällen, wovon Mama Hoboe, durch<span class="tei_del">s<a class="noteMarker" id="ref-d56620e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e114">‡</a></span>aus behauptet es sey ächt <span class="tei_hi_latintype"><a class="persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Peaul</a></span>sche Anlage <span class="tei_del">und<a class="noteMarker" id="ref-d56620e122" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e122">‡</a></span> durch Pestaloz<span class="tei_subst"><span class="tei_add">zy</span><a class="noteMarker" id="ref-d56620e127" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e127">‡</a></span> zur höchsten Natürlichkeit erhoben in ihren Tönen<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e133" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e133">‡</a></span> <span class="tei_add">Alles war seelenvergnügt,<a class="noteMarker" id="ref-d56620e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e139">‡</a></span> als <span class="tei_add tei_hi_superscript">auf einmal<a class="noteMarker" id="ref-d56620e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e142">‡</a></span> der grämliche <span class="tei_hi_latintype">Contrabass</span> von ein <span class="tei_subst"><span class="tei_add">P</span><a class="noteMarker" id="ref-d56620e149" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e149">‡</a></span>aar verwandten <span class="tei_hi_latintype">Violoncellen</span> begleitet zur Thüre hereinstürmte, und sich <span class="tei_add tei_hi_superscript">so<a class="noteMarker" id="ref-d56620e158" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e158">‡</a></span> voll Unmuth auf den dastehenden Direktionsstuhl warf, daß das Klavier und alle anwesendende GeigInstrumente vor Schreken unwillkührlich miterklangen. <span class="tei_hi_underline1">Nein</span>, rief er aus, – da sollte einen ja der Teufel hohlen, wenn täglich solche <span class="tei_hi_latintype">Compositionen</span> vorkämen,. da komme ich eben aus der Probe einer <span class="tei_hi_latintype">Sinphonie</span> eines unserer neuesten Componisten, und obwohl ich wie bekannt, eine ziemlich starke und <span class="tei_del">beleibte Figur<a class="noteMarker" id="ref-d56620e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e171">‡</a></span> <span class="tei_add tei_hi_superscript">kräftige Natur<a class="noteMarker" id="ref-d56620e174" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e174">‡</a></span> <span class="tei_pb"> | </span> habe, so <span class="tei_del">hat<a class="noteMarker" id="ref-d56620e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e179">‡</a></span> konnte ich es doch <span class="tei_del">nicht<a class="noteMarker" id="ref-d56620e182" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e182">‡</a></span> <span class="tei_add tei_hi_superscript">kaum<a class="noteMarker" id="ref-d56620e185" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e185">‡</a></span> mehr aushalten, und binnen 5 Minuten wäre mir unausbleiblich der Stimmstok gefallen, und die Saiten meines Lebens gerißen<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e189">‡</a></span> <span class="tei_del">dann<a class="noteMarker" id="ref-d56620e195" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e195">‡</a></span> <span class="tei_subst"><span class="tei_add">H</span><a class="noteMarker" id="ref-d56620e198" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e198">‡</a></span>at man mich nicht wie einen Geisbok springen und wüthen laßen; habe ich nicht mich <span class="tei_add tei_hi_superscript">nicht<a class="noteMarker" id="ref-d56620e204" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e204">‡</a></span> zur <span class="tei_hi_latintype">Violine</span> umwand<span class="tei_subst"><span class="tei_add">eln</span><a class="noteMarker" id="ref-d56620e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e210">‡</a></span> sollen, um die Nicht-Ideen des H: <span class="tei_hi_latintype">Comp</span>: zu <span class="tei_hi_latintype">executiren</span>, so will ich zur Tanz Geige werden, und mein Bro<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="ref-d56620e223" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e223">‡</a></span> mit <a class="persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Müller</a>schen, und <a class="persons A000980" href="/exist/apps/WeGA-WebApp/de/A000980.html">Kauer</a>schen TanzDar­stellungen verdienen. <span class="tei_add">[Abschnitt.<a class="noteMarker" id="ref-d56620e235" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e235">‡</a></span> <span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">stes</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span> /: sich <span class="tei_hi_underline1">den Schweis abwischend</span>, :/ <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e251" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e251">‡</a></span>llerdings haben <span class="tei_hi_latintype">mon cher pére</span> recht, ich bin auch so <span class="tei_hi_latintype">fatiguirt</span>, daß ich seit den <span class="tei_hi_latintype"><a class="persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a></span>schen Opern mich keines solchen <span class="tei_subst"><span class="tei_add"><span class="tei_hi_latintype">Echauffements</span></span><a class="noteMarker" id="ref-d56620e268" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e268">‡</a></span> errinnere.&#160;<span class="tei_add">–<a class="noteMarker" id="ref-d56620e276" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e276">‡</a></span><br />
+                                        <h2 class="docHeader textAlign-left"><span class="tei_add tei_hi_superscript">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird.<a class="noteMarker" id="ref-d40056e4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e4">‡</a></span></h2>
+                                        <p><span class="tei_add tei_hi_superscript"><a class="noteMarker" id="ref-d40056e7" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e7">‡</a></span>Voll Zufriedenheit über eine Vormittags glüklich geendete <span class="tei_hi_latintype">Sinphonie</span>, und ein vortreffliches Mittagsmahl, entschlummerte ich sanft, und sah mich im Traume plözlich in den <span class="tei_hi_latintype">Concert</span>Saal versezt, wo alle Instrumente belebt, große <span class="tei_hi_latintype">Assemblée</span> unter dem Vorsiz der gefühlvollen und mit <span class="tei_hi_latintype">naiver</span> Naseweis<span class="tei_del">ig<a class="noteMarker" id="ref-d40056e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e21">‡</a></span>keit erfüllten <span class="tei_hi_latintype">Oboe</span>, hielten<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e28">‡</a></span> <span class="tei_subst"><span class="tei_add">R</span><a class="noteMarker" id="ref-d40056e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e34">‡</a></span>echts hatte sich eine <span class="tei_del">Spiel<a class="noteMarker" id="ref-d40056e40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e40">‡</a></span><span class="tei_subst"><span class="tei_add">P</span><a class="noteMarker" id="ref-d40056e42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e42">‡</a></span>art<span class="tei_del">h<a class="noteMarker" id="ref-d40056e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e48">‡</a></span>ie aus einer <span class="tei_hi_latintype">Viola damour</span>, <span class="tei_hi_latintype">Bassethorn</span>, <span class="tei_hi_latintype">Violdi Gamba</span>, und <span class="tei_hi_latintype">Flöte Douce</span> <span class="tei_hi_latintype">arrangirt</span>, <span class="tei_add">die über die verfloßnen guten alten Zeiten Klagetönten,<a class="noteMarker" id="ref-d40056e67" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e67">‡</a></span> links hielt die Dame Hoboe Zirkel mit jungen und alten Klarinetten und Flöten, mit und ohne unzählige Modeklappen, und <span class="tei_add tei_hi_superscript">in der Mitte war<a class="noteMarker" id="ref-d40056e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e71">‡</a></span> das galante Klavier, <span class="tei_subst"><span class="tei_add">von</span><a class="noteMarker" id="ref-d40056e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e74">‡</a></span> einigen süßen <span class="tei_hi_latintype">Violinen</span> die sich nach <a class="preview persons A001491" href="/exist/apps/WeGA-WebApp/de/A001491.html">Pleyel</a> und <a class="preview persons A000712" href="/exist/apps/WeGA-WebApp/de/A000712.html">Girowetz</a> gebildet hatten umgeben<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e89">‡</a></span> <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d40056e96" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e96">‡</a></span>ie Trompeten und H<span class="tei_subst"><span class="tei_add">ö</span><a class="noteMarker" id="ref-d40056e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e102">‡</a></span>rn<span class="tei_add">er<a class="noteMarker" id="ref-d40056e108" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e108">‡</a></span> zechten in einer Eke, und die PikoloFlöten und Flagoletchens durchschrien den Saal mit ihren <span class="tei_hi_latintype">naiven</span> kindlichen Einfällen, wovon Mama Hoboe, durch<span class="tei_del">s<a class="noteMarker" id="ref-d40056e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e114">‡</a></span>aus behauptet es sey ächt <span class="tei_hi_latintype"><a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Peaul</a></span>sche Anlage <span class="tei_del">und<a class="noteMarker" id="ref-d40056e122" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e122">‡</a></span> durch <span class="preview persons A001460" data-ref="/exist/apps/WeGA-WebApp/de/A001460.html">Pestaloz<span class="tei_subst"><span class="tei_add">zy</span><a class="noteMarker" id="ref-d40056e127" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e127">‡</a></span></span> zur höchsten Natürlichkeit erhoben in ihren Tönen<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e133" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e133">‡</a></span> <span class="tei_add">Alles war seelenvergnügt,<a class="noteMarker" id="ref-d40056e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e139">‡</a></span> als <span class="tei_add tei_hi_superscript">auf einmal<a class="noteMarker" id="ref-d40056e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e142">‡</a></span> der grämliche <span class="tei_hi_latintype">Contrabass</span> von ein <span class="tei_subst"><span class="tei_add">P</span><a class="noteMarker" id="ref-d40056e149" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e149">‡</a></span>aar verwandten <span class="tei_hi_latintype">Violoncellen</span> begleitet zur Thüre hereinstürmte, und sich <span class="tei_add tei_hi_superscript">so<a class="noteMarker" id="ref-d40056e158" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e158">‡</a></span> voll Unmuth auf den dastehenden Direktionsstuhl warf, daß das Klavier und alle anwesendende GeigInstrumente vor Schreken unwillkührlich miterklangen. <span class="tei_hi_underline1">Nein</span>, rief er aus, – da sollte einen ja der Teufel hohlen, wenn täglich solche <span class="tei_hi_latintype">Compositionen</span> vorkämen,. da komme ich eben aus der Probe einer <span class="tei_hi_latintype">Sinphonie</span> eines unserer neuesten Componisten, und obwohl ich wie bekannt, eine ziemlich starke und <span class="tei_del">beleibte Figur<a class="noteMarker" id="ref-d40056e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e171">‡</a></span> <span class="tei_add tei_hi_superscript">kräftige Natur<a class="noteMarker" id="ref-d40056e174" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e174">‡</a></span> <span class="tei_pb" title="Seitenumbruch"> | </span> habe, so <span class="tei_del">hat<a class="noteMarker" id="ref-d40056e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e179">‡</a></span> konnte ich es doch <span class="tei_del">nicht<a class="noteMarker" id="ref-d40056e182" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e182">‡</a></span> <span class="tei_add tei_hi_superscript">kaum<a class="noteMarker" id="ref-d40056e185" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e185">‡</a></span> mehr aushalten, und binnen 5 Minuten wäre mir unausbleiblich der Stimmstok gefallen, und die Saiten meines Lebens gerißen<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e189">‡</a></span> <span class="tei_del">dann<a class="noteMarker" id="ref-d40056e195" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e195">‡</a></span> <span class="tei_subst"><span class="tei_add">H</span><a class="noteMarker" id="ref-d40056e198" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e198">‡</a></span>at man mich nicht wie einen Geisbok springen und wüthen laßen; habe ich nicht mich <span class="tei_add tei_hi_superscript">nicht<a class="noteMarker" id="ref-d40056e204" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e204">‡</a></span> zur <span class="tei_hi_latintype">Violine</span> umwand<span class="tei_subst"><span class="tei_add">eln</span><a class="noteMarker" id="ref-d40056e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e210">‡</a></span> sollen, um die Nicht-Ideen des H: <span class="tei_hi_latintype">Comp</span>: zu <span class="tei_hi_latintype">executiren</span>, so will ich zur Tanz Geige werden, und mein Bro<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="ref-d40056e223" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e223">‡</a></span> mit <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Müller</a>schen, und <a class="preview persons A000980" href="/exist/apps/WeGA-WebApp/de/A000980.html">Kauer</a>schen TanzDarstellungen verdienen. <span class="tei_add">[Abschnitt.<a class="noteMarker" id="ref-d40056e235" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e235">‡</a></span> <span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">stes</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span> /: sich <span class="tei_hi_underline1">den Schweis abwischend</span>, :/ <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e251" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e251">‡</a></span>llerdings haben <span class="tei_hi_latintype">mon cher pére</span> recht, ich bin auch so <span class="tei_hi_latintype">fatiguirt</span>, daß ich seit den <span class="tei_hi_latintype"><a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a></span>schen Opern mich keines solchen <span class="tei_subst"><span class="tei_add"><span class="tei_hi_latintype">Echauffements</span></span><a class="noteMarker" id="ref-d40056e268" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e268">‡</a></span> errinnere. <span class="tei_add">–<a class="noteMarker" id="ref-d40056e276" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e276">‡</a></span><br />
             </p>
-                                        <p><span class="tei_add">[Absatz<a class="noteMarker" id="ref-d56620e281" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e281">‡</a></span> <span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e285" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e285">‡</a></span>lle Instrumente</span>: <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d56620e292" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e292">‡</a></span>rzählen Sie, erzählen Sie.</p>
-                                        <p><span class="tei_hi_underline1">2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span>. <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d56620e308" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e308">‡</a></span>rzählen läßt sich <span class="tei_del">kaum<a class="noteMarker" id="ref-d56620e314" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e314">‡</a></span> so etwas <span class="tei_add tei_hi_superscript">kaum<a class="noteMarker" id="ref-d56620e317" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e317">‡</a></span>, und eigentlich wo<span class="tei_del">h<a class="noteMarker" id="ref-d56620e321" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e321">‡</a></span>l noch weniger <span class="tei_hi_underline1">hören</span>, denn nach den Begriffen, die mir mein göttlicher Meister <span class="tei_hi_latintype"><a class="persons A001600" href="/exist/apps/WeGA-WebApp/de/A001600.html">Romberg</a></span> eingeflößt hat<span class="tei_del">t<a class="noteMarker" id="ref-d56620e331" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e331">‡</a></span>, ist freylich die von uns eben <span class="tei_hi_latintype">executirte Sinph</span>: ein musikalisches Ungeheuer, wo weder auf die Natur irgend eines Instruments noch auf Ausführung eines Gedankens, noch auf irgend einen andern Zwek<span class="tei_add">,<a class="noteMarker" id="ref-d56620e337" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e337">‡</a></span> als den<span class="tei_add">,<a class="noteMarker" id="ref-d56620e341" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e341">‡</a></span> des neu und originell <span class="tei_subst"><span class="tei_add">S</span><a class="noteMarker" id="ref-d56620e344" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e344">‡</a></span>cheinenwollens hingearbeitet wäre<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e350">‡</a></span> <span class="tei_subst"><span class="tei_add">M</span><a class="noteMarker" id="ref-d56620e356" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e356">‡</a></span>an<span class="tei_del">n<a class="noteMarker" id="ref-d56620e362" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e362">‡</a></span> läßt uns gleich den <span class="tei_hi_latintype">Violinen</span> in die Höhe klettern, <span class="tei_add">[Absatz.<a class="noteMarker" id="ref-d56620e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e369">‡</a></span> /: 1<span class="tei_hi_superscript">stes</span> <span class="tei_hi_latintype">Violonc</span>: :/ <span class="tei_hi_underline1">ihn unterbrechend</span><span class="tei_add">.<a class="noteMarker" id="ref-d56620e380" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e380">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e383" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e383">‡</a></span>ls ob wir das auch nicht eben so gut könnten,</p>
-                                        <p><span class="tei_hi_underline1">Eine 2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violine</span></span>, <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d56620e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e399">‡</a></span>in jede<span class="tei_subst"><span class="tei_add">r</span><a class="noteMarker" id="ref-d56620e405" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e405">‡</a></span> bleibe in seinen Schranken,</p>
-                                        <p><span class="tei_hi_underline1">Bratsche</span>, <span class="tei_subst"><span class="tei_add">J</span><a class="noteMarker" id="ref-d56620e415" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e415">‡</a></span>a, denn ich stehe ja auch noch zwischen Ihnen, und was bliebe dann mir übrig. –</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span>, <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e431" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e431">‡</a></span>ch<span class="tei_add">,<a class="noteMarker" id="ref-d56620e437" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e437">‡</a></span> von Ihnen ist <span class="tei_add tei_hi_superscript">ja<a class="noteMarker" id="ref-d56620e440" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e440">‡</a></span> gar nicht mehr die Rede, sie fluthen <span class="tei_pb"> | </span> nur noch mit Uns im <span class="tei_hi_latintype">Unisono</span> oder sind zum Schauder und Spannung erregen wie z: B: im <span class="works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Waßerträger</span> da, aber was den schönen Gesang betrift, –</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">ste</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Oboe</span></span> da kann sich doch wo<span class="tei_del">h<a class="noteMarker" id="ref-d56620e462" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e462">‡</a></span>l mit mir nichts me<span class="tei_subst"><span class="tei_add">ss</span><a class="noteMarker" id="ref-d56620e465" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e465">‡</a></span>en,</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Clarinette</span></span> <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d56620e481" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e481">‡</a></span>rlauben Madam, daß wir auch unsere Talente bemerken,</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Flöte</span> <span class="tei_subst"><span class="tei_add">J</span><a class="noteMarker" id="ref-d56620e496" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e496">‡</a></span>a, für Märsche und auf Hochzeiten,</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Fagott</span></span>, wer kommt dem göttlichen Tenor näher <span class="tei_subst"><span class="tei_add">als</span><a class="noteMarker" id="ref-d56620e512" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e512">‡</a></span> ich?</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Horn</span> Sie werden sich doch nicht einbilden so viel Zartheit und Kraft verbinden zu wollen als ich, <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d56620e528" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e528">‡</a></span> <span class="tei_hi_underline1">Klavier</span> <span class="tei_subst"><span class="tei_add">U</span><a class="noteMarker" id="ref-d56620e534" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e534">‡</a></span>nd was ist alles dieses gegen die Fülle der Harmonie die ich umfaße<span class="tei_subst"><span class="tei_add">?</span><a class="noteMarker" id="ref-d56620e541" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e541">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d56620e547" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e547">‡</a></span>o ihr alle nur Theile eines Ganzen seyd bin ich selbständig, und – <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d56620e553" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e553">‡</a></span> <span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e557" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e557">‡</a></span>lle Instrumente schreyen zugleich</span>, <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e564" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e564">‡</a></span>ch schweigen Sie, Sie können ja nicht einmal einen Ton aushalten,</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">st </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Oboe</span></span> <span class="tei_subst"><span class="tei_add">K</span><a class="noteMarker" id="ref-d56620e580" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e580">‡</a></span>ein <span class="tei_hi_latintype">Portamento</span>
-                                        </p>
-                                        <p>2 <span class="tei_hi_underline1"><span class="tei_hi_latintype">Flagoletschen</span></span>, <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d56620e594" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e594">‡</a></span>a hat Mama recht.</p>
-                                        <p><span class="tei_hi_underline1">2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span> <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d56620e610" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e610">‡</a></span>a kann kein ordentlicher Ton zum Tönen kommen, in diesem Lärm.</p>
-                                        <p><span class="tei_hi_underline1">Trometen und Pauken fallen <span class="tei_hi_latintype">Fortiss</span>: ein</span>. Stille<span class="tei_add">!<a class="noteMarker" id="ref-d56620e623" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e623">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d56620e626" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e626">‡</a></span>ir wollen auch reden<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e632" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e632">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d56620e638" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e638">‡</a></span>as wäre die ganze <span class="tei_hi_latintype">Comp</span>: ohne unsre Effekte, wenn wir nicht knallen, applaudirt kein Mensch.</p>
-                                        <p><span class="tei_hi_underline1">Flöte</span> <span class="tei_del">die<a class="noteMarker" id="ref-d56620e651" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e651">‡</a></span> <span class="tei_subst"><span class="tei_add">G</span><a class="noteMarker" id="ref-d56620e654" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e654">‡</a></span>emeine Seelen reißt der Lärm dahin, das Hohe wohnt im Lispeln,</p>
-                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Violine</span> <span class="tei_subst"><span class="tei_add">U</span><a class="noteMarker" id="ref-d56620e669" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e669">‡</a></span>nd wenn ich euch nicht führte<span class="tei_add">,<a class="noteMarker" id="ref-d56620e675" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e675">‡</a></span> was würde aus euch allen?</p>
-                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype">Contrabass</span></span> <span class="tei_hi_underline1">aufspringend</span> <span class="tei_del"><span class="tei_hi_underline1">nein</span><a class="noteMarker" id="ref-d56620e686" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e686">‡</a></span> <span class="tei_add">Meine<a class="noteMarker" id="ref-d56620e690" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e690">‡</a></span> <span class="tei_add">doch,<a class="noteMarker" id="ref-d56620e693" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e693">‡</a></span> ich halte das Ganze, und <span class="tei_add tei_hi_superscript">ohne<a class="noteMarker" id="ref-d56620e696" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e696">‡</a></span> mich ist nicht<span class="tei_add">s<a class="noteMarker" id="ref-d56620e700" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e700">‡</a></span>
-                                        </p>
-                                        <p><span class="tei_hi_underline1">alle Instrumente zugleich schreiend</span> <span class="tei_subst"><span class="tei_add">I</span><a class="noteMarker" id="ref-d56620e706" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e706">‡</a></span>ch allein bin die Seele, ohne mich nichts, <span class="tei_hi_latintype">p&#160;p</span>: <span class="tei_add">[<a class="noteMarker" id="ref-d56620e715" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e715">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e718" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e718">‡</a></span>uf einmal trat <span class="tei_pb"> | </span> der <span class="tei_hi_latintype">Calcant</span> in <span class="tei_add tei_hi_superscript">den<a class="noteMarker" id="ref-d56620e730" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e730">‡</a></span> Saal, und erschroken fuhren die Instrumente aus einander denn sie kannten seine gewaltige Hand, die sie zusammen pakte, und den Proben entgegen trug. <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d56620e733" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e733">‡</a></span>arte<span class="tei_add">t!<a class="noteMarker" id="ref-d56620e739" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e739">‡</a></span> rief er; rebellirt ihr schon wieder? wart<span class="tei_add">et<a class="noteMarker" id="ref-d56620e742" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e742">‡</a></span> gleich wird <span class="tei_add">die <span class="tei_hi_latintype">Sinphonia Eroica</span> von<a class="noteMarker" id="ref-d56620e745" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e745">‡</a></span> <span class="tei_del">eine<a class="noteMarker" id="ref-d56620e752" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e752">‡</a></span> <span class="tei_hi_latintype"><a class="persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethov</a></span><span class="tei_subst"><span class="tei_add">en</span><a class="noteMarker" id="ref-d56620e758" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e758">‡</a></span> <span class="tei_del">Sinph<a class="noteMarker" id="ref-d56620e764" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e764">‡</a></span>: aufgelegt werden, und wer dann noch ein Glied oder Klappe rühren kann, der melde sich, <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d56620e767" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e767">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d56620e770" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e770">‡</a></span>ch nur da<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="ref-d56620e777" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e777">‡</a></span> nicht, baten alle. <span class="tei_subst"><span class="tei_add"></span><a class="noteMarker" id="ref-d56620e783" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e783">‡</a></span>ieber eine Italienische Oper, da kann man doch noch zuweilen dabey nikken, meinte die Bratsche. <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d56620e788" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e788">‡</a></span> Larifari, rief der <span class="tei_hi_latintype">Calcant</span>, man wird euch schon lehren<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d56620e794" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e794">‡</a></span> <span class="tei_subst"><span class="tei_add">G</span><a class="noteMarker" id="ref-d56620e800" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e800">‡</a></span>laubt ihr daß in <span class="tei_subst"><span class="tei_add">u</span><a class="noteMarker" id="ref-d56620e807" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e807">‡</a></span>nsern aufgeklärten Zeiten, wo man über alle Verhältniße weg<span class="tei_hi_latintype">voltigirt</span> <span class="tei_add">euret<a class="noteMarker" id="ref-d56620e816" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e816">‡</a></span>wegen <span class="tei_del">euch<a class="noteMarker" id="ref-d56620e819" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e819">‡</a></span> ein <span class="tei_hi_latintype">Componist</span> seine<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="ref-d56620e825" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e825">‡</a></span> Göttlichen <span class="tei_subst"><span class="tei_add">r</span><a class="noteMarker" id="ref-d56620e832" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e832">‡</a></span>iesenhaften Ideen Schwung<span class="tei_add">es<a class="noteMarker" id="ref-d56620e838" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e838">‡</a></span> entsagen wird? Gott bewahre, es ist nicht mehr von Klarheit und Deutlichkeit, von Haltung der Leidenschaft, wie die <span class="tei_subst"><span class="tei_add">a</span><a class="noteMarker" id="ref-d56620e841" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e841">‡</a></span>lten Knasters <a class="persons A000646" href="/exist/apps/WeGA-WebApp/de/A000646.html">Gluk</a>, <a class="persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Hendel</a>, und <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>, wähnten die Rede, <span class="tei_hi_underline1">Nein</span>, hört das Rezept der neusten <span class="tei_hi_latintype">Sinph</span>. <span class="tei_subst"><span class="tei_add">d</span><a class="noteMarker" id="ref-d56620e863" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e863">‡</a></span>as ich so eben von <span class=" 87105101110"><span class="tei_settlement">Wien</span></span> erhalten, und urtheilt <span class="tei_choice"><span class="tei_corr">darnach</span><a class="noteMarker" id="ref-d56620e873" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e873">‡</a></span>: 1<span class="tei_hi_superscript">stens</span> ein langsames Tempo, voll kurzer Abgerißner ­Ideen, wo ja keine mit der anderen zusammenhang haben darf; al<span class="tei_subst"><span class="tei_add">le</span><a class="noteMarker" id="ref-d56620e883" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e883">‡</a></span> Viertel stunden 3 oder 4 Noten, das spannt, dann ein dumpfer Paukenwirbel, und misteriöse Bratschen Sä<span class="tei_add">t<a class="noteMarker" id="ref-d56620e889" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e889">‡</a></span>ze, alles mit der gehörigen PortionGeneralPause und Halte, geschmükt; endlich, nachdem der Zuhörer vor lauter Spannung schon auf das <span class="tei_hi_latintype">Allegro</span> <span class="tei_subst"><span class="tei_add">V</span><a class="noteMarker" id="ref-d56620e895" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e895">‡</a></span>erzicht gethan, ein wüthendes <span class="tei_hi_latintype">Tempo</span>, in <span class="tei_subst"><span class="tei_add">welchem</span><a class="noteMarker" id="ref-d56620e904" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e904">‡</a></span> aber Hauptsächlich dafür gesorgt seyn muß, daß kein HauptGedanke hervortritt, und <span class="tei_subst"><span class="tei_add">d</span><a class="noteMarker" id="ref-d56620e911" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d56620e911">‡</a></span>em Zuhörer desto mehr<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a><br />
+                                        <p><span class="tei_add">[Absatz<a class="noteMarker" id="ref-d40056e281" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e281">‡</a></span> <span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e285" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e285">‡</a></span>lle Instrumente</span>: <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d40056e292" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e292">‡</a></span>rzählen Sie, erzählen Sie.</p>
+                                        <p><span class="tei_hi_underline1">2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span>. <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d40056e308" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e308">‡</a></span>rzählen läßt sich <span class="tei_del">kaum<a class="noteMarker" id="ref-d40056e314" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e314">‡</a></span> so etwas <span class="tei_add tei_hi_superscript">kaum<a class="noteMarker" id="ref-d40056e317" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e317">‡</a></span>, und eigentlich wo<span class="tei_del">h<a class="noteMarker" id="ref-d40056e321" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e321">‡</a></span>l noch weniger <span class="tei_hi_underline1">hören</span>, denn nach den Begriffen, die mir mein göttlicher Meister <span class="tei_hi_latintype"><a class="preview persons A001600" href="/exist/apps/WeGA-WebApp/de/A001600.html">Romberg</a></span> eingeflößt hat<span class="tei_del">t<a class="noteMarker" id="ref-d40056e331" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e331">‡</a></span>, ist freylich die von uns eben <span class="tei_hi_latintype">executirte Sinph</span>: ein musikalisches Ungeheuer, wo weder auf die Natur irgend eines Instruments noch auf Ausführung eines Gedankens, noch auf irgend einen andern Zwek<span class="tei_add">,<a class="noteMarker" id="ref-d40056e337" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e337">‡</a></span> als den<span class="tei_add">,<a class="noteMarker" id="ref-d40056e341" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e341">‡</a></span> des neu und originell <span class="tei_subst"><span class="tei_add">S</span><a class="noteMarker" id="ref-d40056e344" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e344">‡</a></span>cheinenwollens hingearbeitet wäre<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e350">‡</a></span> <span class="tei_subst"><span class="tei_add">M</span><a class="noteMarker" id="ref-d40056e356" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e356">‡</a></span>an<span class="tei_del">n<a class="noteMarker" id="ref-d40056e362" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e362">‡</a></span> läßt uns gleich den <span class="tei_hi_latintype">Violinen</span> in die Höhe klettern, <span class="tei_add">[Absatz.<a class="noteMarker" id="ref-d40056e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e369">‡</a></span> /: 1<span class="tei_hi_superscript">stes</span> <span class="tei_hi_latintype">Violonc</span>: :/ <span class="tei_hi_underline1">ihn unterbrechend</span><span class="tei_add">.<a class="noteMarker" id="ref-d40056e380" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e380">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e383" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e383">‡</a></span>ls ob wir das auch nicht eben so gut könnten,</p>
+                                        <p><span class="tei_hi_underline1">Eine 2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violine</span></span>, <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d40056e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e399">‡</a></span>in jede<span class="tei_subst"><span class="tei_add">r</span><a class="noteMarker" id="ref-d40056e405" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e405">‡</a></span> bleibe in seinen Schranken,</p>
+                                        <p><span class="tei_hi_underline1">Bratsche</span>, <span class="tei_subst"><span class="tei_add">J</span><a class="noteMarker" id="ref-d40056e415" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e415">‡</a></span>a, denn ich stehe ja auch noch zwischen Ihnen, und was bliebe dann mir übrig. –</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span>, <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e431" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e431">‡</a></span>ch<span class="tei_add">,<a class="noteMarker" id="ref-d40056e437" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e437">‡</a></span> von Ihnen ist <span class="tei_add tei_hi_superscript">ja<a class="noteMarker" id="ref-d40056e440" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e440">‡</a></span> gar nicht mehr die Rede, sie fluthen <span class="tei_pb" title="Seitenumbruch"> | </span> nur noch mit Uns im <span class="tei_hi_latintype">Unisono</span> oder sind zum Schauder und Spannung erregen wie z: B: im <span class="preview works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Waßerträger</span> da, aber was den schönen Gesang betrift, –</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">ste</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Oboe</span></span> da kann sich doch wo<span class="tei_del">h<a class="noteMarker" id="ref-d40056e462" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e462">‡</a></span>l mit mir nichts me<span class="tei_subst"><span class="tei_add">ss</span><a class="noteMarker" id="ref-d40056e465" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e465">‡</a></span>en,</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Clarinette</span></span> <span class="tei_subst"><span class="tei_add">E</span><a class="noteMarker" id="ref-d40056e481" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e481">‡</a></span>rlauben Madam, daß wir auch unsere Talente bemerken,</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Flöte</span> <span class="tei_subst"><span class="tei_add">J</span><a class="noteMarker" id="ref-d40056e496" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e496">‡</a></span>a, für Märsche und auf Hochzeiten,</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Fagott</span></span>, wer kommt dem göttlichen Tenor näher <span class="tei_subst"><span class="tei_add">als</span><a class="noteMarker" id="ref-d40056e512" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e512">‡</a></span> ich?</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Horn</span> Sie werden sich doch nicht einbilden so viel Zartheit und Kraft verbinden zu wollen als ich, <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d40056e528" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e528">‡</a></span> <span class="tei_hi_underline1">Klavier</span> <span class="tei_subst"><span class="tei_add">U</span><a class="noteMarker" id="ref-d40056e534" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e534">‡</a></span>nd was ist alles dieses gegen die Fülle der Harmonie die ich umfaße<span class="tei_subst"><span class="tei_add">?</span><a class="noteMarker" id="ref-d40056e541" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e541">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d40056e547" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e547">‡</a></span>o ihr alle nur Theile eines Ganzen seyd bin ich selbständig, und – <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d40056e553" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e553">‡</a></span> <span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e557" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e557">‡</a></span>lle Instrumente schreyen zugleich</span>, <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e564" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e564">‡</a></span>ch schweigen Sie, Sie können ja nicht einmal einen Ton aushalten,</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">st </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Oboe</span></span> <span class="tei_subst"><span class="tei_add">K</span><a class="noteMarker" id="ref-d40056e580" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e580">‡</a></span>ein <span class="tei_hi_latintype">Portamento</span></p>
+                                        <p>2 <span class="tei_hi_underline1"><span class="tei_hi_latintype">Flagoletschen</span></span>, <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d40056e594" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e594">‡</a></span>a hat Mama recht.</p>
+                                        <p><span class="tei_hi_underline1">2</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Violoncell</span></span> <span class="tei_subst"><span class="tei_add">D</span><a class="noteMarker" id="ref-d40056e610" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e610">‡</a></span>a kann kein ordentlicher Ton zum Tönen kommen, in diesem Lärm.</p>
+                                        <p><span class="tei_hi_underline1">Trometen und Pauken fallen <span class="tei_hi_latintype">Fortiss</span>: ein</span>. Stille<span class="tei_add">!<a class="noteMarker" id="ref-d40056e623" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e623">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d40056e626" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e626">‡</a></span>ir wollen auch reden<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e632" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e632">‡</a></span> <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d40056e638" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e638">‡</a></span>as wäre die ganze <span class="tei_hi_latintype">Comp</span>: ohne unsre Effekte, wenn wir nicht knallen, applaudirt kein Mensch.</p>
+                                        <p><span class="tei_hi_underline1">Flöte</span> <span class="tei_del">die<a class="noteMarker" id="ref-d40056e651" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e651">‡</a></span> <span class="tei_subst"><span class="tei_add">G</span><a class="noteMarker" id="ref-d40056e654" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e654">‡</a></span>emeine Seelen reißt der Lärm dahin, das Hohe wohnt im Lispeln,</p>
+                                        <p><span class="tei_hi_underline1">1</span><span class="tei_hi_superscript">t</span> <span class="tei_hi_underline1">Violine</span> <span class="tei_subst"><span class="tei_add">U</span><a class="noteMarker" id="ref-d40056e669" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e669">‡</a></span>nd wenn ich euch nicht führte<span class="tei_add">,<a class="noteMarker" id="ref-d40056e675" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e675">‡</a></span> was würde aus euch allen?</p>
+                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype">Contrabass</span></span> <span class="tei_hi_underline1">aufspringend</span> <span class="tei_del"><span class="tei_hi_underline1">nein</span><a class="noteMarker" id="ref-d40056e686" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e686">‡</a></span> <span class="tei_add">Meine<a class="noteMarker" id="ref-d40056e690" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e690">‡</a></span> <span class="tei_add">doch,<a class="noteMarker" id="ref-d40056e693" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e693">‡</a></span> ich halte das Ganze, und <span class="tei_add tei_hi_superscript">ohne<a class="noteMarker" id="ref-d40056e696" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e696">‡</a></span> mich ist nicht<span class="tei_add">s<a class="noteMarker" id="ref-d40056e700" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e700">‡</a></span></p>
+                                        <p><span class="tei_hi_underline1">alle Instrumente zugleich schreiend</span> <span class="tei_subst"><span class="tei_add">I</span><a class="noteMarker" id="ref-d40056e706" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e706">‡</a></span>ch allein bin die Seele, ohne mich nichts, <span class="tei_hi_latintype">p p</span>: <span class="tei_add">[<a class="noteMarker" id="ref-d40056e715" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e715">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e718" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e718">‡</a></span>uf einmal trat <span class="tei_pb" title="Seitenumbruch"> | </span> der <span class="tei_hi_latintype">Calcant</span> in <span class="tei_add tei_hi_superscript">den<a class="noteMarker" id="ref-d40056e730" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e730">‡</a></span> Saal, und erschroken fuhren die Instrumente aus einander denn sie kannten seine gewaltige Hand, die sie zusammen pakte, und den Proben entgegen trug. <span class="tei_subst"><span class="tei_add">W</span><a class="noteMarker" id="ref-d40056e733" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e733">‡</a></span>arte<span class="tei_add">t!<a class="noteMarker" id="ref-d40056e739" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e739">‡</a></span> rief er; rebellirt ihr schon wieder? wart<span class="tei_add">et<a class="noteMarker" id="ref-d40056e742" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e742">‡</a></span> gleich wird <span class="tei_add">die <span class="tei_hi_latintype">Sinphonia Eroica</span> von<a class="noteMarker" id="ref-d40056e745" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e745">‡</a></span> <span class="tei_del">eine<a class="noteMarker" id="ref-d40056e752" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e752">‡</a></span> <span class="tei_hi_latintype"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethov</a></span><span class="tei_subst"><span class="tei_add">en</span><a class="noteMarker" id="ref-d40056e758" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e758">‡</a></span> <span class="tei_del">Sinph<a class="noteMarker" id="ref-d40056e764" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e764">‡</a></span>: aufgelegt werden, und wer dann noch ein Glied oder Klappe rühren kann, der melde sich, <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d40056e767" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e767">‡</a></span> <span class="tei_subst"><span class="tei_add">A</span><a class="noteMarker" id="ref-d40056e770" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e770">‡</a></span>ch nur da<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="ref-d40056e777" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e777">‡</a></span> nicht, baten alle. <span class="tei_subst"><span class="tei_add"></span><a class="noteMarker" id="ref-d40056e783" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e783">‡</a></span>ieber eine Italienische Oper, da kann man doch noch zuweilen dabey nikken, meinte die Bratsche. <span class="tei_add">[Absatz<a class="noteMarker" id="ref-d40056e788" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e788">‡</a></span> Larifari, rief der <span class="tei_hi_latintype">Calcant</span>, man wird euch schon lehren<span class="tei_subst"><span class="tei_add">.</span><a class="noteMarker" id="ref-d40056e794" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e794">‡</a></span> <span class="tei_subst"><span class="tei_add">G</span><a class="noteMarker" id="ref-d40056e800" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e800">‡</a></span>laubt ihr daß in <span class="tei_subst"><span class="tei_add">u</span><a class="noteMarker" id="ref-d40056e807" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e807">‡</a></span>nsern aufgeklärten Zeiten, wo man über alle Verhältniße weg<span class="tei_hi_latintype">voltigirt</span> <span class="tei_add">euret<a class="noteMarker" id="ref-d40056e816" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e816">‡</a></span>wegen <span class="tei_del">euch<a class="noteMarker" id="ref-d40056e819" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e819">‡</a></span> ein <span class="tei_hi_latintype">Componist</span> seine<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="ref-d40056e825" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e825">‡</a></span> Göttlichen <span class="tei_subst"><span class="tei_add">r</span><a class="noteMarker" id="ref-d40056e832" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e832">‡</a></span>iesenhaften Ideen Schwung<span class="tei_add">es<a class="noteMarker" id="ref-d40056e838" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e838">‡</a></span> entsagen wird? Gott bewahre, es ist nicht mehr von Klarheit und Deutlichkeit, von Haltung der Leidenschaft, wie die <span class="tei_subst"><span class="tei_add">a</span><a class="noteMarker" id="ref-d40056e841" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e841">‡</a></span>lten Knasters <a class="preview persons A000646" href="/exist/apps/WeGA-WebApp/de/A000646.html">Gluk</a>, <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Hendel</a>, und <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>, wähnten die Rede, <span class="tei_hi_underline1">Nein</span>, hört das Rezept der neusten <span class="tei_hi_latintype">Sinph</span>. <span class="tei_subst"><span class="tei_add">d</span><a class="noteMarker" id="ref-d40056e863" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e863">‡</a></span>as ich so eben von <span class="tei_placeName"><span class="87105101110">Wien</span></span> erhalten, und urtheilt <span class="tei_choice"><span class="tei_corr">darnach</span><a class="noteMarker" id="ref-d40056e873" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e873">‡</a></span>: 1<span class="tei_hi_superscript">stens</span> ein langsames Tempo, voll kurzer Abgerißner Ideen, wo ja keine mit der anderen zusammenhang haben darf; al<span class="tei_subst"><span class="tei_add">le</span><a class="noteMarker" id="ref-d40056e883" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e883">‡</a></span> Viertel stunden 3 oder 4 Noten, das spannt, dann ein dumpfer Paukenwirbel, und misteriöse Bratschen Sä<span class="tei_add">t<a class="noteMarker" id="ref-d40056e889" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e889">‡</a></span>ze, alles mit der gehörigen PortionGeneralPause und Halte, geschmükt; endlich, nachdem der Zuhörer vor lauter Spannung schon auf das <span class="tei_hi_latintype">Allegro</span> <span class="tei_subst"><span class="tei_add">V</span><a class="noteMarker" id="ref-d40056e895" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e895">‡</a></span>erzicht gethan, ein wüthendes <span class="tei_hi_latintype">Tempo</span>, in <span class="tei_subst"><span class="tei_add">welchem</span><a class="noteMarker" id="ref-d40056e904" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e904">‡</a></span> aber Hauptsächlich dafür gesorgt seyn muß, daß kein HauptGedanke hervortritt, und <span class="tei_subst"><span class="tei_add">d</span><a class="noteMarker" id="ref-d40056e911" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40056e911">‡</a></span>em Zuhörer desto mehr<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a><br />
             </p>
                                     </div>
                                 </div>
@@ -365,8 +350,7 @@
                         
                         <div>
                             <h3 class="media-heading">Entstehung</h3>
-                            <p><span class="tei_date">Entwurf undatiert</span>
-                                    </p>
+                            <p><span class="tei_date">Entwurf undatiert</span></p>
                         </div>
                         
                         <div>
@@ -384,7 +368,7 @@
                                             <ul>
                                                 <li>2 Bl. (4 b. S.); Text unvollständig</li>
                                                 <li>WZ: bekröntes, an beiden Seiten von Greifen gehaltenes Wappen; Gegenmarke: stilisiertes, herzförmiges Blatt</li>
-                                                <li>zahlreiche Korrekturen von <a class="persons A001551" href="/exist/apps/WeGA-WebApp/de/A001551.html">Georg Reinbeck</a>, Hg. des <span class="tei_hi_italic">Morgenblattes</span>
+                                                <li>zahlreiche Korrekturen von <a class="preview persons A001551" href="/exist/apps/WeGA-WebApp/de/A001551.html">Georg Reinbeck</a>, Hg. des <span class="tei_hi_italic">Morgenblattes</span>
                   </li>
                                             </ul>
                                         </div>
@@ -395,7 +379,7 @@
                                     
                                     <ul class="tei_list">
                                         <li>
-                                            <span class="biblio-entry"><span class="author">Carl Maria von Weber</span>, <span class="title">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird</span>, in: <span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg.&#160;3, Nr.&#160;309 (27. Dezember 1809), S.&#160;1233–1234</span>
+                                            <span class="biblio-entry"><span class="author">Carl Maria von Weber</span>, <span class="title">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird</span>, in: <span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 3, Nr. 309 (27. Dezember 1809), S. 1233–1234</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -415,380 +399,379 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e4" data-title="add">"Fragment aus einer … vielleicht erscheinen wird.": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e4" data-title="add">"Fragment aus einer … vielleicht erscheinen wird.": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e7" data-title="add">"": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e7" data-title="add">"": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e21" data-title="del">"ig":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e21" data-title="del">"ig":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e28" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e28" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e34" data-title="subst">"R": "r" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e34" data-title="subst">"R": "r" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e40" data-title="del">"Spiel":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e40" data-title="del">"Spiel":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e42" data-title="subst">"P": "p" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e42" data-title="subst">"P": "p" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e48" data-title="del">"h":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e48" data-title="del">"h":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e67" data-title="add">"die über die … alten Zeiten Klagetönten,": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e67" data-title="add">"die über die … alten Zeiten Klagetönten,": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e71" data-title="add">"in der Mitte war": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e71" data-title="add">"in der Mitte war": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e74" data-title="subst">"von": "war" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e74" data-title="subst">"von": "war" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e89" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e89" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e96" data-title="subst">"D": "d" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e96" data-title="subst">"D": "d" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e102" data-title="subst">"ö": "o" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e102" data-title="subst">"ö": "o" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e108" data-title="add">"er": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e108" data-title="add">"er": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e114" data-title="del">"s":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e114" data-title="del">"s":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e122" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e122" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e127" data-title="subst">"zy": "i" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e127" data-title="subst">"zy": "i" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e133" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e133" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e139" data-title="add">"Alles war seelenvergnügt,": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e139" data-title="add">"Alles war seelenvergnügt,": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e142" data-title="add">"auf einmal": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e142" data-title="add">"auf einmal": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e149" data-title="subst">"P": "p" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e149" data-title="subst">"P": "p" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e158" data-title="add">"so": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e158" data-title="add">"so": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e171" data-title="del">"beleibte Figur":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e171" data-title="del">"beleibte Figur":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e174" data-title="add">"kräftige Natur": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e174" data-title="add">"kräftige Natur": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e179" data-title="del">"hat":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e179" data-title="del">"hat":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e182" data-title="del">"nicht":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e182" data-title="del">"nicht":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e185" data-title="add">"kaum": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e185" data-title="add">"kaum": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e189" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e189" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e195" data-title="del">"dann":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e195" data-title="del">"dann":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e198" data-title="subst">"H": "h" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e198" data-title="subst">"H": "h" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e204" data-title="add">"nicht": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e204" data-title="add">"nicht": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e210" data-title="subst">"eln": "len" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e210" data-title="subst">"eln": "len" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e223" data-title="subst">"t": "d" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e223" data-title="subst">"t": "d" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e235" data-title="add">"[Abschnitt.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e235" data-title="add">"[Abschnitt.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e251" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e251" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e268" data-title="subst">"Echauffements": "Echoffements" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e268" data-title="subst">"Echauffements": "Echoffements" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e276" data-title="add">"–": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e276" data-title="add">"–": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e281" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e281" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e285" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e285" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e292" data-title="subst">"E": "e" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e292" data-title="subst">"E": "e" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e308" data-title="subst">"E": "e" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e308" data-title="subst">"E": "e" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e314" data-title="del">"kaum":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e314" data-title="del">"kaum":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e317" data-title="add">"kaum": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e317" data-title="add">"kaum": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e321" data-title="del">"h":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e321" data-title="del">"h":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e331" data-title="del">"t":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e331" data-title="del">"t":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e337" data-title="add">",": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e337" data-title="add">",": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e341" data-title="add">",": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e341" data-title="add">",": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e344" data-title="subst">"S": "s" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e344" data-title="subst">"S": "s" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e350" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e350" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e356" data-title="subst">"M": "m" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e356" data-title="subst">"M": "m" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e362" data-title="del">"n":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e362" data-title="del">"n":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e369" data-title="add">"[Absatz.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e369" data-title="add">"[Absatz.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e380" data-title="add">".": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e380" data-title="add">".": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e383" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e383" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e399" data-title="subst">"E": "e" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e399" data-title="subst">"E": "e" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e405" data-title="subst">"r": "s" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e405" data-title="subst">"r": "s" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e415" data-title="subst">"J": "j" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e415" data-title="subst">"J": "j" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e431" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e431" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e437" data-title="add">",": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e437" data-title="add">",": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e440" data-title="add">"ja": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e440" data-title="add">"ja": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e462" data-title="del">"h":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e462" data-title="del">"h":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e465" data-title="subst">"ss": "ß" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e465" data-title="subst">"ss": "ß" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e481" data-title="subst">"E": "e" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e481" data-title="subst">"E": "e" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e496" data-title="subst">"J": "j" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e496" data-title="subst">"J": "j" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e512" data-title="subst">"als": "wenn" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e512" data-title="subst">"als": "wenn" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e528" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e528" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e534" data-title="subst">"U": "u" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e534" data-title="subst">"U": "u" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e541" data-title="subst">"?": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e541" data-title="subst">"?": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e547" data-title="subst">"W": "w" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e547" data-title="subst">"W": "w" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e553" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e553" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e557" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e557" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e564" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e564" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e580" data-title="subst">"K": "k" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e580" data-title="subst">"K": "k" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e594" data-title="subst">"D": "d" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e594" data-title="subst">"D": "d" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e610" data-title="subst">"D": "d" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e610" data-title="subst">"D": "d" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e623" data-title="add">"!": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e623" data-title="add">"!": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e626" data-title="subst">"W": "w" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e626" data-title="subst">"W": "w" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e632" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e632" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e638" data-title="subst">"W": "w" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e638" data-title="subst">"W": "w" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e651" data-title="del">"die":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e651" data-title="del">"die":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e654" data-title="subst">"G": "g" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e654" data-title="subst">"G": "g" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e669" data-title="subst">"U": "u" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e669" data-title="subst">"U": "u" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e675" data-title="add">",": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e675" data-title="add">",": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e686" data-title="del">"nein":  überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e686" data-title="del">"nein":  überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e690" data-title="add">"Meine": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e690" data-title="add">"Meine": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e693" data-title="add">"doch,": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e693" data-title="add">"doch,": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e696" data-title="add">"ohne": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e696" data-title="add">"ohne": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e700" data-title="add">"s": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e700" data-title="add">"s": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e706" data-title="subst">"I": "i" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e706" data-title="subst">"I": "i" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e715" data-title="add">"[": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e715" data-title="add">"[": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e718" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e718" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e730" data-title="add">"den": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d40056e730" data-title="add">"den": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e733" data-title="subst">"W": "w" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e733" data-title="subst">"W": "w" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e739" data-title="add">"t!": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e739" data-title="add">"t!": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e742" data-title="add">"et": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e742" data-title="add">"et": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e745" data-title="add">"die Sinphonia Eroica von": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e745" data-title="add">"die Sinphonia Eroica von": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e752" data-title="del">"eine":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e752" data-title="del">"eine":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e758" data-title="subst">"en": "sche" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e758" data-title="subst">"en": "sche" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e764" data-title="del">"Sinph":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e764" data-title="del">"Sinph":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e767" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e767" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e770" data-title="subst">"A": "a" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e770" data-title="subst">"A": "a" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e777" data-title="subst">"s": "ß" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e777" data-title="subst">"s": "ß" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e783" data-title="subst">"": "l" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e783" data-title="subst">"": "l" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e788" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e788" data-title="add">"[Absatz": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e794" data-title="subst">".": "," überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e794" data-title="subst">".": "," überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e800" data-title="subst">"G": "g" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e800" data-title="subst">"G": "g" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e807" data-title="subst">"u": "U" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e807" data-title="subst">"u": "U" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e816" data-title="add">"euret": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d40056e816" data-title="add">"euret": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e819" data-title="del">"euch":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e819" data-title="del">"euch":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e825" data-title="subst">"s": "m" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e825" data-title="subst">"s": "m" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e832" data-title="subst">"r": "R" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e832" data-title="subst">"r": "R" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e838" data-title="add">"es": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e838" data-title="add">"es": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e841" data-title="subst">"a": "A" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e841" data-title="subst">"a": "A" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e863" data-title="subst">"d": "w" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e863" data-title="subst">"d": "w" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e883" data-title="subst">"le": "s" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e883" data-title="subst">"le": "s" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e889" data-title="add">"t": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d40056e889" data-title="add">"t": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e895" data-title="subst">"V": "v" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e895" data-title="subst">"V": "v" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e904" data-title="subst">"welchem": "dem" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d40056e904" data-title="subst">"welchem": "dem" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e911" data-title="subst">"d": "jen" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d40056e911" data-title="subst">"d": "jen" überschrieben.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d56620e873" data-title="choice">recte "darnach": in der Vorlage "darnhach"</div>
+                                            <div class="apparatusEntry" id="d40056e873" data-title="choice">recte "darnach": in der Vorlage "darnhach"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… d em Zuhörer desto mehr": </span> Fortsetzung fehlt im Manuskript; vgl. <a class="writings A031668" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031668.html">Erstdruck Fragment III</a>
-                                            </div>
+                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… d em Zuhörer desto mehr": </span> Fortsetzung fehlt im Manuskript; vgl. <a class="preview writings A031668" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031668.html">Erstdruck Fragment III</a></div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031285/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -810,10 +793,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031285</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031285</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 20. September 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 22. Juni 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -839,6 +821,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -849,6 +832,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -883,6 +867,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

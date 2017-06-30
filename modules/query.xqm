@@ -126,7 +126,7 @@ declare function query:get-gnd($item as item()) as xs:string? {
  : @param $date todays date
  : @return tei:date* tei:date elements that match given day and month of $date
  :)
-declare function query:getTodaysEvents($date as xs:date) as element(tei:date)* {
+declare function query:getTodaysEvents($date as xs:date) as node()* {
     let $day := functx:pad-integer-to-length(day-from-date($date), 2)
     let $month := functx:pad-integer-to-length(month-from-date($date), 2)
     let $month-day := concat('-', $month, '-', $day)
@@ -177,6 +177,7 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
         case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, false())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
+        case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, false())
         default return () 
     return 
         if($date castable as xs:date) then $date cast as xs:date
@@ -212,6 +213,8 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'biblioType' return $collection/tei:biblStruct/@type
     case 'docTypeSubClass' return $collection//tei:text/@type
     case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
+    case 'forenames' return $collection//tei:forename[not(@full)]
+    case 'surnames' return $collection//tei:surname
     default return ()
 };
 
@@ -259,8 +262,11 @@ declare function query:exact-date($dates as xs:date*, $docType as xs:string) as 
     return
         switch($docType)
         case 'writings' case 'letters' case 'diaries' return 
-            norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID) | 
-            core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+            let $normDates := norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID)
+            let $otherHits := core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+            return
+                (: pushing the normdates to the top of the result set :)
+                ($normDates, $otherHits except $normDates) 
         case 'personsPlus' return 
             core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
             core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()

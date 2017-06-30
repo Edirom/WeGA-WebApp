@@ -37,32 +37,93 @@
     margin: auto;
 }
 
-.popover div.media-body {
-    width: 75%;
-    margin: 0;
-    padding-left:3px;
-    float:left;
+/* Settings for popovers */
+.popover {
+    div.media-body {
+        width: 75%;
+        margin: 0;
+        padding-left:3px;
+        float:left;
+    }
+    div.preview-icon {
+        width: 25%;
+        margin: 0;
+        padding-right:3px;
+        float:left;
+        img {
+            width:100%;
+            padding-top: 1ex;
+        }
+    }
+    .popover-title {
+        display:none;
+    }
+    .popover-content {
+        padding: 0px;
+        .endnote_backlink {
+            display:none;
+        }
+        .item-title {
+            background-color: @popover-title-bg;
+            padding: 8px 14px;
+            border-bottom:1px solid @popover-border-color;
+            margin: 0px;
+            font-size:16px;
+            a:hover {
+                text-decoration:none;
+            }
+        }
+        .item-content {
+            padding: 8px 14px;
+            margin: 0px;
+            max-height: 250px;
+            overflow: scroll;
+            overflow-x:hidden;
+            overflow-y:auto;
+        }
+        .carousel-indicators {
+            bottom:-60px;
+        }
+    }
+    .popover-multi {
+        .carousel-inner {
+            height:275px;
+            margin-bottom: 25px;
+        }
+        // override max-height because we need to subtract the bottom carousel controls 
+        .item-content {
+            max-height: 234px !important;
+        }
+        .carousel-control {
+            bottom: -20px;
+            text-shadow: none;
+            color: @gray;
+            span {
+                position: absolute;
+                bottom: 0;
+            }
+            &.left,
+            &.right {
+                background: none !important;
+            }
+            .fa-angle-double-left {
+                left: 5px !important;
+            }
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        font-family: @font-family-sans-serif;
+    }
+    .preview {
+        // to prevent horizontal scrolling in popovers
+        white-space: normal;
+    }
 }
 
-.popover div.preview-icon {
-    width: 25%;
-    margin: 0;
-    padding-right:3px;
-    float:left;
-}
-
-.popover-content .preview-icon img {
-    width:100%;
-    padding-top: 1ex;
-}
-
-.popover p {
-    margin-bottom: 5px;
-    font-family: @font-family-sans-serif;
-}
-
-.popover-content .endnote_backlink {
-    display:none;
+/* This class toggles the popovers for previews */
+.preview {
+    .common-link
 }
 
 ol.endNotes {
@@ -99,9 +160,13 @@ ol.endNotes {
     background-color: @brand-primary !important;
 }
 
-.works, .biblio {
-    color: @brand-primary;
+.common-link {
+    color: @link-color;
     cursor:pointer;
+    white-space: nowrap;
+    &:hover {
+        color: @link-hover-color;
+    }
 }
 
 .nameDesc::before {
@@ -109,6 +174,12 @@ ol.endNotes {
 }
 .nameDesc::after {
     content:")";
+}
+
+
+/* Hide parantheses for empty docStatus */
+.docStatus:empty {
+    display:none;
 }
 
 .docStatus::before {
@@ -147,8 +218,7 @@ ol.endNotes {
     }
 }
 
-a.noteMarker, a.thematicCommentaries
-{
+a.noteMarker {
     background-color: @gray-light;
     cursor:pointer;
     padding: 0px 2px;
@@ -179,27 +249,23 @@ a.noteMarker, a.thematicCommentaries
     margin-bottom:1ex;
 }
 /* some styling for the flip images */
-.portrait.large {
-    height:300px;
-    margin-bottom:3ex;
+.portrait {
+    &.large {
+        margin-bottom:3ex;
+    }
+    .back {
+        padding: 20px;
+        word-wrap:break-word;
+    }
+    .front {
+        img {
+            margin:0px auto;
+            max-height:100%;
+            max-width:100%;
+        }
+    }
 }
 
-.portrait .back {
-    padding: 20px;
-    word-wrap:break-word;
-}
-.creditsButton {
-    bottom: 0px;
-    right: 0px;
-    z-index: 2;
-    position:absolute;
-    cursor:pointer;
-}
-.portrait .front img {
-    margin:0px auto;
-    max-height:100%;
-    max-width:100%;
-}
 /* extra styling for pagination on person pages because there's no @href */
 .pagination > li > a {
     cursor:pointer;
@@ -217,12 +283,6 @@ h2.resp-accordion {
 	right: .5em;
     .fa-spin;
     .fa;
-}
-
-@media (max-width: @screen-sm-max) and (min-width: @screen-sm)  {
-    .teaser-list {
-        min-height: 7 * @line-height-computed;
-    }
 }
 
 .collapseMarker, .collapseMarker:hover {
@@ -263,6 +323,7 @@ div.table-wrapper {
 /* large images (600px) within running text */
 .maxSize img {
     display:block;
+    max-width: 100%;
     margin: auto;
 }
 
@@ -270,10 +331,168 @@ div.table-wrapper {
     float:left;
     margin: 0px 2em 1em 0px;
     padding: .5em 1em;
+    max-width: 100%;
 }
 
 .float-right img {
     float:right;
     margin: 0px 0px 1em 2em;
     padding: .5em 1em;
+    max-width: 100%;
+}
+
+/* hide search docType filter on index page */
+@media (max-width: @screen-xs-max) {
+    .docType-search-filter {
+        display:none;
+    }
+}
+
+/* settings for toc  */
+/* second class (after the comma) is used on Wikipedia pages */
+.secLevel1, .toclevel-1 {
+	padding-left:2em;
+	text-indent:-2em;
+}
+.secLevel2, .toclevel-2 {
+	padding-left:3em;
+	text-indent:-2em;
+}
+.secLevel3, .toclevel-3 {
+	padding-left:4em;
+	text-indent:-2em;
+}
+.secLevel4, .toclevel-4 {
+	padding-left:5em;
+	text-indent:-2em;
+}
+
+/* Used on Wikipedia pages */
+.tocnumber {
+    padding: 0 0.5em 0 0;
+}
+
+/* settings for "What happened on?" on start page */
+.history {
+	p {
+	    margin-bottom: 0px;
+	    font-family: 'CamingoDos-Bold';
+	    color: @gray;
+    }
+    .event-year, .event-text {
+		display: table-cell;
+		padding-right: 0.5em;
+	}
+	.event-year::after {
+		content:":";
+	}
+	.jubilee {
+	    /* 
+	     * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
+	     * can't use border bottom because of cell display
+	     */
+		text-decoration: underline dotted;
+		-webkit-text-decoration: underline dotted;
+		cursor: help;
+	}
+}
+
+/* 
+ * Guidelines Spec pages
+ */
+.customizations, .attributes, .members, .spec-list {
+	li {
+		display: inline;
+		margin-right: .3em;
+		a {
+			white-space:nowrap;
+		}
+	}
+	li:after {
+	    content: " ";
+	}
+}
+
+.attribute:before, .unusedattribute:before {
+    content:"@";
+}
+
+.unusedattribute {
+    text-decoration:line-through;
+}
+
+/* 
+ * toggle for XML preview line wrap  
+ */
+/* styling of the control */
+.line-wrap-toggle {
+    position:absolute;
+    top: 33px;
+    right: (@grid-gutter-width / 2);
+    > div {
+        height: auto !important;
+    }
+    .btn {
+        padding: 1px 5px;
+    }
+}
+
+/* overwrite the default to force no line break on Safari */
+.prettyprint {
+    word-wrap:normal;
+};
+
+/* the class that toggles the line wrap */
+.line-wrap {
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
+/*
+ * styling for Guidelines' TOC
+ */
+div.toc {
+    li ul {
+        margin-left: 2em;
+        display: none;
+    }
+    .toggle-toc-item {
+        margin-left:-.5em;
+        cursor:pointer;
+    }
+    i {
+        color:@brand-primary;
+    }
+}
+
+/*
+ * styling for specLists
+ */
+.tei_specList {
+    margin-left:1em;
+    margin-top:-(ceil(@line-height-computed / 2));
+    li * {
+        display: table-cell;
+        padding-right:.5em;
+    }
+}
+
+/*
+ * styling for source links at egXML examples
+ */
+.tei_egXML {
+    &.panel {
+        border:none;
+        box-shadow:unset;
+    }
+    pre, .prettyprint {
+        margin-bottom:0px;
+        border-color:@gray-light;
+    }
+    .tei_egXML_source {
+        display:block;
+        text-align: right;
+        margin-right: 1em;
+        font-family: @font-family-sans-serif;
+    }
 }

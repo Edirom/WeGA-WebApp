@@ -30,7 +30,7 @@ declare function local:createPNDBeacon() {
 };
 
 let $fileName := 'pnd_beacon.txt'
-let $folderName := config:get-option('tmpDir')
+let $folderName := $config:tmp-collection-path
 let $currentDateTimeOfFile := 
     if(xmldb:collection-available($folderName)) then xmldb:last-modified($folderName, $fileName) 
     else ()

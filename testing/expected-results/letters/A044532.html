@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044532" />
         <meta property="dc:description" content="betrifft die Übersendung eines Opentextes (er spricht von der Buschmutter), den er ihm senden wolle, sobald er seine beiden an Alvensleben übergebenen Texte zurückhabe; erwähnt seine Arbeit mit Weber am Freischütz u. seine Ideen zur Operndichtung, die er auch mit Rochlitz durchgesprochen habe; (von Interresse: diese sollten gedruckt werden!)" />
         <meta name="description" content="betrifft die Übersendung eines Opentextes (er spricht von der Buschmutter), den er ihm senden wolle, sobald er seine beiden an Alvensleben übergebenen Texte zurückhabe; erwähnt seine Arbeit mit Weber am Freischütz u. seine Ideen zur Operndichtung, die er auch mit Rochlitz durchgesprochen habe; (von Interresse: diese sollten gedruckt werden!)" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A001002/Correspondence/A044532.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A001002/Correspondence/A044532.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,14 +212,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A044532</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A044532</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,31 +232,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A044532/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A044532.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A044532/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A044532.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -295,9 +285,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002470" /> <span title="Alvensleben, Ludwig von">Alvensleben, Ludwig von</span> 
@@ -314,8 +303,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -325,8 +313,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -345,29 +332,25 @@
                                     <div class="teiLetter_address">
                                         <p>Sr. Wohlgeb.</p>
                                         <p>dem Königl. Würtenbergischen</p>
-                                        <p>Herrn Hof-Capellmeister <a class="persons A001181" href="/exist/apps/WeGA-WebApp/de/A001181.html">Lindpaintner</a>
-                                        </p>
-                                        <p>in <span class=" 8311611711611610397114116"><span class="tei_settlement">Stuttgart</span></span>
-                                        </p>
+                                        <p>Herrn Hof-Capellmeister <a class="preview persons A001181" href="/exist/apps/WeGA-WebApp/de/A001181.html">Lindpaintner</a></p>
+                                        <p>in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span></p>
                                     </div>
                                     <div class="writingSession">
-                                        <div class="teiLetter_opener">Hochverehrter Herr Capellmeister<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a>,</div>
-                                        <p><span> […]</span>
-                                        </p>
-                                        <p>Doch auch in dem Falle, daß <a class="persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> realisiert, werde ich meinerseits Alles anwenden, daß Sie die fragliche Oper erhalten, (was ja auch <a class="persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> höchst erwünscht seyn muß) und Ihnen sodann 
+                                        <div class="teiLetter_opener">Hochverehrter Herr Capellmeister<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>,</div>
+                                        <p><span> […]</span></p>
+                                        <p>Doch auch in dem Falle, daß <a class="preview persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> realisiert, werde ich meinerseits Alles anwenden, daß Sie die fragliche Oper erhalten, (was ja auch <a class="preview persons A002470" href="/exist/apps/WeGA-WebApp/de/A002470.html">A.</a> höchst erwünscht seyn muß) und Ihnen sodann 
                einige Ansichten, die ich bei dieser Dichtung im Auge gehabt, zur Prüfung vorlegen. Welche Freude würde es mir machen, wenn mir nocheinmal Tage und Stunden zurückkehrten, wie ich sie
-            bei Gelegenheit des <span class="tei_hi_underline1"><span class="works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span></span> mit <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria Weber</a> verlebte! Diesen dichtete ich nur mit einem gewissen dunkeln Gefühl, wie so etwas seyn müsse; seitdem habe ich viel über
+            bei Gelegenheit des <span class="tei_hi_underline1"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span></span> mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria Weber</a> verlebte! Diesen dichtete ich nur mit einem gewissen dunkeln Gefühl, wie so etwas seyn müsse; seitdem habe ich viel über
             die Oper, besonders, wie sie der Deutsche verlangt, nachgedacht, darüber mir klar zu werden gesucht, und nach den, von mir für richtig gehaltenen Principien<a href="#footnote01">*</a>, die beiden neuern 
-               Opern (verschiedener Gattung) mit Lust und Liebe gedichtet. Mein alter, bewährter Freund <a class="persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> hat beide geprüft und genehmigt, auch mir nahmentlich wegen der „Buschmutter“<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_002">*</a> geschrieben,
+               Opern (verschiedener Gattung) mit Lust und Liebe gedichtet. Mein alter, bewährter Freund <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> hat beide geprüft und genehmigt, auch mir nahmentlich wegen der „Buschmutter“<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a> geschrieben,
             daß nach seiner Ueberzeugung schwerlich schon ein Finale existire, wie das am Schlusse des dritten Acts.</p>
                                         <p>Doch genug für heute! Ein Mehres den 5<span class="tei_hi_superscript">ten</span> März! Für jetzt nur noch die Versicherung meiner aufrichtigen Hochachtung und Verehrung!
-               <span class="tei_segBlock textAlign-right"><a class="persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">F. <span class="tei_hi_spaced_out">Kind</span></a>.</span>
-                                        </p>
+               <span class="tei_segBlock textAlign-right"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">F. <span class="tei_hi_spaced_out">Kind</span></a>.</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                     <div id="endNotes">
                                         <ul>
-                                            <li id="footnote01">Ich habe diese in „Aphoristischen Briefen“ über die Oper, welche sobald sich ein solider Verleger dazu findet, erscheinen sollen, näher ausgeführt. Mein Anforderung (?) an Dichter und Tonsetzer sind nicht gering; die Oper muß ein vollkommenes <span class="tei_hi_underline2andMore">musikalisches</span><span class="tei_hi_underline1">Drama</span> seyn; Dicht<span class="tei_supplied" id="d34272e58"><span class="brackets_supplied">[</span>ung<span class="brackets_supplied">]</span></span> und Tonkunst Hand in Hand gehen!</li>
+                                            <li id="footnote01">Ich habe diese in „Aphoristischen Briefen“ über die Oper, welche sobald sich ein solider Verleger dazu findet, erscheinen sollen, näher ausgeführt. Mein Anforderung (?) an Dichter und Tonsetzer sind nicht gering; die Oper muß ein vollkommenes <span class="tei_hi_underline2andMore">musikalisches</span><span class="tei_hi_underline1">Drama</span> seyn; Dicht<span class="tei_supplied" id="d53132e58"><span class="brackets_supplied">[</span>ung<span class="brackets_supplied">]</span></span> und Tonkunst Hand in Hand gehen!</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -443,7 +426,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A044532/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -465,10 +448,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044532</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044532</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -494,6 +476,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -504,6 +487,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -538,6 +522,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-05-04T14:51:35.146376Z" />
+        <meta property="dc:date" content="2017-04-14T20:20:18.483868Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
         <meta property="dc:description" content="Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. Aktuell werden HTML und TEI-XML unterstützt, wobei das …" />
         <meta name="description" content="Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. Aktuell werden HTML und TEI-XML unterstützt, wobei das …" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Help/API_Documentation.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/Help/API_Documentation.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,13 +209,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Hilfe</a>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Hilfe</a></li>
                         
-                        <li><span>A070012</span>
-                        </li>
+                        <li><span>A070012</span></li>
                         
                     </ol>
                     
@@ -230,19 +229,14 @@
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse ">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -256,24 +250,21 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li><a href="#d50350e3">Content Negotiation</a>
-                                        </li>
-                                        <li><a href="#sprachwahl">Sprachauswahl</a>
-                                        </li>
-                                        <li><a href="#d50350e84">Abfragen von GND IDs</a>
-                                        </li>
-                                        <li><a href="#d50350e119">Correspondence Metadata Interchange-Format</a>
-                                        </li>
+                                        <li class="secLevel1"><a href="#d156746e3">Content Negotiation</a></li>
+                                        <li class="secLevel1"><a href="#sprachwahl">Sprachauswahl</a></li>
+                                        <li class="secLevel1"><a href="#d156746e87">Abfragen von GND IDs</a></li>
+                                        <li class="secLevel1"><a href="#d156746e122">Correspondence Metadata Interchange-Format</a></li>
+                                        <li class="secLevel1"><a href="#d156746e147">Swagger OpenAPI</a></li>
                                     </ul>
                                 </div>
-                                <div id="d50350e2">
-                                    <h2 id="d50350e3">Content Negotiation</h2>
+                                <div id="d156746e2">
+                                    <h2 id="d156746e3">Content Negotiation</h2>
                                     <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
                Aktuell werden HTML und TEI-XML unterstützt, wobei das gewünschte Ausgabeformat entweder 
                über ein Suffix (<code>.html</code>/<code>.htm</code> oder <code>.tei</code>/<code>.xml</code>) oder über den HTTP Accept Header 
                (<code>text/html</code> bzw. <code>application/xhtml+xml</code> oder <code>application/xml</code> bzw. <code>application/tei+xml</code>)
                angegeben werden können. Wird beides angegeben, hat das Suffix Vorrang.</p>
-                                    <p>Die kanonische URL jeder Ressource setzt sich dabei aus der Domäne weber-gesamtausgabe.de und der ID zusammen. </p>
+                                    <p>Die kanonische URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und der ID zusammen. </p>
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">Beispiele mit curl</h4>
@@ -289,7 +280,7 @@
                                     <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt.</p>
                                 </div>
                                 <div id="sprachwahl">
-                                    <h2 id="d50350e61">Sprachauswahl</h2>
+                                    <h2 id="d156746e64">Sprachauswahl</h2>
                                     <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
                Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
                Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
@@ -304,8 +295,8 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d50350e83">
-                                    <h2 id="d50350e84">Abfragen von GND IDs</h2>
+                                <div id="d156746e86">
+                                    <h2 id="d156746e87">Abfragen von GND IDs</h2>
                                     <p> 
                Von der API werden aktuell GNDs vom Typ „Person“ unterstützt, welche über einen PND-Beacon zur Verfügung gestellt werden. 
                Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/pnd_beacon.txt</code>.
@@ -324,15 +315,22 @@
                                     </div>
                                     <p>Detaillierte Informationen zum PND-Beacon-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link"></i></a>.</p>
                                 </div>
-                                <div id="d50350e118">
-                                    <h2 id="d50350e119">Correspondence Metadata Interchange-Format</h2>
+                                <div id="d156746e121">
+                                    <h2 id="d156746e122">Correspondence Metadata Interchange-Format</h2>
                                     <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMI)
                zur Verfügung. Adresse der Beacon-Datei: <code>http://weber-gesamtausgabe.de/correspDesc.xml</code>.
             </p>
                                     <p>Detaillierte Informationen zum CMI-Format finden sich auf den Seiten des <a href="http://correspsearch.bbaw.de/index.xql?id=participate_cmi-format&amp;l=de">correspSearch Webservice <i class="fa fa-external-link"></i></a>
                und unter <a href="https://github.com/TEI-Correspondence-SIG/CMIF">https://github.com/TEI-Correspondence-SIG/CMIF <i class="fa fa-external-link"></i></a>.
-               Siehe auch die <a class="news A050122" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050122.html">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
+               Siehe auch die <a class="preview news A050122" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050122.html">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
             </p>
+                                </div>
+                                <div id="d156746e146">
+                                    <h2 id="d156746e147">Swagger OpenAPI</h2>
+                                    <p>Die WeGA bietet unter <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> 
+               ebenfalls eine REST-Schnittstelle nach der <a href="http://swagger.io/specification/">Swagger OpenAPI Spezifikation 2.0 <i class="fa fa-external-link"></i></a> an. 
+               Diese Schnittstelle soll ein schnelles und komfortables 
+               Auffinden von Dokumenten aus der digitalen Edition ermöglichen.</p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
@@ -357,10 +355,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 4. Mai 2016 durch Peter Stadler</span>
-                </p>
+                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -386,6 +383,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -396,6 +394,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -430,6 +429,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

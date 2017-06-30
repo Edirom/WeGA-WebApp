@@ -62,7 +62,7 @@
     <entry xml:id="pnd_dates">Lebensdaten</entry>
     <entry xml:id="pnd_placeOfBirth">Geburtsort</entry>
     <entry xml:id="pnd_placeOfDeath">Sterbeort</entry>
-    <entry xml:id="pnd_furtherInfo">Weitere Angaben</entry>
+    <entry xml:id="pnd_biographicalOrHistoricalInformation">Weitere Angaben</entry>
     <entry xml:id="pnd_occupation">Beruf(e)</entry>
     <entry xml:id="pnd_otherNames">Weitere Namen</entry>
     <!--  Headings person_letters  -->
@@ -162,7 +162,7 @@
     <!--  Search  -->
     <entry xml:id="advancedSearch">Erweiterte Suche</entry>
     <entry xml:id="WeGA-Search">WeGA-Suche</entry>
-    <entry xml:id="entriesPerPage">Einträge pro Seite</entry>
+    <entry xml:id="perPage">pro Seite</entry>
     <entry xml:id="additionalSearchRow">Weiteres Suchfeld hinzufügen</entry>
     <entry xml:id="no_prefix">Volltext</entry>
     <entry xml:id="persName">Person</entry>
@@ -179,6 +179,9 @@
     <entry xml:id="diary">Tagebuch</entry>
     <entry xml:id="diaries">Tagebücher</entry>
     <entry xml:id="pageBreak">Seitenumbruch</entry>
+    <entry xml:id="pageBreakTo">Seitenumbruch zu</entry>
+    <entry xml:id="columnBreak">Spaltenumbruch</entry>
+    <entry xml:id="columnBreakTo">Spaltenumbruch zu</entry>
     <entry xml:id="prevDiaryDay">Vorausgehender Eintrag</entry>
     <entry xml:id="nextDiaryDay">Folgender Eintrag</entry>
     <entry xml:id="context">Kontext</entry>
@@ -317,6 +320,8 @@
     <entry xml:id="metaTitleIndex-documents">Register der Dokumente</entry>
     <entry xml:id="metaTitleIndex-indices">Vollständiges Register</entry>
     <entry xml:id="metaTitleIndex-thematicCommentaries">Register der Themenkommentare</entry>
+    <entry xml:id="metaTitleError">Das klingt gar nicht gut!</entry>
+    <entry xml:id="metaDescriptionError">Fehlerseite</entry>
 <!--    <entry xml:id="metaTitleDiscoBiblio">Discographie – Bibliographie</entry>-->
 <!--    <entry xml:id="metaTitleScoresBiblio">Noten – Bibliographie</entry>-->
 <!--    <entry xml:id="metaTitleWeberStudiesPublications">Weber-Studien – Publikationen</entry>-->
@@ -352,6 +357,8 @@
     <entry xml:id="letter">Brief</entry>
     <entry xml:id="letters">Briefe</entry>
     <entry xml:id="orgs">Organisationen</entry>
+    <entry xml:id="sources">Quellen</entry>
+    <entry xml:id="var">Varia</entry>
     <entry xml:id="unknown">unbekannt</entry>
     <entry xml:id="placesOfAction">Wirkorte</entry>
     <entry xml:id="pseudonyme">Pseudonyme</entry>
@@ -441,11 +448,13 @@
     <entry xml:id="all_letters">Alle Briefe</entry>
     <entry xml:id="all_persons">Alle Personen</entry>
     <entry xml:id="all_works">Alle Werke</entry>
+    <entry xml:id="all_documents">Alle Dokumente</entry>
     <entry xml:id="webers_person">Webers Person</entry>
     <entry xml:id="webers_correspondence">Webers Korrespondenz</entry>
     <entry xml:id="webers_writings">Webers Schriften</entry>
     <entry xml:id="webers_diaries">Webers Tagebücher</entry>
     <entry xml:id="webers_works">Webers Werke</entry>
+    <entry xml:id="webers_documents">Webers Dokumente</entry>
     <entry xml:id="project">Projekt</entry>
     <entry xml:id="biblio">Bibliographie</entry>
     <entry xml:id="complete_indices">Gesamtes Register</entry>
@@ -466,6 +475,7 @@
     <entry xml:id="thematicCommentaries">Themenkommentare</entry>
     <entry xml:id="thematicCom">Themenkommentar</entry>
     <entry xml:id="endNotes">Einzelnachweise</entry>
+    <entry xml:id="endNote">Einzelnachweis</entry>
     <entry xml:id="searchResults">Suchergebnisse</entry>
     <entry xml:id="sex">Geschlecht</entry>
     <entry xml:id="sex_m">Männlich</entry>
@@ -486,4 +496,37 @@
     <entry xml:id="work-related_document">Ausgabenbuch, Danzis Gutachen, Gutachten über Euryanthe</entry>
     <entry xml:id="imageSource">Bildquelle</entry>
     <entry xml:id="specialVolume">Sonderband</entry>
+	<entry xml:id="examples">Beispiele</entry>
+	<entry xml:id="example">Beispiel</entry>
+	<entry xml:id="gl_note">Bemerkung</entry>
+	<entry xml:id="other_customizations">Andere Schemata</entry>
+	<entry xml:id="elements">Elemente</entry>
+	<entry xml:id="otherSources">andere Angaben</entry>
+	<entry xml:id="forenames">Vornamen</entry>
+	<entry xml:id="surnames">Nachnamen</entry>
+    <entry xml:id="attributes">Attribute</entry>
+    <entry xml:id="members">Mitglieder</entry>
+    <entry xml:id="status">Status</entry>
+    <entry xml:id="usage_opt">optional</entry>
+    <entry xml:id="usage_req">erforderlich</entry>
+    <entry xml:id="usage_rec">empfohlen</entry>
+    <entry xml:id="datatype">Datentyp</entry>
+    <entry xml:id="closed_values">Erlaubte Werte</entry>
+    <entry xml:id="downloaded_on">Download dieser Datei</entry>
+    <entry xml:id="appendix">Anhang</entry>
+    <entry xml:id="classes">Klassen</entry>
+    <entry xml:id="metaTitleGuidelinesSpecs">%1 (Schema: %2)</entry>
+    <entry xml:id="metaDescriptionGuidelinesSpecs">Spezifikation für %1. Dies ist ein angepasstes Schema der TEI Richtlinien durch die Carl-Maria-von-Weber-Gesamtausgabe</entry>
+    <entry xml:id="metaTitleGuidelines-index-elements">Verzeichnis der Elemente</entry>
+    <entry xml:id="metaTitleGuidelines-index-attributes">Verzeichnis der Attribute und Attributklassen</entry>
+    <entry xml:id="metaTitleGuidelines-index-datatypes">Verzeichnis der Datentypen</entry>
+    <entry xml:id="metaTitleGuidelines-index-classes">Verzeichnis der Elementklassen</entry>
+    <entry xml:id="metaDescriptionGuidelines-index-elements">Eine Liste aller Elemente, die in den angepassten TEI Schemata der Carl-Maria-von-Weber-Gesamtausgabe spezifiziert sind.</entry>
+    <entry xml:id="metaDescriptionGuidelines-index-attributes">Eine Liste aller Attribute und Attributklassen, die in den angepassten TEI Schemata der Carl-Maria-von-Weber-Gesamtausgabe spezifiziert sind.</entry>
+    <entry xml:id="metaDescriptionGuidelines-index-datatypes">Eine Liste aller Datentypen, die in den angepassten TEI Schemata der Carl-Maria-von-Weber-Gesamtausgabe spezifiziert sind.</entry>
+    <entry xml:id="metaDescriptionGuidelines-index-classes">Eine Liste aller Elementklassen, die in den angepassten TEI Schemata der Carl-Maria-von-Weber-Gesamtausgabe spezifiziert sind.</entry>
+    <entry xml:id="source">Quelle</entry>
+    <entry xml:id="performance-review">Konzertbesprechungen</entry>
+    <entry xml:id="historic-news">Historische Berichte</entry>
+    <entry xml:id="concert-announcements">Konzertanzeigen</entry>
 </dictionary>

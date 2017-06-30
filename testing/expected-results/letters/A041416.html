@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-04-25T14:37:03.373203Z" />
+        <meta property="dc:date" content="2017-04-14T15:51:53.684376Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041416" />
         <meta property="dc:description" content="Begleitschreiben zur Übersendung der Kantate Kampf u. Sieg;" />
         <meta name="description" content="Begleitschreiben zur Übersendung der Kantate Kampf u. Sieg;" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A041416.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A041416.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A041416</span> <span class="docStatus">bearbeitet</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A041416</span> <span class="docStatus">bearbeitet</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041416.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -295,9 +285,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000825" /> <span title="Adolph Friedrich, Herzog von Cambridge">Adolph Friedrich, Herzog von C…</span> 
@@ -310,8 +299,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -328,20 +316,20 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
-                                        <p><span class="tei_hi_latintype">A <a class="persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">Son Altesse Royale Mons.</a> <a class="persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">le Duc de Cambridge a Hannovre</a></span>. nebst <span class="works A020018" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020018.html">Kantate</span>.</p>
+                                        <p><span class="tei_hi_latintype">A <a class="preview persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">Son Altesse Royale Mons.</a> <a class="preview persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">le Duc de Cambridge a Hannovre</a></span>. nebst <span class="preview works A020018" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020018.html">Kantate</span>.</p>
                                         <p><span class="tei_hi_latintype">vide</span> Formular <span class="tei_hi_italic">a</span> - <span class="tei_hi_latintype">b</span>.</p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Verfloßenes Jahr nährte ich die Hoffnung <a class="persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">Ew. Königl: Hoheit</a> persönlich meine
+                                        <p>Verfloßenes Jahr nährte ich die Hoffnung <a class="preview persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">Ew. Königl: Hoheit</a> persönlich meine
                Ehrfurcht bezeugen zu könen, zu welcher schönen Erwartung mich das hier beiliegende
-               Schreiben des Durchlauchtigsten <a class="persons A001525" href="/exist/apps/WeGA-WebApp/de/A001525.html">Fürsten Radzivil</a> berechtigen durfte, als mich der Ruf <a class="persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">S.
+               Schreiben des Durchlauchtigsten <a class="preview persons A001525" href="/exist/apps/WeGA-WebApp/de/A001525.html">Fürsten Radzivil</a> berechtigen durfte, als mich der Ruf <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">S.
                   Majestät des Königs von Sachsen</a> in Seine Dienste, daran verhinderte. Beglükt würde sich
-               der Komponist fühlen, wenn durch die Aufführung seines <span class="works A020018" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020018.html">Werkes</span> am Jahrestage der
-               unvergeßlichen Schlacht<a class="noteMarker" id="ref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="c_001">*</a> ihm das erhebende Gefühl würde, <span class="tei_choice"><span class="tei_unclear">auch</span><a class="noteMarker" id="ref-d34421e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34421e45">‡</a></span> – so weit es in seinem Bereich lag zur Feyer des Großen und Herrlichen
+               der Komponist fühlen, wenn durch die Aufführung seines <span class="preview works A020018" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020018.html">Werkes</span> am Jahrestage der
+               unvergeßlichen Schlacht<a class="noteMarker" id="ref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a> ihm das erhebende Gefühl würde, <span class="tei_choice"><span class="tei_unclear">auch</span><a class="noteMarker" id="ref-d53329e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53329e45">‡</a></span> – so weit es in seinem Bereich lag zur Feyer des Großen und Herrlichen
                mitgewirkt zu haben.</p>
-                                        <p class="teiLetter_closer">In tiefster Ehrfurcht ersterbend.<br />
-               <a class="persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">E: Königl: Hoheit</a>
-               <span class="teiLetter_datelineCloser">Dresden d:<span> […]<a class="noteMarker" id="ref-d34421e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d34421e60">‡</a></span><span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span>. 1818.</span>
+                                        <p class="tei_closer textAlign-left">In tiefster Ehrfurcht ersterbend.<br />
+               <a class="preview persons A000825" href="/exist/apps/WeGA-WebApp/de/A000825.html">E: Königl: Hoheit</a>
+               <span class="tei_dateline textAlign-left">Dresden d:<span> […]<a class="noteMarker" id="ref-d53329e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53329e60">‡</a></span><span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span>. 1818.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -396,7 +384,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d34421e60" data-title="gap "> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d53329e60" data-title="gap "> Unleserliche Stelle </div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -405,13 +393,13 @@
                                             <div class="apparatusEntry" id="c_001" data-title="note commentary"><span class="tei_lemma">"… am Jahrestage der unvergeßlichen Schlacht": </span>Schlacht bei Waterloo Juni 1815, bei der Napoleon endgültig geschlagen wurde</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d34421e45" data-title="choice">"auch": weitere mögliche Lesungen: "nun"</div>
+                                            <div class="apparatusEntry" id="d53329e45" data-title="choice">"auch": weitere mögliche Lesungen: "nun"</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A041416/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -433,10 +421,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041416</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041416</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. April 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -462,6 +449,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -472,6 +460,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -506,6 +495,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

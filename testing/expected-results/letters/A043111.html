@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-06-02T14:20:42.474219Z" />
+        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043111" />
         <meta property="dc:description" content="Antwort auf 7 Fragen in Jähns' letztem Brief, sie betreffen: Peter-Schmoll-Ouvertüre; Fehlmeldung für Weber-Manuskripte in der Akademie-Bibliothek; Arragement des Clarinetten-Konzertes für Oboe; Adagio des F-Moll-Klarinetten-Konzertes (Unterlegung des Horn-Terzetts mit einem Text); Silvana-Variationen op. 33; Erwerbungsjahr der Konzertarie Non paventar mia vita aus Ines de Castro (Hofbibl. München), Instrumentierung von 3 Duetten durch Lachner, ebenso das Streichquartett für 8 Bläser" />
         <meta name="description" content="Antwort auf 7 Fragen in Jähns' letztem Brief, sie betreffen: Peter-Schmoll-Ouvertüre; Fehlmeldung für Weber-Manuskripte in der Akademie-Bibliothek; Arragement des Clarinetten-Konzertes für Oboe; Adagio des F-Moll-Klarinetten-Konzertes (Unterlegung des Horn-Terzetts mit einem Text); Silvana-Variationen op. 33; Erwerbungsjahr der Konzertarie Non paventar mia vita aus Ines de Castro (Hofbibl. München), Instrumentierung von 3 Duetten durch Lachner, ebenso das Streichquartett für 8 Bläser" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A000076/Correspondence/A043111.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A000076/Correspondence/A043111.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -213,14 +215,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000076.html">Carl Baermann sen.</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A043111</span> <span class="docStatus">bearbeitet</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A000076.html">Carl Baermann sen.</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A043111</span> <span class="docStatus">bearbeitet</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -237,31 +235,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -303,9 +293,8 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000074" /> <span title="Bader, Karl Adam">Bader, Karl Adam</span> 
@@ -336,8 +325,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -355,14 +343,15 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020201" /> <span title="Konzert für Klarinette und Orchester Nr. 1 f-Moll">Konzert für Klarinette und Orc…</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020237" /> <span title="Ouvertüre in Es-Dur zu Peter Schmoll (Konzertfassung)">Ouvertüre in Es-Dur zu Peter S…</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020037" /> <span title="Silvana, romantische Oper in drei Aufzügen (Klavierauszug)">Silvana, romantische Oper in d…</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -382,16 +371,16 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <p class="teiLetter_salute">Mein lieber verehrtester <a class="persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Freund</a>!</p>
+               <p class="teiLetter_salute">Mein lieber verehrtester <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Freund</a>!</p>
             </div>
-                                        <p>Sie werden sich gedacht haben „der <a class="persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Bärmann</a> ist mir
+                                        <p>Sie werden sich gedacht haben „der <a class="preview persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Bärmann</a> ist mir
                auch ein schöner guter Freund! erst fodert er mich auf ihn unnachsichtlich zu
                benützen, und gleich darauf beantwortet er mir meinen Brief nicht.“ Ich kann Ihnen
                sagen daß mich der Gedanke, daß gerade Sie so von mir denken könnten, wochenlang
                unruhig herumgetrieben hat, aber Ihnen zugleich zu schwören daß ich nicht im Stande
                war früher zu schreiben, da ich so ungeheuer überhäuft von Dienste im Theater, <span class="tei_hi_latintype">Concerte </span>und andern musikalischen Arbeiten war. Es überfällt
                mich ein wahrer Schauder, wenn ich daran denke, wie viele Briefe ich durch dieses
-                  Hem<span class="tei_supplied" id="d32617e19"><span class="brackets_supplied">[</span>m<span class="brackets_supplied">]</span></span>niß nun zu beantworten habe, doch sind Sie der
+                  Hem<span class="tei_supplied" id="d50990e19"><span class="brackets_supplied">[</span>m<span class="brackets_supplied">]</span></span>niß nun zu beantworten habe, doch sind Sie der
                Erste, weil Sie mir auch der Liebste sind, nur bitte ich die Kürze dieses Schreibens,
                mit der mir karg zugemeßenen Zeit zu entschuldigen.</p>
                                         <p>Vor allen andern danke ich Ihnen recht herzlich für Ihren lieben herzlichen und so
@@ -400,77 +389,73 @@
                Ihre Fragen und Wünsche betrifft, welche Ihnen gegenwärtig mehr am Herzen liegen
                müßen als alle Versicherungen meiner Freundschaft u. Liebe so beeile ich mich
                dieselben in gehöriger Reihenfolge nach besten Wißen zu beantworten.</p>
-                                        <p>1) Die <span class="tei_hi_latintype">B-Ouvertüre</span> wird wohl die <span class="tei_hi_latintype"><span class="works A020037" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020037.html">Peter Schmoll-Ouverture</span></span> sein, der
-               Anfang stimmt vollständig mit den mir von Ihnen geschrieben<span class="tei_supplied" id="d32617e33"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> Thema überein, nur das <span class="tei_hi_underline1">Thema des <span class="tei_hi_latintype">Allegro</span></span> in <span class="tei_hi_latintype">Esdur</span> weicht in
-               etwas von den Ihrigen ab. Sie schrieben mir das Letztere wie folgt auf: <span class="tei_notatedMusic"><a href="https://euryanthe.de/digilib/Scaler/IIIF/%252Fletters%252FA0431xx%252FA043111%252FWeGA_Baermann_1865-03-18_NB_01.jpg/full/full/0/native.jpg"><img alt="MW_WeV-C03, Takt 1–4 der Ouvertüre zu Peter Schmoll" src="https://euryanthe.de/digilib/Scaler/IIIF/%252Fletters%252FA0431xx%252FA043111%252FWeGA_Baermann_1865-03-18_NB_01.jpg/full/,75/0/native.jpg" /></a></span>
-                                        </p>
-                                        <p>In der hiesigen <span class="tei_hi_latintype">Partitur</span>
-               <a class="noteMarker" id="ref-C_0028" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0028">*</a> fand ich
-               daßelbe aber folgendermaßen: <span class="tei_notatedMusic"><a href="https://euryanthe.de/digilib/Scaler/IIIF/%252Fletters%252FA0431xx%252FA043111%252FWeGA_Baermann_1865-03-18_NB_02.jpg/full/full/0/native.jpg"><img alt="MW_WeV-M04, Takt 1–4 der umgearbeiteten Ouvertüre zu Peter Schmoll" src="https://euryanthe.de/digilib/Scaler/IIIF/%252Fletters%252FA0431xx%252FA043111%252FWeGA_Baermann_1865-03-18_NB_02.jpg/full/,75/0/native.jpg" /></a></span>
-                                        </p>
+                                        <p>1) Die <span class="tei_hi_latintype">B-Ouvertüre</span> wird wohl die <span class="tei_hi_latintype"><span class="preview works A020237" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020237.html">Peter Schmoll-Ouverture</span></span> sein, der
+               Anfang stimmt vollständig mit den mir von Ihnen geschrieben<span class="tei_supplied" id="d50990e33"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> Thema überein, nur das <span class="tei_hi_underline1">Thema des <span class="tei_hi_latintype">Allegro</span></span> in <span class="tei_hi_latintype">Esdur</span> weicht in
+               etwas von den Ihrigen ab. Sie schrieben mir das Letztere wie folgt auf: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0431xx%2FA043111%2FWeGA_Baermann_1865-03-18_NB_01.jpg/full/full/0/native.jpg"><img alt="MW_WeV-C03, Takt 1–4 der Ouvertüre zu Peter Schmoll" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0431xx%2FA043111%2FWeGA_Baermann_1865-03-18_NB_01.jpg/full/,/0/native.jpg" /></a></span></p>
+                                        <p>In der <span class="tei_ptr"></span>hiesigen <span class="tei_hi_latintype">Partitur</span><a class="noteMarker" id="ref-C_0028" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0028">*</a> fand ich
+               daßelbe aber folgendermaßen: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0431xx%2FA043111%2FWeGA_Baermann_1865-03-18_NB_02.jpg/full/full/0/native.jpg"><img alt="MW_WeV-M04, Takt 1–4 der umgearbeiteten Ouvertüre zu Peter Schmoll" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0431xx%2FA043111%2FWeGA_Baermann_1865-03-18_NB_02.jpg/full/,/0/native.jpg" /></a></span></p>
                                         <p>Es ist dieß ein so bedeutender thematischer Unterschied, daß ich es für das Beste
                gehalten habe Ihnen die <span class="tei_hi_latintype">Partitur</span> zu schicken damit Sie
                selbst sich überzeugen können, in wie weit diese <span class="tei_hi_latintype">Ouverture
                </span>mit der andern übereinstimmt oder nicht. Da Sie mir geschrieben daß jede
-               Kleinigkeit für Sie (: was <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> betrifft :) von
+               Kleinigkeit für Sie (: was <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> betrifft :) von
                höchsten Intereße ist, so glaubte ich in Ihrem Sinne zu handeln, wenn ich die <span class="tei_hi_latintype">Partitur</span> Ihnen übersandte.</p>
                                         <p>2) In der Bibliothek der hiesigen <span class="tei_hi_latintype">Accademie</span> befindet sich
-               kein <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d32617e84"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal-Manuscript
-                     <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a></span>.</p>
+               kein <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d50990e85"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal-Manuscript
+                     <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a></span>.</p>
                                         <p>3) Was das <span class="tei_hi_latintype">Clarinett Concertino</span> für die <span class="tei_hi_latintype">Oboe</span>
-               <span class="tei_hi_latintype">arrangiert</span> betrifft<a class="noteMarker" id="ref-C_0029" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0029">*</a> so können Sie völlig beruhigt sein, daß die
-               Hand <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> dabei im Spiele gewesen ist. Ich habe
-               es Tackt für Tackt durchgesehen und keinen andern darin gefunden als in der <span class="tei_hi_latintype">Partitur</span> des <span class="tei_hi_latintype"><span class="works A020200" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020200.html">Clarinett-Concertinos</span></span>, auch ist daßelbe höchst <span class="tei_hi_latintype">dilletanten</span>haft <span class="tei_hi_latintype">arrangiert</span>, und
-               der ziemlich kleine musikalische Geist der <a class="persons A000497" href="/exist/apps/WeGA-WebApp/de/A000497.html">Herrn
-                  Fladt</a>, <span class="A000497 A000495">Vater und Söhne</span>,
+               <span class="tei_hi_latintype">arrangiert</span> betrifft so können Sie völlig beruhigt sein, daß die
+               Hand <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> dabei im Spiele gewesen ist. Ich habe
+               es Tackt für Tackt durchgesehen und keinen andern darin gefunden als in der <span class="tei_hi_latintype">Partitur</span> des <span class="tei_hi_latintype"><span class="preview works A020200" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020200.html">Clarinett-Concertinos</span></span>, auch ist daßelbe höchst <span class="tei_hi_latintype">dilletanten</span>haft <span class="tei_hi_latintype">arrangiert</span>, und
+               der ziemlich kleine musikalische Geist der <a class="preview persons A000497" href="/exist/apps/WeGA-WebApp/de/A000497.html">Herrn
+                  Fladt</a>, <span class="preview persons A000497 A000495" data-ref="/exist/apps/WeGA-WebApp/de/A000497.html /exist/apps/WeGA-WebApp/de/A000495.html">Vater und Söhne</span>,
                hat in Ermanglung von Musik für <span class="tei_hi_latintype">Oboe</span>, öfters auf ähnliche
                Art unbarmherzig gewüthet. Wir Münchner kennen diese Zeit noch genau.</p>
-                                        <p>4) Was Sie von dem <span class="tei_hi_latintype">Adagio</span> in <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>
-               <span class="tei_hi_latintype"><span class="works A020201" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020201.html">F-moll Clarinett</span></span><a class="noteMarker" id="ref-C_0030" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0030">*</a> schreiben, so verhält sich die Sache folgendermaßen.
+                                        <p>4) Was Sie von dem <span class="tei_hi_latintype">Adagio</span> in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>
+               <span class="tei_hi_latintype"><span class="preview works A020201" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020201.html">F-moll Clarinett</span></span> schreiben, so verhält sich die Sache folgendermaßen.
                Der Mittel-Satz des <span class="tei_hi_latintype">Adagio</span> besteht aus einem <span class="tei_hi_latintype">Horn-Terzett</span>, wobei die <span class="tei_hi_latintype">Clarinett</span>
-               bald begleitend bald selbstständig auftritt. <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Mein
-                  Vater</a> kam nun als er dieses <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype"><span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>
-               </span>im Jahre 1831 /: in <span class="tei_hi_latintype">Decembr </span>:/<a class="noteMarker" id="ref-C_0031" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0031">*</a> blies auf die <span class="tei_hi_latintype">Idee</span> statt den 3 Horn 3 Männer Singstimmen zu setzen. Zu diesem Zwecke
-               machte ihm schon in <span class="tei_hi_latintype"><span class=" 7725211099104101110"><span class="tei_settlement">München</span></span></span>
-               sein Freund der <a class="persons A008798" href="/exist/apps/WeGA-WebApp/de/A008798.html">Minister <span class="tei_hi_latintype">Eduard von Schenk</span></a>
-               <a class="noteMarker" id="ref-C_0032" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0032">*</a>
+               bald begleitend bald selbstständig auftritt. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Mein
+                  Vater</a> kam nun als er dieses <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>
+               </span>im Jahre 1831 /: in <span class="tei_hi_latintype">Decembr</span> :/<a class="noteMarker" id="ref-C_0031" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0031">*</a> blies auf die <span class="tei_hi_latintype">Idee</span> statt den 3 Horn 3 Männer Singstimmen zu setzen. Zu diesem Zwecke
+               machte ihm schon in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7725211099104101110">München</span></span></span>
+               sein Freund der <a class="preview persons A008798" href="/exist/apps/WeGA-WebApp/de/A008798.html">Minister <span class="tei_hi_latintype">Eduard von Schenk</span></a>
+               
                einige paßende Worte. Die Worte heißen:</p><span class="lg"><span class="verseLine">Er ist dahin, der Schöpfer dieser Klänge,</span><span class="verseLine">der hohe Meister, der von hinnen schied</span><span class="verseLine">Er lehrt den Engelchören nun Gesänge</span><span class="verseLine">doch ewig lebt auf Erden auch sein Lied.</span></span>
                                         <p>Diese Worte wurden nun den Horn-Noten angepaßt, und durch 3 Männerstimmen bei der
-               Aufführung dieses <span class="tei_hi_latintype">Concertes</span> im <span class=" 839797108101321001011153283991049711711511210510110810497117115101115321051103266101114108105110">Saale des Schauspielhauses in <span class="tei_hi_latintype"><span class="tei_settlement">Berlin</span></span></span> gesungen, und zwar hinter
+               Aufführung dieses <span class="tei_hi_latintype">Concertes</span> im <span class="tei_placeName">Saale des Schauspielhauses in <span class="tei_hi_latintype"><span class="66101114108105110">Berlin</span></span></span> gesungen, und zwar hinter
                der <span class="tei_hi_latintype">Scene</span>. Ich war damals selbst zugegen, und weiß daß die
-               erste Stimme <a class="persons A000074" href="/exist/apps/WeGA-WebApp/de/A000074.html"><span class="tei_hi_latintype">Bader</span></a>
-               <a class="noteMarker" id="ref-C_0033" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0033">*</a> sang, und den <span class="tei_hi_latintype">Bass</span> glaube ich <span class=" 901159910410510111599104101">Zschiesche</span> oder
-                  <a class="persons A008994" href="/exist/apps/WeGA-WebApp/de/A008994.html">Zschießke</a><a class="noteMarker" id="ref-C_0034" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0034">*</a>, ich kann mir diesen Namen nie behalten, die Mittelstimme
+               erste Stimme <a class="preview persons A000074" href="/exist/apps/WeGA-WebApp/de/A000074.html"><span class="tei_hi_latintype">Bader</span></a>
+                sang, und den <span class="tei_hi_latintype">Bass</span> glaube ich <span class="901159910410510111599104101">Zschiesche</span> oder
+                  <a class="preview persons A008994" href="/exist/apps/WeGA-WebApp/de/A008994.html">Zschießke</a><a class="noteMarker" id="ref-C_0034" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0034">*</a>, ich kann mir diesen Namen nie behalten, die Mittelstimme
                ist mir gänzlich entfallen. Von einem Chor ist daher gar nicht die Rede, und es
                wurden von den 3 Männerstimmen nur dieselben Noten gesungen, welche die 3 Hörner
-               haben, natürlich waren die Hörner dan<span class="tei_supplied" id="d32617e282"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span> weg geblieben.
-                  <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> selbst hatte nie eine andere <span class="tei_hi_latintype">Idee</span> als die <span class="tei_hi_latintype">Hornbegleitung</span> und im
-               Falle der Unmöglichkeit dieselben zu besetzen die <span class="tei_hi_underline1">kleinen</span> Noten für <span class="tei_hi_underline1"><span class="tei_hi_latintype">Quartett</span></span> eingeschrieben. An dieser ganzen <span class="tei_hi_latintype">Idee</span> ist nur <a class="persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Vaters</a> große <span class="tei_hi_latintype">Pietät</span> Liebe und Freundschaft für <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> Veranlaßung gewesen. Er hat es auch nur einmal so gespielt, und
-               zwar wie oben gesagt in <span class="tei_hi_latintype"><span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span></span>, da die <span class="tei_hi_latintype">Hornbegleitung </span>doch schöner und <span class="tei_hi_latintype">or<span class="tei_supplied" id="d32617e325"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> bleibt.</p>
-                                        <p><span class="tei_choice"><span class="tei_corr">5</span><a class="noteMarker" id="ref-d32617e331" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d32617e331">‡</a></span>) Was die Änderungen im <span class="works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html"><span class="tei_hi_latintype">Adagio
-                     Opus</span> 33</span> /: <span class="tei_hi_latintype">Variation</span> :/<a class="noteMarker" id="ref-C_0035" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0035">*</a> anbelangt, so liegen dieselben
+               haben, natürlich waren die Hörner dan<span class="tei_supplied" id="d50990e279"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span> weg geblieben.
+                  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> selbst hatte nie eine andere <span class="tei_hi_latintype">Idee</span> als die <span class="tei_hi_latintype">Hornbegleitung</span> und im
+               Falle der Unmöglichkeit dieselben zu besetzen die <span class="tei_hi_underline1">kleinen</span> Noten für <span class="tei_hi_underline1"><span class="tei_hi_latintype">Quartett</span></span> eingeschrieben. An dieser ganzen <span class="tei_hi_latintype">Idee</span> ist nur <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Vaters</a> große <span class="tei_hi_latintype">Pietät</span> Liebe und Freundschaft für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> Veranlaßung gewesen. Er hat es auch nur einmal so gespielt, und
+               zwar wie oben gesagt in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></span>, da die <span class="tei_hi_latintype">Hornbegleitung </span>doch schöner und <span class="tei_hi_latintype">or<span class="tei_supplied" id="d50990e322"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> bleibt.</p>
+                                        <p><span class="tei_choice"><span class="tei_corr">5</span><a class="noteMarker" id="ref-d50990e328" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d50990e328">‡</a></span>) Was die Änderungen im <span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html"><span class="tei_hi_latintype">Adagio
+                     Opus</span> 33</span> /: <span class="tei_hi_latintype">Variation</span> :/<a class="noteMarker" id="ref-C_0035" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0035">*</a> anbelangt, so liegen dieselben
                im <span class="tei_hi_latintype">virtuosen</span> Geiste des Vortrages, und ich wäre wirklich in
                Verlegenheit, wie ich dieß zu Papier bringen sollte, ich will sie Ihnen vorspielen
-               wenn Sie nach <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span>
-               <span class="tei_supplied" id="d32617e357"><span class="brackets_supplied">[</span>kommen<span class="brackets_supplied">]</span></span>.</p>
-                                        <p>6) Über die <span class="works A020067" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020067.html"><span class="tei_hi_latintype">Arie</span>, <span class="tei_hi_underline1"><span class="tei_hi_latintype">Non paventar mia
-                  vita</span></span></span><a class="noteMarker" id="ref-C_0036" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0036">*</a>
-               erhielt ich so eben folgende Zuschrift von <a class="persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html"><span class="tei_hi_latintype">Julius Jos: Maier </span></a>/: <a class="persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Kgl. <span class="tei_hi_latintype">Conservator </span></a>:/, welche ich Ihnen
+               wenn Sie nach <span class="tei_placeName"><span class="7725211099104101110">München</span></span>
+               <span class="tei_supplied" id="d50990e354"><span class="brackets_supplied">[</span>kommen<span class="brackets_supplied">]</span></span>.</p>
+                                        <p>6) Über die <span class="preview works A020067" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020067.html"><span class="tei_hi_latintype">Arie</span>, <span class="tei_hi_underline1"><span class="tei_hi_latintype">Non paventar mia
+                  vita</span></span></span><a class="noteMarker" id="ref-C_0036" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0036">*</a>
+               erhielt ich so eben folgende Zuschrift von <a class="preview persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html"><span class="tei_hi_latintype">Julius Jos: Maier </span></a>/: <a class="preview persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Kgl. <span class="tei_hi_latintype">Conservator </span></a>:/, welche ich Ihnen
                wörtlich hier mittheile.</p>
                                         <p>Ew Wohlgeboren</p>
-                                        <p>beehre ich mich unter Rückanschluß des Briefes von <a class="persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herrn <span class="tei_hi_latintype">Jähns</span></a>* in Kenntniß zu setzen, daß die <span class="tei_hi_latintype">Autograph-Partitur</span> der Weberschen <span class="works A020067" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020067.html"><span class="tei_hi_latintype">Arie </span>„<span class="tei_hi_latintype">Non paventar</span>
-                  <span class="tei_supplied" id="d32617e401"><span class="brackets_supplied">[</span>“<span class="brackets_supplied">]</span></span></span> der hiesigen Hof u. Staatsbibliotheck
-               am 14 <span class="tei_hi_latintype">December</span> 1860 vom <a class="persons A008074" href="/exist/apps/WeGA-WebApp/de/A008074.html">Oberappelgerichtsseckretair <span class="tei_hi_latintype">Jos. Maria Mayer</span></a>
+                                        <p>beehre ich mich unter Rückanschluß des Briefes von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herrn <span class="tei_hi_latintype">Jähns</span></a>* in Kenntniß zu setzen, daß die <span class="tei_hi_latintype">Autograph-Partitur</span> der Weberschen <span class="preview works A020067" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020067.html"><span class="tei_hi_latintype">Arie </span>„<span class="tei_hi_latintype">Non paventar</span>
+                  <span class="tei_supplied" id="d50990e398"><span class="brackets_supplied">[</span>“<span class="brackets_supplied">]</span></span></span> der hiesigen Hof u. Staatsbibliotheck
+               am 14 <span class="tei_hi_latintype">December</span> 1860 vom <a class="preview persons A008074" href="/exist/apps/WeGA-WebApp/de/A008074.html">Oberappelgerichtsseckretair <span class="tei_hi_latintype">Jos. Maria Mayer</span></a>
                geschenkt worden, welcher dieselbe einmal bei einem Trödler
                <span class="tei_hi_latintype">acquirirt</span> hat, wenn ich nicht irre. </p>
-                                        <p>Ich lege zugleich ein Maß über Breite und Höhe der fragl. <span class="tei_hi_latintype">Arie</span> bei; bitte solches mit meinen Empfehlungen <a class="persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herrn <span class="tei_hi_latintype">Jähns</span></a> zukommen zu laßen.</p>
-                                        <p>Mit vorzüglicher Hochachtung ❘ ergebener ❘ <span class="tei_hi_latintype"><a class="persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Julius J. Maier</a>
-               </span>❘ Kgl. <span class="tei_hi_latintype">Conservator</span>
-                                        </p>
-                                        <p>Beiliegend finden Sie das Maß wie es mir <a class="persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Herr <span class="tei_hi_latintype">Maier</span></a> übersendet hat<a class="noteMarker" id="ref-C_0037" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0037">*</a>.</p>
-                                        <p>7) Die <span class="A020088 A020089 A020061">3 Duetten</span> sind dieselben
-               von Ihnen bezeichneten. Ich habe <span class="tei_hi_latintype"><a class="persons A008580" href="/exist/apps/WeGA-WebApp/de/A008580.html">Lachner</a></span> gebeten daß ich seine <span class="tei_hi_latintype">Instrumentation</span> derselben für Sie <span class="tei_hi_latintype">copieren</span> kann
-                  laßen<a class="noteMarker" id="ref-C_0038" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0038">*</a>, welches er mir zwar mit einigen
+                                        <p>Ich lege zugleich ein Maß über Breite und Höhe der fragl. <span class="tei_hi_latintype">Arie</span> bei; bitte solches mit meinen Empfehlungen <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herrn <span class="tei_hi_latintype">Jähns</span></a> zukommen zu laßen.</p>
+                                        <p>Mit vorzüglicher Hochachtung ❘ ergebener ❘ <span class="tei_hi_latintype"><a class="preview persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Julius J. Maier</a>
+               </span>❘ Kgl. <span class="tei_hi_latintype">Conservator</span></p>
+                                        <p>Beiliegend finden Sie das Maß wie es mir <a class="preview persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Herr <span class="tei_hi_latintype">Maier</span></a> übersendet hat<a class="noteMarker" id="ref-C_0037" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0037">*</a>.</p>
+                                        <p>7) Die <span class="preview works A020088 A020089 A020061" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020088.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020089.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020061.html">3 Duetten</span> sind dieselben
+               von Ihnen bezeichneten. Ich habe <span class="tei_hi_latintype"><a class="preview persons A008580" href="/exist/apps/WeGA-WebApp/de/A008580.html">Lachner</a></span> gebeten daß ich seine <span class="tei_hi_latintype">Instrumentation</span> derselben für Sie <span class="tei_hi_latintype">copieren</span> kann
+                  laßen<a class="noteMarker" id="ref-C_0038" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0038">*</a>, welches er mir zwar mit einigen
                Wiederstreben, aber dennoch zusagte, doch kann es augenblicklich nicht sein.
                Einstweilen will ich Ihnen die <span class="tei_hi_latintype">Instrumentation</span> benennen: </p>
                                         <p>das <span class="tei_hi_underline1">Streich-<span class="tei_hi_latintype">Quartett</span></span> , 2
@@ -480,18 +465,17 @@
                gerne noch mit Ihnen plaudern, allein ich höre im Nebenzimmer schon einen Schüler,
                welcher schon ziemlich lange wartet, ziemlich ungeduldig <span class="tei_hi_latintype">fantasieren</span>, und dann gehts gleich in die <span class="tei_hi_latintype">Oper</span>,
                und somit nur noch Gruß und Handschlag von Ihrem Ihnen </p>
-                                        <p class="teiLetter_closer"><span class="tei_segBlock textAlign-right">aufrichtigst ergebenen<br />Freund<br /><span class="tei_hi_latintype"><a class="persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Carl Baermann
-               senior</a>.</span></span>
-                                        </p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right">aufrichtigst ergebenen<br />Freund<br /><span class="tei_hi_latintype"><a class="preview persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Carl Baermann
+               senior</a>.</span></span></p>
                                     </div>
                                     <div class="writingSession">
                                         <p>Nochmals entschuldigen Sie die Eile dieses Schreibens und das Flüchtige darin. Das
                übersendete bitte ich sobald als es eben möglich ist wieder zurückzuschicken. Sie
-               schrieben gar nichts ob Sie diesen Sommer nach <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span> kommen oder nicht? </p>
-                                        <p><a class="noteMarker" id="ref-C_0039" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_0039">*</a><span class=" 77101105110101327097109105108105101">Meine Familie</span> erfreut sich immer an Ihren lieben Briefen, und wir würden uns
-               recht glücklich fühlen, wenn wir Sie in <span class="tei_hi_latintype"><span class=" 7725211099104101110"><span class="tei_settlement">München</span></span></span> begrüßen
-                  kön<span class="tei_supplied" id="d32617e543"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>ten.</p>
-                                        <p>*Ich habe nämlich <a class="persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Hrn <span class="tei_hi_latintype">Maier</span></a> einen Theil Ihres Briefes gesendet, da ich ihn 2mal nicht
+               schrieben gar nichts ob Sie diesen Sommer nach <span class="tei_placeName"><span class="7725211099104101110">München</span></span> kommen oder nicht? </p>
+                                        <p><span class="tei_ptr"></span>Meine Familie erfreut sich immer an Ihren lieben Briefen, und wir würden uns
+               recht glücklich fühlen, wenn wir Sie in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7725211099104101110">München</span></span></span> begrüßen
+               kön<span class="tei_supplied" id="d50990e539"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>ten.<a class="noteMarker" id="ref-C_0039" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0039">*</a></p>
+                                        <p>*Ich habe nämlich <a class="preview persons A005446" href="/exist/apps/WeGA-WebApp/de/A005446.html">Hrn <span class="tei_hi_latintype">Maier</span></a> einen Theil Ihres Briefes gesendet, da ich ihn 2mal nicht
                treffen konnte.</p>
                                         <p><span class="tei_hi_underline2andMore">Anbei ein Packet unter Adresse:</span>
                <span class="tei_address"><span class="tei_addrLine"><span class="tei_hi_latintype">Wohlgebohren</span></span><span class="tei_addrLine"><span class="tei_hi_latintype">Herrn Fried: W: Jähns</span></span><span class="tei_addrLine"><span class="tei_hi_latintype">Musikdirector</span></span><span class="tei_addrLine"><span class="tei_hi_latintype">in</span></span><span class="tei_addrLine"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Berlin</span></span></span><span class="tei_addrLine"><span class="tei_hi_latintype">Krausenstraß N</span><span class="tei_hi_latintype">r</span> 62/2</span><span class="tei_addrLine"><span class="tei_hi_latintype">Musikalien Werth</span> 5 <span class="tei_hi_latintype">fl</span>.</span><span class="tei_addrLine"><span class="tei_hi_latintype">Chargé </span></span></span>
@@ -549,7 +533,7 @@
                                     
                                     <ul class="tei_list">
                                         <li>
-                                            <span class="biblio-entry"><span class="author">Eveline Bartlitz</span>, <span class="title">„Ich habe das Schicksal stets lange Briefe zu schreiben ...“. Der Brief-Nachlaß von Friedrich Wilhelm Jähns in der Staatsbibliothek zu Berlin – PK. Die Briefe Carl Baermanns an Friedrich Wilhelm Jähns</span>, in: <span class="journalTitle">Weberiana. Mitteilungen der Internationalen Carl-Maria-von-Weber-Gesellschaft e. V.</span>, Heft&#160;8 (1999), S.&#160;5–47</span>
+                                            <span class="biblio-entry"><span class="author">Eveline Bartlitz</span>, <span class="title">„Ich habe das Schicksal stets lange Briefe zu schreiben ...“. Der Brief-Nachlaß von Friedrich Wilhelm Jähns in der Staatsbibliothek zu Berlin – PK. Die Briefe Carl Baermanns an Friedrich Wilhelm Jähns</span>, in: <span class="journalTitle">Weberiana. Mitteilungen der Internationalen Carl-Maria-von-Weber-Gesellschaft e. V.</span>, Heft 8 (1999), S. 5–47</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -564,52 +548,34 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_0028" data-title="note commentary"><span class="tei_lemma">"… In der hiesigen Partitur ": </span>ehemals Archiv der musikalischen
+                                            <div class="apparatusEntry" id="C_0028" data-title="note commentary">"<span class="tei_lemma">hiesigen Partitur</span>": ehemals Archiv der musikalischen
                   Akademie München; vgl. Jähns (Werke), S. 70; heute verschollen</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_0029" data-title="note commentary"><span class="tei_lemma">"… für die Oboe arrangiert betrifft": </span>vgl. Anm. 43</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="C_0030" data-title="note commentary"><span class="tei_lemma">"… Adagio in Webers F-moll Clarinett": </span>Konzert für Klarinette und Orchester
-                  Nr. 1 f-Moll (JV 114)</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="C_0031" data-title="note commentary"><span class="tei_lemma">"… 1831 /: in Decembr :/": </span>Hier irrt <a class="persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Baermann</a>,
+                                            <div class="apparatusEntry" id="C_0031" data-title="note commentary"><span class="tei_lemma">"… 1831 /: in Decembr :/": </span>Hier irrt <a class="preview persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Baermann</a>,
                   das Konzert fand am 17. Dezember 1827 im Schauspielhaus statt. In der
                   Konzertanzeige der Kgl. privilegirten Berlinischen Zeitung (294. Stück, 15.
-                  Dezember 1827) ist beim <span class=" 7510897114105110101116116101110457511111012210111411632781144649321024577111108108">Klarinetten-Konzert Nr.1 f-Moll</span> (JV
+                  Dezember 1827) ist beim <span class="7510897114105110101116116101110457511111012210111411632781144649321024577111108108">Klarinetten-Konzert Nr.1 f-Moll</span> (JV
                   114) angemerkt: Die im Adagio hinzugefügten, dem Andenken des verewigten
                   Tonsetzers gewidmeten Gesangs-Strophen werden von den Königlichen Sängern, Herren Bader, Kikebusch und Busolt gesungen. Außer dem bereits erwähnten
-                     <span class=" 78111116116117114110111">Notturno</span> (vgl. Anm. 7) stand noch ein Duett für zwei
-                  Klarinetten mit Begleitung des Pianoforte aus <span class=" 100101114327911210111432691091099732100105328210111598117114103111">der Oper Emma di
-                     Resburgo</span> von <a class="persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> auf dem
-                  Programm, vorgetragen von <span class="A000077 A000076">Baermann Vater
-                     und Sohn</span>. In der zwei Tage später erschienenen Kritik von <a class="persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">Ludwig Rellstab</a> in der gleichen Zeitung lobte dieser
+                     <span class="78111116116117114110111">Notturno</span> (vgl. Anm. 7) stand noch ein Duett für zwei
+                  Klarinetten mit Begleitung des Pianoforte aus <span class="100101114327911210111432691091099732100105328210111598117114103111">der Oper Emma di
+                     Resburgo</span> von <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> auf dem
+                  Programm, vorgetragen von <span class="preview persons A000077 A000076" data-ref="/exist/apps/WeGA-WebApp/de/A000077.html /exist/apps/WeGA-WebApp/de/A000076.html">Baermann Vater
+                     und Sohn</span>. In der zwei Tage später erschienenen Kritik von <a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">Ludwig Rellstab</a> in der gleichen Zeitung lobte dieser
                   zwar die gute Absicht bei der Textierung der Hornstelle im zweiten Satz des
-                     <span class=" 75108971141051101011161161011104575111110122101114116115">Klarinetten-Konzerts</span>, konnte jedoch nicht behaupten, daß
-                  die musikalische Wirkung ganz glücklich gewesen sei. <a class="persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Baermann</a> spielte ein paar Tage später das Konzert noch einmal in
-                  den musikalischen Abendunterhaltungen von <span class=" 75971141083277111101115101114">Karl Moeser</span> in der
+                     <span class="75108971141051101011161161011104575111110122101114116115">Klarinetten-Konzerts</span>, konnte jedoch nicht behaupten, daß
+                  die musikalische Wirkung ganz glücklich gewesen sei. <a class="preview persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Baermann</a> spielte ein paar Tage später das Konzert noch einmal in
+                  den musikalischen Abendunterhaltungen von <span class="75971141083277111101115101114">Karl Moeser</span> in der
                   originalen Fassung mit großem Erfolg.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_0032" data-title="note commentary"><span class="tei_lemma">"… Minister Eduard von Schenk ": </span><a class="persons A008798" href="/exist/apps/WeGA-WebApp/de/A008798.html">Eduard von
-                     Schenk</a> (1788-1841), Jurist, Dichter, Dramatiker, Minister der
-                  geistlichen Angelegenheiten und des Innern in
-                        <span class=" 7725211099104101110"><span class="tei_settlement">München</span></span> 1828-1831</div>
+                                            <div class="apparatusEntry" id="C_0034" data-title="note commentary"><span class="tei_lemma">"… glaube ich Zschiesche oder Zschießke": </span>Laut Notiz in der Kgl. privilegirten Berlinischen Zeitung
+                      sang die Baß-Partie allerdings <a class="preview persons A009013" href="/exist/apps/WeGA-WebApp/de/A009013.html">J. E. Busolt</a>, Bassist an der Kgl.
+                  Oper 1822–1831.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_0033" data-title="note commentary"><span class="tei_lemma">"… die erste Stimme Bader ": </span>Karl Adam Bader (1789-1870),
-                  berühmter Tenor an der Berliner Hofoper von 1820-1849</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="C_0034" data-title="note commentary"><span class="tei_lemma">"… glaube ich Zschiesche oder Zschießke": </span>August Zschiesche (1800-1876), 1829-1861 Kgl. Hofopernsänger,
-                  gefeierter Bassist. Laut Notiz in der Kgl. privilegirten Berlinischen Zeitung
-                  (vgl. Anm. 53) sang die Baß-Partie allerdings J. E. Busolt, Bassist an der Kgl.
-                  Oper 1822-1831.</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="d32617e331" data-title="choice">recte "5": in der Vorlage "6"</div>
+                                            <div class="apparatusEntry" id="d50990e328" data-title="choice">recte "5": in der Vorlage "6"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_0035" data-title="note commentary"><span class="tei_lemma">"… Opus 33 /: Variation :/": </span>vgl. Anm. 30 und die Aussage in der 1.
@@ -627,21 +593,21 @@
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_0038" data-title="note commentary"><span class="tei_lemma">"… für Sie copieren kann laßen": </span>Drei Duette für 2 Soprane
-                  und Klavier: „<span class=" 8310132105108321091051113298101110">Se il mio ben</span>“ (JV 107), „<span class=" 7710510810810132118111108116101">Mille
-                     volte</span>“ (JV 123), „<span class=" 86974432116105329911111011511110897">Va, ti consola</span>“ (JV 125).
-                     <a class="persons A008580" href="/exist/apps/WeGA-WebApp/de/A008580.html">Franz Lachner</a> hat diese drei Duette für Orchester instrumentiert (ungedruckt). Zur
-                  Bearbeitung des <span class=" 68117101116116115">Duetts</span> JV 125 vgl. Notizen von Jähns in D-B, Weberiana Cl. IV B
+                  und Klavier: „<span class="8310132105108321091051113298101110">Se il mio ben</span>“ (JV 107), „<span class="7710510810810132118111108116101">Mille
+                     volte</span>“ (JV 123), „<span class="86974432116105329911111011511110897">Va, ti consola</span>“ (JV 125).
+                     <a class="preview persons A008580" href="/exist/apps/WeGA-WebApp/de/A008580.html">Franz Lachner</a> hat diese drei Duette für Orchester instrumentiert (ungedruckt). Zur
+                  Bearbeitung des <span class="68117101116116115">Duetts</span> JV 125 vgl. Notizen von Jähns in D-B, Weberiana Cl. IV B
                   [Mappe IV], Nr. 786 und 788.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_0039" data-title="note commentary"><span class="tei_lemma">"… ": </span>Der folgende Text ist am oberen
+                                            <div class="apparatusEntry" id="C_0039" data-title="note commentary">"<span class="tei_lemma">Meine Familie erfreut … kön n ten.</span>": Am oberen
                   Rand von Bl. 4r entgegen der Schriftrichtung notiert.</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A043111/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -663,10 +629,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043111</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043111</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 2. Juni 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -692,6 +657,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -702,6 +668,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -736,6 +703,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

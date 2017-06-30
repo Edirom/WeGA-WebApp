@@ -16,8 +16,8 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-10-11T13:09:58.843778Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301" />
         <meta property="dc:description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
         <meta name="description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
@@ -51,6 +51,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -83,8 +84,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -185,13 +190,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030301.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030301.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Anonymus</a>
-                        </li>
-                        <li><a>Schriften</a>
-                        </li>
-                        <li><span>A030301</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Anonymus</a></li>
+                        <li><a>Schriften</a></li>
+                        <li><span>A030301</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,38 +234,32 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002343" /> <span title="Calderón de la Barca, Pedro">Calderón de la Barca, Pedro</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000673" /> <span title="Grétry, André-Ernest-Modeste">Grétry, André-Ernest-Modeste</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008720" /> <span title="Gries, Johann Diederich">Gries, Johann Diederich</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001241" /> <span title="Malsburg, Ernst von der">Malsburg, Ernst von der</span> 
                                 </label><label class="btn gradient-light">
@@ -283,11 +275,14 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A021274" /> <span title="Das Leben ein Traum">Das Leben ein Traum</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020526" /> <span title="Die großen Kinder">Die großen Kinder</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020960" /> <span title="Die Jungfrau von Orleans">Die Jungfrau von Orleans</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020539" /> <span title="Elisabetta regina d'Inghilterra">Elisabetta regina d'Inghilterr…</span> 
@@ -298,8 +293,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -311,8 +305,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -334,15 +327,15 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <div class="docPart">
-                                            <p><span class="tei_date">Am 29. Oct.</span> <span class="tei_hi_spaced_out"><span class=" 68105101321031141112231011103275105110100101114">Die großen Kinder</span></span>. Dem. <span class="tei_hi_spaced_out">Radicke</span>, die jüngere, besitzt von der Natur  durchaus nichts, was zu der naiven <span class=" 7797110111110">Manon</span> gehört, und die Kunst ersetzte hier es auch nicht, so daß die ganze Darstellung dadurch nicht das gewohnte lebendige Colorit erhielt. Hierauf die komische Oper: <span class="tei_hi_spaced_out"><span class=" 68971153271101104101105109110105223">Das Geheimniß</span></span>, worin Dem. <span class=" 829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span>, die ältere, die <span class=" 72111102114228116104105110">Hofräthin</span> gab. Sie zeigte abermals, daß sie oft auf der Bühne gesungen habe, und verzierte am unrechten Orte, brachte Variazionen an, wo keine hingehören, suchte dadurch zu bestechen, gewann sich aber nur getheilten Beifall damit. Als Spielrolle ist diese unbedeutend.</p>
-                                            <p><span class="tei_date">Am 31. Oct.</span> <span class="tei_hi_spaced_out"><span class=" 741111049711011010132118111110326511499">Johanne von Arc</span></span>. So heißt bei uns die <span class="works A020960" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020960.html">Jungfrau von Orleans</span>. Dem <span class="tei_hi_spaced_out">Radicke</span> d. ä. beschloß ihre Gastdarstellungen mit dieser Rolle. Allerdings ein kühnes Unternehmen. Doch liegt wieder auf der andern Seite in diesem Charakter ein so unwiderstehlicher Zauber, daß, wenn auf der einen Seite eine höchstgebildete Künstlerin dazu nöthig ist, um ihn würdig darzustellen, auf der andern eben wieder die einfachste Sitte, ein fast schüchternes Talent ihm auch wieder einen eigenen Reiz würde ertheilen können. Dem <span class=" 829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span> wird sich selbst unter die Classe der erstern nicht stellen, und was das Letztre betrifft, trat ihr eben hier jene Routine, die ihr sonst zu manchem Guten verhalf, recht störend in den Weg. Schon im Vorspiele, wo das ruhigste Spiel durch die Situation selbst bedingt ist, machte sie sich sehr viel auf dem Theater zu thun, und so begleitete sie Unruhe durch das ganze Stück. Uebrigens zwingt sie ihre an sich recht verständliche Stimme zu einer gewaltigen Höhe, wodurch sie sich nicht selten überschreiet, und stellt ihren wohlgewachsnen Körper in so schiefe Lagen, daß nur Verdrehungen daraus hervorgehn können. Möchte sie auf eine Bühne kommen, wo seltnes und gemessenes Spiel und ein Kunstrichter ihr zu Theil würde, der sie auf ihre angenommenen Fehler aufmerksam machte, und durch deren Wegräumung das wahre Gute, das in ihr liegt, wieder aufkeimen ließe.</p>
-                                            <p><span class="tei_date">Am 3, Nov.</span> <span class="tei_hi_spaced_out"><span class="works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul, der Blaubart</span></span>. Oper von <a class="persons A000673" href="/exist/apps/WeGA-WebApp/de/A000673.html">Gretry</a>.</p>
-                                            <p><span class="tei_date">Am 4. Nov.</span> <span class="tei_hi_antiqua"><span class="works A020539" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020539.html">Elisabetta</span></span>.</p>
+                                            <p><span class="tei_date">Am 29. Oct.</span> <span class="tei_hi_spaced_out"><span class="preview works A020526" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020526.html">Die großen Kinder</span></span>. Dem. <span class="tei_hi_spaced_out">Radicke</span>, die jüngere, besitzt von der Natur  durchaus nichts, was zu der naiven <span class="7797110111110">Manon</span> gehört, und die Kunst ersetzte hier es auch nicht, so daß die ganze Darstellung dadurch nicht das gewohnte lebendige Colorit erhielt. Hierauf die komische Oper: <span class="tei_hi_spaced_out"><span class="68971153271101104101105109110105223">Das Geheimniß</span></span>, worin Dem. <span class="829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span>, die ältere, die <span class="72111102114228116104105110">Hofräthin</span> gab. Sie zeigte abermals, daß sie oft auf der Bühne gesungen habe, und verzierte am unrechten Orte, brachte Variazionen an, wo keine hingehören, suchte dadurch zu bestechen, gewann sich aber nur getheilten Beifall damit. Als Spielrolle ist diese unbedeutend.</p>
+                                            <p><span class="tei_date">Am 31. Oct.</span> <span class="tei_hi_spaced_out"><span class="preview works A020960" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020960.html">Johanne von Arc</span></span>. So heißt bei uns die <span class="preview works A020960" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020960.html">Jungfrau von Orleans</span>. Dem <span class="tei_hi_spaced_out">Radicke</span> d. ä. beschloß ihre Gastdarstellungen mit dieser Rolle. Allerdings ein kühnes Unternehmen. Doch liegt wieder auf der andern Seite in diesem Charakter ein so unwiderstehlicher Zauber, daß, wenn auf der einen Seite eine höchstgebildete Künstlerin dazu nöthig ist, um ihn würdig darzustellen, auf der andern eben wieder die einfachste Sitte, ein fast schüchternes Talent ihm auch wieder einen eigenen Reiz würde ertheilen können. Dem <span class="829710010599107101"><span class="tei_hi_spaced_out">Radicke</span></span> wird sich selbst unter die Classe der erstern nicht stellen, und was das Letztre betrifft, trat ihr eben hier jene Routine, die ihr sonst zu manchem Guten verhalf, recht störend in den Weg. Schon im Vorspiele, wo das ruhigste Spiel durch die Situation selbst bedingt ist, machte sie sich sehr viel auf dem Theater zu thun, und so begleitete sie Unruhe durch das ganze Stück. Uebrigens zwingt sie ihre an sich recht verständliche Stimme zu einer gewaltigen Höhe, wodurch sie sich nicht selten überschreiet, und stellt ihren wohlgewachsnen Körper in so schiefe Lagen, daß nur Verdrehungen daraus hervorgehn können. Möchte sie auf eine Bühne kommen, wo seltnes und gemessenes Spiel und ein Kunstrichter ihr zu Theil würde, der sie auf ihre angenommenen Fehler aufmerksam machte, und durch deren Wegräumung das wahre Gute, das in ihr liegt, wieder aufkeimen ließe.</p>
+                                            <p><span class="tei_date">Am 3, Nov.</span> <span class="tei_hi_spaced_out"><span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul, der Blaubart</span></span>. Oper von <a class="preview persons A000673" href="/exist/apps/WeGA-WebApp/de/A000673.html">Gretry</a>.</p>
+                                            <p><span class="tei_date">Am 4. Nov.</span> <span class="tei_hi_antiqua"><span class="preview works A020539" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020539.html">Elisabetta</span></span>.</p>
                                         </div>
                                         <div class="docPart">
-                                            <p><span class="tei_date">Den 7. Nov.</span> Zum erstenmal: <span class="tei_hi_spaced_out"><span class=" 689711532761019810111032101105110328411497117109">Das Leben ein Traum</span></span>, Schauspiel in vier Akten, von <span class="tei_hi_spaced_out"><a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a></span>, übersetzt von <span class=" 71114105101115"><span class="tei_hi_spaced_out">Gries</span></span>.</p>
-                                            <p>Als in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> das erste <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderonsche</a> Schauspiel im Jahr 1816 aufgeführt wurde, <span class="tei_hi_spaced_out"><span class=" 1001011143211511697110100104971021161013280114105110122">der standhafte Prinz</span></span>, fand man es gerathen, der Aufführung im <span class="tei_bibl"><span class="tei_hi_spaced_out">dramaturgischen Wochenblatt</span> (zweitem Jahrgang No. 16.)</span> Andeutungen über das Nationelle des Spanischen Theaters und der Manier <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> vorausgehn zu lassen. Dergleichen bedurfte es wohl bei uns schon darum nicht, weil jeder gebildete Theaterfreund die geistreiche Auseinandersetzung dieses Stücks in <span class="tei_bibl"><span class=" 7811446325655455657321001011143276101105112122105103101114327511711011511698108228116116101114">Nr. 87-89 der <span class=" 76101105112122105103101114"><span class="tei_settlement">Leipziger</span></span> <span class="tei_hi_spaced_out">Kunstblätter</span></span></span> (eines Journals, dessen Unterbrechung wir mit wahrem Schmerz vernehmen) von dem Herausgeber, Prof. <span class="tei_hi_spaced_out"><a class="persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">Wendt</a></span>, noch in gutem Andenken hatte. In voraus schien man darüber im Klaren und in vollkommner Eintracht zu seyn, daß jede der vier Bearbeitungen, unter welcher der Direction die <span class="tei_cb"> ¦ </span>Wahl frei stand, uns doch nur eine ausländische Frucht mit deutscher Brühe und Kochkunst auftischte, wobei es doch immer erst auf die Frage ankäme, ob unser geistiger Gaum nicht auch die eigenthümliche fremde Zurichtung vertragen könne? Soll es mit <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, so fragten viele, etwa gehen, wie mit <a class="persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ]? Was jetzt auf allen <span class="tei_hi_spaced_out">bessern</span> Bühnen geschieht, die Aufführung nach der treuesten metrischen Uebersetzung von <a class="persons A003453" href="/exist/apps/WeGA-WebApp/de/A003453.html">Schlegel</a> (oder auch von <a class="persons A002030" href="/exist/apps/WeGA-WebApp/de/A002030.html">Voß</a>, oder, wozu es gewiß noch kommen wird, nach einer meisterhaften Verschmelzung von beiden) mit Verbannung jener seit 40 Jahren auf unsern Bühnen nur zu oft form- und wesenloser Schatten-Spiele, Bearbeitungen nach <a class="persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ] genannt? Sollte dasselbe Unwesen nun auch mit <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a> wieder unter uns Jahre lang getrieben werden, bis wir endlich doch auch zur unverfälschten Urform zurückzugehn uns ermuthigen würden? Laßt und sogleich mit dem besten und ächtesten anfangen! Die Direction wählte wirklich die bis jetzt noch nirgends übertroffene, in Versmaß und Rhythmus sich ganz genau dem Spanier anschmiegende <span class="tei_hi_spaced_out">Griesische</span> Uebersetzung und erlaubte sich nur Weglassungen im Einzelnen oder im Ganzen da, wo gewisse Scenen für die allererste Aufführung überhaupt noch nicht geeignet schienen. Die in lauten Beifallsäußerungen allgemein und oft ausbrechende Zufriedenheit eines <span class="tei_hi_spaced_out">sehr zahlreichen</span> Publikums hat dieß Zutrauen der Direction vollkommen gerechtfertigt. Aber unsre Schauspieler, welchen die drei Hauptrollen zugetheilt waren, hatten sich’s auch rechtschaffen angelegen seyn lassen. Es war alles trefflich einstudirt und durch <span class="tei_hi_spaced_out">viele</span> Proben zur Reife gebracht worden. So stand Leistung und Anerkennung in steigender Wechselwirkung. Wohl war in den ersten zwei Akten dem ganz Unvorbereiteten vieles befremdend, ja verwirrend. Doch wurde viel Einzelnes rein aufgefaßt und beklatscht. Als aber die hohe Selbstbekämpfung <span class=" 83105103105115109117110100115">Sigismunds</span> eintrat, als er den köstlichen Monolog: <span class="tei_hi_spaced_out">Dies ist Wahrheit</span> u.s.w. so ausgezeichnet schön aussprach, da schien in jeder Brust jede Dissonanz wie aufgelöst, und, wie ein electrischer Funken, durchlief es alle Reihen. Die hohe Allegorie dieses Lebenstraums war auch den Ungeübtern verständlich, und das hier waltende christlich-mystische Prinzip, wenn auch nicht überall der klaren Einsicht, doch dem Gefühle nahe gebracht. Doch verbarg sich hierbei auch der Gebildete nicht, daß beim genauen Eindringen ins Innere, nach öfteren Wiederholungen, noch viel Herrliches sich aufschließen werde, wozu auch wohl die Vergleichung dieses weltlichen Schauspiels mit <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> <span class="tei_hi_antiqua"><span class=" 6511711611132115971031149710910111011697108329710810810110311111410599111">Auto sagramental allegorico</span></span>, der auch <span class="tei_hi_spaced_out"><span class=" 1009711532761019810111032101105110328411497117109">das Leben ein Traum</span></span> heißt, und von  welchem uns der <a class="persons A001241" href="/exist/apps/WeGA-WebApp/de/A001241.html">Baron von <span class="tei_hi_spaced_out">Malsburg</span></a> in der Vorrede zum ersten Theil seiner, in diesen Tagen erscheinenden Uebersetzungen von <a class="persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, eine sehr anziehende Nachricht erwarten läßt, noch manchen Fingerzeig ertheilen dürfte. Nichts würde in der That ungerechter seyn, als sein Endurtheil auf diese erste Vorstellung <span class="tei_hi_spaced_out">allein</span> begründen wollen. Aber der Sieg der Griesischen Uebersetzung über alle Nachklänge – um nicht ein stärkeres Wort zu brauchen – war doch schon bei dieser Vorstellung völlig entschieden, da sehr viele das Stück aus andern Bearbeitungen schon kannten und also vergleichen konnten.</p>
-                                            <p>(Die <a class="writings A030302" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030302.html">Fortsetzung</a> folgt.)</p>
+                                            <p><span class="tei_date">Den 7. Nov.</span> Zum erstenmal: <span class="tei_hi_spaced_out"><span class="preview works A021274" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021274.html">Das Leben ein Traum</span></span>, Schauspiel in vier Akten, von <span class="tei_hi_spaced_out"><a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a></span>, übersetzt von <a class="preview persons A008720" href="/exist/apps/WeGA-WebApp/de/A008720.html"><span class="tei_hi_spaced_out">Gries</span></a>.</p>
+                                            <p>Als in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> das erste <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderonsche</a> Schauspiel im Jahr 1816 aufgeführt wurde, <span class="tei_hi_spaced_out"><span class="1001011143211511697110100104971021161013280114105110122">der standhafte Prinz</span></span>, fand man es gerathen, der Aufführung im <span class="tei_bibl"><span class="tei_hi_spaced_out">dramaturgischen Wochenblatt</span> (zweitem Jahrgang No. 16.)</span> Andeutungen über das Nationelle des Spanischen Theaters und der Manier <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> vorausgehn zu lassen. Dergleichen bedurfte es wohl bei uns schon darum nicht, weil jeder gebildete Theaterfreund die geistreiche Auseinandersetzung dieses Stücks in <span class="tei_bibl">Nr. 87-89 der <span class="tei_placeName"><span class="76101105112122105103101114">Leipziger</span></span> <span class="tei_hi_spaced_out">Kunstblätter</span></span> (eines Journals, dessen Unterbrechung wir mit wahrem Schmerz vernehmen) von dem Herausgeber, Prof. <span class="tei_hi_spaced_out"><a class="preview persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">Wendt</a></span>, noch in gutem Andenken hatte. In voraus schien man darüber im Klaren und in vollkommner Eintracht zu seyn, daß jede der vier Bearbeitungen, unter welcher der Direction die <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>Wahl frei stand, uns doch nur eine ausländische Frucht mit deutscher Brühe und Kochkunst auftischte, wobei es doch immer erst auf die Frage ankäme, ob unser geistiger Gaum nicht auch die eigenthümliche fremde Zurichtung vertragen könne? Soll es mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, so fragten viele, etwa gehen, wie mit <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ]? Was jetzt auf allen <span class="tei_hi_spaced_out">bessern</span> Bühnen geschieht, die Aufführung nach der treuesten metrischen Uebersetzung von <a class="preview persons A003453" href="/exist/apps/WeGA-WebApp/de/A003453.html">Schlegel</a> (oder auch von <a class="preview persons A002030" href="/exist/apps/WeGA-WebApp/de/A002030.html">Voß</a>, oder, wozu es gewiß noch kommen wird, nach einer meisterhaften Verschmelzung von beiden) mit Verbannung jener seit 40 Jahren auf unsern Bühnen nur zu oft form- und wesenloser Schatten-Spiele, Bearbeitungen nach <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ] genannt? Sollte dasselbe Unwesen nun auch mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a> wieder unter uns Jahre lang getrieben werden, bis wir endlich doch auch zur unverfälschten Urform zurückzugehn uns ermuthigen würden? Laßt und sogleich mit dem besten und ächtesten anfangen! Die Direction wählte wirklich die bis jetzt noch nirgends übertroffene, in Versmaß und Rhythmus sich ganz genau dem Spanier anschmiegende <span class="tei_hi_spaced_out">Griesische</span> Uebersetzung und erlaubte sich nur Weglassungen im Einzelnen oder im Ganzen da, wo gewisse Scenen für die allererste Aufführung überhaupt noch nicht geeignet schienen. Die in lauten Beifallsäußerungen allgemein und oft ausbrechende Zufriedenheit eines <span class="tei_hi_spaced_out">sehr zahlreichen</span> Publikums hat dieß Zutrauen der Direction vollkommen gerechtfertigt. Aber unsre Schauspieler, welchen die drei Hauptrollen zugetheilt waren, hatten sich’s auch rechtschaffen angelegen seyn lassen. Es war alles trefflich einstudirt und durch <span class="tei_hi_spaced_out">viele</span> Proben zur Reife gebracht worden. So stand Leistung und Anerkennung in steigender Wechselwirkung. Wohl war in den ersten zwei Akten dem ganz Unvorbereiteten vieles befremdend, ja verwirrend. Doch wurde viel Einzelnes rein aufgefaßt und beklatscht. Als aber die hohe Selbstbekämpfung <span class="83105103105115109117110100115">Sigismunds</span> eintrat, als er den köstlichen Monolog: <span class="tei_hi_spaced_out">Dies ist Wahrheit</span> u.s.w. so ausgezeichnet schön aussprach, da schien in jeder Brust jede Dissonanz wie aufgelöst, und, wie ein electrischer Funken, durchlief es alle Reihen. Die hohe Allegorie dieses Lebenstraums war auch den Ungeübtern verständlich, und das hier waltende christlich-mystische Prinzip, wenn auch nicht überall der klaren Einsicht, doch dem Gefühle nahe gebracht. Doch verbarg sich hierbei auch der Gebildete nicht, daß beim genauen Eindringen ins Innere, nach öfteren Wiederholungen, noch viel Herrliches sich aufschließen werde, wozu auch wohl die Vergleichung dieses weltlichen Schauspiels mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> <span class="tei_hi_antiqua"><span class="6511711611132115971031149710910111011697108329710810810110311111410599111">Auto sagramental allegorico</span></span>, der auch <span class="tei_hi_spaced_out"><span class="preview works A021274" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021274.html">das Leben ein Traum</span></span> heißt, und von  welchem uns der <a class="preview persons A001241" href="/exist/apps/WeGA-WebApp/de/A001241.html">Baron von <span class="tei_hi_spaced_out">Malsburg</span></a> in der Vorrede zum ersten Theil seiner, in diesen Tagen erscheinenden Uebersetzungen von <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, eine sehr anziehende Nachricht erwarten läßt, noch manchen Fingerzeig ertheilen dürfte. Nichts würde in der That ungerechter seyn, als sein Endurtheil auf diese erste Vorstellung <span class="tei_hi_spaced_out">allein</span> begründen wollen. Aber der Sieg der Griesischen Uebersetzung über alle Nachklänge – um nicht ein stärkeres Wort zu brauchen – war doch schon bei dieser Vorstellung völlig entschieden, da sehr viele das Stück aus andern Bearbeitungen schon kannten und also vergleichen konnten.</p>
+                                            <p>(Die <a class="preview writings A030302" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030302.html">Fortsetzung</a> folgt.)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -377,7 +370,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg.&#160;2, Nr.&#160;281 (25. November 1818), S.&#160;2v</p>
+                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 281 (25. November 1818), S. 2v</p>
                                 
                                 <div>
                                     
@@ -398,7 +391,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A030301/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -420,10 +413,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 11. Oktober 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -449,6 +441,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -459,6 +452,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -493,6 +487,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

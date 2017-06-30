@@ -5,6 +5,12 @@
             <h2 data-template="lang:translate">filter</h2>
             <!--            <h4 data-template="lang:translate">chronology</h4>-->
             
+        	<h4 data-template="lang:translate">surnames</h4>
+        	<select multiple="multiple" data-template="facets:select" name="surnames"/>
+        	
+        	<h4 data-template="lang:translate">forenames</h4>
+        	<select multiple="multiple" data-template="facets:select" name="forenames"/>
+            
             <h4 data-template="lang:translate">residences</h4>
             <select multiple="multiple" data-template="facets:select" name="residences"/>
             
@@ -22,18 +28,5 @@
             
         </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 searchResults" data-template="search:result-page">
-        <h2 data-template="search:results-count">124 Suchergebnisse</h2>
-        <ul class="pagination" data-template="app:pagination">
-            <li><a href="#">&lt;</a></li>
-        </ul>
-        <ul class="media-list">
-            <li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
-                <div data-template="search:dispatch-preview"/>
-            </li>
-        </ul>
-        <ul class="pagination" data-template="app:pagination">
-            <li><a href="#">&lt;</a></li>
-        </ul>
-    </div>
+	<div data-template="templates:include" data-template-path="templates/includes/search-results.html"/>
 </div>

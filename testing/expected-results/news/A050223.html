@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-05-05T23:39:55.061111Z" />
+        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050223" />
         <meta property="dc:description" content="Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar …" />
         <meta name="description" content="Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar …" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050223.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050223.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,14 +209,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
-                        </li>
-                        <li><span>A050223</span> 
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a></li>
+                        <li><span>A050223</span> </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -231,30 +229,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009001" /> <span title="Stadler, Peter">Stadler, Peter</span> 
@@ -274,7 +265,7 @@
                                     <div class="docPart">
                                         <p>Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar „zu früh“ bezugsfertig war?? Lippische Sparsamkeit und Planung machens möglich! Mehr als vier Wochen vor dem ursprünglich ins Auge gefassten Termin konnte das <a href="http://muwi-detmold-paderborn.de">Musikwissenschaftliche Seminar Detmold/Paderborn <i class="fa fa-external-link"></i></a> in seine neuen Räume „auf dem Forum Wissenschaft | Bibliothek | Musik“ in der Hornschen Straße 39 umziehen – in unmittelbare Nachbarschaft zur (für die WeGA sehr wichtigen) <a href="http://www.llb-detmold.de">Lippischen Landesbibliothek <i class="fa fa-external-link"></i></a> und zum <a href="http://www.archive.nrw.de/lav/abteilungen/ostwestfalen_lippe/profil_zustaendigkeit/index.php">Landesarchiv NRW <i class="fa fa-external-link"></i></a>. Hier ist kleiner „Campus“ für die Wissenschaft entstanden, zu dem in Städten dieser Größenordnung Vergleichbares kaum zu finden sein dürfte. Das neue, lichtdurchflutete Bibliotheksgebäude vereint nicht nur nach vielen Jahren wieder die Bestände der Bibliothek der Hochschule für Musik und des Musikwissenschaftlichen Seminars, sondern bezieht die Landesbibliothek mit ihren hervorragenden Musikbeständen (vornemlich aus dem 19. und 20. Jahrhundert) mit ein, denn es gibt nun einen gemeinsamen Zugang und eine gemeinsame Ausleihe.</p>
                                         <p>Für die WeGA war dieser Umzug in das neue Gebäude, das auf zwei Stockwerken auch die Musikwissenschaft beherbergt, zwar mit viel Arbeit (und dem stapelweisen „Ausmisten“ alter Korrekturen) verbunden, aber das fast zweiwöchige Räumen, Umziehen und wieder neu Aufstellen hat sich in jeder Hinsicht gelohnt: Das neue Gebäude bietet ein hervorragendes Ambiente, ist architektonisch in jeder Hinsicht gelungen und vor allem vereint es nun sämtliche digitalen Projekte des „Muwi“ auf einem Flur: Außer den Mitarbeitern der WeGA sitzen nun in direkter Nachbarschaft auch Mitarbeiterinnen und Mitarbeiter des Akademie-Projekts „<a href="http://www.beethovens-werkstatt.de">Beethovens Werkstatt <i class="fa fa-external-link"></i></a>“, der BMBF-Projekte „<a href="https://de.dariah.eu/">DARIAH-DE <i class="fa fa-external-link"></i></a>“ und „<a href="http://www.freischuetz-digital.de">Freischütz Digital <i class="fa fa-external-link"></i></a>“, des <a href="http://zenmem.de">Zentrums „Musik – Edition – Medien“ <i class="fa fa-external-link"></i></a> und des DFG-Projekts „<a href="http://www.hoftheater-detmold.de">Detmolder Hoftheater <i class="fa fa-external-link"></i></a>“. Die befruchtende Atmosphäre dieses neuen Miteinander wird sich hoffentlich künftig auch in den Ergebnissen der Arbeiten bemerkbar machen!</p>
-                                        <p>Die vielfältigen Materialien der WeGA konnten – entgegen erster Erwartungen –&#160;nun sehr viel großzügiger aufgestellt werden, so dass auch die Hilfskräfte des Projekts nun jederzeit Zugang haben. Auch die kleine, aber feine Sammlung von Erst- und Frühdrucken Weberscher Werke fand hier eine neue Bleibe. Glücklicherweise konnten die Telefonnummern der WeGA-Mitarbeiter teilweise übernommen werden: <a class="persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> ist ab sofort unter 05231 975-676 zu erreichen und <a class="persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> wie gewohnt unter 05231 975-663. Während die Postleitzahl blieb, lautet die neue Anschrift nun: „Hornsche Straße 39“. Und wer einen Blick „von außen“ auf das neue, am 25. September 2015 offiziell eingeweihte Areal werfen möchte, sollte dies unter  <a href="http://www.forum-detmold.de">http://www.forum-detmold.de <i class="fa fa-external-link"></i></a> tun.</p>
+                                        <p>Die vielfältigen Materialien der WeGA konnten – entgegen erster Erwartungen – nun sehr viel großzügiger aufgestellt werden, so dass auch die Hilfskräfte des Projekts nun jederzeit Zugang haben. Auch die kleine, aber feine Sammlung von Erst- und Frühdrucken Weberscher Werke fand hier eine neue Bleibe. Glücklicherweise konnten die Telefonnummern der WeGA-Mitarbeiter teilweise übernommen werden: <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> ist ab sofort unter 05231 975-676 zu erreichen und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> wie gewohnt unter 05231 975-663. Während die Postleitzahl blieb, lautet die neue Anschrift nun: „Hornsche Straße 39“. Und wer einen Blick „von außen“ auf das neue, am 25. September 2015 offiziell eingeweihte Areal werfen möchte, sollte dies unter  <a href="http://www.forum-detmold.de">http://www.forum-detmold.de <i class="fa fa-external-link"></i></a> tun.</p>
                                     </div>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Sonntag, 27. September 2015</p>
@@ -327,7 +318,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A050223/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -349,10 +340,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050223</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050223</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 5. Mai 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -378,6 +368,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -388,6 +379,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -422,6 +414,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

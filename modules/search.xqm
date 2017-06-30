@@ -15,6 +15,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace functx="http://www.functx.com";
 
 (: 
  : a subset of $config:wega-docTypes. 
@@ -26,7 +27,7 @@ declare variable $search:wega-docTypes := for $func in wdt:members('search') ret
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'docTypeSubClass', 'sex');
+    'fromDate', 'toDate', 'undated', 'docTypeSubClass', 'sex', 'surnames', 'forenames');
 
 (:~
  : Main function called from the templating module
@@ -63,7 +64,7 @@ declare
 declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
     element {name($node)} {
         $node/@*[not(name(.) = 'value')],
-        if($model('query-string') ne '') then attribute {'value'} {$model('query-string')}
+        if($model('query-string-org') ne '') then attribute {'value'} {$model('query-string-org')}
         else ()
     }
 };
@@ -95,6 +96,7 @@ declare
         let $docType := 
             (: Preview orgs with the person template :)
             if(config:is-org($docID)) then 'persons'
+            else if(config:is-var($docID)) then 'documents'
             else config:get-doctype-by-id($docID)
 (:        let $log := util:log-system-out($model('docType') || ' - ' || $model('docID')):)
         (: Need to distinguish between contacts and other person previews :)
@@ -155,7 +157,7 @@ declare %private function search:query($model as map(*)) as map(*)* {
     let $searchString := $model('query-string')
     let $docTypes := $model('query-docTypes')
     let $docTypes := 
-        if($docTypes = 'all') then $search:wega-docTypes
+        if($docTypes = 'all') then ($search:wega-docTypes, 'var') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
         else $search:wega-docTypes[.=$docTypes]
     return 
         if($model('dates')) then $docTypes ! search:exact-date($model('dates'), $model('filters'), .)
@@ -202,15 +204,55 @@ declare %private function search:exact-date($dates as xs:date*, $filters as map(
         $docs ! map { 'doc' := . }
 };
 
+(:~
+ : Parse the query string and create an XML query element for the lucene search
+~:)
 declare %private function search:create-lucene-query-element($searchString as xs:string) as element(query) {
-    let $tokens := tokenize($searchString, '\s+')
-    return
+    let $groups := analyze-string($searchString, '(-?"(.+?)")')/* (: split into fn:match – for expressions in parentheses – and fn:non-match elements :)
+    let $queryElement := function($elementName as xs:string, $token as item()) as element() {
+        element {$elementName} {
+            attribute occur {
+                if(starts-with($token, '-')) then 'not'
+                else if($token instance of node() and $token/ancestor::fn:group[starts-with(., '-')]) then 'not'
+                else 'must'
+            },
+            if(starts-with($token, '-')) then substring($token, 2)
+            else string($token)
+        }
+    }
+    let $term-search := <bool boost="5">{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! $queryElement('term', .)))}</bool>
+    (:  Suppress additional searches when the search string consists of expressions in parentheses only  :)
+    let $wildcard-search := if($groups[not(functx:all-whitespace(self::fn:non-match))]) then <bool boost="2">{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! $queryElement('wildcard', lower-case(.) || '*')))}</bool> else ()
+    let $regex-search := if($groups[not(functx:all-whitespace(self::fn:non-match))]) then <bool>{$groups ! (if(./self::fn:match) then $queryElement('phrase', .//fn:group[@nr='2']) else (tokenize(str:normalize-space(.), '\s') ! search:additional-mappings(lower-case(.))))}</bool> else ()
+    let $q :=
         <query>
-            <bool>
-                <bool boost="2">{$tokens ! <term occur="must">{.}</term>}</bool>
-                <bool>{$tokens ! <wildcard occur="must">{lower-case(.)}*</wildcard>}</bool>
-            </bool>
+            <bool>{
+                $term-search,
+                $wildcard-search,
+                $regex-search
+            }</bool>
         </query>
+(:    let $log := util:log-system-out($groups):)
+(:    let $log := util:log-system-out($q):)
+    return 
+        $q
+};
+
+(:~
+ : Helper function for search:create-lucene-query-element()
+ : Adds additional character mappings to the search, e.g. "Rowenstrunk -> Roewenstrunk"
+ : This is applied *after* the unicode normalization, so the input $str is already without diacritics
+ :
+ : @param $str a search token, derived from the input query string
+ : @return a <regex> element for use in XML lucene syntax
+~:)
+declare %private function search:additional-mappings($str as xs:string) as element(regex) {
+    <regex occur="must">{
+        functx:replace-multi($str, 
+            ('"', '[ck]', 'ae?', 'oe?', 'ue?', 'ß', 'th?', '((ph)|f)', '[yi]e?'), 
+            ('', '(c|k)', 'ae?', 'oe?', 'ue?', 'ss', 'th?', '((ph)|f)', '[yi]e?') 
+        )
+    }.*</regex>
 };
 
 (:~
@@ -235,7 +277,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filtered-coll := 
       if($filter) then 
         if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
-        else if($filter = 'textType') then search:textType-filter($collection, $docType, $filters)
+        else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
     let $newFilter := 
@@ -321,7 +363,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
  : Helper function for search:filter-result()
  : Applies textType filter for backlinks
 ~:)
-declare %private function search:textType-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
+declare %private function search:textType-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
     wdt:lookup($filters?textType, 
         $collection
     )('sort')(map {})
@@ -386,14 +428,16 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
 ~:)
 declare %private function search:prepare-search-string() as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
-    let $query-string := str:sanitize(string-join(request:get-parameter('q', ''), ' '))
+    let $query-string-org := request:get-parameter('q', '')
+    let $query-string := str:sanitize(string-join($query-string-org, ' '))
     let $dates := analyze-string($query-string, '\d{4}-\d{2}-\d{2}')/fn:match/text()
         (:if(string-length($query-string) ge 400) then date:parse-date($query-string)
         else ():)
     return
         map {
-            'query-string' := $query-string, 
+            'query-string' := wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
             'query-docTypes' := $query-docTypes,
+            'query-string-org' := $query-string-org, 
             'dates' := $dates
         }
 };

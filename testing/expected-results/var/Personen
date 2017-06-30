@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2016-12-08T16:32:37.982+01:00" />
+        <meta property="dc:date" content="2017-06-30T14:53:46.258+02:00" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Personen" />
         <meta property="dc:description" content="Eine Liste von (historischen) Personen aus dem Umfeld der Editionen der Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von (historischen) Personen aus dem Umfeld der Editionen der Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Persons" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Persons" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -208,10 +210,8 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a></li>
                         <li>Personen</li>
                     </ol>
                 </div>
@@ -231,6 +231,14 @@
         <div class="allFilter">
             <h2>Filter</h2>
             
+            
+        	<h4>Nachnamen</h4>
+        	<select multiple="multiple" name="surnames" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+                                        <option value="">Alle</option></select>
+        	
+        	<h4>Vornamen</h4>
+        	<select multiple="multiple" name="forenames" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+                                        <option value="">Alle</option></select>
             
             <h4>Wirkorte</h4>
             <select multiple="multiple" name="residences" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
@@ -254,29 +262,35 @@
             
         </div>
     </div>
-    <div class="col-md-9 col-md-pull-3 searchResults">
-        <h2>10114 Suchergebnisse</h2>
-        <ul class="pagination">
-                                    <li class="disabled"><span>« zurück</span>
-                                    </li>
-                                    <li class="active"><span>1</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">2</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=3">3</a>
-                                    </li>
-                                    <li class="disabled"><span>…</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=1011">1011</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=1012">1012</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">weiter »</a>
-                                    </li>
-                                </ul>
-        <ul class="media-list">
-            <li class="media">
-                <div>
+	<div class="col-md-9 col-md-pull-3 searchResults">
+	<h2>10237 Suchergebnisse</h2>
+	<div class="row">
+		<div class="col-sm-8">
+			<ul class="pagination">
+                                            <li class="disabled"><span>« zurück</span></li>
+                                            <li class="active"><span>1</span></li>
+                                            <li><a class="page-link" href="?page=2">2</a></li>
+                                            <li><a class="page-link" href="?page=3">3</a></li>
+                                            <li class="disabled"><span>…</span></li>
+                                            <li><a class="page-link" href="?page=1023">1023</a></li>
+                                            <li><a class="page-link" href="?page=1024">1024</a></li>
+                                            <li><a class="page-link" href="?page=2">weiter »</a></li>
+                                        </ul>
+		</div>
+		<div class="col-sm-4">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">pro Seite</a></li>
+				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
+				<li><a class="page-link" href="?limit=25">25</a></li>
+				<li><a class="page-link" href="?limit=50">50</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<ul class="media-list">
+				<li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002750.html">
             
@@ -298,8 +312,7 @@
                 <div class="pull-left">
                     <i class="fa fa-user media-object"></i>
                 </div>
-                <div class="media-body"> <span>Abälard, Peter; Abaelard, Pierre</span> <span class="nameDesc">Weitere Namen</span>
-                                                        </div>
+                <div class="media-body"> <span>Abälard, Peter; Abaelard, Pierre</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
@@ -311,8 +324,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -322,7 +333,6 @@
                     <span> in Saint-Marcel bei Chalon-sur-Saône</span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -344,9 +354,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007120.html">
             
@@ -368,8 +378,7 @@
                 <div class="pull-left">
                     <i class="fa fa-user media-object"></i>
                 </div>
-                <div class="media-body"> <span>Abbiate, Louis</span> <span class="nameDesc">Weitere Namen</span>
-                                                        </div>
+                <div class="media-body"> <span>Abbiate, Louis</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
@@ -381,8 +390,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -392,7 +399,6 @@
                     <span> in Monaco</span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -419,9 +425,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002582.html">
             
@@ -443,8 +449,7 @@
                 <div class="pull-left">
                     <i class="fa fa-user media-object"></i>
                 </div>
-                <div class="media-body"> <span>Abū al-Ḥasan Khān; Mirza Abolhasan Khan Ilchi</span> <span class="nameDesc">Weitere Namen</span>
-                                                        </div>
+                <div class="media-body"> <span>Abū al-Ḥasan Khān; Mirza Abolhasan Khan Ilchi</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
@@ -456,8 +461,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -467,7 +470,6 @@
                     <span></span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -494,9 +496,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002972.html">
             
@@ -529,9 +531,6 @@
             
             
             
-            
-            
-            
             <li class="media residences">
                 <div class="pull-left">                  
                     <i class="fa fa-map-marker media-object"></i>
@@ -550,9 +549,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002975.html">
             
@@ -578,8 +577,6 @@
             
             
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -589,7 +586,6 @@
                     <span> in Elbing</span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -616,9 +612,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002974.html">
             
@@ -639,15 +635,13 @@
                 <div class="pull-left">
                     <i class="fa fa-user media-object"></i>
                 </div>
-                <div class="media-body"> <span>Pauline Comtesse d'Abegg</span> <span class="nameDesc">Pseudonyme</span>
-                                                        </div>
+                <div class="media-body"> <span>Pauline Comtesse d'Abegg</span> <span class="nameDesc">Pseudonyme</span></div>
             </li>
             <li class="media altnames">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"></i>
                 </div>
-                <div class="media-body"> <span>Heygendorff, Meta von; Heigendorf, Meta von</span> <span class="nameDesc">Weitere Namen</span>
-                                                        </div>
+                <div class="media-body"> <span>Heygendorff, Meta von; Heigendorf, Meta von</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
@@ -659,8 +653,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -670,7 +662,6 @@
                     <span> in Dresden</span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -697,9 +688,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002973.html">
             
@@ -732,9 +723,6 @@
             
             
             
-            
-            
-            
             <li class="media residences">
                 <div class="pull-left">                  
                     <i class="fa fa-map-marker media-object"></i>
@@ -753,9 +741,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000002.html">
             
@@ -789,8 +777,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -800,7 +786,6 @@
                     <span> in Stuttgart</span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -827,9 +812,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A001EEB.html">
             
@@ -858,8 +843,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -869,7 +852,6 @@
                     <span></span>
                 </div>
             </li>
-            
             
             
             <li class="media occupations">
@@ -896,9 +878,9 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-                                    <li class="media">
-                <div>
+				</li>
+                                            <li class="media">
+					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A003490.html">
             
@@ -927,8 +909,6 @@
                      </div>
             </li>
             
-            
-            
             <li class="media">
                 <div class="pull-left">
                     <strong>†</strong>
@@ -945,7 +925,6 @@
             
             
             
-            
         </ol>
         <p>
             <strong><span>Kennung</span>:</strong> 
@@ -955,27 +934,33 @@
         <div class="kwic"></div>
     </div>
 </div>
-            </li>
-        </ul>
-        <ul class="pagination">
-                                    <li class="disabled"><span>« zurück</span>
-                                    </li>
-                                    <li class="active"><span>1</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">2</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=3">3</a>
-                                    </li>
-                                    <li class="disabled"><span>…</span>
-                                    </li>
-                                    <li><a class="page-link" href="?page=1011">1011</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=1012">1012</a>
-                                    </li>
-                                    <li><a class="page-link" href="?page=2">weiter »</a>
-                                    </li>
-                                </ul>
-    </div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">
+			<ul class="pagination">
+                                            <li class="disabled"><span>« zurück</span></li>
+                                            <li class="active"><span>1</span></li>
+                                            <li><a class="page-link" href="?page=2">2</a></li>
+                                            <li><a class="page-link" href="?page=3">3</a></li>
+                                            <li class="disabled"><span>…</span></li>
+                                            <li><a class="page-link" href="?page=1023">1023</a></li>
+                                            <li><a class="page-link" href="?page=1024">1024</a></li>
+                                            <li><a class="page-link" href="?page=2">weiter »</a></li>
+                                        </ul>
+		</div>
+		<div class="col-sm-4">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">pro Seite</a></li>
+				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
+				<li><a class="page-link" href="?limit=25">25</a></li>
+				<li><a class="page-link" href="?limit=50">50</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 </div>
             </div>
         </div>
@@ -994,6 +979,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -1004,6 +990,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -1038,6 +1025,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

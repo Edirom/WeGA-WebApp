@@ -34,7 +34,7 @@ $.fn.facets = function ()
                 if (query.length) return callback();
                 
                 var params = active_facets(),
-                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type');
+                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
                 $.ajax({
                     url: url,
                     type: 'GET',
@@ -106,6 +106,11 @@ $.fn.loadPortrait = function () {
 
 /* Initialise datepicker for diaries */
 $.fn.initDatepicker = function () {
+    // set language for datepicker widget
+    var lang = getLanguage();
+    if(lang === 'de') { $.datepicker.setDefaults( $.datepicker.regional[ "de" ] ) }
+    else { $.datepicker.setDefaults( $.datepicker.regional[ "" ]) }
+    
     $(this).each(function(a,b) {
         $(b).datepicker({
             dateFormat: "yy-mm-dd",
@@ -165,8 +170,27 @@ $('body').on('click touchstart', function (e) {
     });
 });
 
-/* callback function for doing stuff after loading ajax pages from the remote nav tabs */
-function remoteTabsCallback(html, trigger, container, data) {
+/*
+ * hide/reveal sub items of the table of contents of the Guidelines 
+ */
+$('.toggle-toc-item').on('click', 
+    function(a,b) {
+        var subItem = $(this).siblings('ul');
+        if(subItem.length === 1) {
+            subItem.toggle();
+            $('ul', subItem).toggle();
+            $('i', this).toggle();
+        }
+    }
+);
+
+/* 
+ * callback function for removing the filter container from the AJAX page
+ * this is called by the nav-tabs remote data plugin via the data-tab-callback attribute on the documents page (once)
+ * as well as ajaxCall() (all subsequent calls by clicks on the pagination).
+ * At present this is only needed for backlinks. 
+ */
+function removeFilter(html, trigger, container, data) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
     
@@ -174,34 +198,76 @@ function remoteTabsCallback(html, trigger, container, data) {
     html.removeClass('row');
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
-    /* Load portraits via AJAX */
+    /* 
+     * Load portraits via AJAX
+     * NB: Needed when called via data-tab-callback attribute
+     */
     $('.searchResults .portrait', html).loadPortrait();
-            
-    /* Listen for click events on pagination */
-    $('.page-link', html).on('click', 
-        function() {
-            $(this).activatePagination($('#backlinks'));
-        }
-    );
+    
+    /* 
+     * Listen for click events on pagination
+     * NB: Needed when called via data-tab-callback attribute
+     * trigger is the clicked nav-tab (e.g. "backlinks")  
+     */
+    if(trigger.length !== 0) {
+        $('.page-link', html).on('click', 
+            function() {
+                $(this).activatePagination(trigger.attr('href'));
+            }
+        );
+    }
 };
 
-// set the right tab and location for person pages 
+/*
+ * set the right tab and location for person pages
+ */
 $.fn.toggleTab = function () {
-    /* make "biographies" the default if no fragment identifier is given*/
-    var tabHash = (location.hash.length == 0? '#biographies': location.hash);
+    var tabHash = location.hash,
+        tabRef,
+        target;
     
+    /* make "biographies" the default if no fragment identifier is given */
+    if($(tabHash).length === 0) { target = '#biographies' }
+    
+    /* 
+     * targets within biographies, e.g. wikipediaText, need special treatment
+     * since the nested Bootstrap remote data tabs plugin prefixes those targets with "bs-tab-"
+     */
+    else if($('#biographies ' + tabHash).length !== 0) { 
+        target = '#biographies';
+        /* adjust location.hash */
+        if(history.pushState) {
+            history.pushState(null, null, '#bs-tab-' + tabHash);
+        }
+        else {
+            location.hash = '#bs-tab-' + tabHash;
+        }
+    }
+    
+    /* check for a valid fragment */
+    else if($(tabHash).length !== 0) { target = tabHash }
+    
+    /* make "biographies" the default if no _valid_ fragment identifier is given */
+    else { target = '#biographies' }
+    
+    /* 
+     * now walk through the tabs and containers 
+     * and set the active class appropriately 
+     */
     $(this).each(function(n,tab) {
-        var tabId = tab.href.substring(tab.href.indexOf('#'));
-        if(tab.href.endsWith(tabHash)) {
+        tabRef = tab.href.substring(tab.href.indexOf('#'));
+        if(tabRef == target) {
             $(tab).parent().addClass('resp-tab-active');
-            $(tabId).addClass('resp-tab-content-active');
+            $(tabRef).addClass('resp-tab-content-active');
         }else {
             $(tab).parent().removeClass('resp-tab-active');
-            $(tabId).removeClass('resp-tab-content-active');
-            $(tabId).hide();
+            $(tabRef).removeClass('resp-tab-content-active');
+            $(tabRef).hide();
         }
     });
     if($(this).length !== 0) { activateTab(); }
+    
+    return this;
 };
 
 $.fn.A090280 = function () {
@@ -229,47 +295,152 @@ function activateTab() {
 /*        $(href).unmask;*/
 };
 
-// create popovers for document types which already have single views
-$('a.persons, a.writings, a.diaries, a.letters, a.news, a.orgs, a.thematicCommentaries, a.documents').on('click', function() {
-    var popoverClass =  "popover-" + $.now();
+/*
+ * Grab the URL from the $container$/@data-ref and replace the container div with the AJAX response
+ * Makes a nice popover for previews of pages :)
+ */
+$.fn.preview_popover = function() {
+    var url = $(this).attr('data-ref').replace('.html', '/popover.html'),
+        container = $(this),
+        popover_node = container.parents('div.popover'),
+        popover_data;
+    $.ajax({
+        url: url,
+        success: function(response){
+            var source = $(response),
+                title = source.find('h3').children(),
+                content = source.children();
+            $('.item-title', container).html(title);
+            $('.item-content', container).html(content);
+            $('h3.media-heading', container).remove(); // remove relicts of headings
+            
+            /*  when this is the last div container we push it to the popover and show it
+             *  unfinished ajax calls will still update the popover, though.
+             */
+            if(container.next().length === 0) {
+                popover_data = popover_node.data('bs.popover');
+                popover_data.options.content = container.parents('div.popover-content').children();
+                popover_node.popover('show');
+            }
+            
+            $('.portrait', container).loadPortrait(); // AJAX load person portraits*/
+        }
+    });
+};
+
+/* 
+ * Create initial popover for notes and previews 
+ * with template from page.html#carousel-popover for the content
+ */
+$('.preview, .noteMarker').on('click', function() {
     $(this).popover({
         "html": true,
         "trigger": "manual",
-        container: 'body',
+        "container": 'body',
         'placement': 'auto top',
-        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
-        'title': function() {
-            return 'Loading …'
-        },
-        "content": function(){
-            link = $(this).attr('href').replace('.html', '/popover.html');
-            return details_in_popup(link, popoverClass);
-        }
+        "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
+        "content": popover_template
     });
     $(this).popover('show');
+    
+    /* Need to call this after popover('show') to get access to the popover options in a later step (in preview_popover) */
+    popover_callBack.call($(this));
+    
+    /* Return false to suppress the default link mechanism on html:a */
     return false;
 });
 
-// create popovers for document types which only have previews (but no single view)
-$('span.works, span.biblio').on('click', function() {
-    var popoverClass =  "popover-" + $.now();
-    $(this).popover({
-        "html": true,
-        "trigger": "manual",
-        container: 'body',
-        'placement': 'auto top',
-        'template': '<div class="popover ' + popoverClass + '"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>',
-        'title': function() {
-            return 'Loading …'
-        },
-        "content": function(){
-            link = $(this).attr('data-ref').replace('.html', '/popover.html');
-            return details_in_popup(link, popoverClass);
+/*
+ * A simple template for the popover based on page.html#carousel-popover
+ * NB: we do not make use of the generic popover-title since we want 
+ * to insert all AJAX content simply into popover-content
+ */
+function popover_template() {
+    var carouselID = "carousel" + $.now(),
+        template = $('#carousel-popover').clone().attr('id', carouselID).removeAttr('style');
+    
+    $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
+    $('a.carousel-control', template).attr('href', '#'+carouselID);
+    $('.carousel-indicators, a.carousel-control', template).hide();
+    template.removeClass('hidden');
+    return template;
+};
+
+/*
+ * Prepare the container divs and the carousel controls (if needed) for the popover
+ * because we are not using the default bootstrap popover title and content 
+ * but move everything into the content (to be able to 'slide' those popovers)
+ * we need to take care of several methods ourselves:
+ * - grabbing external content from href or data-ref (could be a whitespace separated list) attributes
+ * - internal links from href or data-ref (prefixed with '#')
+ * - content provided on data-popover-content and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
+ * 
+ * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-content"/>  
+ */
+function popover_callBack() {
+    var urls = [],
+        href = $(this).attr('href'),
+        dataRefs = $(this).attr('data-ref'),
+        popoverID = $(this).attr('aria-describedby'),
+        popover = $('#'+popoverID),
+        li_templ = $('.carousel-indicators li:last', popover),
+        li_clone,
+        popover_div,
+        popover_data;
+    
+	/* 
+	 * break out of this function if we already created some content 
+	 * (and removed the progress bar from the template) 
+	 */
+    if($('.progress', popover).length === 0) { return }
+    
+    if(undefined != href) {
+        urls.push(href);
+    }
+    else if(undefined !=  dataRefs) {
+        urls = dataRefs.split(/\s+/);
+    }
+    $(urls).each(function(i,e) {
+        popover_div = $('div.item:last', popover);
+        popover_div.attr('data-ref', e);
+        
+        if(e.startsWith('#')) { // local references to endnotes and commentaries
+            $('.item-title', popover_div).html($(e).attr('data-title'));
+            $('.item-content', popover_div).html($(e).html());
+            popover_data = popover.data('bs.popover');
+            popover_data.options.content = $('div.popover-content', popover).clone().children();
+            popover.popover('show');
         }
-    });
-    $(this).popover('show');
-    return false;
-});
+        else { // external content via AJAX
+            popover_div.preview_popover();
+        }
+        
+		/*
+		 * if there are further URLs --> clone the latest div and add the carousel controls 
+		 */
+        if(urls.length > i +1) {
+            popover_div.clone().removeClass('active').insertAfter(popover_div);
+            li_clone = li_templ.clone();
+            li_clone.attr('data-slide-to', i + 1);
+            li_clone.removeClass('active');
+            li_clone.insertAfter(li_templ);
+        }
+    })
+    if(urls.length > 1) {
+        $('.carousel-indicators, a.carousel-control', popover).show();
+        $('.popover-content', popover).addClass('popover-multi');
+    }
+    
+    // content provided via data-popover-content and data-popover-title attributes on the anchor element
+    if(undefined != $(this).attr('data-popover-content')) {
+        popover_div = $('div.item:last', popover);
+        $('.item-title', popover_div).html($(this).attr('data-popover-title'));
+        $('.item-content', popover_div).html($(this).attr('data-popover-content'));
+        popover_data = popover.data('bs.popover');
+        popover_data.options.content = $('div.popover-content', popover).children();
+        popover.popover('show');
+    }
+};
 
 /* checkbox for display of undated documents */
 $(document).on('click', '.undated', function() {
@@ -284,6 +455,10 @@ $('.searchDocTypeFilter').on('change', 'label', function() {
         var params = active_facets();
         updatePage(params);
     }
+})
+
+$('.glSchemaIDFilter').on('change', 'input', function(a) {
+    self.location = '?schemaID=' + a.target.value;
 })
 
 $('.obfuscate-email').obfuscateEMail();
@@ -305,9 +480,36 @@ $(".portrait").initPortraitCredits();
 /* Open the first collapsable filter by default */
 $('.allFilter .collapse').first().collapse('show');
 
+/* 
+ * Toggle line wrap for XML preview 
+ */
+function init_line_wrap_toggle() {
+    var pre = $('.line-wrap-toggle ~ pre'),
+        input = $('.line-wrap-toggle input'),
+        url = $('.allFilter .nav-tabs .loaded').attr('data-tab-url');
+    
+    // set toggle on load 
+    if(pre.hasClass('line-wrap')) {
+        input.bootstrapToggle('on');
+    }
+    else {
+        input.bootstrapToggle('off');
+    }
+    
+    // set listener for toggle
+    input.change(
+        function(a,b) {
+            pre.toggleClass('line-wrap');
+            // update session
+            $.get(url + '?line-wrap=' + pre.hasClass('line-wrap'));
+        }
+    )
+};
 
-/* Helper function */
-/* Get active facets to append as URL parameters */
+/* 
+ * Helper function
+ * Get active facets to append as URL parameters 
+ */
 function active_facets() {
     var params = {
         facets:[],
@@ -366,26 +568,8 @@ function updatePage(params) {
     }
 }
 
-// helper function to grab AJAX content for popovers
-function details_in_popup(link, popoverClass){
-    $.ajax({
-        url: link,
-        success: function(response){
-            var source = $('<div>' + response + '</div>'),
-                popover = $('.'+popoverClass).data('bs.popover');
-            popover.options.content = source.children().children();
-            popover.options.title = source.find('h3').children();
-            $('.'+popoverClass+' h3.media-heading').remove(); // remove relicts of headings
-            $('.'+popoverClass).popover('show'); 
-            $('.'+popoverClass+' .portrait').loadPortrait(); // AJAX load person portraits
-        }
-    });
-    return '<div><div class="progress" style="min-width:244px"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div></div></div>';
-}
-
-/* only needed after ajax calls?!? --> see later */
-/* needed on index page for the search box, as well */
-//$('select').selectize({});
+/* activate tooltips for jubilees on start page */
+$('.jubilee').tooltip();
 
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
@@ -396,26 +580,12 @@ $('.allFilter:visible .rangeSlider').rangeSlider();
 
 $('h1').h1FitText();
 
-/* Initialise popovers for notes */
-$('.noteMarker').popover({
-  'html': true,
-  'placement': 'auto top',
-  'title': function(){
-      var noteID=$(this).attr('data-ref'),
-        note=$('#' + noteID);
-      return note.attr('data-title');
-  },
-  'content': function() {
-      var noteID=$(this).attr('data-ref'),
-        note=$('#' + noteID);
-      return note.html();
-  }
-});
-
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
 
-/* Responsive Tabs für person.html */
+/* 
+ * Initialise easyResponsiveTabs for person.html 
+ */
 $('#details').easyResponsiveTabs({
     activate: activateTab
 });
@@ -434,7 +604,7 @@ $('.allFilter input').change(
   }
 )
 
-function ajaxCall(container,url) {
+function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
         if ( status == "error" ) {
@@ -450,10 +620,15 @@ function ajaxCall(container,url) {
                     $(this).activatePagination(container);
                 }
             );
-            //console.log(container);
-            if($('ul.nav-tabs li.active a').length === 1) {
-                remoteTabsCallback($(container).children(), '', container);
+            
+            /* 
+             * Not very generic but at present only needed for backlinks,
+             * see removeFilter()
+             */
+            if(typeof callback === 'function') {
+                callback($(container).children(), '', container);
             }
+            
             /* Load portraits via AJAX */
             $('.searchResults .portrait').loadPortrait();
             $("#datePicker").initDatepicker();
@@ -466,9 +641,20 @@ $.fn.activatePagination = function(container) {
     var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
     /*  with different attributes */
         baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
-        url = baseUrl + $(this).attr('data-url');
-    //console.log(url);
-    ajaxCall(container,url);
+        url = baseUrl + $(this).attr('data-url'),
+        callback;
+    
+    /* 
+     * the data-tab-callback attribute may contain the name of a callback function
+     * this is provided by the nav-tabs remote data plugin 
+     * and we use it to remove filters from the backlinks AJAX page
+     */
+    if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
+        callback = window[$('.nav-tabs .active a').attr('data-tab-callback')];
+    }    
+    
+    ajaxCall(container,url,callback);
+    return this
 };
 
 /* Farbige Support Badges im footer (page.html) */
@@ -546,7 +732,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-url') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })

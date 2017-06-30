@@ -237,6 +237,13 @@
     <xsl:template match="br">
         <xsl:element name="br"/>
     </xsl:template>
+    
+    <xsl:template match="*|@*" priority="0.1">
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <xsl:template match="p" mode="appendix"/>
     <xsl:template match="span[matches(@class, 'editsection')]"/>
     <xsl:template match="span[matches(@class, 'ProofRead')]"/>
@@ -248,7 +255,7 @@
     <xsl:template match="table[matches(@class, 'metadata')]" priority="1"/>
     <xsl:template match="table[@id='Vorlage_Dieser_Artikel']" priority="1"/>
     <xsl:template match="table[matches(@class, 'navbox')]" priority="1"/>
-    <xsl:template match="table[@class='infobox vcard']" priority="1"/>
+    <xsl:template match="table[contains(@class, 'vcard')]" priority="1"/>
     <xsl:template match="table[@id='persondata']" priority="1"/>
     <xsl:template match="table[@id='Vorlage_Weiterleitungshinweis']" priority="1"/>
     <xsl:template match="span[matches(@class,'metadata')]" priority="1"/>

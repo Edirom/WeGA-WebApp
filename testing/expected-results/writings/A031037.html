@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2016-09-20T07:48:33.058022Z" />
+        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031037" />
         <meta property="dc:description" content="Besprechung der Aufführung des &#34;Waldmädchens&#34; am 24. November 1800; Werk an sich wird gelobt, die Aufführung aber kritisiert; lt. Rezensent wurde die Oper vom Publikum nicht angenommen" />
         <meta name="description" content="Besprechung der Aufführung des &#34;Waldmädchens&#34; am 24. November 1800; Werk an sich wird gelobt, die Aufführung aber kritisiert; lt. Rezensent wurde die Oper vom Publikum nicht angenommen" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031037.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031037.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -210,14 +212,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a>Anonymus</a>
-                        </li>
-                        <li><a>Schriften</a>
-                        </li>
-                        <li><span>A031037</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a>Anonymus</a></li>
+                        <li><a>Schriften</a></li>
+                        <li><span>A031037</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,33 +232,25 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001251" /> <span title="Amalie, Königin von Sachsen">Amalie, Königin von Sachsen</span> 
@@ -275,8 +265,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -286,8 +275,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -304,8 +292,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>54) Montags den 24 Nov. <span class="tei_supplied" id="d56046e5"><span class="brackets_supplied">[</span>1800<span class="brackets_supplied">]</span></span> <span class="tei_hi_spaced_out"><span class="works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Das Waldmädchen</span></span>, romantisch-komische Oper in 2 Aufz. vom <a class="persons A001886" href="/exist/apps/WeGA-WebApp/de/A001886.html">Ritter Karl <span class="tei_hi_spaced_out">v. Steinsberg</span></a>, in Musik gesetzt und Ihro Churfürstl. Durchl. <a class="persons A001251" href="/exist/apps/WeGA-WebApp/de/A001251.html">Maria Amalia Augusta</a>, regierender Churfürstin zu Sachsen, in tieffster Ehrfurcht gewidmet von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria B. von <span class="tei_hi_spaced_out">Weber</span></a>, 13 Jahr alt, einem Zögling <a class="persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html">Hayd’ns</a>. &#160;&#160;&#160;&#160;&#160;Die Fabel des Stücks ist nicht übel erfunden, sie ist interessant und abentheuerlich, ohne ungereimt zu seyn, nur die Ausführung läßt so manches zu wünschen übrig. Uiberhaupt aber schienen die Erwartungen des Publikums von dieser Oper zu sehr gespannt worden zu seyn, als daß diese hätten befriedigt werden können, und zum Theil hatte man vielleicht ungünstige Vorurtheile mit zur Stelle gebracht; genug! die Oper gefiel weit weniger als man gehofft hatte, obgleich manche ungleich schlechter erfundene Singspiele hier Glück machten. Auch die Musik erhielt nicht ganz den Beyfall, den sie verdient, wenn man billige Rücksichten nimmt. Freylich darf man sie mehr nur als Blüthen betrachten, die erst in der Folge schönere und reifere Früchte versprechen; (In <span class=" 67104101109110105116122"><span class="tei_settlement">Chemnitz</span></span> hat diese Oper ausgezeichneten Beyfall erhalten<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a>.)</p>
-                                        <p class="tei_closer">
+                                        <p>54) Montags den 24 Nov. <span class="tei_supplied" id="d40926e5"><span class="brackets_supplied">[</span>1800<span class="brackets_supplied">]</span></span> <span class="tei_hi_spaced_out"><span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Das Waldmädchen</span></span>, romantisch-komische Oper in 2 Aufz. vom <a class="preview persons A001886" href="/exist/apps/WeGA-WebApp/de/A001886.html">Ritter Karl <span class="tei_hi_spaced_out">v. Steinsberg</span></a>, in Musik gesetzt und Ihro Churfürstl. Durchl. <a class="preview persons A001251" href="/exist/apps/WeGA-WebApp/de/A001251.html">Maria Amalia Augusta</a>, regierender Churfürstin zu Sachsen, in tieffster Ehrfurcht gewidmet von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria B. von <span class="tei_hi_spaced_out">Weber</span></a>, 13 Jahr alt, einem Zögling <a class="preview persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html">Hayd’ns</a>.      Die Fabel des Stücks ist nicht übel erfunden, sie ist interessant und abentheuerlich, ohne ungereimt zu seyn, nur die Ausführung läßt so manches zu wünschen übrig. Uiberhaupt aber schienen die Erwartungen des Publikums von dieser Oper zu sehr gespannt worden zu seyn, als daß diese hätten befriedigt werden können, und zum Theil hatte man vielleicht ungünstige Vorurtheile mit zur Stelle gebracht; genug! die Oper gefiel weit weniger als man gehofft hatte, obgleich manche ungleich schlechter erfundene Singspiele hier Glück machten. Auch die Musik erhielt nicht ganz den Beyfall, den sie verdient, wenn man billige Rücksichten nimmt. Freylich darf man sie mehr nur als Blüthen betrachten, die erst in der Folge schönere und reifere Früchte versprechen; (In <span class="tei_placeName"><span class="67104101109110105116122">Chemnitz</span></span> hat diese Oper ausgezeichneten Beyfall erhalten<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.)</p>
+                                        <p class="tei_closer textAlign-left">
                <span> […]</span>
                <span class="tei_signed textAlign-right"><span class="tei_hi_spaced_out">W...r</span>.</span>
             </p>
@@ -330,8 +318,7 @@
                         
                         <div>
                             <h3 class="media-heading">Entstehung</h3>
-                            <p><span class="tei_date">zwischen 24. November 1800 und 8. Januar 1801</span>
-                                    </p>
+                            <p><span class="tei_date">zwischen 24. November 1800 und 8. Januar 1801</span></p>
                         </div>
                         
                         <div>
@@ -343,7 +330,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Gnädigst bewilligte Freyberger gemeinnützige Nachrichten für das Chursächsische Erzgebirge</span>, Jg.&#160;2, Nr.&#160;2 (8. Januar 1801), S.&#160;13</p>
+                                <p><span class="journalTitle">Gnädigst bewilligte Freyberger gemeinnützige Nachrichten für das Chursächsische Erzgebirge</span>, Jg. 2, Nr. 2 (8. Januar 1801), S. 13</p>
                                 
                                 <div>
                                     
@@ -370,13 +357,13 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… diese Oper ausgezeichneten Beyfall erhalten": </span>EA in Chemnitz war am 5. Dezember 1800; vgl. <a class="writings A030606" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030606.html">Anzeige</a> und <a class="writings A031038" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031038.html">Rezension</a> zur Aufführung</div>
+                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… diese Oper ausgezeichneten Beyfall erhalten": </span>EA in Chemnitz war am 5. Dezember 1800; vgl. <a class="preview writings A030606" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030606.html">Anzeige</a> und <a class="preview writings A031038" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031038.html">Rezension</a> zur Aufführung</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031037/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -398,10 +385,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031037</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031037</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 20. September 2016 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -427,6 +413,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -437,6 +424,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -471,6 +459,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

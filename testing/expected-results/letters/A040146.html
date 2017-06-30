@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-07-13T13:28:41.310340Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146" />
         <meta property="dc:description" content="revidiert sein Urteil über L. Schneider, der seine Oper angefordert u. Stimmen gekauft hat, dann aber die Part. ohne Antwort zurücksandte; dankt für S's Lexikonbeiträge, wartet auf versch. Beiträge anderer; kündigt Besuch in Salzburg auf der Reise nach Wien an; über zu erwerbende Bücher;" />
         <meta name="description" content="revidiert sein Urteil über L. Schneider, der seine Oper angefordert u. Stimmen gekauft hat, dann aber die Part. ohne Antwort zurücksandte; dankt für S's Lexikonbeiträge, wartet auf versch. Beiträge anderer; kündigt Besuch in Salzburg auf der Reise nach Wien an; über zu erwerbende Bücher;" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040146.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040146.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A040146</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A040146</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
-                                </li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="remoteTabsCallback" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/backlinks.html">Rückverweise</a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
+                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/backlinks.html">Rückverweise</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -279,7 +269,7 @@
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040147.html">1803-10-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
                                     </li>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040150.html">1804-03-01</a>:  Von   unbekannt
+                                        <a href="/exist/apps/WeGA-WebApp/de/A001932/Korrespondenz/A045337.html">1804-05-28</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001932.html">Susan, Joseph August</a>
                                     </li>
                                 </ul>
                                 <h3>Korrespondenzstelle</h3>
@@ -305,12 +295,13 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000656" /> <span title="Gombart, Johann Carl">Gombart, Johann Carl</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080119" /> <span title="Gombart (Musikverlag)">Gombart (Musikverlag)</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000722" /> <span title="Hacker, Benedikt">Hacker, Benedikt</span> 
                                 </label><label class="btn gradient-light">
@@ -326,8 +317,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -337,8 +327,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -362,54 +351,53 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <p class="teiLetter_datelineOpenerBlockRight"><span class="tei_hi_spaced_out"><span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span></span>, den 30. Juny <span class="tei_hi_bold">1803</span>.</p>
+               <span class="tei_dateline textAlign-right"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span></span>, den 30. Juny <span class="tei_hi_bold">1803</span>.</span>
                <p class="teiLetter_salute">Innigst geliebter Freund und Bruder!</p>
             </div>
-                                        <p class="inlineEnd">Eben erhalte ich dein liebes Schreiben vom <span class="tei_hi_bold">24.</span> Juny<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_001">*</a> und meine Freude endlich einmal wieder etwas von dir zu hören, von dem ich mich
+                                        <p class="inlineEnd">Eben erhalte ich dein liebes Schreiben vom <span class="tei_hi_bold">24.</span> Juny<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a> und meine Freude endlich einmal wieder etwas von dir zu hören, von dem ich mich
                schon ganz vergessen wähnte, war grenzenlos. Entschuldigung! wozu brauchst du die, in
                meinem Herzen warst du lang entschuldigt, und fällt nicht sogar ein Theil der Schuid
                auf mich? Warum war ich so eigensinnig, erst eine Antwort abwarten zu wollen eh ich
                selbst wieder schrieb? künftig werde ich deine Wahrheit öfter auf die Probe stellen.
                Nun zu or dentlicher Beantwortung eines jeden Punktes deines Briefs. Meine
-               Beschreibung des <span class=" 6711198117114103"><span class="tei_settlement">Coburg</span></span>er Hofs war ganz meiner damaligen Ansicht der Dinge gemäß,
-               aber seit ich dir jenen Brief schrieb, bin <span class="tei_supplied" id="d37994e30"><span class="brackets_supplied">[</span>ich<span class="brackets_supplied">]</span></span> in meiner Menschenkenntniß wieder
-                           ganz irre geworden. Ich glaube dir bereits geschrieben zu haben, daß <a class="persons A001723" href="/exist/apps/WeGA-WebApp/de/A001723.html">Hr. <span class="tei_hi_spaced_out">Schneider</span></a>,
-               wie ich bey ihm war<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_002">*</a>, mir die Stimmen <span class="works A020034" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020034.html">meiner Oper</span> auf der Stelle abkaufte und
-                           bezahlte, und ich ihm nur noch die Partitur und das Buch von <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span> schicken sollte<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_003">*</a>; ich thue das, nebst einer Anweisung, wohin das übliche Geld zu bezahlen, und denke
+               Beschreibung des <span class="tei_placeName"><span class="6711198117114103">Coburg</span></span>er Hofs war ganz meiner damaligen Ansicht der Dinge gemäß,
+               aber seit ich dir jenen Brief schrieb, bin <span class="tei_supplied" id="d57898e30"><span class="brackets_supplied">[</span>ich<span class="brackets_supplied">]</span></span> in meiner Menschenkenntniß wieder
+                           ganz irre geworden. Ich glaube dir bereits geschrieben zu haben, daß <a class="preview persons A001723" href="/exist/apps/WeGA-WebApp/de/A001723.html">Hr. <span class="tei_hi_spaced_out">Schneider</span></a>,
+               wie ich bey ihm war<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>, mir die Stimmen <span class="preview works A020034" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020034.html">meiner Oper</span> auf der Stelle abkaufte und
+                           bezahlte, und ich ihm nur noch die Partitur und das Buch von <span class="6511710311598117114103"><span class="6511710311598117114103">Augsburg</span></span> schicken sollte<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>; ich thue das, nebst einer Anweisung, wohin das übliche Geld zu bezahlen, und denke
                dir mein Erstaunen, er halte statt des Geldes, oder eines Briefes, der mir den
                Empfang desselben zusicherte, meine Partitur und alles durch den nämlichen Fuhrmann
                <span class="tei_hi_spaced_out">uneröffnet</span> zurück. Seit der Zeit habe ich öfters an ihn geschrieben, ihm die
                billigsten Bedingungen gemacht, um nur eine Antwort zu erhalten, habe aber nie <span class="tei_hi_spaced_out">eine
                Zeile</span> von ihm bekommen. Was er nun mit den bezahlten Stimmen, die für ihn ganz ohne
                Nutzen sind, anfangen will, weiß ich nicht, daher kam es mir nicht so ganz
-               unerwartet, das du auch noch keine Antwort hast. &#160;– Für deine beyden Beyträge für das
-               Lexikon danke ich herzlich, von <a class="persons A001687" href="/exist/apps/WeGA-WebApp/de/A001687.html">Schinn</a> habe nichts erhalten, und ich bitte dich, die
+               unerwartet, das du auch noch keine Antwort hast.  – Für deine beyden Beyträge für das
+               Lexikon danke ich herzlich, von <a class="preview persons A001687" href="/exist/apps/WeGA-WebApp/de/A001687.html">Schinn</a> habe nichts erhalten, und ich bitte dich, die
                übrigen saumseligen Herren doch noch einmal der guten Sache wegen zu erinnern. Ich
                finde wahrhaftig von Tag zu Tage mehr, daß man die Menschen ordentlich dazu zwingen
                muß, daß sie nur die Güte haben etwas zu ihrem eigenen Besten zu thun, denn die
                Leute glauben wirklich sie thun <span class="tei_hi_spaced_out">mir</span> die größte Gnade an, wenn sie mich mit ihren
                uninteressanten Künstlergeschichten beglücken. – Von der Rezension des Taschenbuches
                sage ich weiter nichts, als daß ich hoffe, sie bald selbst mit dir durchgehen zu
-               können<a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_005">*</a>. – Du staunest? ja ja es ist wahr, ich glaube dich bald umarmen zu können, das
-               wie? sollst du gleich erfahren. Schon lange war es bey mir und <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinem Vater</a>
-               beschlossen, zu Ende künftigen Monats nach <span class=" 87105101110"><span class="tei_settlement">Wien</span></span> zu gehen (denn daß in <span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span> meines
-               Bleibens nicht ist, hast du errathen) und dein Brief hat mich bestimmt, <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinen Vater</a>
-               zu bewegen, daß er mir versprochen hat, über <span class=" 839710812298117114103"><span class="tei_settlement">Salzburg</span></span> zu gehen und dort vielleicht
-               einige Zeit zu verweilen, von wo aus du leicht mit uns nach <span class=" 87105101110"><span class="tei_settlement">Wien</span></span> gehen könntest. Nun
+               können<a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a>. – Du staunest? ja ja es ist wahr, ich glaube dich bald umarmen zu können, das
+               wie? sollst du gleich erfahren. Schon lange war es bey mir und <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinem Vater</a>
+               beschlossen, zu Ende künftigen Monats nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> zu gehen (denn daß in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> meines
+               Bleibens nicht ist, hast du errathen) und dein Brief hat mich bestimmt, <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinen Vater</a>
+               zu bewegen, daß er mir versprochen hat, über <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> zu gehen und dort vielleicht
+               einige Zeit zu verweilen, von wo aus du leicht mit uns nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> gehen könntest. Nun
                eine Bitte. Erkundige dich gleich nach einem Quartier für uns, in welcher Gegend der
                Stadt es auch sey, und schreibe mir ja mit <span class="tei_hi_spaced_out">umgehender Post</span> wo und wie theuer es sey,
                worauf ich dann gleich den Tag meiner Ankunft berichten werde. Den <span class="tei_hi_spaced_out">Apollon</span> und <span class="tei_hi_spaced_out">Bach</span>
-                           will ich nehmen<a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_004">*</a>, wenn <a class="persons A000722" href="/exist/apps/WeGA-WebApp/de/A000722.html">Hr. Haker</a> dagegen Musik aus <span class="tei_hi_spaced_out"><a class="persons A000656" href="/exist/apps/WeGA-WebApp/de/A000656.html">Gombart</a>’s</span> <a class="orgs A080119" href="/exist/apps/WeGA-WebApp/de/A080119.html">Verlage</a> nehmen will; will er,so nimm die Bücher gleich zu dir, und schreibe mir, <span class="tei_hi_spaced_out">was</span> er will, damit ich es
+                           will ich nehmen<a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>, wenn <a class="preview persons A000722" href="/exist/apps/WeGA-WebApp/de/A000722.html">Hr. Haker</a> dagegen Musik aus <span class="tei_hi_spaced_out"><a class="preview persons A000656" href="/exist/apps/WeGA-WebApp/de/A000656.html">Gombart</a>’s</span> <a class="preview orgs A080119" href="/exist/apps/WeGA-WebApp/de/A080119.html">Verlage</a> nehmen will; will er,so nimm die Bücher gleich zu dir, und schreibe mir, <span class="tei_hi_spaced_out">was</span> er will, damit ich es
                mitbringen kann. – </p>
-                                        <p class="teiLetter_closer inlineStart">Bruder! meine Brust ist so voll, daß ich ohn möglich mehr
+                                        <p class="tei_closer textAlign-left inlineStart">Bruder! meine Brust ist so voll, daß ich ohn möglich mehr
                schreiben kann, die Sehnsucht, dich bald an mein Herz drücken zu können, macht, daß
                es mir vorkömmt als wenn ich eine Sünde beginge, wenn ich den Brief aufhalte,
                schnell zu seiner Bestimmung zu gelangen. Alles übrige im nächsten, schreib doch ja
-               gleich wieder, ich kann nicht mehr. &#160;
-               <span class="tei_segBlock textAlign-right">Dein dich ewig liebender Freund und Bruder<br /> &#160; &#160; &#160;
-               &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; 
-            <span class="tei_hi_spaced_out"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span> <span class="tei_hi_antiqua">m. p.</span></span>
-                                        </p>
+               gleich wieder, ich kann nicht mehr.  
+               <span class="tei_segBlock textAlign-right">Dein dich ewig liebender Freund und Bruder<br />      
+                                             
+            <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span> <span class="tei_hi_antiqua">m. p.</span></span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -448,13 +436,13 @@
                                             <p>Verbleib unbekannt </p>
                                             <h4 class="media-heading">Überlieferung</h4>
                                             <ul>
-                                                <li><a class="orgs A080140" href="/exist/apps/WeGA-WebApp/de/A080140.html">Cornuau, Paul</a>: Cat. o. Nr. (?), Nr. 346</li>
-                                                <li><a class="orgs A080140" href="/exist/apps/WeGA-WebApp/de/A080140.html">Cornuau, Paul</a> (Paris): Cat. o.Nr. (<span class="tei_date">Mai 1932</span>), Nr. 22232</li>
-                                                <li><a class="orgs A080089" href="/exist/apps/WeGA-WebApp/de/A080089.html">Stargardt</a> Kat. 314 (<span class="tei_date">1930</span>), Nr. 206</li>
-                                                <li><a class="orgs A080085" href="/exist/apps/WeGA-WebApp/de/A080085.html">Sotheby &amp; Co</a> (<span class="tei_date">23.-26.Juni 1924</span>), Nr. 756</li>
-                                                <li><a class="orgs A080085" href="/exist/apps/WeGA-WebApp/de/A080085.html">Sotheby &amp; Co</a> (<span class="tei_date">26.-28.März 1923</span>), Nr. 257</li>
-                                                <li><a class="orgs A080144" href="/exist/apps/WeGA-WebApp/de/A080144.html">Pearson, J. &amp; Co</a> Kat. ? (<span class="tei_date">August 1909</span>), Nr. 410</li>
-                                                <li><a class="orgs A080091" href="/exist/apps/WeGA-WebApp/de/A080091.html">Cohen, Friedrich</a>: LK 98 (<span class="tei_date">1900</span>), Nr. 1436</li>
+                                                <li><a class="preview orgs A080140" href="/exist/apps/WeGA-WebApp/de/A080140.html">Cornuau, Paul</a>: Cat. o. Nr. (?), Nr. 346</li>
+                                                <li><a class="preview orgs A080140" href="/exist/apps/WeGA-WebApp/de/A080140.html">Cornuau, Paul</a> (Paris): Cat. o.Nr. (<span class="tei_date">Mai 1932</span>), Nr. 22232</li>
+                                                <li><a class="preview orgs A080089" href="/exist/apps/WeGA-WebApp/de/A080089.html">Stargardt</a> Kat. 314 (<span class="tei_date">1930</span>), Nr. 206</li>
+                                                <li><a class="preview orgs A080085" href="/exist/apps/WeGA-WebApp/de/A080085.html">Sotheby &amp; Co</a> (<span class="tei_date">23.-26.Juni 1924</span>), Nr. 756</li>
+                                                <li><a class="preview orgs A080085" href="/exist/apps/WeGA-WebApp/de/A080085.html">Sotheby &amp; Co</a> (<span class="tei_date">26.-28.März 1923</span>), Nr. 257</li>
+                                                <li><a class="preview orgs A080144" href="/exist/apps/WeGA-WebApp/de/A080144.html">Pearson, J. &amp; Co</a> Kat. ? (<span class="tei_date">August 1909</span>), Nr. 410</li>
+                                                <li><a class="preview orgs A080091" href="/exist/apps/WeGA-WebApp/de/A080091.html">Cohen, Friedrich</a>: LK 98 (<span class="tei_date">1900</span>), Nr. 1436</li>
                                             </ul>
                                         </div>
                                 
@@ -474,7 +462,7 @@
                             </div>
                                     <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="title">"Briefe von Carl Maria von Weber"</span>, in: <span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Bd.&#160;1 (1843), S.&#160;2–3</p>
+                                <p><span class="title">"Briefe von Carl Maria von Weber"</span>, in: <span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Bd. 1 (1843), S. 2–3</p>
                                 
                                 <div>
                                     
@@ -499,11 +487,10 @@
                                             <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… wie ich bey ihm war": </span>Weber besuchte Schneider am 16. November 1802 </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_003" data-title="note commentary"><span class="tei_lemma">"… Buch von Augsburg schicken sollte": </span>UA von Webers Oper <span class="tei_hi_italic">Peter Schmoll</span> im März 1803; vgl. Max Herre: Das Stadttheater Augsburg. Festschrift zum fünfzigjährigen Bestehen, Augsburg 1927, S. 110-112</div>
+                                            <div class="apparatusEntry" id="C_003" data-title="note commentary"><span class="tei_lemma">"… Buch von Augsburg schicken sollte": </span>UA von Webers Oper <span class="tei_hi_italic">Peter Schmoll</span> im März 1803; vgl. Max Herre: Das Stadttheater Augsburg. Festschrift zum fünfzigjährigen Bestehen, Augsburg 1927, S. 110–112</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_005" data-title="note commentary"><span class="tei_lemma">"… mit dir durchgehen zu können": </span>vgl. <a class="letters A040144" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">Brief von Weber an Susan vom 23. Dezember 1802</a>
-                                            </div>
+                                            <div class="apparatusEntry" id="C_005" data-title="note commentary"><span class="tei_lemma">"… mit dir durchgehen zu können": </span>vgl. <a class="preview letters A040144" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">Brief von Weber an Susan vom 23. Dezember 1802</a></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_004" data-title="note commentary"><span class="tei_lemma">"… und Bach will ich nehmen": </span>Apollon, 1803 bei Dienemann in Penig erschienene Zeitschrift sowie Carl Philipp Emanuel Bach, Versuch über die wahre Art das Clavier zu spielen, 3. Aufl., Teil 1, Leipzig 1787; vgl. dazu Eveline Bartlitz, Ein-Blick in Carl Maria von Webers Bücherschrank, in: Weberiana 17 (2007), S. 54 </div>
@@ -534,10 +521,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. Juli 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -563,6 +549,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -573,6 +560,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -607,6 +595,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

@@ -79,8 +79,12 @@
     color: @gray;
 }
 */
+.tei_pb, .tei_cb {
+    cursor: help;
+}
 
 .tei_pb_block, .tei_cb_block {
+    .tei_pb;
     float:left;
     display:block;
 }
@@ -129,16 +133,6 @@ div.poem h3 {
 .verseLine {
     display: block;
 }
-
-/*.work {
-    color: #02176F;
-}
-*/
-/*
-.work:hover {
-    cursor: help;
-}
-*/
 
 .tei_code {
     font-family: monospace;
@@ -206,19 +200,6 @@ li.listSubTitle {
     }
 }
 
-
-/*span.inlineNote
-{
-   display:none;
-}*/
-
-/*span.verseLine
-{
-    
-    font-style: italic;
-   
-}*/
-
 /* some css for diaries */
 .hiddenText {
     color: #ffffff;
@@ -263,10 +244,7 @@ li.listSubTitle {
 #endNotes li {
     margin-bottom: 2ex;
 }
-.teiLetter_datelineCloser {
-    display: block;
-    margin-top:@line-height-computed;
-}
+
 /* treatment of inline closers */
 .inlineEnd, .inlineStart {
     display: inline;
@@ -275,4 +253,8 @@ li.listSubTitle {
 /* square brackets should always be recte, never slanted */
 .brackets_supplied {
     font-style:normal;
+}
+
+.tei_dateline {
+    display:block;
 }

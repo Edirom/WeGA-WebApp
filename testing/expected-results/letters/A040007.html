@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-05-27T13:19:00.639045Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T15:40:27.296987Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040007" />
         <meta property="dc:description" content="bedauert, eine erhaltene Operette noch nicht bezahlt zu haben; propagiert seine 12 Oden, die in Lübeck erschienen; fragt, ob B. 200 Ex. abnehme; erkundigt sich nach Bendas Romeo u. nach einer Piramus-Parodie;" />
         <meta name="description" content="bedauert, eine erhaltene Operette noch nicht bezahlt zu haben; propagiert seine 12 Oden, die in Lübeck erschienen; fragt, ob B. 200 Ex. abnehme; erkundigt sich nach Bendas Romeo u. nach einer Piramus-Parodie;" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A002074/Correspondence/A040007.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002074/Correspondence/A040007.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,14 +214,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A040007</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A040007</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,31 +234,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -295,12 +285,13 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000124" /> <span title="Benda, Georg">Benda, Georg</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080010" /> <span title="Breitkopf &amp; Härtel (Verlag)">Breitkopf &amp; Härtel (Verlag)</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002074" /> <span title="Weber, Franz Anton von">Weber, Franz Anton von</span> 
                                 </label>
@@ -308,8 +299,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -329,28 +319,23 @@
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
                                         <p>An</p>
-                                        <p>die Berühmte <span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopsche</a></span></span>
-                                        </p>
-                                        <p><a class="orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html"><span class="tei_hi_latintype">Musicalien</span> Handlung</a>
-                                        </p>
+                                        <p>die Berühmte <span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopsche</a></span></span></p>
+                                        <p><a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html"><span class="tei_hi_latintype">Musicalien</span> Handlung</a></p>
                                         <p>in</p>
-                                        <p><span class="tei_hi_underline1">Leipzig</span>
-                                        </p>
-                                        <p><span class="tei_hi_underline1">frey</span>
-                                        </p>
+                                        <p><span class="tei_hi_underline1">Leipzig</span></p>
+                                        <p><span class="tei_hi_underline1">frey</span></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute"><span class="tei_hi_latintype">P</span>: <span class="tei_hi_latintype">P</span>:</p>
             </div>
-                                        <p>Euer HochEdelgeb Verzeihen gütigst, das mit meiner Schuld für die in Stade erhaltene <span class="tei_hi_underline1"><span class="tei_hi_latintype">Operette</span> die Liebe auf dem Lande</span> mich noch nicht gehörig eingestellt habe, inzwischen bleibt es Denenselben unverlohren. ich habe 12 Oden der besten Dichter Teutschlands in <span class="tei_hi_latintype">Musique</span> fürs Clavier gesezt, so kürzlich die KupferPresse verlassen haben; ohne eitlen Ruhm zu melden, haben sie das Glük sehr zu gefallen. Sie sind in <span class=" 762529810199107"><span class="tei_settlement"><span class="tei_hi_latintype">Lübeck</span></span></span> gestochen, und auf sehr gutes und feines Holländsches Papier abgedrukt, ich seze hier in <span class="tei_hi_latintype"><span class=" 7297110110111118101114"><span class="tei_settlement">Hannover</span></span></span> das Stük geheftet, zu 1 rh. 4 ggr cassen Münze ab; ich wolte dahero ergebenst anfragen, ob dieselben Etwa ein oder 200 St mir davon abzunehmen beliebten, und was sie für das 100 zu geben gewillet, und geneigt sein mögten; allenfalls will vor den 3<span class="tei_hi_superscript">t</span> Theil <span class="tei_hi_latintype">Musicalien</span> dafür nehmen.</p>
-                                        <p>Ist die <span class="tei_hi_latintype">operette</span> <span class="tei_hi_latintype"><span class=" 82111109101111321171101003274117108105101"><span class="tei_hi_underline1">Romeo und Julie</span></span></span> von <span class="tei_hi_latintype"><a class="persons A000124" href="/exist/apps/WeGA-WebApp/de/A000124.html">Benda</a></span> bey Ihnen zu haben? ich erbitte mir baldigste Nachricht aus. <span class="tei_hi_latintype"><span class="tei_hi_underline1">NB</span></span>: ich habe noch kein<span class="tei_del">em<a class="noteMarker" id="ref-d37835e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d37835e81">‡</a></span> einziges Stück von diesen Oden jemanden zum Verlag gegeben.</p>
-                                        <p class="teiLetter_closer"> ich harre mit aller Hochachtung<span class="tei_segBlock textAlign-center">Euer Wohlgebℓ<span class="tei_segBlock textAlign-right">ergebe<span class="tei_supplied" id="d37835e91"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>ster D<span class="tei_supplied" id="d37835e94"><span class="brackets_supplied">[</span>iene<span class="brackets_supplied">]</span></span>r<br /><span class="tei_hi_latintype"><a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">FA v:weber</a></span><br /><span class="tei_hi_latintype">Musique Director</span></span></span>
-               <span class="teiLetter_datelineCloser"><span class="tei_hi_latintype"><span class=" 7297110110111118101114"><span class="tei_settlement">Hannover</span></span></span> d 12<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1778</span>
+                                        <p>Euer HochEdelgeb Verzeihen gütigst, das mit meiner Schuld für die in Stade erhaltene <span class="tei_hi_underline1"><span class="tei_hi_latintype">Operette</span> die Liebe auf dem Lande</span> mich noch nicht gehörig eingestellt habe, inzwischen bleibt es Denenselben unverlohren. ich habe 12 Oden der besten Dichter Teutschlands in <span class="tei_hi_latintype">Musique</span> fürs Clavier gesezt, so kürzlich die KupferPresse verlassen haben; ohne eitlen Ruhm zu melden, haben sie das Glük sehr zu gefallen. Sie sind in <span class="tei_placeName"><span class="762529810199107"><span class="tei_hi_latintype">Lübeck</span></span></span> gestochen, und auf sehr gutes und feines Holländsches Papier abgedrukt, ich seze hier in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7297110110111118101114">Hannover</span></span></span> das Stük geheftet, zu 1 rh. 4 ggr cassen Münze ab; ich wolte dahero ergebenst anfragen, ob dieselben Etwa ein oder 200 St mir davon abzunehmen beliebten, und was sie für das 100 zu geben gewillet, und geneigt sein mögten; allenfalls will vor den 3<span class="tei_hi_superscript">t</span> Theil <span class="tei_hi_latintype">Musicalien</span> dafür nehmen.</p>
+                                        <p>Ist die <span class="tei_hi_latintype">operette</span> <span class="tei_hi_latintype"><span class="82111109101111321171101003274117108105101"><span class="tei_hi_underline1">Romeo und Julie</span></span></span> von <span class="tei_hi_latintype"><a class="preview persons A000124" href="/exist/apps/WeGA-WebApp/de/A000124.html">Benda</a></span> bey Ihnen zu haben? ich erbitte mir baldigste Nachricht aus. <span class="tei_hi_latintype"><span class="tei_hi_underline1">NB</span></span>: ich habe noch kein<span class="tei_del">em<a class="noteMarker" id="ref-d57668e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57668e81">‡</a></span> einziges Stück von diesen Oden jemanden zum Verlag gegeben.</p>
+                                        <p class="tei_closer textAlign-left"> ich harre mit aller Hochachtung<span class="tei_segBlock textAlign-center">Euer Wohlgebℓ<span class="tei_segBlock textAlign-right">ergebe<span class="tei_supplied" id="d57668e91"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>ster D<span class="tei_supplied" id="d57668e94"><span class="brackets_supplied">[</span>iene<span class="brackets_supplied">]</span></span>r<br /><span class="tei_hi_latintype"><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">FA v:weber</a></span><br /><span class="tei_hi_latintype">Musique Director</span></span></span>
+               <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="7297110110111118101114">Hannover</span></span></span> d 12<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1778</span>
             </p>
                                         <div class="tei_postscript">
-                                            <p>N. S.<br />mit umgehender Post bitte mir Dero teutsche <span class="tei_hi_latintype">Parodie</span><br />von <span class="tei_hi_underline1">Piramus und Tisbe</span> ergebenst aus.<a class="noteMarker" id="ref-C01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C01">*</a> auch ein vollständiges<br />Verzeichnüs von allen vorhandenen <span class="tei_hi_latintype">opern</span> und <span class="tei_hi_latintype">operetten Partituren</span>
-                                            </p>
+                                            <p>N. S.<br />mit umgehender Post bitte mir Dero teutsche <span class="tei_hi_latintype">Parodie</span><br />von <span class="tei_hi_underline1">Piramus und Tisbe</span> ergebenst aus.<a class="noteMarker" id="ref-C01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C01">*</a> auch ein vollständiges<br />Verzeichnüs von allen vorhandenen <span class="tei_hi_latintype">opern</span> und <span class="tei_hi_latintype">operetten Partituren</span></p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -413,14 +398,13 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d37835e81" data-title="del">"em":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d57668e81" data-title="del">"em":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C01" data-title="note commentary"><span class="tei_lemma">"… Piramus und Tisbe ergebenst aus.": </span>vermutlich die in der Vierten Ausgabe des <span class="tei_hi_italic">Verzeichniß Musikalischer Werke allen zur Praxis, sowohl zum Singen</span> <span> […]</span><span class="tei_hi_italic">welche in richtigen Abschriften bey Joh. Gottlob Immanuel Breitkopf in Leipzig </span><span> […]</span><span class="tei_hi_italic">zu bekommen sind, Leipzig 1780 auf S. 7 genannte deutsche Oper in Partitur: Hasse, Piramus und Thisbe. 15 thl.</span>
-                                            </div>
+                                            <div class="apparatusEntry" id="C01" data-title="note commentary"><span class="tei_lemma">"… Piramus und Tisbe ergebenst aus.": </span>vermutlich die in der Vierten Ausgabe des <span class="tei_hi_italic">Verzeichniß Musikalischer Werke allen zur Praxis, sowohl zum Singen</span> <span> […]</span><span class="tei_hi_italic">welche in richtigen Abschriften bey Joh. Gottlob Immanuel Breitkopf in Leipzig </span><span> […]</span><span class="tei_hi_italic">zu bekommen sind, Leipzig 1780 auf S. 7 genannte deutsche Oper in Partitur: Hasse, Piramus und Thisbe. 15 thl.</span></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -448,10 +432,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040007</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040007</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Mai 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -477,6 +460,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -487,6 +471,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -521,6 +506,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

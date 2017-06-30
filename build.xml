@@ -18,33 +18,45 @@
     </target>
     
     <target name="clean-all" depends="clean">
-        <delete dir="bower_components"/>
+        <delete dir="${bower_components.dir}"/>
+        <delete dir="guidelines"/>
     </target>
     
     <target name="init">
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
+        <condition property="update.bower">
+            <not>
+                <available file="${bower_components.dir}" type="dir"/>
+            </not>
+        </condition>
+        <condition property="update.smufl-font">
+            <not>
+                <available file="${bower_components.dir}/bravura.zip"/>
+            </not>
+        </condition>
     </target>
     
     <target name="test">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
         <regressiontest doctype="letters"/>
         <regressiontest doctype="persons"/>
+        <regressiontest doctype="orgs"/>
         <regressiontest doctype="diaries"/>
+        <regressiontest doctype="documents"/>
         <regressiontest doctype="news"/>
         <regressiontest doctype="thematicCommentaries"/>
         <regressiontest doctype="var"/>
         <regressiontest doctype="writings"/>
     </target>
     
-    <target name="download-smufl-font" depends="init">
+    <target name="download-smufl-font" depends="bower" if="${update.smufl-font}">
         <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${tmp.dir}/bravura.zip" skipexisting="yes"/>
-        <unzip src="${tmp.dir}/bravura.zip" dest="${tmp.dir}"/>
+        <get src="${smufl.font}" dest="${bower_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
     
-    <target name="bower" depends="init">
+    <target name="bower" depends="init" if="${update.bower}">
         <description>Update javascript libraries via bower</description>
         <exec executable="${bower.cmd}" failonerror="yes">
             <arg value="update"/>
@@ -79,6 +91,7 @@
                 <include name="catalogues/**"/>
                 <include name="indices/**"/>
                 <include name="templates/**"/>
+                <include name="guidelines/**"/>
                 <include name="xsl/**"/>
                 <exclude name="build.xml"/>
                 <exclude name="*build.properties"/>
@@ -89,6 +102,10 @@
                 <exclude name="**/less/**"/>
             </fileset>
         </copy>
+        
+        <!-- extract smufl fonts -->
+        <unzip src="${bower_components.dir}/bravura.zip" dest="${tmp.dir}"/>
+        
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts">
             <fileset dir="${tmp.dir}/eot/">
@@ -110,10 +127,10 @@
             <fileset dir="${wega.fonts.dir}">
                 <include name="2B*.*"/>
             </fileset>
-            <fileset dir="bower_components/bootstrap/dist/fonts/">
+            <fileset dir="${bower_components.dir}/bootstrap/dist/fonts/">
                 <include name="*.*"/>
             </fileset>
-            <fileset dir="bower_components/fontawesome/fonts/">
+            <fileset dir="${bower_components.dir}/fontawesome/fonts/">
                 <include name="fontawesome-webfont.*"/>
             </fileset>
         </copy>
@@ -126,8 +143,25 @@
         
         <!-- Copy libs from bower components -->
         <copy todir="${dist.dir}/resources/lib">
-            <fileset dir="bower_components">
-               <exclude name="**/*.html"/>
+            <fileset dir="${bower_components.dir}">
+                <include name="**/*.js"/>
+                <include name="**/*.css"/>
+                <include name="**/*.gif"/>
+                <include name="**/*.png"/>
+                <include name="**/*.jpg"/>
+                <!-- exclude html files. non-well-formed html makes eXist choke -->
+                <exclude name="**/*.html"/>
+                <!-- exclude tests to reduce file size -->
+                <exclude name="**/test/**"/>
+                <exclude name="**/tests.js"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy compiled TEI Guidelines from bower components -->
+        <!-- TODO: include p5subset.xml as a reference -->
+        <copy todir="${dist.dir}/guidelines">
+            <fileset dir="${bower_components.dir}/WeGA-ODD/compiled-ODD">
+                <include name="*.xml"/>
             </fileset>
         </copy>
     </target>
@@ -203,6 +237,5 @@
             )
         </xdb:xquery>
     </target>
-    
     
 </project>

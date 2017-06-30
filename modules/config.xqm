@@ -1,4 +1,4 @@
-xquery version "3.0";
+xquery version "3.1";
 
 (:~
  : A set of helper functions to access the application context from
@@ -48,25 +48,24 @@ declare variable $config:svn-change-history-file as document-node()? :=
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
+declare variable $config:swagger-config-path as xs:string := $config:app-root || '/api/v1/swagger.json';
 
 declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
 declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
-declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
+(:declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;:)
 
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
 (: The first language is the default language :)
 declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
-declare variable $config:default-entries-per-page as xs:int := 10; 
-
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
     if($config:isDevelopment) then () 
-    else (1811 to 1816, 1821 to 1823);
+    else (1821 to 1823);
 
 
 (:~
@@ -90,13 +89,13 @@ declare function config:repo-descriptor() as element(repo:meta) {
 (:~
  : Returns the expath-pkg.xml descriptor for the current application.
  :)
-declare function config:expath-descriptor() as element(expath:package) {
+(:declare function config:expath-descriptor() as element(expath:package) {
     $config:expath-descriptor
-};
+};:)
 
-declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
+(:declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
     $config:expath-descriptor/expath:title/text()
-};
+};:)
 
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
@@ -118,21 +117,29 @@ declare function config:get-option($key as xs:string?) as xs:string? {
 };
 
 (:~
- : Get options from options file
- :
- : @author Peter Stadler
- : @param $key
- : @param $replacements
- : @return xs:string
- :)
-declare function config:get-option($key as xs:string?, $replacements as xs:string*) as xs:string {
-    let $dic := $config:options-file
-    let $item := $dic//id($key)
-    let $placeHolders := 
-        for $i at $count in $replacements
-        let $x := concat('%',$count)
-        return $x
-    return functx:replace-multi($item,$placeHolders,$replacements)
+ :  Set or add a preference for the WeGA WebApp
+ :  This can be used by a trigger to inject options on startup or to change options dynamically during runtime
+ :  NB: You have to be logged in as admin to be able to update preferences!
+ : 
+ :  @param $key the key to update or insert 
+ :  @param $value the value for $key
+ :  @return the new value if succesfull, the empty sequence otherwise
+~:)
+declare function config:set-option($key as xs:string, $value as xs:string) as xs:string? {
+    let $old := $config:options-file/id($key)
+    return
+        if($old) then try {(
+            update value $old with $value,
+            core:logToFile('debug', 'set preference "' || $key || '" to "' || $value || '"'),
+            $value
+            )}
+            catch * { core:logToFile('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+        else try {( 
+            update insert <entry xml:id="{$key}">{$value}</entry> into $config:options-file/id('various'),
+            core:logToFile('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
+            $value
+            )}
+            catch * { core:logToFile('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
 };
 
 (:~
@@ -388,6 +395,7 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
+        <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
         {if(exists($params)) then 
             for $i in map:keys($params)
@@ -398,8 +406,41 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
     </parameters>
 };
 
+(:~
+ : get (from URL parameter, or session, or options file) and set (to the session) the default entries per page
+~:)
 declare function config:entries-per-page() as xs:int {
-(:    Klappt irgendwie nicht?!? :)
-    (:$config:default-entries-per-page:)
-    10
+    let $urlParam := if(request:exists()) then request:get-parameter('limit', ()) else ()
+    let $sessionParam := if(session:exists()) then session:get-attribute('limit') else ()
+    let $default-option := config:get-option('entriesPerPage')
+    return
+        if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
+        else if($sessionParam castable as xs:int) then $sessionParam
+        else if($default-option castable as xs:int) then xs:int($default-option)
+        else (10, core:logToFile('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
+};
+
+(:~
+ : get (from URL parameter, or session, or options file) and set (to the session) the line wrap preference of the user
+~:)
+declare function config:line-wrap() as xs:boolean {
+    let $urlParam := if(request:exists()) then request:get-parameter('line-wrap', ()) else ()
+    let $sessionParam := if(session:exists()) then session:get-attribute('line-wrap') else ()
+    let $default-option := true() (:config:get-option('line-wrap'):)
+    return
+        if($urlParam) then 
+            if($urlParam = ('true', '1', 'yes')) then (true(), session:set-attribute('line-wrap', true()))
+            else (false(), session:set-attribute('line-wrap', false()))
+        else if($sessionParam instance of xs:boolean) then $sessionParam
+        else if($default-option instance of xs:boolean) then $default-option
+        else (true(), core:logToFile('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
+};
+
+(:~
+ : Return the Swagger API base path
+~:)
+declare function config:api-base() as xs:string {
+    let $swagger-config := json-doc($config:swagger-config-path)
+    return
+        $swagger-config?schemes[1] || '://' || $swagger-config?host || $swagger-config?basePath 
 };

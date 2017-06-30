@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2014-12-10T11:47:55.158118Z" />
+        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050204" />
         <meta property="dc:description" content="Die Musikabteilung der Staats-Bibliothek zu Berlin – Preußischer Kulturbesitz konnte ihre einzigartige Weber-Sammlung erneut um wichtige Quellen …" />
         <meta name="description" content="Die Musikabteilung der Staats-Bibliothek zu Berlin – Preußischer Kulturbesitz konnte ihre einzigartige Weber-Sammlung erneut um wichtige Quellen …" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A009005/News/A050204.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A009005/News/A050204.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,14 +209,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a>
-                        </li>
-                        <li><span>A050204</span> 
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a></li>
+                        <li><span>A050204</span> </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -231,30 +229,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000211" /> <span title="Braham, John">Braham, John</span> 
@@ -285,8 +276,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -298,8 +288,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -315,8 +304,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -333,14 +321,14 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Die Musikabteilung der Staats-Bibliothek zu Berlin – Preußischer Kulturbesitz konnte ihre einzigartige Weber-Sammlung erneut um wichtige Quellen bereichern, u.&#160;a. im Herbst 2014 um eine <a href="https://opac.rism.info/search?id=461018500&amp;db=251&amp;View=rism">dreibändige Partiturkopie <i class="fa fa-external-link"></i></a> von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> letzter Oper <span class="tei_hi_italic"><span class="works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> (55&#160;MS&#160;10185). Die Abschrift wurde von zwei Dresdner Kopisten angefertigt, die häufig für den Komponisten arbeiteten (<a class="persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Kretzschmar</a> und <a class="persons A001135" href="/exist/apps/WeGA-WebApp/de/A001135.html">Lauterbach</a>); die separat beiliegende Kopie der Ouvertüre stammt von der Hand des Flötisten <a class="persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Anton Bernhard Fürstenau</a>, der <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zur Uraufführung der Oper 1826 nach <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> begleitet hatte und offenbar noch vor Ort auf Anweisung des Komponisten dieses Manuskript anfertigte.</p>
-                                        <p>Die Provenienz der Partiturabschrift ließ sich durch durch einen Nachtrag von „C. Merz“ am Ende dieser Ouvertüre ermitteln: <span class=" 67971141083277101114122">Carl Merz</span> war an der Herstellung des <span class="works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html">deutschsprachigen <span class="tei_hi_italic">Oberon</span>-Klavierauszuges</span> beteiligt, der bei <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Hauptverleger <a class="persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Adolph Martin Schlesinger</a> in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> herauskam. Im Brief des Verlags an <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vom 23.&#160;März 1826 wurde zunächst zwar ein gewisser <span class=" 65461608399104109105116116">A.&#160;Schmitt</span> genannt, „der sich der Korrektur unterzogen“ habe, die im Sommer 1826 erschienene Erstausgabe enthält aber auf Seite 4 unten den Vermerk: „Corrector: CARL MERZ, Musiklehrer“. Mit der erneuten Durchsicht in Vorbereitung der korrigierten zweiten Auflage 1827 wurde dann ein vielversprechender achtzehnjähriger Musiker beauftragt: <a class="persons A003371" href="/exist/apps/WeGA-WebApp/de/A003371.html">Felix Mendelssohn Bartholdy</a>, der seine <a class="letters A045515" href="/exist/apps/WeGA-WebApp/de/A003371/Korrespondenz/A045515.html">Änderungsvorschläge am 5.&#160;März 1827</a> an den Verlag sandte. In der Originalplatte der Seite&#160;4, die für die Neuauflage wieder benutzt wurde, ist denn auch der Hinweis auf den vorherigen Korrektor <span class=" 77101114122">Merz</span> getilgt.</p>
-                                        <p>Der Namenszug von <span class=" 77101114122">Merz</span> auf der Ouvertüren-Abschrift lässt hinsichtlich der Provenienz nur eine Interpretation zu: Es handelt sich offenbar um jenes Partitur-Exemplar, das <a class="persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> anlässlich der Einrichtung dieses <span class="works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html"><span class="tei_hi_italic">Oberon</span>-Klavierauszuges</span> erbeten hatte. Im erwähnten Brief des Verlegers an <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vom 23.&#160;März 1826 heißt es, dass der Korrektor <span class=" 8399104109105116116">Schmitt</span> „viele zweifelhafte Stellen“ im Klavierpart ohne Einsicht in die Partitur nicht beurteilen könne. <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vertröstete den Verleger in einem <a class="letters A042737" href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042737.html">Brief vom 11.&#160;April</a>, sie hätte die Partitur längst geschickt, „wenn der Kopist dem sie <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> allein anvertraut hat, nicht erkrankt wäre“. Besagter Kopist war der bereits genannte Dresdner Hornist <a class="persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Carl Gottlob Kretzschmar</a>. Zunächst erhielt <a class="persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> dann Mitte Mai 1826 eine unvollständige Partitur, die nur jene Teile des Werks enthielt, die vor <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Abreise nach <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> entstanden und somit in <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span> greifbar waren: die kompletten Akte I und II sowie die Nr.&#160;17, 18 und 21 aus dem III.&#160;Akt – genau diese Passagen stammen in der neu angekauften Abschrift tatsächlich von <a class="persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Kretzschmar</a>. Lediglich mehrere in <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> komponierte Nummern (Nr.&#160;16, 19, 20 und 22) zeigen die Handschrift des Kopisten <a class="persons A001135" href="/exist/apps/WeGA-WebApp/de/A001135.html">Lauterbach</a> und wurden offenbar erst später von <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span> nach <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> nachgereicht; 
-               sicherlich vor der Privataufführung der Oper im Dezember 1826 im Verlagshaus Schlesinger. Die von <a class="persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenau</a> kopierte, ebenso erst in <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> komponierte Ouvertüre muss schon früher in <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> vorgelegen haben, da die Abschrift mit recht großer Wahrscheinlichkeit als Vorlage für den im August 1826 von Schlesinger publizierten Stimmenerstdruck dieser Nummer diente. Auch dem Aufführungsmaterial zur <span class=" 66101114108105110101114"><span class="tei_settlement">Berliner</span></span> Erstaufführung der Ouvertüre am <span class="tei_date">17.&#160;Juli 1826</span> unter Direktion von <a class="persons A001333" href="/exist/apps/WeGA-WebApp/de/A001333.html">Carl Möser </a>lag sicherlich <a class="persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenaus</a> Kopie zugrunde. Dass sie auf dem direkten Postweg von <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> nach <span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span> kam, darauf deutet eine Knickfalte hin: Um Porto zu sparen, war das Manuskript (22,5 x 29,5&#160;cm) in der Mitte gefaltet worden, so dass es nur noch 22,5 x 15&#160;cm maß. Zwei in <span class=" 76111110100111110"><span class="tei_settlement">London</span></span> für <a class="persons A000211" href="/exist/apps/WeGA-WebApp/de/A000211.html">John Braham</a>, den Sänger des <span class=" 72252111110">Hüon</span>, nachkomponierte Vokalnummern (eine Ersatzarie anstelle der ersten Nr.&#160;5 sowie die Preghiera-Einlage Nr.&#160;12A) fehlen.</p>
-                                        <p>Das weitere Schicksal der Partitur ist ungewiss. Aus zwei Briefen des Verlegers an <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> (<a class="letters A045547" href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045547.html">vom 25.&#160;Dezember 1827</a> und <a class="letters A045562" href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045562.html">16.&#160;Juli 1828</a>) weiß man lediglich, dass dieser die Partiturkopie im Auftrag der <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Witwe</a> 1827 an seinen Pariser Sohn (und ebenfalls Verlagsinhaber) <a class="persons A001695" href="/exist/apps/WeGA-WebApp/de/A001695.html">Maurice Schlesinger</a> gesandt hatte, weshalb er dringend eine Ersatzkopie erbat. Aus dem Pariser Verlagsarchiv gelangte das erste Schlesinger-Exemplar später offenbar in Privathand und konnte nun angekauft werden.</p>
+                                        <p>Die Musikabteilung der Staats-Bibliothek zu Berlin – Preußischer Kulturbesitz konnte ihre einzigartige Weber-Sammlung erneut um wichtige Quellen bereichern, u. a. im Herbst 2014 um eine <a href="https://opac.rism.info/search?id=461018500&amp;db=251&amp;View=rism">dreibändige Partiturkopie <i class="fa fa-external-link"></i></a> von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> letzter Oper <span class="tei_hi_italic"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> (55 MS 10185). Die Abschrift wurde von zwei Dresdner Kopisten angefertigt, die häufig für den Komponisten arbeiteten (<a class="preview persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Kretzschmar</a> und <a class="preview persons A001135" href="/exist/apps/WeGA-WebApp/de/A001135.html">Lauterbach</a>); die separat beiliegende Kopie der Ouvertüre stammt von der Hand des Flötisten <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Anton Bernhard Fürstenau</a>, der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zur Uraufführung der Oper 1826 nach <span class="tei_placeName"><span class="76111110100111110">London</span></span> begleitet hatte und offenbar noch vor Ort auf Anweisung des Komponisten dieses Manuskript anfertigte.</p>
+                                        <p>Die Provenienz der Partiturabschrift ließ sich durch durch einen Nachtrag von „C. Merz“ am Ende dieser Ouvertüre ermitteln: <span class="67971141083277101114122">Carl Merz</span> war an der Herstellung des <span class="preview works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html">deutschsprachigen <span class="tei_hi_italic">Oberon</span>-Klavierauszuges</span> beteiligt, der bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Hauptverleger <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Adolph Martin Schlesinger</a> in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> herauskam. Im <span class="preview letters A042616" data-ref="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A042616.html /exist/apps/WeGA-WebApp/de/A000213.html">Brief des Verlags an <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vom 23. März 1826</span> wurde zunächst zwar ein gewisser <span class="65461608399104109105116116">A. Schmitt</span> genannt, „der sich der Korrektur unterzogen“ habe, die im Sommer 1826 erschienene Erstausgabe enthält aber auf Seite 4 unten den Vermerk: „Corrector: CARL MERZ, Musiklehrer“. Mit der erneuten Durchsicht in Vorbereitung der korrigierten zweiten Auflage 1827 wurde dann ein vielversprechender achtzehnjähriger Musiker beauftragt: <a class="preview persons A003371" href="/exist/apps/WeGA-WebApp/de/A003371.html">Felix Mendelssohn Bartholdy</a>, der seine <a class="preview letters A045515" href="/exist/apps/WeGA-WebApp/de/A003371/Korrespondenz/A045515.html">Änderungsvorschläge am 5. März 1827</a> an den Verlag sandte. In der Originalplatte der Seite 4, die für die Neuauflage wieder benutzt wurde, ist denn auch der Hinweis auf den vorherigen Korrektor <span class="77101114122">Merz</span> getilgt.</p>
+                                        <p>Der Namenszug von <span class="77101114122">Merz</span> auf der Ouvertüren-Abschrift lässt hinsichtlich der Provenienz nur eine Interpretation zu: Es handelt sich offenbar um jenes Partitur-Exemplar, das <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> anlässlich der Einrichtung dieses <span class="preview works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html"><span class="tei_hi_italic">Oberon</span>-Klavierauszuges</span> erbeten hatte. Im erwähnten <span class="preview letters A042616" data-ref="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A042616.html /exist/apps/WeGA-WebApp/de/A000213.html">Brief des Verlegers an <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vom 23. März 1826</span> heißt es, dass der Korrektor <span class="8399104109105116116">Schmitt</span> „viele zweifelhafte Stellen“ im Klavierpart ohne Einsicht in die Partitur nicht beurteilen könne. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> vertröstete den Verleger in einem <a class="preview letters A042737" href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042737.html">Brief vom 11. April</a>, sie hätte die Partitur längst geschickt, „wenn der Kopist dem sie <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> allein anvertraut hat, nicht erkrankt wäre“. Besagter Kopist war der bereits genannte Dresdner Hornist <a class="preview persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Carl Gottlob Kretzschmar</a>. Zunächst erhielt <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> dann Mitte Mai 1826 eine unvollständige Partitur, die nur jene Teile des Werks enthielt, die vor <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Abreise nach <span class="tei_placeName"><span class="76111110100111110">London</span></span> entstanden und somit in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> greifbar waren: die kompletten Akte I und II sowie die Nr. 17, 18 und 21 aus dem III. Akt – genau diese Passagen stammen in der neu angekauften Abschrift tatsächlich von <a class="preview persons A001075" href="/exist/apps/WeGA-WebApp/de/A001075.html">Kretzschmar</a>. Lediglich mehrere in <span class="tei_placeName"><span class="76111110100111110">London</span></span> komponierte Nummern (Nr. 16, 19, 20 und 22) zeigen die Handschrift des Kopisten <a class="preview persons A001135" href="/exist/apps/WeGA-WebApp/de/A001135.html">Lauterbach</a> und wurden offenbar erst später von <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> nach <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> nachgereicht; 
+               sicherlich vor der Privataufführung der Oper im Dezember 1826 im Verlagshaus Schlesinger. Die von <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenau</a> kopierte, ebenso erst in <span class="tei_placeName"><span class="76111110100111110">London</span></span> komponierte Ouvertüre muss schon früher in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> vorgelegen haben, da die Abschrift mit recht großer Wahrscheinlichkeit als Vorlage für den im August 1826 von Schlesinger publizierten Stimmenerstdruck dieser Nummer diente. Auch dem Aufführungsmaterial zur <span class="tei_placeName"><span class="66101114108105110101114">Berliner</span></span> Erstaufführung der Ouvertüre am <span class="tei_date">17. Juli 1826</span> unter Direktion von <a class="preview persons A001333" href="/exist/apps/WeGA-WebApp/de/A001333.html">Carl Möser </a>lag sicherlich <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenaus</a> Kopie zugrunde. Dass sie auf dem direkten Postweg von <span class="tei_placeName"><span class="76111110100111110">London</span></span> nach <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> kam, darauf deutet eine Knickfalte hin: Um Porto zu sparen, war das Manuskript (22,5 x 29,5 cm) in der Mitte gefaltet worden, so dass es nur noch 22,5 x 15 cm maß. Zwei in <span class="tei_placeName"><span class="76111110100111110">London</span></span> für <a class="preview persons A000211" href="/exist/apps/WeGA-WebApp/de/A000211.html">John Braham</a>, den Sänger des <span class="72252111110">Hüon</span>, nachkomponierte Vokalnummern (eine Ersatzarie anstelle der ersten Nr. 5 sowie die Preghiera-Einlage Nr. 12A) fehlen.</p>
+                                        <p>Das weitere Schicksal der Partitur ist ungewiss. Aus zwei Briefen des Verlegers an <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> (<a class="preview letters A045547" href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045547.html">vom 25. Dezember 1827</a> und <a class="preview letters A045562" href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045562.html">16. Juli 1828</a>) weiß man lediglich, dass dieser die Partiturkopie im Auftrag der <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Witwe</a> 1827 an seinen Pariser Sohn (und ebenfalls Verlagsinhaber) <a class="preview persons A001695" href="/exist/apps/WeGA-WebApp/de/A001695.html">Maurice Schlesinger</a> gesandt hatte, weshalb er dringend eine Ersatzkopie erbat. Aus dem Pariser Verlagsarchiv gelangte das erste Schlesinger-Exemplar später offenbar in Privathand und konnte nun angekauft werden.</p>
                                     </div>
                                     <div class="docPart">
-                                        <p>Weiteren Weber-Zuwachs brachte der Dezember 2014: <a href="http://staatsbibliothek-berlin.de/nc/aktuelles/presse/detail/article/2014-12-03-8882/">Gemeinsam mit mehreren Partnern erwarb die Staatsbibliothek wesentliche Teile des Verlagsarchivs Schott <i class="fa fa-external-link"></i></a>, darunter zahllose Briefe. <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> ist viermal (<a class="letters A040803" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040803.html">4.&#160;August 1815</a>, <a class="letters A042346" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042346.html">1.&#160;September 1824</a>, <a class="letters A042499" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042499.html">4.&#160;September 1825</a>, <a class="letters A042527" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042527.html">3.&#160;Dezember 1825</a>) vertreten, sein Halbbruder <a class="persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> einmal (Detmold, 17.&#160;November 1827); dazu findet sich umfangreiche Korrespondenz seines Freundes und Namensvetters <a class="persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a> sowie Schreiben von etlichen Weber-Zeitgenossen (auch solchen aus dem persönlichen Umfeld des Komponisten).</p>
+                                        <p>Weiteren Weber-Zuwachs brachte der Dezember 2014: <a href="http://staatsbibliothek-berlin.de/nc/aktuelles/presse/detail/article/2014-12-03-8882/">Gemeinsam mit mehreren Partnern erwarb die Staatsbibliothek wesentliche Teile des Verlagsarchivs Schott <i class="fa fa-external-link"></i></a>, darunter zahllose Briefe. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> ist viermal (<a class="preview letters A040803" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040803.html">4. August 1815</a>, <a class="preview letters A042346" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042346.html">1. September 1824</a>, <a class="preview letters A042499" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042499.html">4. September 1825</a>, <a class="preview letters A042527" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042527.html">3. Dezember 1825</a>) vertreten, sein Halbbruder <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> einmal (Detmold, 17. November 1827); dazu findet sich umfangreiche Korrespondenz seines Freundes und Namensvetters <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a> sowie Schreiben von etlichen Weber-Zeitgenossen (auch solchen aus dem persönlichen Umfeld des Komponisten).</p>
                                     </div>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Montag, 8. Dezember 2014</p>
@@ -393,7 +381,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A050204/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -415,10 +403,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050204</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050204</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Dezember 2014 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -444,6 +431,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -454,6 +442,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -488,6 +477,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

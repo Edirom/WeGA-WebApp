@@ -228,16 +228,31 @@ declare function core:change-namespace($element as element(), $targetNamespace a
 };
 
 (:~
- : Serves as a shortcut to templates:link-to-app()
- : The assumed context is the current app
+ : Create a link within the current app context (this is the 1-arity version)
  :
  : @author Peter Stadler
  : @param $relLink a relative path to be added to the returned path
  : @return the complete URL for $relLink
  :)
 declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
-(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    (:  
+        for the 1-arity version we need to use the default eXist attributes (= prefixed with "$") 
+        because our unprefixed WeGA versions are being set only at a later stage.
+        Thus, redirects would fail …
+    :)
     str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
+};
+
+(:~
+ : Create a link within the current app context (this is the 2-arity version)
+ : 
+ : @param $relLink a relative path to be added to the returned path
+ : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
+ : @return the complete URL for $relLink
+~:)
+declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as map()) as xs:string {
+(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
 };
 
 (:~
@@ -292,4 +307,23 @@ declare function core:cache-doc($docURI as xs:string, $callback as function() as
         else if(util:binary-doc-available($docURI)) then util:binary-doc($docURI)
         else if(wega-util:doc-available($docURI)) then doc($docURI)
         else ()
+};
+
+(:~
+ : Sort items by their cert-attribute
+ : Primarily used for sorting birth and death dates    
+~:)
+declare function core:order-by-cert($items as item()*) as item()* {
+    let $order := map {
+        'high' := 1,
+        'medium' := 2,
+        'low' := 3,
+        'unknown' := 4,
+        '' := 0
+    }
+    return
+        for $i in $items
+        let $cert := $i/string(@cert)
+        order by $order($cert)
+        return $i
 };

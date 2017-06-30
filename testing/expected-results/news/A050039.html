@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2014-05-22T13:41:22.173024Z" />
+        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050039" />
         <meta property="dc:description" content="Unter Leitung von Prof. Dr. Manuel Gervink veranstaltet die Hochschule für Musik Carl Maria von Weber in Zusammenarbeit mit der Internationalen Carl …" />
         <meta name="description" content="Unter Leitung von Prof. Dr. Manuel Gervink veranstaltet die Hochschule für Musik Carl Maria von Weber in Zusammenarbeit mit der Internationalen Carl …" />
@@ -46,6 +46,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -78,8 +79,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -180,13 +185,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050039.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A009000/News/A050039.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,14 +209,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
-                        </li>
-                        <li><span>A050039</span> 
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a></li>
+                        <li><span>A050039</span> </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -231,30 +229,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050039/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050039.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050039/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050039.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001287" /> <span title="Mayer, August">Mayer, August</span> 
@@ -273,8 +264,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -284,8 +274,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -316,7 +305,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Unter Leitung von <span class=" 80114111102463268114463277971101171011083271101114118105110107">Prof. Dr. Manuel Gervink</span> veranstaltet die Hochschule für Musik <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in Zusammenarbeit mit der <a href="http://webergesellschaft.de">Internationalen Carl-Maria-von-Weber-Gesellschaft</a> am <span class="tei_hi_bold"><span class="tei_date">13.</span> und <span class="tei_date">14. Oktober 2006</span></span> in der <span class="tei_hi_bold">Aula der Hochschule für Musik</span> am Wettiner Platz 13 in <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span> ein Symposium unter dem Thema <span class="tei_hi_bold"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> – der <span class=" 68114101115100110101114"><span class="tei_settlement">Dresdner</span></span> Kapellmeister und der Orchesterstil seiner Zeit</span>. 
+                                        <p>Unter Leitung von <span class="80114111102463268114463277971101171011083271101114118105110107">Prof. Dr. Manuel Gervink</span> veranstaltet die Hochschule für Musik <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in Zusammenarbeit mit der <a href="http://webergesellschaft.de">Internationalen Carl-Maria-von-Weber-Gesellschaft</a> am <span class="tei_hi_bold"><span class="tei_date">13.</span> und <span class="tei_date">14. Oktober 2006</span></span> in der <span class="tei_hi_bold">Aula der Hochschule für Musik</span> am Wettiner Platz 13 in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> ein Symposium unter dem Thema <span class="tei_hi_bold"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> – der <span class="tei_placeName"><span class="68114101115100110101114">Dresdner</span></span> Kapellmeister und der Orchesterstil seiner Zeit</span>. 
                An diesem Symposium beteiligen sich als Referenten auch die Mitarbeiter der WeGA. 
                Ein detailliertes Programm dieser Veranstaltung finden Sie nachfolgend:</p>
                                         <p>
@@ -333,51 +322,50 @@
                <span class="tei_hi_bold">Sektion 1<br />
     Carl Maria von Weber und das Dresdner Kulturleben</span>
             </p>
-                                        <p>16.00&#160; Dr. Till Gerritt Waidelich (Wien)<br />
-               <span class="tei_hi_italic"><a class="persons A001287" href="/exist/apps/WeGA-WebApp/de/A001287.html">August Mayers</a> Bürgschaft im Verhältnis zu anderen musikdramatischen Adaptionen der <a class="persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a>-Ballade – die Oper eines Mitglieds von <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Dresdner Sängerensemble</span>
+                                        <p>16.00  Dr. Till Gerritt Waidelich (Wien)<br />
+               <span class="tei_hi_italic"><a class="preview persons A001287" href="/exist/apps/WeGA-WebApp/de/A001287.html">August Mayers</a> Bürgschaft im Verhältnis zu anderen musikdramatischen Adaptionen der <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schiller</a>-Ballade – die Oper eines Mitglieds von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Dresdner Sängerensemble</span>
             </p>
-                                        <p>16.30&#160; Prof. Dr. Michael Heinemann (Dresden)
-               <br /><span class="tei_hi_italic"><a class="persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Francesco Morlacchi</a> – <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> „Gegenspieler“</span>
+                                        <p>16.30  Prof. Dr. Michael Heinemann (Dresden)
+               <br /><span class="tei_hi_italic"><a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Francesco Morlacchi</a> – <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> „Gegenspieler“</span>
             </p>
                                         <p>Im Anschluß:
                <br /><span class="tei_hi_italic">Präsentation der Dokumentendatenbank der Weber-Gesamtausgabe und des Edirom-Projekts</span>
             </p>
-                                        <p>Samstag, <span class="tei_date">14. Oktober 2006</span>
-                                        </p>
+                                        <p>Samstag, <span class="tei_date">14. Oktober 2006</span></p>
                                         <p>
                <span class="tei_hi_bold">Sektion 2<br />
-    <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Hofkomponist, Kapellmeister und Organisator</span>
+    <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Hofkomponist, Kapellmeister und Organisator</span>
             </p>
-                                        <p>09.30&#160; Prof. Dr. Gerhard Allroggen (Hamburg)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class=" 68114101115100110101114"><span class="tei_settlement">Dresdner</span></span> Lieder</span>
+                                        <p>09.30  Prof. Dr. Gerhard Allroggen (Hamburg)
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="tei_placeName"><span class="68114101115100110101114">Dresdner</span></span> Lieder</span>
             </p>
-                                        <p>10.00&#160; Dr. Irmlind Capelle (Detmold)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">"Jubel-Kantate"</span></span>
+                                        <p>10.00  Dr. Irmlind Capelle (Detmold)
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">"Jubel-Kantate"</span></span>
             </p>
                                         <p>10.30 Prof. Dr. Joachim Veit (Detmold)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Kapellmeister in <span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span></span>
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Kapellmeister in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span></span>
             </p>
-                                        <p>11.30 Frank Ziegler (<span class=" 66101114108105110"><span class="tei_settlement">Berlin</span></span>)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Probenarbeit an der <span class=" 68114101115100110101114"><span class="tei_settlement">Dresdner</span></span> Oper</span>
+                                        <p>11.30 Frank Ziegler (<span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>)
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Probenarbeit an der <span class="tei_placeName"><span class="68114101115100110101114">Dresdner</span></span> Oper</span>
             </p>
-                                        <p>12.00 Dr. Ortrun Landmann (<span class=" 68114101115100101110"><span class="tei_settlement">Dresden</span></span>)
-               <br /><span class="tei_hi_italic">Der Königlich Sächsische Kapellmeister <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> und die Königlich Sächsische Musikalische Kapelle – ein beiderseitiges Geben und Nehmen</span>
+                                        <p>12.00 Dr. Ortrun Landmann (<span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>)
+               <br /><span class="tei_hi_italic">Der Königlich Sächsische Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> und die Königlich Sächsische Musikalische Kapelle – ein beiderseitiges Geben und Nehmen</span>
             </p>
                                         <p>
                <span class="tei_hi_bold">Sektion 3<br />
     Perspektiven: Orchesterstil im Kontext der Zeit, Rezeptionsfragen</span>
             </p>
-                                        <p>14.00&#160; Prof. Dr. Peter Maria Krakauer (<span class=" 839710812298117114103"><span class="tei_settlement">Salzburg</span></span>)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Orchesterstil zwischen <a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a> und <a class="persons A006376" href="/exist/apps/WeGA-WebApp/de/A006376.html">Schumann</a></span>
+                                        <p>14.00  Prof. Dr. Peter Maria Krakauer (<span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span>)
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Orchesterstil zwischen <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a> und <a class="preview persons A006376" href="/exist/apps/WeGA-WebApp/de/A006376.html">Schumann</a></span>
             </p>
-                                        <p>14.30&#160; Prof. Dr. Klaus Aringer (<span class=" 7111497122"><span class="tei_settlement">Graz</span></span>)
-               <br /><span class="tei_hi_italic">„Neu und ergreifend“ – <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> Orchesterbehandlung im Spiegel von Instrumentationslehren des 19. Jahrhunderts</span>
+                                        <p>14.30  Prof. Dr. Klaus Aringer (<span class="tei_placeName"><span class="7111497122">Graz</span></span>)
+               <br /><span class="tei_hi_italic">„Neu und ergreifend“ – <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> Orchesterbehandlung im Spiegel von Instrumentationslehren des 19. Jahrhunderts</span>
             </p>
-                                        <p>15.00&#160; Prof. Dr. Frank Heidlberger (<span class=" 68101110116111110"><span class="tei_settlement">Denton</span></span>, Texas)
-               <br /><span class="tei_hi_italic">Drama und Erzählstruktur in <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> Klarinettenwerken – zum Verhältnis zwischen musikalischem "Text" und Aufführungspraxis</span>
+                                        <p>15.00  Prof. Dr. Frank Heidlberger (<span class="tei_placeName"><span class="68101110116111110">Denton</span></span>, Texas)
+               <br /><span class="tei_hi_italic">Drama und Erzählstruktur in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> Klarinettenwerken – zum Verhältnis zwischen musikalischem "Text" und Aufführungspraxis</span>
             </p>
-                                        <p>16.00&#160; Dr. Felix Purtow (<span class=" 76101105112122105103"><span class="tei_settlement">Leipzig</span></span>)
-               <br /><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> und <span class=" 8311646328010111610111411598117114103"><span class="tei_settlement">St. Petersburg</span></span>: einige Aspekte der Weber-Rezeption in der ersten Hälfte des 19. Jahrhunderts</span>
+                                        <p>16.00  Dr. Felix Purtow (<span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>)
+               <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> und <span class="tei_placeName"><span class="8311646328010111610111411598117114103">St. Petersburg</span></span>: einige Aspekte der Weber-Rezeption in der ersten Hälfte des 19. Jahrhunderts</span>
             </p>
                                         <p>Im Anschluß: Abschlußdiskussion</p>
                                     </div>
@@ -432,7 +420,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A050039/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -454,10 +442,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050039</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050039</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -483,6 +470,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -493,6 +481,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -527,6 +516,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>

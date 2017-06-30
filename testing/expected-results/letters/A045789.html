@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2016-05-27T13:19:00.639045Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045789" />
         <meta property="dc:description" content="gibt aus Artikeln und angeblich nach Befragung Nachricht über Webers Aufenthalt in Breslau und Carlsruhe (mit zahlreichen sachlichen Fehler!)" />
         <meta name="description" content="gibt aus Artikeln und angeblich nach Befragung Nachricht über Webers Aufenthalt in Breslau und Carlsruhe (mit zahlreichen sachlichen Fehler!)" />
@@ -49,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
 
     </head>
     <body>
@@ -81,8 +82,12 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
@@ -183,13 +188,10 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
-                            </li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a>
-                            </li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A009448/Correspondence/A045789.html" hreflang="en" lang="en">En</a>
-                            </li>
+                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A009448/Correspondence/A045789.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -215,14 +217,10 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009448.html">August Kahlert</a>
-                        </li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz">Korrespondenz</a>
-                        </li>
-                        <li><span>A045789</span> <span class="docStatus">Kommentar in Bearbeitung</span>
-                        </li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009448.html">August Kahlert</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz">Korrespondenz</a></li>
+                        <li><span>A045789</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -239,31 +237,23 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
-                        </h2>
+                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a>
-                                </li>
+                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a>
-                                    </li>
+                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a class="deactivated"></a>
-                                </li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz/A045789/xml.html">XML-Vorschau</a>
-                                </li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz/A045789.xml">XML-Download</a>
-                                </li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz/A045789/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009448/Korrespondenz/A045789.xml">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
                     <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
-                        </h2>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
                                 <h3>Absolute Chronologie</h3>
@@ -288,14 +278,15 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#persons">Personen</a>
-                        </h2>
-                        <div class="panel-collapse collapse" id="persons">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000146" /> <span title="Berner, Friedrich Wilhelm">Berner, Friedrich Wilhelm</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000165" /> <span title="Bierey, Gottlob Benedikt">Bierey, Gottlob Benedikt</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080010" /> <span title="Breitkopf &amp; Härtel (Verlag)">Breitkopf &amp; Härtel (Verlag)</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000348" /> <span title="Dalayrac, Nicolas">Dalayrac, Nicolas</span> 
                                 </label><label class="btn gradient-light">
@@ -355,8 +346,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -374,8 +364,7 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
-                        </h2>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -413,201 +402,197 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <h2>
-               <span class="tei_supplied" id="d33740e5"><span class="brackets_supplied">[</span>Überschrift von <a class="persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a>:<span class="brackets_supplied">]</span></span>
+               <span class="tei_supplied" id="d52437e5"><span class="brackets_supplied">[</span>Überschrift von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a>:<span class="brackets_supplied">]</span></span>
                <br /><span class="tei_hi_underline1">Schreiben</span>
-               <br /><span class="tei_hi_underline1">des <a class="persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html"><span class="tei_hi_italic">Dr. August <span class="tei_hi_underline2andMore">Kahlert</span></span></a></span> (bis 1859) <span class="tei_hi_underline1">Professor an</span>
-               <br />der Universität <span class="tei_hi_underline1"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span>, Dichter Aesthetiker <span class="tei_hi_italic">pp</span> (geb. 1807 † 1864 in <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span>)
-               <br /><span class="tei_hi_underline1">an <span class="tei_hi_italic"><a class="persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max von Weber</a></span></span>
+               <br /><span class="tei_hi_underline1">des <a class="preview persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html"><span class="tei_hi_italic">Dr. August <span class="tei_hi_underline2andMore">Kahlert</span></span></a></span> (bis 1859) <span class="tei_hi_underline1">Professor an</span>
+               <br />der Universität <span class="tei_hi_underline1"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span>, Dichter Aesthetiker <span class="tei_hi_italic">pp</span> (geb. 1807 † 1864 in <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span>)
+               <br /><span class="tei_hi_underline1">an <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max von Weber</a></span></span>
                <br />betreffs
-               <br />des <span class="tei_hi_underline1">Aufenthaltes</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span></span>
-               <br />1804–1806 <span class="tei_hi_underline2andMore">zu <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span> u. <span class="tei_hi_italic"><span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span></span></span> in Schlesien.
-               <span class="tei_add">Nach <a class="persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlert’s</a> <br /> Autograph <br /> copirt<a class="noteMarker" id="ref-d33740e78" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e78">‡</a></span>
+               <br />des <span class="tei_hi_underline1">Aufenthaltes</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span></span>
+               <br />1804–1806 <span class="tei_hi_underline2andMore">zu <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span> u. <span class="tei_hi_italic"><span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span></span></span> in Schlesien.
+               <span class="tei_add">Nach <a class="preview persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlert’s</a> <br /> Autograph <br /> copirt<a class="noteMarker" id="ref-d52437e78" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e78">‡</a></span>
             </h2>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <p class="teiLetter_datelineOpenerBlockRight"><span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span> 3. <span class="tei_hi_italic">Dez.</span> 1860</span>
-                                            </p>
+               <span class="tei_dateline textAlign-right"><span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span> 3. <span class="tei_hi_italic">Dez.</span> 1860</span></span>
                <p class="teiLetter_salute">Hochzuverehrender Herr</p>
                <span class="tei_add">
-                  <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A000872" href="/exist/apps/WeGA-WebApp/de/A000872.html">C. v. Holtei</a></span></span> 
-                  schreibt an <span class="tei_hi_italic"><a class="persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. Weber</a></span> über <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlert</a></span></span>: 
-                  Er war bis 1859 Professor an der Universität <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span> wo er deutsche
+                  <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A000872" href="/exist/apps/WeGA-WebApp/de/A000872.html">C. v. Holtei</a></span></span> 
+                  schreibt an <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. Weber</a></span> über <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlert</a></span></span>: 
+                  Er war bis 1859 Professor an der Universität <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span> wo er deutsche
                      Literatur <span class="tei_hi_italic">pp</span> tradirte. Dichter, (hübsche Romanzen) Ästhetiker
-                     (seine „Ästhetik“ ist bei <a class="orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopf u. Härtel</a> erschienen) musikalisch-gebildet,
+                     (seine „Ästhetik“ ist bei <a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopf u. Härtel</a> erschienen) musikalisch-gebildet,
                      thätiger Mitarbeiter an der musikal. Zeitung, war er vielseitig wirksam. Zunehmende
                      Kränklichkeit zwang ihn, seinen Lehrstuhl aufzugeben, er darf sein Zimmer nicht mehr
                      verlassen, doch blieb <span class="tei_hi_underline1">er geistig</span> regsam
                    
-                  (Brief v. 7. <span class="tei_hi_italic">Nov</span>. 1860.) aus <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 829711610598111114"><span class="tei_settlement">Ratibor</span></span>.</span></span><a class="noteMarker" id="ref-d33740e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e106">‡</a></span>
+                  (Brief v. 7. <span class="tei_hi_italic">Nov</span>. 1860.) aus <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="829711610598111114">Ratibor</span></span>.</span></span><a class="noteMarker" id="ref-d52437e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e106">‡</a></span>
             </div>
-                                        <p>Mit Freuden gebe ich Eurer Hochwohlgeboren was ich über den Aufenthalt <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ihres Herrn
-               Vaters</a> in <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span> weiß; leider ist dies nicht viel, weil
+                                        <p>Mit Freuden gebe ich Eurer Hochwohlgeboren was ich über den Aufenthalt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ihres Herrn
+               Vaters</a> in <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span> weiß; leider ist dies nicht viel, weil
                damals Kunstberichte selten gedruckt wurden; doch wird es durch mündliche Auskunft
                älterer Bekannten ergänzt. Ich selbst lebte damals noch nicht.</p>
                                         <p>1.) das <span class="tei_hi_underline1">Breslauische</span>
                <span class="tei_hi_underline1">Theater</span> gehörte seit 1797 einer priviligirten
                Actiengesellschaft, die ein Gebäude besaß, worin bis 1841 gespielt worden ist, das
                aber jetzt nicht mehr steht. Von 1801 bis 1804 führte die Direction der
-               <a class="persons A001912" href="/exist/apps/WeGA-WebApp/de/A001912.html">Regierungssecretär <span class="tei_hi_underline1"><span class="tei_hi_italic">Streit</span></span></a>, 
-               Musikdirector war <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span></span>. 
+               <a class="preview persons A001912" href="/exist/apps/WeGA-WebApp/de/A001912.html">Regierungssecretär <span class="tei_hi_underline1"><span class="tei_hi_italic">Streit</span></span></a>, 
+               Musikdirector war <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span></span>. 
                Die Oper war leidlich, wenigstens hatte man einzelne ausgezeichnete Sänger. 
-               <span class="tei_hi_underline1">1804</span> legte <span class="tei_hi_italic"><a class="persons A001912" href="/exist/apps/WeGA-WebApp/de/A001912.html">Streit</a></span> sein Amt in die Hände
-               des <a class="persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Professors <span class="tei_hi_underline2andMore"><span class="tei_hi_italic">Rhode</span></span></a>, 
-               <span class="tei_hi_italic"><a class="persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span> ging
+               <span class="tei_hi_underline1">1804</span> legte <span class="tei_hi_italic"><a class="preview persons A001912" href="/exist/apps/WeGA-WebApp/de/A001912.html">Streit</a></span> sein Amt in die Hände
+               des <a class="preview persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Professors <span class="tei_hi_underline2andMore"><span class="tei_hi_italic">Rhode</span></span></a>, 
+               <span class="tei_hi_italic"><a class="preview persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span> ging
                ab und widmete sich einem anderen Berufe. 
-               <span class="tei_hi_underline2andMore"><span class="tei_hi_italic"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span></span> in <span class=" 87105101110"><span class="tei_settlement">Wien</span></span> empfahl <span class="tei_hi_underline2andMore"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>, der <span class="tei_hi_underline1">zu
+               <span class="tei_hi_underline2andMore"><span class="tei_hi_italic"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span></span> in <span class="tei_placeName"><span class="87105101110">Wien</span></span> empfahl <span class="tei_hi_underline2andMore"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>, der <span class="tei_hi_underline1">zu
                         Anfang 1804</span>
                <span class="tei_add"><span class="tei_hi_underline1">unrichtig</span>! 
-                  Noch am 14. <span class="tei_hi_italic">Juni</span> war er laut Brief an seinen Freund <span class="tei_hi_italic"><span class="tei_choice"><span class="tei_corr">Thaddäus</span><a class="noteMarker" id="ref-d33740e230" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e230">‡</a></span></span>  
-                  <span class="tei_hi_italic">Susann</span> in <span class="tei_hi_italic"><span class=" 6511710311598117114103"><span class="tei_settlement">Augsburg</span></span></span>.<a class="noteMarker" id="ref-d33740e218" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e218">‡</a></span> 
-               in <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span></span> eintraf<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_01">*</a>
+                  Noch am 14. <span class="tei_hi_italic">Juni</span> war er laut <span class="preview letters A040153" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040153.html /exist/apps/WeGA-WebApp/de/A001936.html">Brief an seinen Freund <span class="preview persons A001936" data-ref="/exist/apps/WeGA-WebApp/de/A001936.html"><span class="tei_hi_italic"><span class="tei_choice"><span class="tei_corr">Thaddäus</span><a class="noteMarker" id="ref-d52437e230" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e230">‡</a></span></span>  
+                  <span class="tei_hi_italic">Susann</span></span></span> in <span class="tei_hi_italic"><span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span></span>.<a class="noteMarker" id="ref-d52437e218" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e218">‡</a></span> 
+               in <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span></span> eintraf<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
                und <span class="tei_hi_underline1">bis Mitte 1806</span> die <span class="tei_hi_underline1">Musikdirectorstelle</span> versah. – 
                Er änderte die Ordnung, worin die
                Orchestermitglieder gesessen hatten und verstärkte ihre Zahl, auch die des Chors.
-               Berichte über das Theater u. musikalische Aufführungen in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> (wahrscheinlich
-               von <span class="tei_hi_italic"><a class="persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span>) stehn in der Leipziger
+               Berichte über das Theater u. musikalische Aufführungen in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> (wahrscheinlich
+               von <span class="tei_hi_italic"><a class="preview persons A004005" href="/exist/apps/WeGA-WebApp/de/A004005.html">Ebell</a></span>) stehn in der Leipziger
                Allgemeinen Musikalischen Zeitung, Jahrgang 1804, 1805, 1806. <span class="tei_hi_italic">Weber’s</span> feurige Direction wird gerühmt; doch
                getadelt daß er seine Aufmerksamkeit allein auf das Orchester
-               <span class="tei_pb"> | </span>und gar nicht auf die Sänger wende; die Wahl der Tempi fand
-               man oft zu schnell<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_02">*</a>
+               <span class="tei_pb" title="Seitenumbruch"> | </span>und gar nicht auf die Sänger wende; die Wahl der Tempi fand
+               man oft zu schnell<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>
                
-               Man darf freilich nicht vergessen, daß <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> erst <span class="tei_hi_underline1">18 Jahr alt</span> war, und zum Erstenmal an der Spitze eines
+               Man darf freilich nicht vergessen, daß <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> erst <span class="tei_hi_underline1">18 Jahr alt</span> war, und zum Erstenmal an der Spitze eines
                Orchesters viele ihm noch fremde klassische Werke einzustudiren hatte. Jedenfalls
                waren jene zwei Jahre für ihn selbst sehr lehrreich. Das damalige Repertoir zeigt
                die besten deutschen und französischen Opern.</p>
-                                        <p>2.) der Dramaturg des Theaters, <a class="persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Professor <span class="tei_hi_underline1"><span class="tei_hi_italic">Rhode</span></span></a>, Lehrer an der Kriegsschule, ein geborner
-               Braunschweiger und <span class="tei_hi_underline1">Freund <span class="tei_hi_italic"><a class="persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessing’s</a></span></span>, war ein <span class="tei_hi_underline1">Freund</span> <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span></span>, für den er einen <span class="tei_hi_underline1">Operntext</span> „<span class="tei_hi_underline2andMore"><span class="tei_hi_italic"><span class="works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span></span>“ dichtete. 
-               Derselbe ist großentheils abgedruckt in <span class="tei_hi_italic"><a class="persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Rhode’s</a></span> Wochenschrift 
+                                        <p>2.) der Dramaturg des Theaters, <a class="preview persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Professor <span class="tei_hi_underline1"><span class="tei_hi_italic">Rhode</span></span></a>, Lehrer an der Kriegsschule, ein geborner
+               Braunschweiger und <span class="tei_hi_underline1">Freund <span class="tei_hi_italic"><a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessing’s</a></span></span>, war ein <span class="tei_hi_underline1">Freund</span> <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span></span>, für den er einen <span class="tei_hi_underline1">Operntext</span> „<span class="tei_hi_underline2andMore"><span class="tei_hi_italic"><span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span></span>“ dichtete. 
+               Derselbe ist großentheils abgedruckt in <span class="tei_hi_italic"><a class="preview persons A001570" href="/exist/apps/WeGA-WebApp/de/A001570.html">Rhode’s</a></span> Wochenschrift 
                „<span class="tei_hi_underline1"><span class="tei_hi_italic">Der Breslauer Erzähler</span></span>“ 1805, keine
-               ausgezeichnete Arbeit, begeisterte aber <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> so sehr, daß er
+               ausgezeichnete Arbeit, begeisterte aber <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> so sehr, daß er
                sich lange damit beschäftigte; wenigstens zeigte er viele 
                <span class="tei_add">
                   Es sind nur <span class="tei_hi_italic">Ouverture</span>, 1 <span class="tei_hi_italic">Chor</span>, 1 <span class="tei_hi_italic">Ariette</span>u. 1 <span class="tei_hi_italic">Quintett</span>davon vorhanden.
-               <a class="noteMarker" id="ref-d33740e349" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e349">‡</a></span>
-               Nummern noch 1809 dem in <span class=" 8311611711611610397114116"><span class="tei_settlement">Stuttgart</span></span> anwesenden <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span></span>, der sie aber (nach <span class="tei_hi_italic"><a class="persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr’s</a></span> Selbstbiographie) etwas dilettantisch fand.
-               <span class="tei_hi_underline1">Vollendet ist die <span class="works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Oper</span> nie worden</span>. Die bekannte einzelne schöne <span class="tei_hi_underline1">Ouvertüre</span> „<span class="tei_hi_underline1"><span class="works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Zum Beherrscher der
+               <a class="noteMarker" id="ref-d52437e349" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e349">‡</a></span>
+               Nummern noch 1809 dem in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> anwesenden <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span></span>, der sie aber (nach <span class="tei_hi_italic"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr’s</a></span> Selbstbiographie) etwas dilettantisch fand.
+               <span class="tei_hi_underline1">Vollendet ist die <span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Oper</span> nie worden</span>. Die bekannte einzelne schöne <span class="tei_hi_underline1">Ouvertüre</span> „<span class="tei_hi_underline1"><span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Zum Beherrscher der
                      Geister</span></span>“ soll dazu gehört haben. Ich möchte dies bezweifeln,
                weil diese <span class="tei_hi_italic">Ouverture</span> Spuren einer späteren Periode an sich
                trägt. 
                <span class="tei_add">
-                  Die <span class="tei_hi_italic">Ouvertüre</span> „<span class="works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">zum Beherrscher der Geister</span>“ ist <span class="tei_hi_underline1">die</span> zu <span class="tei_hi_italic"><span class="works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span>; 
-                  <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> aber hat die alte <span class="tei_hi_italic">Ouverture</span> zu <span class="tei_hi_italic"><span class="works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span> 
-                  im Jahre <span class="tei_hi_underline1">1811</span> zu der zum „<span class="works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Beherrscher d. Geister</span>“ gänzlich <span class="tei_hi_underline1">umgearbeitet</span>.
-               <a class="noteMarker" id="ref-d33740e397" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e397">‡</a></span>
-                                        </p>
-                                        <p>3.) <span class="tei_hi_italic">Weber’s</span> nächster <span class="tei_hi_underline1">Freund</span> war <a class="persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html"><span class="tei_hi_underline1"><span class="tei_hi_italic">Friedr.
+                  Die <span class="tei_hi_italic">Ouvertüre</span> „<span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">zum Beherrscher der Geister</span>“ ist <span class="tei_hi_underline1">die</span> zu <span class="tei_hi_italic"><span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span>; 
+                  <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> aber hat die alte <span class="tei_hi_italic">Ouverture</span> zu <span class="tei_hi_italic"><span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span> 
+                  im Jahre <span class="tei_hi_underline1">1811</span> zu der zum „<span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Beherrscher d. Geister</span>“ gänzlich <span class="tei_hi_underline1">umgearbeitet</span>.
+               <a class="noteMarker" id="ref-d52437e397" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e397">‡</a></span></p>
+                                        <p>3.) <span class="tei_hi_italic">Weber’s</span> nächster <span class="tei_hi_underline1">Freund</span> war <a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html"><span class="tei_hi_underline1"><span class="tei_hi_italic">Friedr.
                   Wilhelm <span class="tei_hi_underline2andMore">Berner</span></span></span></a>, damals 24 Jahr alt, ein genialer Musiker,
                Orgelspieler, Komponist, der ihm mit Rath zur Seite stand, wohl aber auch manchen
                lustigen Streich mit ihm ausgeführt haben mag. 
-               <span class="biblio A112368" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112368.html">Mein <span class="tei_hi_underline1">Aufsatz</span></span> in 
-               <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A000872" href="/exist/apps/WeGA-WebApp/de/A000872.html">Holtei’s</a></span></span> <span class="tei_hi_underline1">Buch</span> ist 
+               <span class="preview biblio A112368" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112368.html">Mein <span class="tei_hi_underline1">Aufsatz</span></span> in 
+               <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A000872" href="/exist/apps/WeGA-WebApp/de/A000872.html">Holtei’s</a></span></span> <span class="tei_hi_underline1">Buch</span> ist 
                <span class="tei_hi_underline1">buchstäblich wahr</span>; 
                die <span class="tei_hi_underline1">Vergiftungsgeschichte</span> 
                <span class="tei_add">
-                  Siehe auch <span class="tei_hi_italic"><a class="persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. Weber’s</a></span> Lebensbild seines Vaters Bd. I. <span class="tei_hi_italic">pag</span>. 103 u. 104
-               <a class="noteMarker" id="ref-d33740e471" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e471">‡</a></span> 
-               steht auch in der <span class="biblio A112541" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112541.html">kleinen <span class="tei_hi_underline1">Biographie</span></span>
-               <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner’s</a></span></span>
-               <span class="tei_hi_underline1">von <span class="tei_hi_italic"><span class=" 7210510111011612211599104">Hientzsch</span></span></span> (1828). 
-               Ich habe <span class="tei_hi_italic"><a class="persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span> selbst wohlgekannt; 
-               er dedicirte <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’n</a></span> eine Klavierphantasie über 
+                  Siehe auch <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. Weber’s</a></span> Lebensbild seines Vaters Bd. I. <span class="tei_hi_italic">pag</span>. 103 u. 104
+               <a class="noteMarker" id="ref-d52437e471" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e471">‡</a></span> 
+               steht auch in der <span class="preview biblio A112541" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112541.html">kleinen <span class="tei_hi_underline1">Biographie</span></span>
+               <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner’s</a></span></span>
+               <span class="tei_hi_underline1">von <span class="tei_hi_italic"><span class="7210510111011612211599104">Hientzsch</span></span></span> (1828). 
+               Ich habe <span class="tei_hi_italic"><a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span> selbst wohlgekannt; 
+               er dedicirte <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’n</a></span> eine Klavierphantasie über 
                <span class="tei_hi_underline1">Freischützthemata</span> u. sprach oft u. mit Liebe von ihm.</p>
                                         <p>4.) Als <span class="tei_hi_underline1">Klavierspieler</span> hat, so viel ich ermitteln konnte,
-               <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> sich in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> 
-               öffentlich <span class="tei_hi_underline1">nicht</span> hören lassen,<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_04">*</a>
+               <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> sich in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> 
+               öffentlich <span class="tei_hi_underline1">nicht</span> hören lassen,<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>
                
                obgleich zwei Abonnementsconcerts bestanden. Er stimmte mit dem Director, dem
-               <a class="persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Kapellmeister <span class="tei_hi_underline1"><span class="tei_hi_italic">Schnabel</span></span></a> nicht zum besten. 
+               <a class="preview persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Kapellmeister <span class="tei_hi_underline1"><span class="tei_hi_italic">Schnabel</span></span></a> nicht zum besten. 
                Dies beweist der Umstand,
-               <span class="tei_pb"> | </span>daß, als <span class="tei_hi_italic"><a class="persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a></span> <span class="tei_hi_italic"><a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn’s</a></span> <span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> zur
-               Osterzeit im großen Concertsaal aufführte, <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>
-               <span class="tei_hi_underline1">dasselbe</span> Oratorium im <span class="tei_hi_underline1">Theater</span> gab.<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_09">*</a>
-                                        </p>
-                                        <p>5.) Im Frühjahr 1806 <span class="tei_hi_underline1">kündigte <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span></span> der Theaterdirection seinen
+               <span class="tei_pb" title="Seitenumbruch"> | </span>daß, als <span class="tei_hi_italic"><a class="preview persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a></span> <span class="tei_hi_italic"><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn’s</a></span> <span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> zur
+               Osterzeit im großen Concertsaal aufführte, <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>
+               <span class="tei_hi_underline1">dasselbe</span> Oratorium im <span class="tei_hi_underline1">Theater</span> gab.<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a></p>
+                                        <p>5.) Im Frühjahr 1806 <span class="tei_hi_underline1">kündigte <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span></span> der Theaterdirection seinen
                Contract. Es hatte Mißhelligkeiten gegeben, weil er auf Engagements von Künstlern
                bestand, welche den Etat überschritten u. die Direction auf Ersparnissen
                beruhte.</p>
-                                        <p>6.) <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span></span></span> bei <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 66114105101103"><span class="tei_settlement">Brieg</span></span></span></span> ist eine seit 1748 bestehende
+                                        <p>6.) <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span></span></span> bei <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="66114105101103">Brieg</span></span></span></span> ist eine seit 1748 bestehende
                Colonie des Herzogs von <span class="tei_hi_italic">Württemberg-Oels</span>. Als dessen Haus
                1792 ausstarb, ging <span class="tei_hi_italic">Oels</span> als Staatslehen an Braunschweig über
-               und Carlsruhe als Allodial-Gut an einen Vetter, den <a class="persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzog <span class="tei_hi_italic">Eugen
+               und Carlsruhe als Allodial-Gut an einen Vetter, den <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzog <span class="tei_hi_italic">Eugen
                   von Württemberg</span></a>, preuß. General, der es sehr verschönerte.
                Er baute dort viel, z. B. ein noch stehendes Schloßtheater, hielt eine gute Kapelle,
                wie dies damals bei den hohen Herren Sitte war, und beschützte die Musik um so mehr,
-               als <a class="persons A001206" href="/exist/apps/WeGA-WebApp/de/A001206.html">seine Gemalin</a> selbst sehr gut Clavier gespielt haben soll. Im
-               Winter zur Karnevalszeit kam der schlesische Adel gewöhnlich in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> zusammen, wo
-               es viele Lustbarkeiten gab. Im Winter 1805-6 mag er <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’n</a></span></span> hier <span class="tei_hi_underline1">persönlich engagirt</span> haben. 
-               – Im <span class="tei_hi_underline1">schlesischen Tonkünstler-Lexikon</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 7511111511510997108121">Kossmaly</span></span></span> (1845) heißt es im
-               <span class="biblio A112444" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112444.html">Artikel „<span class="tei_hi_underline1">Carlsruher Capelle</span>“</span>: 
-               Die <span class="tei_hi_italic"><a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>’schen
-               <span class="tei_hi_italic"><a class="persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">d’Allayrac</a></span>’schen
-               und andere Operetten seien von <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> gegeben worden. 
-               – <span class="tei_hi_italic">Weber</span> <span class="tei_hi_underline1">verließ <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span></span> im Sommer 1806; 
-               seine Stelle nahm später <span class="tei_hi_italic"><a class="persons A000165" href="/exist/apps/WeGA-WebApp/de/A000165.html">Bierey</a></span> ein, der sie 20 Jahre lang bekleidet hat. – 
-               In <span class="tei_hi_underline1"><span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span></span> traf <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> das Unglück,
+               als <a class="preview persons A001206" href="/exist/apps/WeGA-WebApp/de/A001206.html">seine Gemalin</a> selbst sehr gut Clavier gespielt haben soll. Im
+               Winter zur Karnevalszeit kam der schlesische Adel gewöhnlich in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> zusammen, wo
+               es viele Lustbarkeiten gab. Im Winter 1805-6 mag er <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’n</a></span></span> hier <span class="tei_hi_underline1">persönlich engagirt</span> haben. 
+               – Im <span class="tei_hi_underline1">schlesischen Tonkünstler-Lexikon</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="7511111511510997108121">Kossmaly</span></span></span> (1845) heißt es im
+               <span class="preview biblio A112444" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112444.html">Artikel „<span class="tei_hi_underline1">Carlsruher Capelle</span>“</span>: 
+               Die <span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>’schen
+               <span class="tei_hi_italic"><a class="preview persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">d’Allayrac</a></span>’schen
+               und andere Operetten seien von <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> gegeben worden. 
+               – <span class="tei_hi_italic">Weber</span> <span class="tei_hi_underline1">verließ <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span></span> im Sommer 1806; 
+               seine Stelle nahm später <span class="tei_hi_italic"><a class="preview persons A000165" href="/exist/apps/WeGA-WebApp/de/A000165.html">Bierey</a></span> ein, der sie 20 Jahre lang bekleidet hat. – 
+               In <span class="tei_hi_underline1"><span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span></span> traf <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> das Unglück,
                daß sein Vater erkrankte und starb; 
                <span class="tei_add">
-                  Falsch! – <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton v. <span class="tei_hi_italic">Weber</span></a> starb zu <span class="tei_hi_italic"><span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span></span> <span class="tei_date">1812, am 16. <span class="tei_hi_italic">April</span></span>
-               <a class="noteMarker" id="ref-d33740e698" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e698">‡</a></span> er ruht auf dem dasigen Kirchhof. 
-               <span class="tei_add">(also auch falsch.)<a class="noteMarker" id="ref-d33740e717" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e717">‡</a></span>
-               <a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_11">*</a>
-               Ob er einen Denkstein hat, weiß ich aber nicht. – Im Herbst rückte <a class="persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">der Herzog</a>
+                  Falsch! – <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton v. <span class="tei_hi_italic">Weber</span></a> starb zu <span class="tei_hi_italic"><span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></span> <span class="tei_date">1812, am 16. <span class="tei_hi_italic">April</span></span>
+               <a class="noteMarker" id="ref-d52437e698" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e698">‡</a></span> er ruht auf dem dasigen Kirchhof. 
+               <span class="tei_add">(also auch falsch.)<a class="noteMarker" id="ref-d52437e717" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e717">‡</a></span>
+               <a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>
+               Ob er einen Denkstein hat, weiß ich aber nicht. – Im Herbst rückte <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">der Herzog</a>
                mit dem preuß. Reservecorps den Franzosen entgegen, ward (17.
-               <span class="tei_hi_italic">Oct</span>.) bei <span class=" 7297108108101"><span class="tei_settlement">Halle</span></span> geschlagen, kam nach <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span> zurück, wo
-               Theater u. Capelle aufgelöst wurden.<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="C_12">*</a>
+               <span class="tei_hi_italic">Oct</span>.) bei <span class="tei_placeName"><span class="7297108108101">Halle</span></span> geschlagen, kam nach <span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span> zurück, wo
+               Theater u. Capelle aufgelöst wurden.<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>
                Die meisten Musiker wurden in anderen Beschäftigungen untergebracht, wenige ganz
-               entlassen. Im Dezember kamen die Franzosen nach Schlesien. <a class="persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Der Herzog</a> ging nun nach
-               <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class=" 8311611711611610397114116"><span class="tei_settlement">Stuttgart</span></span></span></span> zu 
-               <a class="persons A000534" href="/exist/apps/WeGA-WebApp/de/A000534.html">seinem Bruder</a>, dem neuen König u. behielt <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> als
+               entlassen. Im Dezember kamen die Franzosen nach Schlesien. <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Der Herzog</a> ging nun nach
+               <span class="tei_hi_underline1"><span class="tei_hi_italic"><span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span></span></span> zu 
+               <a class="preview persons A000534" href="/exist/apps/WeGA-WebApp/de/A000534.html">seinem Bruder</a>, dem neuen König u. behielt <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> als
                seinen Sekretär bis 1809 bei sich. 
                <span class="tei_add">
-                  Falsch! – <a class="persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzog <span class="tei_hi_italic">Eugen</span></a> empfahl <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> nach <span class="tei_hi_italic"><span class=" 8311611711611610397114116"><span class="tei_settlement">Stuttgart</span></span></span>, wo er Geh. Secretär bei des
-                  Herzogs Bruder <a class="persons A001210" href="/exist/apps/WeGA-WebApp/de/A001210.html">Hzg. <span class="tei_hi_italic">Louis v.
+                  Falsch! – <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzog <span class="tei_hi_italic">Eugen</span></a> empfahl <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> nach <span class="tei_hi_italic"><span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span></span>, wo er Geh. Secretär bei des
+                  Herzogs Bruder <a class="preview persons A001210" href="/exist/apps/WeGA-WebApp/de/A001210.html">Hzg. <span class="tei_hi_italic">Louis v.
                   Württemb.</span></a> wurde.
-               <a class="noteMarker" id="ref-d33740e772" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e772">‡</a></span> 
-               (<span class="tei_hi_italic"><a class="persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span> betitelt 
-               <span class="tei_pb"> | </span>ihn so in seiner Selbstbiographie. 
-               Etwa 1810 ging <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> zu <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span></span> nach <span class="tei_hi_underline1"><span class=" 689711410911511697100116"><span class="tei_settlement">Darmstadt</span></span></span>.</p>
+               <a class="noteMarker" id="ref-d52437e772" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e772">‡</a></span> 
+               (<span class="tei_hi_italic"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span> betitelt 
+               <span class="tei_pb" title="Seitenumbruch"> | </span>ihn so in seiner Selbstbiographie. 
+               Etwa 1810 ging <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> zu <span class="tei_hi_underline1"><span class="tei_hi_italic"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span></span> nach <span class="tei_hi_underline1"><span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span></span>.</p>
                                         <p><span class="tei_hi_underline2andMore"><span class="tei_hi_italic">NB</span></span>. In der Rheinischen
-               musikalischen Zeitung redigirt von <span class="tei_hi_italic"><span class=" 6610511599104111102">Bischof</span></span>, <span class="biblio A112402" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112402.html">Jahrgang 1853,
-                  <span class="tei_hi_italic">No</span> 20</span> steht ein <a class="letters A040289" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040289.html">beachtenswerther
-                     Brief</a> v. <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span> an <span class="tei_hi_italic"><a class="persons A001390" href="/exist/apps/WeGA-WebApp/de/A001390.html">Nägeli</a></span> (aus <span class="tei_hi_italic"><span class=" 7797110110104101105109"><span class="tei_settlement">Mannheim</span></span></span> 1810)
+               musikalischen Zeitung redigirt von <span class="tei_hi_italic"><span class="6610511599104111102">Bischof</span></span>, <span class="preview biblio A112402" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112402.html">Jahrgang 1853,
+                  <span class="tei_hi_italic">No</span> 20</span> steht ein <a class="preview letters A040289" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040289.html">beachtenswerther
+                     Brief</a> v. <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span> an <span class="tei_hi_italic"><a class="preview persons A001390" href="/exist/apps/WeGA-WebApp/de/A001390.html">Nägeli</a></span> (aus <span class="tei_hi_italic"><span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></span> 1810)
                <span class="tei_add">
-                  Abgedruckt in <span class="tei_hi_italic"><a class="persons A008777" href="/exist/apps/WeGA-WebApp/de/A008777.html">Nohl’s</a></span> <span class="biblio A112263" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112263.html">„<span class="tei_hi_underline1">Musiker</span>-Briefen“</span>
+                  Abgedruckt in <span class="tei_hi_italic"><a class="preview persons A008777" href="/exist/apps/WeGA-WebApp/de/A008777.html">Nohl’s</a></span> <span class="preview biblio A112263" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112263.html">„<span class="tei_hi_underline1">Musiker</span>-Briefen“</span>
                   <span class="tei_hi_italic">pag</span>. <span class="tei_hi_underline1">178</span>.
-               <a class="noteMarker" id="ref-d33740e851" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e851">‡</a></span>
-                                        </p>
-                                        <p><a class="persons A000461" href="/exist/apps/WeGA-WebApp/de/A000461.html">Des Herzogs ältester Sohn</a> (d. h. des <a class="persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzogs <span class="tei_hi_italic">Eugen</span></a>) geb. 1788 ging in russische Dienste u. hatte als General 1813 viel
-               Theil am Siege bei <span class="tei_hi_italic"><span class=" 67117108109"><span class="tei_settlement">Culm</span></span></span>. Er war leidenschaftlicher Musiker,
-               mit <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> fast in <span class="tei_hi_underline1">einem</span> Alter und hat schon damals eine
+               <a class="noteMarker" id="ref-d52437e851" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e851">‡</a></span></p>
+                                        <p><a class="preview persons A000461" href="/exist/apps/WeGA-WebApp/de/A000461.html">Des Herzogs ältester Sohn</a> (d. h. des <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Herzogs <span class="tei_hi_italic">Eugen</span></a>) geb. 1788 ging in russische Dienste u. hatte als General 1813 viel
+               Theil am Siege bei <span class="tei_hi_italic"><span class="tei_placeName"><span class="67117108109">Culm</span></span></span>. Er war leidenschaftlicher Musiker,
+               mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> fast in <span class="tei_hi_underline1">einem</span> Alter und hat schon damals eine
                Oper „<span class="tei_hi_italic">Leonore, die Geisterbraut</span>“ zu komponiren begonnen, die
-               erst nach 25 Jahren vollendet, 1841 in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> gegeben ward. Er nahm 1821 seinen
-               Wohnsitz wieder in dem so lange einsamen <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span>, errichtete wieder seine Kapelle
+               erst nach 25 Jahren vollendet, 1841 in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> gegeben ward. Er nahm 1821 seinen
+               Wohnsitz wieder in dem so lange einsamen <span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span>, errichtete wieder seine Kapelle
                und starb 1855.</p>
-                                        <p>7.) <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> sagt, er habe in <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span> <span class="A020278 A020218"><span class="tei_hi_underline1">zwei</span> Sinfonien</span> geschrieben; ich kenne nur eine,
+                                        <p>7.) <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> sagt, er habe in <span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span> <span class="preview works A020278 A020218" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020278.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020218.html"><span class="tei_hi_underline1">zwei</span> Sinfonien</span> geschrieben; ich kenne nur eine,
                (<span class="tei_hi_italic">C dur</span>) 
                <span class="tei_add">
                   <span class="tei_hi_underline1">beide</span> stehen in <span class="tei_hi_italic">C dur</span>
-               <a class="noteMarker" id="ref-d33740e921" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="d33740e921">‡</a></span> 
+               <a class="noteMarker" id="ref-d52437e921" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d52437e921">‡</a></span> 
                die schon, bevor sie im Druck
-               erschien, in <span class="tei_hi_italic"><span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span></span> durch <span class="tei_hi_italic"><a class="persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span> zuweilen gegeben wurde. 
-               Sie erinnert an <span class="tei_hi_italic"><a class="persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span>. 
+               erschien, in <span class="tei_hi_italic"><span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span></span> durch <span class="tei_hi_italic"><a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span> zuweilen gegeben wurde. 
+               Sie erinnert an <span class="tei_hi_italic"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span>. 
                Die Vorliebe für Horneffecte, die
-               <span class="tei_hi_italic"><a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> stets behielt, zeigt sich schon da.</p>
+               <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> stets behielt, zeigt sich schon da.</p>
                                         <p>Dies ist es, was ich Ihnen mitzutheilen hätte, allerdings wenig genug. Auf Ihre
                Arbeit freue ich mich sehr. Ein <span class="tei_hi_underline1">chronologisches</span>
-               <span class="tei_hi_underline1">Verzeichniß</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic">Webers</span> Originalbriefen</span> (wie <span class="tei_hi_italic"><a class="persons A003318" href="/exist/apps/WeGA-WebApp/de/A003318.html">Jahn</a></span> bei <span class="tei_hi_italic"><a class="persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span> gab) dürfen wir wohl
+               <span class="tei_hi_underline1">Verzeichniß</span> von <span class="tei_hi_underline1"><span class="tei_hi_italic">Webers</span> Originalbriefen</span> (wie <span class="tei_hi_italic"><a class="preview persons A003318" href="/exist/apps/WeGA-WebApp/de/A003318.html">Jahn</a></span> bei <span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span> gab) dürfen wir wohl
                erwarten. Auch ein <span class="tei_hi_underline1">genauer Catalog seiner Werke</span> mit <span class="tei_hi_underline1">Jahreszahlen</span> u. <span class="tei_hi_underline1">Verlagsangabe ist dringendes Bedürfniß</span>.</p>
-                                        <p class="teiLetter_closer">
+                                        <p class="tei_closer textAlign-left">
                Mit größter Hochachtung beharre ich
                <br />Ew. Hochwohlgeboren
                <span class="tei_signed textAlign-right">ergebenster <span class="tei_hi_italic">Dr. Kahlert</span>.</span>
             </p>
                                         <div class="tei_postscript">
                                             <p><span class="tei_hi_underline1">N. S</span>.</p>
-                                            <p>Sollten sie vielleicht gelegentlich das <a class="persons A009360" href="/exist/apps/WeGA-WebApp/de/A009360.html">Fräulein <span class="tei_hi_italic">Adele Lessmann</span></a> sehen, in deren Hause ich vor
-                  langen Jahren <a class="persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Ihre Frau Mama</a> kennen zu lernen die Ehre hatte, so
+                                            <p>Sollten sie vielleicht gelegentlich das <a class="preview persons A009360" href="/exist/apps/WeGA-WebApp/de/A009360.html">Fräulein <span class="tei_hi_italic">Adele Lessmann</span></a> sehen, in deren Hause ich vor
+                  langen Jahren <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Ihre Frau Mama</a> kennen zu lernen die Ehre hatte, so
                   darf ich wohl ergebenst bitten, mich ihr gehorsamst zu empfehlen.</p>
                                         </div>
                                         <p class="clearer"></p>
@@ -663,70 +648,70 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e78" data-title="add">"Nach Kahlert’s  Autograph  copirt": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e78" data-title="add">"Nach Kahlert’s  Autograph  copirt": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e106" data-title="add">" C. v. … 1860.) aus Ratibor.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e106" data-title="add">" C. v. … 1860.) aus Ratibor.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e218" data-title="add">"unrichtig! Noch am … Susann in Augsburg.": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e218" data-title="add">"unrichtig! Noch am … Susann in Augsburg.": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e349" data-title="add">" Es sind … Quintettdavon vorhanden. ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e349" data-title="add">" Es sind … Quintettdavon vorhanden. ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e397" data-title="add">" Die Ouvertüre … gänzlich umgearbeitet. ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e397" data-title="add">" Die Ouvertüre … gänzlich umgearbeitet. ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e471" data-title="add">" Siehe auch … u. 104 ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e471" data-title="add">" Siehe auch … u. 104 ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e698" data-title="add">" Falsch! – … 16. April ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e698" data-title="add">" Falsch! – … 16. April ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e717" data-title="add">"(also auch falsch.)": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e717" data-title="add">"(also auch falsch.)": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e772" data-title="add">" Falsch! – … Württemb. wurde. ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e772" data-title="add">" Falsch! – … Württemb. wurde. ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e851" data-title="add">" Abgedruckt in … pag. 178. ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e851" data-title="add">" Abgedruckt in … pag. 178. ": Hinzufügung am Rand.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e921" data-title="add">" beide stehen … C dur ": Hinzufügung am Rand.</div>
+                                            <div class="apparatusEntry" id="d52437e921" data-title="add">" beide stehen … C dur ": Hinzufügung am Rand.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d33740e230" data-title="choice">recte "Thaddäus": in der Vorlage "Ign."</div>
+                                            <div class="apparatusEntry" id="d52437e230" data-title="choice">recte "Thaddäus": in der Vorlage "Ign."</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… Augsburg . in Breslau eintraf": </span>
-                  <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> trat angeblich am 11. Juli seine Musikdirektoren-Stelle an; der früheste Beleg für seine Anwesenheit in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> ist sein Konzert am <span class="tei_date">17.&#160;Juli 1804</span>.
+                  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> trat angeblich am 11. Juli seine Musikdirektoren-Stelle an; der früheste Beleg für seine Anwesenheit in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> ist sein Konzert am <span class="tei_date">17. Juli 1804</span>.
                </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_02" data-title="note commentary"><span class="tei_lemma">"… fand man oft zu schnell": </span>
-                  <a class="persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlerts</a> Angaben zu <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> stammen weitgehend aus dem <span class="biblio A112534" data-ref="/exist/apps/WeGA-WebApp/de/A007979/A112534.html">Weber-Artikel in A112534</span>.
+                  <a class="preview persons A009448" href="/exist/apps/WeGA-WebApp/de/A009448.html">Kahlerts</a> Angaben zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> stammen weitgehend aus dem <span class="preview biblio A112534" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112534.html">Weber-Artikel in A112534</span>.
                </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary"><span class="tei_lemma">"… Breslau öffentlich nicht hören lassen,": </span>
-                  Auftritte <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> als Pianist sind in <span class=" 6611410111510897117"><span class="tei_settlement">Breslau</span></span> dokumentiert am 17. Juli 1804, 11. April 1805, 27. Juli 1805, 24. August 1805, 3. April 1806 und 21. Juni 1806.
+                  Auftritte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> als Pianist sind in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> dokumentiert am 17. Juli 1804, 11. April 1805, 27. Juli 1805, 24. August 1805, 3. April 1806 und 21. Juni 1806.
                </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary"><span class="tei_lemma">"… dasselbe Oratorium im Theater gab.": </span>
-                  Der Gründonnerstag war <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in seinem Anstellungsvertrag als Termin für ein Benefizkonzert im Theater zugebilligt worden. 
-                  1805 führte <a class="persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a> am Gründonnerstag (11. April) <a class="persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydns</a> <span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> in der Aula Leopoldina auf, 
-                  <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gab am selben Tag im Theater eine Konzertakademie. 
-                  Zwei zeitlich benachbarte Aufführungen der <span class="works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> gab es 1806: am 3. April (wiederum Gründonnerstag, also parallel zu <a class="persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Benefiz im Theater) 
-                  durch <a class="persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a> sowie am 1. April durch <a class="persons A000919" href="/exist/apps/WeGA-WebApp/de/A000919.html">Jan Janeczek</a> (jeweils in der Aula Leopoldina).
+                  Der Gründonnerstag war <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in seinem Anstellungsvertrag als Termin für ein Benefizkonzert im Theater zugebilligt worden. 
+                  1805 führte <a class="preview persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a> am Gründonnerstag (11. April) <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydns</a> <span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> in der Aula Leopoldina auf, 
+                  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gab am selben Tag im Theater eine Konzertakademie. 
+                  Zwei zeitlich benachbarte Aufführungen der <span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">Schöpfung</span> gab es 1806: am 3. April (wiederum Gründonnerstag, also parallel zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Benefiz im Theater) 
+                  durch <a class="preview persons A001718" href="/exist/apps/WeGA-WebApp/de/A001718.html">Schnabel</a> sowie am 1. April durch <a class="preview persons A000919" href="/exist/apps/WeGA-WebApp/de/A000919.html">Jan Janeczek</a> (jeweils in der Aula Leopoldina).
                </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_11" data-title="note commentary"><span class="tei_lemma">"… Kirchhof. (also auch falsch.) ": </span>In <span class=" 6797114108115114117104101"><span class="tei_settlement">Carlsruhe</span></span> starb am <span class="tei_date">22. August 1807</span> <a class="persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a> Schwester <a class="persons A002061" href="/exist/apps/WeGA-WebApp/de/A002061.html">Adelheid von Weber</a>.</div>
+                                            <div class="apparatusEntry" id="C_11" data-title="note commentary"><span class="tei_lemma">"… Kirchhof. (also auch falsch.) ": </span>In <span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span> starb am <span class="tei_date">22. August 1807</span> <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a> Schwester <a class="preview persons A002061" href="/exist/apps/WeGA-WebApp/de/A002061.html">Adelheid von Weber</a>.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_12" data-title="note commentary"><span class="tei_lemma">"… Theater u. Capelle aufgelöst wurden.": </span>
@@ -737,7 +722,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A045789/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -759,10 +744,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045789</span> (<span>Version 2.0dev vom 4. Mai 2016</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045789</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Mai 2016 durch Solveig Schreiter</span>
-                </p>
+                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
@@ -788,6 +772,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://staatsbibliothek-berlin.de/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
@@ -798,6 +783,7 @@
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
+                	<div class="clearfix visible-xs-block"></div>
                     <div class="col-md-4 col-xs-6">
                         <a href="http://exist-db.org/">
                             <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
@@ -832,6 +818,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3 class="item-title">Loading …</h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+            </div> 
         </div>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
