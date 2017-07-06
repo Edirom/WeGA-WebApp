@@ -308,7 +308,7 @@ $.fn.preview_popover = function() {
         url: url,
         success: function(response){
             var source = $(response),
-                title = source.find('h3').children(),
+                title = source.find('h3').html(),
                 content = source.children();
             $('.item-title', container).html(title);
             $('.item-content', container).html(content);
