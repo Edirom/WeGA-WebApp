@@ -208,8 +208,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:correspDesc[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
-            $item[tei:TEI]//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = 'summary'] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
@@ -778,6 +777,7 @@ declare function wdt:documents($item as item()*) as map(*) {
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
