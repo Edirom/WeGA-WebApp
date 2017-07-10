@@ -304,6 +304,7 @@ declare function wdt:writings($item as item()*) as map(*) {
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
