@@ -301,10 +301,13 @@ declare
             if(config:is-person($model('docID'))) then $model('docID')
             else query:get-authorID($model('doc'))
         let $href := app:createUrlForDoc(core:doc($authorID), $lang)
+        let $elem := 
+            if($href and not($authorID = config:get-option('anonymusID'))) then QName('http://www.w3.org/1999/xhtml', 'a')
+            else QName('http://www.w3.org/1999/xhtml', 'span')
         return 
-            element {node-name($node)} {
+            element {$elem} {
                 $node/@*[not(local-name(.) eq 'href')],
-                if($href and not($authorID = config:get-option('anonymusID'))) then attribute href {$href} else (),
+                if(local-name-from-QName($elem) = 'a') then attribute href {$href} else (),
                 str:printFornameSurname(query:title($authorID))
             }
 };
@@ -315,10 +318,13 @@ declare
         let $authorID := query:get-authorID($model('doc'))
         let $href := core:link-to-current-app(functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/'))
         let $display-name := replace(functx:substring-after-last($href, '/'), '_', ' ')
+        let $elem := 
+            if($href and not($authorID = config:get-option('anonymusID'))) then QName('http://www.w3.org/1999/xhtml', 'a')
+            else QName('http://www.w3.org/1999/xhtml', 'span')
         return
-            element {node-name($node)} {
+            element {$elem} {
                 $node/@*[not(local-name(.) eq 'href')],
-                if($href and not($authorID = config:get-option('anonymusID'))) then attribute href {$href} else (),
+                if(local-name-from-QName($elem) = 'a') then attribute href {$href} else (),
                 $display-name
             }
 };
