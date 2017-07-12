@@ -103,7 +103,13 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@key">
-                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
+                        <xsl:value-of select="string-join(
+                            (
+                            if($suppressLinks) then () else 'preview', 
+                            wega:get-doctype-by-id(substring(@key, 1, 7)), 
+                            @key
+                            )
+                            , ' ')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="string-to-codepoints(normalize-space(.))">
