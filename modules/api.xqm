@@ -22,7 +22,9 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
-declare variable $api:max-limit as xs:integer := 200;
+declare variable $api:max-limit := function($swagger-conf as map(*)) as xs:integer {
+    $swagger-conf?parameters?limitParam?maximum
+};
 
 declare function api:documents($model as map()) {
     let $ids :=
@@ -150,9 +152,9 @@ declare %private function api:subsequence($seq as item()*, $model as map()) {
     let $limit := if($model('limit') castable as xs:integer) then $model('limit') cast as xs:integer else 0
     return
         if($offset gt 0 and $limit gt 0) then subsequence($seq, $offset, $limit)
-        else if($offset gt 0) then subsequence($seq, $offset, $api:max-limit)
+        else if($offset gt 0) then subsequence($seq, $offset, $api:max-limit($model('swagger:config')))
         else if($limit gt 0) then subsequence($seq, 1, $limit)
-        else subsequence($seq, 1, $api:max-limit)
+        else subsequence($seq, 1, $api:max-limit($model('swagger:config')))
 }; 
 
 (:~
@@ -255,8 +257,8 @@ declare function api:validate-offset($model as map()) as map()? {
  : Check parameter limit
 ~:)
 declare function api:validate-limit($model as map()) as map()? {
-    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le $api:max-limit) then $model 
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to ' || $api:max-limit || '.')
+    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le $api:max-limit($model('swagger:config'))) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to ' || $api:max-limit($model('swagger:config')) || '.')
 };
 
 (:~

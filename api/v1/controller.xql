@@ -139,8 +139,8 @@ let $validate-params := function($params as map()?) as map()? {
             for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
-                if(exists($lookup)) then $lookup(map:entry($param, $params($param)))
-                else if(exists($validate-unknown-param)) then $validate-unknown-param(map:entry($param, $params($param)))
+                if(exists($lookup)) then $lookup(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
                 else (
                     util:log-system-out('It seems you did not provide a validate-unknown-param function'),
                     error($local:INVALID_PARAMETER, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
