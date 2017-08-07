@@ -373,6 +373,9 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:lb) return 
             if($node[@type='inWord']) then ()
             else '&#10;'
+        case element(tei:pb) return 
+            if($node[@type='inWord']) then ()
+            else ' '
         case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
         case element(tei:quote) return 
             if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
