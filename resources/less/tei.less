@@ -170,8 +170,17 @@ li.listSubTitle {
 }
 
 .tei_orderedList {
-    list-style: decimal;
+    list-style: none;
     margin-left:1em;
+    counter-reset: ol-items;
+    li::before {
+        counter-increment: ol-items 1;
+        content: counter(ol-items) ". ";
+    }
+    li.listTitle::before {
+        content: " ";
+        counter-increment: ol-items 0;
+    }
 }
 
 /* 
