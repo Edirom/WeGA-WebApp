@@ -51,6 +51,14 @@
             <xsl:with-param name="node" select="."/>
         </xsl:call-template>
     </xsl:template>
+    
+    <xsl:template match="tei:msFrag">
+        <xsl:element name="div">
+            <xsl:attribute name="class">tei_msFrag</xsl:attribute>
+            <xsl:element name="h4"><xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/></xsl:element>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template name="createMsIdentifier">
         <xsl:param name="node"/>
@@ -59,39 +67,55 @@
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
         <xsl:element name="p">
-            <xsl:if test="ancestor-or-self::tei:msDesc/@rend">
-                <xsl:value-of select="wega:getLanguageString(ancestor-or-self::tei:msDesc/@rend, $lang)"/>
+            <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
+                <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
             </xsl:if>
-            <xsl:if test="tei:settlement != ''">
+            <xsl:if test="$node/tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
                 <xsl:text> </xsl:text>
             </xsl:if>
-            <xsl:if test="tei:country != ''">
+            <xsl:if test="$node/tei:country != ''">
                 <xsl:text>(</xsl:text>
                 <xsl:value-of select="tei:country"/>
                 <xsl:text>), </xsl:text>
             </xsl:if>
-            <xsl:if test="tei:repository != ''">
-                <xsl:value-of select="tei:repository"/>
+            <xsl:if test="$node/tei:repository != ''">
+                <xsl:value-of select="$node/tei:repository"/>
                 <xsl:text> </xsl:text>
             </xsl:if>
-            <xsl:if test="tei:repository/@n">
+            <xsl:if test="$node/tei:repository/@n">
                 <xsl:text>(</xsl:text>
-                <xsl:value-of select="tei:repository/@n"/>
+                <xsl:value-of select="$node/tei:repository/@n"/>
                 <xsl:text>)</xsl:text>
             </xsl:if>
-            <xsl:if test="tei:collection != ''">
+            <xsl:if test="$node/tei:collection != ''">
                 <xsl:text>, </xsl:text>
-                <xsl:value-of select="tei:collection"/>
+                <xsl:value-of select="$node/tei:collection"/>
             </xsl:if>
-            <xsl:if test="tei:idno != ''">
+            <xsl:if test="$node/tei:idno != ''">
                 <xsl:element name="br"/>
                 <xsl:element name="i">
                     <xsl:value-of select="wega:getLanguageString('shelfMark', $lang)"/>
                 </xsl:element>
                 <xsl:text>: </xsl:text>
-                <xsl:value-of select="tei:idno"/>
+                <xsl:value-of select="$node/tei:idno"/>
+            </xsl:if>
+            <xsl:if test="$node/tei:altIdentifier != ''">
+                <xsl:variable name="altIdentifier" as="element()">
+                    <xsl:call-template name="createMsIdentifier">
+                        <xsl:with-param name="node" select="$node/tei:altIdentifier"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:element name="br"/>
+                <xsl:element name="i">
+                    <xsl:value-of select="wega:getLanguageString('formerly', $lang)"/>
+                </xsl:element>
+                <xsl:text>: </xsl:text>
+                <xsl:element name="span">
+                    <xsl:attribute name="class">tei_altIdentifier</xsl:attribute>
+                    <xsl:copy-of select="$altIdentifier/node()"/>
+                </xsl:element>
             </xsl:if>
         </xsl:element>
     </xsl:template>
