@@ -128,7 +128,9 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
     let $docType := 
         if($exist-vars('exist:resource')) then lang:reverse-language-string-lookup(controller:url-decode($exist-vars('exist:resource')), $exist-vars('lang'))[. = ($indexDocTypes, 'indices')]
         else 'indices'
-    let $path := controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
+    let $path := 
+        if($docType) then controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
+        else ()
     let $updated-exist-vars := 
         map:new((
             $exist-vars, 
