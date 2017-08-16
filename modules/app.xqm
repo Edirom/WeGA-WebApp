@@ -1168,6 +1168,7 @@ declare
         let $xslt1 := 
             switch($docType)
             case 'letters' return doc(concat($config:xsl-collection-path, '/letters.xsl'))
+            case 'works' return doc(concat($config:xsl-collection-path, '/works.xsl'))
             case 'writings' case 'documents' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
@@ -1178,6 +1179,7 @@ declare
         let $textRoot :=
             switch($docType)
             case 'diaries' return $doc/tei:ab
+            case 'works' return $doc/mei:mei
             case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
             default return $doc//tei:text/tei:body

@@ -1,4 +1,14 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0">
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+    xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:fn="http://www.w3.org/2005/xpath-functions" 
+    xmlns:mei="http://www.music-encoding.org/ns/mei"
+    xmlns="http://www.w3.org/1999/xhtml" 
+    version="2.0">
+    
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <!-- 
         because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
@@ -9,9 +19,9 @@
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName">
         <xsl:choose>
-            <xsl:when test="@key">
+            <xsl:when test="@key or @dbkey">
                 <xsl:call-template name="createLink"/>
             </xsl:when>
             <xsl:otherwise>
@@ -81,12 +91,12 @@
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists(@key) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
+            <xsl:when test="exists((@key, @dbkey)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
-                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring(@key, 1, 7)), @key), ' ')"/>
+                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), (@key, @dbkey)), ' ')"/>
                     </xsl:attribute>
-                    <xsl:attribute name="href" select="wega:createLinkToDoc(@key, $lang)"/>
+                    <xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
@@ -102,12 +112,12 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="@key">
+                    <xsl:when test="@key or @dbkey">
                         <xsl:value-of select="string-join(
                             (
                             if($suppressLinks) then () else 'preview', 
-                            wega:get-doctype-by-id(substring(@key, 1, 7)), 
-                            @key
+                            wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), 
+                            (@key, @dbkey)
                             )
                             , ' ')"/>
                     </xsl:when>
@@ -119,9 +129,9 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="@key and not($suppressLinks)">
+            <xsl:if test="(@key or @dbkey) and not($suppressLinks)">
                 <xsl:variable name="urls" as="xs:string+">
-                    <xsl:for-each select="descendant-or-self::*/@key">
+                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey">
                         <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
                             <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
                         </xsl:for-each>
