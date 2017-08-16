@@ -22,9 +22,9 @@
             <xsl:when test="matches($href, '^//')">
                 <xsl:value-of select="concat('http:', $href)"/>
             </xsl:when>
-            <!--<xsl:otherwise>
-                <xsl:value-of select="'foobar'"/>
-            </xsl:otherwise>-->
+            <xsl:otherwise>
+                <xsl:value-of select="$href"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
@@ -44,124 +44,12 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="p[1]">
+    <!--<xsl:template match="p[1]">
         <xsl:element name="p">
             <xsl:attribute name="class" select="'shortInfo'"/>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
-    <xsl:template match="p[position()!=1]">
-        <xsl:element name="p">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="h2">
-        <xsl:element name="h2">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="h3">
-        <xsl:element name="h3">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="h4">
-        <xsl:element name="h4">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="ul">
-        <xsl:element name="ul">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="ol">
-        <xsl:element name="ol">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="li">
-        <xsl:element name="li">
-            <xsl:if test="@id">
-                <xsl:attribute name="id" select="@id"/>
-            </xsl:if>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="b">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hi_bold'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="i" mode="#all">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hi_italic'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="tt">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hi_typewriter'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="a" mode="#all">
-        <xsl:element name="a">
-            <xsl:choose>
-                <xsl:when test="matches(@href, '^/wiki/')">
-                    <xsl:attribute name="href" select="wega:createWikipediaLink(@href, $lang)"/>
-                    <xsl:attribute name="class" select="'wikilink'"/>
-                    <xsl:attribute name="title" select="@title"/>
-                    <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:when test="matches(@href, '^/w/')">
-                    <xsl:attribute name="href" select="wega:createWikipediaLink(@href, $lang)"/>
-                    <xsl:attribute name="class" select="'wikiredlink'"/>
-                    <xsl:attribute name="title" select="@title"/>
-                    <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:when test="matches(@href, '^#')">
-                    <!--                    <xsl:variable name="href" select="wega:createWikipediaLink(@href, $lang)"/>-->
-                    <xsl:attribute name="href" select="@href"/>
-                    <xsl:attribute name="class" select="'internalLink'"/>
-                    <xsl:choose>
-                        <xsl:when test="not(ancestor::ol[@class='references'])">
-                            <xsl:attribute name="title" select="substring(//*[@id eq @href], 2)"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="title" select="wega:getLanguageString('wiki_referenceBack', $lang)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:apply-templates/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="href" select="@href"/>
-                    <xsl:attribute name="class" select="'externalLink'"/>
-                    <xsl:apply-templates/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="sup[@class='reference']" priority="1">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'reference'"/>
-            <xsl:attribute name="id" select="@id"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="sup">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_hi_superscript'"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="div" priority="0.2">
-        <xsl:element name="div">
-            <xsl:copy-of select="@style"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
+    </xsl:template>-->
     <xsl:template match="div[@id='bodyContent']" priority="0.5">
         <xsl:apply-templates/>
     </xsl:template>
@@ -175,22 +63,6 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="span[@class='mw-headline']">
-        <xsl:copy>
-            <xsl:copy-of select="@id"/>
-            <xsl:apply-templates/>
-        </xsl:copy>
-    </xsl:template>
-    <xsl:template match="dl">
-        <xsl:element name="dl">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="dd">
-        <xsl:element name="dd">
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
     <xsl:template match="div[@id='adbcite']" mode="appendix">
         <xsl:element name="p">
             <xsl:attribute name="class" select="'linkAppendix'"/>
@@ -198,47 +70,20 @@
             <xsl:apply-templates mode="appendix"/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="table" priority="0.5">
-        <!--<xsl:copy-of select="."/>-->
-        <xsl:element name="table">
-            <xsl:copy-of select="@style"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="tbody">
-        <xsl:element name="tbody">
-            <xsl:copy-of select="@style"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="tr">
-        <xsl:element name="tr">
-            <xsl:copy-of select="@style"/>
-            <xsl:copy-of select="@align"/>
-            <xsl:apply-templates/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="td | th">
+    
+    <xsl:template match="li[ancestor::div[@id='toc']]">
         <xsl:copy>
-            <xsl:copy-of select="@style"/>
+            <xsl:apply-templates select="@*"/>
+            <span class="toggle-toc-item"><i class="fa fa-plus-square" aria-hidden="true" style="display:none;"></i><i class="fa fa-minus-square" aria-hidden="true"></i></span>
             <xsl:apply-templates/>
         </xsl:copy>
     </xsl:template>
-    <xsl:template match="img">
-        <xsl:element name="img">
-            <xsl:copy-of select="@style"/>
-            <xsl:copy-of select="@alt"/>
-            <xsl:copy-of select="@title"/>
-            <xsl:copy-of select="@width"/>
-            <xsl:copy-of select="@height"/>
-            <xsl:attribute name="src" select="wega:createWikipediaLink(@src, $lang)"/>
-        </xsl:element>
-    </xsl:template>
-    <xsl:template match="br">
-        <xsl:element name="br"/>
+    
+    <xsl:template match="@src | @href">
+        <xsl:attribute name="{name(.)}" select="wega:createWikipediaLink(., $lang)"/>
     </xsl:template>
     
-    <xsl:template match="*|@*" priority="0.1">
+    <xsl:template match="*|@*" mode="#all">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
         </xsl:copy>

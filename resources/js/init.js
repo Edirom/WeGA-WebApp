@@ -171,18 +171,25 @@ $('body').on('click touchstart', function (e) {
 });
 
 /*
- * hide/reveal sub items of the table of contents of the Guidelines 
+ * hide/reveal sub items of the table of contents of the Guidelines and Wikipedia
  */
-$('.toggle-toc-item').on('click', 
-    function(a,b) {
-        var subItem = $(this).siblings('ul');
-        if(subItem.length === 1) {
-            subItem.toggle();
-            $('ul', subItem).toggle();
-            $('i', this).toggle();
-        }
+$('.toggle-toc-item').on('click', toggleTocItems);
+$('.toggle-toc-item').each(toggleTocItems);
+
+/*
+ * used for Guidelines TOC as well as for Wikipedia
+ */
+function toggleTocItems() {
+    var subItem = $(this).siblings('ul');
+    if(subItem.length === 1) {
+        subItem.toggle();
+        $('ul', subItem).toggle();
+        $('i', this).toggle();
     }
-);
+    else {
+        $('i', this).hide();
+    }
+};
 
 /* 
  * callback function for removing the filter container from the AJAX page
