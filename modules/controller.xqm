@@ -306,7 +306,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         }
         catch * {()}
     return 
-        if($docType = ('persons', 'orgs')) then str:join-path-elements(('/', $lang, $docID))
+        if($docType = ('persons', 'orgs', 'places')) then str:join-path-elements(('/', $lang, $docID))
         else if($docType = 'var') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), $docID))
         else if($authorID and $displayName) then str:join-path-elements(('/', $lang, $authorID, $displayName, $docID))
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
@@ -474,6 +474,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
     case 'html' return
         switch($exist-vars('docType'))
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
+        case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
         case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)

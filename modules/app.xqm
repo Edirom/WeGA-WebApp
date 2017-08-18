@@ -784,6 +784,24 @@ declare
             }
 };
 
+
+(:
+ : ****************************
+ : Place pages
+ : ****************************
+:)
+
+declare function app:place-details($node as node(), $model as map(*)) as map(*) {
+    let $geonames-id := $model?doc//tei:idno[@type='geonames']/text()[1]
+    (:let $geonames-rdf := wega-util:grabExternalResource('geonames'):)
+    return
+        map {
+            'geonames-id' := $geonames-id,
+            'gnd' := wega-util:geonames2gnd($geonames-id)
+        }
+};
+
+
 (:
  : ****************************
  : Person pages

@@ -13,6 +13,7 @@ declare namespace http="http://expath.org/ns/http-client";
 declare namespace math="http://www.w3.org/2005/xpath-functions/math";
 declare namespace owl="http://www.w3.org/2002/07/owl#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace schema="http://schema.org/";
 
 import module namespace functx="http://www.functx.com";
@@ -48,6 +49,8 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
                 replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
+        case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf')
+        case 'dbpedia' return replace($gnd, 'resource', 'data') || '.rdf'
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
@@ -293,10 +296,11 @@ declare function wega-util:substitute-wega-element-additions($nodes as node()*) 
 declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as xs:string? {
     switch($suffix)
         case 'xml' return 'application/xml'
+        case 'rdf' return 'application/rdf+xml'
         case 'jpg' return 'image/jpeg'
         case 'png' return 'image/png'
         case 'txt' return 'text/plain'
-        default return error(xs:QName(wega-util:error), 'unknown file suffix "' || $suffix || '"')
+        default return error(xs:QName('wega-util:error'), 'unknown file suffix "' || $suffix || '"')
 };
 
 declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
@@ -471,6 +475,30 @@ declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
 ~:)
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
     wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+};
+
+(:~
+ :  Map geonames ID to gnd ID by calling an external service.
+ :  Currently, we are using the rdf serialization from geonames.org.
+~:)
+declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
+    let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
+    let $dbpedia-rdf := 
+        for $i in $dbpedia-url 
+        return wega-util:dbpedia($i, $geonames-id)
+    return
+        $dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
+        (:wega-util:grabExternalResource('dbpedia', $dbpedia-url, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/'):)
+};
+
+declare %private function wega-util:dbpedia($dbpedia-url as xs:string, $geonames-id as xs:string) {
+    let $lease := 
+        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $dbpedia-rdf := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($dbpedia-url, 'resource', 'data') || '.rdf'), $lease)
+    return
+        if($dbpedia-rdf//httpclient:response/@statusCode eq '200') then $dbpedia-rdf//httpclient:response
+        else ()
 };
 
 (:~
