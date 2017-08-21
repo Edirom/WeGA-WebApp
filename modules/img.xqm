@@ -57,7 +57,6 @@ declare
  : Helper function for img:iconography()
  : Creates the iconography or persons
  :
- : @return an HTML element <a> with a nested <img>
 ~:)
 declare %private function img:iconography4persons($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     let $local-image := img:wega-images($model, $lang)
@@ -93,14 +92,18 @@ declare %private function img:iconography4persons($node as node(), $model as map
  : Helper function for img:iconography()
  : Creates the iconography or places
  :
- : @return an HTML element <a> with a nested <img>
 ~:)
 declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     let $dbpedia-images := img:dbpedia-images($model, $lang)
+    let $coa := 
+        for $map in $dbpedia-images 
+        return 
+            if($map?coa) then $map 
+            else ()
     return
         map { 
                 'iconographyImages' := $dbpedia-images,
-                'portrait' := $dbpedia-images[1]
+                'portrait' := ($coa, $dbpedia-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -117,46 +120,45 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
  : Helper function for grabbing images from a dbpedia rdf 
  :
  : @author Peter Stadler 
- : @param 
+ : @param $model a map with all necessary variables, e.g. docID
  : @param $lang the language variable (de|en)
- : @return 
  :)
 declare %private function img:dbpedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $docType := config:get-doctype-by-id($model?docID)
+    let $geonames-id := $model('doc')//tei:idno[@type='geonames']
     let $dbpedia-rdf := 
         switch($docType)
-        case 'places' return wega-util:dbpedia-from-geonames(($model('doc')//tei:idno[@type='geonames'])[1])
+        case 'places' return wega-util:dbpedia-from-geonames($geonames-id)
         default return ()
+    let $wikiFilenames := ($dbpedia-rdf//dbp:imageCoa/text(), $dbpedia-rdf//dbp:imageFlag/text(), $dbpedia-rdf//dbp:imagePlan/text(), $dbpedia-rdf//dbp:image/text())
+    (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
+    let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || .), '|'))
+    let $lease := 
+        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $wikiApiResponse := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease)
     return
-        for $filename in $dbpedia-rdf//dbp:*[starts-with(local-name(), 'image')][not(ends-with(., 'gif'))]
-        let $caption := 'no caption'
-        let $linkTarget := concat('https://', $lang , '.wikipedia.org/wiki/', lang:get-language-string('file', $lang), ':', $filename)
+        for $page in $wikiApiResponse//page[not(@missing)]
+        let $caption := $page/data(@title)
+        let $linkTarget := $page//ii/data(@descriptionurl)
         return 
             map {
                     'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
                     'linkTarget' := $linkTarget,
                     'source' := 'Wikimedia',
                     'url' := function($size) {
-                        let $iiifInfo := wega-util:wikimedia-iiif($filename)
-                        let $log := util:log-system-out($iiifInfo)
+                        let $iiifInfo := wega-util:wikimedia-iiif($page/data(@title))
                         return
                             switch($size)
                             case 'thumb' case 'small' return 
-                                try {
-                                 if($iiifInfo('height') > 52) then $iiifInfo('@id') || '/full/,52/0/native.jpg'
-                                 else $iiifInfo('@id') || '/full/full/0/native.jpg'
-                              }
-                              catch * { () }
-                            case 'large' return 
-                                try {
-                                    if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
-                                    else $iiifInfo('@id') || '/full/full/0/native.jpg'
-                                }
-                              catch * { () }
+                                $page//ii/data(@thumburl)
+                            case 'large' return
+                                if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
+                                else $page//ii/data(@url)
                             default return 
-                                try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
-                                catch * { () }
-                    }
+                                $page//ii/data(@url)
+                    },
+                    'coa' := 'File:' || $dbpedia-rdf//dbp:imageCoa/text() = $caption
                 }
 };
 
@@ -375,6 +377,7 @@ declare
 declare %private function img:get-generic-portrait($model as map(*), $lang as xs:string) as map(*) {
     let $sex := 
         if(config:is-org($model('docID'))) then 'org'
+        else if(config:is-place($model('docID'))) then 'place'
         else $model('doc')//tei:sex/text()
     return
         map {
@@ -388,12 +391,14 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs.png')
+                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
                     default return core:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
+                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }

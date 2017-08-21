@@ -482,8 +482,10 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
  :  Currently, we are using the rdf serialization from geonames.org.
 ~:)
 declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
-        wega-util:dbpedia-from-geonames($geonames-id)//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
-        (:wega-util:grabExternalResource('dbpedia', $dbpedia-url, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/'):)
+    let $dbpedia-rdf := wega-util:dbpedia-from-geonames($geonames-id)
+    return
+        if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then $dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
+        else ()
 };
 
 (:~
@@ -496,7 +498,7 @@ declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as n
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     let $dbpedia-rdf := 
         for $i in $dbpedia-url
-        return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($dbpedia-url, 'resource', 'data') || '.rdf'), $lease)
+        return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($i, 'resource', 'data') || '.rdf'), $lease)
     return
         $dbpedia-rdf//httpclient:response[@statusCode = '200']
 };

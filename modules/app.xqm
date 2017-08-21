@@ -797,7 +797,8 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
     return
         map {
             'geonames-id' := $geonames-id,
-            'gnd' := wega-util:geonames2gnd($geonames-id)
+            'gnd' := wega-util:geonames2gnd($geonames-id),
+            'names' := $model?doc//tei:placeName[@type]
         }
 };
 
@@ -1078,8 +1079,9 @@ declare
             return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
+                'docType' := config:get-doctype-by-id($model?docID),
                 'dnbContent' := $dnbContent,
-                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.)),
+                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePlaceOrGeographicName/str:normalize-space(.)),
                 'dnbBirths' := 
                     if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang)
                     else if($dnbContent//gndo:dateOfBirth castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfBirth, $lang)
@@ -1088,14 +1090,18 @@ declare
                     if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang)
                     else if($dnbContent//gndo:dateOfDeath castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfDeath, $lang)
                     else(),
-                'dnbOccupations' := ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
+                'dnbOccupations' := 
+                    if($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation or $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral) then
+                        ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.))
+                    else (),
                 'biographicalOrHistoricalInformations' := $dnbContent//gndo:biographicalOrHistoricalInformation,
                 'dnbOtherNames' := (
-                    for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody)
+                    for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePlaceOrGeographicName/str:normalize-space(.))
                     return
                         if(functx:all-whitespace($name)) then ()
                         else str:normalize-space($name)
                 ),
+                'gndDefinition' := $dnbContent//gndo:definition,
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
             }
