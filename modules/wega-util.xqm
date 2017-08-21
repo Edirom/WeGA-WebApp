@@ -50,7 +50,6 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf')
-        case 'dbpedia' return replace($gnd, 'resource', 'data') || '.rdf'
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
@@ -308,12 +307,13 @@ declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
     catch * {false()}
 };
 
-declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)* {
+declare function wega-util:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     (: kanonische Adresse wäre eigentlich https://tools.wmflabs.org/zoomviewer/iiif.php?f=$DATEINAME$, bestimmte Weiterleitungen funktionieren dann aber nicht :)
     (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
-    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $wikiFilename || '/info.json'
+    let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
+    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
     let $lease := xs:dayTimeDuration('P1D')
-    let $fileName := util:hash($wikiFilename, 'md5') || '.xml'
+    let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
     let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
     return 
         if($response//httpclient:response/@statusCode eq '200') then 
@@ -482,23 +482,23 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
  :  Currently, we are using the rdf serialization from geonames.org.
 ~:)
 declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
-    let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
-    let $dbpedia-rdf := 
-        for $i in $dbpedia-url 
-        return wega-util:dbpedia($i, $geonames-id)
-    return
-        $dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
+        wega-util:dbpedia-from-geonames($geonames-id)//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
         (:wega-util:grabExternalResource('dbpedia', $dbpedia-url, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/'):)
 };
 
-declare %private function wega-util:dbpedia($dbpedia-url as xs:string, $geonames-id as xs:string) {
+(:~
+ :  Grab dbpedia rdf for a place by geonames ID
+~:)
+declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as node()* {
+    let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
     let $lease := 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
-    let $dbpedia-rdf := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($dbpedia-url, 'resource', 'data') || '.rdf'), $lease)
+    let $dbpedia-rdf := 
+        for $i in $dbpedia-url
+        return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($dbpedia-url, 'resource', 'data') || '.rdf'), $lease)
     return
-        if($dbpedia-rdf//httpclient:response/@statusCode eq '200') then $dbpedia-rdf//httpclient:response
-        else ()
+        $dbpedia-rdf//httpclient:response[@statusCode = '200']
 };
 
 (:~

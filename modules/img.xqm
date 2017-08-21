@@ -11,6 +11,9 @@ declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
+declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
+declare namespace dbp="http://dbpedia.org/property/";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace templates="http://exist-db.org/xquery/templates";
@@ -40,33 +43,64 @@ large = x340
 declare 
     %templates:default("lang", "en")
     %templates:wrap
-    function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)* {
-        let $local-image := img:wega-images($model, $lang)
-        let $suppressWikipediaPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
-        let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
-            if(exists($model('beaconMap'))) then $model('beaconMap')
-            else try { 
-                wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')))
-                }
-                catch * { map:new() } 
-        let $portraitindex-images := 
-            if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
-            else ()
-        let $wikipedia-images := 
-            if(not($suppressWikipediaPortrait) and count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
-            else ()
-        let $tripota-images := 
-            if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
-            else ()
-        let $munich-stadtmuseum-images := 
-            if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
-            else ()
-        let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
-        let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
-        return
-            map { 
-                'iconographyImages' := $iconographyImages,
-                'portrait' := $portrait
+    function img:iconography($node as node(), $model as map(*), $lang as xs:string) as map(*)? {
+        let $docType := config:get-doctype-by-id($model?docID)
+        let $func := 
+            try { function-lookup(xs:QName('img:iconography4' || $docType), 3) } 
+            catch * { core:logToFile('error', 'Failed to lookup iconography-function for ' || $docType ) }
+        return 
+            if(exists($func)) then $func($node, $model, $lang)
+            else core:logToFile('debug', 'Missing iconography-function for ' || $docType )
+};
+
+(:~
+ : Helper function for img:iconography()
+ : Creates the iconography or persons
+ :
+ : @return an HTML element <a> with a nested <img>
+~:)
+declare %private function img:iconography4persons($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    let $local-image := img:wega-images($model, $lang)
+    let $suppressWikipediaPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
+    let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
+        if(exists($model('beaconMap'))) then $model('beaconMap')
+        else try { 
+            wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')))
+            }
+            catch * { map:new() } 
+    let $portraitindex-images := 
+        if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
+        else ()
+    let $wikipedia-images := 
+        if(not($suppressWikipediaPortrait) and count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
+        else ()
+    let $tripota-images := 
+        if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
+        else ()
+    let $munich-stadtmuseum-images := 
+        if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
+        else ()
+    let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
+    let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
+    return
+        map { 
+            'iconographyImages' := $iconographyImages,
+            'portrait' := $portrait
+        }
+};
+
+(:~
+ : Helper function for img:iconography()
+ : Creates the iconography or places
+ :
+ : @return an HTML element <a> with a nested <img>
+~:)
+declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    let $dbpedia-images := img:dbpedia-images($model, $lang)
+    return
+        map { 
+                'iconographyImages' := $dbpedia-images,
+                'portrait' := $dbpedia-images[1]
             }
 };
 
@@ -77,6 +111,53 @@ declare
 ~:)
 declare function img:iconographyImage($node as node(), $model as map(*)) as element(a) {
     <a href="{$model('iconographyImage')('linkTarget')}"><img title="{$model('iconographyImage')('caption')}" alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('url')('thumb')}"/></a>
+};
+
+(:~
+ : Helper function for grabbing images from a dbpedia rdf 
+ :
+ : @author Peter Stadler 
+ : @param 
+ : @param $lang the language variable (de|en)
+ : @return 
+ :)
+declare %private function img:dbpedia-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $docType := config:get-doctype-by-id($model?docID)
+    let $dbpedia-rdf := 
+        switch($docType)
+        case 'places' return wega-util:dbpedia-from-geonames(($model('doc')//tei:idno[@type='geonames'])[1])
+        default return ()
+    return
+        for $filename in $dbpedia-rdf//dbp:*[starts-with(local-name(), 'image')][not(ends-with(., 'gif'))]
+        let $caption := 'no caption'
+        let $linkTarget := concat('https://', $lang , '.wikipedia.org/wiki/', lang:get-language-string('file', $lang), ':', $filename)
+        return 
+            map {
+                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                    'linkTarget' := $linkTarget,
+                    'source' := 'Wikimedia',
+                    'url' := function($size) {
+                        let $iiifInfo := wega-util:wikimedia-iiif($filename)
+                        let $log := util:log-system-out($iiifInfo)
+                        return
+                            switch($size)
+                            case 'thumb' case 'small' return 
+                                try {
+                                 if($iiifInfo('height') > 52) then $iiifInfo('@id') || '/full/,52/0/native.jpg'
+                                 else $iiifInfo('@id') || '/full/full/0/native.jpg'
+                              }
+                              catch * { () }
+                            case 'large' return 
+                                try {
+                                    if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
+                                    else $iiifInfo('@id') || '/full/full/0/native.jpg'
+                                }
+                              catch * { () }
+                            default return 
+                                try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
+                                catch * { () }
+                    }
+                }
 };
 
 (:~
@@ -126,7 +207,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                         switch($size)
                         case 'thumb' case 'small' return $thumbURI
                         case 'large' return 
-                           let $iiifInfo := wega-util:wikimedia-ifff(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try {
                                  if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
@@ -134,7 +215,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                               }
                               catch * { $thumbURI }
                         default return 
-                           let $iiifInfo := wega-util:wikimedia-ifff(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
                               catch * { $thumbURI }
@@ -279,14 +360,16 @@ http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd7
 declare 
     %templates:default("lang", "en")
     function img:portrait($node as node(), $model as map(*), $lang as xs:string, $size as xs:string) as element() {
-        let $url := $model('portrait')('url')($size)
-        return
-            element {node-name($node)} {
-                $node/@*[not(local-name(.) = ('src', 'title', 'alt'))],
-                attribute title {$model('portrait')('caption')},
-                attribute alt {$model('portrait')('caption')},
-                attribute src {$url}
-            }
+        if(exists($model?portrait)) then 
+            let $url := $model('portrait')('url')($size)
+            return
+                element {node-name($node)} {
+                    $node/@*[not(local-name(.) = ('src', 'title', 'alt'))],
+                    attribute title {$model('portrait')('caption')},
+                    attribute alt {$model('portrait')('caption')},
+                    attribute src {$url}
+                }
+        else $node
 };
 
 declare %private function img:get-generic-portrait($model as map(*), $lang as xs:string) as map(*) {
