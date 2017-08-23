@@ -545,7 +545,7 @@ declare function app:switch-limit($node as node(), $model as map(*)) as element(
 ~:)
 declare %private function app:page-link($model as map(), $params as map()) as xs:string {
 	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
-    let $paramsMap := map:new(($model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
+    let $paramsMap := map:new((map { 'limit': config:entries-per-page() }, $model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
     return
         replace(
 	        string-join(

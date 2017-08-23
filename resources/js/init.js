@@ -536,8 +536,12 @@ function active_facets() {
             };
             return '?' + this.facets.join('&')
         }
-     };
-    /* Set filters */
+    };
+     
+    /* Pushing the limit parameter to the facets array */
+    params['facets'].push('limit='+$('.switch-limit .active a:first').text());
+     
+    /* Set filters from the side menu */
     $('.allFilter:visible :selected').each(function() {
         var facet = $(this).parent().attr('name'),
             value = $(this).attr('value');
