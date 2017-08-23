@@ -27,7 +27,7 @@ declare variable $search:wega-docTypes := for $func in wdt:members('search') ret
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'revealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames');
+    'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames');
 
 (:~
  : Main function called from the templating module
@@ -278,7 +278,7 @@ declare %private function search:filter-result($collection as document-node()*, 
       if($filter) then 
         if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
-        else if($filter = 'revealed') then search:revealed-filter($collection, $filters)
+        else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
         else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
     let $newFilter := 
@@ -371,7 +371,7 @@ declare %private function search:textType-filter($collection as document-node()*
 };
 
 declare %private function search:revealed-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
-    $collection//tei:correspDesc[@n='revealed']/root()
+    $collection//tei:correspDesc[not(@n='revealed')]/root()
 };
 
 (:~

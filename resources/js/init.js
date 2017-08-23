@@ -75,11 +75,16 @@ $.fn.rangeSlider = function ()
         },
         onFinish: function (data) {
             /* Get active facets to append as URL params */
-            var params = active_facets();
+            var params = active_facets(),
+                newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
+                newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
             
-            /* Overwrite date params with new values from the slider */
-            params['fromDate'] = moment(data.from).locale("de").format("YYYY-MM-DD");
-            params['toDate'] = moment(data.to).locale("de").format("YYYY-MM-DD");
+            /* 
+             * Overwrite date params with new values from the slider 
+             * when the new values equal the min/max values, reset to the empty string
+             */
+            params['fromDate'] = (data.from != data.min)? newFrom: '';
+            params['toDate'] = (data.to != data.max)? newTo: '';
             
             updatePage(params);
         }
@@ -450,7 +455,7 @@ function popover_callBack() {
 };
 
 /* checkbox for display of undated documents */
-$(document).on('change', '.allFilter input', function() {
+$(document).on('change', '.facet-group input', function() {
     var params = active_facets();
     updatePage(params);
 })
@@ -523,7 +528,13 @@ function active_facets() {
         fromDate:'',
         toDate:'',
         toString:function(){
-            return '?' + ( this.facets.length !== 0 ? this.facets.join('&') : '') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
+            if(this.fromDate !== '') {
+                this.facets.push('fromDate=' + this.fromDate);
+            };
+            if(this.toDate !== '') {
+                this.facets.push('toDate=' + this.toDate);
+            };
+            return '?' + this.facets.join('&')
         }
      };
     /* Set filters */
@@ -535,8 +546,13 @@ function active_facets() {
     })
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
-        params['fromDate'] = $('.rangeSlider:visible').attr('data-from-slider');
-        params['toDate'] = $('.rangeSlider:visible').attr('data-to-slider');
+        var slider = $('.rangeSlider:visible'),
+            from=slider.attr('data-from-slider'),
+            to=slider.attr('data-to-slider'),
+            min=slider.attr('data-min-slider'),
+            max=slider.attr('data-max-slider');
+        params['fromDate'] = (from > min)? from: '';
+        params['toDate'] = (to < max)? to: '';
     }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
