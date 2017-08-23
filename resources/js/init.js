@@ -450,7 +450,7 @@ function popover_callBack() {
 };
 
 /* checkbox for display of undated documents */
-$(document).on('click', '.undated', function() {
+$(document).on('change', '.allFilter input', function() {
     var params = active_facets();
     updatePage(params);
 })
@@ -533,20 +533,17 @@ function active_facets() {
         /*console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
-    /* checkbox for display of undated documents*/
-    if($('.undated:checked').length) {
-      params['facets'].push('undated=true');
-    }
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
         params['fromDate'] = $('.rangeSlider:visible').attr('data-from-slider');
         params['toDate'] = $('.rangeSlider:visible').attr('data-to-slider');
     }
-    /* get values from checkboxes for docTypes at search page */
+    /* get values from checkboxes for docTypes at search page 
+     * as well as for other checkboxes on list pages like 'revealed' or 'undated'
+     */
     $('.allFilter:visible :checked').each(function() {
         var facet = $(this).attr('name'),
-            value = $(this).attr('value');
-/*        console.log(facet + '=' + value);*/
+            value = $(this).attr('value')? $(this).attr('value'): 'true';
         if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
     })
     if($('#query-input').val()) {

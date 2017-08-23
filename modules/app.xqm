@@ -625,10 +625,10 @@ declare
     }
 };
 
-declare function app:set-undated-checkbox($node as node(), $model as map(*)) as element(input) {
+declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         if(map:contains($model('filters'), 'undated')) then attribute checked {'checked'}
+         if(map:contains($model('filters'), $key)) then attribute checked {'checked'}
          else ()
     }
 };
