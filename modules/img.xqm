@@ -254,7 +254,7 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
             map {
                 'caption' := normalize-space($fig/preceding::tei:title),
                 'linkTarget' := $iiifURI || '/full/full/0/native.jpg',
-                'source' := normalize-space($fig//tei:bibl),
+                'source' := wega-util:transform($fig//tei:bibl, doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(())),
                 'url' := function($size) {
                     switch($size)
                     case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
