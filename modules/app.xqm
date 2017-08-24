@@ -918,18 +918,32 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := core:order-by-cert($dates)
+        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup) {
+            <sup class="jul" 
+                data-toggle="tooltip" 
+                data-container="body" 
+                title="{concat(lang:get-language-string('julianDate', $lang), ': ', date:getNiceDate(wega-util:greorian2julian($date), $lang))}"
+                >greg.</sup>
+        }
         return (
             date:printDate($orderedDates[1], $model?lang),
-            if(($orderedDates[1])[@calendar='Julian'][@when]) then (<sup class="jul" data-toggle="tooltip" data-container="body" title="{concat(lang:get-language-string('julianDate', $model?lang), ': ', date:getNiceDate(wega-util:greorian2julian(xs:date($orderedDates[1]/@when)), $model?lang))}">greg.</sup>)
+            if(($orderedDates[1])[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($orderedDates[1]/@when), $model?lang))
             else (),
             (
-            if(count($orderedDates) gt 1) then
-                ' (' || lang:get-language-string('otherSources', $model?lang) || ': ' ||
-                string-join(
-                    for $date in subsequence($orderedDates, 2)
-                    return date:printDate($date, $model?lang)
-                , ', ') ||
-                ')'
+                if(count($orderedDates) gt 1) then (
+                    ' (' || lang:get-language-string('otherSources', $model?lang) || ': ',
+                    
+                    for $date at $count in subsequence($orderedDates, 2)
+                    return (
+                        date:printDate($date, $model?lang),
+                        if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
+                        else (),
+                        if($count < count($orderedDates) - 1) then ', '
+                        else ()
+                    ),
+
+                    ')'
+                )
             else ()
             )
         )
