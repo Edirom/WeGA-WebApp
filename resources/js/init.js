@@ -592,8 +592,10 @@ function updatePage(params) {
     }
 }
 
-/* activate tooltips for jubilees on start page */
-$('.jubilee').tooltip();
+/* activate tooltips for jubilees on start page 
+ * as well as for Julian dates on person pages
+ */
+$('.jubilee, .jul').tooltip();
 
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();

@@ -909,7 +909,7 @@ declare
 
 declare 
     %templates:wrap
-    function app:printDatesOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as xs:string {
+    function app:printDatesOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as item()* {
         let $dates :=
             switch($key)
             case 'birth' return $model('doc')//tei:birth/tei:date[not(@type)]
@@ -918,8 +918,10 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := core:order-by-cert($dates)
-        return
-            date:printDate($orderedDates[1], $model?lang) || 
+        return (
+            date:printDate($orderedDates[1], $model?lang),
+            if(($orderedDates[1])[@calendar='Julian'][@when]) then (<sup class="jul" data-toggle="tooltip" data-container="body" title="{concat(lang:get-language-string('julianDate', $model?lang), ': ', date:getNiceDate(wega-util:greorian2julian(xs:date($orderedDates[1]/@when)), $model?lang))}">greg.</sup>)
+            else (),
             (
             if(count($orderedDates) gt 1) then
                 ' (' || lang:get-language-string('otherSources', $model?lang) || ': ' ||
@@ -930,6 +932,7 @@ declare
                 ')'
             else ()
             )
+        )
 };
 
 declare
