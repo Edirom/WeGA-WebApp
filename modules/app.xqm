@@ -786,6 +786,42 @@ declare
 
 (:
  : ****************************
+ : Work pages
+ : ****************************
+:)
+
+declare 
+    %templates:wrap
+    function app:work-basic-data($node as node(), $model as map(*)) as map(*) {
+        map {
+            'ids' := $model?doc//mei:altId[not(@type='gnd')],
+            'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
+                        group by $xmllang := $title/@lang
+                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:work-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'sources' := core:getOrCreateColl('sources', $model('docID'), true()),
+            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true())
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:prepare-work-id($node as node(), $model as map(*)) as map(*) {
+        map {
+            'id-key' := $model?id/@type,
+            'id-value' := $model?id/text()
+        }
+};
+
+(:
+ : ****************************
  : Person pages
  : ****************************
 :)
