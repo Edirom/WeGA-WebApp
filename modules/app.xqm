@@ -222,7 +222,7 @@ declare function app:if-not-exists($node as node(), $model as map(*), $key as xs
 declare 
     %templates:default("wrap", "yes")
     function app:if-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
-        if($model($key) = tokenize($value, '\s+')) then
+        if($model($key) castable as xs:string and string($model($key)) = tokenize($value, '\s+')) then
             if($wrap = 'yes') then
                 element {node-name($node)} {
                     $node/@*,
@@ -245,7 +245,7 @@ declare
 declare 
     %templates:default("wrap", "yes")
     function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
-        if($model($key) = tokenize($value, '\s+')) then ()
+        if($model($key) castable as xs:string and string($model($key)) = tokenize($value, '\s+')) then ()
         else if($wrap = 'yes') then
             element {node-name($node)} {
                 $node/@*,
