@@ -27,7 +27,8 @@ declare variable $search:wega-docTypes := for $func in wdt:members('search') ret
 declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames');
+    'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
+    'asksam-cat', 'vorlageform', 'einrichtungsform');
 
 (:~
  : Main function called from the templating module
