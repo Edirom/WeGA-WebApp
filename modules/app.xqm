@@ -1671,7 +1671,7 @@ declare
     %templates:wrap
     %templates:default("max", "200")
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
-        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body
+        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung']
         return
             str:shorten-TEI($textXML, number($max))
 };
@@ -1711,6 +1711,16 @@ declare
         else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
         else core:logToFile('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
+        if($model('doc')/mei:source/mei:pubStmt) then string-join($model('doc')/mei:source/mei:pubStmt/*, ', ')
+        else if($model('doc')/mei:source/mei:creation) then str:normalize-space($model('doc')/mei:source/mei:creation)
+        else ()
+};
+
 
 declare 
     %templates:wrap
