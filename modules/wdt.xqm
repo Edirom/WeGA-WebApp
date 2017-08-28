@@ -660,7 +660,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()[mei:source][descendant::mei:titleStmt]
+            $item/root()[mei:source][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
@@ -671,7 +671,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             $item
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('sources')[descendant::mei:titleStmt]
+            core:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'init-sortIndex' := function() as item()* {
             ()
