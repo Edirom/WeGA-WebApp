@@ -796,6 +796,7 @@ declare
         map {
             'ids' := $model?doc//mei:altId[not(@type='gnd')],
             'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'workType' := $model('doc')//mei:term/data(@classcode),
             'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
                         group by $xmllang := $title/@lang
                         return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
@@ -807,7 +808,9 @@ declare
     function app:work-details($node as node(), $model as map(*)) as map(*) {
         map {
             'sources' := core:getOrCreateColl('sources', $model('docID'), true()),
-            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true())
+            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'gnd' := query:get-gnd($model('doc')),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
 

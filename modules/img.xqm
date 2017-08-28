@@ -292,6 +292,8 @@ declare
 declare %private function img:get-generic-portrait($model as map(*), $lang as xs:string) as map(*) {
     let $sex := 
         if(config:is-org($model('docID'))) then 'org'
+        else if($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork') then 'musicalWork'
+        else if(config:is-work($model('docID')) and not($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork')) then 'otherWork'
         else $model('doc')//tei:sex/text()
     return
         map {
@@ -305,12 +307,16 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs.png')
+                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
                     default return core:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
+                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }

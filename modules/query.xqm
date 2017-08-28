@@ -113,10 +113,16 @@ declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
  : @return the GND as xs:string, or empty sequence if nothing was found 
 :)
 declare function query:get-gnd($item as item()) as xs:string? {
-    typeswitch($item)
-        (: there might be several gnd IDs in organizations :)
-        case xs:string return (core:doc($item)//tei:idno[@type = 'gnd']/text())[1]
-        default return ($item//tei:idno[@type = 'gnd']/text())[1]
+    let $doc := 
+        typeswitch($item)
+            (: there might be several gnd IDs in organizations :)
+            case xs:string return core:doc($item)
+            default return $item
+    return
+        if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
+        else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
+        else if($doc/tei:place) then ()
+        else ()
 };
 
 (:~ 
