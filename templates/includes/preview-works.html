@@ -1,13 +1,19 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
-    <div class="preview-icon">
-        <span class="pull-left">
+    <!--<div class="preview-icon">
+        <a class="pull-left" data-template="app:preview-icon">
             <img src="$resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" data-template="app:if-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
             <img src="$resources/img/icons/icon_works.png" class="img-responsive" alt="preview-icon" data-template="app:if-not-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
-        </span>
+        </a>
+    </div>-->
+    <div class="portrait preview-icon">
+        <a class="pull-left" data-template="app:preview-icon">
+            <!-- Image will load via AJAX -->
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <span data-template="app:preview-title">Work Title</span>
+            <a data-template="app:preview-title">Work Title</a>
             <span data-template="app:preview-opus-no">Opus number</span>
         </h3>
         <h4 class="media-heading" data-template="app:preview-subtitle">Some subtitle</h4>

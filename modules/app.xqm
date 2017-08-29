@@ -222,7 +222,7 @@ declare function app:if-not-exists($node as node(), $model as map(*), $key as xs
 declare 
     %templates:default("wrap", "yes")
     function app:if-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
-        if($model($key) = tokenize($value, '\s+')) then
+        if($model($key) castable as xs:string and string($model($key)) = tokenize($value, '\s+')) then
             if($wrap = 'yes') then
                 element {node-name($node)} {
                     $node/@*,
@@ -245,7 +245,7 @@ declare
 declare 
     %templates:default("wrap", "yes")
     function app:if-not-matches($node as node(), $model as map(*), $key as xs:string, $value as xs:string, $wrap as xs:string) as item()* {
-        if($model($key) = tokenize($value, '\s+')) then ()
+        if($model($key) castable as xs:string and string($model($key)) = tokenize($value, '\s+')) then ()
         else if($wrap = 'yes') then
             element {node-name($node)} {
                 $node/@*,
@@ -545,7 +545,7 @@ declare function app:switch-limit($node as node(), $model as map(*)) as element(
 ~:)
 declare %private function app:page-link($model as map(), $params as map()) as xs:string {
 	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
-    let $paramsMap := map:new(($model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
+    let $paramsMap := map:new((map { 'limit': config:entries-per-page() }, $model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
     return
         replace(
 	        string-join(
@@ -625,10 +625,10 @@ declare
     }
 };
 
-declare function app:set-undated-checkbox($node as node(), $model as map(*)) as element(input) {
+declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         if(map:contains($model('filters'), 'undated')) then attribute checked {'checked'}
+         if(map:contains($model('filters'), $key)) then attribute checked {'checked'}
          else ()
     }
 };
@@ -805,6 +805,45 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
 
 (:
  : ****************************
+ : Work pages
+ : ****************************
+:)
+
+declare 
+    %templates:wrap
+    function app:work-basic-data($node as node(), $model as map(*)) as map(*) {
+        map {
+            'ids' := $model?doc//mei:altId[not(@type='gnd')],
+            'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'workType' := $model('doc')//mei:term/data(@classcode),
+            'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
+                        group by $xmllang := $title/@lang
+                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:work-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'sources' := core:getOrCreateColl('sources', $model('docID'), true()),
+            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'gnd' := query:get-gnd($model('doc')),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:prepare-work-id($node as node(), $model as map(*)) as map(*) {
+        map {
+            'id-key' := $model?id/@type,
+            'id-value' := $model?id/text()
+        }
+};
+
+(:
+ : ****************************
  : Person pages
  : ****************************
 :)
@@ -928,7 +967,7 @@ declare
 
 declare 
     %templates:wrap
-    function app:printDatesOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as xs:string {
+    function app:printDatesOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as item()* {
         let $dates :=
             switch($key)
             case 'birth' return $model('doc')//tei:birth/tei:date[not(@type)]
@@ -937,18 +976,35 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := core:order-by-cert($dates)
-        return
-            date:printDate($orderedDates[1], $model?lang) || 
+        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup) {
+            <sup class="jul" 
+                data-toggle="tooltip" 
+                data-container="body" 
+                title="{concat(lang:get-language-string('julianDate', $lang), ': ', date:getNiceDate(wega-util:greorian2julian($date), $lang))}"
+                >greg.</sup>
+        }
+        return (
+            date:printDate($orderedDates[1], $model?lang),
+            if(($orderedDates[1])[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($orderedDates[1]/@when), $model?lang))
+            else (),
             (
-            if(count($orderedDates) gt 1) then
-                ' (' || lang:get-language-string('otherSources', $model?lang) || ': ' ||
-                string-join(
-                    for $date in subsequence($orderedDates, 2)
-                    return date:printDate($date, $model?lang)
-                , ', ') ||
-                ')'
+                if(count($orderedDates) gt 1) then (
+                    ' (' || lang:get-language-string('otherSources', $model?lang) || ': ',
+                    
+                    for $date at $count in subsequence($orderedDates, 2)
+                    return (
+                        date:printDate($date, $model?lang),
+                        if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
+                        else (),
+                        if($count < count($orderedDates) - 1) then ', '
+                        else ()
+                    ),
+
+                    ')'
+                )
             else ()
             )
+        )
 };
 
 declare
@@ -1639,7 +1695,7 @@ declare
     %templates:wrap
     %templates:default("max", "200")
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
-        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body
+        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung']
         return
             str:shorten-TEI($textXML, number($max))
 };
@@ -1679,6 +1735,16 @@ declare
         else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
         else core:logToFile('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
+        if($model('doc')/mei:source/mei:pubStmt) then string-join($model('doc')/mei:source/mei:pubStmt/*, ', ')
+        else if($model('doc')/mei:source/mei:creation) then str:normalize-space($model('doc')/mei:source/mei:creation)
+        else ()
+};
+
 
 declare 
     %templates:wrap

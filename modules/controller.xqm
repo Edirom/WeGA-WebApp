@@ -68,7 +68,8 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
             </error-handler>
             else ()}
         </dispatch>,
-        response:set-header('Cache-Control', 'max-age=120,public'),
+        if(matches($html-template, 'search|register|ajax')) then response:set-header('Cache-Control', 'no-cache')
+        else response:set-header('Cache-Control', 'max-age=120,public'),
         response:set-header('ETag', $etag)
     )
 };
@@ -475,6 +476,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
         switch($exist-vars('docType'))
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
         case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
+        case 'works' return controller:forward-html('/templates/work.html', $exist-vars)
         case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
@@ -486,7 +488,7 @@ declare %private function controller:etag($path as xs:string) as xs:string {
         (: reload index page every day because of word of the day and what happened on … :)
         if(contains($path, 'Index')) then config:getDateTimeOfLastDBUpdate() || current-date()
         else config:getDateTimeOfLastDBUpdate()
-    let $urlParams := string-join(for $i in request:get-parameter-names() order by $i return request:get-parameter($i, ''), '')
+    let $urlParams := string-join((config:entries-per-page(),for $i in request:get-parameter-names() order by $i return request:get-parameter($i, '')), '')
     return
         util:hash($path || $lastChanged || $urlParams, 'md5')
 };

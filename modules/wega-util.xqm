@@ -373,6 +373,7 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         	if($node/@cert) then ($node/child::node() ! wega-util:txtFromTEI(.), '(?)') 
         	else $node/child::node() ! wega-util:txtFromTEI(.)
         case element(tei:del) return ()
+        case element(tei:subst) return $node/child::element() ! wega-util:txtFromTEI(.)
         case element(tei:note) return ()
         case element(tei:lb) return 
             if($node[@type='inWord']) then ()
@@ -510,4 +511,17 @@ declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as n
 declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
     for $i in $str
     return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
+};
+
+(:~
+ :  Helper function for translating a Gregorian date to the Julian calendar
+ :  see https://de.wikipedia.org/wiki/Umrechnung_zwischen_julianischem_und_gregorianischem_Kalender
+~:)
+declare function wega-util:greorian2julian($date as xs:date) as xs:date? {
+    if($date < xs:date('1582-10-15')) then core:logToFile('debug', 'wega-util:greorian2julian(): failed to convert Gregorian date ' || $date || '. Given date is too old (lowest is 1582-10-15).')
+    else if($date <= xs:date('1700-02-28')) then $date - xs:dayTimeDuration('P10D')
+    else if($date <= xs:date('1800-02-28')) then $date - xs:dayTimeDuration('P11D')
+    else if($date <= xs:date('1900-02-28')) then $date - xs:dayTimeDuration('P12D')
+    else if($date <= xs:date('2100-02-28')) then $date - xs:dayTimeDuration('P13D')
+    else core:logToFile('debug', 'wega-util:greorian2julian(): failed to convert Gregorian date ' || $date || '. Given date is too far in the future (latest date is 2100-02-28).')
 };

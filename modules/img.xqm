@@ -337,7 +337,7 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
             map {
                 'caption' := normalize-space($fig/preceding::tei:title),
                 'linkTarget' := $iiifURI || '/full/full/0/native.jpg',
-                'source' := normalize-space($fig//tei:bibl),
+                'source' := wega-util:transform($fig//tei:bibl, doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(())),
                 'url' := function($size) {
                     switch($size)
                     case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
@@ -378,6 +378,8 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
     let $sex := 
         if(config:is-org($model('docID'))) then 'org'
         else if(config:is-place($model('docID'))) then 'place'
+        else if($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork') then 'musicalWork'
+        else if(config:is-work($model('docID')) and not($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork')) then 'otherWork'
         else $model('doc')//tei:sex/text()
     return
         map {
@@ -392,6 +394,8 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs.png')
                     case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
+                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
                     default return core:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
@@ -399,6 +403,8 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
                     case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
+                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }

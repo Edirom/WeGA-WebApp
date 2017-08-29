@@ -663,22 +663,35 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            ()
+            $item/root()[mei:source][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            ()
+            if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
+            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root()
+            else ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            ()
+            $item
         },
         'init-collection' := function() as document-node()* {
-            ()
+            core:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'init-sortIndex' := function() as item()* {
             ()
         },
         'title' := function($serialization as xs:string) as item()? {
-            ()
+            let $source := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/mei:source
+                case xdt:untypedAtomic return core:doc($item)/mei:source
+                case document-node() return $item/mei:source
+                default return $item/root()/mei:source
+            let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('unary-docTypes'),
         'search' := ()
