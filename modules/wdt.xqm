@@ -856,6 +856,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             let $docsMentioned := 
                 core:data-collection('letters')//tei:*[contains(@key,$personID)]/root() | 
                 core:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('diaries')//tei:ab[contains(@where,$personID)]/root() |
                 core:data-collection('writings')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('news')//tei:*[contains(@key,$personID)]/root() |
