@@ -646,7 +646,7 @@ declare function wdt:places($item as item()*) as map(*) {
                 case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('unary-docTypes', 'search'),
+        'memberOf' := ('unary-docTypes', 'search', 'indices'),
         'search' := function($query as element(query)) {
             $item[tei:place]/tei:placeName[ft:query(., $query)] | 
             $item[tei:place]/tei:place[ft:query(., $query)] 
