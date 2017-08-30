@@ -793,12 +793,18 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := $model?doc//tei:idno[@type='geonames']/text()[1]
-    (:let $geonames-rdf := wega-util:grabExternalResource('geonames'):)
+    let $gnd := wega-util:geonames2gnd($geonames-id)
+    let $beaconMap := 
+        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+        else map:new()
     return
         map {
             'geonames-id' := $geonames-id,
-            'gnd' := wega-util:geonames2gnd($geonames-id),
-            'names' := $model?doc//tei:placeName[@type]
+            'gnd' := $gnd,
+            'beaconMap' := $beaconMap,
+            'names' := $model?doc//tei:placeName[@type],
+            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
 

@@ -24,7 +24,7 @@
         </div>
     </div>
     <div data-template="app:place-details">
-        <div class="container paddingTopIcon paddingBottomIcon" data-template="app:person-basic-data">
+        <div class="container paddingTopIcon paddingBottomIcon">
             <div class="row" id="meta" data-template="img:iconography">
                 <div class="col-md-3 col-sm-6">
                     <div class="portrait large">
@@ -60,7 +60,7 @@
             </div>
         </div>
         <!-- Nav tabs -->
-        <div id="details" data-template="app:person-details">
+        <div id="details">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
@@ -97,14 +97,8 @@
                                                         <a data-toggle="tab" href="#gndText" data-template="app:ajax-tab">gnd-entry</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#ndbText" data-template="app:ajax-tab">ndb-article</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-template="app:ajax-tab">adb-article</a>
-                                                    </li>
-                                                    <!--<li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon" data-template="app:tab">GND Beacon Links</a>
-                                                    </li>-->
+                                                    </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
                                                     </li>
@@ -142,19 +136,13 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
-                                                <div class="tab-pane fade" id="adbText">
-                                                    <h2>ADB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
                                                 </div>
-                                                <!--<div class="tab-pane fade" id="gnd-beacon">
+                                                <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
                                                     <ul data-template="app:print-beacon-links"/>
-                                                </div>-->
+                                                </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     <!--<pre class="prettyprint"><code class="language-xml"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>-->
