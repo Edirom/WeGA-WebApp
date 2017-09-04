@@ -226,16 +226,18 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
  : Helper function for wega-util:inject-version-info()
 ~:)
 declare %private function wega-util:editionStmt() as map() {
-    map {
-        'version' :=    lang:get-language-string(
-                            'versionInformation', (
-                                config:get-option('version'), 
-                                date:strfdate(xs:date(config:get-option('versionDate')), lang:guess-language(()), ())
-                            ), 
-                            lang:guess-language(())
-                        ),
-        'download' := lang:get-language-string('downloaded_on', lang:guess-language(())) || ': ' || current-dateTime()
-    }
+    let $lang := config:guess-language(())
+    return
+        map {
+            'version' :=    lang:get-language-string(
+                                'versionInformation', (
+                                    config:get-option('version'), 
+                                    date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
+                                ), 
+                                $lang
+                            ),
+            'download' := lang:get-language-string('downloaded_on', $lang) || ': ' || current-dateTime()
+        }
 };
 
 (:~
@@ -377,10 +379,10 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:pb) return 
             if($node[@type='inWord']) then ()
             else ' '
-        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:quote) return 
-            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
-            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:supplied) return ('[', $node/child::node() ! wega-util:txtFromTEI(.), ']') 
         case text() return replace($node, '\n+', ' ')
         case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
@@ -481,17 +483,4 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
 declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
     for $i in $str
     return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
-};
-
-(:~
- :  Helper function for translating a Gregorian date to the Julian calendar
- :  see https://de.wikipedia.org/wiki/Umrechnung_zwischen_julianischem_und_gregorianischem_Kalender
-~:)
-declare function wega-util:greorian2julian($date as xs:date) as xs:date? {
-    if($date < xs:date('1582-10-15')) then core:logToFile('debug', 'wega-util:greorian2julian(): failed to convert Gregorian date ' || $date || '. Given date is too old (lowest is 1582-10-15).')
-    else if($date <= xs:date('1700-02-28')) then $date - xs:dayTimeDuration('P10D')
-    else if($date <= xs:date('1800-02-28')) then $date - xs:dayTimeDuration('P11D')
-    else if($date <= xs:date('1900-02-28')) then $date - xs:dayTimeDuration('P12D')
-    else if($date <= xs:date('2100-02-28')) then $date - xs:dayTimeDuration('P13D')
-    else core:logToFile('debug', 'wega-util:greorian2julian(): failed to convert Gregorian date ' || $date || '. Given date is too far in the future (latest date is 2100-02-28).')
 };

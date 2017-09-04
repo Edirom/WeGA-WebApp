@@ -302,7 +302,7 @@ declare %private function bibl:printNote($notes as element(tei:note)*) as elemen
     let $id := 
         if($note/@xml:id) then $note/data(@xml:id)
         else generate-id($note)
-    let $content := str:txtFromTEI($note/node(), lang:guess-language(()))
+    let $content := str:txtFromTEI($note/node(), config:guess-language(()))
     return
         <a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="{$id}" data-popover-content="{$content}">*</a>
 };

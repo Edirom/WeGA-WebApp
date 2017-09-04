@@ -80,7 +80,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         default return
             switch($model('docType'))
             case 'persons' return 
-                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang))
+                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang,lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang,lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}))
                 let $occupations := string-join($model('doc')//tei:occupation/normalize-space(), ', ')
                 let $placesOfAction := string-join($model('doc')//tei:residence/normalize-space(), ', ')
                 return concat(
