@@ -2,15 +2,11 @@ xquery version "3.0" encoding "UTF-8";
 
 (:~
  : Functions for manipulating strings
-:)
+~:)
 module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str";
-declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
-import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:~
@@ -135,10 +131,45 @@ declare function str:shorten-text($string as xs:string, $maxLength as xs:int) as
  : @param $maxLength the max length of the returned string as xs:int
  : @return xs:string 
 ~:)
-declare function str:shorten-TEI($nodes as node()*, $maxLength as xs:int) as xs:string {
-    let $strings := $nodes ! string-join(wega-util:txtFromTEI(.), '')
+declare function str:shorten-TEI($nodes as node()*, $maxLength as xs:int, $lang as xs:string) as xs:string {
+    let $strings := $nodes ! string-join(str:txtFromTEI(., $lang), '')
     return
         str:shorten-text(string-join($strings, ' '), $maxLength)
+};
+
+(:~
+ : Creates a simple text version of a TEI document (or fragment)
+ : by resolving choices, substitutions and removing notes
+ : (used for e.g. wordOfTheDay and several titles)
+ :
+ : @param $nodes the nodes to transform
+~:)
+declare function str:txtFromTEI($nodes as node()*, $lang as xs:string) as xs:string* {
+    for $node in $nodes
+    return
+        typeswitch($node)
+        case element(tei:forename) return 
+        	if($node/@cert) then ($node/child::node() ! str:txtFromTEI(., $lang), '(?)') 
+        	else $node/child::node() ! str:txtFromTEI(., $lang)
+        case element(tei:del) return ()
+        case element(tei:subst) return $node/child::element() ! str:txtFromTEI(., $lang)
+        case element(tei:note) return ()
+        case element(tei:lb) return 
+            if($node[@type='inWord']) then ()
+            else '&#10;'
+        case element(tei:pb) return 
+            if($node[@type='inWord']) then ()
+            else ' '
+        case element(tei:q) return str:enquote(($node/child::node() ! str:txtFromTEI(., $lang)), $lang)
+        case element(tei:quote) return 
+            if($node[@rend='double-quotes']) then str:enquote(($node/child::node() ! str:txtFromTEI(., $lang)), $lang)
+            else str:enquote-single(($node/child::node() ! str:txtFromTEI(., $lang)), $lang)
+        case element(tei:supplied) return ('[', $node/child::node() ! str:txtFromTEI(., $lang), ']') 
+        case text() return replace($node, '\n+', ' ')
+        case document-node() return $node/child::node() ! str:txtFromTEI(., $lang) 
+        case processing-instruction() return ()
+        case comment() return ()
+        default return $node/child::node() ! str:txtFromTEI(., $lang)
 };
 
 (:~ 
@@ -159,9 +190,9 @@ declare function str:sanitize($str as xs:string) as xs:string {
    else :)$str
 };
 
-declare function str:list($items as xs:string*, $lang as xs:string, $maxLength as xs:int) as xs:string? {
+declare function str:list($items as xs:string*, $lang as xs:string, $maxLength as xs:int, $get-language as function() as xs:string) as xs:string? {
     let $count := count($items)
     return
         if($count le 2) then string-join($items, ', ')
-        else string-join(subsequence($items, 1, $count -1), ', ') || ' ' || lang:get-language-string('and', $lang) || ' ' || $items[$count]
+        else string-join(subsequence($items, 1, $count -1), ', ') || ' ' || $get-language('and', $lang) || ' ' || $items[$count]
 };

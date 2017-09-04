@@ -665,7 +665,7 @@ declare
             else 1
         return 
             map {
-                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(wega-util:txtFromTEI($words[$random]), '')), $lang),
+                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang),
                 'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
             }
 };
@@ -846,16 +846,16 @@ declare
     %templates:default("lang", "en")
     function app:person-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map{
-            'fullnames' := $model('doc')//tei:persName[@type = 'full'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(wega-util:txtFromTEI(.), ''),
+            'fullnames' := $model('doc')//tei:persName[@type = 'full'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(str:txtFromTEI(., $lang), ''),
             'altnames' := 
                 (
-                $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(wega-util:txtFromTEI(.), ''),  
-                $model('doc')//tei:orgName[@type = 'alt'] ! string-join(wega-util:txtFromTEI(.), '')
+                $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(str:txtFromTEI(., $lang), ''),  
+                $model('doc')//tei:orgName[@type = 'alt'] ! string-join(str:txtFromTEI(., $lang), '')
                 ),
-            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(wega-util:txtFromTEI(.), ''),
+            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
             'birth' := $model('doc')//tei:birth[not(tei:date[@type])],
             'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
             'death' := $model('doc')//tei:death[not(tei:date[@type])],
@@ -1673,7 +1673,7 @@ declare
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
         let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung']
         return
-            str:shorten-TEI($textXML, number($max))
+            str:shorten-TEI($textXML, number($max), $model?lang)
 };
 
 
