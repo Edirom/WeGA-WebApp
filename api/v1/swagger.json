@@ -116,9 +116,17 @@
                 ],
                 "parameters": [
                     {
-                        "name": "date",
+                        "name": "fromDate",
                         "in": "query",
-                        "description": "The date to search for",
+                        "description": "The min date to search for",
+                        "type": "string",
+                        "format": "date",
+                        "required": true
+                    },
+                    {
+                        "name": "toDate",
+                        "in": "query",
+                        "description": "The max date to search for",
                         "type": "string",
                         "format": "date",
                         "required": true

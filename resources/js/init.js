@@ -758,7 +758,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })

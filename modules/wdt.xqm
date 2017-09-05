@@ -388,6 +388,10 @@ declare function wdt:diaries($item as item()*) as map(*) {
             if($personID eq 'A002068') then wdt:diaries(core:data-collection('diaries'))('sort')(map {})
             else ()
         },
+        'filter-by-date' := function($dateFrom as xs:date, $dateTo as xs:date) as document-node()* {
+            if($dateFrom = $dateTo) then $item/range:field-eq('ab-n', string($dateFrom))/root() 
+            else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('diaries')) then () 
             else (wdt:diaries(())('init-sortIndex')()),

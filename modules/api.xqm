@@ -44,7 +44,7 @@ declare function api:documents($model as map()) {
 :)
 
 declare function api:documents-findByDate($model as map()) {
-    let $documents := for $docType in api:resolve-docTypes($model) return query:exact-date(xs:date($model('date')), $docType)
+    let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate) (:query:exact-date(xs:date($model('date')), $docType):)
     return
         api:document(api:subsequence($documents, $model), $model)
 };
@@ -262,11 +262,19 @@ declare function api:validate-limit($model as map()) as map()? {
 };
 
 (:~
- : Check parameter date
+ : Check parameter fromDate
 ~:)
-declare function api:validate-date($model as map()) as map()? {
-    if($model('date') castable as xs:date) then $model
-    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
+declare function api:validate-fromDate($model as map()) as map()? {
+    if($model('fromDate') castable as xs:date) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('fromDate') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter toDate
+~:)
+declare function api:validate-toDate($model as map()) as map()? {
+    if($model('toDate') castable as xs:date) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('toDate') || '". Should be YYYY-MM-DD.')
 };
 
 (:~
