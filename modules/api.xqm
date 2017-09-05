@@ -44,7 +44,7 @@ declare function api:documents($model as map()) {
 :)
 
 declare function api:documents-findByDate($model as map()) {
-    let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate) (:query:exact-date(xs:date($model('date')), $docType):)
+    let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate)
     return
         api:document(api:subsequence($documents, $model), $model)
 };

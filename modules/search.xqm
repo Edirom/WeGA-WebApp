@@ -196,11 +196,8 @@ declare %private function search:fulltext($searchString as xs:string, $filters a
 declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as map(*)* {
     let $coll := 
         if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
-        else ()
-    let $date-search := query:exact-date($dates, $docType)
-    let $docs :=
-        if($coll) then $coll intersect $date-search
-        else $date-search
+        else core:getOrCreateColl($docType, 'indices', true())
+    let $docs := wdt:lookup($docType, $coll)?filter-by-date($dates[1], $dates[2])
     return
         $docs ! map { 'doc' := . }
 };
@@ -277,14 +274,19 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filter := map:keys($filters)[1]
     let $filtered-coll := 
       if($filter) then 
-        if($filter = ('fromDate', 'toDate', 'undated')) then search:date-filter($collection, $docType, $filters)
+        if($filter = ('undated')) then () 
+        else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
         else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
-    let $newFilter := 
-        try { map:remove($filters, $filter) }
-        catch * {map:new()}
+    let $newFilter :=
+        if($filter = ('fromDate', 'toDate')) then 
+            try { map:remove(map:remove($filters, 'toDate'), 'fromDate') }
+            catch * {()}
+        else 
+            try { map:remove($filters, $filter) }
+            catch * {map:new()}
     return
         if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
         else $filtered-coll
@@ -294,14 +296,14 @@ declare %private function search:filter-result($collection as document-node()*, 
  : Helper function for search:filter-result()
  : Applies chronological filter 'fromDate' and 'toDate'
 ~:)
-declare %private function search:date-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
+(:declare %private function search:date-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
     let $filter := map:keys($filters)[1]
     return
         switch($docType)
         case 'biblio' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
             else if ($filter = 'fromDate') then ( 
-                (: checking only the year for the lower threshold otherwise we'll miss date=1810 when checking 1810-01-01 :)
+                (\: checking only the year for the lower threshold otherwise we'll miss date=1810 when checking 1810-01-01 :\)
                 $collection//tei:date[range:field-ge('date-when', substring($filters($filter), 1, 4))] |
                 $collection//tei:date[range:field-ge('date-notBefore', substring($filters($filter), 1, 4))] |
                 $collection//tei:date[range:field-ge('date-notAfter', substring($filters($filter), 1, 4))] |
@@ -336,7 +338,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
                 )[parent::tei:correspAction]/root()
         case 'news' return
             if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            (: news enthalten dateTime im date/@when :)
+            (\: news enthalten dateTime im date/@when :\)
             else  if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
             else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
         case 'persons' case 'orgs' return ()
@@ -360,6 +362,7 @@ declare %private function search:date-filter($collection as document-node()*, $d
         case 'places' return ()
         default return $collection
 };
+:)
 
 (:~
  : Helper function for search:filter-result()
@@ -430,7 +433,7 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
 (:~
  : Read query string and parameters from URL 
  :
- : @return a map with sanitized query string, parameters and recognized dates (via PDR web service)
+ : @return a map with sanitized query string, parameters and recognized dates
 ~:)
 declare %private function search:prepare-search-string() as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
