@@ -206,7 +206,15 @@ declare function wdt:letters($item as item()*) as map(*) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
         let $lang := config:guess-language(())
-        let $date := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
+        let $dateFormat := 
+            if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+            else '[FNn], [MNn] [D], [Y]'
+        let $dateSender := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $dateAddressee := date:printDate(($TEI//tei:correspAction[@type='received']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $date := 
+            if($dateSender) then $dateSender
+            else if($dateAddressee) then (lang:get-language-string('received', $lang) || ' ' || $dateAddressee)
+            else ()
         let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
         let $sender := 
             if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
@@ -221,8 +229,8 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         return (
             element tei:title {
-                concat($sender, ' ', 'an', ' ', $addressee),
-                if($placeAddressee) then concat(' ', 'in', ' ', $placeAddressee) else(),
+                concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
+                if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in',$lang)), ' ', $placeAddressee) else(),
                 <tei:lb/>,
                 if($placeSender) then string-join(($placeSender, $date), ', ')
                 else $date
