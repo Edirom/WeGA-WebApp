@@ -17,6 +17,8 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 
+declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/modules/search", "Error");
+
 (: 
  : a subset of $config:wega-docTypes. 
  : Finally, all of these should be supported 
@@ -50,7 +52,8 @@ declare
 };
 
 (:~
- : Print out the ammount of hits
+ : Print the ammount of hits
+ : To be called from an HTML template
 ~:)
 declare 
     %templates:wrap
@@ -61,6 +64,7 @@ declare
 
 (:~
  : Write the sanitized query string into the search text input for reuse
+ : To be called from an HTML template
 ~:)
 declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
     element {name($node)} {
@@ -71,7 +75,9 @@ declare function search:inject-value($node as node(), $model as map(*)) as eleme
 };
 
 (:~
- : results for one page
+ : Push the results for one page to the $model
+ : $model?result-page-entries will be a sequence of document-node()*
+ : $model?result-page-hits-per-entry will be a map(), consisting of document IDs as key and the fulltext hits as value (if appropriate).
 ~:)
 declare 
     %templates:wrap
@@ -79,16 +85,34 @@ declare
     function search:result-page($node as node(), $model as map(*), $page as xs:string) as map(*) {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
         let $entries-per-page := xs:int(config:entries-per-page())
+        let $subseq := subsequence($model('search-results'), ($page - 1) * $entries-per-page + 1, $entries-per-page)
+        let $docs := 
+            (: the results of the fulltext search are of type map()*
+             : other searches and/or list views simply return document-node()*
+            :)
+            for $doc in $subseq
+            return
+                if($doc instance of document-node()) then $doc
+                else if($doc instance of map()) then $doc?doc
+                else error($search:ERROR, 'unknown result entry')
+        let $result-page-hits-per-entry := map:new(
+            for $doc in $subseq
+            return (
+                if($doc instance of map() and exists($doc?hits)) then 
+                    map:entry($doc?doc/*/data(@xml:id), $doc?hits)
+                else ()
+            )
+        )
         return
             map {
-                'result-page-entries' := subsequence($model('search-results'), ($page - 1) * $entries-per-page + 1, $entries-per-page)
+                'result-page-entries' := $docs,
+                'result-page-hits-per-entry' := $result-page-hits-per-entry
             }
 };
 
 (:~
  : Wrapper for dispatching various document types
  : Simply redirects to the right fragment from 'templates/includes'
- :
  :)
 declare 
     %templates:default("usage", "")
@@ -110,30 +134,43 @@ declare
 
 (:~
  : KWIC output
- :
  :)
 declare 
     %templates:wrap
     function search:kwic($node as node(), $model as map(*)) {
-        for $hit in $model($model('docID'))[.//exist:match]
+        let $hits := $model('result-page-hits-per-entry')($model('docID'))
+        let $expanded := $hits ! kwic:expand(.)
+        let $summaries := $expanded//exist:match ! kwic:get-summary(./root(), ., <config width="40"/>)
         return
-            kwic:get-summary($hit, ($hit//exist:match)[1], <config width="40"/>)
+            (: merge different hits from e.g. tei:TEI and tei:body by calling functx:distinct-deep() on the output html:p :)
+            functx:distinct-deep($summaries)
 };
 
 (:~
- : Search results and other goodies for the search page 
+ : Search results and other goodies for the *search* page 
 ~:)
 declare %private function search:search($model as map(*)) as map(*) {
-    let $queryMap := search:prepare-search-string()
-    let $results := search:query(map:new(($queryMap, $model)))
-    let $docs := for $i in $results return $i('doc')
-    let $kwics := map:new( for $i in $results return map:entry($i('doc')/*/data(@xml:id), $i('kwic')) )
+    let $updatedModel := search:prepare-search-string($model)
+    let $docTypes := 
+        if($updatedModel?query-docTypes = 'all') then ($search:wega-docTypes, 'var') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
+        else $search:wega-docTypes[.=$updatedModel?query-docTypes]
+    let $base-collection := 
+        if($updatedModel('query-string-org')) then $docTypes ! core:getOrCreateColl(., 'indices', true())
+        else ()
+    let $filtered-results := 
+        if(exists($updatedModel('filters'))) then 
+            for $docType in $docTypes 
+            return search:filter-result($base-collection, $updatedModel?filters, $docType)
+        else $base-collection
+    let $fulltext-search :=
+        if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
+        else $filtered-results 
     return
-        map:new(($queryMap, $model, map:entry('search-results', $docs), $kwics))
+        map:new(($updatedModel, map:entry('search-results', $fulltext-search)))
 };  
 
 (:~
- : Search results and other goodies for the list view pages 
+ : Search results and other goodies for the *list view* pages 
 ~:)
 declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
@@ -153,53 +190,33 @@ declare %private function search:list($model as map(*)) as map(*) {
         ))
 };  
 
-
-declare %private function search:query($model as map(*)) as map(*)* {
-    let $searchString := $model('query-string')
-    let $docTypes := $model('query-docTypes')
-    let $docTypes := 
-        if($docTypes = 'all') then ($search:wega-docTypes, 'var') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
-        else $search:wega-docTypes[.=$docTypes]
-    return 
-        if($model('dates')) then $docTypes ! search:exact-date($model('dates'), $model('filters'), .)
-        else if($searchString) then search:merge-hits($docTypes ! search:fulltext($searchString, $model('filters'), .)) 
-        else ()
-};
-
-
 (:~
- : helper function for sorting and merging search results
+ : Sorting and merging search results
+ : Helper function for search:search()
 ~:)
-declare %private function search:merge-hits($hits as item()*) as map(*)* {
+declare %private function search:merge-hits($hits as item()*) as map()* {
     for $hit in $hits
-    let $expanded := kwic:expand($hit)
     group by $doc := $hit/root()
-    order by sum($hit ! ft:score(.)) descending 
-    return 
+    let $score := sum($hit ! ft:score(.))
+    order by $score descending 
+    return
         map { 
-            'doc' := $doc, 
-            'kwic' := $expanded
+            'doc' := $doc,
+            'hits' := $hit,
+            'score' := $score
         }
 };
 
-declare %private function search:fulltext($searchString as xs:string, $filters as map(), $docType as xs:string) as item()* {
+(:~
+ :  Do a full text search 
+ :  by looking up the appropriate search function in the wdt module 
+~:)
+declare %private function search:fulltext($items as item()*, $searchString as xs:string, $filters as map(), $docType as xs:string) as item()* {
     let $query := search:create-lucene-query-element($searchString)
-    let $coll := 
-        if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
-        else core:getOrCreateColl($docType, 'indices', true())
-(:    let $log := util:log-system-out($docType):)
+    let $search-func := wdt:lookup(., $items)?search
     return
-        try { function-lookup(xs:QName('wdt:' || $docType), 1)($coll)('search')($query) }
-        catch * { core:logToFile('warn', 'failed to search collection "' || $docType || '"') }
-};
-
-declare %private function search:exact-date($dates as xs:date*, $filters as map(), $docType as xs:string) as map(*)* {
-    let $coll := 
-        if(count(map:keys($filters)) gt 0) then search:filter-result(core:getOrCreateColl($docType, 'indices', true()), $filters, $docType)
-        else core:getOrCreateColl($docType, 'indices', true())
-    let $docs := wdt:lookup($docType, $coll)?filter-by-date($dates[1], $dates[2])
-    return
-        $docs ! map { 'doc' := . }
+        try { $search-func($query) }
+        catch * { error($search:ERROR, 'failed to search collection with docType "' || $docType || '"') }
 };
 
 (:~
@@ -435,18 +452,27 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
  :
  : @return a map with sanitized query string, parameters and recognized dates
 ~:)
-declare %private function search:prepare-search-string() as map(*) {
+declare %private function search:prepare-search-string($model as map()) as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
     let $query-string-org := request:get-parameter('q', '')
-    let $query-string := str:sanitize(string-join($query-string-org, ' '))
-    let $dates := analyze-string($query-string, '\d{4}-\d{2}-\d{2}')/fn:match/text()
-        (:if(string-length($query-string) ge 400) then date:parse-date($query-string)
-        else ():)
+    let $sanitized-query-string := str:sanitize(string-join($query-string-org, ' '))
+    let $analyzed-query-string := analyze-string($sanitized-query-string, '\d{4}-\d{2}-\d{2}')
+    let $dates := $analyzed-query-string/fn:match/text()
+    let $query-string := string-join($analyzed-query-string/fn:non-match/text(), ' ')
+    let $filters := 
+        (: if only one date is given in the query string, we set both toDate and fromDate on date  :)
+        if(count($dates) = 1) then map:put(map:put($model?filters, 'toDate', $dates), 'fromDate', $dates)
+        (: if two (or more!) dates are given in the query string, we set fromDate to the first and toDate to the second date :)
+        else if(count($dates) gt 1) then map:put(map:put($model?filters, 'toDate', $dates[2]), 'fromDate', $dates[1])
+        else $model?filters
     return
-        map {
-            'query-string' := wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
-            'query-docTypes' := $query-docTypes,
-            'query-string-org' := $query-string-org, 
-            'dates' := $dates
-        }
+        map:new((
+            $model, 
+            map {
+                'filters' := $filters, (: the original filters from $model gets overridden :)
+                'query-string' := wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+                'query-docTypes' := $query-docTypes,
+                'query-string-org' := $query-string-org
+            }
+        ))
 };
