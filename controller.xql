@@ -102,7 +102,7 @@ else if ($exist:resource = 'correspDesc.xml') then
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
-   if(config:get-combined-doctype-by-id(str:sanitize(string-join(request:get-parameter('q', ''), ' '))) = ($search:wega-docTypes, 'var')) then controller:dispatch(map:put($exist-vars, 'exist:resource', str:sanitize(string-join(request:get-parameter('q', ''), ' '))))
+   if(config:get-combined-doctype-by-id(str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))) = ($search:wega-docTypes, 'var')) then controller:dispatch(map:put($exist-vars, 'exist:resource', str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))))
    else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)

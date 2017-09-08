@@ -455,7 +455,7 @@ declare %private function search:get-latest-date($docType as xs:string, $cacheKe
 declare %private function search:prepare-search-string($model as map()) as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
     let $query-string-org := request:get-parameter('q', '')
-    let $sanitized-query-string := str:sanitize(string-join($query-string-org, ' '))
+    let $sanitized-query-string := str:normalize-space(str:sanitize(string-join($query-string-org, ' ')))
     let $analyzed-query-string := analyze-string($sanitized-query-string, '\d{4}-\d{2}-\d{2}')
     let $dates := $analyzed-query-string/fn:match/text()
     let $query-string := string-join($analyzed-query-string/fn:non-match/text(), ' ')
