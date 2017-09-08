@@ -814,9 +814,9 @@ function checkValidDiaryDate(date) {
         (date >= start6 && date <= end6) ||
         (date >= start7 && date <= end7) ||
         (date >= start8 && date <= end8) ||
-        (date == day9) ||
+        (date >= day9 && date <= day9) ||
         (date >= start10 && date <= end10) ||
-        (date == day11) ||
+        (date >= day11 && date <= day11) ||
         (date >= start12 && date <= end12) ||
         (date >= start13 && date <= end13)
     )
