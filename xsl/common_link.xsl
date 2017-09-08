@@ -65,11 +65,16 @@
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="@target"/>
+            <xsl:if test="starts-with(@target, '#')">
+                <xsl:attribute name="id" select="concat('backref-', substring(@target, 2))"/>
+                <xsl:attribute name="class">fn-ref</xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates/>
             <xsl:if test="@type = 'hyperLink'">
                 <xsl:text> </xsl:text>
                 <xsl:element name="i">
                     <xsl:attribute name="class">fa fa-external-link</xsl:attribute>
+                    <xsl:attribute name="aria-hidden">true</xsl:attribute>
                 </xsl:element>
             </xsl:if>
         </xsl:element>

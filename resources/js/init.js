@@ -630,6 +630,12 @@ $('.allFilter input').change(
   }
 )
 
+/* Highlight original (historic) footnotes when clicking on a reference in the text */
+$('.fn-ref').on('click', function() {
+    $('#endNotes li').removeClass('bg-info');
+    $($(this).attr('href')).addClass('bg-info');
+})
+
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
