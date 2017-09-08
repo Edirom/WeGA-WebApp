@@ -1,4 +1,9 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xpath-default-namespace="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xpath-default-namespace="http://www.w3.org/1999/xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    exclude-result-prefixes="xs" version="2.0">
+    
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space elements="p span"/>
@@ -9,9 +14,9 @@
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="h1">
+    <xsl:template match="h4">
         <xsl:element name="h3">
-            <xsl:apply-templates/>
+            <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
     </xsl:template>
     
@@ -72,19 +77,25 @@
                     <xsl:when test=".='sup'">
                         <xsl:value-of select="'tei_hi_superscript'"/>
                     </xsl:when>
+                    <!-- remove original grid information -->
+                    <xsl:when test="starts-with(.,'col-sm')"/>
+                    <xsl:when test="starts-with(.,'col-md')"/>    
                     <xsl:otherwise>
                         <xsl:value-of select="."/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:attribute name="class">
-            <xsl:value-of select="string-join($classes, ' ')"/>
-        </xsl:attribute>
+        <xsl:if test="count($classes) gt 0">
+            <xsl:attribute name="class">
+                <xsl:value-of select="string-join($classes, ' ')"/>
+            </xsl:attribute>
+        </xsl:if>
     </xsl:template>
     
+    <xsl:template match="a[@href='#top']"/>
     <xsl:template match="div[div/a/@type='button']"/>
-    <xsl:template match="div[div/ul/@class[contains(., 'adbndb-header')]]"/>
+    <xsl:template match="div[contains(@class, 'navigationSidebar')]"/>
     <xsl:template match="li[h4[@id=('ndbcontent_zitierweise', 'adbcontent_zitierweise')]]" priority="1"/>
     
 </xsl:stylesheet>
