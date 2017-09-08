@@ -4,6 +4,7 @@ module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
@@ -137,13 +138,15 @@ declare
  :)
 declare 
     %templates:wrap
-    function search:kwic($node as node(), $model as map(*)) {
-        let $hits := $model('result-page-hits-per-entry')($model('docID'))
-        let $expanded := $hits ! kwic:expand(.)
-        let $summaries := $expanded//exist:match ! kwic:get-summary(./root(), ., <config width="40"/>)
-        return
-            (: merge different hits from e.g. tei:TEI and tei:body by calling functx:distinct-deep() on the output html:p :)
-            functx:distinct-deep($summaries)
+    function search:kwic($node as node(), $model as map(*)) as element(xhtml:p)* {
+        if(exists($model('result-page-hits-per-entry'))) then 
+            let $hits := $model('result-page-hits-per-entry')($model('docID'))
+            let $expanded := $hits ! kwic:expand(.)
+            let $summaries := $expanded//exist:match ! kwic:get-summary(./root(), ., <config width="40"/>)
+            return
+                (: merge different hits from e.g. tei:TEI and tei:body by calling functx:distinct-deep() on the output html:p :)
+                functx:distinct-deep($summaries)
+        else ()
 };
 
 (:~
