@@ -10,6 +10,17 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 
 declare option exist:serialize "method=xml media-type=application/tei+xml indent=no encoding=utf-8";
 
+declare function local:format() as xs:string? {
+    let $req-format := request:get-parameter('format', ())
+    let $supported := local:available-transformations()
+    return
+        ($req-format[.=$supported])[1]
+};
+
+declare function local:available-transformations() as xs:string* {
+    xmldb:get-child-resources($config:xsl-external-schemas-collection-path) ! (substring-before(substring-after(., 'to-'), '.xsl')) 
+};
+
 let $docID := request:get-attribute('docID')
 let $specID := request:get-attribute('specID')
 let $schemaID := request:get-attribute('schemaID')
@@ -21,7 +32,12 @@ let $content :=
 	else if($chapID) then gl:chapter($chapID)
 	else if($dbPath) then try {doc($dbPath)} catch * { core:logToFile('error', 'Failed to load XML document at "' || $dbPath  || '"') }
 	else ()
+let $format := local:format()
+let $transformed := 
+    if($format) then wega-util:transform($content, doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), ())
+    else $content
 return
     wega-util:inject-version-info(
-        wega-util:remove-comments($content)
+        if($config:isDevelopment) then $transformed
+        else wega-util:remove-comments($transformed)
     )
