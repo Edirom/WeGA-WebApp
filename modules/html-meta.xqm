@@ -71,7 +71,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         switch($model?chapID)
         case 'toc' return lang:get-language-string('toc', $lang)
         case 'index-elements' case 'index-attributes' case 'index-classes' case 'index-datatypes' return lang:get-language-string('metaDescriptionGuidelines-' || $model?chapID, $lang)
-        default return str:shorten-TEI(gl:chapter($model?chapID)//tei:p, 150) 
+        default return str:shorten-TEI(gl:chapter($model?chapID)//tei:p, 150, $lang) 
     else 
         switch($model('docID'))
         case 'indices' return lang:get-language-string('metaDescriptionIndex-' || $model('docType'), $lang)
@@ -80,7 +80,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
         default return
             switch($model('docType'))
             case 'persons' return 
-                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang))
+                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang,lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang,lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}))
                 let $occupations := string-join($model('doc')//tei:occupation/normalize-space(), ', ')
                 let $placesOfAction := string-join($model('doc')//tei:residence/normalize-space(), ', ')
                 return concat(
@@ -94,9 +94,9 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
                     $placesOfAction
                 )
             case 'letters' case 'writings' case 'documents' return str:normalize-space($model('doc')//tei:note[@type='summary'])
-            case 'diaries' return str:shorten-TEI($model('doc')/tei:ab, 150)
-            case 'news' case 'var' case 'thematicCommentaries' return str:shorten-TEI($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], 150)
-            case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0)
+            case 'diaries' return str:shorten-TEI($model('doc')/tei:ab, 150, $lang)
+            case 'news' case 'var' case 'thematicCommentaries' return str:shorten-TEI($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], 150, $lang)
+            case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2)
             case 'error' return lang:get-language-string('metaDescriptionError', $lang)
             default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
@@ -121,7 +121,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
             case 'persons' return concat(str:printFornameSurname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
             case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
             case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
-            case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
+            case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
             case 'error' return lang:get-language-string('metaTitleError', $lang)
             default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };

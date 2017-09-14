@@ -630,6 +630,12 @@ $('.allFilter input').change(
   }
 )
 
+/* Highlight original (historic) footnotes when clicking on a reference in the text */
+$('.fn-ref').on('click', function() {
+    $('#endNotes li').removeClass('bg-info');
+    $($(this).attr('href')).addClass('bg-info');
+})
+
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
@@ -758,7 +764,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })
@@ -814,9 +820,9 @@ function checkValidDiaryDate(date) {
         (date >= start6 && date <= end6) ||
         (date >= start7 && date <= end7) ||
         (date >= start8 && date <= end8) ||
-        (date == day9) ||
+        (date >= day9 && date <= day9) ||
         (date >= start10 && date <= end10) ||
-        (date == day11) ||
+        (date >= day11 && date <= day11) ||
         (date >= start12 && date <= end12) ||
         (date >= start13 && date <= end13)
     )

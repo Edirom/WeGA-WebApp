@@ -58,8 +58,17 @@ declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($co
 
 declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
 
+(: collection that provides XSL scripts for transforming our documents to external schemas, e.g. tei_all :)
+declare variable $config:xsl-external-schemas-collection-path as xs:string := $config:app-root || '/resources/lib/WeGA-ODD/xsl';
+
 (: The first language is the default language :)
 declare variable $config:valid-languages as xs:string* := ('de', 'en');
+
+declare variable $config:default-date-picture-string := function($lang as xs:string) as xs:string? {
+    if($lang = 'de') then '[D]. [MNn] [Y]' 
+    else if ($lang = 'en') then '[MNn] [D], [Y]'
+    else ()
+};
 
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
@@ -67,6 +76,20 @@ declare variable $config:diaryYearsToSuppress as xs:integer* :=
     if($config:isDevelopment) then () 
     else (1821 to 1823);
 
+(:~
+ : get and set language variable
+ :
+ : @author Peter Stadler
+ : @param $lang the language to set
+ : @return xs:string the (newly) set language variable 
+ :)
+declare function config:guess-language($lang as xs:string?) as xs:string {
+    if($lang = $config:valid-languages) then $lang
+    (: else try to guess from the URL path segment :)
+    else if(request:exists() and tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
+    (: else default language :)
+    else $config:valid-languages[1]
+};
 
 (:~
  : Resolve the given path using the current application context.
@@ -391,7 +414,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
 :)
 declare function config:get-xsl-params($params as map()?) as element(parameters) {
     <parameters>
-        <param name="lang" value="{lang:guess-language(())}"/>
+        <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>

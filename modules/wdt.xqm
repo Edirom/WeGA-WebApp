@@ -33,6 +33,43 @@ declare function wdt:orgs($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                ))/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ))/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ) intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('orgs')) then ()
             else (wdt:orgs(())('init-sortIndex')()),
@@ -90,6 +127,43 @@ declare function wdt:persons($item as item()*) as map(*) {
             (:distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.):)
             ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                ))/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ))/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ) intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('persons')) then ()
             else (wdt:persons(())('init-sortIndex')()),
@@ -110,8 +184,8 @@ declare function wdt:persons($item as item()*) as map(*) {
                 default return $item/root()/tei:person
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))
-                case 'html' return <span>{str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))}</span> 
+                case 'txt' return str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))
+                case 'html' return <span>{str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))}</span> 
                 default return core:logToFile('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
@@ -131,7 +205,16 @@ declare function wdt:letters($item as item()*) as map(*) {
     let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
-        let $date := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], 'de')
+        let $lang := config:guess-language(())
+        let $dateFormat := 
+            if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+            else '[FNn], [MNn] [D], [Y]'
+        let $dateSender := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $dateAddressee := date:printDate(($TEI//tei:correspAction[@type='received']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $date := 
+            if($dateSender) then $dateSender
+            else if($dateAddressee) then (lang:get-language-string('received', $lang) || ' ' || $dateAddressee)
+            else ()
         let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
         let $sender := 
             if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
@@ -146,8 +229,8 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
         return (
             element tei:title {
-                concat($sender, ' ', 'an', ' ', $addressee),
-                if($placeAddressee) then concat(' ', 'in', ' ', $placeAddressee) else(),
+                concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
+                if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in',$lang)), ' ', $placeAddressee) else(),
                 <tei:lb/>,
                 if($placeSender) then string-join(($placeSender, $date), ', ')
                 else $date
@@ -170,6 +253,43 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item/root()//tei:orgName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
             $item/root()//tei:rs[ancestor::tei:correspAction][contains(@key, $personID)][not(ancestor-or-self::tei:note)]/root():)
             $item/root()//tei:*[contains(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                )[parent::tei:correspAction])/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:correspAction])/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:correspAction])/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:correspAction] intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:correspAction])/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('letters')) then ()
@@ -199,7 +319,7 @@ declare function wdt:letters($item as item()*) as map(*) {
                 else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -227,6 +347,43 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             () 
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                ))/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ))/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ) intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('personsPlus')) then ()
@@ -266,6 +423,43 @@ declare function wdt:writings($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint])/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:imprint])/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint])/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint] intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:imprint])/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('writings')) then ()
             else (wdt:writings(())('init-sortIndex')()),
@@ -296,7 +490,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -323,6 +517,14 @@ declare function wdt:works($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root() 
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            (: das muss noch umgeschrieben werden!! :)
+            else if(string($dateFrom) = string($dateTo)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter = string($dateFrom)][ancestor::mei:history]/root()
+            else if(empty($dateFrom)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter <= string($dateTo)][ancestor::mei:history]/root()
+            else if(empty($dateTo)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter >= string($dateFrom)][ancestor::mei:history]/root()
+            else ($item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter >= string($dateFrom)][@isodate | @startdate | @enddate | @notbefore | @notafter <= string($dateTo)][ancestor::mei:history])/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('works')) then ()
@@ -352,7 +554,7 @@ declare function wdt:works($item as item()*) as map(*) {
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -387,6 +589,13 @@ declare function wdt:diaries($item as item()*) as map(*) {
             if($personID eq 'A002068') then wdt:diaries(core:data-collection('diaries'))('sort')(map {})
             else ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then $item/range:field-eq('ab-n', string($dateFrom))/root()
+            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateFrom))/root()
+            else if(empty($dateTo)) then $item/range:field-ge('ab-n', string($dateFrom))/root()
+            else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('diaries')) then () 
             else (wdt:diaries(())('init-sortIndex')()),
@@ -405,12 +614,12 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
                 default return ()
-            let $lang := lang:guess-language(())
+            let $lang := config:guess-language(())
             let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
-            let $dateFormat := if($lang eq 'en')
-            	then '%A, %B %d, %Y'
-            	else '%A, %d. %B %Y'
-            let $formattedDate := date:strfdate(xs:date($ab/@n), $lang, $dateFormat)
+            let $dateFormat := 
+                if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+                else '[FNn], [MNn] [D], [Y]'
+            let $formattedDate := date:format-date(xs:date($ab/@n), $dateFormat, $lang)
             let $formattedPlaces := 
                 switch(array:size($diaryPlaces))
                 case 0 return ()
@@ -445,6 +654,43 @@ declare function wdt:news($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                )[parent::tei:publicationStmt])/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:publicationStmt])/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:publicationStmt])/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:publicationStmt] intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:publicationStmt])/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('news')) then ()
             else (wdt:news(())('init-sortIndex')()),
@@ -466,7 +712,7 @@ declare function wdt:news($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -491,6 +737,9 @@ declare function wdt:iconography($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::tei:person[@corresp = $personID]/root()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('iconography')) then ()
@@ -522,6 +771,9 @@ declare function wdt:var($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
         },
@@ -538,11 +790,11 @@ declare function wdt:var($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
-            let $lang := lang:guess-language(())
+            let $lang := config:guess-language(())
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -567,6 +819,43 @@ declare function wdt:biblio($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() 
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint])/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:imprint])/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint])/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:imprint] intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:imprint])/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('biblio')) then ()
@@ -622,6 +911,9 @@ declare function wdt:places($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('places')) then ()
             else (wdt:places(())('init-sortIndex')()),
@@ -670,6 +962,9 @@ declare function wdt:sources($item as item()*) as map(*) {
             else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root()
             else ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
         },
@@ -689,7 +984,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -712,6 +1007,9 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('thematicCommentaries')) then ()
             else (wdt:thematicCommentaries(())('init-sortIndex')()),
@@ -733,7 +1031,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:thematicCommentaries()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -759,6 +1057,43 @@ declare function wdt:documents($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                )[parent::tei:creation])/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:creation])/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:creation])/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                )[parent::tei:creation] intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                )[parent::tei:creation])/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('documents')) then ()
@@ -786,7 +1121,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:documents()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -817,6 +1152,43 @@ declare function wdt:contacts($item as item()*) as map(*) {
                 $norm-doc//norm:entry[contains(@authorID, $personID)]
             return 
                 distinct-values($entries/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.)
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                ))/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ))/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ) intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             let $correspondence-partners := query:correspondence-partners($params('personID'))
@@ -880,6 +1252,43 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             return
                 $docsMentioned except $docsAuthor
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then ((
+                $item/range:field-eq('date-when', string($dateFrom)) | 
+                $item/range:field-eq('date-from', string($dateFrom)) | 
+                $item/range:field-eq('date-to', string($dateFrom)) |
+                $item/range:field-eq('date-notBefore', string($dateFrom)) |
+                $item/range:field-eq('date-notAfter', string($dateFrom))
+                ))/root()
+            else if(empty($dateFrom)) then ((
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+            else if(empty($dateTo)) then ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ))/root()
+            else ((
+                $item/range:field-ge('date-when', string($dateFrom)) | 
+                $item/range:field-ge('date-from', string($dateFrom)) | 
+                $item/range:field-ge('date-to', string($dateFrom)) |
+                $item/range:field-ge('date-notBefore', string($dateFrom)) |
+                $item/range:field-ge('date-notAfter', string($dateFrom))
+                ) intersect (
+                $item/range:field-le('date-when', string($dateTo)) | 
+                $item/range:field-le('date-from', string($dateTo)) | 
+                $item/range:field-le('date-to', string($dateTo)) |
+                $item/range:field-le('date-notBefore', string($dateTo)) |
+                $item/range:field-le('date-notAfter', string($dateTo))
+                ))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
         },
@@ -906,6 +1315,9 @@ declare function wdt:indices($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item

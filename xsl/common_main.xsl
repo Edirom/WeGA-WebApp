@@ -83,10 +83,19 @@
     <xsl:template name="createEndnotes">
         <xsl:element name="div">
             <xsl:attribute name="id" select="'endNotes'"/>
+            <xsl:element name="h3"><xsl:value-of select="wega:getLanguageString('originalFootnotes', $lang)"/></xsl:element>
             <xsl:element name="ul">
                 <xsl:for-each select="//tei:footNote">
                     <xsl:element name="li">
-                        <xsl:attribute name="id" select="./@xml:id"/>
+                        <xsl:attribute name="id" select="@xml:id"/>
+                        <xsl:element name="a">
+                            <xsl:attribute name="href" select="concat('#backref-', @xml:id)"/>
+                            <xsl:attribute name="class">fn-backref</xsl:attribute>
+                            <xsl:element name="i">
+                                <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>
+                                <xsl:attribute name="aria-hidden">true</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
                         <xsl:apply-templates/>
                     </xsl:element>
                 </xsl:for-each>

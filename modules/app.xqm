@@ -121,17 +121,14 @@ declare
     %templates:wrap
     function app:documentFooter($node as node(), $model as map(*)) as map(*) {
         let $lang := $model('lang')
-        let $dateFormat := if($lang eq 'en')
-            then '%B %d, %Y'
-            else '%d. %B %Y'
         let $svnProps := config:get-svn-props($model('docID'))
         let $author := map:get($svnProps, 'author')
         let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
         let $formatedDate := 
-            try { date:strfdate($date, $lang, $dateFormat) }
+            try { date:format-date($date, $config:default-date-picture-string($lang), $lang) }
             catch * { core:logToFile('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
         let $version := concat(config:get-option('version'), if($config:isDevelopment) then 'dev' else '')
-        let $versionDate := date:strfdate(xs:date(config:get-option('versionDate')), $lang, $dateFormat)
+        let $versionDate := date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
         return
             map {
                 'bugEmail' := config:get-option('bugEmail'),
@@ -665,7 +662,7 @@ declare
             else 1
         return 
             map {
-                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(wega-util:txtFromTEI($words[$random]), '')), $lang),
+                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang),
                 'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
             }
 };
@@ -717,7 +714,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', date:strfdate(current-date(), $lang, if($lang eq 'en') then '%B %d' else '%d. %B'), $lang)}</h2>
+    <h2>{lang:get-language-string('whatHappenedOn', format-date(current-date(), if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
 };
 
 (:~
@@ -767,7 +764,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang)
+        date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
 };
 
 declare 
@@ -871,16 +868,16 @@ declare
     %templates:default("lang", "en")
     function app:person-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map{
-            'fullnames' := $model('doc')//tei:persName[@type = 'full'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(wega-util:txtFromTEI(.), ''),
-            'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(wega-util:txtFromTEI(.), ''),
+            'fullnames' := $model('doc')//tei:persName[@type = 'full'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(str:txtFromTEI(., $lang), ''),
             'altnames' := 
                 (
-                $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(wega-util:txtFromTEI(.), ''),  
-                $model('doc')//tei:orgName[@type = 'alt'] ! string-join(wega-util:txtFromTEI(.), '')
+                $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(str:txtFromTEI(., $lang), ''),  
+                $model('doc')//tei:orgName[@type = 'alt'] ! string-join(str:txtFromTEI(., $lang), '')
                 ),
-            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(wega-util:txtFromTEI(.), ''),
+            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
             'birth' := $model('doc')//tei:birth[not(tei:date[@type])],
             'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
             'death' := $model('doc')//tei:death[not(tei:date[@type])],
@@ -986,11 +983,11 @@ declare
             <sup class="jul" 
                 data-toggle="tooltip" 
                 data-container="body" 
-                title="{concat(lang:get-language-string('julianDate', $lang), ': ', date:getNiceDate(wega-util:greorian2julian($date), $lang))}"
+                title="{concat(lang:get-language-string('julianDate', $lang), ': ', date:format-date(date:gregorian2julian($date), $config:default-date-picture-string($lang), $lang))}"
                 >greg.</sup>
         }
         return (
-            date:printDate($orderedDates[1], $model?lang),
+            date:printDate($orderedDates[1], $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
             if(($orderedDates[1])[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($orderedDates[1]/@when), $model?lang))
             else (),
             (
@@ -999,7 +996,7 @@ declare
                     
                     for $date at $count in subsequence($orderedDates, 2)
                     return (
-                        date:printDate($date, $model?lang),
+                        date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
                         if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
                         else (),
                         if($count < count($orderedDates) - 1) then ', '
@@ -1145,11 +1142,11 @@ declare
                 'dnbContent' := $dnbContent,
                 'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePlaceOrGeographicName/str:normalize-space(.)),
                 'dnbBirths' := 
-                    if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfBirth, $lang)
+                    if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:format-date($dnbContent//gndo:dateOfBirth, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfBirth castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfBirth, $lang)
                     else(),
                 'dnbDeaths' := 
-                    if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:getNiceDate($dnbContent//gndo:dateOfDeath, $lang)
+                    if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:format-date($dnbContent//gndo:dateOfDeath, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfDeath castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfDeath, $lang)
                     else(),
                 'dnbOccupations' := 
@@ -1470,14 +1467,22 @@ declare function app:context-letter($node as node(), $model as map(*)) as map(*)
     let $nextLetterToSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
     let $nextLetterToSender := wdt:letters($nextLetterToSenderColl)('sort')(())[1]/root()
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
-    let $prevLetterFromAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
-    let $prevLetterFromAddressee := wdt:letters($prevLetterFromAddresseeColl)('sort')(())[last()]/root()
+    let $prevLetterFromAddressee :=
+        if($doc//tei:correspContexts) then core:doc($doc//tei:correspContext/tei:ref[@type='previousLetterFromAddressee']/string(@target))
+        else (
+            let $prevLetterFromAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+            return wdt:letters($prevLetterFromAddresseeColl)('sort')(())[last()]/root()
+        )
     (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
     let $prevLetterFromAuthorToAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
     let $prevLetterFromAuthorToAddressee := wdt:letters($prevLetterFromAuthorToAddresseeColl)('sort')(())[last()]/root()
     (: Direkter Antwortbrief des Adressaten:)
-    let $replyLetterFromAddresseeColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
-    let $replyLetterFromAddressee := wdt:letters($replyLetterFromAddresseeColl)('sort')(())[1]/root()
+    let $replyLetterFromAddressee := 
+        if($doc//tei:correspContexts) then core:doc($doc//tei:correspContext/tei:ref[@type='nextLetterFromAddressee']/string(@target))
+        else (
+            let $replyLetterFromAddresseeColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+            return wdt:letters($replyLetterFromAddresseeColl)('sort')(())[1]/root()
+        )
     (: Antwort des Autors auf die Antwort des Adressaten :)
     let $replyLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
     let $replyLetterFromSender := wdt:letters($replyLetterFromSenderColl)('sort')(())[1]/root()
@@ -1535,7 +1540,7 @@ declare
 declare function app:construct-title($doc as document-node(), $lang as xs:string) as element()+ {
     (: Support for Albumblätter?!? :)
     let $id := $doc/tei:TEI/string(@xml:id)
-    let $date := date:printDate(($doc//tei:correspAction[@type='sent']/tei:date)[1], $lang)
+    let $date := date:printDate(($doc//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
     let $sender := app:printCorrespondentName(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
     let $addressee := app:printCorrespondentName(($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
     let $placeSender := str:normalize-space(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
@@ -1564,14 +1569,14 @@ declare function app:construct-title($doc as document-node(), $lang as xs:string
 declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
     let $authorID := query:get-authorID($doc)
     let $dateFormat := 
-        if ($lang = 'en') then '%A, %B %d, %Y'
-                          else '%A, %d. %B %Y'
+        if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+                          else '[FNn], [MNn] [D], [Y]'
     return 
         if($authorID) then 
             element p {
                 attribute class {'authorDate'},
                 app:printCorrespondentName(query:get-author-element($doc), $lang, 'fs'),
-                concat(', ', date:strfdate(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $lang, $dateFormat))
+                concat(', ', date:format-date(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $dateFormat, $lang))
             }
         else()
 };
@@ -1703,7 +1708,7 @@ declare
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
         let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung']
         return
-            str:shorten-TEI($textXML, number($max))
+            str:shorten-TEI($textXML, number($max), $model?lang)
 };
 
 

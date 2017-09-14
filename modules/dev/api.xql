@@ -125,7 +125,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
 declare function local:facets($params as map(*))  {
     let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))
-    let $lang := lang:guess-language($params('lang'))
+    let $lang := config:guess-language($params('lang'))
     return 
         facets:facets($search?search-results, $params('facet'), -1, $lang)
 };
