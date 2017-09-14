@@ -1530,34 +1530,6 @@ declare
 };
 
 (:~
- : Constructs letter header
- :
- : @author Peter Stadler
- : @param $doc document node
- : @param $lang the current language (de|en)
- : @return element
-:)
-declare function app:construct-title($doc as document-node(), $lang as xs:string) as element()+ {
-    (: Support for Albumblätter?!? :)
-    let $id := $doc/tei:TEI/string(@xml:id)
-    let $date := date:printDate(($doc//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-    let $sender := app:printCorrespondentName(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
-    let $addressee := app:printCorrespondentName(($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
-    let $placeSender := str:normalize-space(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-    let $placeAddressee := str:normalize-space(($doc//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-    return (
-        element tei:title {
-            concat($sender, ' ', lower-case(lang:get-language-string('to', $lang)), ' ', $addressee),
-            if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in', $lang)), ' ', $placeAddressee) else(),
-            <tei:lb/>,
-            if($placeSender) then string-join(($placeSender, $date), ', ')
-            else $date
-        }
-    )
-};
-
-
-(:~
  : Create dateline and author link for website news
  : (Helper Function for app:print-transcription)
  :
