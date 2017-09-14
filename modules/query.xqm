@@ -199,17 +199,17 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'sender' return $collection//tei:correspAction[range:eq(@type,'sent')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'addressee' return $collection//tei:correspAction[range:eq(@type,'received')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
-    case 'placeOfSender' return $collection//tei:placeName[parent::tei:correspAction/@type='sent']
-    case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:correspAction/@type='received']
+    case 'placeOfSender' return $collection//tei:settlement[parent::tei:correspAction/@type='sent']/@key
+    case 'placeOfAddressee' return $collection//tei:settlement[parent::tei:correspAction/@type='received']/@key
     case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
-    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]
+    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]/@key
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
     case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
     case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
     case 'docSource' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation
-    case 'residences' return $collection//tei:settlement[parent::tei:residence]
+    case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
