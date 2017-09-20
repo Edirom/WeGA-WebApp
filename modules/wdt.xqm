@@ -938,8 +938,11 @@ declare function wdt:places($item as item()*) as map(*) {
                 case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('unary-docTypes'),
-        'search' := ()
+        'memberOf' := ('unary-docTypes', 'search', 'indices'),
+        'search' := function($query as element(query)) {
+            $item[tei:place]/tei:placeName[ft:query(., $query)] | 
+            $item[tei:place]/tei:place[ft:query(., $query)] 
+        }
     }
 };
 
@@ -1225,6 +1228,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
             let $docsMentioned := 
                 core:data-collection('letters')//tei:*[contains(@key,$personID)]/root() | 
                 core:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('diaries')//tei:ab[contains(@where,$personID)]/root() |
                 core:data-collection('writings')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('news')//tei:*[contains(@key,$personID)]/root() |

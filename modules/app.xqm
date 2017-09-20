@@ -781,6 +781,31 @@ declare
             }
 };
 
+
+(:
+ : ****************************
+ : Place pages
+ : ****************************
+:)
+
+declare function app:place-details($node as node(), $model as map(*)) as map(*) {
+    let $geonames-id := $model?doc//tei:idno[@type='geonames']/text()[1]
+    let $gnd := wega-util:geonames2gnd($geonames-id)
+    let $beaconMap := 
+        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+        else map:new()
+    return
+        map {
+            'geonames-id' := $geonames-id,
+            'gnd' := $gnd,
+            'beaconMap' := $beaconMap,
+            'names' := $model?doc//tei:placeName[@type],
+            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+        }
+};
+
+
 (:
  : ****************************
  : Work pages
@@ -1113,8 +1138,9 @@ declare
             return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
+                'docType' := config:get-doctype-by-id($model?docID),
                 'dnbContent' := $dnbContent,
-                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.)),
+                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePlaceOrGeographicName/str:normalize-space(.)),
                 'dnbBirths' := 
                     if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:format-date($dnbContent//gndo:dateOfBirth, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfBirth castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfBirth, $lang)
@@ -1123,14 +1149,18 @@ declare
                     if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:format-date($dnbContent//gndo:dateOfDeath, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfDeath castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfDeath, $lang)
                     else(),
-                'dnbOccupations' := ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.)),
+                'dnbOccupations' := 
+                    if($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation or $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral) then
+                        ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.))
+                    else (),
                 'biographicalOrHistoricalInformations' := $dnbContent//gndo:biographicalOrHistoricalInformation,
                 'dnbOtherNames' := (
-                    for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody)
+                    for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePlaceOrGeographicName/str:normalize-space(.))
                     return
                         if(functx:all-whitespace($name)) then ()
                         else str:normalize-space($name)
                 ),
+                'gndDefinition' := $dnbContent//gndo:definition,
                 'lang' := $lang,
                 'dnbURL' := config:get-option('dnb') || $gnd
             }
@@ -1498,34 +1528,6 @@ declare
             else lang:get-language-string('unknown', $lang)
         )
 };
-
-(:~
- : Constructs letter header
- :
- : @author Peter Stadler
- : @param $doc document node
- : @param $lang the current language (de|en)
- : @return element
-:)
-declare function app:construct-title($doc as document-node(), $lang as xs:string) as element()+ {
-    (: Support for Albumblätter?!? :)
-    let $id := $doc/tei:TEI/string(@xml:id)
-    let $date := date:printDate(($doc//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-    let $sender := app:printCorrespondentName(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
-    let $addressee := app:printCorrespondentName(($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1], $lang, 'fs')/string()
-    let $placeSender := str:normalize-space(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-    let $placeAddressee := str:normalize-space(($doc//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-    return (
-        element tei:title {
-            concat($sender, ' ', lower-case(lang:get-language-string('to', $lang)), ' ', $addressee),
-            if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in', $lang)), ' ', $placeAddressee) else(),
-            <tei:lb/>,
-            if($placeSender) then string-join(($placeSender, $date), ', ')
-            else $date
-        }
-    )
-};
-
 
 (:~
  : Create dateline and author link for website news

@@ -4,7 +4,7 @@
         <dt data-template="lang:translate">pnd_name</dt>
         <dd data-template="app:print" data-template-key="dnbName">Ein Name</dd>
     </dl>
-    <dl>
+    <dl data-template="app:if-not-matches" data-template-key="docType" data-template-value="places">
         <dt data-template="lang:translate">pnd_dates</dt>
         <dd data-template="templates:each" data-template-from="dnbBirths" data-template-to="dataBirth">
             <i class="fa fa-asterisk  media-object"/> <span data-template="app:print" data-template-key="dataBirth">dataBirth</span>
@@ -29,6 +29,12 @@
         <dt data-template="lang:translate">pnd_otherNames</dt>
         <dd data-template="templates:each" data-template-from="dnbOtherNames" data-template-to="dnbOtherName">
             <span data-template="app:print" data-template-key="dnbOtherName">Musiker</span>
+        </dd>
+    </dl>
+    <dl data-template="app:if-exists" data-template-key="gndDefinition">
+        <dt data-template="lang:translate">gndDefinition</dt>
+        <dd>
+            <span data-template="app:print" data-template-key="gndDefinition">Some definition</span>
         </dd>
     </dl>
     <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Zu verknüpfter Literatur und weiteren Informationen siehe den <a data-template="app:set-attr" data-template-attr="href" data-template-key="dnbURL">vollständigen Eintrag</a> in der Deutschen Nationalbibliothek.</p>
