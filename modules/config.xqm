@@ -56,7 +56,7 @@ declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($co
 
 (:declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;:)
 
-declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
+declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei', 'txt');
 
 (: collection that provides XSL scripts for transforming our documents to external schemas, e.g. tei_all :)
 declare variable $config:xsl-external-schemas-collection-path as xs:string := $config:app-root || '/resources/lib/WeGA-ODD/xsl';

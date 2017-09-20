@@ -74,10 +74,27 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
     )
 };
 
+(:~
+ :  XML Output
+~:)
 declare function controller:forward-xml($exist-vars as map()*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-xml.xql'}">
-            <!--<set-attribute name="resource" value="{$exist-vars('docID')}"/> -->
+            {
+            for $var in map:keys($exist-vars) 
+            return
+                <set-attribute name="{$var}" value="{$exist-vars($var)}"/>
+            }
+        </forward>
+    </dispatch>
+};
+
+(:~
+ :  Plain text output
+~:)
+declare function controller:forward-txt($exist-vars as map()*) as element(exist:dispatch) {
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-txt.xql'}">
             {
             for $var in map:keys($exist-vars) 
             return
@@ -465,6 +482,7 @@ declare %private function controller:canonical-mime-type($mime-type as xs:string
     case 'xml' case 'tei' return 'xml'
     case 'text/html' case 'application/xhtml+xml' return 'html'
     case 'application/xml' case 'application/tei+xml' return 'xml'
+    case 'txt' case 'text' case 'text/plain' return 'txt'
     default return 
         if(count($mime-type) gt 1) then controller:canonical-mime-type(subsequence($mime-type, 2))
         else ()
@@ -480,6 +498,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
         case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
+    case 'txt' return controller:forward-txt($exist-vars)
     default return controller:error($exist-vars, 404)
 };
 
