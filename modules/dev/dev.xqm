@@ -14,13 +14,13 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
-declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:~
  : Create new ID
@@ -32,7 +32,10 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFileName := concat($docType, '-tmpIDs.xml')
     let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
-    let $IDFile := core:cache-doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P1D'))
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
+    let $IDFile := cache:doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P1D'), $onFailureFunc)
        (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
         else doc(concat($config:tmp-collection-path, $IDFileName)):)
     let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)

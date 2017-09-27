@@ -10,14 +10,11 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
-import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
-import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
-import module namespace functx="http://www.functx.com";
 import module namespace cache="http://exist-db.org/xquery/cache" at "java:org.exist.xquery.modules.cache.CacheModule";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 (:~
  : Get document by ID
@@ -160,46 +157,6 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
 };
 
 (:~
- : Store some XML content as file in the db
- : (shortcut for the more generic 4arity version)
- : 
- : @author Peter Stadler
- : @param $collection the collection to put the file in. If empty, the content will be stored in tmp  
- : @param $fileName the filename of the to be created resource with filename extension
- : @param $contents the content to store. Must be a node 
- : @return Returns the path to the newly created resource, empty sequence otherwise
- :)
-declare function core:store-file($collection as xs:string?, $fileName as xs:string, $contents as item()) as xs:string? {
-    core:store-file($collection, $fileName, $contents, 'application/xml')
-};
-
-(:~
- : Store some content as file in the db
- : (helper function for wega:grabExternalResource())
- : 
- : @author Peter Stadler
- : @param $collection the collection to put the file in. If empty, the content will be stored in tmp  
- : @param $fileName the filename of the to be created resource with filename extension
- : @param $contents the content to store. Either a node, an xs:string, a Java file object or an xs:anyURI 
- : @return Returns the path to the newly created resource, empty sequence otherwise
- :)
-declare function core:store-file($collection as xs:string?, $fileName as xs:string, $contents as item(), $mime-type as xs:string) as xs:string? {
-    let $collection := 
-        if(empty($collection) or ($collection eq '')) then $config:tmp-collection-path
-        else $collection
-    let $createCollection := 
-        for $coll in tokenize($collection, '/')
-        let $parentColl := substring-before($collection, $coll)
-        return 
-            if(xmldb:collection-available($parentColl || '/' || $coll)) then ''
-            else xmldb:create-collection($parentColl, $coll)
-    return
-        try { xmldb:store($collection, $fileName, $contents, $mime-type) }
-        catch * { core:logToFile('error', string-join(('core:store-file', $err:code, $err:description), ' ;; ')) }
-};
-
-
-(:~
  : @author Peter Stadler
  : Recursive identity transform with changing of namespace for a given element.
  :
@@ -264,49 +221,6 @@ declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as
  :)
 declare function core:permalink($docID as xs:string) as xs:anyURI? {
     xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($docID))
-};
-
-(:~
- : A caching function for documents (XML and binary)
- :
- : @author Peter Stadler
- : @param $docURI the database URI of the document
- : @param $callBack a function to create the document content when the document is outdated or not available
- : @param $lease an xs:dayTimeDuration value of how long the cache should persist, e.g. P999D (= 999 days)
- : @return the cached document
- :)
-declare function core:cache-doc($docURI as xs:string, $callback as function() as item(), $callback-params as item()*, $lease as xs:dayTimeDuration?) {
-    let $fileName := functx:substring-after-last($docURI, '/')
-    let $collection := functx:substring-before-last($docURI, '/')
-    let $currentDateTimeOfFile := 
-        if(wega-util:doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
-        else if(util:binary-doc-available($docURI)) then xmldb:last-modified($collection, $fileName)
-        else ()
-    let $updateNecessary := 
-        (: Aktualisierung entweder bei geänderter Datenbank oder bei veraltetem Cache :) 
-        config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or $currentDateTimeOfFile + $lease lt current-dateTime()
-        (: oder bei nicht vorhandener Datei oder nicht vorhandenem $lease:)
-        or empty($lease) or empty($currentDateTimeOfFile)
-    return 
-	   if($updateNecessary) then (
-            let $content := 
-                if(count($callback-params) eq 0) then $callback()
-                else if(count($callback-params) eq 1) then $callback($callback-params)
-                else if(count($callback-params) eq 3) then $callback($callback-params[1], $callback-params[2], $callback-params[3])
-                else if(count($callback-params) eq 2) then $callback($callback-params[1], $callback-params[2])
-                else error(xs:QName('core:error'), 'Too many arguments to function callback')
-            let $mime-type := wega-util:guess-mimeType-from-suffix(functx:substring-after-last($docURI, '.'))
-            let $store-file := core:store-file($collection, $fileName, $content, $mime-type)
-            let $logMessage := concat('core:cache-doc(): saved document ', $docURI)
-            let $logToFile := core:logToFile('info', $logMessage)
-            return 
-                if(util:binary-doc-available($store-file)) then util:binary-doc($store-file)
-                else if(wega-util:doc-available($store-file)) then doc($store-file) 
-                else ()
-        )
-        else if(util:binary-doc-available($docURI)) then util:binary-doc($docURI)
-        else if(wega-util:doc-available($docURI)) then doc($docURI)
-        else ()
 };
 
 (:~

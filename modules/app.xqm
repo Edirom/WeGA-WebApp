@@ -14,9 +14,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
@@ -28,6 +26,9 @@ import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/de
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:
  : ****************************
@@ -1132,9 +1133,12 @@ declare
         let $lease := 
             try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
             catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('app:dnb', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+        let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
         let $dnbOccupations := 
             for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
-            let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease)
+            let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease, $onFailureFunc)
             return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {

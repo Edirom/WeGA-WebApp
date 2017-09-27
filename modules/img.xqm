@@ -26,6 +26,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace functx="http://www.functx.com";
 
 (:
@@ -136,7 +137,10 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
     let $lease := 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
-    let $wikiApiResponse := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease)
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
+    let $wikiApiResponse := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
     return
         for $page in $wikiApiResponse//page[not(@missing)]
         let $caption := $page/data(@title)

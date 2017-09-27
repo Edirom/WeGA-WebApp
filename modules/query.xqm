@@ -11,11 +11,11 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 
 (:~
  : Print the regularised title for a given WeGA ID
@@ -106,25 +106,50 @@ declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
 };
 
 (:~
- : Return GND 
+ : Return GND for persons, organizations, places and works
  :
  : @author Peter Stadler
- : @param $item may be xs:string (the WeGA ID), document-node() (of a person file), or a tei:person element
+ : @param $item may be xs:string (the WeGA ID), document-node() or some root element
  : @return the GND as xs:string, or empty sequence if nothing was found 
 :)
-declare function query:get-gnd($item as item()) as xs:string? {
+declare function query:get-gnd($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
-            (: there might be several gnd IDs in organizations :)
             case xs:string return core:doc($item)
-            default return $item
+            case xdt:untypedAtomic return core:doc(string($item))
+            case attribute() return core:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
     return
+        (: there might be several gnd IDs in organizations :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc/tei:place) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc/descendant-or-self::tei:place) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
-        else if($doc/tei:place) then ()
         else ()
 };
+
+(:~
+ : Return Geonames ID for places
+ :
+ : @author Peter Stadler
+ : @param $item may be xs:string (the WeGA ID), document-node() (of a place file), or a tei:place element
+ : @return the Geonames ID as xs:string, or empty sequence if nothing was found 
+:)
+declare function query:get-geonamesID($item as item()?) as xs:string? {
+    let $doc := 
+        typeswitch($item)
+            case xs:string return core:doc($item)
+            case xdt:untypedAtomic return core:doc(string($item))
+            case attribute() return core:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
+    return
+        if($doc/descendant-or-self::tei:place) then $doc//tei:idno[@type='geonames']
+        else ()
+};
+
 
 (:~ 
  : Gets events of the day for a certain date

@@ -11,10 +11,11 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";:)
 import module namespace functx="http://www.functx.com";
@@ -29,11 +30,11 @@ import module namespace functx="http://www.functx.com";
  :)
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $errCode, $errDesc), ' ;; '))
+    }
     return 
-        try {
-            core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'))
-        }
-        catch * { core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $err:code, $err:description), ' ;; ')) }
+        cache:doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'), $onFailureFunc)
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
@@ -49,17 +50,6 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         case 'orgs' return norm:create-norm-doc-orgs()
         default return core:logToFile('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
 };
-
-(:~
- : This variable serves as a shortcut to reduce function calls when creating facets
- : see wdt:persons(())('label-title') 
-~:)
-(:declare variable $norm:persons :=
-    try {
-        core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'normFile-persons.xml')), norm:create-norm-doc#1, 'persons', xs:dayTimeDuration('P999D'))
-    }
-    catch * { core:logToFile('error', string-join(('norm:get-norm-doc', $err:code, $err:description), ' ;; ')) }
-;:)
 
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {
     <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{

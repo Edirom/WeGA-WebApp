@@ -13,7 +13,6 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
-declare namespace cache = "http://exist-db.org/xquery/cache";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace json-output="http://www.w3.org/2010/xslt-xquery-serialization";
@@ -22,14 +21,13 @@ import module namespace functx="http://www.functx.com";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "../query.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev.xqm";
-(:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";:)
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "../facets.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "../search.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../controller.xqm";
-
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 declare function local:get-reg-name($params as map(*)) as xs:string {
     query:title($params('id'))
@@ -113,12 +111,16 @@ declare function local:create-beacon($params as map(*)) as xs:string {
         case 'pnd' return 'pnd_beacon.txt'
         case 'gkd' return 'gkd_beacon.txt'
         default return ()
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
     return 
         util:binary-to-string(
-            core:cache-doc(
+            cache:doc(
                 str:join-path-elements(($config:tmp-collection-path, $fileName)), 
                 $callBack, $params('type'), 
-                xs:dayTimeDuration('P999D')
+                xs:dayTimeDuration('P999D'),
+                $onFailureFunc
             )
         )
 };
