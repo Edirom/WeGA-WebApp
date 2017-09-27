@@ -17,7 +17,7 @@
                         <li><a href="$link/index">Home</a></li>
                         <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
                         <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
-                        <li><span data-template="app:print" data-template-key="docID">A040080</span> <span data-template="app:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><span data-template="app:status" class="docStatus">in Bearbeitung</span></span></li>
+                        <li><span data-template="app:print" data-template-key="docID">A040080</span> <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><span data-template="app:status" class="docStatus">in Bearbeitung</span></span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -30,9 +30,8 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter" data-template="facets:document-allFilter">
-                    <div data-template="app:if-matches" data-template-key="docType" data-template-value="diaries">
+                    <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="diaries">
                         <h2><a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">calendar</a></h2>
                         <div class="panel-collapse collapse" id="datePicker" data-template="app:inject-api-base"/>
                     </div>
@@ -42,7 +41,7 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                                <div data-template="app:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li></div>
+                                <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li></div>
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:facsimile-tab" id="facsimile-tab">facsimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
@@ -50,36 +49,40 @@
                             </ul>
                         </div>
                     </div>
-                    <div data-template="app:if-matches" data-template-key="docType" data-template-value="letters">
+                    <div data-template="app:context">
                         <h2><a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
-                            <div data-template="app:context-letter">
-                                <h3 data-template="lang:translate">absouluteChronology</h3>
-                                <h4 data-template="lang:translate">prevLetters</h4>
-                                <ul>
-                                    <li data-template="app:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h4 data-template="lang:translate">nextLetters</h4>
-                                <ul>
-                                    <li data-template="app:each" data-template-from="context-letter-absolute-next" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h3 data-template="lang:translate">korrespondenzstelle</h3>
-                                <h4 data-template="lang:translate">prevLetters</h4>
-                                <ul>
-                                    <li data-template="app:each" data-template-from="context-letter-korrespondenzstelle-prev" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h4 data-template="lang:translate">nextLetters</h4>
-                                <ul>
-                                    <li data-template="app:each" data-template-from="context-letter-korrespondenzstelle-next" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
+                            <div>
+                                <div data-template="app-shared:if-exists" data-template-key="context-letter-absolute-prev context-letter-absolute-next" data-template-wrap="no">
+                                   <h3 data-template="lang:translate">absouluteChronology</h3>
+                                   <h4 data-template="lang:translate">prevLetters</h4>
+                                   <ul>
+                                       <li data-template="app:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
+                                           <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
+                                       </li>
+                                   </ul>
+                                   <h4 data-template="lang:translate">nextLetters</h4>
+                                   <ul>
+                                       <li data-template="app:each" data-template-from="context-letter-absolute-next" data-template-to="letter-norm-entry">
+                                           <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
+                                       </li>
+                                   </ul>
+                                </div>
+                                <div data-template="app-shared:if-exists" data-template-key="context-letter-korrespondenzstelle-prev context-letter-korrespondenzstelle-next" data-template-wrap="no">
+                                    <h3 data-template="lang:translate">korrespondenzstelle</h3>
+                                    <h4 data-template="lang:translate">prevLetters</h4>
+                                    <ul>
+                                        <li data-template="app:each" data-template-from="context-letter-korrespondenzstelle-prev" data-template-to="letter-norm-entry">
+                                            <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
+                                        </li>
+                                    </ul>
+                                    <h4 data-template="lang:translate">nextLetters</h4>
+                                    <ul>
+                                        <li data-template="app:each" data-template-from="context-letter-korrespondenzstelle-next" data-template-to="letter-norm-entry">
+                                            <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,22 +111,22 @@
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
                         
-                        <div data-template="app:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
                             <h3 data-template="lang:translate" class="media-heading">summary</h3>
                             <div data-template="app:print-summary"/>
                         </div>
                         
-                        <div data-template="app:if-matches" data-template-key="docType" data-template-value="letters">
+                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">
                             <h3 data-template="lang:translate" class="media-heading">incipit</h3>
                             <div data-template="app:print-incipit"/>
                         </div>
                         
-                        <div data-template="app:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
                             <h3 data-template="lang:translate" class="media-heading">generalRemark</h3>
                             <div data-template="app:print-generalRemark"/>
                         </div>
                         
-                        <div data-template="app:if-matches" data-template-key="docType" data-template-value="writings documents">
+                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="writings documents">
                             <h3 data-template="lang:translate" class="media-heading">creation</h3>
                             <div data-template="app:print-creation"/>
                         </div>
@@ -140,7 +143,7 @@
                                 <div data-template="app:print-textSource"/>
                                 <!-- Processing tei:additional for every source -->
                                 <div data-template="app:additionalSources">
-                                    <div data-template="app:if-exists" data-template-key="additionalSources" data-template-wrap="no">
+                                    <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
                                         <h5 data-template="lang:translate" class="media-heading">additionalSources</h5>
                                     </div>
                                     <ul class="tei_list">
@@ -152,7 +155,7 @@
                             </div>
                         </div>
                         
-                        <div data-template="app:if-exists" data-template-key="thematicCommentaries">
+                        <div data-template="app-shared:if-exists" data-template-key="thematicCommentaries">
                             <h3 data-template="lang:translate" class="media-heading">thematicCommentaries</h3>
                             <ul class="tei_list">
                                 <li data-template="app:each" data-template-from="thematicCommentaries" data-template-to="thematicCom">
@@ -184,13 +187,13 @@
     </div>
     <div class="container documentFooter" data-template="app:documentFooter">
         <div class="row permaLink">
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+            <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
                 <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+            <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
                 <h4>Proposed citation</h4>
                 <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
@@ -199,9 +202,9 @@
         </div>
         <div class="row bugreport">
             <div class="col-md-9">
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
                     <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
             </div>
         </div>

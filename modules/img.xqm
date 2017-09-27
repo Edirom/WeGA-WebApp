@@ -56,7 +56,7 @@ declare
 
 (:~
  : Helper function for img:iconography()
- : Creates the iconography or persons
+ : Creates the iconography for persons
  :
 ~:)
 declare %private function img:iconography4persons($node as node(), $model as map(*), $lang as xs:string) as map(*) {
@@ -91,7 +91,7 @@ declare %private function img:iconography4persons($node as node(), $model as map
 
 (:~
  : Helper function for img:iconography()
- : Creates the iconography or places
+ : Creates the iconography for places
  :
 ~:)
 declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
@@ -107,6 +107,16 @@ declare %private function img:iconography4places($node as node(), $model as map(
                 'portrait' := ($coa, $dbpedia-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
+
+(:~
+ : Helper function for img:iconography()
+ : Creates the iconography for organizations
+ :
+~:)
+declare %private function img:iconography4orgs($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    img:iconography4persons($node, $model, $lang)
+};
+
 
 (:~
  : Function for outputting an image from the iconography
