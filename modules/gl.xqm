@@ -499,7 +499,7 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
 declare %private function gl:print-exemplum($exemplum as element()) as item()* {
 	let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
 	return
-		util:serialize(core:change-namespace($exemplum, '', ())/*/*, $serializationParameters)
+		util:serialize(functx:change-element-ns-deep($exemplum, '', '')/*/*, $serializationParameters)
 };
 
 (:~

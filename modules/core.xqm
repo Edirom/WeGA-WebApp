@@ -157,34 +157,6 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
 };
 
 (:~
- : @author Peter Stadler
- : Recursive identity transform with changing of namespace for a given element.
- :
- : @author Peter Stadler
- : @param $element the source element 
- : @param $targetNamespace the new namespace for $element
- : @param $keepNamespaces an list of namespaces that shall not be changed
- : @return a cloned element within the target namespace
- :)
- 
-declare function core:change-namespace($element as element(), $targetNamespace as xs:string, $keepNamespaces as xs:string*) as element() {
-    if(namespace-uri($element) = $keepNamespaces) then 
-        element {node-name($element)}
-            {$element/@*,
-            for $child in $element/node()
-            return 
-                if ($child instance of element()) then core:change-namespace($child, $targetNamespace, $keepNamespaces)
-                else $child
-            }
-  else element {QName($targetNamespace,local-name($element))}
-            {$element/@*,
-            for $child in $element/node()
-            return 
-                if ($child instance of element()) then core:change-namespace($child, $targetNamespace, $keepNamespaces)
-                else $child}
-};
-
-(:~
  : Create a link within the current app context (this is the 1-arity version)
  :
  : @author Peter Stadler

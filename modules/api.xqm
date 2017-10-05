@@ -18,6 +18,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace functx="http://www.functx.com";
 
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
@@ -82,6 +83,7 @@ declare function api:code-findByElement($model as map()) {
         else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
+        (: when searching for tei:facsimile empty code samples may be returned due to licensing issues :)
         if($model?total) then $eval
         else api:codeSample(api:subsequence($eval, $model), $model) 
 };
@@ -192,7 +194,7 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
                 'docID' := $docID,
-                'codeSample' := serialize(core:change-namespace(wega-util:remove-comments($node), '', ()))
+                'codeSample' := serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
             }
 };
 
