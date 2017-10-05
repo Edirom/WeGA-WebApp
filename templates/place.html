@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata">
+                <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata" data-template="app:place-basic-data">
                     <h2 data-template="lang:translate">basic_data</h2>
                     <ol class="media">
                         <li class="media names" data-template="app:each" data-template-from="names" data-template-to="name">
@@ -48,8 +48,23 @@
                                 <span data-template="app:print" data-template-key="name">Frankfurt am Main</span> 
                             </div>
                         </li>
+                        <li class="media">
+                            <div class="pull-left">
+                                <i class="fa fa-globe media-object"/>
+                            </div>
+                            <div class="media-body"> 
+                                <span>GeoNames ID:</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="geoNames">2661881</a> 
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="pull-left">
+                                <i class="fa fa-location-arrow media-object"/>
+                            </div>
+                            <div class="media-body"> 
+                                <span data-template="app:print" data-template-key="coordinates">223.232 3254.12</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="osm">OpenStreetMap</a>, <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="google">Google</a>
+                            </div>
+                        </li>
                     </ol>
-<!--                    <p data-template="app:print" data-template-key="gnd">http://www.weber-gesamtausgabe.de/wega/A000154</p>-->
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
                     <h2 data-template="lang:translate">iconography</h2>
@@ -66,7 +81,7 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li><a data-template="app:person-main-tab" href="#biographies">descriptions</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
                                 <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                             </ul>
@@ -120,13 +135,7 @@
                                                     </div>
                                                     <div data-template="app:print-wega-bio">
                                                         <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
-                                                        <p><i data-template="lang:translate">noBioFound</i></p>
-                                                        <p data-template="lang:translate">noBioFoundReason</p>
-                                                        <ul class="tei_list">
-                                                            <li data-template="lang:translate">noBioFoundReason1</li>
-                                                            <li data-template="lang:translate">noBioFoundReason2</li>
-                                                            <li data-template="lang:translate">noBioFoundReason3</li>
-                                                        </ul>
+                                                        <p><i data-template="lang:translate">noDataFound</i></p>
                                                     </div>
                                                     <div data-template="app:if-matches" data-template-key="docID" data-template-value="A002068">
                                                         <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>

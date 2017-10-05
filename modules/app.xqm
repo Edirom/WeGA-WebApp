@@ -389,7 +389,7 @@ declare
     function app:person-main-tab($node as node(), $model as map(*), $lang as xs:string) as element()? {
         let $tabTitle := normalize-space($node)
         let $count := count($model($tabTitle))
-        let $alwaysShowNoCount := $tabTitle = ('biographies', 'history')
+        let $alwaysShowNoCount := $tabTitle = ('biographies', 'history', 'descriptions')
         return
             if($count gt 0 or $alwaysShowNoCount) then
                 element {name($node)} {
@@ -790,14 +790,13 @@ declare
 :)
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
-    let $geonames-id := $model?doc//tei:idno[@type='geonames']/text()[1]
+    let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
     let $gnd := wega-util:geonames2gnd($geonames-id)
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
     return
         map {
-            'geonames-id' := $geonames-id,
             'gnd' := $gnd,
             'beaconMap' := $beaconMap,
             'names' := $model?doc//tei:placeName[@type],
@@ -806,6 +805,35 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
         }
 };
 
+declare 
+    %templates:wrap
+    function app:place-basic-data($node as node(), $model as map(*)) as map(*) {
+        map {
+            'geonames-id' := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1]),
+            'coordinates' := str:normalize-space($model?doc//tei:geo)
+        }
+};
+
+declare 
+    %templates:default("provider", "osm")
+    function app:place-link($node as node(), $model as map(*), $provider as xs:string) as element(xhtml:a) {
+        let $latLon := tokenize($model?coordinates, '\s+')
+        return
+            element xhtml:a {
+                attribute href {
+                    switch($provider)
+                    case 'osm' return 'https://www.openstreetmap.org/?mlat=' || $latLon[1] || '&amp;mlon=' || $latLon[2] || '&amp;zoom=11'
+                    case 'google' return 'https://www.google.com/maps/@?api=1&amp;map_action=map&amp;zoom=12&amp;basemap=terrain&amp;center=' || string-join($latLon, ',')
+                    case 'geoNames' return 'http://geonames.org/' || $model?geonames-id
+                    default return ''
+                },
+                switch($provider)
+                case 'osm' return 'OpenStreetMap'
+                case 'google' return 'Google'
+                case 'geoNames' return $model?geonames-id
+                default return ''
+            }
+};
 
 (:
  : ****************************
