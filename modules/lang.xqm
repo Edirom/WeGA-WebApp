@@ -11,6 +11,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 (:~ 
@@ -33,12 +34,12 @@ declare %private function lang:get-language-catalogue($lang as xs:string) as doc
  : @param $lang the language of the string (en|de)
  : @return xs:string
  :)
-declare function lang:get-language-string($key as xs:string, $lang as xs:string) as xs:string {
+declare function lang:get-language-string($key as xs:string, $lang as xs:string) as xs:string? {
     let $catalogue := lang:get-language-catalogue($lang)
     let $lookup := normalize-space($catalogue//id($key))
     return
         if($lookup) then $lookup
-        else (''(:core:logToFile('warn', 'No dictionary entry found for ' || $key):))
+        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~
@@ -50,7 +51,7 @@ declare function lang:get-language-string($key as xs:string, $lang as xs:string)
  : @param $lang the language of the string (en|de)
  : @return xs:string
  :)
-declare function lang:get-language-string($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string {
+declare function lang:get-language-string($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string? {
     let $catalogue := lang:get-language-catalogue($lang)
     let $catalogueEntry := normalize-space($catalogue//id($key))
     let $replacements := 
@@ -63,7 +64,7 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
         return $x
     return 
         if($catalogueEntry) then functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
-        else (''(:,core:logToFile('warn', 'No dictionary entry found for ' || $key):))
+        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~
