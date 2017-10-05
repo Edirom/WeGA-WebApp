@@ -38,6 +38,5 @@ let $transformed :=
     else $content
 return
     wega-util:inject-version-info(
-        if($config:isDevelopment) then $transformed
-        else wega-util:remove-comments($transformed)
+        wega-util:process-xml-for-display($transformed)
     )

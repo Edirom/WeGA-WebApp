@@ -1170,6 +1170,10 @@ declare
             }
 };
 
+(:~
+ : Output prettified ('censored') XML
+ : This function is called by the AJAX template xml.html 
+~:)
 declare function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
         let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
@@ -1178,7 +1182,7 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
         	else gl:spec($model('exist:path'))
         return
             if($config:isDevelopment) then util:serialize($doc, $serializationParameters)
-            else util:serialize(wega-util:inject-version-info(wega-util:remove-comments($doc)), $serializationParameters)
+            else util:serialize(wega-util:inject-version-info(wega-util:process-xml-for-display($doc)), $serializationParameters)
 };
 
 declare 
@@ -1215,16 +1219,12 @@ declare
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
-        let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
-        return
-            map {
-                'hasFacsimile' := 
-                    if($config:isDevelopment) then exists($model('doc')//tei:facsimile/tei:graphic/@url)
-                    else exists($model('doc')//tei:facsimile[preceding::tei:repository[@n=$facsimileWhiteList]]/tei:graphic/@url),
-                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom'],
-                'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
-            }
+        map {
+            'hasFacsimile' := exists(query:facsimile($model?doc)),
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+            'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom'],
+            'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
+        }
 };
 
 declare

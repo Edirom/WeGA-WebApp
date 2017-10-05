@@ -20,6 +20,7 @@ import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
@@ -147,24 +148,36 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
 };
 
 (:~
- : Identity transformation with stripping off XML comments 
+ : Processing XML files for display (and download)
+ : Comments and not-whitelisted facsimile information will be removed
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform
  : @return transformed nodes
- :)
-declare function wega-util:remove-comments($nodes as node()*) as node()* {
+~:)
+declare function wega-util:process-xml-for-display($nodes as node()*) as node()* {
     for $node in $nodes
     return
-        if($node instance of processing-instruction()) then $node
-        else if($node instance of comment()) then ()
-        else if($node instance of element()) then 
+        typeswitch($node)
+        case comment() return 
+            if($config:isDevelopment) then $node
+            else ()
+        case element(tei:facsimile) return 
+            let $facsimile := query:facsimile($node/root())
+            return
+                if($facsimile) then 
+                    element {node-name($node)} {
+                        $node/@*,
+                        wega-util:process-xml-for-display($facsimile/node())
+                    }
+                else ()
+        case element() return 
             element {node-name($node)} {
                 $node/@*,
-                wega-util:remove-comments($node/node())
+                wega-util:process-xml-for-display($node/node())
             }
-        else if($node instance of document-node()) then wega-util:remove-comments($node/node())
-        else $node
+        case document-node() return wega-util:process-xml-for-display($node/node())
+        default return $node
 };
 
 (:~
