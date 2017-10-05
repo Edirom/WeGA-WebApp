@@ -484,7 +484,8 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
 declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
     let $dbpedia-rdf := wega-util:dbpedia-from-geonames($geonames-id)
     return
-        if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then $dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring-after(., 'http://d-nb.info/gnd/')
+        (: ther might be multiple sameAs relations to the GND, see e.g. Altona A130064 :)
+        if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then ($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')])[1]/substring-after(., 'http://d-nb.info/gnd/')
         else ()
 };
 
