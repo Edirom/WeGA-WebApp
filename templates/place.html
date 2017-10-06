@@ -41,12 +41,12 @@
                 <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata" data-template="app:place-basic-data">
                     <h2 data-template="lang:translate">basic_data</h2>
                     <ol class="media">
-                        <li class="media names" data-template="app:each" data-template-from="names" data-template-to="name">
+                        <li class="media names" data-template="app-shared:each" data-template-from="names" data-template-to="name">
                             <div class="pull-left">
                                 <i class="fa fa-map-marker media-object"/>
                             </div>
                             <div class="media-body"> 
-                                <span data-template="app:print" data-template-key="name">Frankfurt am Main</span> 
+                                <span data-template="app-shared:print" data-template-key="name">Frankfurt am Main</span> 
                             </div>
                         </li>
                         <li class="media">
@@ -62,14 +62,14 @@
                                 <i class="fa fa-location-arrow media-object"/>
                             </div>
                             <div class="media-body"> 
-                                <span data-template="app:print" data-template-key="coordinates">223.232 3254.12</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="osm">OpenStreetMap</a>, <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="google">Google</a>
+                                <span data-template="app-shared:print" data-template-key="coordinates">223.232 3254.12</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="osm">OpenStreetMap</a>, <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="google">Google</a>
                             </div>
                         </li>
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
                     <h2 data-template="lang:translate">iconography</h2>
-                    <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
+                    <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
                 </div>
@@ -128,19 +128,19 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
-                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
-                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
-                                                    <div data-template="app:if-matches" data-template-key="source" data-template-value="Bach">
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
+                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
+                                                    <div data-template="app-shared:if-matches" data-template-key="source" data-template-value="Bach">
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
                                                     </div>
                                                     <div data-template="app:print-wega-bio">
                                                         <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
                                                         <p><i data-template="lang:translate">noDataFound</i></p>
                                                     </div>
-                                                    <div data-template="app:if-matches" data-template-key="docID" data-template-value="A002068">
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
+                                                    <div data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A002068">
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
@@ -181,25 +181,25 @@
         <div class="colored">
             <div class="container documentFooter" data-template="app:documentFooter">
                 <div class="row permaLink">
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
                         <h4>Proposed citation</h4>
-                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
                 </div>
                 <div class="row bugreport">
                     <div class="col-md-9">
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
                     </div>
                 </div>
             </div>

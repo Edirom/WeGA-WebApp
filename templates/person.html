@@ -43,43 +43,43 @@
                 <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata">
                     <h2 data-template="lang:translate">basic_data</h2>
                     <ol class="media">
-                       <li class="media fullnames" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
+                       <li class="media fullnames" data-template="app-shared:each" data-template-from="fullnames" data-template-to="fullname">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                            <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
+                            <div class="media-body" data-template="app-shared:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
                         </li>
-                       <li class="media realnames" data-template="app:each" data-template-from="realnames" data-template-to="realname">
+                       <li class="media realnames" data-template="app-shared:each" data-template-from="realnames" data-template-to="realname">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                           <div class="media-body"> <span data-template="app:print" data-template-key="realname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">realName</span></div>
+                           <div class="media-body"> <span data-template="app-shared:print" data-template-key="realname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">realName</span></div>
                         </li>
-                       <li class="media birthnames" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
+                       <li class="media birthnames" data-template="app-shared:each" data-template-from="birthnames" data-template-to="birthname">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                           <div class="media-body"> <span data-template="app:print" data-template-key="birthname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">birthName</span></div>
+                           <div class="media-body"> <span data-template="app-shared:print" data-template-key="birthname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">birthName</span></div>
                         </li>
-                       <li class="media marriednames" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
+                       <li class="media marriednames" data-template="app-shared:each" data-template-from="marriednames" data-template-to="marriedname">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                           <div class="media-body"> <span data-template="app:print" data-template-key="marriedname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">marriedName</span></div>
+                           <div class="media-body"> <span data-template="app-shared:print" data-template-key="marriedname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">marriedName</span></div>
                         </li>
-                       <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
+                       <li class="media pseudonyme" data-template="app-shared:if-exists" data-template-key="pseudonyme">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                           <div class="media-body"> <span data-template="app:join" data-template-key="pseudonyme" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">pseudonyme</span></div>
+                           <div class="media-body"> <span data-template="app-shared:join" data-template-key="pseudonyme" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">pseudonyme</span></div>
                         </li>
-                        <li class="media altnames" data-template="app:if-exists" data-template-key="altnames">
+                        <li class="media altnames" data-template="app-shared:if-exists" data-template-key="altnames">
                             <div class="pull-left">
                                 <i class="fa fa-user media-object"/>
                             </div>
-                            <div class="media-body"> <span data-template="app:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
+                            <div class="media-body"> <span data-template="app-shared:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
                         </li>
-                        <li class="media" data-template="app:if-exists" data-template-key="birth">
+                        <li class="media" data-template="app-shared:if-exists" data-template-key="birth">
                             <div class="pull-left">
                                 <i class="fa fa-asterisk  media-object"/>
                             </div>
@@ -89,7 +89,7 @@
                                 <!--Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
                                 in Eudin Unsicher: 22.10.1786 in Eudin--> </div>
                         </li>
-                        <li class="media baptism" data-template="app:if-exists" data-template-key="baptism">
+                        <li class="media baptism" data-template="app-shared:if-exists" data-template-key="baptism">
                             <div class="pull-left">
                                 <img src="$resources/img/baptism.gif" alt="baptism-icon"/>
                             </div>
@@ -98,7 +98,7 @@
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
                             </div>
                         </li>
-                        <li class="media" data-template="app:if-exists" data-template-key="death">
+                        <li class="media" data-template="app-shared:if-exists" data-template-key="death">
                             <div class="pull-left">
                                 <strong>†</strong>
                             </div>
@@ -107,7 +107,7 @@
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
                             </div>
                         </li>
-                        <li class="media funeral" data-template="app:if-exists" data-template-key="funeral">
+                        <li class="media funeral" data-template="app-shared:if-exists" data-template-key="funeral">
                             <div class="pull-left">
                                 <img src="$resources/img/funeral.gif" alt="funeral-icon"/>
                             </div>
@@ -116,34 +116,34 @@
                                 <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
                             </div>
                         </li>
-                       <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
+                       <li class="media occupations" data-template="app-shared:if-exists" data-template-key="occupations">
                           <div class="pull-left">                  
                              <i class="fa fa-briefcase media-object"/>
                           </div>
-                          <div class="media-body" data-template="app:join" data-template-key="occupations">
+                          <div class="media-body" data-template="app-shared:join" data-template-key="occupations">
                               Schauspielerin, Sängerin
                           </div>
                        </li>
-                       <li class="media residences" data-template="app:if-exists" data-template-key="residences">
+                       <li class="media residences" data-template="app-shared:if-exists" data-template-key="residences">
                           <div class="pull-left">                  
                              <i class="fa fa-map-marker media-object"/>
                           </div>
-                          <div class="media-body" data-template="app:join" data-template-key="residences">
+                          <div class="media-body" data-template="app-shared:join" data-template-key="residences">
                              Köln, Gotha
                           </div>
                        </li>
                     </ol>
                 </div>
-                <div class="col-md-4 col-sm-12 iconographie" data-template="app:if-not-exists" data-template-key="addrLines">
+                <div class="col-md-4 col-sm-12 iconographie" data-template="app-shared:if-not-exists" data-template-key="addrLines">
                     <h2 data-template="lang:translate">iconography</h2>
-                    <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
+                    <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 address" data-template="app:if-exists" data-template-key="addrLines">
+                <div class="col-md-4 col-sm-12 address" data-template="app-shared:if-exists" data-template-key="addrLines">
                     <h2 data-template="lang:translate">address</h2>
                     <ul>
-                        <li data-template="app:each" data-template-from="addrLines" data-template-to="addrLine"><span data-template="app:person-addrLine">Adresszeile</span></li>
+                        <li data-template="app-shared:each" data-template-from="addrLines" data-template-to="addrLine"><span data-template="app:person-addrLine">Adresszeile</span></li>
                     </ul>
                 </div>
             </div>
@@ -155,8 +155,8 @@
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links">
-                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="persons"><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
-                                <li data-template="app:if-matches" data-template-key="docType" data-template-value="orgs"><a data-template="app:person-main-tab" href="#biographies">history</a></li>
+                                <li data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons"><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                                <li data-template="app-shared:if-matches" data-template-key="docType" data-template-value="orgs"><a data-template="app:person-main-tab" href="#biographies">history</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
                                 <li><a data-template="app:person-main-tab" href="#writings" data-target="$docID/writings.html">writings</a></li>
                                 <li><a data-template="app:person-main-tab" href="#diaries" data-target="$docID/diaries.html">diaries</a></li>
@@ -218,11 +218,11 @@
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
-                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
-                                                    <span data-template="app:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
-                                                    <div data-template="app:if-matches" data-template-key="source" data-template-value="Bach">
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
+                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
+                                                    <div data-template="app-shared:if-matches" data-template-key="source" data-template-value="Bach">
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
                                                     </div>
                                                     <div data-template="app:print-wega-bio">
                                                         <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
@@ -234,9 +234,9 @@
                                                             <li data-template="lang:translate">noBioFoundReason3</li>
                                                         </ul>
                                                     </div>
-                                                    <div data-template="app:if-matches" data-template-key="docID" data-template-value="A002068">
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
-                                                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
+                                                    <div data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A002068">
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
+                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
@@ -315,25 +315,25 @@
         <div class="colored">
             <div class="container documentFooter" data-template="app:documentFooter">
                 <div class="row permaLink">
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
                         <h4>Proposed citation</h4>
-                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
                 </div>
                 <div class="row bugreport">
                     <div class="col-md-9">
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
                     </div>
                 </div>
             </div>

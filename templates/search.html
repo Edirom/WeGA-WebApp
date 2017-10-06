@@ -66,7 +66,7 @@
                     <div class="col-xs-12 textBlock searchResults" data-template="search:result-page">
                         <div data-template="templates:if-parameter-set" data-template-param="q">
                         	<h2 data-template="search:results-count">124 Suchergebnisse</h2>
-                        	<p data-template="app:print" data-template-key="query-string" style="display:none;" id="query-string"/>
+                        	<p data-template="app-shared:print" data-template-key="query-string" style="display:none;" id="query-string"/>
                         	<div class="row">
                         		<div class="col-sm-8">
                         			<ul class="pagination" data-template="app:pagination">
@@ -85,7 +85,7 @@
                         	<div class="row">
                         		<div class="col-xs-12">
                         			<ul class="media-list">
-                        				<li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+                        				<li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
                         					<div data-template="search:dispatch-preview"/>
                         				</li>
                         			</ul>

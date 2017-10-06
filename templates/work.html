@@ -42,19 +42,19 @@
                 </div>
                 <div class="col-md-4 paddingBottomIcon col-sm-6 basicdata">
                     <h2 data-template="lang:translate">basic_data</h2>
-                	<ol class="media" data-template="app:each" data-template-from="ids" data-template-to="id">
-                		<li data-template="app:prepare-work-id"><b data-template="app:print" data-template-key="id-key">WeV:</b> <span data-template="app:print" data-template-key="id-value">9911</span></li>
+                	<ol class="media" data-template="app-shared:each" data-template-from="ids" data-template-to="id">
+                		<li data-template="app:prepare-work-id"><b data-template="app-shared:print" data-template-key="id-key">WeV:</b> <span data-template="app-shared:print" data-template-key="id-value">9911</span></li>
                 	</ol>
-                	<ol class="media" data-template="app:each" data-template-from="titles" data-template-to="title">
-                		<li><span data-template="app:output" data-template-key="title">Ein Titel</span></li>
+                	<ol class="media" data-template="app-shared:each" data-template-from="titles" data-template-to="title">
+                		<li><span data-template="app-shared:output" data-template-key="title">Ein Titel</span></li>
                 	</ol>
-                	<ol class="media" data-template="app:each" data-template-from="relators" data-template-to="relator">
+                	<ol class="media" data-template="app-shared:each" data-template-from="relators" data-template-to="relator">
                 		<li><strong data-template="app:preview-relator-role"/>: <span data-template="app:preview-relator-name"/></li>
                 	</ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
                     <h2 data-template="lang:translate">iconography</h2>
-                    <div class="iconographythumbnail" data-template="app:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
+                    <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
                 </div>
@@ -170,25 +170,25 @@
         <div class="colored">
             <div class="container documentFooter" data-template="app:documentFooter">
                 <div class="row permaLink">
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
-                    <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
                         <h4>Proposed citation</h4>
-                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                             <br/>
-                            <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
                     </div>
                 </div>
                 <div class="row bugreport">
                     <div class="col-md-9">
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                        <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                            <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
                     </div>
                 </div>
             </div>

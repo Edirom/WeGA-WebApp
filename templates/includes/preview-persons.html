@@ -11,43 +11,43 @@
         </h3>
         <ol class="media" data-template="app:person-basic-data">
             
-            <li class="media" data-template="app:each" data-template-from="fullnames" data-template-to="fullname">
+            <li class="media" data-template="app-shared:each" data-template-from="fullnames" data-template-to="fullname">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body" data-template="app:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
+                <div class="media-body" data-template="app-shared:print" data-template-key="fullname"> Weber, Carl Maria Friedrich Ernst von </div>
             </li>
-            <li class="media" data-template="app:each" data-template-from="realnames" data-template-to="realname">
+            <li class="media" data-template="app-shared:each" data-template-from="realnames" data-template-to="realname">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body"> <span data-template="app:print" data-template-key="realname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">realName</span></div>
+                <div class="media-body"> <span data-template="app-shared:print" data-template-key="realname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">realName</span></div>
             </li>
-            <li class="media" data-template="app:each" data-template-from="birthnames" data-template-to="birthname">
+            <li class="media" data-template="app-shared:each" data-template-from="birthnames" data-template-to="birthname">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body"> <span data-template="app:print" data-template-key="birthname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">birthName</span></div>
+                <div class="media-body"> <span data-template="app-shared:print" data-template-key="birthname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">birthName</span></div>
             </li>
-            <li class="media" data-template="app:each" data-template-from="marriednames" data-template-to="marriedname">
+            <li class="media" data-template="app-shared:each" data-template-from="marriednames" data-template-to="marriedname">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body"> <span data-template="app:print" data-template-key="marriedname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">marriedName</span></div>
+                <div class="media-body"> <span data-template="app-shared:print" data-template-key="marriedname">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">marriedName</span></div>
             </li>
-            <li class="media pseudonyme" data-template="app:if-exists" data-template-key="pseudonyme">
+            <li class="media pseudonyme" data-template="app-shared:if-exists" data-template-key="pseudonyme">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body"> <span data-template="app:join" data-template-key="pseudonyme" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">pseudonyme</span></div>
+                <div class="media-body"> <span data-template="app-shared:join" data-template-key="pseudonyme" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">pseudonyme</span></div>
             </li>
-            <li class="media altnames" data-template="app:if-exists" data-template-key="altnames">
+            <li class="media altnames" data-template="app-shared:if-exists" data-template-key="altnames">
                 <div class="pull-left">
                     <i class="fa fa-user media-object"/>
                 </div>
-                <div class="media-body"> <span data-template="app:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
+                <div class="media-body"> <span data-template="app-shared:join" data-template-key="altnames" data-template-separator="; ">Weber, Carl Maria Friedrich Ernst von</span> <span class="nameDesc" data-template="lang:translate">altNames</span></div>
             </li>
-            <li class="media" data-template="app:if-exists" data-template-key="birth">
+            <li class="media" data-template="app-shared:if-exists" data-template-key="birth">
                 <div class="pull-left">
                     <i class="fa fa-asterisk  media-object"/>
                 </div>
@@ -57,7 +57,7 @@
                     <!--Quelle 1: 20.11.1786 in Eutin Quelle 2: 22.10.1786
                                 in Eudin Unsicher: 22.10.1786 in Eudin--> </div>
             </li>
-            <li class="media baptism" data-template="app:if-exists" data-template-key="baptism">
+            <li class="media baptism" data-template="app-shared:if-exists" data-template-key="baptism">
                 <div class="pull-left">
                     <img src="$resources/img/baptism.gif" alt="baptism-icon"/>
                 </div>
@@ -66,7 +66,7 @@
                     <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="birth">in Eutin</span>
                 </div>
             </li>
-            <li class="media" data-template="app:if-exists" data-template-key="death">
+            <li class="media" data-template="app-shared:if-exists" data-template-key="death">
                 <div class="pull-left">
                     <strong>†</strong>
                 </div>
@@ -75,7 +75,7 @@
                     <span data-template="app:printPlaceOfBirthOrDeath" data-template-key="death">in Eutin</span>
                 </div>
             </li>
-            <li class="media funeral" data-template="app:if-exists" data-template-key="funeral">
+            <li class="media funeral" data-template="app-shared:if-exists" data-template-key="funeral">
                 <div class="pull-left">
                     <img src="$resources/img/funeral.gif" alt="funeral-icon"/>
                 </div>
@@ -85,24 +85,24 @@
                 </div>
             </li>
             
-            <li class="media occupations" data-template="app:if-exists" data-template-key="occupations">
+            <li class="media occupations" data-template="app-shared:if-exists" data-template-key="occupations">
                 <div class="pull-left">                  
                     <i class="fa fa-briefcase media-object"/>
                 </div>
-                <div class="media-body" data-template="app:join" data-template-key="occupations" data-template-max="3">
+                <div class="media-body" data-template="app-shared:join" data-template-key="occupations" data-template-max="3">
                     Schauspielerin, Sängerin
                 </div>
             </li>
-            <li class="media residences" data-template="app:if-exists" data-template-key="residences">
+            <li class="media residences" data-template="app-shared:if-exists" data-template-key="residences">
                 <div class="pull-left">                  
                     <i class="fa fa-map-marker media-object"/>
                 </div>
-                <div class="media-body" data-template="app:join" data-template-key="residences" data-template-max="3">
+                <div class="media-body" data-template="app-shared:join" data-template-key="residences" data-template-max="3">
                     Köln, Gotha
                 </div>
             </li>
             
-            <li class="media" data-template="app:if-matches" data-template-key="usage" data-template-value="contacts">
+            <li class="media" data-template="app-shared:if-matches" data-template-key="usage" data-template-value="contacts">
                 <div class="pull-left">                  
                     <i class="fa fa-envelope media-object"/>
                 </div>
@@ -114,7 +114,7 @@
         </ol>
         <p>
             <strong><span data-template="lang:translate">identifier</span>:</strong> 
-            <span data-template="app:print" data-template-key="docID">A030043</span>
+            <span data-template="app-shared:print" data-template-key="docID">A030043</span>
         </p>
         
         <div class="kwic" data-template="search:kwic"/>
