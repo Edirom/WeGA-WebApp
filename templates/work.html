@@ -26,6 +26,7 @@
     </div>
     <div data-template="app:person-beacon">
         <div class="container paddingTopIcon paddingBottomIcon" data-template="app:work-basic-data">
+            <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
             <div class="row" id="meta" data-template="img:iconography">
                 <div class="col-md-3 col-sm-6">
                     <!--<img id="portrait-placeholder" class="img-responsive" src="$resources/img/icons/icon_person_unbekannt_gross.png" alt="Placeholder Image" width="260" height="340"/>-->
@@ -106,7 +107,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
                                                     </li>
                                                 </ul>
                                             </div>

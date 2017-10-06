@@ -45,10 +45,11 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" data-template="app:facsimile-tab" id="facsimile-tab">facsimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                                <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
                     <div data-template="app:context">
                         <h2><a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
