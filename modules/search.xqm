@@ -298,6 +298,9 @@ declare %private function search:filter-result($collection as document-node()*, 
         else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
+        (: exact search for terms -> range:eq :)
+        else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
+        (: range:contains for tokens within key values  :)
         else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
       else $collection
     let $newFilter :=
