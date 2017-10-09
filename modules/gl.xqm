@@ -25,7 +25,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" at "/db
 import module namespace functx="http://www.functx.com";
 
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
-declare variable $gl:main-source as document-node() := 
+declare variable $gl:main-source as document-node()? := 
     try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
     catch * {core:logToFile('error', 'failed to load main Guidelines source')};
 
