@@ -226,6 +226,47 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001290.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001290.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001290.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001290.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001290.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -369,7 +410,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A001290/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A001290.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -427,7 +468,7 @@
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [mzk2004244542]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=mzk2004244542">NKC [by http://viaf.org/viaf/56965387]</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [183949552]" href="http://www.idref.fr/183949552">SUDOC [by http://viaf.org/viaf/56965387]</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;TRM=100807348&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50">SWB-Verbundkatalog</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29100807348">Titelaufnahmen des B3Kat (77)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29100807348">Titelaufnahmen des B3Kat (78)</a></li>
                                                             <li><a title="Links von GND-Identifiern in den Verbundatalog des GBV" href="http://gso.gbv.de/DB=2.1/SET=1/TTL=1/CMD?ACT=SRCHA&amp;IKT=8549&amp;SRT=YOP&amp;TRM=100807348">Titel im Verbundkatalog des GBV (141)</a></li>
                                                         </ul>
                                                 </div>

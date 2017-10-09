@@ -13,7 +13,7 @@
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:20:18.483868Z" />
+        <meta property="dc:date" content="2017-09-08T09:16:30.487990Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070002" />
         <meta property="dc:description" content="Die auf dieser Website veröffentlichten Inhalte werden – sofern nicht anders angegeben – unter einer Creative Commons Attribution 4.0 International …" />
         <meta name="description" content="Die auf dieser Website veröffentlichten Inhalte werden – sofern nicht anders angegeben – unter einer Creative Commons Attribution 4.0 International …" />
@@ -111,11 +111,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,6 +231,47 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -237,7 +282,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070002/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070002.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -248,18 +293,18 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div id="d156935e1">
-                                    <h2 id="d156935e2">Lizensierung</h2>
-                                    <p>Die auf dieser Website veröffentlichten Inhalte werden  – sofern nicht anders angegeben – unter einer <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0) <i class="fa fa-external-link"></i></a>-Lizenz zur Verfügung gestellt.
+                        <div id="d10e1">
+                                    <h2 id="d10e2">Lizenzierung</h2>
+                                    <p>Die auf dieser Website veröffentlichten Inhalte werden  – sofern nicht anders angegeben – unter einer <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0) <i class="fa fa-external-link" aria-hidden="true"></i></a>-Lizenz zur Verfügung gestellt.
                     Inhalte und Rechte Dritter sind dabei als solche gekennzeichnet. 
                 </p>
                                 </div>
-                                <div id="d156935e9">
-                                    <h2 id="d156935e10">Links</h2>
+                                <div id="d10e9">
+                                    <h2 id="d10e10">Links</h2>
                                     <p>Wir haben keinen Einfluss auf den Inhalt der von dieser Seite verlinkten externen Internetseiten und sind für diese auch nicht verantwortlich. Eine Prüfung bei der Verlinkung ergab keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben ohne Gewähr. Seitenaufrufe externer Seiten über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf dieser Internetseite.</p>
                                 </div>
-                                <div id="d156935e14">
-                                    <h2 id="d156935e15">Haftungsausschluss</h2>
+                                <div id="d10e14">
+                                    <h2 id="d10e15">Haftungsausschluss</h2>
                                     <p>Die Inhalte dieses Internetangebotes wurden sorgfältig geprüft und nach bestem Wissen erstellt. Eine Haftung oder Garantie für die Aktualität, Richtigkeit und Vollständigkeit der zur Verfügung gestellten Informationen und Daten ist jedoch ausgeschlossen. In keinem Fall wird für Schäden, die sich aus der Verwendung der abgerufenen Informationen ergeben, eine Haftung übernommen.</p>
                                 </div>
                     </div>
@@ -290,9 +335,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070002</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070002</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 8. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

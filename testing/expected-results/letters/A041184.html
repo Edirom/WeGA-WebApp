@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2017-09-28T10:26:51.498578Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041184" />
         <meta property="dc:description" content="sei überanstrengt gewesen, nachdem er in knapp vier Wochen vier Opern neu einstudiert habe; Tagebuch 23.-25. Mai: verschiedene Visiten; sei bei Kind gewesen, um sich nach dem Fortschreiten der &#34;Jägersbraut&#34; zu erkundigen; habe mit Vitzthum Dresdener Opernplan besprochen; betr. Tressen aus Berlin für Pachta; Privates; teilt spaßhaftes Epigramm auf Therese aus dem Winckell mit, das er verfaßt hat;" />
         <meta name="description" content="sei überanstrengt gewesen, nachdem er in knapp vier Wochen vier Opern neu einstudiert habe; Tagebuch 23.-25. Mai: verschiedene Visiten; sei bei Kind gewesen, um sich nach dem Fortschreiten der &#34;Jägersbraut&#34; zu erkundigen; habe mit Vitzthum Dresdener Opernplan besprochen; betr. Tressen aus Berlin für Pachta; Privates; teilt spaßhaftes Epigramm auf Therese aus dem Winckell mit, das er verfaßt hat;" />
@@ -248,10 +248,51 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041184.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
@@ -512,10 +553,10 @@
                                         <p>Heute früh, führte der Satan
                   eine Visite nach der andern zu mir. Mittag kam <a class="preview persons A000096" href="/exist/apps/WeGA-WebApp/de/A000096.html">Baßi</a> wieder das erstemal im Engel zum
                   eßen, nach Tisch gieng ich ein bißel mit ihm auf die Brühlsche Teraße, und Er dann wie
-                  ich, nach Hause. Heute hat mein <span class="tei_hi_underline1"><a class="preview persons A002367" href="/exist/apps/WeGA-WebApp/de/A002367.html">Franz</a></span>, mit dem ich
+                  ich, nach Hause. <span class="tei_ptr"></span>Heute hat mein <span class="tei_hi_underline1"><a class="preview persons A002367" href="/exist/apps/WeGA-WebApp/de/A002367.html">Franz</a></span>, mit dem ich
                   <span class="tei_hi_underline1">recht sehr wohl zufrieden bin</span>, zum erstenmal seine
                   neue Livreè angehabt. sie ist so <span class="tei_hi_underline1">einfach</span> und elegant, daß
-                  ihm die Leute nachsehen. Er ist ein recht netter Bursche der was auf sich hält, und das
+               ihm die Leute nachsehen. Er ist ein recht netter Bursche der was auf sich hält<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090195.html">T</a>, und das
                   macht mir Spaz. Nur wollte ich du hättest ihn auch gesehen, würde dir auch Freude
                   gemacht haben. Nun, das wird auch so lange nicht mehr dauern, und er wird sich dir
                   zuerst als dein Sklave präsentiren wenn du in dein neues Reich einziehst. Ach, wäre es
@@ -540,12 +581,12 @@
                   darüber mokieren, und nun hat sie sich in einem Aufsaz in der
                   <span class="tei_hi_underline1">AbendZeitung</span>, den ich heute Morgen las,
                   <span class="tei_hi_underline1"><span class="tei_hi_latintype">Th</span></span>: unterschrieben. aber ihre
-                  <span class="tei_hi_underline1">Manier</span> war unverkennbar. <span class="tei_del">ich schrieb also<a class="noteMarker" id="ref-d10e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e369">‡</a></span> Es fiel mir
+                  <span class="tei_hi_underline1">Manier</span> war unverkennbar. <span class="tei_del">ich schrieb also<a class="noteMarker" id="ref-d10e373" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e373">‡</a></span> Es fiel mir
                   also folgendes Epigram ein. 
                </p>
                                         <div class="poem"><span class="lg"><span class="verseLine">Ob du auch <span class="tei_hi_underline1">sinnig</span> als <span class="tei_hi_latintype">Th</span></span><span class="verseLine">Mummst dich in neue Kantusche,</span><span class="verseLine">Nimmer kannst du dich verläugnen</span><span class="verseLine"><span class="tei_hi_underline1">Südlichhelltönendes</span> <span class="tei_hi_latintype">C</span>.</span><span class="verseLine">Schwimme denn muthiger Buchstab</span><span class="verseLine">Schwim auf der 
-                        <span class="tei_subst"><span class="tei_add">Fläche</span><a class="noteMarker" id="ref-d10e397" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e397">‡</a></span> des Glutstroms,</span><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">Leer</span><a class="noteMarker" id="ref-d10e408" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e408">‡</a></span> bist du</span>, 
-                        <span class="tei_subst"><span class="tei_add"><span class="tei_hi_underline1">leicht genug</span>,</span><a class="noteMarker" id="ref-d10e416" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e416">‡</a></span> – <span class="tei_hi_underline1">winklicht</span>,</span><span class="verseLine">Kannst nur die Dinte nicht halten.</span></span></div>
+                        <span class="tei_subst"><span class="tei_add">Fläche</span><a class="noteMarker" id="ref-d10e401" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e401">‡</a></span> des Glutstroms,</span><span class="verseLine"><span class="tei_hi_underline1"><span class="tei_subst"><span class="tei_add">Leer</span><a class="noteMarker" id="ref-d10e412" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e412">‡</a></span> bist du</span>, 
+                        <span class="tei_subst"><span class="tei_add"><span class="tei_hi_underline1">leicht genug</span>,</span><a class="noteMarker" id="ref-d10e420" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e420">‡</a></span> – <span class="tei_hi_underline1">winklicht</span>,</span><span class="verseLine">Kannst nur die Dinte nicht halten.</span></span></div>
                                         <p class="inlineEnd">Du siehst die Dichterwuth ist anstekend.
                   bei der Gelegenheit fällt mir ein daß auf die <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Grünb:</a> auch Gedichte gemacht worden sind,
                die ich aber zu faul bin abzuschreiben, und du wohl bei ihrer Zurükkunft bei ihr lesen
@@ -702,7 +743,9 @@
                         <div>
                             <h3 class="media-heading">Themenkommentare</h3>
                             <ul class="tei_list">
-                                
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090195.html">Hausangestellte der Familie von Weber</a>
+                                </li>
                             </ul>
                         </div>
                         
@@ -710,16 +753,16 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d10e369" data-title="del">"ich schrieb also":  überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e373" data-title="del">"ich schrieb also":  überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10e397" data-title="subst">"Fläche": "Näße" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e401" data-title="subst">"Fläche": "Näße" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10e408" data-title="subst">"Leer": "Flach" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e412" data-title="subst">"Leer": "Flach" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d10e416" data-title="subst">"leicht genug,": "inhaltsleer," durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e420" data-title="subst">"leicht genug,": "inhaltsleer," durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -761,7 +804,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041184</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 28. September 2017 durch Solveig Schreiter</span></p>
             </div>
             
         </div>

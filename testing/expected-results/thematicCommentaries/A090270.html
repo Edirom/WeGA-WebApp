@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-05-07T19:17:17.457227Z" />
+        <meta property="dc:date" content="2017-09-15T13:07:00.585694Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270" />
         <meta property="dc:description" content="Um Webers Einfluss auf das Prager Repertoire und seine Arbeitsleistung bei der Reorganisation der deutschen Oper am Ständetheater angemessen …" />
         <meta name="description" content="Um Webers Einfluss auf das Prager Repertoire und seine Arbeitsleistung bei der Reorganisation der deutschen Oper am Ständetheater angemessen …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,6 +229,47 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -235,7 +280,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -248,7 +293,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000018" /> <span title="Allram, Joseph">Allram, Joseph</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolf">Bayer, Franz Rudolf</span> 
+                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolph">Bayer, Franz Rudolph</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000124" /> <span title="Benda, Georg">Benda, Georg</span> 
                                 </label><label class="btn gradient-light">
@@ -557,7 +602,7 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div id="d32336e2">
+                        <div id="d10e2">
                                     <p>Um Webers Einfluss auf das Prager Repertoire und seine Arbeitsleistung bei der Reorganisation der deutschen Oper am Ständetheater angemessen einschätzen zu können, ist die Kenntnis der Vorarbeit <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müllers</a>  in der Aufbauphase der deutschsprachigen Musiktheatersparte ab 1807 unabdingbar. So erscheint beispielsweise die teils erstaunlich geringe Zahl von Proben Webers im Vorfeld von Premieren verständlicher, wenn man weiß, dass das jeweilige Stück bereits zuvor auf dem Spielplan des Ständetheaters gestanden hatte, viele Orchestermusiker ihren Part also schon kannten. Etliche Premieren, die Weber während seiner Amtszeit vorbereitete, waren keine Erstaufführungen, sondern lediglich Neueinstudierungen in Prag bereits bekannter Werke (freilich mit weitgehend verändertem Sängerensemble).</p>
                                     <p>Leider ist die Quellenbasis für einen Repertoireüberblick des Ständetheaters von Mai 1807 bis April 1813 sehr unausgewogen: Lässt sich bis Ende Juli 1808 der Tagesspielplan mühelos nachverfolgen, sind Informationen aus der nachfolgenden Zeit nur mit größerem Aufwand und bislang auch nur unvollständig zu ermitteln. Die nachfolgend gegebene Übersicht stellt einen ersten  Versuch in dieser Hinsicht dar und soll  zukünftig durch weitere Recherchen ergänzt (in Details möglicherweise auch korrigiert) werden. Für viele wichtige Hinweise in Vorbereitung dieser Arbeit danken wir Frau Dr. Jitka Ludvová aus Prag herzlich, ganz besonders für jenen  auf die Protokollbücher zur  Prager Theater-Zensur<a class="noteMarker arabic" id="ref-C_1" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_1">1</a>. Frau Dr. Ludvová erarbeitet derzeit selbst einen Überblick über Prager Theater-Erstaufführungen (Schauspiel und Musiktheater) für den Zeitraum 1798 bis 1814 und unterstützte uns durch zahlreiche Anregungen.</p>
                                     <p><a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a>  war zu Beginn seiner Prager Tätigkeit in der Presse massiv angefeindet worden. Ein Wiener Korrespondent kommentierte sein Prager Engagement mit den Worten: „Wir beneiden diese Stadt nicht um ihn“
@@ -574,8 +619,8 @@
                                     <p>Auffallend ist, dass <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Müller</a>  gerade zu Beginn seiner Amtsführung je zwei (einmal auch vier) Werke desselben Komponisten in kurz aufeinanderfolgenden Premieren präsentierte: Solche Werkpaare gibt es in der Spielzeit 1807/08 von  <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>  (Mai/Juni 1807), <a class="preview persons A007855" href="/exist/apps/WeGA-WebApp/de/A007855.html">A. F. Fischer</a>  (Juni/Juli 1807), <a class="preview persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dalayrac</a>  (4 Werke von August bis Oktober 1807) und <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Paer</a>  (Dezember 1807 bzw. Januar 1808); ob dahinter eine programmatische Absicht stand oder andere Gründe (z. B. der gemeinsame Erwerb der Aufführungsmaterialien) zu solchen Gruppierungen führten, lässt sich bislang nicht klären.</p>
                                     <p>Die Repertoirestatistik besitzt freilich keine Aussagefähigkeit bezüglich der Aufführungs-Häufigkeit, wie anhand des Spielplans von Mai 1807 bis Juli 1808 zu ersehen. Manche Werke verschwanden nach wenigen Aufführungen von der Bühne, so etwa zwei der Opern von <a class="preview persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">Dalayrac</a>  (<span class="tei_hi_italic"><span class="preview works A020851" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020851.html">Schloss Montenero</span></span> drei Vorstellungen, <span class="tei_hi_italic"><span class="preview works A020833" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020833.html">Gulistan</span></span> zwei Vorstellungen), während sein <span class="tei_hi_italic">Alexis</span>  im angegebenen Zeitraum an sechs, seine <span class="tei_hi_italic"><span class="preview works A020488" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020488.html">Zwey Worte</span></span>  immerhin an acht Abenden gegeben wurden. <a class="preview persons A007855" href="/exist/apps/WeGA-WebApp/de/A007855.html">Fischers</a> <span class="tei_hi_italic"><span class="preview works A020745" data-ref="/exist/apps/WeGA-WebApp/de/A007855/Werke/A020745.html">Festung an der Elbe</span></span>  brachte es auf drei, <a class="preview persons A001819" href="/exist/apps/WeGA-WebApp/de/A001819.html">Seyfrieds</a> <span class="tei_hi_italic">Goldener Löwe</span>  auf vier Vorstellungen. Spitzenreiter waren in den ersten 15 Monaten der Prager deutschen Oper <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubinis</a> <span class="tei_hi_italic"><span class="preview works A020427" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020427.html">Faniska</span></span>  (24 Vorstellungen), <a class="preview persons A0013EB" href="/exist/apps/WeGA-WebApp/de/A0013EB.html">Röslers</a> <span class="tei_hi_italic"><span class="preview works A020400" data-ref="/exist/apps/WeGA-WebApp/de/A0013EB/Werke/A020400.html">Elisene</span></span>  (22 Vorstellungen) und <a class="preview persons A002162" href="/exist/apps/WeGA-WebApp/de/A002162.html">Winters</a> <span class="tei_hi_italic"><span class="preview works A020500" data-ref="/exist/apps/WeGA-WebApp/de/A002162/Werke/A020500.html">Opferfest</span></span>  (21 Vorstellungen).</p>
                                 </div>
-                                <div id="d32336e314">
-                                    <h2 id="d32336e315">Spielplan Mai 1807 bis Juli 1808</h2>
+                                <div id="d10e314">
+                                    <h2 id="d10e315">Spielplan Mai 1807 bis Juli 1808</h2>
                                     <p>Vereinzelt hatte es am Ständetheater schon vor Ostern 1807 deutschsprachige Musiktheater-Aufführungen gegeben<a class="noteMarker arabic" id="ref-C_9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_9">9</a>, besonders solche aus dem Grenzbereich zwischen Musik- und Sprechtheater. So gehörte etwa <a class="preview persons A000124" href="/exist/apps/WeGA-WebApp/de/A000124.html">Bendas</a>  viel gerühmtes Melodram <span class="tei_hi_italic"><span class="preview works A020436" data-ref="/exist/apps/WeGA-WebApp/de/A000124/Werke/A020436.html">Ariadne auf Naxos</span></span>  selbstverständlich zum Spielplan; Wilhelm <a class="preview persons A000752" href="/exist/apps/WeGA-WebApp/de/A000752.html">Häser</a>  trug zudem zwei Intermezzi vor: am 23. Oktober 1806 <span class="tei_hi_italic">Ihr Weiber merkt es euch</span>  (Libretto von <a class="preview persons A001980" href="/exist/apps/WeGA-WebApp/de/A001980.html">Treitschke</a>) und am 21. Dezember 1806 <span class="tei_hi_italic">Das Ständchen</span>  (Musik von <a class="preview persons A002826" href="/exist/apps/WeGA-WebApp/de/A002826.html">Bergt</a>)<a class="noteMarker arabic" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">10</a>. Die einzige Opern-Neuproduktion, die in den Spielplan ab Ostern 1807 übernommen wurde, war <a class="preview persons A001302" href="/exist/apps/WeGA-WebApp/de/A001302.html">Méhuls</a>  zweiaktige Oper <span class="tei_hi_italic">Die beiden Füchse</span>  (= <span class="tei_hi_italic"><span class="preview works A020591" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020591.html">Je toller, je besser</span></span>), die bereits am 31. Dezember 1806 zum Benefiz von Luigia <a class="preview persons A001644" href="/exist/apps/WeGA-WebApp/de/A001644.html">Caravoglia-Sandrini</a>  ihre Prager Erstaufführung erlebt hatte (Wiederholungen am 5. Januar und 6. Februar 1807)<a class="noteMarker arabic" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">11</a>. Am 3. Mai 1807 begann dann der reguläre Spielbetrieb der deutschen Oper.</p>
                                     <p>Der Spielplan der ersten fünfzehn Monate der deutschen Oper am Prager Ständetheater ist dokumentiert in:</p>
                                     <ul class="tei_list">
@@ -1946,8 +1991,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d32336e3184">
-                                    <h2 id="d32336e3185">Musiktheater-Einstudierungen ab August 1808</h2>
+                                <div id="d10e3184">
+                                    <h2 id="d10e3185">Musiktheater-Einstudierungen ab August 1808</h2>
                                     <p>Im Gegensatz zum detaillierten Spielplan bis Juli 1808 wird hier für die Zeit ab August 1808 lediglich eine Übersicht über die Ur- bzw. Erstaufführung sowie Neueinstudierungen gegeben; Grundlage dafür sind – neben den Prager Zensur-Protokollen  (vgl. Anm. 1),  die leider keine direkten Aufführungsnachweise enthalten, – im wesentlichen Korrespondenzberichte aus Prag in überregionalen Journalen. Geprüft wurden dafür folgende Zeitschriften: <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>  (Jg. 10.1808  bis 15.1813), <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>  (Jg. 2.1808 bis 7.1813), <span class="tei_hi_italic">Zeitung für die elegante Welt</span>  (Bd. 8.1808 bis 13.1813), <span class="tei_hi_italic">Der Freimüthige</span>  (Jg. 5.1808 bis 9.1812), <span class="tei_hi_italic">Journal des Luxus und der Moden</span>  (Jg. 23.1808 bis 27.1812), die Wiener <span class="tei_hi_italic">Theater-Zeitung</span>  (mit wechselnden Titeln, August 1811 bis Juli 1813), <span class="tei_hi_italic">Der Sammler</span>  (Jg. 1.1809 bis 5.1813).</p>
                                     <ul class="tei_list">
                                         <li class="listTitle">1808</li>
@@ -2169,7 +2214,7 @@
                </li>
                                     </ul>
                                 </div>
-                                <div id="d32336e4395">
+                                <div id="d10e4395">
                                     <p>Eine Übersicht weiterer Themenkommentare zu Webers Wirken am Prager Ständetheater findet sich in der Dokumentation „<a href="/exist/apps/WeGA-WebApp/de/A070090.html#chapter-links">Carl Maria von Weber als Operndirektor des Prager Ständetheaters von 1813 bis 1816</a>“.</p>
                                 </div>
                                 <div id="endNotes">
@@ -2215,9 +2260,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 7. Mai 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

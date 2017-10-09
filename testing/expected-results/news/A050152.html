@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,10 +241,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050152.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -267,18 +311,16 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Mit dem – für einen Teil der Mitarbeiter <span class="tei_hi_italic">erneuten</span> – Umzug in einen provisorischen Container 
+                        <div id="d10e2">
+                                    <p>Mit dem – für einen Teil der Mitarbeiter <span class="tei_hi_italic">erneuten</span> – Umzug in einen provisorischen Container 
                haben sich auch einige Durchwahlen bei der Berliner Arbeitsstelle geändert:</p>
-                                        <ul class="tei_list">
-                                            <li><a class="preview persons A009003" href="/exist/apps/WeGA-WebApp/de/A009003.html">Markus Bandur</a>: +49 (0)30-266-435212</li>
-                                            <li><a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a>: +49 (0)30-266-435382</li>
-                                            <li><a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar Beck</a>: +49 (0)30-266-435213</li>
-                                            <li><a class="preview persons A009004" href="/exist/apps/WeGA-WebApp/de/A009004.html">Solveig Schreiter</a>: +49 (0)30-266-435383</li>
-                                            <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>: +49 (0)30-266-435210</li>
-                                        </ul>
-                                    </div>
+                                    <ul class="tei_list">
+                                        <li><a class="preview persons A009003" href="/exist/apps/WeGA-WebApp/de/A009003.html">Markus Bandur</a>: +49 (0)30-266-435212</li>
+                                        <li><a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a>: +49 (0)30-266-435382</li>
+                                        <li><a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar Beck</a>: +49 (0)30-266-435213</li>
+                                        <li><a class="preview persons A009004" href="/exist/apps/WeGA-WebApp/de/A009004.html">Solveig Schreiter</a>: +49 (0)30-266-435383</li>
+                                        <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>: +49 (0)30-266-435210</li>
+                                    </ul>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009001.html" class="persons">Peter Stadler</a>, Mittwoch, 6. Februar 2013</p>
                     </div>
@@ -309,7 +351,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -322,12 +364,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -352,7 +389,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050152</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050152</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>

@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-13T13:05:12.981215Z" />
+        <meta property="dc:date" content="2017-09-15T15:47:03.373305Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064709" />
         <meta property="dc:description" content="Moralische Uebersicht des Jahres 1810. Da mit dem 26t Februar 1810 eine neue Lebens Epoche für mich begann, so rechne ich auch den Anfang dieses …" />
         <meta name="description" content="Moralische Uebersicht des Jahres 1810. Da mit dem 26t Februar 1810 eine neue Lebens Epoche für mich begann, so rechne ich auch den Anfang dieses …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     <div>
                         <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a></h2>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -321,17 +365,17 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="65109111114989799104" /> <span title="Amorbach">Amorbach</span> 
+                                    <input type="checkbox" name="options" value="A130223" /> <span title="Amorbach">Amorbach</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="65115991049710210210111098117114103" /> <span title="Aschaffenburg">Aschaffenburg</span> 
+                                    <input type="checkbox" name="options" value="A130096" /> <span title="Aschaffenburg">Aschaffenburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6697971001011103266979710010111046" /> <span title="Baaden Baaden.">Baaden Baaden.</span> 
+                                    <input type="checkbox" name="options" value="A130106" /> <span title="Baden-Baden">Baden-Baden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7210110510010110898101114103" /> <span title="Heidelberg">Heidelberg</span> 
+                                    <input type="checkbox" name="options" value="A130035" /> <span title="Heidelberg">Heidelberg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7597114108115114117104101" /> <span title="Karlsruhe">Karlsruhe</span> 
+                                    <input type="checkbox" name="options" value="A130022" /> <span title="Karlsruhe">Karlsruhe</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -356,28 +400,28 @@
     <br />öffentliche Concerte gegeben, und <span class="tei_hi_underline1">achtmal</span>
         <br />öffentlich gespielt.</span>   <span>als
     <br /><span class="tei_hi_underline1"><span class="date">d: 2<span class="tei_hi_superscript">t</span> März.</span> </span> <span class="tei_hi_latintype"><span class="tei_hi_underline1"><span class="869711410597116105111110101110">Variationen</span></span></span> im Liebhaber <span class="tei_hi_latintype">Concert</span>
-    <br />zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>.   /:mittelmäßig:/
-    <br /><span class="date"><span class="tei_hi_underline1">d: 9<span class="tei_hi_superscript">t</span></span> <span class="tei_hi_underline1">März</span></span>  <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert im Theater zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></span></span>
+    <br />zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>.   /:mittelmäßig:/
+    <br /><span class="date"><span class="tei_hi_underline1">d: 9<span class="tei_hi_superscript">t</span></span> <span class="tei_hi_underline1">März</span></span>  <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert im Theater zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span></span></span>
     <br /><span class="tei_hi_underline1">-- <span class="date">28<span class="tei_hi_superscript">t</span> März.</span> </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> im kleinen Saale
-    <br />zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>.
-    <br /><span class="date"><span class="tei_hi_underline1">d: 2<span class="tei_hi_superscript">t</span> Aprill.</span></span>  im Museum zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>
+    <br />zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>.
+    <br /><span class="date"><span class="tei_hi_underline1">d: 2<span class="tei_hi_superscript">t</span> Aprill.</span></span>  im Museum zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>
     <br />meinen <span class="tei_hi_underline1"><span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Ersten Ton</span></span> aufgeführt, und
             <br /><span class="tei_hi_latintype"><span class="tei_hi_underline1"><span class="preview works A020203" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020203.html">Quartett</span></span></span> gespielt.
-            <br /><span class="tei_hi_underline1"><span class="date">d: 1<span class="tei_add">5<a class="noteMarker" id="ref-d22205e133" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d22205e133">‡</a></span><span class="tei_hi_superscript">t</span> Aprill</span> </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="tei_placeName"><span class="65115991049710210210111098117114103">Aschaffenburg </span></span>gegeben.
-            <br /><span class="tei_hi_underline1"><span class="date">d: 9<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="tei_placeName"><span class="65115991049710210210111098117114103">Aschaffenburg</span></span> vor S: Hoheit dem Fürst <span class="tei_hi_latintype"><a class="preview persons A000349" href="/exist/apps/WeGA-WebApp/de/A000349.html">Primas</a></span>
+            <br /><span class="tei_hi_underline1"><span class="date">d: 1<span class="tei_add">5<a class="noteMarker" id="ref-d10e129" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e129">‡</a></span><span class="tei_hi_superscript">t</span> Aprill</span> </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="preview places A130096" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130096.html">Aschaffenburg </span>gegeben.
+            <br /><span class="tei_hi_underline1"><span class="date">d: 9<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="preview places A130096" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130096.html">Aschaffenburg</span> vor S: Hoheit dem Fürst <span class="tei_hi_latintype"><a class="preview persons A000349" href="/exist/apps/WeGA-WebApp/de/A000349.html">Primas</a></span>
             <br /><span class="tei_hi_underline1">gespielt</span>.
-            <br /><span class="tei_hi_underline1"><span class="date">d: 13<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="tei_placeName"><span class="65109111114989799104">Amorbach</span></span> bey S: Durchlaucht dem <a class="preview persons A000567" href="/exist/apps/WeGA-WebApp/de/A000567.html">Fürsten</a>
+            <br /><span class="tei_hi_underline1"><span class="date">d: 13<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="preview places A130223" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130223.html">Amorbach</span> bey S: Durchlaucht dem <a class="preview persons A000567" href="/exist/apps/WeGA-WebApp/de/A000567.html">Fürsten</a>
             <br /><span class="tei_hi_underline1">gespielt</span>.
-            <br /><span class="tei_hi_underline1">-- <span class="date">26<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>, im Museum mein <span class="tei_hi_underline1"><span class="tei_hi_latintype">Adagio</span></span>
+            <br /><span class="tei_hi_underline1">-- <span class="date">26<span class="tei_hi_superscript">t</span> May.</span> </span> in <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>, im Museum mein <span class="tei_hi_underline1"><span class="tei_hi_latintype">Adagio</span></span>
             <br /><span class="tei_hi_underline1">und <span class="tei_hi_latintype">Rondo</span></span> vom <span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">Klavier <span class="tei_hi_latintype">Concert</span></span> gespielt.
-            <br /><span class="tei_hi_underline1">-- <span class="date">30<span class="tei_hi_superscript">t</span> May.</span> </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="tei_placeName"><span class="7210110510010110898101114103">Heidelberg</span></span> gegeben.
-            <br /><span class="tei_hi_underline1"><span class="date">d: 4<span class="tei_hi_superscript">t</span> August.</span> </span> im Museum zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> Phantasiert.
-            <span class="tei_pb">Seitenumbruch</span><span class="tei_hi_underline1"><span class="date">d: 13<span class="tei_hi_superscript">t</span> August</span> </span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="tei_placeName"><span class="7210110510010110898101114103">Heidelberg</span></span>.
+            <br /><span class="tei_hi_underline1">-- <span class="date">30<span class="tei_hi_superscript">t</span> May.</span> </span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="preview places A130035" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130035.html">Heidelberg</span> gegeben.
+            <br /><span class="tei_hi_underline1"><span class="date">d: 4<span class="tei_hi_superscript">t</span> August.</span> </span> im Museum zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> Phantasiert.
+            <span class="tei_pb">Seitenumbruch</span><span class="tei_hi_underline1"><span class="date">d: 13<span class="tei_hi_superscript">t</span> August</span> </span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype">Concert</span></span> in <span class="preview places A130035" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130035.html">Heidelberg</span>.
             <br /><span class="tei_hi_underline1"><span class="date">d: 19<span class="tei_hi_superscript">t</span> November</span> </span>. mein neues <span class="tei_hi_latintype"><span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">Concert</span></span> im Museum
-            <br />zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> gespielt.
-            <br /><span class="tei_hi_underline1"><span class="date">d: 21<span class="tei_hi_superscript">t</span> Dezember</span> </span> <span class="tei_hi_latintype"><span class="tei_hi_underline1">Concert</span></span> zu <span class="tei_placeName"><span class="7597114108115114117104101">Karlsruhe</span></span>.
+            <br />zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> gespielt.
+            <br /><span class="tei_hi_underline1"><span class="date">d: 21<span class="tei_hi_superscript">t</span> Dezember</span> </span> <span class="tei_hi_latintype"><span class="tei_hi_underline1">Concert</span></span> zu <span class="preview places A130022" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130022.html">Karlsruhe</span>.
             <br /><span class="tei_hi_underline1"><span class="date">d: 31<span class="tei_hi_superscript">t</span> Dezember</span> </span>. <span class="86971141059711610511111010111032118111110326998101114108"><span class="tei_hi_latintype">Variationen</span> von <a class="preview persons A000413" href="/exist/apps/WeGA-WebApp/de/A000413.html">Eberl</a></span> mit <span class="tei_hi_latintype">obl:
-                <br />Violoncell</span>, im Museum zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>.</span>
+                <br />Violoncell</span>, im Museum zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>.</span>
     <br /><span>---</span>
     <br /><span><span class="tei_hi_underline1"><span class="tei_hi_latintype">Componirt</span> habe ich:</span> 
         <br /><span class="tei_hi_underline1"><span class="preview works A020126" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020126.html">Die Schäferstunde</span></span> Lied mit <span class="tei_hi_latintype">Guittarre.</span> aus <span class="tei_hi_latintype">G.</span>
@@ -395,11 +439,11 @@
         <br /><span class="tei_hi_underline1">Geschrieben</span>. ---          
         <br /><span class="tei_hi_underline1"><a class="preview writings A031116" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031116.html">Ein Wort</a> über <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler.</a></span> Morgenblatt.
         <br /><span class="tei_hi_underline1">2 Epigrame</span>.
-        <br /><span class="tei_hi_underline1"><a class="preview writings A031115" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031115.html">Ueber <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></a></span>. /:wegen <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a>:/ Musikal:
+        <br /><span class="tei_hi_underline1"><a class="preview writings A031115" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031115.html">Ueber <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span></a></span>. /:wegen <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a>:/ Musikal:
     <br />Zeitung.
         <br /><span class="tei_hi_underline1"><span class="preview writings A030834" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030834.html /exist/apps/WeGA-WebApp/de/A002025.html">Gedicht auf <span class="tei_hi_latintype"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a></span> Geburtstag.</span></span>
         <br /><span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="preview writings A031114" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">8 Canzonetten</a></span> aus dem Italienischen übersezt</span>.
-        <span class="tei_pb">Seitenumbruch</span><span class="tei_hi_underline1"><a class="preview writings A031123" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031123.html">Aufsaz über <span class="tei_placeName"><span class="6697971001011103266979710010111046">Baaden Baaden.</span></span></a></span> Morgenblatt.
+        <span class="tei_pb">Seitenumbruch</span><span class="tei_hi_underline1"><a class="preview writings A031123" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031123.html">Aufsaz über <span class="preview places A130106" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130106.html">Baaden Baaden.</span></a></span> Morgenblatt.
         <br /><span class="tei_hi_underline1"><span class="preview writings A031125" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031125.html /exist/apps/WeGA-WebApp/de/A000139.html">Rezension von <span class="tei_hi_latintype">Colma</span> von <a class="preview persons A000139" href="/exist/apps/WeGA-WebApp/de/A000139.html">Berger</a></span></span>. Musik: Z:
         <br /><span class="tei_hi_underline1">Rezension</span> von <a class="preview persons A000031" href="/exist/apps/WeGA-WebApp/de/A000031.html">André</a> <span class="tei_hi_latintype">arr: <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>. <span class="7911810111411611711458">Overtur:</span> a</span> 4 <span class="tei_hi_latintype">M:</span>
         <br />Morgenblatt. <span class="tei_hi_latintype">pp:</span>
@@ -416,7 +460,7 @@
     <br />Ich kann mit Beruhigung und Wahrheit sagen
         <br />daß ich diese 10 Monate über <span class="tei_hi_underline1">beßer</span> ge<span class="break_inWord">-</span><br />worden bin, meine traurigen Erfahrungen
     <br />haben mich gewizzigt. ich bin ordentlich in
-        <br />meinen Geschäften, anhaltend fleißig gewes<span class="tei_damage"><span class="tei_add">en<a class="noteMarker" id="ref-d22205e630" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d22205e630">‡</a></span></span></span>
+        <br />meinen Geschäften, anhaltend fleißig gewes<span class="tei_damage"><span class="tei_add">en<a class="noteMarker" id="ref-d10e614" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e614">‡</a></span></span></span>
     
 </p>
                                 </div>
@@ -467,10 +511,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d22205e133" data-title="unclear">"5": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e129" data-title="unclear">"5": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d22205e630" data-title="unclear">"en": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e614" data-title="unclear">"en": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -500,9 +544,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064709</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064709</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -226,6 +226,47 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000584.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000584.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000584.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000584.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000584.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -371,7 +412,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000584/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000584.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -446,7 +487,7 @@
                                                             <li><a title="Verzeichnis der künstlerischen, wissenschaftlichen und kulturpolitischen Nachlässe in Österreich, 3776 mit PND" href="http://www.historische-kommission-muenchen-editionen.de/beacond/oenlv.php?pnd=118814044">Nachlassverzeichnis Österreich</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [jn20000601722]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=jn20000601722">NKC [by http://viaf.org/viaf/56796182]</a></li>
                                                             <li><a title="Aus der de:Wikipedia und en:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_imslp/118814044">Noten, Partituren und Auszüge im International Music Score Library Project (2)</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.musiklexikon.ac.at/ml/musik_G/Gaensbacher_Familie.xml?frames=no]" href="http://www.musiklexikon.ac.at/ml/musik_G/Gaensbacher_Familie.xml?frames=no">Oesterreichisches Musiklexikon</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [Gänsbacher, Familie]" href="http://www.musiklexikon.ac.at/ml/musik_G/Gaensbacher_Familie.xml?frames=no">Oesterreichisches Musiklexikon [Gänsbacher, Familie]</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [5290884]" href="https://openlibrary.org/authors/OL5290884A">Open Library - Autorenseite [Johann Baptist Gänsbacher (1778-1844)]</a></li>
                                                             <li><a title="Österreichische Akademie der Wissenschaften [http://www.biographien.ac.at/oebl/oebl_G/Gaensbacher_Johann-Bapt_1778_1844.xml?frames=yes]" href="http://www.biographien.ac.at/oebl/oebl_G/Gaensbacher_Johann-Bapt_1778_1844.xml?frames=yes">Österreichisches Biographisches Lexikon</a></li>
                                                             <li><a title="GND-verknüpfter Teil des öffentlichen Datenbestandes des DFG-Projektes &#34;Personendaten-Repositorium&#34; an der BBAW. Trefferzahl ohne Berücksichtigung interner Verknüpfungen." href="https://pdrprod.bbaw.de/idi/gnd/118814044">Personendaten-Repositorium (PDR) an der BBAW</a></li>

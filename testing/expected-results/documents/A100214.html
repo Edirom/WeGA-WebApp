@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T19:12:06.809810Z" />
+        <meta property="dc:date" content="2017-09-15T15:13:45.461376Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100214" />
         <meta property="dc:description" content="Notizen zur Reise von Carlsruh nach Stuttgart vom 23.2. bis 17.8. 1807; mit einigen späteren Anmerkungen" />
         <meta name="description" content="Notizen zur Reise von Carlsruh nach Stuttgart vom 23.2. bis 17.8. 1807; mit einigen späteren Anmerkungen" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,10 +245,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -282,7 +326,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001671" /> <span title="Schicht, Johann Gottfried">Schicht, Johann Gottfried</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001705" /> <span title="Schmidl, Anton Friedrich">Schmidl, Anton Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A001705" /> <span title="Schmidl, Anton">Schmidl, Anton</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001817" /> <span title="Seume, Johann Gottfried">Seume, Johann Gottfried</span> 
                                 </label><label class="btn gradient-light">
@@ -316,77 +360,51 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6510811610111098117114103" /> <span title="Altenburg">Altenburg</span> 
+                                    <input type="checkbox" name="options" value="A130040" /> <span title="Altenburg">Altenburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6510998101114103" /> <span title="Amberg">Amberg</span> 
+                                    <input type="checkbox" name="options" value="A130130" /> <span title="Amberg">Amberg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="651101151129799104" /> <span title="Anspach">Anspach</span> 
+                                    <input type="checkbox" name="options" value="A130088" /> <span title="Ansbach">Ansbach</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6697117122101110" /> <span title="Bauzen">Bauzen</span> 
+                                    <input type="checkbox" name="options" value="A130053" /> <span title="Bayreuth">Bayreuth</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="669712111446" /> <span title="Bayr.">Bayr.</span> 
+                                    <input type="checkbox" name="options" value="A130021" /> <span title="Braunschweig">Braunschweig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6697121114101117116104" /> <span title="Bayreuth">Bayreuth</span> 
+                                    <input type="checkbox" name="options" value="A130013" /> <span title="Breslau">Breslau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101110100111114102" /> <span title="Bendorf">Bendorf</span> 
+                                    <input type="checkbox" name="options" value="A130361" /> <span title="Buchschwabach">Buchschwabach</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="661149711711011599104119101105103" /> <span title="Braunschweig">Braunschweig</span> 
+                                    <input type="checkbox" name="options" value="A130362" /> <span title="Bunzlau">Bunzlau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6611410111510897117" /> <span title="Breslau">Breslau</span> 
+                                    <input type="checkbox" name="options" value="A130060" /> <span title="Carlsruhe (Oberschlesien)">Carlsruhe (Oberschlesien)</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66117991041159910411997989799104" /> <span title="Buchschwabach">Buchschwabach</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6611711012210897117" /> <span title="Bunzlau">Bunzlau</span> 
+                                    <input type="checkbox" name="options" value="A130059" /> <span title="Erlangen">Erlangen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="67971141081159858" /> <span title="Carlsb:">Carlsb:</span> 
+                                    <input type="checkbox" name="options" value="A130394" /> <span title="Eschenau">Eschenau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6797114108115114117104101" /> <span title="Carlsruhe">Carlsruhe</span> 
+                                    <input type="checkbox" name="options" value="A130172" /> <span title="Görlitz">Görlitz</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130422" /> <span title="Hartmannsdorf">Hartmannsdorf</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6911410897110103101110" /> <span title="Erlangen">Erlangen</span> 
+                                    <input type="checkbox" name="options" value="A130423" /> <span title="Haynau">Haynau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="691159910410111097117" /> <span title="Eschenau">Eschenau</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="71246114108105116122" /> <span title="Görlitz">Görlitz</span> 
+                                    <input type="checkbox" name="options" value="A130456" /> <span title="Liegnitz">Liegnitz</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729711411610997110110115100111114102" /> <span title="Hartmannsdorf">Hartmannsdorf</span> 
+                                    <input type="checkbox" name="options" value="A130109" /> <span title="Ludwigsburg">Ludwigsburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729711411610997110110115104111102" /> <span title="Hartmannshof">Hartmannshof</span> 
+                                    <input type="checkbox" name="options" value="A130026" /> <span title="Nürnberg">Nürnberg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729712111097117" /> <span title="Haynau">Haynau</span> 
+                                    <input type="checkbox" name="options" value="A130141" /> <span title="Plauen">Plauen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="72111102" /> <span title="Hof">Hof</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7610110511212258" /> <span title="Leipz:">Leipz:</span> 
+                                    <input type="checkbox" name="options" value="A130555" /> <span title="Thiersheim">Thiersheim</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76105101103110105116122" /> <span title="Liegnitz">Liegnitz</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7610511511597" /> <span title="Lissa">Lissa</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7611710011910510311598117114103" /> <span title="Ludwigsburg">Ludwigsburg</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7810111710997114107116" /> <span title="Neumarkt">Neumarkt</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="782521141109858" /> <span title="Nürnb:">Nürnb:</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7825211411098101114103" /> <span title="Nürnberg">Nürnberg</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8010897117101110" /> <span title="Plauen">Plauen</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="82252107101114115100111114102" /> <span title="Rükersdorf">Rükersdorf</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="831161149711598117114103" /> <span title="Strasburg">Strasburg</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610358" /> <span title="Stuttg:">Stuttg:</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="84104105101114115104101105109" /> <span title="Thiersheim">Thiersheim</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8711711411599104101110" /> <span title="Wurschen">Wurschen</span> 
+                                    <input type="checkbox" name="options" value="A130577" /> <span title="Wurschen">Wurschen</span> 
                                 </label>
                             </div>
                         </div>
@@ -399,90 +417,90 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"> Reise v: <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span></span> nach <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span><a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a></h2>
+                                        <h2 class="docHeader textAlign-left"> Reise v: <span class="tei_hi_latintype"><span class="preview places A130060" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130060.html">Carlsruhe</span></span> nach <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span><a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a></h2>
                                         <p>
                     
                     
-                    d: 23<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1807. abgereist nach <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span><br />
+                    d: 23<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1807. abgereist nach <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span><br />
                     – 25 ――――. Judengeschichte<br />
-                    – 6<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> von <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> abgereist bis
-                    <span class="tei_placeName"><span class="7810111710997114107116">Neumarkt</span></span>. Mittag in <span class="tei_placeName"><span class="7610511511597">Lissa</span></span>. 10 gg: in ――― <span class="tei_supplied" id="d24868e52"><span class="brackets_supplied">[</span>Neumarkt<span class="brackets_supplied">]</span></span>1 Thl: 2 Sg:<br />
-                    – 7<span class="tei_hi_superscript">t</span> — Mittag in <span class="tei_placeName"><span class="76105101103110105116122">Liegnitz</span></span> übern: in <span class="tei_placeName"><span class="729712111097117">Haynau</span></span>.<br />
-                    – 8<span class="tei_hi_superscript">t</span> — Mittag in <span class="tei_placeName"><span class="6611711012210897117">Bunzlau</span></span> über: in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="71246114108105116122">Görlitz</span></span></span>.<br />
-                    – 9<span class="tei_hi_superscript">t</span> — noch in <span class="tei_choice"><span class="tei_corr"><span class="tei_placeName"><span class="71246114108105116122">Görlitz</span></span></span><a class="noteMarker" id="ref-d24868e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e89">‡</a></span>, über: in <span class="tei_placeName"><span class="8711711411599104101110">Wurschen</span></span>, Schloß des <a class="preview persons A001953" href="/exist/apps/WeGA-WebApp/de/A001953.html">H: <span class="tei_hi_latintype">v: Thilau</span></a>.<br />
-                    – 10<span class="tei_hi_superscript">t</span> in <span class="tei_placeName"><span class="6697117122101110">Bauzen</span></span>. Hausknechts <span class="tei_hi_latintype">Affaire</span> und
+                    – 6<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> von <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> abgereist bis
+                    <span class="7810111710997114107116">Neumarkt</span>. Mittag in <span class="7610511511597">Lissa</span>. 10 gg: in ――― <span class="tei_supplied" id="d10e46"><span class="brackets_supplied">[</span>Neumarkt<span class="brackets_supplied">]</span></span>1 Thl: 2 Sg:<br />
+                    – 7<span class="tei_hi_superscript">t</span> — Mittag in <span class="preview places A130456" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130456.html">Liegnitz</span> übern: in <span class="preview places A130423" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130423.html">Haynau</span>.<br />
+                    – 8<span class="tei_hi_superscript">t</span> — Mittag in <span class="preview places A130362" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130362.html">Bunzlau</span> über: in <span class="tei_hi_latintype"><span class="preview places A130172" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130172.html">Görlitz</span></span>.<br />
+                    – 9<span class="tei_hi_superscript">t</span> — noch in <span class="tei_choice"><span class="tei_corr"><span class="preview places A130172" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130172.html">Görlitz</span></span><a class="noteMarker" id="ref-d10e79" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e79">‡</a></span>, über: in <span class="preview places A130577" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130577.html">Wurschen</span>, Schloß des <a class="preview persons A001953" href="/exist/apps/WeGA-WebApp/de/A001953.html">H: <span class="tei_hi_latintype">v: Thilau</span></a>.<br />
+                    – 10<span class="tei_hi_superscript">t</span> in <span class="6697117122101110">Bauzen</span>. Hausknechts <span class="tei_hi_latintype">Affaire</span> und
                     übernachtet.<br />
-                    – 11 — Nachmittags 4 Uhr in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>. <span class="tei_hi_latintype">Hot: de Saxe</span><a class="noteMarker" id="ref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090016.html">T</a>.
+                    – 11 — Nachmittags 4 Uhr in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>. <span class="tei_hi_latintype">Hot: de Saxe</span><a class="noteMarker" id="ref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090016.html">T</a>.
                     – 19 — Morgens 11 Uhr. in der gelb: Kutsche abg:<br />
-                    – 20<span class="tei_hi_superscript">t</span> <span class="tei_supplied" id="d24868e137"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span> Abends 10 <span class="tei_supplied" id="d24868e140"><span class="brackets_supplied">[</span>Uhr<span class="brackets_supplied">]</span></span> in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> <span class="tei_hi_latintype">Hot: de Bav:</span><span class="tei_supplied" id="d24868e150"><span class="brackets_supplied">[</span>iere<span class="brackets_supplied">]</span></span><br />
+                    – 20<span class="tei_hi_superscript">t</span> <span class="tei_supplied" id="d10e123"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span> Abends 10 <span class="tei_supplied" id="d10e126"><span class="brackets_supplied">[</span>Uhr<span class="brackets_supplied">]</span></span> in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> <span class="tei_hi_latintype">Hot: de Bav:</span><span class="tei_supplied" id="d10e135"><span class="brackets_supplied">[</span>iere<span class="brackets_supplied">]</span></span><br />
                     – 21. Theater, <span class="tei_hi_latintype"><span class="preview works A020427" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020427.html">Faniska</span></span>. von Deßauer Truppe.<br />
-                    – 22<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Concert</span> <span class="7410111511711532105110327110110411611510110997110101"><span class="tei_hi_latintype">Jesus</span> in <span class="tei_sic">Gehtsemane<a class="noteMarker" id="ref-d24868e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e171">‡</a></span></span><a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.<br /> 
+                    – 22<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Concert</span> <span class="7410111511711532105110327110110411611510110997110101"><span class="tei_hi_latintype">Jesus</span> in <span class="tei_sic">Gehtsemane<a class="noteMarker" id="ref-d10e156" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e156">‡</a></span></span><a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a><a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.<br /> 
                     – 23 <span class="tei_hi_latintype">Concert</span><br />
-                    – 26. nach dem unrechten <span class="tei_placeName"><span class="66101110100111114102">Bendorf</span></span> gefahr.<br />
+                    – 26. nach dem unrechten <span class="66101110100111114102">Bendorf</span> gefahr.<br />
                     – 27. früh in d: <span class="tei_hi_latintype">Nicolai</span> Kirche <span class="tei_hi_latintype"><span class="8311697985832779711658">Stab: Mat:</span></span> v: <span class="tei_hi_latintype"><a class="preview persons A005803" href="/exist/apps/WeGA-WebApp/de/A005803.html">Perg:</a></span> 
-                    Nachm: ein <span class="tei_hi_latintype"><span class="preview works A020223" data-ref="/exist/apps/WeGA-WebApp/de/A001671/Werke/A020223.html">Orat:</span></span> von <a class="preview persons A001671" href="/exist/apps/WeGA-WebApp/de/A001671.html">Schicht</a> und <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> <span class="preview works A020223" data-ref="/exist/apps/WeGA-WebApp/de/A001671/Werke/A020223.html">Das Ende <span class="tei_sic">der<a class="noteMarker" id="ref-d24868e218" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e218">‡</a></span> Gerechten</span>. Abends bey <a class="preview persons A008489" href="/exist/apps/WeGA-WebApp/de/A008489.html">H: Küstner</a>
+                    Nachm: ein <span class="tei_hi_latintype"><span class="preview works A020223" data-ref="/exist/apps/WeGA-WebApp/de/A001671/Werke/A020223.html">Orat:</span></span> von <a class="preview persons A001671" href="/exist/apps/WeGA-WebApp/de/A001671.html">Schicht</a> und <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> <span class="preview works A020223" data-ref="/exist/apps/WeGA-WebApp/de/A001671/Werke/A020223.html">Das Ende <span class="tei_sic">der<a class="noteMarker" id="ref-d10e202" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e202">‡</a></span> Gerechten</span>. Abends bey <a class="preview persons A008489" href="/exist/apps/WeGA-WebApp/de/A008489.html">H: Küstner</a>
                     vergnügt.<br />
-                    – 28<span class="tei_hi_superscript">t</span> Abends 7 Uhr nach <span class="tei_placeName"><span class="66101110100111114102">Bendorf</span></span> mit d: Postw:<br />
-                    – 29<span class="tei_hi_superscript">t</span> in <span class="tei_placeName"><span class="66101110100111114102">Bendorf</span></span> angek: um 10 Uhr. und Nachm. um
-                    6 Uhr wieder in <span class="tei_placeName"><span class="7610110511212258">Leipz:</span></span> angelangt.<br />
+                    – 28<span class="tei_hi_superscript">t</span> Abends 7 Uhr nach <span class="66101110100111114102">Bendorf</span> mit d: Postw:<br />
+                    – 29<span class="tei_hi_superscript">t</span> in <span class="66101110100111114102">Bendorf</span> angek: um 10 Uhr. und Nachm. um
+                    6 Uhr wieder in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipz:</span> angelangt.<br />
                     – 30 Abends bey <a class="preview persons A001236" href="/exist/apps/WeGA-WebApp/de/A001236.html">Mahlm:</a> <span class="tei_hi_latintype"><a class="preview persons A001817" href="/exist/apps/WeGA-WebApp/de/A001817.html">Seume</a></span>, <span class="75110111114114">Knorr</span>, <span class="tei_hi_latintype">pp</span><br />
                     d: 1<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Aprill</span>, wollt abends abreisen, ging aber
                     nicht.<br />
                     – 3<span class="tei_hi_superscript">t</span> — an <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">V:</a> <a class="preview persons A002061" href="/exist/apps/WeGA-WebApp/de/A002061.html">T:</a> und <a class="preview persons A000356" href="/exist/apps/WeGA-WebApp/de/A000356.html">D:</a> gesch: und im Blumenberg
                     bis um 2 Uhr gewesen.<br />
-                    – 4<span class="tei_hi_superscript">t</span> Abends 9 Uhr von <span class="tei_placeName"><span class="7610110511212258">Leipz:</span></span> abgereist.<br />
-                    – 5 Mittg: in <span class="tei_placeName"><span class="6510811610111098117114103">Altenburg</span></span><a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.<br />
-                    – 6<span class="tei_hi_superscript">t</span> ―― in <span class="tei_placeName"><span class="8010897117101110">Plauen</span></span>.<br />
-                    – 7 ― Morgens 5 Uhr in <span class="tei_placeName"><span class="72111102">Hof</span></span>. von da mit <span class="tei_hi_latintype">Extra</span>
-                    post bis <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6697121114101117116104">Bayreuth</span></span></span>.<br />
-                    – 8. <span class="tei_placeName"><span class="6697121114101117116104">Bayreuth</span></span> wegen Post.<br />
-                    – 9<span class="tei_hi_superscript">t</span> mit Lohnk: nach <span class="tei_placeName"><span class="6510998101114103">Amberg</span></span> abg: und gekommen
+                    – 4<span class="tei_hi_superscript">t</span> Abends 9 Uhr von <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipz:</span> abgereist.<br />
+                    – 5 Mittg: in <span class="preview places A130040" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130040.html">Altenburg</span><a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.<br />
+                    – 6<span class="tei_hi_superscript">t</span> ―― in <span class="preview places A130141" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130141.html">Plauen</span>.<br />
+                    – 7 ― Morgens 5 Uhr in <span class="72111102">Hof</span>. von da mit <span class="tei_hi_latintype">Extra</span>
+                    post bis <span class="tei_hi_latintype"><span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span></span>.<br />
+                    – 8. <span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span> wegen Post.<br />
+                    – 9<span class="tei_hi_superscript">t</span> mit Lohnk: nach <span class="preview places A130130" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130130.html">Amberg</span> abg: und gekommen
                     Abends. über im Löwen.<br />
-                    – 10<span class="tei_hi_superscript">t</span> Mittg in <span class="tei_choice"><span class="tei_corr"><span class="tei_placeName"><span class="729711411610997110110115104111102">Hartmannshof</span></span></span><a class="noteMarker" id="ref-d24868e355" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e355">‡</a></span>. Uebr: in
-                    <span class="tei_placeName"><span class="82252107101114115100111114102">Rükersdorf</span></span>.<br />
-                    – 11<span class="tei_hi_superscript">t</span> früh 8 Uhr in <span class="tei_placeName"><span class="7825211411098101114103">Nürnberg</span></span>. Mittg <span class="tei_placeName"><span class="66117991041159910411997989799104">Buchschwabach</span></span>
-                    Abends <span class="tei_placeName"><span class="651101151129799104">Anspach</span></span>.<br />
+                    – 10<span class="tei_hi_superscript">t</span> Mittg in <span class="tei_choice"><span class="tei_corr"><span class="729711411610997110110115104111102">Hartmannshof</span></span><a class="noteMarker" id="ref-d10e329" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e329">‡</a></span>. Uebr: in
+                    <span class="82252107101114115100111114102">Rükersdorf</span>.<br />
+                    – 11<span class="tei_hi_superscript">t</span> früh 8 Uhr in <span class="preview places A130026" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130026.html">Nürnberg</span>. Mittg <span class="preview places A130361" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130361.html">Buchschwabach</span>
+                    Abends <span class="preview places A130088" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130088.html">Anspach</span>.<br />
                     – 12<span class="tei_hi_superscript">t</span> zu <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> gezogen.<br />
                     – 27<span class="tei_hi_superscript">t</span> mein erstes <span class="tei_hi_latintype">Concert</span> gegeben.<br />
-                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span>. Nacht 12 <span class="tei_supplied" id="d24868e413"><span class="brackets_supplied">[</span>Uhr<span class="brackets_supplied">]</span></span> nach <span class="tei_placeName"><span class="782521141109858">Nürnb:</span></span><br />
+                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span>. Nacht 12 <span class="tei_supplied" id="d10e381"><span class="brackets_supplied">[</span>Uhr<span class="brackets_supplied">]</span></span> nach <span class="782521141109858">Nürnb:</span><br />
                     – 5<span class="tei_hi_superscript">t</span> Morgens 11 Uhr angekom.<br />
-                    – 10<span class="tei_hi_superscript">t</span> <span class="tei_supplied" id="d24868e430"><span class="brackets_supplied">[</span>Mai<span class="brackets_supplied">]</span></span> mit <a class="preview persons A000587" href="/exist/apps/WeGA-WebApp/de/A000587.html"><span class="tei_hi_latintype">Garnier</span></a> früh 4. nach <span class="tei_placeName"><span class="669712111446"><span class="tei_hi_latintype">Bayr.</span></span></span> 5 Uhr
+                    – 10<span class="tei_hi_superscript">t</span> <span class="tei_supplied" id="d10e397"><span class="brackets_supplied">[</span>Mai<span class="brackets_supplied">]</span></span> mit <a class="preview persons A000587" href="/exist/apps/WeGA-WebApp/de/A000587.html"><span class="tei_hi_latintype">Garnier</span></a> früh 4. nach <span class="669712111446"><span class="tei_hi_latintype">Bayr.</span></span> 5 Uhr
                     abends angekom.<br />
-                    d: 13<span class="tei_hi_superscript">t</span> <a class="preview persons A000587" href="/exist/apps/WeGA-WebApp/de/A000587.html"><span class="tei_hi_latintype">Garnier</span></a> nach <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> und ich nach <span class="tei_placeName"><span class="84104105101114115104101105109">Thiersheim</span></span>.<br />
+                    d: 13<span class="tei_hi_superscript">t</span> <a class="preview persons A000587" href="/exist/apps/WeGA-WebApp/de/A000587.html"><span class="tei_hi_latintype">Garnier</span></a> nach <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> und ich nach <span class="preview places A130555" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130555.html">Thiersheim</span>.<br />
                     – 15<span class="tei_hi_superscript">t</span> Morgens 4 Uhr zurükgekommen.<br />
-                    – 17. nach <span class="tei_placeName"><span class="782521141109858">Nürnb:</span></span><br />
+                    – 17. nach <span class="782521141109858">Nürnb:</span><br />
                     – 26<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Concert</span> im Rothen Roß<a class="noteMarker" id="ref-C_007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_007">*</a>.<br />
-                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Juni</span> nach <span class="tei_placeName"><span class="6911410897110103101110">Erlangen</span></span>.<br />
+                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Juni</span> nach <span class="preview places A130059" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130059.html">Erlangen</span>.<br />
                     – 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Concert</span> nicht wegen Donnerwetter<br />
                     – 10<span class="tei_hi_superscript">t</span> gegeben.<br />
-                    – 11. nach <span class="tei_placeName"><span class="782521141109858">Nürnb:</span></span><br />
-                    – 12. <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> durch nach <span class="tei_placeName"><span class="67971141081159858"><span class="tei_hi_latintype">Carlsb:</span></span></span><br />
-                    – 15<span class="tei_hi_superscript">t</span> nach <span class="tei_placeName"><span class="6911410897110103101110">Erlangen</span></span>.<br />
-                    – 17 nach <span class="tei_placeName"><span class="6697121114101117116104">Bayreuth</span></span>.<br />
+                    – 11. nach <span class="782521141109858">Nürnb:</span><br />
+                    – 12. <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> durch nach <span class="67971141081159858"><span class="tei_hi_latintype">Carlsb:</span></span><br />
+                    – 15<span class="tei_hi_superscript">t</span> nach <span class="preview places A130059" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130059.html">Erlangen</span>.<br />
+                    – 17 nach <span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span>.<br />
                     – 23. <span class="tei_hi_latintype">Conc</span>. für die Armen.<br />
                     – 30. meines.<br />
-                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> abger: in <span class="tei_placeName"><span class="691159910410111097117">Eschenau</span></span> übernacht<br />
-                    – 5<span class="tei_hi_superscript">t</span> 10 Uhr Morg: mit <a class="preview persons A000072" href="/exist/apps/WeGA-WebApp/de/A000072.html">Bakof:</a> in <span class="tei_placeName"><span class="6911410897110103101110">Erlangen</span></span>.<br />
+                    – 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> abger: in <span class="preview places A130394" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130394.html">Eschenau</span> übernacht<br />
+                    – 5<span class="tei_hi_superscript">t</span> 10 Uhr Morg: mit <a class="preview persons A000072" href="/exist/apps/WeGA-WebApp/de/A000072.html">Bakof:</a> in <span class="preview places A130059" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130059.html">Erlangen</span>.<br />
                     – 7<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Concert</span>.<br />
-                    – 10<span class="tei_hi_superscript">t</span> nach <span class="tei_placeName"><span class="782521141109858">Nürnb:</span></span> <span class="tei_del">Abend 6 Uhr nach <span class="tei_placeName"><span class="651101151129799104">Anspach</span></span>
-                        um ½ 7 wieder weg<a class="noteMarker" id="ref-d24868e590" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e590">‡</a></span><br />
-                    – 15. nach <span class="tei_placeName"><span class="8311611711611610358">Stuttg:</span></span> Abends 6 Uhr <span class="tei_placeName"><span class="651101151129799104">Anspach</span></span>
+                    – 10<span class="tei_hi_superscript">t</span> nach <span class="782521141109858">Nürnb:</span> <span class="tei_del">Abend 6 Uhr nach <span class="preview places A130088" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130088.html">Anspach</span>
+                        um ½ 7 wieder weg<a class="noteMarker" id="ref-d10e545" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e545">‡</a></span><br />
+                    – 15. nach <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttg:</span> Abends 6 Uhr <span class="preview places A130088" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130088.html">Anspach</span>
                     ½ 7 wieder weg.<br />
-                    – 17. früh 4. in <span class="tei_placeName"><span class="8311611711611610358">Stuttg:</span></span><br />
-                    – 19 <span class="tei_placeName"><span class="7611710011910510311598117114103">Ludwigsburg</span></span>. und um 12 Uhr
+                    – 17. früh 4. in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttg:</span><br />
+                    – 19 <span class="preview places A130109" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130109.html">Ludwigsburg</span>. und um 12 Uhr
                     meine 1<span class="tei_hi_superscript">ste</span> <span class="tei_hi_latintype">Visite</span> bey <a class="preview persons A001210" href="/exist/apps/WeGA-WebApp/de/A001210.html">H:</a><br />
-                    – 2<span class="tei_hi_superscript">t</span> August nach <span class="tei_placeName"><span class="8311611711611610358">Stuttg:</span></span><br />
-                    – 17<span class="tei_hi_superscript">t</span> wieder nach <span class="tei_placeName"><span class="7611710011910510311598117114103">Ludwigsburg</span></span> und
+                    – 2<span class="tei_hi_superscript">t</span> August nach <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttg:</span><br />
+                    – 17<span class="tei_hi_superscript">t</span> wieder nach <span class="preview places A130109" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130109.html">Ludwigsburg</span> und
                     angestellt.     
                     <br />
                     <br />
                 </p>
-                                        <p><span class="tei_hi_latintype"><span class="preview persons A001585" data-ref="/exist/apps/WeGA-WebApp/de/A001585.html">August <span class="tei_subst"><span class="tei_add">R</span><a class="noteMarker" id="ref-d24868e653" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e653">‡</a></span>itterich</span></span>. in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span><br />
-                    – <span class="71101114100114101116">Gerdret</span><a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>, Inspecteur de la grande <span class="tei_sic">Armeé<a class="noteMarker" id="ref-d24868e670" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e670">‡</a></span>!<br />
-                    <a class="preview persons A000011" href="/exist/apps/WeGA-WebApp/de/A000011.html"><span class="tei_hi_latintype">H: C: Ahrens</span></a> bey  <span class="tei_hi_latintype">Joh: Hnr: <span class="tei_sic"><a class="preview persons A001868" href="/exist/apps/WeGA-WebApp/de/A001868.html">Sthäler</a><a class="noteMarker" id="ref-d24868e682" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d24868e682">‡</a></span></span> in <span class="tei_placeName"><span class="661149711711011599104119101105103">Braunschweig</span></span>. d: 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Aprill</span>.<br />
+                                        <p><span class="tei_hi_latintype"><span class="preview persons A001585" data-ref="/exist/apps/WeGA-WebApp/de/A001585.html">August <span class="tei_subst"><span class="tei_add">R</span><a class="noteMarker" id="ref-d10e601" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e601">‡</a></span>itterich</span></span>. in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span><br />
+                    – <span class="71101114100114101116">Gerdret</span><a class="noteMarker" id="ref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>, Inspecteur de la grande <span class="tei_sic">Armeé<a class="noteMarker" id="ref-d10e617" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e617">‡</a></span>!<br />
+                    <a class="preview persons A000011" href="/exist/apps/WeGA-WebApp/de/A000011.html"><span class="tei_hi_latintype">H: C: Ahrens</span></a> bey  <span class="tei_hi_latintype">Joh: Hnr: <span class="tei_sic"><a class="preview persons A001868" href="/exist/apps/WeGA-WebApp/de/A001868.html">Sthäler</a><a class="noteMarker" id="ref-d10e629" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e629">‡</a></span></span> in <span class="preview places A130021" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130021.html">Braunschweig</span>. d: 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Aprill</span>.<br />
                     <a class="preview persons A000913" href="/exist/apps/WeGA-WebApp/de/A000913.html">H. <span class="tei_hi_latintype">Jägli</span></a> bey <a class="preview persons A001560" href="/exist/apps/WeGA-WebApp/de/A001560.html"><span class="tei_hi_underline1">H: Reiser</span></a>. Klaviersp. in Strasburg.<br />
-                    <a class="preview persons A000790" href="/exist/apps/WeGA-WebApp/de/A000790.html">Heinrich <span class="tei_hi_latintype">Heine</span></a> <span class="tei_hi_latintype">Fourage Inspecteur</span> in <span class="tei_placeName"><span class="831161149711598117114103">Strasburg</span></span> d: 24<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span> 1809.<br />
-                    <a class="preview persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Anton <span class="tei_hi_underline1">Schmidl</span></a>. <span class="tei_hi_latintype">Violin</span>. in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>.<br />
+                    <a class="preview persons A000790" href="/exist/apps/WeGA-WebApp/de/A000790.html">Heinrich <span class="tei_hi_latintype">Heine</span></a> <span class="tei_hi_latintype">Fourage Inspecteur</span> in <span class="831161149711598117114103">Strasburg</span> d: 24<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span> 1809.<br />
+                    <a class="preview persons A001705" href="/exist/apps/WeGA-WebApp/de/A001705.html">Anton <span class="tei_hi_underline1">Schmidl</span></a>. <span class="tei_hi_latintype">Violin</span>. in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>.<br />
                     <a class="preview persons A000761" href="/exist/apps/WeGA-WebApp/de/A000761.html"><span class="tei_hi_latintype">Carl <span class="tei_hi_underline1">Haudek</span></span></a>.
                     
                 </p>
@@ -554,29 +572,29 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e171" data-title="sic">"Gehtsemane": sic!</div>
+                                            <div class="apparatusEntry" id="d10e156" data-title="sic">"Gehtsemane": sic!</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_001" data-title="note textConst"><span class="tei_lemma">"… Gehtsemane Oratorium von Antonio Rosetti": </span>23: <span class="tei_hi_italic">Concert</span> = doppelt, von Weber mittels Strich verwiesen auf nächste Zeile?</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e218" data-title="sic">"der": sic!</div>
+                                            <div class="apparatusEntry" id="d10e202" data-title="sic">"der": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e590" data-title="del">"Abend 6 Uhr nach Anspach
+                                            <div class="apparatusEntry" id="d10e545" data-title="del">"Abend 6 Uhr nach Anspach
                         um ½ 7 wieder weg":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e653" data-title="subst">"R": "B" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e601" data-title="subst">"R": "B" überschrieben.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_004" data-title="note textConst"><span class="tei_lemma">"… . in Leipzig – Gerdret": </span>mitten im Wort ein Tintenkleks</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e670" data-title="sic">"Armeé": sic!</div>
+                                            <div class="apparatusEntry" id="d10e617" data-title="sic">"Armeé": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e682" data-title="sic">"Sthäler": sic!</div>
+                                            <div class="apparatusEntry" id="d10e629" data-title="sic">"Sthäler": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -585,7 +603,7 @@
                                             <div class="apparatusEntry" id="C_005" data-title="note commentary"><span class="tei_lemma">"… Reise v: Carlsruhe nach Stuttgart": </span>zu den Details des Reiseablaufs vgl.  Frank Ziegler, „[…] eine Kunstreise […], von den ungünstigsten Verhältnissen der damaligen Zeit begleitet“,  Carl Maria von Webers Fahrt von Schlesien nach Württemberg 1807, in: <span class="tei_hi_italic">Weberiana</span> 22 (2012), S. 5–44.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e89" data-title="choice">recte "Görlitz": in der Vorlage "――――"</div>
+                                            <div class="apparatusEntry" id="d10e79" data-title="choice">recte "Görlitz": in der Vorlage "――――"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_006" data-title="note commentary"><span class="tei_lemma">"… Dresden . Hot: de Saxe": </span>zum Dresden-Aufenthalt vom 11. bis 19. März 1807 vgl. auch Hans Schnoor, Weber – Gestalt und Schöpfung, Dresden 1953, S. 224–227 bzw. Dresdner Anzeigen, 1807, 28. Stück (18. März), S. 213.</div>
@@ -597,7 +615,7 @@
                                             <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… – 5 Mittg: in Altenburg": </span>Diskrepanz zu erhaltener <a class="preview documents A100038" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.html">Quittung, die Weber mit „Leipzig, 5. April 1807“</a> datiert. </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24868e355" data-title="choice">recte "Hartmannshof": in der Vorlage "Hartmannsdorf"</div>
+                                            <div class="apparatusEntry" id="d10e329" data-title="choice">recte "Hartmannshof": in der Vorlage "Hartmannsdorf"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_007" data-title="note commentary"><span class="tei_lemma">"… t Concert im Rothen Roß": </span>vgl. auch Konzertanzeigen in Nürnbergischer Friedens- und Kriegs-Kourier, 1807, Nr. 122 (25. Mai) und Nr. 123 (26. Mai) sowie Konzertzettel (Eutin, Ostholstein‑Museum).</div>
@@ -628,9 +646,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100214</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100214</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

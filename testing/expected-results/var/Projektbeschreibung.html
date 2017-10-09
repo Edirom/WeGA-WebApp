@@ -111,11 +111,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,6 +231,47 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -237,7 +282,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070006/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070006.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -265,20 +310,6 @@
                             </div>
                         </div>
                     </div>
-                            <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
-                        <div class="panel-collapse collapse" id="places">
-                            <div data-toggle="buttons" class="btn-group primary">
-                                <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68101116109111108100" /> <span title="Detmold">Detmold</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797105110122" /> <span title="Mainz">Mainz</span> 
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
@@ -288,20 +319,20 @@
                         <div id="toc">
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
-                                        <li class="secLevel1"><a href="#d156726e3">Über die Carl-Maria-von-Weber-Gesamtausgabe (WeGA)</a></li>
-                                        <li class="secLevel1"><a href="#d156726e66">Die Inhalte von Weber Digital (WeGA Digital)</a></li>
-                                        <li class="secLevel1"><a href="#d156726e74">Grundsätzliches zu den Bearbeitungsstadien der Texte</a></li>
-                                        <li class="secLevel1"><a href="#d156726e97">Webers Korrespondenz und andere enthaltene Briefe</a></li>
-                                        <li class="secLevel1"><a href="#d156726e137">Webers Tagebuch</a></li>
-                                        <li class="secLevel1"><a href="#d156726e151">Webers Schriften und weitere Schriften</a></li>
-                                        <li class="secLevel1"><a href="#d156726e191">Webers Werke und Werke anderer Komponisten und Schriftsteller</a></li>
-                                        <li class="secLevel1"><a href="#d156726e202">Biographische Informationen zu Weber und zu weiteren Personen</a></li>
-                                        <li class="secLevel1"><a href="#d156726e239">Die Rubrik Aktuelles</a></li>
-                                        <li class="secLevel1"><a href="#d156726e253">Technische Dokumentation</a></li>
+                                        <li class="secLevel1"><a href="#d10e3">Über die Carl-Maria-von-Weber-Gesamtausgabe (WeGA)</a></li>
+                                        <li class="secLevel1"><a href="#d10e66">Die Inhalte von Weber Digital (WeGA Digital)</a></li>
+                                        <li class="secLevel1"><a href="#d10e74">Grundsätzliches zu den Bearbeitungsstadien der Texte</a></li>
+                                        <li class="secLevel1"><a href="#d10e97">Webers Korrespondenz und andere enthaltene Briefe</a></li>
+                                        <li class="secLevel1"><a href="#d10e137">Webers Tagebuch</a></li>
+                                        <li class="secLevel1"><a href="#d10e151">Webers Schriften und weitere Schriften</a></li>
+                                        <li class="secLevel1"><a href="#d10e191">Webers Werke und Werke anderer Komponisten und Schriftsteller</a></li>
+                                        <li class="secLevel1"><a href="#d10e202">Biographische Informationen zu Weber und zu weiteren Personen</a></li>
+                                        <li class="secLevel1"><a href="#d10e239">Die Rubrik Aktuelles</a></li>
+                                        <li class="secLevel1"><a href="#d10e253">Technische Dokumentation</a></li>
                                     </ul>
                                 </div>
-                                <div id="d156726e2">
-                                    <h2 id="d156726e3">Über die Carl-Maria-von-Weber-Gesamtausgabe (WeGA)</h2>
+                                <div id="d10e2">
+                                    <h2 id="d10e3">Über die Carl-Maria-von-Weber-Gesamtausgabe (WeGA)</h2>
                                     <p>Die WeGA ist eine von der <a href="http://www.adwmainz.de">Akademie der Wissenschaften und der Literatur</a> (Mainz) geförderte Unternehmung mit dem Ziel, bis zum 200. Todestag <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> im Jahr 2026 seine sämtlichen Kompositionen, Briefe, Tagebücher und Schriften in einer wissenschaftlich-kritischen Gesamtausgabe vorzulegen. 
                Die Ausgabe wird ca. 50 Notenbände einschließlich Kritischer Berichte, 10 Bände Briefe, ca. 8 Bände Tagebücher, 2 Bände Schriften, ein Werkverzeichnis sowie mehrere Dokumentenbände umfassen. 
                Alle Textteile (d. h. ausschließlich der Notentexte) werden zunächst auf diesen Seiten als Digitale Edition publiziert.
@@ -309,51 +340,51 @@
                Parallel zur Ausgabe erscheint die Reihe <span class="tei_hi_italic">Weber-Studien</span>.</p>
                                     <p>Hauptamtliche Mitarbeiter der Ausgabe sind <a class="preview persons A009003" href="/exist/apps/WeGA-WebApp/de/A009003.html">Dr. Markus Bandur</a> und <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> in Berlin sowie <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Prof. Dr. Joachim Veit</a> und <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> in <span class="tei_placeName"><span class="68101116109111108100">Detmold</span></span>. An der Briefausgabe ist <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a> (<span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>) als freie Mitarbeiterin beteiligt; die Tagebuchausgabe wird von <a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar Beck</a> erstellt, an den Arbeiten in Berlin beteiligt sich außerdem <a class="preview persons A009004" href="/exist/apps/WeGA-WebApp/de/A009004.html">Dr. Solveig Schreiter</a>. An der Werkausgabe, die von <a href="http://www.schott-musik.de">Schott Music</a> in <span class="tei_placeName"><span class="7797105110122">Mainz</span></span> verlegt wird, arbeiten auch externe Bandherausgeber mit.</p>
                                 </div>
-                                <div id="d156726e65">
-                                    <h2 id="d156726e66">Die Inhalte von Weber Digital (WeGA Digital)</h2>
+                                <div id="d10e65">
+                                    <h2 id="d10e66">Die Inhalte von Weber Digital (WeGA Digital)</h2>
                                     <p>Mit ihrem am 4. Mai 2011 gestarteten neuen Web-Auftritt beginnt die Weber-Gesamtausgabe schon während ihrer Arbeit an der Edition der Briefe, Tagebücher und Schriften Carl Maria von Webers (und während der parallelen Arbeit an den Notenbänden) ihre Bestände und ihre bislang gesammelten Informationen für die interessierte Öffentlichkeit und die Fachkollegen zu öffnen. Im Bereich wissenschaftlicher Gesamtausgaben ist dies sicherlich ein ungewöhnlicher Schritt, gilt es doch als ratsam, Editionen erst dann zu publizieren, wenn möglichst auch die letzte offene Frage geklärt ist – was prinzipiell nie der Fall ist, da wissenschaftliche Erkenntnis gewöhnlich in neue, unbewantwortete Fragen mündet. Wer zu früh publiziert, setzt sich der Gefahr aus, Blößen und eigenes Unwissen zu zeigen oder auch einfach nur „Unfertiges“ preis zu geben und noch vorhandene Lücken deutlich sichtbar zu  machen. Umgekehrt führt das Streben nach Überperfektion aber leider allzu oft dazu, dass Editionsprojekte nie dieses Licht der Öffentlichkeit erreichen und wertvolle Ergebnisse für weitere Forschungen verloren gehen. Wenn die WeGA daher mit diesem neuen Web-Auftritt gewissermaßen ihre Werkstatt öffnet, so ist sie sich der damit verbundenen Gefahren durchaus bewusst (und versucht auf allzu Vorläufiges durch eine Statusanzeige der Dokumente deutlich hinzuweisen), begreift das Transparent-Machen ihrer Arbeiten aber auch als doppelte Chance: Zum einen haben externe Wissenschaftler und die Öffentlichkeit damit die Möglichkeit, frühzeitig an den Erkenntnissen der Arbeiten der WeGA teilzunehmen, zum andern erhofft die Ausgabe durch eine solche Öffnung aber auch zu einer neuen Kultur des offenen, kooperativen wissenschaftlichen Miteinanders beizutragen und gleichzeitig selbst davon zu profitieren. Die neuen Medien schaffen nicht nur neue Möglichkeiten für die wissenschaftliche Forschung, sie führen – z. B. durch überraschend sich zeigende Querverbindungen – zu neuartigen, oft nur im Verbund vieler Partner fruchtbar zu beantwortenden Fragestellungen. Die Techniken zur Vermittlung von Wissen über dieses Medium stecken sicherlich noch in den Kinderschuhen und auch diese Website ist eine, die (auch aufgrund beschränkter personeller Ressourcen) erst allmählich die in ihrer Materialien verborgenen Inhalte und Möglichkeiten ausfalten kann. Gerade in der Startphase mögen die Wünsche an einen noch freieren Umgang mit den Materialien groß sein – der Blick in das bereits Vorhandene mag aber dazu beitragen, dass auch die Bereitschaft zum geduldigen Hoffen auf neue Texte und neue Features geweckt wird. </p>
                                 </div>
-                                <div id="d156726e73">
-                                    <h2 id="d156726e74">Grundsätzliches zu den Bearbeitungsstadien der Texte</h2>
+                                <div id="d10e73">
+                                    <h2 id="d10e74">Grundsätzliches zu den Bearbeitungsstadien der Texte</h2>
                                     <p>Alle auf dieser Website erscheinenden Texte sind nach den Richtlinien der Text-Encoding-Initative (TEI) in der Version P5 codiert (notwendige eigene Erweiterungen der Schemata sind dokumentiert, vgl. dazu die Technische Dokumentation). Während etliche Texte von Anfang an so erfasst wurden, sind andere (etwa die Texte der Brief- und Tagebücher) auf diese Codierungsform umgestellt worden bzw. noch umzustellen. Ziel der Website ist es, die Texte, sobald sie in einer Basiserfassung vorliegen, für die interne Arbeit der Mitarbeiter der Gesamtausgabe und gleichzeitig für die Öffentlichkeit zugänglich zu machen. Zur Warnung, dass es sich um reine, so noch nicht zitierfähige Basis-Erfassungen der Texte handelt, sind diese Texte mit dem Zusatz „in Bearbeitung“ versehen. Texte, die bereits einen Korrekturdurchgang hinter sich haben und zumindest im Basistext zitierfähig sein sollten, erhalten  den Zusatz „Kommentar in Bearbeitung“. Schließlich sind die wirklich freizugebenden Texte mit dem Zusatz „bearbeitet“ versehen, der allerdings nicht bedeutet, dass bereits alle kommentarbedürftigen Stellen geklärt sind.</p>
                                     <p>Fehlende Kommentare rühren zum Teil auch daher, dass bestimmte Erläuterungen direkt von den Textauszeichnungen abgeleitet werden können, die technische Umsetzung dieser Anzeige aber bei einigen Kategorien noch nicht erfolgt ist (dies betrifft z. B. Rollennamen oder Werke anderer Komponisten bzw. Schriftsteller, die Anzeige von Personengruppen u. a.). In einigen Fällen finden sich in der alternativ einschaltbaren XML-Anzeige der Texte bereits weiterführende Informationen. </p>
                                     <p>Die einzelnen Textsorten sind dabei unterschiedlich tief erschlossen.</p>
                                 </div>
-                                <div id="d156726e96">
-                                    <h2 id="d156726e97">Webers Korrespondenz und andere enthaltene Briefe</h2>
+                                <div id="d10e96">
+                                    <h2 id="d10e97">Webers Korrespondenz und andere enthaltene Briefe</h2>
                                     <p>Weber, der alleine in der Zeitspanne, in der er Tagebuch führte (1810–1826), nahezu 6.000 Briefe geschrieben hat (von denen allerdings ca. zwei Drittel als verloren gelten müssen), steht im Mittelpunkt der elektronischen Ausgabe der Korrespondenz. Der Terminus „<span class="tei_mentioned">Weber Korrespondenz</span>“ wurde im Menü bewusst gewählt, auch wenn von den Antwortbriefen an Weber nur ein verschwindend kleiner Teil erhalten blieb. Häufig steht diese Korrespondenz in einem größeren Kontext, der dort, wo es möglich ist, jeweils mit erhellt werden soll. Dabei ist die Definition eines Schriftstücks als „Brief“ im gegenwärtigen Stadium der Edition noch unzulässig weit gefasst, da eigen- oder fremdschriftliche handschriftliche „Dokumente“ (wie Quittungen, Aktenstücke o.ä.) mit in die „Korrespondenz“ integriert sind – die spezifischere Etikettierung der einzelnen Textgattungen und eine entsprechende Sortierfunktion gehören zu den künftigen Arbeiten.</p>
                                     <p>Über die eigentliche Webersche Korrespondenz hinausgehend eröffnet der Eintrag „<span class="tei_mentioned">Briefe</span>“ unter der Rubrik „<span class="tei_mentioned">Register</span>“ eine Sicht auf weitere Briefe aus dem Umfeld der Weber-Forschung, die sich nach Schreiber, Empfänger, Schreib- oder Empfangsort chronologisch sortieren lassen. Hier sind insbesondere die Briefe des Vaters von Weber bzw. die Aktivitäten der verschiedenen Theatergruppen, in denen dieser als Mitglied oder Leiter tätig war, aufgenommen, ferner eine seit vielen Jahren von Eveline Bartlitz vorgenommene Auswertung des umfangreichen Briefwechsels, den der Weber-Forscher Friedrich Wilhelm Jähns führte und etliche im dem Kontext der Arbeit an den Bänden der Werkausgabe erschlossene Schreiben.</p>
                                     <p>Längst nicht alle chronologisch aufgelisteten Briefe sind bereits mit Volltexten zugänglich. Die Erstveröffentlichung konzentriert sich auf <span class="tei_hi_bold">Briefe der Jahrgänge 1817 und 1818</span>, die (mit Ausnahme der Gegenbriefe) bereits komplett zugänglich gemacht wurden, hinzu kommen in vorläufigen Bearbeitungsstadien große Teile der Briefe aus den Jahren 1810–1812 und 1819–1822. Soweit die Brieftexte noch fehlen (vgl. die Anzeige „Brieftext nicht verfügbar“), treten bis zu deren Übernahme die früheren Inhaltsangaben eines internen Briefkatalogs an die Stelle des Textes, so dass zumindest eine Information über den jeweiligen Briefinhalt vorhanden ist, so dass sich bereits vorhandene Texte und Inhaltsangaben zu einem weitgehend vollständigen Katalog der Briefe Webers ergänzen. </p>
                                     <p>Im Jahrgang 1817 wurden außerdem sämtliche aus dem Tagebuch Webers erschlossenen Briefe von und an Weber mit aufgelistet, damit die Korrespondenz in ihrem Gesamtumfang und zugleich der bescheidene Teil der davon erhaltenen Schreiben deutlich wird. Diese Arbeit wird für die übrigen Jahrgänge fortgeführt.</p>
                                     <p>Durch die freundliche Unterstützung der Staatsbibliothek zu Berlin – Preußischer Kulturbesitz war es möglich, in dieser ersten Lieferung bereits die Briefe Webers an seine Braut und seit November 1817 Gattin Caroline Brandt aus dem Jahr der Eheschließung zusätzlich im vergrößerbaren Faksimile des Originals mit aufzunehmen. </p>
                                 </div>
-                                <div id="d156726e136">
-                                    <h2 id="d156726e137">Webers Tagebuch</h2>
+                                <div id="d10e136">
+                                    <h2 id="d10e137">Webers Tagebuch</h2>
                                     <p>Die erste Lieferung von Weber Digital enthält korrespondierend zu den Briefen unter dem Menüpunkt „<span class="tei_mentioned">Weber Tagebücher</span>“ die vollständigen Tagebuchtexte der von Dagmar Beck übertragenen und von Sonja Klein in TEI P5 eingerichteten <span class="tei_hi_bold">Jahrgänge 1817 und 1818</span>. Diese Einträge lassen sich nach Monaten sortieren und sind augenblicklich tageweise abzurufen. Eine zusätzliche, wochen- oder monatsweise Sicht wird später hinzutreten.</p>
                                     <p>Eine besondere Herausforderung stellen im Tagebuch die zahlreichen Angaben zu Einnahmen und Ausgaben Webers dar. Sie sind von Weber nur teilweise mit den jeweiligen (und häufig unterschiedlichen) Kürzeln für die Münzformen als Rubrik- oder Einzelbezeichnung versehen. Vom Herausgeber wurden hier zur Verdeutlichung jeweils fehlende Angaben ergänzt, die in der Darstellung im Grausatz erscheinen. Die Kommentare enthalten augenblicklich Angaben zu erwähnten Personen und Werken Webers sowie vereinzelt notwendige textkritische Anmerkungen. Die Einbindung bzw. Darstellung der weiteren Kommentare stellt eine technische Herausforderung dar, für die noch Konzepte zu entwickeln sind.</p>
                                 </div>
-                                <div id="d156726e150">
-                                    <h2 id="d156726e151">Webers Schriften und weitere Schriften</h2>
+                                <div id="d10e150">
+                                    <h2 id="d10e151">Webers Schriften und weitere Schriften</h2>
                                     <p>Auch die unter dem Menüpunkt „<span class="tei_mentioned">Weber Schriften</span>“ aufgenommenen Texte stammen vorwiegend aus den Jahrgängen <span class="tei_hi_bold">1817 und 1818</span>. Dabei sind zunächst nur die in zeitgenössischen Periodika oder publizierten Schriften Webers aufgenommen (darunter speziell die in Dresden erscheinenden <span class="tei_hi_italic">Dramatisch-musikalischen Notizen</span>. Diese Texte sind hier in der Form ihrer ersten Veröffentlichung wiedergegeben, enthalten aber z.Zt. keine Varianten der meist noch existierenden originalen Entwürfe des Komponisten. Eine neue, jahrgangsweise Zählung der Schriften (nach dem Muster „1817-WeS-09“) ersetzt die frühere Nummer aus Georg Kaisers <span class="tei_hi_italic">Sämtlichen Schriften von Carl Maria von Weber</span> (Berlin und Leipzig 1908).</p>
                                     <p>Unter dem Menüeintrag „<span class="tei_mentioned">Register</span>“ sind im Punkt „<span class="tei_mentioned">Schriften</span>“ dagegen alle zeitgenössischen Pressetexte aufgelistet, die bisher in TEI P5 erfasst wurden. Dabei handelt es sich vornehmlich um Aufführungsbesprechungen und Rezensionen, die für die Kommentierung der übrigen Texte oder zur Erhellung des Wirkens von Weber von Interesse sind. Auch hier liegt der Schwerpunkt auf den Jahren <span class="tei_hi_bold">1817 und 1818</span> (mit einer ausführlichen Auswertung der Dresdner <span class="tei_hi_italic">Abend-Zeitung</span>), zusätzlich sind Texte aufgenommen, die sich mit der Rezeption von Webers konzertanten Klarinettenwerken beschäftigen (zu Serie V, Bd. 6 der WeGA) sowie bereits etliche Besprechungen von Aufführungen des <span class="tei_hi_italic">Freischütz</span> in den Jahren 1821ff. als Vorbereitung des in Arbeit befindlichen Bands der Werkausgabe.</p>
                                 </div>
-                                <div id="d156726e190">
-                                    <h2 id="d156726e191">Webers Werke und Werke anderer Komponisten und Schriftsteller</h2>
+                                <div id="d10e190">
+                                    <h2 id="d10e191">Webers Werke und Werke anderer Komponisten und Schriftsteller</h2>
                                     <p>Die Rubrik „<span class="tei_mentioned">Weber-Werke</span>“ wird langfristig das neue, von Frank Ziegler erarbeitete Verzeichnis der Werke Carl Maria von Webers enthalten. Augenblicklich dient sie lediglich dazu, die in den Texten genannte Werke zu identifizieren. Daher ist nur die Grobgliederung der Gesamtausgabe in Serien angegeben und neben einem Standardtitel sind Komponist, ggf. Textdichter und Widmungsempfänger genannt (danach lassen sich die Einträge auch sortieren). Eine Anwahl der Werke, die zu weiterführenden Informationen führt, ist noch nicht möglich. </p>
                                     <p>Eine Auflösung der erwähnten musikalischen oder literarischen Werke Anderer existiert zur Zeit noch nicht, gehört aber zu den vordringlichen Aufgaben für ein nächstes Release.</p>
                                 </div>
-                                <div id="d156726e201">
-                                    <h2 id="d156726e202">Biographische Informationen zu Weber und zu weiteren Personen</h2>
+                                <div id="d10e201">
+                                    <h2 id="d10e202">Biographische Informationen zu Weber und zu weiteren Personen</h2>
                                     <p>Den Zugang zu Webers Korrespondenz, den Schriften, Tagebüchern und seinen Werken eröffnet auch der Menüpunkt „<span class="tei_mentioned">Weber Person</span>“. Sämtliche Personeneinträge, sind nach diesem gleichen Muster aufgebaut und erlauben so den gezielten Zugriff auf die Korrespondenz, die Schriften oder Werke des jeweils Genannten. Diese Personen sind sowohl über das <span class="tei_mentioned">Register</span> greifbar, werden in der Regel aber eher über die Suchfunktion aufgerufen. Im Falle Webers lässt sich in der <span class="tei_mentioned">Biographischen Kurzübersicht</span> eine <span class="tei_mentioned">Erweiterte Biographie</span> öffnen.</p>
                                     <p>Die Personen und ihre „Netzwerke“ sind der Zentralpunkt der Website, daher auch die Auflistung ihrer „Kontakte“ (der Name der jeweiligen Kontaktperson und die Zahl der zu ihr vorhandenen Dokumente läßt sich bei einem „mouse-over“ ablesen; die Personen selbst sind nach der Gewichtung in der Korrespondenz des Betrachteten angeordnet).</p>
                                     <p>In der Datenbank sind nicht nur in Webers Texten erwähnte Personen aufgelistet, vielmehr gehen die Bestände zurück auf eine Initiative der Fachgruppe Freie Forschungsinstitute in der Gesellschaft für Musikforschung, die ins Jahr 2005 zurückreicht. Infolge dessen war auf der alten Website der WeGA eine sogenannte „fffi-Datenbank“ als Arbeitsinstrument für das Gesamtausgaben-Projekt eingerichtet worden. Den Grundstock der damaligen Sammlungen bildete die Personen-Datenbank der WeGA, hinzu kamen durch die freundliche Unterstützung von Kollegen Personennamen aus dem Umkreis Schumanns (bereitgestellt von Bernhard Appel; Kürzel: SchEnd), zu fast 700 Cellisten des 19. Jahrhunderts (Christiane Wiesenfeldt, Kürzel: Wies), die Namensammlung des Bach-Instituts (Uwe Wolf, Kürzel: Bach) und zur Demonstration der Leistungsfähigkeit eines solchen Systems Personen mit den Anfangsbuchstaben A und B aus den Briefausgaben der Komponisten Ludwig van Beethoven (Kürzel: BGA), E.T.A. Hoffmann (HoB), Albert Lortzing (LoB) und Giacomo Meyerbeer MB) sowie aus Schumanns Tagebuch (SchTb). Aufgrund unzureichender technischer Bedingungen wurde diese Datenbank später eingefroren, die vorhandenen Daten sind aber in die vorliegende Dokumentation mit übernommen worden. Daher resultiert die sehr unterschiedliche Dichte der biographischen Angaben zu einzelnen Personen, zu denen gelegentlich kaum mehr als der bloße Name vorhanden ist. Die ursprüngliche Herkunft der Personendaten bleibt unter der Rubrik „Datenherkunft“ zu erkennen. </p>
                                 </div>
-                                <div id="d156726e238">
-                                    <h2 id="d156726e239">Die Rubrik „Aktuelles“</h2>
+                                <div id="d10e238">
+                                    <h2 id="d10e239">Die Rubrik „Aktuelles“</h2>
                                     <p>In der Rubrik „<span class="tei_mentioned">Aktuelles</span>“ finden sich augenblicklich die ehemals unter „Aktuelles“ jahrgangsweise geordneten Neuigkeiten aus der Arbeit der WeGA seit Einrichtung der Website im Jahr 2003. Künftig werden neue News mit Filter-Kriterien versehen und gezielter abrufbar sein, so dass sowohl Informationen zu Neuerungen der Website, zu einzelnen Bänden, zu Veranstaltungen etc. getrennt anwählbar sind. Die aktuelleren Nachrichten werden dann wieder zu Beginn der Seite präsentiert.</p>
                                 </div>
-                                <div id="d156726e252">
-                                    <h2 id="d156726e253">Technische Dokumentation</h2>
+                                <div id="d10e252">
+                                    <h2 id="d10e253">Technische Dokumentation</h2>
                                     <p>Eine technische Dokumentation nebst zur Verfügung gestellter Dateien wird demnächst hier erscheinen.</p>
                                 </div>
                     </div>
@@ -379,7 +410,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070006</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070006</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>

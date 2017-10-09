@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
+        <meta property="dc:creator" content="Eveline Bartlitz" />
+        <meta property="dc:date" content="2017-10-06T08:20:17.333556Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045341" />
         <meta property="dc:description" content="Stammbucheintrag für Carl Maria von Weber" />
         <meta name="description" content="Stammbucheintrag für Carl Maria von Weber" />
@@ -249,10 +249,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
@@ -335,9 +376,9 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1">An meinen geliebten Freund <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria v. Weber</a></span></span></span></p>
-                                        <p>10 Takte (mit Auftakt) Noten mit Textunterlegung über Bl. 82v und 83r reichend:</p>
-                                        <p>Se per tutti ordisce <span class="tei_hi_underline1">Apollo</span> cosi amabile caterne è ben misero quel core che non vive in servitù che non vive in servitù</p>
-                                        <p><span class="tei_supplied" id="d10e18"><span class="brackets_supplied">[</span>Bl. 82v:<span class="brackets_supplied">]</span></span> Du mit dem kindlichen Herzen und männlichen Geiste,<br />
+                                        <p><span class="tei_supplied" id="d10e11"><span class="brackets_supplied">[</span>10 Takte (mit Auftakt) Noten mit Textunterlegung über Bl. 82v und 83r reichend:<span class="brackets_supplied">]</span></span></p>
+                                        <p><span class="tei_supplied" id="d10e14"><span class="brackets_supplied">[</span>Se per tutti ordisce <span class="tei_hi_underline1">Apollo</span> cosi amabile caterne è ben misero quel core che non vive in servitù che non vive in servitù<span class="brackets_supplied">]</span></span></p>
+                                        <p>Bl. 82v: Du mit dem kindlichen Herzen und männlichen Geiste,<br />
                dein Leben Halle noch Lenzmelodien wann dir die Locke schon bleicht.<br />
                Einst in der friedlichen Heimat verleih seinen Lorber Apollon<br />
                Und ihren himmlischen Kranz Venus-Urania Dir.<br />
@@ -386,8 +427,6 @@
                                 
                                 <div>
                                     
-                                        <h5 class="media-heading">Weitere Textquellen</h5>
-                                    
                                     <ul class="tei_list">
                                         
                                     </ul>
@@ -395,12 +434,7 @@
                             </div>
                         </div>
                         
-                        <div>
-                            <h3 class="media-heading">Themenkommentare</h3>
-                            <ul class="tei_list">
-                                
-                            </ul>
-                        </div>
+                        
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
@@ -442,7 +476,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045341</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 6. Oktober 2017 durch Eveline Bartlitz</span></p>
             </div>
             
         </div>

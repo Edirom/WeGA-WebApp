@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-09-15T13:05:55.165855Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295" />
         <meta property="dc:description" content="Die Internationale Carl-Maria-von-Weber-Gesellschaft e. V. hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl …" />
         <meta name="description" content="Die Internationale Carl-Maria-von-Weber-Gesellschaft e. V. hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,10 +241,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -258,11 +302,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7111111610497" /> <span title="Gotha">Gotha</span> 
+                                    <input type="checkbox" name="options" value="A130016" /> <span title="Gotha">Gotha</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label>
                             </div>
                         </div>
@@ -273,33 +317,31 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Die <a href="http://www.webergesellschaft.de">Internationale Carl-Maria-von-Weber-Gesellschaft e. V. <i class="fa fa-external-link"></i></a> hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl Maria von Webers“, im Rahmen ihrer Mitgliederversammlungen schon vielfach zu wissenschaftlichen Vorträgen bzw. Symposien eingeladen. 
+                        <div id="d10e2">
+                                    <p>Die <a href="http://www.webergesellschaft.de">Internationale Carl-Maria-von-Weber-Gesellschaft e. V. <i class="fa fa-external-link" aria-hidden="true"></i></a> hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl Maria von Webers“, im Rahmen ihrer Mitgliederversammlungen schon vielfach zu wissenschaftlichen Vorträgen bzw. Symposien eingeladen. 
                Der nun erschienene Band der <span class="tei_hi_italic">Weber-Studien</span> enthält Beiträge zu drei thematischen Komplexen, die in diesem Rahmen behandelt wurden: 
-               2003 in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span>, 2009 in <span class="tei_placeName"><span class="7111111610497">Gotha</span></span> sowie 2011 in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>. 
+               2003 in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span>, 2009 in <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span> sowie 2011 in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>. 
                Während die Vorträge von 2003 und 2006, gehalten ausschließlich von Mitarbeitern der Weber-Gesamtausgabe, eher dem regionalgeschichtlichen Kontext, besonders <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Aufenthalten in Württemberg bzw. Thüringen, verpflichtet waren, widmete sich das Dresdner Symposium der Thematik „Carl Maria von Weber und das Virtuosentum seiner Zeit“ und weitete damit den Blick über die engere Beschäftigung mit dem Komponisten hinaus.</p>
-                                        <p>Trotz seiner mehr als 350 Seiten wirkt der Band auch durch die neue Bindung recht schlank; der Verzicht auf den festen Einband ist angesichts der Preiskalkulation (<a href="http://www.schott-musik.de/shop/2/1000011/show,330637.html">Schott <i class="fa fa-external-link"></i></a> bietet ihn für 48.- Euro an) wohl zu verschmerzen.</p>
-                                        <ul class="tei_list">
-                                            <li class="listTitle">Bericht über das Symposium „Carl Maria von Weber und das Virtuosentum seiner Zeit“ (Dresden 2011)</li>
-                                            <li>Manuel Gervink, <span class="tei_hi_italic">Merkmale instrumentalen Virtuosentums im 19. Jahrhundert</span> (S. 3–9)</li>
-                                            <li>Heinz von Loesch, <span class="tei_hi_italic">Carl Maria von Weber und der brillante Stil</span> (S. 11‒22)</li>
-                                            <li>Frank Ziegler, <span class="tei_hi_italic">Carl Maria von Weber als Klaviervirtuose</span> (S. 23–44)</li>
-                                            <li>Solveig Schreiter, <span class="tei_hi_italic">Carl Maria von Webers Plan eines „musikalischen Baedeker“ als Dokument des öffentlichen Konzertwesens</span> (S. 45–66)</li>
-                                            <li>Hartmut Hein, <span class="tei_hi_italic">Visitenkarten des Virtuosen? Zum Genre der Klaviervariationen zwischen 1780 und 1820</span> (S. 67–82)</li>
-                                            <li>Eva-Maria von Adam-Schmidmeier, <span class="tei_hi_italic">„Hier hat man nichts als Virtuosenconzerte – wehe dem, der alle besuchen muss“. Theodor Kirchner und die Kategorie des Virtuosen</span> (S. 83–101)</li>
-                                            <li>Adelina Yefimenko, <span class="tei_hi_italic">Das Klavierwerk von Carl Maria von Weber und Michail Glinka im Kontext des Virtuosentums in der ersten Hälfte des 19. Jahrhunderts</span> (S. 103–113)</li>
-                                        </ul>
-                                        <ul class="tei_list">
-                                            <li class="listTitle">Beiträge zu Weber in Stuttgart und Gotha</li>
-                                            <li>Joachim Veit, <span class="tei_hi_italic">„Ich entsagte also eine Zeitlang der Kunst als ihr unmittelbarer Diener“. Zu Carl Maria von Webers Aufenthalt in Württemberg</span> (S. 117–154)</li>
-                                            <li>Dagmar Beck, <span class="tei_hi_italic">Carl Maria von Weber in Gotha</span> (S. 155–168)</li>
-                                            <li>Frank Ziegler, <span class="tei_hi_italic">„Ein äußerst wizziger trefflicher Kopf von einem seltenen Phantasie Reichthum“. Herzog August von Gotha als ‚Musenfürst‘ und seine Beziehungen zu Friedrich Heinrich Himmel und Carl Maria von Weber</span> (S. 169–220)</li>
-                                            <li>Solveig Schreiter, <span class="tei_hi_italic">„Passionirt für Musik“. Prinz Friedrich von Sachsen-Gotha-Altenburg als Widmungsträger von Carl Maria von Webers Konzertarie „Signor se padre sei“ (WeV E.5) sowie ausgewählter Kompositionen von Capece Scondito, Himmel, Spohr und Winter</span> (S. 221–245)</li>
-                                            <li>Frank Ziegler, <span class="tei_hi_italic">„Das Theaterchen ist allerliebst“. Theateraufführungen in der Gothaer Steinmühle (1812–1826) und Carl Maria von Weber</span> (S. 247–321)</li>
-                                            <li>Frank Ziegler, <span class="tei_hi_italic">Johann David Buschmanns Terpodion im Spiegel früher zeitgenössischer Presseberichte</span> (S. 323–335)</li>
-                                        </ul>
-                                    </div>
+                                    <p>Trotz seiner mehr als 350 Seiten wirkt der Band auch durch die neue Bindung recht schlank; der Verzicht auf den festen Einband ist angesichts der Preiskalkulation (<a href="http://www.schott-musik.de/shop/2/1000011/show,330637.html">Schott <i class="fa fa-external-link" aria-hidden="true"></i></a> bietet ihn für 48.- Euro an) wohl zu verschmerzen.</p>
+                                    <ul class="tei_list">
+                                        <li class="listTitle">Bericht über das Symposium „Carl Maria von Weber und das Virtuosentum seiner Zeit“ (Dresden 2011)</li>
+                                        <li>Manuel Gervink, <span class="tei_hi_italic">Merkmale instrumentalen Virtuosentums im 19. Jahrhundert</span> (S. 3–9)</li>
+                                        <li>Heinz von Loesch, <span class="tei_hi_italic">Carl Maria von Weber und der brillante Stil</span> (S. 11‒22)</li>
+                                        <li>Frank Ziegler, <span class="tei_hi_italic">Carl Maria von Weber als Klaviervirtuose</span> (S. 23–44)</li>
+                                        <li>Solveig Schreiter, <span class="tei_hi_italic">Carl Maria von Webers Plan eines „musikalischen Baedeker“ als Dokument des öffentlichen Konzertwesens</span> (S. 45–66)</li>
+                                        <li>Hartmut Hein, <span class="tei_hi_italic">Visitenkarten des Virtuosen? Zum Genre der Klaviervariationen zwischen 1780 und 1820</span> (S. 67–82)</li>
+                                        <li>Eva-Maria von Adam-Schmidmeier, <span class="tei_hi_italic">„Hier hat man nichts als Virtuosenconzerte – wehe dem, der alle besuchen muss“. Theodor Kirchner und die Kategorie des Virtuosen</span> (S. 83–101)</li>
+                                        <li>Adelina Yefimenko, <span class="tei_hi_italic">Das Klavierwerk von Carl Maria von Weber und Michail Glinka im Kontext des Virtuosentums in der ersten Hälfte des 19. Jahrhunderts</span> (S. 103–113)</li>
+                                    </ul>
+                                    <ul class="tei_list">
+                                        <li class="listTitle">Beiträge zu Weber in Stuttgart und Gotha</li>
+                                        <li>Joachim Veit, <span class="tei_hi_italic">„Ich entsagte also eine Zeitlang der Kunst als ihr unmittelbarer Diener“. Zu Carl Maria von Webers Aufenthalt in Württemberg</span> (S. 117–154)</li>
+                                        <li>Dagmar Beck, <span class="tei_hi_italic">Carl Maria von Weber in Gotha</span> (S. 155–168)</li>
+                                        <li>Frank Ziegler, <span class="tei_hi_italic">„Ein äußerst wizziger trefflicher Kopf von einem seltenen Phantasie Reichthum“. Herzog August von Gotha als ‚Musenfürst‘ und seine Beziehungen zu Friedrich Heinrich Himmel und Carl Maria von Weber</span> (S. 169–220)</li>
+                                        <li>Solveig Schreiter, <span class="tei_hi_italic">„Passionirt für Musik“. Prinz Friedrich von Sachsen-Gotha-Altenburg als Widmungsträger von Carl Maria von Webers Konzertarie „Signor se padre sei“ (WeV E.5) sowie ausgewählter Kompositionen von Capece Scondito, Himmel, Spohr und Winter</span> (S. 221–245)</li>
+                                        <li>Frank Ziegler, <span class="tei_hi_italic">„Das Theaterchen ist allerliebst“. Theateraufführungen in der Gothaer Steinmühle (1812–1826) und Carl Maria von Weber</span> (S. 247–321)</li>
+                                        <li>Frank Ziegler, <span class="tei_hi_italic">Johann David Buschmanns Terpodion im Spiegel früher zeitgenössischer Presseberichte</span> (S. 323–335)</li>
+                                    </ul>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Mittwoch, 18. Februar 2015</p>
                     </div>
@@ -330,7 +372,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -343,12 +385,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -373,9 +410,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

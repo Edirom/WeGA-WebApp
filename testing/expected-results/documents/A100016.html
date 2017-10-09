@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T19:12:06.809810Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2017-10-05T10:03:04.639454Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100016" />
         <meta property="dc:description" content="Zettel mit Schuldenabtragung in Stuttgart u. Ems" />
         <meta name="description" content="Zettel mit Schuldenabtragung in Stuttgart u. Ems" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100016.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -275,13 +319,13 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="69109115" /> <span title="Ems">Ems</span> 
+                                    <input type="checkbox" name="options" value="A130191" /> <span title="Ems">Ems</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7111111610497" /> <span title="Gotha">Gotha</span> 
+                                    <input type="checkbox" name="options" value="A130016" /> <span title="Gotha">Gotha</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label>
                             </div>
                         </div>
@@ -294,11 +338,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Nach der Stadtschreiberey Berechnung waren : 20<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> <span class="tei_add tei_hi_superscript">1813<a class="noteMarker" id="ref-d26392e11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d26392e11">‡</a></span> noch zu zahlen = 1653. 26 Xr.</p>
+                                        <p>Nach der Stadtschreiberey Berechnung waren : 20<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> <span class="tei_add tei_hi_superscript">1813<a class="noteMarker" id="ref-d10e11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e11">‡</a></span> noch zu zahlen = 1653. 26 Xr.</p>
                                         <p>Hievon habe ich gezahlt.          
             </p>
                                         <div class="table-wrapper">
-                                            <table id="d26392e16" class="table">
+                                            <table id="d10e16" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>an <a class="preview persons A009430" href="/exist/apps/WeGA-WebApp/de/A009430.html"><span class="tei_hi_latintype">Brukmann</span></a></td>
@@ -323,21 +367,21 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p>Meine Schulden betragen noch in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> und <span class="tei_placeName"><span class="69109115"><span class="tei_hi_latintype">Ems</span></span></span> die <span class="tei_hi_latintype">Summe</span> von – 1974 f 51 xr 3 gg:</p>
+                                        <p>Meine Schulden betragen noch in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> und <span class="preview places A130191" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130191.html"><span class="tei_hi_latintype">Ems</span></span> die <span class="tei_hi_latintype">Summe</span> von – 1974 f 51 xr 3 gg:</p>
                                         <p><span class="tei_hi_underline1">Abbezahlt daran</span>.</p>
                                         <div class="table-wrapper">
-                                            <table id="d26392e77" class="table">
+                                            <table id="d10e75" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>d: 16<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1811. an <a class="preview persons A009430" href="/exist/apps/WeGA-WebApp/de/A009430.html">Brukmann</a> geschikt </td>
                                                         <td>55 f –</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>das Geld für d: Wagen, <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html"><span class="tei_hi_latintype">Bärmann</span></a> nach <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> gewiesen zu zahlen d: 27<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1812</td>
+                                                        <td>das Geld für d: Wagen, <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html"><span class="tei_hi_latintype">Bärmann</span></a> nach <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> gewiesen zu zahlen d: 27<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1812<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090132.html">T</a></td>
                                                         <td>– 66. –</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>d: 1<span class="tei_hi_superscript">t</span> 8<span class="tei_hi_superscript">ber</span> 1812 von <span class="tei_placeName"><span class="7111111610497">Gotha</span></span> aus für die <span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span> in <span class="tei_placeName"><span class="66101114108105110"><span class="tei_hi_latintype">Berlin</span></span></span> abgeschikt 20 # in Gold oder </td>
+                                                        <td>d: 1<span class="tei_hi_superscript">t</span> 8<span class="tei_hi_superscript">ber</span> 1812 von <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span> aus für die <span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span> in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html"><span class="tei_hi_latintype">Berlin</span></span> abgeschikt 20 # in Gold oder </td>
                                                         <td>– 115 <span class="tei_hi_superscript">25</span></td>
                                                     </tr>
                                                     <tr>
@@ -349,7 +393,7 @@
                                                         <td>55 f –</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>– 28 <span class="tei_hi_latintype">July</span> nach <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> geschikt</td>
+                                                        <td>– 28 <span class="tei_hi_latintype">July</span> nach <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> geschikt</td>
                                                         <td>150.</td>
                                                     </tr>
                                                     <tr>
@@ -388,7 +432,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>vgl. auch Webers Briefe an die Stadtschreiberei in Stuttgart vom <a class="preview letters A040629" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040629.html">28. Juli 1813</a>, <a class="preview letters A040889" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040889.html">6. April 1816</a> <a class="preview letters A040918" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040918.html">24. Juli 1816</a> und <a class="preview letters A040924" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040924.html">27. August 1816</a> sowie die TB-Einträge vom <a class="preview diaries A065805" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065805.html">1. Oktober 1812</a>, <a class="preview diaries A065896" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065896.html">31. Dezember 1812</a>, <a class="preview diaries A062315" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062315.html">2. März 1813</a>, <a class="preview diaries A062832" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062832.html">11. März 1815</a> und <a class="preview diaries A064015" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064015.html">6. April 1816</a></p>
+                                        <p>vgl. auch Webers Briefe an die Stadtschreiberei in Stuttgart vom <a class="preview letters A040629" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040629.html">28. Juli 1813</a>, <a class="preview letters A040889" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040889.html">6. April 1816</a>, <a class="preview letters A040918" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040918.html">24. Juli 1816</a> und <a class="preview letters A040924" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040924.html">27. August 1816</a> sowie die TB-Einträge vom <a class="preview diaries A065805" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065805.html">1. Oktober 1812</a>, <a class="preview diaries A065896" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065896.html">31. Dezember 1812</a>, <a class="preview diaries A062315" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062315.html">2. März 1813</a>, <a class="preview diaries A062832" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062832.html">11. März 1815</a> und <a class="preview diaries A064015" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064015.html">6. April 1816</a></p>
                                     </div>
                         </div>
                         
@@ -423,13 +467,20 @@
                             </div>
                         </div>
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090132.html">Webers Kutschen</a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d26392e11" data-title="add">"1813": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e11" data-title="add">"1813": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -463,9 +514,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100016</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100016</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 5. Oktober 2017 durch Solveig Schreiter</span></p>
             </div>
             
         </div>

@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-09-15T13:05:55.165855Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172" />
         <meta property="dc:description" content="2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im …" />
         <meta name="description" content="2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,10 +241,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -270,15 +314,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="69109115" /> <span title="Ems">Ems</span> 
+                                    <input type="checkbox" name="options" value="A130191" /> <span title="Ems">Ems</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="70114971101071021171141163297109327797105110" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7511711498971003269109115" /> <span title="Kurbad Ems">Kurbad Ems</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
                                 </label>
                             </div>
                         </div>
@@ -289,28 +329,26 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>2012 wies uns <span class="6710411410511511611111210432839910411997110100116">Christoph Schwandt</span> auf einen Brief <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> hin, der bezüglich <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber, geb. Brandt</a>, Rätsel aufgab. <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a>, der sich im Sommer 1825 zeitgleich mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> im <span class="tei_placeName"><span class="7511711498971003269109115">Kurbad Ems</span></span> aufhielt, schrieb an seine langjährige Freundin <a class="preview persons A006536" href="/exist/apps/WeGA-WebApp/de/A006536.html">Jeanette Wohl</a> am 16. Juli 1825: „<a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> ist jetzt hier und logiert in den 4 Türmen. […] Ich bin begierig, ob er seine Frau bei sich hat, meine ehemalige Schwägerin (die <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brand</a>).“ 
-               <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Webers Frau</a> war allerdings nicht nach <span class="tei_placeName"><span class="69109115">Ems</span></span> mitgereist, so dass ein persönliches Treffen nicht zustande kam. Für die erwähnte familiäre Verbindung ließen sich weder durch die Börne- noch durch die Weber-Forschung Nachweise erbringen<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> 
-               – bis jetzt. Nun werfen zwei Briefe <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> aus dem Herbst 1843 neues Licht auf die Angelegenheit. Es handelt sich um Schreiben aus jenem Konvolut von Briefen der Komponistenwitwe an das befreundete Berliner Ehepaar <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm</a> und <a class="preview persons A008040" href="/exist/apps/WeGA-WebApp/de/A008040.html">Ida Jähns</a>, dessen Originaltexte verschollen sind; erhalten blieb lediglich eine maschinenschriftliche Kopie (<span class="tei_hi_italic">D-Dl</span>, Mscr. Dresd. App. 2097). <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> datierte die meisten ihrer (bezüglich Orthographie und Interpunktion recht eigenwilligen) Schreiben nicht, über Empfangsvermerke lassen sie sich allerdings chronologisch einordnen. So kam der Brief Nr. 84 des Konvoluts am 30. September 1843 in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> an; darin liest man (in der Abschrift auf S. 293):
+                        <div id="d10e2">
+                                    <p>2012 wies uns <span class="6710411410511511611111210432839910411997110100116">Christoph Schwandt</span> auf einen Brief <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> hin, der bezüglich <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber, geb. Brandt</a>, Rätsel aufgab. <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a>, der sich im Sommer 1825 zeitgleich mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> im <span class="7511711498971003269109115">Kurbad Ems</span> aufhielt, schrieb an seine langjährige Freundin <a class="preview persons A006536" href="/exist/apps/WeGA-WebApp/de/A006536.html">Jeanette Wohl</a> am 16. Juli 1825: „<a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> ist jetzt hier und logiert in den 4 Türmen. […] Ich bin begierig, ob er seine Frau bei sich hat, meine ehemalige Schwägerin (die <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brand</a>).“ 
+               <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Webers Frau</a> war allerdings nicht nach <span class="preview places A130191" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130191.html">Ems</span> mitgereist, so dass ein persönliches Treffen nicht zustande kam. Für die erwähnte familiäre Verbindung ließen sich weder durch die Börne- noch durch die Weber-Forschung Nachweise erbringen<a class="noteMarker arabic" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
+               – bis jetzt. Nun werfen zwei Briefe <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> aus dem Herbst 1843 neues Licht auf die Angelegenheit. Es handelt sich um Schreiben aus jenem Konvolut von Briefen der Komponistenwitwe an das befreundete Berliner Ehepaar <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm</a> und <a class="preview persons A008040" href="/exist/apps/WeGA-WebApp/de/A008040.html">Ida Jähns</a>, dessen Originaltexte verschollen sind; erhalten blieb lediglich eine maschinenschriftliche Kopie (<span class="tei_hi_italic">D-Dl</span>, Mscr. Dresd. App. 2097). <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> datierte die meisten ihrer (bezüglich Orthographie und Interpunktion recht eigenwilligen) Schreiben nicht, über Empfangsvermerke lassen sie sich allerdings chronologisch einordnen. So kam der Brief Nr. 84 des Konvoluts am 30. September 1843 in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> an; darin liest man (in der Abschrift auf S. 293):
                „Am Montag bin ich wieder ins Winterquartier gerückt und habe seit dem, <span class="tei_hi_underline1">jeden</span> Tag ein Haus voll Besuch gehabt. Vor allen freute mich die Ankunft eines alten Frankfurter Freunden, welcher mir treue Anhänglichkeit durch <span class="tei_hi_underline1">30</span> Jahre bewahrt hat. Es ist der Bruder des bekanntes <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Dr. Bören [recte: Börne]</a>, und <span class="tei_hi_underline1">Er</span> ist es, welcher Euch diese Zeilen, welche in aller Eile geschrieben, nur ein Lebens, ein Gesundheitszeichen sein sollen mitnimmt.“
             </p>
-                                        <p>Im nachfolgenden Brief Nr. 85 (mit Empfangsvermerk vom 20. Oktober 1843) heißt es, auf dieselbe Person Bezug nehmend (in der Abschrift auf S. 298f.):
-               „Dass unser Frankfurter freund Euch meinen Brief nicht selbst gebracht, mag wohl daher kommen dass er, wie er mir schreibt in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> unwohl wurde und nicht ausgehen konnte sonst hette er sich gewiss die Freude gemacht Euch kennen zu lernen. Dieser mein <span class="tei_hi_underline1">Jugendfreund</span> ist nun auch schuld daran dass Ihr mein Bild noch nicht habt, denn sein altes Herz verlangte so sehr nach dem Conterfey seiner <span class="tei_hi_underline1">ersten Liebe</span> dass <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> ihm eine Copie im Kleinen versprechen musste. Diese Copie ist nun zwar angefangen aber da <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> wirklich jetzt recht fleissig ist, und den ganzen Tag im Atelier arbeitet kann noch eine Zeit darüber hingehen bis er mein liebes Gesicht auf die Leinwand gezaubert hat und eine noch viel längere bis es <span class="tei_hi_underline1">ihm</span> vergönnt ist endlich zu Euch zu eilen […].“
+                                    <p>Im nachfolgenden Brief Nr. 85 (mit Empfangsvermerk vom 20. Oktober 1843) heißt es, auf dieselbe Person Bezug nehmend (in der Abschrift auf S. 298f.):
+               „Dass unser Frankfurter freund Euch meinen Brief nicht selbst gebracht, mag wohl daher kommen dass er, wie er mir schreibt in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> unwohl wurde und nicht ausgehen konnte sonst hette er sich gewiss die Freude gemacht Euch kennen zu lernen. Dieser mein <span class="tei_hi_underline1">Jugendfreund</span> ist nun auch schuld daran dass Ihr mein Bild noch nicht habt, denn sein altes Herz verlangte so sehr nach dem Conterfey seiner <span class="tei_hi_underline1">ersten Liebe</span> dass <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> ihm eine Copie im Kleinen versprechen musste. Diese Copie ist nun zwar angefangen aber da <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> wirklich jetzt recht fleissig ist, und den ganzen Tag im Atelier arbeitet kann noch eine Zeit darüber hingehen bis er mein liebes Gesicht auf die Leinwand gezaubert hat und eine noch viel längere bis es <span class="tei_hi_underline1">ihm</span> vergönnt ist endlich zu Euch zu eilen […].“
             </p>
-                                        <p>Das von <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a> im <a class="preview letters A044835" href="/exist/apps/WeGA-WebApp/de/A003044/Korrespondenz/A044835.html">Brief von 1825</a> erwähnte Verwandtschaftsverhältnis ist also nicht als ein faktisches, sondern lediglich als ein (zumindest von Seiten seines Bruders) erhofftes anzusehen: Einer seiner Brüder hatte eine Liaison mit der jungen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a>; sie war, wie sie selbst schreibt, seine „erste Liebe“. Der angegebene Zeitpunkt der Freundschaft (vor etwa 30 Jahren) verweist auf <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolines</a> Jahre in <span class="tei_placeName"><span class="70114971101071021171141163297109327797105110">Frankfurt am Main</span></span> (1809–1812), als sie am dortigen Stadttheater als Soubrette engagiert war.
+                                    <p>Das von <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a> im <a class="preview letters A044835" href="/exist/apps/WeGA-WebApp/de/A003044/Korrespondenz/A044835.html">Brief von 1825</a> erwähnte Verwandtschaftsverhältnis ist also nicht als ein faktisches, sondern lediglich als ein (zumindest von Seiten seines Bruders) erhofftes anzusehen: Einer seiner Brüder hatte eine Liaison mit der jungen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a>; sie war, wie sie selbst schreibt, seine „erste Liebe“. Der angegebene Zeitpunkt der Freundschaft (vor etwa 30 Jahren) verweist auf <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolines</a> Jahre in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt am Main</span> (1809–1812), als sie am dortigen Stadttheater als Soubrette engagiert war.
             </p>
-                                        <p><a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börne</a> (1786–1837, eigentlich Baruch, Namenswechsel 1818) hatte drei Brüder, der jüngste, <span class="839710811110911111032669711411799104">Salomon Baruch</span> (1792–1806), kommt allerdings aufgrund seines frühen Todes nicht als Jugendfreund <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> in Betracht. Es bleiben <span class="831051091111103274971071119832669711411799104">Simon Jakob Baruch</span> (1782–1856, ab 1848 Börne) und <span class="801041051081051121123274971071119832669711411799104">Philipp Jakob Baruch</span> (1789–1852, ebenfalls ab 1848 Börne), wobei die Erwähnung der „ersten Liebe“ für den jüngeren der beiden spricht, zumal <span class="83105109111110">Simon</span> seit 1803 mit <span class="90101109105114101443210310198463287101114116104101105109101114">Zemire, geb. Wertheimer</span>, verheiratet war (geschieden 1819, danach 1827 zweite Eheschließung mit <span class="83111112104105101328510810810997110110">Sophie Ullmann</span>), während <span class="80104105108105112112">Philipp</span> erst 1829 <span class="841041011141011151013283112105114111">Therese Spiro</span> (1809–1847) heiratete.
+                                    <p><a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börne</a> (1786–1837, eigentlich Baruch, Namenswechsel 1818) hatte drei Brüder, der jüngste, <span class="839710811110911111032669711411799104">Salomon Baruch</span> (1792–1806), kommt allerdings aufgrund seines frühen Todes nicht als Jugendfreund <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> in Betracht. Es bleiben <span class="831051091111103274971071119832669711411799104">Simon Jakob Baruch</span> (1782–1856, ab 1848 Börne) und <span class="801041051081051121123274971071119832669711411799104">Philipp Jakob Baruch</span> (1789–1852, ebenfalls ab 1848 Börne), wobei die Erwähnung der „ersten Liebe“ für den jüngeren der beiden spricht, zumal <span class="83105109111110">Simon</span> seit 1803 mit <span class="90101109105114101443210310198463287101114116104101105109101114">Zemire, geb. Wertheimer</span>, verheiratet war (geschieden 1819, danach 1827 zweite Eheschließung mit <span class="83111112104105101328510810810997110110">Sophie Ullmann</span>), während <span class="80104105108105112112">Philipp</span> erst 1829 <span class="841041011141011151013283112105114111">Therese Spiro</span> (1809–1847) heiratete.
             </p>
-                                        <p>Bei dem von <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> erwähnten Bildnis handelt es sich um ihr Ölporträt, ausgeführt von ihrem Sohn <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alexander von Weber</a>, dessen erste, im April 1843 fertiggestellte Fassung<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> 
-               im Sommer 1843 auf der Dresdner Akademieausstellung zu sehen war<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> 
+                                    <p>Bei dem von <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> erwähnten Bildnis handelt es sich um ihr Ölporträt, ausgeführt von ihrem Sohn <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alexander von Weber</a>, dessen erste, im April 1843 fertiggestellte Fassung<a class="noteMarker arabic" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">2</a> 
+               im Sommer 1843 auf der Dresdner Akademieausstellung zu sehen war<a class="noteMarker arabic" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">3</a> 
                und heute als Eigentum des Dresdener Stadtmuseums (Inv.-Nr. 1986/k 257) im Weber-Museum Dresden-Hosterwitz ausgestellt wird. Eine geplante Replik des Bildes für die Familie Jähns kam wohl aufgrund des frühen Todes des <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Weber-Sohns</a> nicht mehr zustande – <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a> erhielt stattdessen eine als Entwurf zum Originalgemälde entstandene Ölskizze (heute in D-B, Weberiana Cl. VIII, H. 1, Anh. 3). Ob die Replik für den <span class="662461141101014566114117100101114">Börne-Bruder</span> fertiggestellt und dem Besteller zugesandt wurde, ist unbekannt.
             </p>
-                                        <p>Der beiläufige Hinweis <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> auf seine Schwägerin (in spe) darf also – unter Vorbehalt – als geklärt gelten. Rätselhaft bleibt dagegen weiterhin der Tagebucheintrag <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> vom <a class="preview diaries A065227" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065227.html">3. März 1811</a>: „neuen Beweis erhalten daß die Weiber nichts taugen, <span class="tei_hi_underline2andMore">alle</span> – Geschichte zwischen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html"><span class="tei_hi_italic">Lina</span> <span class="tei_hi_underline1">Brandt</span></a>. und <span class="66111116104101">Bothe</span>.“ 
-               Besagter <span class="66111116104101">Bothe</span> bleibt vorerst ein Unbekannter; eine Verwechslung des Namens Baruch mit Bothe ist wohl auszuschließen. Offenbar hatte <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a> in <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span> mehrere Verehrer, immerhin erwähnt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in zwei Briefen an seine Braut und spätere Frau (<a class="preview letters A040697" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040697.html">23. Juli 1814</a>, <a class="preview letters A040814" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040814.html">21. August 1815</a>) einen ehemaligen engen Freund der Aktrice (Vorname: Moritz). Doch nicht jedes persönliche Geheimnis muss enthüllt werden; gönnen wir <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> dieses Stück Privatsphäre!
+                                    <p>Der beiläufige Hinweis <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> auf seine Schwägerin (in spe) darf also – unter Vorbehalt – als geklärt gelten. Rätselhaft bleibt dagegen weiterhin der Tagebucheintrag <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> vom <a class="preview diaries A065227" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065227.html">3. März 1811</a>: „neuen Beweis erhalten daß die Weiber nichts taugen, <span class="tei_hi_underline2andMore">alle</span> – Geschichte zwischen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html"><span class="tei_hi_italic">Lina</span> <span class="tei_hi_underline1">Brandt</span></a>. und <span class="66111116104101">Bothe</span>.“ 
+               Besagter <span class="66111116104101">Bothe</span> bleibt vorerst ein Unbekannter; eine Verwechslung des Namens Baruch mit Bothe ist wohl auszuschließen. Offenbar hatte <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a> in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span> mehrere Verehrer, immerhin erwähnt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in zwei Briefen an seine Braut und spätere Frau (<a class="preview letters A040697" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040697.html">23. Juli 1814</a>, <a class="preview letters A040814" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040814.html">21. August 1815</a>) einen ehemaligen engen Freund der Aktrice (Vorname: Moritz). Doch nicht jedes persönliche Geheimnis muss enthüllt werden; gönnen wir <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> dieses Stück Privatsphäre!
             </p>
-                                    </div>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Dienstag, 19. April 2016</p>
                     </div>
@@ -341,7 +379,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -354,22 +392,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary">
-                                        <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… durch die Weber-Forschung Nachweise erbringen": </span>Vgl. u. a. Inge Rippmann, <span class="tei_hi_italic">Börne-Index, Historisch-biographische Materialien zu Ludwig Börnes Schriften und Briefen. Ein Beitrag zu Geschichte und Literatur des Vormärz</span>, Berlin 1985, 2. Halbbd., S. 836 (zu 4/754) sowie Frank Ziegler, <span class="tei_hi_italic">Vom Theaterkind zur „Hochwohlangeheiratheten“. Neue Funde zu Caroline Brandt und ihrer Familie</span>, in: <span class="tei_hi_italic">Weberiana</span>, Heft 22 (2012), S. 97.</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="C_02" data-title="note commentary"><span class="tei_lemma">"… im April 1843 fertiggestellte Fassung": </span>Zur Datierung vgl. Max Jähns, <span class="tei_hi_italic">Friedrich Wilhelm Jähns und Max Jähns. Ein Familiengemälde für die Freunde. Als Manuskript gedruckt</span>, Dresden 1906, S. 209f. Einen ersten Hinweis auf das Porträt enthält der Brief Caroline von Webers an F. W. und Ida Jähns vom Oktober 1842 (Empfangsvermerk: 31. Oktober 1842), in dem es heißt: „Alex malt jetzt mein Portrait, und ich glaube es wird recht gut“ (<span class="tei_hi_italic">D-Dl</span>, Mscr. Dresd. App. 2097, 78).</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="C_03" data-title="note commentary"><span class="tei_lemma">"… Dresdner Akademieausstellung zu sehen war": </span>Vgl. <span class="tei_hi_italic">Verzeichniß der vom 16. Juli 1843 an in der K. Sächs. Akademie der Künste zu Dresden öffentlich ausgestellten Werke der bildenden Kunst</span>, Dresden: C. H. Gärtner, 1843, S. 21, Nr. 239.</div>
-                                        </li>
-                                    </ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -394,9 +417,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -226,12 +226,53 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009677.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009677.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009677.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009677.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009677.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Josef Kriehuber: Otto Nicolai, Lithographie (1842) (Quelle: Wikimedia)" alt="Josef Kriehuber: Otto Nicolai, Lithographie (1842) (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Otto_Nicolai.jpg/220px-Otto_Nicolai.jpg" />
+                            <img class="img-responsive" title="Josef Kriehuber: Otto Nicolai, Lithographie (1842) (Quelle: Wikimedia)" alt="Josef Kriehuber: Otto Nicolai, Lithographie (1842) (Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/ca353fda6cd8375c02d0d61257caab6c.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -297,7 +338,7 @@
                         <a href="https://de.wikipedia.org/wiki/Datei:Carl_Wenzel_Zajicek_025.jpg"><img title="Wiener Hofoper im Theater am Kärntnertor (Quelle: Wikimedia)" alt="Wiener Hofoper im Theater am Kärntnertor (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Carl_Wenzel_Zajicek_025.jpg/220px-Carl_Wenzel_Zajicek_025.jpg" /></a>
                     </div>
                         <div class="iconographythumbnail">
-                        <a href="https://de.wikipedia.org/wiki/Datei:Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG"><img title="Palais Erzherzog Carl, letztes Wohnhaus in Wien (Quelle: Wikimedia)" alt="Palais Erzherzog Carl, letztes Wohnhaus in Wien (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG/220px-Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG" /></a>
+                        <a href="https://de.wikipedia.org/wiki/Datei:Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG"><img title="Palais Erzherzog Carl, Nicolais Wohnhaus in Wien 1842 (Quelle: Wikimedia)" alt="Palais Erzherzog Carl, Nicolais Wohnhaus in Wien 1842 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG/220px-Palais_Erzh_Karl-Ypsilanti_eilerst%C3%A4tte_30.JPG" /></a>
                     </div>
                         <div class="iconographythumbnail">
                         <a href="https://de.wikipedia.org/wiki/Datei:Koenigliches_opernhaus_berl.jpg"><img title="Opernhaus Berlin 1844 (Quelle: Wikimedia)" alt="Opernhaus Berlin 1844 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Koenigliches_opernhaus_berl.jpg/220px-Koenigliches_opernhaus_berl.jpg" /></a>
@@ -382,7 +423,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A009677/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A009677.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -452,7 +493,7 @@
                                                             <li><a title="National Diet Library (Japan) (mapping provided by VIAF) [01076146]" href="http://id.ndl.go.jp/auth/ndlna/01076146">NDL [by http://viaf.org/viaf/24788088]</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [ola2002111151]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=ola2002111151">NKC [by http://viaf.org/viaf/24788088]</a></li>
                                                             <li><a title="Aus der de:Wikipedia und en:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_imslp/118587684">Noten, Partituren und Auszüge im International Music Score Library Project (7)</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.musiklexikon.ac.at/ml/musik_N/Nicolai_Otto.xml?frames=no]" href="http://www.musiklexikon.ac.at/ml/musik_N/Nicolai_Otto.xml?frames=no">Oesterreichisches Musiklexikon</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [Nicolai, Carl Otto Ehrenfried]" href="http://www.musiklexikon.ac.at/ml/musik_N/Nicolai_Otto.xml?frames=no">Oesterreichisches Musiklexikon [Nicolai, Carl Otto Ehrenfried]</a></li>
                                                             <li><a title="Oesterreichisches Musiklexikon [Nicolai, Carl Otto Ehrenfried]" href="http://www.musiklexikon.ac.at/ml/musik_N/Nicolai_Otto.xml">Oesterreichisches Musiklexikon [Nicolai, Carl Otto Ehrenfried]</a></li>
                                                             <li><a title="Landesarchiv Baden-Württemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=118587684">Online-Findmittelsystem, Landesarchiv Baden-Württemberg</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [618608]" href="https://openlibrary.org/authors/OL618608A">Open Library - Autorenseite [Otto Nicolai (1810-1849)]</a></li>
@@ -462,7 +503,7 @@
                                                             <li><a title="Mapping from GND ID IDs to SNAC ID IDs [Q154602]" href="http://snaccooperative.org/ark:/99166/w69k4htz">SNAC ID</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [035034890]" href="http://www.idref.fr/035034890">SUDOC [by http://viaf.org/viaf/24788088]</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;TRM=118587684&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50">SWB-Verbundkatalog</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29118587684">Titelaufnahmen des B3Kat (475)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29118587684">Titelaufnahmen des B3Kat (476)</a></li>
                                                             <li><a title="Links von GND-Identifiern in den Verbundatalog des GBV" href="http://gso.gbv.de/DB=2.1/SET=1/TTL=1/CMD?ACT=SRCHA&amp;IKT=8549&amp;SRT=YOP&amp;TRM=118587684">Titel im Verbundkatalog des GBV (344)</a></li>
                                                             <li><a title="Volltexte (und evtl. Biographie) bei Zeno.org [Musik/M/Nicolai,+Otto]" href="http://www.zeno.org/Musik/M/Nicolai,+Otto">Volltexte (und evtl. Biographie) bei Zeno.org [Nicolai, Otto]</a></li>
                                                             <li><a title="aus der {de,en}:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_ol/118587684">Werke in der Open Library</a></li>

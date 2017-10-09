@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-13T13:05:12.981215Z" />
+        <meta property="dc:date" content="2017-09-14T20:41:41.107639Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065830" />
         <meta property="dc:description" content="d: 26t früh um ½ 10 Uhr nach Weimar gefahren. Chaussee bis Erfurt 12 Trinkgeld 20. Post bis Weimar 3. Trinkgeld und Chaussee 1. 10. Mittag sehr …" />
         <meta name="description" content="d: 26t früh um ½ 10 Uhr nach Weimar gefahren. Chaussee bis Erfurt 12 Trinkgeld 20. Post bis Weimar 3. Trinkgeld und Chaussee 1. 10. Mittag sehr …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     <div>
                         <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a></h2>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065830.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -275,11 +319,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="69114102117114116" /> <span title="Erfurt">Erfurt</span> 
+                                    <input type="checkbox" name="options" value="A130043" /> <span title="Erfurt">Erfurt</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8746" /> <span title="W.">W.</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8710110510997114" /> <span title="Weimar">Weimar</span> 
+                                    <input type="checkbox" name="options" value="A130014" /> <span title="Weimar">Weimar</span> 
                                 </label>
                             </div>
                         </div>
@@ -303,12 +345,12 @@
                         <div id="A065830" class="tableLeft">
                                     <p>
    
-   <span class="date">d: 26<span class="tei_hi_superscript">t</span></span>  <span class="payment_1">früh um ½ 10 Uhr nach <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span> gefahren. <span class="tei_hi_latintype">Chaussee</span> bis <span class="tei_placeName"><span class="69114102117114116">Erfurt</span></span>	</span><br /> 
+   <span class="date">d: 26<span class="tei_hi_superscript">t</span></span>  <span class="payment_1">früh um ½ 10 Uhr nach <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span> gefahren. <span class="tei_hi_latintype">Chaussee</span> bis <span class="preview places A130043" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130043.html">Erfurt</span>	</span><br /> 
    <span class="payment_2">Trinkgeld	</span><br />
-   <span class="payment_3">Post bis <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span>	</span><br />    
+   <span class="payment_3">Post bis <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span>	</span><br />    
    <span class="payment_4">Trinkgeld und <span class="tei_hi_latintype">Chaussee</span>	 </span><br />
-   <span class="payment_5">Mittag sehr schlecht in <span class="tei_placeName"><span class="69114102117114116">Erfurt</span></span>	</span><br />
-   <span>um 5 Uhr in <span class="tei_placeName"><span class="8746">W.</span></span> angekommen.</span> <span><span class="tei_hi_latintype"><a class="preview persons A002173" href="/exist/apps/WeGA-WebApp/de/A002173.html">Wöhner</a></span> und <a class="preview persons A001730" href="/exist/apps/WeGA-WebApp/de/A001730.html">Schönberger</a> getroffen.</span><br />
+   <span class="payment_5">Mittag sehr schlecht in <span class="preview places A130043" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130043.html">Erfurt</span>	</span><br />
+   <span>um 5 Uhr in <span class="8746">W.</span> angekommen.</span> <span><span class="tei_hi_latintype"><a class="preview persons A002173" href="/exist/apps/WeGA-WebApp/de/A002173.html">Wöhner</a></span> und <a class="preview persons A001730" href="/exist/apps/WeGA-WebApp/de/A001730.html">Schönberger</a> getroffen.</span><br />
    <span><span class="tei_hi_latintype">Visiten</span>.</span> <span>Abends <span class="tei_placeName">Theater</span>. <span class="preview works A020973" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020973.html">Schausp:</span></span> <span class="payment_10"><span class="preview works A020973" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020973.html">wider W:</span> und <span class="80108117109112101114">Plumper</span><a class="noteMarker" id="ref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>	</span><br />
    
 </p>
@@ -390,9 +432,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065830</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065830</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

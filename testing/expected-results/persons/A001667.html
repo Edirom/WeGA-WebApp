@@ -226,6 +226,47 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -383,7 +424,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A001667/contacts.html">Kontakte<small> (1)</small></a></li>
-                                <li><a href="#backlinks" data-target="A001667/backlinks.html">Rückverweise<small> (13)</small></a></li>
+                                <li><a href="#backlinks" data-target="A001667/backlinks.html">Rückverweise<small> (14)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -426,7 +467,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A001667/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A001667.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -470,7 +511,7 @@
                                                             <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/118607057">Allgemeine Deutsche Biographie (Wikisource)</a></li>
                                                             <li><a title="http://www.datenmatrix.de/projekte/hdbg/biographien/ - inaktiv seit 2015 (PND Zuordnung: 838)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/hdbg_bio.php?pnd=118607057">Bayerische Biographien</a></li>
                                                             <li><a title="Ludwig-Maximilians-Universität München - Musikwissenschaft - Bayerisches Musiker-Lexikon Online" href="http://bmlo.de/Q/GND=118607057">Bayerisches Musiker-Lexikon Online (BMLO)</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118607057">Bayerische Staatsbibliothek (317)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118607057">Bayerische Staatsbibliothek (318)</a></li>
                                                             <li><a title="Bibliographieportal zur Geschichte Ostmitteleuropas - LitDok Ostmitteleuropa [Schelling, Friedrich Wilhelm Joseph von (1775-1854)]" href="http://www.litdok.de/cgi-bin/litdok?lang=de&amp;t_multi=x&amp;v_0=PER&amp;q_0=Schelling%2C+Friedrich+Wilhelm+Joseph+von+">Bibliographieportal zur Geschichte Ostmitteleuropas - LitDok Ostmitteleuropa [Schelling, Friedrich Wilhelm Joseph von (1775-1854)]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to BiblioNet author ID IDs [Q60070]" href="http://www.biblionet.gr/author/23862">BiblioNet author ID</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier ADB 25782 Einträge)" href="http://www.deutsche-biographie.de/pnd118607057.html#adbcontent">Biographien der ADB</a></li>
@@ -495,7 +536,7 @@
                                                             <li><a title="Mapping from GND ID IDs to Freebase ID IDs [Q60070]" href="https://g.co/kg/m/0182w0">Freebase ID</a></li>
                                                             <li><a title="Personenregister für die Gesamtausgabe der Briefe Friedrich Fröbels http://bbf.dipf.de/digitale-bbf/editionen/froebel/personen (PND Zuordnung: 395)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/froebel.php?pnd=118607057">Fröbel-Briefe nach Personen</a></li>
                                                             <li><a title="Getty Union List of Artist Names (mapping provided by VIAF) [500033737]" href="http://vocab.getty.edu/ulan/500033737">Getty Union List of Artist Names [by http://viaf.org/viaf/88933257]</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118607057">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118607057">HBZ-Verbundkatalog (1328)</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/118607057">HeBIS-Verbundzentrale (936)</a></li>
                                                             <li><a title="Personendatensätze der digitalen Edition &#34;Briefe und Texte aus dem intellektuellen Berlin um 1800&#34;" href="http://www.berliner-intellektuelle.eu/pnd.pl?id=118607057">Humboldt-Universität zu Berlin, Institut für deutsche Literatur, Nachwuchsgruppe Berliner Intellektuelle 1800-1830</a></li>
                                                             <li><a title="ICCU / OPAC SBN - Istituto Centrale per il Catalogo Unico / Catalogo del Servizio Bibliotecario Nazionale (mapping provided by VIAF) [CFIV\048583]" href="http://www.sbn.it/opacsbn/opaclib?db=solr_iccu&amp;resultForward=opac/iccu/brief.jsp&amp;from=1&amp;nentries=10&amp;searchForm=opac/iccu/error.jsp&amp;do_cmd=search_show_cmd&amp;item:5032:BID=IT%5CICCU%5CCFIV%5C048583">ICCU [by http://viaf.org/viaf/88933257]</a></li>
@@ -536,7 +577,7 @@
                                                             <li><a title="Personenregister für die Gesamtausgabe der Briefe Eduard Spranger - K�the Hadlich http://bbf.dipf.de/digitale-bbf/editionen/sprangerhadlich/personen (PND Zuordnung: 2238)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/sprangerhadlich.php?pnd=118607057">Spranger-Hadlich-Briefwechsel nach Personen</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [027342573]" href="http://www.idref.fr/027342573">SUDOC [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;TRM=118607057&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50">SWB-Verbundkatalog</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29118607057">Titelaufnahmen des B3Kat (643)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29118607057">Titelaufnahmen des B3Kat (679)</a></li>
                                                             <li><a title="Links von GND-Identifiern in den Verbundatalog des GBV" href="http://gso.gbv.de/DB=2.1/SET=1/TTL=1/CMD?ACT=SRCHA&amp;IKT=8549&amp;SRT=YOP&amp;TRM=118607057">Titel im Verbundkatalog des GBV (1054)</a></li>
                                                             <li><a title="Volltexte (und evtl. Biographie) bei Zeno.org [Philosophie/M/Schelling,+Friedrich+Wilhelm+Joseph]" href="http://www.zeno.org/Philosophie/M/Schelling,+Friedrich+Wilhelm+Joseph">Volltexte (und evtl. Biographie) bei Zeno.org [Schelling, Friedrich Wilhelm Joseph]</a></li>
                                                             <li><a title="Volltexte im Projekt Gutenberg-DE" href="http://gutenberg.spiegel.de/autor/514">Volltexte im Projekt Gutenberg-DE [Schelling, Friedrich Wilhelm Joseph von]</a></li>

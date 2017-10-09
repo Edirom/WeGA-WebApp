@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:21:01.981432Z" />
+        <meta property="dc:date" content="2017-09-15T13:07:00.585694Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011" />
         <meta property="dc:description" content="Die Edition der Romanfragmente zu Tonkünstlers Leben nimmt eine Sonderstellung innerhalb der Edition von Webers Schriften der Weber-Gesamtausgabe ein …" />
         <meta name="description" content="Die Edition der Romanfragmente zu Tonkünstlers Leben nimmt eine Sonderstellung innerhalb der Edition von Webers Schriften der Weber-Gesamtausgabe ein …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,6 +229,47 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -235,7 +280,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -293,11 +338,11 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div id="d31077e2">
-                                    <h2 id="d31077e3">Vorbemerkungen</h2>
+                        <div id="d10e2">
+                                    <h2 id="d10e3">Vorbemerkungen</h2>
                                     <p>Die Edition der Romanfragmente zu <span class="tei_hi_italic">Tonkünstlers Leben</span> nimmt eine Sonderstellung innerhalb der Edition von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Schriften der Weber-Gesamtausgabe ein. Das Prinzip der Schriftenedition, die in der Regel als Textvorlage den Erstdruck der Schriften (unter Angabe von vorhandenen Entwürfen) zugrunde legt, wurde hier aufgegeben, da nur vier der insgesamt 15 Fragmente des Romans zu Lebzeiten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> bzw. von ihm autorisiert publiziert wurden (Fragment III, IX, XII und XIII). Die Mehrzahl der Fragmente ist jedoch handschriftlich im Entwurf überliefert und dann erst postum (überwiegend in <span class="preview biblio A112549" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112549.html">Hell-Schriften</span>) veröffentlicht worden. Den Editionsprinzipien zu folgen hätte geheißen, die handschriftliche Überlieferung, die teilweise auffällig von der postumen Drucklegung abweicht, zu vernachlässigen. Bei diesem Romanfragment war den Hg. aber wichtig, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> gedanklichen Schaffensprozess, der sich an den Entwürfen sehr gut ablesen lässt, so transparent wie möglich durchscheinen zu lassen, indem pro Fragment der gedruckten Textfassung (dem Erstdruck) jeweils das entsprechende Dokument mit der handschriftlichen Überlieferung (gekennzeichnet mit Entwurf) gegenübergestellt wurde. Die Reihenfolge der Fragmente basiert dabei auf Jaisers Neuedition innerhalb der <span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html"><span class="tei_hi_italic">Weber-Studien</span>, Bd. 6.</span>, der die Fragmente chronologisch anhand der Entstehungsdaten anordnet, die wiederum im Wesentlichen auf der <span class="preview biblio A112549" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112549.html">Ausgabe von Theodor Hell von 1828</span> beruht:</p>
                                     <div class="table-wrapper">
-                                        <table id="d31077e31" class="table">
+                                        <table id="d10e31" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td><a class="preview writings A031741" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031741.html">Fragment I (Entwurf)</a></td>
@@ -363,11 +408,11 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d31077e134">
-                                    <h2 id="d31077e135">Manuskriptdatierungen und Veröffentlichungsdaten</h2>
+                                <div id="d10e134">
+                                    <h2 id="d10e135">Manuskriptdatierungen und Veröffentlichungsdaten</h2>
                                     <p>Die handschriftliche Überlieferung befindet sich (außer Fragment V) in der Staatsbibliothek Berlin; Sign.: (D-B, Mus. ms. autogr. theor. C. M. v. Weber WFN 6, Abt. I); in der Tabelle ist die entsprechende Blatt-Nr. angegeben</p>
                                     <div class="table-wrapper">
-                                        <table id="d31077e139" class="table">
+                                        <table id="d10e139" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>Fragment</td>
@@ -469,8 +514,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d31077e290">
-                                    <h2 id="d31077e291">Entstehungsprozess</h2>
+                                <div id="d10e290">
+                                    <h2 id="d10e291">Entstehungsprozess</h2>
                                     <p>Der hier verwendete Romantitel basiert auf der Überschrift der drei innerhalb der <span class="tei_hi_italic">Muse</span> 1821 veröffentlichten Fragmente als „Bruchstücke aus: Tonkünstlers Leben“; im TB verwandte Weber jedoch überwiegend die Kurzform <span class="tei_hi_italic">Künstlerleben</span>. Die Arbeit an <span class="tei_hi_italic">Tonkünstlers Leben</span> kann grob in vier Schaffensbereiche eingeteilt werden. Die ersten vier Fragmente (I–IV) entstammen der Stuttgarter Periode aus dem Jahr 1809, die Teile V–IX entstanden in Darmstadt und Mannheim 1810/1811. Die beiden Pläne (Fragmente X und XI) illustrieren Webers Bemühungen um eine Strukturierung der Ideen zum Gesamtkorpus seines Romans unter Einbezug der bis dahin entstandenen Teile. Der erste Plan fällt in die frühe Beschäftigungsphase, der zweite Plan datiert 1812. Nach einer Schaffenspause nahm Weber erst 1816 die Arbeit wieder auf (Fragmente XII–XV), wobei er auch den zweiten Plan vervollständigte (Randnotizen im Fragment XI), und konzentrierte sich ab 1820 auf die Veröffentlichung von drei Texten in der von <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a> hg. Monatsschrift <span class="tei_hi_italic">Die Muse</span> 1821 (Fragmente IX, XII und XIII). Obwohl der letzte Teil in der <span class="tei_hi_italic">Muse</span> eine Fortsetzung ankündigt, bleibt diese aus. Auch im TB ist keine weitere Beschäftigung mit dem Roman mehr nachweisbar (vgl. Tabelle unten).</p>
                                     <p>Die frühen 1809 entstandenen Teile handeln von einem Künstler, der seine sichere Existenz verlässt und in eine ungewisse Zukunft aufbricht, indem er auf Konzertreise geht und dort die mannigfaltigsten Erfahrungen mit musikalischen Instanzen und interessierten Laien macht. Mitte 1810 begann <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a>, der bereits das <span class="tei_hi_italic">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird</span> (= Fragment III), eine parodierende Traumschilderung des Komponisten über eine große Orchester-<span class="tei_hi_italic">Assemblee</span>, in seinem <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span> hatte abdrucken lassen, hinsichtlich einer Publikation des Romans zu verhandeln, wie aus dem TB-Eintrag vom <a class="preview diaries A064549" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064549.html">25. Juli</a> sowie dem Brief an <span class="74111104971101103271228110115989799104101114">Johann Gänsbacher</span> vom <a class="preview letters A040304" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040304.html">24. September 1810</a> zu entnehmen ist: Von den Verhandlungen mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a> angeregt, setzte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Arbeit am Roman mit Hilfe verschiedener literarisch-stilistischer Mittel (Opern-Parodie/Fragment VI, Erzählungen in Dialogform/Fragmente VII+VIII oder als Brief gestaltete Prosa/Fragment IX) fort und führte den Dichterfreund Dihl (Diehl), eine Art <span class="tei_hi_italic">alter ego</span> des Titelhelden, ein, der diesen durch Maskeraden und über allerlei Verwirrspiele mit der Liebe seines Lebens konfrontiert.</p>
                                     <p>Nach den eher sporadisch und zusammenhangslos entstandenen Teilen von 1809 bis 1811 scheint <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> während seiner beiden Aufenthalte in Gotha 1812 wesentliche Anstösse für die Fortführung des Romans bekommen zu haben. Er stellte sein Romanfragment dem ihm sehr zugewandten Musen-Herzog <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">August Emil Leopold von Sachsen-Gotha-Altenburg</a> vor, der selbst dichtete, malte und komponierte. Im Tagebuch vom <a class="preview diaries A065556" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065556.html">26. Januar</a> vermerkte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> freudig, dass sich der <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> sehr für sein <span class="tei_hi_italic">Künstlerleben</span> interessieren würde und Gedichte dazu verfassen wolle. Außerdem musste <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> versichern, den Held des Stückes Xavie[r] zu nennen, wie den männlichen  Hauptprotagonisten in dem in Brief- und Tagebuchform gehaltenen Roman über eine Jungfrau Namens Emilie, an dem der <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> zu dieser Zeit arbeitete und zu dem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> das „Lied, der braunverhüllten Emilie“ beisteuerte (= <span class="preview works A020143" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020143.html">Um Rettung bietet ein güldnes Geschmeide</span> JV 129, TB <a class="preview diaries A065621" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065621.html">31. März 1812</a>). Obwohl Gedichte des <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzogs</a> zu <span class="tei_hi_italic">Tonkünstlers Leben</span> zwar nicht überliefert sind und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, als er bei seinem zweiten längeren Aufenthalt in Gotha einen neuen Plan für seinen Roman entwarf, als Namen für seinen Helden Felix anstelle Xavier wählte, bleibt eine Verbindung zu den offenbar äußerst fruchtbaren Auseinandersetzungen mit dem <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> in der weiblichen Hauptrolle, der von Felix angebeteten  Emilie (die allerdings bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Figur vorher schon existierte) bestehen<a class="noteMarker arabic" id="ref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a>. 
@@ -479,11 +524,11 @@
                                     <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>s unvollendeter Roman steht in der Tradition einer literarischen Reihe, der Musikerbiographie, von Reichardts <span class="tei_hi_italic">Leben des berühmten Tonkünstlers Heinrich Wilhelm Gulden</span> (Berlin 1779) oder von Wackenroder und Tiecks <span class="tei_hi_italic">Herzensergießungen eines kunstliebenden Klosterbruders</span> (Berlin 1796). Geistig nahe steht <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> natürlich auch <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">E.T.A. Hoffmanns</a> Kapellmeister Kreisler aus dessen <span class="tei_hi_italic">Kreisleriana</span>, die zwischen 1810 und 1814 in der <a class="preview orgs A080000" href="/exist/apps/WeGA-WebApp/de/A080000.html">AmZ</a> abgedruckt wurden und 1814 und 1815 im zweiten und vierten Band der <span class="tei_hi_italic">Fantasiestücke in Callot’s Manier</span> erschienen. Dass <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> sich mit <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmanns</a> Werk beschäftigte,  aber auch worin für ihn die Schwierigkeiten einer stringenten gedanklichen Arbeit daran lagen, zeigen seine Zeilen an <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Friedrich Rochlitz</a> am <a class="preview letters A040878" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040878.html">4. Februar 1816</a>: „a prospos. haben Sie die Phantasiestükke von Hoffmann, 4 Theile gelesen? und was halten Sie davon. Ich finde viel treffliches, blühende, ja oft toll überschäumende Phantasie darin, und das Ganze /: mit Erlaubniß gesagt :/ und wie mir scheint, ohne bestimten Zweck vor Augen gehabt zu haben hingeworfen. der erste Theil gefällt mir am besten. Bey der Gelegenheit ist die Lust mein Künstlerleben, wieder vorzunehmen lebendig in mir erwacht. und ich werfe so manchmal eine kleine Skizze hin. Aber allein kann ich an so etwas nicht arbeiten, ich muß einen Freund haben, deßen Urtheil mich berichtigt deßen Beyfall mich befeuert. Könnte ich Sie doch zu mir hexen.“ Darüber hinaus werden Einflüsse durch <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Pauls</a> <span class="tei_hi_italic">Flegeljahre</span> (Tübingen 1804/1805) sichtbar. Dass es sich bei <span class="tei_hi_italic">Tonkünstlers Leben</span> aber ebenso um autobiographisch motivierte ästhetische Selbstreflexionen eines kritischen Künstlergeistes handelt, bleibt außer Zweifel. <a class="preview persons A000505" href="/exist/apps/WeGA-WebApp/de/A000505.html">Karl Försters</a> Urteil, in der wiss. Beilage zu Nr. 9 der <span class="tei_hi_italic">Abendzeitung</span> 1821, fasste diese Tatsache treffend zusammen: „Es sind tiefe Blicke in das Leben oder vielmehr geniale Griffe aus dem Leben, aus der eigenen Brust des vielerfahrenen Künstlers.“</p>
                                     <p>Abschließend sei hier das Resümee von Kaiser in seiner <span class="preview biblio A111886" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A111886.html">Schriftenausgabe</span>, S. XXII, zitiert, das die Bedeutung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> schriftstellerischem Œuvre gelungen zusammenfasst: „Die Summe seiner ästhetischen Ansichten und Prinzipien, die in seinen Schriften und im Roman niedergelegt sind, ist so groß und wertvoll, daß wir nicht anstehen zu erklären, ein jeder Musiker und Musikfreund unserer Tage könne hier noch recht viel lernen. Selbst wo <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> Werke bespricht, die heute vergessen sind, ist doch die Art, wie er sie anschaut und beurteilt, hochinteressant. Geradezu imponieren aber muß die hohe Achtung, die er vor dem Kunstwerk als solchem hat, und die unendliche Liebe zu der ihm heiligen Tonkunst. Den Beruf des Künstlers vergleicht er mit dem des Priesters; in einer für ihn an Zweifeln und Kämpfen reichen Zeit glaubte er als Künstler auf seinen Glücksanspruch als Mensch verzichten und ganz der Welt sich weihen zu müssen, [...] Auch noch später verlangt er vom Künstler, daß er auch als Mensch sich vor anderen auszeichne und das verliehene Genie als ein Himmelsgeschenk ansehe, dessen er sich würdig zu zeigen habe. So durchzieht ein hoher Idealismus die Schriften, und überall offenbart sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Wahrheitsliebe im reichsten Maße.“</p>
                                 </div>
-                                <div id="d31077e532">
-                                    <h2 id="d31077e533">Inhalt der Fragmente</h2>
+                                <div id="d10e532">
+                                    <h2 id="d10e533">Inhalt der Fragmente</h2>
                                     <p>Die folgende Tabelle gibt nur einen kurzen Überblick über den Inhalt der einzelnen Romanfragmente. Ausführlichere Angaben dazu und Hinweise zur Einordnung und Bewertung der inhaltlichen Bestandteile des Romans finden sich in den einzelnen Fragmenten im jeweiligen Apparat (vgl. auch ausführlich bei <span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html">Jaiser</span>, S. 82–104).</p>
                                     <div class="table-wrapper">
-                                        <table id="d31077e540" class="table">
+                                        <table id="d10e540" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>I</td>
@@ -549,10 +594,10 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d31077e622">
-                                    <h2 id="d31077e623">Arbeit am Roman lt. TB</h2>
+                                <div id="d10e622">
+                                    <h2 id="d10e623">Arbeit am Roman lt. TB</h2>
                                     <div class="table-wrapper">
-                                        <table id="d31077e625" class="table">
+                                        <table id="d10e625" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>1810</td>
@@ -663,8 +708,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d31077e808" class="bibliography">
-                                    <h2 id="d31077e809">Literatur</h2>
+                                <div id="d10e808" class="bibliography">
+                                    <h2 id="d10e809">Literatur</h2>
                                     <ul>
                                         <li>Theodor Hell, <span class="tei_hi_italic">Hinterlassene Schriften von Carl Maria von Weber</span>. Dresden und Leipzig 1828</li>
                                         <li>Georg Kaiser, <span class="tei_hi_italic">Sämtliche Schriften von Carl Maria von Weber</span>, Berlin und Leipzig 1908, S. 15f.</li>
@@ -700,9 +745,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

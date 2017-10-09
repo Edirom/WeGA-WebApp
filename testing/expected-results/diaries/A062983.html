@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-13T13:05:12.981215Z" />
+        <meta property="dc:date" content="2017-09-14T20:41:41.107639Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062983" />
         <meta property="dc:description" content="d: 9t Trinkgelder ins Haus 2 ƒ 42. um ½ 7 Uhr abgereißt. Thorzettel 12 xr. Schmiergeld 24. Post bis Eiarasburg 4. 23. Trinkgeld 1. 36. Anspanner 6. …" />
         <meta name="description" content="d: 9t Trinkgelder ins Haus 2 ƒ 42. um ½ 7 Uhr abgereißt. Thorzettel 12 xr. Schmiergeld 24. Post bis Eiarasburg 4. 23. Trinkgeld 1. 36. Anspanner 6. …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     <div>
                         <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a></h2>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062983.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -275,11 +319,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="69105971149711598117114103" /> <span title="Eiarasburg">Eiarasburg</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8399104119979810497117115101110" /> <span title="Schwabhausen">Schwabhausen</span> 
+                                    <input type="checkbox" name="options" value="A130523" /> <span title="Schwabhausen">Schwabhausen</span> 
                                 </label>
                             </div>
                         </div>
@@ -306,18 +348,18 @@
  <span class="date">d: 9<span class="tei_hi_superscript">t</span></span>  <span class="payment_1">Trinkgelder ins Haus	 </span><br />
   <span class="payment_2">um ½ 7 Uhr abgereißt. Thorzettel <span class="tei_measure">12 xr.</span></span><br />
  <span class="payment_3">Schmiergeld						     <span class="tei_measure">24.</span></span><br />
- <span class="payment_4">Post bis <span class="tei_placeName"><span class="69105971149711598117114103"><span class="tei_hi_underline1">Ei<span class="tei_add">aras<a class="noteMarker" id="ref-d23400e36" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d23400e36">‡</a></span>burg</span></span></span>			 		 <span class="tei_measure">4.</span>  <span class="tei_measure">23.</span></span><br />
+ <span class="payment_4">Post bis <span class="69105971149711598117114103"><span class="tei_hi_underline1">Ei<span class="tei_add">aras<a class="noteMarker" id="ref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">‡</a></span>burg</span></span>			 		 <span class="tei_measure">4.</span>  <span class="tei_measure">23.</span></span><br />
  <span class="payment_5">Trinkgeld							 <span class="tei_measure">1.</span>  <span class="tei_measure">36.</span></span><br />
  <span class="payment_6">Anspanner							 <span class="tei_measure">6.</span></span><br />
- <span class="payment_7">Post bis <span class="tei_hi_underline1"><span class="tei_placeName"><span class="8399104119979810497117115101110">Schwabhausen</span></span></span>					 <span class="tei_measure">4.</span>  <span class="tei_measure">30.</span></span><br />
+ <span class="payment_7">Post bis <span class="tei_hi_underline1"><span class="preview places A130523" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130523.html">Schwabhausen</span></span>					 <span class="tei_measure">4.</span>  <span class="tei_measure">30.</span></span><br />
  <span class="payment_8">Trinkgeld							 <span class="tei_measure">1.</span>  <span class="tei_measure">36.</span></span><br />
  <span class="payment_9">Schmiergeld						     <span class="tei_measure">15.</span></span><br />
- <span class="payment_10">Post bis <span class="tei_placeName"><span class="7725211099104101110">München</span></span>					 <span class="tei_measure">4.</span>  <span class="tei_measure">30.</span></span><br />
+ <span class="payment_10">Post bis <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span>					 <span class="tei_measure">4.</span>  <span class="tei_measure">30.</span></span><br />
  <span>Trinkgeld							 <span class="tei_hi_underline1"><span class="tei_measure">1.</span>  <span class="tei_measure">36.</span></span></span><br />
   <span class="payment_12">  </span><br /> 
   <span>die Rükreise bezahlte <span class="tei_hi_latintype"><a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a></span>,, da ich die Hinreise<br /> 
   gezahlt.</span> <span class="payment_14">Armen	</span><br />
-  <span>um 2 Uhr in <span class="tei_placeName"><span class="7725211099104101110">München</span></span> angekommen.</span> <span class="payment_16">1 Both: Wein	   </span><br />  
+  <span>um 2 Uhr in <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> angekommen.</span> <span class="payment_16">1 Both: Wein	   </span><br />  
  <span>ausgepakt. <span class="tei_hi_latintype">pp</span></span> <span>Abends <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span></span>. <a class="preview persons A001816" href="/exist/apps/WeGA-WebApp/de/A001816.html">Mad: <span class="tei_hi_latintype">Sessi</span></a>. <span class="6811111011097326511011097"><span class="tei_hi_latintype">Donna</span><br /> 
   <span class="tei_hi_latintype">Anna</span></span>. so so.</span> <span class="payment_19">Gefrornes	</span><span class="tei_pb">Seitenumbruch</span> 
 
@@ -370,7 +412,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d23400e36" data-title="unclear">"aras": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e35" data-title="unclear">"aras": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -400,9 +442,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062983</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062983</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

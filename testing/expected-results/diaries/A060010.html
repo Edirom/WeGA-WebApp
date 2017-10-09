@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     <div>
                         <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a></h2>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060010.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -341,7 +385,7 @@
     <span>Mit <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> abgeschloßen. <span class="preview works A020062 A020063 A020067 A020068" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020062.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020063.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020067.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020068.html">2 Arien in <span class="tei_hi_latintype">Es</span> und <span class="tei_hi_latintype">F</span></span>. 
         <span class="preview works A020316" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020316.html"><span class="tei_hi_latintype">Trio</span> für <br />
         Flöte <span class="tei_hi_latintype">Pf</span>: und <span class="tei_hi_latintype">Violon</span>:</span> <span class="preview works A020339 A020340 A020341 A020342 A020343 A020344 A020345 A020346" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020339.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020340.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020341.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020342.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020343.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020344.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020345.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020346.html">8 <span class="tei_hi_latintype">petit</span>: <span class="tei_hi_latintype">Pieçen</span></span> und <span class="preview works A020253" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020253.html">Klav: Ausz.
-        <span class="tei_hi_latintype">Chin</span><span class="tei_supplied" id="d21515e206"><span class="brackets_supplied">[</span><span class="tei_hi_latintype">e</span><span class="brackets_supplied">]</span></span><span class="break_inWord">-</span><br /><span class="tei_del">d:<a class="noteMarker" id="ref-d21515e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d21515e210">‡</a></span> <span class="tei_hi_latintype">sa</span></span> für 50 <span class="tei_hi_latintype">Fried: dor</span>. diese in einem Wechsel von <br />
+        <span class="tei_hi_latintype">Chin</span><span class="tei_supplied" id="d10e206"><span class="brackets_supplied">[</span><span class="tei_hi_latintype">e</span><span class="brackets_supplied">]</span></span><span class="break_inWord">-</span><br /><span class="tei_del">d:<a class="noteMarker" id="ref-d10e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e210">‡</a></span> <span class="tei_hi_latintype">sa</span></span> für 50 <span class="tei_hi_latintype">Fried: dor</span>. diese in einem Wechsel von <br />
         <a class="preview persons A000999" href="/exist/apps/WeGA-WebApp/de/A000999.html">Kielemann</a> sogleich erhalten.</span>
     <span class="payment_16">bey <span class="tei_hi_latintype"><span class="preview persons A000883 A000882" data-ref="/exist/apps/WeGA-WebApp/de/A000883.html /exist/apps/WeGA-WebApp/de/A000882.html">Hothos</span></span> dem Bedienten 
         </span> <br />
@@ -395,7 +439,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d21515e210" data-title="del">"d:":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e210" data-title="del">"d:":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -425,7 +469,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060010</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060010</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am 13. April 2017 durch Peter Stadler</span></p>
             </div>

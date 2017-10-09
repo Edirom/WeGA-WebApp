@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T19:12:06.809810Z" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100189" />
         <meta property="dc:description" content="Friedrich Wilhelm Jähns konnte Unterlagen, die Max Maria von Weber aus Monheim bekommen hatte, noch einsehen; er fertigte u. a. vom Auszug aus den Adelsmatrikeln, eine Abschrift an, die in seiner Weberiana-Sammlung erhalten blieb" />
         <meta name="description" content="Friedrich Wilhelm Jähns konnte Unterlagen, die Max Maria von Weber aus Monheim bekommen hatte, noch einsehen; er fertigte u. a. vom Auszug aus den Adelsmatrikeln, eine Abschrift an, die in seiner Weberiana-Sammlung erhalten blieb" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,10 +246,51 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information had to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A0021AD/Dokumente/A100189.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a streamlined plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
@@ -267,7 +311,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -282,15 +326,15 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-center"><span class="tei_hi_latintype">Weber aus Schwaben</span></h2>
                                         <p>
-               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d25089e9"><span class="brackets_supplied">[</span>Wiedergabe des beschriebenen Wappens<span class="brackets_supplied">]</span></span></span></p>
-                                        <p><span class="tei_hi_underline1">Herr <span class="7411110497110110326697112116105115116327446328546326846"><span class="tei_hi_latintype">Johann Baptist J. U. D.</span></span> und kaiserℓ. Geheimer Rath <span class="tei_hi_latintype">pp</span>. angenommen unter die neuen Geschlechter im August oder September <span class="tei_hi_latintype">Anno</span> 1568. C. 8. In den Herrenstand getretten <span class="tei_hi_latintype">A<span class="tei_hi_superscript">no</span></span> 1622<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Der <span class="tei_sic">Mannesstammen<a class="noteMarker" id="ref-d25089e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d25089e38">‡</a></span> ist im Lande abgegangen</span>.</p>
-                                        <p>Daß nachstehender Nahmen sammt Wappen und Anmerkung sich also in der n.<span class="tei_supplied" id="d25089e44"><span class="brackets_supplied">[</span>ieder<span class="brackets_supplied">]</span></span> ö.<span class="tei_supplied" id="d25089e47"><span class="brackets_supplied">[</span>sterreichischen<span class="brackets_supplied">]</span></span> Ritterstandes Matricul eingetragen befindet wird hiemit im Nahmen des n. ö. Ritterstandes durch nachstehende gewöhnliche Fertigungen bestätigt und zwar auf Ansuchen des <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html"><span class="tei_hi_underline1">Franz Anton</span> Freiherrn von Weber</a>.
-               <span class="tei_segBlock textAlign-left"><span class="tei_placeName"><span class="87105101110">Wien</span></span> den 19. März 1804.</span>
-               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d25089e62"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> <a class="preview persons A0021AD" href="/exist/apps/WeGA-WebApp/de/A0021AD.html">Carl Leopold von Moser</a> <span class="tei_hi_latintype">m.<span class="tei_supplied" id="d25089e70"><span class="brackets_supplied">[</span>anu<span class="brackets_supplied">]</span></span> pr.<span class="tei_supplied" id="d25089e73"><span class="brackets_supplied">[</span>opria<span class="brackets_supplied">]</span></span></span><br />
+               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e9"><span class="brackets_supplied">[</span>Wiedergabe des beschriebenen Wappens<span class="brackets_supplied">]</span></span></span></p>
+                                        <p><span class="tei_hi_underline1">Herr <span class="7411110497110110326697112116105115116327446328546326846"><span class="tei_hi_latintype">Johann Baptist J. U. D.</span></span> und kaiserℓ. Geheimer Rath <span class="tei_hi_latintype">pp</span>. angenommen unter die neuen Geschlechter im August oder September <span class="tei_hi_latintype">Anno</span> 1568. C. 8. In den Herrenstand getretten <span class="tei_hi_latintype">A<span class="tei_hi_superscript">no</span></span> 1622<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Der <span class="tei_sic">Mannesstammen<a class="noteMarker" id="ref-d10e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e38">‡</a></span> ist im Lande abgegangen</span>.</p>
+                                        <p>Daß nachstehender Nahmen sammt Wappen und Anmerkung sich also in der n.<span class="tei_supplied" id="d10e44"><span class="brackets_supplied">[</span>ieder<span class="brackets_supplied">]</span></span> ö.<span class="tei_supplied" id="d10e47"><span class="brackets_supplied">[</span>sterreichischen<span class="brackets_supplied">]</span></span> Ritterstandes Matricul eingetragen befindet wird hiemit im Nahmen des n. ö. Ritterstandes durch nachstehende gewöhnliche Fertigungen bestätigt und zwar auf Ansuchen des <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html"><span class="tei_hi_underline1">Franz Anton</span> Freiherrn von Weber</a>.
+               <span class="tei_segBlock textAlign-left"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> den 19. März 1804.</span>
+               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e61"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> <a class="preview persons A0021AD" href="/exist/apps/WeGA-WebApp/de/A0021AD.html">Carl Leopold von Moser</a> <span class="tei_hi_latintype">m.<span class="tei_supplied" id="d10e69"><span class="brackets_supplied">[</span>anu<span class="brackets_supplied">]</span></span> pr.<span class="tei_supplied" id="d10e72"><span class="brackets_supplied">[</span>opria<span class="brackets_supplied">]</span></span></span><br />
                   Landesuntermarschall.</span>
-               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d25089e80"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> <a class="preview persons A00063E" href="/exist/apps/WeGA-WebApp/de/A00063E.html">Leonhard Laurenz von <span class="tei_hi_latintype">Hentschel m. pr.</span></a>
+               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e79"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> <a class="preview persons A00063E" href="/exist/apps/WeGA-WebApp/de/A00063E.html">Leonhard Laurenz von <span class="tei_hi_latintype">Hentschel m. pr.</span></a>
                N.Ö. RitterstandsAusschuß Rath.</span>
-               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d25089e90"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> Joseph Steichen <span class="tei_hi_latintype">m.pr</span>
+               <span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e89"><span class="brackets_supplied">[</span>Siegelsymbol<span class="brackets_supplied">]</span></span> Joseph Steichen <span class="tei_hi_latintype">m.pr</span>
                N.Ö. Ritterstandes Ausschuß Rath.</span></p>
                                     </div>
                                 </div>
@@ -348,7 +392,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d25089e38" data-title="sic">"Mannesstammen": sic!</div>
+                                            <div class="apparatusEntry" id="d10e38" data-title="sic">"Mannesstammen": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -382,9 +426,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100189</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100189</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
