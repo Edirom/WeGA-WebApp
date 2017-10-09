@@ -769,10 +769,10 @@ declare
                 $model('doc')//tei:orgName[@type = 'alt'] ! string-join(str:txtFromTEI(., $lang), '')
                 ),
             'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'birth' := $model('doc')//tei:birth[not(tei:date[@type])],
-            'baptism' := $model('doc')//tei:birth/tei:date[@type='baptism'],
-            'death' := $model('doc')//tei:death[not(tei:date[@type])],
-            'funeral' := $model('doc')//tei:death/tei:date[@type = 'funeral'],
+            'birth' := exists($model('doc')//tei:birth[not(tei:date[@type])]),
+            'baptism' := exists($model('doc')//tei:birth/tei:date[@type='baptism']),
+            'death' := exists($model('doc')//tei:death[not(tei:date[@type])]),
+            'funeral' := exists($model('doc')//tei:death/tei:date[@type = 'funeral']),
             'occupations' := $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
             'residences' := $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
             'addrLines' := $model('doc')//tei:addrLine[ancestor::tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']] 
@@ -1112,7 +1112,7 @@ declare
         map {
             'hasFacsimile' := exists(query:facsimile($model?doc)),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom'],
+            'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
             'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
         }
 };
@@ -1307,7 +1307,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $thematicCom := core:doc(substring-after($model('thematicCom')/@target, 'wega:'))
+        let $thematicCom := core:doc(substring-after($model('thematicCom'), 'wega:'))
         return
             element { node-name($node) } {
                 attribute href { app:createUrlForDoc($thematicCom, $lang) },
@@ -1326,9 +1326,7 @@ declare
             }
 };
 
-declare 
-    %templates:wrap
-    function app:context($node as node(), $model as map(*)) as map(*)? {
+declare function app:context($node as node(), $model as map(*)) as map(*)? {
         switch($model?docType)
         case 'letters' return query:correspContext($model?doc)
         default return ()
