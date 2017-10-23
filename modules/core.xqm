@@ -194,22 +194,3 @@ declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as
 declare function core:permalink($docID as xs:string) as xs:anyURI? {
     xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($docID))
 };
-
-(:~
- : Sort items by their cert-attribute
- : Primarily used for sorting birth and death dates    
-~:)
-declare function core:order-by-cert($items as item()*) as item()* {
-    let $order := map {
-        'high' := 1,
-        'medium' := 2,
-        'low' := 3,
-        'unknown' := 4,
-        '' := 0
-    }
-    return
-        for $i in $items
-        let $cert := $i/string(@cert)
-        order by $order($cert)
-        return $i
-};

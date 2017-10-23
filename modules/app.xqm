@@ -30,6 +30,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 
 (:
  : ****************************
@@ -848,7 +849,7 @@ declare
         case 'death' return $model('doc')//tei:placeName[parent::tei:death]
         default return ()
     return
-        for $placeName at $count in core:order-by-cert($placeNames)
+        for $placeName at $count in wega-util-shared:order-by-cert($placeNames)
         let $preposition :=
             if(matches(normalize-space($placeName), '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
             else concat(' ', lower-case(lang:get-language-string('in', $model('lang'))), ' ')
@@ -869,7 +870,7 @@ declare
             case 'death' return $model('doc')//tei:death/tei:date[not(@type)]
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
-        let $orderedDates := core:order-by-cert($dates)
+        let $orderedDates := wega-util-shared:order-by-cert($dates)
         let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup) {
             <sup class="jul" 
                 data-toggle="tooltip" 
