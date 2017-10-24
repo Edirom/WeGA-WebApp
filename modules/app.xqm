@@ -1327,10 +1327,16 @@ declare
             }
 };
 
-declare function app:context($node as node(), $model as map(*)) as map(*)? {
-        switch($model?docType)
-        case 'letters' return query:correspContext($model?doc)
-        default return ()
+declare 
+    %templates:wrap
+    function app:context($node as node(), $model as map(*)) as map(*)? {
+        let $context := 
+            switch($model?docType)
+            case 'letters' return map:new((query:context-relatedItems($model?doc), query:correspContext($model?doc)))
+            default return ()
+        return
+            if(wega-util-shared:has-content($context)) then $context
+            else ()
 };
 
 declare 
@@ -1355,6 +1361,12 @@ declare
             if($partner) then app:createDocLink($partner, query:title($partnerID), $lang, ())
             else lang:get-language-string('unknown', $lang)
         )
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        app:createDocLink($model?context-relatedItem?*, lang:get-language-string(map:keys($model?context-relatedItem), $lang), $lang, ())
 };
 
 (:~

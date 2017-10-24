@@ -291,7 +291,7 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
 (:~
  : Query the letter context, i.e. preceding and following letters
 ~:)
-declare function query:correspContext($doc as document-node()) as map(*)* {
+declare function query:correspContext($doc as document-node()) as map(*)? {
     let $docID := $doc/tei:TEI/data(@xml:id)
     let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
     let $addresseeID := ($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
@@ -344,12 +344,14 @@ declare function query:correspContext($doc as document-node()) as map(*)* {
     }
     
     return
-        map {
-            'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
-            'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
-            'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
-            'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
-        }
+        if($prevLetterFromSender,$prevLetterToSender,$nextLetterFromSender,$nextLetterToSender,$prevLetterFromAuthorToAddressee,$prevLetterFromAddressee,$replyLetterFromSender,$replyLetterFromAddressee) then  
+            map {
+                'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
+                'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
+                'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
+                'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
+            }
+        else ()
 };
 
 (:~
@@ -362,5 +364,18 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
     return
         if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url]
         else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url]
+        else ()
+};
+
+declare function query:context-relatedItems($doc as document-node()?) as map()? {
+    let $relatedItems :=  
+        for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
+        return
+            map:entry($relatedItem/@type, core:doc(substring-after($relatedItem/@target, ':')))
+    return
+        if(exists($relatedItems)) then 
+            map { 
+                'context-relatedItems' := $relatedItems
+            }
         else ()
 };
