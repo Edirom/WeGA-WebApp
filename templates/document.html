@@ -53,11 +53,12 @@
                     <div data-template="app:context">
                         <h2><a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
-                            <div data-template="app-shared:if-exists" data-template-key="context-relatedItems">
-                                <h3>Verknüpfte Dokumente</h3>
+                            <div id="relatedItems" data-template="app-shared:if-exists" data-template-key="context-relatedItems">
+                                <h3 data-template="lang:translate">relatedItems</h3>
                                 <ul>
                                     <li data-template="app-shared:each" data-template-from="context-relatedItems" data-template-to="context-relatedItem">
-                                        <a href="#" data-template="app:print-context-relatedItem">Entwurf</a>
+                                        <h4 data-template="app:print-context-relatedItem-type">Draft</h4> 
+                                        <p><a href="#" data-template="app:print-context-relatedItem">Brief an Weber</a></p>
                                     </li>
                                 </ul>
                             </div>

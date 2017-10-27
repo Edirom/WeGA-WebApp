@@ -367,11 +367,21 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
         else ()
 };
 
+(:~
+ : Query the related documents (drafts, etc.) for a given document
+ :
+ : @return a map with only one key 'context-relatedItems'. 
+ :      The value of this key is a sequence of maps, each containing the keys 'context-relatedItem-type', 'context-relatedItem-doc' and 'context-relatedItem-n'
+~:)
 declare function query:context-relatedItems($doc as document-node()?) as map()? {
     let $relatedItems :=  
         for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
-        return
-            map:entry($relatedItem/@type, core:doc(substring-after($relatedItem/@target, ':')))
+        return 
+            map {
+                'context-relatedItem-type': data($relatedItem/@type),
+                'context-relatedItem-doc': core:doc(substring-after($relatedItem/@target, ':')),
+                'context-relatedItem-n': data($relatedItem/@n)
+            }
     return
         if(exists($relatedItems)) then 
             map { 

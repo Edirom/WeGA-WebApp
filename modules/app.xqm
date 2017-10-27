@@ -1333,7 +1333,7 @@ declare
         let $context := 
             switch($model?docType)
             case 'letters' return map:new((query:context-relatedItems($model?doc), query:correspContext($model?doc)))
-            default return ()
+            default return query:context-relatedItems($model?doc)
         return
             if(wega-util-shared:has-content($context)) then $context
             else ()
@@ -1366,7 +1366,14 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        app:createDocLink($model?context-relatedItem?*, lang:get-language-string(map:keys($model?context-relatedItem), $lang), $lang, ())
+        app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
+};
+
+declare 
+    %templates:default("lang", "en")
+    %templates:wrap
+    function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+        lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
 };
 
 (:~
