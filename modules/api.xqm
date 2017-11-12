@@ -83,8 +83,10 @@ declare function api:code-findByElement($model as map()) {
         else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
-        (: when searching for tei:facsimile empty code samples may be returned due to licensing issues :)
+        (: NB: when searching for tei:facsimile empty code samples may be returned due to licensing issues :)
         if($model?total) then $eval
+        (: The 'secret' $total switch is used for our list of examples on the spec pages and is of type element()*; 
+            regular output from the API is the following subsequence of type map()* :)
         else api:codeSample(api:subsequence($eval, $model), $model) 
 };
 

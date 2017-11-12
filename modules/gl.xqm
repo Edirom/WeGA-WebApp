@@ -506,7 +506,7 @@ declare %private function gl:print-exemplum($exemplum as element()) as item()* {
  : A simple mapping from schemaSpec identifiers to WeGA document types
 ~:)
 declare function gl:schemaIdent2docType($schemaID as xs:string?) as xs:string? {
-	if($schemaID) then lower-case(substring-after($schemaID, 'wega'))
+	if(matches($schemaID, '^wega[A-Z]')) then lower-case(substring-after($schemaID, 'wega'))
 	else ()
 };
 

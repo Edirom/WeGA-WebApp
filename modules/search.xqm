@@ -88,13 +88,18 @@ declare
         let $entries-per-page := xs:int(config:entries-per-page())
         let $subseq := subsequence($model('search-results'), ($page - 1) * $entries-per-page + 1, $entries-per-page)
         let $docs := 
-            (: the results of the fulltext search are of type map()*
+            (: This whole code block is not very elegant:
+             : the results of the fulltext search are of type map()* and need to be turned into document-node
+             : the results of the list of examples from the spec pages are elements and need *not* to be processed
              : other searches and/or list views simply return document-node()*
             :)
             for $doc in $subseq
             return
                 if($doc instance of document-node()) then $doc
                 else if($doc instance of map()) then $doc?doc
+                else if($doc instance of element()) then $doc 
+                else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
+                else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
                 else error($search:ERROR, 'unknown result entry')
         let $result-page-hits-per-entry := map:new(
             for $doc in $subseq
