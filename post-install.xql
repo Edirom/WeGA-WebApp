@@ -25,7 +25,7 @@ declare function local:mkcol-recursive($collection, $components) {
 };
 
 declare function local:set-options() as xs:string* {
-    for $opt in available-environment-variables()[starts-with(., 'WeGA-WebApp_')]
+    for $opt in available-environment-variables()[starts-with(., 'WEGA_WEBAPP_')]
     return
         config:set-option(substring($opt, 13), string(environment-variable($opt)))
 };
