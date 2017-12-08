@@ -721,7 +721,9 @@ declare
     %templates:wrap
     function app:work-details($node as node(), $model as map(*)) as map(*) {
         map {
-            'sources' := core:getOrCreateColl('sources', $model('docID'), true()),
+            'sources' := 
+                if($config:isDevelopment) then core:getOrCreateColl('sources', $model('docID'), true())
+                else (),
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' := query:get-gnd($model('doc')),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
