@@ -469,7 +469,7 @@ declare %private function search:prepare-search-string($model as map()) as map(*
     let $sanitized-query-string := str:normalize-space(str:sanitize(string-join($query-string-org, ' ')))
     let $analyzed-query-string := analyze-string($sanitized-query-string, '\d{4}-\d{2}-\d{2}')
     let $dates := $analyzed-query-string/fn:match/text()
-    let $query-string := string-join($analyzed-query-string/fn:non-match/text(), ' ')
+    let $query-string := str:normalize-space(string-join($analyzed-query-string/fn:non-match/text(), ' '))
     let $filters := 
         (: if only one date is given in the query string, we set both toDate and fromDate on date  :)
         if(count($dates) = 1) then map:put(map:put($model?filters, 'toDate', $dates), 'fromDate', $dates)
