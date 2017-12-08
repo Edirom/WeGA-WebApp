@@ -8,7 +8,8 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-declare namespace request = "http://exist-db.org/xquery/request";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace gn="http://www.geonames.org/ontology#";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -658,13 +659,21 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
+    let $gn-doc := wega-util:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
             'gnd' := $gnd,
             'beaconMap' := $beaconMap,
             'names' := $model?doc//tei:placeName[@type],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+            'geonames_alternateNames' := 
+                for $alternateName in $gn-doc//gn:alternateName 
+                group by $name := $alternateName/text()
+                order by $name 
+                return
+                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
+            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name()
         }
 };
 

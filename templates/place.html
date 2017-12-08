@@ -104,7 +104,7 @@
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs">
                                                     <li class="gradient-light active">
-                                                        <a data-toggle="tab" href="#wegaText">WeGA Text</a>
+                                                        <a data-toggle="tab" href="#geonames">GeoNames</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
@@ -127,21 +127,15 @@
                                         <div class="col-md-9 col-md-pull-3 ">
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane active fade in" id="wegaText">
-                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bio</h2></span>
-                                                    <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="orgs" data-template-wrap="no"><h2 data-template="lang:translate">tabTitle_bioOrgs</h2></span>
-                                                    <div data-template="app-shared:if-matches" data-template-key="source" data-template-value="Bach">
-                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">(Datenübernahme aus <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
-                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">(Data migrated from <a href="http://www.bach-digital.de/">Bach digital</a>)</p>
-                                                    </div>
-                                                    <div data-template="app:print-wega-bio">
-                                                        <!-- Wenn in der Personendatei keine bioSummary gefunden wird, dann wird der folgende Standardtext gewählt-->
-                                                        <p><i data-template="lang:translate">noDataFound</i></p>
-                                                    </div>
-                                                    <div data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A002068">
-                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Einen ausführlichen Lebenslauf finden Sie in der <a href="$link/A002068/bio.html">erweiterten Biographie</a></p>
-                                                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">More detailed information can be found in the <a href="$link/A002068/bio.html">extended biography</a> (German)</p>
-                                                    </div>
+                                                <div class="tab-pane active fade in" id="geonames">
+                                                    <h2>GeoNames</h2>
+                                                    <dl>
+                                                        <dt data-template="lang:translate">pnd_otherNames</dt>
+                                                        <dd data-template="app-shared:join" data-template-key="geonames_alternateNames">Aaxen, Aken, Aquae Grani</dd>
+                                                        <dt data-template="lang:translate">country</dt>
+                                                        <dd><span data-template="app-shared:print" data-template-key="geonames_parentCountry">Deutschland</span></dd>
+                                                    </dl>
+                                                    <p>Die Angaben unter der Überschrift "GeoNames" entstammen dem GeoNames Projekt und stehen unter der <a href="http://creativecommons.org/licenses/by/3.0/">CC-BY-Lizenz</a>.</p>
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>

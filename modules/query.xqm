@@ -7,6 +7,7 @@ module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace gn="http://www.geonames.org/ontology#";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -148,6 +149,16 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
     return
         if($doc/descendant-or-self::tei:place) then $doc//tei:idno[@type='geonames']
         else ()
+};
+
+(:~
+ : Return the main GeoNames name of a place
+ :
+ : @param $gn-url the GeoNames URL for a place, e.g. http://sws.geonames.org/2921044/
+ : @return the main name as given in the GeoNames RDF as gn:name 
+:)
+declare function query:get-geonames-name($gn-id as xs:string) as xs:string? {
+    wega-util:grabExternalResource('geonames', $gn-id, '', ())//gn:name
 };
 
 
