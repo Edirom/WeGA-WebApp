@@ -33,8 +33,19 @@ let $content :=
 	else if($dbPath) then try {doc($dbPath)} catch * { core:logToFile('error', 'Failed to load XML document at "' || $dbPath  || '"') }
 	else ()
 let $format := local:format()
+
+(:~ 
+ : get the current TEI version on which the customizations are built
+ : this is used for injecting the right schema reference for transformed TEI files 
+~:)
+let $TEIversion := $gl:main-source/tei:TEI/processing-instruction('TEIVERSION')/analyze-string(., '\d+\.\d+\.\d+')/fn:match/text()
 let $transformed := 
-    if($format) then wega-util:transform($content, doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), ())
+    if($format) then 
+        wega-util:transform(
+            $content, 
+            doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), 
+            config:get-xsl-params( map { 'current-tei-version': $TEIversion } )
+        )
     else $content
 return
     wega-util:inject-version-info(
