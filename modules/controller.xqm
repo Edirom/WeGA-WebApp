@@ -113,7 +113,7 @@ declare function controller:forward-txt($exist-vars as map()*) as element(exist:
  :)
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{core:link-to-current-app($path)}"/>
+        <redirect url="{core:link-to-current-app($path)}?{string-join(request:get-parameter-names() ! (. || '=' || request:get-parameter(., '')), '&amp;') }"/>
     </dispatch>
 };
 
