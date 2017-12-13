@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:20:18.483868Z" />
+        <meta property="dc:date" content="2017-10-19T13:27:39.774393Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001" />
         <meta property="dc:description" content="Als im Anschluss an die Jubiläumsveranstaltungen zu Webers 200. Geburtstag Ende der 1980er Jahre die Pläne zu einer Weber-Gesamtausgabe in den …" />
         <meta name="description" content="Als im Anschluss an die Jubiläumsveranstaltungen zu Webers 200. Geburtstag Ende der 1980er Jahre die Pläne zu einer Weber-Gesamtausgabe in den …" />
@@ -250,7 +250,7 @@
                 <p> 
                     The 'standard' TEI version. 
                     WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information had to be dropped.
+                    but no information needs to be dropped.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070001.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
@@ -258,14 +258,11 @@
                     This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
                     So be warned, this <i>not</i> a lossless transformation. 
                 </p>
-                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070001.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
-                <p> 
-                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
-                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
-                </p>
+                
+                
                 <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070001.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a streamlined plain text version. 
+                    An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
@@ -329,12 +326,12 @@
                                         <li class="secLevel2"><a href="#d10e2048">4. 2 Die Kopfleiste eines Briefes/Textes (&lt;titleStmt/&gt;)</a></li>
                                         <li class="secLevel2"><a href="#d10e2107">4. 3 Angaben zur Überlieferung des Textes (&lt;sourceDesc/&gt;)</a></li>
                                         <li class="secLevel3"><a href="#d10e2128">4. 3. 1 Angaben bei handschriftlicher Überlieferung</a></li>
-                                        <li class="secLevel3"><a href="#d10e2330">4. 3. 2 Angaben bei Überlieferung in gedruckter Form &lt;msDesc/&gt;</a></li>
-                                        <li class="secLevel3"><a href="#d10e2392">4. 3. 3 Die Dokumentation mehrerer/verlorener Zeugen/Quellen für einen Text &lt;listWit/&gt;</a></li>
-                                        <li class="secLevel2"><a href="#d10e2455">4. 4 Die Dokumentation der Zusammensetzung einer Textwiedergabe auf der Grundlage mehrerer fragmentarischer Zeugen</a></li>
-                                        <li class="secLevel2"><a href="#d10e2495">4. 5 Angaben zur Einrichtung des Textes in der vorliegenden elektronischen Form &lt;encodingDesc/&gt;</a></li>
-                                        <li class="secLevel2"><a href="#d10e2516">4. 6 Inhaltliche Erschließung des Dokuments &lt;profileDesc/&gt;</a></li>
-                                        <li class="secLevel2"><a href="#d10e2598">4. 7 Die Dokumentation der Änderungen an der Datei &lt;revisionDesc/&gt;</a></li>
+                                        <li class="secLevel3"><a href="#d10e2329">4. 3. 2 Angaben bei Überlieferung in gedruckter Form &lt;msDesc/&gt;</a></li>
+                                        <li class="secLevel3"><a href="#d10e2391">4. 3. 3 Die Dokumentation mehrerer/verlorener Zeugen/Quellen für einen Text &lt;listWit/&gt;</a></li>
+                                        <li class="secLevel2"><a href="#d10e2454">4. 4 Die Dokumentation der Zusammensetzung einer Textwiedergabe auf der Grundlage mehrerer fragmentarischer Zeugen</a></li>
+                                        <li class="secLevel2"><a href="#d10e2494">4. 5 Angaben zur Einrichtung des Textes in der vorliegenden elektronischen Form &lt;encodingDesc/&gt;</a></li>
+                                        <li class="secLevel2"><a href="#d10e2515">4. 6 Inhaltliche Erschließung des Dokuments &lt;profileDesc/&gt;</a></li>
+                                        <li class="secLevel2"><a href="#d10e2597">4. 7 Die Dokumentation der Änderungen an der Datei &lt;revisionDesc/&gt;</a></li>
                                     </ul>
                                 </div>
                                 <div id="d10e2">
@@ -1037,7 +1034,7 @@
             </div>
                                             </div>
                                             <p>Sofern umfangreiche Katalognachweise vorliegen, können die Provenienzen durch die Vergabe einer laufenden Nummer (Attribut <code>@n</code>) oder durch ein integriertes Datums-Element <code>&lt;date/&gt;</code> geordnet werden.</p>
-                                            <p>Schließlich können Angaben zum <span class="tei_mentioned">Erstdruck</span> oder sonstigen früheren <span class="tei_mentioned">Veröffentlichungen</span> einer Briefes (oder einer anderen Quelle) vor dem schließenden <code>&lt;/msDesc/&gt;</code> in einem Element <code>&lt;additional/&gt;</code> untergebracht werden. (Dies gilt jedoch nur, wenn diese Drucke nicht als Zeuge/Quelle für den Edierten Text dienen!) Dabei sind die bibliographischen Daten in einem Container <code>&lt;listBibl/&gt;</code> als einfache <code>&lt;bibl/&gt;</code>-Elemente aufgenommen. Eine differenzierte Aufnahme der Titel nach TEI P5 ist möglich, da hier aber ohnehin häufig Literaturkürzel verwendet werden, nicht notwendig. Die Kurzform einer möglichen Bezeichnung wäre z. B.: </p>
+                                            <p>Schließlich können Angaben zum <span class="tei_mentioned">Erstdruck</span> oder sonstigen früheren <span class="tei_mentioned">Veröffentlichungen</span> eines Briefes (oder einer anderen Quelle) in einem Element <code>&lt;additional/&gt;</code> untergebracht werden. (Dies gilt jedoch nur, wenn diese Drucke nicht als Zeuge/Quelle für den Edierten Text dienen!) Dabei sind die bibliographischen Daten in einem Container <code>&lt;listBibl/&gt;</code> als einfache <code>&lt;bibl/&gt;</code>-Elemente aufgenommen. Eine differenzierte Aufnahme der Titel nach TEI P5 ist möglich, da hier aber ohnehin häufig Literaturkürzel verwendet werden, nicht notwendig. Die Kurzform einer möglichen Bezeichnung wäre z. B.: </p>
                                             <div class="panel panel-info">
                                                 <div class="panel-body">
               
@@ -1052,8 +1049,8 @@
                                             </div>
                                             <p>Sofern <span class="tei_mentioned">Faksimiles</span> nicht als Ersatzquelle dienen, aber nachgewiesen werden sollen, können diese ebenfalls hier unter <code>&lt;additional/&gt;</code> verzeichnet werden. Als Wert der bibliographischen Angabe ist dann n="facsimile" einzusetzen.</p>
                                         </div>
-                                        <div id="d10e2329">
-                                            <h4 id="d10e2330">4. 3. 2 Angaben bei Überlieferung in gedruckter Form <code>&lt;msDesc/&gt;</code></h4>
+                                        <div id="d10e2328">
+                                            <h4 id="d10e2329">4. 3. 2 Angaben bei Überlieferung in gedruckter Form <code>&lt;msDesc/&gt;</code></h4>
                                             <p>Sofern keine handschriftliche Überlieferung vorliegt und Drucke als Ersatz für verlorene Originale eintreten müssen, werden diese innerhalb der <code>&lt;sourceDesc/&gt;</code> in einem Container-Element <code>&lt;biblStruct/&gt;</code> (structured bibliographic citation) beschrieben. Die strukturierte bibliographische Angabe ist dabei für die WeGA auf die notwendigsten Angaben reduziert und enthält folgende Elemente: <code>&lt;monogr/&gt;</code> (Monographie), <code>&lt;author/&gt;</code> (Autor), <code>&lt;title/&gt;</code> (Titel, ggf. durch <code>@type</code> um einen Untertitel erweitert) sowie Angaben zum Druck (<code>&lt;imprint/&gt;</code>), bestehend aus den Elementen <code>&lt;pubPlace/&gt;</code> (Publikationsort), <code>&lt;publisher/&gt;</code> (Verlag) und <code>&lt;date/&gt;</code> (Datum). Zusätzlich wird jeweils die als Grundschrift verwendete Type (Fraktur, Antiqua) innerhalb einer <code>&lt;note type="fontUsage"/&gt;</code> angegeben. Beispiel:</p>
                                             <div class="panel tei_egXML">
                                                 <pre class="prettyprint"><code class="language-xml">&lt;sourceDesc&gt;
@@ -1075,8 +1072,8 @@
                                             <p>Zu detaillierteren Beschreibungen der Möglichkeiten bibliographischer Angaben vgl. die Richtlinien der TEI P5.
             </p>
                                         </div>
-                                        <div id="d10e2391">
-                                            <h4 id="d10e2392">4. 3. 3 Die Dokumentation mehrerer/verlorener Zeugen/Quellen für einen Text <code>&lt;listWit/&gt;</code></h4>
+                                        <div id="d10e2390">
+                                            <h4 id="d10e2391">4. 3. 3 Die Dokumentation mehrerer/verlorener Zeugen/Quellen für einen Text <code>&lt;listWit/&gt;</code></h4>
                                             <p>Sofern sich die Wiedergabe des Edierten Textes nicht auf einen Zeugen allein stützen kann, sondern mehrere herangezogen werden müssen, erfordert dies die Anlage einer <span class="tei_mentioned">Quellenliste</span>; diese „Liste der Zeugen“ <code>&lt;listWit/&gt;</code> (list of wits) enthält einzelne Elemente, die als <code>&lt;witness/&gt;</code> (Zeugen/Quellen) bezeichnet und mit Hilfe des Attributs <code>@n</code> durchnummeriert sind (dabei sollte die Zählung möglichst die Bewertung der Quellen spiegeln). Drucke, die als Zeugen herangezogen werden, erscheinen innerhalb dieses <code>&lt;listWit/&gt;</code>-Containers als <code>&lt;biblStruct/&gt;</code> (vgl. vorangehender Abschnitt). Nicht verfügbare Quellen, die aber existier(t)en, sollten beschrieben und in der Quellenangabe entweder als „nicht zugänglich“: <code>&lt;witness rend="non-accessible"/&gt;</code> oder als „verloren“: <code>&lt;witness rend="lost"/&gt;</code> bezeichnet werden. (Unter Provenienz kann dann z. B. angegeben werden „seit dem 2. Weltkrieg verschollen“ o. ä.)</p>
                                             <p>Quellen im <span class="tei_mentioned">Privatbesitz</span> sollten unter der Angabe <code>&lt;repository/&gt;</code> den Eintrag „Privatbesitz“ bzw. ggf. „nicht zugänglich (Privatbesitz)“ erhalten.</p>
                                             <p>Beispiel für die Grobstruktur bei Vorliegen mehrerer Zeugen (vgl. z. B. Brief A041017):</p>
@@ -1099,8 +1096,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="d10e2454">
-                                        <h3 id="d10e2455">4. 4 Die Dokumentation der Zusammensetzung einer Textwiedergabe auf der Grundlage mehrerer fragmentarischer Zeugen</h3>
+                                    <div id="d10e2453">
+                                        <h3 id="d10e2454">4. 4 Die Dokumentation der Zusammensetzung einer Textwiedergabe auf der Grundlage mehrerer fragmentarischer Zeugen</h3>
                                         <p>Die vorstehend beschriebene Auflistung mehrerer Zeugen innerhalb einer Liste ist die Voraussetzung, um Texte, die nur noch in Teilen nach dem inzwischen fragmentierten Original, in anderern aber nach erhaltenen kompletten Abschriften oder Veröffentlichungen wiedergegeben werden können, in ihrer Zusammensetzung genau zu kennzeichnen. Da alle Zeugen in der obigen Liste mit einer eindeutigen Identifikationsnummer (xml:id) versehen sind, können sich Markierungen im Text auf diese Stellen beziehen.</p>
                                         <p>Hierzu wird im Text zunächst ein <code>&lt;anchor/&gt;</code> (Anker-Element) am Ende der einzugrenzenden Stelle eingefügt und dieser mit einer <code>@xml:id</code> versehen. Danach wird an den Beginn des entsprechenden Abschnitts ein Element <code>&lt;milestone/&gt;</code> (Meilenstein) gesetzt, das mit den Attributwerten <code>@xml:id</code>, <code>@unit</code> und <code>@spanTo</code> versehen wird. Dabei kann die Einheit neutral als „section“ angegeben werden und mit dem Verweiselement „spanTo“ wird auf die xml:id des Ankers verwiesen. Wenn nun zusätzlich mit einem Attribut <code>@corresp</code> (corresponds) auf die xml:id des zuzuordnenden Zeugen verwiesen wird, ist die Herkunft dieses Abschnitts klar bezeichnet. Dennoch empfiehlt es sich unter der Rubrik <code>&lt;encodingDesc/&gt;</code> entsprechende verbale Hinweise auf die Zusammensetzung des Edierten Textes auf der Grundlage unterschiedlicher Quellenfragmente hinzuweisen. Eine solche Stelle wäre im Text etwa wie folgt bezeichnet:</p>
                                         <div class="panel panel-info">
@@ -1112,8 +1109,8 @@
           </div>
                                         </div>
                                     </div>
-                                    <div id="d10e2494">
-                                        <h3 id="d10e2495">4. 5 Angaben zur Einrichtung des Textes in der vorliegenden elektronischen Form <code>&lt;encodingDesc/&gt;</code></h3>
+                                    <div id="d10e2493">
+                                        <h3 id="d10e2494">4. 5 Angaben zur Einrichtung des Textes in der vorliegenden elektronischen Form <code>&lt;encodingDesc/&gt;</code></h3>
                                         <p>Zu den allgemeinen Beschreibungen der Art der Codierung des vorliegenden Textes gehören einerseits Angaben zur elektronischen Textsammlung in einer <code>&lt;projectDesc/&gt;</code> (Projektbeschreibung) sowie Erläuterungen der Editionsprinzipien in einer <code>&lt;editorialDecl/&gt;</code> (editorial Declaration). Für die WeGA sind diese Angaben so schlank wie möglich gehalten. Da es sich um Standardinformationen handelt, die jedes Dokument einer Serie (etwa der <span class="tei_hi_italic">Sämtlichen Briefe</span>) betreffen, lassen sich die rudimentären Angaben leicht auch automatisiert durch ausführlichere Hinweise ersetzen. Es kann aus der <code>&lt;editorialDecl/&gt;</code> auch direkt auf die vorliegenden bzw. andere elektronisch veröffentlichte Richtlinien verwiesen werden. Ferner können hier spezielle Informationen zur Codierung des Einzelelements abgelegt werden.</p>
                                         <div class="panel panel-info">
                                             <div class="panel-body">
@@ -1129,11 +1126,11 @@
     </div>
                                         </div>
                                     </div>
-                                    <div id="d10e2515">
-                                        <h3 id="d10e2516">4. 6 Inhaltliche Erschließung des Dokuments <code>&lt;profileDesc/&gt;</code></h3>
+                                    <div id="d10e2514">
+                                        <h3 id="d10e2515">4. 6 Inhaltliche Erschließung des Dokuments <code>&lt;profileDesc/&gt;</code></h3>
                                         <p>Für die Beschreibung des „Profils“ des Dokuments gibt es wiederum eine Reihe von Container-Elementen, die je nach Bedarf bzw. Textsorte fakultativ und in unterschiedlicher Weise ausfüllbar sind. Die vier wichtigsten Bereiche sind: </p>
                                         <div class="table-wrapper">
-                                            <table id="d10e2525" class="table">
+                                            <table id="d10e2524" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><code>&lt;correspDesc/&gt;</code></td>
@@ -1176,11 +1173,11 @@
   </div>
                                         </div>
                                     </div>
-                                    <div id="d10e2597">
-                                        <h3 id="d10e2598">4. 7 Die Dokumentation der Änderungen an der Datei <code>&lt;revisionDesc/&gt;</code></h3>
+                                    <div id="d10e2596">
+                                        <h3 id="d10e2597">4. 7 Die Dokumentation der Änderungen an der Datei <code>&lt;revisionDesc/&gt;</code></h3>
                                         <p>In diesem dokumentierenden Teil werden alle Veränderungen an der Datei in einer summarischen Beschreibung festgehalten (dies dient u. a. dazu, die Versionierung der Überarbeitungsstadien auch inhaltlich besser zuordnen oder Korrekturen rückgängig machen zu können). Bei diesem Element wird zugleich mit einem Attribut <code>@status</code> festgehalten, wie der Stand des Dokuments innerhalb der Veröffentlichungen der WeGA anzusehen ist. Dafür sind momentan drei Stufen vergeben:</p>
                                         <div class="table-wrapper">
-                                            <table id="d10e2607" class="table">
+                                            <table id="d10e2606" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><code>&lt;revisionDesc status="proposed"/&gt;</code></td>
@@ -1224,7 +1221,7 @@
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 19. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

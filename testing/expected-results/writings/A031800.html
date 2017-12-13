@@ -10,12 +10,12 @@
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
-        <meta property="dc:contributor" content="Anonymus" />
+        <meta property="dc:contributor" content="Winkler, Karl Theodor" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:creator" content="Solveig Schreiter" />
+        <meta property="dc:date" content="2017-12-01T12:41:57.716249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031800" />
         <meta property="dc:description" content="Aufführungsbesprechung der Jubelkantate in Dresden" />
         <meta name="description" content="Aufführungsbesprechung der Jubelkantate in Dresden" />
@@ -26,8 +26,8 @@
         <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
         <meta name="robots" content="noimageindex" />
         
-        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031800.html" hreflang="de" />
-        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/en/A007979/Writings/A031800.html" hreflang="en" />
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800.html" hreflang="de" />
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/en/A002160/Writings/A031800.html" hreflang="en" />
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -191,7 +195,7 @@
                             <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031800.html" hreflang="en" lang="en">En</a></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/en/A002160/Writings/A031800.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002160.html">Karl Theodor Winkler</a></li>
+                        <li><a href="/exist/apps/WeGA-WebApp/de/A002160/Schriften">Schriften</a></li>
                         <li><span>A031800</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,12 +245,50 @@
                                 
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031800/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031800.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800/xml.html">XML-Vorschau</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002160/Schriften/A031800.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -265,7 +306,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Kind, Friedrich">Kind, Friedrich</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001094" /> <span title="Kuhn, Friedrich Adolf">Kuhn, Friedrich Adolf</span> 
+                                    <input type="checkbox" name="options" value="A001094" /> <span title="Kuhn, Friedrich">Kuhn, Friedrich</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001348" /> <span title="Morlacchi, Francesco">Morlacchi, Francesco</span> 
                                 </label><label class="btn gradient-light">
@@ -281,6 +322,8 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A021110" /> <span title="Carmen saeculare">Carmen saeculare</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020024" /> <span title="Jubel-Kantate">Jubel-Kantate</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020454" /> <span title="Messiah">Messiah</span> 
@@ -293,17 +336,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110115" /> <span title="Dresdens">Dresdens</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7810111711511697100116" /> <span title="Neustadt">Neustadt</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="80105108108110105116122" /> <span title="Pillnitz">Pillnitz</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="83117104108" /> <span title="Suhl">Suhl</span> 
+                                    <input type="checkbox" name="options" value="A130031" /> <span title="Pillnitz">Pillnitz</span> 
                                 </label>
                             </div>
                         </div>
@@ -317,12 +354,12 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Korrespondenz-Nachrichten</span>.</h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span></span>, am <span class="tei_date">13. Okt.</span></span></h3>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span></span>, am <span class="tei_date">13. Okt.</span></span></h3>
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(Beschluß.)</span></h3>
-                                        <p>Die Erleuchtung <span class="tei_placeName"><span class="68114101115100101110115">Dresdens</span></span> war wohl die reichste, welche diese Stadt je sah. Köstlich war die Nachahmung der Trajans Säule vor dem <span class="tei_placeName">Altstädter Rathause</span>. Der Regenbogen über der Brücke eine gute Idee, aber in der Ausführung mißlungen; noch dazu hatte man die hintere Seite, wo man von <span class="tei_placeName"><span class="7810111711511697100116">Neustadt</span></span> herkam, offengelassen, und man sah von da aus nur Gerüst und Lampen, daher auch ein Jude sich freuend sagt: Na, säh’ ich doch ach eppes Neues, habe ich in manen Läben nach keenen Regenbogen von hinten kesehen! Merkwürdig war ein Haus auf der <span class="tei_placeName">Wilsdruffer-Gasse</span> dekorirt. Säulen, Kapitäle, Architrave und Friese, alles aus Tischtüchern und Servietten, aber mit einer Geschicklichkeit gebrochen, welche den weissen Marmor täuschend nachahmte. Späßchen kamen auch hie und da vor. Z. B. bey einem Bäcker, sah man einen rüstigen Bäckersmann eine Person in den Ofen schieben, von welcher nur noch die Beine zu sehen waren, mit der Unterschrift: Wer nicht thut meinen <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> lieben, den werd’ ich in den Ofen schieben. Die königliche Familie fuhr unter lautem Jubelgeschrey der Menge mehrere Stunden lang umher.</p>
-                                        <p>Ein Musik-Verein von mehr als 300 Personen gab am <span class="tei_date">23sten</span> eine große Aufführung in der <span class="tei_placeName">Neustädter Kirche</span> zum Besten der Armen, für welche ein reicher Ertrag folgte. Es war ein außerordentlicher Genuß, Sänger und Instrumentalisten wetteiferten. Zuerst eine lateinische Ode nach <a class="preview persons A003310" href="/exist/apps/WeGA-WebApp/de/A003310.html">Horaz</a>, von <a class="preview persons A000194" href="/exist/apps/WeGA-WebApp/de/A000194.html"><span class="tei_hi_spaced_out">Böttiger</span></a>, in Musik gesetzt von <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html"><span class="tei_hi_spaced_out">Morlacchi</span></a>, dann Stücke aus dem <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html"><span class="tei_hi_spaced_out">Händel</span></a>’schen <span class="preview works A020454" data-ref="/exist/apps/WeGA-WebApp/de/A000732/Werke/A020454.html">Messias</span>. Zuletzt eine <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">Cantate</span> von <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html"><span class="tei_hi_spaced_out">Fr. Kind</span></a>, komponirt von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">C. M. v. Weber</span></a>. Alles war brav, aber <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">die letztere</span> sprach vorzüglich an. Auch gab allerdings <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span></a> dem gut musikalischen Texte eine Tonfülle und Harmonie zur Begleitung, welche in mehrern Stellen hinreißend wirken musste.</p>
-                                        <p>Daß eine Legion von Gedichten bey dieser Gelegenheit zum Vorschein kamen, und zum Theil dem Jubelgreise überreicht wurden, können Sie leicht denken. Das glänzendste darunter ist ohnstreitig das von <span class="849711799104110105116122"><span class="tei_hi_spaced_out">Tauchnitz</span></span> zu <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> stereotypisch gedruckte. Schwerlich dürfte die deutsche Buchdruckerkunst etwas Aehnliches bis jetzt aufzuweisen haben. Die Platten dazu sind in der <span class="tei_placeName">königlichen Bibliothek</span> niedergelegt worden. <a class="preview persons A001094" href="/exist/apps/WeGA-WebApp/de/A001094.html"><span class="tei_hi_spaced_out">Fr. Kuhn</span></a> ist der Dichter, und das Werk macht ihm an Wärme und Tiefe Ehre. Eben so hat auch <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html"><span class="tei_hi_spaced_out">Th. Hell</span></a> der Abendzeitung ein größeres Gedicht beygefügt, das auch besonders verkauft wird, und dessen allgemeiner Inhalt sich schon in dem Titel: <span class="6811410111510010111032105110327897116117114321171101003275117110115116443297110321001011143274117981011141021011211011147411798101108102101121101114321001011153275246110105103115">Dresden in Natur und Kunst,<span class="tei_pb" title="Seitenumbruch"> | </span> an der <span class="tei_choice"><span class="tei_corr">Jubelfeyer</span><a class="noteMarker" id="ref-d38743e115" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38743e115">‡</a></span> des <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">Königs</a></span>; ausspricht. Es hat sehr gelungene Stellen, wohin wir besonders die 51ste Stanze rechnen. Das <span class="tei_hi_spaced_out"><span class="7710111511510111411599104109105100116">Messerschmidt</span>sche</span> Gedicht ist auch eines der vorzüglichsten. Eben so zeichnete sich das der Stadt <span class="tei_placeName"><span class="83117104108">Suhl</span></span> durch Zartheit der Behandlung aus. Wir haben von allen Sammlungen zu erwarten.</p>
-                                        <p>Mitten in den Festtagen, am 21sten gab die vielgepriesene <a class="preview persons A000279" href="/exist/apps/WeGA-WebApp/de/A000279.html"><span class="tei_hi_spaced_out">Catalani</span></a> ein sehr besuchtes Konzert. Sie gefiel außerordentlich. Ueber ihr wahres Verdienst muß man entweder sehr viel oder gar nichts sagen. Jedenfalls bleibt sie eine höchst ausgezeichnete Erscheinung. Sie hatte früher auch vor dem <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> in <span class="tei_placeName"><span class="80105108108110105116122">Pillnitz</span></span> gesungen.</p>
+                                        <p>Die Erleuchtung <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresdens</span> war wohl die reichste, welche diese Stadt je sah. Köstlich war die Nachahmung der Trajans Säule vor dem <span class="tei_placeName">Altstädter Rathause</span>. Der Regenbogen über der Brücke eine gute Idee, aber in der Ausführung mißlungen; noch dazu hatte man die hintere Seite, wo man von <span class="7810111711511697100116">Neustadt</span> herkam, offengelassen, und man sah von da aus nur Gerüst und Lampen, daher auch ein Jude sich freuend sagt: Na, säh’ ich doch ach eppes Neues, habe ich in manen Läben nach keenen Regenbogen von hinten kesehen! Merkwürdig war ein Haus auf der <span class="tei_placeName">Wilsdruffer-Gasse</span> dekorirt. Säulen, Kapitäle, Architrave und Friese, alles aus Tischtüchern und Servietten, aber mit einer Geschicklichkeit gebrochen, welche den weissen Marmor täuschend nachahmte. Späßchen kamen auch hie und da vor. Z. B. bey einem Bäcker, sah man einen rüstigen Bäckersmann eine Person in den Ofen schieben, von welcher nur noch die Beine zu sehen waren, mit der Unterschrift: Wer nicht thut meinen <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> lieben, den werd’ ich in den Ofen schieben. Die königliche Familie fuhr unter lautem Jubelgeschrey der Menge mehrere Stunden lang umher.</p>
+                                        <p>Ein Musik-Verein von mehr als 300 Personen gab am <span class="tei_date">23sten</span> eine große Aufführung in der <span class="tei_placeName">Neustädter Kirche</span> zum Besten der Armen, für welche ein reicher Ertrag folgte. Es war ein außerordentlicher Genuß, Sänger und Instrumentalisten wetteiferten. Zuerst eine <span class="preview works A021110" data-ref="/exist/apps/WeGA-WebApp/de/A001348/Werke/A021110.html">lateinische Ode</span> nach <a class="preview persons A003310" href="/exist/apps/WeGA-WebApp/de/A003310.html">Horaz</a>, von <a class="preview persons A000194" href="/exist/apps/WeGA-WebApp/de/A000194.html"><span class="tei_hi_spaced_out">Böttiger</span></a>, in Musik gesetzt von <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html"><span class="tei_hi_spaced_out">Morlacchi</span></a>, dann Stücke aus dem <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html"><span class="tei_hi_spaced_out">Händel</span></a>’schen <span class="preview works A020454" data-ref="/exist/apps/WeGA-WebApp/de/A000732/Werke/A020454.html">Messias</span>. Zuletzt eine <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">Cantate</span> von <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html"><span class="tei_hi_spaced_out">Fr. Kind</span></a>, komponirt von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">C. M. v. Weber</span></a>. Alles war brav, aber <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">die letztere</span> sprach vorzüglich an. Auch gab allerdings <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span></a> dem gut musikalischen Texte eine Tonfülle und Harmonie zur Begleitung, welche in mehrern Stellen hinreißend wirken musste.</p>
+                                        <p>Daß eine Legion von Gedichten bey dieser Gelegenheit zum Vorschein kamen, und zum Theil dem Jubelgreise überreicht wurden, können Sie leicht denken. Das glänzendste darunter ist ohnstreitig das von <span class="849711799104110105116122"><span class="tei_hi_spaced_out">Tauchnitz</span></span> zu <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> stereotypisch gedruckte. Schwerlich dürfte die deutsche Buchdruckerkunst etwas Aehnliches bis jetzt aufzuweisen haben. Die Platten dazu sind in der <span class="tei_placeName">königlichen Bibliothek</span> niedergelegt worden. <a class="preview persons A001094" href="/exist/apps/WeGA-WebApp/de/A001094.html"><span class="tei_hi_spaced_out">Fr. Kuhn</span></a> ist der Dichter, und das Werk macht ihm an Wärme und Tiefe Ehre. Eben so hat auch <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html"><span class="tei_hi_spaced_out">Th. Hell</span></a> der Abendzeitung ein größeres Gedicht beygefügt, das auch besonders verkauft wird, und dessen allgemeiner Inhalt sich schon in dem Titel: <span class="6811410111510010111032105110327897116117114321171101003275117110115116443297110321001011143274117981011141021011211011147411798101108102101121101114321001011153275246110105103115">Dresden in Natur und Kunst,<span class="tei_pb" title="Seitenumbruch"> | </span> an der <span class="tei_choice"><span class="tei_corr">Jubelfeyer</span><a class="noteMarker" id="ref-d10e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e114">‡</a></span> des <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">Königs</a></span>; ausspricht. Es hat sehr gelungene Stellen, wohin wir besonders die 51ste Stanze rechnen. Das <span class="tei_hi_spaced_out"><span class="7710111511510111411599104109105100116">Messerschmidt</span>sche</span> Gedicht ist auch eines der vorzüglichsten. Eben so zeichnete sich das der Stadt <span class="83117104108">Suhl</span> durch Zartheit der Behandlung aus. Wir haben von allen Sammlungen zu erwarten.</p>
+                                        <p>Mitten in den Festtagen, am 21sten gab die vielgepriesene <a class="preview persons A000279" href="/exist/apps/WeGA-WebApp/de/A000279.html"><span class="tei_hi_spaced_out">Catalani</span></a> ein sehr besuchtes Konzert. Sie gefiel außerordentlich. Ueber ihr wahres Verdienst muß man entweder sehr viel oder gar nichts sagen. Jedenfalls bleibt sie eine höchst ausgezeichnete Erscheinung. Sie hatte früher auch vor dem <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">König</a> in <span class="preview places A130031" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130031.html">Pillnitz</span> gesungen.</p>
                                         <p><span> […]</span></p>
                                     </div>
                                 </div>
@@ -376,7 +413,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d38743e115" data-title="choice">recte "Jubelfeyer": in der Vorlage "Juberfeyer"</div>
+                                            <div class="apparatusEntry" id="d10e114" data-title="choice">recte "Jubelfeyer": in der Vorlage "Juberfeyer"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -404,9 +441,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031800</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031800</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 1. Dezember 2017 durch Solveig Schreiter</span></p>
             </div>
             
         </div>

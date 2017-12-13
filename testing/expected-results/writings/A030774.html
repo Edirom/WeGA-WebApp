@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030775" />
         <meta property="dc:description" content="positive Aufführungsbesprechung; im Zusammenhang mit den Rezension zum Lustspiel Das Gut Sternberg und Die Jungfrau von Orleans erschienen" />
         <meta name="description" content="positive Aufführungsbesprechung; im Zusammenhang mit den Rezension zum Lustspiel Das Gut Sternberg und Die Jungfrau von Orleans erschienen" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -212,8 +216,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030775</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,66 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030775.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030945.html">Aufführungsbesprechung Prag, Ständetheater: April 1816 (Teil 2 von 2)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -308,9 +366,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="80101115116104" /> <span title="Pesth">Pesth</span> 
+                                    <input type="checkbox" name="options" value="A130107" /> <span title="Pest">Pest</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -354,10 +412,10 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Theaterchronik von Prag.<br />Monat April.</h2>
-                                        <p>Den <span class="tei_date">1.</span> (Zum Besten des Hrn. <a class="preview persons A000430" href="/exist/apps/WeGA-WebApp/de/A000430.html">Ehlers</a>): <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span>, O. in 2 A. Dieser würdige Künstler, der uns verließ, um in <span class="tei_placeName"><span class="80101115116104">Pesth</span></span> Gastdarstellungen zu geben, konnte keine glücklichere Wahl zu seiner Abschiedsrolle wählen, als den heitern Johann von Paris, in dessen Charakteristik er so tief eingedrungen, und worin er sich zuerst die Gunst des Publikums in hohem Grade erworben hat. <span class="tei_placeName"><span class="8011497103">Prag</span></span>s Kunstliebhaber verlieren ihn ungern, und manche beliebte Oper wird uns durch seinen Abgang auf längere Zeit geraubt, worunter Ref. vorzüglich den geistreichen <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimeleck</span> bedauert.  </p>
+                                        <p>Den <span class="tei_date">1.</span> (Zum Besten des Hrn. <a class="preview persons A000430" href="/exist/apps/WeGA-WebApp/de/A000430.html">Ehlers</a>): <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span>, O. in 2 A. Dieser würdige Künstler, der uns verließ, um in <span class="preview places A130107" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130107.html">Pesth</span> Gastdarstellungen zu geben, konnte keine glücklichere Wahl zu seiner Abschiedsrolle wählen, als den heitern Johann von Paris, in dessen Charakteristik er so tief eingedrungen, und worin er sich zuerst die Gunst des Publikums in hohem Grade erworben hat. <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span>s Kunstliebhaber verlieren ihn ungern, und manche beliebte Oper wird uns durch seinen Abgang auf längere Zeit geraubt, worunter Ref. vorzüglich den geistreichen <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimeleck</span> bedauert.  </p>
                                     </div>
                                     <div class="docPart">
-                                        <p>Den <span class="tei_date">3.</span> <span class="preview works A021106" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021106.html">Das Gut Sternberg</span>, L. in 4 A. von Mad. <a class="preview persons A002108" href="/exist/apps/WeGA-WebApp/de/A002108.html">Weissenthurn</a>. Es ist gewiß ein höchst glücklicher Gedanke in unsrer Zeit, wo eine Güter-Ausspielung der andern die Hand reichend, dem Gewinnlustigen Aussichten aus allen Fenstern darleiht, auch eine solche Begebenheit auf die Bühne zu bringen, und gewiß kann man dieß Lustspiel unter die lebendigsten und heitersten seiner Verfasserin zählen. Charaktere und Verhältnisse, obgleich etwas local, sind doch von allgemeinem Interesse, und es ist nur zu bedauern, daß der Faden des Stücks eigentlich schon zu Ende des 3ten Aufzuges ziemlich abgesponnen ist, und der 4te dem Publikum gar nichts mehr anzubieten hat, als einige Diskurse von beträchtlicher Breite; und es scheint dem Ref. als hätte die Dichterin, welche in den ersten Acten keine Gelegenheit ungenützt ließ, ihr Stück zu würzen, doch diesen letzten, mittelst einiger kleinen, den Gang des Ganzen nicht störenden Abänderungen des Planes, ein vermehrtes Interesse ertheilen können, welche dem Schlusse eben so reichen Beyfall erworben haben würden, als den ersten Acten zu Theil wurde. Hr. <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Polawsky</a> gab den <span class="66111108122104101105109">Bolzheim</span> mit vollendeter Meisterschaft, und riß vorzüglich in <span class="tei_choice"><span class="tei_corr">dem</span><a class="noteMarker" id="ref-d42838e49" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42838e49">‡</a></span> Moment, wo er den Gewinn erfährt, durch die Wahrheit seines Jubels das Publikum so hin, daß er schon nach dem ersten Acte mit dem lautesten Enthusiasmus hervorgerufen wurde. Er kam hervor, und stattete dem Publikum seinen Dank ab: "daß es so gütigen Antheil an seinem Glücke nehme." Wenn Ref. alle nennen wollte, die in diesem Stück gut gespielt haben, so müßte er in der That den Theaterzettel abschreiben, und er begnügt sich daher mit Erwähnung des <span class="preview persons A001172 A001173" data-ref="/exist/apps/WeGA-WebApp/de/A001172.html /exist/apps/WeGA-WebApp/de/A001173.html">Hrn. und Mad. Liebich</span> als <span class="8210599104116101114">Richter</span> und <span class="8210599104116101114105110">Richterin</span>, und der 4 <span class="669711710111411010922810099104101110">Bauernmädchen</span>, Mad. <a class="preview persons A001849" href="/exist/apps/WeGA-WebApp/de/A001849.html">Sonntag</a> und <a class="preview persons A000019" href="/exist/apps/WeGA-WebApp/de/A000019.html">Allram</a>, und der Dem. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brand</a> und <a class="preview persons A000605" href="/exist/apps/WeGA-WebApp/de/A000605.html">Böhler</a>.   </p>
+                                        <p>Den <span class="tei_date">3.</span> <span class="preview works A021106" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021106.html">Das Gut Sternberg</span>, L. in 4 A. von Mad. <a class="preview persons A002108" href="/exist/apps/WeGA-WebApp/de/A002108.html">Weissenthurn</a>. Es ist gewiß ein höchst glücklicher Gedanke in unsrer Zeit, wo eine Güter-Ausspielung der andern die Hand reichend, dem Gewinnlustigen Aussichten aus allen Fenstern darleiht, auch eine solche Begebenheit auf die Bühne zu bringen, und gewiß kann man dieß Lustspiel unter die lebendigsten und heitersten seiner Verfasserin zählen. Charaktere und Verhältnisse, obgleich etwas local, sind doch von allgemeinem Interesse, und es ist nur zu bedauern, daß der Faden des Stücks eigentlich schon zu Ende des 3ten Aufzuges ziemlich abgesponnen ist, und der 4te dem Publikum gar nichts mehr anzubieten hat, als einige Diskurse von beträchtlicher Breite; und es scheint dem Ref. als hätte die Dichterin, welche in den ersten Acten keine Gelegenheit ungenützt ließ, ihr Stück zu würzen, doch diesen letzten, mittelst einiger kleinen, den Gang des Ganzen nicht störenden Abänderungen des Planes, ein vermehrtes Interesse ertheilen können, welche dem Schlusse eben so reichen Beyfall erworben haben würden, als den ersten Acten zu Theil wurde. Hr. <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Polawsky</a> gab den <span class="66111108122104101105109">Bolzheim</span> mit vollendeter Meisterschaft, und riß vorzüglich in <span class="tei_choice"><span class="tei_corr">dem</span><a class="noteMarker" id="ref-d10e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e47">‡</a></span> Moment, wo er den Gewinn erfährt, durch die Wahrheit seines Jubels das Publikum so hin, daß er schon nach dem ersten Acte mit dem lautesten Enthusiasmus hervorgerufen wurde. Er kam hervor, und stattete dem Publikum seinen Dank ab: "daß es so gütigen Antheil an seinem Glücke nehme." Wenn Ref. alle nennen wollte, die in diesem Stück gut gespielt haben, so müßte er in der That den Theaterzettel abschreiben, und er begnügt sich daher mit Erwähnung des <span class="preview persons A001172 A001173" data-ref="/exist/apps/WeGA-WebApp/de/A001172.html /exist/apps/WeGA-WebApp/de/A001173.html">Hrn. und Mad. Liebich</span> als <span class="8210599104116101114">Richter</span> und <span class="8210599104116101114105110">Richterin</span>, und der 4 <span class="669711710111411010922810099104101110">Bauernmädchen</span>, Mad. <a class="preview persons A001849" href="/exist/apps/WeGA-WebApp/de/A001849.html">Sonntag</a> und <a class="preview persons A000019" href="/exist/apps/WeGA-WebApp/de/A000019.html">Allram</a>, und der Dem. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brand</a> und <a class="preview persons A000605" href="/exist/apps/WeGA-WebApp/de/A000605.html">Böhler</a>.   </p>
                                     </div>
                                     <div class="docPart">
                                         <p>Den <span class="tei_date">4.</span> (Zum Besten des <span class="preview persons A008371 A000553" data-ref="/exist/apps/WeGA-WebApp/de/A008371.html /exist/apps/WeGA-WebApp/de/A000553.html">Hrn. und Mad. Fries</span>): <span class="preview works A020960" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020960.html">Die Jungfrau von Orleans</span>, worin <a class="preview persons A000553" href="/exist/apps/WeGA-WebApp/de/A000553.html">Mad. Fries</a> die <span class="741111049711011097">Johanna</span>, und <a class="preview persons A008371" href="/exist/apps/WeGA-WebApp/de/A008371.html">ihr Gatte</a> den <span class="66971151169711410032118111110327911410810197110115">Bastard von Orleans</span> als letzte Gastrollen gaben. Wer sich der schwer zu besiegenden, Vorgänger erinnert, welche sie in beyden Charakteren hatten, wird leicht begreifen, daß es wohl nicht leicht möglich war in allen Theilen zu befriedigen, doch zeigte das Publikum durch lebhafte Theilnahme und zahlreichen Besuch des Theaters, daß es ihre Verdienste nicht verkenne. </p>
@@ -426,7 +484,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d42838e49" data-title="choice">recte "dem": in der Vorlage "den"</div>
+                                            <div class="apparatusEntry" id="d10e47" data-title="choice">recte "dem": in der Vorlage "den"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… erhielt bey der zweyten Darstellung": </span>Die zweite Vorstellung war am 25. April 1815; vgl. TB</div>
@@ -457,9 +515,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030775</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030775</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

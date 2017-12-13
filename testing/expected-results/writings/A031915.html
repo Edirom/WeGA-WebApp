@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031915" />
         <meta property="dc:description" content="beantwortet die Frage in der Abendzeitung 1825, warum sie das Veilchenmal in der Euryanthe nicht beibehalten habe u. Belehrung über Reimen betr.; erwähnt, daß Weber das &#34;Ich bau auf Gott&#34; als &#34;Grundton&#34; der Tondichtung nahm; das Veilchenmal hätten auch nahmhafte Autoritäten als undramatisch u. unmusikalisch bezeichnet; die Novelle habe Weber nicht komponieren können; sie habe vieles aus der Übersetzung auf Webers Wunsch ändern müssen; er selbst sei sehr zufrieden mit dem Text gewesen; rechtfertigt Reime; die Berichte von Wendt u. Schütze kenne sie noch nicht" />
         <meta name="description" content="beantwortet die Frage in der Abendzeitung 1825, warum sie das Veilchenmal in der Euryanthe nicht beibehalten habe u. Belehrung über Reimen betr.; erwähnt, daß Weber das &#34;Ich bau auf Gott&#34; als &#34;Grundton&#34; der Tondichtung nahm; das Veilchenmal hätten auch nahmhafte Autoritäten als undramatisch u. unmusikalisch bezeichnet; die Novelle habe Weber nicht komponieren können; sie habe vieles aus der Übersetzung auf Webers Wunsch ändern müssen; er selbst sei sehr zufrieden mit dem Text gewesen; rechtfertigt Reime; die Berichte von Wendt u. Schütze kenne sie noch nicht" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031915.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -277,9 +318,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -295,15 +336,15 @@
                                         <h2 class="docHeader textAlign-left">
                     <span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1">Auskunft</span></span>
                 </h2>
-                                        <p>Ich bin hier in der Abendzeitung <span class="tei_hi_latintype">No</span> 151–152 aus <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>
+                                        <p>Ich bin hier in der Abendzeitung <span class="tei_hi_latintype">No</span> 151–152 aus <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>
                     gefragt worden: Warum ich das <span class="tei_hi_underline1">Veilchenmahl</span> in der
                     <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> nicht beibehalten? auch bin ich in Versen belehrt worden, wie ich <span class="tei_hi_underline1">nicht</span> <span class="tei_hi_underline1">reimen</span> soll. 
-                    Wenn ich auch schon <span class="tei_subst"><span class="tei_add">26</span><a class="noteMarker" id="ref-d40028e33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e33">‡</a></span> Jahr fleißig
-                    bin, habe ich, <span class="tei_subst"><span class="tei_add">glaub’ ich,</span><a class="noteMarker" id="ref-d40028e39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e39">‡</a></span> nicht ausgelernt,
+                    Wenn ich auch schon <span class="tei_subst"><span class="tei_add">26</span><a class="noteMarker" id="ref-d10e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e32">‡</a></span> Jahr fleißig
+                    bin, habe ich, <span class="tei_subst"><span class="tei_add">glaub’ ich,</span><a class="noteMarker" id="ref-d10e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e38">‡</a></span> nicht ausgelernt,
                     darum ist die <span class="tei_hi_underline1">Lehre</span>, eines Danks, die <span class="tei_hi_underline1">Frage</span> der Antwort werth. 
                     Es würde nicht viel helfen, wenn ich lügen
                     wollte, u sagen ich habe aus Bequemlichkeit, oder gar aus Unbehülflichkeit <span class="tei_hi_underline1">Euranth</span>, <span class="tei_hi_underline1">Hand</span> u <span class="tei_hi_underline1">Pfand</span> gereimt. Warum nicht lieber bei der Wahrheit
-                    bleiben? Der <span class="tei_hi_underline1">männliche</span> Schluß<span class="tei_supplied" id="d40028e64"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span> der Vokal <span class="tei_hi_underline1">a</span> und <span class="tei_hi_underline1">dies</span> Maas<span class="tei_supplied" id="d40028e74"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span> war für das
+                    bleiben? Der <span class="tei_hi_underline1">männliche</span> Schluß<span class="tei_supplied" id="d10e63"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span> der Vokal <span class="tei_hi_underline1">a</span> und <span class="tei_hi_underline1">dies</span> Maas<span class="tei_supplied" id="d10e73"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span> war für das
                     <span class="tei_hi_underline1">Finale</span> erforderlich; den <span class="tei_hi_underline1">Sinn</span> u die <span class="tei_hi_underline1">Musik</span> der Worte</p>
                                         <p> <span class="tei_segBlock textAlign-center">„Ich bau auf Gott, u meine Euryanth’!“</span></p>
                                         <p>legte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zum Grundton, der die Tondichtung durchweht. Er hatte Recht! Zu <span class="tei_hi_underline1">diesem</span> Satz war eben <span class="tei_hi_underline1">diese</span>
@@ -321,26 +362,26 @@
                     die <span class="tei_hi_underline1">Novelle</span> nicht komponiren konnte. Mit wenigen hätte ich
                     es wagen können, mit <span class="tei_hi_underline1"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> wagt’ ich <span class="tei_hi_underline1">nichts</span>, wenn ich viel Schönes in der Grundlage, woran ich innig hieng,
                     durch das ersetzte, was <span class="tei_hi_underline1">Er</span> verlangte, die Operndichtung
-                    wurde <span class="tei_del">in Eilf Versionen<a class="noteMarker" id="ref-d40028e149" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e149">‡</a></span> ganz nach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Wünschen
+                    wurde <span class="tei_del">in Eilf Versionen<a class="noteMarker" id="ref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">‡</a></span> ganz nach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Wünschen
                     umgeschmolzen u verarbeitet, bis er nachdem er selbst durchgängig mehreres einwebte,
-                    <span class="tei_add tei_hi_superscript">den Schlußchor machte,<a class="noteMarker" id="ref-d40028e155" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e155">‡</a></span> die Rezitative nach Bedürfniß zusammenschob, oder ausdehnte,
-                    u erklärte: <span class="tei_hi_underline1">Er ließe sich <span class="tei_add tei_hi_superscript">nun<a class="noteMarker" id="ref-d40028e160" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e160">‡</a></span> keine Silbe vom Text nehmen!</span>
+                    <span class="tei_add tei_hi_superscript">den Schlußchor machte,<a class="noteMarker" id="ref-d10e154" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e154">‡</a></span> die Rezitative nach Bedürfniß zusammenschob, oder ausdehnte,
+                    u erklärte: <span class="tei_hi_underline1">Er ließe sich <span class="tei_add tei_hi_superscript">nun<a class="noteMarker" id="ref-d10e159" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e159">‡</a></span> keine Silbe vom Text nehmen!</span>
                     Zu einigen Chören und Cavatinen hat er selbst das Silbenmaas angegeben, u wir
                     haben von Oktober 1821 bis Junius 1823 mit dem schönsten Willen in friedlicher
-                    Eintracht oft Stundenlang über Einzelnheiten berathend u feilend gearbeitet. Es <span class="tei_subst"><span class="tei_add">ist</span><a class="noteMarker" id="ref-d40028e164" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e164">‡</a></span> ein magrer Erfolg so vieler ernster Mühe, wenn
+                    Eintracht oft Stundenlang über Einzelnheiten berathend u feilend gearbeitet. Es <span class="tei_subst"><span class="tei_add">ist</span><a class="noteMarker" id="ref-d10e163" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e163">‡</a></span> ein magrer Erfolg so vieler ernster Mühe, wenn
                     bei dem Allem noch immer blos der <span class="tei_hi_underline1">musikalische</span> Theil der
-                    Oper <span class="tei_hi_underline1">dramatisch</span> <span class="tei_subst"><span class="tei_add">ist</span><a class="noteMarker" id="ref-d40028e177" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e177">‡</a></span>, u wenn es mir nur <span class="tei_hi_underline1">hie</span> <span class="tei_hi_underline1">u</span> <span class="tei_hi_underline1">da</span> gelungen den genialen Tondichter durch den Text
-                    zu begünstigen! Nur <span class="tei_subst"><span class="tei_add">glüklichen</span><a class="noteMarker" id="ref-d40028e192" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e192">‡</a></span>
-                    Zufälligkeiten <span class="tei_subst"><span class="tei_add">muß</span><a class="noteMarker" id="ref-d40028e199" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e199">‡</a></span> ich es <span class="tei_subst"><span class="tei_add">also</span><a class="noteMarker" id="ref-d40028e205" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40028e205">‡</a></span> beimessen daß sich die Rollen so dankbar
+                    Oper <span class="tei_hi_underline1">dramatisch</span> <span class="tei_subst"><span class="tei_add">ist</span><a class="noteMarker" id="ref-d10e176" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e176">‡</a></span>, u wenn es mir nur <span class="tei_hi_underline1">hie</span> <span class="tei_hi_underline1">u</span> <span class="tei_hi_underline1">da</span> gelungen den genialen Tondichter durch den Text
+                    zu begünstigen! Nur <span class="tei_subst"><span class="tei_add">glüklichen</span><a class="noteMarker" id="ref-d10e191" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e191">‡</a></span>
+                    Zufälligkeiten <span class="tei_subst"><span class="tei_add">muß</span><a class="noteMarker" id="ref-d10e198" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e198">‡</a></span> ich es <span class="tei_subst"><span class="tei_add">also</span><a class="noteMarker" id="ref-d10e204" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e204">‡</a></span> beimessen daß sich die Rollen so dankbar
                     spielen, daß sich holde, gefeierte Schönheiten u wackere Künstler auch in <span class="tei_hi_underline1">dieser</span> Hinsicht Kränze darin pflücken, u daß der
                     mittelmäßige Text den Componisten nicht lähmen konnte!</p>
                                         <p> Zu Vermeidung jedes Mißverständnisses sey noch hinzugefügt daß ich nur wenige
                     Berichte über die <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> gelesen, u namentlich <span class="tei_hi_underline1">nicht</span>
                     zwey, von denen ich sprechen hören, u die mir, in mancher Hinsicht, werthe Namen
-                    tragen, von <a class="preview persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">A. W<span class="tei_supplied" id="d40028e224"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span>dt</a> u <a class="preview persons A001774" href="/exist/apps/WeGA-WebApp/de/A001774.html">St <span class="tei_hi_underline1">Schütze</span></a>, Es ist hier schwer
-                    Journale zu bekommen, die Einen nicht unmittelb<span class="tei_supplied" id="d40028e233"><span class="brackets_supplied">[</span>ar zugeschickt<span class="brackets_supplied">]</span></span> werden.</p>
+                    tragen, von <a class="preview persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">A. W<span class="tei_supplied" id="d10e223"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span>dt</a> u <a class="preview persons A001774" href="/exist/apps/WeGA-WebApp/de/A001774.html">St <span class="tei_hi_underline1">Schütze</span></a>, Es ist hier schwer
+                    Journale zu bekommen, die Einen nicht unmittelb<span class="tei_supplied" id="d10e232"><span class="brackets_supplied">[</span>ar zugeschickt<span class="brackets_supplied">]</span></span> werden.</p>
                                         <p class="tei_closer textAlign-left">
-                    <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="87105101110">Wien</span></span> August 1825 </span>
+                    <span class="tei_dateline textAlign-left"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> August 1825 </span>
                     <span class="tei_signed textAlign-right">Helmine von Chezy.</span>
                 </p>
                                     </div>
@@ -400,34 +441,34 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e33" data-title="subst">"26": "25" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e32" data-title="subst">"26": "25" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e39" data-title="subst">"glaub' ich,": "darum" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e38" data-title="subst">"glaub' ich,": "darum" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e149" data-title="del">"in Eilf Versionen":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e148" data-title="del">"in Eilf Versionen":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e155" data-title="add">"den Schlußchor machte,": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e154" data-title="add">"den Schlußchor machte,": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e160" data-title="add">"nun": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e159" data-title="add">"nun": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e164" data-title="subst">"ist": "war" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e163" data-title="subst">"ist": "war" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e177" data-title="subst">"ist": "wäre" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e176" data-title="subst">"ist": "wäre" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e192" data-title="subst">"glüklichen": "günstigen" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e191" data-title="subst">"glüklichen": "günstigen" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e199" data-title="subst">"muß": "mußte" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e198" data-title="subst">"muß": "mußte" durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40028e205" data-title="subst">"also": "denn" durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e204" data-title="subst">"also": "denn" durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -457,9 +498,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031915</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031915</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

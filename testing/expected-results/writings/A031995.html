@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-30T12:52:48.201532Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995" />
         <meta property="dc:description" content="Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic" />
         <meta name="description" content="Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031995</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -259,7 +300,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A003788" /> <span title="Begrez, Pierre">Begrez, Pierre</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002552" /> <span title="Bonini, ?">Bonini, ?</span> 
+                                    <input type="checkbox" name="options" value="A002552" /> <span title="Bonini, Madame">Bonini, Madame</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000273" /> <span title="Caradori-Allan, Rosalbina">Caradori-Allan, Rosalbina</span> 
                                 </label><label class="btn gradient-light">
@@ -398,7 +439,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">* FIRST CONCERT, Monday, <span class="tei_date">February 27, 1826</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e68" class="table">
+                                            <table id="d10e68" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act I.</span></td>
@@ -419,7 +460,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">THIRD CONCERT, Monday, <span class="tei_date">April 3, 1826</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e91" class="table">
+                                            <table id="d10e91" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act I.</span></td>
@@ -483,7 +524,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">FIFTH CONCERT, Monday, <span class="tei_date">May 1, 1826</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e254" class="table">
+                                            <table id="d10e254" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act I.</span></td>
@@ -544,7 +585,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">SIXTH CONCERT, Monday, <span class="tei_date">May 15, 1826</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e436" class="table">
+                                            <table id="d10e436" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act I.</span></td>
@@ -567,7 +608,7 @@
                                                         <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Overture, (<span class="tei_hi_italic">Der <span class="tei_choice"><span class="tei_corr">Beherrscher</span><a class="noteMarker" id="ref-d158453e502" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d158453e502">‡</a></span> der Geister</span>)</span></td>
+                                                        <td><span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Overture, (<span class="tei_hi_italic">Der <span class="tei_choice"><span class="tei_corr">Beherrscher</span><a class="noteMarker" id="ref-d10e502" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e502">‡</a></span> der Geister</span>)</span></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -605,7 +646,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">SEVENTH CONCERT, Monday, <span class="tei_date">May 29, 1826</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e621" class="table">
+                                            <table id="d10e621" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act I.</span></td>
@@ -666,7 +707,7 @@
                                     </div>
                                     <div class="docPart">
                                         <p><span> […]</span></p>
-                                        <p>The third night introduced <a class="preview persons A003480" href="/exist/apps/WeGA-WebApp/de/A003480.html">Mr. Schuncke</a>, a German pianist. His execution was considered very neat and rapid. At this concert <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a><a href="#footnote01">*</a>  conducted. <span class="preview works A020040 A020043 A020058" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020058.html">Four of his own compositions</span> were performed–two vocal and two instrumental–the overtures to <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> and <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span></span>.</p>
+                                        <p>The third night introduced <a class="preview persons A003480" href="/exist/apps/WeGA-WebApp/de/A003480.html">Mr. Schuncke</a>, a German pianist. His execution was considered very neat and rapid. At this concert <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a><a href="#footnote01" id="backref-footnote01" class="fn-ref">*</a>  conducted. <span class="preview works A020040 A020043 A020058" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020058.html">Four of his own compositions</span> were performed–two vocal and two instrumental–the overtures to <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> and <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span></span>.</p>
                                         <p><span> […]</span><span class="tei_pb" title="Seitenumbruch zu S. 165"> | </span></p>
                                         <p><span> […]</span></p>
                                         <p>The fifth performance was distinguished by concertos from <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">M. Fürstenau</a> and <span class="774632681013266101114105111116">M. De Beriot</span>. Of the former artist we have spoken in our account of the oratorios, where he first appeared. Indisposition diminished his powers on this occasion. <span class="774632681013266101114105111116">M. De Beriot</span> has placed himself, <span class="tei_hi_italic">per saltum</span>, by the side of the most eminent violinists ever heard in this country. His taste is as elegant and delicate as his execution is perfect. His tone is round, and smooth, and sweet, and brilliant. His tune accuracy itself. His manner of bowing that of the best schools; and the hearer is never alarmed by the fear of failure, while he is captivated by the exquisite grace and finish of the entire performance. All we have heard of this great player since serves only to confirm the impression we first received from his concerto at the Philharmonic. The best judges appear to concur in opinion respecting him, and to place him amongst the very finest players <span class="tei_placeName"><span class="tei_region">Europe</span></span> has produced.</p>
@@ -678,7 +719,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">* FIRST CONCERT, Monday, <span class="tei_date">March 6th</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e892" class="table">
+                                            <table id="d10e892" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">PART FIRST.</span></td>
@@ -695,7 +736,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">SECOND CONCERT, Monday, <span class="tei_date">April 10th</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e909" class="table">
+                                            <table id="d10e909" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Part I.</span></td>
@@ -764,7 +805,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">THIRD CONCERT, Monday, <span class="tei_date">24th April</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e1166" class="table">
+                                            <table id="d10e1166" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Part I.</span></td>
@@ -834,7 +875,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">SIXTH CONCERT, Monday, <span class="tei_date">5th of June</span>.</span></h2>
                                         <div class="table-wrapper">
-                                            <table id="d158453e1407" class="table">
+                                            <table id="d10e1407" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Part I.</span></td>
@@ -913,8 +954,9 @@
                                         <p><span> […]</span></p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">* We have the high gratification (as Englishmen) of knowing that <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a> pronounced the Philharmonic to be beyond dispute the finest band in <span class="tei_placeName"><span class="tei_region">Europe</span></span>!</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>* We have the high gratification (as Englishmen) of knowing that <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a> pronounced the Philharmonic to be beyond dispute the finest band in <span class="tei_placeName"><span class="tei_region">Europe</span></span>!</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -968,7 +1010,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d158453e502" data-title="choice">recte "Beherrscher": in der Vorlage "Beheerscher"</div>
+                                            <div class="apparatusEntry" id="d10e502" data-title="choice">recte "Beherrscher": in der Vorlage "Beheerscher"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -996,9 +1038,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 30. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

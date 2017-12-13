@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Goldlücke, Annelie" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-29T20:55:21.982616Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030015" />
         <meta property="dc:description" content="Aufführungsberichte Leipzig, Konzerte im April 1817" />
         <meta name="description" content="Aufführungsberichte Leipzig, Konzerte im April 1817" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030015</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030015.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -303,19 +344,19 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                    <input type="checkbox" name="options" value="A130009" /> <span title="Hamburg">Hamburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76111110100111110" /> <span title="London">London</span> 
+                                    <input type="checkbox" name="options" value="A130011" /> <span title="London">London</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="79102102101110989799104" /> <span title="Offenbach">Offenbach</span> 
+                                    <input type="checkbox" name="options" value="A130080" /> <span title="Offenbach">Offenbach</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -329,7 +370,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p>
-					<span class="tei_placeName"><span class="tei_hi_antiqua"><span class="76101105112122105103">Leipzig</span></span></span>. Folgendes war der Inhalt der, seit unserm
+					<span class="tei_placeName"><span class="tei_hi_antiqua"><span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></span></span>. Folgendes war der Inhalt der, seit unserm
 					letzten Bericht, (von Mitte Februars in diesem Jahr, No. 9) gegebenen Concerte, mit
 					Ausschluss derjenigen, welche fremde Virtuosen auf eigene Rechnung veranstalteten, und
 					welche jederzeit sogleich angezeigt worden sind. Wir geben diesen Inhalt diesmal
@@ -342,7 +383,7 @@
                                         <p><span> […]</span></p><span class="tei_cb_block" title="Spaltenumbruch"> ¦ </span>
                                         <p>Den <span class="tei_date">8ten April</span>.
 					<span class="83121109112104111110105101">Symphonie</span> von <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">J.
-						Haydn</a>, aus <span class="6832117110100327132100117114">D und G dur</span>, in <span class="tei_placeName"><span class="76111110100111110">London</span></span>
+						Haydn</a>, aus <span class="6832117110100327132100117114">D und G dur</span>, in <span class="preview places A130011" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130011.html">London</span>
 					geschrieben. Eine wahrhaft grosse und edle <span class="8399101110101321171101003265114105101">Scene und Arie</span>, von
 						<a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hrn. Kapellm. Mar. von
 						Weber</a> einzeln componirt und von <a class="preview persons A001816" href="/exist/apps/WeGA-WebApp/de/A001816.html">Mad. N. Sessi</a> vorgetragen, fand
@@ -354,7 +395,7 @@
 						dur</span>, (bey <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Schlesinger</a>,) über welches geist- und
 					effectreiche Stück wir schon früher ausführlich gesprochen haben; und spielte – was kaum
 					versichert zu werden braucht – wie ein wahrer Meister. Der zweyte Theil enthielt
-					desselben, vornämlich von <span class="tei_placeName"><span class="8011497103">Prag</span></span> und <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>
+					desselben, vornämlich von <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> und <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>
 					aus mit Ruhm bekannte, und in diesen Blättern umständlich besprochene Cantate: 
 					<span class="preview works A020018" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020018.html"><span class="tei_hi_antiqua">Kampf und Sieg</span></span>, gedichtet von <a class="preview persons A002170" href="/exist/apps/WeGA-WebApp/de/A002170.html">Wohlbrück</a>, den wir nun, als
 					Regisseur unsrer künftigen Bühne, mit Vergnügen den unsrigen nennen, und, der Veranlassung
@@ -383,7 +424,7 @@
 						istante solo</span> – ges. von <a class="preview persons A001816" href="/exist/apps/WeGA-WebApp/de/A001816.html">Mad. N. Sessi</a>. Neues
 						<span class="86105111108105110991111109946">Violinconc.</span>, comp. und gespielt vom königl. sächs. Concertm.,
 						<a class="preview persons A001502" href="/exist/apps/WeGA-WebApp/de/A001502.html">Hrn. Polledro</a>, in
-						<span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>. Die Composition war zunächst darauf berechnet, dem
+						<span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>. Die Composition war zunächst darauf berechnet, dem
 					Virtuosen Gelegenheit zu geben, sich glänzend hervorzuthun; und in dieser Hinsicht nicht
 					zu tadeln. Jene Gelegenheit benutzte nun auch Hr. P., zum Entzücken des Auditoriums, indem
 					er, in <span class="tei_hi_antiqua">seiner</span>, ehemals <a class="preview persons A007950" href="/exist/apps/WeGA-WebApp/de/A007950.html">Pugnani’s</a> Weise, mit köstlichem, eben so kräftigem und hellem,
@@ -398,12 +439,12 @@
 					Variationen; und wenn sie nicht lebhafter begeistern, so lag das blos an dem gar zu wenig
 					Bedeutenden der Composition. – Eine noch ungedruckte <span class="79117118101114116252114101">Ouvertüre</span> von
 						<a class="preview persons A000301" href="/exist/apps/WeGA-WebApp/de/A000301.html">Clasing</a> in
-						<span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> zeugte von Einsicht in die Kunst und von Feuer in der
+						<span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> zeugte von Einsicht in die Kunst und von Feuer in der
 					Ausarbeitung. <a class="preview persons A001625" href="/exist/apps/WeGA-WebApp/de/A001625.html">Rousseau’s</a>
 					<span class="7610510110032105110321001141011213284246110101110">Lied in drey Tönen</span>, zu <a class="preview persons A007951" href="/exist/apps/WeGA-WebApp/de/A007951.html">Meissners</a> deutschem Gedicht harmonisch mit Orchester
 					ausgeführt von <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a>,
 							(<span class="8411410599104111114100105117109"><span class="tei_hi_antiqua">Trichordium</span></span> von ihm genannt;
-						<span class="tei_placeName"><span class="79102102101110989799104">Offenbach</span></span>, b. <a class="preview orgs A080073" href="/exist/apps/WeGA-WebApp/de/A080073.html">André</a>,) wurde sehr gut ausgeführt, und gefiel, als eine
+						<span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span>, b. <a class="preview orgs A080073" href="/exist/apps/WeGA-WebApp/de/A080073.html">André</a>,) wurde sehr gut ausgeführt, und gefiel, als eine
 					mit Geist, Geschmack und grosser Geschicklichkeit gelösete, schwere Aufgabe. </p>
                                         <p><span> […]</span></p>
                                     </div>
@@ -482,9 +523,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030015</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030015</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 29. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

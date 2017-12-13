@@ -243,7 +243,7 @@
                 <p> 
                     The 'standard' TEI version. 
                     WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information had to be dropped.
+                    but no information needs to be dropped.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001238.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
@@ -251,14 +251,11 @@
                     This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
                     So be warned, this <i>not</i> a lossless transformation. 
                 </p>
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A001238.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
-                <p> 
-                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
-                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
-                </p>
+                
+                
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001238.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a streamlined plain text version. 
+                    An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
@@ -358,7 +355,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A001238/contacts.html">Kontakte<small> (1)</small></a></li>
-                                <li><a href="#backlinks" data-target="A001238/backlinks.html">Rückverweise<small> (11)</small></a></li>
+                                <li><a href="#backlinks" data-target="A001238/backlinks.html">Rückverweise<small> (12)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -386,13 +383,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001238/dnb.html">GND Eintrag</a>
+                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001238/adb.html">ADB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001238/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001238/adb.html">ADB Artikel</a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001238/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -422,11 +419,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -451,7 +448,7 @@
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/116688912">HeBIS-Verbundzentrale (45)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000109883231]" href="http://isni.org/isni/0000000109883231">ISNI [by http://viaf.org/viaf/74609784]</a></li>
                                                             <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=116688912">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
-                                                            <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A116688912">Literatur im Katalog der Universitätsbibliothek Heidelberg (2)</a></li>
+                                                            <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A116688912">Literatur im Katalog der Universitätsbibliothek Heidelberg (28)</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [no2002058960]" href="http://lccn.loc.gov/no2002058960">LoC [by http://viaf.org/viaf/74609784]</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [xx0156913]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=xx0156913">NKC [by http://viaf.org/viaf/74609784]</a></li>
                                                             <li><a title="Österreichische Akademie der Wissenschaften [http://www.biographien.ac.at/oebl/oebl_M/Mailath-Szekhely_Janos_1786_1855.xml?frames=yes]" href="http://www.biographien.ac.at/oebl/oebl_M/Mailath-Szekhely_Janos_1786_1855.xml?frames=yes">Österreichisches Biographisches Lexikon</a></li>

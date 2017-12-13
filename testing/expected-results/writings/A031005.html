@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031005" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031005.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -276,7 +317,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -302,9 +343,9 @@
                                         <h2 class="docHeader textAlign-left">
                     <span class="tei_hi_spaced_out">Dramaturgische Berichte.</span>
                 </h2>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></span>, den 15.
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span></span>, den 15.
                     März: <span class="tei_hi_spaced_out"><span class="preview works A020468" data-ref="/exist/apps/WeGA-WebApp/de/A000486/Werke/A020468.html">Die Sängerinnen auf dem
-                        Lande</span></span>, komische Oper in 2 Aufzügen; Musik von <span class="tei_hi_spaced_out"><a class="preview persons A000486" href="/exist/apps/WeGA-WebApp/de/A000486.html">Fioravanti</a></span>.</span><a class="noteMarker" id="ref-d39117e9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e9">‡</a></span></p>
+                        Lande</span></span>, komische Oper in 2 Aufzügen; Musik von <span class="tei_hi_spaced_out"><a class="preview persons A000486" href="/exist/apps/WeGA-WebApp/de/A000486.html">Fioravanti</a></span>.</span><a class="noteMarker" id="ref-d10e9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9">‡</a></span></p>
                                         <p>Wir haben seit einiger Zeit so manche geschätzte Sängerin von unsrer Bühne (oder
                     sie ihre Stimme) verloren, daß wir mit der gespanntesten Erwartung auf jedes
                     neue Subjekt aufmerken, was uns etwa Ersatz, vielleicht reichlichen, für das
@@ -320,8 +361,8 @@
                     schuldig. Ohne daß sie im ganzen falsch sänge, schlägt ihr nicht selten ein oder
                     der andere Ton zu hoch oder zu tief an. Ref. will mit alle diesem nicht läugnen,
                     daß <a class="preview persons A000070" href="/exist/apps/WeGA-WebApp/de/A000070.html">Mad. <span class="tei_hi_spaced_out">Bachmann</span></a>
-                    nicht manches recht gut <span class="tei_app"><span class="tei_lem">gebe</span><a class="noteMarker" id="ref-d39117e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e52">‡</a></span>, und ihre Stimme neben mancher Einbuße doch noch
-                    einen gewissen Grad von Stärke behalten <span class="tei_app"><span class="tei_lem">habe</span><a class="noteMarker" id="ref-d39117e58" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e58">‡</a></span>, welcher zuweilen, besonders im
+                    nicht manches recht gut <span class="tei_app"><span class="tei_lem">gebe</span><a class="noteMarker" id="ref-d10e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e51">‡</a></span>, und ihre Stimme neben mancher Einbuße doch noch
+                    einen gewissen Grad von Stärke behalten <span class="tei_app"><span class="tei_lem">habe</span><a class="noteMarker" id="ref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span>, welcher zuweilen, besonders im
                     Ensemble, von wohlthuender Wirkung ist; aber das ist denn doch auch nicht alles
                     was wir hier brauchen! Sie an unsre Bühne zu knüpfen, wäre vielleicht Wohlthun
                     und doch nicht wohl gethan.</p>
@@ -330,7 +371,7 @@
                                         <p>Ueber keine Klasse von Schauspielern pflegen die Urtheile getheilter zu seyn, als
                     gerade über Komiker. Bald, und nur gar zu oft, muß der gebildete Theil der
                     Zuschauer die Achseln zucken oder sich gar unwillig von der entweihten Bühne
-                    wegwenden, indeß das Haus vom Klatschen der Gallerie- und <span class="tei_app"><span class="tei_lem">– Parterre-Hände</span><a class="noteMarker" id="ref-d39117e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e83">‡</a></span>
+                    wegwenden, indeß das Haus vom Klatschen der Gallerie- und <span class="tei_app"><span class="tei_lem">– Parterre-Hände</span><a class="noteMarker" id="ref-d10e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e82">‡</a></span>
                     dröhnt – bald goutirt die Menge einen Komiker nicht, weil er ihr nicht genug
                     Spaßmacher ist – bald rümpft ein super delikates Häuflein die Nase, wenn ein
                     Buffo sich untersteht, etwas anderes aufzutischen als Tafelgut aus den besten
@@ -359,13 +400,13 @@
                     dem glücklichsten Effekt vor lauter Alteration zuweilen Stimme und Sprache
                     beinahe verloren zu haben schien – mehr nicht sagen, als daß er vernehmlich
                     ausspricht, rein intonirt, und präcis einfällt: Nähere Resultate werden künftige
-                    Darstellungen geben, <span class="tei_app"><span class="tei_lem">und –</span><a class="noteMarker" id="ref-d39117e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e124">‡</a></span> <span class="tei_hi_spaced_out">hoffentlich</span> auch <a class="preview persons A001847" href="/exist/apps/WeGA-WebApp/de/A001847.html">Hrn. <span class="tei_hi_spaced_out">Sonntags</span></a>
+                    Darstellungen geben, <span class="tei_app"><span class="tei_lem">und –</span><a class="noteMarker" id="ref-d10e123" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e123">‡</a></span> <span class="tei_hi_spaced_out">hoffentlich</span> auch <a class="preview persons A001847" href="/exist/apps/WeGA-WebApp/de/A001847.html">Hrn. <span class="tei_hi_spaced_out">Sonntags</span></a>
                     Vielseitigkeit beurkunden.</p>
                                         <p>Unter den übrigen Theilen der gestrigen Aufführung fand Ref. nichts, was
                     besonders ausgehoben zu werden Noth thäte, ausgenommen das vortreffliche
                     Ensemble, welches im <span class="tei_ptr"></span>Terzette zu Anfange des ersten Aktes<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a> herrschte, welches
                     auch vom Publikum mit dem lebhaftesten verdienten Beifall aufgenommen wurde.</p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d39117e147" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39117e147">‡</a></span></p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e146" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e146">‡</a></span></p>
                                     </div>
                                 </div>
                     </div>
@@ -431,7 +472,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e9" data-title="app">"Mannheim, den 15.
+                                            <div class="apparatusEntry" id="d10e9" data-title="app">"Mannheim, den 15.
                     März: Die Sängerinnen auf dem
                         Lande, komische Oper in 2 Aufzügen; Musik von Fioravanti.": Lesart in anderer Quelle: <span class="tei_rdg">Aus Mannheim. | Hier wurde am 15ten März gegeben: Die Sängerinnen auf dem Lande, komische Oper in 2 Aufzügen; Musik von Fioravanti.</span></div>
                                         </li>
@@ -439,28 +480,28 @@
                                             <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Mad. Bachmann</span>": Theodora Bachmann, die am 15. März 1812 als Rosa in den <span class="tei_hi_italic">Sängerinnen auf dem Lande</span> aufgetreten war, wurde dennoch nach Mannheim verpflichtet und gab am 30. März 1812 ihr Debüt als Louise von Weller in <span class="tei_hi_italic">Der lustige Schuster </span>(<span class="tei_hi_italic">Poche, ma buone, ossia Le donne cambiate</span>) von Ferdinando Paër. Sie trat am 24. November 1812 zum letzten Mal in Mannheim auf.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e52" data-title="app">"gebe": Lesart in anderer Quelle: <span class="tei_rdg">gab</span></div>
+                                            <div class="apparatusEntry" id="d10e51" data-title="app">"gebe": Lesart in anderer Quelle: <span class="tei_rdg">gab</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e58" data-title="app">"habe": Lesart in anderer Quelle: <span class="tei_rdg">hat</span></div>
+                                            <div class="apparatusEntry" id="d10e57" data-title="app">"habe": Lesart in anderer Quelle: <span class="tei_rdg">hat</span></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">Debüt eines neuen … des Hrn. Sonntag</span>": Franz Sonntag gab am 10. März als Baruch in <span class="tei_hi_italic">Dienstpflicht</span> von August Wilhelm Iffland sein erstes und am 15. März 1812 als Don Bucefalo in den <span class="tei_hi_italic">Sängerinnen auf dem Lande</span> sein zweites Debüt in Mannheim.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e83" data-title="app">"– Parterre-Hände": Lesart in anderer Quelle: <span class="tei_rdg">Parterre-Hände</span></div>
+                                            <div class="apparatusEntry" id="d10e82" data-title="app">"– Parterre-Hände": Lesart in anderer Quelle: <span class="tei_rdg">Parterre-Hände</span></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary">"<span class="tei_lemma">Erzählung</span>": nach dem Duett Carlino und Bucefalo (Nr. 12)</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e124" data-title="app">"und –": Lesart in anderer Quelle: <span class="tei_rdg">und</span></div>
+                                            <div class="apparatusEntry" id="d10e123" data-title="app">"und –": Lesart in anderer Quelle: <span class="tei_rdg">und</span></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_05" data-title="note commentary">"<span class="tei_lemma">Terzette zu Anfange des ersten Aktes</span>": Terzett Rosa, Agate und Bucefalo (Nr. 2)</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39117e147" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="71111116116102114105101100328710198101114">Gottfried Weber</span>.</span></div>
+                                            <div class="apparatusEntry" id="d10e146" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="71111116116102114105101100328710198101114">Gottfried Weber</span>.</span></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -488,9 +529,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031005</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031005</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

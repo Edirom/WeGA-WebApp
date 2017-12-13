@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030791" />
         <meta property="dc:description" content="Chronik Dresden, Hoftheater vom 14. bis 27. Oktober 1819" />
         <meta name="description" content="Chronik Dresden, Hoftheater vom 14. bis 27. Oktober 1819" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030791</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030791.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -290,6 +331,8 @@
                                     <input type="checkbox" name="options" value="A001909" /> <span title="Strauß, Therese">Strauß, Therese</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001977" /> <span title="Toussaint, Louis Wilhelm">Toussaint, Louis Wilhelm</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002022" /> <span title="Vogel, Wilhelm">Vogel, Wilhelm</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label><label class="btn gradient-light">
@@ -341,7 +384,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -400,11 +443,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Am <span class="tei_date">14. Oct</span>. Zum Erstenmale: <span class="preview works A020517" data-ref="/exist/apps/WeGA-WebApp/de/A000520/Werke/A020517.html"><span class="tei_hi_spaced_out">Carlo Fioras</span>, <span class="tei_hi_spaced_out">der Stumme in der Sierra Morena</span></span>. Oper in 3 Akten, nach dem Französischen von <span class="86111103101108">Vogel</span>. Musik von <a class="preview persons A000520" href="/exist/apps/WeGA-WebApp/de/A000520.html">Fränzel</a>.</p>
+                                        <p>Am <span class="tei_date">14. Oct</span>. Zum Erstenmale: <span class="preview works A020517" data-ref="/exist/apps/WeGA-WebApp/de/A000520/Werke/A020517.html"><span class="tei_hi_spaced_out">Carlo Fioras</span>, <span class="tei_hi_spaced_out">der Stumme in der Sierra Morena</span></span>. Oper in 3 Akten, nach dem Französischen von <a class="preview persons A002022" href="/exist/apps/WeGA-WebApp/de/A002022.html">Vogel</a>. Musik von <a class="preview persons A000520" href="/exist/apps/WeGA-WebApp/de/A000520.html">Fränzel</a>.</p>
                                         <p>Leider ist der artistische Beurtheiler der deutschen Oper für diese Blätter, krank, und wir können bis zu seiner Wiedergenesung über diese Oper in Hinsicht auf Tonsetzung und musikalische Ausführung keine Mittheilung geben. Was das Gedicht selbst betrifft, so zeichnet es sich durch Interesse vor vielen andern aus, und Dialog und Verse sind so, daß man sie wohl mit anhören kann, welches leider nicht stets der Fall ist. <a class="preview persons A002247" href="/exist/apps/WeGA-WebApp/de/A002247.html">Herr <span class="tei_hi_spaced_out">Julius</span></a> hatte die Rolle des <span class="83116117109109101110">Stummen</span> übernommen, und gab sie mit Wahrheit und Innigkeit. Er hatte vollkommen Recht, keinen kräftigen Mann von vierzig Jahren darzustellen, sondern anzudeuten, daß Kummer und Noth sein Haar vorschnell gebleicht haben. Eine höchst liebliche Erscheinung war <a class="preview persons A002211" href="/exist/apps/WeGA-WebApp/de/A002211.html">Dem. Julie <span class="tei_hi_spaced_out">Zucker</span></a> als <span class="731159798101108108101">Isabelle</span>. Der Wohllaut ihrer Stimme ist so eng mit der Empfindung ihres Herzens verbunden, daß er kein leerer Schall wird, sondern wohlthätig gleiche Gefühle erweckt. Ihre Schwester <a class="preview persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Emilie <span class="tei_hi_spaced_out">Zucker</span></a> gab die alte <span class="6697114989711497">Barbara</span> mit Virtuosität, und legte in ihre Cavatine so viel wahrhaft Komisches, daß der Beifall allgemein war. <a class="preview persons A001977" href="/exist/apps/WeGA-WebApp/de/A001977.html">Herr <span class="tei_hi_spaced_out">Toussaint</span></a> als <span class="7797110117101108">Manuel</span>, <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">Herr <span class="tei_hi_spaced_out">Bergmann</span></a> als <span class="65108102111110115111">Alfonso</span> und <a class="preview persons A001287" href="/exist/apps/WeGA-WebApp/de/A001287.html">Herr <span class="tei_hi_spaced_out">Mayer</span></a> als <span class="66971149897115105114111">Barbasiro</span>, verdienen Auszeichnung. <a class="preview persons A002149" href="/exist/apps/WeGA-WebApp/de/A002149.html">Herrn <span class="tei_hi_spaced_out">Wilhelmi</span>’s</a> angeborne Traulichkeit gab sich alle Mühe, den heimtückischen <span class="6611710297108111">Bufalo</span> darzustellen. <a class="preview persons A001311" href="/exist/apps/WeGA-WebApp/de/A001311.html">Herr <span class="tei_hi_spaced_out">Metzner</span></a> bewieß als <span class="6510810110311410597">Alegria</span>, was aus einer Nebenrolle zu machen sey. Das Ganze ward unter der Leitung des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn Kapellmeister v. Weber</a> zu einer sehr gelungenen Leistung, die sich auch lauten und dauernden Beifall – bei unserm Publiko eine nicht eben häufige Erscheinung – erwarb.</p>
                                         <p>Am <span class="tei_date">16. Oct</span>. <span class="tei_hi_antiqua"><span class="preview works A020437" data-ref="/exist/apps/WeGA-WebApp/de/A009023/Werke/A020437.html">La testa di Bronzo</span></span>. Musik von <span class="8311110810511897">Soliva</span>.</p>
                                         <p>Am <span class="tei_date">17. Oct</span>. <span class="tei_hi_spaced_out"><span class="preview works A020517" data-ref="/exist/apps/WeGA-WebApp/de/A000520/Werke/A020517.html">Carlo Fioras</span></span>.</p>
-                                        <p>Am <span class="tei_date">18. Oet</span>.[sic] <span class="tei_hi_spaced_out"><span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span></span>. <a class="preview persons A001909" href="/exist/apps/WeGA-WebApp/de/A001909.html">Mad. <span class="tei_hi_spaced_out">Strauß</span></a> von <span class="tei_placeName"><span class="8011497103">Prag</span></span> gab die <span class="80114105110122101115115105110">Prinzessin</span> als erste Gastrolle. Unwohlseyn ließ sie nicht den ganzen Umfang ihrer Stimme entfalten.</p>
+                                        <p>Am <span class="tei_date">18. Oet</span>.[sic] <span class="tei_hi_spaced_out"><span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span></span>. <a class="preview persons A001909" href="/exist/apps/WeGA-WebApp/de/A001909.html">Mad. <span class="tei_hi_spaced_out">Strauß</span></a> von <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> gab die <span class="80114105110122101115115105110">Prinzessin</span> als erste Gastrolle. Unwohlseyn ließ sie nicht den ganzen Umfang ihrer Stimme entfalten.</p>
                                         <p>Am <span class="tei_date">19. Oct</span>. <span class="tei_hi_spaced_out"><span class="preview works A020728" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020728.html">Wilhelm Tell</span></span>.</p>
                                         <p>Am <span class="tei_date">20. Oct</span>. <span class="tei_hi_antiqua"><span class="preview works A020234" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020234.html">L’italiana in Algeri</span></span>.</p>
                                         <p>Am <span class="tei_date">21. Oct</span>. <span class="tei_hi_spaced_out"><span class="preview works A020691" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020691.html">Der Hausdoctor</span></span>. Lustspiel in 3 Akten, von <a class="preview persons A002199" href="/exist/apps/WeGA-WebApp/de/A002199.html">Ziegler</a>. (Neu einstudirt.) Die Hauptperson in diesem, wohl besser in zwei Akte zusammengezogenen, Stücke ist der <span class="7297117115104111102109101105115116101114326910510810997110110">Haushofmeister Eilmann</span>, dessen Name schon seinen Character verräth. <a class="preview persons A003074" href="/exist/apps/WeGA-WebApp/de/A003074.html">Herr <span class="tei_hi_spaced_out">Pauli</span></a> gab ihn mit Lebendigkeit und wirkender Komik, nur dürfte freilich zu wünschen seyn, daß er hie und da schneller vom Fleck käme, als es wirklich der Fall ist, wofür freilich der Dichter hätte sorgen sollen. Der <span class="729711711510011199116111114">Hausdoctor</span> selbst ist eine ziemlich unbedeutende Rolle, die nur in den Eifersuchtscenen Wärme erhält, welche <a class="preview persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Hrn. <span class="tei_hi_spaced_out">Kanow</span></a> auch recht wohl gelangen. Aus dem Character des <span class="7111497102328311111011010111011599104105108100">Graf Sonnenschild</span> wird man nicht recht klug. Er lebt in der großen Welt, und hat doch so vieles landjunkermäßige, daß es schwer seyn dürfte, Einheit in das Ganze zu bringen, so viele Mühe <a class="preview persons A002227" href="/exist/apps/WeGA-WebApp/de/A002227.html">Hr. <span class="tei_hi_spaced_out">Burmeister</span></a> sich auch damit gab. Der <span class="7797106111114">Major</span> ward von <a class="preview persons A000799" href="/exist/apps/WeGA-WebApp/de/A000799.html">Hrn. <span class="tei_hi_spaced_out">Hellwig</span></a> mit heiterkräftiger Haltung und im Schlußakte mit herzlicher Gemüthlichkeit dargestellt. <span class="6510997108105101">Amalie</span> gab <a class="preview persons A001752" href="/exist/apps/WeGA-WebApp/de/A001752.html">Dem. <span class="tei_hi_spaced_out">Schu<span class="tei_cb" title="Spaltenumbruch">¦</span>bert</span></a> besonders in den Scenen der Verlegenheit gut, und <span class="82111115101">Rose</span> fand an <a class="preview persons A008666" href="/exist/apps/WeGA-WebApp/de/A008666.html">Dem. <span class="tei_hi_spaced_out">Tilly</span></a> eine einnehmende Repräsentantin. Einige Zudringlichkeiten in dieser Rolle sind wohl etwas zu stark vom Verf. gezeichnet. Recht belustigend war <a class="preview persons A002254" href="/exist/apps/WeGA-WebApp/de/A002254.html">Hr. <span class="tei_hi_spaced_out">Künzel</span></a> als <span class="72971101101059897108">Hannibal</span>. Hie und da war bei dieser ersten Vorstellung das Spiel noch nicht ganz in einander greifend, was gewiß bei der zweiten sich noch mehr runden wird. Es folgte darauf: <span class="tei_hi_spaced_out"><span class="6810510132741171101031031011151011081081011101191051141161041159910497102116">Die Junggesellenwirthschaft</span></span>. Oper, von <a class="preview persons A000712" href="/exist/apps/WeGA-WebApp/de/A000712.html">Gyrowetz</a>.</p>
@@ -446,7 +489,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 261 (1. November 1819), S. 2v</p>
+                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 261 (1. November 1819), Bl. 2v</p>
                                 
                                 <div>
                                     
@@ -489,9 +532,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030791</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030791</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

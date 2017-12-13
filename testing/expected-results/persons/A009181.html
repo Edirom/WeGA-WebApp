@@ -243,7 +243,7 @@
                 <p> 
                     The 'standard' TEI version. 
                     WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information had to be dropped.
+                    but no information needs to be dropped.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
@@ -251,14 +251,11 @@
                     This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
                     So be warned, this <i>not</i> a lossless transformation. 
                 </p>
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
-                <p> 
-                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
-                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
-                </p>
+                
+                
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a streamlined plain text version. 
+                    An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
@@ -383,13 +380,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/dnb.html">GND Eintrag</a>
+                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a class="deactivated"></a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -419,11 +416,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -436,7 +433,7 @@
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00582856]" href="http://thesaurus.cerl.org/record/cnp00582856">CERL Thesaurus</a></li>
                                                             <li><a title="Badische Landesbibliothek; Württembergische Landesbibliothek" href="http://www.statistik-bw.de/LABI/PDB.asp?ID=124815014">Landesbibliographie Baden-Württemberg</a></li>
                                                             <li><a title="In LEO-BW enthaltene Personendatenbank der Landesbibliographie Baden-Württemberg" href="http://www.leo-bw.de/web/guest/detail/-/Detail/details/PERSON/wlbblb_personen/124815014/person">LEO-BW - Landeskundliches Informationssystem Baden-Württemberg</a></li>
-                                                            <li><a title="Landesarchiv Baden-Württemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=124815014">Online-Findmittelsystem, Landesarchiv Baden-Württemberg</a></li>
+                                                            <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=124815014">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg (2)</a></li>
                                                             <li><a title="Korrespondierendes Wikidata-Item (www.wikidata.org) [Q1177426]" href="https://tools.wmflabs.org/reasonator/?q=Q1177426">Wikidata</a></li>
                                                             <li><a title="Wikipedia-Personenartikel" href="https://tools.wmflabs.org/persondata/redirect/gnd/de/124815014">Wikipedia-Artikel</a></li>
                                                         </ul>

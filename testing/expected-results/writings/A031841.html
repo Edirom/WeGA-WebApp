@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031841" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031841</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,66 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031841.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031834.html">Aufführungsbesprechung Prag, Ständetheater, April 1814 (Teil 2/2)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -257,7 +315,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000018" /> <span title="Allram, Joseph">Allram, Joseph</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolf">Bayer, Franz Rudolf</span> 
+                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolph">Bayer, Franz Rudolph</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000222" /> <span title="Brede, Auguste">Brede, Auguste</span> 
                                 </label><label class="btn gradient-light">
@@ -323,11 +381,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101112111108100115116971001167610111111211110810011511697100116" /> <span title="LepoldstadtLeopoldstadt">LepoldstadtLeopoldstadt</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,14 +448,14 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="8011497103">Prag</span></span></span>.</span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span></span>.</span></h2>
                                         <p>„<span class="68105101326610110211410110511711010332118111110327711111510797117"><span class="tei_hi_spaced_out">Die Befreiung von Moskau</span></span>“ hat hier bei der dritten Vorstellung das Haus leer gelassen, doch ist nicht zu läugnen, daß dies Stück interessante Situationen enthält. <a class="preview persons A000101" href="/exist/apps/WeGA-WebApp/de/A000101.html">Herr <span class="tei_hi_spaced_out">Bayer</span></a> als <span class="7025211411511632801111159910497114115107121">Fürst Poscharsky</span>, <a class="preview persons A001193" href="/exist/apps/WeGA-WebApp/de/A001193.html">Madame <span class="tei_hi_spaced_out">Löwe</span></a> als seine <span class="7197116116105110110">Gattinn</span>, und <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr <span class="tei_hi_spaced_out">Liebich</span></a> als <span class="68101109101116114105117115">Demetrius</span> spielten mit gewohntem Fleiße.</p>
                                         <p>„<span class="preview works A021227" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021227.html"><span class="tei_hi_spaced_out">Männertreue</span></span>,“ ein niedliches Lustspiel in einem Akt ward von <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Madame <span class="tei_hi_spaced_out">Brede</span></a>, und <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Herr <span class="tei_hi_spaced_out">Polavsky</span></a> mit vieler Anmuth gegeben.</p>
-                                        <p>Die Pantomime in zwei Akten von <a class="preview persons A008452" href="/exist/apps/WeGA-WebApp/de/A008452.html">Herrn <span class="tei_hi_spaced_out">Supper</span></a>, (vormahls beim <span class="tei_placeName">Theater an der Wien</span> und <span class="tei_placeName"><span class="76101112111108100115116971001167610111111211110810011511697100116"><span class="tei_choice"><span class="tei_corr">Leopoldstadt</span><a class="noteMarker" id="ref-d39795e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39795e69">‡</a></span></span></span> engagirt) in die Scene gesetzt: „<span class="preview works A020498" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020498.html"><span class="tei_hi_spaced_out">Harlekins Zauberpfeife</span></span>,“ gefiel dem Publikum recht sehr, wahrscheinlich da es diese Art Schauspiele lange nicht gesehen hatte. <a class="preview persons A008452" href="/exist/apps/WeGA-WebApp/de/A008452.html">Herr <span class="tei_hi_spaced_out">Supper</span></a> ist ein sehr braver <span class="80105101114114111116">Pierrot</span>, <a class="preview persons A008531" href="/exist/apps/WeGA-WebApp/de/A008531.html">Demoiselle <span class="tei_hi_spaced_out">Frühmann</span></a> tanzte als <span class="7511110811110998105110101">Kolombine</span> sehr artig, <a class="preview persons A000627" href="/exist/apps/WeGA-WebApp/de/A000627.html">Herr <span class="tei_hi_spaced_out">Gerstl</span></a> als hinkender <span class="76105101981049798101114">Liebhaber</span> war ganz vorzüglich.</p>
-                                        <p>„<span class="preview works A020527" data-ref="/exist/apps/WeGA-WebApp/de/A000909/Werke/A020527.html"><span class="tei_hi_spaced_out">Aschenbrödel</span></span>“ füllt noch immer das Haus, <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Demoiselle <span class="tei_hi_spaced_out">Brand</span></a> vom <span class="tei_placeName">Frankfurter Nationaltheater</span> engagirt, entzückt als <span class="651159910410111098114246100101108">Aschenbrödel</span> alle Herzen. <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr <span class="tei_hi_spaced_out">Liebich</span></a> als <span class="6697114111110327711111011610110210597115107111110101">Baron Montefias<span class="tei_pb" title="Seitenumbruch zu S. 161">|</span>kone</span> macht sehr viel aus seiner Rolle, <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Madame <span class="tei_hi_spaced_out">Grünbaum</span></a>, die ihrer Entbindung nahe ist, entfaltet als <span class="67104108111114105110100101">Chlorinde</span> den Reiz ihres Gesanges, auch <a class="preview persons A000019" href="/exist/apps/WeGA-WebApp/de/A000019.html">Madame <span class="tei_hi_spaced_out">Allram</span></a> singt als <span class="8410410511598101">Thisbe</span> sehr brav. <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Herr <span class="tei_hi_spaced_out">Polawsky</span></a> spielt den <span class="8311697108108109101105115116101114326897110100105110105">Stallmeister Dandini</span> mit vielem Erfolge, <a class="preview persons A001825" href="/exist/apps/WeGA-WebApp/de/A001825.html">Herr <span class="tei_hi_spaced_out">Siebert</span></a> singt seinen <span class="65108105100111114">Alidor</span> wunderschön. Diese Oper darf in Hinsicht der darauf verwendeten Kosten, und der glänzenden Ausstattung, keinen Vergleich mit der Aufführung in <span class="tei_placeName"><span class="87105101110">Wien</span></span> scheuen.</p>
+                                        <p>Die Pantomime in zwei Akten von <a class="preview persons A008452" href="/exist/apps/WeGA-WebApp/de/A008452.html">Herrn <span class="tei_hi_spaced_out">Supper</span></a>, (vormahls beim <span class="tei_placeName">Theater an der Wien</span> und <span class="76101112111108100115116971001167610111111211110810011511697100116"><span class="tei_choice"><span class="tei_corr">Leopoldstadt</span><a class="noteMarker" id="ref-d10e67" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e67">‡</a></span></span> engagirt) in die Scene gesetzt: „<span class="preview works A020498" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020498.html"><span class="tei_hi_spaced_out">Harlekins Zauberpfeife</span></span>,“ gefiel dem Publikum recht sehr, wahrscheinlich da es diese Art Schauspiele lange nicht gesehen hatte. <a class="preview persons A008452" href="/exist/apps/WeGA-WebApp/de/A008452.html">Herr <span class="tei_hi_spaced_out">Supper</span></a> ist ein sehr braver <span class="80105101114114111116">Pierrot</span>, <a class="preview persons A008531" href="/exist/apps/WeGA-WebApp/de/A008531.html">Demoiselle <span class="tei_hi_spaced_out">Frühmann</span></a> tanzte als <span class="7511110811110998105110101">Kolombine</span> sehr artig, <a class="preview persons A000627" href="/exist/apps/WeGA-WebApp/de/A000627.html">Herr <span class="tei_hi_spaced_out">Gerstl</span></a> als hinkender <span class="76105101981049798101114">Liebhaber</span> war ganz vorzüglich.</p>
+                                        <p>„<span class="preview works A020527" data-ref="/exist/apps/WeGA-WebApp/de/A000909/Werke/A020527.html"><span class="tei_hi_spaced_out">Aschenbrödel</span></span>“ füllt noch immer das Haus, <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Demoiselle <span class="tei_hi_spaced_out">Brand</span></a> vom <span class="tei_placeName">Frankfurter Nationaltheater</span> engagirt, entzückt als <span class="651159910410111098114246100101108">Aschenbrödel</span> alle Herzen. <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr <span class="tei_hi_spaced_out">Liebich</span></a> als <span class="6697114111110327711111011610110210597115107111110101">Baron Montefias<span class="tei_pb" title="Seitenumbruch zu S. 161">|</span>kone</span> macht sehr viel aus seiner Rolle, <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Madame <span class="tei_hi_spaced_out">Grünbaum</span></a>, die ihrer Entbindung nahe ist, entfaltet als <span class="67104108111114105110100101">Chlorinde</span> den Reiz ihres Gesanges, auch <a class="preview persons A000019" href="/exist/apps/WeGA-WebApp/de/A000019.html">Madame <span class="tei_hi_spaced_out">Allram</span></a> singt als <span class="8410410511598101">Thisbe</span> sehr brav. <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Herr <span class="tei_hi_spaced_out">Polawsky</span></a> spielt den <span class="8311697108108109101105115116101114326897110100105110105">Stallmeister Dandini</span> mit vielem Erfolge, <a class="preview persons A001825" href="/exist/apps/WeGA-WebApp/de/A001825.html">Herr <span class="tei_hi_spaced_out">Siebert</span></a> singt seinen <span class="65108105100111114">Alidor</span> wunderschön. Diese Oper darf in Hinsicht der darauf verwendeten Kosten, und der glänzenden Ausstattung, keinen Vergleich mit der Aufführung in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> scheuen.</p>
                                         <p>Das Lustspiel von <a class="preview persons A002108" href="/exist/apps/WeGA-WebApp/de/A002108.html">Madame <span class="tei_hi_spaced_out">Weissenthurn</span></a>: „<span class="preview works A021010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021010.html"><span class="tei_hi_spaced_out">Welche ist die Braut</span></span>?“ hat recht sehr gefallen, und verdient es auch wirklich. Es ist eine wahre Bereicherung für unsere an guten Stücken so höchst arme Bühne. Schade, daß die Dichterinn es nicht anzeigte, daß sie es übersetzt hat. <a class="preview persons A001193" href="/exist/apps/WeGA-WebApp/de/A001193.html">Madame <span class="tei_hi_spaced_out">Löwe</span></a> gab die <span class="7797114105101">Marie</span>, <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr <span class="tei_hi_spaced_out">Liebich</span></a> den <span class="72101114114110321181111103266108252109108101105110">Herrn von Blümlein</span>, <a class="preview persons A000101" href="/exist/apps/WeGA-WebApp/de/A000101.html">Herr <span class="tei_hi_spaced_out">Bayer</span></a> den <span class="7111425211097117">Grünau</span> und <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Madame <span class="tei_hi_spaced_out">Brede</span></a> die <span class="6697114111110105110110">Baroninn</span> sehr fleißig. <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Madame <span class="tei_hi_spaced_out">Schröder</span></a> vom Hamburger Theater, die uns durch mehrere Gastrollen, besonders als <span class="779711410597328311611797114116">Maria Stuart</span>, <span class="7710110010197">Medea</span>, <span class="7911411510511097">Orsina</span>, <span class="73115979810110810897">Isabella</span>, in der <span class="preview works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Braut von Messina</span>, erfreute, hält jetzt ihr Wochenbette. Sie ist eine vollendete Künstlerinn im Hochtragischen, und neuerdings ein Beweis; daß es nicht gut sey, wenn der Künstler lange an <span class="tei_hi_spaced_out">einem</span> Orte bleibt. In dem südlichen Deutschland scheint ihr Ruf, noch nicht so herrlich, wie er es verdient, erschollen zu seyn. Man kann von ihr sagen: daß sie das Höchste der Kunst erreicht habe, ihr Organ, das man hören muß, um darüber zu urtheilen, reißt die Herzen unwiederstehlich hin, ein lebendiger Ausdruck des tiefsten Gefühls, frey von aller Manier, stellt sie über die berühmtesten Schauspielerinnen <span class="tei_placeName"><span class="tei_country">Deutschlands</span></span>. Sie gab ein Deklamatorium hier, Referent hat nicht-dramatische Gedichte noch nie <span class="tei_hi_spaced_out">so</span> vortragen hören; es war das erste Deklamatorium, das ihn hoch entzückte, in<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> welchem er keine Spur von Langeweile fühlte. Das Publikum zollte bei jeder Vorstellung ihren Verdiensten stürmischen, enthusiastischen Beifall, und rief sie hervor. Sie wird nach ihrem Wochenbette noch einige Gastrollen geben.</p>
                                         <p>„<span class="preview works A020468" data-ref="/exist/apps/WeGA-WebApp/de/A000486/Werke/A020468.html"><span class="tei_hi_spaced_out">Die Sängerinnen auf dem Lande</span></span>“ wurden sehr fleißig dargestellt. Vor allen andern müssen wir <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Herrn <span class="tei_hi_spaced_out">Allram</span></a> darinn nennen, der als <span class="6610111510511612210111432100101115327697110100103117116101115329810110532701149711510797116105">Besitzer des Landgutes bei Fraskati</span> allen Aufwand seiner <span class="tei_hi_antiqua">vic comica</span> uns herrlich zeigte, und auch mit reichlichem Beifall belohnt wurde. Auch <a class="preview persons A001825" href="/exist/apps/WeGA-WebApp/de/A001825.html">Herr <span class="tei_hi_spaced_out">Siebert</span></a> als <span class="7597112101108108109101105115116101114">Kapellmeister</span>, hielt sich sehr brav. <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Madame <span class="tei_hi_spaced_out">Grünbaum</span></a> sang wie immer unübertrefflich schön. Die Vorstellung war gelungen.</p>
-                                        <p>„<span class="preview works A020513" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020513.html"><span class="tei_hi_spaced_out">Adolf und Klara</span></span>“ konnte wegen dem Tode des braven <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html"><span class="tei_hi_spaced_out">Mohrhardt</span></a>, dessen Verlust noch allgemein tief betrauert wird, nur zwei Mahl gegeben werden. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Demoiselle <span class="tei_hi_spaced_out">Brand</span></a>, <a class="preview persons A001825" href="/exist/apps/WeGA-WebApp/de/A001825.html">Herr <span class="tei_hi_spaced_out">Siebert</span></a> und <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Herr <span class="tei_hi_spaced_out">Allram</span></a> machten sich sehr lobenswerth, <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html"><span class="tei_hi_spaced_out">Mohrhardt</span></a> spielte und sang mit gewohntem Fleiß und Eifer. Die hiesige Bühne hat eine der größten Zierde an Ihm verloren. <span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="87105101110">Wien</span></span></span> verkannte ihn, aber <span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="8011497103">Prag</span></span></span> wußte ihn zu schätzen.</p>
+                                        <p>„<span class="preview works A020513" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020513.html"><span class="tei_hi_spaced_out">Adolf und Klara</span></span>“ konnte wegen dem Tode des braven <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html"><span class="tei_hi_spaced_out">Mohrhardt</span></a>, dessen Verlust noch allgemein tief betrauert wird, nur zwei Mahl gegeben werden. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Demoiselle <span class="tei_hi_spaced_out">Brand</span></a>, <a class="preview persons A001825" href="/exist/apps/WeGA-WebApp/de/A001825.html">Herr <span class="tei_hi_spaced_out">Siebert</span></a> und <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Herr <span class="tei_hi_spaced_out">Allram</span></a> machten sich sehr lobenswerth, <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html"><span class="tei_hi_spaced_out">Mohrhardt</span></a> spielte und sang mit gewohntem Fleiß und Eifer. Die hiesige Bühne hat eine der größten Zierde an Ihm verloren. <span class="tei_hi_spaced_out"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></span> verkannte ihn, aber <span class="tei_hi_spaced_out"><span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span></span> wußte ihn zu schätzen.</p>
                                         <p>Ein kleines Ballet: „<span class="preview works A020847" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020847.html"><span class="tei_hi_spaced_out">der Jahrmarkt</span></span>“ hat sehr gefallen. <a class="preview persons A001945" href="/exist/apps/WeGA-WebApp/de/A001945.html">Madame <span class="tei_hi_spaced_out">Horschelt</span></a> und <span class="preview persons A001C45 A008393" data-ref="/exist/apps/WeGA-WebApp/de/A001C45.html /exist/apps/WeGA-WebApp/de/A008393.html">ihre Töchter</span> sind sehr brave Tänzerinnen. Ein anderes Ballet: „<span class="10010111432108105115116105103101328710111498101114"><span class="tei_hi_spaced_out">der listige Werber</span></span>“ hat mit Recht mißfallen. Ein Schulmeister, der einem Kinde die Ruthe geben will, und sich von der Mutter des Kindes durch eine Flasche Wein davon abhalten läßt, dann in einen Mehlkasten steigt, und mit Mehl beschüttet wird, das sind sehr neue rührende Scenen darinn!!! —</p>
                                         <p><span class="tei_segBlock textAlign-center">(<span class="tei_hi_spaced_out">Die <a class="preview writings A031834" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031834.html">Fortsetzung</a> folgt</span>.)</span></p>
                                     </div>
@@ -454,7 +510,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d39795e69" data-title="choice">recte "Leopoldstadt": in der Vorlage "Lepoldstadt"</div>
+                                            <div class="apparatusEntry" id="d10e67" data-title="choice">recte "Leopoldstadt": in der Vorlage "Lepoldstadt"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -482,9 +538,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031841</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031841</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030623" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030623.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -270,7 +311,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -284,7 +325,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">
-                    <span class="tei_ptr"></span>Uebungen für die Singstimme ohne Worte, mit einer Vorerinnerung von <span class="tei_hi_spaced_out"><a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Hier. Crescentini</a>.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a></span> <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> bei <a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopf u. Härtel</a>. Fol. (1 Thlr. 12 gr.)
+                    <span class="tei_ptr"></span>Uebungen für die Singstimme ohne Worte, mit einer Vorerinnerung von <span class="tei_hi_spaced_out"><a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Hier. Crescentini</a>.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a></span> <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> bei <a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopf u. Härtel</a>. Fol. (1 Thlr. 12 gr.)
                 </h2>
                                         <p>Wohl war es an <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini</a>, dem hohen Meister, vor dem musikalischen Publicum, welches er noch vor kurzem in der blühendern Periode seiner Virtuosität zur höchsten Bewunderung, und mehr noch zum wärmsten Mitgefühl bey seinen theatralischen Darstellungen zauberisch hingerissen hatte, wohl ziemte es ihm, jetzt als belehrender Schriftsteller vor dieses Publicum zu treten, und demselben durch das vorliegende Werk ein Geschenk zu machen, welches wohlthätig fortwirken wird, auch wenn seiner lebendigen Töne letzter einst ausgeklungen hat; und ein verdienstlich, unfehlbar auch nicht wenig lucratives Unternehmen der Verlagshandlung ist es, dieses Werk auch auf Deutschem Boden zu vervielfältigen.</p>
                                         <p>Ref. beschreibt zuerst die Form und innere Einrichtung desselben im Allgemeinen. Es enthält im Ganzen 47 Folioseiten, wovon viere den Deutschen Text, dem Französischen gegenüber abgedruckt, die zwey folgenden einzelne Notenbeyspiele, alle übrigen aber Solfeggien von <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini’s</a> Composition, enthalten. Stich und Druck sind correct und schön: das als Titelkupfer beygefügte Portrait des Verf. aber unähnlich.</p>
@@ -298,7 +339,7 @@
                                         <p>Für die vorliegenden Solfeggien nimmt nun schon die Lieblichkeit der Melodieen und der geläuterte Geschmack, in welchem das Ganze geschrieben ist, im Voraus ein. Gewiß ein nicht geringer Vorzug, im Vergleich gegen die Geschmackslosigkeit und Steifheit der Solfeggi’s aus den gerühmten alten Zeiten, mit denen die Singlehrer noch jetzt größtentheils ihre Zöglinge zu üben, ihre Geduld auf harte Proben zu setzen, wo nicht gar zu ermüden, und – was das Schlimmste ist, dadurch den <span class="tei_hi_spaced_out">Geschmack</span> des Bildlings wenigstens nicht zu verbessern pflegen: ein Vorwurf, der selbst die 
                     <span class="tei_ptr"></span>Singschule des Pariser Musikconservatoriums<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a> trifft. Unerreicht stand bis jetzt einzig 
                     <span class="tei_ptr"></span><a class="preview persons A001577" href="/exist/apps/WeGA-WebApp/de/A001577.html">Righini</a> in seinen <span class="tei_hi_italic">Exercices</span>.<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a> Er wagte es, seine Singübungen in dem Geschmacke zu schreiben, nicht wie man vor Jahrhunderten sang, sondern wie man im unsrigen zu singen pflegt und singen soll – und brachte, bey seiner eminenten Gabe singbar zu schreiben, ein Werk zu Stande, was jetzt in aller Händen und seiner Allverbreitung und Allbeliebtheit völlig werth ist. Ein würdiges Gegenstück dazu bildet nun das vorliegende Werk. <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini</a>, dem niemand eine Stelle auch in dem engsten Kreise der größten jetzt lebenden Sänger streitig machen wird, weiß, was der Stimme ziemt, sie ausbildet, und im günstigsten Lichte zeigt. Das alles hat er denn hier so sorgfältig und deutlich durch ausgeschriebene Singmanieren und beygesetzte Kunstworte und Zeichen angedeutet und vorgeschrieben, daß Rec. bey Durchsicht derselben 
-                    <span class="tei_ptr"></span><a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini’s</a> Gesang wieder zu hören glaubte,<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> und die angenehmste Rückerinnerung aus den stummen Zeichen lebendig für ihn aufging. Von besonderer Wichtigkeit sind die überall sorglich beygesetzten Zeichen <span class="musical-symbols"></span> und <span class="musical-symbols"></span>, welche schon allein dem Werke einen Vorzug vor dem <a class="preview persons A001577" href="/exist/apps/WeGA-WebApp/de/A001577.html">Righinischen</a> sichern, und deren strenge Beobachtung dem Sänger eine Biegsamkeit, Dehnbarkeit und Gewandtheit des Tonansatzes verleihen muß, welche ihm den Weg zu den größten Effecten bahnt. Da ist keine Gelegenheit versäumt, ein <span class="tei_hi_italic">crescendo</span>, <span class="tei_hi_italic">decrescendo</span>, oder gar eine kürzere oder längere <span class="tei_hi_italic">messa di voce</span> anzubringen, keine <span class="tei_choice"><span class="tei_corr">Appoggiatur</span><a class="noteMarker" id="ref-d42635e164" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42635e164">‡</a></span>, kein Mordent, die nicht an ihrem Platze stünden, immer aber und hauptsächlich alles auf Portament und Ligatur berechnet, was auch häufig bey der Ueberschrift der einzelnen Nummern noch besonders angeschrieben steht, z. B. S. 9.:</p>
+                    <span class="tei_ptr"></span><a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini’s</a> Gesang wieder zu hören glaubte,<a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> und die angenehmste Rückerinnerung aus den stummen Zeichen lebendig für ihn aufging. Von besonderer Wichtigkeit sind die überall sorglich beygesetzten Zeichen <span class="musical-symbols"></span> und <span class="musical-symbols"></span>, welche schon allein dem Werke einen Vorzug vor dem <a class="preview persons A001577" href="/exist/apps/WeGA-WebApp/de/A001577.html">Righinischen</a> sichern, und deren strenge Beobachtung dem Sänger eine Biegsamkeit, Dehnbarkeit und Gewandtheit des Tonansatzes verleihen muß, welche ihm den Weg zu den größten Effecten bahnt. Da ist keine Gelegenheit versäumt, ein <span class="tei_hi_italic">crescendo</span>, <span class="tei_hi_italic">decrescendo</span>, oder gar eine kürzere oder längere <span class="tei_hi_italic">messa di voce</span> anzubringen, keine <span class="tei_choice"><span class="tei_corr">Appoggiatur</span><a class="noteMarker" id="ref-d10e163" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e163">‡</a></span>, kein Mordent, die nicht an ihrem Platze stünden, immer aber und hauptsächlich alles auf Portament und Ligatur berechnet, was auch häufig bey der Ueberschrift der einzelnen Nummern noch besonders angeschrieben steht, z. B. S. 9.:</p>
                                         <p><span class="tei_segBlock textAlign-center">
                     <span class="tei_ptr"></span>„<span class="tei_hi_italic">Largo, sostenuto, sempre legato  e portando la voce“</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a></span></p>
                                         <p>gleichsam als wollte <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Cr.</a> durch den absichtlichen Pleonasm sagen: er könne es nicht oft und nachdrücklich genug empfehlen, daß das Tragen der Stimme die wichtigste technische Kunstregel sey. Um aber diesen hier wirklich hochgespannten Forderungen Genüge leisten zu können, wollen wir dem Sänger, der an diesen Solfeggien sich versucht, rathen, das Ganze in der Regel <span class="tei_hi_italic">piano</span> zu halten, die Kraft sehr zu sparen, ja das Ganze beynahe mit nur halber Stimme vorzutragen, um die durch eine Appoggiatur bezeichneten Stellen gehörig herausheben zu können.</p>
@@ -390,7 +431,7 @@
                                             <div class="apparatusEntry" id="C_08" data-title="note commentary">"<span class="tei_lemma">Crescentini’s Gesang wieder zu hören glaubte,</span>": Ob und wann G. Weber Crescentini gehört hat, war nicht zu ermitteln.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d42635e164" data-title="choice">recte "Appoggiatur": in der Vorlage "Appaggiatur"</div>
+                                            <div class="apparatusEntry" id="d10e163" data-title="choice">recte "Appoggiatur": in der Vorlage "Appaggiatur"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">„ Largo, sostenuto, … portando la voce“</span>": vgl. Crescentini, a. a. O., S. 9 (Solfeggio Nr. 1)</div>
@@ -424,9 +465,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030623</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030623</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

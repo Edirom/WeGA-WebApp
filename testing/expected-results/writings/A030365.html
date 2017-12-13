@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030365" />
         <meta property="dc:description" content="Aufführungsbesprechung Wien, Redoutensaal: Konzert von Helene Harlas und Heinrich Joseph Baermann am 7. Februar 1813 und öfter, u.a. mit dem 2. Konzert für Klarinette (WeV N.13) von Carl Maria von Weber. Erwähnt sind auch weitere Aufführungen." />
         <meta name="description" content="Aufführungsbesprechung Wien, Redoutensaal: Konzert von Helene Harlas und Heinrich Joseph Baermann am 7. Februar 1813 und öfter, u.a. mit dem 2. Konzert für Klarinette (WeV N.13) von Carl Maria von Weber. Erwähnt sind auch weitere Aufführungen." />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030365</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030365.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -259,7 +300,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000741" /> <span title="Harlas, Helena">Harlas, Helena</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001189" /> <span title="Lobkowitz, Franz Joseph Maximilian Ferdinand von">Lobkowitz, Franz Joseph Maximi…</span> 
+                                    <input type="checkbox" name="options" value="A001189" /> <span title="Lobkowitz, Joseph Franz Maximilian Fürst von">Lobkowitz, Joseph Franz Maximi…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A008794" /> <span title="Nasolini, Sebastiano">Nasolini, Sebastiano</span> 
                                 </label><label class="btn gradient-light">
@@ -287,9 +328,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -315,7 +356,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Schreiben aus Wien.</h2>
-                                        <p>Es ist etwas spät, lieber Freund, daß ich Ihre Wünsche befriedigen kann. Sie haben mich über einen Gegenstand um Mittheilung ersucht, wobey es nicht auf meinen Geschmack allein ankommt, Ihnen ein Urtheil darüber zu sagen. Ich würde mich zwar schwerlich getäuscht haben, wenn ich Ihnen meine Ansichten gleich geradezu mitgetheilt hätte, denn noch nie habe ich den Fall erlebt, wo meine und des Publikums Ansichten über eine Sache sich so gleich gewesen sind. Ich kann es Ihnen aufrichtig bezeugen, daß über Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span> und Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a></span> in ganz <span class="tei_placeName"><span class="87105101110">Wien</span></span> nur Eine Stimme herrscht. Wir hörten beyde zuerst in einem Conzerte am 7. Februar. Es war Carneval; eine Zeit, die in <span class="tei_placeName"><span class="87105101110">Wien</span></span>, wie Sie wissen, eben nicht geeignet ist, um sich einen guten Erfolg von einem Conzerte zu <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>versprechen. Der Betrag fiel auch so ziemlich mittelmäßig aus, aber desto unbegränzter und allgemeiner war der Beyfall, der beyden Künstlern geworden. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> sang zwey Scenen, eine von <a class="preview persons A008794" href="/exist/apps/WeGA-WebApp/de/A008794.html">Nasolini</a> und eine von <a class="preview persons A003084" href="/exist/apps/WeGA-WebApp/de/A003084.html">Nicolini</a>, und Hr. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> spielte ein Concert und Variation<span class="tei_supplied" id="d39888e38"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> von dem auch hier nach Verdienst verehrten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Karl Maria</span> v. <span class="tei_hi_spaced_out">Weber</span></a>. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a>, der es vor dieser Probe ihres himmlischen Gesanges erschwert worden seyn soll, auf dem Theater in einigen Gast-Rollen aufzutreten, obgleich ihr der <a class="preview persons A001189" href="/exist/apps/WeGA-WebApp/de/A001189.html">Fürst Lobcowitz</a> dieselben schriftlich zugesichert hatte, erhielt nun ein Engagement auf zwey Monate, in welcher Zeit sie sich verpflichten mußte, zehn Darstellungen, und zwar in den Opern die <span class="7211111497122105101114">Horazier</span> und <span class="7511711410597122105101114">Kuriazier</span>, in <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargin</span> und im <span class="preview works A020545" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020545.html">Titus</span> zu geben. Das Honorar für jeden Monat war 100 Luis’dors, welche der Fürst mit großer Bereitwilligkeit auszahlen ließ. Im Laufe dieser Darstellungen gaben beyde wieder ein Concert, welches sich eines außerordentlich glänzenden Auditoriums zu erfreuen hatte, das es an den feuristen Beyfallsbezeugungen nicht ermangeln ließ. – Im Laufe dieser Darstellungen gaben beyde wieder ein Concert, welches sich eines außerordentlich glänzenden Auditoriums zu erfreuen hatte, das es an den feuri<span class="tei_supplied" id="d39888e69"><span class="brackets_supplied">[</span>g<span class="brackets_supplied">]</span></span>sten Beyfallsbezeugungen nicht ermangeln ließ. – Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> trat als <span class="6711711410597122105111">Curiazio</span> zuerst auf, und obschon ihr in dieser Rolle eine <span class="779711499104101115105"><span class="tei_add">Marchesi<a class="noteMarker" id="ref-d39888e80" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39888e80">‡</a></span></span>, <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini</a> und <span class="tei_add">Velletti<a class="noteMarker" id="ref-d39888e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39888e89">‡</a></span> vorangegangen waren, so wurde ihr doch ein Beyfall zu Theil, dessen kein fremder Künstler seit langer Zeit sich in <span class="tei_placeName"><span class="87105101110">Wien</span></span> mehr rühmen konnte. Sie wurde in einer Vorstellung viermal hervorgerufen. Diese Rolle gab sie fünfmal, alle übrigen zweymal. Als Beweis, wie sehr Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> im Laufe ihrer Darstellungen gefallen, dient die Verlängerung ihres Contractes auf noch ein Monat, und sie würde sich noch länger in <span class="tei_placeName"><span class="87105101110">Wien</span></span> aufgehalten haben, wenn nicht ihre Pflicht sie nach <span class="tei_placeName"><span class="7725211099104101110">München</span></span> zurückgerufen hätte. Ihre letzte Darstellung war <span class="8397114103105110111">Sargino</span>. Es war der Abend, wo wir sie zum letzten Male auf der Bühne hören sollten; je mehr wir bedachten, was es heißt, sie wieder zu verlieren, desto höher stieg unser Enthusiasmus für den Gegenstand, der uns so mächtig bezauberte. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> wurde an diesem Abend dreymal vervorgerufen. Wir hörten sie nur noch, wie auch Hrn. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a>, in einigen Conzerten, deren Ertrag zu Wohlthätigkeitszwecken verwendet wurde. Beyde Künstler hatten den Beyfall an sich gefesselt, denn auch was das Spiel des Hrn. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> betrifft, so ist man von dem Werthe desselben hier so sehr durchdrungen, daß man es sich allenthalben gern eingesteht, sein Instrument (welches das Klarinette ist) durch ihn erst recht kennen gelernt zu haben. Die Töne, welche er darauf hervorbringt, lassen Alles zurück, was je Dichter von den seelenvollen Lauten der Flöte gesungen; man vergißt Nachtigallen und Alles, wenn man ihn spielen und Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> singen hört. Ich beneide Sie, da Sie beydes in <span class="tei_placeName"><span class="7725211099104101110">München</span></span> so vielfältig genießen können, und rechne den Wunsch zu den heißesten in meinem Leben, euer gesammtes Orchester doch auch einmal, und zwar bey einer Gelegenheit zu hören, wo gerade Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span> und Hr. <span class="tei_hi_spaced_out"><a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a></span>, die gewiß zu den vortrefflichsten Zierden desselben gehören, ihre Kunst dabey mitwirken lassen. Adieu!</p>
+                                        <p>Es ist etwas spät, lieber Freund, daß ich Ihre Wünsche befriedigen kann. Sie haben mich über einen Gegenstand um Mittheilung ersucht, wobey es nicht auf meinen Geschmack allein ankommt, Ihnen ein Urtheil darüber zu sagen. Ich würde mich zwar schwerlich getäuscht haben, wenn ich Ihnen meine Ansichten gleich geradezu mitgetheilt hätte, denn noch nie habe ich den Fall erlebt, wo meine und des Publikums Ansichten über eine Sache sich so gleich gewesen sind. Ich kann es Ihnen aufrichtig bezeugen, daß über Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span> und Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a></span> in ganz <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> nur Eine Stimme herrscht. Wir hörten beyde zuerst in einem Conzerte am 7. Februar. Es war Carneval; eine Zeit, die in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, wie Sie wissen, eben nicht geeignet ist, um sich einen guten Erfolg von einem Conzerte zu <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>versprechen. Der Betrag fiel auch so ziemlich mittelmäßig aus, aber desto unbegränzter und allgemeiner war der Beyfall, der beyden Künstlern geworden. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> sang zwey Scenen, eine von <a class="preview persons A008794" href="/exist/apps/WeGA-WebApp/de/A008794.html">Nasolini</a> und eine von <a class="preview persons A003084" href="/exist/apps/WeGA-WebApp/de/A003084.html">Nicolini</a>, und Hr. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> spielte ein Concert und Variation<span class="tei_supplied" id="d10e36"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> von dem auch hier nach Verdienst verehrten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Karl Maria</span> v. <span class="tei_hi_spaced_out">Weber</span></a>. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a>, der es vor dieser Probe ihres himmlischen Gesanges erschwert worden seyn soll, auf dem Theater in einigen Gast-Rollen aufzutreten, obgleich ihr der <a class="preview persons A001189" href="/exist/apps/WeGA-WebApp/de/A001189.html">Fürst Lobcowitz</a> dieselben schriftlich zugesichert hatte, erhielt nun ein Engagement auf zwey Monate, in welcher Zeit sie sich verpflichten mußte, zehn Darstellungen, und zwar in den Opern die <span class="7211111497122105101114">Horazier</span> und <span class="7511711410597122105101114">Kuriazier</span>, in <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargin</span> und im <span class="preview works A020545" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020545.html">Titus</span> zu geben. Das Honorar für jeden Monat war 100 Luis’dors, welche der Fürst mit großer Bereitwilligkeit auszahlen ließ. Im Laufe dieser Darstellungen gaben beyde wieder ein Concert, welches sich eines außerordentlich glänzenden Auditoriums zu erfreuen hatte, das es an den feuristen Beyfallsbezeugungen nicht ermangeln ließ. – Im Laufe dieser Darstellungen gaben beyde wieder ein Concert, welches sich eines außerordentlich glänzenden Auditoriums zu erfreuen hatte, das es an den feuri<span class="tei_supplied" id="d10e67"><span class="brackets_supplied">[</span>g<span class="brackets_supplied">]</span></span>sten Beyfallsbezeugungen nicht ermangeln ließ. – Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> trat als <span class="6711711410597122105111">Curiazio</span> zuerst auf, und obschon ihr in dieser Rolle eine <span class="779711499104101115105"><span class="tei_add">Marchesi<a class="noteMarker" id="ref-d10e78" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e78">‡</a></span></span>, <a class="preview persons A000334" href="/exist/apps/WeGA-WebApp/de/A000334.html">Crescentini</a> und <span class="tei_add">Velletti<a class="noteMarker" id="ref-d10e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e87">‡</a></span> vorangegangen waren, so wurde ihr doch ein Beyfall zu Theil, dessen kein fremder Künstler seit langer Zeit sich in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> mehr rühmen konnte. Sie wurde in einer Vorstellung viermal hervorgerufen. Diese Rolle gab sie fünfmal, alle übrigen zweymal. Als Beweis, wie sehr Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> im Laufe ihrer Darstellungen gefallen, dient die Verlängerung ihres Contractes auf noch ein Monat, und sie würde sich noch länger in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> aufgehalten haben, wenn nicht ihre Pflicht sie nach <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> zurückgerufen hätte. Ihre letzte Darstellung war <span class="8397114103105110111">Sargino</span>. Es war der Abend, wo wir sie zum letzten Male auf der Bühne hören sollten; je mehr wir bedachten, was es heißt, sie wieder zu verlieren, desto höher stieg unser Enthusiasmus für den Gegenstand, der uns so mächtig bezauberte. Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> wurde an diesem Abend dreymal vervorgerufen. Wir hörten sie nur noch, wie auch Hrn. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a>, in einigen Conzerten, deren Ertrag zu Wohlthätigkeitszwecken verwendet wurde. Beyde Künstler hatten den Beyfall an sich gefesselt, denn auch was das Spiel des Hrn. <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a> betrifft, so ist man von dem Werthe desselben hier so sehr durchdrungen, daß man es sich allenthalben gern eingesteht, sein Instrument (welches das Klarinette ist) durch ihn erst recht kennen gelernt zu haben. Die Töne, welche er darauf hervorbringt, lassen Alles zurück, was je Dichter von den seelenvollen Lauten der Flöte gesungen; man vergißt Nachtigallen und Alles, wenn man ihn spielen und Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a> singen hört. Ich beneide Sie, da Sie beydes in <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> so vielfältig genießen können, und rechne den Wunsch zu den heißesten in meinem Leben, euer gesammtes Orchester doch auch einmal, und zwar bey einer Gelegenheit zu hören, wo gerade Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span> und Hr. <span class="tei_hi_spaced_out"><a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Bärmann</a></span>, die gewiß zu den vortrefflichsten Zierden desselben gehören, ihre Kunst dabey mitwirken lassen. Adieu!</p>
                                     </div>
                                 </div>
                     </div>
@@ -366,10 +407,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d39888e80" data-title="unclear">"Marchesi": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e78" data-title="unclear">"Marchesi": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d39888e89" data-title="unclear">"Velletti": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e87" data-title="unclear">"Velletti": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -399,9 +440,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030365</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030365</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

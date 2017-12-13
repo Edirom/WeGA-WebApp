@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031112" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -286,15 +327,15 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -320,7 +361,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">
-                    <span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="7725211099104101110">München</span></span></span>, <span class="tei_ptr"></span><span class="tei_choice"><span class="tei_corr">2. Juli</span><a class="noteMarker" id="ref-d41795e12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41795e12">‡</a></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.</span>
+                    <span class="tei_segBlock textAlign-right"><span class="tei_hi_spaced_out"><span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span></span>, <span class="tei_ptr"></span><span class="tei_choice"><span class="tei_corr">2. Juli</span><a class="noteMarker" id="ref-d10e11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e11">‡</a></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.</span>
                 </h2>
                                         <p>Gestern ist die (<span class="tei_ptr"></span>in Nr. 158 des Morgenblatts<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> angezeigte) italiänische Oper, <span class="tei_hi_spaced_out"><span class="preview works A021087" data-ref="/exist/apps/WeGA-WebApp/de/A001497/Werke/A021087.html">Ottaviano in Sicilia</span></span>, von der
                     Komposition des <a class="preview persons A001497" href="/exist/apps/WeGA-WebApp/de/A001497.html">Freiherrn <span class="tei_hi_spaced_out">von
@@ -333,7 +374,7 @@
                     Studium des Satzes erwirbt, und die er bey der Behandlung seiner Chöre so
                     glücklich als zweckmäßig anwendet. Seine Instrumentation, gleich reich und
                     wirkungsvoll, ist deßungeachtet nie überladen, eine bescheidene, aber
-                    liebenswürdige <span class="tei_choice"><span class="tei_corr">Begleiterinn</span><a class="noteMarker" id="ref-d41795e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41795e70">‡</a></span> des Gesanges. Kurz, Ref. glaubt mit vollem Rechte
+                    liebenswürdige <span class="tei_choice"><span class="tei_corr">Begleiterinn</span><a class="noteMarker" id="ref-d10e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e69">‡</a></span> des Gesanges. Kurz, Ref. glaubt mit vollem Rechte
                     vom <span class="tei_hi_spaced_out"><span class="preview works A021087" data-ref="/exist/apps/WeGA-WebApp/de/A001497/Werke/A021087.html">Ottaviano</span></span> behaupten zu
                     dürfen, daß es ein Werk sey, welches in allen seinen Theilen seinen Schöpfer als
                     Meister dokumentirt.</p>
@@ -342,12 +383,12 @@
                     durch seinen Gesang, wie durch die meisterhafte Deklamation der Recitative und
                     der ästhetischen Haltung, die er in seine schwierige Rolle zu bringen wußte.
                         <span class="77971004632729711410897115">Mad. <span class="tei_hi_spaced_out">Harlas</span></span> gab die Partie
-                    des <span class="tei_choice"><span class="tei_corr">verbannten</span><a class="noteMarker" id="ref-d41795e96" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41795e96">‡</a></span> Helden <span class="tei_hi_spaced_out"><span class="6710511011097">Cinna</span></span> mit einem Aufwande von Kraft und
+                    des <span class="tei_choice"><span class="tei_corr">verbannten</span><a class="noteMarker" id="ref-d10e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e95">‡</a></span> Helden <span class="tei_hi_spaced_out"><span class="6710511011097">Cinna</span></span> mit einem Aufwande von Kraft und
                     Anmuth des Gesanges, den man fast üppig nennen könnte. Den gefühlvollsten
                     Vortrag, die schwierigsten Passagen, das <span class="tei_hi_italic">Portamento di
                         voce</span> bis in den höchsten Tönen, wußte die Künstlerinn auf eine fast
                     unglaubliche Weise zu vereinigen und mit gleicher Treflichkeit vom Anfange bis
-                    zur letzten Note der Oper durchzuführen. – <span class="preview persons A002110" data-ref="/exist/apps/WeGA-WebApp/de/A002110.html">Mad. <span class="tei_choice"><span class="tei_corr"><span class="tei_hi_spaced_out">Weixelbaum</span></span><a class="noteMarker" id="ref-d41795e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41795e112">‡</a></span></span> bewies sich durch ihre brave Darstellung der
+                    zur letzten Note der Oper durchzuführen. – <span class="preview persons A002110" data-ref="/exist/apps/WeGA-WebApp/de/A002110.html">Mad. <span class="tei_choice"><span class="tei_corr"><span class="tei_hi_spaced_out">Weixelbaum</span></span><a class="noteMarker" id="ref-d10e111" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e111">‡</a></span></span> bewies sich durch ihre brave Darstellung der
                         <span class="tei_hi_spaced_out">Scribonia</span> werth, neben diesen Heroen des Gesanges
                     mit Ehren zu stehen. Das Orchester spielte seines großen Rufes würdig, die Chöre
                     gingen brav, und die Anordnung der Züge, Kostüme und Dekorationen waren so
@@ -359,18 +400,18 @@
                     Bahn verfolgt, so wird sein Name gewiß bald neben den würdigsten Meistern seiner
                     Kunst genannt werden.</p>
                                         <p>Seit ein Paar Monaten erregt hier in vielen vornehmen <span class="tei_ptr"></span>Privat-Cirkeln ein junger
-                    Tonkünstler aus <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>,
+                    Tonkünstler aus <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>,
                         <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hr. <span class="tei_hi_spaced_out">Meyer
                     Beer</span></a>, ein Schüler des großen <span class="tei_hi_spaced_out"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a></span>, Bewunderung mit seinen Phantasien
                     auf dem Forte-Piano<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>. Auch ließ er sich in einem <span class="tei_ptr"></span>Hof-Konzert<a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a> zu Nymphenburg
                     hören. Wie man sagt, wird <span class="tei_ptr"></span>eine große Oper<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a> von seiner Komposition bald auf der
                     hiesigen Bühne erscheinen. – Man erwartet auf derselben angenehme Gäste.
                     Zunächst <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview persons A000459" href="/exist/apps/WeGA-WebApp/de/A000459.html">Eßlair</a></span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a>
-                    von <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>, die berühmte
+                    von <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>, die berühmte
                     Sängerinn <span class="tei_ptr"></span><a class="preview persons A000751" href="/exist/apps/WeGA-WebApp/de/A000751.html">Dlle. <span class="tei_hi_spaced_out">Häser</span></a><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a>, und dann den Schauspieler <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview persons A001779" href="/exist/apps/WeGA-WebApp/de/A001779.html">Schwarz</a></span><a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> aus
-                            <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span>, dessen
+                            <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span>, dessen
                     anerkannter Ruf, im vorigen Jahre, durch den ausgezeichneten Beifall, welchen
-                    seine <span class="tei_ptr"></span>Gastdarstellungen in <span class="tei_placeName"><span class="87105101110">Wien</span></span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>
+                    seine <span class="tei_ptr"></span>Gastdarstellungen in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>
                     erhielten, aufs Neue bestätigt und erhöht wurde.</p>
                                     </div>
                                 </div>
@@ -437,7 +478,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d41795e12" data-title="choice">recte "2. Juli": in der Vorlage "2
+                                            <div class="apparatusEntry" id="d10e11" data-title="choice">recte "2. Juli": in der Vorlage "2
                                         Juny"</div>
                                         </li>
                                         <li>
@@ -453,13 +494,13 @@
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary">"<span class="tei_lemma">eine Messe</span>": Poißls <span class="tei_hi_italic">Messe C-Dur </span>wurde am 3. Mai 1812 in der Hofkapelle gegeben; vgl. Meyerbeers Tagebuch in: Becker (Meyerbeer), Bd. 1, S. 169. Am 16. Mai hat Meyerbeer laut Tagebuch <span class="tei_hi_italic">Datas zur Rezension von Poissls Messe aufgesetzt</span>, a. a. O., S. 174. Diese Rezension erschien jedoch nicht. </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41795e70" data-title="choice">recte "Begleiterinn": in der Vorlage "Begleiteriun"</div>
+                                            <div class="apparatusEntry" id="d10e69" data-title="choice">recte "Begleiterinn": in der Vorlage "Begleiteriun"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41795e96" data-title="choice">recte "verbannten": in der Vorlage "verbrannten"</div>
+                                            <div class="apparatusEntry" id="d10e95" data-title="choice">recte "verbannten": in der Vorlage "verbrannten"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41795e112" data-title="choice">recte "Weixelbaum": in der Vorlage "Wiexelbaum"</div>
+                                            <div class="apparatusEntry" id="d10e111" data-title="choice">recte "Weixelbaum": in der Vorlage "Wiexelbaum"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_05" data-title="note commentary">"<span class="tei_lemma">Privat-Cirkeln ein junger … auf dem Forte-Piano</span>": Bis zum 2. Juli 1812 spielte Meyerbeer in München laut Tagebuch Phantasien über zwei Themen aus <span class="tei_hi_italic">Joseph</span> von Etienne Nicolas Méhul (Romanze und Schluß von Nr. 3; vgl. 6. und 7. Mai), über „Nel cor più non mi sento“ aus <span class="tei_hi_italic">La Molinara </span>von Giovanni Paisiello (am 8. Mai und 11. Juni), über ein Thema von Haydn (am 10. Mai), über „Ich war wenn ich erwachte“ (Nr. 9) aus <span class="tei_hi_italic">Das unterbrochene Opferfest</span> von Peter Winter (21. Mai) sowie mehrfach über drei gegebene Töne (12. Mai: c d g, 26. Mai: <span class="tei_hi_italic">c e g</span> und 11. Juni: <span class="tei_hi_italic">As C H</span>). Wohlbrück hörte Meyerbeer am 6. Mai 1812; vgl. Becker (Meyerbeer), Bd. 1, S. 170.</div>
@@ -508,9 +549,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031112</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031112</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

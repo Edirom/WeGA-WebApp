@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Bandur, Markus" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031866" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031866</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031866.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     
                 </div>
             </div>
@@ -257,8 +298,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Sonntag den 25. <span class="tei_supplied" id="d39783e5"><span class="brackets_supplied">[</span>April<span class="brackets_supplied">]</span></span> Euryanthe, Oper in 3 Abth. von Helmine v. <span class="tei_hi_spaced_out">Chezy</span> geb. v. Klenke, Musik von C. M. v. <span class="tei_hi_spaced_out">Weber</span>.</p>
-                                        <p>Es sey uns vergönnt, über diese Oper uns das Urtheil eines ungenannten Correspondenten des Morgenblattes anzueignen, welches mit tieferem musikalischen Sinn, als  <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>  wir uns zutrauen, faßlich und mit unpartheiischer Ruhe die Oper bespricht, und, da es aus unserer Stadt, von der ersten hiesigen Aufführung herrührt, unserm Kreise insofern näher angehört: „<span> […]</span>“<a class="noteMarker" id="ref-footnote-295-11-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-11-backlink">*</a> – Wir finden noch von bedeutender Schönheit und Charakteristik die Arie Euryanthe’s in der Wildniß, <span class="tei_pb" title="Seitenumbruch"> | </span>   wie sie in Wahnsinn verfällt. Dagegen hat uns das Lied <span class="tei_sic">Adelars<a class="noteMarker" id="ref-d39783e33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39783e33">‡</a></span> „Unter blühenden Mandelbäumen,“ worauf die Dichterin besondere melodische Schönheit berechnet zu haben schien, gar nicht angesprochen. – Die heutige Aufführung ist sehr zu loben. Dem. <span class="tei_hi_spaced_out">Schultz</span>, welche die <span class="tei_hi_spaced_out">Euryanthe</span> für Dem. <span class="tei_hi_spaced_out">Bamberger</span> übernahm, die diese angreifende Parthie noch nicht wieder übernehmen darf, sang recht brav und erndtete in der schweren Stelle des Wahnsinns den verdienten Beifall ihrer Anstrengung.</p>
+                                        <p>Sonntag den 25. <span class="tei_supplied" id="d10e5"><span class="brackets_supplied">[</span>April<span class="brackets_supplied">]</span></span> Euryanthe, Oper in 3 Abth. von Helmine v. <span class="tei_hi_spaced_out">Chezy</span> geb. v. Klenke, Musik von C. M. v. <span class="tei_hi_spaced_out">Weber</span>.</p>
+                                        <p>Es sey uns vergönnt, über diese Oper uns das Urtheil eines ungenannten Correspondenten des Morgenblattes anzueignen, welches mit tieferem musikalischen Sinn, als  <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>  wir uns zutrauen, faßlich und mit unpartheiischer Ruhe die Oper bespricht, und, da es aus unserer Stadt, von der ersten hiesigen Aufführung herrührt, unserm Kreise insofern näher angehört: „<span> […]</span>“<a class="noteMarker" id="ref-footnote-295-11-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-11-backlink">*</a> – Wir finden noch von bedeutender Schönheit und Charakteristik die Arie Euryanthe’s in der Wildniß, <span class="tei_pb" title="Seitenumbruch"> | </span>   wie sie in Wahnsinn verfällt. Dagegen hat uns das Lied <span class="tei_sic">Adelars<a class="noteMarker" id="ref-d10e33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e33">‡</a></span> „Unter blühenden Mandelbäumen,“ worauf die Dichterin besondere melodische Schönheit berechnet zu haben schien, gar nicht angesprochen. – Die heutige Aufführung ist sehr zu loben. Dem. <span class="tei_hi_spaced_out">Schultz</span>, welche die <span class="tei_hi_spaced_out">Euryanthe</span> für Dem. <span class="tei_hi_spaced_out">Bamberger</span> übernahm, die diese angreifende Parthie noch nicht wieder übernehmen darf, sang recht brav und erndtete in der schweren Stelle des Wahnsinns den verdienten Beifall ihrer Anstrengung.</p>
                                     </div>
                                 </div>
                     </div>
@@ -309,7 +350,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d39783e33" data-title="sic">"Adelars": sic!</div>
+                                            <div class="apparatusEntry" id="d10e33" data-title="sic">"Adelars": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -345,9 +386,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031866</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031866</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Schaffer, Sebastian" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611" />
         <meta property="dc:description" content="Rezension über Webers Oberon einschl. Beschreibung der Charaktere und einzelner Musiknummern; untersucht Bedeutung Oberons" />
         <meta name="description" content="Rezension über Webers Oberon einschl. Beschreibung der Charaktere und einzelner Musiknummern; untersucht Bedeutung Oberons" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,11 +249,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -349,7 +390,7 @@
                     Anziehendes. Es beginnt von den Worten „<span class="tei_hi_spaced_out">An dem Strom, des
                         Bunt Emir,</span>" u. s. w., bis zum Eintritt des „a due“. Dieses selbst macht
                     auf das Ohr der Menge den<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> schnellsten und wohlthuendsten Eindruck; mir nicht
-                    aber so. Ich finde <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="tei_hi_spaced_out">Manier</span><a href="#f_01"> *) </a>
+                    aber so. Ich finde <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="tei_hi_spaced_out">Manier</span><a href="#f_01" id="backref-f_01" class="fn-ref"> *) </a>
                     darin zu schroff hervortretend, und die Behandlung
                     des Ganzen fällt im Karakter etwas ins Gemeine.</p><br />
                                         <p>Ich wäre nun mit denjenigen Stücken fertig, die ein neues, fremdartiges Element
@@ -400,7 +441,7 @@
                     künstliche Begleitung und Instrumentirung die Erscheinung des Geisterfürsten
                     immer scharf von der der Erdensöhne zu sondern, allein es liegt in der Natur des
                     Wunderbaren, dass es nicht dauernd, nicht oft wiederholt wirken kann. Schon dem
-                    Geist des <span class="67111109116104117114">Comthur</span> im <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> haben es tiefsinnige Aesthetiker<a href="#f_02"> **)</a>
+                    Geist des <span class="67111109116104117114">Comthur</span> im <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> haben es tiefsinnige Aesthetiker<a href="#f_02" id="backref-f_02" class="fn-ref"> **)</a>
                     nicht ganz mit
                     Unrecht<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> zum Vorwurf gemacht, dass er zu lange verweile; und welche Mittel bietet
                     hier die Situation, bietet <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>s
@@ -486,13 +527,14 @@
                     oder ein Gemisch aus allen, regt sich wehmüthig in uns, wenn wir des Freundes
                     gedenken; und darum dürfen wir ihm eine Thräne zollen ohne sie zu verbergen.</p>
                                         <p><span class="tei_segBlock textAlign-right"><a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">L. Rellstab</a>.</span></p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d40439e233"><span class="brackets_supplied">[</span>Anmerkung des Herausgebers: Eine <a class="preview writings A031384" href="/exist/apps/WeGA-WebApp/de/A001271/Schriften/A031384.html">nachträgliche Bemerkung</a> zu diesem Artikel von
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e233"><span class="brackets_supplied">[</span>Anmerkung des Herausgebers: Eine <a class="preview writings A031384" href="/exist/apps/WeGA-WebApp/de/A001271/Schriften/A031384.html">nachträgliche Bemerkung</a> zu diesem Artikel von
                             <a class="preview persons A001271" href="/exist/apps/WeGA-WebApp/de/A001271.html">A. B. Marx</a> findet sich in Nro. 51 vom
                         17. Dez. 1828, Sp. 481-482 in derselben Zeitung<span class="brackets_supplied">]</span></span></span></p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="f_01">
+                                            <li id="f_01"><a href="#backref-f_01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
                                                 <p>*).
                             Ich brauche wohl nicht zu erklären, dass ich unter Manier immer etwas
                             nicht Gutes verstehe; Styl und Individualität (Manier ist die leise
@@ -500,7 +542,7 @@
                             werthe, ja nothwendige Eigenschaften eines wahren
                         Künstlers.</p>
                                             </li>
-                                            <li id="f_02">**)
+                                            <li id="f_02"><a href="#backref-f_02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>**)
                             <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">J. Paul Friedrich Richter</a>, im
                         besondern Gespräch mit mir über diesen Gegenstand.</li>
                                         </ul>
@@ -583,9 +625,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030573" />
         <meta property="dc:description" content="Dichtung &#34;Der Joesphen-Baum gepflanzt von Ihrer Königl. Hoheit der Prinzessin Josephe am 26. August 1819&#34; von Karl August Engelhardt" />
         <meta name="description" content="Dichtung &#34;Der Joesphen-Baum gepflanzt von Ihrer Königl. Hoheit der Prinzessin Josephe am 26. August 1819&#34; von Karl August Engelhardt" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000449/Schriften/A030573.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -274,7 +315,7 @@
                                     <div class="docPart">
                                         <p>Hierzu eine Beilage: <span class="tei_hi_spaced_out">Der Josephenbaum</span>, gepflanzt von <span class="7310411410111432752461101051031084632721111041011051163210010111432801141051101221011151151051103274111115101112104105110101">Ihrer Königl. Hoheit der Prinzessin <span class="tei_hi_spaced_out">Josephine</span></span>, am 26. August im Garten <span class="8311446327524611010510310846327211110410110511632100101115328011410511012210111032779712010510910510810597110">Sr. Königl. Hoheit des Prinzen Maximilian</span>. Eine Dichtung von <a class="preview persons A000449" href="/exist/apps/WeGA-WebApp/de/A000449.html">Engelhardt (Richard Roos)</a>, welche auch einzeln für 2 Gr. zu bekommen ist, in der <span class="tei_hi_spaced_out">Arnoldischen Buchhandlung</span>.</p><span class="tei_pb_block" title="Seitenumbruch"> | </span></div>
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Der<br />Josephen-Baum<br />gepflanzt<br />von<br />Ihrer Königl</span>. <span class="tei_hi_spaced_out"><span class="7211110410110511632100101114328011410511012210111511510511011074111115101112104101">Hoheit der Prinzessinn<br />Josephe</span><br />am 26</span>. <span class="tei_hi_spaced_out">August 1819</span><br />im Garten <span class="83114463210010111532801141051101221011103277971201051091051081059711032721011141221111031153211811111032839799104115101110">Sr. des Prinzen Maximilian Herzogs von Sachsen</span><br />Königl. Hoheit.<a href="#footnote01">*)</a></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Der<br />Josephen-Baum<br />gepflanzt<br />von<br />Ihrer Königl</span>. <span class="tei_hi_spaced_out"><span class="7211110410110511632100101114328011410511012210111511510511011074111115101112104101">Hoheit der Prinzessinn<br />Josephe</span><br />am 26</span>. <span class="tei_hi_spaced_out">August 1819</span><br />im Garten <span class="83114463210010111532801141051101221011103277971201051091051081059711032721011141221111031153211811111032839799104115101110">Sr. des Prinzen Maximilian Herzogs von Sachsen</span><br />Königl. Hoheit.<a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a></h2>
                                         <p>Im Hintergrunde ein Myrtenhain, mit untermischten Rosen- und Granatbäumen. – Beim Nähern <span class="tei_hi_spaced_out">Ihrer Königl</span>. <span class="tei_hi_spaced_out">Hoheit</span> ertönt aus dem Haine zuerst eine sanfte Musik, (Harmonichord) dann der unsichtbare Chor:</p><span class="lg"><span class="verseLine">Säuselt sanft, ihr Abendlüfte!</span><span class="verseLine">Blumen, hauchet Balsamdüfte!</span><span class="verseLine">Schmücke bräutlich dich, Natur!</span><span class="verseLine">Ihr, der Lieb’ und Hof[f]nung Sterne,</span><span class="verseLine">Stralt aus ungemeßner Ferne</span><span class="verseLine">Mild herab auf diese Flur!</span><span class="verseLine">Silbersait’,im sanften Strome,</span><span class="verseLine">Rausche von des Himmels Dome,</span><span class="verseLine">Daß sie tönen deine Lieder</span><span class="verseLine">In den Pyrenäen wieder!</span></span>
                                         <p>(Das Harmonichord tönt in sich verlierenden Klängen nach; dann erscheint auf dem Piedestal, wo bisher ein <span class="tei_hi_spaced_out">steinerner</span> Amor stand, ein <span class="tei_hi_spaced_out">lebender</span>, einen Köcher mit Pfeilen auf dem Rücken, einen goldnen Pfeil in der Hand. Für sich:)</p><span class="lg"><span class="verseLine">Sie naht – sie naht – zum letztenmal seh’ ich sie hier –</span><span class="verseLine">Leiht, gute Götter! – leihet mir</span><span class="verseLine">Der Rede Schmuck, des Wortes Zier,</span><span class="verseLine">Denn heis glüht mein Verlangen,</span><span class="verseLine">Sie würdig zu empfangen.</span></span>
                                         <p>(Zu <span class="tei_hi_spaced_out">Ihrer Königl</span>. <span class="tei_hi_spaced_out">Hoheit</span>.)</p><span class="lg"><span class="verseLine">Sei mir gegrüßt, <span class="tei_hi_spaced_out">Erhabne</span>! – – Du erschrickst doch nicht,</span><span class="verseLine">Daß <span class="tei_hi_spaced_out">Dir</span> ein Stein den Gruß der Liebe spricht – –</span><span class="verseLine">Ja, wie aus Kindern werden Leute,</span><span class="verseLine">Aus Fürstentöchtern Königsbräute,</span><span class="verseLine">So könnten wohl die Götter Kraft und Leben</span><span class="verseLine">Dem Steine geben –</span></span><span class="lg"><span class="verseLine">Auch schreibt sich ja nicht von heute und gestern</span><span class="verseLine">Die Bekanntschaft mit dem steinernen Knaben her –<span class="tei_pb" title="Seitenumbruch"> | </span></span><span class="verseLine">Wie oft bist <span class="tei_hi_spaced_out">Du</span>, mit <span class="tei_hi_spaced_out">herzigen Brüdern und Schwestern</span>,</span><span class="verseLine">Hier lustig gesprungen wie Kreuz und Quer,</span><span class="verseLine">Nicht wissend, was der kleine steinerne Knabe</span><span class="verseLine">Mit Bogen und Pfeil zu bedeuten habe.</span></span><span class="lg"><span class="verseLine">Schon damals thäten die Götter beschliessen,</span><span class="verseLine">Für <span class="tei_hi_spaced_out">Dich</span> sollt’ ich einst, an des Manzanares Strand,</span><span class="verseLine">Den schärfsten meiner Pfeile verschiessen –</span><span class="verseLine">Und würdest <span class="tei_hi_spaced_out">Du</span> mitleidig dann eilen,</span><span class="verseLine">Von Haus und Hof und Vaterland,</span><span class="verseLine">Die Herzenswunde zu heilen,</span><span class="verseLine">Da sollt’ ich zum Abschied <span class="tei_hi_spaced_out">Dich</span> freundlich begrüssen –</span></span><span class="lg"><span class="verseLine">Nun siehe! erfüllt ist der Götter Schluß –</span><span class="verseLine">Und bereit der steinerne Knabe,</span><span class="verseLine">Als letzte freundliche Gabe,</span><span class="verseLine"><span class="tei_hi_spaced_out">Dir</span> zu sprechen, <span class="tei_hi_spaced_out">Erhabne</span>! den Abschiedsgruß –</span></span>
@@ -290,8 +331,9 @@
                                         <p>(Der Götterknabe zu <span class="tei_hi_spaced_out">Ihrer Königl</span>. <span class="tei_hi_spaced_out">Hoheit</span>.)</p><span class="lg"><span class="verseLine">Nun, <span class="tei_hi_spaced_out">Fürstinn</span>!</span><span class="verseLine">mit Verwund’rung hab ich erblickt,</span><span class="verseLine"><span class="tei_hi_spaced_out">Du</span> verstehst <span class="tei_hi_spaced_out">Dich</span> auf’s Pflanzen fürwahr so geschickt,</span><span class="verseLine">Als sei’st <span class="tei_hi_spaced_out">Du</span> ein Zögling von meinem Vetter,</span><span class="verseLine">Vertumnus, dem Hofgärtner der Götter –</span><span class="verseLine">Doch sonder Zweifel hat der goldne Pfeil</span><span class="verseLine">An der geschickten Pflanzung Theil,</span><span class="verseLine">Denn alle Kräfte überwiegt</span><span class="verseLine"><span class="tei_hi_spaced_out">Die</span> Kraft, die in <span class="tei_hi_spaced_out">dem</span> Pfeile liegt. –</span></span><span class="lg"><span class="verseLine">Drum, <span class="tei_hi_spaced_out">Fürstentochter</span>! kann ich <span class="tei_hi_spaced_out">Dich</span></span><span class="verseLine">Zum Abschied nun nicht herzlicher begrüssen,</span><span class="verseLine">Als mit dem Wunsch: <span class="tei_hi_spaced_out">Mög</span>’ <span class="tei_hi_spaced_out">st Du einst wonniglich</span></span><span class="verseLine"><span class="tei_hi_spaced_out">Als Jubelbraut den goldnen Pfeil noch küssen</span>!</span></span>
                                         <p>(Chor nach der Sangweise: Den König segne Gott ce.)</p><span class="lg"><span class="verseLine">Heil <span class="tei_hi_spaced_out">Dir</span> im Myrtenkranz,</span><span class="verseLine">Tochter des Vaterlands,</span><span class="verseLine">Heil, <span class="tei_hi_spaced_out">Fürstinn</span>, <span class="tei_hi_spaced_out">Dir</span>!</span><span class="verseLine">Einst, holde <span class="tei_hi_spaced_out">Königsbraut</span>,</span><span class="verseLine">Tön’ es im Jubellaut:</span><span class="verseLine"><span class="tei_hi_spaced_out">Heil unsrer Jubelbraut</span>,</span><span class="verseLine"><span class="tei_hi_spaced_out">Spaniens Zier</span>!</span></span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*)<span class="tei_hi_spaced_out">Anmerkung</span>. Die Dichtung ist von dem <a class="preview persons A000449" href="/exist/apps/WeGA-WebApp/de/A000449.html">Kriegs-Archiv-Secretair <span class="tei_hi_spaced_out">Engelhardt</span></a>; die Composition von dem <a class="preview persons A002101" href="/exist/apps/WeGA-WebApp/de/A002101.html">Musik-Director <span class="tei_hi_spaced_out">Weinlig</span></a>; Amor ward gegeben von <span class="tei_hi_spaced_out"><a class="preview persons A002267" href="/exist/apps/WeGA-WebApp/de/A002267.html">Julius Schirmer</a></span>; die Chöre wurden gesungen von <span class="tei_hi_spaced_out">Mitgliedern der Weinligschen Singakademie</span>; das Harmonichord spielte dessen Erfinder, der <span class="tei_hi_spaced_out"><a class="preview persons A000983" href="/exist/apps/WeGA-WebApp/de/A000983.html">Akustiker Kaufmann</a></span>.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*)<span class="tei_hi_spaced_out">Anmerkung</span>. Die Dichtung ist von dem <a class="preview persons A000449" href="/exist/apps/WeGA-WebApp/de/A000449.html">Kriegs-Archiv-Secretair <span class="tei_hi_spaced_out">Engelhardt</span></a>; die Composition von dem <a class="preview persons A002101" href="/exist/apps/WeGA-WebApp/de/A002101.html">Musik-Director <span class="tei_hi_spaced_out">Weinlig</span></a>; Amor ward gegeben von <span class="tei_hi_spaced_out"><a class="preview persons A002267" href="/exist/apps/WeGA-WebApp/de/A002267.html">Julius Schirmer</a></span>; die Chöre wurden gesungen von <span class="tei_hi_spaced_out">Mitgliedern der Weinligschen Singakademie</span>; das Harmonichord spielte dessen Erfinder, der <span class="tei_hi_spaced_out"><a class="preview persons A000983" href="/exist/apps/WeGA-WebApp/de/A000983.html">Akustiker Kaufmann</a></span>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -326,7 +368,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 210 (2. September 1819), S. 2v–4v</p>
+                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 210 (2. September 1819), Bl. 2v–4v</p>
                                 
                                 <div>
                                     
@@ -369,9 +411,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030573</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030573</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

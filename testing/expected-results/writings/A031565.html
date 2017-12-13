@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
-        <meta property="dc:creator" content="Charlene Jakob" />
-        <meta property="dc:date" content="2017-04-22T18:08:59.825988Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031565" />
         <meta property="dc:description" content="Aufführungsbesprechung des Oberon in London" />
         <meta name="description" content="Aufführungsbesprechung des Oberon in London" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002116/Schriften/A031565.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -277,9 +318,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011111611510097109" /> <span title="Potsdam">Potsdam</span> 
+                                    <input type="checkbox" name="options" value="A130068" /> <span title="Potsdam">Potsdam</span> 
                                 </label>
                             </div>
                         </div>
@@ -293,12 +334,13 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Berliner Conversation.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> und der Windmüller in <span class="tei_placeName"><span class="8011111611510097109">Potsdam</span></span>.</span></span></h3>
-                                        <p>Und was ist nun das Ende vom Liede? – – Ach! wenn wir doch nur erst die Ouvertüre hörten; zum Finale sind wir noch lange nicht.  – – Sie scheinen nicht gut unterrichtet; <span class="preview persons A000213" data-ref="/exist/apps/WeGA-WebApp/de/A000213.html /exist/apps/WeGA-WebApp/de/A002068.html">die Frau von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> hat die Partitur jetzt an die <span class="tei_placeName">Königliche Bühne</span> verkauft. – – Die Bedingungen waren vortheilhaft; 500 Thaler baar und 300 nach der funfzigsten Verstellung. – – Das hat sich geändert; jetzt heißt es 800 Thaler baar; der <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">General-Musik-Direktor</a> soll aus seiner eigenen Tasche 300 Thaler zugelegt haben. –<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Sehr <span class="tei_hi_italic">noble</span>! Aber der Prozeß? – – Welchen Prozeß meinen Sie? – – Die Königsstadt hat es ja verbrieft und versiegelt, daß die Weberschen Erben den <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> nicht an die <span class="tei_placeName">Königliche Bühne</span> verkaufen sollen. – – Ah Pah! man hat gut gesagt für alle <span class="tei_hi_spaced_out">Weitläuftigkeiten</span>. – – So? für alle <span class="tei_hi_spaced_out">Weitläuftigkeiten</span>? Nun, damit hat man doch gewiß nicht einen Prozeß gemeint, denn Prozesse hier zu Lande Weitläuftigkeiten zu nennen, das wäre sehr kurz abgefertigt. – – Wozu auch noch lange Umstände machen; es sind ja nur Privatleute. – – Hören Sie, mein Herr, es war einmal ein Müller, der hatte eine Windmühle bei <span class="tei_placeName"><span class="8011111611510097109">Potsdam</span></span>, die wollten ihm die französischen Gartenanleger bei <span class="tei_placeName">Sanssouci</span> einreißen, und ein chinesisches Gartenhäuschen daraus machen. Allein der Mann sagte das ist mein Erb’ und Gut, und mein Vater und Großvater seel. haben schon darauf ihr redlich Stückchen Brot erworben. Da zeigten ihm die vornehmen Herren einen Brief vom Könige, daß ihm die Mühle absolut genommen werden sollte. Aber der Müller sagte: allen Respect vor meinem allergnädigsten Könige, aber die Mühle ist mein, so lange es noch ein Kammergericht in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> giebt. Und der König ließ ihm die Mühle und schenkte ihm noch obendrein zehn Thaler. – – Alte Geschichten; was soll das hier? – – Nun? eine Windmühle und eine komische Oper – – – <span class="tei_hi_spaced_out">Komische Oper</span>? Also sie wissen nicht, daß <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> für eine <span class="tei_hi_italic">Opera seria</span> erklärt worden ist? Leben Sie wohl, ich muß zum Ordensfest<a href="#footnote01">*)</a>.</p>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> und der Windmüller in <span class="preview places A130068" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130068.html">Potsdam</span>.</span></span></h3>
+                                        <p>Und was ist nun das Ende vom Liede? – – Ach! wenn wir doch nur erst die Ouvertüre hörten; zum Finale sind wir noch lange nicht.  – – Sie scheinen nicht gut unterrichtet; <span class="preview persons A000213" data-ref="/exist/apps/WeGA-WebApp/de/A000213.html /exist/apps/WeGA-WebApp/de/A002068.html">die Frau von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> hat die Partitur jetzt an die <span class="tei_placeName">Königliche Bühne</span> verkauft. – – Die Bedingungen waren vortheilhaft; 500 Thaler baar und 300 nach der funfzigsten Verstellung. – – Das hat sich geändert; jetzt heißt es 800 Thaler baar; der <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">General-Musik-Direktor</a> soll aus seiner eigenen Tasche 300 Thaler zugelegt haben. –<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Sehr <span class="tei_hi_italic">noble</span>! Aber der Prozeß? – – Welchen Prozeß meinen Sie? – – Die Königsstadt hat es ja verbrieft und versiegelt, daß die Weberschen Erben den <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> nicht an die <span class="tei_placeName">Königliche Bühne</span> verkaufen sollen. – – Ah Pah! man hat gut gesagt für alle <span class="tei_hi_spaced_out">Weitläuftigkeiten</span>. – – So? für alle <span class="tei_hi_spaced_out">Weitläuftigkeiten</span>? Nun, damit hat man doch gewiß nicht einen Prozeß gemeint, denn Prozesse hier zu Lande Weitläuftigkeiten zu nennen, das wäre sehr kurz abgefertigt. – – Wozu auch noch lange Umstände machen; es sind ja nur Privatleute. – – Hören Sie, mein Herr, es war einmal ein Müller, der hatte eine Windmühle bei <span class="preview places A130068" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130068.html">Potsdam</span>, die wollten ihm die französischen Gartenanleger bei <span class="tei_placeName">Sanssouci</span> einreißen, und ein chinesisches Gartenhäuschen daraus machen. Allein der Mann sagte das ist mein Erb’ und Gut, und mein Vater und Großvater seel. haben schon darauf ihr redlich Stückchen Brot erworben. Da zeigten ihm die vornehmen Herren einen Brief vom Könige, daß ihm die Mühle absolut genommen werden sollte. Aber der Müller sagte: allen Respect vor meinem allergnädigsten Könige, aber die Mühle ist mein, so lange es noch ein Kammergericht in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> giebt. Und der König ließ ihm die Mühle und schenkte ihm noch obendrein zehn Thaler. – – Alte Geschichten; was soll das hier? – – Nun? eine Windmühle und eine komische Oper – – – <span class="tei_hi_spaced_out">Komische Oper</span>? Also sie wissen nicht, daß <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> für eine <span class="tei_hi_italic">Opera seria</span> erklärt worden ist? Leben Sie wohl, ich muß zum Ordensfest<a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>.</p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Mehrere Bezüglichkeiten dieser <span class="tei_hi_spaced_out">eingesandten</span> Conversation mußten wegbleiben, da wir durchaus Persönlichkeiten vermieden wissen wollen. Im Uebrigen können wir versichern, daß der <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> von dem <span class="tei_hi_spaced_out"><span class="tei_placeName">Königlichen Theater</span></span> gegeben werden, und daß der zur Sprache gebrachte Streit wenigstens eine gute Folge haben wird: nämlich die, daß wir nunmehr unter der vortrefflichen Direction <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini’s</a> eine so vollendete Darstellung erwarten dürfen, als sie vielleicht selbst die Concurrenz mit der <span class="tei_placeName"><span class="tei_region">Königstadt</span></span> nicht herbeigeführt haben würde. <span class="tei_segBlock textAlign-right">A. d. R.</span></li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Mehrere Bezüglichkeiten dieser <span class="tei_hi_spaced_out">eingesandten</span> Conversation mußten wegbleiben, da wir durchaus Persönlichkeiten vermieden wissen wollen. Im Uebrigen können wir versichern, daß der <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> von dem <span class="tei_hi_spaced_out"><span class="tei_placeName">Königlichen Theater</span></span> gegeben werden, und daß der zur Sprache gebrachte Streit wenigstens eine gute Folge haben wird: nämlich die, daß wir nunmehr unter der vortrefflichen Direction <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini’s</a> eine so vollendete Darstellung erwarten dürfen, als sie vielleicht selbst die Concurrenz mit der <span class="tei_placeName"><span class="tei_region">Königstadt</span></span> nicht herbeigeführt haben würde. <span class="tei_segBlock textAlign-right">A. d. R.</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -376,9 +418,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031565</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031565</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 22. April 2017 durch Charlene Jakob</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

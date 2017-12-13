@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031275" />
         <meta property="dc:description" content="Herausgeber Jähns veröffentlichte die ihm von Caroline von Weber bereitgestellten Ausführungen mit im Anschluss ergänzten Aufführungs-Hinweisen zur &#34;Euryanthe&#34;" />
         <meta name="description" content="Herausgeber Jähns veröffentlichte die ihm von Caroline von Weber bereitgestellten Ausführungen mit im Anschluss ergänzten Aufführungs-Hinweisen zur &#34;Euryanthe&#34;" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031275.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -282,7 +323,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label>
                             </div>
                         </div>
@@ -319,7 +360,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Tempo-Bezeichnungen nach <a class="preview persons A001237" href="/exist/apps/WeGA-WebApp/de/A001237.html">Mälzl</a>’s Metronom zur Oper <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>. Gegeben von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a>. Nebst dazu gehörigem Aufsatze von ebendemselben. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber’s</a> hinterlassenen Papieren entnommen und herausgegeben von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html"><span class="tei_hi_italic">Fr. Wilh. Jähns</span></a>.</h2>
                                         <h3 class="docHeader textAlign-left">Vorbemerkung des Herausgebers.</h3>
-                                        <p>Indem der Herausgeber die vorbemerkte, noch ungedruckte Arbeit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>’s dem Drucke übergibt, hat er zuvörderst der hinterlassenen Wittwe desselben, der Freifrau <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html"><span class="tei_hi_italic">Karoline von Weber</span></a> zu <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>, seinen Dank für die Bereitwilligkeit auszusprechen, mit welcher sie ihm dieselbe zum Zwecke der Veröffentlichung überliess. Zugleich aber wünscht der Herausgeber (und er bittet ausdrücklich darum) in eben dieser Veröffentlichung nur den Ausdruck eines Gefühls der Verpflichtung sehen zu wollen, nach welchem er der musikalischen Welt im Allgemeinen eine Hinterlassenschaft eines grossen Meisters nicht glaubte vorenthalten zu dürfen, welche die Auffassung seines tiefsten, vielleicht edelsten Werkes bespricht, und welche dabei gewisse Seiten des musikalischen Vortrages zum Gegenstand einer Betrachtung macht, die, von diesem Verfasser und in dieser Weise gegeben, die Theilnahme des musikalischen Publikums unzweifelhaft in Anspruch nehmen muss. <span class="tei_segBlock textAlign-right"><span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. J.</a></span></span></p>
+                                        <p>Indem der Herausgeber die vorbemerkte, noch ungedruckte Arbeit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>’s dem Drucke übergibt, hat er zuvörderst der hinterlassenen Wittwe desselben, der Freifrau <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html"><span class="tei_hi_italic">Karoline von Weber</span></a> zu <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>, seinen Dank für die Bereitwilligkeit auszusprechen, mit welcher sie ihm dieselbe zum Zwecke der Veröffentlichung überliess. Zugleich aber wünscht der Herausgeber (und er bittet ausdrücklich darum) in eben dieser Veröffentlichung nur den Ausdruck eines Gefühls der Verpflichtung sehen zu wollen, nach welchem er der musikalischen Welt im Allgemeinen eine Hinterlassenschaft eines grossen Meisters nicht glaubte vorenthalten zu dürfen, welche die Auffassung seines tiefsten, vielleicht edelsten Werkes bespricht, und welche dabei gewisse Seiten des musikalischen Vortrages zum Gegenstand einer Betrachtung macht, die, von diesem Verfasser und in dieser Weise gegeben, die Theilnahme des musikalischen Publikums unzweifelhaft in Anspruch nehmen muss. <span class="tei_segBlock textAlign-right"><span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. J.</a></span></span></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle"><span class="tei_hi_bold">Erster Akt</span>.</li>
                                             <li>Ouverture:</li>
@@ -335,7 +376,7 @@
                                             <li>Andante con moto. "Unter blüh’nden Mandelbäumen" 72 = <span class="musical-symbols"></span></li>
                                             <li>Nr. 3. Chor.</li>
                                             <li>Allegro. "Heil <span class="6911711412197110116104">Euryanth</span>’!" 116 = <span class="musical-symbols"></span></li>
-                                            <li>Agitato assai. Recit.: "Ich trag’ es nicht!" <a href="#footnote01">*)</a> 104 = <span class="musical-symbols"></span> "Des Meeres Grund" 69 = <span class="musical-symbols"></span></li>
+                                            <li>Agitato assai. Recit.: "Ich trag’ es nicht!" <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a> 104 = <span class="musical-symbols"></span> "Des Meeres Grund" 69 = <span class="musical-symbols"></span></li>
                                             <li>Nr. 4. Terzett mit Chor.</li>
                                             <li>Maestoso assai. "Wohlan!" 50 = <span class="musical-symbols"></span></li>
                                             <li>Allegro. "Es gilt!" 88 = <span class="musical-symbols"></span></li>
@@ -459,8 +500,9 @@
                                         <p>Mögen sie nun aber dastehn! <span class="tei_hi_spaced_out">Einzig veranlasst durch freundliche Anfrage</span>.                
             </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_italic">C. M. v. Weber</span></a>.</span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Das im Klavierauszuge befindliche Andante steht an falscher Stelle; es muss (nach Vergleichung mit der Partitur) erst bei den Worten Lysiart’s stehen: "Hör’ an, Graf <span class="6510011110897114">Adolar</span>." <br />Der Herausgeber.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Das im Klavierauszuge befindliche Andante steht an falscher Stelle; es muss (nach Vergleichung mit der Partitur) erst bei den Worten Lysiart’s stehen: "Hör’ an, Graf <span class="6510011110897114">Adolar</span>." <br />Der Herausgeber.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -561,9 +603,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031275</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031275</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

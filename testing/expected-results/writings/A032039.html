@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Bandur, Markus" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A032039</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     
                 </div>
             </div>
@@ -257,7 +298,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Montag den 8. <span class="tei_supplied" id="d41830e5"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span> (<span class="tei_hi_spaced_out">Zum ersten Male</span>; mit Abonnement suspendü) Euryanthe, große romantische Oper in 3 Aufzügen von H. von Chezy. Musik von Karl Maria von Weber. Da, wie wir vernehmen, der Oekonomie unsers Repertoirs wegen, die Reihe der weitern Vorstellungen dieser Oper erst mit nächster Messe beginnen soll, wir uns aber weder anmaßen mögen, nach einmaliger Anhörung eines so <span class="tei_hi_spaced_out">bedeutenden</span> Werkes, darüber ein bestimmtes Urtheil zu fällen, noch elegant genug sind, durch den leichten Spaß: „Euryanthe? Ennuyante!“ fertig zu werden; so müssen wir uns eine <span class="tei_hi_spaced_out">Kritik</span> ausdrücklich bis nach näherer Bekanntschaft mit dieser Oper vorbehalten. – Der Text, von Frau von Chezy nach der von ihr aus dem Französischen vorzüglich übertragenen <span class="tei_hi_italic">histoire de Gerard de Nevers et de la belle et vertueuse Euryant de Savoye, sa mie</span>, bearbeitet, bietet dem Componisten manche treffliche, <span class="tei_hi_spaced_out">einzelne</span> Scene dar; im Ganzen aber ist das Süjet zur Oper äußerst unglücklich gewählt. Der Inhalt jener Geschichte ist so überreich an einzelnen, und doch unter einander in einer engen, poetisch nothwendigen Verbindung stehenden Abentheuern, daß nur noch eben der gewaltige Genius Shakespeare’s es vermochte, ihn (im <span class="tei_hi_spaced_out">Cymbelin</span>) zur <span class="tei_hi_spaced_out">dramatischen</span> Form zu zwingen und darin zu beherrschen; in die <span class="tei_hi_spaced_out">lyrische</span> der Oper konnte er in allem seinem Reichthum nicht gebracht werden, und so mußte, bei den vielen Verkürzungen und, zum Theil, häßlichen Abänderungen, (wir führen als Beispiel die Art an, wie in der Oper die Untreue Euryanthens durch Lysiart erwiesen wird) ein Aggregat von Episoden aus jener Geschichte auf einander folgen, welches eben so unverständlich für den Zuhörer, als die schöne, ursprüngliche Erzählung entstellend, ausfiel. – Die Aufführung war in vielen Theilen gelungen, in andern es weniger, zu nennen; doch mag letzteres hinreichend durch die unendlichen Schwierigkeiten entschuldigt werden, die sowohl für Orchester, als Singpersonale in dieser Musik liegen, zumahl, wenn es, wie man sich erzählt, wahr ist, daß diese Oper in so unglaublich kurzer Zeit einstudirt worden. Besonderen Beifall erhielten und verdienten Dem. <span class="tei_hi_spaced_out">Bamberger</span> (Euryanthe) und Herr <span class="tei_hi_spaced_out">Dobler</span> (Lysiart). Erstere gewann in der Rolle der Euryanthe eben so wohl durch ihren schönen ausdrucksvollen Gesang, als durch natürliches, anmuthiges Spiel den größten Antheil <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> des Publikums. Vorzüglich wurde von ihr die zweite Scene des 3n Actes: „So bin ich nun <span class="tei_choice"><span class="tei_corr">verlassen</span><a class="noteMarker" id="ref-d41830e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41830e47">‡</a></span>“ vorgetragen. Der Gesang des Hrn.<span class="tei_hi_spaced_out"> Dobler</span> war in der ersten Scene des 1n Acts: „Ich trag es nicht“ u. s. w. so wie in der Arie im 2n Akt: „So weih’ ich mich den <span class="tei_choice"><span class="tei_corr">Rachgewalten</span><a class="noteMarker" id="ref-d41830e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41830e61">‡</a></span>.“ von der größten Wirkung. Auch die Parthien der <span class="tei_choice"><span class="tei_corr">Eglantine</span><a class="noteMarker" id="ref-d41830e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41830e69">‡</a></span>  (Dem. <span class="tei_hi_spaced_out">Rotthammer</span>) und Adolar (Herr <span class="tei_hi_spaced_out">Nieser</span>) wurden, jene in leidenschaftlichen[,] dieser in den weichen, zarten Stellen, mit Fleiß und Geschmack ausgeführt.</p>
+                                        <p>Montag den 8. <span class="tei_supplied" id="d10e5"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span> (<span class="tei_hi_spaced_out">Zum ersten Male</span>; mit Abonnement suspendü) Euryanthe, große romantische Oper in 3 Aufzügen von H. von Chezy. Musik von Karl Maria von Weber. Da, wie wir vernehmen, der Oekonomie unsers Repertoirs wegen, die Reihe der weitern Vorstellungen dieser Oper erst mit nächster Messe beginnen soll, wir uns aber weder anmaßen mögen, nach einmaliger Anhörung eines so <span class="tei_hi_spaced_out">bedeutenden</span> Werkes, darüber ein bestimmtes Urtheil zu fällen, noch elegant genug sind, durch den leichten Spaß: „Euryanthe? Ennuyante!“ fertig zu werden; so müssen wir uns eine <span class="tei_hi_spaced_out">Kritik</span> ausdrücklich bis nach näherer Bekanntschaft mit dieser Oper vorbehalten. – Der Text, von Frau von Chezy nach der von ihr aus dem Französischen vorzüglich übertragenen <span class="tei_hi_italic">histoire de Gerard de Nevers et de la belle et vertueuse Euryant de Savoye, sa mie</span>, bearbeitet, bietet dem Componisten manche treffliche, <span class="tei_hi_spaced_out">einzelne</span> Scene dar; im Ganzen aber ist das Süjet zur Oper äußerst unglücklich gewählt. Der Inhalt jener Geschichte ist so überreich an einzelnen, und doch unter einander in einer engen, poetisch nothwendigen Verbindung stehenden Abentheuern, daß nur noch eben der gewaltige Genius Shakespeare’s es vermochte, ihn (im <span class="tei_hi_spaced_out">Cymbelin</span>) zur <span class="tei_hi_spaced_out">dramatischen</span> Form zu zwingen und darin zu beherrschen; in die <span class="tei_hi_spaced_out">lyrische</span> der Oper konnte er in allem seinem Reichthum nicht gebracht werden, und so mußte, bei den vielen Verkürzungen und, zum Theil, häßlichen Abänderungen, (wir führen als Beispiel die Art an, wie in der Oper die Untreue Euryanthens durch Lysiart erwiesen wird) ein Aggregat von Episoden aus jener Geschichte auf einander folgen, welches eben so unverständlich für den Zuhörer, als die schöne, ursprüngliche Erzählung entstellend, ausfiel. – Die Aufführung war in vielen Theilen gelungen, in andern es weniger, zu nennen; doch mag letzteres hinreichend durch die unendlichen Schwierigkeiten entschuldigt werden, die sowohl für Orchester, als Singpersonale in dieser Musik liegen, zumahl, wenn es, wie man sich erzählt, wahr ist, daß diese Oper in so unglaublich kurzer Zeit einstudirt worden. Besonderen Beifall erhielten und verdienten Dem. <span class="tei_hi_spaced_out">Bamberger</span> (Euryanthe) und Herr <span class="tei_hi_spaced_out">Dobler</span> (Lysiart). Erstere gewann in der Rolle der Euryanthe eben so wohl durch ihren schönen ausdrucksvollen Gesang, als durch natürliches, anmuthiges Spiel den größten Antheil <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> des Publikums. Vorzüglich wurde von ihr die zweite Scene des 3n Actes: „So bin ich nun <span class="tei_choice"><span class="tei_corr">verlassen</span><a class="noteMarker" id="ref-d10e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e47">‡</a></span>“ vorgetragen. Der Gesang des Hrn.<span class="tei_hi_spaced_out"> Dobler</span> war in der ersten Scene des 1n Acts: „Ich trag es nicht“ u. s. w. so wie in der Arie im 2n Akt: „So weih’ ich mich den <span class="tei_choice"><span class="tei_corr">Rachgewalten</span><a class="noteMarker" id="ref-d10e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e61">‡</a></span>.“ von der größten Wirkung. Auch die Parthien der <span class="tei_choice"><span class="tei_corr">Eglantine</span><a class="noteMarker" id="ref-d10e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e69">‡</a></span>  (Dem. <span class="tei_hi_spaced_out">Rotthammer</span>) und Adolar (Herr <span class="tei_hi_spaced_out">Nieser</span>) wurden, jene in leidenschaftlichen[,] dieser in den weichen, zarten Stellen, mit Fleiß und Geschmack ausgeführt.</p>
                                         <p>Auch die äußere Ausstattung der Oper war lobenswerth, anständig, ja, gehörigen Orts, reich; doch nicht die Hauptsache, das innere Wesen durch übertriebenen Aufwand stöhrend. Höchst löblich fanden wir es insbesondere, daß viele sehr achtbare Mitglieder des Schauspiel- und Opernpersonales die Schlußscene durch ihr Erscheinen als Figuranten verherrlichten. Solche, vielleicht Ueberwindung kostende, Mitwirkung zum Ganzen, verdient wahrlich mehr Beifall, als mancher „<span class="tei_hi_spaced_out">Brillante Abgang</span>.“</p>
                                     </div>
                                 </div>
@@ -311,13 +352,13 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d41830e47" data-title="choice">recte "verlassen": in der Vorlage "allein"</div>
+                                            <div class="apparatusEntry" id="d10e47" data-title="choice">recte "verlassen": in der Vorlage "allein"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41830e61" data-title="choice">recte "Rachgewalten": in der Vorlage "Nachtgewalten"</div>
+                                            <div class="apparatusEntry" id="d10e61" data-title="choice">recte "Rachgewalten": in der Vorlage "Nachtgewalten"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41830e69" data-title="choice">recte "Eglantine": in der Vorlage "Eylantine"</div>
+                                            <div class="apparatusEntry" id="d10e69" data-title="choice">recte "Eglantine": in der Vorlage "Eylantine"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -345,9 +386,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

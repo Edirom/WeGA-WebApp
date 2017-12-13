@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2017-06-28T07:12:47.298573Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-10-05T12:51:56.215505Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031996" />
         <meta property="dc:description" content="Konzertanzeige" />
         <meta name="description" content="Konzertanzeige" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -240,14 +243,52 @@
                                 
                                     <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031996.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -277,7 +318,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label>
                             </div>
                         </div>
@@ -294,19 +335,19 @@
                                         <p>Mit hoher Obrigkeitlicher Bewilligung wird <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Unterzeichneter</a> die Ehre haben, Sonnabend den <span class="tei_date">14. Oct. 1820</span> im <span class="tei_placeName">großen Ebbeschen Saale</span> ein Vocal- und Instrumental-Concert zu geben.</p>
                                         <ol class="tei_orderedList">
                                             <li class="listTitle"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Erste Abtheilung</span>.</span></li>
-                                            <li>1. Ouvertüre von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
-                                            <li>2. Tenor-Arie aus <span class="preview works A020525" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020525.html">Idomeneo</span>, von <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>.</li>
-                                            <li>3. Concert fürs Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
+                                            <li>Ouvertüre von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
+                                            <li>Tenor-Arie aus <span class="preview works A020525" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020525.html">Idomeneo</span>, von <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>.</li>
+                                            <li>Concert fürs Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
                                         </ol>
                                         <ol class="tei_orderedList">
                                             <li class="listTitle"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Zweite Abtheilung</span>.</span></li>
-                                            <li>1. Rondo, für’s Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
-                                            <li>2. Gesänge aus <a class="preview persons A001050" href="/exist/apps/WeGA-WebApp/de/A001050.html">Körner</a>’s <span class="7610112110111432117110100328399104119101114100116">Leyer und Schwerdt</span>, für 4 Männerstimmen, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
-                                            <li>3. Freie Phantasie auf dem Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
+                                            <li>Rondo, für’s Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
+                                            <li>Gesänge aus <a class="preview persons A001050" href="/exist/apps/WeGA-WebApp/de/A001050.html">Körner</a>’s <span class="7610112110111432117110100328399104119101114100116">Leyer und Schwerdt</span>, für 4 Männerstimmen, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
+                                            <li>Freie Phantasie auf dem Fortepiano, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">K. M. von Weber</a>.</li>
                                         </ol>
                                         <p>Billets zu 2 mk sind in der <span class="tei_placeName">Beckergrube, Nr. 162</span>, und Abends am Eingange des Saals zu haben.</p>
                                         <p>Anfang: Abends 7 Uhr.</p>
-                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>. <br />Königlich Sächsischer Kapellmeister <br />aus <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>.</span></p>
+                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>. <br />Königlich Sächsischer Kapellmeister <br />aus <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>.</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -361,7 +402,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031996/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -383,9 +424,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031996</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031996</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 28. Juni 2017 durch Solveig Schreiter</span></p>
+                <span>Letzte Änderung dieses Dokuments am 5. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Hafenstein, Deborah" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107" />
         <meta property="dc:description" content="Vorab-Besprechung des König Yngurd von Adolph Müllner (zur Dresdner Aufführung am 14. April 1817)" />
         <meta name="description" content="Vorab-Besprechung des König Yngurd von Adolph Müllner (zur Dresdner Aufführung am 14. April 1817)" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,66 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030106.html">Vorab-Besprechung für die Schaubühne zu Dresden vom 14. April 1817 (Teil 1 von 2)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -285,7 +343,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7210110510010110898101114103" /> <span title="Heidelberg">Heidelberg</span> 
+                                    <input type="checkbox" name="options" value="A130035" /> <span title="Heidelberg">Heidelberg</span> 
                                 </label>
                             </div>
                         </div>
@@ -325,7 +383,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p><span class="preview works A020690" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020690.html"><span class="tei_hi_spaced_out">König Yngurd</span></span> (<a class="preview writings A030106" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030106.html">Beschluß</a>.)</p>
-                                        <p>Auf <span class="891101031171141008217115">Yngurd’s</span> <span class="tei_hi_spaced_out">nordisches</span> Riesenhaupt hat der <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Dichter</a> alle <span class="tei_hi_spaced_out">persönliche</span> Herrlichkeit und Heldenkraft, die, wenn sie rechter Art ist, auch der Frauenliebe huldigt, gleichsam aufgehäuft, und so mußten auch außerordentliche Kräfte zusammenwirken, ihn zu stürzen. In ihren sinnreichen Verkettungen hat Müllner Ungewöhnliches geleistet und die ihn stürzende innere Verschuldung in den Sturm der Begebenheiten tüchtig eingeflochten. Daher kommt für den Zuschauer <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>alles darauf an, diese Schuld vom Wendepunkt an fest ins Auge zu fassen. In einer vor kurzem erschienenen Schrift unter dem Titel: <span class="741171009711532731159910497114105111116"><span class="tei_hi_spaced_out">Judas Ischariot</span></span> <a href="#footnote01">*)</a>  wird der Zweifel als die Folge des bösen Princips aufgestellt. <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Müllner</a> hat durch seinen <span class="preview works A020690" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020690.html">Yngurd</span> gezeigt, daß der Zweifel die Ursache des Bösen, ja das böse Prinzip selbst sei. Er zweifelt und <span class="tei_hi_spaced_out">will</span> nun das Böse. Daher sagt der Sterbende:</p><span class="lg"><span class="verseLine">Was ich <span class="tei_hi_spaced_out">gewollt</span>, war einmal schlimmer nur,</span><span class="verseLine">Als was ich that und – ich nicht thats, die Hölle</span><span class="verseLine">Vollzog mein Denken –</span></span>
+                                        <p>Auf <span class="891101031171141008217115">Yngurd’s</span> <span class="tei_hi_spaced_out">nordisches</span> Riesenhaupt hat der <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Dichter</a> alle <span class="tei_hi_spaced_out">persönliche</span> Herrlichkeit und Heldenkraft, die, wenn sie rechter Art ist, auch der Frauenliebe huldigt, gleichsam aufgehäuft, und so mußten auch außerordentliche Kräfte zusammenwirken, ihn zu stürzen. In ihren sinnreichen Verkettungen hat Müllner Ungewöhnliches geleistet und die ihn stürzende innere Verschuldung in den Sturm der Begebenheiten tüchtig eingeflochten. Daher kommt für den Zuschauer <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>alles darauf an, diese Schuld vom Wendepunkt an fest ins Auge zu fassen. In einer vor kurzem erschienenen Schrift unter dem Titel: <span class="741171009711532731159910497114105111116"><span class="tei_hi_spaced_out">Judas Ischariot</span></span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>  wird der Zweifel als die Folge des bösen Princips aufgestellt. <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Müllner</a> hat durch seinen <span class="preview works A020690" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020690.html">Yngurd</span> gezeigt, daß der Zweifel die Ursache des Bösen, ja das böse Prinzip selbst sei. Er zweifelt und <span class="tei_hi_spaced_out">will</span> nun das Böse. Daher sagt der Sterbende:</p><span class="lg"><span class="verseLine">Was ich <span class="tei_hi_spaced_out">gewollt</span>, war einmal schlimmer nur,</span><span class="verseLine">Als was ich that und – ich nicht thats, die Hölle</span><span class="verseLine">Vollzog mein Denken –</span></span>
                                         <p>Dadurch hat hier der <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Dichter</a> die Schuld <span class="72117103111115">Hugos</span> in der <span class="preview works A020856" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020856.html"><span class="tei_hi_spaced_out">Schuld</span></span> überboten. Dort fliegt die Kugel, hier das Wort. Das Wort allein leidet Zurechnung!</p>
                                         <p>In einem Stück, wie <span class="preview works A020690" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020690.html">Yngurd</span> ist, wiegt auch die kleinste Nebenrolle ihr volles Pfund, und verlangt, selbst noch in der sich unterordnenden Bescheidenheit, ein meisterhaftes Spiel. Wäre es nur möglich gewesen, das unverkürzte Stück in zwei Vorstellungen zu theilen! Der <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Dichter</a> selbst hatte in diesem Falle einen Prolog gedichtet, mit dem ein Skalde, die Vorstellung des zweiten Abends, mit dem dritten Akt beginnend, eröffnet haben würde. Allein die erste Vorstellung des Stücks <span class="tei_hi_spaced_out">muß</span> in einem einzigen Abend gegeben werden. Das wird jedem Unbefangenen einleuchten. So <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>wie es nun aufgeführt werden kann, bleibt <span class="7911599971148217115">Oscar’s</span> Rolle eine der wichtigsten. Auch in seinem Charakter tritt in der Mitte ein bestimmter Wendepunkt ein. Er tritt auf, mitten innestehend zwischen Knabe und Jüngling, ein süßträumender, in einer poetischen Welt befangener Skalden-Jüngling. Aus dem Metall, aus welchem kriegerische Könige gegossen werden, ist der im Alter erzeugte Posthumus nicht gegossen. <span class="tei_hi_spaced_out">Sein Reich ist das der Bilder und der Töne. Sein weiches Herz kann leiden nur und lieben</span>. Doch seine Nichte, Yngurd’s Tochter, <span class="6511510897">Asla</span> überblickt mit Klarheit ihren und seinen Zustand. Mit den Worten: <span class="tei_hi_spaced_out">Du Ottfrieds Sohn liebst Ottfrieds Enkelin</span> und mit dem ersten Kuß tagt’s, wie durch einen Blitzstrahl, in seiner Brust und nun kann er, in vollem Bewußtseyn ermannt, vor allen Großen des Reichs sein Reich fodern und das Schrecklichste an sich vorüber gehen lassen. Die vom <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Dichter</a> meisterhaft motivirte Umwandlung psychologisch wahr darzustellen, ist nicht die kleinste Aufgabe.</p>
                                         <p><span class="66114117110104105108100101110">Brunhilden</span>’s, der Mutter <span class="7911599971148217115">Oscar’s</span>, Charakter ist eine der originellsten Schöpfungen für unsere Bühne. So haßt, so liebt nur die sinnlichste Sinnlichkeit. Doch schüttelt der Haß uns nur in einigen frühern Scenen sein Schlangenhaupt entgegen. Nach Oscar’s Gefangennehmung hat nichts in ihrer Seele mehr Raum als namenlose, bis zum Wahnsinn gesteigerte Mutterliebe. Mit furchtbarer Wahrheit hat <a class="preview persons A001386" href="/exist/apps/WeGA-WebApp/de/A001386.html">Müllner</a> selbst ihren Haß gegen Yngurd zu Quelle ihres sichern Ahnungsvermögens gemacht. Der Verhaßte <span class="tei_hi_spaced_out">muß</span> – das zeichnet der Haß ihr mit Flammenschrift vor’s innere Auge – Oscars Mörder werden. Eine zur Raserei getriebene Mutterliebe ist schon öfter über die Bühne geschritten. Aber mit dieser Weichheit, in diesen Jammer aufgelöst, in so herzzerschneidenden Tönen noch <span class="tei_hi_spaced_out">nie</span>. Sie endet damit, aus einer Verabscheuungswürdigen, Gegenstand des tiefsten Mitleids zu werden. In der Erregung und Steigerung dieses Affekts bei dem Zuschauer ist der Darstellerin ein großer, der vollendeten Kunst würdiger Spielraum gegeben.</p>
@@ -341,8 +399,9 @@
             </p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) <span class="tei_bibl"><span class="tei_hi_spaced_out">Judas Ischariot, oder über das Verhältniß des Bösen zum Guten</span>, vom Prof. und Kirchenrath <span class="689711798"><span class="tei_hi_spaced_out">Daub</span></span> in <span class="tei_placeName"><span class="7210110510010110898101114103">Heidelberg</span></span>. Heidelberg, Mohr 1816.</span></li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) <span class="tei_bibl"><span class="tei_hi_spaced_out">Judas Ischariot, oder über das Verhältniß des Bösen zum Guten</span>, vom Prof. und Kirchenrath <span class="689711798"><span class="tei_hi_spaced_out">Daub</span></span> in <span class="preview places A130035" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130035.html">Heidelberg</span>. Heidelberg, Mohr 1816.</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -377,7 +436,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 1, Nr. 86 (10. April 1817), S. 1r</p>
+                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 1, Nr. 86 (10. April 1817), Bl. 1r</p>
                                 
                                 <div>
                                     
@@ -420,9 +479,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

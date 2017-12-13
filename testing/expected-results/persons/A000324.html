@@ -243,7 +243,7 @@
                 <p> 
                     The 'standard' TEI version. 
                     WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information had to be dropped.
+                    but no information needs to be dropped.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
@@ -251,14 +251,11 @@
                     This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
                     So be warned, this <i>not</i> a lossless transformation. 
                 </p>
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml?format=dta">DTA Basisformat <i class="fa fa-download"></i></a></h4>
-                <p> 
-                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
-                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
-                </p>
+                
+                
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a streamlined plain text version. 
+                    An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
@@ -408,13 +405,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/dnb.html">GND Eintrag</a>
+                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/adb.html">ADB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/adb.html">ADB Artikel</a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000324/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -486,11 +483,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -498,7 +495,6 @@
                                                 <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
                                                     <ul>
-                                                            <li><a title="Digitaler Portraitindex - Alle Personen" href="http://www.portraitindex.de/dokumente/pnd/116689234">10 Reproduktionen im Digitalen Portraitindex Frühe Neuzeit</a></li>
                                                             <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/116689234">Allgemeine Deutsche Biographie (Wikisource)</a></li>
                                                             <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=116689234">Bayerische Staatsbibliothek (10)</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier ADB 25782 Einträge)" href="http://www.deutsche-biographie.de/pnd116689234.html#adbcontent">Biographien der ADB</a></li>
@@ -507,6 +503,7 @@
                                                             <li><a title="Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-blkoe/116689234">Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00387208]" href="http://thesaurus.cerl.org/record/cnp00387208">CERL Thesaurus</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/116689234">Deutsche Digitale Bibliothek</a></li>
+                                                            <li><a title="Digitaler Portraitindex - Alle Personen" href="http://www.portraitindex.de/dokumente/pnd/116689234">Deutsches Dokumentationszentrum fuer Kunstgeschichte - Bildarchiv Foto Marburg (10)</a></li>
                                                             <li><a title="Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Costenoble, Karl Ludwig]" href="http://www.oper-um-1800.uni-koeln.de/einzeldarstellung_librettist.php?id_librettist=1363">Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Costenoble, Karl Ludwig]</a></li>
                                                             <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)116689234">HBZ-Verbundkatalog (25)</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/116689234">HeBIS-Verbundzentrale (7)</a></li>

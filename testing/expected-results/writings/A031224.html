@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031224" />
         <meta property="dc:description" content="berichtigt falsche Informationen der Zeitung betreffs Sterbedatum von Johann Karl Liebich und Alter von Caroline Brandt" />
         <meta name="description" content="berichtigt falsche Informationen der Zeitung betreffs Sterbedatum von Johann Karl Liebich und Alter von Caroline Brandt" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031224.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -264,9 +305,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -281,12 +322,12 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">An die geehrte Direktion des dramaturgischen Wochenblattes zu Berlin. Poststraße 27.</h2>
                                         <h3 class="docHeader textAlign-left">(Prag 20. December <span class="tei_hi_bold">1816</span>.)</h3>
-                                        <p>In Nr. <span class="tei_hi_bold">24</span> vom <span class="tei_hi_bold">14</span>. December a. c. des vielseitigen dram. Wochenblattes, ist in einem Schreiben <span class="tei_hi_antiqua">di dato</span> <span class="tei_placeName"><span class="8011497103">Prag</span></span> am 25 –, das Leichenbegängniß des verehrten Theaterdirektors <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a>, als ein wehmüthiges Fest geschildert. 
+                                        <p>In Nr. <span class="tei_hi_bold">24</span> vom <span class="tei_hi_bold">14</span>. December a. c. des vielseitigen dram. Wochenblattes, ist in einem Schreiben <span class="tei_hi_antiqua">di dato</span> <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> am 25 –, das Leichenbegängniß des verehrten Theaterdirektors <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a>, als ein wehmüthiges Fest geschildert. 
                Ich bedaure also, daß ich zum Nachtheil dieser Zeitung anzeigen, und die Sache dahin berichtigen muß, daß das Leichenbegängnis noch nicht stattfinden konnte, weil Dir. <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> den <span class="tei_hi_bold">14</span>. noch lebte, und sich auf dem Wege der Besserung befand; zur wahren Freude aller guten Musiker und Kunstfreunde<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.</p>
                                         <p>Nächst diesem erlauben Sie mir noch die Gewissenhaftigkeit zu erwähnen, die Sie zwar bei jeder Gelegenheit, aber in der Dresdner Correspondenz-Nachricht vom <span class="tei_hi_bold">20</span>. Novbr. desselben Blattes erneut an den Tag legen, nämlich die Ansichten Ihrer Mitarbeiter auch gegen Ihre eigene richtige Ueberzeugung unberichtigt abdrucken zu lassen.
                Zur Steuer blos der Wahrheit zeige ich an, daß Mlle. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brandt</a> zehn Jahre an den Herren Nachrichter oder Nachrichtertheiler zu gute behält, da sie eben ihr <span class="tei_hi_bold">21</span>. Jahr angetreten hat.</p>
                                         <p class="inlineEnd">Ich bin überzeugt, daß Ihnen diese Berichtigungen willkommen sein werden, da Sie oft genug Ihre Liebe zur Wahrheit versichert haben. 
-               <span class="tei_pb" title="Seitenumbruch"> | </span> Auch ich mache es mir zum Vergnügen zu der Vervollkommnung eines Blattes zufällig mitwirken zu können, das in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, wo man täglich Gelegenheit hat sich von dessen wahrem Werth zu überzeugen, so richtig gewürdigt wird.</p>
+               <span class="tei_pb" title="Seitenumbruch"> | </span> Auch ich mache es mir zum Vergnügen zu der Vervollkommnung eines Blattes zufällig mitwirken zu können, das in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, wo man täglich Gelegenheit hat sich von dessen wahrem Werth zu überzeugen, so richtig gewürdigt wird.</p>
                                         <p class="tei_closer textAlign-left inlineStart">Schließlich ersuche ich eine löbl. Redaktion dieses Schreiben in dem nächsten Blatte vom <span class="tei_hi_bold">28</span>. einrücken zu lassen, und bin mit ganz besonderer Hochachtung
                <span class="tei_segBlock textAlign-right">Einer löbl. Redaktion<br /> ganz Ergebener.</span>
             </p>
@@ -360,7 +401,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… aller guten Musiker und Kunstfreunde": </span>Anm. nach Kaiser, S. LXXXIX: Das Dramaturgische Wochenblatt nahm übrigens <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Berichtigung nicht auf, sondern brachte in Nr. 28 vom 11. Januar 1817 nur folgende Notiz: "Nach öffentlichen gedruckten Nachrichten ist der bisherige Theaterdirektor <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> zu Prag am 21. Dezember mit Tode abgegangen, wodurch sich die in Nr. 24 dieses Wochenblattes aus einem Briefe aus <span class="tei_placeName"><span class="8011497103">Prag</span></span> mitgeteilte Nachricht von seinem früheren Tode von selbst widerlegt. Die Redaktion."</div>
+                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… aller guten Musiker und Kunstfreunde": </span>Anm. nach Kaiser, S. LXXXIX: Das Dramaturgische Wochenblatt nahm übrigens <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Berichtigung nicht auf, sondern brachte in Nr. 28 vom 11. Januar 1817 nur folgende Notiz: "Nach öffentlichen gedruckten Nachrichten ist der bisherige Theaterdirektor <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> zu Prag am 21. Dezember mit Tode abgegangen, wodurch sich die in Nr. 24 dieses Wochenblattes aus einem Briefe aus <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> mitgeteilte Nachricht von seinem früheren Tode von selbst widerlegt. Die Redaktion."</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -388,9 +429,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031224</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031224</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

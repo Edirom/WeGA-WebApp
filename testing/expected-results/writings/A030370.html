@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030370" />
         <meta property="dc:description" content="Bemerkungen über die Schauspieltruppe der Madame Walther und deren Aufführung des &#34;Freischütz&#34; von Carl Maria von Weber (Teil 1 von 2)" />
         <meta name="description" content="Bemerkungen über die Schauspieltruppe der Madame Walther und deren Aufführung des &#34;Freischütz&#34; von Carl Maria von Weber (Teil 1 von 2)" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030370</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,66 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030370.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030371.html">Aufführungsbesprechung Halle: "Der Freischütz" von Carl Maria von Weber, mit Bemerkungen zur Schauspieltruppe der Madame Walther, Sommer 1822 (Teil 2 von 2), von Karl Philipp Bonafont</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -293,19 +351,15 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="661149711711011599104119101105103" /> <span title="Braunschweig">Braunschweig</span> 
+                                    <input type="checkbox" name="options" value="A130021" /> <span title="Braunschweig">Braunschweig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7297108108101" /> <span title="Halle">Halle</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130034" /> <span title="Magdeburg">Magdeburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103101114" /> <span title="Leipziger">Leipziger</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="779710310010198117114103" /> <span title="Magdeburg">Magdeburg</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711610397114116" /> <span title="Stutgart">Stutgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label>
                             </div>
                         </div>
@@ -319,22 +373,22 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p><span> […]</span></p>
-                                        <p><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="7297108108101">Halle</span></span></span>. 
+                                        <p><span class="tei_hi_spaced_out"><span class="7297108108101">Halle</span></span>. 
                Es haben sich in mehreren Blättern Aeußerungen über die Schauspieler-Gesellschaft der Frau Direktrice <a class="preview persons A006841" href="/exist/apps/WeGA-WebApp/de/A006841.html">Walther</a> ausgesprochen, die – zur Steuer der Wahrheit – einiger Berichtigungen bedürfen. 
                Fern sey von mir die Absicht, irgend Jemand den Fehde-Handschuh hinwerfen zu wollen. 
                Der Wahrheit nur will Referent das Wort reden und er hegt den friedlichen Wunsch, daß Widersacher sich beschwichtigen lassen, daß alle sich in Eintracht verständigen, Keiner den Andern und Keiner die Kunst in ihren oft schwierigen Darstellungen ferner anfeinden möchte. – 
                <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Göthe</a> hat ohnlängst ein triftiges Wort zu seinen Zeitgenossen gesprochen, ein Wort, das auf jedes Verhältniß des gesellschaftlichen Verkehrs anwendbar seyn dürfte: "In der jetzigen Zeit", sagt dieser tiefe Denker, "soll Niemand schweigen, oder nachgeben; man muß reden und sich rühren, nicht um zu überwinden, sondern, um sich auf seinem Posten zu erhalten, ob bei der Majorität oder der Minorität ist ganz gleichgültig". – 
-               So laßt uns denn sprechen, der Wahrheit und dem Recht zu Ehren, so wie es die Wahrheit und das Recht erheischen! Die aus achtbaren, in der Bühnenwelt nicht unrühmlich bekannten Mitgliedern bestehende Schauspieler-Gesellschaft der Frau Direktrice <a class="preview persons A006841" href="/exist/apps/WeGA-WebApp/de/A006841.html">S. Walther</a>, welche man hoffentlich doch nur in einem Augenblick leidenschaftlicher Animosität mit dem ungebührlichen Namen einer "wandernden Truppe" bezeichnen wollte, hat längst aufgehört, zur theatralischen Hefe ähnlicher Kunstfahrer zu gehören, da dieser, mancher stehenden Bühne gleich kommender Künstler-Verein ausschließlich nur die beiden Städte <span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="7297108108101">Halle</span></span></span> und <span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="779710310010198117114103">Magdeburg</span></span></span> bereist. – 
-               Während ihres diesjährigen Aufenthalts in <span class="tei_placeName"><span class="7297108108101">Halle</span></span> hat diese wackere Schauspieler- und Opern-Gesellschaft sich nicht nur die allgemeine Zufriedenheit, sondern den Dank der hiesigen Theater-Freunde für die, alle billigen Anforderungen völlig befriedigenden Darstellungen erworben, und wer da weiß, welche schwierige Aufgabe es ist, in einer Universitäts-Stadt – wo die Ansichten, Urtheile und Anforderungen sich eben so sehr widersprechen, als letztere oft schwer zu befriedigen sind – den <span class="tei_hi_spaced_out">allgemeinen</span> Beifall zu erringen, es – wie man zu sagen pflegt – Allen recht zu machen! 
+               So laßt uns denn sprechen, der Wahrheit und dem Recht zu Ehren, so wie es die Wahrheit und das Recht erheischen! Die aus achtbaren, in der Bühnenwelt nicht unrühmlich bekannten Mitgliedern bestehende Schauspieler-Gesellschaft der Frau Direktrice <a class="preview persons A006841" href="/exist/apps/WeGA-WebApp/de/A006841.html">S. Walther</a>, welche man hoffentlich doch nur in einem Augenblick leidenschaftlicher Animosität mit dem ungebührlichen Namen einer "wandernden Truppe" bezeichnen wollte, hat längst aufgehört, zur theatralischen Hefe ähnlicher Kunstfahrer zu gehören, da dieser, mancher stehenden Bühne gleich kommender Künstler-Verein ausschließlich nur die beiden Städte <span class="tei_hi_spaced_out"><span class="7297108108101">Halle</span></span> und <span class="tei_hi_spaced_out"><span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span></span> bereist. – 
+               Während ihres diesjährigen Aufenthalts in <span class="7297108108101">Halle</span> hat diese wackere Schauspieler- und Opern-Gesellschaft sich nicht nur die allgemeine Zufriedenheit, sondern den Dank der hiesigen Theater-Freunde für die, alle billigen Anforderungen völlig befriedigenden Darstellungen erworben, und wer da weiß, welche schwierige Aufgabe es ist, in einer Universitäts-Stadt – wo die Ansichten, Urtheile und Anforderungen sich eben so sehr widersprechen, als letztere oft schwer zu befriedigen sind – den <span class="tei_hi_spaced_out">allgemeinen</span> Beifall zu erringen, es – wie man zu sagen pflegt – Allen recht zu machen! 
                der wird das sowohl von Seiten der Schauspieler, als der Direktion Geleistete nach Verdienst anerkennen wollen. –
                Zur Bewährung obiger Angabe, daß nämlich die Hallesche und Magdeburgsche Schauspieler-Gesellschaft aus nicht unrühmlich bekannten Mitgliedern bestehe, bedarf es nur, einiger derselben namentlich zu erwähnen: 
-               Die Gebrüder Hartmann, beide als sehr brauchbare Schauspieler bekannt, der ältere seit Jahren schon Mitglied und Regisseur des Waltherschen Theaters, früher bei dem Königlichen Hoftheater zu <span class="tei_placeName"><span class="8311611711610397114116">Stutgart</span></span> angestellt. 
+               Die Gebrüder Hartmann, beide als sehr brauchbare Schauspieler bekannt, der ältere seit Jahren schon Mitglied und Regisseur des Waltherschen Theaters, früher bei dem Königlichen Hoftheater zu <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stutgart</span> angestellt. 
                <span class="preview persons A006987 A008742" data-ref="/exist/apps/WeGA-WebApp/de/A006987.html /exist/apps/WeGA-WebApp/de/A008742.html">Herr und Frau Spengler</span>, ein wackres, in sittlicher und in artistischer Hinsicht achtbares Künstler-Paar. 
                <span class="preview persons A008149 A002364" data-ref="/exist/apps/WeGA-WebApp/de/A008149.html /exist/apps/WeGA-WebApp/de/A002364.html">Herr und Frau Urspruch</span>, ersterer als Tenorist und letztere als Sängerin sehr schätzenswerth. 
                Die beiden Frauen Hartmann, Gat<span class="tei_cb" title="Spaltenumbruch">¦</span>tinnen der Brüder, beide in ihren Fächern brav 
-               (die Frau des ältern Bruders war als <span class="6810110911110511546327197117115">Demois. Gaus</span> eine vorzügliche Künstlerin und in <span class="tei_placeName"><span class="8311611711610397114116">Stutgart</span></span> sehr beliebt). 
+               (die Frau des ältern Bruders war als <span class="6810110911110511546327197117115">Demois. Gaus</span> eine vorzügliche Künstlerin und in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stutgart</span> sehr beliebt). 
                <a class="preview persons A008068" href="/exist/apps/WeGA-WebApp/de/A008068.html">Frau Henne</a>, bisher der Liebling des hiesigen Publikums, obschon ihr Darstellungs-Talent in Spiel und Vortrag Manches zu wünschen übrig läßt. 
-               <a class="preview persons A001977" href="/exist/apps/WeGA-WebApp/de/A001977.html">Herr Toussaint</a>, als Bassist vortheilhaft bekannt, vordem Mitglied der Königlichen Hofbühne zu <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>; 
+               <a class="preview persons A001977" href="/exist/apps/WeGA-WebApp/de/A001977.html">Herr Toussaint</a>, als Bassist vortheilhaft bekannt, vordem Mitglied der Königlichen Hofbühne zu <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>; 
                und <a class="preview persons A008827" href="/exist/apps/WeGA-WebApp/de/A008827.html">Herr Duprè</a>, ein für das Fach der Chevaliers sehr wackerer Schauspieler. 
                Diese und ähnliche Mitglieder verdienen doch wohl Anerkennung? – 
                Nebst manchem Guten und Schönen im Gebiete der dramatischen und lyrischen Kunst, verdanken wir auch der Direktrice <a class="preview persons A006841" href="/exist/apps/WeGA-WebApp/de/A006841.html">Walther</a>, die stets beflissen ist, den Wünschen des Publikums möglichst zu entsprechen, den hohen Kunstgenuß der classischen National-Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, zu <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind’s</a> gedichtetem "<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>". 
@@ -342,9 +396,9 @@
                Nur müßte man nicht unpassender Weise den Maaßstab einer Vergleichung anlegen wollen, die schon aus dem Grunde nicht statt finden kann, da der Direktion des hiesigen Theaters weder in finanzieller, noch in artistischer Hinsicht die Hülfsmittel anderer benachbarten Bühnen zu Gebot stehen. 
                Gleichwohl wurde bei der Darstellung des "<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>" von der Direkton nichts gespart, um seine Erscheinung auf der hiesigen Bühne mit möglichster Vollkommenheit zu bewerkstelligen, ein Bestreben, das in der That um so mehr Lob verdient, da die Direktion fast unüberwindlich scheinende Hindernisse zu bekämpfen hatte. 
                Ein, theils durch die freundliche Mithülfe des hiesigen Musik-Vereins, theils durch berufene auswärtige Musici vollständig gewordenes Orchester, trug vieles zur lobenswerthen Darstellung bei. 
-               Neue Dekorationen und Garderobe, erstere von dem <span class="tei_placeName"><span class="76101105112122105103101114">Leipziger</span></span> Dekorateur, <span class="72114110463271101114119105116122">Hrn. Gerwitz</span>, verfertigt, der auch die Scenerei der ersten Vorstellungen leitete, wurden angeschafft und es gereicht der Direktion zur Ehre, daß unbefangene Zuschauer, die diese Oper in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> und in <span class="tei_placeName"><span class="661149711711011599104119101105103">Braunschweig</span></span> sahen, auf der hiesigen Bühne Manches, wo nicht besser, doch eben so gut als auf jenen gefunden haben. 
+               Neue Dekorationen und Garderobe, erstere von dem <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipziger</span> Dekorateur, <span class="72114110463271101114119105116122">Hrn. Gerwitz</span>, verfertigt, der auch die Scenerei der ersten Vorstellungen leitete, wurden angeschafft und es gereicht der Direktion zur Ehre, daß unbefangene Zuschauer, die diese Oper in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> und in <span class="preview places A130021" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130021.html">Braunschweig</span> sahen, auf der hiesigen Bühne Manches, wo nicht besser, doch eben so gut als auf jenen gefunden haben. 
                <span class="tei_segBlock textAlign-right">(Der <a class="preview writings A030371" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030371.html">Schluß</a> in der Beilage).</span></p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_signed textAlign-right"><span class="tei_supplied" id="d38646e126"><span class="brackets_supplied">[</span>Karl Philipp Bonafont<span class="brackets_supplied">]</span></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a></span></p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_signed textAlign-right"><span class="tei_supplied" id="d10e116"><span class="brackets_supplied">[</span>Karl Philipp Bonafont<span class="brackets_supplied">]</span></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a></span></p>
                                     </div>
                                 </div>
                     </div>
@@ -425,9 +479,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030370</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030370</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

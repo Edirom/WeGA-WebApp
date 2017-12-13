@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Mo, Ran" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031594" />
         <meta property="dc:description" content="lobende Besprechung der EA des &#34;Freischütz&#34; in Wien inkl. Analyse des Werks; Hervorhebung u.a. der hervorragend komponierten Chöre und der gelungenen Anlage der Rolle des Ännchens" />
         <meta name="description" content="lobende Besprechung der EA des &#34;Freischütz&#34; in Wien inkl. Analyse des Werks; Hervorhebung u.a. der hervorragend komponierten Chöre und der gelungenen Anlage der Rolle des Ännchens" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031594</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,49 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031594.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -289,7 +330,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110115" /> <span title="Wiens">Wiens</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -323,10 +364,10 @@
                                         <p>Der schwärzeste Schatten ruht auf der Scene in der Wolfsgrube. Die Geschicklichkeit <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span> hat durch die hier imponirenden zwey Paar Hörner, welche öfter im verminderten Septimen-Accorde eintreten, und einen schaudererregenden Effect machen, weil die Auflösung schön poetisch unterlassen ist – dieses Tonstück sehr charakterisirt. Die monotone Bewegung der unsichtbaren Stimmen tritt gut hervor, und ist originell. – Man sage nur nicht etwa, dass es <span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span> in seinem <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> nachgebildet sey, denn <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a> hat ja auch nicht das ewige Gesetz erfunden, dass der lang, auf <span class="tei_hi_italic">einer</span> Klangstufe ertönende Schall mit chromatischer Begleitung der Harmonie – immer und ewig zu Bezeichnung des Schauerlichen gebraucht<span class="tei_pb" title="Seitenumbruch"> | </span> werden wird, weil eben das dem Scheine nach belebte Todte durch so schroffe Conture schreckt. Es ist gleichsam ein hohles, lang uns anstarrendes Gesicht, das von einem immer neu gefärbten Halbdunkel beleuchtet wird.</p>
                                         <p>Geisterstimmen werden nie mit Effect sich melodisch bewegen, weil fast alle Sterblichen übereingekommen sind, dass die Geister der Abgeschiedenen von den Regeln der Singkunst, eine grausenerregende Scala ausgenommen, in ihrer Grabeshülle auszunehmen sind. Auch hier sind wieder italienische Opern ausgenommen, denn in diesem Lande haben auch die Geister der Todten mehr Anstand, Grazie und überhaupt Lebenslustigkeit. Draum ist <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> wegen seiner Behandlung dieser Scene ernstlich zu loben.</p>
                                         <p>Unsere Meinung im Allgemeinen ist: Der Eindruck eines solchen in unserer Zeit gleichsam aus den Wolken fallenden Werks kann gar nicht nach einer ersten Aufführung beurheilt werden – obgleich er im Ganzen doch günstig zu nennen war.</p>
-                                        <p>Es ist Anmassung, die auf Ignoranz beruht, wenn man beym ersten Mahl hören das Ganze in seinen tiefen und künstlichen Verzweigungen, beurtheilen zu können behauptet. Wir sind eben auch nicht ungeübt im Unterscheiden von Masse und Form, und doch hält uns die heilige Scheu vor der Kunst zurück, hierüber nach der ersten Aufführung ganz uns auszusprechen. Dass aber der Sieg des Schönen auch hier sich wieder kund that, indem das edle Publicum <span class="tei_placeName"><span class="87105101110115">Wiens</span></span>, gleich entzündbar für lockenden Sinnenreitz der Töne, wie für den hohen Sinn des ächten Gesanges, schon der Ouverture – die in jeder Rücksicht schön erfunden ist – seinen Beyfall laut zollte.</p>
+                                        <p>Es ist Anmassung, die auf Ignoranz beruht, wenn man beym ersten Mahl hören das Ganze in seinen tiefen und künstlichen Verzweigungen, beurtheilen zu können behauptet. Wir sind eben auch nicht ungeübt im Unterscheiden von Masse und Form, und doch hält uns die heilige Scheu vor der Kunst zurück, hierüber nach der ersten Aufführung ganz uns auszusprechen. Dass aber der Sieg des Schönen auch hier sich wieder kund that, indem das edle Publicum <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiens</span>, gleich entzündbar für lockenden Sinnenreitz der Töne, wie für den hohen Sinn des ächten Gesanges, schon der Ouverture – die in jeder Rücksicht schön erfunden ist – seinen Beyfall laut zollte.</p>
                                         <p>Während dem Fortgange des Drama’s gab es eben so oft seinen Beyfall zu erkennen, wenn gleich nur einige Gesangstücke – besonders im Chor – enthusiastischen Beyfall erhielten und allgemein anspachen.</p>
                                         <p>Das Neue findet selbst in edlen Naturen oft den Geist des Widerstrebens lebendig, weil auch einige Selbstverläugnung dazu gehört, von sich zu glauben, dass man nicht etwa die Ordnung der Welt für alle anderen erfunden habe – weil es ferner nicht allen bequem ist, aus sich selbst und den schönen, zur anderen Natur gewordenen Gewohnheiten herauszugehen, und den fremden vor uns stehenden neuen Geist zu durchdringen.<span class="tei_cb" title="Spaltenumbruch"> ¦ </span></p>
-                                        <p>Nicht unbedeutend ist die jetzt waltende Herabstimmung der Forderungen an das gesungene Drama, welche doch bey vielen Wurzel gefasst hat, die der Kunst die schimpfliche Ehre anthun, dass sie sie für ein Unterhaltungsmittel erklären. Für solche war das in mancher Hinsicht nichts <span class="tei_hi_italic">pour la <span class="tei_add">be<a class="noteMarker" id="ref-d39911e110" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39911e110">‡</a></span>nne bouche</span>, denn wer in eine tiefe, weite Ferne schauen will, muss gute Augen haben!</p>
+                                        <p>Nicht unbedeutend ist die jetzt waltende Herabstimmung der Forderungen an das gesungene Drama, welche doch bey vielen Wurzel gefasst hat, die der Kunst die schimpfliche Ehre anthun, dass sie sie für ein Unterhaltungsmittel erklären. Für solche war das in mancher Hinsicht nichts <span class="tei_hi_italic">pour la <span class="tei_add">be<a class="noteMarker" id="ref-d10e109" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e109">‡</a></span>nne bouche</span>, denn wer in eine tiefe, weite Ferne schauen will, muss gute Augen haben!</p>
                                         <p>Aber das was aus eines Meisters Hand hervorging flösst doch, wenn es auch Anfangs den Charakter des Fremdartigen haben sollte, immer eine gute, geneigte Gesinnung und den Enschluss ein, dass man es noch öfter hören wolle.</p>
                                         <p>Wohlthätigen Einfluss hatte die Kunst auf einige der Darstellenden zum Besten des Ganzen gehabt, durch <a class="preview persons A001745" href="/exist/apps/WeGA-WebApp/de/A001745.html">Mad. <span class="tei_hi_italic">Schröder</span></a>. Dieser war in den entscheidenden Momenten der Handlung sowohl, als in kleinen einzelnen Nüaçirungen der Charakteristik recht oft sichtbar. Die wirksame und geschickte Benutzung der Mittel, welche dem wahren dramatischen Künstler bey seinem Geschäfte zu Gebothe stehen, und seinen darzustellenden Charakter in das zur Beschauung erforderliche Licht der Verklärung stellen, zeigte sich theils bey der talentvollen <a class="preview persons A001747" href="/exist/apps/WeGA-WebApp/de/A001747.html">Tochter</a> der Künstlerinn, theils bey <a class="preview persons A001614" href="/exist/apps/WeGA-WebApp/de/A001614.html">Herrn <span class="tei_hi_italic">Rosner</span></a>.</p>
                                         <p>Es gehört nun einmahl zur deutschen Oper, dass das ganze Bild mehr der Wahrheit sich nähere und in einzelnen Theilen so viel als möglich, nicht nachlässig behandelt sey.</p>
@@ -383,7 +424,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d39911e110" data-title="unclear">"be": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e109" data-title="unclear">"be": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -413,9 +454,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031594</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031594</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

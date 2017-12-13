@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Bandur, Markus" />
-        <meta property="dc:creator" content="Ina Klare" />
-        <meta property="dc:date" content="2017-05-02T12:00:44.151174Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031574" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031574</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,66 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031574.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031590.html">Zur Erstaufführung der Euryanthe in Karlsruhe am 21. März 1824 (Teil 1/2)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -314,19 +372,20 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Korrespondenz-Nachricht aus Karlsruhe.</h2>
                                         <h3 class="docHeader textAlign-left">(<span class="tei_hi_spaced_out"><a class="preview writings A031590" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031590.html">Beschluß</a></span>.)</h3>
-                                        <p>Wenn wir im Anfange des 2ten Akts durch das Zischen der <span class="tei_sic">Blize<a class="noteMarker" id="ref-d38593e13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e13">‡</a></span>, durch des Donners furchtbares Rollen auf die Gefühle vorbereitet werden, welche den Busen <span class="7612111510597114116115">Lysiarts</span> bestürmen, so ergreift uns bei dieser herrlichen Musik, worin die Empfindungen der Ver<span class="tei_pb" title="Seitenumbruch">|</span>zweiflung so meisterhaft ausgedrückt sind, ein unwillkührlicher Schauer. Gleich furchtbar wüthenden Stürmen braust diese grandiöse Musik in wilden Akkorden dahin und diese herrliche Gesangscene „Wo berg’ ich mich, wo find’ ich Fassung wieder“ aus <span class="tei_hi_spaced_out">E minor</span> ist eines der großartigsten Musikstücke, dessen Total-Effekt nur dadurch geschwächt wird, daß der Tonsetzer bei dem öfters wechselnden Metrum durch gleichfalls ändernde Takte und Tonarten den Fluß des Ganzen zu unterbrechen verleitet wurde. 
-                Die hierauf folgende Scene zwischen <span class="6910310897110116105110101">Eglantine</span> und <span class="7612111510597114116">Lysiart</span> ist höchst originell und kräftig und in deklamatorischer Hinsicht von großer dramatischer Wirkung, doch möchten die technischen Schwierigkeiten zu sehr gehäuft seyn. Die Tonart aus <span class="tei_hi_spaced_out">H dur</span> ist für den Vortrag äusserst schwierig und die Singstimmen sind bei der Anwendung einer so großen Masse von Instrumentirung zu sehr in Schatten gestellt, so, daß wir überzeugt sind, daß der geniale Tonsetzer mit weniger gesuchten und leichtern Mitteln denselben großen Zweck erreicht hätte. <span class="6510011110897114115">Adolars</span> Arie „Weh’n mir Lüfte Ruh“ ist äusserst lieblich und im Contraste mit der vorhergehenden rauschenden <span class="tei_sic">Musick<a class="noteMarker" id="ref-d38593e43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e43">‡</a></span>   von größter Wirkung. Das darauf folgende Duett zwischen <span class="6510011110897114">Adolar</span> und <span class="6911711412197110116104101">Euryanthe</span> ist höchst gelungen; Harmonie und Melodie sind so innig mit einander verschmolzen, daß dieses ansprechende Musikstück überall den größten Totaleffekt hervorbringen muß. 
+                                        <p>Wenn wir im Anfange des 2ten Akts durch das Zischen der <span class="tei_sic">Blize<a class="noteMarker" id="ref-d10e13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13">‡</a></span>, durch des Donners furchtbares Rollen auf die Gefühle vorbereitet werden, welche den Busen <span class="7612111510597114116115">Lysiarts</span> bestürmen, so ergreift uns bei dieser herrlichen Musik, worin die Empfindungen der Ver<span class="tei_pb" title="Seitenumbruch">|</span>zweiflung so meisterhaft ausgedrückt sind, ein unwillkührlicher Schauer. Gleich furchtbar wüthenden Stürmen braust diese grandiöse Musik in wilden Akkorden dahin und diese herrliche Gesangscene „Wo berg’ ich mich, wo find’ ich Fassung wieder“ aus <span class="tei_hi_spaced_out">E minor</span> ist eines der großartigsten Musikstücke, dessen Total-Effekt nur dadurch geschwächt wird, daß der Tonsetzer bei dem öfters wechselnden Metrum durch gleichfalls ändernde Takte und Tonarten den Fluß des Ganzen zu unterbrechen verleitet wurde. 
+                Die hierauf folgende Scene zwischen <span class="6910310897110116105110101">Eglantine</span> und <span class="7612111510597114116">Lysiart</span> ist höchst originell und kräftig und in deklamatorischer Hinsicht von großer dramatischer Wirkung, doch möchten die technischen Schwierigkeiten zu sehr gehäuft seyn. Die Tonart aus <span class="tei_hi_spaced_out">H dur</span> ist für den Vortrag äusserst schwierig und die Singstimmen sind bei der Anwendung einer so großen Masse von Instrumentirung zu sehr in Schatten gestellt, so, daß wir überzeugt sind, daß der geniale Tonsetzer mit weniger gesuchten und leichtern Mitteln denselben großen Zweck erreicht hätte. <span class="6510011110897114115">Adolars</span> Arie „Weh’n mir Lüfte Ruh“ ist äusserst lieblich und im Contraste mit der vorhergehenden rauschenden <span class="tei_sic">Musick<a class="noteMarker" id="ref-d10e43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e43">‡</a></span>   von größter Wirkung. Das darauf folgende Duett zwischen <span class="6510011110897114">Adolar</span> und <span class="6911711412197110116104101">Euryanthe</span> ist höchst gelungen; Harmonie und Melodie sind so innig mit einander verschmolzen, daß dieses ansprechende Musikstück überall den größten Totaleffekt hervorbringen muß. 
                 In dem Chor „Leuchtend füllt die Königs Hallen“ werden selbst die ausgezeichnetsten Kräfte eines Chorgesangs zu sehr in Anspruch genommen, und um der Ausführung hier genügend zu entsprechen, wären nicht mehr Chorsänger sondern lauter Virtuosen nothwendig. Selbst die Taktart 9/8 ist zu ungewohnt und irreleitend und dazu kommt noch, daß die Singstimmen fast nackt und ohne Begleitung daher schreiten. Das Finale mit dem Auftreten von <span class="7612111510597114116">Lysiart</span> „Mein König“ ist von der größten theatralischen Wirkung und läßt den Zuschauer nicht mehr im Zweifel, daß sich der begangene Verrath vor seinen Augen nunmehr enthülle. In seiner Anlage ist es ein höchst achtungswerthes großartiges Kunstwerk, doch sind hier gleichfalls (wie beim Duett zwischen <span class="6910310897110116105110101">Eglantine</span> und <span class="7612111510597114116">Lysiart</span>) die technischen Schwierigkeiten in dem Grade gehäuft, daß selbst die vorzüglichsten Gesangkünstler, verbunden mit den Massen von Chören und Orchesterbegleitung, Mühe haben werden, in einer so schweren Tonart aus <span class="tei_hi_spaced_out">Des dur</span> die so gewichtigen Stellen mit Precision und Reinheit vorzutragen. 
-                Unbegreiflich bleibt es uns aber, wie die Dichterin dieses Finale so gestalten konnte, daß die Hauptpersonen früher schon ganz erlöschen und folglich theilnamslos auf der Scene verbleiben und was bei der großen Oper so sehr verpönt ist, <span class="tei_hi_spaced_out"><span class="tei_hi_italic">Scena muta</span></span> spielen, indem der Chor als die einzig handelnden Personen, mit den Worten „Du gleis<span class="tei_supplied" id="d38593e78"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>end Bild, Du bist enthüllt“ diesen Akt schließt. –</p>
+                Unbegreiflich bleibt es uns aber, wie die Dichterin dieses Finale so gestalten konnte, daß die Hauptpersonen früher schon ganz erlöschen und folglich theilnamslos auf der Scene verbleiben und was bei der großen Oper so sehr verpönt ist, <span class="tei_hi_spaced_out"><span class="tei_hi_italic">Scena muta</span></span> spielen, indem der Chor als die einzig handelnden Personen, mit den Worten „Du gleis<span class="tei_supplied" id="d10e78"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>end Bild, Du bist enthüllt“ diesen Akt schließt. –</p>
                                         <p>Nach dem Vorbilde von andern serieusen Opern hätten wir gewünscht, daß die durchgehends ernste Musik bisweilen durch erheiternde Scenen gemildert worden wäre, allein die Dichterin wollte es anders, und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> war gezwungen in seiner düstern ernsten Sphäre  <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>  sich fortzubewegen. Wenn schon <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a> durch das Gedicht genöthigt war, in seinen beiden rühmlichst bekannten Opern (<span class="8610111511697108105110110321171101003267111114116101122">Vestalinn und Cortez</span>) der ersten Sängerin den 2ten Akt bis zur Erschöpfung aufzubürden, so war es dem Componisten dieser Oper vorbehalten, seiner Heldin nach vorherigen starken Fatiguen die höchsten Anstrengungen für den 3ten Akt aufzubewahren. Freilich ein höchst schwer zu lösendes Problem für die Stimme einer Sängerin und dennoch müßen wir gestehen, daß <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Genialität über diesen Mißstand kühn gesiegt und seiner Composition bis zum Abgange der <span class="6911711412197110116104101">Euryanthe</span> nach jenen ergreifenden Gesangstücken „Schirmende Engelschar“ und „So bin ich nun verlassen“ den hohen dramatischen Werth in solchen steigenden Gradationen zu erhalten wußte, daß ihre letzte große Arie „Zu ihm, zu ihm! O weilet nicht“ <span class="tei_hi_spaced_out">aus</span> C. als der Glanz-Punkt der ganzen Oper angesehen werden darf. 
-                 In dem als Episode eingeflochtenen Jägerchor war, unbeschadet seiner Originalität, der Verfasser des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span> nicht zu verkennen. Wenn wir aber früher eine Abwechselung durch erheiternde Musik gewünscht hätten, so halten wir die beinahe am Schlusse der Oper angebrachte ländliche Scene, welche wahrscheinlich von der Dichterin nach dem bekannten Grundsatze <span class="tei_hi_italic">c’est mieux plus tard que jamais</span> eingeschaltet wurde, für ein wahres <span class="tei_hi_italic">hors d’oeuvre</span>, welches ohngeachtet der äusserst lieblichen und wahrhaft classischen Musik keine Wirkung mehr hervorbringen kann. Bis zu dieser Scene bemerkten wir durchgehends des Componisten hohe Genialität, indem er alle Musikstücke ganz dramatisch durchzuführen wußte. Von jetzt an wird derselbe aber auf solche Klippen und Irrwege von der Dichterin geführt, daß er unmöglich etwas anders als Stückwerke liefern konnte, und sich stets in Veränderung des Tempos und Tonarten und in abgerissenen Sätzen bewegend, mußte die dramatische Haltung in dem Grade verloren gehen, daß sich der Tonsetzer selbst am Schlusse der Oper <span class="tei_sic">das<a class="noteMarker" id="ref-d38593e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e124">‡</a></span> Modulirens nicht enthalten konnte. –</p>
+                 In dem als Episode eingeflochtenen Jägerchor war, unbeschadet seiner Originalität, der Verfasser des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span> nicht zu verkennen. Wenn wir aber früher eine Abwechselung durch erheiternde Musik gewünscht hätten, so halten wir die beinahe am Schlusse der Oper angebrachte ländliche Scene, welche wahrscheinlich von der Dichterin nach dem bekannten Grundsatze <span class="tei_hi_italic">c’est mieux plus tard que jamais</span> eingeschaltet wurde, für ein wahres <span class="tei_hi_italic">hors d’oeuvre</span>, welches ohngeachtet der äusserst lieblichen und wahrhaft classischen Musik keine Wirkung mehr hervorbringen kann. Bis zu dieser Scene bemerkten wir durchgehends des Componisten hohe Genialität, indem er alle Musikstücke ganz dramatisch durchzuführen wußte. Von jetzt an wird derselbe aber auf solche Klippen und Irrwege von der Dichterin geführt, daß er unmöglich etwas anders als Stückwerke liefern konnte, und sich stets in Veränderung des Tempos und Tonarten und in abgerissenen Sätzen bewegend, mußte die dramatische Haltung in dem Grade verloren gehen, daß sich der Tonsetzer selbst am Schlusse der Oper <span class="tei_sic">das<a class="noteMarker" id="ref-d10e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e124">‡</a></span> Modulirens nicht enthalten konnte. –</p>
                                         <p>Die Aufführung können wir mit vollem Rechte zu einer der gelungensten unserer Oper zählen; alle Kräfte unsres Theaters waren auf eine so zweckmäßige und geschickte Weise verwendet, alle in Thätigkeit gesetzten Personen waren von einem so rühmlichen Eifer beseelet und selbst die oberste Behörde war bemüht, durch ausgesuchte prachtvolle Costüms und neue Decorationen den hohen Kunstgenuß noch mehr zu steigern, so daß wir mit Gewißheit behaupten dürfen, daß selbst auf den ersten deutschen Bühnen diese Oper nicht mit größerer Pracht, nicht mit größerer Precision und harmonischem Einklange gegeben werden kann. Unser Orchester zeigte unter seines rühmlichst bekannten Capellmeisters trefflicher Leitung eine hohe Virtuosität und die schwersten Passagen wurden selbst im Piano und im langsamsten Tempo mit einer bewundernswerthen Leichtigkeit executirt. Die Chöre giengen über alle Erwartungen vorzüglich und selbst die schwierigsten Taktarten waren nicht im Stande die gute Ausführung zu unterbrechen. Im schönsten Glanze strahlten aber die Hauptpersonen unserer Oper. Die Parthien des <span class="6510011110897114">Adolar</span> und der <span class="6910310897110116105110101">Eglantine</span> wurden von <a class="preview persons A001773" href="/exist/apps/WeGA-WebApp/de/A001773.html">Herrn Schüz</a> und <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Madame Gervais</a> vortrefflich gegeben, welche letztere bei dem kraftvollen und reinen Vortrage ihrer Bravour-Arie „Bethörte die an meine Liebe glaubt“ allgemeine und stürmische Beifallsbezeigungen einerntete und besonders dankbar müßen wir es bekennen, daß sie, nicht in Tiraden und Rouladen sich verlierend, dieses grandiöse Musikstück auf eine höchst einfache und ansprechende Weise recitirte. <a class="preview persons A001773" href="/exist/apps/WeGA-WebApp/de/A001773.html">Herr Schüz</a> pflückte sich gleichfalls durch den äusserst gefühlvollen Vortrag seiner Romanze, die sich besonders für seine wohlklingend nicht sehr starke Bruststimme eignet, rühmliche Kränze. Die erste Baßparthie <span class="7111497102327612111510597114116">Graf Lysiart</span> wurde von dem ersten Tenoristen unserer Oper <a class="preview persons A002109" href="/exist/apps/WeGA-WebApp/de/A002109.html">Herrn Weixelbaum</a> gegeben. Wem die Schattenseite unserer Oper nicht hinlänglich bekannt ist, möchte dieses etwas paradox scheinen, dem ungeachtet müßen wir unserm Comité für die richtige Besetzung dieser Rolle und <a class="preview persons A002109" href="/exist/apps/WeGA-WebApp/de/A002109.html">Herrn Weixelbaum</a> für die Gefälligkeit, solche zu übernehmen, unsern verbindlichsten Dank ausdrücken. Der verdienstvolle Künstler, dessen metallreiche Stimme sich nicht allein durch Höhe auszeichnet, sondern gleichfalls einen bewundernswerthen Umfang in der Tiefe besitzt, so daß er mit Leichtigkeit noch Singparthien bis ins tiefe B vortragen kann, wußte diese schwierige Aufgabe mit solchem Glücke zu lösen, daß selbst der geniale Tonsetzer keine von den vielen Schönheiten, welche in diese brillante Parthie gelegt sind, vermißt haben würde. Den Lorbeer des heutigen Tags verdient aber unstreitig <a class="preview persons A002110" href="/exist/apps/WeGA-WebApp/de/A002110.html">Mad. Weixelbaum</a> als <span class="6911711412197110116104101">Euryanthe</span>. Wenn wir von dieser ausgezeichneten Künstlerin, der Prima Donna unserer Bühne, nur vollkommne Leistungen gewohnt sind, so müßen wir dennoch gestehen, daß sie heute unsere Erwartungen noch weit übertraf. Mit einer klangreichen Stimme verbindet <a class="preview persons A002110" href="/exist/apps/WeGA-WebApp/de/A002110.html">Mad. Weixelbaum</a> ein sehr bescheidenes Spiel und hat dabei eine solche vortreffliche Schule, daß sie mit den ersten italienischen Sängerinnen kühn im Wettkampfe auftreten dürfte und im Ausbruche des Gefühls würde ihr überall der Vorzug zuerkannt werden. Bei den äusserst angreiffenden Fatiguen wußte sie auf eine so geschickte Weise mit ihrer kraftvollen Stimme zu ökonomisiren, daß sie ihre letzte Arie noch mit Leichtigkeit und scheinbar ohne alle Anstrengung vortrug, und wollten wir die vorzüglichsten Momente ihrer heutigen Kunstleistung namhaft machen, so müßten wir alle Gesangstücke, Scene für Scene verfolgend, anführen. –</p>
-                                        <p>Wenn aber diese Oper, welche den <span class="tei_date">21. <span class="tei_sic">Merz<a class="noteMarker" id="ref-d38593e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e171">‡</a></span></span>  zum erstenmale auf unsrer Bühne im aufgehobenen Abonnement erschienen, nicht so zahlreich besucht wurde, wie man es bei einem Kunstproducte des genialen Tonsetzers hätte erwarten sollen, so ist der Grund davon sehr natürlich. Wie überall so auch hier verzichtet ein großer Theil des Publikums auf eigenes Urtheil, um seine Meinung nach dem Gutachten Anderer auszusprechen. Sehr <span class="tei_sic">Begreiflich<a class="noteMarker" id="ref-d38593e174" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e174">‡</a></span>  ist es daher, wie jenes Bonmot, welches in einer Stadt, die bis jetzt als der Central-Punct aller schönen Künste bekannt <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>   war, vielleicht aus Scherz von irgendeinem Witzbolde über diese Oper gefällt wurde, nachtheilig einwirken und viele von dem Besuche derselben abhalten mußte, <span class="tei_choice"><span class="tei_corr">die</span><a class="noteMarker" id="ref-d38593e190" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e190">‡</a></span>  sich statt eines hohen Kunstgenußes nur zu langweilen befürchteten. Bringt aber diese Musik auch nicht jene allgemeine Wirkung wie des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschützen</span> und der <span class="preview works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span> bezaubernde Anklänge hervor, so sind wir dennoch von der Wahrheit durchdrungen, daß ihre hohe Vortrefflichkeit bei mehrmaligem Anhören immer mehr erkannt werde, und wie das wahre Verdienst über alle Kabalen siegt, so wird auch diese Oper recht bald im schönsten Glanze strahlen. Jene einseitigen und gehässigen Verunglimpfungen werden aber <span class="tei_sic">Wirkungslos<a class="noteMarker" id="ref-d38593e203" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38593e203">‡</a></span> verhallen; denn so lange die Welt steht, wird es wahr bleiben: „die schlechten Früchte sind es nicht, woran die Wespen nagen“!</p>
+                                        <p>Wenn aber diese Oper, welche den <span class="tei_date">21. <span class="tei_sic">Merz<a class="noteMarker" id="ref-d10e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e171">‡</a></span></span>  zum erstenmale auf unsrer Bühne im aufgehobenen Abonnement erschienen, nicht so zahlreich besucht wurde, wie man es bei einem Kunstproducte des genialen Tonsetzers hätte erwarten sollen, so ist der Grund davon sehr natürlich. Wie überall so auch hier verzichtet ein großer Theil des Publikums auf eigenes Urtheil, um seine Meinung nach dem Gutachten Anderer auszusprechen. Sehr <span class="tei_sic">Begreiflich<a class="noteMarker" id="ref-d10e174" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e174">‡</a></span>  ist es daher, wie jenes Bonmot, welches in einer Stadt, die bis jetzt als der Central-Punct aller schönen Künste bekannt <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>   war, vielleicht aus Scherz von irgendeinem Witzbolde über diese Oper gefällt wurde, nachtheilig einwirken und viele von dem Besuche derselben abhalten mußte, <span class="tei_choice"><span class="tei_corr">die</span><a class="noteMarker" id="ref-d10e190" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e190">‡</a></span>  sich statt eines hohen Kunstgenußes nur zu langweilen befürchteten. Bringt aber diese Musik auch nicht jene allgemeine Wirkung wie des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschützen</span> und der <span class="preview works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span> bezaubernde Anklänge hervor, so sind wir dennoch von der Wahrheit durchdrungen, daß ihre hohe Vortrefflichkeit bei mehrmaligem Anhören immer mehr erkannt werde, und wie das wahre Verdienst über alle Kabalen siegt, so wird auch diese Oper recht bald im schönsten Glanze strahlen. Jene einseitigen und gehässigen Verunglimpfungen werden aber <span class="tei_sic">Wirkungslos<a class="noteMarker" id="ref-d10e203" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e203">‡</a></span> verhallen; denn so lange die Welt steht, wird es wahr bleiben: „die schlechten Früchte sind es nicht, woran die Wespen nagen“!</p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote-463-5-backlink">
-                <p> Diese <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> sollte Ennuyanthe heißen.  <span class="tei_supplied" id="d38593e184"><span class="brackets_supplied">[</span>Anmerkung original<span class="brackets_supplied">]</span></span></p>
+                                            <li id="footnote-463-5-backlink"><a href="#backref-footnote-463-5-backlink" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+                <p> Diese <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> sollte Ennuyanthe heißen.  <span class="tei_supplied" id="d10e184"><span class="brackets_supplied">[</span>Anmerkung original<span class="brackets_supplied">]</span></span></p>
             </li>
                                         </ul>
                                     </div>
@@ -379,28 +438,28 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e13" data-title="sic">"Blize": sic!</div>
+                                            <div class="apparatusEntry" id="d10e13" data-title="sic">"Blize": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e43" data-title="sic">"Musick": sic!</div>
+                                            <div class="apparatusEntry" id="d10e43" data-title="sic">"Musick": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e124" data-title="sic">"das": sic!</div>
+                                            <div class="apparatusEntry" id="d10e124" data-title="sic">"das": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e171" data-title="sic">"Merz": sic!</div>
+                                            <div class="apparatusEntry" id="d10e171" data-title="sic">"Merz": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e174" data-title="sic">"Begreiflich": sic!</div>
+                                            <div class="apparatusEntry" id="d10e174" data-title="sic">"Begreiflich": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e203" data-title="sic">"Wirkungslos": sic!</div>
+                                            <div class="apparatusEntry" id="d10e203" data-title="sic">"Wirkungslos": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d38593e190" data-title="choice">recte "die": in der Vorlage "der"</div>
+                                            <div class="apparatusEntry" id="d10e190" data-title="choice">recte "die": in der Vorlage "der"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -428,9 +487,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031574</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031574</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 2. Mai 2017 durch Ina Klare</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
