@@ -7,6 +7,7 @@ module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -658,7 +659,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:biblStruct
                 case document-node() return $item/tei:biblStruct
                 default return $item/root()/tei:biblStruct
-            let $html-title := bibl:printCitation($biblStruct, 'p', 'de')
+            let $html-title := bibl:printCitation($biblStruct, <xhtml:p/>, 'de')
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space($html-title)

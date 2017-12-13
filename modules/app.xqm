@@ -1250,7 +1250,7 @@ declare
     function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
         typeswitch($model('textSource'))
         case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        case element(tei:biblStruct) return bibl:printCitation($model('textSource'), 'p', $lang)
+        case element(tei:biblStruct) return bibl:printCitation($model('textSource'), <xhtml:p class="biblio-entry"/>, $lang)
         case element(tei:bibl) return <p>{str:normalize-space($model('textSource'))}</p>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
@@ -1269,7 +1269,7 @@ declare
     function app:print-additionalSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
         typeswitch($model('additionalSource'))
         case element(tei:msDesc) return wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        case element(tei:biblStruct) return <span class="biblio-entry">{bibl:printCitation($model('additionalSource'), 'p', $lang)/node()}</span>
+        case element(tei:biblStruct) return bibl:printCitation($model('additionalSource'), <xhtml:span class="biblio-entry"/>, $lang)
         case element(tei:bibl) return <span>{wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}</span>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
 };
@@ -1527,7 +1527,7 @@ declare
             case element(tei:biblStruct) return 
                 element {name($node)} {
                     $node/@*,
-                    bibl:printCitation($source, 'p', $lang)/node()
+                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()
                 }
             default return ()
 };
