@@ -93,7 +93,10 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
             $pubPlaceNYear,
-            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+            concat(
+                if($biblStruct//tei:imprint/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $biblStruct//tei:imprint/tei:biblScope[@unit = 'vol']) else (),
+                if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else ()
+            ),
             $note
         }
 };
