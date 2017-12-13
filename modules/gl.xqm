@@ -29,6 +29,8 @@ declare variable $gl:main-source as document-node()? :=
     try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
     catch * {core:logToFile('error', 'failed to load main Guidelines source')};
 
+declare variable $gl:schemaSpec-idents as xs:string* := gl:schemaSpec-idents();
+
 (:~
  : Returns the available chapter identifier
 ~:)

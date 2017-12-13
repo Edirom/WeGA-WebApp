@@ -113,7 +113,12 @@ declare function controller:forward-txt($exist-vars as map()*) as element(exist:
  :)
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="{core:link-to-current-app($path)}?{string-join(request:get-parameter-names() ! (. || '=' || request:get-parameter(., '')), '&amp;') }"/>
+        <redirect url="{
+            core:link-to-current-app($path) || (
+            if(count(request:get-parameter-names()) gt 0) then ('?' || string-join(request:get-parameter-names() ! (. || '=' || request:get-parameter(., '')), '&amp;'))
+            else ()
+            )
+        }"/>
     </dispatch>
 };
 
@@ -389,7 +394,7 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
         let $suffix := controller:suffix($token)
         return
             if(matches($token, 'A\d{2}[0-9A-F]')) then $token (: pattern for document identifier :)
-            else if($token = gl:schemaSpec-idents()) then $token (: pattern for schema identifier as used in the Guidelines :)
+            else if($token = $gl:schemaSpec-idents) then $token (: pattern for schema identifier as used in the Guidelines :)
             else if($count = count($tokens) and starts-with($token, 'ref-')) then $token (: Guidelines specs :)
             else if($suffix) then lang:translate-language-string(controller:url-decode(substring-before($token, '.' || $suffix)), $sourceLang, $targetLang) || '.' || $suffix
             else lang:translate-language-string(controller:url-decode($token), $sourceLang, $targetLang)
