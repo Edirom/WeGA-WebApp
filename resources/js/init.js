@@ -10,6 +10,15 @@ $.fn.h1FitText = function () {
     else $(this).fitText(1.4, {minFontSize: '36px', maxFontSize: '48px'});
 };
 
+$.fn.extend({
+    // set the white-space to normal (instead of nowrap) for long spans of text, see https://github.com/Edirom/WeGA-WebApp/issues/205
+    setTextWrap: function() {
+        return this.each( function(a,b) {
+            if(b.innerText.length > 50) {$(b).css({"white-space":"normal"})}
+        })
+    }
+});
+
 /* A wrapper function for creating select boxes */
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
@@ -734,6 +743,8 @@ $('.teaser + h2 a').each(function(a,b) {
     newText += tokens.join(' ');
     $(b).html(newText);
 })
+
+$('.preview').setTextWrap();
 
 function initFacsimile() {
     var map,
