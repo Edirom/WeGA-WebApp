@@ -159,18 +159,26 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+        let $authorElem := query:get-author-element($model?doc)[1]
         let $authorID := 
             if(config:is-person($model('docID'))) then $model('docID')
-            else query:get-authorID($model('doc'))
-        let $href := app:createUrlForDoc(core:doc($authorID), $lang)
+            else if($model?docType='diaries') then 'A002068'
+            else $authorElem/(@key, @dbkey)
+        let $href := 
+            if($authorID) then app:createUrlForDoc(core:doc($authorID), $lang)
+            else ()
         let $elem := 
-            if($href and not($authorID = config:get-option('anonymusID'))) then QName('http://www.w3.org/1999/xhtml', 'a')
+            if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
+        let $name :=
+            if($authorID) then str:printFornameSurname(query:title($authorID))
+            else if (not(functx:all-whitespace($authorElem))) then str:printFornameSurname(str:normalize-space($authorElem))
+            else query:title(config:get-option('anonymusID'))
         return 
             element {$elem} {
                 $node/@*[not(local-name(.) eq 'href')],
-                if(local-name-from-QName($elem) = 'a') then attribute href {$href} else (),
-                str:printFornameSurname(query:title($authorID))
+                if($href) then attribute href {$href} else (),
+                $name
             }
 };
 
