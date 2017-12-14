@@ -65,7 +65,7 @@
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="@target"/>
-            <xsl:if test="starts-with(@target, '#')">
+            <xsl:if test="@type='footnoteAnchor'">
                 <xsl:attribute name="id" select="concat('backref-', substring(@target, 2))"/>
                 <xsl:attribute name="class">fn-ref</xsl:attribute>
             </xsl:if>
