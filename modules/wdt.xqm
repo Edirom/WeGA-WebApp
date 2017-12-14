@@ -719,7 +719,7 @@ declare function wdt:places($item as item()*) as map(*) {
         },
         'memberOf' := ('unary-docTypes', 'search', 'indices'),
         'search' := function($query as element(query)) {
-            $item[tei:place]/tei:placeName[ft:query(., $query)] | 
+            $item[tei:place]//tei:placeName[ft:query(., $query)] | 
             $item[tei:place]/tei:place[ft:query(., $query)] 
         }
     }
