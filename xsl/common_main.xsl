@@ -695,7 +695,7 @@
     </xsl:template>
 
     <xsl:template match="tei:closer" priority="0.5">
-        <xsl:element name="p">
+        <xsl:element name="{if (parent::tei:lg) then 'span' else 'p'}">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="string-join(('tei_closer', wega:getTextAlignment(@rend, 'left'), if(@rend='inline') then 'inlineStart' else ()), ' ')"/>
             <xsl:apply-templates/>
