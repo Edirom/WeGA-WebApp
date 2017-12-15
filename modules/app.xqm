@@ -1167,12 +1167,8 @@ declare
             case 'letters' return doc(concat($config:xsl-collection-path, '/letters.xsl'))
             case 'works' return doc(concat($config:xsl-collection-path, '/works.xsl'))
             case 'writings' case 'documents' return doc(concat($config:xsl-collection-path, '/document.xsl'))
-            case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableLeft.xsl'))
+            case 'diaries' return doc(concat($config:xsl-collection-path, '/diaries.xsl'))
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
-        let $xslt2 :=
-            switch($docType)
-            case 'diaries' return doc(concat($config:xsl-collection-path, '/diary_tableRight.xsl'))
-            default return ()
         let $textRoot :=
             switch($docType)
             case 'diaries' return $doc/tei:ab
@@ -1192,8 +1188,7 @@ declare
                         <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
-                wega-util:transform($textRoot, $xslt1, $xslParams),
-                if($xslt2) then wega-util:transform($textRoot, $xslt2, $xslParams) else ()
+                wega-util:transform($textRoot, $xslt1, $xslParams)
             )
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
