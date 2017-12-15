@@ -261,6 +261,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'einrichtungsform' return $collection//mei:term[@label='einrichtungsform']
     case 'vorlageform' return $collection//mei:term[@label='vorlageform']
     case 'asksam-cat' return $collection//mei:term[@label='asksam-cat']
+    case 'placenames' return $collection//tei:placeName[@type='reg']
     default return ()
 };
 
