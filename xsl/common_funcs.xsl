@@ -344,7 +344,7 @@
     <xsl:function name="wega:addCurrencySymbolIfNecessary" as="element(xhtml:span)?">
         <xsl:param name="measure" as="element(tei:measure)"/>
         <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
-        <xsl:if test="matches(normalize-space($measure),'^\d+\.?$') and $measure/@quantity &gt; 0">
+        <xsl:if test="matches(normalize-space(string-join($measure/node() except $measure/tei:note, '')),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'tei_supplied'"/>
                 <xsl:choose>
