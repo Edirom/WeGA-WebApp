@@ -115,7 +115,7 @@ declare function controller:redirect-absolute($path as xs:string) as element(exi
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{
             core:link-to-current-app($path) || (
-            if(count(request:get-parameter-names()) gt 0) then ('?' || string-join(request:get-parameter-names() ! (. || '=' || request:get-parameter(., '')), '&amp;'))
+            if(request:get-parameter-names() = 'format') then ('?format=' || request:get-parameter('format', ''))
             else ()
             )
         }"/>
