@@ -571,6 +571,10 @@ declare function wdt:iconography($item as item()*) as map(*) {
 };
 
 declare function wdt:var($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/tei:TEI[starts-with(@xml:id, 'A07')]/root()
+    }
+    return
     map {
         'name' := 'var',
         'prefix' := 'A07',
@@ -579,7 +583,7 @@ declare function wdt:var($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
@@ -588,7 +592,7 @@ declare function wdt:var($item as item()*) as map(*) {
             ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            $item
+            $filter($item)
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('var')
