@@ -401,3 +401,15 @@ declare function query:context-relatedItems($doc as document-node()?) as map()? 
             }
         else ()
 };
+
+(:~
+ :  Return the child elements that encode placeName information, i.e. 
+ :    tei:placeName, tei:settlement, tei:region or tei:country
+ :
+ :  @param $parent-nodes the parent node of the placeName elements, e.g. tei:birth or tei:correspAction
+ :  @return a sequence of elements
+~:)
+declare function query:placeName-elements($parent-nodes as node()*) as node()* {
+    for $parent in $parent-nodes
+    return $parent/*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country]
+};

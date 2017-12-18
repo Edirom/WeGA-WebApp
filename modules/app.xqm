@@ -864,8 +864,8 @@ declare
     function app:printPlaceOfBirthOrDeath($node as node(), $model as map(*), $key as xs:string) as xs:string* {
     let $placeNames :=
         switch($key)
-        case 'birth' return $model('doc')//tei:*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country][parent::tei:birth]
-        case 'death' return $model('doc')//tei:*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country][parent::tei:death]
+        case 'birth' return query:placeName-elements($model('doc')//tei:birth)
+        case 'death' return query:placeName-elements($model('doc')//tei:death)
         default return ()
     return
         for $placeName at $count in wega-util-shared:order-by-cert($placeNames)

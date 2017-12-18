@@ -158,8 +158,12 @@ declare function wdt:letters($item as item()*) as map(*) {
             if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
             else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
             else str:printFornameSurname(str:normalize-space($addresseeElem))
-        let $placeSender := str:normalize-space(($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-        let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
+        let $placeSender := 
+            if(query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key)[1])
+            else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='sent'])[1])
+        let $placeAddressee := 
+            if(query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key)[1])
+            else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='received'])[1])
         return (
             element tei:title {
                 concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
