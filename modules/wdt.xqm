@@ -949,17 +949,17 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('documents')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() |
                 core:data-collection('works')//mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root()
             let $docsMentioned := 
-                core:data-collection('letters')//tei:*[contains(@key,$personID)]/root() | 
+                core:data-collection('letters')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() | 
                 core:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
                 core:data-collection('diaries')//tei:ab[contains(@where,$personID)]/root() |
-                core:data-collection('writings')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('writings')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('news')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('news')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
                 core:data-collection('biblio')//tei:term[.=$personID]/root() |
-                core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('documents')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('var')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
+                core:data-collection('documents')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
+                core:data-collection('var')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('works')//mei:*[contains(@dbkey,$personID)]/root() |
                 (: <ref target="wega:A002068"/> :)
                 core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
