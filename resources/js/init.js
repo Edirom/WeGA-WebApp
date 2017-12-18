@@ -533,19 +533,20 @@ function init_line_wrap_toggle() {
  */
 function active_facets() {
     var params = {
-        facets:[],
-        fromDate:'',
-        toDate:'',
-        toString:function(){
-            if(this.fromDate !== '') {
-                this.facets.push('fromDate=' + this.fromDate);
-            };
-            if(this.toDate !== '') {
-                this.facets.push('toDate=' + this.toDate);
-            };
-            return '?' + this.facets.join('&')
-        }
-    };
+            facets:[],
+            fromDate:'',
+            toDate:'',
+            toString:function(){
+                if(this.fromDate !== '') {
+                    this.facets.push('fromDate=' + this.fromDate);
+                };
+                if(this.toDate !== '') {
+                    this.facets.push('toDate=' + this.toDate);
+                };
+                return '?' + this.facets.join('&')
+            }
+        },
+        slider, from, to, min, max;
      
     /* Pushing the limit parameter to the facets array */
     params['facets'].push('limit='+$('.switch-limit .active a:first').text());
@@ -559,11 +560,11 @@ function active_facets() {
     })
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
-        var slider = $('.rangeSlider:visible'),
-            from=slider.attr('data-from-slider'),
-            to=slider.attr('data-to-slider'),
-            min=slider.attr('data-min-slider'),
-            max=slider.attr('data-max-slider');
+        slider = $('.rangeSlider:visible');
+        from=slider.attr('data-from-slider');
+        to=slider.attr('data-to-slider');
+        min=slider.attr('data-min-slider');
+        max=slider.attr('data-max-slider');
         params['fromDate'] = (from > min)? from: '';
         params['toDate'] = (to < max)? to: '';
     }
