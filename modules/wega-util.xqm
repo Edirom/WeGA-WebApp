@@ -50,7 +50,7 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
             return
                 replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
-        case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
+        case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
@@ -474,7 +474,7 @@ declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
  :  Currently, we are using the rdf serialization from viaf.org.
 ~:)
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
-    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
 };
 
 (:~
