@@ -108,7 +108,7 @@ declare
 
 declare 
     %templates:default("format", "WeGA")
-    function app:xml-download-link($node as node(), $model as map(*), $format as xs:string) as element() {
+    function app:download-link($node as node(), $model as map(*), $format as xs:string) as element() {
         let $url := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         return 
             element {name($node)} {
@@ -118,9 +118,9 @@ declare
                     case 'WeGA' return $url
                     case 'tei_all' return $url || '?format=tei_all'
                     case 'tei_simplePrint' return $url || '?format=tei_simplePrint'
-                    case 'text' return $url || '?format=text'
+                    case 'text' return replace($url, '\.xml', '.txt')
                     case 'dta' return $url || '?format=dta'
-                    default return core:logToFile('warn', 'app:xml-download-link(): unsupported XML format "' || $format || '"!')
+                    default return core:logToFile('warn', 'app:download-link(): unsupported format "' || $format || '"!')
                 },
                 templates:process($node/node(), $model)
             }

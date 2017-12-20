@@ -18,7 +18,7 @@ declare function local:format() as xs:string? {
 };
 
 declare function local:available-transformations() as xs:string* {
-    xmldb:get-child-resources($config:xsl-external-schemas-collection-path) ! (substring-before(substring-after(., 'to-'), '.xsl')) 
+    xmldb:get-child-resources($config:xsl-external-schemas-collection-path)[not(.='to-text.xsl')] ! (substring-before(substring-after(., 'to-'), '.xsl')) 
 };
 
 let $docID := request:get-attribute('docID')
