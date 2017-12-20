@@ -164,8 +164,9 @@ declare
             if(config:is-person($model('docID'))) then $model('docID')
             else if($model?docType='diaries') then 'A002068'
             else $authorElem/(@key, @dbkey)
-        let $href := 
-            if($authorID) then app:createUrlForDoc(core:doc($authorID), $lang)
+        let $href :=
+            if ($authorID = config:get-option('anonymusID')) then ()
+            else if($authorID) then app:createUrlForDoc(core:doc($authorID), $lang)
             else ()
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
