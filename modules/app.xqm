@@ -907,17 +907,18 @@ declare
                     ' (' || lang:get-language-string('otherSources', $model?lang) || ': ',
                     
                     for $date at $count in subsequence($orderedDates, 2)
-                    return (
-                        date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
-                        if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
-                        else (),
-                        if($count < count($orderedDates) - 1) then ', '
-                        else ()
-                    ),
-
+                    return 
+                        <span>{
+                            date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
+                            if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
+                            else (),
+                            if($count < count($orderedDates) - 1) then ', '
+                            else ()
+                        }</span>,
+                        
                     ')'
                 )
-            else ()
+                else ()
             )
         )
 };
