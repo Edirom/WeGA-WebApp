@@ -226,7 +226,7 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
-            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -253,10 +253,11 @@
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A080149.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A080149.txt">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
                     An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
@@ -377,7 +378,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A080149/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -425,7 +426,7 @@
                                                 <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
                                                     <ul>
-                                                            <li><a title="Körperschaften der Formalerschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)1078717923">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Körperschaften der Formalerschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)1078717923">HBZ-Verbundkatalog (2)</a></li>
                                                             <li><a title="Berlin-Brandenburgische Akademie der Wissenschaften / Jahresberichte für deutsche Geschichte [Zeltersche Liedertafel]" href="http://jdgdb.bbaw.de/cgi-bin/jdg?t_idn_erg=x&amp;idn=GND:1078717923">Jahresberichte für deutsche Geschichte - Online [Zeltersche Liedertafel]</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [nb2014027926]" href="http://lccn.loc.gov/nb2014027926">LoC [by http://viaf.org/viaf/311776054]</a></li>
                                                             <li><a title="Sacherschliessungen mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="https://opacplus.bib-bvb.de/TouchPoint_touchpoint/start.do?Query=902%3D%221078717923%22">Sacherschließungen B3Kat (Bayern, Berlin, Brandenburg)</a></li>
@@ -435,9 +436,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>

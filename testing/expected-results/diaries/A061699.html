@@ -246,11 +246,11 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061699/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -277,10 +277,11 @@
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061699.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061699.txt">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
                     An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
@@ -326,7 +327,7 @@
 </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><span class="payment_1 gr">4<span class="tei_supplied"> gr</span></span><span class="payment_1 pf">–</span><br /><span class="hiddenText">|</span><span class="payment_2 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_2 gr">16<span class="tei_supplied"> gr</span></span><span class="payment_2 pf">–</span><br /><span class="hiddenText">|</span><span class="payment_3 rh">2.<span class="tei_supplied"> rh</span></span><span class="payment_3 gr">16.<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_4 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_4 gr">12<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_5 gr">8<span class="tei_supplied"> gr</span></span><span class="payment_5 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e58"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_7 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_7 gr">1<span class="tei_damage"><span class="tei_supplied" id="d10e81"><span class="brackets_supplied">[</span>2<span class="brackets_supplied">]</span></span></span><span class="tei_supplied"> gr</span></span><span class="payment_7 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e86"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><br /><span class="hiddenText">|</span><span class="payment_8 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_8 gr">1<span class="tei_damage"><span class="tei_supplied" id="d10e101"><span class="brackets_supplied">[</span>6<span class="brackets_supplied">]</span></span></span><span class="tei_supplied"> gr</span></span><span class="payment_8 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e106"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><span class="tei_pb"><br /></span><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_13 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_13 gr">12<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_14 rh">12<span class="tei_supplied"> rh</span></span><span class="payment_14 gr">–</span><br /><span class="hiddenText">|</span><span class="payment_15 rh">11.<span class="tei_supplied"> rh</span></span><span class="payment_15 gr">16<span class="tei_supplied"> gr</span></span><span class="payment_15 pf">–</span></p>
+                                    <p><span class="hiddenText">|</span><span class="payment_1 gr">4<span class="tei_supplied"> gr</span></span><span class="payment_1 pf">–</span><br /><span class="hiddenText">|</span><span class="payment_2 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_2 gr">16<span class="tei_supplied"> gr</span></span><span class="payment_2 pf">–</span><br /><span class="hiddenText">|</span><span class="payment_3 rh">2.<span class="tei_supplied"> rh</span></span><span class="payment_3 gr">16.<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_4 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_4 gr">12<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_5 gr">8<span class="tei_supplied"> gr</span></span><span class="payment_5 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e58"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_7 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_7 gr">1<span class="tei_damage"><span class="tei_supplied" id="d10e81"><span class="brackets_supplied">[</span>2<span class="brackets_supplied">]</span></span></span></span><span class="payment_7 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e86"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><br /><span class="hiddenText">|</span><span class="payment_8 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_8 gr">1<span class="tei_damage"><span class="tei_supplied" id="d10e101"><span class="brackets_supplied">[</span>6<span class="brackets_supplied">]</span></span></span></span><span class="payment_8 pf"><span class="tei_damage"><span class="tei_supplied" id="d10e106"><span class="brackets_supplied">[</span>–<span class="brackets_supplied">]</span></span></span></span><span class="tei_pb"><br /></span><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_13 rh">1.<span class="tei_supplied"> rh</span></span><span class="payment_13 gr">12<span class="tei_supplied"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_14 rh">12<span class="tei_supplied"> rh</span></span><span class="payment_14 gr">–</span><br /><span class="hiddenText">|</span><span class="payment_15 rh">11.<span class="tei_supplied"> rh</span></span><span class="payment_15 gr">16<span class="tei_supplied"> gr</span></span><span class="payment_15 pf">–</span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -388,10 +389,6 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        
-                    </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
                         
                     </div>
                 </div>

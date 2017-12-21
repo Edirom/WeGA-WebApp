@@ -225,7 +225,7 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
-            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -252,10 +252,11 @@
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A130103.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A130103.txt">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
                     An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
@@ -324,7 +325,7 @@
                             <ul class="resp-tabs-list links">
                                 <li><a href="#biographies">Beschreibungen</a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A130103/backlinks.html">Rückverweise<small> (13)</small></a></li>
+                                <li><a href="#backlinks" data-target="A130103/backlinks.html">Rückverweise<small> (47)</small></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -359,7 +360,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A130103/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -390,8 +391,8 @@
                                                             <li><a title="DINI AG KIM [2920512]" href="http://www.geonames.org/2920512">Geonames</a></li>
                                                             <li><a title="GeoNames (mapping provided by VIAF) [2920512]" href="http://www.geonames.org/2920512">GeoNames [by http://viaf.org/viaf/136663133]</a></li>
                                                             <li><a title="Mapping GND zur GeoNames. Source: Wikidata property P1566 &lt; https://www.wikidata.org/wiki/property:P1566 &gt; [2920512]" href="http://www.geonames.org/2920512">GeoNames [Gießen]</a></li>
-                                                            <li><a title="Körperschaften der Formalerschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4020989-1">HBZ-Verbundkatalog (2)</a></li>
-                                                            <li><a title="Sacherschliessungen mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4020989-1">HBZ-Verbundkatalog (5)</a></li>
+                                                            <li><a title="Sacherschliessungen mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4020989-1">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Körperschaften der Formalerschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4020989-1">HBZ-Verbundkatalog (80)</a></li>
                                                             <li><a title="Die Datenbank &#34;Index theologicus&#34; Ixtheo weist Aufsätze aus mehr als 600 theologischen und religionswissenschaftlichen Zeitschriften in der Regel seit 1975 nach. Ausgewertet werden auch Aufsätze aus Festschriften und Kongressveröffentlichungen (Inhalt der Datenbank: &gt; 500.000 Aufsätze von ca. 51.400 Personen; ca. 11.400 Sachschlagworte; ca. 10.000 Geographica/Körperschaften, ca. 4.200 Werktitel) [http://www.ixtheo.de/cgi-bin/ixtheo/allegro.pl?db=ixtheo&amp;var1=AUT&amp;item1=giessen%20:&amp;logik1=or&amp;var2=SWK&amp;item2=giessen%20%2F]" href="http://www.ixtheo.de/cgi-bin/ixtheo/allegro.pl?db=ixtheo&amp;var1=AUT&amp;item1=giessen%20:&amp;logik1=or&amp;var2=SWK&amp;item2=giessen%20%2F">INDEX THEOLOGICUS: Publikationen im IxTheo (12)</a></li>
                                                             <li><a title="Berlin-Brandenburgische Akademie der Wissenschaften / Jahresberichte für deutsche Geschichte [456 über Gießen]" href="http://jdgdb.bbaw.de/cgi-bin/jdg?t_idn_erg=x&amp;idn=GND:1028168-X">Jahresberichte für deutsche Geschichte - Online [456 über Gießen]</a></li>
                                                             <li><a title="Mapping GND zur geo-URI. Source: Wikidata property P625 &lt; https://www.wikidata.org/wiki/property:P625 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_geouri/4020989-1">Koordinaten</a></li>
@@ -411,9 +412,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>

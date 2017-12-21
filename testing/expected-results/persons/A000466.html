@@ -226,7 +226,7 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
-            <div class="modal fade" id="XMLDownloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -253,10 +253,11 @@
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.xml?format=text">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.txt">Plain text <i class="fa fa-download"></i></a></h4>
                 <p>
                     An attempt to create a 'simple' plain text version. 
                     All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
                 </p>
                 <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
@@ -301,7 +302,7 @@
                                 <i class="fa fa-asterisk  media-object"></i>
                             </div>
                             <div class="media-body">
-                                <span>1798  (andere Angaben:  1800 )</span>
+                                <span>1798  (andere Angaben: <span>1800</span>)</span>
                                 <span> in Berlin</span>
                                  </div>
                         </li>
@@ -311,7 +312,7 @@
                                 <strong>†</strong>
                             </div>
                             <div class="media-body">
-                                <span>28. August 1856  (andere Angaben:  29. August 1856 )</span>
+                                <span>28. August 1856  (andere Angaben: <span>29. August 1856</span>)</span>
                                 <span> in Berlin</span>
                             </div>
                         </li>
@@ -400,7 +401,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000466/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="#" data-toggle="modal" data-target="#XMLDownloadModal">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -448,9 +449,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
