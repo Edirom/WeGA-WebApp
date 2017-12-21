@@ -500,7 +500,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
         case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
         case 'works' return controller:forward-html('/templates/work.html', $exist-vars)
-        case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
+        case 'var' case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
     case 'txt' return controller:forward-txt($exist-vars)
