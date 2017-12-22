@@ -96,7 +96,7 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
             for $i in $response
             return 
                 typeswitch($i)
-                case map() return $i?* ! local:serialize-xml($i(.), .)
+                case map() return map:keys($i) ! local:serialize-xml($i(.), .)
                 case function() as item() return <array>{ for $j in $i?* return local:serialize-xml($j, 'root')/node() }</array>
                 default return $response
         }
@@ -139,8 +139,8 @@ let $validate-params := function($params as map()?) as map()? {
             for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
-                if(exists($lookup)) then $lookup(map:entry($param, $params($param)))
-                else if(exists($validate-unknown-param)) then $validate-unknown-param(map:entry($param, $params($param)))
+                if(exists($lookup)) then $lookup(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
                 else (
                     util:log-system-out('It seems you did not provide a validate-unknown-param function'),
                     error($local:INVALID_PARAMETER, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
@@ -154,10 +154,10 @@ let $validate-params := function($params as map()?) as map()? {
  :   Sending one parameter to the function of type map()
  :   If $lookup is empty, return a map() with error message and code
 ~:)
-let $response := function() { 
-    typeswitch($lookup?func)
-    case empty() return map {'code' := 404, 'message' := 'not implemented', 'fields' := ''}
-    default return 
+let $response := function($lookup as map(*)) { 
+   (: typeswitch($lookup?func)
+    case empty() return $unknown-function
+    default return :)
         try { $lookup?func(map:new(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
 }
@@ -167,6 +167,8 @@ let $response := function() {
  :  Browsers send a comma separated list of possible values 
 ~:)
 let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
+let $unknown-function := 
+     map {'code' := 404, 'message' := 'Unknown/unsupported API function. Please refer to the swagger.conf file for supported functions.', 'fields' := ''}
 
 return (:(
     util:log-system-out($exist:path),
@@ -181,6 +183,9 @@ return (:(
                 <set-header name="Cache-Control" value="max-age=3600,public"/>
             </forward>
         </dispatch>
-    else if($accept-header[.='application/xml']) then local:serialize-xml($response(), if(empty($lookup)) then 'Error' else $exist:resource )
-    else if($accept-header[.='application/json']) then local:serialize-json($response())
-    else ()
+    else if(exists($lookup)) then 
+        if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
+        else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
+        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the swagger.conf file for supported response formats.', 'code':= 406 }, 'apiResponse')
+    else if($accept-header[.='application/json']) then local:serialize-json($unknown-function)
+    else local:serialize-xml($unknown-function, 'apiResponse')

@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Dubke, Esther" />
-        <meta property="dc:creator" content="Joachim Veit" />
-        <meta property="dc:date" content="2017-06-07T14:38:01.733515Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031304" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>H.S.</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031304</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031304.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -295,7 +337,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8710110510997114" /> <span title="Weimar">Weimar</span> 
+                                    <input type="checkbox" name="options" value="A130014" /> <span title="Weimar">Weimar</span> 
                                 </label>
                             </div>
                         </div>
@@ -328,9 +370,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Aus <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span></span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Aus <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span></span></h2>
                                         <h3 class="docHeader textAlign-left">(Beschluß.)</h3>
-                                        <p><span> […]</span> Ich habe den allberühmten <span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span> 5 Mal hinter einander hier gehört und gesehen und bin seiner nicht überdrüßig geworden; wer wollte auch das? <a class="preview persons A001336" href="/exist/apps/WeGA-WebApp/de/A001336.html">Moltke</a>, <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> und die <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a> haben mich entzückt. Bei einigen Vorstellungen hatte eine junge Künstlerin, <span class="76463277252108108101114">L. Müller</span>, wegen Unpäßlichkeit der <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a>, die Rolle der <span class="6510397116104101">Agathe</span> übernommen; ihre angenehme Gestalt und dabei recht passendes, freilich der <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a> nicht gleichkommendes Spiel (viel weniger aber der Gesang), machten sie in dieser Rolle erträglich. <span class="tei_hi_italic">Ut desint vires, tamen est laudanda voluntas!</span> – Herr <a class="preview persons A009020" href="/exist/apps/WeGA-WebApp/de/A009020.html">La Roche</a> ist einige Male als <span class="759711511297114">Kaspar</span> nach <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> mit Beifall aufgetreten. Höchst charakteristisch stellte er den rauhen Bösewicht dar und zeichnete sich bersonders aus durch den Vortrag des Trinkliedes, und da, wo er, vom morschen Baume stürzend, sich verzweifelnd im Blute wälzt. Was die Decorationen betrifft, so mochte doch <span class="tei_sic"><span class="6510397116104101110115">Agathens</span><a class="noteMarker" id="ref-d41682e53" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41682e53">‡</a></span> Zimmer im 2ten Akte nicht zur vollkommenen Zufriedenheit und in des <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichters</a> Geiste ausgeführt seyn; die Wolfschlucht dagegen ist höchst effektvoll und ganz im Sinne des <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichters</a>. Recht gut war zuletzt noch ein Chor tanzender Geister beigefügt. – <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>’s unübertrefflicher <span class="tei_hi_spaced_out"><span class="preview works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Wasserträger</span></span> ist eine Lieblingsoper der Weimarer, und mit Recht: denn einen <span class="7710599104101108105">Micheli</span>, wie <span class="tei_hi_spaced_out"><a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a></span>, findet man in ganz <span class="tei_placeName"><span class="tei_country">Deutschland</span></span> nicht! Er ist ein unerreichbarer Meister! Die bewundernswürdige Höhe und Tiefe, die Reinheit, Fülle, die bezaubernde Anmuth, des herrlichen Portaments der Stimme und auf der andern Seite sein schönes Spiel, sein wahrhaft künstlerisches Auffassen der Rolle machen ihn zum ersten Sänger und erheben ihn weit über jeden andern. <span class="tei_hi_spaced_out"><a class="preview persons A001336" href="/exist/apps/WeGA-WebApp/de/A001336.html">Moltke</a></span>’s schmelzender Tenor zeigte sich als <span class="7111497102326511410997110100">Graf Armand</span> in voller Kraft. – In der <span class="tei_hi_spaced_out"><span class="77252108108101114105110">Müllerin</span></span> von <a class="preview persons A001438" href="/exist/apps/WeGA-WebApp/de/A001438.html">Paesiello</a> bewährte sich wiederum alles Alles, was von <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> eben gesagt wurde; seine herrliche Höhe und unerreichbare Tiefe in den Contratönen (seine Stimme umfasst 2 1/2 Octaven) war wahrhaft bewundernswürdig. – Auch Frau <a class="preview persons A000911" href="/exist/apps/WeGA-WebApp/de/A000911.html">von <span class="tei_hi_spaced_out">Heygendorf</span></a> entzückte als <span class="8224611599104101110">Röschen</span>.</p>
+                                        <p><span> […]</span> Ich habe den allberühmten <span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span> 5 Mal hinter einander hier gehört und gesehen und bin seiner nicht überdrüßig geworden; wer wollte auch das? <a class="preview persons A001336" href="/exist/apps/WeGA-WebApp/de/A001336.html">Moltke</a>, <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> und die <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a> haben mich entzückt. Bei einigen Vorstellungen hatte eine junge Künstlerin, <span class="76463277252108108101114">L. Müller</span>, wegen Unpäßlichkeit der <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a>, die Rolle der <span class="6510397116104101">Agathe</span> übernommen; ihre angenehme Gestalt und dabei recht passendes, freilich der <a class="preview persons A000416" href="/exist/apps/WeGA-WebApp/de/A000416.html">Eberwein</a> nicht gleichkommendes Spiel (viel weniger aber der Gesang), machten sie in dieser Rolle erträglich. <span class="tei_hi_italic">Ut desint vires, tamen est laudanda voluntas!</span> – Herr <a class="preview persons A009020" href="/exist/apps/WeGA-WebApp/de/A009020.html">La Roche</a> ist einige Male als <span class="759711511297114">Kaspar</span> nach <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> mit Beifall aufgetreten. Höchst charakteristisch stellte er den rauhen Bösewicht dar und zeichnete sich bersonders aus durch den Vortrag des Trinkliedes, und da, wo er, vom morschen Baume stürzend, sich verzweifelnd im Blute wälzt. Was die Decorationen betrifft, so mochte doch <span class="tei_sic"><span class="6510397116104101110115">Agathens</span><a class="noteMarker" id="ref-d10e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e52">‡</a></span> Zimmer im 2ten Akte nicht zur vollkommenen Zufriedenheit und in des <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichters</a> Geiste ausgeführt seyn; die Wolfschlucht dagegen ist höchst effektvoll und ganz im Sinne des <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Dichters</a>. Recht gut war zuletzt noch ein Chor tanzender Geister beigefügt. – <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>’s unübertrefflicher <span class="tei_hi_spaced_out"><span class="preview works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Wasserträger</span></span> ist eine Lieblingsoper der Weimarer, und mit Recht: denn einen <span class="7710599104101108105">Micheli</span>, wie <span class="tei_hi_spaced_out"><a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a></span>, findet man in ganz <span class="tei_country">Deutschland</span> nicht! Er ist ein unerreichbarer Meister! Die bewundernswürdige Höhe und Tiefe, die Reinheit, Fülle, die bezaubernde Anmuth, des herrlichen Portaments der Stimme und auf der andern Seite sein schönes Spiel, sein wahrhaft künstlerisches Auffassen der Rolle machen ihn zum ersten Sänger und erheben ihn weit über jeden andern. <span class="tei_hi_spaced_out"><a class="preview persons A001336" href="/exist/apps/WeGA-WebApp/de/A001336.html">Moltke</a></span>’s schmelzender Tenor zeigte sich als <span class="7111497102326511410997110100">Graf Armand</span> in voller Kraft. – In der <span class="tei_hi_spaced_out"><span class="77252108108101114105110">Müllerin</span></span> von <a class="preview persons A001438" href="/exist/apps/WeGA-WebApp/de/A001438.html">Paesiello</a> bewährte sich wiederum alles Alles, was von <a class="preview persons A009030" href="/exist/apps/WeGA-WebApp/de/A009030.html">Stromeier</a> eben gesagt wurde; seine herrliche Höhe und unerreichbare Tiefe in den Contratönen (seine Stimme umfasst 2 1/2 Octaven) war wahrhaft bewundernswürdig. – Auch Frau <a class="preview persons A000911" href="/exist/apps/WeGA-WebApp/de/A000911.html">von <span class="tei_hi_spaced_out">Heygendorf</span></a> entzückte als <span class="8224611599104101110">Röschen</span>.</p>
                                         <p>Welche Genüsse ich noch zu erwarten habe, läßt sich voraussehen, da ich <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>’s <span class="tei_hi_spaced_out"><span class="preview works A020584" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020584.html">Zauberflöte</span></span> und <span class="tei_hi_spaced_out"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span> nun bald sehen und hören werde. Bald ein Mehreres. Leben Sie wohl!</p>
                                         <p class="tei_closer textAlign-left">
                     <span class="7246328346"><span class="tei_hi_spaced_out">H. S.</span></span>
@@ -368,7 +410,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 8, Nr. 102 (28. April 1824), S. 408</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 8, Nr. 102 (28. April 1824), S. 408</p>
                                 
                                 <div>
                                     
@@ -385,7 +427,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d41682e53" data-title="sic">"Agathens": sic!</div>
+                                            <div class="apparatusEntry" id="d10e52" data-title="sic">"Agathens": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -403,10 +445,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -415,9 +453,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031304</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031304</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 7. Juni 2017 durch Joachim Veit</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

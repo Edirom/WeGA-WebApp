@@ -6,27 +6,27 @@
 			<li><a href="#">&lt;</a></li>
 		</ul>
 		<ul class="media-list">
-			<li class="media" data-template="app:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+			<li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
 				<div data-template="gl:preview">
-					<div class="portrait preview-icon" data-template="app:if-matches" data-template-key="docType" data-template-value="persons">
+					<div class="portrait preview-icon" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons">
 						<a class="pull-left" data-template="app:preview-icon">
 							<!-- Image will load via AJAX -->
 							<i class="fa fa-spinner fa-spin fa-2x"/>
 						</a>
 					</div>
-					<div class="preview-icon" data-template="app:if-not-matches" data-template-key="docType" data-template-value="persons">
+					<div class="preview-icon" data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="persons">
 						<a class="pull-left" data-template="app:preview-icon">
-							<img src="$resources/img/icons/icon_letters.png" data-template="app:set-attr" data-template-attr="src" data-template-key="icon-src" class="img-responsive" alt="preview-icon"/>
+							<img src="$resources/img/icons/icon_letters.png" data-template="app-shared:set-attr" data-template-attr="src" data-template-key="icon-src" class="img-responsive" alt="preview-icon"/>
 						</a>
 					</div>
 					<div class="media-body">
 						<h3 class="media-heading"><a data-template="app:preview-title">Carl Maria von Weber für Elise Vigitill [Stammbuchblatt]</a></h3>
-						<p><strong><span data-template="lang:translate">identifier</span>:</strong> <span data-template="app:print" data-template-key="docID">A040043</span> <span data-template="app:status" class="docStatus">in Bearbeitung</span></p>
+						<p><strong><span data-template="lang:translate">identifier</span>:</strong> <span data-template="app-shared:print" data-template-key="docID">A040043</span> <span data-template="app:status" class="docStatus">in Bearbeitung</span></p>
 						<div>
-							<pre class="prettyprint"><code class="language-xml"><span data-template="app:output" data-template-key="codeSample"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></span></code></pre>
+							<pre class="prettyprint"><code class="language-xml"><span data-template="app-shared:output" data-template-key="codeSample"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></span></code></pre>
 						</div>
 					</div>
-					<!--<div data-template="app:print" data-template-key="docID"></div>-->
+					<!--<div data-template="app-shared:print" data-template-key="docID"></div>-->
 				</div>
 			</li>
 		</ul>

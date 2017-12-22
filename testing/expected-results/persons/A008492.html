@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008492.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008492.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008492.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008492.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -305,7 +348,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A008492/backlinks.html">Rückverweise<small> (44)</small></a></li>
+                                <li><a href="#backlinks" data-target="A008492/backlinks.html">Rückverweise<small> (46)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -348,7 +391,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A008492/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A008492.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -363,23 +406,23 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-         <li>1804–1806 Jura-Studium an der Universität <span class="tei_placeName"><span class="729710810810147839797108101">Halle/Saale</span></span></li>
-         <li>1806 Debüt am <span class="tei_placeName"><span class="779710310010198117114103101114">Magdeburger</span></span> Theater</li>
-         <li>August/September 1806 unter Direktion von <a class="preview persons A000369" href="/exist/apps/WeGA-WebApp/de/A000369.html">Georg Dengler</a> in <span class="tei_placeName"><span class="8211710011110811511697100116">Rudolstadt</span></span></li>
-         <li>1806/07 unter Direktion von <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund von Weber</a> am Theater in <span class="tei_placeName"><span class="6510998101114103">Amberg</span></span>, <span class="tei_placeName"><span class="65110115989799104">Ansbach</span></span>, <span class="tei_placeName"><span class="75971141081159897100">Karlsbad</span></span> und <span class="tei_placeName"><span class="6697121114101117116104">Bayreuth</span></span></li>
-         <li>1808 kurzer Aufenthalt in <span class="tei_placeName"><span class="7825211411098101114103">Nürnberg</span></span></li>
-         <li>1808/09 Schauspieler bei <a class="preview persons A001796" href="/exist/apps/WeGA-WebApp/de/A001796.html">Franz Seconda</a> in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> und <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span></li>
-         <li>1809/10 am Theater <span class="tei_placeName"><span class="8210510397">Riga</span></span></li>
-         <li>Dezember 1810 bis Februar 1811 mit der <span class="tei_placeName"><span class="7524611010510311598101114103101114">Königsberger</span></span> Gesellschaft von <span class="6797114108328311610110511098101114103">Carl Steinberg</span> unter Leitung von <span class="7011497110122328897118101114326797114110105101114">Franz Xaver Carnier</span> in <span class="tei_placeName"><span class="6910898105110103">Elbing</span></span>; April 1811 Gastrollen am Theater <span class="tei_placeName"><span class="83116101116116105110">Stettin</span></span> (vom <span class="tei_placeName"><span class="7524611010510311598101114103101114">Königsberger</span></span> Theater kommend)</li>
-         <li>kam im Juni 1812 als Mitglied des <span class="tei_placeName"><span class="6897110122105103101114">Danziger</span></span> Theaters nach <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> (nach Gastauftritten angestellt); Juli 1812 bis April 1816 Schauspieler und Regisseur am Theater <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span>, dort am 10. Oktober 1814 Heirat mit <a class="preview persons A008159" href="/exist/apps/WeGA-WebApp/de/A008159.html">Victorine Weyrauch</a>; von <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> aus im Mai/Juni 1815 Gastauftritte in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span></li>
-         <li>1816 große Gastspielreise nach <span class="tei_placeName"><span class="66114252110110">Brünn</span></span>, <span class="80101115116"><span class="tei_placeName">Pest</span></span>,   <span class="tei_placeName"><span class="87105101110">Wien</span></span>, <span class="tei_placeName"><span class="8011497103">Prag</span></span> usw., (Gastauftritt in <span class="tei_placeName"><span class="661149711711011599104119101105103">Braunschweig</span></span> am 24. Oktober)</li>
-         <li>November 1816 bis März 1820 Theaterdirektor in <span class="tei_placeName"><span class="66114101109101110">Bremen</span></span> (1816/17 noch Co-Direktion gemeinsam mit <span class="6797114108327110111498101114">Carl Gerber</span>), Fach: Charakterrollen, erste Väter und Alte</li>
-         <li>Mai/Juni 1820 in <span class="tei_placeName"><span class="75246108110">Köln</span></span> und <span class="tei_placeName"><span class="659799104101110">Aachen</span></span> Gastspiel bei <a class="preview persons A000372" href="/exist/apps/WeGA-WebApp/de/A000372.html">Joseph Derossi</a></li>
-         <li>Juli 1820 (vergebliche) Gastspielreise nach <span class="tei_placeName"><span class="7011497110107102117114116477797105110">Frankfurt/Main</span></span>, <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span></li>
-         <li>September 1820 bis Mai 1821 leitete er als <a class="preview persons A000372" href="/exist/apps/WeGA-WebApp/de/A000372.html">Derossis</a> Mitdirektor die Winterspielzeiten in <span class="tei_placeName"><span class="75246108110">Köln</span></span></li>
-         <li>1822 bis 1832 Theaterdirektor in <span class="tei_placeName"><span class="75246108110">Köln</span></span> (Winterspielzeit), im Wechsel mit <span class="tei_placeName"><span class="659799104101110">Aachen</span></span> (1823–1826), <span class="tei_placeName"><span class="7511198108101110122">Koblenz</span></span> (1824, 1830) <span class="tei_placeName"><span class="66111110110">Bonn</span></span> (1826/27), <span class="tei_placeName"><span class="84114105101114">Trier</span></span> (1828)</li>
-         <li>1832–1844 Theaterdirektor in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span></li>
-         <li>1845–1850 Theaterdirektor in <span class="tei_placeName"><span class="8210510397">Riga</span></span></li>
+         <li>1804–1806 Jura-Studium an der Universität <span class="preview places A130112" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130112.html">Halle/Saale</span></li>
+         <li>1806 Debüt am <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburger</span> Theater</li>
+         <li>August/September 1806 unter Direktion von <a class="preview persons A000369" href="/exist/apps/WeGA-WebApp/de/A000369.html">Georg Dengler</a> in <span class="preview places A130039" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130039.html">Rudolstadt</span></li>
+         <li>1806/07 unter Direktion von <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund von Weber</a> am Theater in <span class="preview places A130130" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130130.html">Amberg</span>, <span class="preview places A130088" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130088.html">Ansbach</span>, <span class="preview places A130050" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130050.html">Karlsbad</span> und <span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span></li>
+         <li>1808 kurzer Aufenthalt in <span class="preview places A130026" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130026.html">Nürnberg</span></li>
+         <li>1808/09 Schauspieler bei <a class="preview persons A001796" href="/exist/apps/WeGA-WebApp/de/A001796.html">Franz Seconda</a> in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> und <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></li>
+         <li>1809/10 am Theater <span class="preview places A130045" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130045.html">Riga</span></li>
+         <li>Dezember 1810 bis Februar 1811 mit der <span class="preview places A130027" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130027.html">Königsberger</span> Gesellschaft von <span class="6797114108328311610110511098101114103">Carl Steinberg</span> unter Leitung von <span class="7011497110122328897118101114326797114110105101114">Franz Xaver Carnier</span> in <span class="preview places A130081" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130081.html">Elbing</span>; April 1811 Gastrollen am Theater <span class="preview places A130079" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130079.html">Stettin</span> (vom <span class="preview places A130027" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130027.html">Königsberger</span> Theater kommend)</li>
+         <li>kam im Juni 1812 als Mitglied des <span class="preview places A130052" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130052.html">Danziger</span> Theaters nach <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> (nach Gastauftritten angestellt); Juli 1812 bis April 1816 Schauspieler und Regisseur am Theater <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span>, dort am 10. Oktober 1814 Heirat mit <a class="preview persons A008159" href="/exist/apps/WeGA-WebApp/de/A008159.html">Victorine Weyrauch</a>; von <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> aus im Mai/Juni 1815 Gastauftritte in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></li>
+         <li>1816 große Gastspielreise nach <span class="preview places A130058" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130058.html">Brünn</span>, <span class="preview places A130107" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130107.html"><span class="tei_placeName">Pest</span></span>,   <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> usw., (Gastauftritt in <span class="preview places A130021" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130021.html">Braunschweig</span> am 24. Oktober)</li>
+         <li>November 1816 bis März 1820 Theaterdirektor in <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span> (1816/17 noch Co-Direktion gemeinsam mit <span class="6797114108327110111498101114">Carl Gerber</span>), Fach: Charakterrollen, erste Väter und Alte</li>
+         <li>Mai/Juni 1820 in <span class="preview places A130044" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130044.html">Köln</span> und <span class="preview places A130067" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130067.html">Aachen</span> Gastspiel bei <a class="preview persons A000372" href="/exist/apps/WeGA-WebApp/de/A000372.html">Joseph Derossi</a></li>
+         <li>Juli 1820 (vergebliche) Gastspielreise nach <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span>, <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></li>
+         <li>September 1820 bis Mai 1821 leitete er als <a class="preview persons A000372" href="/exist/apps/WeGA-WebApp/de/A000372.html">Derossis</a> Mitdirektor die Winterspielzeiten in <span class="preview places A130044" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130044.html">Köln</span></li>
+         <li>1822 bis 1832 Theaterdirektor in <span class="preview places A130044" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130044.html">Köln</span> (Winterspielzeit), im Wechsel mit <span class="preview places A130067" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130067.html">Aachen</span> (1823–1826), <span class="preview places A130127" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130127.html">Koblenz</span> (1824, 1830) <span class="preview places A130029" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130029.html">Bonn</span> (1826/27), <span class="preview places A130108" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130108.html">Trier</span> (1828)</li>
+         <li>1832–1844 Theaterdirektor in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></li>
+         <li>1845–1850 Theaterdirektor in <span class="preview places A130045" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130045.html">Riga</span></li>
       </ul>
       
       
@@ -390,11 +433,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -406,9 +449,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -465,7 +505,7 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008492</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008492</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
                             <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
                     </div>

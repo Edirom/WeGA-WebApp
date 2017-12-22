@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388" />
         <meta property="dc:description" content="Rezension und Aufführungsbesprechung vom &#34;Freischütz&#34;" />
         <meta name="description" content="Rezension und Aufführungsbesprechung vom &#34;Freischütz&#34;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031388</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031388.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -308,7 +350,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freyschütz</span>; or, The Seventh Bullet.</span></h2>
                                         <p>
-                    This piece which, on account of its magic, and its magic music, has been completely turning all the halfturned heads of <span class="tei_placeName"><span class="tei_country">Germany</span></span> – has at length met with and English manger bold enough to hazard the dangerous expense and risk of producing it in <span class="tei_placeName"><span class="tei_country">England</span></span>; and a company brave and potent enough to do its mysteries and its music ample justice. The original drama, which is, to judge by the English copy, but lonely and injudiciously put together, is founded on one of the traditional tales of <span class="tei_placeName"><span class="tei_country">Germany</span></span>, which has long been listened to in that country, and valued for its decided horror. This tales has been admirably translated by a very able writer of the present day, and may be read by those, who love to <span class="tei_hi_italic">dram</span> with horror, in a work called “<span class="801111121171089711432849710810111532971101003282111109971109910111532111102321161041013278111114116104101114110327897116105111110115">Popular Tales and Romances of the Northern Nations</span>.” It will be seen that the plot of the drama, which is pretty closely adhered to we understand on the English stage, varies materially from the story. – Indeed no audience would endure to have a lover shoot his mistress to serve the devil, as is the case in the tale. How great are the Germans at Satanic writing! The devil is their Apollo!
+                    This piece which, on account of its magic, and its magic music, has been completely turning all the halfturned heads of <span class="tei_country">Germany</span> – has at length met with and English manger bold enough to hazard the dangerous expense and risk of producing it in <span class="tei_country">England</span>; and a company brave and potent enough to do its mysteries and its music ample justice. The original drama, which is, to judge by the English copy, but lonely and injudiciously put together, is founded on one of the traditional tales of <span class="tei_country">Germany</span>, which has long been listened to in that country, and valued for its decided horror. This tales has been admirably translated by a very able writer of the present day, and may be read by those, who love to <span class="tei_hi_italic">dram</span> with horror, in a work called “<span class="801111121171089711432849710810111532971101003282111109971109910111532111102321161041013278111114116104101114110327897116105111110115">Popular Tales and Romances of the Northern Nations</span>.” It will be seen that the plot of the drama, which is pretty closely adhered to we understand on the English stage, varies materially from the story. – Indeed no audience would endure to have a lover shoot his mistress to serve the devil, as is the case in the tale. How great are the Germans at Satanic writing! The devil is their Apollo!
                 </p>
                                         <p>
                     The piece has been produced by <a class="preview persons A008285" href="/exist/apps/WeGA-WebApp/de/A008285.html">Mr. Arnold</a> with no limit to care or expense: – in truth we did not, and could not believe it possible, until we saw with our own eyes, that a small summer theatre could afford us such a scene of devilry and witchery as the one now effected nightly. The diminutive stage, like <span class="7510197110">Kean</span> in one of his happiest nights, seems to expand with the spirit of the scene, until there appears no limit to its space and wonders. The scenery itself is not, we believe, new – but it is peopled with goblins and creeping things, numerous enough, we should suppose, to fill the great desart! – The principal scene is where the huntsman <span class="679711511297114">Caspar</span> casts the magic balls for his rifle, – balls which go unerringly to the mark; and as the charming goes on, the birds and evil things swarm thicker and faster, until at the seventh bullet, the stage is one mass of fire and wing and reptile! – Perhaps a slight sketch of the story may not be uninteresting: –  
@@ -365,7 +407,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">The London Magazine</span>, Bd. 10 (Juli bis Dezember 1824), S. 199–200</p>
+                                <p class="biblio-entry"><span class="journalTitle">The London Magazine</span>, Bd. 10 (Juli bis Dezember 1824), S. 199–200</p>
                                 
                                 <div>
                                     
@@ -396,10 +438,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -408,9 +446,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031388</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-28T06:29:41.984329Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043110" />
         <meta property="dc:description" content="teilt mit, daß bei dem Theaterbrand 14. Januar 1823 vieles vernichtet worden ist, u. a. auch die Theaterzettel, aber eine Baronin Ellersdorf hat sie gesammelt, und das Hoftheater hat sie erworben. Er fügt eine Abschrift des Zettels vom 4. Juni 1811 bei. In der musikalischen Academie fand er die Arie für Weixelbaum (JV 126), legt die Partitur zur Auswertung bei, und im Katalog noch einige Webersche Werke. Im Nachlaß seines Vaters fand er eine Biographie von ihm (autograph?); er legt einen Zettel von Webers erstem Konzert in München bei, in dem sein Vater zum erstenmal Webers Concertino blies. Er bittet um Rücksendung von beidem. Kontakt mit Sohn des Hofmusikus Flad wurde aufgenommen, aber kein Ergebnis." />
         <meta name="description" content="teilt mit, daß bei dem Theaterbrand 14. Januar 1823 vieles vernichtet worden ist, u. a. auch die Theaterzettel, aber eine Baronin Ellersdorf hat sie gesammelt, und das Hoftheater hat sie erworben. Er fügt eine Abschrift des Zettels vom 4. Juni 1811 bei. In der musikalischen Academie fand er die Arie für Weixelbaum (JV 126), legt die Partitur zur Auswertung bei, und im Katalog noch einige Webersche Werke. Im Nachlaß seines Vaters fand er eine Biographie von ihm (autograph?); er legt einen Zettel von Webers erstem Konzert in München bei, in dem sein Vater zum erstenmal Webers Concertino blies. Er bittet um Rücksendung von beidem. Kontakt mit Sohn des Hofmusikus Flad wurde aufgenommen, aber kein Ergebnis." />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,47 +249,91 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043110.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043033.html">1864-10-30</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.html">1865-03-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043033.html">1864-10-30</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.html">1865-03-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000495/Korrespondenz/A043126.html">1865-01-07</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000495.html">Fladt, Anton</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000495/Korrespondenz/A043126.html">1865-01-07</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000495.html">Fladt, Anton</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043033.html">1864-10-30</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.html">1865-03-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043033.html">1864-10-30</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A043159.html">1865-03-30</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000076/Korrespondenz/A043111.html">1865-03-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A043159.html">1865-03-30</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -354,9 +401,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7697110100115104117116" /> <span title="Landshut">Landshut</span> 
+                                    <input type="checkbox" name="options" value="A130179" /> <span title="Landshut">Landshut</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label>
                             </div>
                         </div>
@@ -377,12 +424,12 @@
                ich Ihnen recht vom Herzen für die freundliche Übersendung Ihres lieben Bildes,
                welches mich recht sehr erfreut hat, und um mich bayrisch auszudrücken, <span class="tei_hi_underline1">so recht anheimelt</span>. Gerade so dachte ich mir Sie, und
                was Sie von sarkastischen Ausdruck sagen, kann ich nicht finden, da ich leider das
-                  <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d51588e18"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> noch nicht
+                  <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d10e18"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> noch nicht
                gesehen. Das Bild machte auf mich einen so freundlichen wohlwollenden
                charackterhaften Eindruck, daß ich nun wirklich neugirig bin zu erfahren wo das
-               sarkastische den<span class="tei_supplied" id="d51588e22"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span> eigentlich steckt. Sie müßen daher
-               das <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d51588e27"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> recht bald nach
-               <span class="tei_placeName"><span class="7725211099104101110">München</span></span> schicken um mich zu
+               sarkastische den<span class="tei_supplied" id="d10e22"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span> eigentlich steckt. Sie müßen daher
+               das <span class="tei_hi_latintype">Or<span class="tei_supplied" id="d10e27"><span class="brackets_supplied">[</span>i<span class="brackets_supplied">]</span></span>ginal</span> recht bald nach
+               <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> schicken um mich zu
                überzeugen, daß es ein noch ehrlicheres offenes Gesicht gibt, als das übersandte
                Bild. Übrigens wäre es gar kein besonderes Wunder, wenn das Gesicht des ehrlichsten
                Musikers, in dieser <span class="tei_hi_latintype">genie</span>armen Zeit in der sich die
@@ -422,7 +469,7 @@
                      </span>&amp; <span class="tei_hi_latintype">Alt</span></span>  /: <a class="preview persons A008580" href="/exist/apps/WeGA-WebApp/de/A008580.html"><span class="tei_hi_latintype">Lachner</span></a> hat sie instrumentirt :/<a class="noteMarker" id="ref-C_0016" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0016">*</a></li>
                                         </ul>
                                         <p>So viel ich in Erfahrung gebracht habe ist das <span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Waldmädchen</span><a class="noteMarker" id="ref-C_0017" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0017">*</a> in
-                  <span class="tei_placeName"><span class="7725211099104101110">München</span></span> nicht gegeben worden, und
+                  <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> nicht gegeben worden, und
                ist bis jetzt auch leider nichts davon aufzufinden. So viel ich mich aber aus den
                Erzählungen <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">meines Vaters</a> erinnere, ist das
                   <span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Waldmädchen</span> und <span class="tei_hi_latintype"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> mir stets gleichbedeutend gewesen, und
@@ -434,7 +481,7 @@
                leben noch 2 Söhne, beide waren in der <span class="tei_hi_latintype">Münchner-</span>Hofkapelle als <span class="tei_hi_latintype">Oboe</span>-Spieler angestellt,
                erhielten aber ihrer Untauglichkeit halber <span class="tei_hi_underline1">gute
                   Hofstellen</span>, und somit war ihre Untauglichkeit ihr Glück. <a class="preview persons A000495" href="/exist/apps/WeGA-WebApp/de/A000495.html">Der Ältere</a> ist Schloßverwalter des königl.
-                  Schloßes in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7697110100115104117116">Landshut</span></span></span>, der jüngere ist königl. <span class="tei_hi_latintype">Portier</span>, aber ein gar zu einfacher Verstand, und somit schrieb ich
+                  Schloßes in <span class="tei_hi_latintype"><span class="preview places A130179" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130179.html">Landshut</span></span>, der jüngere ist königl. <span class="tei_hi_latintype">Portier</span>, aber ein gar zu einfacher Verstand, und somit schrieb ich
                an den ältern Sohn <a class="preview persons A000495" href="/exist/apps/WeGA-WebApp/de/A000495.html"><span class="tei_hi_latintype">Anton
                   Fladt</span></a> vor einigen Tagen, erhielt aber von dem langweiligen
                Menschen keine Antwort, ich wiederholte vorgestern mein Schreiben und bat dringendst
@@ -458,7 +505,7 @@
                Bezahlung :) noch weitere 10 <span class="tei_hi_latintype">Louisdor</span> bietet, statt
                entsetzt zu sein, daß <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> für 561 <span class="tei_hi_latintype">fl</span> nichts gethan hat.</p>
                                         <p>Recht sehr hätte es mich gefreut <a class="preview persons A000915" href="/exist/apps/WeGA-WebApp/de/A000915.html">Ihren lieben
-                  Sohn</a> bei seiner Anwesenheit in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7725211099104101110">München</span></span></span> gesehen zu
+                  Sohn</a> bei seiner Anwesenheit in <span class="tei_hi_latintype"><span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span></span> gesehen zu
                haben. Ich fand heute früh seine Spur in der Theater-Bibliothek /: nämlich seine
                Karte :/. Der Bibliothekar sagte mir daß er ihn etwas,
                   <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">Weber</span></a> betreffend,
@@ -483,7 +530,7 @@
                   <br /><span class="tei_hi_latintype"><a class="preview persons A000076" href="/exist/apps/WeGA-WebApp/de/A000076.html">Carl Baermann</a></span>
                </span>
                <span class="tei_dateline textAlign-left">
-                  <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7725211099104101110">München</span></span> den</span> 
+                  <span class="tei_hi_latintype"><span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> den</span> 
                   3<span class="tei_hi_latintype"><span class="tei_hi_superscript">t</span> Jäner</span> 1865
                </span>
             </p>
@@ -494,8 +541,8 @@
                lesen. Sie werden darin meine Aussage über <span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html"><span class="tei_hi_latintype">Opus</span> 33</span> (: die <span class="tei_hi_latintype">Variation</span> betreffend :)<a class="noteMarker" id="ref-C_0025" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0025">*</a> bestätigt finden. Doch weiß kein Mensch wie diese <span class="tei_hi_latintype">Variation</span> (: <span class="tei_hi_latintype">Adagio</span> :) eigentlich
                gespielt wird als ich, da <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Vater</a> dieselbe ganz
                anders spielte, als sie im Drucke erschienen ist, und wirklich so wie <span class="tei_hi_underline1">Er</span> sie spielte das Reizenste für die <span class="tei_hi_latintype">Clarinette</span> ist. Auch lege ich Ihnen einen <span class="tei_hi_latintype">Concert-Zettel</span> bei von <span class="tei_hi_latintype">Webers</span>
-               ersten <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7725211099104101110">München</span></span></span><a class="noteMarker" id="ref-C_0026" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0026">*</a>, in welchen <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Vater</a> auch zum
-               Erstenmal <span class="tei_hi_latintype">Webers <span class="preview works A020200" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020200.html">Concertino</span></span> für <span class="tei_hi_latintype">Cl:<span class="tei_supplied" id="d51588e551"><span class="brackets_supplied">[</span>arinette<span class="brackets_supplied">]</span></span></span> blies. Ich darf Sie wohl bitten mir diese
+               ersten <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype"><span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span></span><a class="noteMarker" id="ref-C_0026" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_0026">*</a>, in welchen <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Vater</a> auch zum
+               Erstenmal <span class="tei_hi_latintype">Webers <span class="preview works A020200" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020200.html">Concertino</span></span> für <span class="tei_hi_latintype">Cl:<span class="tei_supplied" id="d10e543"><span class="brackets_supplied">[</span>arinette<span class="brackets_supplied">]</span></span></span> blies. Ich darf Sie wohl bitten mir diese
                beiliegenden Sachen mit der <span class="tei_hi_latintype">Partitur</span> der mitfolgenden
                   <span class="preview works A020064" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020064.html"><span class="tei_hi_latintype">Arie</span></span> wieder <span class="tei_hi_latintype">retour</span> zu schicken, da dieselben doch nur für mich besondern
                Werth haben können. Nochmals meine besten Grüße an Sie, und <span class="tei_hi_underline1">fragen</span> Sie nur, und <span class="tei_hi_underline1">gebrauchen Sie mich
@@ -519,8 +566,9 @@
                                         <p class="clearer"></p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="ftn01">* den Brief des <a class="preview persons A000495" href="/exist/apps/WeGA-WebApp/de/A000495.html">Herrn Fla<span class="tei_hi_underline1">d</span></a> /: also doch ohne <span class="tei_hi_underline1">dt</span> :/ bitte
+                                            <li id="ftn01"><a href="#backref-ftn01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>* den Brief des <a class="preview persons A000495" href="/exist/apps/WeGA-WebApp/de/A000495.html">Herrn Fla<span class="tei_hi_underline1">d</span></a> /: also doch ohne <span class="tei_hi_underline1">dt</span> :/ bitte
                         ich nach Gefallen zu benützen, ich glaube nicht daß er für ein <span class="tei_hi_latintype">Archiv</span> von Wichtigkeit ist.</li>
                                         </ul>
                                     </div>
@@ -639,9 +687,9 @@
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_0023" data-title="note commentary"><span class="tei_lemma">"… sein Vater eine Renomage aufgebunden": </span>Vgl. Anm. 29; bezugnehmend auf Jähns
-                  Anfrage in <span class="tei_placeName"><span class="8311111010010111411510497117115101110">Sondershausen</span></span> schreibt <span class="67463272101114109115116101100116">C. Hermstedt</span>, der Sohn des Klarinettisten, im
+                  Anfrage in <span class="preview places A130116" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130116.html">Sondershausen</span> schreibt <span class="67463272101114109115116101100116">C. Hermstedt</span>, der Sohn des Klarinettisten, im
                   Brief vom 17. November 1864 [vermutlich an Kammermusikus <span class="749799111983277252108108101114">Jacob Müller</span>]: Mein
-                  seeliger Vater hat zu der angegebenen Zeit mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in <span class="tei_placeName"><span class="8011497103">Prag</span></span> ein
+                  seeliger Vater hat zu der angegebenen Zeit mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> ein
                   Concert gegeben. Die ihm von der Reineinnahme zukommende Hälfte von 561 fl. 37 xr
                   erhielt v [?] <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> für das Versprechen dem Vater ein Clarinetten-Concert zu
                   schreiben. Letzterer hat daßelbe aber nicht erhalten (D-B, Weberiana Cl. X, Nr.
@@ -678,10 +726,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -690,9 +734,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043110</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043110</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 28. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

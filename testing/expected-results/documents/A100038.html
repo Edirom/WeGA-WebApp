@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T20:16:12.824608Z" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100038" />
         <meta property="dc:description" content="Quittung über Darlehen von Kistner, dem er seine Uhr als Pfand ließ; mit Vermerk über Bezahlung vom 11. Juli 1816" />
         <meta name="description" content="Quittung über Darlehen von Kistner, dem er seine Uhr als Pfand ließ; mit Vermerk über Bezahlung vom 11. Juli 1816" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,11 +248,50 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -267,7 +309,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -280,13 +322,13 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart"><span class="tei_opener"><span class="tei_segBlock textAlign-center">Quittung</span></span>
-                                        <p>Ueber <span class="tei_hi_latintype">fünf Lou<span class="tei_add">i<a class="noteMarker" id="ref-d25916e10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d25916e10">‡</a></span>sdor</span> in Golde welche Unterzeichneter von <a class="preview persons A008489" href="/exist/apps/WeGA-WebApp/de/A008489.html">Herrn Kistner</a> als Darlehn
-               erhalten zu <span class="tei_supplied" id="d25916e17"><span class="brackets_supplied">[</span>haben<span class="brackets_supplied">]</span></span> bezeugt, und sowohl dafür als für die noch unbezahlte Rechnung für seinen
-               14<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="ref-d25916e20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d25916e20">‡</a></span>ägigen Aufenthalt in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> seine Uhr <span class="tei_del">gegeben<a class="noteMarker" id="ref-d25916e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d25916e32">‡</a></span> zum Unterpfande bis zu erfolgter Zahlung               gegeben zu haben bezeugt<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.</p>
+                                        <p>Ueber <span class="tei_hi_latintype">fünf Lou<span class="tei_add">i<a class="noteMarker" id="ref-d10e10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e10">‡</a></span>sdor</span> in Golde welche Unterzeichneter von <a class="preview persons A008489" href="/exist/apps/WeGA-WebApp/de/A008489.html">Herrn Kistner</a> als Darlehn
+               erhalten zu <span class="tei_supplied" id="d10e17"><span class="brackets_supplied">[</span>haben<span class="brackets_supplied">]</span></span> bezeugt, und sowohl dafür als für die noch unbezahlte Rechnung für seinen
+               14<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="ref-d10e20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e20">‡</a></span>ägigen Aufenthalt in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> seine Uhr <span class="tei_del">gegeben<a class="noteMarker" id="ref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a></span> zum Unterpfande bis zu erfolgter Zahlung               gegeben zu haben bezeugt<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.</p>
                                         <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Marie Baron von Weber</a></span></span>
-               <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> d: 5<span class="tei_hi_superscript">t:</span> <span class="tei_hi_latintype">Aprill</span> 1807<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.</span></p>
+               <span class="tei_dateline textAlign-left"><span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> d: 5<span class="tei_hi_superscript">t:</span> <span class="tei_hi_latintype">Aprill</span> 1807<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>.</span></p>
                                         <div class="tei_postscript">
-                                            <p><span class="tei_segBlock textAlign-right"><span class="tei_supplied" id="d25916e69"><span class="brackets_supplied">[</span>Vermerk <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> (spätere
+                                            <p><span class="tei_segBlock textAlign-right"><span class="tei_supplied" id="d10e67"><span class="brackets_supplied">[</span>Vermerk <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> (spätere
                Hand):<span class="brackets_supplied">]</span></span> d: 11<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1816 an ihn bezahlt<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.</span></p>
                                         </div>
                                     </div>
@@ -347,25 +389,25 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d25916e10" data-title="add">"i": Hinzufügung in der Zeile.</div>
+                                            <div class="apparatusEntry" id="d10e10" data-title="add">"i": Hinzufügung in der Zeile.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d25916e20" data-title="subst">"t": "ten" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e20" data-title="subst">"t": "ten" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d25916e32" data-title="del">"gegeben":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e31" data-title="del">"gegeben":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_003" data-title="note commentary"><span class="tei_lemma">"… Zahlung gegeben zu haben bezeugt": </span>Weber tilgte vermutlich einen Teil der Schuld im Januar 1812 und erhielt seine Uhr zurück; vgl. dazuTB-Notiz vom 15. Januar 1812.</div>
+                                            <div class="apparatusEntry" id="C_003" data-title="note commentary"><span class="tei_lemma">"… Zahlung gegeben zu haben bezeugt": </span>Weber tilgte vermutlich einen Teil der Schuld im Januar 1812 und erhielt seine Uhr zurück; vgl. dazu <a class="preview diaries A065545" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065545.html">TB-Notiz vom 15. Januar 1812</a>.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… d: 5 t: Aprill 1807": </span>lt. <a class="preview documents A100214" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.html">Webers Notizen über die „Reise von Carlsruhe nach Stuttgart“</a> reiste er bereits am Abend  des 4. April 1807 von Leipzig ab und kam am 5. April mittags in Altenburg an, wo er sich bis zum nächsten Tag aufhielt. Die vorliegende Quittung scheint also vordatiert zu sein.  </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… July 1816 an ihn bezahlt": </span>vgl. Am 11. Juli 1816 vermerkt Weber nochmals die Rückzahlung des genannten Betrages; vgl. TB-Eintrag vom selben Tag</div>
+                                            <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… July 1816 an ihn bezahlt": </span>vgl. <a class="preview diaries A064111" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064111.html">Am 11. Juli 1816 vermerkt Weber nochmals die Rückzahlung des genannten Betrages; vgl. TB-Eintrag vom selben Tag</a></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -381,10 +423,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -393,9 +431,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100038</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100038</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

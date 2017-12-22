@@ -17,7 +17,7 @@
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301" />
         <meta property="dc:description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
         <meta name="description" content="Aufführungsbesprechung Dresden, Hoftheater: 29. Oktober bis 7. November 1818 (Teil 1 von 3), dabei der erste Teil der Besprechung von &#34;Das Leben ein Traum&#34; von Gries. Die beiden anderen Teile folgen in den nächsten Ausgaben." />
@@ -115,11 +115,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -215,8 +219,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030301</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,11 +248,71 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030301.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030302.html">Aufführungsbesprechung Dresden, Hoftheater: "Das Leben ein Traum" von Gries (Teil 2 von 3)</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030303.html">Aufführungsbesprechung Dresden, Hoftheater: "Das Leben ein Traum" von Gries (Teil 3 von 3)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -297,9 +360,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103101114" /> <span title="Leipziger">Leipziger</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -334,7 +397,7 @@
                                         </div>
                                         <div class="docPart">
                                             <p><span class="tei_date">Den 7. Nov.</span> Zum erstenmal: <span class="tei_hi_spaced_out"><span class="preview works A021274" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021274.html">Das Leben ein Traum</span></span>, Schauspiel in vier Akten, von <span class="tei_hi_spaced_out"><a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a></span>, übersetzt von <a class="preview persons A008720" href="/exist/apps/WeGA-WebApp/de/A008720.html"><span class="tei_hi_spaced_out">Gries</span></a>.</p>
-                                            <p>Als in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> das erste <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderonsche</a> Schauspiel im Jahr 1816 aufgeführt wurde, <span class="tei_hi_spaced_out"><span class="1001011143211511697110100104971021161013280114105110122">der standhafte Prinz</span></span>, fand man es gerathen, der Aufführung im <span class="tei_bibl"><span class="tei_hi_spaced_out">dramaturgischen Wochenblatt</span> (zweitem Jahrgang No. 16.)</span> Andeutungen über das Nationelle des Spanischen Theaters und der Manier <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> vorausgehn zu lassen. Dergleichen bedurfte es wohl bei uns schon darum nicht, weil jeder gebildete Theaterfreund die geistreiche Auseinandersetzung dieses Stücks in <span class="tei_bibl">Nr. 87-89 der <span class="tei_placeName"><span class="76101105112122105103101114">Leipziger</span></span> <span class="tei_hi_spaced_out">Kunstblätter</span></span> (eines Journals, dessen Unterbrechung wir mit wahrem Schmerz vernehmen) von dem Herausgeber, Prof. <span class="tei_hi_spaced_out"><a class="preview persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">Wendt</a></span>, noch in gutem Andenken hatte. In voraus schien man darüber im Klaren und in vollkommner Eintracht zu seyn, daß jede der vier Bearbeitungen, unter welcher der Direction die <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>Wahl frei stand, uns doch nur eine ausländische Frucht mit deutscher Brühe und Kochkunst auftischte, wobei es doch immer erst auf die Frage ankäme, ob unser geistiger Gaum nicht auch die eigenthümliche fremde Zurichtung vertragen könne? Soll es mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, so fragten viele, etwa gehen, wie mit <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ]? Was jetzt auf allen <span class="tei_hi_spaced_out">bessern</span> Bühnen geschieht, die Aufführung nach der treuesten metrischen Uebersetzung von <a class="preview persons A003453" href="/exist/apps/WeGA-WebApp/de/A003453.html">Schlegel</a> (oder auch von <a class="preview persons A002030" href="/exist/apps/WeGA-WebApp/de/A002030.html">Voß</a>, oder, wozu es gewiß noch kommen wird, nach einer meisterhaften Verschmelzung von beiden) mit Verbannung jener seit 40 Jahren auf unsern Bühnen nur zu oft form- und wesenloser Schatten-Spiele, Bearbeitungen nach <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ] genannt? Sollte dasselbe Unwesen nun auch mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a> wieder unter uns Jahre lang getrieben werden, bis wir endlich doch auch zur unverfälschten Urform zurückzugehn uns ermuthigen würden? Laßt und sogleich mit dem besten und ächtesten anfangen! Die Direction wählte wirklich die bis jetzt noch nirgends übertroffene, in Versmaß und Rhythmus sich ganz genau dem Spanier anschmiegende <span class="tei_hi_spaced_out">Griesische</span> Uebersetzung und erlaubte sich nur Weglassungen im Einzelnen oder im Ganzen da, wo gewisse Scenen für die allererste Aufführung überhaupt noch nicht geeignet schienen. Die in lauten Beifallsäußerungen allgemein und oft ausbrechende Zufriedenheit eines <span class="tei_hi_spaced_out">sehr zahlreichen</span> Publikums hat dieß Zutrauen der Direction vollkommen gerechtfertigt. Aber unsre Schauspieler, welchen die drei Hauptrollen zugetheilt waren, hatten sich’s auch rechtschaffen angelegen seyn lassen. Es war alles trefflich einstudirt und durch <span class="tei_hi_spaced_out">viele</span> Proben zur Reife gebracht worden. So stand Leistung und Anerkennung in steigender Wechselwirkung. Wohl war in den ersten zwei Akten dem ganz Unvorbereiteten vieles befremdend, ja verwirrend. Doch wurde viel Einzelnes rein aufgefaßt und beklatscht. Als aber die hohe Selbstbekämpfung <span class="83105103105115109117110100115">Sigismunds</span> eintrat, als er den köstlichen Monolog: <span class="tei_hi_spaced_out">Dies ist Wahrheit</span> u.s.w. so ausgezeichnet schön aussprach, da schien in jeder Brust jede Dissonanz wie aufgelöst, und, wie ein electrischer Funken, durchlief es alle Reihen. Die hohe Allegorie dieses Lebenstraums war auch den Ungeübtern verständlich, und das hier waltende christlich-mystische Prinzip, wenn auch nicht überall der klaren Einsicht, doch dem Gefühle nahe gebracht. Doch verbarg sich hierbei auch der Gebildete nicht, daß beim genauen Eindringen ins Innere, nach öfteren Wiederholungen, noch viel Herrliches sich aufschließen werde, wozu auch wohl die Vergleichung dieses weltlichen Schauspiels mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> <span class="tei_hi_antiqua"><span class="6511711611132115971031149710910111011697108329710810810110311111410599111">Auto sagramental allegorico</span></span>, der auch <span class="tei_hi_spaced_out"><span class="preview works A021274" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021274.html">das Leben ein Traum</span></span> heißt, und von  welchem uns der <a class="preview persons A001241" href="/exist/apps/WeGA-WebApp/de/A001241.html">Baron von <span class="tei_hi_spaced_out">Malsburg</span></a> in der Vorrede zum ersten Theil seiner, in diesen Tagen erscheinenden Uebersetzungen von <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, eine sehr anziehende Nachricht erwarten läßt, noch manchen Fingerzeig ertheilen dürfte. Nichts würde in der That ungerechter seyn, als sein Endurtheil auf diese erste Vorstellung <span class="tei_hi_spaced_out">allein</span> begründen wollen. Aber der Sieg der Griesischen Uebersetzung über alle Nachklänge – um nicht ein stärkeres Wort zu brauchen – war doch schon bei dieser Vorstellung völlig entschieden, da sehr viele das Stück aus andern Bearbeitungen schon kannten und also vergleichen konnten.</p>
+                                            <p>Als in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> das erste <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderonsche</a> Schauspiel im Jahr 1816 aufgeführt wurde, <span class="tei_hi_spaced_out"><span class="1001011143211511697110100104971021161013280114105110122">der standhafte Prinz</span></span>, fand man es gerathen, der Aufführung im <span class="tei_bibl"><span class="tei_hi_spaced_out">dramaturgischen Wochenblatt</span> (zweitem Jahrgang No. 16.)</span> Andeutungen über das Nationelle des Spanischen Theaters und der Manier <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> vorausgehn zu lassen. Dergleichen bedurfte es wohl bei uns schon darum nicht, weil jeder gebildete Theaterfreund die geistreiche Auseinandersetzung dieses Stücks in <span class="tei_bibl">Nr. 87-89 der <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipziger</span> <span class="tei_hi_spaced_out">Kunstblätter</span></span> (eines Journals, dessen Unterbrechung wir mit wahrem Schmerz vernehmen) von dem Herausgeber, Prof. <span class="tei_hi_spaced_out"><a class="preview persons A002116" href="/exist/apps/WeGA-WebApp/de/A002116.html">Wendt</a></span>, noch in gutem Andenken hatte. In voraus schien man darüber im Klaren und in vollkommner Eintracht zu seyn, daß jede der vier Bearbeitungen, unter welcher der Direction die <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>Wahl frei stand, uns doch nur eine ausländische Frucht mit deutscher Brühe und Kochkunst auftischte, wobei es doch immer erst auf die Frage ankäme, ob unser geistiger Gaum nicht auch die eigenthümliche fremde Zurichtung vertragen könne? Soll es mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, so fragten viele, etwa gehen, wie mit <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ]? Was jetzt auf allen <span class="tei_hi_spaced_out">bessern</span> Bühnen geschieht, die Aufführung nach der treuesten metrischen Uebersetzung von <a class="preview persons A003453" href="/exist/apps/WeGA-WebApp/de/A003453.html">Schlegel</a> (oder auch von <a class="preview persons A002030" href="/exist/apps/WeGA-WebApp/de/A002030.html">Voß</a>, oder, wozu es gewiß noch kommen wird, nach einer meisterhaften Verschmelzung von beiden) mit Verbannung jener seit 40 Jahren auf unsern Bühnen nur zu oft form- und wesenloser Schatten-Spiele, Bearbeitungen nach <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspeare</a>[ sic ] genannt? Sollte dasselbe Unwesen nun auch mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a> wieder unter uns Jahre lang getrieben werden, bis wir endlich doch auch zur unverfälschten Urform zurückzugehn uns ermuthigen würden? Laßt und sogleich mit dem besten und ächtesten anfangen! Die Direction wählte wirklich die bis jetzt noch nirgends übertroffene, in Versmaß und Rhythmus sich ganz genau dem Spanier anschmiegende <span class="tei_hi_spaced_out">Griesische</span> Uebersetzung und erlaubte sich nur Weglassungen im Einzelnen oder im Ganzen da, wo gewisse Scenen für die allererste Aufführung überhaupt noch nicht geeignet schienen. Die in lauten Beifallsäußerungen allgemein und oft ausbrechende Zufriedenheit eines <span class="tei_hi_spaced_out">sehr zahlreichen</span> Publikums hat dieß Zutrauen der Direction vollkommen gerechtfertigt. Aber unsre Schauspieler, welchen die drei Hauptrollen zugetheilt waren, hatten sich’s auch rechtschaffen angelegen seyn lassen. Es war alles trefflich einstudirt und durch <span class="tei_hi_spaced_out">viele</span> Proben zur Reife gebracht worden. So stand Leistung und Anerkennung in steigender Wechselwirkung. Wohl war in den ersten zwei Akten dem ganz Unvorbereiteten vieles befremdend, ja verwirrend. Doch wurde viel Einzelnes rein aufgefaßt und beklatscht. Als aber die hohe Selbstbekämpfung <span class="83105103105115109117110100115">Sigismunds</span> eintrat, als er den köstlichen Monolog: <span class="tei_hi_spaced_out">Dies ist Wahrheit</span> u.s.w. so ausgezeichnet schön aussprach, da schien in jeder Brust jede Dissonanz wie aufgelöst, und, wie ein electrischer Funken, durchlief es alle Reihen. Die hohe Allegorie dieses Lebenstraums war auch den Ungeübtern verständlich, und das hier waltende christlich-mystische Prinzip, wenn auch nicht überall der klaren Einsicht, doch dem Gefühle nahe gebracht. Doch verbarg sich hierbei auch der Gebildete nicht, daß beim genauen Eindringen ins Innere, nach öfteren Wiederholungen, noch viel Herrliches sich aufschließen werde, wozu auch wohl die Vergleichung dieses weltlichen Schauspiels mit <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a> <span class="tei_hi_antiqua"><span class="6511711611132115971031149710910111011697108329710810810110311111410599111">Auto sagramental allegorico</span></span>, der auch <span class="tei_hi_spaced_out"><span class="preview works A021274" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021274.html">das Leben ein Traum</span></span> heißt, und von  welchem uns der <a class="preview persons A001241" href="/exist/apps/WeGA-WebApp/de/A001241.html">Baron von <span class="tei_hi_spaced_out">Malsburg</span></a> in der Vorrede zum ersten Theil seiner, in diesen Tagen erscheinenden Uebersetzungen von <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderon</a>, eine sehr anziehende Nachricht erwarten läßt, noch manchen Fingerzeig ertheilen dürfte. Nichts würde in der That ungerechter seyn, als sein Endurtheil auf diese erste Vorstellung <span class="tei_hi_spaced_out">allein</span> begründen wollen. Aber der Sieg der Griesischen Uebersetzung über alle Nachklänge – um nicht ein stärkeres Wort zu brauchen – war doch schon bei dieser Vorstellung völlig entschieden, da sehr viele das Stück aus andern Bearbeitungen schon kannten und also vergleichen konnten.</p>
                                             <p>(Die <a class="preview writings A030302" href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030302.html">Fortsetzung</a> folgt.)</p>
                                         </div>
                                     </div>
@@ -370,7 +433,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 281 (25. November 1818), S. 2v</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 281 (25. November 1818), Bl. 2v</p>
                                 
                                 <div>
                                     
@@ -401,10 +464,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -413,9 +472,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030301</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

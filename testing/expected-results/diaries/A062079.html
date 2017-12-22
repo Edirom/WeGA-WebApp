@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-13T13:05:12.981215Z" />
+        <meta property="dc:date" content="2017-09-14T20:41:41.107639Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062079" />
         <meta property="dc:description" content="d: 9t 9 – 1 GeneralPr. Waldburg. ausgezogen. Felsner 1 rh: Rosel 1 rh. Kristel 8 gr: Fritze 16 rh: Hausmann und noch Einer 3. 4. Summ. 6 rh: 4 – …" />
         <meta name="description" content="d: 9t 9 – 1 GeneralPr. Waldburg. ausgezogen. Felsner 1 rh: Rosel 1 rh. Kristel 8 gr: Fritze 16 rh: Hausmann und noch Einer 3. 4. Summ. 6 rh: 4 – …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     <div>
                         <h2><a href="#datePicker" class="collapseSingle collapsed" data-toggle="collapse">Kalender</a></h2>
@@ -243,21 +246,62 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062079.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A004849" /> <span title="Christel">Christel</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000478" /> <span title="Felsner, Johann Gottlieb">Felsner, Johann Gottlieb</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A00004C" /> <span title="Friedrich">Friedrich</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001608" /> <span title="Rosel">Rosel</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001976" /> <span title="Töpfer, Johanna Maria">Töpfer, Johanna Maria</span> 
                                 </label>
                             </div>
                         </div>
@@ -279,7 +323,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="72111115116101114119105116122" /> <span title="Hosterwitz">Hosterwitz</span> 
+                                    <input type="checkbox" name="options" value="A130042" /> <span title="Hosterwitz">Hosterwitz</span> 
                                 </label>
                             </div>
                         </div>
@@ -293,16 +337,16 @@
                         <div id="A062079" class="tableLeft">
                                     <p>
     
-    <span class="date">d: 9<span class="tei_hi_superscript">t</span></span>  <span><span class="tei_hi_underline1">9 – 1 <span class="tei_hi_latintype">General</span>Pr. <span class="preview works A020683" data-ref="/exist/apps/WeGA-WebApp/de/A002393/Werke/A020683.html">Waldburg</span></span>.</span> <span class="payment_2">ausgezogen. <a class="preview persons A000478" href="/exist/apps/WeGA-WebApp/de/A000478.html">Felsner</a>	<span class="expense1">1 rh:</span><br />         
-        <a class="preview persons A001608" href="/exist/apps/WeGA-WebApp/de/A001608.html">Rosel</a> <span class="expense2">1 rh.</span> <a class="preview persons A004849" href="/exist/apps/WeGA-WebApp/de/A004849.html">Kristel</a> <span class="expense3">8 gr:</span> <span class="70114105116122101">Fritze</span> <span class="expense4">16 rh:</span> Hausmann und noch Einer <span class="expense5">3.<span class="tei_supplied"> rh</span></span> <span class="expense6">4.<span class="tei_supplied"> gr</span></span> <span class="tei_hi_latintype">Summ</span>.	<span class="tei_measure">6 rh:</span> <span class="tei_measure">4</span>    <span class="tei_measure">–</span></span><br />  
+    <span class="tei_date">d: 9<span class="tei_hi_superscript">t</span></span> <span><span class="tei_hi_underline1">9 – 1 <span class="tei_hi_latintype">General</span>Pr. <span class="preview works A020683" data-ref="/exist/apps/WeGA-WebApp/de/A002393/Werke/A020683.html">Waldburg</span></span>.</span> <span class="payment_2">ausgezogen. <a class="preview persons A000478" href="/exist/apps/WeGA-WebApp/de/A000478.html">Felsner</a>	<span class="expense1">1 rh:</span><br />         
+        <a class="preview persons A001608" href="/exist/apps/WeGA-WebApp/de/A001608.html">Rosel</a> <span class="expense2">1 rh.</span> <a class="preview persons A001976" href="/exist/apps/WeGA-WebApp/de/A001976.html">Kristel</a> <span class="expense3">8 gr:</span> <a class="preview persons A00004C" href="/exist/apps/WeGA-WebApp/de/A00004C.html">Fritze</a> <span class="expense4">16 rh:</span> Hausmann und noch Einer <span class="expense5">3.<span class="tei_supplied"> rh</span></span> <span class="expense6">4.<span class="tei_supplied"> gr</span></span> <span class="tei_hi_latintype">Summ</span>.	<span class="tei_measure">6 rh:</span> <span class="tei_measure">4</span>    <span class="tei_measure">–</span></span><br />  
     <span><span class="tei_hi_underline1">Abends <span class="preview works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preziosa</span> sehr gut</span>.</span> <span>für <span class="72101108108119105103">Hellwig</span> an <span class="tei_hi_underline1"><span class="84114117109109101114">Trummer</span></span><br /> 
     und <span class="tei_hi_underline1"><span class="9010510910910111410997110110">Zimmermann</span></span> geschrieben: er reißte ab.</span><br />
-    <span class="payment_5">um 11 Uhr nach <span class="tei_hi_latintype"><span class="tei_hi_underline1"><span class="tei_placeName"><span class="72111115116101114119105116122">Hosterwitz</span></span></span></span>	      </span><span class="tei_pb">Seitenumbruch</span>
+    <span class="payment_5">um 11 Uhr nach <span class="tei_hi_latintype"><span class="tei_hi_underline1"><span class="preview places A130042" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130042.html">Hosterwitz</span></span></span>	      </span><span class="tei_pb">Seitenumbruch</span>
 
 </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_5 rh">1 rh</span><span class="payment_5 gr"><span class="tei_supplied"> gr</span></span><span class="payment_5 pf">–</span><span class="tei_pb"><br /></span><span class="hiddenText">|</span></p>
+                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_5 rh">1 rh</span><span class="payment_5 gr"><span class="tei_subst"><span class="tei_add"><span class="tei_add">6<a class="noteMarker" id="ref-d10e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e106">‡</a></span></span><a class="noteMarker" id="ref-d10e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e104">‡</a></span><span class="tei_supplied"> gr</span></span><span class="payment_5 pf">–</span><span class="tei_pb"><br /></span><span class="hiddenText">|</span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -348,10 +392,10 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d24262e105" data-title="subst">"6": "8" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e104" data-title="subst">"6": "8" überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d24262e107" data-title="unclear">"6": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e106" data-title="unclear">"6": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -369,10 +413,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -381,9 +421,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062079</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062079</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

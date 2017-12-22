@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000045" />
         <meta property="dc:description" content="Biographische Informationen zu Franz Anton Arand von Ackerfeld. Lebensdaten: 17. Juli 1773–7. April 1840. Tätigkeiten: Legationsrat, Pianist, Komponist. Wirkorte: Altdorf, Günzburg, Munderkingen, Stuttgart" />
         <meta name="description" content="Biographische Informationen zu Franz Anton Arand von Ackerfeld. Lebensdaten: 17. Juli 1773–7. April 1840. Tätigkeiten: Legationsrat, Pianist, Komponist. Wirkorte: Altdorf, Günzburg, Munderkingen, Stuttgart" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000045.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000045.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000045.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000045.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -333,13 +376,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000045/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -348,7 +391,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000045/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000045.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -364,14 +407,14 @@
                                                     <div>
       <ul class="tei_list">        
          <li>Sohn des 1798 vorderösterreichischen Beamten <span class="7411110497110110326697112116105115116327797114116105110326511497110100">Johann Baptist Martin Arand</span> (1743–1821; 1798 Verleihung des erblichen Adels: Edler von Ackerfeld) und dessen Frau <span class="77971141059732841041011141011151059744321031019846321181111103277105108108101114">Maria Theresia, geb. von Miller</span> (1745–1833); älterer Bruder von <a class="preview persons A008387" href="/exist/apps/WeGA-WebApp/de/A008387.html">Leopold von Arand</a></li>
-         <li>1792 bis 1796 Jurastudium in <span class="tei_placeName"><span class="7011410110598117114103476611410110511510397117">Freiburg/Breisgau</span></span></li>
-         <li>1797 bis 1799 Rechtspratikant in <span class="tei_placeName"><span class="65108116100111114102">Altdorf</span></span></li>                 
-         <li>1802 bei der österreichischen Regierung und zugleich am Oberamt <span class="tei_placeName"><span class="7125211012298117114103">Günzburg</span></span>; 1802 bis 1804 Syndikus in <span class="tei_placeName"><span class="77117110100101114107105110103101110">Munderkingen</span></span></li>
+         <li>1792 bis 1796 Jurastudium in <span class="preview places A130242" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130242.html">Freiburg/Breisgau</span></li>
+         <li>1797 bis 1799 Rechtspratikant in <span class="65108116100111114102">Altdorf</span></li>                 
+         <li>1802 bei der österreichischen Regierung und zugleich am Oberamt <span class="7125211012298117114103">Günzburg</span>; 1802 bis 1804 Syndikus in <span class="77117110100101114107105110103101110">Munderkingen</span></li>
          <li>gehörte zum Freundeskreis von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>; trug sich am selben Tag wie sein Bruder <span class="preview letters A045348" data-ref="/exist/apps/WeGA-WebApp/de/A000045/Korrespondenz/A045348.html /exist/apps/WeGA-WebApp/de/A002068.html">in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Stammbuch</span> ein</li>
-         <li>1803 Reise über <span class="tei_placeName"><span class="7725211099104101110">München</span></span>, <span class="tei_placeName"><span class="76105110122">Linz</span></span> nach <span class="tei_placeName"><span class="87105101110">Wien</span></span>; dort Bekanntschaft mit <a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a>, der ihm große Fähigkeiten als Pianist bescheinigte; erneuter Kontakt zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, Rückreise im Oktober 1803 über <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> </li>
+         <li>1803 Reise über <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span>, <span class="preview places A130075" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130075.html">Linz</span> nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>; dort Bekanntschaft mit <a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a>, der ihm große Fähigkeiten als Pianist bescheinigte; erneuter Kontakt zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, Rückreise im Oktober 1803 über <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> </li>
          <li>1803 Heirat mit <span class="671049711410811111611610132831111121041051013265117116101110114105101116104">Charlotte Sophie Autenrieth</span> (12.02.1785 in Leimen – 11.12.1844 in Stetten/Remstal); aus der Ehe gingen fünf Kinder hervor</li>
          <li>1806 Beamter beim Oberlandesökonomie-Kollegium in Stuttgart, 1808 Oberjustizrat im Oberjustiz-Kollegium ebd., 1821 Legationsrat</li>
-         <li>an Kompositionen nachweisbar: <span class="888632869711410597116105111110115321121111171143280105971101113270111114116101">XV Variations pour Piano Forte</span> (<span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> <a class="preview orgs A080119" href="/exist/apps/WeGA-WebApp/de/A080119.html">Gombart</a> 1806/07)</li>
+         <li>an Kompositionen nachweisbar: <span class="888632869711410597116105111110115321121111171143280105971101113270111114116101">XV Variations pour Piano Forte</span> (<span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> <a class="preview orgs A080119" href="/exist/apps/WeGA-WebApp/de/A080119.html">Gombart</a> 1806/07)</li>
          
       </ul>                   
    </div>
@@ -380,11 +423,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -393,19 +436,17 @@
                                                     <h2>Beacon Links</h2>
                                                     <ul>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01077685]" href="http://thesaurus.cerl.org/record/cnp01077685">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/116316829&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/116316829">Deutsche Digitale Bibliothek</a></li>
                                                             <li><a title="Personenseiten im Archivportal-D" href="https://www.archivportal-d.de/person/gnd/116316829">Deutsche Digitale Bibliothek (2)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000010349813]" href="http://isni.org/isni/0000000010349813">ISNI [by http://viaf.org/viaf/59832808]</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=116316829">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=116316829">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                             <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=116316829">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg (2)</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -462,9 +503,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000045</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000045</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

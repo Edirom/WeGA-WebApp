@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Bandur, Markus" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-16T14:30:17.215799Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032041" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,12 +246,108 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001645/Schriften/A032041.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
+                    <div>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <div class="panel-collapse collapse" id="personsPlus">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000074" /> <span title="Bader, Karl Adam">Bader, Karl Adam</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000179" /> <span title="Blume, Heinrich">Blume, Heinrich</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001805" /> <span title="Seidler, Caroline">Seidler, Caroline</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001848" /> <span title="Sontag, Henriette">Sontag, Henriette</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <div class="panel-collapse collapse" id="works">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <div class="panel-collapse collapse" id="places">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div>
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <div class="panel-collapse collapse" id="characterNames">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6510011110897114" /> <span title="Adolar">Adolar</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6910310897110116105110101" /> <span title="Eglantine">Eglantine</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6911711412197110116104101" /> <span title="Euryanthe">Euryanthe</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6911711412197110116104101110" /> <span title="Euryanthen">Euryanthen</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="7612111510597114116" /> <span title="Lysiart">Lysiart</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-9 col-md-pull-3">
@@ -257,10 +356,10 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Aus <span class="tei_hi_spaced_out">Berlin</span> über <span class="tei_hi_spaced_out">Berlin</span>.</h2>
+                                        <h2 class="docHeader textAlign-left">Aus <span class="tei_hi_spaced_out"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span> über <span class="tei_hi_spaced_out"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">(Fortsetzung.)</h3>
-                                        <p><span> […]</span>  Die „Euryanthe“ von Weber, hat ungeheures Aufsehen gemacht, der geniale Kompositeur, der selbst dirigirte, wurde empfangen, und zwey Mal herausgerufen. Ich sage Ihnen weder etwas über den unausstehlichen Text der Mad. Klenkin, noch etwas über die Vortrefflichkeit der Musik. Beydes ist bereits in allen deutschen Blättern genügend geschehen. Doch die hiesige Ausstattung und Exekution verdient enthusiastisches Lob. Ich habe die Oper sehr oft, und auch ihre erste Darstellung in Wien gehört, sie hält aber mit der hiesigen gar keinen Vergleich aus, sowohl an scenischer Pracht als an künstlerischer Ausführung des Werkes selbst. Mad. Seidler als Euryanthe war beseelt von einem Kunstgotte, der in <span class="tei_sic">jeder<a class="noteMarker" id="ref-d38114e19" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38114e19">‡</a></span> ihrer Töne seine Herrlichkeit verkündete, auch ihr Spiel zeigte die vollendete Künstlerin, sie wurde stürmisch gerufen. Mad. Schulz als Eglantine ließ uns den herrlichen Vollklang ihrer Töne hören. Hr. Bader als Adolar war vortrefflich, minder wollte mich Hr. <span class="tei_hi_spaced_out">Blumer</span> 
-                als Lysiart ansprechen. Die Chöre waren trefflich. Das Orchester vollendet. Ich sah in einer Loge die Wiener-Euryanthe (Dem. Sonntag) sitzen; liebster Herr Redakteur, darf ich es Ihnen gestehen, daß sie sehr reitzend aussah? Darf ich es gestehen, daß ich mich zurück erinnerte an diese Euryanthe-Sonntag, und daß sie dastand vor mir in aller ihrer persönlichen künstlerischen Liebenswürdigkeit? daß ich so zu sagen eine Doppel-Euryanthe heute genoß? Denn die Wahrheit muß ich sagen, sie war als Euryanthe ganz vortrefflich! und ich wage nicht unter diesen beyden Euryanthen zu wählen. Aber wehe that es mir sie da sitzen zu sehen <span class="tei_hi_spaced_out">als Gast</span> in einem Hause, in dem sie eigentlich <span class="tei_hi_spaced_out">heimisch</span> wäre, und zu denken, sie ist <span class="tei_hi_spaced_out">heimisch</span> in einem Hause, wo sie ewig nur ein <span class="tei_hi_spaced_out">Gast</span> bleiben wird!<a class="noteMarker" id="ref-footnote-463-10-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-463-10-backlink">*</a> ach, ich sah der guten Henriette (darf denn ein Korrespondent nicht auch einmal zärtlich seyn?) durch die klaren Aeuglein bis in die Nachtigallenseele, und da schien mir deutlich geschrieben zu stehen: <span class="tei_supplied" id="d38114e46"><span class="brackets_supplied">[</span>„<span class="brackets_supplied">]</span></span>kennst du das Haus, wo solche Opern blühen? dahin, dahin, dahin, möcht’ ich mit dir, geliebte Mutter! zieh’n!“ Hätte sie nur einmal einen Blick auf einen maliziösen Korrespondenten, wie ich bin, geworfen, sie hätte in meiner derben Wahrheitsseele gelesen, daß ich zwar weiß, wie <span class="tei_hi_spaced_out">Ueberschätzung</span> ein schönes Köpfchen schwindeln machen kann, allein daß ich doch überzeugt bin, daß Dem. S. es bald wird einsehen lernen, daß ein würdiger Altar der Kunst mehr Reitz für sie haben muß in seiner edlen Einfachheit, als ein Alltagsaltar, und wär’ er auch mit ächten <span class="tei_sic">Shwals<a class="noteMarker" id="ref-d38114e53" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d38114e53">‡</a></span>  umwunden, und knieeten auch Tausende vor ihm.</p>
+                                        <p><span> […]</span>  Die „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, hat ungeheures Aufsehen gemacht, der geniale <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Kompositeur</a>, der selbst dirigirte, wurde empfangen, und zwey Mal herausgerufen. Ich sage Ihnen weder etwas über den unausstehlichen Text der <span class="77971004616075108101110107105110">Mad. Klenkin</span>, noch etwas über die Vortrefflichkeit der Musik. Beydes ist bereits in allen deutschen Blättern genügend geschehen. Doch die hiesige Ausstattung und Exekution verdient enthusiastisches Lob. Ich habe die Oper sehr oft, und auch ihre erste Darstellung in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> gehört, sie hält aber mit der hiesigen gar keinen Vergleich aus, sowohl an scenischer Pracht als an künstlerischer Ausführung des Werkes selbst. <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Mad. Seidler</a> als <span class="6911711412197110116104101">Euryanthe</span> war beseelt von einem Kunstgotte, der in <span class="tei_sic">jeder<a class="noteMarker" id="ref-d10e41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e41">‡</a></span> ihrer Töne seine Herrlichkeit verkündete, auch ihr Spiel zeigte die vollendete <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Künstlerin</a>, sie wurde stürmisch gerufen. <span class="7797100461608399104117108122">Mad. Schulz</span> als <span class="6910310897110116105110101">Eglantine</span> ließ uns den herrlichen Vollklang ihrer Töne hören. <a class="preview persons A000074" href="/exist/apps/WeGA-WebApp/de/A000074.html">Hr. Bader</a> als <span class="6510011110897114">Adolar</span> war vortrefflich, minder wollte mich <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Hr. <span class="tei_hi_spaced_out">Blumer</span></a> 
+                     als <span class="7612111510597114116">Lysiart</span> ansprechen. Die Chöre waren trefflich. Das Orchester vollendet. Ich sah in einer Loge die Wiener-<span class="6911711412197110116104101">Euryanthe</span> (<a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html">Dem. Sonntag</a>) sitzen; liebster Herr Redakteur, darf ich es Ihnen gestehen, daß sie sehr reitzend aussah? Darf ich es gestehen, daß ich mich zurück erinnerte an diese Euryanthe-Sonntag, und daß sie dastand vor mir in aller ihrer persönlichen künstlerischen Liebenswürdigkeit? daß ich so zu sagen eine Doppel-Euryanthe heute genoß? Denn die Wahrheit muß ich sagen, sie war als <span class="6911711412197110116104101">Euryanthe</span> ganz vortrefflich! und ich wage nicht unter diesen beyden <span class="6911711412197110116104101110">Euryanthen</span> zu wählen. Aber wehe that es mir sie da sitzen zu sehen <span class="tei_hi_spaced_out">als Gast</span> in einem Hause, in dem sie eigentlich <span class="tei_hi_spaced_out">heimisch</span> wäre, und zu denken, sie ist <span class="tei_hi_spaced_out">heimisch</span> in einem Hause, wo sie ewig nur ein <span class="tei_hi_spaced_out">Gast</span> bleiben wird!<a class="noteMarker" id="ref-footnote-463-10-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-463-10-backlink">*</a> ach, ich sah der guten <a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html">Henriette</a> (darf denn ein Korrespondent nicht auch einmal zärtlich seyn?) durch die klaren Aeuglein bis in die Nachtigallenseele, und da schien mir deutlich geschrieben zu stehen: <span class="tei_supplied" id="d10e118"><span class="brackets_supplied">[</span>„<span class="brackets_supplied">]</span></span>kennst du das Haus, wo solche Opern blühen? dahin, dahin, dahin, möcht’ ich mit dir, geliebte Mutter! zieh’n!“ Hätte sie nur einmal einen Blick auf einen maliziösen Korrespondenten, wie ich bin, geworfen, sie hätte in meiner derben Wahrheitsseele gelesen, daß ich zwar weiß, wie <span class="tei_hi_spaced_out">Ueberschätzung</span> ein schönes Köpfchen schwindeln machen kann, allein daß ich doch überzeugt bin, daß <a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html">Dem. S.</a> es bald wird einsehen lernen, daß ein würdiger Altar der Kunst mehr Reitz für sie haben muß in seiner edlen Einfachheit, als ein Alltagsaltar, und wär’ er auch mit ächten <span class="tei_sic">Shwals<a class="noteMarker" id="ref-d10e128" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e128">‡</a></span>  umwunden, und knieeten auch Tausende vor ihm.</p>
                                         <p class="tei_closer textAlign-left">(Der Beschluß<a class="noteMarker" id="ref-footnote-463-11-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-463-11-backlink">*</a> folgt.)
             </p>
                                     </div>
@@ -299,7 +398,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 20, Nr. 35 (10. Februar 1826), S. 140</p>
+                                <p class="biblio-entry"><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 20, Nr. 35 (10. Februar 1826), S. 140</p>
                                 
                                 <div>
                                     
@@ -316,18 +415,18 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d38114e19" data-title="sic">"jeder": sic!</div>
+                                            <div class="apparatusEntry" id="d10e41" data-title="sic">"jeder": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d38114e53" data-title="sic">"Shwals": sic!</div>
+                                            <div class="apparatusEntry" id="d10e128" data-title="sic">"Shwals": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
                                             <div class="apparatusEntry" id="footnote-463-10-backlink" data-title="note commentary"><span class="tei_lemma">"… nur ein Gast bleiben wird!": </span>
-                  <p> Henriette Sontag war 1825 von Wien nach Berlin gewechselt, dort aber nicht an den Hoftheatern (Königliche Schauspiele), sondern am privat geführten Königsstädtischen Theater engagiert, das sie im Sommer 1827 wieder verließ.</p>
-               </div>
+                        <p> <a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html">Henriette Sontag</a> war 1825 von <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> nach <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> gewechselt, dort aber nicht an den Hoftheatern (Königliche Schauspiele), sondern am privat geführten Königsstädtischen Theater engagiert, das sie im Sommer 1827 wieder verließ.</p>
+                    </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="footnote-463-11-backlink" data-title="note commentary"><span class="tei_lemma">"… (Der Beschluß": </span>
@@ -348,10 +447,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -360,9 +455,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032041</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032041</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -14,11 +14,11 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 (: 
     Determine the application root collection from the current module load path.
@@ -54,12 +54,19 @@ declare variable $config:isDevelopment as xs:boolean := $config:options-file/id(
 
 declare variable $config:repo-descriptor as element(repo:meta) := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
-(:declare variable $config:expath-descriptor as element(expath:package)  := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;:)
+declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei', 'txt');
 
-declare variable $config:valid-resource-suffixes as xs:string* := ('html', 'htm', 'json', 'xml', 'tei');
+(: collection that provides XSL scripts for transforming our documents to external schemas, e.g. tei_all :)
+declare variable $config:xsl-external-schemas-collection-path as xs:string := $config:app-root || '/resources/lib/WeGA-ODD/xsl';
 
 (: The first language is the default language :)
 declare variable $config:valid-languages as xs:string* := ('de', 'en');
+
+declare variable $config:default-date-picture-string := function($lang as xs:string) as xs:string? {
+    if($lang = 'de') then '[D]. [MNn] [Y]' 
+    else if ($lang = 'en') then '[MNn] [D], [Y]'
+    else ()
+};
 
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
@@ -67,6 +74,20 @@ declare variable $config:diaryYearsToSuppress as xs:integer* :=
     if($config:isDevelopment) then () 
     else (1821 to 1823);
 
+(:~
+ : get and set language variable
+ :
+ : @author Peter Stadler
+ : @param $lang the language to set
+ : @return xs:string the (newly) set language variable 
+ :)
+declare function config:guess-language($lang as xs:string?) as xs:string {
+    if($lang = $config:valid-languages) then $lang
+    (: else try to guess from the URL path segment :)
+    else if(request:exists() and tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
+    (: else default language :)
+    else $config:valid-languages[1]
+};
 
 (:~
  : Resolve the given path using the current application context.
@@ -89,13 +110,9 @@ declare function config:repo-descriptor() as element(repo:meta) {
 (:~
  : Returns the expath-pkg.xml descriptor for the current application.
  :)
-(:declare function config:expath-descriptor() as element(expath:package) {
-    $config:expath-descriptor
-};:)
-
-(:declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
-    $config:expath-descriptor/expath:title/text()
-};:)
+declare function config:expath-descriptor() as element(expath:package) {
+    doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package
+};
 
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
@@ -105,12 +122,7 @@ declare function config:repo-descriptor() as element(repo:meta) {
  : @return xs:string the option value as string identified by the key otherwise the empty sequence
  :)
 declare function config:get-option($key as xs:string?) as xs:string? {
-    let $result :=
-        switch ($key)
-            (: this serves as a shortcut for legacy code :)
-            (: Please use core:link-to-current-app() directly! :)
-            case 'baseHref' return core:link-to-current-app(())
-            default return str:normalize-space($config:options-file/id($key))
+    let $result := str:normalize-space($config:options-file/id($key))
     return
         if($result) then $result
         else core:logToFile('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
@@ -391,7 +403,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
 :)
 declare function config:get-xsl-params($params as map()?) as element(parameters) {
     <parameters>
-        <param name="lang" value="{lang:guess-language(())}"/>
+        <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
         <param name="baseHref" value="{core:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>

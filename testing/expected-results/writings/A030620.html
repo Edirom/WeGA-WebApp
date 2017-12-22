@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030620" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,71 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030620.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031084.html">Korrespondenz-Nachrichten aus Mannheim, September 1810 (Teil 1 von 3)</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030619.html">Korrespondenz-Nachrichten aus Mannheim, September 1810 (Teil 2 von 3)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -306,11 +369,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7111111610497" /> <span title="Gotha">Gotha</span> 
+                                    <input type="checkbox" name="options" value="A130016" /> <span title="Gotha">Gotha</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -347,16 +410,16 @@
                                         <p>Ueberhaupt ist in diesen beiden Akten der Musik viel zu wenig, und des Gesprächsels, besonders bei dem geringen dramatischen Werthe des Stückes, viel zu viel; indessen wären die oben ausgehobenen Stücke, hätte auch <a class="preview persons A000348" href="/exist/apps/WeGA-WebApp/de/A000348.html">d’Alayrac</a> nie etwas anderes geschrieben, schon hinreichend, seinen Ruhm als gründlich denkender und tief fühlender Komponist zu begründen. Merkwürdig ist es übrigens, daß seine Landsleute gerade die vorzüglichsten Werke ihrer eigenen Komponisten nicht kennen. Mit der Anzeige seines vor einiger Zeit erfolgten Todes verbanden die 
                <span class="tei_ptr"></span>französischen Journale<a class="noteMarker" id="ref-C_40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_40">*</a> eine Aufzählung seiner Kompositionen, welche übrigens recht vollständig seyn mag, nur daß der Oper <span class="preview works A020851" data-ref="/exist/apps/WeGA-WebApp/de/A000348/Werke/A020851.html">Leon oder das Schloß von Montenero</span> darin mit keiner Sylbe gedacht ist.</p>
                                         <p>Ueber <span class="tei_hi_spaced_out"><a class="preview persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl’s</a> 
-               <span class="tei_ptr"></span><span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span><a class="noteMarker" id="ref-C_41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_41">*</a></span>, wovon ich ebenfalls einer Aufführung beiwohnte, sage ich Ihnen nichts vollständiges; es ist darüber schon oft und ausführlich genug in öffentlichen Blättern gesprochen worden, und das allgemeine Urtheil hat sich schon festgesetzt. Nur Eines, nämlich die vortreffliche Darstellung der Emmeline durch <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a>, kann ich nicht mit Stillschweigen übergehen. Wenige Theater <span class="tei_placeName"><span class="tei_country">Deutschlands</span></span> möchten sich der Darstellung einer solchen <span class="69109109101108105110101">Emmeline</span> zu erfreuen haben. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a> ist von der Natur nicht eben reichlich ausgestattet, aber die Kunst hat sie als Adoptivkind desto sorgfältiger gepflegt. Ihrer von Natur etwas ungleichen Stimme hat sie durch Studium Klang und Rundung gegeben, und in einer vortrefflichen Schule gebildet, herrscht sie vollkommen über ihre Kehle. Bald durch ernsten Anstand, bald durch leichte Grazie weiß sie ihre Figur geltend zu machen, und einigt so, in seltenem Grade, anmuthigen Gesang mit seelenvollem Spiele. Besonders in dieser Oper entfaltete sie ihr zweifaches Talent mit dem größtem Beifalle, und in der Arie:</p><span class="lg"><span class="verseLine"><span class="tei_ptr"></span>„Wer hat mich je klagen gehört?“<a class="noteMarker" id="ref-C_42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_42">*</a></span></span>
+               <span class="tei_ptr"></span><span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span><a class="noteMarker" id="ref-C_41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_41">*</a></span>, wovon ich ebenfalls einer Aufführung beiwohnte, sage ich Ihnen nichts vollständiges; es ist darüber schon oft und ausführlich genug in öffentlichen Blättern gesprochen worden, und das allgemeine Urtheil hat sich schon festgesetzt. Nur Eines, nämlich die vortreffliche Darstellung der Emmeline durch <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a>, kann ich nicht mit Stillschweigen übergehen. Wenige Theater <span class="tei_country">Deutschlands</span> möchten sich der Darstellung einer solchen <span class="69109109101108105110101">Emmeline</span> zu erfreuen haben. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a> ist von der Natur nicht eben reichlich ausgestattet, aber die Kunst hat sie als Adoptivkind desto sorgfältiger gepflegt. Ihrer von Natur etwas ungleichen Stimme hat sie durch Studium Klang und Rundung gegeben, und in einer vortrefflichen Schule gebildet, herrscht sie vollkommen über ihre Kehle. Bald durch ernsten Anstand, bald durch leichte Grazie weiß sie ihre Figur geltend zu machen, und einigt so, in seltenem Grade, anmuthigen Gesang mit seelenvollem Spiele. Besonders in dieser Oper entfaltete sie ihr zweifaches Talent mit dem größtem Beifalle, und in der Arie:</p><span class="lg"><span class="verseLine"><span class="tei_ptr"></span>„Wer hat mich je klagen gehört?“<a class="noteMarker" id="ref-C_42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_42">*</a></span></span>
                                         <p>opferte sie, sehr zweckmäßig, nicht selten, den Klang ihrer Stimme dem wilden Ausbruche der Leidenschaft. Wäre <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. <span class="tei_hi_spaced_out">Gervais</span></a> auch nicht Sängerin, so verdiente sie schon um ihrer mimischen Kunst allein allgemein geschätzt zu werden. – Uebrigens ist auch 
                <span class="tei_ptr"></span>ihr Verlust für Mannheim<a class="noteMarker" id="ref-C_43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_43">*</a> so gut wie entschieden; in wie weit es der <a class="preview orgs A080038" href="/exist/apps/WeGA-WebApp/de/A080038.html">Theater-Intendanz</a> möglich gewesen wäre, die Versetzung dieser seltenen Kunstpflanze zu vermeiden – maße ich mir nicht an zu beurtheilen.</p>
-                                        <p>Aeußerst neugierig war ich, während meines Aufenthalts in <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>, auch einer musikalischen Aufführung im 
+                                        <p>Aeußerst neugierig war ich, während meines Aufenthalts in <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>, auch einer musikalischen Aufführung im 
                <span class="tei_ptr"></span>Museum<a class="noteMarker" id="ref-C_44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_44">*</a> beizuwohnen. Sie kennen dieses Institut schon aus 
                <span class="tei_ptr"></span><a class="preview writings A030867" href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030867.html">mehreren Blättern</a><a class="noteMarker" id="ref-C_45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_45">*</a>, und die Kürze erlaubt mir nicht, mich hier, wie ich es gerne möchte, über den hiesigen Zustand des Musikwesens im Allgemeinen auszulassen. Nur das will ich bemerken: Die Aufführung vom 4<span class="tei_hi_superscript">ten</span> August gehörte, wie man mich versichert, nicht zu den glänzendsten; man machte den Eingang mit der Ouvertüre aus 
                <span class="preview works A020697" data-ref="/exist/apps/WeGA-WebApp/de/A002162/Werke/A020697.html">Marie von Montalban</span>, (warum man gerade diesmal keine große Symphonie aufführte, durch deren Wahl und Execution 
                <span class="tei_ptr"></span>das musikalische Konservatorium<a class="noteMarker" id="ref-C_46" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_46">*</a> sich sonst so sehr auszeichnen soll, weiß ich nicht). Auch war die Ausführung diesmal nicht besonders gelungen zu nennen. Desto interessanter war mir ein 
                <span class="tei_ptr"></span>Konzertant für 2 Violinen<a class="noteMarker" id="ref-C_47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_47">*</a>, gespielt von 
-               <a class="preview persons A000521" href="/exist/apps/WeGA-WebApp/de/A000521.html">Herrn Direktor <span class="tei_hi_spaced_out">Fraenzl</span></a>, einem 70jährigen Greisen, dessen großer Ruhm in der Kunstwelt schon lange begründet ist, und Herrn <span class="tei_hi_spaced_out">Frey</span>, einem vortrefflichen Violinspieler des Mannheimer Hoforchesters. Welcher herrliche Kontrast! als stünden 2 Sonnen einander gegenüber, die eine kräftig aufgehend und herrlich ihre Strahlen entfaltend, die andre sanft sinkend und sich auflösend in mildes Abendroth. <a class="preview persons A000524" href="/exist/apps/WeGA-WebApp/de/A000524.html">Herr <span class="tei_hi_spaced_out">Frey</span></a> hat sich zuletzt unter dem berühmten Violinisten <span class="tei_hi_spaced_out"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span> aus <span class="tei_placeName"><span class="7111111610497">Gotha</span></span> ausgebildet, er verbindet in seinem Spiele die höchste Fülle der Kraft mit der zartesten Anmuth, er kennt die Oekonomie seines Bogens vortreflich, und das sanfte ineinander schmelzen der Töne weiß er desto reizender zu machen, je seltener er dieses musikalische Zuckerbrot zum Besten gibt. Vorzüglich hinreißend ist sein Vortrag in Quartetten von <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>, <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>, <a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a>, welcher Musikgattung man noch fleißig in <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> Opfer bringt – : und das lebendigste Gefühl athmet durch sein ganzes Spiel; viele der größten Violinisten möchten ihm wohl hierin nachstehen. Im Staccato ist dieser junge Künstler weniger glücklich, und wenn er auch noch diese Schwierigkeit seines Instruments, wie sich bei seinem anhaltenden Eifer nicht zweifeln läßt, wird besiegt haben, so wird ihm Niemand den Rang unter den ersten Tonkünstlern unsrer Zeit streitig machen. Er dirigirt das Orchester des Museum. Neben der Tonkunst und Hand in Hand mit ihr trug auch Deklamation, diese Zwitterkunst, das ihrige zur Unterhaltung der Gesellschaft bei. 
+               <a class="preview persons A000521" href="/exist/apps/WeGA-WebApp/de/A000521.html">Herrn Direktor <span class="tei_hi_spaced_out">Fraenzl</span></a>, einem 70jährigen Greisen, dessen großer Ruhm in der Kunstwelt schon lange begründet ist, und Herrn <span class="tei_hi_spaced_out">Frey</span>, einem vortrefflichen Violinspieler des Mannheimer Hoforchesters. Welcher herrliche Kontrast! als stünden 2 Sonnen einander gegenüber, die eine kräftig aufgehend und herrlich ihre Strahlen entfaltend, die andre sanft sinkend und sich auflösend in mildes Abendroth. <a class="preview persons A000524" href="/exist/apps/WeGA-WebApp/de/A000524.html">Herr <span class="tei_hi_spaced_out">Frey</span></a> hat sich zuletzt unter dem berühmten Violinisten <span class="tei_hi_spaced_out"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span> aus <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span> ausgebildet, er verbindet in seinem Spiele die höchste Fülle der Kraft mit der zartesten Anmuth, er kennt die Oekonomie seines Bogens vortreflich, und das sanfte ineinander schmelzen der Töne weiß er desto reizender zu machen, je seltener er dieses musikalische Zuckerbrot zum Besten gibt. Vorzüglich hinreißend ist sein Vortrag in Quartetten von <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>, <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>, <a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a>, welcher Musikgattung man noch fleißig in <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> Opfer bringt – : und das lebendigste Gefühl athmet durch sein ganzes Spiel; viele der größten Violinisten möchten ihm wohl hierin nachstehen. Im Staccato ist dieser junge Künstler weniger glücklich, und wenn er auch noch diese Schwierigkeit seines Instruments, wie sich bei seinem anhaltenden Eifer nicht zweifeln läßt, wird besiegt haben, so wird ihm Niemand den Rang unter den ersten Tonkünstlern unsrer Zeit streitig machen. Er dirigirt das Orchester des Museum. Neben der Tonkunst und Hand in Hand mit ihr trug auch Deklamation, diese Zwitterkunst, das ihrige zur Unterhaltung der Gesellschaft bei. 
                <a class="preview persons A000952" href="/exist/apps/WeGA-WebApp/de/A000952.html">Mlle. <span class="tei_hi_spaced_out">Kaibel</span></a>, Schwester des bekannten Schauspielers <span class="tei_hi_spaced_out"><a class="preview persons A000953" href="/exist/apps/WeGA-WebApp/de/A000953.html">Kaibel</a></span>, die sich unter Leitung ihres Bruders für das Theater zu bilden scheint, debütirte in der Deklamation, mit <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a> <span class="82105116116101114328411110310310111098117114103">Ritter Toggenburg</span>, sie gibt Hoffnung für die Zukunft, indeß schien mir ihre Wahl nicht glücklich, und der Versuch war etwas stark für den ersten. Auch <span class="72101114114321181111103283121100111119">Herr von 
                   <span class="tei_ptr"></span><span class="tei_hi_spaced_out">Sydow</span></span>, der schon lange als reisender Deklamator bekannt ist, war so gefällig, einige Gedichte vorzutragen. Er hatte vorher in einer Annonce versichert,<a class="noteMarker" id="ref-C_48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_48">*</a> es bedeutend weiter gebracht zu haben, seitdem er ohngefähr vor 11 Jahren – unter dem fremden Namen Warwick hier gewesen sey. Sein Organ und sein Aeußeres sind ihm nicht vortheilhaft, und es fehlt ihm, nach meinem Urtheile, die gehörige Ruhe beim Vortrage. Auch Unrichtigkeiten in der Deklamation lassen sich ihm zuweilen vorwerfen, so deklamirte er z. B. den Vers aus 
                <span class="tei_ptr"></span><a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a> <span class="849711799104101114">Taucher</span> „als wollte das Meer noch ein Meer gebähren“<a class="noteMarker" id="ref-C_49" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_49">*</a> folgendermaßen: „als wollte das Meer noch <span class="tei_hi_spaced_out">Ein</span> Meer gebähren.“ Indessen mag ihm bei seinem lebendigen Gefühle für Deklamation dergleichen vielleicht unwillkürlich entschlüpfen. Zum Beschluß gab er eine Menge Epigramme gegen das schöne Geschlecht; besser hätte er, im Geiste des Institutes, in dessen Mitte er stund, geschlossen mit 
@@ -366,7 +429,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Nachschrift</span>.</h2>
                                         <p>Ich würde Ihnen diesen Brief schon gestern zugeschickt haben, hätte nicht der Theater-Anschlagzettel angekündigt, daß 
-               <span class="tei_ptr"></span><a class="preview persons A001830" href="/exist/apps/WeGA-WebApp/de/A001830.html">Herr <span class="tei_hi_spaced_out">Simoni</span></a> von <span class="tei_placeName"><span class="87105101110">Wien</span></span>, k. k. Kammersänger, im Zwischenakte des Schauspiels einige Arien singen<a class="noteMarker" id="ref-C_52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_52">*</a> würde. Auch über diesen wollte ich Ihnen gerne etwas sagen, und, viel gutes, hoffte ich. Der Erfolg blieb aber meilenweit hinter meinen Erwartungen zurück. <a class="preview persons A001830" href="/exist/apps/WeGA-WebApp/de/A001830.html">Hr. <span class="tei_hi_spaced_out">Simoni</span></a> sang zwey italienische Arien. Seine Intonation ist rein, seine Kehle hat viel Geläufigkeit und hat durch Schule auch wirklich einen gewissen Grad von Ausbildung erhalten. Aber <span class="tei_hi_spaced_out">das</span> sage ich Ihnen auch, so viele Noten habe ich in meinem Leben nicht auf einmal gehört, wie heute Abend. Von dem Umfange seiner Stimme wäre vieles zu sagen. In der Tiefe ist sie etwa bis <span class="tei_hi_italic">A</span> brauchbar; in der Höhe aber scheint sie gar keine Gränzen zu kennen. Durch Hülfe einer Kopfstimme, welche man Falset zweiter Potenz nennen könnte, produzirte er einmal ein lange gehaltenes <span class="tei_hi_italic">d</span>’’, ein andermal eine lange Coloratur auf gleicher Höhe. Um sich aus diesen Sphären der Weiberstimme in die männlichern wieder zurück zu versetzen, macht er dann jedesmal einen wohl angebrachten Absatz. Dem Klange seiner von Natur vielleicht schönen Stimme schadet er dadurch, daß er sie hinten im Halse zerdrückt. Portament ist so eigentlich nicht seine Force, wenn man nicht das für Portament nehmen will, daß er oft eine einzelne Sylbe, meistens die erste einer Phrase, so lange dehnt und zieht, als seine Lunge zu prästiren vermag. In wie fern solche Dehnungen, so wie die endlosen Rouladen an ihrem rechten Orte angebracht sind, ob dem Sinne des Textes angemessen oder nicht, dies vermag ich darum nicht zu entscheiden, weil es, bei Hrn. <span class="tei_hi_spaced_out">Simoni’s</span> Art, die Noten herauszustoßen, unmöglich ist, auch nur ein Wort, vielweniger den <span class="tei_hi_spaced_out">Sinn</span> des Textes zu verstehen oder auch nur zu errathen. – Ueberhaupt nähert sich seine Art zu singen der der französischen Operisten, und es ist zu erwarten, daß er in Paris, wohin zu reisen er im Begriffe steht, Beifall finden wird. Auch von einem großen Theile des hiesigen Publikums erntete er Beifall, nur als dieser Theil Lust äußerte, sogar ein „<span class="tei_hi_italic">fora</span>“ anzustimmen, wurden Widersprüche laut, welche das Unternehmen im Keime erstickten.</p>
+               <span class="tei_ptr"></span><a class="preview persons A001830" href="/exist/apps/WeGA-WebApp/de/A001830.html">Herr <span class="tei_hi_spaced_out">Simoni</span></a> von <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, k. k. Kammersänger, im Zwischenakte des Schauspiels einige Arien singen<a class="noteMarker" id="ref-C_52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_52">*</a> würde. Auch über diesen wollte ich Ihnen gerne etwas sagen, und, viel gutes, hoffte ich. Der Erfolg blieb aber meilenweit hinter meinen Erwartungen zurück. <a class="preview persons A001830" href="/exist/apps/WeGA-WebApp/de/A001830.html">Hr. <span class="tei_hi_spaced_out">Simoni</span></a> sang zwey italienische Arien. Seine Intonation ist rein, seine Kehle hat viel Geläufigkeit und hat durch Schule auch wirklich einen gewissen Grad von Ausbildung erhalten. Aber <span class="tei_hi_spaced_out">das</span> sage ich Ihnen auch, so viele Noten habe ich in meinem Leben nicht auf einmal gehört, wie heute Abend. Von dem Umfange seiner Stimme wäre vieles zu sagen. In der Tiefe ist sie etwa bis <span class="tei_hi_italic">A</span> brauchbar; in der Höhe aber scheint sie gar keine Gränzen zu kennen. Durch Hülfe einer Kopfstimme, welche man Falset zweiter Potenz nennen könnte, produzirte er einmal ein lange gehaltenes <span class="tei_hi_italic">d</span>’’, ein andermal eine lange Coloratur auf gleicher Höhe. Um sich aus diesen Sphären der Weiberstimme in die männlichern wieder zurück zu versetzen, macht er dann jedesmal einen wohl angebrachten Absatz. Dem Klange seiner von Natur vielleicht schönen Stimme schadet er dadurch, daß er sie hinten im Halse zerdrückt. Portament ist so eigentlich nicht seine Force, wenn man nicht das für Portament nehmen will, daß er oft eine einzelne Sylbe, meistens die erste einer Phrase, so lange dehnt und zieht, als seine Lunge zu prästiren vermag. In wie fern solche Dehnungen, so wie die endlosen Rouladen an ihrem rechten Orte angebracht sind, ob dem Sinne des Textes angemessen oder nicht, dies vermag ich darum nicht zu entscheiden, weil es, bei Hrn. <span class="tei_hi_spaced_out">Simoni’s</span> Art, die Noten herauszustoßen, unmöglich ist, auch nur ein Wort, vielweniger den <span class="tei_hi_spaced_out">Sinn</span> des Textes zu verstehen oder auch nur zu errathen. – Ueberhaupt nähert sich seine Art zu singen der der französischen Operisten, und es ist zu erwarten, daß er in Paris, wohin zu reisen er im Begriffe steht, Beifall finden wird. Auch von einem großen Theile des hiesigen Publikums erntete er Beifall, nur als dieser Theil Lust äußerte, sogar ein „<span class="tei_hi_italic">fora</span>“ anzustimmen, wurden Widersprüche laut, welche das Unternehmen im Keime erstickten.</p>
                                         <p class="tei_closer textAlign-left"><a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">G. Giusto</a>.</p>
                                     </div>
                                 </div>
@@ -401,7 +464,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Rheinische Correspondenz</span>, Bd. 2, Heft 15 (17. Oktober 1810)</p>
+                                <p class="biblio-entry"><span class="journalTitle">Rheinische Correspondenz</span>, Bd. 2, Heft 15 (17. Oktober 1810)</p>
                                 
                                 <div>
                                     
@@ -476,10 +539,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -488,9 +547,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030620</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030620</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

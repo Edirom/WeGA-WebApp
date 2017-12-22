@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000466" />
         <meta property="dc:description" content="Biographische Informationen zu Johanna Eunicke. Lebensdaten: 1798–28. August 1856. Tätigkeiten: Sängerin (Sopran), Schauspielerin. Wirkorte: Berlin" />
         <meta name="description" content="Biographische Informationen zu Johanna Eunicke. Lebensdaten: 1798–28. August 1856. Tätigkeiten: Sängerin (Sopran), Schauspielerin. Wirkorte: Berlin" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000466.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -259,7 +302,7 @@
                                 <i class="fa fa-asterisk  media-object"></i>
                             </div>
                             <div class="media-body">
-                                <span>1798 (andere Angaben: 1800)</span>
+                                <span>1798  (andere Angaben: <span>1800</span>)</span>
                                 <span> in Berlin</span>
                                  </div>
                         </li>
@@ -269,7 +312,7 @@
                                 <strong>†</strong>
                             </div>
                             <div class="media-body">
-                                <span>28. August 1856 (andere Angaben: 29. August 1856)</span>
+                                <span>28. August 1856  (andere Angaben: <span>29. August 1856</span>)</span>
                                 <span> in Berlin</span>
                             </div>
                         </li>
@@ -315,7 +358,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A000466/backlinks.html">Rückverweise<small> (28)</small></a></li>
+                                <li><a href="#backlinks" data-target="A000466/backlinks.html">Rückverweise<small> (33)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -343,13 +386,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000466/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -358,7 +401,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000466/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000466.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -374,9 +417,9 @@
                                                     <div>
                                                             <p>Sie war die älteste Tochter von <a class="preview persons A000467" href="/exist/apps/WeGA-WebApp/de/A000467.html">Therese</a> und <a class="preview persons A000465" href="/exist/apps/WeGA-WebApp/de/A000465.html">Friedrich Eunicke</a>.
       Sie wurde vom <a class="preview persons A000465" href="/exist/apps/WeGA-WebApp/de/A000465.html">Vater</a> unterrichtet. 
-      Sie war „im Besitze einer herrlichen Sopranstimme und einer höchst anziehenden Äußerlichkeit“, von 1813–25 als Soubrette an der <span class="tei_placeName"><span class="66101114108105110101114">Berliner</span></span> königlichen Oper angestellt. 
+      Sie war „im Besitze einer herrlichen Sopranstimme und einer höchst anziehenden Äußerlichkeit“, von 1813–25 als Soubrette an der <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berliner</span> königlichen Oper angestellt. 
       Von 1811 bis 1816 war sie Mitglied der Sing-Akademie;
-      Sie sang das <span class="19611011099104101110">Ännchen</span> in der UA von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> am 18. Juni 1821 im <span class="tei_placeName"><span class="66101114108105110101114">Berliner</span></span> Schauspielhaus;
+      Sie sang das <span class="19611011099104101110">Ännchen</span> in der UA von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> am 18. Juni 1821 im <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berliner</span> Schauspielhaus;
       Sie büßte im Laufe der Zeit ihre Stimme gänzlich ein, verließ 1825 die Bühne für immer und 
       heiratete den berühmten Historienmaler und königl. Hofmaler Professor <span class="70114971101223275114252103101114">Franz Krüger</span> (1797–1857)
    </p>
@@ -386,11 +429,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -400,15 +443,12 @@
                                                     <ul>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd136547222.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01155398]" href="http://thesaurus.cerl.org/record/cnp01155398">CERL Thesaurus</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=136547222">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=136547222">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -465,9 +505,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000466</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000466</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

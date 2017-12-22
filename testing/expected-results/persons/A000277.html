@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000277" />
         <meta property="dc:description" content="Biographische Informationen zu Ignaz Franz Castelli. Lebensdaten: 6. März 1781–5. Februar 1862. Tätigkeiten: Jurist, Theaterdichter, Schriftsteller, Publizist. Wirkorte: Wien" />
         <meta name="description" content="Biographische Informationen zu Ignaz Franz Castelli. Lebensdaten: 6. März 1781–5. Februar 1862. Tätigkeiten: Jurist, Theaterdichter, Schriftsteller, Publizist. Wirkorte: Wien" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,12 +226,51 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000277.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000277.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000277.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000277.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Ignaz Franz Castelli, Lithographie von Joseph Kriehuber, 1835 (Quelle: Wikimedia)" alt="Ignaz Franz Castelli, Lithographie von Joseph Kriehuber, 1835 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Ignaz_Franz_Castelli.jpg/220px-Ignaz_Franz_Castelli.jpg" />
+                            <img class="img-responsive" title="Ignaz Franz Castelli, Lithographie von Joseph Kriehuber, 1835 (Quelle: Wikimedia)" alt="Ignaz Franz Castelli, Lithographie von Joseph Kriehuber, 1835 (Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/928e4778ff47dc07200ac51366b1f4bd.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -333,13 +376,13 @@
                                 <li><a href="#correspondence" data-target="A000277/correspondence.html">Korrespondenz<small> (26)</small></a></li>
                                 <li><a href="#writings" data-target="A000277/writings.html">Schriften<small> (2)</small></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#works" data-target="A000277/works.html">Werke<small> (14)</small></a></li>
+                                <li><a href="#works" data-target="A000277/works.html">Werke<small> (15)</small></a></li>
                                 <li><a href="#biblio" data-target="A000277/biblio.html">Bibliographie<small> (1)</small></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A000277/contacts.html">Kontakte<small> (4)</small></a></li>
-                                <li><a href="#backlinks" data-target="A000277/backlinks.html">Rückverweise<small> (60)</small></a></li>
+                                <li><a href="#backlinks" data-target="A000277/backlinks.html">Rückverweise<small> (70)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -367,13 +410,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/dnb.html">GND Eintrag</a>
+                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/adb.html">ADB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/adb.html">ADB Artikel</a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -382,7 +425,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000277/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000277.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -398,14 +441,14 @@
                                                     <div>
       <ul class="tei_list">
           <li>Sohn des Rechnungsrats <span class="7310311097122326797115116101108108105">Ignaz Castelli</span> (gest. 1816) und seiner Frau <span class="6811110910511010510797443210310198463277971214010141114">Dominika, geb. May(e)r</span> (gest. 1798)</li>
-          <li>Jura-Studium in <span class="tei_placeName"><span class="87105101110">Wien</span></span> (nicht abgeschlossen)</li>
-          <li>ab ca. 1801 Anstellung bei der niederösterreichischen ständischen Buchhaltung in <span class="tei_placeName"><span class="87105101110">Wien</span></span> (1843 pensioniert)</li>
+          <li>Jura-Studium in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> (nicht abgeschlossen)</li>
+          <li>ab ca. 1801 Anstellung bei der niederösterreichischen ständischen Buchhaltung in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> (1843 pensioniert)</li>
           <li>neben seiner juristischen Tätigkeit war er zeitweise ständischer Bibliothekar und widmete sich eingehend dem Theater</li>
          <li>1811–1814 Theaterdichter am Kärtnertortheater, übersetzte zahlreiche Stücke aus dem Französischen (u. a. <span class="tei_hi_italic"><span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Die Schweizerfamilie</span></span>, <span class="tei_hi_italic"><span class="68101114327211711010032100101115326511798114121">Der Hund des Aubry</span></span>, <span class="tei_hi_italic"><span class="6810510132879710511510132117110100321001011143277246114100101114">Die Waise und der Mörder</span></span>)</li>
          <li>Redaktion mehrerer Zeitschriften und Almanache, darunter der <span class="tei_hi_italic">Sammler</span> (1809–1810), die <span class="tei_hi_italic">Thalia</span> (Juli 1810 bis September 1811), der Almanach <span class="tei_hi_italic">Selam</span> (1812–1817)  und das <span class="tei_hi_italic">Wiener Hof-Theater Taschenbuch</span> (1813–1815)</li>
-         <li>ab 1818 Mitglied der Ludlamshöhle<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090000.html">T</a> in <span class="tei_placeName"><span class="87105101110">Wien</span></span> (Vereinsname: Cif Charon, der Höhlenzote)</li>
+         <li>ab 1818 Mitglied der Ludlamshöhle<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090000.html">T</a> in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> (Vereinsname: Cif Charon, der Höhlenzote)</li>
          <li>1829 war er Gründer und bis 1830 Redakteur des bei <a class="preview orgs A080060" href="/exist/apps/WeGA-WebApp/de/A080060.html">Haslinger</a> erscheinenden <span class="tei_hi_italic">Allgemeinen musikalischen Anzeigers</span></li>
-         <li>schrieb zahlreiche Artikel für andere Periodika und besaß eine reichhaltige Sammlung von Schauspieltexten und Wiener Theaterzetteln, die von der <span class="tei_placeName"><span class="87105101110101114">Wiener</span></span> Hofbibliothek (heute ÖNB) erworben wurde</li>
+         <li>schrieb zahlreiche Artikel für andere Periodika und besaß eine reichhaltige Sammlung von Schauspieltexten und Wiener Theaterzetteln, die von der <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiener</span> Hofbibliothek (heute ÖNB) erworben wurde</li>
       </ul>
    </div>
                                                     
@@ -413,11 +456,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -427,7 +470,7 @@
                                                     <ul>
                                                             <li><a title="Digitaler Portraitindex - Alle Personen" href="http://www.portraitindex.de/dokumente/pnd/118667424">4 Reproduktionen im Digitalen Portraitindex Frühe Neuzeit</a></li>
                                                             <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/118667424">Allgemeine Deutsche Biographie (Wikisource)</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118667424">Bayerische Staatsbibliothek (144)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=118667424">Bayerische Staatsbibliothek (146)</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier ADB 25782 Einträge)" href="http://www.deutsche-biographie.de/pnd118667424.html#adbcontent">Biographien der ADB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier NDB 22217 Einträge)" href="http://www.deutsche-biographie.de/pnd118667424.html#ndbcontent">Biographien der NDB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd118667424.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
@@ -436,35 +479,35 @@
                                                             <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [121252045]" href="http://catalogue.bnf.fr/ark:/12148/cb121252045">BNF [by http://viaf.org/viaf/73886965]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to BVMC person ID IDs [Q78813]" href="http://www.cervantesvirtual.com/obras/autor/1341/">BVMC person ID</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01264619]" href="http://thesaurus.cerl.org/record/cnp01264619">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/118667424&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/118667424">Deutsche Digitale Bibliothek</a></li>
                                                             <li><a title="Bildindex der Kunst und Architektur - GND-referenzierte Personen, Koerperschaften, Geografika, Werke, Sachschlagworte" href="http://www.bildindex.de/gnd-beacon/118667424">Deutsches Dokumentationszentrum fuer Kunstgeschichte - Bildarchiv Foto Marburg (3)</a></li>
                                                             <li><a title="Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Castelli, Ignaz Franz]" href="http://www.oper-um-1800.uni-koeln.de/einzeldarstellung_librettist.php?id_librettist=164">Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Castelli, Ignaz Franz]</a></li>
                                                             <li><a title="Mapping GND zu MusicBrainz" href="http://beacon.findbuch.de/gnd-resolver/pw_musicbrainz/118667424">Discographie bei MusicBrainz</a></li>
                                                             <li><a title="Personenlexikon Niederösterreich [Castelli Ignaz Franz]" href="http://geschichte.landesmuseum.net/index.asp?contenturl=http://geschichte.landesmuseum.net/personen/personendetail.asp___id=-1035962302">Eintrag im Personenlexikon Niederösterreich [Castelli Ignaz Franz]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to Freebase ID IDs [Q78813]" href="https://g.co/kg/m/07v3xy">Freebase ID</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118667424">HBZ-Verbundkatalog (18)</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118667424">HBZ-Verbundkatalog</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/118667424">HeBIS-Verbundzentrale (190)</a></li>
-                                                            <li><a title="Herder-Instituts für historische Ostmitteleuropaforschung – Institut der Leibniz-Gemeinschaft" href="http://www.herder-institut.de/gnd/118667424">Herder-Institut Marburg - Zentrales Personenregister</a></li>
-                                                            <li><a title="Die Datenbank &#34;Index Theologicus&#34; (IxTheo: https://ixtheo.de) ist eine internationale, open access Bibliographie für Theologie und Religionswissenschaft. Ausgewertet werden Monographien (Bücher) und Aufsätze aus mehr als 600 theologischen und religionswissenschaftlichen Zeitschriften sowie Aufsätze aus Sammelschriften (z.B. Festschriften und Kongressveröffentlichungen). Nachgewiesen werden auch einschlägige Datenbanken und Internetlinks. Statistik: mehr als 105.000 Personen-GND, ca. 1,7 Mio Titel (Stand Mai 2017)." href="https://ixtheo.de/Search/Results?lookfor=118667424">INDEX THEOLOGICUS: Publikationen im IxTheo (2)</a></li>
+                                                            <li><a title="Die Datenbank &#34;Index Theologicus&#34; (IxTheo: https://ixtheo.de) ist eine internationale, open access Bibliographie für Theologie und Religionswissenschaft. Ausgewertet werden Monographien (Bücher) und Aufsätze aus mehr als 600 theologischen und religionswissenschaftlichen Zeitschriften sowie Aufsätze aus Sammelschriften (z.B. Festschriften und Kongressveröffentlichungen). Nachgewiesen werden auch einschlägige Datenbanken und Internetlinks. Statistik: mehr als 105.000 Personen-GND, ca. 1,7 Mio Titel (Stand Mai 2017)." href="https://ixtheo.de/Search/Results?lookfor=118667424">INDEX THEOLOGICUS: Publikationen im IxTheo (3)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000081535402]" href="http://isni.org/isni/0000000081535402">ISNI [by http://viaf.org/viaf/73886965]</a></li>
                                                             <li><a title="Berlin-Brandenburgische Akademie der Wissenschaften / Jahresberichte für deutsche Geschichte [1 von, 2 über Castelli, Ignaz Franz (1781-1862)]" href="http://jdgdb.bbaw.de/cgi-bin/jdg?t_idn_erg=x&amp;idn=GND:118667424">Jahresberichte für deutsche Geschichte - Online [1 von, 2 über Castelli, Ignaz Franz (1781-1862)]</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=118667424">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=118667424">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                             <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A118667424">Literatur im Katalog der Universitätsbibliothek Heidelberg (43)</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n80094176]" href="http://lccn.loc.gov/n80094176">LoC [by http://viaf.org/viaf/73886965]</a></li>
                                                             <li><a title="Verzeichnis der künstlerischen, wissenschaftlichen und kulturpolitischen Nachlässe in Österreich, 3776 mit PND" href="http://www.historische-kommission-muenchen-editionen.de/beacond/oenlv.php?pnd=118667424">Nachlassverzeichnis Österreich</a></li>
                                                             <li><a title="Nachweise von Onlinetexten bei Liberley (teilweise veraltet) [Castelli, Ignaz Franz]" href="http://www.liberley.it/c/castelli.htm">Nachweise von Onlinetexten bei Liberley [Castelli, Ignaz Franz]</a></li>
                                                             <li><a title="Die Handschriftensammlung der SLUB Dresden bewahrt rund 400.000 Autographen und 500 schriftliche Nachlässe und Sammlungen von Künstlern, Literaten, Musikern und Wissenschaftlern, überwiegend mit Bezug zum mitteldeutschen Raum." href="http://hansopac.slub-dresden.de/cgi-bin/slub.pl?t%5ftunnel=idn&amp;present=auto&amp;idn=PND:118667424">Nachweis von Autographen in der SLUB Dresden</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [xx0041433]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=xx0041433">NKC [by http://viaf.org/viaf/73886965]</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.musiklexikon.ac.at/ml/musik_C/Castelli_Ignaz.xml?frames=yes]" href="http://www.musiklexikon.ac.at/ml/musik_C/Castelli_Ignaz.xml?frames=yes">Oesterreichisches Musiklexikon</a></li>
                                                             <li><a title="Oesterreichisches Musiklexikon [Castelli, Ignaz Vinzenz Franz (Pseud. Bruder Fatalis, Kosmas, Rosenfeld, C. A. Stille)]" href="http://www.musiklexikon.ac.at/ml/musik_C/Castelli_Ignaz.xml">Oesterreichisches Musiklexikon [Castelli, Ignaz Vinzenz Franz (Pseud. Bruder Fatalis, Kosmas, Rosenfeld, C. A. Stille)]</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [Castelli, Ignaz Vinzenz Franz (Pseud. Bruder Fatalis, Kosmas, Rosenfeld, C. A. Stille)]" href="http://www.musiklexikon.ac.at/ml/musik_C/Castelli_Ignaz.xml?frames=no">Oesterreichisches Musiklexikon [Castelli, Ignaz Vinzenz Franz (Pseud. Bruder Fatalis, Kosmas, Rosenfeld, C. A. Stille)]</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [2151566]" href="https://openlibrary.org/authors/OL2151566A">Open Library - Autorenseite [I. F. Castelli (1781-1862)]</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [6305790]" href="https://openlibrary.org/authors/OL6305790A">Open Library - Autorenseite [I. F Castelli (1781-1862)]</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [5503945]" href="https://openlibrary.org/authors/OL5503945A">Open Library - Autorenseite [Ignaz Franz Castelli (1781-1862)]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to openMLOL author ID IDs [Q78813]" href="https://openmlol.it/autore/105436">openMLOL author ID</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften" href="http://www.biographien.ac.at/cgi-bin/gndresolver?gnd=118667424&amp;lex=oebl">Österreichisches Biographisches Lexikon</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.biographien.ac.at/oebl/oebl_C/Castelli_Ignaz-Franz_1781_1862.xml?frames=yes]" href="http://www.biographien.ac.at/oebl/oebl_C/Castelli_Ignaz-Franz_1781_1862.xml?frames=yes">Österreichisches Biographisches Lexikon</a></li>
                                                             <li><a title="GND-verknüpfter Teil des öffentlichen Datenbestandes des DFG-Projektes &#34;Personendaten-Repositorium&#34; an der BBAW. Trefferzahl ohne Berücksichtigung interner Verknüpfungen." href="https://pdrprod.bbaw.de/idi/gnd/118667424">Personendaten-Repositorium (PDR) an der BBAW</a></li>
                                                             <li><a title="Porträtsammlung der Stadtbibliothek München" href="http://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/118667424">Porträtsammlung des Münchner Stadtmuseums</a></li>
-                                                            <li><a title="Mapping from GND ID IDs to Social Networks and Archival Context ID IDs [Q78813]" href="http://socialarchive.iath.virginia.edu/ark:/99166/w6k3664p">Social Networks and Archival Context ID</a></li>
+                                                            <li><a title="Mapping from GND ID IDs to SNAC Ark ID IDs [Q78813]" href="http://snaccooperative.org/ark:/99166/w6k3664p">SNAC Ark ID</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [15966182X]" href="http://www.idref.fr/15966182X">SUDOC [by http://viaf.org/viaf/73886965]</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;TRM=118667424&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50">SWB-Verbundkatalog</a></li>
                                                             <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%291014123615">Titelaufnahmen des B3Kat</a></li>
@@ -481,9 +524,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -540,9 +580,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000277</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000277</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

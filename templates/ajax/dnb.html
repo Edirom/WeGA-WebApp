@@ -2,35 +2,41 @@
     <h2 data-template="lang:translate">infoFromGND</h2>
     <dl>
         <dt data-template="lang:translate">pnd_name</dt>
-        <dd data-template="app:print" data-template-key="dnbName">Ein Name</dd>
+        <dd data-template="app-shared:print" data-template-key="dnbName">Ein Name</dd>
     </dl>
-    <dl>
+    <dl data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="places">
         <dt data-template="lang:translate">pnd_dates</dt>
         <dd data-template="templates:each" data-template-from="dnbBirths" data-template-to="dataBirth">
-            <i class="fa fa-asterisk  media-object"/> <span data-template="app:print" data-template-key="dataBirth">dataBirth</span>
+            <i class="fa fa-asterisk  media-object"/> <span data-template="app-shared:print" data-template-key="dataBirth">dataBirth</span>
         </dd>
         <dd data-template="templates:each" data-template-from="dnbDeaths" data-template-to="dataDeath">
-            <strong>†</strong> <span data-template="app:print" data-template-key="dataDeath">dataDeath</span>
+            <strong>†</strong> <span data-template="app-shared:print" data-template-key="dataDeath">dataDeath</span>
         </dd>
     </dl>
-    <dl data-template="app:if-exists" data-template-key="dnbOccupations">
+    <dl data-template="app-shared:if-exists" data-template-key="dnbOccupations">
         <dt data-template="lang:translate">pnd_occupation</dt>
         <dd data-template="templates:each" data-template-from="dnbOccupations" data-template-to="dnbOccupation">
-            <span data-template="app:print" data-template-key="dnbOccupation">Musiker</span>
+            <span data-template="app-shared:print" data-template-key="dnbOccupation">Musiker</span>
         </dd>
     </dl>
-    <dl data-template="app:if-exists" data-template-key="biographicalOrHistoricalInformations">
+    <dl data-template="app-shared:if-exists" data-template-key="biographicalOrHistoricalInformations">
         <dt data-template="lang:translate">pnd_biographicalOrHistoricalInformation</dt>
         <dd data-template="templates:each" data-template-from="biographicalOrHistoricalInformations" data-template-to="biographicalOrHistoricalInformation">
-            <span data-template="app:print" data-template-key="biographicalOrHistoricalInformation">Musiker</span>
+            <span data-template="app-shared:print" data-template-key="biographicalOrHistoricalInformation">Musiker</span>
         </dd>
     </dl>
-    <dl data-template="app:if-exists" data-template-key="dnbOtherNames">
+    <dl data-template="app-shared:if-exists" data-template-key="dnbOtherNames">
         <dt data-template="lang:translate">pnd_otherNames</dt>
         <dd data-template="templates:each" data-template-from="dnbOtherNames" data-template-to="dnbOtherName">
-            <span data-template="app:print" data-template-key="dnbOtherName">Musiker</span>
+            <span data-template="app-shared:print" data-template-key="dnbOtherName">Musiker</span>
         </dd>
     </dl>
-    <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Zu verknüpfter Literatur und weiteren Informationen siehe den <a data-template="app:set-attr" data-template-attr="href" data-template-key="dnbURL">vollständigen Eintrag</a> in der Deutschen Nationalbibliothek.</p>
-    <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">For associated publications and further information please visit the <a data-template="app:set-attr" data-template-attr="href" data-template-key="dnbURL">complete entry</a> at the German National Library.</p>
+    <dl data-template="app-shared:if-exists" data-template-key="gndDefinition">
+        <dt data-template="lang:translate">gndDefinition</dt>
+        <dd>
+            <span data-template="app-shared:print" data-template-key="gndDefinition">Some definition</span>
+        </dd>
+    </dl>
+    <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Zu verknüpfter Literatur und weiteren Informationen siehe den <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="dnbURL">vollständigen Eintrag</a> in der Deutschen Nationalbibliothek.</p>
+    <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">For associated publications and further information please visit the <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="dnbURL">complete entry</a> at the German National Library.</p>
 </div>

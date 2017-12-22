@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001884" />
         <meta property="dc:description" content="Biographische Informationen zu Sigmund Anton Steiner. Lebensdaten: 26. April 1773–28. März 1838. Tätigkeiten: Musikalienhändler, Verleger. Wirkorte: Wien" />
         <meta name="description" content="Biographische Informationen zu Sigmund Anton Steiner. Lebensdaten: 26. April 1773–28. März 1838. Tätigkeiten: Musikalienhändler, Verleger. Wirkorte: Wien" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,12 +226,51 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001884.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001884.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001884.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001884.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Sigmund Anton Steiner, Lithographie von Josef Eduard Teltscher, um 1825 (Quelle: Wikimedia)" alt="Sigmund Anton Steiner, Lithographie von Josef Eduard Teltscher, um 1825 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Sigmund_Anton_Steiner_Litho.JPG/220px-Sigmund_Anton_Steiner_Litho.JPG" />
+                            <img class="img-responsive" title="Sigmund Anton Steiner, Lithographie von Josef Eduard Teltscher, um 1825 (Quelle: Wikimedia)" alt="Sigmund Anton Steiner, Lithographie von Josef Eduard Teltscher, um 1825 (Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/cf2dda0a716579fbfeb25b373ad3124c.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -308,7 +351,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A001884/contacts.html">Kontakte<small> (4)</small></a></li>
-                                <li><a href="#backlinks" data-target="A001884/backlinks.html">Rückverweise<small> (35)</small></a></li>
+                                <li><a href="#backlinks" data-target="A001884/backlinks.html">Rückverweise<small> (38)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -336,13 +379,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001884/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001884/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -351,7 +394,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A001884/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A001884.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -366,13 +409,13 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-         <li>besuchte als Sängerknabe die Schule in <span class="tei_placeName"><span class="7697110103101110108111105115">Langenlois</span></span></li>
-         <li>siedelte 1789 nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> über; 
+         <li>besuchte als Sängerknabe die Schule in <span class="7697110103101110108111105115">Langenlois</span></li>
+         <li>siedelte 1789 nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> über; 
             war dort zunächst Schreiber in einer Rechtsanwaltskanzlei, später Sekretär beim Hoftheaterdirektor <span class="7411111510111210432729711411610832118111110327611799104115101110115116101105110">Joseph Hartl von Luchsenstein</span></li>
          <li>dieser setzte S. als Geschäftsführer der von <a class="preview persons A001812" href="/exist/apps/WeGA-WebApp/de/A001812.html">Alois Senefelder</a> 1803 gegründeten Chemischen Druckerey ein und finanzierte 1805 deren Kauf</li> 
          <li>1807 erhielt S. die Konzession für seinen <a class="preview orgs A080150" href="/exist/apps/WeGA-WebApp/de/A080150.html">Verlag</a></li>
-         <li>seit 1810 hatte S. Bürgerrecht in <span class="tei_placeName"><span class="87105101110">Wien</span></span></li>
-         <li>1812–1837 war er Vorsteher der Vereinigung der Kunst-, Buch- und Musikalienhändler <span class="tei_placeName"><span class="87105101110115">Wiens</span></span></li>              
+         <li>seit 1810 hatte S. Bürgerrecht in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></li>
+         <li>1812–1837 war er Vorsteher der Vereinigung der Kunst-, Buch- und Musikalienhändler <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiens</span></li>              
          <li>von 1828 bis zu seinem Tod war S. ausübendes Mitglied in der <a class="preview orgs A080048" href="/exist/apps/WeGA-WebApp/de/A080048.html">Gesellschaft der Musikfreunde</a></li>
       </ul>      
    </div>
@@ -381,11 +424,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -397,11 +440,12 @@
                                                             <li><a title="Ludwig-Maximilians-Universität München - Musikwissenschaft - Bayerisches Musiker-Lexikon Online" href="http://bmlo.de/Q/GND=118617451">Bayerisches Musiker-Lexikon Online (BMLO)</a></li>
                                                             <li><a title="Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-blkoe/118617451">Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00568062]" href="http://thesaurus.cerl.org/record/cnp00568062">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/118617451&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000024634949]" href="http://isni.org/isni/0000000024634949">ISNI [by http://viaf.org/viaf/30329703]</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n85813627]" href="http://lccn.loc.gov/n85813627">LoC [by http://viaf.org/viaf/30329703]</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.musiklexikon.ac.at/ml/musik_S/Steiner_Sigmund.xml?frames=yes]" href="http://www.musiklexikon.ac.at/ml/musik_S/Steiner_Sigmund.xml?frames=yes">Oesterreichisches Musiklexikon</a></li>
                                                             <li><a title="Oesterreichisches Musiklexikon [Steiner, Sigmund Anton]" href="http://www.musiklexikon.ac.at/ml/musik_S/Steiner_Sigmund.xml">Oesterreichisches Musiklexikon [Steiner, Sigmund Anton]</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften" href="http://www.biographien.ac.at/cgi-bin/gndresolver?gnd=118617451&amp;lex=oebl">Österreichisches Biographisches Lexikon</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [Steiner, Sigmund Anton]" href="http://www.musiklexikon.ac.at/ml/musik_S/Steiner_Sigmund.xml?frames=no">Oesterreichisches Musiklexikon [Steiner, Sigmund Anton]</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.biographien.ac.at/oebl/oebl_S/Steiner_Sigmund-Anton_1773_1838.xml?frames=yes]" href="http://www.biographien.ac.at/oebl/oebl_S/Steiner_Sigmund-Anton_1773_1838.xml?frames=yes">Österreichisches Biographisches Lexikon</a></li>
                                                             <li><a title="Links von GND-Identifiern in den Verbundatalog des GBV" href="http://gso.gbv.de/DB=2.1/SET=1/TTL=1/CMD?ACT=SRCHA&amp;IKT=8549&amp;SRT=YOP&amp;TRM=118617451">Titel im Verbundkatalog des GBV (2)</a></li>
                                                             <li><a title="Korrespondierendes Wikidata-Item (www.wikidata.org) [Q2284931]" href="https://tools.wmflabs.org/reasonator/?q=Q2284931">Wikidata</a></li>
                                                             <li><a title="Wikipedia-Personenartikel" href="https://tools.wmflabs.org/persondata/redirect/gnd/de/118617451">Wikipedia-Artikel</a></li>
@@ -410,9 +454,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -469,9 +510,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001884</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001884</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

@@ -7,17 +7,18 @@ module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
@@ -32,6 +33,9 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:org]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('orgs')) then ()
@@ -90,6 +94,9 @@ declare function wdt:persons($item as item()*) as map(*) {
             (:distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.):)
             ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:person]/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('persons')) then ()
             else (wdt:persons(())('init-sortIndex')()),
@@ -110,8 +117,8 @@ declare function wdt:persons($item as item()*) as map(*) {
                 default return $item/root()/tei:person
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))
-                case 'html' return <span>{str:normalize-space(string-join(wega-util:txtFromTEI($person/tei:persName[@type = 'reg']), ''))}</span> 
+                case 'txt' return str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))
+                case 'html' return <span>{str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))}</span> 
                 default return core:logToFile('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
@@ -131,7 +138,16 @@ declare function wdt:letters($item as item()*) as map(*) {
     let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
-        let $date := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], 'de')
+        let $lang := config:guess-language(())
+        let $dateFormat := 
+            if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+            else '[FNn], [MNn] [D], [Y]'
+        let $dateSender := date:printDate(($TEI//tei:correspAction[@type='sent']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $dateAddressee := date:printDate(($TEI//tei:correspAction[@type='received']/tei:date)[1], $lang, lang:get-language-string(?,?,$lang), function() { $dateFormat })
+        let $date := 
+            if($dateSender) then $dateSender
+            else if($dateAddressee) then (lang:get-language-string('received', $lang) || ' ' || $dateAddressee)
+            else ()
         let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
         let $sender := 
             if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
@@ -142,12 +158,16 @@ declare function wdt:letters($item as item()*) as map(*) {
             if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
             else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
             else str:printFornameSurname(str:normalize-space($addresseeElem))
-        let $placeSender := str:normalize-space(($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
-        let $placeAddressee := str:normalize-space(($TEI//tei:correspAction[@type='received']/tei:*[self::tei:placeName or self::tei:settlement or self::tei:region])[1])
+        let $placeSender := 
+            if(query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key)[1])
+            else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='sent'])[1])
+        let $placeAddressee := 
+            if(query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key)[1])
+            else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='received'])[1])
         return (
             element tei:title {
-                concat($sender, ' ', 'an', ' ', $addressee),
-                if($placeAddressee) then concat(' ', 'in', ' ', $placeAddressee) else(),
+                concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
+                if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in',$lang)), ' ', $placeAddressee) else(),
                 <tei:lb/>,
                 if($placeSender) then string-join(($placeSender, $date), ', ')
                 else $date
@@ -170,6 +190,9 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item/root()//tei:orgName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
             $item/root()//tei:rs[ancestor::tei:correspAction][contains(@key, $personID)][not(ancestor-or-self::tei:note)]/root():)
             $item/root()//tei:*[contains(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:correspAction]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('letters')) then ()
@@ -199,7 +222,7 @@ declare function wdt:letters($item as item()*) as map(*) {
                 else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -208,14 +231,17 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:correspDesc[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
-            $item[tei:TEI]//tei:note[@type='incipit'][ft:query(., $query)] | 
-            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = 'summary'] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
 };
 
 declare function wdt:personsPlus($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        wdt:orgs($docs)('filter')() | wdt:persons($docs)('filter')()
+    }
+    return
     map {
         'name' := 'personsPlus',
         'prefix' := (),
@@ -224,15 +250,18 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            wdt:orgs($item)('filter')() | wdt:persons($item)('filter')()
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             () 
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)/root() => $filter()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('personsPlus')) then ()
             else (wdt:personsPlus(())('init-sortIndex')()),
-            for $i in wdt:personsPlus($item)('filter')() order by sort:index('personsPlus', $i) ascending return $i
+            for $i in $filter($item) order by sort:index('personsPlus', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
             wdt:orgs($item)('init-collection')() | wdt:persons($item)('init-collection')()
@@ -254,6 +283,10 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
 };
 
 declare function wdt:writings($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
+    }
+    return
     map {
         'name' := 'writings',
         'prefix' := 'A03',
@@ -262,15 +295,18 @@ declare function wdt:writings($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
+            $filter($item) 
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
+            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('writings')) then ()
             else (wdt:writings(())('init-sortIndex')()),
-            for $i in wdt:writings($item)('filter')() order by sort:index('writings', $i) ascending return $i
+            for $i in $filter($item) order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
@@ -297,7 +333,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -305,6 +341,7 @@ declare function wdt:writings($item as item()*) as map(*) {
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
@@ -323,6 +360,14 @@ declare function wdt:works($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root() 
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            (: das muss noch umgeschrieben werden!! :)
+            else if(string($dateFrom) = string($dateTo)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter = string($dateFrom)][ancestor::mei:history]/root()
+            else if(empty($dateFrom)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter <= string($dateTo)][ancestor::mei:history]/root()
+            else if(empty($dateTo)) then $item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter >= string($dateFrom)][ancestor::mei:history]/root()
+            else ($item//mei:date[@isodate | @startdate | @enddate | @notbefore | @notafter >= string($dateFrom)][@isodate | @startdate | @enddate | @notbefore | @notafter <= string($dateTo)][ancestor::mei:history])/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('works')) then ()
@@ -352,7 +397,7 @@ declare function wdt:works($item as item()*) as map(*) {
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -387,6 +432,13 @@ declare function wdt:diaries($item as item()*) as map(*) {
             if($personID eq 'A002068') then wdt:diaries(core:data-collection('diaries'))('sort')(map {})
             else ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            if(empty(($dateFrom, $dateTo))) then $item/root() 
+            else if(string($dateFrom) = string($dateTo)) then $item/range:field-eq('ab-n', string($dateFrom))/root()
+            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateFrom))/root()
+            else if(empty($dateTo)) then $item/range:field-ge('ab-n', string($dateFrom))/root()
+            else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('diaries')) then () 
             else (wdt:diaries(())('init-sortIndex')()),
@@ -405,12 +457,12 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
                 default return ()
-            let $lang := lang:guess-language(())
+            let $lang := config:guess-language(())
             let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
-            let $dateFormat := if($lang eq 'en')
-            	then '%A, %B %d, %Y'
-            	else '%A, %d. %B %Y'
-            let $formattedDate := date:strfdate(xs:date($ab/@n), $lang, $dateFormat)
+            let $dateFormat := 
+                if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
+                else '[FNn], [MNn] [D], [Y]'
+            let $formattedDate := date:format-date(xs:date($ab/@n), $dateFormat, $lang)
             let $formattedPlaces := 
                 switch(array:size($diaryPlaces))
                 case 0 return ()
@@ -432,6 +484,10 @@ declare function wdt:diaries($item as item()*) as map(*) {
 };
 
 declare function wdt:news($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/descendant::tei:text[@type='news']/root()
+    }
+    return
     map {
         'name' := 'news',
         'prefix' := 'A05',
@@ -440,15 +496,18 @@ declare function wdt:news($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type='news']/root()
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
+            $item/root()/descendant::tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:publicationStmt]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('news')) then ()
             else (wdt:news(())('init-sortIndex')()),
-            for $i in wdt:news($item)('filter')() order by sort:index('news', $i) descending return $i
+            for $i in $filter($item) order by sort:index('news', $i) descending return $i
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('news')[descendant::tei:text]
@@ -466,7 +525,7 @@ declare function wdt:news($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -492,6 +551,9 @@ declare function wdt:iconography($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()/descendant::tei:person[@corresp = $personID]/root()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('iconography')) then ()
             else (wdt:iconography(())('init-sortIndex')()),
@@ -509,6 +571,10 @@ declare function wdt:iconography($item as item()*) as map(*) {
 };
 
 declare function wdt:var($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/tei:TEI[starts-with(@xml:id, 'A07')]/root()
+    }
+    return
     map {
         'name' := 'var',
         'prefix' := 'A07',
@@ -517,13 +583,16 @@ declare function wdt:var($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
-            $item
+            $filter($item)
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('var')
@@ -538,11 +607,11 @@ declare function wdt:var($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
-            let $lang := lang:guess-language(())
+            let $lang := config:guess-language(())
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -555,6 +624,10 @@ declare function wdt:var($item as item()*) as map(*) {
 };
 
 declare function wdt:biblio($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $docs[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
+    }
+    return
     map {
         'name' := 'biblio',
         'prefix' := 'A11',
@@ -563,15 +636,18 @@ declare function wdt:biblio($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $item[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() 
+            wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() => $filter()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('biblio')) then ()
             else (wdt:biblio(())('init-sortIndex')()),
-            for $i in wdt:biblio($item)('filter')() order by sort:index('biblio', $i) descending return $i
+            for $i in $filter($item) order by sort:index('biblio', $i) descending return $i
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('biblio')[descendant::tei:monogr]
@@ -591,7 +667,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                 case xdt:untypedAtomic return core:doc($item)/tei:biblStruct
                 case document-node() return $item/tei:biblStruct
                 default return $item/root()/tei:biblStruct
-            let $html-title := bibl:printCitation($biblStruct, 'p', 'de')
+            let $html-title := bibl:printCitation($biblStruct, <xhtml:p/>, 'de')
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space($html-title)
@@ -622,6 +698,9 @@ declare function wdt:places($item as item()*) as map(*) {
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item
         },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('places')) then ()
             else (wdt:places(())('init-sortIndex')()),
@@ -646,8 +725,11 @@ declare function wdt:places($item as item()*) as map(*) {
                 case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('unary-docTypes'),
-        'search' := ()
+        'memberOf' := ('unary-docTypes', 'search', 'indices'),
+        'search' := function($query as element(query)) {
+            $item[tei:place]//tei:placeName[ft:query(., $query)] | 
+            $item[tei:place]/tei:place[ft:query(., $query)] 
+        }
     }
 };
 
@@ -660,22 +742,38 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            ()
+            $item/root()[mei:source][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            ()
+            if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
+            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root()
+            else ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
-            ()
+            $item
         },
         'init-collection' := function() as document-node()* {
-            ()
+            core:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'init-sortIndex' := function() as item()* {
             ()
         },
         'title' := function($serialization as xs:string) as item()? {
-            ()
+            let $source := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/mei:source
+                case xdt:untypedAtomic return core:doc($item)/mei:source
+                case document-node() return $item/mei:source
+                default return $item/root()/mei:source
+            let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
+            return
+                switch($serialization)
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' := ('unary-docTypes'),
         'search' := ()
@@ -695,6 +793,9 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('thematicCommentaries')) then ()
@@ -717,7 +818,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:thematicCommentaries()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -731,6 +832,10 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
 };
 
 declare function wdt:documents($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/descendant::tei:text[@type = ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+    }
+    return
     map {
         'name' := 'documents',
         'prefix' := 'A10',
@@ -739,15 +844,18 @@ declare function wdt:documents($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type = ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+            $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
+            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:creation]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('documents')) then ()
             else (wdt:documents(())('init-sortIndex')()),
-            for $i in wdt:documents($item)('filter')() order by sort:index('documents', $i)  ascending return $i
+            for $i in $filter($item) order by sort:index('documents', $i)  ascending return $i
         },
         'init-collection' := function() as document-node()* {
             core:data-collection('documents')/descendant::tei:text[@type=('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
@@ -770,7 +878,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(wega-util:txtFromTEI($title-element), ''), '\s*\n+\s*(\S+)', '. $1'))
+                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                 case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:documents()("title"): unsupported serialization "' || $serialization || '"')
         },
@@ -778,6 +886,7 @@ declare function wdt:documents($item as item()*) as map(*) {
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)] |
+            $item[tei:TEI]//tei:note[ft:query(., $query)][@type = ('summary', 'editorial', 'incipit')] |
             $item[tei:TEI]/tei:TEI[ft:query(., $query)]
         }
     }
@@ -800,6 +909,9 @@ declare function wdt:contacts($item as item()*) as map(*) {
                 $norm-doc//norm:entry[contains(@authorID, $personID)]
             return 
                 distinct-values($entries/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.)
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             let $correspondence-partners := query:correspondence-partners($params('personID'))
@@ -834,18 +946,21 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('writings')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()  |
                 core:data-collection('news')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()  |
                 core:data-collection('thematicCommentaries')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()  |
-                core:data-collection('documents')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() 
+                core:data-collection('documents')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() |
+                core:data-collection('works')//mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root()
             let $docsMentioned := 
-                core:data-collection('letters')//tei:*[contains(@key,$personID)]/root() | 
+                core:data-collection('letters')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() | 
                 core:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('writings')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('diaries')//tei:ab[contains(@where,$personID)]/root() |
+                core:data-collection('writings')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('news')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('news')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('orgs')//tei:*[contains(@key,$personID)][not(parent::tei:orgName/@type)]/root() |
                 core:data-collection('biblio')//tei:term[.=$personID]/root() |
-                core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('documents')//tei:*[contains(@key,$personID)]/root() |
-                core:data-collection('var')//tei:*[contains(@key,$personID)]/root() |
+                core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
+                core:data-collection('documents')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
+                core:data-collection('var')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
+                core:data-collection('works')//mei:*[contains(@dbkey,$personID)]/root() |
                 (: <ref target="wega:A002068"/> :)
                 core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
                 core:data-collection('diaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
@@ -859,6 +974,9 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('var')//tei:*[contains(@target,'wega:' || $personID)]/root() 
             return
                 $docsMentioned except $docsAuthor
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
@@ -886,6 +1004,9 @@ declare function wdt:indices($item as item()*) as map(*) {
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            () 
         },
         'sort' := function($params as map(*)?) as document-node()* {
             $item
@@ -926,6 +1047,54 @@ declare %private function wdt:sort-key-person($node as node()) as xs:string? {
     let $name := str:normalize-space($node//tei:persName[@type='reg'])
     return 
         lower-case(replace(wega-util:strip-diacritics($sortName || $name), "'", ""))
+};
+
+(:~
+ : Helper function for filtering a collection by date(s)
+ : Called by almost every function of this module
+ : This function returns a sequence of (tei or mei) date elements
+ : NB: local filters need to be applied to reduce the result set for the respective docType
+~:)
+declare %private variable $wdt:filter-by-date := function($item, $dateFrom as xs:date?, $dateTo as xs:date?) as node()* {
+    if(empty(($dateFrom, $dateTo))) then ()
+    else if(string($dateFrom) = string($dateTo)) then ((
+        $item/range:field-eq('date-when', string($dateFrom)) | 
+        $item/range:field-eq('date-from', string($dateFrom)) | 
+        $item/range:field-eq('date-to', string($dateFrom)) |
+        $item/range:field-eq('date-notBefore', string($dateFrom)) |
+        $item/range:field-eq('date-notAfter', string($dateFrom))
+        ))
+    else if(empty($dateFrom)) then ((
+        $item/range:field-le('date-when', string($dateTo)) | 
+        $item/range:field-le('date-from', string($dateTo)) | 
+        $item/range:field-le('date-to', string($dateTo)) |
+        $item/range:field-le('date-notBefore', string($dateTo)) |
+        $item/range:field-le('date-notAfter', string($dateTo))
+        ))
+    else if(empty($dateTo)) then ((
+        $item/range:field-ge('date-when', string($dateFrom)) | 
+        $item/range:field-ge('date-from', string($dateFrom)) | 
+        $item/range:field-ge('date-to', string($dateFrom)) |
+        $item/range:field-ge('date-notBefore', string($dateFrom)) |
+        $item/range:field-ge('date-notAfter', string($dateFrom))
+        ))
+    else ((
+        $item/range:field-ge('date-when', string($dateFrom)) | 
+        $item/range:field-ge('date-from', string($dateFrom)) | 
+        $item/range:field-ge('date-to', string($dateFrom)) |
+        $item/range:field-ge('date-notBefore', string($dateFrom)) |
+        $item/range:field-ge('date-notAfter', string($dateFrom))
+        ) intersect (
+        $item/range:field-le('date-when', string($dateTo)) | 
+        $item/range:field-le('date-from', string($dateTo)) | 
+        $item/range:field-le('date-to', string($dateTo)) |
+        $item/range:field-le('date-notBefore', string($dateTo)) |
+        $item/range:field-le('date-notAfter', string($dateTo))
+        ))
+        (:  need to check that these dates are xs:date and not xs:gYear
+            because otherwise a search for "from:1817-01-02" "to:1817-01-10"
+            would return all <date when="1817"> as well
+        :)
 };
 
 declare function wdt:members($memberOf as xs:string+) as item()* {

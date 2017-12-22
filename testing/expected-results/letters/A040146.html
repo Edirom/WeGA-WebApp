@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146" />
         <meta property="dc:description" content="revidiert sein Urteil über L. Schneider, der seine Oper angefordert u. Stimmen gekauft hat, dann aber die Part. ohne Antwort zurücksandte; dankt für S's Lexikonbeiträge, wartet auf versch. Beiträge anderer; kündigt Besuch in Salzburg auf der Reise nach Wien an; über zu erwerbende Bücher;" />
         <meta name="description" content="revidiert sein Urteil über L. Schneider, der seine Oper angefordert u. Stimmen gekauft hat, dann aber die Part. ohne Antwort zurücksandte; dankt für S's Lexikonbeiträge, wartet auf versch. Beiträge anderer; kündigt Besuch in Salzburg auf der Reise nach Wien an; über zu erwerbende Bücher;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,53 +248,97 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040146.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">1802-12-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">1802-12-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A006950/Korrespondenz/A045361.html">1803-05-17</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A006950.html">Eberwein, Traugott Maximilian</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040147.html">1803-10-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001932/Korrespondenz/A045337.html">1804-05-28</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001932.html">Susan, Joseph August</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A006950/Korrespondenz/A045361.html">1803-05-17</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A006950.html">Eberwein, Traugott Maximilian</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040147.html">1803-10-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">1802-12-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A045339.html">1802-07-08</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001932/Korrespondenz/A045337.html">1804-05-28</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001932.html">Susan, Joseph August</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">1802-12-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A045339.html">1802-07-08</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040147.html">1803-10-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A040993.html">1817-11-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040147.html">1803-10-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A040993.html">1817-11-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -331,13 +378,13 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6511710311598117114103" /> <span title="Augsburg">Augsburg</span> 
+                                    <input type="checkbox" name="options" value="A130017" /> <span title="Augsburg">Augsburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6711198117114103" /> <span title="Coburg">Coburg</span> 
+                                    <input type="checkbox" name="options" value="A130048" /> <span title="Coburg">Coburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="839710812298117114103" /> <span title="Salzburg">Salzburg</span> 
+                                    <input type="checkbox" name="options" value="A130023" /> <span title="Salzburg">Salzburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -351,7 +398,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <span class="tei_dateline textAlign-right"><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span></span>, den 30. Juny <span class="tei_hi_bold">1803</span>.</span>
+               <span class="tei_dateline textAlign-right"><span class="tei_hi_spaced_out"><span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span></span>, den 30. Juny <span class="tei_hi_bold">1803</span>.</span>
                <p class="teiLetter_salute">Innigst geliebter Freund und Bruder!</p>
             </div>
                                         <p class="inlineEnd">Eben erhalte ich dein liebes Schreiben vom <span class="tei_hi_bold">24.</span> Juny<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a> und meine Freude endlich einmal wieder etwas von dir zu hören, von dem ich mich
@@ -360,11 +407,11 @@
                auf mich? Warum war ich so eigensinnig, erst eine Antwort abwarten zu wollen eh ich
                selbst wieder schrieb? künftig werde ich deine Wahrheit öfter auf die Probe stellen.
                Nun zu or dentlicher Beantwortung eines jeden Punktes deines Briefs. Meine
-               Beschreibung des <span class="tei_placeName"><span class="6711198117114103">Coburg</span></span>er Hofs war ganz meiner damaligen Ansicht der Dinge gemäß,
-               aber seit ich dir jenen Brief schrieb, bin <span class="tei_supplied" id="d57898e30"><span class="brackets_supplied">[</span>ich<span class="brackets_supplied">]</span></span> in meiner Menschenkenntniß wieder
+               Beschreibung des <span class="preview places A130048" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130048.html">Coburg</span>er Hofs war ganz meiner damaligen Ansicht der Dinge gemäß,
+               aber seit ich dir jenen Brief schrieb, bin <span class="tei_supplied" id="d10e28"><span class="brackets_supplied">[</span>ich<span class="brackets_supplied">]</span></span> in meiner Menschenkenntniß wieder
                            ganz irre geworden. Ich glaube dir bereits geschrieben zu haben, daß <a class="preview persons A001723" href="/exist/apps/WeGA-WebApp/de/A001723.html">Hr. <span class="tei_hi_spaced_out">Schneider</span></a>,
                wie ich bey ihm war<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>, mir die Stimmen <span class="preview works A020034" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020034.html">meiner Oper</span> auf der Stelle abkaufte und
-                           bezahlte, und ich ihm nur noch die Partitur und das Buch von <span class="6511710311598117114103"><span class="6511710311598117114103">Augsburg</span></span> schicken sollte<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>; ich thue das, nebst einer Anweisung, wohin das übliche Geld zu bezahlen, und denke
+                           bezahlte, und ich ihm nur noch die Partitur und das Buch von <span class="6511710311598117114103"><span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span></span> schicken sollte<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>; ich thue das, nebst einer Anweisung, wohin das übliche Geld zu bezahlen, und denke
                dir mein Erstaunen, er halte statt des Geldes, oder eines Briefes, der mir den
                Empfang desselben zusicherte, meine Partitur und alles durch den nämlichen Fuhrmann
                <span class="tei_hi_spaced_out">uneröffnet</span> zurück. Seit der Zeit habe ich öfters an ihn geschrieben, ihm die
@@ -381,10 +428,10 @@
                sage ich weiter nichts, als daß ich hoffe, sie bald selbst mit dir durchgehen zu
                können<a class="noteMarker" id="ref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a>. – Du staunest? ja ja es ist wahr, ich glaube dich bald umarmen zu können, das
                wie? sollst du gleich erfahren. Schon lange war es bey mir und <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinem Vater</a>
-               beschlossen, zu Ende künftigen Monats nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> zu gehen (denn daß in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> meines
+               beschlossen, zu Ende künftigen Monats nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> zu gehen (denn daß in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> meines
                Bleibens nicht ist, hast du errathen) und dein Brief hat mich bestimmt, <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">meinen Vater</a>
-               zu bewegen, daß er mir versprochen hat, über <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> zu gehen und dort vielleicht
-               einige Zeit zu verweilen, von wo aus du leicht mit uns nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> gehen könntest. Nun
+               zu bewegen, daß er mir versprochen hat, über <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> zu gehen und dort vielleicht
+               einige Zeit zu verweilen, von wo aus du leicht mit uns nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> gehen könntest. Nun
                eine Bitte. Erkundige dich gleich nach einem Quartier für uns, in welcher Gegend der
                Stadt es auch sey, und schreibe mir ja mit <span class="tei_hi_spaced_out">umgehender Post</span> wo und wie theuer es sey,
                worauf ich dann gleich den Tag meiner Ankunft berichten werde. Den <span class="tei_hi_spaced_out">Apollon</span> und <span class="tei_hi_spaced_out">Bach</span>
@@ -462,7 +509,7 @@
                             </div>
                                     <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="title">"Briefe von Carl Maria von Weber"</span>, in: <span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Bd. 1 (1843), S. 2–3</p>
+                                <p class="biblio-entry"><span class="title">"Briefe von Carl Maria von Weber"</span>, in: <span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Bd. 1 (1843), S. 2–3</p>
                                 
                                 <div>
                                     
@@ -509,10 +556,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -521,9 +564,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040146</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

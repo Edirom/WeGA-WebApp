@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Shino Funayama" />
-        <meta property="dc:date" content="2017-05-04T15:28:01.040220Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041615" />
         <meta property="dc:description" content="kündigt Part., St. u. Buch seiner Oper an; nach Rücksprache mit Kind soll die Oper auf Brühls Vorschlag umbenannt werden; legt Paket für Schlesinger bei; die verschobene Theatereröffn. habe seinen Reiseplan umgedreht; bittet um Empfehlungsschreiben; Preciosa wolle er noch vor der Abreise vollenden u. bittet wegen der Reise um Voraushonorar; erwähnt Engagement K. Willmanns u. Gastrollen Gerstäckers;" />
         <meta name="description" content="kündigt Part., St. u. Buch seiner Oper an; nach Rücksprache mit Kind soll die Oper auf Brühls Vorschlag umbenannt werden; legt Paket für Schlesinger bei; die verschobene Theatereröffn. habe seinen Reiseplan umgedreht; bittet um Empfehlungsschreiben; Preciosa wolle er noch vor der Abreise vollenden u. bittet wegen der Reise um Voraushonorar; erwähnt Engagement K. Willmanns u. Gastrollen Gerstäckers;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,53 +248,97 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041614.html">1820-06-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041614.html">1820-06-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz, Friedrich</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041616.html">1820-07-05</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A004560.html">Bruno, Joseph</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041554.html">1820-06-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041616.html">1820-07-05</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A004560.html">Bruno, Joseph</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041606.html">1820-05-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041554.html">1820-06-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041606.html">1820-05-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621.html">1820-07-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041554.html">1820-06-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621.html">1820-07-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041554.html">1820-06-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -333,23 +380,21 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="661149711711011599104119101105103" /> <span title="Braunschweig">Braunschweig</span> 
+                                    <input type="checkbox" name="options" value="A130021" /> <span title="Braunschweig">Braunschweig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66114101109101110" /> <span title="Bremen">Bremen</span> 
+                                    <input type="checkbox" name="options" value="A130032" /> <span title="Bremen">Bremen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="71246116116105110103101110" /> <span title="Göttingen">Göttingen</span> 
+                                    <input type="checkbox" name="options" value="A130047" /> <span title="Göttingen">Göttingen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7297108108101" /> <span title="Halle">Halle</span> 
+                                    <input type="checkbox" name="options" value="A130009" /> <span title="Hamburg">Hamburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                    <input type="checkbox" name="options" value="A130018" /> <span title="Hannover">Hannover</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7297110111118101114" /> <span title="Hanover">Hanover</span> 
+                                    <input type="checkbox" name="options" value="A130199" /> <span title="Kopenhagen">Kopenhagen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7511111211210111010497103101110" /> <span title="Koppenhagen">Koppenhagen</span> 
+                                    <input type="checkbox" name="options" value="A130046" /> <span title="Lübeck">Lübeck</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="762529810199107" /> <span title="Lübeck">Lübeck</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7910810010111098117114103" /> <span title="Oldenburg">Oldenburg</span> 
+                                    <input type="checkbox" name="options" value="A130055" /> <span title="Oldenburg">Oldenburg</span> 
                                 </label>
                             </div>
                         </div>
@@ -377,8 +422,8 @@
                beilegte. Er wird es bei Ew. Hochgeboren abholen lassen. Dergleichen einzupacken, gehört
                zu meinen fatalsten Geschäften, deßhalb bitte um Nachsicht.</p>
                                         <p>Die Eröffnung des Theaters im 8<span class="tei_hi_superscript">br</span> hat
-               meinen Reiseplan gänzlich umgedreht. Ich gehe nun d. 25<span class="tei_hi_superscript">t</span> Juli von hier über <span class="tei_placeName"><span class="7297108108101">Halle</span></span>,
-              <span class="tei_placeName"><span class="71246116116105110103101110">Göttingen</span></span>, <span class="tei_placeName"><span class="7297110111118101114">Hanover</span></span>, <span class="tei_placeName"><span class="661149711711011599104119101105103">Braunschweig</span></span>, <span class="tei_placeName"><span class="66114101109101110">Bremen</span></span>, <span class="tei_placeName"><span class="7910810010111098117114103">Oldenburg</span></span>, <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span>, <span class="tei_placeName"><span class="762529810199107">Lübeck</span></span> nach <span class="tei_placeName"><span class="7511111211210111010497103101110">Koppenhagen</span></span> 
+               meinen Reiseplan gänzlich umgedreht. Ich gehe nun d. 25<span class="tei_hi_superscript">t</span> Juli von hier über <span class="7297108108101">Halle</span>,
+              <span class="preview places A130047" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130047.html">Göttingen</span>, <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hanover</span>, <span class="preview places A130021" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130021.html">Braunschweig</span>, <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span>, <span class="preview places A130055" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130055.html">Oldenburg</span>, <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span>, <span class="preview places A130046" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130046.html">Lübeck</span> nach <span class="preview places A130199" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130199.html">Koppenhagen</span> 
                u werde seiner Zeit von Hamburg aus Ew. Hochgeboren noch um die nähere Bestimmung der
                Tage, wenn meine Gegenwart in Berlin nothwendig werden wird – bitten. Zugleich bitte ich
                ergebenst, mir durch einige Empfehlungsschreiben an genannten Orten den Erfolg meiner
@@ -478,10 +523,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -490,9 +531,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041615</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041615</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 4. Mai 2017 durch Shino Funayama</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

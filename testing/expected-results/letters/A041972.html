@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T15:51:53.684376Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041972" />
         <meta property="dc:description" content="betrifft Änderungswünsche im Textbuch der Euryanthe (insbes. Scene mit Hochzeitszug betr.); W. besteht auf Scheintod der Euryanthe; erkundigt sich nach Ch's Rückkehr nach Dresden;" />
         <meta name="description" content="betrifft Änderungswünsche im Textbuch der Euryanthe (insbes. Scene mit Hochzeitszug betr.); W. besteht auf Scheintod der Euryanthe; erkundigt sich nach Ch's Rückkehr nach Dresden;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,50 +248,94 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041971.html">1822-11-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041971.html">1822-11-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000372/Korrespondenz/A041855.html">1822-07-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000372.html">Derossi, Joseph</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041973.html">1822-11-16</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000622.html">Gerstäcker, Friedrich</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001709/Korrespondenz/A042075.html">1823-01-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001709.html">Schmidt, Friedrich Ludwig</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000372/Korrespondenz/A041855.html">1822-07-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000372.html">Derossi, Joseph</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041973.html">1822-11-16</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000622.html">Gerstäcker, Friedrich</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041879.html">1822-10-22</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001709/Korrespondenz/A042075.html">1823-01-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001709.html">Schmidt, Friedrich Ludwig</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041959.html">1822-10-10</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041978.html">1822-11-28</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000288/Korrespondenz/A042045.html">1823-06-14</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041978.html">1822-11-28</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000288/Korrespondenz/A045224.html">1823-05-31</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000288.html">Chézy, Helmina von</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -324,7 +371,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6811458" /> <span title="Dr:">Dr:</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label>
                             </div>
                         </div>
@@ -371,15 +418,15 @@
             <span class="tei_hi_underline1">So</span> wird die Sache wie sie sein muß, und besonders <span class="6910310897110116105110101">Eglantine</span> gewinnt unendlich an Wahrheit, Intereße, und Neuheit. Sie haben mir erlaubt meine Meynung zu bemerken, hier komme ich mit dem was ich noch wünsche <span class="tei_hi_latintype">pp</span> angezogen.</p>
                                         <p>Das <span class="tei_hi_underline1">Maylied</span> ist ein wahres Mayblümlein, der Himmel schenke mir eine seiner würdige Weise.</p>
                                         <p><span class="6510011110897114"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Adolar</span></span></span> jammert mir ein klein bischen zu viel, und nicht ganz männlich, hier brauchts aber nur Zusamenziehen, und das haben Sie mir ja vergönnt.</p>
-                                        <p>Daß <span class="6610111411610497">Bertha</span> ihm von <span class="691031089711011646">Eglant.</span> spricht ist sehr gut. daß <span class="6510011110897114">Adolar</span> abgeht um Hülfe zu holen, mißfällt mir aber, er hat einmal sein Land an <span class="7612111510597114116">Lysiart</span> verlohren, noch <span class="tei_hi_underline1">hofft</span> er blos, <span class="tei_hi_underline1">überzeugt</span> kann er noch nicht sein, daher sucht er gewiß blos Hülfe in <span class="tei_hi_underline1">sich</span>, und will ihn zum Gotteskampfe fordern, er müßte daher von den Landleuten abgehalten werden sogleich dem Paare entgegen zu stürzen. <span class="tei_del">In<a class="noteMarker" id="ref-d54023e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54023e61">‡</a></span> die Szene die jezt komt wollen wir doch ja behalten wie sie ist. die andre Lesart möchte etwas übereilt erscheinen. <span class="7612111510597114116">Lysiart</span> wünscht ich etwas mehr beschäftiget. <span class="6510011110897114">Adolar</span> tritt ihm nun unkenntlich <span class="tei_add tei_hi_superscript">und allein<a class="noteMarker" id="ref-d54023e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54023e70">‡</a></span> wieder entgegen und verflucht diesen Hochzeitzug <span class="tei_hi_latintype">pp</span> da befiehlt <span class="7612111558"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Lys</span></span><span class="tei_hi_latintype">:</span></span> den fremden Tollkopf zu fangen. die Menge dringt auf ihn ein, da schlägt er sein Visir zurük /: ich deute hier mit wenig Worten an was ich ohngefähr wünsche :/ „Wie! <span class="tei_hi_underline1">mich</span> wollt <span class="tei_hi_underline1">ihr</span> verderben?“ da sinkt ihm alles zu Füßen, und springt im nächsten Augenblik wuthentbrannt gegen <span class="7612111558329711710246327612111558"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Lys:</span></span> auf. <span class="tei_hi_latintype">Lys:</span></span> steht heldenkühn und trotzig der Gewalt gegenüber. <span class="6510011110897114"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Adolar</span></span></span> muß sagen daß er <span class="6510011110897114"><span class="tei_add tei_hi_superscript">Adolar<a class="noteMarker" id="ref-d54023e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54023e107">‡</a></span></span> <span class="6911711412197110116104101110">Euryanthen</span> <span class="tei_add tei_hi_superscript">seiner Schmach<a class="noteMarker" id="ref-d54023e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54023e114">‡</a></span> geopfert habe, nun kann erst <span class="6910310897110116105110101"><span class="tei_hi_underline1">Eglantine</span></span> frohlokken, sonst zerstört sie ja ihr Werk ohne einen Erfolg zu wißen, daß sie dabei <span class="7612111510597114116101110">Lysiarten</span> verhöhne, und als ihr Werkzeug schildre, fänd ich sehr schön, und Lysiart ersticht sie. dem Chor wünschte ich kurze kräftig donnernde Worte gegen <span class="7612111510597114116">Lysiart</span>. Trozze nicht! Verruchter! <span class="tei_hi_latintype">pp</span> zwischen diesen Sturm nun tritt der König <span class="tei_hi_latintype">pp</span></p>
+                                        <p>Daß <span class="6610111411610497">Bertha</span> ihm von <span class="691031089711011646">Eglant.</span> spricht ist sehr gut. daß <span class="6510011110897114">Adolar</span> abgeht um Hülfe zu holen, mißfällt mir aber, er hat einmal sein Land an <span class="7612111510597114116">Lysiart</span> verlohren, noch <span class="tei_hi_underline1">hofft</span> er blos, <span class="tei_hi_underline1">überzeugt</span> kann er noch nicht sein, daher sucht er gewiß blos Hülfe in <span class="tei_hi_underline1">sich</span>, und will ihn zum Gotteskampfe fordern, er müßte daher von den Landleuten abgehalten werden sogleich dem Paare entgegen zu stürzen. <span class="tei_del">In<a class="noteMarker" id="ref-d10e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e61">‡</a></span> die Szene die jezt komt wollen wir doch ja behalten wie sie ist. die andre Lesart möchte etwas übereilt erscheinen. <span class="7612111510597114116">Lysiart</span> wünscht ich etwas mehr beschäftiget. <span class="6510011110897114">Adolar</span> tritt ihm nun unkenntlich <span class="tei_add tei_hi_superscript">und allein<a class="noteMarker" id="ref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span> wieder entgegen und verflucht diesen Hochzeitzug <span class="tei_hi_latintype">pp</span> da befiehlt <span class="7612111558"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Lys</span></span><span class="tei_hi_latintype">:</span></span> den fremden Tollkopf zu fangen. die Menge dringt auf ihn ein, da schlägt er sein Visir zurük /: ich deute hier mit wenig Worten an was ich ohngefähr wünsche :/ „Wie! <span class="tei_hi_underline1">mich</span> wollt <span class="tei_hi_underline1">ihr</span> verderben?“ da sinkt ihm alles zu Füßen, und springt im nächsten Augenblik wuthentbrannt gegen <span class="7612111558329711710246327612111558"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Lys:</span></span> auf. <span class="tei_hi_latintype">Lys:</span></span> steht heldenkühn und trotzig der Gewalt gegenüber. <span class="6510011110897114"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Adolar</span></span></span> muß sagen daß er <span class="6510011110897114"><span class="tei_add tei_hi_superscript">Adolar<a class="noteMarker" id="ref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">‡</a></span></span> <span class="6911711412197110116104101110">Euryanthen</span> <span class="tei_add tei_hi_superscript">seiner Schmach<a class="noteMarker" id="ref-d10e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e114">‡</a></span> geopfert habe, nun kann erst <span class="6910310897110116105110101"><span class="tei_hi_underline1">Eglantine</span></span> frohlokken, sonst zerstört sie ja ihr Werk ohne einen Erfolg zu wißen, daß sie dabei <span class="7612111510597114116101110">Lysiarten</span> verhöhne, und als ihr Werkzeug schildre, fänd ich sehr schön, und Lysiart ersticht sie. dem Chor wünschte ich kurze kräftig donnernde Worte gegen <span class="7612111510597114116">Lysiart</span>. Trozze nicht! Verruchter! <span class="tei_hi_latintype">pp</span> zwischen diesen Sturm nun tritt der König <span class="tei_hi_latintype">pp</span></p>
                                         <p>Den scheinbaren Tod der <span class="69117114"><span class="tei_hi_underline1">Eur</span></span> kann ich mir noch nicht nehmen laßen. das ist ja auch <span class="tei_hi_underline1">ganz andre</span> Situat: wie im <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_underline1">Freysch:</span></span> Ich nehme den herzlichst freudigen Antheil an Ihrer wieder kehrenden Zufriedenheit. ich weiß zu beurtheilen, was das werth ist. der Unfall Ihres Sohnes,<a class="noteMarker" id="ref-C_00231" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_00231">*</a> wird hoffentlich sich wieder zum guten gewendet haben. wie mögen Sie erschrokken sein. Sie sagen, es wäre vielleicht beßer daß Sie nicht in <span class="tei_hi_latintype">Dr:</span><a class="noteMarker" id="ref-C_00232" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_00232">*</a> wären, ach meine, beste <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Freundin</a> das glaube ich nicht. alle diese Äußerungen deuten mir aber leider auf noch lange Abwesenheit. <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html">Winkler</a><a class="noteMarker" id="ref-C_00233" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_00233">*</a> hat sich dringend nach Ihnen erkundigt, und <a class="preview persons A001190" href="/exist/apps/WeGA-WebApp/de/A001190.html"><span class="tei_hi_latintype">Loeben</span></a><a class="noteMarker" id="ref-C_00234" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_00234">*</a> behauptete Sie hätten d: 4<span class="tei_hi_superscript">t</span> 9<span class="tei_hi_superscript">br</span> hier sein wollen.</p>
                                         <p class="tei_closer textAlign-left">
             Neues das Sie interreßiren könnte wüßte ich nicht. bei mir ist alles wohl bis auf mich. <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">meine Frau</a> grüßt herzlichst ich bin wie immer Ihr treu ergebener
             <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">MvWeber</a></span></span>
-            <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="6811458"><span class="tei_hi_latintype">Dr:</span></span></span> d: 11<span class="tei_hi_superscript">t</span> 9<span class="tei_hi_superscript">br</span> 1822.</span>
+            <span class="tei_dateline textAlign-left"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html"><span class="tei_hi_latintype">Dr:</span></span> d: 11<span class="tei_hi_superscript">t</span> 9<span class="tei_hi_superscript">br</span> 1822.</span>
          </p>
                                         <div class="tei_postscript">
-                                            <p>Da fällt mir eben noch ein, daß es mich schauerlicher dünkt wenn der Hochzeitzug blos unter einem Marsch <span class="tei_hi_underline1">ohne</span> Chor käme, und einzelne Äußerungen des Abscheues der Vorne gruppirten Landleute <span class="tei_del">da<a class="noteMarker" id="ref-d54023e206" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54023e206">‡</a></span>zwischen diese Freudenklänge, drängen, eben so <span class="6510011110897114115">Adolars</span> mit Mühe zurük gehaltene Wuth. – was meinen Sie?</p>
+                                            <p>Da fällt mir eben noch ein, daß es mich schauerlicher dünkt wenn der Hochzeitzug blos unter einem Marsch <span class="tei_hi_underline1">ohne</span> Chor käme, und einzelne Äußerungen des Abscheues der Vorne gruppirten Landleute <span class="tei_del">da<a class="noteMarker" id="ref-d10e205" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e205">‡</a></span>zwischen diese Freudenklänge, drängen, eben so <span class="6510011110897114115">Adolars</span> mit Mühe zurük gehaltene Wuth. – was meinen Sie?</p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -445,19 +492,19 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d54023e61" data-title="del">"In":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e61" data-title="del">"In":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d54023e70" data-title="add">"und allein": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e70" data-title="add">"und allein": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d54023e107" data-title="add">"Adolar": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e107" data-title="add">"Adolar": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d54023e114" data-title="add">"seiner Schmach": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e114" data-title="add">"seiner Schmach": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d54023e206" data-title="del">"da":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e205" data-title="del">"da":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -491,10 +538,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -503,9 +546,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041972</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041972</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

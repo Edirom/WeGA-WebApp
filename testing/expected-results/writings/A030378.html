@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030378" />
         <meta property="dc:description" content="zitiert hier aus seiner Werkeinführung der Prager Zeitung; verteidigt nochmals &#34;Alimelek&#34; und verweist auf den Erfolg von &#34;Emma di Resburgo&#34;; bedauert die Anfeindungen seiner künstlerischen Bemühungen" />
         <meta name="description" content="zitiert hier aus seiner Werkeinführung der Prager Zeitung; verteidigt nochmals &#34;Alimelek&#34; und verweist auf den Erfolg von &#34;Emma di Resburgo&#34;; bedauert die Anfeindungen seiner künstlerischen Bemühungen" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,67 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030378.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030377.html">Carl Maria von Webers Reaktion auf gegen ihn gerichtete Kritik im Literarischen Merkur Nr. 13 (Teil 1 von 2)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -289,13 +348,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103101114" /> <span title="Leipziger">Leipziger</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110101114" /> <span title="Wiener">Wiener</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -318,15 +375,15 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><span class="tei_supplied" id="d39416e4"><span class="brackets_supplied">[</span><a class="preview writings A030377" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030377.html">Forts.</a><span class="brackets_supplied">]</span></span></p>
-                                        <p>Ich werde mir also die Freiheit nehmen müssen, ihm bei seinen Citaten zu helfen; und das möge er nur gütigst annehmen, denn sobald möchte er mich nicht wieder zum Gehülfen bekommen. Auf die <span class="tei_placeName"><span class="76101105112122105103101114">Leipziger</span></span> musikal. Zeit. als allgemeiner gekannt, verweise ich unmittelbar die Theilnehmenden, und führe hier bloß die <span class="tei_hi_spaced_out">Prager</span> Zeitung an, die dasselbe, nur in andern Worten enthält.</p>
+                                        <p><span class="tei_supplied" id="d10e4"><span class="brackets_supplied">[</span><a class="preview writings A030377" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030377.html">Forts.</a><span class="brackets_supplied">]</span></span></p>
+                                        <p>Ich werde mir also die Freiheit nehmen müssen, ihm bei seinen Citaten zu helfen; und das möge er nur gütigst annehmen, denn sobald möchte er mich nicht wieder zum Gehülfen bekommen. Auf die <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipziger</span> musikal. Zeit. als allgemeiner gekannt, verweise ich unmittelbar die Theilnehmenden, und führe hier bloß die <span class="tei_hi_spaced_out">Prager</span> Zeitung an, die dasselbe, nur in andern Worten enthält.</p>
                                         <p>"<a class="preview writings A031184" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031184.html"><span class="tei_hi_spaced_out">Prager Zeitung</span>, No. 294. vom 21. Octbr. 1815</a>. – – sie erschien (die Oper <span class="tei_hi_spaced_out"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span></span>) auf dem Theater an der <span class="tei_hi_spaced_out">Wien</span>, und mißfiel; oder vielmehr die eingetretenen ungünstigen Umstände erlaubten ihr nicht, sich mit dem Publikum vertraut zu machen, da sie nur einmal gegeben wurde. Ohne im Ganzen der dortigen Ausführung dieser, durch ihre höchst mannigfaltigen kleinen Nüancen, die beinahe den Ensemble-Vortrag eines <span class="tei_hi_spaced_out">Quartetts</span> erfordern – schwierigen Musik zu nahe treten zu wollen, berichte ich bloß folgende Haupt-Thatsachen. Die Rolle des <span class="tei_hi_spaced_out"><span class="65108105109101108101107">Alimelek</span></span> war für den Sänger Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000430" href="/exist/apps/WeGA-WebApp/de/A000430.html">Ehlers</a></span> (Tenorist) geschrieben und berechnet. Eingetretene Verhältnisse hinderten diese Besetzung. Hr. <span class="tei_hi_spaced_out"><a class="preview persons A000511" href="/exist/apps/WeGA-WebApp/de/A000511.html">Forti</a></span> (Bassist) übernahm die Rolle. Die Melodieformen wurden geändert, und ihres ursprünglichen Reizes beraubt, ganze Musikstücke transponirt und, nachtheillos für die Verdienste des Hrn. <a class="preview persons A000511" href="/exist/apps/WeGA-WebApp/de/A000511.html">Forti</a> sey es gesagt, das für die Individualität des Herrn <a class="preview persons A000430" href="/exist/apps/WeGA-WebApp/de/A000430.html">Ehlers</a> so passende Spiel und Leben der ganzen Rolle, konnte nicht auf dieselbe Weise hervortreten, durch welche dieser letzt genannte Künstler sich so lange die Gunst des Publikums erhalten hatte. Mlle. <span class="tei_hi_spaced_out"><a class="preview persons A000241" href="/exist/apps/WeGA-WebApp/de/A000241.html">Buchwieser</a></span> hatte aus physischen Ursachen diesen Abend nicht die Kraft ihre Rolle so zu geben, wie man es von dieser trefflichen Meisterin gewohnt ist, und zog sich, der Liebling des Publikums, jenen Tag zum erstenmale den laut ausgesprochenen Unwillen desselben zu. Daß dergleichen Zufälle hinreichend sind, ein Kunstwerk, dessen Gedeien an so zarten Fäden hängt, für den<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Augenblick zu stürzen, ist klar, tausend andere Uebelstände ungerechnet, die so leicht ungünstig einwirken."</p>
-                                        <p>Allerdings ist die Oper <span class="tei_hi_spaced_out"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span></span> mit den <span class="tei_hi_spaced_out"><span class="122119101105326797108105102101110">zwei Califen</span></span> in <span class="tei_placeName"><span class="87105101110">Wien</span></span>, und <span class="tei_hi_spaced_out"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Wirth und Gast</span></span> in Stuttgart, ein und dasselbe Werk. An letztern Ort schickte sie <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> von <span class="tei_placeName"><span class="7725211099104101110">München</span></span> aus, Stückweise, und sie wurde in wenig Tagen einstudirt. Da konnte sie denn nicht gehen, wie sie gehen sollte, und sie gefiel nicht, ohne eben zu <span class="tei_hi_spaced_out">mißfallen</span>.</p>
+                                        <p>Allerdings ist die Oper <span class="tei_hi_spaced_out"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span></span> mit den <span class="tei_hi_spaced_out"><span class="122119101105326797108105102101110">zwei Califen</span></span> in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, und <span class="tei_hi_spaced_out"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Wirth und Gast</span></span> in Stuttgart, ein und dasselbe Werk. An letztern Ort schickte sie <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> von <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> aus, Stückweise, und sie wurde in wenig Tagen einstudirt. Da konnte sie denn nicht gehen, wie sie gehen sollte, und sie gefiel nicht, ohne eben zu <span class="tei_hi_spaced_out">mißfallen</span>.</p>
                                         <p>Was beweißt dieß aber für oder gegen das Werk? <span class="tei_hi_spaced_out"><span class="preview works A020467" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020467.html">Tancred</span></span> z. B. hat <span class="tei_hi_spaced_out">Wien</span> entzückt, <span class="tei_hi_spaced_out">Dresden</span> und <span class="tei_hi_spaced_out">Berlin</span> hingegen ganz kalt gelassen.</p>
-                                        <p>Wie es nun den [sic] <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span> <span class="tei_hi_spaced_out">hier</span> ergehen wird? wer kann es wissen. An Versuchen ihn schon im Voraus dem Publikum gehässig zu machen, fehlt es ja augenscheinlich nicht. Der Hr. Bemerker wird aber doch gestehen müssen, daß einige Ueberzeugung dazu gehört, eine Oper die in der Hauptstadt <span class="tei_placeName"><span class="87105101110">Wien</span></span> mißfallen hatte, <span class="tei_hi_spaced_out">gleich darauf</span> in der Schwester-Stadt <span class="tei_hi_spaced_out">Prag</span> auf die Bühne zu bringen. Der Erfolg hat bewiesen, daß ich dem richtigen Gefühl des ruhig abwartenden Publikums nicht mit Unrecht vertraut hatte.</p>
+                                        <p>Wie es nun den [sic] <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span> <span class="tei_hi_spaced_out">hier</span> ergehen wird? wer kann es wissen. An Versuchen ihn schon im Voraus dem Publikum gehässig zu machen, fehlt es ja augenscheinlich nicht. Der Hr. Bemerker wird aber doch gestehen müssen, daß einige Ueberzeugung dazu gehört, eine Oper die in der Hauptstadt <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> mißfallen hatte, <span class="tei_hi_spaced_out">gleich darauf</span> in der Schwester-Stadt <span class="tei_hi_spaced_out">Prag</span> auf die Bühne zu bringen. Der Erfolg hat bewiesen, daß ich dem richtigen Gefühl des ruhig abwartenden Publikums nicht mit Unrecht vertraut hatte.</p>
                                         <p>Uebrigens bin ich weit entfernt, <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span> für ein vollendetes Werk zu halten. Wie viele giebt es überhaupt deren? – aber für das eigenthümliche Erfindungs-Vermögen des Komponisten zeugt er gewiß.</p>
-                                        <p>Was will denn nun aber der Hr. Bemerker eigentlich? die Tugenden der Italiener auf Kosten seiner Landsleute erheben? denn er scheint doch, einiges in seinem Geschreibe abgerechnet, ein Deutscher zu seyn. <a href="#footnote01">*)</a></p>
-                                        <p>Die Italiener sind als Nation  eben so achtungswerth als jede andere. Haben aber, trotz der – "ihnen eigenen Billigkeit und Freundlichkeit gegen Ausländer" schon Manchen, z. B. <a class="preview persons A000845" href="/exist/apps/WeGA-WebApp/de/A000845.html">Himmel</a>, ausgepfiffen. Hingegen – "die Nachsicht" gegen <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> bis zur <span class="tei_hi_spaced_out">einige und siebenzigmal wiederholten Aufführung der <span class="tei_hi_antiqua"><span class="preview works A020444" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020444.html">Emma</span></span> getrieben</span>. (nach der <span class="tei_placeName"><span class="87105101110101114">Wiener</span></span> Theater-Zeitung.) Wie kommt das? da sie nach dem Urtheil des Hrn. Bemerkers nur ein zusammengestoppeltes Ding ist?</p>
+                                        <p>Was will denn nun aber der Hr. Bemerker eigentlich? die Tugenden der Italiener auf Kosten seiner Landsleute erheben? denn er scheint doch, einiges in seinem Geschreibe abgerechnet, ein Deutscher zu seyn. <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a></p>
+                                        <p>Die Italiener sind als Nation  eben so achtungswerth als jede andere. Haben aber, trotz der – "ihnen eigenen Billigkeit und Freundlichkeit gegen Ausländer" schon Manchen, z. B. <a class="preview persons A000845" href="/exist/apps/WeGA-WebApp/de/A000845.html">Himmel</a>, ausgepfiffen. Hingegen – "die Nachsicht" gegen <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a> bis zur <span class="tei_hi_spaced_out">einige und siebenzigmal wiederholten Aufführung der <span class="tei_hi_antiqua"><span class="preview works A020444" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020444.html">Emma</span></span> getrieben</span>. (nach der <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiener</span> Theater-Zeitung.) Wie kommt das? da sie nach dem Urtheil des Hrn. Bemerkers nur ein zusammengestoppeltes Ding ist?</p>
                                         <p>Doch nun <span class="tei_hi_spaced_out">genug</span>, um <span class="tei_hi_spaced_out">meine hohe Achtung für alles der Oeffentlichkeit angehörige</span>,<span class="tei_pb" title="Seitenumbruch" data-facs="Seite_2"> | </span> ausgesprochen zu haben. Und vom ersten bis letzten Buchstaben <span class="tei_hi_spaced_out">zu viel</span>, wäre es um <span class="tei_hi_spaced_out">meinet</span>- oder des Hrn. <span class="tei_hi_spaced_out">Bemerkers-willen</span> geschehen.</p>
                                         <p>Deshalb möge er es auch gütigst verzeihen, wenn es mir gar nicht darum zu thun ist, mit ihm über jede seiner Zeilen mündlich mich zu besprechen. Da ich weiß wie er <span class="tei_hi_spaced_out">einsieht</span>, bin ich gar nicht begierig zu wißen wie er <span class="tei_hi_spaced_out">aussieht</span>. – –</p>
                                         <p>Nur noch die trübe Bemerkung kann ich nicht unterdrücken, wie schmerzlich es doch für den deutschen Künstler sein müßte, sähe er seine, – <span class="tei_hi_spaced_out">wahrhaft aus dem reinsten Willen</span> für das Gedeihen der Sache überhaupt, – hervorgehenden Bestrebungen, durchaus so gewaltsam verkannt und angefeindet bis zu pasquillantenhaften Persönlichkeiten.</p>
@@ -337,8 +394,9 @@
                                         </div>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*)<span class="tei_hi_antiqua">Suum cuique</span>! – Die des Bemerkers Aufsatz in No. 13. verunzierenden Sprach- und Schreibefehler, kommen, wie nochmalige Durchsicht des Manuscripts zeigt, lediglich auf Rechnung des durch verspäteten Abdruck dießmal übereilten Correctors.        <span class="tei_hi_spaced_out">Die Red</span>.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*)<span class="tei_hi_antiqua">Suum cuique</span>! – Die des Bemerkers Aufsatz in No. 13. verunzierenden Sprach- und Schreibefehler, kommen, wie nochmalige Durchsicht des Manuscripts zeigt, lediglich auf Rechnung des durch verspäteten Abdruck dießmal übereilten Correctors.        <span class="tei_hi_spaced_out">Die Red</span>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -376,7 +434,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Extrablatt zu No. 14. des Literarischen Merkurs</span>, Bd. 2, Heft 14 (17. Februar 1820), S. 3r–3v</p>
+                                <p class="biblio-entry"><span class="journalTitle">Extrablatt zu No. 14. des Literarischen Merkurs</span>, Bd. 2, Heft 14 (17. Februar 1820), Bl. 3r–3v</p>
                                 
                                 <div>
                                     
@@ -425,10 +483,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -437,9 +491,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030378</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030378</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -49,6 +49,7 @@
         <regressiontest doctype="thematicCommentaries"/>
         <regressiontest doctype="var"/>
         <regressiontest doctype="writings"/>
+        <regressiontest doctype="places"/>
     </target>
     
     <target name="download-smufl-font" depends="bower" if="${update.smufl-font}">
@@ -149,11 +150,14 @@
                 <include name="**/*.gif"/>
                 <include name="**/*.png"/>
                 <include name="**/*.jpg"/>
+                <include name="**/*.xsl"/>
+                <include name="**/*.xml"/>
                 <!-- exclude html files. non-well-formed html makes eXist choke -->
                 <exclude name="**/*.html"/>
                 <!-- exclude tests to reduce file size -->
                 <exclude name="**/test/**"/>
                 <exclude name="**/tests.js"/>
+                <exclude name="**/docs/**"/>
             </fileset>
         </copy>
         

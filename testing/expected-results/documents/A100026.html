@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-30T13:17:31.786571Z" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100026" />
         <meta property="dc:description" content="Rechnung von Apitz vom 17. Juli 1816 (u.a. Musikalienkopien), mit e.Anm. Webers u. &#34;bezahlt&#34;-Vermerk vom 1. Okt. 1816;" />
         <meta name="description" content="Rechnung von Apitz vom 17. Juli 1816 (u.a. Musikalienkopien), mit e.Anm. Webers u. &#34;bezahlt&#34;-Vermerk vom 1. Okt. 1816;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,11 +248,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100026.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -281,7 +323,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -294,9 +336,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><span class="tei_supplied" id="d211228e4"><span class="brackets_supplied">[</span>Aufstellung von frd. Hand:<span class="brackets_supplied">]</span></span></p>
+                                        <p><span class="tei_supplied" id="d10e4"><span class="brackets_supplied">[</span>Aufstellung von frd. Hand:<span class="brackets_supplied">]</span></span></p>
                                         <div class="table-wrapper">
-                                            <table id="d211228e6" class="table">
+                                            <table id="d10e6" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_latintype">Soll</span></td>
@@ -382,7 +424,7 @@
                                             </table>
                                         </div>
                                         <div class="table-wrapper">
-                                            <table id="d211228e148" class="table">
+                                            <table id="d10e148" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_latintype">Haben</span></td>
@@ -420,7 +462,7 @@
                                             </table>
                                         </div>
                                         <div class="table-wrapper">
-                                            <table id="d211228e203" class="table">
+                                            <table id="d10e203" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_latintype">Summa</span></td>
@@ -442,7 +484,7 @@
                                             </table>
                                         </div>
                                         <div class="table-wrapper">
-                                            <table id="d211228e226" class="table">
+                                            <table id="d10e226" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>[Zusatz Webers:]</td>
@@ -466,7 +508,7 @@
                                         <p> 
            [von Apitz Hand:]<br /> 
            
-           <span class="tei_hi_latintype">Extrahirt <span class="tei_placeName"><span class="8011497103">Prag</span></span></span> d. 17. <span class="tei_hi_latintype">July</span> [1]816.
+           <span class="tei_hi_latintype">Extrahirt <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span></span> d. 17. <span class="tei_hi_latintype">July</span> [1]816.
            
            <span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">H <a class="preview persons A000041" href="/exist/apps/WeGA-WebApp/de/A000041.html">Apitz</a></span>.</span>
         </p>
@@ -553,10 +595,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -565,9 +603,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100026</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100026</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 30. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

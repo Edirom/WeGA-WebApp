@@ -18,7 +18,8 @@ Quick start guide
 If you have a running eXist database you can simply install the WeGA-data-samples.xar  as well as the WeGA-WebApp.xar from the [Release section](https://github.com/Edirom/WeGA-WebApp/releases) via the eXist-Dashboard.
 
 ### Dependencies on other eXist apps/libs
-* functx (http://www.functx.com), installable via dashboard
+* `functx` [http://www.functx.com](http://www.xqueryfunctions.com), installable via dashboard
+* `WeGA-WebApp-lib`, get it from [https://github.com/Edirom/WeGA-WebApp-lib](https://github.com/Edirom/WeGA-WebApp-lib)
 
 
 

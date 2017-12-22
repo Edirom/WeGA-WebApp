@@ -2,6 +2,7 @@ xquery version "1.0";
 
 import module namespace xdb="http://exist-db.org/xquery/xmldb";
 import module namespace sm="http://exist-db.org/xquery/securitymanager";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "modules/config.xqm";
 
 (: The following external variables are set by the repo:deploy function :)
 
@@ -23,6 +24,12 @@ declare function local:mkcol-recursive($collection, $components) {
         ()
 };
 
+declare function local:set-options() as xs:string* {
+    for $opt in available-environment-variables()[starts-with(., 'WEGA_WEBAPP_')]
+    return
+        config:set-option(substring($opt, 13), string(environment-variable($opt)))
+};
+
 (: Helper function to recursively create a collection hierarchy. :)
 declare function local:mkcol($collection, $path) {
     local:mkcol-recursive($collection, tokenize($path, "/"))
@@ -33,6 +40,9 @@ sm:chown(xs:anyURI(xdb:create-collection($target, 'tmp')), 'guest'),
 
 (: create a logs collection for upload of ANT logs (only needed for development) :)
 sm:chown(xs:anyURI(xdb:create-collection(concat($target, '/tmp'), 'logs')), 'guest'),
+
+(: set options passed as environment variables :)
+local:set-options(),
 
 (: store the collection configuration :)
 local:mkcol("/db/system/config", $target), 

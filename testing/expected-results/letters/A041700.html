@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T15:51:53.684376Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700" />
         <meta property="dc:description" content="übersendet Freischütz-Textbuch, das er abzuschreiben u. umgehend zurückzusenden bittet, da er es bei der Zensur einreichen wolle; mit Angabe der Rollenbesetzung;" />
         <meta name="description" content="übersendet Freischütz-Textbuch, das er abzuschreiben u. umgehend zurückzusenden bittet, da er es bei der Zensur einreichen wolle; mit Angabe der Rollenbesetzung;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,43 +248,77 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041776.html">1821-08-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041701.html">1821-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001980.html">Treitschke, Georg Friedrich</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000966/Korrespondenz/A041691.html">1821-09-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000966.html">Kannegießer, Karl Friedrich Ludwig</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    
-                                </ul>
-                            
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041776.html">1821-08-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041701.html">1821-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001980.html">Treitschke, Georg Friedrich</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000966/Korrespondenz/A041691.html">1821-09-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000966.html">Kannegießer, Karl Friedrich Ludwig</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -366,7 +403,7 @@
                                         <p>
                Ich übersende Ihnen beiliegendes Manuscript<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a> mit dem Ersuchen, es, nach den darin gemachten Abänderungen, in <span class="tei_hi_underline2andMore">größter Eile</span>  abschreiben zu lassen, und mir es alsdann unverweilt zurück zu stellen, damit ich es zur Cenzur geben kann. Herr Operndirector <a class="preview persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl</a> möchte <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">die Partitur</span> bei mir im Bureau abholen lassen, und das Ausschreiben der Stimmen ungesäumt veranlaßen. Die Zeit drängt, wir dürfen keine verlieren<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.
                Die von <a class="preview persons A000386" href="/exist/apps/WeGA-WebApp/de/A000386.html">Sr. Exellenz</a> genehmigte Rollen-Austheilung ist folgende:</p>
-                                        <p><span class="tei_hi_underline1"><span class="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116">Ritter <span class="tei_choice"><span class="tei_corr">Hugo</span><a class="noteMarker" id="ref-d56745e44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56745e44">‡</a></span> von <span class="tei_choice"><span class="tei_corr">Weidenhorst</span><a class="noteMarker" id="ref-d56745e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d56745e50">‡</a></span></span></span>	– <a class="preview persons A002024" href="/exist/apps/WeGA-WebApp/de/A002024.html">Hr Vogl</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116">Ritter <span class="tei_choice"><span class="tei_corr">Hugo</span><a class="noteMarker" id="ref-d10e44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e44">‡</a></span> von <span class="tei_choice"><span class="tei_corr">Weidenhorst</span><a class="noteMarker" id="ref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a></span></span></span>	– <a class="preview persons A002024" href="/exist/apps/WeGA-WebApp/de/A002024.html">Hr Vogl</a></p>
                                         <p><span class="tei_hi_underline1"><span class="67117110111">Cuno</span></span>, Erbförster				– "  <a class="preview persons A002102" href="/exist/apps/WeGA-WebApp/de/A002102.html">Weinmüller</a></p>
                                         <p><span class="tei_hi_underline1"><span class="6510397116104101">Agathe</span></span>						– Dlle <a class="preview persons A001747" href="/exist/apps/WeGA-WebApp/de/A001747.html">Mina Schröder</a></p>
                                         <p><span class="tei_hi_underline1"><span class="19611011099104101110">Ännchen</span></span>						–  "   <a class="preview persons A001029" href="/exist/apps/WeGA-WebApp/de/A001029.html">Tecla Demmer</a></p>
@@ -446,10 +483,10 @@
                                             <div class="apparatusEntry" id="C_003" data-title="note commentary"><span class="tei_lemma">"… drängt, wir dürfen keine verlieren": </span>Die Erstaufführung des <span class="tei_hi_italic">Freischütz</span> in Wien fand am 3. November 1821 im Kärtnerthor-Theater statt.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56745e44" data-title="choice">recte "Hugo": in der Vorlage "Hans???"</div>
+                                            <div class="apparatusEntry" id="d10e44" data-title="choice">recte "Hugo": in der Vorlage "Hans???"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d56745e50" data-title="choice">recte "Weidenhorst": in der Vorlage "Weidenforst"</div>
+                                            <div class="apparatusEntry" id="d10e50" data-title="choice">recte "Weidenhorst": in der Vorlage "Weidenforst"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -465,10 +502,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -477,9 +510,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T16:05:20.174156Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042246" />
         <meta property="dc:description" content="Dank für schmeichelhaften Brief Webers; Spontini behauptet, für ihn sei der Name des Komponisten bereits Garantie für die Qualität der Euryanthe, doch dürfe er nicht allein über eine Aufführung in Berlin entscheiden, sondern nur das aus sechsköpfige Direktorium. In Form einer vertraulichen Mitteilung erwähnt Spontini den geringeren Erfolg der Euryanthe in der Musikkritik - fügt jedoch hinzu, er wisse um die Willkür der Beurteilungen. Im übrigen seien aus Kostengründen Neuinszenierungen großer Opern in Berlin vorerst nicht möglich, zumal bereits andere Werke auf dem Spielplan stünden;" />
         <meta name="description" content="Dank für schmeichelhaften Brief Webers; Spontini behauptet, für ihn sei der Name des Komponisten bereits Garantie für die Qualität der Euryanthe, doch dürfe er nicht allein über eine Aufführung in Berlin entscheiden, sondern nur das aus sechsköpfige Direktorium. In Form einer vertraulichen Mitteilung erwähnt Spontini den geringeren Erfolg der Euryanthe in der Musikkritik - fügt jedoch hinzu, er wisse um die Willkür der Beurteilungen. Im übrigen seien aus Kostengründen Neuinszenierungen großer Opern in Berlin vorerst nicht möglich, zumal bereits andere Werke auf dem Spielplan stünden;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,50 +248,94 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042077.html">1823-11-26</a>:  An   unbekannt
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042077.html">1823-11-26</a>:  An   unbekannt
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042272.html">1824-03-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A044882.html">1824-04-06</a>:  An   unbekannt
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">1824-04-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042272.html">1824-03-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A044882.html">1824-04-06</a>:  An   unbekannt
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042272.html">1824-03-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">1824-04-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042272.html">1824-03-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042248.html">1824-04-28</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">1824-04-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042248.html">1824-04-28</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042285.html">1824-04-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber, Carl Maria von</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -362,9 +409,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="86105101110110101" /> <span title="Vienne">Vienne</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -379,19 +424,19 @@
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">A Monsieur <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C: M: de Weber</a>.<br />
             Monsieur et cher Collegue.</div>
-                                        <p><span class="tei_app"><span class="tei_lem">J’ai voulu profiter de l’occasion favorable de <a class="preview persons A001650" href="/exist/apps/WeGA-WebApp/de/A001650.html">Mr Sassaroli</a> pour vous faire parvenir la presente, en reponse de votre aimable lettre du 18 de ce mois.</span><a class="noteMarker" id="ref-d53554e11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e11">‡</a></span></p>
-                                        <p><span class="tei_app"><span class="tei_lem">Je dois commencer d’abord par vous exprimer, Monsieur, combien j’ai été sensible aux complimens flatteurs et honorables que vous m’avez témoignés, dont je vous prie de vouloir bien agréer toute ma reconnaissance d’un egal retour, quant aux sentimens d’estime pour votre beau talent, que je crois de savoir apprécier.</span><a class="noteMarker" id="ref-d53554e20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e20">‡</a></span></p>
+                                        <p><span class="tei_app"><span class="tei_lem">J’ai voulu profiter de l’occasion favorable de <a class="preview persons A001650" href="/exist/apps/WeGA-WebApp/de/A001650.html">Mr Sassaroli</a> pour vous faire parvenir la presente, en reponse de votre aimable lettre du 18 de ce mois.</span><a class="noteMarker" id="ref-d10e11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e11">‡</a></span></p>
+                                        <p><span class="tei_app"><span class="tei_lem">Je dois commencer d’abord par vous exprimer, Monsieur, combien j’ai été sensible aux complimens flatteurs et honorables que vous m’avez témoignés, dont je vous prie de vouloir bien agréer toute ma reconnaissance d’un egal retour, quant aux sentimens d’estime pour votre beau talent, que je crois de savoir apprécier.</span><a class="noteMarker" id="ref-d10e20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e20">‡</a></span></p>
                                         <p> Venons maintenant à ce qui concerne votre opera <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_underline1">Euryanthe</span></span>: En ma qualité de Compositeur, il me suffit qu’un ouvrage porte votre nom, Monsieur, pour en avoir la haute opinion que vous meritez à juste titre. En ma qualité de directeur gènèral de la musique de S: M: le <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">Roi de Prusse</a>, je dois me diriger moi-meme suivant les lois et les ordonnances de l’Instruction Royale de service qui est pour moi l’<span class="tei_hi_underline1">Arche Sainte</span>.</p>
-                                        <p>Suivant cette Royale Instruction, je dois soumettre à la <span class="tei_app"><span class="tei_lem">decision</span><a class="noteMarker" id="ref-d53554e39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e39">‡</a></span> de la Direction gènèrale de <span class="tei_app"><span class="tei_lem">musique</span><a class="noteMarker" id="ref-d53554e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e45">‡</a></span>, <span class="tei_app"><span class="tei_lem">composée</span><a class="noteMarker" id="ref-d53554e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e51">‡</a></span> de <span class="tei_app"><span class="tei_lem">six</span><a class="noteMarker" id="ref-d53554e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e57">‡</a></span> artistes distingués, l’admission au <span class="tei_app"><span class="tei_lem">repertoire</span><a class="noteMarker" id="ref-d53554e63" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e63">‡</a></span> de tout ouvrage nouveau; et il est <span class="tei_app"><span class="tei_lem">même</span><a class="noteMarker" id="ref-d53554e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e70">‡</a></span> expressement defendu à <span class="preview persons A000235" data-ref="/exist/apps/WeGA-WebApp/de/A000235.html">Mr: l’Intendant <span class="tei_app"><span class="tei_lem">général</span><a class="noteMarker" id="ref-d53554e78" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e78">‡</a></span></span> de faire l’aquisition ou l’achat d’un ouvrage quelconque, s’il ne lui est point <span class="tei_app"><span class="tei_lem">préalablement</span><a class="noteMarker" id="ref-d53554e84" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e84">‡</a></span> proposè et démandé <span class="tei_hi_underline1">par ecrit</span> par cette Direction! Hors, comme la proposition ni la démande de la partition d’<span class="tei_hi_underline1"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> ne lui a pas été encor faite, ni de vive voix, <span class="tei_hi_underline1">ni par ecrit</span>, attendu que nous étions engagès avec <a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Mr: Spohr</a>, avant l’apparution de votre opera, il en resulte, que nous ne possedons pas votre partition, que Nous ne la connoissons pas, et que par consequent Nous n’avons pu prendre aucune deliberation sur la prompte execution sur notre <span class="tei_placeName">thèatre</span>.</p>
-                                        <p><span class="tei_app"><span class="tei_lem">En outre de cela, permettez-moi de grace, Monsieur, quelquels réflexions particulières et <span class="tei_hi_underline1">confidencielles pour vous seul</span>, que mon devoir m’oblige de faire, lorsqu’il s’agit de la mise en scène d’un grand opéra qui nécessite une grande déspense pour le prix de droit d’auteur, de la partition, de toute la copie générale, des decorations, costumes <span class="tei_hi_underline1">etc</span>: <span class="tei_hi_underline1">etc</span>:</span><a class="noteMarker" id="ref-d53554e108" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e108">‡</a></span></p>
-                                        <p><span class="tei_app"><span class="tei_lem">Les gazettes étrangères, surtout celles de <span class="tei_placeName"><span class="86105101110110101">Vienne</span></span> et même de <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, ainsi que toutes les lettres et rapports particuliers sur le succès à <span class="tei_placeName"><span class="86105101110110101">Vienne</span></span> d’<span class="tei_hi_underline1"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> /: pardonnez, Monsieur, à ma nécessité de vous l’avouer :/, n’ont pas été assez favorables, à l’exeption <span class="tei_hi_underline1">d’un article un peu exagéré</span>, inseré par les bienveillans offices de celui, au quel je dois une spirituelle satyre <span class="tei_hi_underline1">en vers</span>, contre <span class="tei_hi_underline1"><span class="preview works A020556" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020556.html">Olimpie</span></span>, et la proscription de mon nom de la gazette de <span class="tei_hi_underline1">Vosse</span>, à moins qu’il ne s’agisse de le maltraiter!</span><a class="noteMarker" id="ref-d53554e122" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e122">‡</a></span></p>
-                                        <p><span class="tei_app"><span class="tei_lem">Mais tous ces motifs, <span class="tei_hi_underline1">que je confie à Vous Seul</span>, sont tout à fait nuls pour moi, attendu que je connois par expérience l’incertitude des vicissitudes du theatre, les cabales, les intrigues, lènvie et toutes les disgraces attachées à notre belle carière, glorieuse même, lorsqu’elle est exempte de tout reproche, pour les compositeurs d’un véritable talent et d’un vrai mérite personel et moral!!</span><a class="noteMarker" id="ref-d53554e157" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e157">‡</a></span> Je vous le répète donc avec sincérité, Monsieur: il suffit <span class="tei_app"><span class="tei_lem">qu’un ouvrage porte vortre nom, pour que je sois <span class="tei_pb" title="Seitenumbruch"> | </span> convaincu d’avance de tout son mérite,</span><a class="noteMarker" id="ref-d53554e166" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e166">‡</a></span> et vous pouvez être bien sur que je mettrai tout l’empressement possible à Vous servir en tout          
+                                        <p>Suivant cette Royale Instruction, je dois soumettre à la <span class="tei_app"><span class="tei_lem">decision</span><a class="noteMarker" id="ref-d10e39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e39">‡</a></span> de la Direction gènèrale de <span class="tei_app"><span class="tei_lem">musique</span><a class="noteMarker" id="ref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a></span>, <span class="tei_app"><span class="tei_lem">composée</span><a class="noteMarker" id="ref-d10e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e51">‡</a></span> de <span class="tei_app"><span class="tei_lem">six</span><a class="noteMarker" id="ref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span> artistes distingués, l’admission au <span class="tei_app"><span class="tei_lem">repertoire</span><a class="noteMarker" id="ref-d10e63" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e63">‡</a></span> de tout ouvrage nouveau; et il est <span class="tei_app"><span class="tei_lem">même</span><a class="noteMarker" id="ref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span> expressement defendu à <span class="preview persons A000235" data-ref="/exist/apps/WeGA-WebApp/de/A000235.html">Mr: l’Intendant <span class="tei_app"><span class="tei_lem">général</span><a class="noteMarker" id="ref-d10e78" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e78">‡</a></span></span> de faire l’aquisition ou l’achat d’un ouvrage quelconque, s’il ne lui est point <span class="tei_app"><span class="tei_lem">préalablement</span><a class="noteMarker" id="ref-d10e84" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e84">‡</a></span> proposè et démandé <span class="tei_hi_underline1">par ecrit</span> par cette Direction! Hors, comme la proposition ni la démande de la partition d’<span class="tei_hi_underline1"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> ne lui a pas été encor faite, ni de vive voix, <span class="tei_hi_underline1">ni par ecrit</span>, attendu que nous étions engagès avec <a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Mr: Spohr</a>, avant l’apparution de votre opera, il en resulte, que nous ne possedons pas votre partition, que Nous ne la connoissons pas, et que par consequent Nous n’avons pu prendre aucune deliberation sur la prompte execution sur notre <span class="tei_placeName">thèatre</span>.</p>
+                                        <p><span class="tei_app"><span class="tei_lem">En outre de cela, permettez-moi de grace, Monsieur, quelquels réflexions particulières et <span class="tei_hi_underline1">confidencielles pour vous seul</span>, que mon devoir m’oblige de faire, lorsqu’il s’agit de la mise en scène d’un grand opéra qui nécessite une grande déspense pour le prix de droit d’auteur, de la partition, de toute la copie générale, des decorations, costumes <span class="tei_hi_underline1">etc</span>: <span class="tei_hi_underline1">etc</span>:</span><a class="noteMarker" id="ref-d10e108" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e108">‡</a></span></p>
+                                        <p><span class="tei_app"><span class="tei_lem">Les gazettes étrangères, surtout celles de <span class="86105101110110101">Vienne</span> et même de <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, ainsi que toutes les lettres et rapports particuliers sur le succès à <span class="86105101110110101">Vienne</span> d’<span class="tei_hi_underline1"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> /: pardonnez, Monsieur, à ma nécessité de vous l’avouer :/, n’ont pas été assez favorables, à l’exeption <span class="tei_hi_underline1">d’un article un peu exagéré</span>, inseré par les bienveillans offices de celui, au quel je dois une spirituelle satyre <span class="tei_hi_underline1">en vers</span>, contre <span class="tei_hi_underline1"><span class="preview works A020556" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020556.html">Olimpie</span></span>, et la proscription de mon nom de la gazette de <span class="tei_hi_underline1">Vosse</span>, à moins qu’il ne s’agisse de le maltraiter!</span><a class="noteMarker" id="ref-d10e122" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e122">‡</a></span></p>
+                                        <p><span class="tei_app"><span class="tei_lem">Mais tous ces motifs, <span class="tei_hi_underline1">que je confie à Vous Seul</span>, sont tout à fait nuls pour moi, attendu que je connois par expérience l’incertitude des vicissitudes du theatre, les cabales, les intrigues, lènvie et toutes les disgraces attachées à notre belle carière, glorieuse même, lorsqu’elle est exempte de tout reproche, pour les compositeurs d’un véritable talent et d’un vrai mérite personel et moral!!</span><a class="noteMarker" id="ref-d10e154" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e154">‡</a></span> Je vous le répète donc avec sincérité, Monsieur: il suffit <span class="tei_app"><span class="tei_lem">qu’un ouvrage porte vortre nom, pour que je sois <span class="tei_pb" title="Seitenumbruch"> | </span> convaincu d’avance de tout son mérite,</span><a class="noteMarker" id="ref-d10e163" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e163">‡</a></span> et vous pouvez être bien sur que je mettrai tout l’empressement possible à Vous servir en tout          
                ce qui dépendra de moi, comme j’ai fait pour M<span class="tei_hi_underline1"><span class="tei_hi_superscript">rs</span></span> <a class="preview persons A001721" href="/exist/apps/WeGA-WebApp/de/A001721.html">Schneider</a>, <a class="preview persons A001015" href="/exist/apps/WeGA-WebApp/de/A001015.html">Klein</a>, <a class="preview persons A001077" href="/exist/apps/WeGA-WebApp/de/A001077.html">Kreutzer</a>, <a class="preview persons A000176" href="/exist/apps/WeGA-WebApp/de/A000176.html">Blume</a>, <a class="preview persons A001714" href="/exist/apps/WeGA-WebApp/de/A001714.html">Schmidt</a>, <a class="preview persons A000800" href="/exist/apps/WeGA-WebApp/de/A000800.html">Hellwig</a>, <a class="preview persons A002393" href="/exist/apps/WeGA-WebApp/de/A002393.html">B: Lichtenstein</a> et autres tous compositeurs allemands: Je vous demande seulement la permission, en obéissance de l’instruction Royale de Service, de remplir les formalités, qui me sont préscrites, et d’en soumettre en même tems le resultat à l’Autorité Supérieure. D’ailleurs et autres, 
-               tous compositeurs allemands: Je vous demande, seulement la permission, en Obeissance de L’Instruction Royale de Service, de remplir les formalites qui me sont prèscrites et d’en soumettre en même tems le resultat à l’<span class="tei_hi_underline1">Autorité superieure</span>. D’ailleurs nous ne pourrions pas nous occuper tout de suite de la mise en Scene <span class="tei_hi_underline1">d’<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span>. 1<span class="tei_hi_superscript"><span class="tei_hi_underline1">o</span></span> parceque Mr: <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">l’Intendant général</a> m’a declaré ne vouloir plus monter, jusqu’à l’hiver prochain de grands operas, à cause des depenses. 2<span class="tei_hi_superscript"><span class="tei_hi_underline1">o</span></span> parceque nous nous trouvons dans la necessité, aprèz la remise de <span class="preview works A020390" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020390.html">F: <span class="tei_hi_underline1">Cortez</span></span>, et <span class="tei_hi_underline1">d’<span class="preview works A020457" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020457.html">Othello</span></span> de donner <span class="preview works A020557" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020557.html"><span class="tei_hi_underline1">Médea</span></span> de <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>, <a class="preview persons A001322" href="/exist/apps/WeGA-WebApp/de/A001322.html">Mad: Milder</a> voulant la jouer avant son départ par congé, <span class="preview works A020564" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020564.html">la <span class="tei_hi_underline1">gazza ladra</span></span> de <a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a> <span class="1081013280114105110991013282105113117101116"><span class="tei_hi_underline1">le Prince Riquet</span></span> de <a class="preview persons A000176" href="/exist/apps/WeGA-WebApp/de/A000176.html">Blume</a>, les <span class="tei_hi_underline1">Rosieres</span> de <a class="preview persons A000811" href="/exist/apps/WeGA-WebApp/de/A000811.html">Herold</a>, et d’autres ouvrages de genre pour <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Mad: Seidler</a> et <a class="preview persons A000466" href="/exist/apps/WeGA-WebApp/de/A000466.html">Mlle: Eunike</a> l<span class="tei_app"><span class="tei_lem">a prémière surtout se trouvant, aprez une très longue maladie, hors d’etat d’exécuter, étudier et répéter de grands rôles et des grands ouvrages.</span><a class="noteMarker" id="ref-d53554e272" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e272">‡</a></span></p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem">Je vous prie bien instamment, Monsieur, d’envisager sous son véritable aspect le sens et le bût de mes observations en la qualité de ma place, et d’agréer, en ma qualité de votre colleque, l’assurance de tout mon zéle à Vous servir, ainsi que de la haute estime, avec la quelle j’ai l’honneur d’être</span><a class="noteMarker" id="ref-d53554e278" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53554e278">‡</a></span>
+               tous compositeurs allemands: Je vous demande, seulement la permission, en Obeissance de L’Instruction Royale de Service, de remplir les formalites qui me sont prèscrites et d’en soumettre en même tems le resultat à l’<span class="tei_hi_underline1">Autorité superieure</span>. D’ailleurs nous ne pourrions pas nous occuper tout de suite de la mise en Scene <span class="tei_hi_underline1">d’<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span>. 1<span class="tei_hi_superscript"><span class="tei_hi_underline1">o</span></span> parceque Mr: <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">l’Intendant général</a> m’a declaré ne vouloir plus monter, jusqu’à l’hiver prochain de grands operas, à cause des depenses. 2<span class="tei_hi_superscript"><span class="tei_hi_underline1">o</span></span> parceque nous nous trouvons dans la necessité, aprèz la remise de <span class="preview works A020390" data-ref="/exist/apps/WeGA-WebApp/de/A001864/Werke/A020390.html">F: <span class="tei_hi_underline1">Cortez</span></span>, et <span class="tei_hi_underline1">d’<span class="preview works A020457" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020457.html">Othello</span></span> de donner <span class="preview works A020557" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020557.html"><span class="tei_hi_underline1">Médea</span></span> de <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>, <a class="preview persons A001322" href="/exist/apps/WeGA-WebApp/de/A001322.html">Mad: Milder</a> voulant la jouer avant son départ par congé, <span class="preview works A020564" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020564.html">la <span class="tei_hi_underline1">gazza ladra</span></span> de <a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a> <span class="1081013280114105110991013282105113117101116"><span class="tei_hi_underline1">le Prince Riquet</span></span> de <a class="preview persons A000176" href="/exist/apps/WeGA-WebApp/de/A000176.html">Blume</a>, les <span class="tei_hi_underline1">Rosieres</span> de <a class="preview persons A000811" href="/exist/apps/WeGA-WebApp/de/A000811.html">Herold</a>, et d’autres ouvrages de genre pour <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Mad: Seidler</a> et <a class="preview persons A000466" href="/exist/apps/WeGA-WebApp/de/A000466.html">Mlle: Eunike</a> l<span class="tei_app"><span class="tei_lem">a prémière surtout se trouvant, aprez une très longue maladie, hors d’etat d’exécuter, étudier et répéter de grands rôles et des grands ouvrages.</span><a class="noteMarker" id="ref-d10e269" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e269">‡</a></span></p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem">Je vous prie bien instamment, Monsieur, d’envisager sous son véritable aspect le sens et le bût de mes observations en la qualité de ma place, et d’agréer, en ma qualité de votre colleque, l’assurance de tout mon zéle à Vous servir, ainsi que de la haute estime, avec la quelle j’ai l’honneur d’être</span><a class="noteMarker" id="ref-d10e275" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e275">‡</a></span>
                <span class="tei_segBlock textAlign-center">Monsieur</span>
                <span class="tei_segBlock textAlign-right">votre très humble et devoué Serviteur<br /><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a>.</span>
-            <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> ce 27 Mars 1824.</span>
+            <span class="tei_dateline textAlign-left"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> ce 27 Mars 1824.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -485,52 +530,52 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e11" data-title="app">"J'ai voulu profiter de l'occasion favorable de Mr Sassaroli pour vous faire parvenir la presente, en reponse de votre aimable lettre du 18 de ce mois.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e11" data-title="app">"J'ai voulu profiter de l'occasion favorable de Mr Sassaroli pour vous faire parvenir la presente, en reponse de votre aimable lettre du 18 de ce mois.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e20" data-title="app">"Je dois commencer d'abord par vous exprimer, Monsieur, combien j'ai été sensible aux complimens flatteurs et honorables que vous m'avez témoignés, dont je vous prie de vouloir bien agréer toute ma reconnaissance d'un egal retour, quant aux sentimens d'estime pour votre beau talent, que je crois de savoir apprécier.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e20" data-title="app">"Je dois commencer d'abord par vous exprimer, Monsieur, combien j'ai été sensible aux complimens flatteurs et honorables que vous m'avez témoignés, dont je vous prie de vouloir bien agréer toute ma reconnaissance d'un egal retour, quant aux sentimens d'estime pour votre beau talent, que je crois de savoir apprécier.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e39" data-title="app">"decision": Lesart in anderer Quelle: <span class="tei_rdg">dêcision</span></div>
+                                            <div class="apparatusEntry" id="d10e39" data-title="app">"decision": Lesart in anderer Quelle: <span class="tei_rdg">dêcision</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e45" data-title="app">"musique": Lesart in anderer Quelle: <span class="tei_rdg">Musique</span></div>
+                                            <div class="apparatusEntry" id="d10e45" data-title="app">"musique": Lesart in anderer Quelle: <span class="tei_rdg">Musique</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e51" data-title="app">"composée": Lesart in anderer Quelle: <span class="tei_rdg">composèe</span></div>
+                                            <div class="apparatusEntry" id="d10e51" data-title="app">"composée": Lesart in anderer Quelle: <span class="tei_rdg">composèe</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e57" data-title="app">"six": Lesart in anderer Quelle: <span class="tei_rdg">Six</span></div>
+                                            <div class="apparatusEntry" id="d10e57" data-title="app">"six": Lesart in anderer Quelle: <span class="tei_rdg">Six</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e63" data-title="app">"repertoire": Lesart in anderer Quelle: <span class="tei_rdg">rèpertoire</span></div>
+                                            <div class="apparatusEntry" id="d10e63" data-title="app">"repertoire": Lesart in anderer Quelle: <span class="tei_rdg">rèpertoire</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e70" data-title="app">"même": Lesart in anderer Quelle: <span class="tei_rdg">mème</span></div>
+                                            <div class="apparatusEntry" id="d10e70" data-title="app">"même": Lesart in anderer Quelle: <span class="tei_rdg">mème</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e78" data-title="app">"général": Lesart in anderer Quelle: <span class="tei_rdg">gènèral</span></div>
+                                            <div class="apparatusEntry" id="d10e78" data-title="app">"général": Lesart in anderer Quelle: <span class="tei_rdg">gènèral</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e84" data-title="app">"préalablement": Lesart in anderer Quelle: <span class="tei_rdg">prèalablement</span></div>
+                                            <div class="apparatusEntry" id="d10e84" data-title="app">"préalablement": Lesart in anderer Quelle: <span class="tei_rdg">prèalablement</span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e108" data-title="app">"En outre de cela, permettez-moi de grace, Monsieur, quelquels réflexions particulières et confidencielles pour vous seul, que mon devoir m'oblige de faire, lorsqu'il s'agit de la mise en scène d'un grand opéra qui nécessite une grande déspense pour le prix de droit d'auteur, de la partition, de toute la copie générale, des decorations, costumes etc: etc:": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e108" data-title="app">"En outre de cela, permettez-moi de grace, Monsieur, quelquels réflexions particulières et confidencielles pour vous seul, que mon devoir m'oblige de faire, lorsqu'il s'agit de la mise en scène d'un grand opéra qui nécessite une grande déspense pour le prix de droit d'auteur, de la partition, de toute la copie générale, des decorations, costumes etc: etc:": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e122" data-title="app">"Les gazettes étrangères, surtout celles de Vienne et même de Berlin, ainsi que toutes les lettres et rapports particuliers sur le succès à Vienne d'Euryanthe /: pardonnez, Monsieur, à ma nécessité de vous l'avouer :/, n'ont pas été assez favorables, à l'exeption d'un article un peu exagéré, inseré par les bienveillans offices de celui, au quel je dois une spirituelle satyre en vers, contre Olimpie, et la proscription de mon nom de la gazette de Vosse, à moins qu'il ne s'agisse de le maltraiter!": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e122" data-title="app">"Les gazettes étrangères, surtout celles de Vienne et même de Berlin, ainsi que toutes les lettres et rapports particuliers sur le succès à Vienne d'Euryanthe /: pardonnez, Monsieur, à ma nécessité de vous l'avouer :/, n'ont pas été assez favorables, à l'exeption d'un article un peu exagéré, inseré par les bienveillans offices de celui, au quel je dois une spirituelle satyre en vers, contre Olimpie, et la proscription de mon nom de la gazette de Vosse, à moins qu'il ne s'agisse de le maltraiter!": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e157" data-title="app">"Mais tous ces motifs, que je confie à Vous Seul, sont tout à fait nuls pour moi, attendu que je connois par expérience l'incertitude des vicissitudes du theatre, les cabales, les intrigues, lènvie et toutes les disgraces attachées à notre belle carière, glorieuse même, lorsqu'elle est exempte de tout reproche, pour les compositeurs d'un véritable talent et d'un vrai mérite personel et moral!!": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e154" data-title="app">"Mais tous ces motifs, que je confie à Vous Seul, sont tout à fait nuls pour moi, attendu que je connois par expérience l'incertitude des vicissitudes du theatre, les cabales, les intrigues, lènvie et toutes les disgraces attachées à notre belle carière, glorieuse même, lorsqu'elle est exempte de tout reproche, pour les compositeurs d'un véritable talent et d'un vrai mérite personel et moral!!": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e166" data-title="app">"qu'un ouvrage porte vortre nom, pour que je sois  convaincu d'avance de tout son mérite,": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e163" data-title="app">"qu'un ouvrage porte vortre nom, pour que je sois  convaincu d'avance de tout son mérite,": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e272" data-title="app">"a prémière surtout se trouvant, aprez une très longue maladie, hors d'etat d'exécuter, étudier et répéter de grands rôles et des grands ouvrages.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e269" data-title="app">"a prémière surtout se trouvant, aprez une très longue maladie, hors d'etat d'exécuter, étudier et répéter de grands rôles et des grands ouvrages.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53554e278" data-title="app">"Je vous prie bien instamment, Monsieur, d'envisager sous son véritable aspect le sens et le bût de mes observations en la qualité de ma place, et d'agréer, en ma qualité de votre colleque, l'assurance de tout mon zéle à Vous servir, ainsi que de la haute estime, avec la quelle j'ai l'honneur d'être": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                            <div class="apparatusEntry" id="d10e275" data-title="app">"Je vous prie bien instamment, Monsieur, d'envisager sous son véritable aspect le sens et le bût de mes observations en la qualité de ma place, et d'agréer, en ma qualité de votre colleque, l'assurance de tout mon zéle à Vous servir, ainsi que de la haute estime, avec la quelle j'ai l'honneur d'être": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -546,10 +591,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -558,9 +599,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042246</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042246</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

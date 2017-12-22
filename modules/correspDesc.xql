@@ -6,9 +6,10 @@ declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-fo
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 declare function ct:create-header() as element(tei:teiHeader) {
     <teiHeader xmlns="http://www.tei-c.org/ns/1.0">
@@ -30,7 +31,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </publicationStmt>
             <sourceDesc>
                 <bibl type="online">
-                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="{config:get-option('permaLinkPrefix')}">{config:get-option('permaLinkPrefix')}</ref> (Version {config:get-option('version')} vom {date:strfdate(xs:date(config:get-option('versionDate')), 'de', '%d. %B %Y')})
+                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="{config:get-option('permaLinkPrefix')}">{config:get-option('permaLinkPrefix')}</ref> (Version {config:get-option('version')} vom {date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string('de'), 'de')})
                 </bibl>
             </sourceDesc>
         </fileDesc>
@@ -68,7 +69,7 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
 };
 
 declare function ct:participant($input as element()) as element() {
-    let $id := $input//@key[1]
+    let $id := ($input//@key)[1]
     let $gnd := if($id) then query:get-gnd(string($id)) else ()
     return 
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
@@ -78,12 +79,12 @@ declare function ct:participant($input as element()) as element() {
 };
 
 declare function ct:place($input as element()) as element() {
-    let $placeName := normalize-space($input)
-    let $geoID := core:data-collection('places')//tei:placeName[. = $placeName]/following-sibling::tei:idno
+    let $id := ($input//@key)[1]
+    let $geoID := query:get-geonamesID($id)
     return 
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
             if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID} else (),
-            $placeName
+            normalize-space($input)
         }
 };
 
@@ -101,4 +102,8 @@ declare function ct:corresp-list() as element(tei:TEI) {
     </TEI>
 };
 
-core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'))
+declare function ct:onFailure($errCode, $errDesc) {
+    core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+};
+
+cache:doc(str:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'), ct:onFailure#2)

@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,16 +226,55 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009181.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="no portrait available" alt="no portrait available" src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_person_mann_gross.png" />
+                            <img class="img-responsive" title="(Quelle: Wikimedia)" alt="(Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/bcd9f5b2147c6be2811a86ee8a9e02dd.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
-                            <p></p>
+                            <p>Wikimedia<br /><a href="https://de.wikipedia.org/wiki/Datei:David_von_Eichthal_(1775-1850).jpg">https://de.wikipedia.org/wiki/Datei:David_von_Eichthal_(1775-1850).jpg</a></p>
                         </div>
                     </div>
                 </div>
@@ -285,7 +328,9 @@
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
                     <h2>Ikonographie</h2>
-                    
+                    <div class="iconographythumbnail">
+                        <a href="https://de.wikipedia.org/wiki/Datei:David_von_Eichthal_(1775-1850).jpg"><img title="(Quelle: Wikimedia)" alt="(Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/David_von_Eichthal_%281775-1850%29.jpg/220px-David_von_Eichthal_%281775-1850%29.jpg" /></a>
+                    </div>
                 </div>
                 
             </div>
@@ -336,13 +381,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/dnb.html">GND Eintrag</a>
+                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a class="deactivated"></a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -351,7 +396,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A009181/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A009181.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -365,18 +410,18 @@
                                                     
                                                     
                                                     <div>
-                                                            <p>Sohn von <a class="preview persons A001799" href="/exist/apps/WeGA-WebApp/de/A001799.html">Aron Elias Seligmann</a>. Nachdem David Seligmann <span class="tei_date">1814</span> zum <span class="tei_roleName">Freiherr</span> ernannt wurde, nannte er sich David von Eichthal. Seit <span class="tei_date">1799</span> war er Hofagent in <span class="tei_placeName"><span class="7597114108115114117104101">Karlsruhe</span></span>, später Fabrikant in <span class="tei_placeName"><span class="8311646326610897115105101110">St. Blasien</span></span> und <span class="tei_placeName"><span class="71114246116122105110103101110">Grötzingen</span></span>.</p>
+                                                            <p>Sohn von <a class="preview persons A001799" href="/exist/apps/WeGA-WebApp/de/A001799.html">Aron Elias Seligmann</a>. Nachdem David Seligmann <span class="tei_date">1814</span> zum <span class="tei_roleName">Freiherr</span> ernannt wurde, nannte er sich David von Eichthal. Seit <span class="tei_date">1799</span> war er Hofagent in <span class="preview places A130022" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130022.html">Karlsruhe</span>, später Fabrikant in <span class="8311646326610897115105101110">St. Blasien</span> und <span class="71114246116122105110103101110">Grötzingen</span>.</p>
                                                         </div>
                                                     
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -389,7 +434,7 @@
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00582856]" href="http://thesaurus.cerl.org/record/cnp00582856">CERL Thesaurus</a></li>
                                                             <li><a title="Badische Landesbibliothek; Württembergische Landesbibliothek" href="http://www.statistik-bw.de/LABI/PDB.asp?ID=124815014">Landesbibliographie Baden-Württemberg</a></li>
                                                             <li><a title="In LEO-BW enthaltene Personendatenbank der Landesbibliographie Baden-Württemberg" href="http://www.leo-bw.de/web/guest/detail/-/Detail/details/PERSON/wlbblb_personen/124815014/person">LEO-BW - Landeskundliches Informationssystem Baden-Württemberg</a></li>
-                                                            <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=124815014">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg</a></li>
+                                                            <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=124815014">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg (2)</a></li>
                                                             <li><a title="Korrespondierendes Wikidata-Item (www.wikidata.org) [Q1177426]" href="https://tools.wmflabs.org/reasonator/?q=Q1177426">Wikidata</a></li>
                                                             <li><a title="Wikipedia-Personenartikel" href="https://tools.wmflabs.org/persondata/redirect/gnd/de/124815014">Wikipedia-Artikel</a></li>
                                                         </ul>
@@ -397,9 +442,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -456,7 +498,7 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009181</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009181</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
                             <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
                     </div>

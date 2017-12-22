@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
+        <meta property="dc:date" content="2017-12-20T08:43:14.086600Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043594" />
         <meta property="dc:description" content="gratuliert zum Franz-Joseph-Orden; geht auf den Wunsch von Jähns ein, eine Rezension von Hanslick für sein Werkverzeichnis zu erwirken, fürchtet daß jener das Werk für zu gründlich und voluminös halten könnte, verweist auf dessen knappe Besprechung von Köchels Fux-Monographie in der Wiener Freien Presse und fügt kritische Anmerkungen zu seiner Persönlichkeit an und daß er Wagnerianer geworden sei; der angekündigte Besuch von MMW und Max Jähns hat noch nicht stattgefunden; er wird ab 1872 in Wien leben, hat dort günstigere Arbeitsbedingungen" />
         <meta name="description" content="gratuliert zum Franz-Joseph-Orden; geht auf den Wunsch von Jähns ein, eine Rezension von Hanslick für sein Werkverzeichnis zu erwirken, fürchtet daß jener das Werk für zu gründlich und voluminös halten könnte, verweist auf dessen knappe Besprechung von Köchels Fux-Monographie in der Wiener Freien Presse und fügt kritische Anmerkungen zu seiner Persönlichkeit an und daß er Wagnerianer geworden sei; der angekündigte Besuch von MMW und Max Jähns hat noch nicht stattgefunden; er wird ab 1872 in Wien leben, hat dort günstigere Arbeitsbedingungen" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,37 +246,81 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043594.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043593.html">1871-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043593.html">1871-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    
-                                </ul>
-                            
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043593.html">1871-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A004106/Korrespondenz/A043593.html">1871-11-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
+                                        
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -305,11 +352,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -335,23 +382,23 @@
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <span class="tei_dateline textAlign-right">
-                  <span class="tei_placeName"><span class="8011497103"><span class="tei_hi_latintype">Prag</span></span></span> am 22. November
+                  <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html"><span class="tei_hi_latintype">Prag</span></span> am 22. November
                   <br />(<span class="tei_hi_latintype">St<span class="tei_hi_superscript">a</span> Caecilia!</span>)
                   <br />1871 
                </span>
                <p class="teiLetter_salute">Mein lieber, sehr verehrter <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Freund</a>!</p>
             </div>
                                         <p>Gestern Abend bin ich nach einer Abwesenheit von acht Tagen aus
-                     <span class="tei_placeName"><span class="87105101110">Wien</span></span> nach
-                     <span class="tei_placeName"><span class="8011497103">Prag</span></span> zurückgekehrt und fand
+                     <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> nach
+                     <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> zurückgekehrt und fand
                Ihre beiden Briefe, deren einer mir das Bild des würdigsten Mannes brachte, welcher
                keinen andern Fehler hat, als daß er mich <span class="tei_hi_underline1">viel</span>, <span class="tei_hi_underline1">viel</span> zu hoch hält. Ich will aber wenigstens mich bemühen
                Ihrer Güte und Freundschaft einigermassen <span class="tei_hi_underline1">würdiger</span> zu
                werden!</p>
                                         <p>Daß Ihnen die wohlverdiente Auszeichnung durch den
-                     <span class="tei_placeName"><span class="tei_country">österreichischen</span></span> Orden zu Theil
+                     <span class="tei_country">österreichischen</span> Orden zu Theil
                wurde, freut mich ganz unbeschreiblich. Ich habe gesehen, daß in
-                     <span class="tei_placeName"><span class="tei_region">Norddeutschland</span></span> die allgemeine Stimme
+                     <span class="tei_region">Norddeutschland</span> die allgemeine Stimme
                auf solche äußerliche Ehren und Anerkennungszeichen des Werthes eines vorzüglichen
                Mannes einges Gewicht legt, und so ist es denn ganz gut, daß neben dem Orden, den Sie
                schon haben, künftig auch der <span class="70114971101223274111115101112104">„Franz Joseph“</span> an Ihrer Brust
@@ -385,7 +432,7 @@
                kann und mag es einstweilen nicht glauben, kenne <a class="preview persons A003220" href="/exist/apps/WeGA-WebApp/de/A003220.html">Hanslik</a> auch seit vielen Jahren als einen treuen, durchaus
                ehrenwerthen Charakter. Es wäre mir in Wahrheit bitter, wenn ich enttäuscht werden
                sollte.</p>
-                                        <p>Die arme Menter traf ich in <span class="tei_placeName"><span class="87105101110">Wien</span></span>
+                                        <p>Die arme Menter traf ich in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>
                bedenklich krank, ihr Leiden ist Blutarmuth, also ein langwieriges, der ärztlichen
                Bemühungen meist spottendes Uibel. Mit dem Concert ist es also nichts – ich habe es
                nunmehr einer sehr tüchtigen Prager Pianistin <span class="70114108463283111112104105101326810511611611410599104">Frl. Sophie
@@ -397,16 +444,16 @@
                „symphonische Dichtung, in Ouverturenform“ zu <a class="preview persons A002343" href="/exist/apps/WeGA-WebApp/de/A002343.html">Calderons</a>
                „wunderthätigem <span class="7797103117115">Magus</span>“. Ich sende Ihnen gelegentlich ein
                Arrangement (à 4 <span class="tei_hi_latintype">mains</span>) davon. Dieser Wundermagus dürfte
-               für <span class="tei_placeName"><span class="8011497103">Prag</span></span> so ziemlich mein
+               für <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> so ziemlich mein
                Schwanenlied sein, denn es ist so gut wie sicher, daß ich mit Neujahr 1872 meinen
-               Wohnsitz in <span class="tei_placeName"><span class="87105101110">Wien</span></span> aufschlage. Die
+               Wohnsitz in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> aufschlage. Die
                Bedingungen, unter denen man mich dort fixiren will, sind höchst annehmbar, sogar
                glänzend. Es ist, abgesehen von allen diesem, doch ein ganz ander Seyn in
-                     <span class="tei_placeName"><span class="87105101110">Wien</span></span>, als hier in
-                     <span class="tei_placeName"><span class="8011497103">Prag</span></span>! Mein Wirken dort kann
+                     <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, als hier in
+                     <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span>! Mein Wirken dort kann
                nicht nur ein mit eingreifenderes sondern auch für mich selbst viel lohnender werden.
                Und wie viele Bildungsmittel für meine Kinder finde ich dort! Hier in
-                     <span class="tei_placeName"><span class="8011497103">Prag</span></span> wird Alles schon durch den
+                     <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> wird Alles schon durch den
                leidigen Nationalitätenstreit lahmgelegt.</p>
                                         <p>Der willkommene Besuch Ihres lieben Sohnes und des werthen <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v.
                   Weber</a> hat sich bisher nicht realisirt. Wann sie auch kommen – sie
@@ -416,18 +463,18 @@
                                         <p>Daß ich mit meiner <span class="tei_hi_latintype">transmigratio Babylonica</span> oder <span class="tei_hi_latintype">Viennensis</span> von meinen lieben Freunden in Norddeutschland um
                so viel weiter weggerückt werde, ist freilich eine leidige Sache. Zum Glücke rücken
                die Eisenbahnen die Länder und Menschen wieder näher an einander. Ist es denn aber
-               wahr, daß das liebe <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> zur Zeit
+               wahr, daß das liebe <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> zur Zeit
                von einem zuchtlosen Pöbel in einer Art von Terrorismus erhalten wird? Wie ist das in
-                     <span class="tei_placeName"><span class="tei_country">Preußen</span></span>, dessen stramme Zucht es zu 
+                     <span class="tei_country">Preußen</span>, dessen stramme Zucht es zu 
                einem wahren Musterstaate macht, wohl möglich?! Ich habe es oft um seine
                vortreffliche Disziplin beneidet, gegenüber unseren österreichischen Zuständen, die
                an die <span class="tei_hi_latintype">Cour du roi </span>Petau erinnern, wo jedermann der
 
-                  Herr ist; eine Disziplin, welcher <span class="tei_placeName"><span class="tei_country">Preußen</span></span> seine neuesten Erfolge dankt,
+                  Herr ist; eine Disziplin, welcher <span class="tei_country">Preußen</span> seine neuesten Erfolge dankt,
 
                  
 
-               die es an die Spitze <span class="tei_placeName"><span class="tei_region">Europas</span></span> gestellt haben.
+               die es an die Spitze <span class="tei_region">Europas</span> gestellt haben.
                Man wird doch, hoffe ich den Haufen roher Taugenichtse in Respekt zu halten
                wissen!</p>
                                         <p>Finden Sie wieder einmal eine Viertelstunde Zeit, um mich mit einigen Zeilen
@@ -513,10 +560,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -525,9 +568,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043594</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043594</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

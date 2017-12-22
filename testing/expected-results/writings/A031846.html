@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031846" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Joseph Rhöder</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031846</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031846.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -255,13 +297,13 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000018" /> <span title="Allram, Joseph">Allram, Joseph</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolf">Bayer, Franz Rudolf</span> 
+                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolph">Bayer, Franz Rudolph</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000605" /> <span title="Böhler, Christine">Böhler, Christine</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000222" /> <span title="Brede, Auguste">Brede, Auguste</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000297" /> <span title="Clam-Gallas, Christian">Clam-Gallas, Christian</span> 
+                                    <input type="checkbox" name="options" value="A000297" /> <span title="Clam-Gallas, Christian Christoph">Clam-Gallas, Christian Christo…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000324" /> <span title="Costenoble, Carl Ludwig">Costenoble, Carl Ludwig</span> 
                                 </label><label class="btn gradient-light">
@@ -289,13 +331,13 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001172" /> <span title="Liebich, Johann Carl">Liebich, Johann Carl</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008211" /> <span title="Lobkowitz, Anton Isidor von">Lobkowitz, Anton Isidor von</span> 
+                                    <input type="checkbox" name="options" value="A008211" /> <span title="Lobkowitz, Anton Isidor Fürst von">Lobkowitz, Anton Isidor Fürst …</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001192" /> <span title="Löwe, Ludwig">Löwe, Ludwig</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001500" /> <span title="Polawsky, Ferdinand">Polawsky, Ferdinand</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000866" /> <span title="Renner, Maria Johanna">Renner, Maria Johanna</span> 
+                                    <input type="checkbox" name="options" value="A000866" /> <span title="Renner, Marie">Renner, Marie</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A008046" /> <span title="Ritzenfeld, Dem.">Ritzenfeld, Dem.</span> 
                                 </label><label class="btn gradient-light">
@@ -355,7 +397,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -431,15 +473,15 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Correspondenz-Nachrichten.</span></h2>
-                                        <p><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="8011497103">Prag</span></span></span>. Das Pensionsinstitut für die Mitglieder der hiesigen Bühne ist nun fest gegründet, und unser menschenfreundliche <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Director <span class="tei_hi_spaced_out">Liebich</span></a>, der durch jahrelang unermüdetes Bestreben — durch die größten Selbstopfer — und durch muthige Bekämpfung so mancher Hindernisse, rastlos an dem Werk seiner schönen Schöpfung arbeitet, hatte das selige Vergnügen, das Ziel seiner Wünsche und Anstrengung erreicht, und seine Schöpfung vollendet zu sehen.</p>
+                                        <p><span class="tei_hi_spaced_out"><span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span></span>. Das Pensionsinstitut für die Mitglieder der hiesigen Bühne ist nun fest gegründet, und unser menschenfreundliche <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Director <span class="tei_hi_spaced_out">Liebich</span></a>, der durch jahrelang unermüdetes Bestreben — durch die größten Selbstopfer — und durch muthige Bekämpfung so mancher Hindernisse, rastlos an dem Werk seiner schönen Schöpfung arbeitet, hatte das selige Vergnügen, das Ziel seiner Wünsche und Anstrengung erreicht, und seine Schöpfung vollendet zu sehen.</p>
                                         <p>Sämmtliche Mitglieder waren im Redoutengebäude versammelt; <a class="preview persons A008211" href="/exist/apps/WeGA-WebApp/de/A008211.html">Sr. Durchlaucht Fürst Isidor Lobkowitz</a>, als Praeses des Pensions-Institutes, und Intendant des Theaters, eröffnete die Feyerlichkeit mit einer schönen zweckmäßigen Rede, worauf <span class="721011141143265110116111110327010110510111411697103329846328246326846">Herr Anton Feiertag b. R. D.</span> die mittelst höchstem Hofdecret vom <span class="tei_date">27ten Oct. 1814</span> und <span class="tei_date">19ten Oct. 1815</span> bestätigten Gesetze des Pensionsinstitutes vorlas, und die Mitglieder in Hinsicht des bereits bestehenden Capitals-Fond in Kenntniß setzte. Sodann wurden unter Beysitz <a class="preview persons A008471" href="/exist/apps/WeGA-WebApp/de/A008471.html">Sr. Exzell. des Herrn Grafen von F. Jos. Wrtby</a>, <a class="preview persons A000297" href="/exist/apps/WeGA-WebApp/de/A000297.html">Hrn. Grafen Christ. Clamm Gallas</a>, <a class="preview persons A001891" href="/exist/apps/WeGA-WebApp/de/A001891.html">Herrn Grafen Franz Sternberg Manderscheid</a> und <span class="721011141141103265110116111110327010110510111411697103329846328246326846">Herrn Anton Feiertag b. R. D.</span> von Seite der hohen Landesstände, so wie von Seite des Theaters unter Beysitz des <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herrn Director Liebichs</a>, und der<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> drey ältesten Mitglieder als Ausschuß, nähmlich <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Herr Joseph Allram</a>, <a class="preview persons A000101" href="/exist/apps/WeGA-WebApp/de/A000101.html">Herr F. Rudolf Bayer</a>, und <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Herr Ferdinand Polawsky</a>, die dießfälligen Decrete an die betreffenden Mitglieder vertheilt.</p>
-                                        <p>Ruhig und kummerlos kann nun der Schauspieler und Sänger an dieser Bühne seinem gebrechlichen Alter entgegen sehen, seine Lebenstage sind vor Mangel geschützt, und sein Bestreben und Verwenden lohnt ihm, so wie dem Staatsbeamten, eine den erreichten Dienstjahren angemessene Pension. Mit Recht darf unsere Bühne, die unter den ersten <span class="tei_placeName"><span class="tei_country">Deutschlands</span></span> ihren Rang behauptet, durch diese wohlthätige Einrichtung bey sich eröffnenden Fächern wieder auf brave Künstler zählen, die sich’s, wie ihre Vorgänger, zur Ehre rechnen werden, Mitglieder dieses erhabenenen Institutes zu seyn, und wenn <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebichs</a> Gebeine längst modern, werden die spätesten Künstler, diesen Mann mit dem hohen Herzen als Schöpfer ihrer fest begründeten Existenz segnen.</p>
-                                        <p>Daß <span class="preview persons A000691 A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000691.html /exist/apps/WeGA-WebApp/de/A000692.html">Herr und Mad. Grünbaum</span> auf einer theatralischen Kunstreise sich befinden, enthaltet schon ein früheres Blatt. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Madame Gervais</a>, Sängerinn am <span class="tei_placeName">Karlsruher Hoftheater</span> befindet sich an unserem Theater seit einigen Wochen als Gast. Wir sahen sie als <span class="69109101108105110101">Emeline</span> in der <span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span>, als <span class="69108105115101">Elise</span> im <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargin</span>, als <span class="65103110101115">Agnes</span> im <span class="preview works A020605" data-ref="/exist/apps/WeGA-WebApp/de/A000712/Werke/A020605.html">Agnes Sorel</span>, als <span class="65108105110101">Aline</span> in der <span class="preview works A020538" data-ref="/exist/apps/WeGA-WebApp/de/A000485/Werke/A020538.html">Oper <span class="tei_choice"><span class="tei_corr">gleichen</span><a class="noteMarker" id="ref-d40480e103" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40480e103">‡</a></span><span class="tei_pb" title="Seitenumbruch zu S. 206"> | </span> Nahmens</span>, als <span class="6811111011097326511011097">Donna Anna</span> im <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span>, als <span class="7797114105101">Marie</span> im <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Blaubart</span> und als <span class="671111101151169711012297">Constanza</span> im <span class="preview works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Wasserträger</span>. Die Stimme dieser braven Künstlerinn hat einen großen Umfang, Reinheit, Praecision und gehörige Verbindung der Töne; ihr Vortrag ist höchst gefällig, und, woran es so mancher Sängerinn gebricht, die mit einer schön vorgetragenen Arie ihre ganze Pflicht gelößt zu haben glaubt — ihr Spiel ist vorzüglich brav und meistens gelungen.</p>
-                                        <p>So manche Sängerinn dürfte hier, wo, wir im Besitze einer <span class="preview persons A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000692.html">Mad<span class="tei_choice"><span class="tei_corr">.</span><a class="noteMarker" id="ref-d40480e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40480e137">‡</a></span> Grünbaum</span>, einer der ersten Künstlerinnen ihres Faches sind, einen schweren Stand haben, allgemein Genüge zu leisten, und es versteht sich von selbst, daß auch über <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. Gervais</a> die Meinungen und Urtheile getheilt sind. Langjährige Gewohnheit und gerechte Vorliebe für die eine, Reiz der Neuheit und gastfreundlicher Eifer für die andere, berühren sich kontrastirend. Indeß hat jede ihr eigenthümliches Verdienst, und man kann ohne partheyisch und ungerecht zu seyn, keine auf Kosten der andern beurtheilen. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. Gervais</a> wurde nach jeder Vorstellung gerufen, und es ist nicht mehr als billig, dieser würdigen Künstlerinn, die uns einstweilen für <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Madame Grünbaums</a> Abwesenheit schadlos hält, die Opfer unsers Dankes zu entrichten. <a class="preview persons A008775" href="/exist/apps/WeGA-WebApp/de/A008775.html">Herr Karsten</a> trat in einigen Rollen nicht mit bestem Glücke auf, und wir enthalten uns einer weitern Analyse hierüber. Sein Pudel, zum <span class="preview works A020413" data-ref="/exist/apps/WeGA-WebApp/de/A001819/Werke/A020413.html">Hund des Aubri im Walde Mont Didier</span> abgerichtet, veranlaßte die Direction, dieses Schauspiel zum ersten Mahle aufs Repertoir zu bringen. Die Vorstellung und ihre Wiederhohlungen füllten Haus und Cassa; der gewöhnliche Fall solcher Spektakelstücke. <a class="preview persons A001173" href="/exist/apps/WeGA-WebApp/de/A001173.html">Mad. Liebich</a> als <span class="7110111411897105115">Gervais</span>, <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Mlle. Brand</a> als <span class="69108118105">Elvi</span> verdienen einer ehrenvollen Erwähnung. Es sind auch die einzigen Charaktere in dieser Ola-Potrida, die Interesse erwecken. Wie erbärmlich erscheinen der <span class="831011101011159910497108108">Seneschall</span> und der <span class="6710410111897108105101114327111111011611497109">Chevalier Gontram</span>, und wir mußten den Kunstaufwand bedauern, den <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr Liebich</a> für erstere, <a class="preview persons A007847" href="/exist/apps/WeGA-WebApp/de/A007847.html">Herr Sewald</a> für das zweyte Zerrbild verwendeten. Die Rolle des <span class="77979997105114101">Macaire</span> wurde durch <a class="preview persons A002149" href="/exist/apps/WeGA-WebApp/de/A002149.html">Herrn Wilhelmi</a> sehr gut gegeben. Dem Pudel, der bereits abgereist ist, wollen wir nichts schlimmes nachreden, um sein anderwär<span class="tei_cb" title="Spaltenumbruch">¦</span>tiges Glück nicht zu schmälern; vielleicht gewöhnt er sich bey mehrerer Routine so einige Unvollkommenheiten ab, die er hier sich zu Schuld kommen ließ.</p>
+                                        <p>Ruhig und kummerlos kann nun der Schauspieler und Sänger an dieser Bühne seinem gebrechlichen Alter entgegen sehen, seine Lebenstage sind vor Mangel geschützt, und sein Bestreben und Verwenden lohnt ihm, so wie dem Staatsbeamten, eine den erreichten Dienstjahren angemessene Pension. Mit Recht darf unsere Bühne, die unter den ersten <span class="tei_country">Deutschlands</span> ihren Rang behauptet, durch diese wohlthätige Einrichtung bey sich eröffnenden Fächern wieder auf brave Künstler zählen, die sich’s, wie ihre Vorgänger, zur Ehre rechnen werden, Mitglieder dieses erhabenenen Institutes zu seyn, und wenn <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebichs</a> Gebeine längst modern, werden die spätesten Künstler, diesen Mann mit dem hohen Herzen als Schöpfer ihrer fest begründeten Existenz segnen.</p>
+                                        <p>Daß <span class="preview persons A000691 A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000691.html /exist/apps/WeGA-WebApp/de/A000692.html">Herr und Mad. Grünbaum</span> auf einer theatralischen Kunstreise sich befinden, enthaltet schon ein früheres Blatt. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Madame Gervais</a>, Sängerinn am <span class="tei_placeName">Karlsruher Hoftheater</span> befindet sich an unserem Theater seit einigen Wochen als Gast. Wir sahen sie als <span class="69109101108105110101">Emeline</span> in der <span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span>, als <span class="69108105115101">Elise</span> im <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargin</span>, als <span class="65103110101115">Agnes</span> im <span class="preview works A020605" data-ref="/exist/apps/WeGA-WebApp/de/A000712/Werke/A020605.html">Agnes Sorel</span>, als <span class="65108105110101">Aline</span> in der <span class="preview works A020538" data-ref="/exist/apps/WeGA-WebApp/de/A000485/Werke/A020538.html">Oper <span class="tei_choice"><span class="tei_corr">gleichen</span><a class="noteMarker" id="ref-d10e101" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e101">‡</a></span><span class="tei_pb" title="Seitenumbruch zu S. 206"> | </span> Nahmens</span>, als <span class="6811111011097326511011097">Donna Anna</span> im <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span>, als <span class="7797114105101">Marie</span> im <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Blaubart</span> und als <span class="671111101151169711012297">Constanza</span> im <span class="preview works A020580" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020580.html">Wasserträger</span>. Die Stimme dieser braven Künstlerinn hat einen großen Umfang, Reinheit, Praecision und gehörige Verbindung der Töne; ihr Vortrag ist höchst gefällig, und, woran es so mancher Sängerinn gebricht, die mit einer schön vorgetragenen Arie ihre ganze Pflicht gelößt zu haben glaubt — ihr Spiel ist vorzüglich brav und meistens gelungen.</p>
+                                        <p>So manche Sängerinn dürfte hier, wo, wir im Besitze einer <span class="preview persons A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000692.html">Mad<span class="tei_choice"><span class="tei_corr">.</span><a class="noteMarker" id="ref-d10e135" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e135">‡</a></span> Grünbaum</span>, einer der ersten Künstlerinnen ihres Faches sind, einen schweren Stand haben, allgemein Genüge zu leisten, und es versteht sich von selbst, daß auch über <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. Gervais</a> die Meinungen und Urtheile getheilt sind. Langjährige Gewohnheit und gerechte Vorliebe für die eine, Reiz der Neuheit und gastfreundlicher Eifer für die andere, berühren sich kontrastirend. Indeß hat jede ihr eigenthümliches Verdienst, und man kann ohne partheyisch und ungerecht zu seyn, keine auf Kosten der andern beurtheilen. <a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Mad. Gervais</a> wurde nach jeder Vorstellung gerufen, und es ist nicht mehr als billig, dieser würdigen Künstlerinn, die uns einstweilen für <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Madame Grünbaums</a> Abwesenheit schadlos hält, die Opfer unsers Dankes zu entrichten. <a class="preview persons A008775" href="/exist/apps/WeGA-WebApp/de/A008775.html">Herr Karsten</a> trat in einigen Rollen nicht mit bestem Glücke auf, und wir enthalten uns einer weitern Analyse hierüber. Sein Pudel, zum <span class="preview works A020413" data-ref="/exist/apps/WeGA-WebApp/de/A001819/Werke/A020413.html">Hund des Aubri im Walde Mont Didier</span> abgerichtet, veranlaßte die Direction, dieses Schauspiel zum ersten Mahle aufs Repertoir zu bringen. Die Vorstellung und ihre Wiederhohlungen füllten Haus und Cassa; der gewöhnliche Fall solcher Spektakelstücke. <a class="preview persons A001173" href="/exist/apps/WeGA-WebApp/de/A001173.html">Mad. Liebich</a> als <span class="7110111411897105115">Gervais</span>, <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Mlle. Brand</a> als <span class="69108118105">Elvi</span> verdienen einer ehrenvollen Erwähnung. Es sind auch die einzigen Charaktere in dieser Ola-Potrida, die Interesse erwecken. Wie erbärmlich erscheinen der <span class="831011101011159910497108108">Seneschall</span> und der <span class="6710410111897108105101114327111111011611497109">Chevalier Gontram</span>, und wir mußten den Kunstaufwand bedauern, den <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Herr Liebich</a> für erstere, <a class="preview persons A007847" href="/exist/apps/WeGA-WebApp/de/A007847.html">Herr Sewald</a> für das zweyte Zerrbild verwendeten. Die Rolle des <span class="77979997105114101">Macaire</span> wurde durch <a class="preview persons A002149" href="/exist/apps/WeGA-WebApp/de/A002149.html">Herrn Wilhelmi</a> sehr gut gegeben. Dem Pudel, der bereits abgereist ist, wollen wir nichts schlimmes nachreden, um sein anderwär<span class="tei_cb" title="Spaltenumbruch">¦</span>tiges Glück nicht zu schmälern; vielleicht gewöhnt er sich bey mehrerer Routine so einige Unvollkommenheiten ab, die er hier sich zu Schuld kommen ließ.</p>
                                         <p><a class="preview persons A009327" href="/exist/apps/WeGA-WebApp/de/A009327.html">Herr Labes</a>, Sohn des <a class="preview persons A006943" href="/exist/apps/WeGA-WebApp/de/A006943.html">Sängers und Schauspielers</a> am <span class="tei_placeName">Berliner Hoftheater</span>, gab als Gast den <span class="106117110103101110327510810511010311598101114103">jungen Klingsberg</span>, im Lustspiele <span class="preview works A020996" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020996.html">die beyden Klingsberge</span>. Dieser junge Mann hat eine schöne gefällige Gestalt, und dürfte, wenn er seine zu schnelle Sprache, die besonders im Affecte unverständlich wird, und sein manierirtes mit Gesticulationen zu überladenes Spiel ablegt, einst für das jugendliche Liebhaberfach sehr brav werden. Allgemeinen Beyfall erhielt <a class="preview persons A007847" href="/exist/apps/WeGA-WebApp/de/A007847.html">Herrn Seewalds</a> durchdachtes fein nüancirtes Spiel als <span class="97108116101114327510810511010311598101114103">alter Klingsberg</span>, und rühmlich standen ihm zur Seite, <a class="preview persons A001173" href="/exist/apps/WeGA-WebApp/de/A001173.html">Mad. Liebich</a> (<span class="71114228102105110110">Gräfinn</span>) <a class="preview persons A000949" href="/exist/apps/WeGA-WebApp/de/A000949.html">Mad. Junghans</a> (<span class="8711711011599104108">Wunschl</span>) <a class="preview persons A000605" href="/exist/apps/WeGA-WebApp/de/A000605.html">Mademois. Böhler</a> (<span class="72101110114105101116116101">Henriette</span>) <a class="preview persons A001849" href="/exist/apps/WeGA-WebApp/de/A001849.html">Madame Sontag</a>, <span class="7011410510110098101114103">Friedberg</span>, und <a class="preview persons A001192" href="/exist/apps/WeGA-WebApp/de/A001192.html">Herrn Löwe</a> (<span class="76105101117116463283116101105110">Lieut. Stein</span>.)</p>
                                         <p>Die zweyte Gastrolle des <a class="preview persons A009327" href="/exist/apps/WeGA-WebApp/de/A009327.html">Herrn Labes</a> war der <span class="80104105108105112112">Philipp</span> in <span class="preview works A020917" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020917.html">Johanna von Monfaucon</span>, worin er sich die bereits gerügten Unarten noch mehr zu Schuld kommen ließ, und noch minder behagte.</p>
-                                        <p><a class="preview persons A008046" href="/exist/apps/WeGA-WebApp/de/A008046.html">Mademois. Ritzenfeld</a>, vom Berliner Theater, trat als Gast in der <span class="preview works A020424" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020424.html">Talentprobe</span> in der Rolle der <span class="7710511011097328797108108101114">Minna Waller</span> auf. <a class="preview persons A000695" href="/exist/apps/WeGA-WebApp/de/A000695.html">Herrn Gubitz</a> hat es beliebt, das unter dem Titel: <span class="preview works A020818" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020818.html">der „Beruf“</span> bekannte Lustspiel umzumodeln, und dem Kinde einen neuen Nahmen zu geben. Derley Metamorphosen sind im Lande der Deutschheit jetzt häufig an der Tagesordnung; aber das alte Gewand deckt unsers Erachtens die Blößen besser, als die Gace, womit das Kindlein hin und wieder behangen ist. Besonders scheint der Charakter des sentimentalen Milchmädchens nur vorhanden zu seyn, um aus dem alten <span class="8797108108101114">Waller</span> einen ächten Theatervater zu machen, der nichts merken darf und soll, wenns gleich die ganze Welt mit Händen greifen kann. Lebhaft erinnern wir uns noch der <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Mad. Brede</a>, die uns früher die Rolle der Schauspielerinn im <span class="preview works A020818" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020818.html"><span class="tei_hi_spaced_out">Beruf</span></span> mit einer Gewandtheit und Zartheit gab, die wohl nicht sobald übertroffen werden kann; auch sah Referent <a class="preview persons A000866" href="/exist/apps/WeGA-WebApp/de/A000866.html">Mad. Renner</a> in dieser Rolle, die unstreitig zu den vorzüglichsten dieser anerkannten Künstlerinn gehört. Solche<span class="tei_pb" title="Seitenumbruch zu S. 207"> | </span> Eindrücke bleiben lebhaft in uns zurück, und schärfen unser Urtheil, ohne deßhalb gegen das spätere Verdienst ungerecht zu seyn; aber auch ohne beyde dieser Meteore am Theater im Vorbilde gesehen zu haben, müssen wir dennoch gestehen<span class="tei_choice"><span class="tei_corr">,</span><a class="noteMarker" id="ref-d40480e293" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40480e293">‡</a></span> <a class="preview persons A008046" href="/exist/apps/WeGA-WebApp/de/A008046.html">Mademois. Ritzenfeld</a> bestand nicht zum Besten in <span class="tei_hi_spaced_out">ihrer</span> Talentprobe. Sie ist zwar, wie man zu sagen pflegt, auf dem Theater zu Hause, aber über dem zu Hause seyn, vergißt sie die Gegenwart der Gäste, die der etwas unbescheidenen Ungezwungenheit die Fesseln des Schicklichen anlegen sollten.</p>
-                                        <p>Man vermißt im Ton, Sprach und Geberde jene weibliche Zartheit, die uns so wohlthätig anspricht, und erblickt eine gemeine Individualität, die den Gebildeten beleidiget. Als <span class="771051089910410922810099104101110">Milchmädchen</span> und <span class="1061171101031011143269110103101108108228110100101114">junger Engelländer</span> machte sie keinen angenehmen Eindruck — als <span class="7797100463270114101117100101">Mad. Freude</span>, <span class="74252100105110328297104101108">Jüdin Rahel</span> und <span class="72111102114228116104105110110">Hofräthinn</span>, riß sie mit fort, und wurde zum Theil vorgerufen. Ihre zweyte Rolle im <span class="preview works A020807" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020807.html">Landhaus an der <span class="tei_sic">Herrstrasse<a class="noteMarker" id="ref-d40480e326" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40480e326">‡</a></span></span>, bestätiget unser obiges Urtheil. Die schon vom <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">Dichter</a> zu grell gezeichnete Charaktere faßte sie noch greller auf, und erregte Mißfallen.</p>
+                                        <p><a class="preview persons A008046" href="/exist/apps/WeGA-WebApp/de/A008046.html">Mademois. Ritzenfeld</a>, vom Berliner Theater, trat als Gast in der <span class="preview works A020424" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020424.html">Talentprobe</span> in der Rolle der <span class="7710511011097328797108108101114">Minna Waller</span> auf. <a class="preview persons A000695" href="/exist/apps/WeGA-WebApp/de/A000695.html">Herrn Gubitz</a> hat es beliebt, das unter dem Titel: <span class="preview works A020818" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020818.html">der „Beruf“</span> bekannte Lustspiel umzumodeln, und dem Kinde einen neuen Nahmen zu geben. Derley Metamorphosen sind im Lande der Deutschheit jetzt häufig an der Tagesordnung; aber das alte Gewand deckt unsers Erachtens die Blößen besser, als die Gace, womit das Kindlein hin und wieder behangen ist. Besonders scheint der Charakter des sentimentalen Milchmädchens nur vorhanden zu seyn, um aus dem alten <span class="8797108108101114">Waller</span> einen ächten Theatervater zu machen, der nichts merken darf und soll, wenns gleich die ganze Welt mit Händen greifen kann. Lebhaft erinnern wir uns noch der <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Mad. Brede</a>, die uns früher die Rolle der Schauspielerinn im <span class="preview works A020818" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020818.html"><span class="tei_hi_spaced_out">Beruf</span></span> mit einer Gewandtheit und Zartheit gab, die wohl nicht sobald übertroffen werden kann; auch sah Referent <a class="preview persons A000866" href="/exist/apps/WeGA-WebApp/de/A000866.html">Mad. Renner</a> in dieser Rolle, die unstreitig zu den vorzüglichsten dieser anerkannten Künstlerinn gehört. Solche<span class="tei_pb" title="Seitenumbruch zu S. 207"> | </span> Eindrücke bleiben lebhaft in uns zurück, und schärfen unser Urtheil, ohne deßhalb gegen das spätere Verdienst ungerecht zu seyn; aber auch ohne beyde dieser Meteore am Theater im Vorbilde gesehen zu haben, müssen wir dennoch gestehen<span class="tei_choice"><span class="tei_corr">,</span><a class="noteMarker" id="ref-d10e291" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e291">‡</a></span> <a class="preview persons A008046" href="/exist/apps/WeGA-WebApp/de/A008046.html">Mademois. Ritzenfeld</a> bestand nicht zum Besten in <span class="tei_hi_spaced_out">ihrer</span> Talentprobe. Sie ist zwar, wie man zu sagen pflegt, auf dem Theater zu Hause, aber über dem zu Hause seyn, vergißt sie die Gegenwart der Gäste, die der etwas unbescheidenen Ungezwungenheit die Fesseln des Schicklichen anlegen sollten.</p>
+                                        <p>Man vermißt im Ton, Sprach und Geberde jene weibliche Zartheit, die uns so wohlthätig anspricht, und erblickt eine gemeine Individualität, die den Gebildeten beleidiget. Als <span class="771051089910410922810099104101110">Milchmädchen</span> und <span class="1061171101031011143269110103101108108228110100101114">junger Engelländer</span> machte sie keinen angenehmen Eindruck — als <span class="7797100463270114101117100101">Mad. Freude</span>, <span class="74252100105110328297104101108">Jüdin Rahel</span> und <span class="72111102114228116104105110110">Hofräthinn</span>, riß sie mit fort, und wurde zum Theil vorgerufen. Ihre zweyte Rolle im <span class="preview works A020807" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020807.html">Landhaus an der <span class="tei_sic">Herrstrasse<a class="noteMarker" id="ref-d10e324" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e324">‡</a></span></span>, bestätiget unser obiges Urtheil. Die schon vom <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">Dichter</a> zu grell gezeichnete Charaktere faßte sie noch greller auf, und erregte Mißfallen.</p>
                                         <p>Die Herrn <a class="preview persons A001901" href="/exist/apps/WeGA-WebApp/de/A001901.html">Stöger</a> und <a class="preview persons A000647" href="/exist/apps/WeGA-WebApp/de/A000647.html">Gned</a>, neu engagirte Mitglieder dieses Theaters, verdienen volle Zufriedenheit. Beyde haben hier Gelegenheit durch Fleiß und Verwenden ihr Talent zu vervollkommnen, und daß unserm Publikum Verdienst und Fleiß nicht entgehen, erhielten beyde durch öftere Aufmunterung und Hervorrufen Beweise. </p>
                                         <p>Wir haben das Vergnügen in einigen Tagen <a class="preview persons A000324" href="/exist/apps/WeGA-WebApp/de/A000324.html">Herrn Kostenobl</a> vom Hamburger Theater als Gast zu sehen. Der schöne Ruf, der diesem Künstler voran tritt, läßt uns genußreiche Abende erwarten, und ich werde Ihnen nächstens die Resultate hierüber mittheilen.</p>
                                         <p>Prag, am 25ten Juny 1816.</p>
@@ -477,7 +519,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Wiener Theater-Zeitung</span>, Jg. 9, Nr. 52 (29. Juni 1816), S. 205–207</p>
+                                <p class="biblio-entry"><span class="journalTitle">Wiener Theater-Zeitung</span>, Jg. 9, Nr. 52 (29. Juni 1816), S. 205–207</p>
                                 
                                 <div>
                                     
@@ -494,19 +536,19 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d40480e326" data-title="sic">"Herrstrasse": sic!</div>
+                                            <div class="apparatusEntry" id="d10e324" data-title="sic">"Herrstrasse": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d40480e103" data-title="choice">recte "gleichen": in der Vorlage "gleichem"</div>
+                                            <div class="apparatusEntry" id="d10e101" data-title="choice">recte "gleichen": in der Vorlage "gleichem"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40480e137" data-title="choice">recte ".": in der Vorlage ","</div>
+                                            <div class="apparatusEntry" id="d10e135" data-title="choice">recte ".": in der Vorlage ","</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40480e293" data-title="choice">recte ",": in der Vorlage ";"</div>
+                                            <div class="apparatusEntry" id="d10e291" data-title="choice">recte ",": in der Vorlage ";"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -522,10 +564,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -534,9 +572,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031846</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031846</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

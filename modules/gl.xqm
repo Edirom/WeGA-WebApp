@@ -25,9 +25,11 @@ import module namespace templates="http://exist-db.org/xquery/templates" at "/db
 import module namespace functx="http://www.functx.com";
 
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
-declare variable $gl:main-source as document-node() := 
+declare variable $gl:main-source as document-node()? := 
     try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
     catch * {core:logToFile('error', 'failed to load main Guidelines source')};
+
+declare variable $gl:schemaSpec-idents as xs:string* := gl:schemaSpec-idents();
 
 (:~
  : Returns the available chapter identifier
@@ -499,14 +501,14 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
 declare %private function gl:print-exemplum($exemplum as element()) as item()* {
 	let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
 	return
-		util:serialize(core:change-namespace($exemplum, '', ())/*/*, $serializationParameters)
+		util:serialize(functx:change-element-ns-deep($exemplum, '', '')/*/*, $serializationParameters)
 };
 
 (:~
  : A simple mapping from schemaSpec identifiers to WeGA document types
 ~:)
 declare function gl:schemaIdent2docType($schemaID as xs:string?) as xs:string? {
-	if($schemaID) then lower-case(substring-after($schemaID, 'wega'))
+	if(matches($schemaID, '^wega[A-Z]')) then lower-case(substring-after($schemaID, 'wega'))
 	else ()
 };
 

@@ -4,9 +4,9 @@
         <meta charset="UTF-8" />
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Franz Weber an Friedrich Wilhelm Jähns in Berlin. London, 13. Juni 1881</title>
+        <title>Franz Weber an Friedrich Wilhelm Jähns in Berlin. London, Montag, 13. Juni 1881</title>
         
-        <meta property="dc:title" content="Franz Weber an Friedrich Wilhelm Jähns in Berlin. London, 13. Juni 1881" />
+        <meta property="dc:title" content="Franz Weber an Friedrich Wilhelm Jähns in Berlin. London, Montag, 13. Juni 1881" />
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T16:53:40.040354Z" />
+        <meta property="dc:date" content="2017-12-20T08:43:14.086600Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044368" />
         <meta property="dc:description" content="dankt für J's Bemühungen, ihn in die deutsche Fachpresse einzuführen und schickt ihm Antworten auf seine Fragen vom 7. Juni 1881" />
         <meta name="description" content="dankt für J's Bemühungen, ihn in die deutsche Fachpresse einzuführen und schickt ihm Antworten auf seine Fragen vom 7. Juni 1881" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -202,7 +206,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Franz Weber an Friedrich Wilhelm Jähns  in Berlin<br />London, 13. Juni 1881</h1>
+                    <h1 class="document">Franz Weber an Friedrich Wilhelm Jähns  in Berlin<br />London, Montag, 13. Juni 1881</h1>
                 </div>
             </div>
         </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,41 +246,85 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044368.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044367.html">1881-05-29</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044369.html">1881-06-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044367.html">1881-05-29</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044369.html">1881-06-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
-                                    </li>
-                                </ul>
-                            
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044367.html">1881-05-29</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044369.html">1881-06-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044367.html">1881-05-29</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A008814/Korrespondenz/A044369.html">1881-06-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns, Friedrich Wilhelm</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -331,11 +378,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76111110100111110" /> <span title="London">London</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7611111010011111039115" /> <span title="London's">London's</span> 
+                                    <input type="checkbox" name="options" value="A130011" /> <span title="London">London</span> 
                                 </label>
                             </div>
                         </div>
@@ -363,7 +408,7 @@
                   20 <span class="tei_hi_latintype">Maitland Park Road</span>
                   <br /><span class="tei_hi_latintype">Haverstock Hill</span>
                   <br /><span class="tei_hi_latintype">London N. W.</span>
-                  <br />13/6/<span class="tei_supplied" id="d53174e23"><span class="brackets_supplied">[</span>18<span class="brackets_supplied">]</span></span>81</span>
+                  <br />13/6/<span class="tei_supplied" id="d10e23"><span class="brackets_supplied">[</span>18<span class="brackets_supplied">]</span></span>81</span>
                <p class="teiLetter_salute">Mein sehr geehrter <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herr Professor</a>,</p>
             </div>
                                         <p>Tausend Dank für Ihre lieben, freundlichen Zeilen vom 9<span class="tei_hi_superscript">ten</span> d/s und Ihre fortgesetzten Bemühungen mich in die heimathliche Presse einzuführen, wobei mir Ihr Einfluß und ausgedehnte Beziehungen gewiß gut zu Statten kommen werden und ich hoffe mich Ihrer Empfehlung würdig zeigen zu können.</p>
@@ -376,10 +421,10 @@
                                     </div>
                                     <div class="writingSession">
                                         <h2>
-               <span class="tei_hi_underline1"><span class="tei_hi_latintype">Beilage</span></span>  <span class="tei_supplied" id="d53174e77"><span class="brackets_supplied">[</span>von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a><span class="brackets_supplied">]</span></span>
+               <span class="tei_hi_underline1"><span class="tei_hi_latintype">Beilage</span></span>  <span class="tei_supplied" id="d10e77"><span class="brackets_supplied">[</span>von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a><span class="brackets_supplied">]</span></span>
             </h2>
                                         <div class="teiLetter_opener"><span class="tei_dateline textAlign-right">7. Juni 1881.</span></div>
-                                        <p>Zu Ihrem Brief v. <span class="tei_choice"><span class="tei_corr">29</span><a class="noteMarker" id="ref-d53174e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e87">‡</a></span> <span class="tei_hi_latintype">Mai</span>  u. Ihre <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>-Notizen</p>
+                                        <p>Zu Ihrem Brief v. <span class="tei_choice"><span class="tei_corr">29</span><a class="noteMarker" id="ref-d10e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e87">‡</a></span> <span class="tei_hi_latintype">Mai</span>  u. Ihre <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>-Notizen</p>
                                         <ol class="tei_orderedList">
                                             <li>(<span class="tei_hi_underline1">Ihre</span>
                   <span class="tei_hi_latintype">No.</span> I.) Der <span class="tei_hi_underline1"><span class="tei_hi_latintype">Rockstro</span></span>-<span class="tei_hi_underline1"><span class="tei_hi_latintype">Mould</span></span> <span class="tei_hi_underline1">’sche</span>
@@ -404,13 +449,13 @@
                   nur anzuzeigen, <span class="tei_hi_underline1">wann</span> dies geschehen sein wird, ich
                   lasse sie mir dann von meiner Schwiegertochter übersetzen.</li>
                                         </ol>
-                                        <p>Das in Ihren (Ihrem <span class="tei_hi_underline1">Briefe</span>  beiliegenden) <span class="tei_hi_underline1">Notizen zum <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>.</span>  (in 4° Format) Mitgetheilte, gehört wohl schon zu diesem von Ihnen Aufgefundenen? Ich meine die dort besprochenen eingelegten (oder untergeschobenen) Lieder, von welchen ich einige bereits in meinem <span class="tei_hi_underline1">gedruckten</span>  Hauptwerk auf <span class="tei_hi_latintype">Pag</span>. 317 genannt habe; es sind: „<span class="preview works A020175" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020175.html">Wenn die Maien grün sich kleiden</span>“ = „<span class="tei_hi_latintype">Gay my heart</span>“ ─ Der Schweizerbub = „<span class="tei_hi_latintype">Thro’ the gay path of life</span>“ ─ „<span class="tei_hi_latintype">Love, Good night</span>“ ─ „<span class="tei_hi_latintype">Oh fortune we hail thee</span>“ ─ „<span class="tei_hi_latintype">Then to day drive care away</span>“ dem <span class="tei_hi_underline1">ich</span> den Text des deutschen Volksliede<span class="tei_supplied" id="d53174e338"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span> beifügte „Drunten im Unterland“, Sie aber als den Text „War’s vielleicht um Eins, war’s vielleicht um Zwei“ geben. Die von Ihnen in <span class="tei_hi_underline1">Noten</span>  gegebenen Melodien zu „<span class="tei_hi_latintype">Love (Now), good night</span>“ ─ <span class="tei_hi_latintype">O blest are the moments whose visions are over</span>!“ ─ „<span class="tei_hi_latintype">Oh Fortune we hail thee</span>“ kenne ich nicht, werde mich aber an unsern größten Kenner deutscher Volksmelodien wenden (<span class="tei_hi_latintype"><a class="preview persons A004244" href="/exist/apps/WeGA-WebApp/de/A004244.html">Ludw. Erk</a></span>), wenn er erst von seiner schweren Krankheit genesen ist.</p>
+                                        <p>Das in Ihren (Ihrem <span class="tei_hi_underline1">Briefe</span>  beiliegenden) <span class="tei_hi_underline1">Notizen zum <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>.</span>  (in 4° Format) Mitgetheilte, gehört wohl schon zu diesem von Ihnen Aufgefundenen? Ich meine die dort besprochenen eingelegten (oder untergeschobenen) Lieder, von welchen ich einige bereits in meinem <span class="tei_hi_underline1">gedruckten</span>  Hauptwerk auf <span class="tei_hi_latintype">Pag</span>. 317 genannt habe; es sind: „<span class="preview works A020175" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020175.html">Wenn die Maien grün sich kleiden</span>“ = „<span class="tei_hi_latintype">Gay my heart</span>“ ─ Der Schweizerbub = „<span class="tei_hi_latintype">Thro’ the gay path of life</span>“ ─ „<span class="tei_hi_latintype">Love, Good night</span>“ ─ „<span class="tei_hi_latintype">Oh fortune we hail thee</span>“ ─ „<span class="tei_hi_latintype">Then to day drive care away</span>“ dem <span class="tei_hi_underline1">ich</span> den Text des deutschen Volksliede<span class="tei_supplied" id="d10e338"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span> beifügte „Drunten im Unterland“, Sie aber als den Text „War’s vielleicht um Eins, war’s vielleicht um Zwei“ geben. Die von Ihnen in <span class="tei_hi_underline1">Noten</span>  gegebenen Melodien zu „<span class="tei_hi_latintype">Love (Now), good night</span>“ ─ <span class="tei_hi_latintype">O blest are the moments whose visions are over</span>!“ ─ „<span class="tei_hi_latintype">Oh Fortune we hail thee</span>“ kenne ich nicht, werde mich aber an unsern größten Kenner deutscher Volksmelodien wenden (<span class="tei_hi_latintype"><a class="preview persons A004244" href="/exist/apps/WeGA-WebApp/de/A004244.html">Ludw. Erk</a></span>), wenn er erst von seiner schweren Krankheit genesen ist.</p>
                                         <p>
                <span class="tei_hi_underline1">Zu Ihrer</span> 
                <span class="tei_hi_underline1">Randbemerkung</span> in Ihrem Briefe: Ihre Worte über 
                <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Max</span>
                </span>
-                  <span class="tei_hi_latintype">Maria v. W.</span></a> werde ich dessen Tochter <span class="tei_hi_latintype"><a class="preview persons A002142" href="/exist/apps/WeGA-WebApp/de/A002142.html">Maria</a></span> mittheilen, die noch hier, (vorläufig bis <span class="tei_hi_latintype">Oct.</span>) in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> sich aufhält u. zu den nächsten Freunden meines Hauses gehört. ─ Den Artikel in der <span class="tei_hi_latintype">Musical Times</span>  „<span class="tei_hi_latintype">Music of the Future in Berlin</span>“ werde ich mit Interesse mir durch <span class="tei_hi_latintype"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Maria v. Weber</a></span>  übersetzen lassen. Herrn <span class="tei_hi_latintype"><span class="769711010310497110115">Langhans</span></span> kenne ich <span class="tei_hi_underline1">persönlich</span> nicht. Als Musik-Schriftsteller hat er in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> aber einen sehr geschätzten Namen.</p>
+                  <span class="tei_hi_latintype">Maria v. W.</span></a> werde ich dessen Tochter <span class="tei_hi_latintype"><a class="preview persons A002142" href="/exist/apps/WeGA-WebApp/de/A002142.html">Maria</a></span> mittheilen, die noch hier, (vorläufig bis <span class="tei_hi_latintype">Oct.</span>) in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> sich aufhält u. zu den nächsten Freunden meines Hauses gehört. ─ Den Artikel in der <span class="tei_hi_latintype">Musical Times</span>  „<span class="tei_hi_latintype">Music of the Future in Berlin</span>“ werde ich mit Interesse mir durch <span class="tei_hi_latintype"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Maria v. Weber</a></span>  übersetzen lassen. Herrn <span class="tei_hi_latintype"><span class="769711010310497110115">Langhans</span></span> kenne ich <span class="tei_hi_underline1">persönlich</span> nicht. Als Musik-Schriftsteller hat er in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> aber einen sehr geschätzten Namen.</p>
                                         <p>Meine grenzenlose Zerstreuung betreffs des Vornamens <span class="tei_hi_latintype">Ferdinand</span> statt <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A008814" href="/exist/apps/WeGA-WebApp/de/A008814.html">Franz</a></span></span>  bitte ich mir zu verzeihen. Woher mir diese Thorheit zugeflossen, ist mir gänzlich unfaßlich. ─ Es soll aber nicht wiedergeschehn.</p>
                                         <p>
                <span class="tei_hi_underline1">Nun</span>  ─ <span class="tei_hi_underline1">ausschließlich</span> zu Ihren für mich so hoch werthvollen speziellen Mittheilungen über den <span class="tei_hi_underline1"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>  (in Quartformat):</p>
@@ -431,7 +476,7 @@
                </span>“ ─ „<span class="tei_hi_latintype">English Opera House </span>
                   <span class="tei_hi_underline1"><span class="tei_hi_latintype">in the Strand</span>
                   </span>“ ─ ist dies <span class="tei_hi_underline1">alles ein u. dasselbe</span>? Es giebt oder es gab auch ein „<span class="tei_hi_latintype">Royal-Strand-Theatre</span>“, wo der <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>. notorisch gegeben wurde; ist das <span class="tei_hi_underline1">auch</span> 
-               <span class="tei_hi_underline1">gleich</span>  mit den vorgenannten <span class="tei_hi_underline1">drei</span> Theatern? Auch ein Flee<span class="tei_supplied" id="d53174e554"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span> street <span class="tei_hi_latintype">Theatre</span> gabs nach meiner alten Notiz, die ich wohl aus <span class="tei_hi_latintype"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. W’s</a></span>, habe; Ihre Randbemerkung auf pag. 1 Ihrer Notizen in 4° rectificiren diese Mittheilung <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html"><span class="tei_hi_latintype">Max v. </span>W’s</a>, indem Sie feststellen, nicht in „Flee<span class="tei_supplied" id="d53174e572"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span>street“ sondern im „<span class="tei_hi_latintype">English Opera House in the Strand</span>“ sei der <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>. <span class="tei_hi_underline1">zuerst</span>  am 22. <span class="tei_hi_latintype">Juli</span>  24 gegeben. Dies <span class="tei_hi_latintype">English Opera House in the Strand</span>“ wäre also gleichbedeutend mit dem <span class="tei_hi_underline1"><span class="tei_hi_latintype">Coventgarden-Theatre</span>
+               <span class="tei_hi_underline1">gleich</span>  mit den vorgenannten <span class="tei_hi_underline1">drei</span> Theatern? Auch ein Flee<span class="tei_supplied" id="d10e552"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span> street <span class="tei_hi_latintype">Theatre</span> gabs nach meiner alten Notiz, die ich wohl aus <span class="tei_hi_latintype"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max v. W’s</a></span>, habe; Ihre Randbemerkung auf pag. 1 Ihrer Notizen in 4° rectificiren diese Mittheilung <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html"><span class="tei_hi_latintype">Max v. </span>W’s</a>, indem Sie feststellen, nicht in „Flee<span class="tei_supplied" id="d10e570"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span>street“ sondern im „<span class="tei_hi_latintype">English Opera House in the Strand</span>“ sei der <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freisch</span>. <span class="tei_hi_underline1">zuerst</span>  am 22. <span class="tei_hi_latintype">Juli</span>  24 gegeben. Dies <span class="tei_hi_latintype">English Opera House in the Strand</span>“ wäre also gleichbedeutend mit dem <span class="tei_hi_underline1"><span class="tei_hi_latintype">Coventgarden-Theatre</span>
                </span>
                <span class="tei_hi_latintype">,</span>denn
                <span class="tei_hi_underline1"><span class="tei_hi_latintype">hier</span>
@@ -472,7 +517,7 @@
                                         </ol>
                                         <p>Bei der <span class="tei_hi_underline1"><span class="tei_hi_latintype">Cramer</span>
             </span>-Ausg. Habe <span class="tei_hi_underline1">ich</span>  die <span class="tei_hi_latintype">Notiz</span>
-               <span class="tei_hi_underline1">15</span>f.- Über die bei <span class="tei_hi_latintype">Welsh</span> u. <span class="tei_hi_latintype"><a class="preview persons A000775" href="/exist/apps/WeGA-WebApp/de/A000775.html">Hawes</a></span> erschienen<span class="tei_supplied" id="d53174e899"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> einzelnen Nummern habe ich die Notiz: 
+               <span class="tei_hi_underline1">15</span>f.- Über die bei <span class="tei_hi_latintype">Welsh</span> u. <span class="tei_hi_latintype"><a class="preview persons A000775" href="/exist/apps/WeGA-WebApp/de/A000775.html">Hawes</a></span> erschienen<span class="tei_supplied" id="d10e897"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> einzelnen Nummern habe ich die Notiz: 
                „<span class="tei_hi_underline1">Zusammen</span>: <span class="tei_hi_underline1">59</span> <span class="tei_hi_latintype">s<span class="tei_hi_superscript"><span class="tei_hi_underline1">h</span></span></span>.“
             </p>
                                         <p>L. In meinen Notizen über engl. Theater habe ich noch allerlei dergl. z. B.
@@ -488,7 +533,7 @@
                   </li>
                                         </ul>
                                         <p>Auf dem <span class="tei_hi_latintype">Th. Prince of Wales in Shoreditch</span> ist der Fr. notorisch gegeben. fragt mich aber nicht: <span class="tei_hi_underline1">wie</span>? Es soll der rasendste Unsinn gewesen sein! ─</p>
-                                        <p class="tei_closer textAlign-left">Jetzt werden Sie nothgedrungen den Freund <span class="tei_hi_latintype"><span class="8397109105101108">Samiel</span></span> zu Hülfe rufen <span class="tei_del">zu<a class="noteMarker" id="ref-d53174e979" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e979">‡</a></span>  müssen, der der richtige Mann zu sein scheint, solche wie die obige Unverschämtheit abzufertigen; und selbst <span class="tei_hi_underline1">der</span>  würde sich höchst <span class="tei_del">auf<a class="noteMarker" id="ref-d53174e985" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e985">‡</a></span>  wahrscheinlich aigrirt von solchem Ansinnen abwenden und nichts donnern als:
+                                        <p class="tei_closer textAlign-left">Jetzt werden Sie nothgedrungen den Freund <span class="tei_hi_latintype"><span class="8397109105101108">Samiel</span></span> zu Hülfe rufen <span class="tei_del">zu<a class="noteMarker" id="ref-d10e977" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e977">‡</a></span>  müssen, der der richtige Mann zu sein scheint, solche wie die obige Unverschämtheit abzufertigen; und selbst <span class="tei_hi_underline1">der</span>  würde sich höchst <span class="tei_del">auf<a class="noteMarker" id="ref-d10e983" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e983">‡</a></span>  wahrscheinlich aigrirt von solchem Ansinnen abwenden und nichts donnern als:
                <br />Werft das Scheusal in die Wolfsschlucht!!!
                <br /><span class="tei_hi_latintype"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a></span>
             </p>
@@ -498,11 +543,11 @@
                                         </div>
                                     </div>
                                     <div class="writingSession">
-                                        <h2>Antwort auf <span class="tei_supplied" id="d53174e1015"><span class="brackets_supplied">[</span><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a>: <span class="tei_hi_underline1">meine</span><span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Beilage</span>  v. 7. <span class="tei_hi_latintype">Juni</span>  1881. <span class="tei_supplied" id="d53174e1028"><span class="brackets_supplied">[</span>von <a class="preview persons A008814" href="/exist/apps/WeGA-WebApp/de/A008814.html">Franz Weber</a><span class="brackets_supplied">]</span></span></h2>
+                                        <h2>Antwort auf <span class="tei_supplied" id="d10e1013"><span class="brackets_supplied">[</span><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a>: <span class="tei_hi_underline1">meine</span><span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Beilage</span>  v. 7. <span class="tei_hi_latintype">Juni</span>  1881. <span class="tei_supplied" id="d10e1026"><span class="brackets_supplied">[</span>von <a class="preview persons A008814" href="/exist/apps/WeGA-WebApp/de/A008814.html">Franz Weber</a><span class="brackets_supplied">]</span></span></h2>
                                         <p>1.− Es freut mich daß ich Ihnen den <span class="tei_hi_latintype">Rockstro-Mould</span> entdeckt habe; hoffentlich gelingt es mir demnächst, diese Ausgabe an mich zu bringen. Jedenfalls theile ich Ihnen noch, wenn ich Ihnen nicht das Buch selbst überschicken kann, das Wichtigste daraus mit (zum größten Theil habe ich’s ja schon gethan). Ueber <span class="tei_hi_latintype"><span class="729711910139115">Hawe’s</span></span> Ausgabe siehe unter <span class="tei_hi_latintype">chiffer</span> 
                <span class="tei_hi_latintype">A</span>.</p>
-                                        <p>2.− Die Daten der ersten <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_latintype">Freisch</span>.</span> Aufführungen in <span class="tei_add tei_hi_superscript"><span class="tei_hi_latintype">Coventgarden</span>  u. <span class="tei_hi_latintype">Drury Lane</span><a class="noteMarker" id="ref-d53174e1054" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e1054">‡</a></span>  sind richtig, siehe auch meine „Fortsetzung“.</p>
-                                        <p>3.− Ein speziell dem regierenden Haupte gewidmetes <span class="tei_add tei_hi_superscript">jedoch nicht subventionirtes<a class="noteMarker" id="ref-d53174e1066" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e1066">‡</a></span>, Theater bestand schon zu <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händels</a> Zeit in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="76111110100111110">London</span></span></span>. <span class="tei_add tei_hi_superscript">hier gab man vorzugsweise italienische <span class="tei_hi_latintype">Oper</span><a class="noteMarker" id="ref-d53174e1077" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53174e1077">‡</a></span> Damals regierte, wie bekannt, und bis zum Jahre 1837 ein König in <span class="tei_placeName"><span class="tei_country">England</span></span>; daher hieß das Theater solange <span class="tei_hi_latintype">The King’s Theatre. </span>Danach, als die <a class="preview persons A003261" href="/exist/apps/WeGA-WebApp/de/A003261.html">gegenw. Königin</a> zur Reg. kam, nannte sich <span class="tei_hi_underline1">dasselbe</span>  Theater „<span class="tei_hi_latintype">Her Majesty’s</span>“. In 1832 u. 33 fanden Vorstell. Des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_latintype">Freisch</span>.</span> mit deutschen Truppen statt, ebenso auf andern Bühnen <span class="tei_hi_latintype"><span class="tei_placeName"><span class="7611111010011111039115">London’s</span></span></span> in 1840, 1841, 1842 u. 1849. Die <span class="tei_hi_underline1">Besetzungen</span> stelle ich noch künftig fest.</p>
+                                        <p>2.− Die Daten der ersten <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_latintype">Freisch</span>.</span> Aufführungen in <span class="tei_add tei_hi_superscript"><span class="tei_hi_latintype">Coventgarden</span>  u. <span class="tei_hi_latintype">Drury Lane</span><a class="noteMarker" id="ref-d10e1052" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1052">‡</a></span>  sind richtig, siehe auch meine „Fortsetzung“.</p>
+                                        <p>3.− Ein speziell dem regierenden Haupte gewidmetes <span class="tei_add tei_hi_superscript">jedoch nicht subventionirtes<a class="noteMarker" id="ref-d10e1064" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1064">‡</a></span>, Theater bestand schon zu <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händels</a> Zeit in <span class="tei_hi_latintype"><span class="preview places A130011" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130011.html">London</span></span>. <span class="tei_add tei_hi_superscript">hier gab man vorzugsweise italienische <span class="tei_hi_latintype">Oper</span><a class="noteMarker" id="ref-d10e1074" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1074">‡</a></span> Damals regierte, wie bekannt, und bis zum Jahre 1837 ein König in <span class="tei_country">England</span>; daher hieß das Theater solange <span class="tei_hi_latintype">The King’s Theatre. </span>Danach, als die <a class="preview persons A003261" href="/exist/apps/WeGA-WebApp/de/A003261.html">gegenw. Königin</a> zur Reg. kam, nannte sich <span class="tei_hi_underline1">dasselbe</span>  Theater „<span class="tei_hi_latintype">Her Majesty’s</span>“. In 1832 u. 33 fanden Vorstell. Des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_latintype">Freisch</span>.</span> mit deutschen Truppen statt, ebenso auf andern Bühnen <span class="tei_hi_latintype"><span class="7611111010011111039115">London’s</span></span> in 1840, 1841, 1842 u. 1849. Die <span class="tei_hi_underline1">Besetzungen</span> stelle ich noch künftig fest.</p>
                                         <p>4.− Meine, <span class="tei_hi_underline1">noch</span> 
                <span class="tei_hi_underline1">zuschreibenden</span>, Artikel werden sich <span class="tei_hi_underline1">zum</span> 
                <span class="tei_hi_underline1">Theil</span> auf das Ihnen bereits Mitgetheilte stützen. − Damit kein Zweifel über das eingeschobene Lied „<span class="tei_hi_latintype">Then today, drive care</span>“ obliegt folge hier die Melodie <span class="tei_notatedMusic">[Notenbeispiel: <span class="tei_desc">Notenbeispiel</span>]</span> umgestaltet <span class="tei_hi_latintype">i. e.</span>  verunstaltet von <span class="tei_hi_latintype"><a class="preview persons A000775" href="/exist/apps/WeGA-WebApp/de/A000775.html">W. Hawes Esq.</a></span>
@@ -600,25 +645,25 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e979" data-title="del">"zu":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e977" data-title="del">"zu":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e985" data-title="del">"auf":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e983" data-title="del">"auf":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e1054" data-title="add">"Coventgarden  u. Drury Lane": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e1052" data-title="add">"Coventgarden  u. Drury Lane": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e1066" data-title="add">"jedoch nicht subventionirtes": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e1064" data-title="add">"jedoch nicht subventionirtes": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e1077" data-title="add">"hier gab man vorzugsweise italienische Oper": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e1074" data-title="add">"hier gab man vorzugsweise italienische Oper": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d53174e87" data-title="choice">recte "29": in der Vorlage "28."</div>
+                                            <div class="apparatusEntry" id="d10e87" data-title="choice">recte "29": in der Vorlage "28."</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -634,10 +679,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -646,9 +687,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044368</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A044368</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-10-19T09:12:38.218215Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155" />
         <meta property="dc:description" content="in dem Bericht werden die musikalischen Verhältnisse von Sachsen und Dresden anhand der einzelnen Punkte des von Webers ausgearbeiteten Plan zum Noth- und Hülfsbüchlein systematisch aufgeschlüsselt skizziert" />
         <meta name="description" content="in dem Bericht werden die musikalischen Verhältnisse von Sachsen und Dresden anhand der einzelnen Punkte des von Webers ausgearbeiteten Plan zum Noth- und Hülfsbüchlein systematisch aufgeschlüsselt skizziert" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -239,14 +242,53 @@
                                 
                                     <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -272,7 +314,13 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009849" /> <span title="Jäckel, Gottfried Friedrich">Jäckel, Gottfried Friedrich</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008725" /> <span title="Körner, Christian Gottfried">Körner, Christian Gottfried</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001177" /> <span title="Limberg, Johann Gottlob">Limberg, Johann Gottlob</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009669" /> <span title="Miksch, Adalbert Alexius">Miksch, Adalbert Alexius</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002848" /> <span title="Morgenroth, Franz Anton">Morgenroth, Franz Anton</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001348" /> <span title="Morlacchi, Francesco">Morlacchi, Francesco</span> 
                                 </label><label class="btn gradient-light">
@@ -281,6 +329,8 @@
                                     <input type="checkbox" name="options" value="A001436" /> <span title="Paër, Ferdinando">Paër, Ferdinando</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A008977" /> <span title="Pechwell, Antonia">Pechwell, Antonia</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002260" /> <span title="Peschke, Carl Gottlob">Peschke, Carl Gottlob</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A008053" /> <span title="Prinz, Johann Friedrich">Prinz, Johann Friedrich</span> 
                                 </label><label class="btn gradient-light">
@@ -291,6 +341,10 @@
                                     <input type="checkbox" name="options" value="A001623" /> <span title="Roth, Johann Traugott">Roth, Johann Traugott</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001649" /> <span title="Sassaroli, Filippo">Sassaroli, Filippo</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001706" /> <span title="Schmiedel, Carl Traugott">Schmiedel, Carl Traugott</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008764" /> <span title="Schulz, Johann Gottlob">Schulz, Johann Gottlob</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A006381" /> <span title="Schuster, Joseph">Schuster, Joseph</span> 
                                 </label><label class="btn gradient-light">
@@ -314,12 +368,12 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <div class="table-wrapper">
-                                            <table id="d42075e3" class="table">
+                                            <table id="d10e3" class="table">
                                                 <tbody>
                                                     <tr>
-                                                        <td>„<span class="tei_hi_underline1">Sachsen</span>.</td>
-                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="preview persons A003577" href="/exist/apps/WeGA-WebApp/de/A003577.html">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="preview persons A000756" href="/exist/apps/WeGA-WebApp/de/A000756.html">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d42075e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42075e32">‡</a></span> <a class="preview persons A004394" href="/exist/apps/WeGA-WebApp/de/A004394.html">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a>. <a class="preview persons A002416" href="/exist/apps/WeGA-WebApp/de/A002416.html">Seidelmann</a> und <a class="preview persons A006381" href="/exist/apps/WeGA-WebApp/de/A006381.html">Schuster</a>
-                     gleichsam <span class="8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d42075e59"><span class="brackets_supplied">[</span><span class="tei_hi_superscript">t</span><span class="brackets_supplied">]</span></span> <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a>, <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlachi</a>.</td>
+                                                        <td><span class="tei_hi_underline1">Sachsen</span>.</td>
+                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="preview persons A003577" href="/exist/apps/WeGA-WebApp/de/A003577.html">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="preview persons A000756" href="/exist/apps/WeGA-WebApp/de/A000756.html">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a></span> <a class="preview persons A004394" href="/exist/apps/WeGA-WebApp/de/A004394.html">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a>. <a class="preview persons A002416" href="/exist/apps/WeGA-WebApp/de/A002416.html">Seidelmann</a> und <a class="preview persons A006381" href="/exist/apps/WeGA-WebApp/de/A006381.html">Schuster</a>
+                     gleichsam <span class="8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d10e58"><span class="brackets_supplied">[</span><span class="tei_hi_superscript">t</span><span class="brackets_supplied">]</span></span> <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a>, <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlachi</a>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Dresden</span>.<br />Oboe dominirte wegen 
@@ -329,12 +383,12 @@
                      <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a> liebte sie sehr
                      und brachte es mit 
                      Mühe dahin.                        
-                     <span class="tei_add tei_hi_subscript">12. Jahr.<a class="noteMarker" id="ref-d42075e94" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42075e94">‡</a></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
+                     12. Jahr.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
                   </td>
                                                         <td>in jeder Stadt, StadtMusizi. daher 
                      KirchenMusik vorherrschend. nur 1 Hof. der blos am Italienischen hängt und am 
-                     alten.     Choräle. Kirchlicher Vol<span class="tei_supplied" id="d42075e101"><span class="brackets_supplied">[</span>k<span class="brackets_supplied">]</span></span>sGesang.
-                     ästhetischer Mangel, aus übermaß<br />auf jeder Seite, lauter Italienisches 
+                     alten.     Choräle. Kirchlicher Vol<span class="tei_supplied" id="d10e98"><span class="brackets_supplied">[</span>k<span class="brackets_supplied">]</span></span>sGesang.
+                     Ästhetischer Mangel, aus übermaß<br />auf jeder Seite, lauter Italienische 
                      oder lauter Choräle.
                      Cantor. StadtMusikus. Stadtschulen
                      wo die Sänger gezogen werden.
@@ -344,11 +398,11 @@
                                                         <td><span class="tei_hi_underline1">Erlaubniß</span>.</td>
                                                         <td>wenn die Kapelle spielt muß der Graf 
                      <a class="preview persons A002021" href="/exist/apps/WeGA-WebApp/de/A002021.html"><span class="tei_hi_latintype">V</span>.</a> die E: geben. vorher wird die K: 
-                     um ihre Mitw. ersucht. durch den KapellMstr. 
-                     oder <a class="preview persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html"><span class="tei_hi_latintype">Babi</span></a>. neuerdings befohlen daß kein 
+                     um ihre Mitw. ersucht. durch den KapellMst. 
+                     oder <a class="preview persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html"><span class="tei_hi_latintype">Babi</span></a>. neuerdings befohlen daß keine 
                      E: gegeben wird ohne Protektion, oder 
-                     hinlängliche Subsc:<br />
-                     in der Stadt ohne C:<span class="tei_supplied" id="d42075e124"><span class="brackets_supplied">[</span>apelle?<span class="brackets_supplied">]</span></span> PolizeiE: vom 
+                     hinlängliche <span class="tei_hi_latintype">Subsc</span>:<br />
+                     in der Stadt ohne C:<span class="tei_supplied" id="d10e124"><span class="brackets_supplied">[</span>apelle?<span class="brackets_supplied">]</span></span> PolizeiE: vom 
                      <span class="tei_hi_latintype">Polizei Direktor</span>.
                   </td>
                                                     </tr>
@@ -358,22 +412,22 @@
                      ist so klein, daß Tr: und P: unter dem 
                      Orch: stehen.
                   </td>
-                                                        <td>das beste im <span class="tei_hi_latintype">Ho:</span><span class="tei_supplied" id="d42075e139"><span class="brackets_supplied">[</span>tel<span class="brackets_supplied">]</span></span> de <span class="tei_hi_latintype">P:</span><span class="tei_supplied" id="d42075e144"><span class="brackets_supplied">[</span>ologne<span class="brackets_supplied">]</span></span> die Kapelle spielt in kein
-                     anderen. er ist auch am beliebtest<span class="tei_supplied" id="d42075e147"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> besonders
+                                                        <td>das beste im <span class="tei_hi_latintype">Ho:</span><span class="tei_supplied" id="d10e140"><span class="brackets_supplied">[</span>tel<span class="brackets_supplied">]</span></span> de <span class="tei_hi_latintype">P:</span><span class="tei_supplied" id="d10e145"><span class="brackets_supplied">[</span>ologne<span class="brackets_supplied">]</span></span> die Kapelle spielt in kein
+                     anderen. er ist auch am beliebtest<span class="tei_supplied" id="d10e148"><span class="brackets_supplied">[</span>en<span class="brackets_supplied">]</span></span> besonders
                      der Adel will sonst nirgends hin.<br />
                      Saal des Gewandhauses, groß, lang 
                      und niedrig. <span class="tei_hi_latintype">Orchester</span> steht auch da. 
-                     der Dillett: <span class="tei_hi_latintype">C:</span><span class="tei_supplied" id="d42075e158"><span class="brackets_supplied">[</span>hor?<span class="brackets_supplied">]</span></span> ist da.<br />
+                     der Dillett: <span class="tei_hi_latintype">C:</span><span class="tei_supplied" id="d10e159"><span class="brackets_supplied">[</span>hor?<span class="brackets_supplied">]</span></span> ist da.<br />
                      <span class="tei_hi_latintype">Conversat</span>: Saal vor dem Seethor<br /> 
                      manchmal <span class="tei_hi_latintype">Conc</span>: gehört der <span class="tei_hi_latintype">Conver</span>. 
                      Gesellsch: und muß von dieser besonders 
                      Erlaubt werden. nicht groß aber 
                      gut akustisch.<br />
                      Saal der Harmonie. Schmahl und niedrig.
-                     gehört der Gesellsch: die <span class="tei_del">wöchentlich<a class="noteMarker" id="ref-d42075e177" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42075e177">‡</a></span> 
-                     alle 14 T. C:<span class="tei_supplied" id="d42075e180"><span class="brackets_supplied">[</span>onzert<span class="brackets_supplied">]</span></span> g: und
+                     gehört der Gesellsch: die <span class="tei_del">wöchentlich<a class="noteMarker" id="ref-d10e178" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e178">‡</a></span> 
+                     alle 14 T. C:<span class="tei_supplied" id="d10e181"><span class="brackets_supplied">[</span>onzert<span class="brackets_supplied">]</span></span> g: und
                      zu großen Aufführungen sind die <span class="tei_hi_underline1">Kreutzkirche</span> und 
-                     FraunKirche<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> die besten.
+                     FraunKirche<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> die besten. <span class="tei_pb" title="Seitenumbruch"> | </span>
                   </td>
                                                     </tr>
                                                     <tr>
@@ -385,7 +439,7 @@
                      Zeitung. Dresdener Anzeiger. erscheint 
                      alle Tage ausgenommen Sonntag. Zeile 
                      18 Pf.    Zettel werden gedrukt 
-                     900 Stük wenn die Kapelle spielt 
+                     900 Stük. wenn die Kapelle spielt 
                      dürfen sie nicht angeschlagen sondern 
                      nur in die Häuser vertheilt werden. 
                      gewöhnlich werden die SingTexte mit 
@@ -393,29 +447,29 @@
                      sehr liebt.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_underline1">Kapelle</span>.<br />das beste Orch: ist das das auf    
+                                                        <td><span class="tei_hi_underline1">Kapelle</span>.<br />das beste <span class="tei_hi_latintype">Orch</span>: ist das das auf    
                      dem Bade spielt. die sogenanten 
-                     JagdPfeiffer.<span class="tei_add tei_hi_superscript">12<a class="noteMarker" id="ref-d42075e209" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42075e209">‡</a></span> Obergeiger <span class="tei_hi_underline1"><span class="7722811011099104101110">Männchen</span></span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>.
+                     JagdPfeiffer.<span class="tei_add tei_hi_superscript">12<a class="noteMarker" id="ref-d10e215" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e215">‡</a></span> Obergeiger <span class="tei_hi_underline1"><span class="7722811011099104101110">Männchen</span></span><a class="noteMarker" id="ref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>.
                      alles gut besezzen. geschikte und 
                      willige Leute.
-                     3 Posaun. 4 Horn.<br />außer ihnen wird aus dem Militair<span class="tei_supplied" id="d42075e227"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span>
+                     3 Posaun. 4 Horn.<br />außer ihnen wird aus dem Militair<span class="tei_supplied" id="d10e233"><span class="brackets_supplied">[</span>,<span class="brackets_supplied">]</span></span>
                      der Garde, und Artillerie Musik 
                      recht braves <span class="tei_hi_latintype">Ensemble</span> zusammen
-                     Gebracht.                                               gem:
+                     Gebracht.                                               
                       
-                     <span class="tei_add tei_hi_subscript">Fräulein aus dem <a class="preview persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. Harfe.<a class="noteMarker" id="ref-d42075e233" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d42075e233">‡</a></span><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>
+                     Fräulein aus dem <a class="preview persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. Harfe.<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>
                   </td>
                                                         <td><span class="tei_hi_latintype"><a class="preview persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html">Babbi</a></span> oder <span class="tei_hi_underline1"><a class="preview persons A000388" href="/exist/apps/WeGA-WebApp/de/A000388.html">Dietsch</a></span>.   alles gut 
                      besezt. außer Trompete u Paukken, die 
                      bezahlt werden müßen.
-                     Dilletante<span class="tei_supplied" id="d42075e250"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>. Mlle <span class="tei_hi_underline1"><span class="7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>, <a class="preview persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Zucker</a> 
-                     <span class="75972231011159910411410110598101114">Kaßeschreiber</span> <span class="71246122">Göz</span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a>. <span class="tei_hi_underline1"><a class="preview persons A002856" href="/exist/apps/WeGA-WebApp/de/A002856.html">Pischel</a></span>. <span class="tei_hi_latintype">Violoncell</span>: 
+                     Dilletante<span class="tei_supplied" id="d10e254"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>. Mlle <span class="tei_hi_underline1"><span class="7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>, <a class="preview persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Zucker</a> 
+                     <span class="75972231011159910411410110598101114">Kaßeschreiber</span> <span class="71246122">Göz</span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a>. <span class="tei_hi_underline1"><a class="preview persons A002856" href="/exist/apps/WeGA-WebApp/de/A002856.html">Pischel</a></span>. <span class="tei_hi_latintype">Violoncell</span>: Dillettant. 
                      <a class="preview persons A000400" href="/exist/apps/WeGA-WebApp/de/A000400.html">Dozauer</a>. <a class="preview persons A008053" href="/exist/apps/WeGA-WebApp/de/A008053.html">Prinz</a>. Flöte. <a class="preview persons A009849" href="/exist/apps/WeGA-WebApp/de/A009849.html">Jäckel</a>
                      Oboe. <span class="preview persons A001623 A001619" data-ref="/exist/apps/WeGA-WebApp/de/A001623.html /exist/apps/WeGA-WebApp/de/A001619.html">Br. Rothe</span>, Clar: <a class="preview persons A009669" href="/exist/apps/WeGA-WebApp/de/A009669.html">Mieksch</a>. und
                      <a class="preview persons A008977" href="/exist/apps/WeGA-WebApp/de/A008977.html">Pechwell</a>. Mlle:  Mlle:
                      Die Kapellisten spielen nicht leicht ohne 
-                     ihre <span class="tei_hi_latintype">Consorten</span>.
-                     <a class="preview persons A001649" href="/exist/apps/WeGA-WebApp/de/A001649.html">Sassarolli</a>. <a class="preview persons A001644" href="/exist/apps/WeGA-WebApp/de/A001644.html">Sandrini</a>.<br />
+                     ihre <span class="tei_hi_latintype">Consorten</span>.<br />
+                     <span class="tei_hi_underline1">gem</span>: <span class="tei_hi_latintype"><a class="preview persons A001649" href="/exist/apps/WeGA-WebApp/de/A001649.html">Sassarolli</a>. <a class="preview persons A001644" href="/exist/apps/WeGA-WebApp/de/A001644.html">Sandrini</a></span>.<br />
                      Leichte gefällige Musik. besonders 
                      sogar aus <span class="tei_hi_latintype">Opera buffa</span> Arien in 
                      <span class="tei_hi_latintype">Concerten</span>. <span class="tei_hi_latintype">Polonais pp</span> in <span class="tei_hi_latintype">Concert</span>: 
@@ -425,11 +479,41 @@
                      um 6 Uhr zuweilen ½ 7.
                      Größere Arien mit Chor, Bruchstükke aus 
                      Opern sind beliebt.
-                     Große Vorliebe für <span class="80228114821711599104101">Pär’sche</span> Musik.
+                     Große Vorliebe für <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a> Musik.
                      <a class="preview persons A004163" href="/exist/apps/WeGA-WebApp/de/A004163.html">Dreißig</a> ein Erard:sches, und H: 
-                     <span class="70105101100108101114">Fiedler</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a> ein Streichersches <span class="tei_supplied" id="d42075e342"><span class="brackets_supplied">[</span>Pianoforte<span class="brackets_supplied">]</span></span>.
-                     Magazin von Instr. im Adreß<span class="tei_hi_latintype">Comptoir</span>“
+                     <span class="70105101100108101114">Fiedler</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a> ein Streichersches <span class="tei_supplied" id="d10e353"><span class="brackets_supplied">[</span>Pianoforte<span class="brackets_supplied">]</span></span>.
+                     Magazin von Instr. im Adreß<span class="tei_hi_latintype">Comptoir</span> <span class="tei_pb" title="Seitenumbruch"> | </span>
                   </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype">FinanzWesen</span></span>.</td>
+                                                        <td>Winter. wenn die Opern aufgehört haben, von Mitte Dezember bis Ende, und von Fastnachtsdienstag bis zu den heiligen Wochen.<br />gewöhnli<span class="tei_supplied" id="d10e371"><span class="brackets_supplied">[</span>ch<span class="brackets_supplied">]</span></span>ster? Tag <span class="tei_hi_underline1">Freytag</span>. jedoch ist dießen Tag <span class="tei_hi_latintype">Casino</span> welches Manchmal ausgesezt ist<br />M: <span class="tei_hi_underline1">d</span>: <span class="tei_hi_underline1">M</span>: d: <span class="tei_hi_underline1">S</span>: Sonntag ist auch gut, aber wegen den <span class="tei_hi_latintype">Conc<span class="tei_supplied" id="d10e394"><span class="brackets_supplied">[</span>ert<span class="brackets_supplied">]</span></span></span>tag bey Hofe, nichts, –</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2"><span class="tei_hi_underline1">Bey Hofe spielen</span>.<br />Ohne große Empfehlung von K<span class="tei_supplied" id="d10e404"><span class="brackets_supplied">[</span>apell<span class="brackets_supplied">]</span></span>: K<span class="tei_supplied" id="d10e407"><span class="brackets_supplied">[</span>ammer<span class="brackets_supplied">]</span></span>: M<span class="tei_supplied" id="d10e410"><span class="brackets_supplied">[</span>usikdirektor<span class="brackets_supplied">]</span></span>: <a class="preview persons A002021" href="/exist/apps/WeGA-WebApp/de/A002021.html">V:</a> <span class="tei_hi_latintype">pp</span> geht es gar nicht, und dann sehr schwer. da nie <span class="tei_hi_latintype">Con</span>: bey Hofe <span class="tei_hi_underline1">Langenbrük</span>. 2 Stunden. </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td><span class="tei_hi_underline1">Allgemeine B</span>:<br /><span class="preview persons A001393" data-ref="/exist/apps/WeGA-WebApp/de/A001393.html"><span class="tei_sic">Neumann<a class="noteMarker" id="ref-d10e434" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e434">‡</a></span></span>. <a class="preview persons A008725" href="/exist/apps/WeGA-WebApp/de/A008725.html">Körner</a>. <a class="preview persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. viele Häuser die sonst etwas thaten thun nichts mehr.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">Ausgezeichnet waren sonst die <span class="tei_hi_latintype">Concerte</span> beym HausMarschall von Schönberg<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>, für die selbst <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a> mehrere Sinfonien schrieb.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>Nun 5 Jahre eine Akademie alle 14 Tage in sein<span class="tei_supplied" id="d10e461"><span class="brackets_supplied">[</span>em<span class="brackets_supplied">]</span></span> Hause unter <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumanns</a> Direktion. Stehende <span class="tei_hi_latintype">Concert</span> giebt es keine mehr seit <span class="preview persons A001393" data-ref="/exist/apps/WeGA-WebApp/de/A001393.html"><span class="tei_sic">Neumanns<a class="noteMarker" id="ref-d10e471" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e471">‡</a></span></span>. und die Kapelle giebt seit       keine mehr da sie nicht auf die Kosten kam.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><br />1<span class="tei_hi_superscript">stens</span> das <span class="tei_add tei_hi_superscript">sogenannte<a class="noteMarker" id="ref-d10e484" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e484">‡</a></span><a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> Dillettanten<span class="tei_hi_latintype">Concert</span> auf dem Gemeindehause. alle 14 Tage an wechselnden Tagen nach Umständen. es besteht zum Theil aus Kapellisten und Liebhabern. Musikus <a class="preview persons A008764" href="/exist/apps/WeGA-WebApp/de/A008764.html">Schulz</a> <span class="tei_hi_latintype">dirigirt</span>. <span class="tei_hi_latintype">Director</span>, ist Geh: Registrator <span class="tei_hi_underline1"><span class="tei_hi_latintype">Krämpa</span></span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> für immer.</td>
+                                                        <td>jezt besteht, 2<span class="tei_hi_superscript">tens</span> das <span class="tei_hi_latintype">Concert</span> in der Harmonie, welches auch besondere Beyträge der Gesellschaft braucht und unter Direkzion       besteht.<br />Die Hoboisten der Garde und einige Liebhaber machen es aus. der Tag ist <span class="tei_pb" title="Seitenumbruch"> | </span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a class="preview persons A001706" href="/exist/apps/WeGA-WebApp/de/A001706.html"><span class="tei_hi_underline1">Schmiedel</span></a> <span class="tei_add tei_hi_superscript">Viola<a class="noteMarker" id="ref-d10e527" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e527">‡</a></span>, <span class="tei_hi_underline1"><span class="preview persons A002260" data-ref="/exist/apps/WeGA-WebApp/de/A002260.html">P<span class="tei_del">ö<a class="noteMarker" id="ref-d10e533" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e533">‡</a></span><span class="tei_add">e<a class="noteMarker" id="ref-d10e535" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e535">‡</a></span>schke</span></span>. <span class="tei_add tei_hi_superscript">V.<a class="noteMarker" id="ref-d10e539" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e539">‡</a></span> <span class="tei_hi_underline1"><a class="preview persons A001177" href="/exist/apps/WeGA-WebApp/de/A001177.html">Limberg</a></span> <span class="tei_add tei_hi_superscript">V:<a class="noteMarker" id="ref-d10e546" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e546">‡</a></span><br />6 Stükk.? <span class="tei_del">Mittwoch<a class="noteMarker" id="ref-d10e551" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e551">‡</a></span><br />Freytag. alle 14 Tage.</td>
+                                                        <td><span class="tei_hi_latintype"><span class="tei_hi_underline1">Quartetten</span> abbonirte. <span class="tei_hi_underline1"><a class="preview persons A000400" href="/exist/apps/WeGA-WebApp/de/A000400.html">Dozauer</a></span></span> und Musiklehrer <span class="tei_hi_latintype"><span class="7011111499104116">Forcht</span></span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>. 3 Quart.? <span class="tei_hi_underline1"><a class="preview persons A002848" href="/exist/apps/WeGA-WebApp/de/A002848.html">Morgenroth</a></span>. Musikl: ein Klavier <span class="tei_hi_latintype">quartett</span>. Dienstag. alle 14 Tage.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>blos von den neuen <span class="tei_hi_latintype">Oratorien</span>, wird den Montag in der Charwoche die 2<span class="tei_hi_superscript">te</span> Probe bey Hofe gehalten, und den Ostersonnabend um 3. Uhr <span class="tei_del">M<a class="noteMarker" id="ref-d10e586" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e586">‡</a></span> Nachmittag die Aufführung in der <span class="tei_add tei_hi_superscript">Hof<a class="noteMarker" id="ref-d10e589" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e589">‡</a></span>Kirche<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a></td>
+                                                        <td></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -470,12 +554,16 @@
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <div>
-                                            <p>Entwurf: Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber Varia 9</p>
+                                            <p>Entwurf: Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Bl. 1: Mus. ep. C. M. v. Weber Varia 9 und Bl. 2: Mus. ms. autogr. theor. C.M.v.Weber WFN6 (XXII), Nr. 3</p>
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                             <ul>
                                                 <li>Ms. ohne Titel; Incipit: "Sachsen. 3 Epochen, 1t von Friedrich August. Heinichen."; Manuskript undatiert</li>
                                                 <li> einzelnes Bl.  r und v (Format 20,1x16,6 cm, WZ angeschnitten an der li. u. Ecke: E oder F innerhalb eines Ornaments, Kettlinien ca. 2,6 cm); Text von Webers Hand mit verschiedenen Korrekturen, zwei Zusätze von fremder Hand
                   </li>
+                                            </ul>
+                                            <h4 class="media-heading">Überlieferung</h4>
+                                            <ul>
+                                                <li><a class="preview orgs A080105" href="/exist/apps/WeGA-WebApp/de/A080105.html">L’Autographe</a>, 28. Juni 1994</li>
                                             </ul>
                                         </div>
                                 
@@ -508,28 +596,61 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d42075e32" data-title="add">"unter": Hinzufügung.</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="d42075e94" data-title="add">"12. Jahr.": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e31" data-title="add">"unter": Hinzufügung.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_01" data-title="note textConst"><span class="tei_lemma">"… mit Mühe dahin. 12. Jahr.": </span>Ergänzung von fremder Hand</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d42075e177" data-title="del">"wöchentlich":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e178" data-title="del">"wöchentlich":  durchgestrichen.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note textConst"><span class="tei_lemma">"… sind die Kreutzkirche und FraunKirche": </span>Weber änderte nachträglich die Reihenfolge der Kirchen durch Ziffern.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d42075e209" data-title="add">"12": Hinzufügung.</div>
-                                        </li>
-                                        <li>
-                                            <div class="apparatusEntry" id="d42075e233" data-title="add">"Fräulein aus dem Winkel. Harfe.": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e215" data-title="add">"12": Hinzufügung.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_05" data-title="note textConst"><span class="tei_lemma">"… aus dem Winkel . Harfe.": </span>Ergänzung von fremder Hand</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e434" data-title="sic">"Neumann": sic!</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e471" data-title="sic">"Neumanns": sic!</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e484" data-title="add">"sogenannte": Hinzufügung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_10" data-title="note textConst"><span class="tei_lemma">"… 1 stens das sogenannte": </span>Ergänzung von Weber oder fremder Hand?</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e527" data-title="add">"Viola": Hinzufügung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e533" data-title="del">"ö":  überschrieben.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e535" data-title="add">"e": Hinzufügung in der Zeile.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e539" data-title="add">"V.": Hinzufügung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e546" data-title="add">"V:": Hinzufügung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e551" data-title="del">"Mittwoch":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e586" data-title="del">"M":  durchgestrichen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e589" data-title="add">"Hof": Hinzufügung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_11" data-title="note textConst"><span class="tei_lemma">"… Aufführung in der Hof Kirche": </span>Ergänzung von fremder Hand</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -541,22 +662,31 @@
                                             <div class="apparatusEntry" id="C_03" data-title="note commentary"><span class="tei_lemma">"… erst seit der Anstellung Rhodens": </span>vgl. weiter unten unter Rothe</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_06" data-title="note commentary"><span class="tei_lemma">"… sogenanten JagdPfeiffer. 12 Obergeiger Männchen": </span>evtl. Christian Gottlob Männchen, Kgl. Jagdpfeifer; vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1811</span>, S. 23 sowie <span class="tei_hi_italic">Kgl. Sächs. Hof- und Staats-Calender auf das Jahr 1812</span>, S. 69.</div>
+                                            <div class="apparatusEntry" id="C_06" data-title="note commentary"><span class="tei_lemma">"… sogenanten JagdPfeiffer. 12 Obergeiger Männchen": </span>evtl. Christian Gotthelf Männchen, Kgl. Jagdpfeifer; vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1811</span>, S. 23 sowie <span class="tei_hi_italic">Kgl. Sächs. Hof- und Staats-Calender auf das Jahr 1812</span>, S. 69.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_07" data-title="note commentary"><span class="tei_lemma">"… Dilletante n . Mlle Grünwald": </span>evtl. verwandt mit dem Violinisten Carl Georg Grünewald; vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1811</span>, S. 17.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_08" data-title="note commentary"><span class="tei_lemma">"… S. 17. , Zucker Kaßeschreiber Göz": </span>vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1812</span>, S. 31. </div>
+                                            <div class="apparatusEntry" id="C_08" data-title="note commentary"><span class="tei_lemma">"… S. 17. , Zucker Kaßeschreiber Göz": </span>Karl Friedrich Goetze, vgl. <span class="tei_hi_italic">Hofkalender 1812</span>, S. 84. </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_09" data-title="note commentary"><span class="tei_lemma">"… ein Erard:sches, und H: Fiedler": </span>evtl. Carl Joseph Fiedler; vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1812</span>, S. 17. </div>
+                                            <div class="apparatusEntry" id="C_09" data-title="note commentary"><span class="tei_lemma">"… ein Erard:sches, und H: Fiedler": </span>vermutlich Carl Joseph Fiedler; vgl. <span class="tei_hi_italic">Dresdner Adreß-Kalender auf das Jahr 1812</span>, S. 17. </div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_16" data-title="note commentary"><span class="tei_lemma">"… Concerte beym HausMarschall von Schönberg": </span>Peter August von Schönberg (1732–1791), Herr auf und zu Luppa, Schmochtitz und Arnsdorf, Hausmarschall des Kurfürsten von Sachsen</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_14" data-title="note commentary"><span class="tei_lemma">"… , ist Geh: Registrator Krämpa": </span>Christ. Gottl. Krempe, geh. Registr.; lt. Dresdner AdreßKalender 1812, S. 36</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_15" data-title="note commentary"><span class="tei_lemma">"… abbonirte. Dozauer und Musiklehrer Forcht": </span>Franz Moritz Forcht (1760–1813), 1804 Musiklehrer in Polen bei Herrn von Szamota in Clewnia bei Warschau, seit 1811 in Dresden (DNB)</div>
                                         </li>
                                     </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031155/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -564,10 +694,6 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        
-                    </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
                         
                     </div>
                 </div>
@@ -578,9 +704,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 19. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

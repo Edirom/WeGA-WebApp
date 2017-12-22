@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-09-27T13:36:17.847158Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009681" />
         <meta property="dc:description" content="Biographische Informationen zu Felix Friedrich. Lebensdaten: 1945–. Tätigkeiten: Kirchenmusiker, Cembalist, Organist, Musikwissenschaftler. Wirkorte: Altenburg" />
         <meta name="description" content="Biographische Informationen zu Felix Friedrich. Lebensdaten: 1945–. Tätigkeiten: Kirchenmusiker, Cembalist, Organist, Musikwissenschaftler. Wirkorte: Altenburg" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009681.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009681.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009681.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009681.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -323,13 +366,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009681/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A009681/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -338,7 +381,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A009681/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A009681.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -353,31 +396,31 @@
                                                     
                                                     <div>
         <ul class="tei_list">
-            <li class="listTitle">Felix Friedrich ist ein deutscher Organist, Cembalist, und musikalischer
+            <li>Felix Friedrich ist ein deutscher Organist, Cembalist, und musikalischer
                 Bearbeiter sowie namhafter Bach-Interpret der sich insbesondere auch viel mit dem
                 Orgelwerk <a class="preview persons A005212" href="/exist/apps/WeGA-WebApp/de/A005212.html">Johann Ludwig Krebs</a>’
                 beschäftigt.</li>
             <li>1976 erfolgte seine Berufung auf die Stelle als Organist an die
                     <span class="84114111115116">Trost</span>-Orgel der <span class="tei_placeName">Schlosskirche</span>
-                <span class="tei_placeName"><span class="6510811610111098117114103">Altenburg</span></span>.</li>
+                <span class="preview places A130040" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130040.html">Altenburg</span>.</li>
             <li>1987 erfolgt die musikwissenschaftliceh Promotion an der <span class="tei_placeName">Martin-Luther-Universität <span class="7297108108101458710511611610111098101114103">Halle-Wittenberg</span></span>.</li>
             <li>1991 wurde er Leiter der <span class="84104252114105110103105115991041013279114103101108971079710010110910510146"><span class="tei_hi_italic">Thüringische
                         Orgelakademie.</span></span></li>
             <li>2003 erhielt Friedrich den Jahrespreis der deutschen Schallplattenkritik für die
                 CD-Edition aller Orgeln von Gottfried Silbermann.</li>
-            <li>2006 erhielt er den Kulturpreis der Stadt <span class="tei_placeName"><span class="6510811610111098117114103">Altenburg</span></span>.</li>
+            <li>2006 erhielt er den Kulturpreis der Stadt <span class="preview places A130040" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130040.html">Altenburg</span>.</li>
         </ul>
-                                                        </div>
+    </div>
                                                     
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -408,9 +451,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -467,9 +507,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009681</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009681</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 27. September 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

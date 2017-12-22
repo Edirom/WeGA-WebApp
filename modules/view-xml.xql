@@ -10,6 +10,17 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 
 declare option exist:serialize "method=xml media-type=application/tei+xml indent=no encoding=utf-8";
 
+declare function local:format() as xs:string? {
+    let $req-format := request:get-parameter('format', ())
+    let $supported := local:available-transformations()
+    return
+        ($req-format[.=$supported])[1]
+};
+
+declare function local:available-transformations() as xs:string* {
+    xmldb:get-child-resources($config:xsl-external-schemas-collection-path)[not(.='to-text.xsl')] ! (substring-before(substring-after(., 'to-'), '.xsl')) 
+};
+
 let $docID := request:get-attribute('docID')
 let $specID := request:get-attribute('specID')
 let $schemaID := request:get-attribute('schemaID')
@@ -21,7 +32,22 @@ let $content :=
 	else if($chapID) then gl:chapter($chapID)
 	else if($dbPath) then try {doc($dbPath)} catch * { core:logToFile('error', 'Failed to load XML document at "' || $dbPath  || '"') }
 	else ()
+let $format := local:format()
+
+(:~ 
+ : get the current TEI version on which the customizations are built
+ : this is used for injecting the right schema reference for transformed TEI files 
+~:)
+let $TEIversion := $gl:main-source/tei:TEI/processing-instruction('TEIVERSION')/analyze-string(., '\d+\.\d+\.\d+')/fn:match/text()
+let $transformed := 
+    if($format) then 
+        wega-util:transform(
+            $content, 
+            doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), 
+            config:get-xsl-params( map { 'current-tei-version': $TEIversion } )
+        )
+    else $content
 return
     wega-util:inject-version-info(
-        wega-util:remove-comments($content)
+        wega-util:process-xml-for-display($transformed)
     )

@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:creator" content="Eveline Bartlitz" />
+        <meta property="dc:date" content="2017-11-07T09:43:31.399893Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013" />
         <meta property="dc:description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
         <meta name="description" content="Besprechung von E. T. A. Hoffmanns &#34;Undine&#34; nach der Berliner Aufführung" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -229,7 +233,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -244,11 +247,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -276,6 +318,8 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A021159" /> <span title="Fantasiestücke in Callot's Manier">Fantasiestücke in Callot's Man…</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020581" /> <span title="Undine">Undine</span> 
@@ -288,7 +332,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -346,7 +390,7 @@
 					das Publicum auf ein Werk aufmerksam zu machen, indem man die geistige Region anzudeuten sucht, in der es sich bewegt, und die Gestalt, 
 					die der Componist ihm verliehen hat, in bezeichnenden Umrissen darstellen will, scheint es mir nothwendig erst auseinander zu setzen, 
 					wie der Beurtheiler selbst sehe, glaube, und denke, woraus dann leicht das Resultat für Jeden zu ziehen ist, in wiefern er seinen hieraus 
-					entspringenden Urtheilen beypflichten könne. In dieser Hinsicht glaube ich das folgende Bruchstück aus einer grössern Arbeit von mir <a href="#footnote01">*)</a>,
+					entspringenden Urtheilen beypflichten könne. In dieser Hinsicht glaube ich das folgende Bruchstück aus einer grössern Arbeit von mir <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>,
 					noch der eigentlichen Anzeige der Oper voranschicken zu müssen, weil es auch überdies die Gestaltung der Oper <span class="tei_hi_italic"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> 
 					grösstentheils ausspricht. – </p>
                                         <p>Um ein sich in der Zeit bewegendes Kunstwerk richtig zu beurtheilen, wird jene ruhige, unbefangene Stimmung erfordert, die, jeder Art des 
@@ -385,7 +429,7 @@
                                         <p>Urtheile, in aller Art sich widersprechend (aus eben berührten Gründen erzeugt), hatte ich über die Oper <span class="tei_hi_italic"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> hören 
      				müssen. Ich suchte so viel als möglich einer gänzlichen Unbefangenheit theilhaftig zu werden, wenn ich gleich der Erwartung von etwas Bedeutendem 
      				mich nicht erwehren konnte, zu welchem auch die Schriften <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hrn. Hoffmanns</a> vollkommen berechtigen mussten. Wer mit diesem Phantasien-Glut-Strome und 
-     				tiefem Gemüthe, so <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Geist erfühlen konnte wie (Erster Teil der <span class="80104971101169711510510111511625299107101">Phantasiestücke</span> in <a class="preview persons A002369" href="/exist/apps/WeGA-WebApp/de/A002369.html">Callots</a> Manier) in dem Aufsatz über den <span class="tei_hi_italic"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span>
+     				tiefem Gemüthe, so <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Geist erfühlen konnte wie (Erster Teil der <span class="preview works A021159" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A021159.html">Phantasiestücke</span> in <a class="preview persons A002369" href="/exist/apps/WeGA-WebApp/de/A002369.html">Callots</a> Manier) in dem Aufsatz über den <span class="tei_hi_italic"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span>
      				geschehen ist, der kann nichts unbedingt Mittelmässiges leisten; höchstens die Gränze drängen, ja wol umbiegen, aber nicht leer in ihr wandeln.</p>
                                         <p>Die <span class="661019711498101105116117110103">Bearbeitung</span> erscheint Ref. als ein dramatisirtes Märchen, in dem wol mancher innere Zusammenhang bestimmter und klarer hätte<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> verdeutlicht 
             werden können. <a class="preview persons A000513" href="/exist/apps/WeGA-WebApp/de/A000513.html">Hr. von Fouqué</a> kannte das Märchen gar zu gut, und da ist denn oft eine Art von Selbsttäuschung möglich, die auch die Andern wissend 
@@ -405,7 +449,7 @@
 					Willens-Vollstrekker  erscheint, so ist dies auch sehr richtig. Nächst ihm, 
 					das liebliche Wellenkind <span class="tei_hi_italic"><span class="85110100105110101">Undine</span></span>, deren Tonwellen bald lieblich gaukeln und kräuseln, bald auch mächtig gebietend ihre Herrscherkraft<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> 
 					künden. Höchst gelungen, und ihren ganzen Charakter umfassend, dünkt Ref. die <span class="65114105101">Arie</span> im 2ten Act<a class="noteMarker" id="ref-c_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_006">*</a>, die so ungemein lieblich und geistvoll behandelt ist, dass sie als ein 
-            kleiner Vorgeschmack des Ganzen dienen kann, und daher hier als Beylage erscheint <a href="#footnote02">*)</a>. 
+            kleiner Vorgeschmack des Ganzen dienen kann, und daher hier als Beylage erscheint <a href="#footnote02" id="backref-footnote02" class="fn-ref">*)</a>. 
             – Der feurig wogende, schwankende, jedem Liebeszuge sich hinneigende <span class="tei_hi_italic"><span class="721171081001019811497110100">Huldebrand</span></span>, und der 
 					fromme, einfache <span class="tei_hi_italic"><span class="7110110511511610810599104101">Geistliche</span></span> mit seiner ernsten Choral-Melodie, sind dann am bedeutendsten. Mehr in den Hintergrund treten 
 					<span class="tei_hi_italic"><span class="661011141161049710810097">Berthalda</span>, <span class="7010511599104101114">Fischer</span></span> und <span class="tei_hi_italic"><span class="7010511599104101114105110">Fischerin</span>, <span class="72101114122111103">Herzog</span></span> und <span class="tei_hi_italic"><span class="72101114122111103105110">Herzogin</span></span>. Die Chöre des Gefolges 
@@ -439,15 +483,16 @@
     				das ihnen die Sache selbst einflösst. Rauschenden Beyfall könnte der Componist fast allen Musikstücken durch wenig vermehrte Schlusstakte verschaffen, 
     				da hingegen sich hier alles immer raschhandelnd vorwärts drängt.</p>
                                         <p>Möge <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hr. Hoffmann</a> der Welt bald wieder etwas so Gediegenes, als diese Oper ist, schenken, und sein vielseitiger Geist, der ihm als Schriftsteller 
-    				in kurzer Frist Ruhm verschaffte, und als<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Geschäftsmann (königl. preuss. Kammer-Gerichts-Rath in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>) die Achtung seiner Collegen 
+    				in kurzer Frist Ruhm verschaffte, und als<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Geschäftsmann (königl. preuss. Kammer-Gerichts-Rath in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>) die Achtung seiner Collegen 
     				sichert, auch in diesem Kunstzweige thätig wirken und schaffen.</p>
-                                        <p>Geschrieben <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> im Januar 1817.</p>
+                                        <p>Geschrieben <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> im Januar 1817.</p>
                                         <p>(Eingegangen, Ende Febr.s.)</p><span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.
          </span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Künstlerleben.</li>
-                                            <li id="footnote02">*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" id="ref-c_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_002">*</a></li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Künstlerleben.</li>
+                                            <li id="footnote02"><a href="#backref-footnote02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Sie soll in einigen Wochen geliefert werden.<a class="noteMarker" id="ref-c_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_002">*</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -488,7 +533,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 19, Nr. 12 (19. März 1817), Sp. 201–208</p>
+                                <p class="biblio-entry"><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 19, Nr. 12 (19. März 1817), Sp. 201–208</p>
                                 
                                 <div>
                                     
@@ -544,10 +589,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -556,9 +597,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030013</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 7. November 2017 durch Eveline Bartlitz</span></p>
             </div>
             
         </div>

@@ -1,8 +1,7 @@
 xquery version "3.0";
 
 (:~
- : XQuery module for generating HTML links
- : (these will be called by the HTML templates)
+ : XQuery module for providing basic localization functions 
  :)
 module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang";
 
@@ -11,25 +10,9 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace functx="http://www.functx.com";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-(:import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";:)
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-
-(:~
- : get and set language variable
- :
- : @author Peter Stadler
- : @param $lang the language to set
- : @return xs:string the (newly) set language variable 
- :)
-declare function lang:guess-language($lang as xs:string?) as xs:string {
-    if($lang = $config:valid-languages) then $lang
-    (: else try to guess from the URL path segment :)
-    else if(request:exists() and tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
-    (: else default language :)
-    else $config:valid-languages[1]
-};
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 (:~ 
  : Get the language catalogue file
@@ -51,12 +34,12 @@ declare %private function lang:get-language-catalogue($lang as xs:string) as doc
  : @param $lang the language of the string (en|de)
  : @return xs:string
  :)
-declare function lang:get-language-string($key as xs:string, $lang as xs:string) as xs:string {
+declare function lang:get-language-string($key as xs:string, $lang as xs:string) as xs:string? {
     let $catalogue := lang:get-language-catalogue($lang)
     let $lookup := normalize-space($catalogue//id($key))
     return
         if($lookup) then $lookup
-        else ('',core:logToFile('warn', 'No dictionary entry found for ' || $key))
+        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~
@@ -68,7 +51,7 @@ declare function lang:get-language-string($key as xs:string, $lang as xs:string)
  : @param $lang the language of the string (en|de)
  : @return xs:string
  :)
-declare function lang:get-language-string($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string {
+declare function lang:get-language-string($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string? {
     let $catalogue := lang:get-language-catalogue($lang)
     let $catalogueEntry := normalize-space($catalogue//id($key))
     let $replacements := 
@@ -81,7 +64,7 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
         return $x
     return 
         if($catalogueEntry) then functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
-        else ('',core:logToFile('warn', 'No dictionary entry found for ' || $key))
+        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~

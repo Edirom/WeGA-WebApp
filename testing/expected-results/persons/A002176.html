@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002176" />
         <meta property="dc:description" content="Biographische Informationen zu Pius Alexander Wolff. Lebensdaten: 3. Mai 1782–28. August 1828. Tätigkeiten: Schauspieler, Dichter, Regisseur, Dramatiker. Wirkorte: Weimar, Berlin" />
         <meta name="description" content="Biographische Informationen zu Pius Alexander Wolff. Lebensdaten: 3. Mai 1782–28. August 1828. Tätigkeiten: Schauspieler, Dichter, Regisseur, Dramatiker. Wirkorte: Weimar, Berlin" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002176.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002176.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002176.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002176.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -358,7 +401,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A002176/contacts.html">Kontakte<small> (4)</small></a></li>
-                                <li><a href="#backlinks" data-target="A002176/backlinks.html">Rückverweise<small> (91)</small></a></li>
+                                <li><a href="#backlinks" data-target="A002176/backlinks.html">Rückverweise<small> (95)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -386,13 +429,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/dnb.html">GND Eintrag</a>
+                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/adb.html">ADB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/adb.html">ADB Artikel</a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -401,7 +444,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A002176/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A002176.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -415,7 +458,7 @@
                                                     
                                                     
                                                     <div>
-                                                            <p>Pius Alexander Wolff war Sohn des Buchhändlers Franz Xaver Wolff. Die erste Erziehung und Unterricht erhielt er durch den Hauslehrer, später war er am Jesuiten-Gymnasium zu St. Salvador in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span>, wo er dem geistlichen Stande bestimmt war. Durch eine Erbschaft der Mutter wurde der Plan geändert und Pius sollte Kaufmann werden. Er wurde früh auf Reisen geschickt und durch seine Vorliebe für Wissenschaften versuchte er sich selbständig fortzubilden. Er lernte Französisch, Englisch, Italienisch, Spanisch und übte sich im Malen und Zeichnen und auch in der Musik. Ab dem 9. September 1797 war er Lehrling in der Schropp’schen Kunst und Landkartenhandlung in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>. Hier machte er den ersten Kontakt mit der Bühne; sah Vorstellungen von <a class="preview persons A000904" href="/exist/apps/WeGA-WebApp/de/A000904.html">Iffland</a>, <span class="7010810199107">Fleck</span> und <a class="preview persons A000158" href="/exist/apps/WeGA-WebApp/de/A000158.html">Bethmann</a>. Nach seiner Rückkehr in die Heimatstadt machte er eine Reise an den Rhein, auf welcher er sich zum ersten Mal als Schauspieler versuchte. Wieder in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> angekommen gründete er eine Dilettantengesellschaft. Hierbei reifte der Wunsch, sich ganz der Bühne zu widmen, was er aber erst nach dem Tode seines Vaters 1803 in die Tat umsetzen durfte. Er ging ohne das Wissen seiner Mutter nach <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span>, wobei er auf der Reise dorthin einen gleichgesinnten Augsburger Bekannten, <span class="75971141083270114971101223271114252110101114">Karl Franz Grüner</span>, traf und mit diesem Unterricht bei <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a> nahm. Es entstand eine sehr enge Freunschaft mit <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a>. Er trat zuerst in kleineren Rollen auf. Ebenso übte er eine schriftstellerische Tätigkeit aus; schrieb Schauspiele, die auch von <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a> mit ins Programm aufgenommen wurden. Am 26. Dezember (zwischen 1804 und 1807) folgte die Hochzeit mit <a class="preview persons A002175" href="/exist/apps/WeGA-WebApp/de/A002175.html">Anna Amalie Becker</a>. 1811 machte er eine erste Gastspielreise nach <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> und <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, zusammen mit <a class="preview persons A002175" href="/exist/apps/WeGA-WebApp/de/A002175.html">seiner Frau</a>. 1816 verabschiedete er sich von <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span> und fand eine Anstellung in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> am königlichen Hoftheater. Wie bei ihrem Gastspiel einige Jahre zuvor erhielt das Schauspielerehepaar zwiespältige Aufnahme, was sich mit der Zeit besserte. Sein Gesundheitszustand verschlechterte sich zunehmend. Er unternahm Kuren und Reisen nach <span class="tei_country">Frankreich</span>. Er bekam ein großzügiges Angebot von <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>, das durch <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König Friedrich Wilhelm III.</a> vereitelt wurde, der das Entlassungsgesuch der Wolffs ausschlug. 1825 unternahm er erneut eine längere Reise um seine Gesundheit wiederherzustellen. Jedoch schaffte er es nicht vor seinem Tode nach <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> zurückzukehren und verstarb im Jahr 1828 in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>.
+                                                            <p>Pius Alexander Wolff war Sohn des Buchhändlers Franz Xaver Wolff. Die erste Erziehung und Unterricht erhielt er durch den Hauslehrer, später war er am Jesuiten-Gymnasium zu St. Salvador in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span>, wo er dem geistlichen Stande bestimmt war. Durch eine Erbschaft der Mutter wurde der Plan geändert und Pius sollte Kaufmann werden. Er wurde früh auf Reisen geschickt und durch seine Vorliebe für Wissenschaften versuchte er sich selbständig fortzubilden. Er lernte Französisch, Englisch, Italienisch, Spanisch und übte sich im Malen und Zeichnen und auch in der Musik. Ab dem 9. September 1797 war er Lehrling in der Schropp’schen Kunst und Landkartenhandlung in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>. Hier machte er den ersten Kontakt mit der Bühne; sah Vorstellungen von <a class="preview persons A000904" href="/exist/apps/WeGA-WebApp/de/A000904.html">Iffland</a>, <span class="7010810199107">Fleck</span> und <a class="preview persons A000158" href="/exist/apps/WeGA-WebApp/de/A000158.html">Bethmann</a>. Nach seiner Rückkehr in die Heimatstadt machte er eine Reise an den Rhein, auf welcher er sich zum ersten Mal als Schauspieler versuchte. Wieder in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> angekommen gründete er eine Dilettantengesellschaft. Hierbei reifte der Wunsch, sich ganz der Bühne zu widmen, was er aber erst nach dem Tode seines Vaters 1803 in die Tat umsetzen durfte. Er ging ohne das Wissen seiner Mutter nach <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span>, wobei er auf der Reise dorthin einen gleichgesinnten Augsburger Bekannten, <span class="75971141083270114971101223271114252110101114">Karl Franz Grüner</span>, traf und mit diesem Unterricht bei <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a> nahm. Es entstand eine sehr enge Freunschaft mit <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a>. Er trat zuerst in kleineren Rollen auf. Ebenso übte er eine schriftstellerische Tätigkeit aus; schrieb Schauspiele, die auch von <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Goethe</a> mit ins Programm aufgenommen wurden. Am 26. Dezember (zwischen 1804 und 1807) folgte die Hochzeit mit <a class="preview persons A002175" href="/exist/apps/WeGA-WebApp/de/A002175.html">Anna Amalie Becker</a>. 1811 machte er eine erste Gastspielreise nach <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> und <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, zusammen mit <a class="preview persons A002175" href="/exist/apps/WeGA-WebApp/de/A002175.html">seiner Frau</a>. 1816 verabschiedete er sich von <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span> und fand eine Anstellung in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> am königlichen Hoftheater. Wie bei ihrem Gastspiel einige Jahre zuvor erhielt das Schauspielerehepaar zwiespältige Aufnahme, was sich mit der Zeit besserte. Sein Gesundheitszustand verschlechterte sich zunehmend. Er unternahm Kuren und Reisen nach <span class="tei_country">Frankreich</span>. Er bekam ein großzügiges Angebot von <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>, das durch <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König Friedrich Wilhelm III.</a> vereitelt wurde, der das Entlassungsgesuch der Wolffs ausschlug. 1825 unternahm er erneut eine längere Reise um seine Gesundheit wiederherzustellen. Jedoch schaffte er es nicht vor seinem Tode nach <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> zurückzukehren und verstarb im Jahr 1828 in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>.
       WERKE:
       Dramatische Spiele. Erster Band: <span class="preview works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span>, <span class="preview works A020632" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020632.html">Cäsario</span>; <span class="65100101108101321181111103266117100111121">Adele von Budoy</span>;
       <span class="68101114327211711010032100101115326511798114121">Der Hund des Aubry</span>; <span class="841141011171013211510510110311632105110327610510198101115110101116122101110">Treue siegt in Liebesnetzen</span>; <span class="8311610199107101110112102101114100101">Steckenpferde</span>; <span class="681011143277971101103211811111032102252110102122105103327497104114101110">Der
@@ -426,11 +469,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -445,12 +488,13 @@
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd117443018.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
                                                             <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [10562355v]" href="http://catalogue.bnf.fr/ark:/12148/cb10562355v">BNF [by http://viaf.org/viaf/17212813]</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01308983]" href="http://thesaurus.cerl.org/record/cnp01308983">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/117443018&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/117443018">Deutsche Digitale Bibliothek</a></li>
                                                             <li><a title="Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Wolff, Pius Alexander]" href="http://www.oper-um-1800.uni-koeln.de/einzeldarstellung_librettist.php?id_librettist=1179">Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Wolff, Pius Alexander]</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)117443018">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)117443018">HBZ-Verbundkatalog (119)</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/117443018">HeBIS-Verbundzentrale (16)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000080960079]" href="http://isni.org/isni/0000000080960079">ISNI [by http://viaf.org/viaf/17212813]</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=117443018">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=117443018">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                             <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A117443018">Literatur im Katalog der Universitätsbibliothek Heidelberg (5)</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n83043474]" href="http://lccn.loc.gov/n83043474">LoC [by http://viaf.org/viaf/17212813]</a></li>
                                                             <li><a title="Die Handschriftensammlung der SLUB Dresden bewahrt rund 400.000 Autographen und 500 schriftliche Nachlässe und Sammlungen von Künstlern, Literaten, Musikern und Wissenschaftlern, überwiegend mit Bezug zum mitteldeutschen Raum." href="http://hansopac.slub-dresden.de/cgi-bin/slub.pl?t%5ftunnel=idn&amp;present=auto&amp;idn=PND:117443018">Nachweis von Autographen in der SLUB Dresden</a></li>
@@ -471,9 +515,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -530,9 +571,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002176</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002176</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

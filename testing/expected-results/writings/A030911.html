@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-19T21:17:26.853301Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030911" />
         <meta property="dc:description" content="Anzeige neu erschienener Musikalien" />
         <meta name="description" content="Anzeige neu erschienener Musikalien" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030911</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030911.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -341,6 +383,8 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020604" /> <span title="Camilla ossio Il sotteraneo">Camilla ossio Il sotteraneo</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A021159" /> <span title="Fantasiestücke in Callot's Manier">Fantasiestücke in Callot's Man…</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020390" /> <span title="Fernand Cortez ou La Conquête du Mexique">Fernand Cortez ou La Conquête …</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
@@ -349,7 +393,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020551" /> <span title="Lodoïska">Lodoïska</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020074" /> <span title="Lützows wilde Jagd &#34;Was glänzt dort im Walde im Sonneschein&#34;">Lützows wilde Jagd "Was glänzt…</span> 
+                                    <input type="checkbox" name="options" value="A020074" /> <span title="Lützows wilde Jagd &#34;Was glänzt dort im Walde im Sonnenschein&#34;">Lützows wilde Jagd "Was glänzt…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020423" /> <span title="Sargino ossia L'allievo dell'amore">Sargino ossia L'allievo dell'a…</span> 
                                 </label><label class="btn gradient-light">
@@ -367,7 +411,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -380,7 +424,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Neue Musikalien</span>,<br />welche in der <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html"><span class="tei_hi_spaced_out">Schlesinger</span>schen Buch- und Musikhandlung</a> in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, breite Straße, No. 8, von Michaelis 1818 bis Ostern 1819 erschienen und durch jede solide Buch- und Musikhandlung Deutschlands, Dresden in der Arnoldischen und in der Winklerschen Buchhandlung, für beigesetzte Preise zu beziehen sind.</h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Neue Musikalien</span>,<br />welche in der <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html"><span class="tei_hi_spaced_out">Schlesinger</span>schen Buch- und Musikhandlung</a> in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, breite Straße, No. 8, von Michaelis 1818 bis Ostern 1819 erschienen und durch jede solide Buch- und Musikhandlung Deutschlands, Dresden in der Arnoldischen und in der Winklerschen Buchhandlung, für beigesetzte Preise zu beziehen sind.</h2>
                                         <p><span class="tei_hi_antiqua"><span class="6511411011110810044326746">Arnold, C.</span> Divertissements pour le Pianoforte. No. 1. Rondeau sur un thème norvegien. op. 12. 12 Gr.</span></p>
                                         <p>– <span class="tei_hi_antiqua">Divertissements pour le Pianof. No. 2. Romance. op. 13. 10 Gr.</span></p>
                                         <p>– <span class="tei_hi_antiqua">Rondeau p. le Pianof. op. 14. 20 Gr.</span></p>
@@ -411,7 +455,7 @@
                                         <p>– 2s Heft. (2te Auflage.) 16 Gr.</p>
                                         <p><span class="7210111011010510344326746328746">Hennig, C. W.</span>, Variat. für eine Violine mit Begleitung eines kleinen Orchesters über das beliebte Lied: der Treue Tod, v. <a class="preview persons A001050" href="/exist/apps/WeGA-WebApp/de/A001050.html">Theodor Körner</a>. 1 Thlr. 4 Gr.</p>
                                         <p><a class="preview persons A000845" href="/exist/apps/WeGA-WebApp/de/A000845.html">Himmel</a>, Gebet während der Schlacht, von <a class="preview persons A001050" href="/exist/apps/WeGA-WebApp/de/A001050.html">Theodor Körner</a>, mit Begleitung des Pf. und der Guitarre. 4 Gr.</p>
-                                        <p><a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmann, E. T. A.</a>, (Compositeur der Oper <span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span> und Verfasser der <span class="8010497110116971151051011151162529910710132105110326797108108111116115327797110105101114">Phantasiestücke in Callots Manier</span>) <span class="tei_hi_antiqua">6 Duettini per Soprano e Tenore, col acc. di Pianof.</span> Mit ital. und deutschem Text. 1 Thlr. 16 Gr.</p>
+                                        <p><a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmann, E. T. A.</a>, (Compositeur der Oper <span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span> und Verfasser der <span class="preview works A021159" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A021159.html">Phantasiestücke in Callots Manier</span>) <span class="tei_hi_antiqua">6 Duettini per Soprano e Tenore, col acc. di Pianof.</span> Mit ital. und deutschem Text. 1 Thlr. 16 Gr.</p>
                                         <p><span class="7211111412210511612210712144327646">Horzitzky, L.</span>, Variat. für eine Flöte über das beliebte Duett aus <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span>: Reich mir die Hand mein Leben. 8 Gr.</p>
                                         <p><span class="tei_hi_antiqua"><a class="preview persons A000899" href="/exist/apps/WeGA-WebApp/de/A000899.html">Hummel, J. N.</a>, Variations sur un thème d’<span class="65114109105100101">Armide</span> de <a class="preview persons A000646" href="/exist/apps/WeGA-WebApp/de/A000646.html">Gluck</a> p. le Pf. 8 Gr.</span></p>
                                         <p><a class="preview persons A001000" href="/exist/apps/WeGA-WebApp/de/A001000.html">Kienlen</a>, Lieder aus <a class="preview persons A000651" href="/exist/apps/WeGA-WebApp/de/A000651.html">Göthe’s</a> <span class="7097117115116">Faust</span>, mit Begl. des Pf. 1 Thlr.</p>
@@ -477,7 +521,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung.  Wegweiser im Gebiete der Künste und Wissenschaften</span>, Jg. 3, Nr. 200 (21. August 1819), S. 4r–4v</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung.  Wegweiser im Gebiete der Künste und Wissenschaften</span>, Jg. 3, Nr. 200 (21. August 1819), Bl. 4r–4v</p>
                                 
                                 <div>
                                     
@@ -508,10 +552,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -520,9 +560,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030911</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030911</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 19. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

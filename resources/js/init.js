@@ -10,6 +10,15 @@ $.fn.h1FitText = function () {
     else $(this).fitText(1.4, {minFontSize: '36px', maxFontSize: '48px'});
 };
 
+$.fn.extend({
+    // set the white-space to normal (instead of nowrap) for long spans of text, see https://github.com/Edirom/WeGA-WebApp/issues/205
+    setTextWrap: function() {
+        return this.each( function(a,b) {
+            if(b.innerText.length > 50) {$(b).css({"white-space":"normal"})}
+        })
+    }
+});
+
 /* A wrapper function for creating select boxes */
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
@@ -75,11 +84,16 @@ $.fn.rangeSlider = function ()
         },
         onFinish: function (data) {
             /* Get active facets to append as URL params */
-            var params = active_facets();
+            var params = active_facets(),
+                newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
+                newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
             
-            /* Overwrite date params with new values from the slider */
-            params['fromDate'] = moment(data.from).locale("de").format("YYYY-MM-DD");
-            params['toDate'] = moment(data.to).locale("de").format("YYYY-MM-DD");
+            /* 
+             * Overwrite date params with new values from the slider 
+             * when the new values equal the min/max values, reset to the empty string
+             */
+            params['fromDate'] = (data.from != data.min)? newFrom: '';
+            params['toDate'] = (data.to != data.max)? newTo: '';
             
             updatePage(params);
         }
@@ -171,18 +185,25 @@ $('body').on('click touchstart', function (e) {
 });
 
 /*
- * hide/reveal sub items of the table of contents of the Guidelines 
+ * hide/reveal sub items of the table of contents of the Guidelines and Wikipedia
  */
-$('.toggle-toc-item').on('click', 
-    function(a,b) {
-        var subItem = $(this).siblings('ul');
-        if(subItem.length === 1) {
-            subItem.toggle();
-            $('ul', subItem).toggle();
-            $('i', this).toggle();
-        }
+$('.toggle-toc-item').on('click', toggleTocItems);
+$('.toggle-toc-item').each(toggleTocItems);
+
+/*
+ * used for Guidelines TOC as well as for Wikipedia
+ */
+function toggleTocItems() {
+    var subItem = $(this).siblings('ul');
+    if(subItem.length === 1) {
+        subItem.toggle();
+        $('ul', subItem).toggle();
+        $('i', this).toggle();
     }
-);
+    else {
+        $('i', this).hide();
+    }
+};
 
 /* 
  * callback function for removing the filter container from the AJAX page
@@ -308,7 +329,7 @@ $.fn.preview_popover = function() {
         url: url,
         success: function(response){
             var source = $(response),
-                title = source.find('h3').children(),
+                title = source.find('h3').html(),
                 content = source.children();
             $('.item-title', container).html(title);
             $('.item-content', container).html(content);
@@ -443,7 +464,7 @@ function popover_callBack() {
 };
 
 /* checkbox for display of undated documents */
-$(document).on('click', '.undated', function() {
+$(document).on('change', '.facet-group input', function() {
     var params = active_facets();
     updatePage(params);
 })
@@ -512,34 +533,47 @@ function init_line_wrap_toggle() {
  */
 function active_facets() {
     var params = {
-        facets:[],
-        fromDate:'',
-        toDate:'',
-        toString:function(){
-            return '?' + ( this.facets.length !== 0 ? this.facets.join('&') : '') + ( this.fromDate !== '' ? '&fromDate=' + this.fromDate + '&toDate=' + this.toDate :'')
-        }
-     };
-    /* Set filters */
+            facets:[],
+            fromDate:'',
+            toDate:'',
+            toString:function(){
+                if(this.fromDate !== '') {
+                    this.facets.push('fromDate=' + this.fromDate);
+                };
+                if(this.toDate !== '') {
+                    this.facets.push('toDate=' + this.toDate);
+                };
+                return '?' + this.facets.join('&')
+            }
+        },
+        slider, from, to, min, max;
+     
+    /* Pushing the limit parameter to the facets array */
+    params['facets'].push('limit='+$('.switch-limit .active a:first').text());
+     
+    /* Set filters from the side menu */
     $('.allFilter:visible :selected').each(function() {
         var facet = $(this).parent().attr('name'),
             value = $(this).attr('value');
         /*console.log(facet + '=' + value);*/
         params['facets'].push(facet + '=' + encodeURI(value))
     })
-    /* checkbox for display of undated documents*/
-    if($('.undated:checked').length) {
-      params['facets'].push('undated=true');
-    }
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
-        params['fromDate'] = $('.rangeSlider:visible').attr('data-from-slider');
-        params['toDate'] = $('.rangeSlider:visible').attr('data-to-slider');
+        slider = $('.rangeSlider:visible');
+        from=slider.attr('data-from-slider');
+        to=slider.attr('data-to-slider');
+        min=slider.attr('data-min-slider');
+        max=slider.attr('data-max-slider');
+        params['fromDate'] = (from > min)? from: '';
+        params['toDate'] = (to < max)? to: '';
     }
-    /* get values from checkboxes for docTypes at search page */
+    /* get values from checkboxes for docTypes at search page 
+     * as well as for other checkboxes on list pages like 'revealed' or 'undated'
+     */
     $('.allFilter:visible :checked').each(function() {
         var facet = $(this).attr('name'),
-            value = $(this).attr('value');
-/*        console.log(facet + '=' + value);*/
+            value = $(this).attr('value')? $(this).attr('value'): 'true';
         if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
     })
     if($('#query-input').val()) {
@@ -568,8 +602,10 @@ function updatePage(params) {
     }
 }
 
-/* activate tooltips for jubilees on start page */
-$('.jubilee').tooltip();
+/* activate tooltips for jubilees on start page 
+ * as well as for Julian dates on person pages
+ */
+$('.jubilee, .jul').tooltip();
 
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
@@ -603,6 +639,12 @@ $('.allFilter input').change(
     $('.' + key).toggleClass('hi-' + key);
   }
 )
+
+/* Highlight original (historic) footnotes when clicking on a reference in the text */
+$('.fn-ref').on('click', function() {
+    $('#endNotes li').removeClass('bg-info');
+    $($(this).attr('href')).addClass('bg-info');
+})
 
 function ajaxCall(container,url,callback) {
     $(container).mask();
@@ -703,6 +745,8 @@ $('.teaser + h2 a').each(function(a,b) {
     $(b).html(newText);
 })
 
+$('.preview').setTextWrap();
+
 function initFacsimile() {
     var map,
         iiifLayers = {}
@@ -732,7 +776,7 @@ function initFacsimile() {
 };
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&date=" + dateText ;
+    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;
     $.getJSON(url, function(data) {
         self.location=data.uri + '.html';
     })
@@ -788,9 +832,9 @@ function checkValidDiaryDate(date) {
         (date >= start6 && date <= end6) ||
         (date >= start7 && date <= end7) ||
         (date >= start8 && date <= end8) ||
-        (date == day9) ||
+        (date >= day9 && date <= day9) ||
         (date >= start10 && date <= end10) ||
-        (date == day11) ||
+        (date >= day11 && date <= day11) ||
         (date >= start12 && date <= end12) ||
         (date >= start13 && date <= end13)
     )

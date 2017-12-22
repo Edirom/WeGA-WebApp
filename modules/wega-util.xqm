@@ -13,14 +13,17 @@ declare namespace http="http://expath.org/ns/http-client";
 declare namespace math="http://www.w3.org/2005/xpath-functions/math";
 declare namespace owl="http://www.w3.org/2002/07/owl#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace schema="http://schema.org/";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
+import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
@@ -33,10 +36,12 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
- declare function wega-util:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(httpclient:response)? {
+declare function wega-util:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(httpclient:response)? {
     let $lease := 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    (: Prevent the grabbing of external resources when a web crawler comes around … :)
+    let $botPresent := matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot', 'i')
     let $url := 
         switch($resource)
         case 'wikipedia' return
@@ -45,15 +50,21 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
             return
                 replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
-        case 'viaf' return concat('http://viaf.org/viaf/', $gnd, '.rdf')
+        case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
+        case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf')
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
     let $response := 
-        (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
-        switch($resource)
-        case 'munich-stadtmuseum' return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:httpclient-get#1, xs:anyURI($url), $lease)
-        default return core:cache-doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
+        if($botPresent) then ()
+        else
+            (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
+            switch($resource)
+            case 'munich-stadtmuseum' return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:httpclient-get#1, xs:anyURI($url), $lease, $onFailureFunc)
+            default return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
         if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
         else ()
@@ -137,24 +148,36 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
 };
 
 (:~
- : Identity transformation with stripping off XML comments 
+ : Processing XML files for display (and download)
+ : Comments and not-whitelisted facsimile information will be removed
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform
  : @return transformed nodes
- :)
-declare function wega-util:remove-comments($nodes as node()*) as node()* {
+~:)
+declare function wega-util:process-xml-for-display($nodes as node()*) as node()* {
     for $node in $nodes
     return
-        if($node instance of processing-instruction()) then $node
-        else if($node instance of comment()) then ()
-        else if($node instance of element()) then 
+        typeswitch($node)
+        case comment() return 
+            if($config:isDevelopment) then $node
+            else ()
+        case element(tei:facsimile) return 
+            let $facsimile := query:facsimile($node/root())
+            return
+                if($facsimile) then 
+                    element {node-name($node)} {
+                        $node/@*,
+                        wega-util:process-xml-for-display($facsimile/node())
+                    }
+                else ()
+        case element() return 
             element {node-name($node)} {
                 $node/@*,
-                wega-util:remove-comments($node/node())
+                wega-util:process-xml-for-display($node/node())
             }
-        else if($node instance of document-node()) then wega-util:remove-comments($node/node())
-        else $node
+        case document-node() return wega-util:process-xml-for-display($node/node())
+        default return $node
 };
 
 (:~
@@ -222,16 +245,18 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
  : Helper function for wega-util:inject-version-info()
 ~:)
 declare %private function wega-util:editionStmt() as map() {
-    map {
-        'version' :=    lang:get-language-string(
-                            'versionInformation', (
-                                config:get-option('version'), 
-                                date:strfdate(xs:date(config:get-option('versionDate')), lang:guess-language(()), ())
-                            ), 
-                            lang:guess-language(())
-                        ),
-        'download' := lang:get-language-string('downloaded_on', lang:guess-language(())) || ': ' || current-dateTime()
-    }
+    let $lang := config:guess-language(())
+    return
+        map {
+            'version' :=    lang:get-language-string(
+                                'versionInformation', (
+                                    config:get-option('version'), 
+                                    date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
+                                ), 
+                                $lang
+                            ),
+            'download' := lang:get-language-string('downloaded_on', $lang) || ': ' || current-dateTime()
+        }
 };
 
 (:~
@@ -278,35 +303,17 @@ declare function wega-util:substitute-wega-element-additions($nodes as node()*) 
         else $node
 };
 
-(:~
- : Helper function for guessing a mime-type from a file extension
- : (Should be expanded to read in $exist.home$/mime-types.xml)
- :
- : @author Peter Stadler 
- : @param $suffix the file extension
- : @return the mime-type
- :)
-declare function wega-util:guess-mimeType-from-suffix($suffix as xs:string) as xs:string? {
-    switch($suffix)
-        case 'xml' return 'application/xml'
-        case 'jpg' return 'image/jpeg'
-        case 'png' return 'image/png'
-        case 'txt' return 'text/plain'
-        default return error(xs:QName(wega-util:error), 'unknown file suffix "' || $suffix || '"')
-};
-
-declare function wega-util:doc-available($uri as xs:string?) as xs:boolean {
-    try {doc-available($uri)}
-    catch * {false()}
-};
-
-declare function wega-util:wikimedia-ifff($wikiFilename as xs:string) as map(*)* {
+declare function wega-util:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     (: kanonische Adresse wäre eigentlich https://tools.wmflabs.org/zoomviewer/iiif.php?f=$DATEINAME$, bestimmte Weiterleitungen funktionieren dann aber nicht :)
     (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
-    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $wikiFilename || '/info.json'
+    let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
+    let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
     let $lease := xs:dayTimeDuration('P1D')
-    let $fileName := util:hash($wikiFilename, 'md5') || '.xml'
-    let $response := core:cache-doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease)
+    let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
+    let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), wega-util:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
         if($response//httpclient:response/@statusCode eq '200') then 
             try { parse-json(util:binary-to-string($response//httpclient:body)) }
@@ -365,14 +372,18 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         	if($node/@cert) then ($node/child::node() ! wega-util:txtFromTEI(.), '(?)') 
         	else $node/child::node() ! wega-util:txtFromTEI(.)
         case element(tei:del) return ()
+        case element(tei:subst) return $node/child::element() ! wega-util:txtFromTEI(.)
         case element(tei:note) return ()
         case element(tei:lb) return 
             if($node[@type='inWord']) then ()
             else '&#10;'
-        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+        case element(tei:pb) return 
+            if($node[@type='inWord']) then ()
+            else ' '
+        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:quote) return 
-            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
-            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), lang:guess-language(()))
+            if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:supplied) return ('[', $node/child::node() ! wega-util:txtFromTEI(.), ']') 
         case text() return replace($node, '\n+', ' ')
         case document-node() return $node/child::node() ! wega-util:txtFromTEI(.) 
@@ -463,7 +474,37 @@ declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
  :  Currently, we are using the rdf serialization from viaf.org.
 ~:)
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
-    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/rdf:Description/@rdf:about[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+    wega-util:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+};
+
+(:~
+ :  Map geonames ID to gnd ID by calling an external service.
+ :  Currently, we are using the rdf serialization from geonames.org.
+~:)
+declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
+    let $dbpedia-rdf := wega-util:dbpedia-from-geonames($geonames-id)
+    return
+        (: ther might be multiple sameAs relations to the GND, see e.g. Altona A130064 :)
+        if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then ($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')])[1]/substring-after(., 'http://d-nb.info/gnd/')
+        else ()
+};
+
+(:~
+ :  Grab dbpedia rdf for a place by geonames ID
+~:)
+declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as node()* {
+    let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
+    let $lease := 
+        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $onFailureFunc := function($errCode, $errDesc) {
+        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    }
+    let $dbpedia-rdf := 
+        for $i in $dbpedia-url
+        return cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($i, 'resource', 'data') || '.rdf'), $lease, $onFailureFunc)
+    return
+        $dbpedia-rdf//httpclient:response[@statusCode = '200']
 };
 
 (:~

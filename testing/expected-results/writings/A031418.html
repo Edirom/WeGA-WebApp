@@ -16,7 +16,7 @@
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031418" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -114,11 +114,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -215,8 +219,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>unbekannt</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031418</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,11 +248,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031418.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -285,7 +327,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -299,8 +341,8 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_spaced_out">Euryanthe</span></span>.</span></h2>
-                                        <p>Folgende Stimme über die <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_spaced_out">Euryanthe</span></span> mag um so eher bei uns als vorläufiges Urtheil gehört werden, je später wir wahrscheinlich Euryanthe selbst zu hören bekommen werden<a class="noteMarker" id="ref-ftn29" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn29">*</a>. Von <span class="tei_placeName"><span class="87105101110">Wien</span></span> aus schreibt man: „Im <span class="tei_placeName">Kärnthner<span class="tei_supplied" id="d38519e27"><span class="brackets_supplied">[</span>tor<span class="brackets_supplied">]</span></span>theater</span> war neulich <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> zum <span class="tei_hi_spaced_out">neunten</span> Mal, und wie immer, <span class="tei_hi_spaced_out">leer</span>. Das Jägerchor ist das einzige Musikstück der Oper, bei welchem das Publikum jedes Mal <span class="tei_hi_latintype">da Capo</span> ruft. An der Aufführung liegt das Mißlingen dieser Oper nicht. (Nun werden die Schauspiele<span class="tei_supplied" id="d38519e44"><span class="brackets_supplied">[</span>r<span class="brackets_supplied">]</span></span>, die <a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html"><span class="tei_hi_spaced_out">Sonntag</span></a>, die <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html"><span class="tei_hi_spaced_out">Grünbaum</span></a> u. s. w. nach Gebü<span class="tei_supplied" id="d38519e56"><span class="brackets_supplied">[</span>h<span class="brackets_supplied">]</span></span>r gelobt.) Aber diese Ausdehnung der Behandlung durch Rezitative, diese Künstelei, und der Mangel an durchgreifender Melodie lassen kaum die Hand erkennen, welche die Kugeln zum <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> gegossen hat. Die <span class="tei_hi_spaced_out">gelungenen Stellen</span> sind nur Einzelheiten, und so durchaus ohne Zusammenhang mit dem nach allen Seiten abspringenden eckigen Ganzen, daß sie nicht damit versöhnen können. Auch sagt <span class="tei_hi_spaced_out">keins</span> dieser Musikstücke, außer dem <span class="tei_hi_spaced_out">Jägerchor</span>, dem Publikum vollständig zu.“ (Wir wollen aber erst den Erfolg auf andern Bühnen abwarten, ehe wir das Verdammungsurtheil über das Stück selbst aussprechen. Wir wissen, wie es oft <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Opern erging.)</p>
-                                        <p>Uebrigens zankt sich <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina v. Chezy</a> jetzt mit den Kunstrichtern in Wien herum, und meint überdies, Weber habe ihren Text völlig umgeändert. (Es fragt sich nur, ob der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> oder <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Chezysche</a> Text der bessere ist? Was der Komponist umzuwandeln für nöthig findet, ist in der Regel beim Dichter etwas <span class="tei_hi_spaced_out">wandelbar</span> gewesen.) Doch läßt sich <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina</a> nicht abschrecken. Es werden so eben zwei Dramen von ihr in <span class="tei_placeName"><span class="87105101110">Wien</span></span> gegeben, der neue Narziß auf dem <span class="tei_placeName">Burgtheater</span><a class="noteMarker" id="ref-ftn30" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn30">*</a>, und <span class="8211111597109117110100101">Rosamunde</span> auf dem <span class="tei_placeName">Theater an der Wien</span><a class="noteMarker" id="ref-ftn31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn31">*</a>.</p>
+                                        <p>Folgende Stimme über die <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_spaced_out">Euryanthe</span></span> mag um so eher bei uns als vorläufiges Urtheil gehört werden, je später wir wahrscheinlich Euryanthe selbst zu hören bekommen werden<a class="noteMarker" id="ref-ftn29" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn29">*</a>. Von <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> aus schreibt man: „Im <span class="tei_placeName">Kärnthner<span class="tei_supplied" id="d10e26"><span class="brackets_supplied">[</span>tor<span class="brackets_supplied">]</span></span>theater</span> war neulich <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> zum <span class="tei_hi_spaced_out">neunten</span> Mal, und wie immer, <span class="tei_hi_spaced_out">leer</span>. Das Jägerchor ist das einzige Musikstück der Oper, bei welchem das Publikum jedes Mal <span class="tei_hi_latintype">da Capo</span> ruft. An der Aufführung liegt das Mißlingen dieser Oper nicht. (Nun werden die Schauspiele<span class="tei_supplied" id="d10e43"><span class="brackets_supplied">[</span>r<span class="brackets_supplied">]</span></span>, die <a class="preview persons A001848" href="/exist/apps/WeGA-WebApp/de/A001848.html"><span class="tei_hi_spaced_out">Sonntag</span></a>, die <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html"><span class="tei_hi_spaced_out">Grünbaum</span></a> u. s. w. nach Gebü<span class="tei_supplied" id="d10e55"><span class="brackets_supplied">[</span>h<span class="brackets_supplied">]</span></span>r gelobt.) Aber diese Ausdehnung der Behandlung durch Rezitative, diese Künstelei, und der Mangel an durchgreifender Melodie lassen kaum die Hand erkennen, welche die Kugeln zum <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> gegossen hat. Die <span class="tei_hi_spaced_out">gelungenen Stellen</span> sind nur Einzelheiten, und so durchaus ohne Zusammenhang mit dem nach allen Seiten abspringenden eckigen Ganzen, daß sie nicht damit versöhnen können. Auch sagt <span class="tei_hi_spaced_out">keins</span> dieser Musikstücke, außer dem <span class="tei_hi_spaced_out">Jägerchor</span>, dem Publikum vollständig zu.“ (Wir wollen aber erst den Erfolg auf andern Bühnen abwarten, ehe wir das Verdammungsurtheil über das Stück selbst aussprechen. Wir wissen, wie es oft <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozarts</a> Opern erging.)</p>
+                                        <p>Uebrigens zankt sich <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina v. Chezy</a> jetzt mit den Kunstrichtern in Wien herum, und meint überdies, Weber habe ihren Text völlig umgeändert. (Es fragt sich nur, ob der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> oder <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Chezysche</a> Text der bessere ist? Was der Komponist umzuwandeln für nöthig findet, ist in der Regel beim Dichter etwas <span class="tei_hi_spaced_out">wandelbar</span> gewesen.) Doch läßt sich <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina</a> nicht abschrecken. Es werden so eben zwei Dramen von ihr in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> gegeben, der neue Narziß auf dem <span class="tei_placeName">Burgtheater</span><a class="noteMarker" id="ref-ftn30" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn30">*</a>, und <span class="8211111597109117110100101">Rosamunde</span> auf dem <span class="tei_placeName">Theater an der Wien</span><a class="noteMarker" id="ref-ftn31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn31">*</a>.</p>
                                     </div>
                                 </div>
                     </div>
@@ -334,7 +376,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Naumburger Anzeiger</span>, Jg. 5, Nr. 19 (6. März 1824), S. 148</p>
+                                <p class="biblio-entry"><span class="journalTitle">Naumburger Anzeiger</span>, Jg. 5, Nr. 19 (6. März 1824), S. 148</p>
                                 
                                 <div>
                                     
@@ -375,10 +417,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -387,9 +425,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031418</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031418</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

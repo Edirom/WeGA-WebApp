@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T19:12:06.809810Z" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100082" />
         <meta property="dc:description" content="Auflistung seiner anerkannten Rechnungen; insgesamt 2300 Gulden; sein Aktivvermögen betrage 8-900 Gulden, dazu rechnet er Einnahmen durch den Verkauf seiner Oper von 400 Gulden und für auswärtige Theater nach und nach 1000 Gulden; sein Gesamt-Aktivvermögen sei daher mit etwa 2300 Florin anzusetzen" />
         <meta name="description" content="Auflistung seiner anerkannten Rechnungen; insgesamt 2300 Gulden; sein Aktivvermögen betrage 8-900 Gulden, dazu rechnet er Einnahmen durch den Verkauf seiner Oper von 400 Gulden und für auswärtige Theater nach und nach 1000 Gulden; sein Gesamt-Aktivvermögen sei daher mit etwa 2300 Florin anzusetzen" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,11 +248,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100082.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -277,21 +319,17 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6511710311598117114103" /> <span title="Augsburg">Augsburg</span> 
+                                    <input type="checkbox" name="options" value="A130017" /> <span title="Augsburg">Augsburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="669797100326910998115" /> <span title="Baad Embs">Baad Embs</span> 
+                                    <input type="checkbox" name="options" value="A130013" /> <span title="Breslau">Breslau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6611410111510897117" /> <span title="Breslau">Breslau</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
+                                    <input type="checkbox" name="options" value="A130310" /> <span title="Schwieberdingen">Schwieberdingen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="761171001191051031159858" /> <span title="Ludwigsb:">Ludwigsb:</span> 
+                                    <input type="checkbox" name="options" value="A130074" /> <span title="Straßburg">Straßburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="839910411910510198101114100105110103101110" /> <span title="Schwieberdingen">Schwieberdingen</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="831161149722398117114103" /> <span title="Straßburg">Straßburg</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label>
                             </div>
                         </div>
@@ -312,7 +350,7 @@
                                         <p>30 ƒ 38 <span class="tei_hi_latintype">Xr</span></p>
                                         <p><span class="7597117102583277101121100101108101110">Kauf: Meydelen</span> mit24. 12 =</p>
                                         <p><span class="7597117102109583287101105223">Kaufm: Weiß</span>11. 9.</p>
-                                        <p><span class="83991041101011051001011143283111109109101114">Schneider Sommer</span> in <span class="tei_placeName"><span class="761171001191051031159858">Ludwigsb:</span></span>35. 12.</p>
+                                        <p><span class="83991041101011051001011143283111109109101114">Schneider Sommer</span> in <span class="761171001191051031159858">Ludwigsb:</span>35. 12.</p>
                                         <p><span class="821111154646464632701149711599104">Ros.... <span class="tei_hi_latintype">Frasch</span></span>5. 42.</p>
                                         <p><span class="6611799104981051101001011143283116117109102102">Buchbinder Stumff</span>50.</p>
                                         <p><span class="839910411010110510010111432879799107101114">Schneider Wacker</span> an einer Rechnung von 18 ƒ 38 xr</p>
@@ -325,25 +363,25 @@
                                         <p><span class="72117116115116971021021051011143266111223101114116">Hutstaffier Boßert</span>3. –</p>
                                         <p><span class="7597117102109971101103275111112102">Kaufmann Kopf</span>37. 28.</p>
                                         <p><span class="7111110810097114981011051161011143285108109101114">Goldarbeiter Ulmer</span> noch Rest.8. 33.</p>
-                                        <p><span class="7411110497110110101115327697110103">Johannes Lang</span> in <span class="tei_placeName"><span class="761171001191051031159858">Ludwigsb:</span></span>
+                                        <p><span class="7411110497110110101115327697110103">Johannes Lang</span> in <span class="761171001191051031159858">Ludwigsb:</span>
             
-            fünf Gulden5. <span class="tei_del">3?<a class="noteMarker" id="ref-d25578e116" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d25578e116">‡</a></span></p>
+            fünf Gulden5. <span class="tei_del">3?<a class="noteMarker" id="ref-d10e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e114">‡</a></span></p>
                                         <p><span class="66101100105101110116101114327210110810210111410599104">Bedienter Helferich</span> mit seiner Mühe2. 24.</p>
                                         <p><span class="72111102771019910497110105107117115328410510110010110997110110">HofMechanikus Tiedemann</span>5. 24.</p>
                                         <p><span class="72117116109979910410111432831169711611610997110110">Hutmacher Stattmann</span>9. 48.</p>
                                         <p>an <span class="7597117102779711011032719711511297114">KaufMann <span class="tei_hi_latintype">Gaspar</span></span>14. 32.</p>
-                                        <p>Musikhändler <span class="tei_hi_latintype"><a class="preview persons A000656" href="/exist/apps/WeGA-WebApp/de/A000656.html">Gombart</a></span> in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span>141. 2.</p>
+                                        <p>Musikhändler <span class="tei_hi_latintype"><a class="preview persons A000656" href="/exist/apps/WeGA-WebApp/de/A000656.html">Gombart</a></span> in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span>141. 2.</p>
                                         <p>Hof<span class="tei_hi_latintype">Banque</span> beruht noch auf Abrechnung179. ƒ. 30.</p>
                                         <p><span class="6611799104981051101001011143283101110102116">Buchbinder Senft</span>2. 20.</p>
                                         <p><span class="6710511599108101117114327725211099104"><span class="tei_hi_latintype">Ciscleur</span> Münch</span>, an 46 ƒ erhalten 21 ƒ Rest25. –</p>
                                         <p><span class="839910411997100101114101114">Schwaderer</span>321. 54.</p>
-                                        <p><span class="8399104110101105100101114328399104111109101114">Schneider Schomer</span><span class="tei_supplied" id="d25578e172"><span class="brackets_supplied">[</span>?<span class="brackets_supplied">]</span></span> in <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span>26. –</p>
+                                        <p><span class="8399104110101105100101114328399104111109101114">Schneider Schomer</span><span class="tei_supplied" id="d10e169"><span class="brackets_supplied">[</span>?<span class="brackets_supplied">]</span></span> in <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span>26. –</p>
                                         <p><span class="8399104110101105100101114326622811010511599104">Schneider Bänisch</span>54. –</p>
-                                        <p>– <span class="87111108102">Wolf</span> in <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span>40. 50.</p>
-                                        <p><span class="76246119101110871051141161043272246110101115">LöwenWirth Hönes</span> in <span class="tei_placeName"><span class="839910411910510198101114100105110103101110">Schwieberdingen</span></span>745. –</p>
+                                        <p>– <span class="87111108102">Wolf</span> in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span>40. 50.</p>
+                                        <p><span class="76246119101110871051141161043272246110101115">LöwenWirth Hönes</span> in <span class="preview places A130310" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130310.html">Schwieberdingen</span>745. –</p>
                                         <p><span class="72583283105103101108101110">H: Sigelen</span>300. –</p>
-                                        <p><a class="preview persons A009430" href="/exist/apps/WeGA-WebApp/de/A009430.html">H: Doktor Brukmann</a> in <span class="tei_placeName"><span class="669797100326910998115">Baad Embs</span></span>110. –</p>
-                                        <p>nach <span class="tei_placeName"><span class="831161149722398117114103">Straßburg</span></span> ohngefähr an <span class="tei_hi_latintype">Loison</span>22. –</p>
+                                        <p><a class="preview persons A009430" href="/exist/apps/WeGA-WebApp/de/A009430.html">H: Doktor Brukmann</a> in <span class="669797100326910998115">Baad Embs</span>110. –</p>
+                                        <p>nach <span class="preview places A130074" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130074.html">Straßburg</span> ohngefähr an <span class="tei_hi_latintype">Loison</span>22. –</p>
                                         <p><span class="731101151161141171091011101161011101099799104101114327297117103">Instrumentenmacher Haug</span>95. –</p>
                                         <p>Mit Einschluß einiger Kleinigkeiten die mir nicht beyfallen kann also der ganze
                Stand meiner Schulden gegen <span class="tei_hi_latintype">zweytausend dreyhundert Gulden</span>
@@ -361,7 +399,7 @@
                <span class="tei_hi_latintype">Summa</span>.      2300 ƒ –</span>
             </p>
                                         <p class="tei_closer textAlign-left">
-               <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> d: 12<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1810.</span>
+               <span class="tei_dateline textAlign-left"><span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> d: 12<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1810.</span>
             </p>
                                     </div>
                                 </div>
@@ -423,7 +461,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d25578e116" data-title="del">"3?":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e114" data-title="del">"3?":  durchgestrichen.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -441,10 +479,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -453,9 +487,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100082</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100082</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

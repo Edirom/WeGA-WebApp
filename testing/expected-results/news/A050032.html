@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-12-11T11:22:49.825918Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050032" />
         <meta property="dc:description" content="Am 5. Dezember 2005 wird der neue, 340 Seiten starke Band „Kammermusik mit Klarinette“ (Serie VI, Bd.3 der WeGA, vgl. Inhaltsverzeichnis und PDF der …" />
         <meta name="description" content="Am 5. Dezember 2005 wird der neue, 340 Seiten starke Band „Kammermusik mit Klarinette“ (Serie VI, Bd.3 der WeGA, vgl. Inhaltsverzeichnis und PDF der …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,11 +241,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050032.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
                         <div class="panel-collapse collapse" id="works">
@@ -262,11 +304,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68101116109111108100" /> <span title="Detmold">Detmold</span> 
+                                    <input type="checkbox" name="options" value="A130001" /> <span title="Detmold">Detmold</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68101116109111108100101114" /> <span title="Detmolder">Detmolder</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797105110122" /> <span title="Mainz">Mainz</span> 
+                                    <input type="checkbox" name="options" value="A130028" /> <span title="Mainz">Mainz</span> 
                                 </label>
                             </div>
                         </div>
@@ -277,21 +317,19 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Am <span class="tei_date">5. Dezember 2005</span> wird der neue, 340 Seiten starke Band „Kammermusik mit Klarinette“ (Serie VI, Bd.3 der WeGA, vgl. Inhaltsverzeichnis und PDF der Titelei) mit einer erstmaligen digitalen Edition des darin enthaltenen <span class="tei_hi_italic"><span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klarinettenquintetts</span></span> in einem von der Hochschule für Musik in <span class="tei_placeName"><span class="68101116109111108100">Detmold</span></span> veranstalteten Konzert um 19.30 Uhr im <span class="tei_placeName"><span class="68101116109111108100101114">Detmolder</span></span> Sommertheater offiziell vorgestellt. Erklingen werden dabei das <span class="preview works A020216" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020216.html"><span class="tei_hi_italic">Grand Duo</span> für Klarinette und Klavier Es-Dur op. 48</span> und das <span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html"><span class="tei_hi_italic">Klarinettenquintett</span> B-Dur op. 34</span>. Es musizieren <span class="65110100114101973280111109109101114">Andrea Pommer</span> und <span class="7411110497110110101115327211110210997110110">Johannes Hofmann</span> (Klarinette), <span class="721051141111071113265114105109111116111">Hiroko Arimoto</span> (Klavier) und das <a href="http://www.prima-quartett.de"><span class="tei_hi_italic">Prima Quartett</span></a> mit <span class="69109109971101171051083271111108100115116101105110">Emmanuil Goldstein</span> und <span class="70114105101100101114105107101328399104101108108101114">Friederike Scheller</span> (Violine), <span class="6510898101114116327510497109101116111102102">Albert Khametoff</span> (Viola) und <span class="651101101014576105115101326797115115111110101116">Anne-Lise Cassonet</span> (Violoncello).</p>
-                                        <p>Vorab wird um 18.30 Uhr im Foyer des Sommertheaters Gelegenheit sein, die digitale Edition (hg. von <span class="74111104971101101011153275101112112101114">Johannes Kepper</span> und <span class="8297108102328399104110105101100101114115">Ralf Schnieders</span>, vgl. dazu auch <a href="http://www.edirom.de">www.edirom.de <i class="fa fa-external-link"></i></a>) und deren Weiterentwicklung kennenzulernen. Wir hoffen, daß vielleicht auch die praktischen Ausgaben der Kammermusikwerke mit Klarinette bis zu dem Termin noch vorliegen. Präsentieren wird die neuen Ausgaben Dr. <span class="82971051101011143277111104114115">Rainer Mohrs</span> vom Verlag der Gesamtausgabe (<a href="http://www.schott-musik.de">Schott Musik International <i class="fa fa-external-link"></i></a>) in <span class="tei_placeName"><span class="7797105110122">Mainz</span></span>.</p>
-                                        <p>Die Editoren (Prof. Dr. <span class="71101114104971141003265108108114111103103101110">Gerhard Allroggen</span>, Dr. des. <span class="751101171163272111108116115116114228116101114">Knut Holtsträter</span>, Dr. <span class="7411197991041051093286101105116">Joachim Veit</span>) erhielten wesentliche Anregungen und Entscheidungshilfen für die Neuausgabe der drei in dem Band vereinten Werke (<span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html"><span class="tei_hi_italic">Silvana</span>-Variationen</span>, <span class="tei_hi_italic"><span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klarinettenquintett</span></span> und <span class="tei_hi_italic"><span class="preview works A020216" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020216.html">Grand Duo</span></span>) in den unter Leitung des Klarinettisten Prof. <span class="7297110115456810510111611410599104327510897117115">Hans-Dietrich Klaus</span> seit etlichen Jahren durchgeführten „MeisterWerk-Kursen“, die sich zu einem der besonderen Markenzeichen der künstlerischen Arbeit an der <a href="http://www.hfm-detmold.de">Detmolder Hochschule für Musik <i class="fa fa-external-link"></i></a> entwickelt haben.</p>
-                                        <p>Detailliertere Informationen zu dieser Veranstaltung finden Sie in den folgenden Abschnitten:
+                        <div id="d10e2">
+                                    <p>Am <span class="tei_date">5. Dezember 2005</span> wird der neue, 340 Seiten starke Band „Kammermusik mit Klarinette“ (Serie VI, Bd.3 der WeGA, vgl. <a href="https://weber-gesamtausgabe.de/downloads/serieVI_3_titelei.pdf">Inhaltsverzeichnis und PDF der Titelei <i class="fa fa-external-link" aria-hidden="true"></i></a>) mit einer erstmaligen digitalen Edition des darin enthaltenen <span class="tei_hi_italic"><span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klarinettenquintetts</span></span> in einem von der Hochschule für Musik in <span class="preview places A130001" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</span> veranstalteten Konzert um 19.30 Uhr im <span class="68101116109111108100101114">Detmolder</span> Sommertheater offiziell vorgestellt. Erklingen werden dabei das <span class="preview works A020216" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020216.html"><span class="tei_hi_italic">Grand Duo</span> für Klarinette und Klavier Es-Dur op. 48</span> und das <span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html"><span class="tei_hi_italic">Klarinettenquintett</span> B-Dur op. 34</span>. Es musizieren <span class="65110100114101973280111109109101114">Andrea Pommer</span> und <span class="7411110497110110101115327211110210997110110">Johannes Hofmann</span> (Klarinette), <span class="721051141111071113265114105109111116111">Hiroko Arimoto</span> (Klavier) und das <a href="http://www.prima-quartett.de"><span class="tei_hi_italic">Prima Quartett</span></a> mit <span class="69109109971101171051083271111108100115116101105110">Emmanuil Goldstein</span> und <span class="70114105101100101114105107101328399104101108108101114">Friederike Scheller</span> (Violine), <span class="6510898101114116327510497109101116111102102">Albert Khametoff</span> (Viola) und <span class="651101101014576105115101326797115115111110101116">Anne-Lise Cassonet</span> (Violoncello). (siehe auch das <a href="https://weber-gesamtausgabe.de/downloads/programm_5dez.pdf">Programm der Veranstaltung <i class="fa fa-external-link" aria-hidden="true"></i></a>)</p>
+                                    <p>Vorab wird um 18.30 Uhr im Foyer des Sommertheaters Gelegenheit sein, die digitale Edition (hg. von <span class="74111104971101101011153275101112112101114">Johannes Kepper</span> und <span class="8297108102328399104110105101100101114115">Ralf Schnieders</span>, vgl. dazu auch <a href="http://www.edirom.de">www.edirom.de <i class="fa fa-external-link" aria-hidden="true"></i></a>) und deren Weiterentwicklung kennenzulernen. Wir hoffen, daß vielleicht auch die praktischen Ausgaben der Kammermusikwerke mit Klarinette bis zu dem Termin noch vorliegen. Präsentieren wird die neuen Ausgaben Dr. <span class="82971051101011143277111104114115">Rainer Mohrs</span> vom Verlag der Gesamtausgabe (<a href="http://www.schott-musik.de">Schott Musik International <i class="fa fa-external-link" aria-hidden="true"></i></a>) in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Mainz</span>.</p>
+                                    <p>Die Editoren (Prof. Dr. <span class="71101114104971141003265108108114111103103101110">Gerhard Allroggen</span>, Dr. des. <span class="751101171163272111108116115116114228116101114">Knut Holtsträter</span>, Dr. <span class="7411197991041051093286101105116">Joachim Veit</span>) erhielten wesentliche Anregungen und Entscheidungshilfen für die Neuausgabe der drei in dem Band vereinten Werke (<span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html"><span class="tei_hi_italic">Silvana</span>-Variationen</span>, <span class="tei_hi_italic"><span class="preview works A020205" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klarinettenquintett</span></span> und <span class="tei_hi_italic"><span class="preview works A020216" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020216.html">Grand Duo</span></span>) in den unter Leitung des Klarinettisten Prof. <span class="7297110115456810510111611410599104327510897117115">Hans-Dietrich Klaus</span> seit etlichen Jahren durchgeführten „MeisterWerk-Kursen“, die sich zu einem der besonderen Markenzeichen der künstlerischen Arbeit an der <a href="http://www.hfm-detmold.de">Detmolder Hochschule für Musik <i class="fa fa-external-link" aria-hidden="true"></i></a> entwickelt haben.</p>
+                                    <p>Detailliertere Informationen zu dieser Veranstaltung finden Sie in den folgenden Abschnitten:
                </p>
-                                        <ul class="tei_list">
-                                            <li>Zu Webers Freundschaft mit dem Klarinettisten Heinrich Joseph Baermann</li>
-                                            <li>Die Problematik der sogenannten "Baermann-Ausgaben"</li>
-                                            <li>Erstmals benutzte Quellen und Probleme der Edition</li>
-                                            <li>Zusammenwirken mit den Detmolder MeisterWerk-Kursen</li>
-                                            <li>Die sicherlich nachhaltigste Neuerung: Editionsbericht digital (<span class="tei_hi_italic">Edirom</span>)</li>
-                                        </ul>
-                                    </div>
+                                    <ul class="tei_list">
+                                        <li>Zu Webers Freundschaft mit dem Klarinettisten Heinrich Joseph Baermann</li>
+                                        <li>Die Problematik der sogenannten "Baermann-Ausgaben"</li>
+                                        <li>Erstmals benutzte Quellen und Probleme der Edition</li>
+                                        <li>Zusammenwirken mit den Detmolder MeisterWerk-Kursen</li>
+                                        <li>Die sicherlich nachhaltigste Neuerung: Editionsbericht digital (<span class="tei_hi_italic">Edirom</span>)</li>
+                                    </ul>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Freitag, 11. November 2005</p>
                     </div>
@@ -322,7 +360,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -335,12 +373,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -353,10 +386,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -365,9 +394,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050032</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050032</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

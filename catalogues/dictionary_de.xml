@@ -109,6 +109,7 @@
     <entry xml:id="knownPersons">Personen (bekannt)</entry>
     <entry xml:id="unknownPersons">Personen (unbekannt)</entry>
     <entry xml:id="places">Orte</entry>
+    <entry xml:id="place">Ort</entry>
     <entry xml:id="works">Werke</entry>
     <entry xml:id="characterNames">Rollen</entry>
     <entry xml:id="shelfMark">Signatur</entry>
@@ -219,7 +220,7 @@
     <entry xml:id="noBioFoundReason1">Daten werden erst zu einem späteren Zeitpunkt ergänzt</entry>
     <entry xml:id="noBioFoundReason2">Die Recherchen der WeGA waren bislang erfolglos</entry>
     <entry xml:id="noBioFoundReason3">Es handelt sich um eine allgemein bekannte Person, die bereits ausreichend an anderer Stelle erschlossen ist, vgl. etwa den Wikipedia-Link</entry>
-    <entry xml:id="noDataFound">keine Angaben gefunden</entry>
+    <entry xml:id="noDataFound">Keine Angaben gefunden</entry>
     <entry xml:id="dateUnknown">Datum unbekannt</entry>
     <!--  Schlüsselwörter aus MARC Code List for Relators, siehe http://www.loc.gov/marc/relators/relaterm.html  -->
     <entry xml:id="cmp">Komponist</entry>
@@ -284,6 +285,7 @@
     <entry xml:id="metaDescriptionIndex-indices">Vollständiges Register aller Dokumente der Digitalen Edition der Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaDescriptionIndex-documents">Eine Liste von Dokumenten, gesammelt und (teilweise) ediert
         durch die Carl-Maria-von-Weber-Gesamtausgabe</entry>
+    <entry xml:id="metaDescriptionIndex-places">Ortsregister der Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <!--    <entry xml:id="WeGAPublications">Publikationen der Carl-Maria-von-Weber-Gesamtausgabe</entry>-->
     <!--<entry xml:id="metaWeberStudiesPublications">Die Weber-Studien sind eine Carl Maria von Weber
         gewidmete Schriftenreihe, die das Erscheinen der Gesamtausgabe seiner Werke, Schriften,
@@ -312,6 +314,7 @@
     <entry xml:id="metaTitleIndex-search">Suchseite der Carl-Maria-von-Weber-Gesamtausgabe</entry>
     <entry xml:id="metaTitleIndex-personsPlus">Register der Personen</entry>
     <entry xml:id="metaTitleIndex-letters">Register der Briefe</entry>
+    <entry xml:id="metaTitleIndex-places">Register der Orte</entry>
     <entry xml:id="metaTitleIndex-writings">Register der Schriften</entry>
     <entry xml:id="metaTitleIndex-diaries">Register der Tagebücher</entry>
     <entry xml:id="metaTitleIndex-works">Register der Werke</entry>
@@ -386,6 +389,8 @@
     <entry xml:id="to">An</entry>
     <entry xml:id="from">Von</entry>
     <entry xml:id="fromTo">vom %1 bis %2</entry>
+    <entry xml:id="fromToUnknown">vom %1 bis unbekannt</entry>
+    <entry xml:id="unknownTo">von unbekannt bis %1</entry>
     <entry xml:id="in">In</entry>
     <entry xml:id="editorsInCharge">Inhaltlich Verantwortliche</entry>
     <entry xml:id="sourceWikipedia">Quelle: Wikimedia</entry>
@@ -424,6 +429,7 @@
     <entry xml:id="vol">Bd.</entry>
     <entry xml:id="pp">S.</entry>
     <entry xml:id="col">Sp.</entry>
+    <entry xml:id="leaf">Bl.</entry>
     <entry xml:id="issue">Heft</entry>
     <entry xml:id="edBy">hg. von</entry>
     <entry xml:id="ed">Hg.</entry>
@@ -449,6 +455,7 @@
     <entry xml:id="all_persons">Alle Personen</entry>
     <entry xml:id="all_works">Alle Werke</entry>
     <entry xml:id="all_documents">Alle Dokumente</entry>
+    <entry xml:id="all_places">Alle Orte</entry>
     <entry xml:id="webers_person">Webers Person</entry>
     <entry xml:id="webers_correspondence">Webers Korrespondenz</entry>
     <entry xml:id="webers_writings">Webers Schriften</entry>
@@ -476,6 +483,7 @@
     <entry xml:id="thematicCom">Themenkommentar</entry>
     <entry xml:id="endNotes">Einzelnachweise</entry>
     <entry xml:id="endNote">Einzelnachweis</entry>
+    <entry xml:id="originalFootnotes">[Originale Fußnoten]</entry>
     <entry xml:id="searchResults">Suchergebnisse</entry>
     <entry xml:id="sex">Geschlecht</entry>
     <entry xml:id="sex_m">Männlich</entry>
@@ -491,7 +499,7 @@
     <entry xml:id="personal_document">genealogische, personengebundene/personenbezogene Dokumente im engeren Sinne: Pässe, Anstellungsdekrete, Taufscheine, Taufeinträge etc.</entry>
     <entry xml:id="financial_document">Rechnungsbelege, Quittungen, Werkbelege aus dem Ausgabenbuch etc.</entry>
     <entry xml:id="varia_document">Visitenkarten, Eintrittskarten, Fahrkarten, Postscheine, Logendokumente etc.</entry>
-    <entry xml:id="notification_document">Fremdenanzeigen, Konzertanzeigen, sonstige Anzeigen</entry>
+    <entry xml:id="notification_document">Fremdenanzeigen, sonstige Anzeigen</entry>
     <entry xml:id="konzertzettel_document">Konzertzettel, Theaterzettel</entry>
     <entry xml:id="work-related_document">Ausgabenbuch, Danzis Gutachen, Gutachten über Euryanthe</entry>
     <entry xml:id="imageSource">Bildquelle</entry>
@@ -528,5 +536,21 @@
     <entry xml:id="source">Quelle</entry>
     <entry xml:id="performance-review">Konzertbesprechungen</entry>
     <entry xml:id="historic-news">Historische Berichte</entry>
-    <entry xml:id="concert-announcements">Konzertanzeigen</entry>
+    <entry xml:id="concert_announcements">Konzertanzeigen</entry>
+    <entry xml:id="fragment">Fragment</entry>
+    <entry xml:id="formerly">vormals</entry>
+    <entry xml:id="file">Datei</entry>
+    <entry xml:id="gndDefinition">Weitere Angaben</entry>
+    <entry xml:id="hideRevealedLetters">blende erschlossene Briefe aus</entry>
+    <entry xml:id="julianDate">Julianisches Datum</entry>
+    <entry xml:id="vorlageform">Vorlageform</entry>
+    <entry xml:id="asksam-cat">asksam-cat</entry>
+    <entry xml:id="einrichtungsform">Einrichtungsform</entry>
+    <entry xml:id="received">erhalten</entry>
+    <entry xml:id="descriptions">Beschreibungen</entry>
+    <entry xml:id="sentVersion">Übermittelter Brief</entry>
+    <entry xml:id="multiPart">Weiterer Teil</entry>
+    <entry xml:id="relatedItems">Verknüpfte Dokumente</entry>
+    <entry xml:id="country">Land</entry>
+    <entry xml:id="placenames">Ortsnamen</entry>
 </dictionary>

@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031017.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -336,7 +378,7 @@
                                         <p> Die Lehre von den dissonirenden Accorden stellt der Verf. vom sogenannten
                     dissonirenden Dreyklange an, nach <a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgs</a>
                     Grundzügen, bis zum Terzdecimenaccorde, mit alle der Ideenklarheit dar, welche
-                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" id="ref-d40733e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e179">‡</a></span> complicirte Lehre leicht faßlich zu
+                    nöthig ist, um eine so vereinzelte <span class="tei_choice"><span class="tei_corr">und</span><a class="noteMarker" id="ref-d10e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e179">‡</a></span> complicirte Lehre leicht faßlich zu
                     machen: um aber auch denen nützlich zu werden, welche nicht nach diesem, sondern
                     nach dem einfachern Systeme der Aufhaltungen lernen, oder lehren wollen, fügt
                     der Verf. <span class="tei_ptr"></span>als Anhang eine Tabelle<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> bey, welche alle bisher nach dem <a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurgischen</a> System abgehandelten Tonverbindungen,
@@ -368,7 +410,7 @@
                                         <p>beweist. Statt „als Consonanz“ hätte Rec. lieber gelesen: als ein Intervall,
                     welches unvorbereitet eintreten darf, wohin denn manche Dissonanzen gehören, wie
                     z. B. die Septime <span class="tei_hi_italic">f</span> zum <span class="tei_hi_italic">g </span> des
-                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" id="ref-d40733e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e257">‡</a></span> die dissonirende Quarte (Undecime) zum
+                    obigen Beyspiels, welches ganz <span class="tei_choice"><span class="tei_corr">fehlerfrey</span><a class="noteMarker" id="ref-d10e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e257">‡</a></span> die dissonirende Quarte (Undecime) zum
                     folgenden <span class="tei_hi_italic">C</span> accorde vorbereitet.</p>
                                         <p>Ebenfalls zu eng ist die gemeinübliche und vom Verf. ebenfalls beybehaltne
                     Definition vom Auflößen, wornach diese Operation darauf beruht, <span class="tei_ptr"></span>„daß derjenige
@@ -400,7 +442,7 @@
                                         <p><span class="tei_segBlock textAlign-center">4 ⌒ 4 – 3 4 ⌒ 4 – 3</span></p>
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_italic">G | G</span> – <span class="tei_hi_italic">C | C</span>
                         –</span></p>
-                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" id="ref-d40733e342" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d40733e342">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
+                                        <p><span class="tei_choice"><span class="tei_corr">Ähnliche</span><a class="noteMarker" id="ref-d10e342" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e342">‡</a></span> Beyspiele führt der Verf. selbst in der Anmerkung zu diesem Paragraphen
                     an, und erklärt sie sehr kunstreich als Ausnahmen von der Regel; allein Rec.
                     scheint es, als würden mit der unnöthigen Regel auch die unnöthigen Ausnahmen
                     füglich hinwegfallen.</p>
@@ -540,7 +582,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Heidelbergische Jahrbücher der Literatur</span>, Bd. 4, Heft 67 (November 1811), S. 1057–1064</p>
+                                <p class="biblio-entry"><span class="journalTitle">Heidelbergische Jahrbücher der Literatur</span>, Bd. 4, Heft 67 (November 1811), S. 1057–1064</p>
                                 
                                 <div>
                                     
@@ -568,7 +610,7 @@
                                             <div class="apparatusEntry" id="C_03" data-title="note commentary">"<span class="tei_lemma">§. 55. 57</span>": a. a. O., Sp. 65–67</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40733e179" data-title="choice">recte "und": in der Vorlage "nnd"</div>
+                                            <div class="apparatusEntry" id="d10e179" data-title="choice">recte "und": in der Vorlage "nnd"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_04" data-title="note commentary">"<span class="tei_lemma">als Anhang eine Tabelle</span>": <span class="tei_hi_italic">Tabellarisches Verzeichniß der im Satz vorkommenden Aufhaltungen</span>; vgl. a. a. O., Sp. 143–158</div>
@@ -589,7 +631,7 @@
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">7 ⌒ 4 … | C –</span>": vgl. a. a. O., Sp. 224, fig. 19</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40733e257" data-title="choice">recte "fehlerfrey": in der Vorlage "fehlerley"</div>
+                                            <div class="apparatusEntry" id="d10e257" data-title="choice">recte "fehlerfrey": in der Vorlage "fehlerley"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_10" data-title="note commentary">"<span class="tei_lemma">„daß derjenige Ton, … eine Consonanz trete“</span>": G. Weber zitiert wiederum verkürzt, vgl. a. a. O., Sp. 219: <span class="tei_hi_italic">Die Auflösung einer Dissonanz bestehet endlich darin, daß derjenige Ton, der in dieser oder jener Stimme als eine Dissonanz erschienen ist, in eben derselben Stimme in dem folgenden Akkorde eine Stufe der Tonleiter abwärts (bey einigen dissonirenden Intervallen eine Stufe aufwärts) tritt, und daß sich dieser abwärts tretende Ton als eine Konsonanz hören läßt.</span></div>
@@ -603,7 +645,7 @@
                                             <div class="apparatusEntry" id="C_12" data-title="note commentary">"<span class="tei_lemma">Die Vorbereitung einer Dissonanz</span>": vgl. a. a. O., Sp. 221</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d40733e342" data-title="choice">recte "Ähnliche": in der Vorlage "Ahnliche"</div>
+                                            <div class="apparatusEntry" id="d10e342" data-title="choice">recte "Ähnliche": in der Vorlage "Ahnliche"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_13" data-title="note commentary">"<span class="tei_lemma">Behauptung wagt, der … mit ausgelassenem Grundton</span>": vgl. § 159, a. a. O., Sp. 244</div>
@@ -634,10 +676,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -646,9 +684,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031017</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

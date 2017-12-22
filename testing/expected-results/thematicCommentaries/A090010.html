@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:21:01.981432Z" />
+        <meta property="dc:date" content="2017-09-15T13:07:00.585694Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090010" />
         <meta property="dc:description" content="Während seiner Anstellung als Kapellmeister am Ständetheater 1813–1816 setzte sich Weber neben der Gewährleistung des gängigen Repertoire-Spielplans …" />
         <meta name="description" content="Während seiner Anstellung als Kapellmeister am Ständetheater 1813–1816 setzte sich Weber neben der Gewährleistung des gängigen Repertoire-Spielplans …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,6 +229,45 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -235,7 +278,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090010.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -354,9 +397,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -367,25 +410,25 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div id="d30986e2">
-                                    <h2 id="d30986e3">Vorbemerkungen</h2>
+                        <div id="d10e2">
+                                    <h2 id="d10e3">Vorbemerkungen</h2>
                                     <p>Während seiner Anstellung als Kapellmeister am Ständetheater 1813–1816 setzte sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> neben der Gewährleistung des gängigen Repertoire-Spielplans (mit Schwerpunkt auf ital. und frz. Werken) besonders für die Etablierung der deutschen Oper ein. Diese Bemühungen finden ihren Niederschlag praktisch in der Einstudierung neuer (deutschsprachiger) Werke, zum anderen aber auch – als quasi theoretische Untermauerung der Praxis – in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Projekt der „Dramatisch-musikalischen Notizen“, die er in der <span class="tei_hi_italic">K. K. Privilegirten Prager Zeitung</span> als Einführungen zu diesen neu aufgeführten Opern
                     veröffentlichte. Der Untertitel der Notizen „Als Versuche, durch kunstgeschichtliche Nachrichten und Andeutungen die Beurteilung neu auf dem Landständischen Theater zu Prag erscheinender Opern zu erleichtern“ verweist
                     auf seine Ambitionen, das Urteil des Publikums durch vorher erläuternde Ausführungen zu den Werken positiv beeinflussen zu können. Die Einführungen dienten der Charakterisierung der Werke und enthielten zum einen biographische
                     Angaben zum Komponisten sowie Textdichter, zum anderen wesentliche Informationen zu Inhalt und Gattung des betreffenden Werkes, darüber hinaus wenn nötig Hinweise auf Änderungen der jeweiligen Aufführung. Am Ende seiner Amtszeit in
-                            <span class="tei_placeName"><span class="8011497103">Prag</span></span> resümierte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in einem Brief an <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a> vom (<a class="preview letters A040876" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040876.html">2. Februar 1816</a>) über die zwiespältige Resonanz bei den Zeitgenossen: „[...] ich schrieb die dramatisch musikalischen Notizen für die hiesige Zeitung [...] dieß Unternehmen hat viele Krittler und eselhafte Meynungen erzeugt, aber doch seine Nuzbarkeit bewährt, und ich sezze es seitdem bey jeder neuen Oper fort. freylich eine Arbeit mehr; aber für das Gute zu wirken ist ja mein Zwekk.“</p>
-                                    <p>Als Direktor der Deutschen Oper in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> setzte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Reihe der „Dramatisch-musikalischen Notizen“ fort. Hier erschienen sie in der von <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html">Karl Theodor Winkler</a> und <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a> herausgegebenen <span class="tei_hi_italic">Abend-Zeitung</span>, unter dem alten, jedoch für <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> entsprechend geänderten Titel: „Dramatisch-musikalische Notizen, als Versuche, durch kunstgeschichtliche Nachrichten und Andeutungen die Beurtheilung neu auf dem klg. Theater zu Dresden erscheinender Opern zu erleichtern“. Das ehemalige <a class="preview writings A031183" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031183.html">Prager Vorwort</a> verwendete er (wortgetreu bis auf die Hinweglassung des auf <span class="tei_placeName"><span class="8011497103">Prag</span></span> bezogenen Schlusses) erneut als <a class="preview writings A030051" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030051.html">Einführung für Dresden</a>, ergänzte es jedoch durch eine Art <a class="preview writings A030050" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030050.html">Einleitung „An die kunstliebenden Bewohner Dresdens“</a>, die die im Vorwort genannten Ambitionen „dem Publikum zu sagen, was es zu erwarten und zu hoffen habe“, bekräftigt und darauf hinweist, dass „Schmuck, Glanz und Enthusiasmus einer Kunstanstalt nur durch ausgezeichnete hohe Talente verliehen“ werden könnten. Damit formulierte er nicht nur seine ästhetischen Ansichten und Forderungen an die Struktur der Institution, sondern hierin kündigen sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Absichten, das Dresdner Personal seinen Vorstellungen gemäß bzw. den aufzuführenden Kunstwerken entsprechend aufzustellen, bereits deutlich an.</p>
+                            <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> resümierte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in einem Brief an <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a> vom (<a class="preview letters A040876" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040876.html">2. Februar 1816</a>) über die zwiespältige Resonanz bei den Zeitgenossen: „[...] ich schrieb die dramatisch musikalischen Notizen für die hiesige Zeitung [...] dieß Unternehmen hat viele Krittler und eselhafte Meynungen erzeugt, aber doch seine Nuzbarkeit bewährt, und ich sezze es seitdem bey jeder neuen Oper fort. freylich eine Arbeit mehr; aber für das Gute zu wirken ist ja mein Zwekk.“</p>
+                                    <p>Als Direktor der Deutschen Oper in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> setzte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Reihe der „Dramatisch-musikalischen Notizen“ fort. Hier erschienen sie in der von <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html">Karl Theodor Winkler</a> und <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a> herausgegebenen <span class="tei_hi_italic">Abend-Zeitung</span>, unter dem alten, jedoch für <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> entsprechend geänderten Titel: „Dramatisch-musikalische Notizen, als Versuche, durch kunstgeschichtliche Nachrichten und Andeutungen die Beurtheilung neu auf dem klg. Theater zu Dresden erscheinender Opern zu erleichtern“. Das ehemalige <a class="preview writings A031183" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031183.html">Prager Vorwort</a> verwendete er (wortgetreu bis auf die Hinweglassung des auf <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> bezogenen Schlusses) erneut als <a class="preview writings A030051" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030051.html">Einführung für Dresden</a>, ergänzte es jedoch durch eine Art <a class="preview writings A030050" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030050.html">Einleitung „An die kunstliebenden Bewohner Dresdens“</a>, die die im Vorwort genannten Ambitionen „dem Publikum zu sagen, was es zu erwarten und zu hoffen habe“, bekräftigt und darauf hinweist, dass „Schmuck, Glanz und Enthusiasmus einer Kunstanstalt nur durch ausgezeichnete hohe Talente verliehen“ werden könnten. Damit formulierte er nicht nur seine ästhetischen Ansichten und Forderungen an die Struktur der Institution, sondern hierin kündigen sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Absichten, das Dresdner Personal seinen Vorstellungen gemäß bzw. den aufzuführenden Kunstwerken entsprechend aufzustellen, bereits deutlich an.</p>
                                     <p>Die enge Verbindung zwischen Aufführungsvorbereitung der Opern und Entstehung der dazugehörigen Werk-Notizen zeigt sich anhand der zeitlichen Nähe der (meist im Tagebuch vermerkten) Niederschrift der Notizen, die ausnahmslos im Einstudierungsprozess der Werke entstand, zu deren Publikation, die in der Regel ein bis zwei Tage vor der Erstaufführung erfolgte (Ausnahmen: <span class="preview works A020444" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020444.html">Emmi di Resburgo</span> und <span class="preview works A020722" data-ref="/exist/apps/WeGA-WebApp/de/A001268/Werke/A020722.html">Heinrich IV.</span>). Im Laufe der Zeit veränderten sich die Artikel in ihrem Anliegen; waren sie anfangs noch vordergründig darauf ausgerichtet, das Publikum auf neue Werke vorzubereiten, nutze Weber sie später „als Plattform für Stellungnahmen zur deutschen Oper im Allgemeinen und deren Abgrenzung zur französischen und italienischen“ (<span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html">Jaiser</span>, S. 51) Oper.</p>
                                     <p>Dass die Anfertigung der Notizen Weber zusätzliche Belastungen einbrachte und auch auf Gegenwehr stieß, lässt sich aus den Briefen an <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">seine Frau</a> erfahren; z. B. am <a class="preview letters A041020" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041020.html">30. Januar 1817</a> schrieb er: „Nachdem ich d: 28t viel von Besuchen geplagt worden und endlich mit Mühe und Noth meinen <a class="preview writings A030052" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030052.html">Aufsaz</a> über <span class="preview works A020386" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020386.html">Joseph</span> fertig gebracht, entstand eine Confusion in der Drukkerey die mich viel Laufen und besorgen machte, denn da wäre der Aufsaz einen Tag später als die Oper erschienen. brachte es aber doch in Ordnung, aß geschwind ein paar Bißen, und hatte Orchester Probe [...]“ und „Meine Aufsäzze haben schönen Lärm schon erregt, die Italiener wollen bersten vor Verdruß und Furcht, denn sie sind nicht gewohnt daß jemand so fest und öffentlich auftritt.“</p>
-                                    <p>Den Auftakt der Reihe im Oktober 1815 in <span class="tei_placeName"><span class="8011497103">Prag</span></span> bildete die Einführung zu <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeers</a> Oper <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span>, deren wenig erfolgreiche Wiener Aufführung <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit seinen Ausführungen über Art und Weise der <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a>schen Komposition zu erklären und abzumildern versuchte. In <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> nahm <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> etliche Werke auf, zu denen er dann auch Einführungen schrieb, die bereits in <span class="tei_placeName"><span class="8011497103">Prag</span></span> unter seiner Leitung erstaufgeführt worden waren, wie z.B. <span class="preview works A020594" data-ref="/exist/apps/WeGA-WebApp/de/A007855/Werke/A020594.html">Das Hausgesinde</span>, <span class="preview works A020565" data-ref="/exist/apps/WeGA-WebApp/de/A000845/Werke/A020565.html">Fanchon</span> und <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul Blaubart</span>. Vielleicht haben ihn evtl. einst gemachte negative Erfahrungen dazu motiviert?</p>
+                                    <p>Den Auftakt der Reihe im Oktober 1815 in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> bildete die Einführung zu <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeers</a> Oper <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span>, deren wenig erfolgreiche Wiener Aufführung <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit seinen Ausführungen über Art und Weise der <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a>schen Komposition zu erklären und abzumildern versuchte. In <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> nahm <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> etliche Werke auf, zu denen er dann auch Einführungen schrieb, die bereits in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> unter seiner Leitung erstaufgeführt worden waren, wie z.B. <span class="preview works A020594" data-ref="/exist/apps/WeGA-WebApp/de/A007855/Werke/A020594.html">Das Hausgesinde</span>, <span class="preview works A020565" data-ref="/exist/apps/WeGA-WebApp/de/A000845/Werke/A020565.html">Fanchon</span> und <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul Blaubart</span>. Vielleicht haben ihn evtl. einst gemachte negative Erfahrungen dazu motiviert?</p>
                                     <p>Die einzelnen Werkeinführungen fallen strukturell und inhaltlich sehr unterschiedlich aus; knappe Artikel mit Anzeigencharakter, wie z.B. die <a class="preview writings A031195" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031195.html">Rezension</a> zur <span class="preview works A020389" data-ref="/exist/apps/WeGA-WebApp/de/A008175/Werke/A020389.html">Strickleiter</span> oder die <a class="preview writings A030305" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030305.html">Einführung</a> zum <span class="preview works A020727" data-ref="/exist/apps/WeGA-WebApp/de/A001711/Werke/A020727.html">Fischermädchen</span> bilden eher die Ausnahme; meist handelt es sich um ausführliche Berichte, die in ihrem Informationsgehalt unterschiedlich ergiebig und auch in den einzelnen Punkten verschieden gewichtet sind. Bei den meisten Werkeinführungen geht <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zuerst auf die Person bzw. Bedeutung des jeweiligen Komponisten ein und führt dann über mehr oder weniger umfangreiche Erörterung von dessen anderen Werken zum titelgebenden Gegenstand des Aufsatzes, der jeweils aufzuführender Oper. Geschickt baut <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in seine, mitunter durch künstlerische Diskurse und philosophische Gedanken bereicherten, Abhandlungen sein Wissen über Operngeschichte und Werkgattungen mit ein (z. B. in der <a class="preview writings A030496" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030496.html">Einführung</a> zu <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span> oder der <a class="preview writings A030069" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030069.html">Besprechung</a> zum <span class="preview works A020594" data-ref="/exist/apps/WeGA-WebApp/de/A007855/Werke/A020594.html">Hausgesinde</span>), wenn nötig finden sich auch wichtige Hinweise zu Textdichter sowie Textvorlage (z. B. <a class="preview writings A031184" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031184.html">Rezension</a> über <span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Alimelek</span>) oder zum Sängerpersonal (z. B. <a class="preview writings A030500" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030500.html">Einführung</a> zu <span class="preview works A020514" data-ref="/exist/apps/WeGA-WebApp/de/A000280/Werke/A020514.html">Die vornehmen Wirte</span> oder <a class="preview writings A030264" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030264.html">Besprechung</a> zur <span class="preview works A020461" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020461.html">Entführung aus dem Serail</span>).</p>
                                     <p>Ihren abrupten Abschluss fand die über einige Jahre relativ regelmäßig erscheinende Serie der „Musikalisch-dramatischen Notizen“ Mitte 1820, was wiederum verschiedene Ursachen gehabt haben kann: Zum einen dirigierte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> aufgrund seiner gesundheitlichen Beeinträchtigung und seiner anderweitigen Verpflichtungen weniger Vorstellungen selbst, zu deren Erfolg er bis dahin mit seinen Einführungen beizutragen gedachte, und fühlte sich nunmehr nicht mehr zuständig, zum anderen hatte er mit seinem <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> seine Grundsätze und Einstellungen in eigene Kunst verwandelt, deren sensationeller Erfolg den Boden endgültig für die Deutsche Oper ebnete, so dass eine positive Einstimmung des Publikums diesem Genre gegenüber als nicht mehr notwendig erschien.</p>
                                     <p><span class="preview biblio A111886" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A111886.html">Kaiser</span> resümiert zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> schriftstellerischer Tätigkeit in dieser Periode, S. XX: „In diesem zweiten Abschnitt seiner schriftstellerischen Tätigkeit ist sein Stil äußerst prägnant, mit wenigen Worten trifft er fast stets das richtige, und man wird aus jener Zeit kaum einen Schriftsteller nachweisen können, der über einen ähnlichen Stoff sich mit so großer Leichtigkeit und Frische und dabei bedeutender Sachkenntnis zu verbreiten vermochte. Seine hier niedergelegten ästhetischen Ansichten sind noch für unsere Zeit verblüffend sicher und treffend, und weit stand <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Leiter eines Operntheaters über seinen zeitgenössischen Kollegen.“</p>
                                 </div>
-                                <div id="d30986e239">
-                                    <h2 id="d30986e240">Werkeinführungen (Prag 1815/16)</h2>
+                                <div id="d10e232">
+                                    <h2 id="d10e233">Werkeinführungen (Prag 1815/16)</h2>
                                     <div class="table-wrapper">
-                                        <table id="d30986e242" class="table">
+                                        <table id="d10e235" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td><a class="preview writings A031183" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031183.html">Vorwort Prag 1815</a></td>
@@ -412,10 +455,10 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d30986e313">
-                                    <h2 id="d30986e314">Werkeinführungen (Dresden 1817–1820)</h2>
+                                <div id="d10e306">
+                                    <h2 id="d10e307">Werkeinführungen (Dresden 1817–1820)</h2>
                                     <div class="table-wrapper">
-                                        <table id="d30986e316" class="table">
+                                        <table id="d10e309" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td><a class="preview writings A030050" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030050.html">Einleitung für Dresden 1817</a></td>
@@ -478,8 +521,8 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d30986e516" class="bibliography">
-                                    <h2 id="d30986e517">Literatur</h2>
+                                <div id="d10e509" class="bibliography">
+                                    <h2 id="d10e510">Literatur</h2>
                                     <ul>
                                         <li>Georg Kaiser, <span class="tei_hi_italic">Sämtliche Schriften von Carl Maria von Weber</span>, Berlin und Leipzig 1908, S. LXXI sowie XCI</li>
                                         <li>Oliver Huck, <span class="tei_hi_italic">Von der Silvana zum Freischütz. Die Konzertarien, die Einlagen zu Opern und die Schauspielmusik Carl Maria von Webers</span>, (<span class="tei_hi_italic">Weber-Studien</span>, Bd. 5), Mainz 1999; Spielpläne aus Prag und Dresden S. 350–359</li>
@@ -495,10 +538,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -509,9 +548,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090010</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090010</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -90,7 +90,7 @@
 	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'panel tei_egXML'"/>
-			<xsl:if test="@source and wega:getOption('environment') eq 'development'">
+			<xsl:if test="matches(@source, 'A[A-F0-9]{6}') and wega:getOption('environment') eq 'development'">
 				<!-- output warnings for broken examples (in development mode only) -->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>
 				<xsl:variable name="myEgXML" select="functx:change-element-ns-deep(./*, 'http://www.tei-c.org/ns/1.0', '')" as="node()*"/>
@@ -105,7 +105,8 @@
 					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
 				</xsl:element>
 			</xsl:element>
-			<xsl:if test="@source">
+			<!-- WeGA only: create back links to documents for examples -->
+			<xsl:if test="matches(@source, 'A[A-F0-9]{6}')">
 				<xsl:variable name="rs">
 					<tei:rs>
 						<xsl:attribute name="key" select="@source"/>

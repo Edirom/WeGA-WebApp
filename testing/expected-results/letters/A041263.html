@@ -16,7 +16,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T15:51:53.684376Z" />
+        <meta property="dc:date" content="2017-12-20T08:43:14.086600Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041263" />
         <meta property="dc:description" content="kündigt seinen Besuch auf der &#34;Hochzeitsreise&#34; an; bittet Gottfried, ihm seine Sachen baldmöglichst zu schicken; erwähnt Flageolets??; erwähnt Stammbuchblatt, das er noch nicht beschrieben habe; betr. Bücher-Tausch; erwähnt Arbeit an der Jägersbraut; will auf seiner Reise einige Konzerte geben und bittet Gottfried, dies schon publik zu machen; rühmt die &#34;Tonsetzkunst&#34; Gottfrieds; legt eine Liste der in Darmstadt am 10. Februar 1811 zurückgelassenen Musikalien und Bücherliste von fremder Hand bei" />
         <meta name="description" content="kündigt seinen Besuch auf der &#34;Hochzeitsreise&#34; an; bittet Gottfried, ihm seine Sachen baldmöglichst zu schicken; erwähnt Flageolets??; erwähnt Stammbuchblatt, das er noch nicht beschrieben habe; betr. Bücher-Tausch; erwähnt Arbeit an der Jägersbraut; will auf seiner Reise einige Konzerte geben und bittet Gottfried, dies schon publik zu machen; rühmt die &#34;Tonsetzkunst&#34; Gottfrieds; legt eine Liste der in Darmstadt am 10. Februar 1811 zurückgelassenen Musikalien und Bücherliste von fremder Hand bei" />
@@ -114,11 +114,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,53 +249,97 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041262.html">1817-07-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000213.html">Weber, Caroline von</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041262.html">1817-07-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000213.html">Weber, Caroline von</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A040978.html">1817-07-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041264.html">1817-07-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000213.html">Weber, Caroline von</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001862/Korrespondenz/A045032.html">1817-08-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr, Louis</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A040978.html">1817-07-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041264.html">1817-07-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000213.html">Weber, Caroline von</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041152.html">1817-05-02</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A046196.html">1814-06-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A040993.html">1817-11-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041152.html">1817-05-02</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045447.html">1813-06-29</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041310.html">1817-09-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041310.html">1817-09-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -406,51 +453,43 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6510911511610111410097109" /> <span title="Amsterdam">Amsterdam</span> 
+                                    <input type="checkbox" name="options" value="A130056" /> <span title="Amsterdam">Amsterdam</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="651171031159858" /> <span title="Augsb:">Augsb:</span> 
+                                    <input type="checkbox" name="options" value="A130017" /> <span title="Augsburg">Augsburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6511710311598117114103" /> <span title="Augsburg">Augsburg</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130015" /> <span title="Darmstadt">Darmstadt</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6797114108115114117104101" /> <span title="Carlsruhe">Carlsruhe</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="689711410911511697100116" /> <span title="Darmstadt">Darmstadt</span> 
+                                    <input type="checkbox" name="options" value="A130009" /> <span title="Hamburg">Hamburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100" /> <span title="Dresd">Dresd</span> 
+                                    <input type="checkbox" name="options" value="A130087" /> <span title="Innsbruck">Innsbruck</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130022" /> <span title="Karlsruhe">Karlsruhe</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="701149711010710211711411632971093277101105110" /> <span title="Frankfurt am Mein">Frankfurt am Mein</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                    <input type="checkbox" name="options" value="A130028" /> <span title="Mainz">Mainz</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7311011598114117107" /> <span title="Insbruk">Insbruk</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130246" /> <span title="Merseburg">Merseburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797121110122" /> <span title="Maynz">Maynz</span> 
+                                    <input type="checkbox" name="options" value="A130049" /> <span title="Quedlinburg">Quedlinburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7710111411510198117114103" /> <span title="Merseburg">Merseburg</span> 
+                                    <input type="checkbox" name="options" value="A130023" /> <span title="Salzburg">Salzburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130111" /> <span title="Ulm">Ulm</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8111710110010810511098117114103" /> <span title="Quedlinburg">Quedlinburg</span> 
+                                    <input type="checkbox" name="options" value="A130057" /> <span title="Venedig">Venedig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="839710812298117114103" /> <span title="Salzburg">Salzburg</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8399104119101105100110105116122" /> <span title="Schweidnitz">Schweidnitz</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="85108109" /> <span title="Ulm">Ulm</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="86101110101100105103" /> <span title="Venedig">Venedig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105110116101114116104117114" /> <span title="Winterthur">Winterthur</span> 
+                                    <input type="checkbox" name="options" value="A130120" /> <span title="Winterthur">Winterthur</span> 
                                 </label>
                             </div>
                         </div>
@@ -468,12 +507,12 @@
             </div>
                                         <p>In höchster Eile und Kürze beantworte ich deinen
                lieben Brief vom 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">huj</span>. Zur Entschuldigung der Kürze dient die
-               Nachricht, daß ich Ende <span class="tei_hi_latintype">Sept</span>: nach <span class="tei_placeName"><span class="8011497103">Prag</span></span> reise, da heyrathe, und von
-               da aus <span class="tei_hi_underline1">dich in <span class="tei_placeName"><span class="7797121110122">Maynz</span></span></span> besuchen will, und <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">meine junge Frau</a>
+               Nachricht, daß ich Ende <span class="tei_hi_latintype">Sept</span>: nach <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> reise, da heyrathe, und von
+               da aus <span class="tei_hi_underline1">dich in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Maynz</span></span> besuchen will, und <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">meine junge Frau</a>
                Euch vorstellen. da geht es mündlich beßer. Meine Sachen schikke mir nur
                <span class="tei_hi_underline1">so schnell als möglich</span>
                <span class="tei_hi_latintype">per</span> Fracht. die Flageolets sind eines rühmlichen Todes gestorben,
-               und haben also doch jemand erfreut.<a class="noteMarker" id="ref-c01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c01">*</a> <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a> ist noch immer in <span class="tei_placeName"><span class="7311011598114117107">Insbruk</span></span>, und hat
+               und haben also doch jemand erfreut.<a class="noteMarker" id="ref-c01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c01">*</a> <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a> ist noch immer in <span class="preview places A130087" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130087.html">Insbruk</span>, und hat
                mehres Neues für die Kirche geschrieben. 
             </p>
                                         <p>Dein Stambuchblatt ist noch leer. ich
@@ -485,8 +524,8 @@
                   aber wohl errathen.      Ich arbeite jezt an einer Oper die
                   <span class="tei_hi_underline1"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Jägersbraut</span></span>, von <span class="tei_hi_underline1"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind</a></span>
                   gedichtet. <span class="tei_hi_underline1"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a></span> führt in diesem Augenblik, eine Oper
-               in <span class="tei_hi_latintype"><span class="tei_placeName"><span class="86101110101100105103">Venedig</span></span></span> auf.<a class="noteMarker" id="ref-c04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c04">*</a>      Sey so gütig einigen vorläufigen Lärm zu machen,
-                  daß ich die <span class="tei_placeName"><span class="tei_region">Rheingegenden</span></span> besuche, denn ich will einige <span class="tei_hi_latintype">Concerte</span>
+               in <span class="tei_hi_latintype"><span class="preview places A130057" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130057.html">Venedig</span></span> auf.<a class="noteMarker" id="ref-c04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c04">*</a>      Sey so gütig einigen vorläufigen Lärm zu machen,
+                  daß ich die <span class="tei_region">Rheingegenden</span> besuche, denn ich will einige <span class="tei_hi_latintype">Concerte</span>
                   geben, und wenigstens meine Reisekosten verdienen. </p>
                                         <p class="tei_closer textAlign-left">Gott erhalte dich Gesund und
                      frisch, ich freue mich <span class="tei_hi_underline1">unmenschlich</span> darauf dich und deine
@@ -494,11 +533,11 @@
                <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">lieber Bruder</a> ist ein herrlich Ding, Gott sei Dank daß einmal etwas wahrhaft
                      <span class="tei_hi_underline1">geordnetes</span> der Art in die Welt tritt.      Potz Blitz,
                      beinah hätte ich vergeßen dir zu sagen, daß ich einen Ruf nach
-                     <span class="tei_hi_latintype"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></span> erhalten habe, und sehr auf dem Sprung stehe ihn anzunehmen.
+                     <span class="tei_hi_latintype"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span> erhalten habe, und sehr auf dem Sprung stehe ihn anzunehmen.
                      Bald hierüber ein mehreres, denn es muß sich bald entscheiden.
                      <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype">Addio senza addio</span>.<br /> 
                      Ewig dein <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span></span>
-                     <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="68114101115100">Dresd</span></span></span> d: 21<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1817.</span>
+                     <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresd</span></span> d: 21<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1817.</span>
             </p>
                                     </div>
                                     <div class="writingSession">
@@ -526,72 +565,72 @@
             <span class="tei_hi_underline1"><a class="preview persons A000354" href="/exist/apps/WeGA-WebApp/de/A000354.html">Danzi</a> zu meinem Geburtstag</span>. 
             <span class="tei_hi_underline1">Ueber die Samsprache.</span>     
             <span class="tei_hi_underline1">dann gab ich dir noch mehrere Papiere in einem Pak</span>.<br />
-            Alles in <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> d: 10<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1811. </p>
+            Alles in <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> d: 10<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1811. </p>
                                     </div>
                                     <div class="writingSession">
                                         <h2><span class="tei_hi_underline1"><span class="tei_hi_latintype">Bücher</span> Verzeichniß</span><a class="noteMarker" id="ref-C_31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_31">*</a></h2>
                                         <ul class="tei_simpleList">
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Handbuch bei dem General Baße, die der <span class="tei_hi_latintype">Composit</span>: mit 2– 8- Stimmen <span class="tei_hi_latintype">pp</span>. <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1755.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Handbuch bei dem General Baße, die der <span class="tei_hi_latintype">Composit</span>: mit 2– 8- Stimmen <span class="tei_hi_latintype">pp</span>. <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1755.</li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001141" href="/exist/apps/WeGA-WebApp/de/A001141.html">B. J. Lederer</a></span></span>. Neue und erleichterte Art zu Solmisiren, nebst andern Vortheile die Sing Kunst in kurzer Zeit zu
-                  erlernen, u. a. <span class="tei_hi_latintype"><span class="tei_placeName"><span class="85108109">Ulm</span></span></span> 1796.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Anleitung zur Sing Komposition. <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1758.</li>
+                  erlernen, u. a. <span class="tei_hi_latintype"><span class="preview places A130111" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130111.html">Ulm</span></span> 1796.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Anleitung zur Sing Komposition. <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1758.</li>
                                             <li>Der kritische Verhältnus an der Spree, 1<span class="tei_hi_superscript">tes</span> Heft 1749 bis 28<span class="tei_hi_superscript">t</span> Stük.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001028" href="/exist/apps/WeGA-WebApp/de/A001028.html">J. H. Knecht</a></span></span>. Gemein nüdzlises Elementar Werk der Harmonie und des Genaral Baßes. <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> 1792 – erste Abtheilung</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001028" href="/exist/apps/WeGA-WebApp/de/A001028.html">J. H. Knecht</a></span></span>. Gemein nüdzlises Elementar Werk der Harmonie und des Genaral Baßes. <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> 1792 – erste Abtheilung</li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001011" href="/exist/apps/WeGA-WebApp/de/A001011.html">J. L. Kittel</a></span></span>. Der angehende Organist. 1801. Erste Abtheilung</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000699" href="/exist/apps/WeGA-WebApp/de/A000699.html">Matthes Gugl</a></span></span>.      <span class="tei_supplied" id="d57793e476"><span class="brackets_supplied">[</span>mit Bleistift nachgetragen: Gugl<span class="brackets_supplied">]</span></span> fundamento Partiturer in Kompendio data, das ist:
-                  kurzer und Gründlicher Unterricht die General Paß oder Pschlagen<span class="tei_supplied" id="d57793e479"><span class="brackets_supplied">[</span>???<span class="brackets_supplied">]</span></span> zu lernen. <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> 1719.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000067" href="/exist/apps/WeGA-WebApp/de/A000067.html">C. P. E. Bach</a></span></span>.      Versuch über die wahre Art das Klavier zu Spielen. <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> &amp; <span class="tei_placeName"><span class="651171031159858">Augsb:</span></span> 1787 -Erster                                          Theil<span class="tei_supplied" id="d57793e502"><span class="brackets_supplied">[</span>?<span class="brackets_supplied">]</span></span></li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000699" href="/exist/apps/WeGA-WebApp/de/A000699.html">Matthes Gugl</a></span></span>.      <span class="tei_supplied" id="d10e464"><span class="brackets_supplied">[</span>mit Bleistift nachgetragen: Gugl<span class="brackets_supplied">]</span></span> fundamento Partiturer in Kompendio data, das ist:
+                  kurzer und Gründlicher Unterricht die General Paß oder Pschlagen<span class="tei_supplied" id="d10e467"><span class="brackets_supplied">[</span>???<span class="brackets_supplied">]</span></span> zu lernen. <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> 1719.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000067" href="/exist/apps/WeGA-WebApp/de/A000067.html">C. P. E. Bach</a></span></span>.      Versuch über die wahre Art das Klavier zu Spielen. <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> &amp; <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb:</span> 1787 -Erster                                          Theil<span class="tei_supplied" id="d10e487"><span class="brackets_supplied">[</span>?<span class="brackets_supplied">]</span></span></li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000704" href="/exist/apps/WeGA-WebApp/de/A000704.html">A: Gumpelsheimer</a></span></span>. Kompendium <span class="tei_hi_latintype">Musica Latino Germanium p. Augusta</span> 1681. - 1s. <span class="tei_hi_latintype">B. incomplet</span>.</li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A002041" href="/exist/apps/WeGA-WebApp/de/A002041.html">J. J. Walder</a></span></span>.      Anleitung zur SingKunst im Kurzen 1788</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A006910" href="/exist/apps/WeGA-WebApp/de/A006910.html">A: Werkmeister</a></span></span>. <span class="tei_hi_latintype">Musica Mathematica Hodegus curiosus</span> oder richtige Musikal Wegweiser. <span class="tei_placeName"><span class="7710111411510198117114103">Merseburg</span></span> 1689</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Systematische Einleitung in die Sezkunst, <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1757.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A006910" href="/exist/apps/WeGA-WebApp/de/A006910.html">A: Werkmeister</a></span></span>. <span class="tei_hi_latintype">Musica Mathematica Hodegus curiosus</span> oder richtige Musikal Wegweiser. <span class="preview places A130246" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130246.html">Merseburg</span> 1689</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Systematische Einleitung in die Sezkunst, <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1757.</li>
                                             <li><span class="tei_hi_latintype"><a class="preview persons A001224" href="/exist/apps/WeGA-WebApp/de/A001224.html">Lussinio</a></span>. <span class="tei_hi_latintype">Musurgia seu praxis Musica</span>. <span class="tei_hi_latintype">Angentorati</span> 1536</li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000094" href="/exist/apps/WeGA-WebApp/de/A000094.html">A. Bartolum</a></span></span> -      <span class="tei_hi_latintype">Musica Mathematica</span>, d. ist: das Fundament der allerlieblichsten Kunst der Musik <span class="tei_hi_latintype">p</span>.</li>
                                             <li><span class="tei_hi_latintype">Altenburg</span> 1614 und Vollständig <span class="tei_hi_latintype">Manuscript</span>. <span class="tei_hi_latintype">de Ligaturia p. p</span>.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurg</a></span></span>. die Kunst das Klavier zu Spielen 3ten Aufs. <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1761. und</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="66101114116104111108100">Berthold</span></span></span> - Anweisung, wie man Klavier, Orgeln <span class="tei_hi_latintype">p. p</span>. gleich rein Stimmen könne, <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1757.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Neue Methode allerlei Arten von Demperatur dem Klavier aufs <span class="tei_supplied" id="d57793e615"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> mitzutheilen <span class="tei_hi_latintype">p</span>. <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1791.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurg</a></span></span>. Krütische Einleitung in die Geschäfte und <span class="tei_supplied" id="d57793e631"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> der alten und neuen Musik - <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1759.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">J. S. Heinichen</a></span></span>. der General Baß in der <span class="tei_hi_latintype">Composition</span> <span class="tei_hi_latintype">p</span>. <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> 1728.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001277" href="/exist/apps/WeGA-WebApp/de/A001277.html">Matheson</a></span></span> - <span class="tei_hi_latintype">Critica Musica p</span>. 1. u 2ter Theil. <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> 1722</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001517" href="/exist/apps/WeGA-WebApp/de/A001517.html">W. C. Prinz</a></span></span>. <span class="tei_hi_latintype">Chrynis</span>, oder Satirischer <span class="tei_hi_latintype">Composition</span> <span class="tei_hi_latintype">p</span>. <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> 1728</li>
-                                            <li>ditto Sagen 1677. 2. Theil und <span class="tei_hi_latintype">Musica Modulatoria ...alis</span>, oder mannierlich und Zierliche SingKunst <span class="tei_hi_latintype">p</span>. <span class="tei_placeName"><span class="8399104119101105100110105116122">Schweidnitz</span></span> 1678.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurg</a></span></span>. die Kunst das Klavier zu Spielen 3ten Aufs. <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1761. und</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="66101114116104111108100">Berthold</span></span></span> - Anweisung, wie man Klavier, Orgeln <span class="tei_hi_latintype">p. p</span>. gleich rein Stimmen könne, <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1757.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">F. W. Marburg</a></span></span>. Neue Methode allerlei Arten von Demperatur dem Klavier aufs <span class="tei_supplied" id="d10e596"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> mitzutheilen <span class="tei_hi_latintype">p</span>. <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1791.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001267" href="/exist/apps/WeGA-WebApp/de/A001267.html">Marpurg</a></span></span>. Krütische Einleitung in die Geschäfte und <span class="tei_supplied" id="d10e611"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> der alten und neuen Musik - <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1759.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">J. S. Heinichen</a></span></span>. der General Baß in der <span class="tei_hi_latintype">Composition</span> <span class="tei_hi_latintype">p</span>. <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> 1728.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001277" href="/exist/apps/WeGA-WebApp/de/A001277.html">Matheson</a></span></span> - <span class="tei_hi_latintype">Critica Musica p</span>. 1. u 2ter Theil. <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> 1722</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001517" href="/exist/apps/WeGA-WebApp/de/A001517.html">W. C. Prinz</a></span></span>. <span class="tei_hi_latintype">Chrynis</span>, oder Satirischer <span class="tei_hi_latintype">Composition</span> <span class="tei_hi_latintype">p</span>. <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> 1728</li>
+                                            <li>ditto Sagen 1677. 2. Theil und <span class="tei_hi_latintype">Musica Modulatoria ...alis</span>, oder mannierlich und Zierliche SingKunst <span class="tei_hi_latintype">p</span>. <span class="8399104119101105100110105116122">Schweidnitz</span> 1678.</li>
                                             <li>dito - <span class="tei_hi_latintype">...etation</span> des Satyrischen <span class="tei_hi_latintype">Componistre</span> 1678</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001298" href="/exist/apps/WeGA-WebApp/de/A001298.html">J. G. Merckenhauser</a></span></span> Die sogenannten allerneueste <span class="tei_hi_latintype">Musicalische</span> Temperatur <span class="tei_hi_latintype">pp</span> - <span class="tei_placeName"><span class="8111710110010810511098117114103">Quedlinburg</span></span> 1727.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001277" href="/exist/apps/WeGA-WebApp/de/A001277.html">Matheson</a></span></span> <span class="tei_hi_latintype">Exemplanishe Organisten</span> Probe im Artikel von General Baß <span class="tei_hi_latintype">p</span>. <span class="tei_hi_latintype">p</span>. <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> 1719. und</li>
-                                            <li><span class="tei_hi_latintype">dito</span> die große General Baß <span class="tei_supplied" id="d57793e751"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> 1731.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001028" href="/exist/apps/WeGA-WebApp/de/A001028.html">J. H. Knecht</a></span></span> Erklärung einiger mißVerstandener Grundsätze der Vorglerschen Theorie <span class="tei_hi_latintype">p. p. <span class="tei_placeName"><span class="85108109">Ulm</span></span></span> 1785.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001298" href="/exist/apps/WeGA-WebApp/de/A001298.html">J. G. Merckenhauser</a></span></span> Die sogenannten allerneueste <span class="tei_hi_latintype">Musicalische</span> Temperatur <span class="tei_hi_latintype">pp</span> - <span class="preview places A130049" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130049.html">Quedlinburg</span> 1727.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001277" href="/exist/apps/WeGA-WebApp/de/A001277.html">Matheson</a></span></span> <span class="tei_hi_latintype">Exemplanishe Organisten</span> Probe im Artikel von General Baß <span class="tei_hi_latintype">p</span>. <span class="tei_hi_latintype">p</span>. <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> 1719. und</li>
+                                            <li><span class="tei_hi_latintype">dito</span> die große General Baß <span class="tei_supplied" id="d10e724"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> 1731.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001028" href="/exist/apps/WeGA-WebApp/de/A001028.html">J. H. Knecht</a></span></span> Erklärung einiger mißVerstandener Grundsätze der Vorglerschen Theorie <span class="tei_hi_latintype">p. p. <span class="preview places A130111" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130111.html">Ulm</span></span> 1785.</li>
                                             <li>- <span class="tei_hi_latintype">Lettre sur La Musique francoise</span> - </li>
                                             <li>- <span class="tei_hi_latintype">Lettre d‘un Symphoniste</span>. - enthalten in den <span class="tei_hi_latintype">Oeuvres compl</span>: <span class="tei_hi_latintype">d. <a class="preview persons A001625" href="/exist/apps/WeGA-WebApp/de/A001625.html">J. J. Rousseau</a></span>. <span class="tei_hi_latintype">Theatre et Poesies</span> </li>
                                             <li>- <span class="tei_hi_latintype">Projet concernant de nonveans Signes pour lu Musignes</span>. <span class="tei_hi_latintype">aux Deux Bonts</span> 1782 </li>
                                             <li>- <span class="tei_hi_latintype">Dictionaire de musque II Tom: aux deux ponts</span> 1782</li>
-                                            <li>- <span class="tei_hi_latintype">Histoire de la Musique et de ses</span> <span class="tei_supplied" id="d57793e809"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> 2 <span class="tei_hi_latintype">Tomi <span class="tei_placeName"><span class="6510911511610111410097109">Amsterdam</span></span></span> 1725 </li>
-                                            <li><span class="tei_hi_underline1"><span class="7046326546">F. A.</span> <span class="tei_supplied" id="d57793e824"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span></span>. <span class="tei_hi_latintype">De Dymbalis Veterum</span>. <span class="tei_hi_latintype">Libr</span>: 3 <span class="tei_hi_latintype">...ajecti ad Rhenum 1703</span> </li>
+                                            <li>- <span class="tei_hi_latintype">Histoire de la Musique et de ses</span> <span class="tei_supplied" id="d10e780"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> 2 <span class="tei_hi_latintype">Tomi <span class="preview places A130056" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130056.html">Amsterdam</span></span> 1725 </li>
+                                            <li><span class="tei_hi_underline1"><span class="7046326546">F. A.</span> <span class="tei_supplied" id="d10e794"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span></span>. <span class="tei_hi_latintype">De Dymbalis Veterum</span>. <span class="tei_hi_latintype">Libr</span>: 3 <span class="tei_hi_latintype">...ajecti ad Rhenum 1703</span> </li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="7111710510011111010511532679711097114111108108105">Guidonis Canarolli</span></span></span> <span class="tei_hi_latintype">Rerum immemorabilium</span>, enthält auch <span class="tei_hi_latintype">pag</span> 249 etwas <span class="tei_hi_latintype">de Musica</span>. </li>
-                                            <li><span class="tei_hi_latintype">D</span> - Kurze und gründliche Anleitung zum Generalbaß <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1744. </li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000950" href="/exist/apps/WeGA-WebApp/de/A000950.html">Junker</a></span></span>. Einige der Vornehmsten Pflichten eines Kapellmeis<span class="tei_supplied" id="d57793e865"><span class="brackets_supplied">[</span>ters<span class="brackets_supplied">]</span></span>. <span class="tei_placeName"><span class="87105110116101114116104117114">Winterthur</span></span> 1782. </li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype">Dom: Webs: d <a class="preview persons A000456" href="/exist/apps/WeGA-WebApp/de/A000456.html">Eschenburg</a></span></span> Betrachtungen über die Verwandtschaft der Poesie und Musik. <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1771. </li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Reichardt</a></span></span>. Wahrheiten, die Musikbetr: <span class="tei_placeName"><span class="701149711010710211711411632971093277101105110">Frankfurt am Mein</span></span> 1777. </li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001699" href="/exist/apps/WeGA-WebApp/de/A001699.html">G. C. F. Schlimbach</a></span></span> über die <span class="tei_hi_latintype">Strintur</span>, Erhaltung, Stimmung, Prüfung der Orgeld, <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1801 </li>
+                                            <li><span class="tei_hi_latintype">D</span> - Kurze und gründliche Anleitung zum Generalbaß <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1744. </li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000950" href="/exist/apps/WeGA-WebApp/de/A000950.html">Junker</a></span></span>. Einige der Vornehmsten Pflichten eines Kapellmeis<span class="tei_supplied" id="d10e834"><span class="brackets_supplied">[</span>ters<span class="brackets_supplied">]</span></span>. <span class="preview places A130120" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130120.html">Winterthur</span> 1782. </li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype">Dom: Webs: d <a class="preview persons A000456" href="/exist/apps/WeGA-WebApp/de/A000456.html">Eschenburg</a></span></span> Betrachtungen über die Verwandtschaft der Poesie und Musik. <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1771. </li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Reichardt</a></span></span>. Wahrheiten, die Musikbetr: <span class="701149711010710211711411632971093277101105110">Frankfurt am Mein</span> 1777. </li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001699" href="/exist/apps/WeGA-WebApp/de/A001699.html">G. C. F. Schlimbach</a></span></span> über die <span class="tei_hi_latintype">Strintur</span>, Erhaltung, Stimmung, Prüfung der Orgeld, <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1801 </li>
                                             <li><span class="tei_hi_latintype">E</span> - <span class="tei_hi_latintype">Musikal: Almanach</span> auf das J: 1782. <span class="tei_hi_latintype">Alathinu...</span></li>
                                             <li><span class="tei_hi_latintype"><a class="preview persons A000950" href="/exist/apps/WeGA-WebApp/de/A000950.html">Junker</a></span> 20 <span class="tei_hi_latintype">Componisten</span> eine Skizze. <span class="tei_hi_latintype">Carl</span> 1776</li>
                                             <li class="tei_pb" title="Seitenumbruch"> | </li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001664" href="/exist/apps/WeGA-WebApp/de/A001664.html">Schaul</a></span></span>. Briefe über den Geschmak in der Musik. <span class="tei_hi_latintype"><span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span></span> 1809 v. K: <span class="tei_hi_latintype"><a class="preview persons A000354" href="/exist/apps/WeGA-WebApp/de/A000354.html">Danzi</a></span> erhalten</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000612" href="/exist/apps/WeGA-WebApp/de/A000612.html">F. S. Gerber</a></span></span> Ton Künstler <span class="tei_hi_latintype">Lexion</span>. <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1790. 1ter Theil</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000072" href="/exist/apps/WeGA-WebApp/de/A000072.html">Backofen</a></span></span> Anweisung zu Klarinetten und dem <span class="tei_hi_latintype">C</span> Horn. <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span></li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">G. J. Vogler</a></span></span>. Tonwißenschaft der Tonsez Kunst. <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> 1776. 2 <span class="tei_supplied" id="d57793e982"><span class="brackets_supplied">[</span>Teile?<span class="brackets_supplied">]</span></span>
-                  <br />übersicht der Orgel Umschafdung der Marien-Orgel in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></li>
-                                            <li><span class="tei_hi_underline1"><a class="preview persons A000795" href="/exist/apps/WeGA-WebApp/de/A000795.html">Heinse</a></span>: Hildegard von Hohenthal 3theil. <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> 1796.</li>
-                                            <li>- Geschichte des gesamten Theater Wesens in Wien von den ältesten bis auf die gegenwärtigen Zeiten. <span class="tei_placeName"><span class="87105101110">Wien</span></span> 1803.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001664" href="/exist/apps/WeGA-WebApp/de/A001664.html">Schaul</a></span></span>. Briefe über den Geschmak in der Musik. <span class="tei_hi_latintype"><span class="preview places A130022" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130022.html">Carlsruhe</span></span> 1809 v. K: <span class="tei_hi_latintype"><a class="preview persons A000354" href="/exist/apps/WeGA-WebApp/de/A000354.html">Danzi</a></span> erhalten</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000612" href="/exist/apps/WeGA-WebApp/de/A000612.html">F. S. Gerber</a></span></span> Ton Künstler <span class="tei_hi_latintype">Lexion</span>. <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1790. 1ter Theil</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000072" href="/exist/apps/WeGA-WebApp/de/A000072.html">Backofen</a></span></span> Anweisung zu Klarinetten und dem <span class="tei_hi_latintype">C</span> Horn. <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span></li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">G. J. Vogler</a></span></span>. Tonwißenschaft der Tonsez Kunst. <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> 1776. 2 <span class="tei_supplied" id="d10e943"><span class="brackets_supplied">[</span>Teile?<span class="brackets_supplied">]</span></span>
+                  <br />übersicht der Orgel Umschafdung der Marien-Orgel in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></li>
+                                            <li><span class="tei_hi_underline1"><a class="preview persons A000795" href="/exist/apps/WeGA-WebApp/de/A000795.html">Heinse</a></span>: Hildegard von Hohenthal 3theil. <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> 1796.</li>
+                                            <li>- Geschichte des gesamten Theater Wesens in Wien von den ältesten bis auf die gegenwärtigen Zeiten. <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> 1803.</li>
                                             <li>- allgemeine Musikalische Zeitung 2 Jahr ganz</li>
                                             <li>- Ze....y Jahrgänge <span class="tei_hi_latintype">incomplet</span>.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="65463286111103108101110">A. Voglen</span></span></span> - <span class="tei_hi_latintype">Data</span> zur <span class="tei_hi_latintype">Akustik</span>, eine Abhandlung. <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> 1801</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="6610111511697108111122122105">Bestalozzi</span></span></span>. Anweisung zur <span class="tei_hi_latintype">Mantolnin</span> <span class="tei_hi_latintype"><span class="7111497117110">Graun</span></span> <span class="tei_supplied" id="d57793e1041"><span class="brackets_supplied">[</span>mit Bleistift überschrieben:<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Hasse</span> sechsstimmige Meße</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="65463286111103108101110">A. Voglen</span></span></span> - <span class="tei_hi_latintype">Data</span> zur <span class="tei_hi_latintype">Akustik</span>, eine Abhandlung. <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> 1801</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="6610111511697108111122122105">Bestalozzi</span></span></span>. Anweisung zur <span class="tei_hi_latintype">Mantolnin</span> <span class="tei_hi_latintype"><span class="7111497117110">Graun</span></span> <span class="tei_supplied" id="d10e998"><span class="brackets_supplied">[</span>mit Bleistift überschrieben:<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Hasse</span> sechsstimmige Meße</li>
                                             <li><span class="tei_hi_latintype">Bach‘s</span> Heilig</li>
                                         </ul>
                                     </div><span class="tei_addSpan"></span>
                                     <div class="writingSession">
-                                        <p><span class="tei_supplied" id="d57793e1054"><span class="brackets_supplied">[</span>Nachschrift von Gottfried Weber:<span class="brackets_supplied">]</span></span> 
+                                        <p><span class="tei_supplied" id="d10e1011"><span class="brackets_supplied">[</span>Nachschrift von Gottfried Weber:<span class="brackets_supplied">]</span></span> 
             Mit bei folgt an oben nicht
             verzeichneten Büchern, welche jedoch dir gehören da sie das Zeichen tragen womit ich all
             deine Bücher bezeichnet, naeml: das gelbe Papierstreifchen:
@@ -712,10 +751,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -724,9 +759,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041263</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041263</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

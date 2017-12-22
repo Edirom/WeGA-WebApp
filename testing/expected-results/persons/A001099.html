@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-20T08:36:25.726891Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001099" />
         <meta property="dc:description" content="Biographische Informationen zu Heinrich K. Kummer. Lebensdaten: Frühestens am 8. November 1809–Frühestens am 20. März 1880. Tätigkeiten: Pianist, Fagottist, Musikpädagoge, Handwerker. Wirkorte: Dresden, St. Petersburg" />
         <meta name="description" content="Biographische Informationen zu Heinrich K. Kummer. Lebensdaten: Frühestens am 8. November 1809–Frühestens am 20. März 1880. Tätigkeiten: Pianist, Fagottist, Musikpädagoge, Handwerker. Wirkorte: Dresden, St. Petersburg" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001099.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001099.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001099.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001099.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -331,13 +374,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001099/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -346,7 +389,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A001099/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A001099.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -364,13 +407,13 @@
          <li>Sohn <a class="preview persons A001098" href="/exist/apps/WeGA-WebApp/de/A001098.html">Gotthelf Heinrich August Kummers</a></li> 
          <li>bereits in frühester Jugend vom Vater im Klavierspiel unterrichtet</li>
          <li>ab 1816 gemeinsame Konzerte mit dem Vater</li> 
-         <li>1816 an den Höfen in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> und <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>, 1818 in <span class="tei_placeName"><span class="7725211099104101110">München</span></span> usw.</li>
-         <li>trat 1827 in die königliche Kapelle in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> als Accessist ein</li> 
-         <li>zog 1832 als Klavierlehrer nach <span class="tei_placeName"><span class="76111119105116122">Lowitz</span>/<span class="tei_country">Polen</span></span>, zwei Jahre später nach <span class="tei_placeName"><span class="8311646328010111610111411598117114103">St. Petersburg</span></span></li> 
-         <li>1837 wurde er erster Fagottist im kaiserlichen Theaterorchester in <span class="tei_placeName"><span class="8311646328010111610111411598117114103">St. Petersburg</span></span></li>
+         <li>1816 an den Höfen in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> und <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>, 1818 in <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> usw.</li>
+         <li>trat 1827 in die königliche Kapelle in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> als Accessist ein</li> 
+         <li>zog 1832 als Klavierlehrer nach <span class="tei_placeName"><span class="76111119105116122">Lowitz</span>/<span class="tei_country">Polen</span></span>, zwei Jahre später nach <span class="preview places A130024" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130024.html">St. Petersburg</span></li> 
+         <li>1837 wurde er erster Fagottist im kaiserlichen Theaterorchester in <span class="preview places A130024" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130024.html">St. Petersburg</span></li>
          <li>1847 pensioniert</li> 
-         <li>geht darauf in die <span class="tei_placeName"><span class="tei_country">Schweiz</span></span>, kehrt aber bald wieder nach <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> zurück (1851), wo er noch einige Jahre als Musiklehrer, Fagottlehrer und Professor für Musiktheorie tätig war</li> 
-         <li>Zu seinem musikalischen Talent befasste er sich intensiv mit Mathematik, Physik, Chemie und war als Erfinder tätig: die Brücke, die über die <span class="tei_placeName"><span class="tei_geogName">Newa</span></span> ging, wurde nach seinen Plänen gebaut; er entwickelte eine Rechenmaschine, die in <span class="tei_placeName"><span class="tei_country">Russland</span></span> patentiert wurde; er konstruierte mechanische Vögel und befasste sich intensiv mit Schusswaffen, die er zum Teil selber baute</li>
+         <li>geht darauf in die <span class="tei_country">Schweiz</span>, kehrt aber bald wieder nach <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> zurück (1851), wo er noch einige Jahre als Musiklehrer, Fagottlehrer und Professor für Musiktheorie tätig war</li> 
+         <li>Zu seinem musikalischen Talent befasste er sich intensiv mit Mathematik, Physik, Chemie und war als Erfinder tätig: die Brücke, die über die <span class="tei_placeName"><span class="tei_geogName">Newa</span></span> ging, wurde nach seinen Plänen gebaut; er entwickelte eine Rechenmaschine, die in <span class="tei_country">Russland</span> patentiert wurde; er konstruierte mechanische Vögel und befasste sich intensiv mit Schusswaffen, die er zum Teil selber baute</li>
       </ul>
    </div>
                                                     
@@ -378,11 +421,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -394,15 +437,12 @@
                                                             <li><a title="Ludwig-Maximilians-Universität München - Musikwissenschaft - Bayerisches Musiker-Lexikon Online" href="http://bmlo.de/Q/GND=135745438">Bayerisches Musiker-Lexikon Online (BMLO)</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd135745438.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01144898]" href="http://thesaurus.cerl.org/record/cnp01144898">CERL Thesaurus</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=135745438">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=135745438">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -459,9 +499,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001099</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001099</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

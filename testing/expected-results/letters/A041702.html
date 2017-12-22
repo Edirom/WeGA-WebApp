@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2017-06-28T08:58:11.647175Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100230" />
         <meta property="dc:description" content="betr. Webers Aufnahme als Ehrenmitglied in den Musik-Verein Innsbruck" />
         <meta name="description" content="betr. Webers Aufnahme als Ehrenmitglied in den Musik-Verein Innsbruck" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,17 +248,62 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A080145/Dokumente/A100230.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002A79" /> <span title="Hippoliti zu Paradiso und Montebello, Joseph Anton Freiherr von">Hippoliti zu Paradiso und Mont…</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A080145" /> <span title="Musikverein Innsbruck (Verein)">Musikverein Innsbruck (Verein)</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A00154B" /> <span title="Reinhart zu Thurnfels und Ferklehen, Johann Freiherr von">Reinhart zu Thurnfels und Ferk…</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -265,7 +313,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="731101101159811411799107" /> <span title="Innsbruck">Innsbruck</span> 
+                                    <input type="checkbox" name="options" value="A130087" /> <span title="Innsbruck">Innsbruck</span> 
                                 </label>
                             </div>
                         </div>
@@ -278,9 +326,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><span class="tei_hi_antiqua"><a class="preview orgs A080145" href="/exist/apps/WeGA-WebApp/de/A080145.html">Musik-Verein zu <span class="tei_placeName"><span class="731101101159811411799107">Innsbruck</span></span></a></span></p>
-                                        <p><span class="tei_hi_antiqua">Der Ausschuss des Musik-Vereines zu <span class="tei_placeName"><span class="731101101159811411799107">Innsbruck</span></span> bezeugt durch dieses Diplom die Aufnahme des königl. sachsischen Capell Meisters Herrn</span> <span class="tei_ptr"></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> <span class="tei_hi_antiqua">Karl Maria von Weber als ausserordentliches Ehrenmitglied.</span></p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_antiqua">Präses</span><br /><span class="tei_ptr"></span>Joseph Ritter <span class="tei_hi_latintype">v. Hippoliti</span><br />kk. Kämmerer, und Appellazionsrath<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a><br /><span class="tei_hi_antiqua">Secretär</span> D<span class="tei_hi_superscript">or</span> Reinfart<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>  </span><span class="tei_dateline textAlign-left"><span class="tei_hi_antiqua">Innsbruck den 21<span class="tei_hi_underline1"><span class="tei_hi_superscript">ten</span></span> August<br />1821</span> </span></p>
+                                        <p><span class="tei_hi_antiqua"><a class="preview orgs A080145" href="/exist/apps/WeGA-WebApp/de/A080145.html">Musik-Verein zu <span class="preview places A130087" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130087.html">Innsbruck</span></a></span></p>
+                                        <p><span class="tei_hi_antiqua">Der Ausschuss des Musik-Vereines zu <span class="preview places A130087" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130087.html">Innsbruck</span> bezeugt durch dieses Diplom die Aufnahme des königl. sachsischen Capell Meisters Herrn</span> <span class="tei_ptr"></span><a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> <span class="tei_hi_antiqua"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a> als ausserordentliches Ehrenmitglied.</span></p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_antiqua">Präses</span><br /><span class="tei_ptr"></span> <a class="preview persons A002A79" href="/exist/apps/WeGA-WebApp/de/A002A79.html">Joseph Ritter <span class="tei_hi_latintype">v. Hippoliti</span></a><br />kk. Kämmerer, und Appellazionsrath<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a><br /><span class="tei_hi_antiqua">Secretär</span> D<span class="tei_hi_superscript">or</span> <a class="preview persons A00154B" href="/exist/apps/WeGA-WebApp/de/A00154B.html">v Reinhart</a><a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>  </span><span class="tei_dateline textAlign-left"><span class="tei_hi_antiqua">Innsbruck den 21<span class="tei_hi_underline1"><span class="tei_hi_superscript">ten</span></span> August<br />1821</span> </span></p>
                                     </div>
                                 </div>
                     </div>
@@ -342,10 +390,10 @@
                                             <div class="apparatusEntry" id="C_01" data-title="note commentary">"<span class="tei_lemma"></span>": Das Wort „Herrn“ doppelt</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma">Joseph Ritter v. … Kämmerer, und Appellazionsrath</span>": von Hand gezeichnet</div>
+                                            <div class="apparatusEntry" id="C_02" data-title="note commentary">"<span class="tei_lemma"> Joseph Ritter … Kämmerer, und Appellazionsrath</span>": von Hand gezeichnet</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_03" data-title="note commentary"><span class="tei_lemma">"… gezeichnet Secretär D or Reinfart": </span>von Hand gezeichnet</div>
+                                            <div class="apparatusEntry" id="C_03" data-title="note commentary"><span class="tei_lemma">"… Secretär D or v Reinhart": </span>von Hand gezeichnet</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -361,10 +409,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -373,9 +417,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100230</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100230</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 28. Juni 2017 durch Solveig Schreiter</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

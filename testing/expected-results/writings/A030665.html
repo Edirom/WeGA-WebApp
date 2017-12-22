@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030665.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -290,17 +332,17 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                    <input type="checkbox" name="options" value="A130009" /> <span title="Hamburg">Hamburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -325,11 +367,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Korrespondenz-Nachrichten aus <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>, <span class="tei_date">6. Dezember 1810</span></h2>
-                                        <p><span class="tei_hi_spaced_out"><span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span></span>, <span class="tei_date">6. Dec.</span></p>
+                                        <h2 class="docHeader textAlign-left">Korrespondenz-Nachrichten aus <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>, <span class="tei_date">6. Dezember 1810</span></h2>
+                                        <p><span class="tei_hi_spaced_out"><span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span></span>, <span class="tei_date">6. Dec.</span></p>
                                         <p>Der schon lange mit Auszeichnung bekannte Schauspieler 
                <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview persons A002170" href="/exist/apps/WeGA-WebApp/de/A002170.html">Wohlbrück</a></span> gab hier mehrere Gastrollen<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>, in welchen er sich nicht nur als denkender Künstler bewies, sondern auch ein reif ausgebildetes Talent der Darstellung entfaltete. Vorzüglich verdiente er als <span class="tei_hi_italic"><span class="6598982333210010132108821769112233101">Abbé de l’Epée</span></span> und dann als <span class="70114971101223277111111114">Franz Moor</span> in den <span class="preview works A020915" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020915.html">Räubern</span> den Beyfall des hiesigen Publikum, der ihm so reichlich gezollt wurde; er besitzt eine seltne Reinheit der Deklamation, und wird besonders in dieser Hinsicht dem hiesigen 
-               <span class="tei_ptr"></span>Museum, wo er <span class="tei_hi_spaced_out"><a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a></span> treffliches <span class="761051011003211811111032100101114327110811199107101">Lied <span class="tei_hi_spaced_out">von der Glocke</span></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> meisterhaft deklamirte, unvergeßlich bleiben. – Er ist bey dem <span class="tei_placeName">Hoftheater <span class="tei_ptr"></span>in <span class="87105101110">Wien</span></span> angestellt<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>, und wird über <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span>, <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span>, <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> und <span class="tei_placeName"><span class="8011497103">Prag</span></span> dahin zurückkehren.</p>
+               <span class="tei_ptr"></span>Museum, wo er <span class="tei_hi_spaced_out"><a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillers</a></span> treffliches <span class="761051011003211811111032100101114327110811199107101">Lied <span class="tei_hi_spaced_out">von der Glocke</span></span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> meisterhaft deklamirte, unvergeßlich bleiben. – Er ist bey dem <span class="tei_placeName">Hoftheater <span class="tei_ptr"></span>in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></span> angestellt<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>, und wird über <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span>, <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span>, <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> und <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> dahin zurückkehren.</p>
                                         <p>Der eben so geniale Komponist als trefliche Klavierspieler <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hr. Karl Maria <span class="tei_hi_spaced_out">von Weber</span></a> hat uns mit 
                <span class="tei_ptr"></span>mehrern seiner Kunstausstellungen<a class="noteMarker" id="ref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> erfreut; besonders merkwürdig war aber die am <span class="tei_date">19 Nov.</span> im hiesigen <span class="tei_placeName">Museum <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. Er trug 
                <span class="tei_ptr"></span><span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">ein neues Konzert<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a></span> von seiner Komposition vor, das, wie wir hören, 
@@ -338,7 +380,7 @@
                <span class="tei_ptr"></span><a class="preview persons A001888" href="/exist/apps/WeGA-WebApp/de/A001888.html">Frau Erbgroßherzoginn</a><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> einige 
                <span class="tei_ptr"></span>italienische Lieder mit Guitarre-Begleitung<a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a> vor, und erntete den schmeichelhaftesten Beyfall. Wir hoffen 
                <span class="tei_ptr"></span>nächstens seine Oper <span class="tei_hi_spaced_out"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> zu hören<a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a>. – Außer den Kompositionen des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Hrn. <span class="tei_hi_spaced_out">von Weber</span></a> erfreute uns auch das herrliche 
-               <span class="tei_ptr"></span>Oratorium (der <span class="preview works A020640" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020640.html">130ste Psalm: <span class="tei_hi_italic">de profundis</span></span>, in deutscher freyer Bearbeitung) von der Komposition des <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> aus <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>. Diese Arbeit gehört unstreitig zu den gelungensten des in unsern allzu modernisirten Zeiten so seltenen strengen 
+               <span class="tei_ptr"></span>Oratorium (der <span class="preview works A020640" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020640.html">130ste Psalm: <span class="tei_hi_italic">de profundis</span></span>, in deutscher freyer Bearbeitung) von der Komposition des <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> aus <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>. Diese Arbeit gehört unstreitig zu den gelungensten des in unsern allzu modernisirten Zeiten so seltenen strengen 
                <span class="tei_ptr"></span>Kirchenstils<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, aber nicht des steifen, an trockenen Formen und verschrobenen Regeln klebenden, sondern des veredelten, durch tiefes Gefühl geläuterten Stils, welcher seinen Gegenstand kräftig auffaßt, unverrückt im Auge behält, alles Spielen mit gefälligen Nebengegenständen verschmäht, das Gemüth zur unzerstreuten Aufmerksamkeit auf den Hauptgegenstand zwingt, und den Zuhörer nicht losläßt, bevor er ihn die ganze Würde des Gegenstandes, die ganze Tiefe der Empfindung hat fühlen lassen, und bis er ihn ganz zu der Stufe der Verklärung erhoben hat, deren das menschliche Gemüth fähig ist. – Ins schöne Detail uns einzulassen verbietet uns der Raum; hier stehe vielmehr ein kleiner Tadel. Uns fielen einige prosodie-widrige Accentuationen auf, z. B. wăchēnde – dēn Mŏrgēn – Dieser Psalm soll nächstens mit mehrern andern Kompositionen des <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Hrn. <span class="tei_hi_spaced_out">Meyer Beer</span></a> (eines Zöglings <span class="tei_hi_spaced_out"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a></span>) 
                <span class="tei_ptr"></span>im Berliner <span class="tei_hi_italic">Concert spirituel</span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a> aufgeführt werden. </p>
                                         <p>Wir haben hier durch den 
@@ -346,7 +388,7 @@
                <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class="65116104101110111114">Athenor</span></span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a> hat einzelne gelungene Stellen: wenn er auch die höhern Werke des Genies nicht erreicht, und der Kritik allerdings viele Blößen gibt. – Unter seinen Epigrammen gibt es manche recht schätzbare. – Sein 
                <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><span class="809711011610410111111032981011142521041091161011143277228110110101114321171101003270114971171011106511011611111032118111110327510810110511044327610198101110321171101003266105108100110105115115101321001011143210311411122310111032681011171161159910410111044325232661001014644327797110110104101105109324955565482115750">Pantheon berühmter Männer und Frauen<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a></span></span> enthält manche gute biographische Skizze, und sein 
                <span class="tei_ptr"></span>neuestes dramaturgisches Werk<a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a> gibt mehrere Beweise, daß es ihm weder an Beobachtungsgeist, noch an Sclebharfsinn fehlte; manches darin verdient wol eine nähere Beherzigung. – Seine Kupferstichsammlung war für einen Privatmann vorzüglich, so wie unter seinen (unlängst der hiesigen Galerie verkauften) Gemählden viel Gutes und einiges Vorzügliches sich befand. – 
-               Um die wissenschaftliche Kultur Süd-Deutschlandes, und besonders um die Reinigung der Sprache hat er sich unstreitig Verdienst erworben, da er der Stifter und ein sehr thätiges Mitglied der ehemals zu <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> blühenden <span class="tei_ptr"></span><span class="tei_hi_spaced_out">deutschen Gesellschaft</span><a class="noteMarker" id="ref-C_18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_18">*</a> war. Auch ist er einer der Mitstifter des jetzigen <span class="tei_placeName">Museums <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. – Als Mensch zeichnete ihn eine außerordentliche Dienstfertigkeit und rege Theilnahme an Allem, was er für gut, schön und nützlich erkannte, vortheilhaft aus.</p>
+               Um die wissenschaftliche Kultur Süd-Deutschlandes, und besonders um die Reinigung der Sprache hat er sich unstreitig Verdienst erworben, da er der Stifter und ein sehr thätiges Mitglied der ehemals zu <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> blühenden <span class="tei_ptr"></span><span class="tei_hi_spaced_out">deutschen Gesellschaft</span><a class="noteMarker" id="ref-C_18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_18">*</a> war. Auch ist er einer der Mitstifter des jetzigen <span class="tei_placeName">Museums <span class="tei_hi_spaced_out">Karl Stephanie</span></span>. – Als Mensch zeichnete ihn eine außerordentliche Dienstfertigkeit und rege Theilnahme an Allem, was er für gut, schön und nützlich erkannte, vortheilhaft aus.</p>
                                     </div>
                                 </div>
                     </div>
@@ -383,7 +425,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 4, Nr. 300 (15. Dezember 1810), S. 1199–1200</p>
+                                <p class="biblio-entry"><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 4, Nr. 300 (15. Dezember 1810), S. 1199–1200</p>
                                 
                                 <div>
                                     
@@ -469,10 +511,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -481,9 +519,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030665</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

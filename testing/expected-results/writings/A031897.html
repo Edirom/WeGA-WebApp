@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897" />
         <meta property="dc:description" content="Helmina von Chezy über die Entstehung der Euryanthe, Teil 3/9" />
         <meta name="description" content="Helmina von Chezy über die Entstehung der Euryanthe, Teil 3/9" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,95 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031868.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 1/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031757.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 2/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031534.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 4/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031842.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 5/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031984.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 6/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031927.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 7/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031880.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 8/9</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031903.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 9/9</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -333,7 +420,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>’s <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>.</span></h2>
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(<a class="preview writings A031757" href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031757.html">Fortsetzung</a>.)</span></h3>
                                         <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s Auswahl des Stoffes der Euryanthe war mir um so willkommener, als ich mich innerlich so oft damit beschäftigt und stets gewünscht hatte, ihn poetisch zu bearbeiten. Es war auch schon von <span class="tei_date">1810</span> ein Anfang da, den ich liegen lassen mußte, weil die Pflege <span class="preview persons A000290 A000289" data-ref="/exist/apps/WeGA-WebApp/de/A000290.html /exist/apps/WeGA-WebApp/de/A000289.html">meiner Kinder</span> mir keine Muße zur Combination eines Planes, noch zu sorgfältiger Ausführung ließ. Lieder kamen von selbst, <span class="tei_hi_spaced_out">die</span> durft’ ich nur aufschreiben. </p>
-                                        <p>Bei der Bearbeitung für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> wollte ich mich streng an die Novelle halten, nur statt der alten <span class="721111021091011051151161011141051103272111110100114233101">Hofmeisterin Hondrée</span> (<span class="72117110100114105101116104">Hundrieth</span>), die <span class="6911711412197110116104101">Euryanthe</span> verrieth, <span class="tei_hi_spaced_out"><span class="6910310897110116105110101">Eglantine</span></span> einflechten; die kommt in der Novelle, jedoch später, und im Conflict mit <span class="6911711412197110116104101110">Euryanthen</span> vor. <span class="7612111510597114116115">Lysiarts</span> Erklärung und Versuch, <span class="6911711412197110116104101">Euryanthe</span> für seine Liebe zu gewinnen, die ich für höchst effectvoll und dramatisch hielt, verwarf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, ich glaube sie hätte bleiben sollen, denn nicht sowohl würden <span class="6911711412197110116104101">Euryanthe</span> und <span class="7612111510597114116">Lysiart</span> dadurch <span class="tei_choice"><span class="tei_corr">einen</span><a class="noteMarker" id="ref-d39083e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d39083e68">‡</a></span> reichhaltigeren Part bekommen haben, sondern das Publicum würde verstehen, warum <span class="7612111510597114116">Lysiart</span> verzweifelnd in den Burggarten herausstürzt? Die Scene war gedichtet, doch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> las sie nicht einmal. <span class="76117100119105103115">Ludwigs</span> <span class="tei_hi_spaced_out"><span class="75246110105103105110">Königin</span></span> wollte ich in die Handlung hineinziehn. „Nein,“ sagte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „<span class="tei_hi_spaced_out">die</span> muß wegbleiben, <span class="tei_hi_spaced_out">die</span> interessirt keinen Menschen.“ Ich wollte den Schluß der Novelle treulich beibehalten. „Nicht doch!“ sprach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „Turniere, Gottesgerichte, die gibts zum Uebermaß auf den Brettern, wir müssen was Neues bringen!“ Ich kann mir nicht versagen, aus meinem ersten Scenariumsentwurf diesen Schluß darzulegen:</p>
+                                        <p>Bei der Bearbeitung für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> wollte ich mich streng an die Novelle halten, nur statt der alten <span class="721111021091011051151161011141051103272111110100114233101">Hofmeisterin Hondrée</span> (<span class="72117110100114105101116104">Hundrieth</span>), die <span class="6911711412197110116104101">Euryanthe</span> verrieth, <span class="tei_hi_spaced_out"><span class="6910310897110116105110101">Eglantine</span></span> einflechten; die kommt in der Novelle, jedoch später, und im Conflict mit <span class="6911711412197110116104101110">Euryanthen</span> vor. <span class="7612111510597114116115">Lysiarts</span> Erklärung und Versuch, <span class="6911711412197110116104101">Euryanthe</span> für seine Liebe zu gewinnen, die ich für höchst effectvoll und dramatisch hielt, verwarf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, ich glaube sie hätte bleiben sollen, denn nicht sowohl würden <span class="6911711412197110116104101">Euryanthe</span> und <span class="7612111510597114116">Lysiart</span> dadurch <span class="tei_choice"><span class="tei_corr">einen</span><a class="noteMarker" id="ref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">‡</a></span> reichhaltigeren Part bekommen haben, sondern das Publicum würde verstehen, warum <span class="7612111510597114116">Lysiart</span> verzweifelnd in den Burggarten herausstürzt? Die Scene war gedichtet, doch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> las sie nicht einmal. <span class="76117100119105103115">Ludwigs</span> <span class="tei_hi_spaced_out"><span class="75246110105103105110">Königin</span></span> wollte ich in die Handlung hineinziehn. „Nein,“ sagte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „<span class="tei_hi_spaced_out">die</span> muß wegbleiben, <span class="tei_hi_spaced_out">die</span> interessirt keinen Menschen.“ Ich wollte den Schluß der Novelle treulich beibehalten. „Nicht doch!“ sprach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „Turniere, Gottesgerichte, die gibts zum Uebermaß auf den Brettern, wir müssen was Neues bringen!“ Ich kann mir nicht versagen, aus meinem ersten Scenariumsentwurf diesen Schluß darzulegen:</p>
                                         <p>III. Act. Kampfplatz mit Gerüsten, die sich nach und<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> nach mit Menschen füllen, der <span class="72101114111108100">Herold</span> tritt auf, die Ritter versammeln sich, man erblickt einen Ritter (<span class="7110111410497114100">Gerhard</span>) mit festgeschlossenem Visier in schwarzer Rüstung, dann <span class="71114971023277111110116102111114116">Graf Montfort</span>, <span class="65108111115">Alos</span>, den <span class="72101114122111103321181111103266117114103117110100">Herzog von Burgund</span>.</p>
                                         <p>Der <span class="72101114111108100">Herold</span> verkündet, daß <span class="752461101051033276117100119105103">König Ludwig</span> ein Gottesgericht zu <span class="6911711412197110116104101115">Euryanthes</span> Ehrenrettung verstatte, wenn sich für sie ein Kämpfer fände, — sie solle, wenn ihr Ritter unterliegt, den Tod der Verbrecherin leiden, wie sie es selbst, im Vertrauen auf ihre Unschuld und die göttliche Gerechtigkeit, begehrt.</p>
                                         <p>Der <span class="72101114122111103321181111103266117114103117110100">Herzog von Burgund</span>, die Grafen <span class="65108111115">Alos</span>, <span class="77111110116102111114116">Montfort</span> und der <span class="11599104119971141221013282105116116101114">schwarze Ritter</span> treten zugleich hervor, jeder will für <span class="6911711412197110116104101">Euryanthe</span> kämpfen.</p>
@@ -419,7 +506,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Neue Zeitschrift für Musik</span>, Bd. 13, Jg. 7, Nr. 3 (08. Juli 1840), S. 9–10</p>
+                                <p class="biblio-entry"><span class="journalTitle">Neue Zeitschrift für Musik</span>, Bd. 13, Jg. 7, Nr. 3 (08. Juli 1840), S. 9–10</p>
                                 
                                 <div>
                                     
@@ -438,7 +525,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d39083e68" data-title="choice">recte "einen": in der Vorlage "eine"</div>
+                                            <div class="apparatusEntry" id="d10e68" data-title="choice">recte "einen": in der Vorlage "eine"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -454,10 +541,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -466,9 +549,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

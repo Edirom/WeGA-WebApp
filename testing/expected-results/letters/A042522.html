@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T16:05:20.174156Z" />
+        <meta property="dc:date" content="2017-12-16T14:24:25.787661Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042522" />
         <meta property="dc:description" content="teilt Gottfried die Ergebnisse seiner Durchsicht der Dresdner Archive im Hinblick auf Mozarts Requiem mit; betr. Angelegenheit Castil-Blaze, der noch nicht geantwortet hat; drängt G. zu einem Entschluß wegen Mitreise nach Paris; schlägt vor, sein theor. Werk dem König zu übersenden u. gibt entspr. Anweisungen;" />
         <meta name="description" content="teilt Gottfried die Ergebnisse seiner Durchsicht der Dresdner Archive im Hinblick auf Mozarts Requiem mit; betr. Angelegenheit Castil-Blaze, der noch nicht geantwortet hat; drängt G. zu einem Entschluß wegen Mitreise nach Paris; schlägt vor, sein theor. Werk dem König zu übersenden u. gibt entspr. Anweisungen;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,53 +248,97 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042521.html">1825-11-26</a>:  An   unbekannt
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042521.html">1825-11-26</a>:  An   unbekannt
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001831/Korrespondenz/A042412.html">1825-06-09</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001831.html">Simrock, Nikolaus</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042524.html">1825-12-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000194.html">Böttiger, Karl August</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A042393.html">1825-12-26</a>:  Von   unbekannt
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001831/Korrespondenz/A042412.html">1825-06-09</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001831.html">Simrock, Nikolaus</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042524.html">1825-12-01</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000194.html">Böttiger, Karl August</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042514.html">1825-10-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A046196.html">1814-06-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A042393.html">1825-12-26</a>:  Von   unbekannt
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042514.html">1825-10-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045447.html">1813-06-29</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042677.html">1826-01-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042677.html">1826-01-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -313,7 +360,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000843" /> <span title="Hiller, Johann Adam">Hiller, Johann Adam</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001215" /> <span title="Lüttichau, Wolf Adolf August Freiherr von">Lüttichau, Wolf Adolf August F…</span> 
+                                    <input type="checkbox" name="options" value="A001215" /> <span title="Lüttichau, Wolf Adolph August Freiherr von">Lüttichau, Wolf Adolph August …</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001264" /> <span title="Mariottini, Antonio">Mariottini, Antonio</span> 
                                 </label><label class="btn gradient-light">
@@ -343,17 +390,17 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="689711410911511697100116" /> <span title="Darmstadt">Darmstadt</span> 
+                                    <input type="checkbox" name="options" value="A130015" /> <span title="Darmstadt">Darmstadt</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="79102102101110989799104" /> <span title="Offenbach">Offenbach</span> 
+                                    <input type="checkbox" name="options" value="A130080" /> <span title="Offenbach">Offenbach</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8097114105115" /> <span title="Paris">Paris</span> 
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Paris">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -371,7 +418,7 @@
                                         <p><span class="tei_hi_latintype"><span class="tei_hi_underline1">Herrn <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a></span></span></p>
                                         <p>Wohlgebohren</p>
                                         <p>zu</p>
-                                        <p><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span></span></span></p>
+                                        <p><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span></span></span></p>
                                         <p><span class="tei_hi_latintype"><span class="tei_hi_underline1">franco</span></span>.</p>
                                     </div>
                                     <div class="writingSession">
@@ -383,23 +430,23 @@
             W. A. Mozarts</span><br />
             Seelenmeßen<br />
             mit<br />
-            untergelegtem deutschen <span class="tei_supplied" id="d53219e85"><span class="brackets_supplied">[</span>Texte<span class="brackets_supplied">]</span></span><br />
-            im <a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Verlage der Breitkopf und Hä<span class="tei_supplied" id="d53219e91"><span class="brackets_supplied">[</span>rtelschen Musikhandlung<span class="brackets_supplied">]</span></span></a><br />
-            in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>.</span></p>
+            untergelegtem deutschen <span class="tei_supplied" id="d10e84"><span class="brackets_supplied">[</span>Texte<span class="brackets_supplied">]</span></span><br />
+            im <a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Verlage der Breitkopf und Hä<span class="tei_supplied" id="d10e90"><span class="brackets_supplied">[</span>rtelschen Musikhandlung<span class="brackets_supplied">]</span></span></a><br />
+            in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>.</span></p>
                                         <p><span class="tei_hi_underline2andMore">2tes Blatt</span>.
             <span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">Seiner<br />
-            Churfürstlichen Durchla<span class="tei_supplied" id="d53219e108"><span class="brackets_supplied">[</span>ucht<span class="brackets_supplied">]</span></span><br />
+            Churfürstlichen Durchla<span class="tei_supplied" id="d10e106"><span class="brackets_supplied">[</span>ucht<span class="brackets_supplied">]</span></span><br />
             von<br />
             Sachsen<br />
             dem<br />
-            Kenner und Beschützer reli<span class="tei_supplied" id="d53219e119"><span class="brackets_supplied">[</span>giöser Tonkunst<span class="brackets_supplied">]</span></span><br />
-            unserm gnädigsten <span class="tei_supplied" id="d53219e123"><span class="brackets_supplied">[</span>Herrn<span class="brackets_supplied">]</span></span><br />
-            unterthänigst ge<span class="tei_supplied" id="d53219e127"><span class="brackets_supplied">[</span>widmet<span class="brackets_supplied">]</span></span><br />
+            Kenner und Beschützer reli<span class="tei_supplied" id="d10e117"><span class="brackets_supplied">[</span>giöser Tonkunst<span class="brackets_supplied">]</span></span><br />
+            unserm gnädigsten <span class="tei_supplied" id="d10e121"><span class="brackets_supplied">[</span>Herrn<span class="brackets_supplied">]</span></span><br />
+            unterthänigst ge<span class="tei_supplied" id="d10e125"><span class="brackets_supplied">[</span>widmet<span class="brackets_supplied">]</span></span><br />
             von<br />
             den Herausgebern<br />
             Breitkopf e Härtel</span>. / <span class="tei_hi_underline1">NB ohne Jahreszahl</span> :/</span></p>
-                                        <p>Diese Ausgabe ist nun ganz gleichlautend mit den bekannten. und der deutsche Text heißt, „Friede den Entschlafenen, segne du sie Ewiger <span class="tei_hi_latintype">pp</span>.“ Hinten angedrukt sind noch folgende Text Uebersezzungen. 1) <span class="tei_hi_underline1">das <span class="tei_hi_latintype">Requiem</span> nach dem Lateinischen zu <span class="tei_hi_latintype"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">W. A: Mozarts</a> Musik,</span> von Herrn Profeßor <span class="tei_hi_latintype"><a class="preview persons A000308" href="/exist/apps/WeGA-WebApp/de/A000308.html">C. A. H. Clodius</a></span> in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>.</span> "Ruhe in Ewigkeit schenke ihnen, Himmlischer. <span class="tei_hi_latintype">pp</span>.</p>
-                                        <p>2). <span class="tei_hi_underline1">der Tag des Gerichts</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Parodie</span> des <span class="tei_hi_latintype">Requiem</span> von Herrn KapellMeister <a class="preview persons A000843" href="/exist/apps/WeGA-WebApp/de/A000843.html"><span class="tei_hi_latintype">Hiller</span></a> in <span class="tei_placeName"><span class="76101105112122105103"><span class="tei_hi_latintype">Leipzig</span></span></span></span>. „Lehre uns bedenken, daß wir sterben müßen, um klug zu werden <span class="tei_hi_latintype">pp</span>.“</p>
+                                        <p>Diese Ausgabe ist nun ganz gleichlautend mit den bekannten. und der deutsche Text heißt, „Friede den Entschlafenen, segne du sie Ewiger <span class="tei_hi_latintype">pp</span>.“ Hinten angedrukt sind noch folgende Text Uebersezzungen. 1) <span class="tei_hi_underline1">das <span class="tei_hi_latintype">Requiem</span> nach dem Lateinischen zu <span class="tei_hi_latintype"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">W. A: Mozarts</a> Musik,</span> von Herrn Profeßor <span class="tei_hi_latintype"><a class="preview persons A000308" href="/exist/apps/WeGA-WebApp/de/A000308.html">C. A. H. Clodius</a></span> in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>.</span> "Ruhe in Ewigkeit schenke ihnen, Himmlischer. <span class="tei_hi_latintype">pp</span>.</p>
+                                        <p>2). <span class="tei_hi_underline1">der Tag des Gerichts</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype">Parodie</span> des <span class="tei_hi_latintype">Requiem</span> von Herrn KapellMeister <a class="preview persons A000843" href="/exist/apps/WeGA-WebApp/de/A000843.html"><span class="tei_hi_latintype">Hiller</span></a> in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html"><span class="tei_hi_latintype">Leipzig</span></span></span>. „Lehre uns bedenken, daß wir sterben müßen, um klug zu werden <span class="tei_hi_latintype">pp</span>.“</p>
                                         <p>willst du diese 2 Texte vollständig haben so laße ich sie dir abschreiben.</p>
                                         <p>Bei meinem vielen Herumfragen bei den ältesten Mitgliedern der Kapelle nach dem <span class="tei_hi_latintype">Requiem</span> habe ich aber noch eine geschriebene Partitur gefunden, die dem verstorbenen Sänger <a class="preview persons A001264" href="/exist/apps/WeGA-WebApp/de/A001264.html"><span class="tei_hi_latintype">Mariottini</span></a> gehörte. und nach welcher das <span class="tei_hi_latintype">Requiem</span> aufgeführt worden <span class="tei_hi_underline1">ehe</span> es gedrukt war. hier habe ich folgende Abweichungen gefunden.</p>
                                         <p><span class="tei_segBlock textAlign-right"><span class="tei_hi_underline1">GedrukteGeschriebene Part:</span><br />
@@ -418,7 +465,7 @@
             3 Takte <span class="tei_hi_underline1">Posaunen</span> dann <span class="tei_hi_underline1"><span class="tei_hi_latintype">Fagott</span>durchaus</span> <span class="tei_hi_latintype">Solo</span> für die Tenor-<br />
             <span class="tei_hi_latintype">Solo</span>.Posaune.<br />
             die Fagotte ihre eigene Zeile, und<br />
-            erst beim <span class="tei_hi_latintype"><span class="tei_add tei_hi_superscript">cum<a class="noteMarker" id="ref-d53219e313" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d53219e313">‡</a></span> vix justis</span> eintretend.</span>
+            erst beim <span class="tei_hi_latintype"><span class="tei_add tei_hi_superscript">cum<a class="noteMarker" id="ref-d10e309" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e309">‡</a></span> vix justis</span> eintretend.</span>
             <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Rex tremendae</span></span></span>
             <span class="tei_segBlock textAlign-right"><span class="tei_hi_underline1"><span class="tei_hi_latintype">And  Grave.Andante.</span></span></span>
             
@@ -436,15 +483,15 @@
                                         <p>und nun folgende Bemerkung von <span class="tei_hi_latintype"><a class="preview persons A001264" href="/exist/apps/WeGA-WebApp/de/A001264.html">Mariottini</a>s</span> Hand.</p>
                                         <p><span class="tei_hi_latintype">L’Offertorio, il Sanctus e l’agnus Dei, non gl’ho trascritti, perche non mi anno passo essere del valore del precedente ne credo ingannarmi nel drederli,
             opera di un’altra penna.</span> und noch eine unbedeutende Bemerkung über die Wiederholung des <span class="tei_hi_latintype">Lux aeterna pp.</span> –– –– So weit
-               meine Nachforschung. Außerdem hat man mir aber nur erzählt: <span class="tei_hi_latintype"><a class="preview orgs A080073" href="/exist/apps/WeGA-WebApp/de/A080073.html">André</a></span> in <span class="tei_placeName"><span class="79102102101110989799104">Offenbach</span></span>
+               meine Nachforschung. Außerdem hat man mir aber nur erzählt: <span class="tei_hi_latintype"><a class="preview orgs A080073" href="/exist/apps/WeGA-WebApp/de/A080073.html">André</a></span> in <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span>
                habe eine Skizze /: von Mozarts Hand :/, von dem Requiem, welches er als Schatz und Geheimniß bewahre.</p>
                                         <p>Die Partitur des <span class="tei_hi_latintype"><span class="8211198105110">Robin</span></span> hätte ich gern gehabt,
                da du sie aber nicht schiktest ist es am Ende eben so gut. die Verlangte Vergleichung hätte ich ohnedieß nicht schikken können;
                ich habe hier Niemand der so etwas für mich machen könnte, und fordere auch Niemand dazu auf. der Brief von
                <span class="tei_hi_latintype"><a class="preview persons A000278" href="/exist/apps/WeGA-WebApp/de/A000278.html">Castil Blaze</a></span> ist intereßant genug. er ist eben ein Lump.</p>
                                         <p><span class="tei_hi_underline1">mir</span> hat er noch nicht geantwortet. –– <span class="tei_hi_latintype">transeat in ..eter..</span> –– –– !!!</p>
-                                        <p>Wegen der Mitreise nach <span class="tei_placeName"><span class="8097114105115">Paris</span></span> muß ich einen <span class="tei_hi_underline1">bestimmten</span> Entschluß
-               von dir haben. da meine ganze ReiseEinrichtung dadurch anders wird, und ich beim Kauf eines Wagens darauf Rüksicht nehmen muß.
+                                        <p><span class="tei_ptr"></span>Wegen der Mitreise nach <span class="preview places A130008" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130008.html">Paris</span> muß ich einen <span class="tei_hi_underline1">bestimmten</span> Entschluß
+               von dir haben. da meine ganze ReiseEinrichtung dadurch anders wird, und ich beim Kauf eines Wagens darauf Rüksicht nehmen muß<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090132.html">T</a>.
                d: 15<span class="tei_hi_superscript">t</span> oder 16<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> gehe ich von hier mit <span class="tei_hi_latintype">Extrapost</span> ab.
                Schreibe mir also baldigst darüber.</p>
                                         <p>Schon lange habe ich dir vorschlagen wollen dein Lehrbuch unserm <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">Könige</a> zu übersenden.
@@ -452,12 +499,12 @@
                <span class="tei_hi_underline1">Hofmarschall, Königl: Kammerherrn <span class="tei_hi_latintype">GeneralDirector</span> der Theater und Kapelle,
                   Ritter des <span class="tei_hi_latintype">Civil-</span>Verdienst Ordens <span class="tei_hi_latintype">pp von <a class="preview persons A001215" href="/exist/apps/WeGA-WebApp/de/A001215.html">Lüttichau</a></span></span> zu schreiben,
                dem du die Sache sendest, und um seine Uebergabe an den König ersuchst. Aber thue es bald, so daß es gegen Neujahr hier eintrifft,
-               wo ich von <span class="tei_hi_latintype"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></span> zurük bin.</p>
+               wo ich von <span class="tei_hi_latintype"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span> zurük bin.</p>
                                         <p class="tei_closer textAlign-left">Gott schenke dir und den deinen Gesundheit. bei mir geht es ziemlich. Grüße herzlichst deine geehrte
                <a class="preview persons A002064" href="/exist/apps/WeGA-WebApp/de/A002064.html">Hausfrau</a>, Kinder, <a class="preview persons A000728" href="/exist/apps/WeGA-WebApp/de/A000728.html">Halwachsens</a> <span class="tei_hi_latintype">pppp</span>
             <span class="tei_segBlock textAlign-right">Wie immer dein<br />
             <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</span>
-               <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span></span> d: <span class="tei_supplied" id="d53219e484"><span class="brackets_supplied">[</span>29<span class="brackets_supplied">]</span></span><span class="tei_hi_superscript">t</span><a class="noteMarker" id="ref-c_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_01">*</a> 9ber 1825.</span></p>
+               <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span></span> d: <span class="tei_supplied" id="d10e479"><span class="brackets_supplied">[</span>29<span class="brackets_supplied">]</span></span><span class="tei_hi_superscript">t</span><a class="noteMarker" id="ref-c_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_01">*</a> 9ber 1825.</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -521,13 +568,20 @@
                             </div>
                         </div>
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090132.html">Webers Kutschen</a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d53219e313" data-title="add">"cum": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e309" data-title="add">"cum": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -549,10 +603,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -561,9 +611,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042522</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042522</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

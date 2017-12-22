@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,11 +241,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -261,12 +303,10 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar „zu früh“ bezugsfertig war?? Lippische Sparsamkeit und Planung machens möglich! Mehr als vier Wochen vor dem ursprünglich ins Auge gefassten Termin konnte das <a href="http://muwi-detmold-paderborn.de">Musikwissenschaftliche Seminar Detmold/Paderborn <i class="fa fa-external-link"></i></a> in seine neuen Räume „auf dem Forum Wissenschaft | Bibliothek | Musik“ in der Hornschen Straße 39 umziehen – in unmittelbare Nachbarschaft zur (für die WeGA sehr wichtigen) <a href="http://www.llb-detmold.de">Lippischen Landesbibliothek <i class="fa fa-external-link"></i></a> und zum <a href="http://www.archive.nrw.de/lav/abteilungen/ostwestfalen_lippe/profil_zustaendigkeit/index.php">Landesarchiv NRW <i class="fa fa-external-link"></i></a>. Hier ist kleiner „Campus“ für die Wissenschaft entstanden, zu dem in Städten dieser Größenordnung Vergleichbares kaum zu finden sein dürfte. Das neue, lichtdurchflutete Bibliotheksgebäude vereint nicht nur nach vielen Jahren wieder die Bestände der Bibliothek der Hochschule für Musik und des Musikwissenschaftlichen Seminars, sondern bezieht die Landesbibliothek mit ihren hervorragenden Musikbeständen (vornemlich aus dem 19. und 20. Jahrhundert) mit ein, denn es gibt nun einen gemeinsamen Zugang und eine gemeinsame Ausleihe.</p>
-                                        <p>Für die WeGA war dieser Umzug in das neue Gebäude, das auf zwei Stockwerken auch die Musikwissenschaft beherbergt, zwar mit viel Arbeit (und dem stapelweisen „Ausmisten“ alter Korrekturen) verbunden, aber das fast zweiwöchige Räumen, Umziehen und wieder neu Aufstellen hat sich in jeder Hinsicht gelohnt: Das neue Gebäude bietet ein hervorragendes Ambiente, ist architektonisch in jeder Hinsicht gelungen und vor allem vereint es nun sämtliche digitalen Projekte des „Muwi“ auf einem Flur: Außer den Mitarbeitern der WeGA sitzen nun in direkter Nachbarschaft auch Mitarbeiterinnen und Mitarbeiter des Akademie-Projekts „<a href="http://www.beethovens-werkstatt.de">Beethovens Werkstatt <i class="fa fa-external-link"></i></a>“, der BMBF-Projekte „<a href="https://de.dariah.eu/">DARIAH-DE <i class="fa fa-external-link"></i></a>“ und „<a href="http://www.freischuetz-digital.de">Freischütz Digital <i class="fa fa-external-link"></i></a>“, des <a href="http://zenmem.de">Zentrums „Musik – Edition – Medien“ <i class="fa fa-external-link"></i></a> und des DFG-Projekts „<a href="http://www.hoftheater-detmold.de">Detmolder Hoftheater <i class="fa fa-external-link"></i></a>“. Die befruchtende Atmosphäre dieses neuen Miteinander wird sich hoffentlich künftig auch in den Ergebnissen der Arbeiten bemerkbar machen!</p>
-                                        <p>Die vielfältigen Materialien der WeGA konnten – entgegen erster Erwartungen – nun sehr viel großzügiger aufgestellt werden, so dass auch die Hilfskräfte des Projekts nun jederzeit Zugang haben. Auch die kleine, aber feine Sammlung von Erst- und Frühdrucken Weberscher Werke fand hier eine neue Bleibe. Glücklicherweise konnten die Telefonnummern der WeGA-Mitarbeiter teilweise übernommen werden: <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> ist ab sofort unter 05231 975-676 zu erreichen und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> wie gewohnt unter 05231 975-663. Während die Postleitzahl blieb, lautet die neue Anschrift nun: „Hornsche Straße 39“. Und wer einen Blick „von außen“ auf das neue, am 25. September 2015 offiziell eingeweihte Areal werfen möchte, sollte dies unter  <a href="http://www.forum-detmold.de">http://www.forum-detmold.de <i class="fa fa-external-link"></i></a> tun.</p>
-                                    </div>
+                        <div id="d10e2">
+                                    <p>Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar „zu früh“ bezugsfertig war?? Lippische Sparsamkeit und Planung machens möglich! Mehr als vier Wochen vor dem ursprünglich ins Auge gefassten Termin konnte das <a href="http://muwi-detmold-paderborn.de">Musikwissenschaftliche Seminar Detmold/Paderborn <i class="fa fa-external-link" aria-hidden="true"></i></a> in seine neuen Räume „auf dem Forum Wissenschaft | Bibliothek | Musik“ in der Hornschen Straße 39 umziehen – in unmittelbare Nachbarschaft zur (für die WeGA sehr wichtigen) <a href="http://www.llb-detmold.de">Lippischen Landesbibliothek <i class="fa fa-external-link" aria-hidden="true"></i></a> und zum <a href="http://www.archive.nrw.de/lav/abteilungen/ostwestfalen_lippe/profil_zustaendigkeit/index.php">Landesarchiv NRW <i class="fa fa-external-link" aria-hidden="true"></i></a>. Hier ist kleiner „Campus“ für die Wissenschaft entstanden, zu dem in Städten dieser Größenordnung Vergleichbares kaum zu finden sein dürfte. Das neue, lichtdurchflutete Bibliotheksgebäude vereint nicht nur nach vielen Jahren wieder die Bestände der Bibliothek der Hochschule für Musik und des Musikwissenschaftlichen Seminars, sondern bezieht die Landesbibliothek mit ihren hervorragenden Musikbeständen (vornemlich aus dem 19. und 20. Jahrhundert) mit ein, denn es gibt nun einen gemeinsamen Zugang und eine gemeinsame Ausleihe.</p>
+                                    <p>Für die WeGA war dieser Umzug in das neue Gebäude, das auf zwei Stockwerken auch die Musikwissenschaft beherbergt, zwar mit viel Arbeit (und dem stapelweisen „Ausmisten“ alter Korrekturen) verbunden, aber das fast zweiwöchige Räumen, Umziehen und wieder neu Aufstellen hat sich in jeder Hinsicht gelohnt: Das neue Gebäude bietet ein hervorragendes Ambiente, ist architektonisch in jeder Hinsicht gelungen und vor allem vereint es nun sämtliche digitalen Projekte des „Muwi“ auf einem Flur: Außer den Mitarbeitern der WeGA sitzen nun in direkter Nachbarschaft auch Mitarbeiterinnen und Mitarbeiter des Akademie-Projekts „<a href="http://www.beethovens-werkstatt.de">Beethovens Werkstatt <i class="fa fa-external-link" aria-hidden="true"></i></a>“, der BMBF-Projekte „<a href="https://de.dariah.eu/">DARIAH-DE <i class="fa fa-external-link" aria-hidden="true"></i></a>“ und „<a href="http://www.freischuetz-digital.de">Freischütz Digital <i class="fa fa-external-link" aria-hidden="true"></i></a>“, des <a href="http://zenmem.de">Zentrums „Musik – Edition – Medien“ <i class="fa fa-external-link" aria-hidden="true"></i></a> und des DFG-Projekts „<a href="http://www.hoftheater-detmold.de">Detmolder Hoftheater <i class="fa fa-external-link" aria-hidden="true"></i></a>“. Die befruchtende Atmosphäre dieses neuen Miteinander wird sich hoffentlich künftig auch in den Ergebnissen der Arbeiten bemerkbar machen!</p>
+                                    <p>Die vielfältigen Materialien der WeGA konnten – entgegen erster Erwartungen – nun sehr viel großzügiger aufgestellt werden, so dass auch die Hilfskräfte des Projekts nun jederzeit Zugang haben. Auch die kleine, aber feine Sammlung von Erst- und Frühdrucken Weberscher Werke fand hier eine neue Bleibe. Glücklicherweise konnten die Telefonnummern der WeGA-Mitarbeiter teilweise übernommen werden: <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> ist ab sofort unter 05231 975-676 zu erreichen und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> wie gewohnt unter 05231 975-663. Während die Postleitzahl blieb, lautet die neue Anschrift nun: „Hornsche Straße 39“. Und wer einen Blick „von außen“ auf das neue, am 25. September 2015 offiziell eingeweihte Areal werfen möchte, sollte dies unter  <a href="http://www.forum-detmold.de">http://www.forum-detmold.de <i class="fa fa-external-link" aria-hidden="true"></i></a> tun.</p>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Sonntag, 27. September 2015</p>
                     </div>
@@ -297,7 +337,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -310,12 +350,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -328,10 +363,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -340,7 +371,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050223</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050223</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
             </div>

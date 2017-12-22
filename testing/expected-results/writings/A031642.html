@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Schaffer, Sebastian" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-05-03T13:03:27.379364Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031642" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,11 +249,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -342,7 +384,7 @@
                     gleichsam zwischen einem jeden die zarten Elfen zu einem einzelnen Geschäft
                     eilen sehen. Und wie karakteristisch sind diese Einzelheiten, z. B. das
                     Schwirren der Insekten, ihr aufgescheuchtes Flattern und dgl. ausgedrückt! Ich
-                    müsste <span class="tei_sic">denganzen<a class="noteMarker" id="ref-d41562e56" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41562e56">‡</a></span> Chor abschreiben, wenn ich alles mit Beweisstellen
+                    müsste <span class="tei_sic">denganzen<a class="noteMarker" id="ref-d10e56" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e56">‡</a></span> Chor abschreiben, wenn ich alles mit Beweisstellen
                     belegen wollte. Aber ausser dieser geisterhaften Malerei hat derselbe noch ein
                     Element, das der <span class="tei_pb" title="Seitenumbruch zu S. 464"> | </span>Trauer, in welche die Elfen um ihren König versunken sind. Die
                     sanften, melodischen Sätze, welche diese ausdrücken, sind überaus schön; sie
@@ -357,7 +399,7 @@
                                         <p>So schön dieser Chor ist, so wissen wir doch nicht, ob wir, was Tiefe und
                     Karakteristik der Erfindung anlangt, nicht den der Luft- und Erdgeister im
                     zweiten Akt: „Wir sind hier, was soll geschehn?“ noch höher stellen sollen.
-                    Schon die einleitende <span class="tei_sic">Auffo<span class="tei_supplied" id="d41562e66"><span class="brackets_supplied">[</span>r<span class="brackets_supplied">]</span></span>derung<a class="noteMarker" id="ref-d41562e64" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41562e64">‡</a></span> <span class="tei_hi_spaced_out"><span class="8011799107">Puck</span>’s</span> ist
+                    Schon die einleitende <span class="tei_sic">Auffo<span class="tei_supplied" id="d10e66"><span class="brackets_supplied">[</span>r<span class="brackets_supplied">]</span></span>derung<a class="noteMarker" id="ref-d10e64" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e64">‡</a></span> <span class="tei_hi_spaced_out"><span class="8011799107">Puck</span>’s</span> ist
                     äusserst karakteristisch, und wir finden sie vollkommen schön, obgleich uns, wie
                     wir bemerkten, die Anspielung darauf in der Ouvertüre das Ganze derselben zu
                     zersplittern scheint. Doch weit bedeutender regt sich der erfindende Geist in
@@ -369,7 +411,7 @@
                     einen Seesturm ausgesprochen, welch ein übermüthiges Gelächter! Und wie
                     koboldartig und frazzenhaft grauenvoll! Meisterhaft ist der hierauf folgende
                     Satz in Fis-dur und Cis-dur: „Leichtre Arbeit niemals ich sah.“ Es liegt eine
-                    verhöhnende Kraft darin, die <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>ihrer selb<span class="tei_supplied" id="d41562e82"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>t in der That so bewusst ist, dass das
+                    verhöhnende Kraft darin, die <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>ihrer selb<span class="tei_supplied" id="d10e82"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>t in der That so bewusst ist, dass das
                     Furchtbarste für den Menschen, der Sturm auf der ungeheuren See, ihr wirklich
                     ein Spiel zu sein scheint. Die Krone setzt aber dem Ganzen der Uebergang in den
                     Sturm selbst auf. „Wog’ und Wind, hoch auf und hohl!“ <span class="tei_notatedMusic">[Notenbeispiel: <span class="tei_desc">7 Takte NB auf S. 464 rechts</span>]</span></p>
@@ -400,7 +442,7 @@
                     Ausserdem hat dies Stück noch den höheren Werth, dass es durchaus dem reinen
                     Gebiet des Schönen angehört. Die ruhige See in der Abenddämmerung, in der
                     liebliche Meernymphen sich baden, der alte verfallene Wartthurm am Ufer, sind
-                    zwar ein Karak<span class="tei_supplied" id="d41562e97"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span>erbild, aber die Aufgabe ist nur die, etwas an sich
+                    zwar ein Karak<span class="tei_supplied" id="d10e97"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span>erbild, aber die Aufgabe ist nur die, etwas an sich
                     Schönes zu karakterisiren, welches durch keine einzige Schroffheit oder
                     Seltsamkeit diesem reinsten Kunstgebiet entrückt wird. – In dem sich zu nächst
                     anschliessenden Duettino der Elfen: „Hie her ihr Elfen all!“ ist <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>s <span class="tei_hi_spaced_out">Manier</span> (man weiss, dass dies Wort eigentlich nicht
@@ -425,7 +467,7 @@
                     bringt. Ein leiser Anhauch davon liegt bereits auch in dem Elfenchor, der
                     träumerisch und süss uns an Asiens Gefilde, an den Farben schmelz seiner Blumen,
                     den zauberischen Duft sei ner milden Lüfte mahnt; doch lässt sich hier, bei der
-                    Unbestimmtheit <a href="#f_01">*)</a>
+                    Unbestimmtheit <a href="#f_01" id="backref-f_01" class="fn-ref">*)</a>
                      karakteristischer Umrisse mit der die Musik sich begnügen
                     muss, schwerlich angeben, ob <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> irgend ein ideales Naturgefühl, oder ein
                     bestimmteres Bild des üppig reizenden Morgenlandes habe ausdrücken wollen. Die
@@ -475,14 +517,14 @@
                     ohne Störung. Ich weiss wohl, dass einem grossen Theil des Publikums gerade die
                     Stelle, die ich tadle, gefällt; auch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> kannte <span class="tei_hi_spaced_out">vielleicht</span> seine Leute; aber er hätte sich zu gut dazu halten sollen,
                     ihnen entgegen zu kommen, und ihren trivialen Neigungen durch Erinnerung an
-                    ihren trivialen Liebling Rossini zu schmeicheln. Mein unterstrichenes <span class="tei_hi_spaced_out">vielleicht</span> deutet wohl <span class="tei_sic">genugsam<a class="noteMarker" id="ref-d41562e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41562e148">‡</a></span> an, dass ich ihn, der
+                    ihren trivialen Liebling Rossini zu schmeicheln. Mein unterstrichenes <span class="tei_hi_spaced_out">vielleicht</span> deutet wohl <span class="tei_sic">genugsam<a class="noteMarker" id="ref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">‡</a></span> an, dass ich ihn, der
                     sich immer so stark und selbständig hingestellt, so mit Eifer dem Schlechten in
                     der Kunst entgegen gearbeitet hat, nicht einer völlig bewussten Absicht zeihen
                     will. Allein das natürliche, ja sogar nothwendige Streben des Künstlers nach <span class="tei_hi_spaced_out">Erfolg</span>, auch in der Gegenwart, kann wohl bewirken,
                     dass er sich hie und dort über die Mittel täuscht, besonders wenn er Stellen
                     dieser Art nur in dem höchsten Karakter der Ausführung durch den Vortrag gedacht
                     hat. —</p><br />
-                                        <p>Der Chor in H-moll: „Ehre sei dem grossen Kalifen und Preis!“ ist <span class="tei_sic">ächt<a class="noteMarker" id="ref-d41562e158" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41562e158">‡</a></span> türkisch.
+                                        <p>Der Chor in H-moll: „Ehre sei dem grossen Kalifen und Preis!“ ist <span class="tei_sic">ächt<a class="noteMarker" id="ref-d10e158" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e158">‡</a></span> türkisch.
                     Es herrscht eine <span class="tei_hi_spaced_out">sklavische Begeisterung</span> (sit venia
                     verbo) darin. Kühne Rhythmen, seltsame Harmonie, überraschende Wendungen der
                     Melodie, eins übertrifft das andre an Kraft. Diesen Chor zu analysiren, könnte
@@ -502,15 +544,16 @@
                     glücklichste. Dem zweiten der genannten Stücke schliesst sich noch eine
                     allerliebste Romanze an, die uns ganz, auch in die Heiterkeit des Orients, in
                     die Lebendigkeit, mit der dort der Hörer dem Erzähler wunderbarer oder
-                    reizender Abentheuer lauscht, hin einversetzt <a href="#f_02">**)</a>
+                    reizender Abentheuer lauscht, hin einversetzt <a href="#f_02" id="backref-f_02" class="fn-ref">**)</a>
                     . Feinheit und Tiefe der Auffassung, halten in
                     diesen Stücken der Originalität and geschickten musikalischen Ausführung die
                     Waage.</p>
                                         <p><span class="tei_segBlock textAlign-center">(<a class="preview writings A031611" href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.html">Schluss folgt.</a>)</span></p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="f_01">*) Es
+                                            <li id="f_01"><a href="#backref-f_01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Es
                         ist neulich hier in der musikalischen Zeitung gerade hin behauptet worden,
                         nur die Flachheit der Ansicht sei Schuld, dass man behaupte, die Musik sei
                         nicht bestimmter Ausdrücke fähig; ich bleibe bei dieser Behauptung in ihrer
@@ -519,7 +562,7 @@
                         Flachheit der Ansichten, die jener Kritiker damit auch mir zuweist, setze
                         ich den der Verschrobenheit, die ich dagegen ihm Schuld geben
                         müsste.</li>
-                                            <li id="f_02">**) Ich
+                                            <li id="f_02"><a href="#backref-f_02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>**) Ich
                         mache bei dieser Gelegenheit auf die meisterhafte Schilderung davon in <span class="7310910910111410997110110115"><span class="tei_hi_spaced_out">Immermanns</span></span> „<span class="7011410510110011410599104321001011143290119101105116101">Friedrich der Zweite</span>,“ einem
                         würdigen, grossen Werke, aufmerksam. <br />
                                                 <p><span class="tei_segBlock textAlign-right"><a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">L.R.</a></span></p>
@@ -561,7 +604,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Berliner allgemeine musikalische Zeitung</span>, Jg. 5, Nr. 49 (3. Dezember 1828), S. 463–467</p>
+                                <p class="biblio-entry"><span class="journalTitle">Berliner allgemeine musikalische Zeitung</span>, Jg. 5, Nr. 49 (3. Dezember 1828), S. 463–467</p>
                                 
                                 <div>
                                     
@@ -578,16 +621,16 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d41562e56" data-title="sic">"denganzen": sic!</div>
+                                            <div class="apparatusEntry" id="d10e56" data-title="sic">"denganzen": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41562e64" data-title="sic">"Aufforderung": sic!</div>
+                                            <div class="apparatusEntry" id="d10e64" data-title="sic">"Aufforderung": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41562e148" data-title="sic">"genugsam": sic!</div>
+                                            <div class="apparatusEntry" id="d10e148" data-title="sic">"genugsam": sic!</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41562e158" data-title="sic">"ächt": sic!</div>
+                                            <div class="apparatusEntry" id="d10e158" data-title="sic">"ächt": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -605,10 +648,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -617,9 +656,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031642</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031642</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 3. Mai 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000224" />
         <meta property="dc:description" content="Biographische Informationen zu Johann Georg Breiting. Lebensdaten: 1776–28. August 1809. Tätigkeiten: Arzt. Wirkorte: Augsburg" />
         <meta name="description" content="Biographische Informationen zu Johann Georg Breiting. Lebensdaten: 1776–28. August 1809. Tätigkeiten: Arzt. Wirkorte: Augsburg" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000224.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000224.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000224.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000224.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -331,13 +374,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000224/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -346,7 +389,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000224/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000224.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -361,11 +404,11 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-         <li>in den Regesten der Grundbucheinträge im Stadtarchiv <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> 1776 Dr. med. Johann Georg Breiting als Besitzer von Lit. F 374 (= Hl.-Kreuz-Str. 20) genannt</li>
-         <li>Medizinstudium offenbar in <span class="tei_placeName"><span class="7410111097">Jena</span></span>, von J. G. Breiting aus <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> liegt vor: Dissertatio inauguralis medica sistens morborum quorundam rariorum in neonatis occurentium descriptionem, Jena 1799 (Datum der Verteidigung: 4. April 1799); außerdem erschien in Jena 1799: Ordinis medici in universitate litterarum lenensi h. t. Decanus D. Christ. Goth. Gruner [d. i. Christian Gottfried Gruner] sollemnia inauguralia medicinae utrisque candidati Ioannis George Breiting Augustani</li>
-         <li>ab 1801 als niedergelassener Arzt in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> bezeugt; vgl. „<span class="tei_hi_italic">Augsburgischer / Adreß- / Sack-Calender, / auf das Jahr Christi / 1803.</span>“, S. 80: unter Medizinisches Collegium „Dr. Johann Georg Breiting, auch Chirurgiae Dr. August. A. C. Rec. 1801.“</li>
+         <li>in den Regesten der Grundbucheinträge im Stadtarchiv <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> 1776 Dr. med. Johann Georg Breiting als Besitzer von Lit. F 374 (= Hl.-Kreuz-Str. 20) genannt</li>
+         <li>Medizinstudium offenbar in <span class="preview places A130071" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130071.html">Jena</span>, von J. G. Breiting aus <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> liegt vor: Dissertatio inauguralis medica sistens morborum quorundam rariorum in neonatis occurentium descriptionem, Jena 1799 (Datum der Verteidigung: 4. April 1799); außerdem erschien in Jena 1799: Ordinis medici in universitate litterarum lenensi h. t. Decanus D. Christ. Goth. Gruner [d. i. Christian Gottfried Gruner] sollemnia inauguralia medicinae utrisque candidati Ioannis George Breiting Augustani</li>
+         <li>ab 1801 als niedergelassener Arzt in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> bezeugt; vgl. „<span class="tei_hi_italic">Augsburgischer / Adreß- / Sack-Calender, / auf das Jahr Christi / 1803.</span>“, S. 80: unter Medizinisches Collegium „Dr. Johann Georg Breiting, auch Chirurgiae Dr. August. A. C. Rec. 1801.“</li>
          <li>im Dezember 1802 unterlegte Dr. Breiting einem <span class="preview works A020095" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020095.html">Kanon</span> von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> den Text „Mädchen, ach meide“</li>
-         <li>im Juni 1804 hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span> wieder Kontakt zu Dr. Breiting</li>
+         <li>im Juni 1804 hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span> wieder Kontakt zu Dr. Breiting</li>
          <li>veröffentlichte 1805 ein Gutachten über die Kindesmörderin * in *, in: <span class="tei_hi_italic">Magazin für die technische Heilkunde, öffentliche Arzneywissenschaft und medizinische Gesetzgebung</span>, hg. von Gottlieb von Ehrhardt d. j., Ulm 1805, S. 367–382</li>
          <li><span class="tei_hi_italic">„Augsburgischer / Adreß-Kalender, / auf das Jahr Christi / 1809.“</span>, S. 39: hier letztmals Joh. Georg Breiting unter den approbierten Ärzten genannt</li>
          <li>verstarb am 28. August 1809 dreiunddreißigjährig „am Nervenfieber“; vgl. die <span class="tei_hi_italic">Leichenpredigt Worte der Freundschaft an dem frühen Grabe des Hn. Dr. Johann Georg Breiting von Gerhard Adam Neuhofer</span>; s. a. Eva-Maria Moll, <span class="tei_hi_italic">Todesursachen in Ulmer Leichenpredigten des 16. und des 18. Jahrhunderts</span>, Diss. Universität Ulm 2008, Vorlage: Pforzheim 2007, S. 53</li>
@@ -376,11 +419,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -399,9 +442,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -458,9 +498,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000224</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000224</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

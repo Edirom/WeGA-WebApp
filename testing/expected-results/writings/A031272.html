@@ -14,7 +14,7 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031272" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A031272.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -292,7 +334,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110110104101105109" /> <span title="Mannheim">Mannheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -332,7 +374,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">
-                    <span class="tei_hi_spaced_out">Hof- und National-Theater in <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span>. <span class="preview works A021025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021025.html">Julius Cäsar</span> und <span class="preview works A021143" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021143.html">Zaire</span>.</span>
+                    <span class="tei_hi_spaced_out">Hof- und National-Theater in <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span>. <span class="preview works A021025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021025.html">Julius Cäsar</span> und <span class="preview works A021143" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021143.html">Zaire</span>.</span>
                 </h2>
                                         <h3 class="docHeader textAlign-left">(<a class="preview writings A030600" href="/exist/apps/WeGA-WebApp/de/A000409/Schriften/A030600.html">Beschluß</a>)</h3>
                                         <p><span class="66114117116117115">Brutus</span> wurde von <a class="preview persons A000459" href="/exist/apps/WeGA-WebApp/de/A000459.html">Hrn. <span class="tei_hi_spaced_out">Eßlair</span></a> mit Kraft und Würde besonders in den letztern Aufzügen gegeben. 
@@ -354,7 +396,7 @@
                     <span class="7797104111109101116">Mahomet</span>, ein Stück, welches bei allen einzelnen Schönheiten tiefen Mißton in der Seele zurückläßt. <span class="9097105114101">Zaire</span> im Kampfe zwischen Religion und Liebe, erregt inniges Mitleid und die Leidenschaft redet aus ihr mit feuriger Stärke; weniger Interesse erregt <span class="7911411111510997110">Orosman</span> im ewigen Schwanken zwischen Stärke und Schwäche, und seine Eifersucht erscheint nicht genug motivirt; aber wahrhaft edle, herrliche Charaktere sind dagegen <span class="7611711510510311097110">Lusignan</span> und <span class="7810111410111511697110">Nerestan</span>, und die christliche Religion erscheint in vollem Heiligenschein. – Was die deutsche Bearbeitung dieses Stückes betrifft, so bedauert Referent, daß ihm dieselbe blos aus der hiesigen Darstellung bekannt und es ihm folglich unmöglich ist, sich in das Detail derselben einzulassen. Im Ganzen ist der Geist der französischen Tragödie in unsre Sprache mit Kühnheit übertragen, und manche Stellen schienen dem Referenten (dem das Original lebendig vorschwebte) durch die deutsche Bearbeitung noch zu gewinnen; einige Härten in der Versifikation verdienen um so weniger bemerkt zu werden, als dergleichen oft in der Uebertragung aus einer andern Sprache schwer zu vermeiden ist, und überhaupt die Harmonie des Versbaues dem Geiste des Ganzen untergeordnet sein muß. –</p>
                                         <p>Die hiesige <span class="tei_hi_spaced_out">Darstellung</span> war nicht so vollkommen; <a class="preview persons A000459" href="/exist/apps/WeGA-WebApp/de/A000459.html">Herr <span class="tei_hi_spaced_out">Eßlair</span></a> befriedigte, nicht wie gewöhnlich, als <span class="7911411111510997110">Orosman</span>; seine Kraft vereinigt sich schwer mit Zartheit, ein 
                     <span class="tei_ptr"></span>Herkules nimmt sich schlecht aus am Spinnrocken einer Omphale.<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> <a class="preview persons A000458" href="/exist/apps/WeGA-WebApp/de/A000458.html">Mad. <span class="tei_hi_spaced_out">Eßlair</span></a> war äusserst kalt, und sprach mit einer unangenehmen Nüchternheit selbst da, wo das Feuer der Leidenschaft sie hinreißen sollte; besser und heute vielleicht der Beste war <span class="72101114114327797121101114">Herr <span class="tei_hi_spaced_out">Mayer</span></span> als <span class="7810111410111511697110">Nerestan</span>. <a class="preview persons A001512" href="/exist/apps/WeGA-WebApp/de/A001512.html">Herr <span class="tei_hi_spaced_out">Prandt</span></a> als <span class="7611711510510311097110">Lusignan</span> befriedigte gleichfalls.</p>
-                                        <p>Die Aufführung dieses Stücks so wie auch wahrscheinlich jene von <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakespear’s</a> <span class="preview works A021025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021025.html">Julius Cäsar</span> verdankt <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> <a class="preview persons A000134" href="/exist/apps/WeGA-WebApp/de/A000134.html">dem 
+                                        <p>Die Aufführung dieses Stücks so wie auch wahrscheinlich jene von <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakespear’s</a> <span class="preview works A021025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021025.html">Julius Cäsar</span> verdankt <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> <a class="preview persons A000134" href="/exist/apps/WeGA-WebApp/de/A000134.html">dem 
                     <span class="tei_ptr"></span>Verfasser des goldnen Kalbes</a><a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, und man schmeichelt sich mit der Hoffnung, demselben ins künftige noch mehr in theatralischer Hinsicht zu verdanken. Bei dem Einflusse eines solchen Mannes kann die Bühne nur gewinnen. </p>
                                         <p class="tei_closer textAlign-left">
                     <span class="tei_segBlock textAlign-right"><span class="tei_hi_italic"><a class="preview persons A000409" href="/exist/apps/WeGA-WebApp/de/A000409.html">The Unknown</a>.</span></span>
@@ -395,7 +437,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Badisches Magazin</span>, Jg. 1, Nr. 8 (08. März 1811), S. 31–32</p>
+                                <p class="biblio-entry"><span class="journalTitle">Badisches Magazin</span>, Jg. 1, Nr. 8 (08. März 1811), S. 31–32</p>
                                 
                                 <div>
                                     
@@ -445,10 +487,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -457,9 +495,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031272</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031272</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

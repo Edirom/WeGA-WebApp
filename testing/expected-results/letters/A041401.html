@@ -15,8 +15,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Shino Funayama" />
-        <meta property="dc:date" content="2017-06-22T14:36:39.473101Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041401" />
         <meta property="dc:description" content="dankt für das Hochzeitsgeschenk, erwähnt seine Oper u. Schlesingers Geschenk; Grüße an Berliner Bekannte; NS: ebenfalls Dank u. Erinnerungen an Berlin;" />
         <meta name="description" content="dankt für das Hochzeitsgeschenk, erwähnt seine Oper u. Schlesingers Geschenk; Grüße an Berliner Bekannte; NS: ebenfalls Dank u. Erinnerungen an Berlin;" />
@@ -114,11 +114,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,48 +249,92 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041401.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041400.html">1818-03-09</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger, Adolph Martin</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041400.html">1818-03-09</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger, Adolph Martin</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A040993.html">1817-11-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041402.html">1818-03-09</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002427.html">Veltmann, Melchior Bernhard</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A041471.html">1818-06-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002160.html">Winkler, Karl Theodor</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A040993.html">1817-11-01</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001936.html">Susan, Thaddäus</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041402.html">1818-03-09</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002427.html">Veltmann, Melchior Bernhard</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A041471.html">1818-06-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002160.html">Winkler, Karl Theodor</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041267.html">1817-07-24</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001988.html">Türke, Friederike</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001987/Korrespondenz/A045619.html">1813-10-02</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001987.html">Türke, Friedrich Gottlieb</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041267.html">1817-07-24</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001988.html">Türke, Friederike</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A001987/Korrespondenz/A045619.html">1813-10-02</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001987.html">Türke, Friedrich Gottlieb</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
+                                        
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -381,7 +428,7 @@
                ist so zu denken, und ich hoffe wenn wir wieder einmal nach Berlin kommen wird sich
                unser Freundschaftsbund erneuen und befestigen.</p>
                                         <p class="tei_closer textAlign-left inlineStart">Ich küße Sie und ihr liebes <a class="preview persons A001989" href="/exist/apps/WeGA-WebApp/de/A001989.html">Riekchen</a>
-               herzlich und danke nochmals für das l<span class="tei_damage"><span class="tei_supplied" id="d56889e125"><span class="brackets_supplied">[</span>iebe<span class="brackets_supplied">]</span></span></span> liebe Geschenk
+               herzlich und danke nochmals für das l<span class="tei_damage"><span class="tei_supplied" id="d10e125"><span class="brackets_supplied">[</span>iebe<span class="brackets_supplied">]</span></span></span> liebe Geschenk
                <span class="tei_segBlock textAlign-right">imer Ihre<br />
                   Freundin. Lina</span>
             </p>
@@ -469,10 +516,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -481,9 +524,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041401</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041401</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 22. Juni 2017 durch Shino Funayama</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

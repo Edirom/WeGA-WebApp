@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T15:51:53.684376Z" />
+        <meta property="dc:date" content="2017-10-20T20:47:22.776210Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041429" />
         <meta property="dc:description" content="beglückwünscht ihn zum Erfolg des Cyrus, den er baldmöglichst übernehmen wolle; hat Artikel darüber in die Abend-Zeitung rücken lassen u. will Brühl nochmals auf die Oper aufmerksam machen; hofft auf Auff. seines Freischütz auch in Wien u. dortiges Wiedersehen;" />
         <meta name="description" content="beglückwünscht ihn zum Erfolg des Cyrus, den er baldmöglichst übernehmen wolle; hat Artikel darüber in die Abend-Zeitung rücken lassen u. will Brühl nochmals auf die Oper aufmerksam machen; hofft auf Auff. seines Freischütz auch in Wien u. dortiges Wiedersehen;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,50 +248,94 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041428.html">1818-07-02</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041428.html">1818-07-02</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl, Carl Graf von</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A041471.html">1818-06-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002160.html">Winkler, Karl Theodor</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041430.html">1818-07-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger, Adolph Martin</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A041471.html">1818-06-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002160.html">Winkler, Karl Theodor</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041430.html">1818-07-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger, Adolph Martin</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041340.html">1817-10-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041340.html">1817-10-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041767.html">1821-08-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041767.html">1821-08-08</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -316,6 +363,8 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020668" /> <span title="Cyrus und Astyages">Cyrus und Astyages</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020002" /> <span title="Missa sancta (Nr.1) Es-Dur">Missa sancta (Nr.1) Es-Dur</span> 
@@ -328,11 +377,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="72111115116101114119105116122" /> <span title="Hosterwitz">Hosterwitz</span> 
+                                    <input type="checkbox" name="options" value="A130042" /> <span title="Hosterwitz">Hosterwitz</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -356,7 +405,7 @@
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
                                         <p>S. Hochwohlgebohren</p>
-                                        <p>dem <span class="tei_hi_underline1">Herrn </span><span class="tei_hi_underline1"><span class="tei_hi_latintype">von Mosel</span></span>.</p>
+                                        <p>dem <span class="tei_hi_underline1">Herrn </span><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">von Mosel</a></span></span>.</p>
                                         <p>K: K: wirklichen HofSekretär <span class="tei_hi_latintype">pp</span></p>
                                         <p>zu</p>
                                         <p><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Wien</span></span></p>
@@ -366,7 +415,7 @@
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute">Mein hochverehrter <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Freund</a>!</p>
             </div>
-                                        <p>Mit welchem herzlichen Antheil ich den glüklichen Erfolg Ihres <span class="67121114117115"><span class="tei_hi_latintype">Cyrus</span></span> vernommen habe, kann ich Ihnen kaum genug aussprechen. </p>
+                                        <p>Mit welchem herzlichen Antheil ich den glüklichen Erfolg Ihres <span class="preview works A020668" data-ref="/exist/apps/WeGA-WebApp/de/A001355/Werke/A020668.html"><span class="tei_hi_latintype">Cyrus</span></span> vernommen habe, kann ich Ihnen kaum genug aussprechen. </p>
                                         <p>Wer ein wahrhaft deutsches redliches
                Künstlerherz in der Brust trägt dem kann nichts erfreulicheres sein als das Gedeihen
                einer Vaterländischen Pflanze, und zu diesem Gedeihen gehört dann auch noch nebst dem
@@ -374,20 +423,20 @@
                glüklichen Gelingen, denn von wie viel kleinen Zufälligkeiten hängt dieß nicht ab, und
                wie viele Jahre vergehen dann ehe das Werk aus eigener Kraft sich wieder emporzuheben im
                Stande ist, Meist erst wenn wir Todt sind, und so schön das auch sein mag so ist es doch
-               gar stärkend und tröstend es beim Leben auch noch zu genießen was  <span class="tei_del"><span> […]</span>ht<a class="noteMarker" id="ref-d57180e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57180e50">‡</a></span>
+               gar stärkend und tröstend es beim Leben auch noch zu genießen was  <span class="tei_del"><span> […]</span>ht<a class="noteMarker" id="ref-d10e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e51">‡</a></span>
                man mit Sorge und Schweiß geschaffen hat.      Heil Ihnen mein theurer <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Freund</a> und
                KunstGefährte, daß Sie gute und sorgfältige Ausführung fanden, der Beyfalll müste denn
                wohl von selbst kommen.</p>
                                         <p>Daß Sie die Rolle des <span class="67121114117115"><span class="tei_hi_italic">Cyrus</span></span> in weibliche Hände legten, damit ist auch mir ein großer Dienst
-               erwiesen, und <span class="tei_add tei_hi_superscript">ein<a class="noteMarker" id="ref-d57180e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57180e65">‡</a></span> bedeutender Schritt zum früheren Erscheinen der Oper bey uns
+               erwiesen, und <span class="tei_add tei_hi_superscript">ein<a class="noteMarker" id="ref-d10e66" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e66">‡</a></span> bedeutender Schritt zum früheren Erscheinen der Oper bey uns
                geschehen. Ich bitte Sie ja mir baldmöglichst die Umarbeitung, Abkürzungen <span class="tei_hi_italic">pp</span> zukommen zu laßen. Selbst der treusten Berechnung, der
                vollkomensten Erfahrung kann es nicht fehlen, daß sie noch zu dergleichen in den lezten
                Proben wo das Ganze so erst recht sich zu gestalten und ins Leben zu treten beginnt,
                veranlaßt und gezwungen werde. Wohl dem der leicht und gerne zum Nuzzen des Ganzen in
                seinem eigen Fleische wüthet.</p>
                                         <p>Ich habe mir zu schnellster Verbreitung des
-               glüklichen Erfolges Ihrer Oper die Freyheit genommen in unserer Abendzeitung eine <span class="preview writings A030502" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030502.html">kleine
-               Notiz</span> abdrukken zu laßen, damit das Ausland auch freudig hoffend nach <span class="87105101110"><span class="tei_hi_latintype">Wien</span></span> blikke.</p>
+               glüklichen Erfolges Ihrer Oper die Freyheit genommen in unserer Abendzeitung eine <a class="preview writings A030502" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030502.html">kleine
+               Notiz</a> abdrukken zu laßen, damit das Ausland auch freudig hoffend nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html"><span class="tei_hi_latintype">Wien</span></span> blikke.</p>
                                         <p>Was die zerschlagene Unterhandlung mit Graf
                <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a> betrifft will ich wenn Sie es erlauben ihn gelegentlich wieder auf die Oper
                aufmerksam machen. ich stehe in fortwährender Berührung mit ihm, und darf hoffen daß er
@@ -396,8 +445,8 @@
                Grüße bestens.<span class="tei_pb" title="Seitenumbruch"> | </span>Ich habe endlich nach den angestrengtesten DienstArbeiten die
                Vergünstigung erhalten ein paar Monate auf dem Lande leben zu dürfen. Seit 8 Tagen
                genieße ich dieses Glük und fange an, mir selbst, meiner Kunst, und meiner lieben
-               <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Hausfrau</a> zu leben, Leztere hoffe ich bald einmal <a class="preview persons A001356" href="/exist/apps/WeGA-WebApp/de/A001356.html">Ihrer verehrten Gattin</a> <span class="tei_add tei_hi_superscript">die<a class="noteMarker" id="ref-d57180e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57180e102">‡</a></span> ich
-               hochachtungsvollst grüße, und Ihnen mein lieber <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Freund</a> in <span class="87105101110">Wien</span> vorstellen zu können,
+               <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Hausfrau</a> zu leben, Leztere hoffe ich bald einmal <a class="preview persons A001356" href="/exist/apps/WeGA-WebApp/de/A001356.html">Ihrer verehrten Gattin</a> <span class="tei_add tei_hi_superscript">die<a class="noteMarker" id="ref-d10e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e102">‡</a></span> ich
+               hochachtungsvollst grüße, und Ihnen mein lieber <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Freund</a> in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> vorstellen zu können,
                wenn anders meine <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_underline1">Jägersbraut</span></span> auf dem Kärnthnerthortheater
                gegeben werden darf. daß ich Anfangs dieses Jahres eine <span class="preview works A020002" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020002.html"><span class="tei_hi_underline1">Meße</span></span>
                geschrieben habe, wißen Sie glaub ich schon.      Ich habe so viel rükständige Arbeiten
@@ -407,9 +456,9 @@
                                         <p>Der liebe Zuruf meines mir so herzlieben
                Grafen <a class="preview persons A000386" href="/exist/apps/WeGA-WebApp/de/A000386.html">Moritz Dietrichstein</a>, hat mir sehr wohl gethan, danken Sie ihm doch recht innigst
                dafür.</p>
-                                        <p class="tei_closer textAlign-left">Nochmals wiederhole ich meine theilnehmenden Glükwünsche, wenn die Blätter fallen, soll bey uns Ihr <span class="67121114117115"><span class="tei_hi_italic">Cyrus</span></span> steigen, dann mehr von Ihrem Sie stets mit aufrichtigster Freundschaft achtenden 
+                                        <p class="tei_closer textAlign-left">Nochmals wiederhole ich meine theilnehmenden Glükwünsche, wenn die Blätter fallen, soll bey uns Ihr <span class="preview works A020668" data-ref="/exist/apps/WeGA-WebApp/de/A001355/Werke/A020668.html"><span class="tei_hi_italic">Cyrus</span></span> steigen, dann mehr von Ihrem Sie stets mit aufrichtigster Freundschaft achtenden 
                <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype">C. M. vWeber</span>.</span>
-               <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="72111115116101114119105116122">Hosterwitz</span></span> bey <span class="tei_hi_latintype"><span class="68114101115100101110">Dresden</span></span> <br />
+               <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><span class="preview places A130042" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130042.html">Hosterwitz</span></span> bey <span class="tei_hi_latintype"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span></span> <br />
                   d: 5<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1818.</span>
             </p>
                                         <p class="clearer"></p>
@@ -473,16 +522,16 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d57180e50" data-title="del">"ht": Gelöschter Text nicht lesbar.</div>
+                                            <div class="apparatusEntry" id="d10e51" data-title="del">"ht": Gelöschter Text nicht lesbar.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57180e51" data-title="gap illegible"> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d10e52" data-title="gap illegible"> Unleserliche Stelle </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57180e65" data-title="add">"ein": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e66" data-title="add">"ein": Hinzufügung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57180e102" data-title="add">"die": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e102" data-title="add">"die": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -500,10 +549,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -512,9 +557,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041429</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041429</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

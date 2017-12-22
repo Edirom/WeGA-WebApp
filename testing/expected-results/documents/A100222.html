@@ -13,8 +13,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2017-06-29T14:14:52.350964Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-15T13:04:24.896768Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100222" />
         <meta property="dc:description" content="Taufbescheinigung für Caroline Brandt" />
         <meta name="description" content="Taufbescheinigung für Caroline Brandt" />
@@ -112,11 +112,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -212,9 +216,9 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Dokumente</a></li>
-                        <li><span>A100222</span> <span class="docStatus">in Bearbeitung</span></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Dokumente</span></li>
+                        <li><span>A100222</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -227,7 +231,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -242,11 +245,50 @@
                                 <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100222.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -266,7 +308,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66111110110" /> <span title="Bonn">Bonn</span> 
+                                    <input type="checkbox" name="options" value="A130029" /> <span title="Bonn">Bonn</span> 
                                 </label>
                             </div>
                         </div>
@@ -282,12 +324,12 @@
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">Departement de Rhin et Moselle<br />
                Mairie de Bonn</span></span>
                
-               <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype">Extrait du Registre de Naissance dela Paroisse de S<span class="tei_hi_superscript">t</span> Remy à <span class="tei_placeName"><span class="66111110110">Bonn</span></span></span></span>
+               <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype">Extrait du Registre de Naissance dela Paroisse de S<span class="tei_hi_superscript">t</span> Remy à <span class="preview places A130029" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130029.html">Bonn</span></span></span>
                
                <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype">Anno Millesimo Septingentesimo</span>  
-               1 <span class="tei_hi_latintype">Conagesimo tertio die decima nona Novembris
-                  baptizata est <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolina Elisabetha,
-                  Antonetta</a>, <a class="preview persons A000215" href="/exist/apps/WeGA-WebApp/de/A000215.html">D. Christophori Hermanni, Josephi
+               1 <span class="tei_hi_latintype">Conagesimo tertio<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> die decima nona Novembris
+                  baptizata est <span class="preview persons A000213" data-ref="/exist/apps/WeGA-WebApp/de/A000213.html">Carolina<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> Elisabetha,
+                  Antonetta</span>, <a class="preview persons A000215" href="/exist/apps/WeGA-WebApp/de/A000215.html">D. Christophori Hermanni, Josephi
                      Brandt</a>, Musici Electoralis, et <a class="preview persons A000214" href="/exist/apps/WeGA-WebApp/de/A000214.html">Christina
                Sophia Henrietta Hartmanns</a>, Conjugum
                filea legitima, Patrini fuerunt, Elisabetha
@@ -298,22 +340,21 @@
                dans la deuxieme ligne cidessus.</span></span>
                
                <span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">Pour Extrait Conforme<br />
-               delivré àla Mairie de <span class="tei_placeName"><span class="66111110110">Bonn</span></span><br />
+               delivré àla Mairie de <span class="preview places A130029" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130029.html">Bonn</span><br />
                le</span> 22. <span class="tei_hi_latintype">Aout</span> 1810.<br />
-               <span class="tei_hi_latintype">L’adjoint  deligné
-               gez. <span class="77252108108101114">Müller</span></span></span>
+               <span class="tei_hi_latintype">L’adjoint  deligné</span><br />
+               <span class="tei_supplied" id="d10e64"><span class="brackets_supplied">[</span>gez.<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype"><span class="77252108108101114">Müller</span></span></span>
                
                <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype">Vu par Nous Président<br />
                du Tribunal Civil de l’arrondissement<br />
                de Bonn, Departement de Rhin et Moselle</span></span>
-               <span class="tei_pb" title="Seitenumbruch"> | </span> <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype">pour légalisation de la Signature …
-               du <span class="831051011171143277117108108101114">Sieur Muller</span>, Adjoint de la …
-               de <span class="tei_placeName"><span class="66111110110">Bonn</span></span></span></span>
-               <span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">Donné en notre hôtel à <span class="tei_placeName"><span class="66111110110">Bonn</span></span></span>
+               <span class="tei_pb" title="Seitenumbruch"> | </span> <span class="tei_segBlock textAlign-left"><span class="tei_hi_latintype">pour légalisation de la Signature d’ <span class="tei_add">autre<a class="noteMarker" id="ref-d10e86" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e86">‡</a></span> du <span class="831051011171143277117108108101114">Sieur Muller</span>, Adjoint de la <span class="tei_add">maire<a class="noteMarker" id="ref-d10e92" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e92">‡</a></span>
+               de <span class="preview places A130029" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130029.html">Bonn</span></span></span>
+               <span class="tei_segBlock textAlign-center"><span class="tei_hi_latintype">Donné en notre hôtel à <span class="preview places A130029" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130029.html">Bonn</span></span>
                22 <span class="tei_hi_latintype">Août</span> 1810.
-               <span> […]<a class="noteMarker" id="ref-d26216e93" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d26216e93">‡</a></span></span>
+               <span> […]<a class="noteMarker" id="ref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">‡</a></span></span>
               <span class="tei_segBlock textAlign-right"> <span class="tei_hi_latintype">par ordonnance<br />
-               gez. <span class="71114111101110105110103101114">Groeninger</span><br />
+               <span class="tei_supplied" id="d10e115"><span class="brackets_supplied">[</span>gez.<span class="brackets_supplied">]</span></span> <span class="71114111101110105110103101114">Groeninger</span><br />
                Greffier</span></span>
                
                <span class="tei_segBlock textAlign-left">Stempel<br />
@@ -377,7 +418,19 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d26216e93" data-title="gap "> Unleserliche Stelle (ca. 1 words)</div>
+                                            <div class="apparatusEntry" id="C_01" data-title="note textConst"><span class="tei_lemma">"… Conagesimo tertio": </span>"tertio" gestrichen, über der Zeile durch unleserliches Wort ersetzt; Korrektur mittels Punkten schließlich rückgängig gemacht</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="C_02" data-title="note textConst"><span class="tei_lemma">"… Carolina": </span>"Carolina" zunächst gestrichen und durch Punkte Streichung rückgängig gemacht</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e86" data-title="unclear">"autre": Unsichere Lesung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e92" data-title="unclear">"maire": Unsichere Lesung.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e107" data-title="gap "> Unleserliche Stelle (ca. 1 words)</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -395,10 +448,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -407,9 +456,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100222</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100222</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 29. Juni 2017 durch Solveig Schreiter</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

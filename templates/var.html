@@ -13,18 +13,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-10">
-                    <ol class="breadcrumb" data-template="app:if-matches" data-template-key="docType" data-template-value="var">
+                    <ol class="breadcrumb" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="var">
                         <li><a href="$link/index">Home</a></li>
-                        <li data-template="app:if-not-matches" data-template-key="docID" data-template-value="A070003"><a data-template="app:breadcrumb-var"/></li>
-                        <li data-template="app:if-matches" data-template-key="docID" data-template-value="A070003"><a href="$link/A002068.html">Carl Maria von Weber</a></li>
-                        <li data-template="app:if-not-matches" data-template-key="docID" data-template-value="A070003"><span data-template="app:print" data-template-key="docID">A040080</span></li>
-                        <li data-template="app:if-matches" data-template-key="docID" data-template-value="A070003"><span data-template="lang:translate">bio</span></li>
+                        <li data-template="app-shared:if-not-matches" data-template-key="docID" data-template-value="A070003"><a data-template="app:breadcrumb-var"/></li>
+                        <li data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A070003"><a href="$link/A002068.html">Carl Maria von Weber</a></li>
+                        <li data-template="app-shared:if-not-matches" data-template-key="docID" data-template-value="A070003"><span data-template="app-shared:print" data-template-key="docID">A040080</span></li>
+                        <li data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A070003"><span data-template="lang:translate">bio</span></li>
                     </ol>
-                    <ol class="breadcrumb" data-template="app:if-matches" data-template-key="docType" data-template-value="thematicCommentaries">
+                    <ol class="breadcrumb" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="thematicCommentaries">
                         <li><a href="$link/index">Home</a></li>
                         <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
                         <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
-                        <li><span data-template="app:print" data-template-key="docID">A040080</span></li>
+                        <li><span data-template="app-shared:print" data-template-key="docID">A040080</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -36,6 +36,7 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row" data-template="app:doc-details">
+            <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
@@ -46,15 +47,15 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                                <li class="gradient-light"><a data-template="app:set-attr" data-template-attr="href" data-template-key="xml-download-url">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div data-template="app:each" data-template-from="filterSections" data-template-to="filterSection">
+                    <div data-template="app-shared:each" data-template-from="filterSections" data-template-to="filterSection">
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a></h2>
                         <div class="panel-collapse collapse" data-template="facets:filter-body">
                             <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
-                                <label class="btn gradient-light" data-template="app:each" data-template-from="filterOptions" data-template-to="filterOption">
+                                <label class="btn gradient-light" data-template="app-shared:each" data-template-from="filterOptions" data-template-to="filterOption">
                                     <input type="checkbox" name="options" data-template="facets:filter-value"/> <span data-template="facets:filter-label">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
@@ -66,7 +67,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div data-template="app:output" data-template-key="transcription"/>
+                        <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2 data-template="lang:translate">backlinks</h2>
@@ -76,14 +77,10 @@
                         <h2>XML</h2>
                         <!-- loaded via AJAX request to ./xml.html -->
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        <!-- Download initiated -->
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="row" data-template="app:if-matches" data-template-key="docID" data-template-value="A070002">
+        <div class="row" data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A070002">
             <div class="col-md-9 piwik-opt-out">
                 <h2>Piwik Webanalyse</h2>
                 <iframe src="//www.weber-gesamtausgabe.de/piwik/index.php?module=CoreAdminHome&amp;action=optOut&amp;language=de"/>
@@ -93,25 +90,25 @@
     
     <div class="container documentFooter" data-template="app:documentFooter">
         <div class="row permaLink">
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="de">
+            <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
-                    <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                    <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
-            <div class="col-md-9" data-template="app:if-matches" data-template-key="lang" data-template-value="en">
+            <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
                 <h4>Proposed citation</h4>
-                <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
                     <br/>
-                    <span data-template="app:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                    <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>
         </div>
         <div class="row bugreport">
             <div class="col-md-9">
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-                    <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-                <p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-                    <a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                    <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                    <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
             </div>
         </div>
     </div>

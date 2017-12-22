@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000838" />
         <meta property="dc:description" content="Biographische Informationen zu Franz Carl Hiemer. Lebensdaten: 9. August 1768–15. November 1822. Tätigkeiten: Schauspieler, Theaterdichter, Beamter, Maler. Wirkorte: Stuttgart" />
         <meta name="description" content="Biographische Informationen zu Franz Carl Hiemer. Lebensdaten: 9. August 1768–15. November 1822. Tätigkeiten: Schauspieler, Theaterdichter, Beamter, Maler. Wirkorte: Stuttgart" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,12 +226,51 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000838.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000838.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000838.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000838.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Franz Carl Hiemer (Quelle: Wikimedia)" alt="Franz Carl Hiemer (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Hiemer.jpg/200px-Hiemer.jpg" />
+                            <img class="img-responsive" title="Franz Carl Hiemer (Quelle: Wikimedia)" alt="Franz Carl Hiemer (Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/70446bcc22b0077ff8684e1c5733c9a3.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -318,7 +361,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A000838/contacts.html">Kontakte<small> (1)</small></a></li>
-                                <li><a href="#backlinks" data-target="A000838/backlinks.html">Rückverweise<small> (116)</small></a></li>
+                                <li><a href="#backlinks" data-target="A000838/backlinks.html">Rückverweise<small> (118)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -346,13 +389,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/dnb.html">GND Eintrag</a>
+                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/adb.html">ADB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#ndbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/ndb.html">NDB Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#adbText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/adb.html">ADB Artikel</a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -361,7 +404,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000838/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000838.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -412,39 +455,39 @@
    </div>
                                                         <div>
       <h3 class="media-heading">Aufnahme in Karlsakademie</h3>
-      <p>Am 20. September 1778 wurde er in die Karlsakademie zu <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> aufgenommen (entwichen 1784 (1780/1789?), aber wieder eingeliefert). Entlassen im Juli 1791 (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 580</span>). Danach verdiente er seinen Lebensunterhalt zunächst vornehmlich durch Porträtmalerei.</p>
+      <p>Am 20. September 1778 wurde er in die Karlsakademie zu <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> aufgenommen (entwichen 1784 (1780/1789?), aber wieder eingeliefert). Entlassen im Juli 1791 (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 580</span>). Danach verdiente er seinen Lebensunterhalt zunächst vornehmlich durch Porträtmalerei.</p>
    </div>
                                                         <div>
       <h3 class="media-heading">Tätigkeit für die <span class="tei_hi_italic">Flora</span></h3>
       <p>Veröffentlichungen in der Zeitschrift <span class="tei_hi_italic">Flora</span> (anonym, teils unter Pseudonym „Eduard von Duglas“) (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 583f.</span>)</p>
    </div>
                                                         <div>
-      <h3 class="media-heading">Engagement am <span class="tei_placeName"><span class="8311611711611610397114116101114">Stuttgarter</span></span> Hoftheater</h3>
+      <h3 class="media-heading">Engagement am <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgarter</span> Hoftheater</h3>
       <p>als Mitglied in den Adreßbüchern 1799–1801 genannt, sang u.a. Basspartien (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 586f.); siehe auch die Beurteilung in: <span class="tei_hi_italic">Janus</span>, Bd. 4, Nr. 11 (November 1801), S. 384
       </span>)</p>
    </div>
                                                         <div>
-      <h3 class="media-heading">Kanzlist in <span class="tei_placeName"><span class="7210110510898114111110110">Heilbronn</span></span> u. <span class="tei_placeName"><span class="6910810811997110103101110">Ellwangen</span></span></h3>
-      <p>Anfang Februar 1803 zum 2. Kanzlisten beim Landvogtei-Gericht <span class="tei_placeName"><span class="7210110510898114111110110">Heilbronn</span></span> ernannt (Schwäbische Chronik 18. Februar), wenig später zum ersten Kanzlisten der Oberlandesregierung in <span class="tei_placeName"><span class="6910810811997110103101110">Ellwangen</span></span> (Schwäbische Chronik 24. Februar); 1804 dort Sekretär (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 589</span>)</p>
+      <h3 class="media-heading">Kanzlist in <span class="preview places A130247" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130247.html">Heilbronn</span> u. <span class="6910810811997110103101110">Ellwangen</span></h3>
+      <p>Anfang Februar 1803 zum 2. Kanzlisten beim Landvogtei-Gericht <span class="preview places A130247" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130247.html">Heilbronn</span> ernannt (Schwäbische Chronik 18. Februar), wenig später zum ersten Kanzlisten der Oberlandesregierung in <span class="6910810811997110103101110">Ellwangen</span> (Schwäbische Chronik 24. Februar); 1804 dort Sekretär (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 589</span>)</p>
    </div>
                                                         <div>
       <h3 class="media-heading">Schauspieler</h3>
-      <p>1804–1807 war er Hofschauspieler in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> (laut ADB: nach Gradmann, Das gelehrte Schwaben: um 1802 in Stuttgart).</p>
+      <p>1804–1807 war er Hofschauspieler in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> (laut ADB: nach Gradmann, Das gelehrte Schwaben: um 1802 in Stuttgart).</p>
    </div>
                                                         <div>
-      <h3 class="media-heading">Finanzsekretär in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span></h3>
-      <p>Im April 1806 wurde Hiemer zum Sekretär beim Oberfinanzdepartement <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span> ernannt, 1807 wechselte er zum Generalfinanzdirektorium. Zugleich war er 1809–1810 Sekretär im Rechnungsdepartement. (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 591</span>)</p>
+      <h3 class="media-heading">Finanzsekretär in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span></h3>
+      <p>Im April 1806 wurde Hiemer zum Sekretär beim Oberfinanzdepartement <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> ernannt, 1807 wechselte er zum Generalfinanzdirektorium. Zugleich war er 1809–1810 Sekretär im Rechnungsdepartement. (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 591</span>)</p>
                                                         </div>
                                                         <div>
    <h3 class="media-heading">Freundschaft mit Carl Maria von Weber</h3>
-   <p>gehörte zum engsten Freundeskreis <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> in dessen <span class="tei_placeName"><span class="8311611711611610397114116101114">Stuttgarter</span></span> Zeit; trug in der Gesellschaft, die sich aus diesem Kreis zusammensetzte, laut <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> (Lebensbild, Bd. 1, S. 144) den Scherznamen „Reimwol“ (Weber hieß „Krautsalat“); schrieb die Libretti zu <span class="tei_hi_italic"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> und <span class="tei_hi_italic"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu Hassan</span></span>, Weber vertonte zudem seinen Text zum <span class="tei_hi_italic"><span class="preview works A020129" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020129.html">Wiegenlied</span></span></p>
+   <p>gehörte zum engsten Freundeskreis <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> in dessen <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgarter</span> Zeit; trug in der Gesellschaft, die sich aus diesem Kreis zusammensetzte, laut <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> (Lebensbild, Bd. 1, S. 144) den Scherznamen „Reimwol“ (Weber hieß „Krautsalat“); schrieb die Libretti zu <span class="tei_hi_italic"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> und <span class="tei_hi_italic"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu Hassan</span></span>, Weber vertonte zudem seinen Text zum <span class="tei_hi_italic"><span class="preview works A020129" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020129.html">Wiegenlied</span></span></p>
       </div>
                                                         <div>
       <h3 class="media-heading">Erster Sekretär und Registrator</h3>
       <p>1813–1815 war er der erste Sekretär und Registrator im Oberhofmarschallamt und der Oberhofökonomiekommission.</p>
    </div>
                                                         <div>
-      <h3 class="media-heading">Tod in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span></h3>
+      <h3 class="media-heading">Tod in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span></h3>
       <p>Verstarb am 15. November 1822 im Gasthof zum Wilden Mann „an einem Stick- und Schlagflusse“. (<span class="preview biblio A112700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112700.html">Krauß, S. 592</span>)</p>
    </div>
                                                     
@@ -452,11 +495,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -473,14 +516,15 @@
                                                             <li><a title="Biblioteca Nacional de España (mapping provided by VIAF) [XX1593444]" href="http://catalogo.bne.es/uhtbin/authoritybrowse.cgi?action=display&amp;authority_id=XX1593444">BNE [by http://viaf.org/viaf/32261779]</a></li>
                                                             <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [14683623f]" href="http://catalogue.bnf.fr/ark:/12148/cb14683623f">BNF [by http://viaf.org/viaf/32261779]</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01264792]" href="http://thesaurus.cerl.org/record/cnp01264792">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/116797126&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/116797126">Deutsche Digitale Bibliothek</a></li>
                                                             <li><a title="Bildindex der Kunst und Architektur - GND-referenzierte Personen, Koerperschaften, Geografika, Werke, Sachschlagworte" href="http://www.bildindex.de/gnd-beacon/116797126">Deutsches Dokumentationszentrum fuer Kunstgeschichte - Bildarchiv Foto Marburg (3)</a></li>
                                                             <li><a title="Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Hiemer, Franz Karl (Carl)]" href="http://www.oper-um-1800.uni-koeln.de/einzeldarstellung_librettist.php?id_librettist=494">Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Librettisten [Hiemer, Franz Karl (Carl)]</a></li>
                                                             <li><a title="Mapping GND zu MusicBrainz" href="http://beacon.findbuch.de/gnd-resolver/pw_musicbrainz/116797126">Discographie bei MusicBrainz</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)116797126">HBZ-Verbundkatalog (26)</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)116797126">HBZ-Verbundkatalog</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/116797126">HeBIS-Verbundzentrale (29)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000081117518]" href="http://isni.org/isni/0000000081117518">ISNI [by http://viaf.org/viaf/32261779]</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=116797126">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=116797126">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                             <li><a title="Badische Landesbibliothek; Württembergische Landesbibliothek" href="http://www.statistik-bw.de/LABI/PDB.asp?ID=116797126">Landesbibliographie Baden-Württemberg</a></li>
                                                             <li><a title="In LEO-BW enthaltene Personendatenbank der Landesbibliographie Baden-Württemberg" href="http://www.leo-bw.de/web/guest/detail/-/Detail/details/PERSON/wlbblb_personen/116797126/person">LEO-BW - Landeskundliches Informationssystem Baden-Württemberg</a></li>
                                                             <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A116797126">Literatur im Katalog der Universitätsbibliothek Heidelberg (4)</a></li>
@@ -501,9 +545,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -560,9 +601,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000838</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000838</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Schreiter, Solveig" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030497" />
         <meta property="dc:description" content="kurzer Abriss der Jugendzeit Webers, geht kurz auf den Unterricht bei seinem Vater, Michael Haydn, Heuschkel, Valesi und Kalcher ein; nennt erste komponierte Werke, u.a. Waldmädchen und Schmoll, Unterrichtsjahre bei Vogler; die Breslauer und Prager Zeit wird nur kurz angedeutet; Entstehung der Skizze ein Jahr nach Antritt seiner Stelle in Dresden" />
         <meta name="description" content="kurzer Abriss der Jugendzeit Webers, geht kurz auf den Unterricht bei seinem Vater, Michael Haydn, Heuschkel, Valesi und Kalcher ein; nennt erste komponierte Werke, u.a. Waldmädchen und Schmoll, Unterrichtsjahre bei Vogler; die Breslauer und Prager Zeit wird nur kurz angedeutet; Entstehung der Skizze ein Jahr nach Antritt seiner Stelle in Dresden" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030497.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -347,41 +389,39 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6511710311598117114103" /> <span title="Augsburg">Augsburg</span> 
+                                    <input type="checkbox" name="options" value="A130017" /> <span title="Augsburg">Augsburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6611410111510897117" /> <span title="Breslau">Breslau</span> 
+                                    <input type="checkbox" name="options" value="A130013" /> <span title="Breslau">Breslau</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="6797114108115114117104101" /> <span title="Carlsruhe">Carlsruhe</span> 
+                                    <input type="checkbox" name="options" value="A130060" /> <span title="Carlsruhe (Oberschlesien)">Carlsruhe (Oberschlesien)</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="69117116105110" /> <span title="Eutin">Eutin</span> 
+                                    <input type="checkbox" name="options" value="A130030" /> <span title="Eutin">Eutin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011410112198101114103" /> <span title="Freyberg">Freyberg</span> 
+                                    <input type="checkbox" name="options" value="A130051" /> <span title="Freiberg (Sachsen)">Freiberg (Sachsen)</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="729710998117114103" /> <span title="Hamburg">Hamburg</span> 
+                                    <input type="checkbox" name="options" value="A130009" /> <span title="Hamburg">Hamburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="721051081009811711410310497117115101110" /> <span title="Hildburghausen">Hildburghausen</span> 
+                                    <input type="checkbox" name="options" value="A130061" /> <span title="Hildburghausen">Hildburghausen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7725211099104101110" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8010111610111411598117114103" /> <span title="Petersburg">Petersburg</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130023" /> <span title="Salzburg">Salzburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="839710812298117114103" /> <span title="Salzburg">Salzburg</span> 
+                                    <input type="checkbox" name="options" value="A130024" /> <span title="St. Petersburg">St. Petersburg</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711611610397114116" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110115" /> <span title="Wiens">Wiens</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -394,8 +434,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Ich bin den 18. Decbr. 1786 zu <span class="tei_placeName"><span class="69117116105110">Eutin</span></span>
-               im <span class="tei_placeName"><span class="tei_region">Holsteinschen</span></span> geboren. Ich genoß der
+                                        <p>Ich bin den 18. Decbr. 1786 zu <span class="preview places A130030" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130030.html">Eutin</span>
+               im <span class="tei_region">Holsteinschen</span> geboren. Ich genoß der
                sorgfältigsten Erziehung mit besonderer Vorliebe für die schönen Künste, da mein <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> selbst ausgezeichnet Violine spielte. Die
                eingezogene Weise, in der meine Familie lebte, der stete Umgang mit erwachsenen <span class="tei_pb" title="Seitenumbruch"> | </span>
                gebildeten Menschen, die ängstliche Vorsicht, mir keine andere verwildernde
@@ -410,17 +450,17 @@
                wirksamer durch das Erwecken der eigenen Kraft, und der Nothwendigkeit, aus eigenem
                Nachdenken und Fleiße zu schöpfen. Den wahren, besten Grund zur kräftigen, deutlichen
                und charaktervollen Spielart auf dem Clavier, und gleicher Ausbildung beider Hände
-               habe ich dem braven, strengen und eifrigen <span class="preview persons A000835" data-ref="/exist/apps/WeGA-WebApp/de/A000835.html"><span class="tei_choice"><span class="tei_corr">Heuschkel</span><a class="noteMarker" id="ref-d41477e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41477e24">‡</a></span></span> in
-                     <span class="tei_placeName"><span class="721051081009811711410310497117115101110">Hildburghausen</span></span> (1796-97) zu
+               habe ich dem braven, strengen und eifrigen <span class="preview persons A000835" data-ref="/exist/apps/WeGA-WebApp/de/A000835.html"><span class="tei_choice"><span class="tei_corr">Heuschkel</span><a class="noteMarker" id="ref-d10e22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e22">‡</a></span></span> in
+                     <span class="preview places A130061" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130061.html">Hildburghausen</span> (1796-97) zu
                verdanken. So wie mein <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> die allmälige
                Entwickelung meines Talentes sah, sorgte er mit der liebevollsten Aufopferung für
                dessen Ausbildung. Er brachte mich nach <span class="tei_pb" title="Seitenumbruch"> | </span>
-                  <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> zu <a class="preview persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html"><span class="tei_hi_spaced_out">Michael Haydn</span></a>. Der ernste Mann
+                  <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> zu <a class="preview persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html"><span class="tei_hi_spaced_out">Michael Haydn</span></a>. Der ernste Mann
                stand dem Kinde noch zu fern, ich lernte wenig bei ihm und mit großer Anstrengung.
                Hier ließ mein <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> zu meiner Aufmunterung 1798
                mein erstes Werk, <span class="preview works A020327" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020327.html">6 Fughetten</span>, drucken, die
                freundlich in der musikalischen Zeitung angezeigt wurden<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>. Ende 1798 kam ich nach
-                     <span class="tei_placeName"><span class="7725211099104101110">München</span></span>, erhielt Singunterricht
+                     <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span>, erhielt Singunterricht
                bei <a class="preview persons A008419" href="/exist/apps/WeGA-WebApp/de/A008419.html">Vallesi</a>, und
                in der Komposition bei dem jetzigen Hof-Organisten <a class="preview persons A000958" href="/exist/apps/WeGA-WebApp/de/A000958.html"><span class="tei_hi_spaced_out">Kalcher</span></a>. Dem klaren, stufenweise
                fortschreitenden, sorgfältigen Unterrichte des Letztern danke ich größtentheils die
@@ -431,19 +471,19 @@
                aus. Die Vorliebe zum Dramatischen fing an, sich bestimmt auszusprechen. Ich schrieb
                unter den Augen des <a class="preview persons A000958" href="/exist/apps/WeGA-WebApp/de/A000958.html">Lehrers</a> eine Oper: <span class="tei_hi_spaced_out"><span class="preview works A020031" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020031.html">Die Macht der Liebe und des Weins</span></span>, <span class="tei_hi_spaced_out">eine <span class="preview works A020001" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020001.html">große Messe</span></span>, mehrere <span class="tei_hi_spaced_out">Klaviersonaten</span>, <span class="tei_hi_spaced_out">Variationen</span>, <span class="tei_hi_spaced_out">Violin-Trio’s</span>, <span class="tei_hi_spaced_out">Lieder</span>, <span class="tei_hi_spaced_out">u.s.w.</span>, die später alle ein Raub der Flammen wurden. Der rege
                jugendliche Geist, der alles Neue und Aufsehen Erregende mit <span class="tei_pb" title="Seitenumbruch"> | </span> Hast sich anzueignen
-               suchte, erregte auch in mir die Idee, dem damals von <span class="preview persons A001812" data-ref="/exist/apps/WeGA-WebApp/de/A001812.html"><span class="tei_choice"><span class="tei_corr">Senefelder</span><a class="noteMarker" id="ref-d41477e101" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41477e101">‡</a></span></span> neu erfundenen
+               suchte, erregte auch in mir die Idee, dem damals von <span class="preview persons A001812" data-ref="/exist/apps/WeGA-WebApp/de/A001812.html"><span class="tei_choice"><span class="tei_corr">Senefelder</span><a class="noteMarker" id="ref-d10e96" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e96">‡</a></span></span> neu erfundenen
                Steindrucke den Rang abzulaufen. Ich glaubte endlich die Erfindung auch gemacht zu
                haben, und zwar mit einer zweckmäßigern Maschine versehen. Der Wille diese Sache in’s
                Große zu treiben, bewog uns, nach
-                  <span class="tei_placeName"><span class="7011410112198101114103">Freyberg</span></span> zu ziehen, wo alles
+                  <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freyberg</span> zu ziehen, wo alles
                Material am bequemsten zur Hand schien. Die Weitläufigkeit und das Mechanische,
                Geisttödtende des Geschäftes ließen mich aber bald die Sache aufgeben, und mit
                verdoppelter Lust die Komposition fortsetzen. Ich schrieb die vom <a class="preview persons A001886" href="/exist/apps/WeGA-WebApp/de/A001886.html">Ritter von Steinsberg</a> gedichtete Oper: <span class="tei_hi_spaced_out"><span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">das
                   Waldmädchen</span></span>, welche im Novbr. 1800 auch da gegeben wurde, und sich
                dann später weiter verbreitete, als mir lieb seyn konnte (in
-                     <span class="tei_placeName"><span class="87105101110">Wien</span></span> 14mal gegeben, in
-                     <span class="tei_placeName"><span class="8011497103">Prag</span></span> in’s Böhmische übersetzt,
-               und in <span class="tei_placeName"><span class="8010111610111411598117114103">Petersburg</span></span> mit Beifall
+                     <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> 14mal gegeben, in
+                     <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> in’s Böhmische übersetzt,
+               und in <span class="preview places A130024" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130024.html">Petersburg</span> mit Beifall
                gesehen), da es ein höchst unreifes, nur vielleicht hin und wieder nicht ganz von
                Erfindung leeres Produkt war, von dem ich namentlich den zweiten Akt in 10 Tagen
                geschrieben hatte. Eine der vielen unseligen Folgen der auf ein junges Gemüth so
@@ -451,13 +491,13 @@
                nachstrebt. Auf eben diese Art weckte ein Artikel der Musik.Zeitung die Idee in mir,
                auf ganz andere Weise <span class="tei_pb" title="Seitenumbruch"> | </span> zu schreiben, ältere, vergessene Instrumente wieder in Gebrauch
                zu bringen <span class="tei_hi_spaced_out">u.s.w.</span> – In Familien-Geschäften nach
-                     <span class="tei_placeName"><span class="839710812298117114103">Salzburg</span></span> gereist, schrieb ich
+                     <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> gereist, schrieb ich
                da, meinen neuen Planen gemäß, die Oper: <span class="tei_hi_spaced_out"><span class="preview works A020034" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020034.html">Peter Schmoll und seine Nachbarn</span></span> (1801), die
                meinen alten, durch manches Neue darin höchlich erfreuten, Lehrer, <a class="preview persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html">Michael Haydn</a>, bewog, mir ein ungemein gütiges Zeugniß
-               darüber zu ertheilen (abgedruckt in <a class="preview persons A000612" href="/exist/apps/WeGA-WebApp/de/A000612.html">Gerbers</a> Tonk. Lexikon). Sie wurde in <span class="tei_placeName"><span class="6511710311598117114103">Augsburg</span></span>
+               darüber zu ertheilen (abgedruckt in <a class="preview persons A000612" href="/exist/apps/WeGA-WebApp/de/A000612.html">Gerbers</a> Tonk. Lexikon). Sie wurde in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span>
                aufgeführt ohne sonderlichen Erfolg, wie natürlich. Die Ouvertüre habe ich später
-               umgearbeitet und stechen lassen bei <span class="preview persons A000656" data-ref="/exist/apps/WeGA-WebApp/de/A000656.html"><span class="tei_choice"><span class="tei_corr">Gombart</span><a class="noteMarker" id="ref-d41477e156" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41477e156">‡</a></span></span>. 1802 machte mein <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> eine musikalische Reise mit mir nach <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>, <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span>,
-               <span class="tei_placeName"><span class="tei_region">Holstein</span></span>, wo ich mit dem größten Eifer theoretische Werke sammelte und studirte.
+               umgearbeitet und stechen lassen bei <span class="preview persons A000656" data-ref="/exist/apps/WeGA-WebApp/de/A000656.html"><span class="tei_choice"><span class="tei_corr">Gombart</span><a class="noteMarker" id="ref-d10e145" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e145">‡</a></span></span>. 1802 machte mein <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a> eine musikalische Reise mit mir nach <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>, <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span>,
+               <span class="tei_region">Holstein</span>, wo ich mit dem größten Eifer theoretische Werke sammelte und studirte.
                Unglücklicherweise stieß ein <span class="tei_hi_antiqua"><a class="preview persons A001387" href="/exist/apps/WeGA-WebApp/de/A001387.html">Doctor Medicinae</a></span>
                alle meine schönen Lehrgebäude mit den oft wiederkehrenden Fragen: <span class="tei_hi_spaced_out">warum u.s.w.</span> über
                den Haufen, und stürzte mich in ein Meer von Zweifeln, aus dem mich nur nach und nach
@@ -465,7 +505,7 @@
                Systems rettete, so daß ich das viele Herrliche, das die alten Meister befohlen und
                festgestellt hatten, nun auch in seinen Grundursachen zu erforschen und in mir zu
                einem abgeschlossenen Ganzen zu formen suchte. Es drängte mich <span class="tei_pb" title="Seitenumbruch"> | </span> nach der Tonwelt
-               <span class="tei_placeName"><span class="87105101110115">Wiens</span></span>, und zum ersten Male trat ich hinaus in diese Welt. Hier lernte ich nebst dem
+               <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiens</span>, und zum ersten Male trat ich hinaus in diese Welt. Hier lernte ich nebst dem
                Umgange der bedeutendsten Künstler, des unvergeßlichen Vaters <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a> etc., den
                   <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt Vogler</a> kennen, der mit der Liebe, die jedem
                wirklich großen Geiste eigen ist, dem wahrhaft ernstgemeinten Streben freudig zu
@@ -484,24 +524,24 @@
                                         <p>Auf <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a> Rat gab ich, nicht ohne schwere
                Entsagung, das Ausarbeiten größerer Dinge auf, <span class="tei_pb" title="Seitenumbruch"> | </span> und widmete beinahe zwei Jahre dem
                emsigsten Studium der verschiedenartigsten Werke großer Meister, deren Bau,
-               Ideenführung und Mittelbenutzung wir gemeinschaftlich zergliederte<span class="tei_supplied" id="d41477e209"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>, und ich in
+               Ideenführung und Mittelbenutzung wir gemeinschaftlich zergliederte<span class="tei_supplied" id="d10e194"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>, und ich in
                einzelnen Studien zu erreichen und in mir klar zu machen suchte. Oeffentlich erschien
                in dieser Zeit nichts von mir, als ein paar Werkchen, <span class="preview works A020324" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020324.html">Variationen</span>, und der <span class="preview works A020348" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020348.html">Klavier=Auszug</span>
                der<a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a>schen Oper <span class="tei_hi_antiqua"><span class="preview works A020459" data-ref="/exist/apps/WeGA-WebApp/de/A002025/Werke/A020459.html">Samori</span></span>.</p>
-                                        <p>Ein Ruf zur Musikdirektorstelle nach <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> eröffnete mir ein neues Feld zur
+                                        <p>Ein Ruf zur Musikdirektorstelle nach <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> eröffnete mir ein neues Feld zur
                Erweiterung der Effektkenntnisse. Ich schuf da ein neues Orchester und Chor,
                überarbeitete manche frühere Arbeiten, und komponirte die Oper <span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span>, vom <span class="preview persons A001570" data-ref="/exist/apps/WeGA-WebApp/de/A001570.html">Prof.
-                  <span class="tei_sic">Rohde<a class="noteMarker" id="ref-d41477e237" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d41477e237">‡</a></span></span>, größtenteils. Die vielen Dienstgeschäfte ließen mich nicht viel zu eigenen
+                  <span class="tei_sic">Rohde<a class="noteMarker" id="ref-d10e221" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e221">‡</a></span></span>, größtenteils. Die vielen Dienstgeschäfte ließen mich nicht viel zu eigenen
                Arbeiten kommen, desto besser konnte ich aber die so vielfach gestalteten, und mit
                übergroßer Begierde in mich gesogenen verschiedenartigen Kunst-Prinzipe abgähren, und
                nach und nach das Selbstständige, vom Schöpfer Verliehene, hervortreten lassen.</p>
                                         <p>1806 zog mich der kunstliebende <a class="preview persons A000462" href="/exist/apps/WeGA-WebApp/de/A000462.html">Prinz Eugen von
-                  Würtemberg</a> an seinen Hof in <span class="tei_placeName"><span class="6797114108115114117104101">Carlsruhe</span></span> in <span class="tei_placeName"><span class="tei_region">Schlesien</span></span>. Hier schrieb ich
+                  Würtemberg</a> an seinen Hof in <span class="preview places A130060" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130060.html">Carlsruhe</span> in <span class="tei_region">Schlesien</span>. Hier schrieb ich
                <span class="preview works A020278 A020218" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020278.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020218.html">zwei Symphonieen</span>, mehrere <span class="75111110122101114116101">Konzerte</span> und <span class="preview works A020296" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020296.html">Harmoniestücke</span>. Der Krieg zerstörte das
                niedliche Theater und die brave Kapelle. Ich <span class="tei_pb" title="Seitenumbruch"> | </span> trat eine Kunstreise an, von den
                ungünstigsten Verhältnissen der damaligen Zeit begleitet. Ich entsagte also eine
                Zeitlang der Kunst als ihr unmittelbarer Diener, und lebte im Hause des <a class="preview persons A001210" href="/exist/apps/WeGA-WebApp/de/A001210.html">Herzogs Louis
-               von Würtemberg</a> in <span class="tei_placeName"><span class="8311611711611610397114116">Stuttgart</span></span>. Hier, von der freundlichen Theilnahme des trefflichen
+               von Würtemberg</a> in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span>. Hier, von der freundlichen Theilnahme des trefflichen
                   <a class="preview persons A000354" href="/exist/apps/WeGA-WebApp/de/A000354.html">Danzi</a> ermuntert und angeregt, schrieb ich eine
                Oper: <span class="tei_hi_antiqua"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span>, nach dem Sujet des frühern <span class="tei_hi_spaced_out"><span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Waldmädchens</span></span> von <a class="preview persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">Hiemer</a> neu bearbeitet,
                den <span class="tei_hi_spaced_out"><span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">ersten Ton</span></span>, <span class="preview works A020237" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020237.html">Ouvertüre</span>, umgearbeitete Singchöre, wieder <span class="preview works A020219 A020330 A020331 A020338" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020219.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020330.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020331.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020338.html">Klaviersachen</span> <span class="tei_hi_spaced_out">u.s.w.</span>, bis
@@ -510,33 +550,33 @@
                Alles, was die Folgezeit gethan hat und thun wird, kann nur Abschleifen der scharfen
                Ecken, und das dem feststehenden Grunde nothwendige Verleihen von Klarheit und
                Faßlichkeit seyn.</p>
-                                        <p>Ich durchzog <span class="tei_placeName"><span class="tei_country">Deutschland</span></span> nach verschiedenen Richtungen, und die Liebe, mit der ich im
+                                        <p>Ich durchzog <span class="tei_country">Deutschland</span> nach verschiedenen Richtungen, und die Liebe, mit der ich im
                Ganzen meine Leistungen als ausübender und dichtender Künstler aufgenommen sah, der
                Ernst, der ihnen bei oft heftigem Widerspruche und Anfällen doch stets geweiht wurde,
                ließ auch mich alle die Kraft, und alle die Reinheit des festen Willens aufbieten, die
-               allein den Menschen zum wahren Priester seiner <span class="tei_pb" title="Seitenumbruch"> | </span> Kunst heiligt. In <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span>, <span class="tei_placeName"><span class="7725211099104101110">München</span></span>,
-               <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, <span class="tei_placeName"><span class="87105101110">Wien</span></span> <span class="tei_hi_spaced_out">u.s.w.</span> wurden meine Opern gegeben, meine Conzerte besucht. Noch einmal sah
+               allein den Menschen zum wahren Priester seiner <span class="tei_pb" title="Seitenumbruch"> | </span> Kunst heiligt. In <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span>, <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span>,
+               <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> <span class="tei_hi_spaced_out">u.s.w.</span> wurden meine Opern gegeben, meine Conzerte besucht. Noch einmal sah
                ich den trefflichen <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt Vogler</a>, wenige Zeitspannen
                vor seinem Hingehen, wie er sich hingab, zweien mit herrlichen Gottesgaben beschenkten
                Kunstjüngern, <span class="tei_hi_spaced_out"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gensbacher</a></span>. Im Vereine mit diesen genoß ich, gereifter
                und selbst zum Sichten fähiger, noch seine tiefen Erfahrungen, und schrieb eine Oper:
-               <span class="tei_hi_antiqua"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu-Hassan</span></span> (Darmstadt 1810). Nur später noch einmal in <span class="tei_placeName"><span class="87105101110">Wien</span></span> sahe ich ihn, im
+               <span class="tei_hi_antiqua"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu-Hassan</span></span> (Darmstadt 1810). Nur später noch einmal in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> sahe ich ihn, im
                freudigsten Antheile an meinem Streben. Friede seiner Asche!</p>
-                                        <p>Von 1813-1816 leitete ich die Oper in <span class="tei_placeName"><span class="8011497103">Prag</span></span>, nachdem ich sie ganz neu organisirt
+                                        <p>Von 1813-1816 leitete ich die Oper in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span>, nachdem ich sie ganz neu organisirt
                hatte. Ganz nur meiner Kunst lebend, in der Ueberzeugung, nur zu ihrer Beförderung und
-               Pflege geschaffen zu seyn, legte ich die Direktion in <span class="tei_placeName"><span class="8011497103">Prag</span></span> nieder, da mein Zweck
+               Pflege geschaffen zu seyn, legte ich die Direktion in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> nieder, da mein Zweck
                erreicht, und das, was bei dem beschränkenden Verhältnisse einer Privat-Direktion
                geschehen konnte, aufgebaut war, und nur eines rechtlichen Wärters zum Weiterbestehen
                bedurfte.</p>
                                         <p>Frei zog ich abermals in die Welt, ruhig den Wirkungskreis erwartend, den mir das
                Schicksal zuführen würde. Viele und schöne Erbietungen kamen mir von allen Seiten
-               entgegen; der Ruf <span class="tei_pb" title="Seitenumbruch"> | </span> zur Gründung einer deutschen Oper in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> konnte allein mich
+               entgegen; der Ruf <span class="tei_pb" title="Seitenumbruch"> | </span> zur Gründung einer deutschen Oper in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> konnte allein mich
                auf’s Neue festhalten. Und so bin ich denn mit Fleiß und Sorgsamkeit an dem mir
                übertragenen Werke – und wenn sie einmal einen Stein über meine Hülle legen, so
                werden sie mit Wahrheit darauf schreiben können: "Hier liegt einer, der es wahrhaft
                redlich und rein mit Menschen und Kunst meinte." </p>
                                         <p class="tei_closer textAlign-left">
-               <span class="tei_dateline textAlign-right"><span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> d. 26. März 1818<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.</span>
+               <span class="tei_dateline textAlign-right"><span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> d. 26. März 1818<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.</span>
             </p>
                                     </div>
                                 </div>
@@ -574,7 +614,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">HellS I (Vorwort)</span> (1818), S. V–XIV</p>
+                                <p class="biblio-entry"><span class="journalTitle">HellS I (Vorwort)</span> (1828), S. V–XIV</p>
                                 
                                 <div>
                                     
@@ -591,23 +631,23 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d41477e237" data-title="sic">"Rohde": sic!</div>
+                                            <div class="apparatusEntry" id="d10e221" data-title="sic">"Rohde": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d41477e24" data-title="choice">recte "Heuschkel": in der Vorlage "Hauschkel"</div>
+                                            <div class="apparatusEntry" id="d10e22" data-title="choice">recte "Heuschkel": in der Vorlage "Hauschkel"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… der musikalischen Zeitung angezeigt wurden": </span>vgl. AMZ 1 (1798/99), Nr. 2 (10.10.1798), Sp. 32</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41477e101" data-title="choice">recte "Senefelder": in der Vorlage "von
+                                            <div class="apparatusEntry" id="d10e96" data-title="choice">recte "Senefelder": in der Vorlage "von
                   Sonnenfels"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d41477e156" data-title="choice">recte "Gombart": in der Vorlage "Gambart"</div>
+                                            <div class="apparatusEntry" id="d10e145" data-title="choice">recte "Gombart": in der Vorlage "Gambart"</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… Dresden d. 26. März 1818": </span>vgl. auch <span class="preview diaries A060453 A060454" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060453.html /exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060454.html">TB unter 29. und 30. März 1818</span>. </div>
@@ -626,10 +666,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -638,9 +674,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030497</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030497</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-30T09:42:10.292572Z" />
+        <meta property="dc:date" content="2017-12-14T13:22:04.446164Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -240,14 +243,70 @@
                                 
                                     <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
+                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">Betrachtungen über die Szenerie im „Freischütz“ (Teil 1 von 2) (Dresden, Mai 1822)</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -255,11 +314,19 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000040" /> <span title="Apel, August">Apel, August</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000141" /> <span title="Bergmann, Gottfried">Bergmann, Gottfried</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002578" /> <span title="Bürger, Gottfried August">Bürger, Gottfried August</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000565" /> <span title="Funk, Friederike">Funk, Friederike</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000801" /> <span title="Hendel-Schütz, Henriette">Hendel-Schütz, Henriette</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A007869" /> <span title="Herder, Johann Gottfried von">Herder, Johann Gottfried von</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002248" /> <span title="Kanow, Friedrich">Kanow, Friedrich</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002249" /> <span title="Keller, Karl Johann Gottfried">Keller, Karl Johann Gottfried</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Kind, Friedrich">Kind, Friedrich</span> 
                                 </label><label class="btn gradient-light">
@@ -276,6 +343,10 @@
                                     <input type="checkbox" name="options" value="A001821" /> <span title="Shakespeare, William">Shakespeare, William</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009050" /> <span title="Velde, Carl Franz van der">Velde, Carl Franz van der</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002148" /> <span title="Wilhelmi, Georg Wilhelm">Wilhelmi, Georg Wilhelm</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002211" /> <span title="Zucker, Julie">Zucker, Julie</span> 
                                 </label>
                             </div>
                         </div>
@@ -307,13 +378,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="71111116116111114112" /> <span title="Gottorp">Gottorp</span> 
+                                    <input type="checkbox" name="options" value="A130085" /> <span title="Schleswig">Schleswig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8399104108101115119105103" /> <span title="Schleswig">Schleswig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -325,11 +394,15 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="6510397116104101" /> <span title="Agathe">Agathe</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="6510397116104101110" /> <span title="Agathen">Agathen</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="6511011099104101110" /> <span title="Annchen">Annchen</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="6611711410310310110511511632971171023282111100101110115116101105110" /> <span title="Burggeist auf Rodenstein">Burggeist auf Rodenstein</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="679711511297114" /> <span title="Caspar">Caspar</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="679711511297114115" /> <span title="Caspars">Caspars</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="671041111144570252104114101114" /> <span title="Chor-Führer">Chor-Führer</span> 
                                 </label><label class="btn gradient-light">
@@ -337,13 +410,15 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="69105110115105101100108101114" /> <span title="Einsiedler">Einsiedler</span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="69114101109105116101110" /> <span title="Eremiten">Eremiten</span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="69114108107246110105103" /> <span title="Erlkönig">Erlkönig</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="10410110510846327211798101114116117115" /> <span title="heil. Hubertus">heil. Hubertus</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="741111049711011097" /> <span title="Johanna">Johanna</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="741171101031021149711732109105116321001011093211110810010111098117114103105115991041011103272111114110101" /> <span title="Jungfrau mit dem oldenburgischen Horne">Jungfrau mit dem oldenburgisch…</span> 
+                                    <input type="checkbox" name="options" value="741171101031021149711732109105116321001011093279108100101110981171141031051159910410111011110810010111098117114103105115991041011103272111114110101" /> <span title="Jungfrau mit dem Oldenburgischenoldenburgischen Horne">Jungfrau mit dem Oldenburgisch…</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="7510510810597110" /> <span title="Kilian">Kilian</span> 
                                 </label><label class="btn gradient-light">
@@ -366,42 +441,37 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">III. <span class="tei_hi_spaced_out">Einiges</span><br /> über scenische Anordnungen,<br /> insbesondere<br /> mit Beziehung auf die Oper:<br /> <span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischütz</span></span>.
-            </h2>
-                                        <h3 class="docHeader textAlign-left">2. <span class="tei_hi_spaced_out">Auch eine Stimme</span><br /> über
-            die erste Aufführung <span class="tei_hi_spaced_out">des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>en</span> auf<br /> dem königl. sächs. Hoftheater, am
-               <span class="tei_date">26. Jan. 1822</span>.</h3>
-                                        <p><span class="tei_supplied" id="d157940e37"><span class="brackets_supplied">[</span><a class="preview writings A031048" href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">fortgesetzt</a><span class="brackets_supplied">]</span></span></p>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center">III.<br /> <span class="tei_hi_spaced_out">Einiges</span><br /> <span class="tei_hi_spaced_out">über scenische Anordnungen</span>,<br /> <span class="tei_hi_spaced_out">insbesondere</span><br /> <span class="tei_hi_spaced_out">mit Beziehung auf die Oper</span>:<br /> <span class="tei_hi_spaced_out"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischütz</span></span>.</span></span><a class="noteMarker" id="ref-d10e4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e4">‡</a></span></h2>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center">2.<br /> <span class="tei_hi_spaced_out">Auch eine Stimme</span><br /> <span class="tei_hi_spaced_out">über
+            die</span><br /> erste Aufführung des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>en auf dem königl. sächs. Hoftheater, am
+               <span class="tei_date">26. Jan. 1822</span>.</span></span><a class="noteMarker" id="ref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">‡</a></span></h3>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e74"><span class="brackets_supplied">[</span><a class="preview writings A031048" href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">Fortsetzung</a><span class="brackets_supplied">]</span></span></span></span><a class="noteMarker" id="ref-d10e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e71">‡</a></span></p>
                                         <p>Man gestattet jedem Beschauer eines theatralischen Kunstwerks eine Stimme darüber,
-               falls er sie bloß für <span class="tei_hi_spaced_out">die seinige</span> angesehen wissen will;
+               falls er sie <span class="tei_app"><span class="tei_lem">blos</span><a class="noteMarker" id="ref-d10e80" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e80">‡</a></span> für <span class="tei_hi_spaced_out">die seinige</span> angesehen wissen will;
                es ist daher wohl keine Anmaßung, wenn auch der Dichter, der mit dem, was er aus- und
                nachgebildet hat, sattsam vertraut seyn muß, sich hiezu für berechtigt hält. Ueber
-               die Dichtung dieser Oper mögen Kenner musikalischer Poesie und <span class="tei_hi_spaced_out">der allgemeinen
-                  Stellung der Poesie zur Composition</span> <a href="#footnote01">*)</a>
-               urtheilen, welche das Buch, wie es bei <span class="tei_hi_spaced_out"><span class="tei_hi_spaced_out">Göschen</span></span> in Druck
-               erschienen ist <a href="#footnote02"></a>, mit <span class="tei_hi_spaced_out">Apel</span>’s Erzählung zusammen gehalten
-               haben. Nach einer, vielleicht unrichtigen Abschrift, nach einer mehr oder minder gelungenen Aufführung, nach einer das Ganze wohl gar bis zum – Nichtsinn entstellenden Verstümmelung, irgend ein Dichterwerk beurtheilen, ist eine Voreiligkeit, die sich kein wahrhaft Berufener, sondern nur ein, nach den neuesten Neuigkeiten heißhungriger Theater-Corresponoent gestatten wird.  
-               
-               
+               die Dichtung dieser Oper mögen Kenner musikalischer Poesie und <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">der allgemeinen Stellung der Poesie zur Composition</span></span><a class="noteMarker" id="ref-d10e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e89">‡</a></span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>
+               urthei<span class="tei_pb" title="Seitenumbruch zu S. 106">|</span>len, welche das Buch, wie es bei <span class="tei_hi_spaced_out"><span class="tei_hi_spaced_out">Göschen</span></span> in Druck
+               erschienen ist, <span class="tei_app"><span class="tei_lem"><a href="#footnote02" id="backref-footnote02" class="fn-ref">*)</a></span><a class="noteMarker" id="ref-d10e124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e124">‡</a></span> mit <span class="tei_hi_spaced_out">Apel</span>’s Erzählung zusammen gehalten
+               <span class="tei_app"><span class="tei_lem">haben.</span><a class="noteMarker" id="ref-d10e135" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e135">‡</a></span>  <span class="tei_app"><span class="tei_lem">Nach einer, vielleicht unrichtigen Abschrift, nach einer mehr oder minder gelungenen Aufführung, nach einer das Ganze wohl gar bis zum – Nichtsinn entstellenden Verstümmelung, irgend ein Dichterwerk beurtheilen, ist eine Voreiligkeit, die sich kein wahrhaft Berufener, sondern nur ein, nach den neuesten Neuigkeiten heißhungriger Theater-Correspondent gestatten wird.</span><a class="noteMarker" id="ref-d10e144" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e144">‡</a></span>  
                Ueber die
-               Comosition ist bereits durch fast beispiellos vielfältige Aufführungen in
-               <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, <span class="tei_placeName"><span class="87105101110">Wien</span></span> und anderwärts, so wie durch die hiesige
-               glänzende Aufnahme entschieden worden; ich enthalte mich dießfalls jedes
+               Composition ist bereits durch fast beispiellos vielfältige Aufführungen in
+               <span class="tei_app"><span class="tei_lem"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> und anderwärts,</span><a class="noteMarker" id="ref-d10e149" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e149">‡</a></span> so wie durch die hiesige
+               glänzende Aufnahme entschieden <span class="tei_app"><span class="tei_lem">worden; ich</span><a class="noteMarker" id="ref-d10e166" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e166">‡</a></span> enthalte mich dießfalls jedes
                Urtheils, da ich, wenn auch vielleicht etwas innere Musik, doch durchaus keine
-               regelrechte Kenntniß der äußern besitze. Ich beschränke mich hier auf Costum, 
-               Decoration und scenische Anordnung zugleich
-               aber, wie schon in der Aufschrift erwähnt, auf die erste Aufführung.</p>
-                                        <p>Man hat diese als „eine wahrhaft geniale und in allen Hauptparthieen vollendet zu nennende“ gepriesen <a href="#footnote03">*)</a>; ich fürchte keine Mißdeutung, wenn ich sie (in
-               Hinsicht auf obangezeigte Gegenstände) <span class="tei_hi_spaced_out">als erste</span>,
+               regelrechte Kenntniß der äußern besitze. Ich beschränke mich hier auf <span class="tei_app"><span class="tei_lem">Costum, 
+                  Decoration<span class="tei_pb" title="Seitenumbruch zu S. 107"> | </span> und scenische Anordnung – –</span><a class="noteMarker" id="ref-d10e172" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e172">‡</a></span> zugleich aber, wie schon in der Aufschrift erwähnt, auf die erste Aufführung.</p>
+                                        <p>Man hat diese <span class="tei_app"><span class="tei_lem">als „eine wahrhaft geniale und in allen Hauptparthieen vollendet zu nennende“ gepriesen; <a href="#footnote03" id="backref-footnote03" class="fn-ref">*)</a></span><a class="noteMarker" id="ref-d10e182" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e182">‡</a></span> ich fürchte keine Mißdeutung, wenn ich sie (<span class="tei_app"><span class="tei_lem">in
+               Hinsicht auf obenangezeigte Gegenstände</span><a class="noteMarker" id="ref-d10e195" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e195">‡</a></span>) <span class="tei_hi_spaced_out">als erste</span>,
                zumal wenn man die vielen Einzelheiten, die hier zusammen wirken müssen, die
                mancherlei Schwierigkeiten, die hier zu besiegen sind, gehörig in Anschlag bringt,
-               nur für großen Theils gelungen, obwohl der Liberalität der General-Direction, so wie dem
-               Eifer aller dabei Anordnenden und vorzugweise Beschäftigten, durchgängig Ehre bringend
-               anerkenne.</p>
+               nur <span class="tei_app"><span class="tei_lem">für großen Theils</span><a class="noteMarker" id="ref-d10e204" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e204">‡</a></span> <span class="tei_app"><span class="tei_lem">gelungen, obwohl</span><a class="noteMarker" id="ref-d10e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e210">‡</a></span> der Liberalität der General-Direction, so wie dem
+               Eifer aller dabei Anordnenden und vorzugweise Beschäftigten, <span class="tei_app"><span class="tei_lem">durchgängig</span><a class="noteMarker" id="ref-d10e217" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e217">‡</a></span> Ehre bringend
+               anerkenne.</p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e222" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e222">‡</a></span>
                                         <p>Das männliche Costum ist untadelhaft, zeitgemäß ohne sclavische Nachäffung, und sehr
                kleidsam; weniger möchte dem weiblichen nachzurühmen seyn. Ich will hierüber nur
                Einiges anführen. – Das Stück spielt kurze Zeit nach dem dreißigjährigen Kriege,
-               großen Theils in der Familie eines zwar wohlhabenden, doch schlichten böhmischen
+               großen Theils<span class="tei_pb" title="Seitenumbruch zu S. 108"> | </span> in der Familie eines zwar wohlhabenden, doch schlichten böhmischen
                Försters. Gesetzt nun auch, daß bei <span class="6510397116104101">Agathe</span>’s erstem
                Erscheinen ein sittsames und zierliches Nachtgewand nicht für zulässig zu halten
                wäre, – wir sehen aber selbst eine <span class="769710012132779710798101116104">Lady Makbeth</span> leicht
@@ -411,62 +481,61 @@
                Fürsten <span class="7911611611110797114">Ottokar</span>’s Braut an den Thoren einer Stadt
                begrüßt werden sollte, und es scheint mir, als habe man bei der
                idyllisch-volksthümlichen Scene im dritten Akt das, nicht selten sehr
-               Wohlgefällige einer ländlichen und <span class="tei_hi_spaced_out">örtlichen</span> Tracht mit
+               Wohlgefällige einer ländlichen und <span class="tei_hi_spaced_out">örtlichen</span> Tracht <span class="tei_app"><span class="tei_lem">sehr</span><a class="noteMarker" id="ref-d10e244" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e244">‡</a></span> mit
                Unrecht aus der Acht gelassen. Feinere Stoffe, ein vornehmerer, mehr bei höheren
                Classen gebräuchlicher Schnitt und überflüssige, mithin nur vermeintliche
-               Ausschmückungen zerstören leicht das <span class="tei_hi_spaced_out">Dichterisch</span>-Wahre, ohne, was ohne <span class="tei_hi_spaced_out">diese</span> Wahrheit
-               unmöglich ist, das Dichterisch-Schöne zu befördern.</p>
-                                        <p>Die Decoration im ersten Akt (der Platz vor der Waldschenke) ist vollkommen. – Bei
+               Ausschmückungen zerstören leicht das <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">Dichterisch</span>-Wahre</span><a class="noteMarker" id="ref-d10e249" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e249">‡</a></span>, ohne, was ohne <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">diese</span></span><a class="noteMarker" id="ref-d10e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e257">‡</a></span> Wahrheit
+               unmöglich ist, das Dichterisch-Schöne zu befördern.<span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e263" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e263">‡</a></span></p>
+                                        <p>Die Decoration im ersten Akt (der Platz<span class="tei_pb" title="Seitenumbruch zu S. 109"> | </span> vor der Waldschenke) ist vollkommen. – Bei
                dem Spottchore: „Schau der Herr mich an als König“ sollte in der Action mehr
-               allmählige Steigerung stattfinden; sonst müßte <span class="7797120">Max</span>,
+               allmählige Steigerung statt finden; sonst müßte <span class="7797120">Max</span>,
                der, wie alle brave Waidmänner, das Herz auf der rechten Stelle und lebhaftes
-               Ehrgefühl hat, weit früher den ersten besten fassen. Nur
-               <span class="7510510810597110">Kilian</span> tritt erst vor ihn hin, die Andern bleiben
+               Ehrgefühl hat, weit früher den ersten <span class="tei_app"><span class="tei_lem">besten</span><a class="noteMarker" id="ref-d10e277" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e277">‡</a></span> fassen. Nur
+               <span class="7510510810597110">Kilian</span> tritt erst vor ihn hin, die <span class="tei_app"><span class="tei_lem">Andern</span><a class="noteMarker" id="ref-d10e287" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e287">‡</a></span> bleiben
                entfernter. Bei der zweiten Strophe werden sie, weil er, sich übermannt sehend und
                mit sich selbst zerfallen, die Neckerei erträgt, etwas dreister; aber erst bei der
                dritten Strophe rücken sie ihm ganz nahe und berühren ihn, wie denn in niedern
                Ständen der Scherz gewöhnlich so lange getrieben wird, bis es zu Thätlichkeiten
-               kommt.</p>
-                                        <p>Nicht zweckmäßig scheint mir die erste Decoration im zweiten Akte (der Vorsaal
+               kommt. <span class="tei_app"><span class="tei_lem"><a href="#footnote04" id="backref-footnote04" class="fn-ref">*)</a></span><a class="noteMarker" id="ref-d10e293" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e293">‡</a></span></p>
+                                        <p>Nicht <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e302" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e302">‡</a></span> zweckmäßig scheint mir die erste Decoration im zweiten Akte (der Vorsaal
                im Forsthause). Freilich veralten Decorationen auf der Bühne nur gar zu bald, und es
-               mag nicht räthlich seyn, sie gleich als veraltet malen zu lassen. Allein hier
-               streitet die Neuheit der auch übrigens viel zu modernen Wandtapeten und die Frischheit des Ahnenbildes doch gar zu sehr mit dem
-               Alterthümlichen, das vorherrschen soll, – (das Waldschlößchen muß doch schon wenigstens hundert Jahr vorher erbaut gewesen seyn) – streitet ganz mit
-               <span class="6511011099104101110">Annchen</span>s Worten:</p><span class="lg"><span class="verseLine">„Spukerei’n kann man entbehren</span><span class="verseLine">In solch altem Eulennest!“</span></span>
+               mag nicht räthlich seyn, sie gleich als veraltet malen zu<span class="tei_pb" title="Seitenumbruch zu S. 110"> | </span> lassen. Allein hier
+               streitet die Neuheit der <span class="tei_app"><span class="tei_lem">auch übrigens viel zu modernen</span><a class="noteMarker" id="ref-d10e309" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e309">‡</a></span> Wandtapeten und <span class="tei_app"><span class="tei_lem">die Frischheit</span><a class="noteMarker" id="ref-d10e314" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e314">‡</a></span> des Ahnenbildes <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e319" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e319">‡</a></span> gar zu sehr mit dem
+               Alterthümlichen, das vorherrschen soll, <span class="tei_app"><span class="tei_lem">– (das Waldschlößchen muß doch schon <span class="tei_hi_spaced_out">wenigstens</span> hundert Jahr vorher erbaut gewesen seyn) –</span><a class="noteMarker" id="ref-d10e325" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e325">‡</a></span> streitet ganz mit
+               <span class="6511011099104101110">Annchen</span>s Worten:</p><span class="lg"><span class="verseLine">„Spukerei’n kann man entbehren</span><span class="verseLine"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">In solch altem Eulennest</span>.</span><a class="noteMarker" id="ref-d10e340" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e340">‡</a></span>“</span></span>
                                         <p>und das Auslöschen des Lämpchens, das, der Situation angemessen, theils die ferne
                Mondlandschaft in etwas veränderter Beleuchtung zeigen, theils und hauptsächlich das
-               Schauerliche des alten Waldschlößchens noch mehr hervorheben soll, wird völlig
+               Schauerliche des alten Waldschlößchens noch mehr <span class="tei_app"><span class="tei_lem">hervorheben</span><a class="noteMarker" id="ref-d10e350" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e350">‡</a></span> soll, wird völlig
                zwecklos, so daß es, da beim Wiederanzünden leicht eine Störung entstehen kann,
                gestalten Sachen nach besser hinweggelassen würde. Das Bild des ältern
                <span class="67117110111">Cuno</span> sollte etwas höher und über dem Ausgange zum
                Altan, nicht seitwärts hängen; denn <span class="6510397116104101">Agathe</span> ist durch
                dessen Herabfallen verwundet worden, als sie sich umsehen wollte. Zugestanden aber
-               auch, daß man dem zarten <span class="6511011099104101110">Annchen</span>, auf der Bühne so
-               hoch zu steigen, nicht füglich zumuthen kann; so thut es doch gewiß keine gute
-               Wirkung, daß das bunte Brustbild sich unmittelbar auf dem eben so bunten Jagdstücke der
-               Tapete befindet. Allenfalls könnte das Bild über ein seitwärts angebrachtes Fenster gehängt werden. Die Aussicht in die Mondlandschaft würde der Dichtung entsprechender seyn
+               auch, daß man dem zarten <span class="6511011099104101110">Annchen</span><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e368" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e368">‡</a></span> auf der Bühne so
+               hoch zu steigen, nicht füg<span class="tei_pb" title="Seitenumbruch zu S. 111">|</span>lich zumuthen kann; so thut es doch gewiß keine gute
+               Wirkung, daß das bunte Brustbild <span class="tei_app"><span class="tei_lem">sich</span><a class="noteMarker" id="ref-d10e376" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e376">‡</a></span> unmittelbar auf dem eben so bunten Jagdstücke der
+               <span class="tei_app"><span class="tei_lem">Tapete befindet. Allenfalls könnte das Bild über ein seitwärts angebrachtes Fenster gehängt werden.</span><a class="noteMarker" id="ref-d10e381" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e381">‡</a></span> </p>
+                                        <p><a class="noteMarker" id="ref-tC_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_001">*</a>Die Aussicht in die Mondlandschaft würde der Dichtung entsprechender seyn
                und das Hehre der Nacht weit besser darstellen, wenn die Oeffnung geräumiger und der
-               nächtliche Horizont noch entfernter wäre, wenigstens schien. Allerdings mag dieß
+               nächtliche <span class="tei_app"><span class="tei_lem">Horizont entfernter</span><a class="noteMarker" id="ref-d10e392" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e392">‡</a></span> wäre, wenigstens <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">schien</span></span><a class="noteMarker" id="ref-d10e398" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e398">‡</a></span>. Allerdings mag dieß
                große und vielleicht größere Schwierigkeiten haben, als mir bekannt sind, da die
-               riesenhafte Decoration der Wolfsschlucht bereits aufgestellt seyn muß. Allein sollte es dessen ungeachtet nicht thunlich seyn, daß                          
-               
-               
-               das Mond- und Sternenbild in weiterer Entfernung den Hintergrund bildete? –
+               riesenhafte Decoration der Wolfsschlucht bereits aufgestellt seyn muß. <span class="tei_app"><span class="tei_lem">Allein sollte</span><a class="noteMarker" id="ref-d10e405" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e405">‡</a></span> es <span class="tei_app"><span class="tei_lem">dessen ungeachtet</span><a class="noteMarker" id="ref-d10e411" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e411">‡</a></span> nicht thunlich seyn, <span class="tei_app"><span class="tei_lem">daß                          
+                  das</span><a class="noteMarker" id="ref-d10e416" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e416">‡</a></span> Mond- und Sternenbild in <span class="tei_app"><span class="tei_lem">weiterer</span><a class="noteMarker" id="ref-d10e423" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e423">‡</a></span> Entfernung den Hintergrund bildete?<a class="noteMarker" id="ref-tC_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_002">*</a> –
            
             
             
             
             
             
-            Das hierzu erfoderliche Transparent könnte wohl für die
+               <a class="noteMarker" id="ref-tC_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_003">*</a>Das hierzu <span class="tei_app"><span class="tei_lem">erfoderliche Transparent</span><a class="noteMarker" id="ref-d10e435" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e435">‡</a></span> könnte wohl für die
                dahinter aufgestellte Decoration nicht behindernd seyn und müßte vor Veränderung der
-               Scene hinauf gezogen werden. <a href="#footnote04">*)</a></p>
+               Scene hinauf gezogen werden. <a href="#footnote05" id="backref-footnote05" class="fn-ref">(*</a></p>
                                         <p>Die Decoration der Wolfsschlucht ist – noch etwas zu viel Ordnung in der chaotischen
                Unordnung, etwas zwar verkleidete, aber dem prüfenden Auge dennoch sichtbare
-               Symmetrie, und die Grotte statt Felsenspaltes abgerechnet – vortrefflich und wahrhaft grausend. Die Beschwörungsscene mit allen ihren vielfältigen Nebendingen
-               ist im Ganzen sehr gut geordnet, und wurde mit bewundernswürdiger Pünktlichkeit
+               <span class="tei_app"><span class="tei_lem">Symmetrie, und die Grotte statt Felsenspaltes</span><a class="noteMarker" id="ref-d10e469" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e469">‡</a></span> abgerechnet – <span class="tei_app"><span class="tei_lem">vortrefflich und wahrhaft grausend.</span><a class="noteMarker" id="ref-d10e475" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e475">‡</a></span> Die Beschwörungsscene mit allen ihren vielfältigen Nebendingen
+               ist im Ganzen <span class="tei_app"><span class="tei_lem">sehr gut</span><a class="noteMarker" id="ref-d10e481" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e481">‡</a></span> geordnet, und wurde mit bewundernswürdiger Pünktlichkeit
                ausgeführt. Desto mehr war zu bedauern, daß man, nach dem Vorgange eines auswärtigen
-               berühmten Theaters und nach der Angabe eines der vorzüglichsten Decorateurs, statt
+               berühmten Theaters und nach der Angabe<span class="tei_pb" title="Seitenumbruch zu S. 113"> | </span> eines der vorzüglichsten Decorateurs, statt
                des wirklichen <span class="8397109105101108">Samiel</span>s – der ja nach der hiesigen
                Besetzung sattsam imponirend ist – ein scharlachbekleidetes Schreckbild mit
                glühendem, gräßlich gezahnten Todtenkopfe in der Felsenöffnung aufgestellt hatte. Zu
@@ -477,89 +546,89 @@
                      Juan</span></span>, <span class="tei_hi_spaced_out"><span class="preview works A020469" data-ref="/exist/apps/WeGA-WebApp/de/A001862/Werke/A020469.html">Faust</span></span>, <span class="tei_hi_spaced_out"><span class="preview works A020581" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A020581.html">Undine</span></span> u. s. w.) gestatten, sehr entbehrlich gewesen.</p>
                                         <p>Das menschliche Gemüth hat sich von jeher aus innerm Bedürfniß seine guten und bösen
                Wesen erschaffen, und es wäre in der That zu verwundern, hätte es nicht vorzüglich
-               den Wald damit bevölkert. <a href="#footnote05">*)</a> Allein hieran hat es auch nie gemangelt. Wer hätte z. B. – um
+               den Wald damit bevölkert. <a href="#footnote06" id="backref-footnote06" class="fn-ref">*)</a> Allein hieran<span class="tei_pb" title="Seitenumbruch zu S. 114"> | </span> hat es auch nie gemangelt. Wer hätte z. B. – um
                hier nur das Mittelalter zu berühren – nie vom
                   <span class="69114108107246110105103">Erlkönig</span> und seiner zahlreichen Sippschaft, von der
                Erscheinung des <span class="10410110510846327211798101114116117115">heil. Hubertus</span>, von der
-                  <span class="741171101031021149711732109105116321001011093211110810010111098117114103105115991041011103272111114110101">Jungfrau mit dem oldenburgischen Horne</span>, von dem
+               <span class="741171101031021149711732109105116321001011093279108100101110981171141031051159910410111011110810010111098117114103105115991041011103272111114110101">Jungfrau mit dem <span class="tei_app"><span class="tei_lem">Oldenburgischen</span><a class="noteMarker" id="ref-d10e536" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e536">‡</a></span> Horne</span>, von dem
                rettenden Engel des <span class="7597105115101114115327797120">Kaisers Max</span> auf der Martinswand etwas
                gehört? wer kennte nicht die Sage vom <span class="6611711410310310110511511632971171023282111100101110115116101105110">Burggeist auf
-                  Rodenstein</span>
-               <a href="#footnote06">*)</a>, der den Odenwald durchzieht,
+                  Rodenstein</span>,
+               <span class="tei_app"><span class="tei_lem"><a href="#footnote07" id="backref-footnote07" class="fn-ref">*)</a></span><a class="noteMarker" id="ref-d10e550" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e550">‡</a></span> der den Odenwald<span class="tei_pb" title="Seitenumbruch zu S. 115"> | </span> durchzieht,
                und <span class="tei_hi_spaced_out"><a class="preview persons A002578" href="/exist/apps/WeGA-WebApp/de/A002578.html">Bürger</a>’s</span>
-               <span class="821111099711012210132118111109328710510810010311497102101110">Romanze vom Wildgrafen</span>? wer erinnerte sich nicht, einmal gelesen
+               <span class="821111099711012210132118111109328710510810010311497102101110">Romanze vom Wildgrafen</span>? wer erinnerte sich <span class="tei_app"><span class="tei_lem">nicht, einmal</span><a class="noteMarker" id="ref-d10e613" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e613">‡</a></span> gelesen
                zu haben, daß sogar <span class="7210110511011410599104321001011093286105101114116101110">Heinrich dem Vierten</span> im Walde zu
                Fontainebleau eine schwarze Gestalt warnend entgegen trat, welche die darum befragten
-               Landleute öfters mit einer Kuppel Hunde gesehen haben wollten und schlechthin nur <span class="tei_hi_spaced_out">den großen Jäger</span> nannten? – In
-               nördlichen Ländern, in <span class="tei_country">Schottland</span>, allenthalben, wo sich große
+               Landleute öfters mit einer Kuppel Hunde gesehen haben wollten und schlechthin nur <span class="tei_hi_spaced_out">den großen Jäger</span> nannten?<a class="noteMarker" id="ref-tC_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_004">*</a> – In
+               nördlichen Ländern, in <span class="tei_app"><span class="tei_lem"><span class="tei_country">Schottland</span>, allenthalben</span><a class="noteMarker" id="ref-d10e634" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e634">‡</a></span>, wo sich große
                Strecken Waldes und Hochgebirge befinden, fehlt es nicht an ähnlichen Sagen; ja, es
                ließe sich wohl behaupten, daß sich schwerlich ein nur mit etwas lebhafter Phantasie
                begabter Mensch finden werde, der, besonders bei Dämmerung oder Dunkelheit, einsam im
                tiefen Walde, nicht ein wunderbares Grauen, ein Gefühl, als ob etwas Unheimliches ihn
                umschwebe, in der beklommenen Brust verspürt, den nicht irgend ein Spiel des Lichts
-               und Schattens, die wunderbare Gestalt eines Baumes im Mondschein, oder ähnliche, sehr
-               natürliche Dinge, wenigstens eine Zeitlang, mit einer Art Gespensterfurcht erfüllt
+               und Schattens, die wunderbare Gestalt eines Baumes<span class="tei_pb" title="Seitenumbruch zu S. 116"> | </span> im <span class="tei_app"><span class="tei_lem">Mondschein oder</span><a class="noteMarker" id="ref-d10e647" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e647">‡</a></span> ähnliche, sehr
+               natürliche <span class="tei_app"><span class="tei_lem">Dinge, wenigstens</span><a class="noteMarker" id="ref-d10e653" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e653">‡</a></span> eine <span class="tei_app"><span class="tei_lem">Zeitlang</span><a class="noteMarker" id="ref-d10e659" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e659">‡</a></span>, mit einer Art Gespensterfurcht erfüllt
                hätten. –</p>
                                         <p>Was nun so tief in der Menschenbrust eingewurzelt ist, daß es, als Wahn oder Glaube,
-               sich durch Jahrhunderte fortpflanzt, daß es selbst von der ernsten Geschichte,
-               wenigstens als <span class="tei_hi_spaced_out">Ueberlieferung</span>, als charakteristisches
+               sich durch Jahrhunderte fortpflanzt, daß es selbst von der ernsten <span class="tei_app"><span class="tei_lem">Geschichte,
+                  als</span><a class="noteMarker" id="ref-d10e667" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e667">‡</a></span> <span class="tei_hi_spaced_out">Ueberlieferung</span>, als charakteristisches
                Zeichen des Zeitalters, erwähnt wird, daß sogar jedes reizbare Gemüth sich auf
                Augenblicke etwas dergleichen wohl selbst erschafft – dessen darf sich auch die
                Dichtung überhaupt, dessen darf sich vorzüglich die romantische, dessen darf sich vor
                allen anderen die romantische Operndichtung, der ja noch das magische, unbegriffene,
                unbegrenzte Reich der Töne, als mächtiger Bundesgenosse, zu Hülfe kommt, mit vollem
-               Rechte bemeistern.</p>
-                                        <p>Gewinnt aber die Operndichtung auf einer Seite durch ihren Bund mit der Tonkunst auch
+               Rechte bemeistern.<a class="noteMarker" id="ref-tC_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_005">*</a></p>
+                                        <p><a class="noteMarker" id="ref-tC_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_006">*</a>Gewinnt aber die Operndichtung auf einer Seite durch ihren Bund mit der Tonkunst auch
                hierbei bedeutend, so stößt sie von der andern auf eine sehr gefährliche Klippe,
-               nämlich auf die bei theatralischer Darstellung größten Theils unerläßliche
-               Verkörperung der dämonischen Wesen. Um an dieser Klippe nicht zu scheitern, um nicht
+               nämlich auf die bei theatralischer Darstellung <span class="tei_app"><span class="tei_lem">größten Theils</span><a class="noteMarker" id="ref-d10e682" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e682">‡</a></span> unerläßliche
+               Verkörperung der dämonischen Wesen. Um an dieser Klippe nicht zu<span class="tei_pb" title="Seitenumbruch zu S. 117"> | </span> scheitern, um nicht
                mit Recht den Vorwurf eines bloßen Opern-Spektakels, eines fratzenhaften Spuks auf
-               sich zu laden, – (ein Bestandteil, das übrigens bei blos auf Volksbelustigung
-               berechneten, <span class="tei_hi_spaced_out">possenhaft</span>-schauerhaften, sogenannten
+               sich zu laden, – (<span class="tei_app"><span class="tei_lem">ein Bestandtheil</span><a class="noteMarker" id="ref-d10e690" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e690">‡</a></span>, das übrigens bei blos auf Volksbelustigung
+               berechneten, <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">possenhaft</span>-schauderhaften</span><a class="noteMarker" id="ref-d10e696" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e696">‡</a></span>, sogenannten
                Zauber-Opern, bei Marionettenspielen, wie sie, wenn auch noch nicht schon vorhanden,
                doch sehr wohl denkbar sind, auch an seiner Stelle seyn, mithin nicht unbedingt
-               verworfen werden kann) – so muß die Dichtung und Bühnenkunst jene unbekannten Gewalten
+               verworfen werden <span class="tei_app"><span class="tei_lem">kann) – so</span><a class="noteMarker" id="ref-d10e706" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e706">‡</a></span> muß die Dichtung und Bühnenkunst jene unbekannten Gewalten
                in möglichst unbestimmten Umrissen zeigen, sie müssen nie ganz im Vorgrunde und in
                hellem Lichte auftreten, nie eigentlich handeln, selbst nur wenig sprechen; man muß
-               in ihnen nichts bis zum Abscheu Verzerrtes erblicken, sondern immer noch die mächtigen, wenn
-               schon verworfenen Geister ahnen; sie müssen immer noch Abschattungen einer
-               großen Vergangenheit seyn, zerstörend und in sich selbst zerstört, voll Grimms, statt titanisch den Himmel zu stürmen;
-               sich zur kleinlichen Verführung des ihnen tief untergeordneten Menschengeschlechts erniedern, ihm wohl gar dienen zu müssen; 
+               in ihnen nichts bis zum Abscheu <span class="tei_app"><span class="tei_lem">Verzerrtes erblicken</span><a class="noteMarker" id="ref-d10e713" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e713">‡</a></span>, sondern immer noch die mächtigen, wenn
+               schon verworfenen Geister <span class="tei_app"><span class="tei_lem">ahnen;</span><a class="noteMarker" id="ref-d10e719" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e719">‡</a></span> sie müssen immer noch Abschattungen einer
+               großen Vergangenheit seyn, zerstörend und in sich selbst zerstört, voll Grimms, <span class="tei_app"><span class="tei_lem">statt titanisch den Himmel zu stürmen,</span><a class="noteMarker" id="ref-d10e725" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e725">‡</a></span>
+               sich zur kleinlichen Verführung des ihnen tief untergeordneten Menschengeschlechts erniedern, ihm wohl gar dienen <span class="tei_app"><span class="tei_lem">zu müssen;</span><a class="noteMarker" id="ref-d10e730" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e730">‡</a></span><span class="tei_pb" title="Seitenumbruch zu S. 118"> | </span> 
                
                
                genug, diese Dämonen müssen – so viel der Stoff der Fabel und die Darstellung auf der
-               Bühne dieß zulassen – so erscheinen, wie <span class="tei_hi_spaced_out"><a class="preview persons A003377" href="/exist/apps/WeGA-WebApp/de/A003377.html">Milton</a> und <a class="preview persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html">Klopstock</a></span> sie schilderten, und nach ihren Dichtungen
-               bedeutende Maler und Zeichner sie bildeten. Auch von <a class="preview persons A001087" href="/exist/apps/WeGA-WebApp/de/A001087.html">Gerhard v. Kügelchen</a> ist mir ein Bild erinnerlich, (der böse Geist genannt) welches das, was ich hiebei im Sinne gehabt, völlig ausdrückt. </p>
-                                        <p>Ungefähr von diesen Ansichten, die ich schon anderswo beiläufig
-               erwähnt habe, <a href="#footnote07">*)</a> ausgehend, hielt ich es nicht für zu
+               Bühne <span class="tei_app"><span class="tei_lem">dieß</span><a class="noteMarker" id="ref-d10e737" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e737">‡</a></span> zulassen – so erscheinen, wie <span class="tei_app"><span class="tei_lem"><a class="preview persons A003377" href="/exist/apps/WeGA-WebApp/de/A003377.html">Milton</a> und <a class="preview persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html">Klopstock</a></span><a class="noteMarker" id="ref-d10e744" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e744">‡</a></span> sie schilderten, und nach ihren Dichtungen
+               bedeutende Maler und Zeichner sie bildeten. <span class="tei_app"><span class="tei_lem">Auch von <span class="tei_hi_spaced_out"><a class="preview persons A001087" href="/exist/apps/WeGA-WebApp/de/A001087.html">Gerhard v. Kügelchen</a></span> ist mir ein Bild erinnerlich, (<span class="tei_hi_spaced_out">der böse Geist</span> genannt) welches das, was ich hiebei im Sinne gehabt, völlig ausdrückt.</span><a class="noteMarker" id="ref-d10e759" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e759">‡</a></span></p>
+                                        <p>Ungefähr von diesen Ansichten, die <span class="tei_app"><span class="tei_lem">ich schon</span><a class="noteMarker" id="ref-d10e772" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e772">‡</a></span> anderswo beiläufig
+               erwähnt habe, <a href="#footnote08" id="backref-footnote08" class="fn-ref">*)</a> ausgehend, hielt ich es nicht für zu
                gewagt, den, von <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a></span>
                nur einmal genannten Waldfürsten <span class="8397109105101108">Samiel</span>, der unter
                diesem Namen in mancherlei alten Jagd-Kunst-Büchlein und Beschwörungsformeln
                vorkommt, in dieser Oper auftreten zu lassen. Je befriedigender aber seine erste
-               Erscheinung mir dünkte, wo er im düstern Zwielicht, verhüllt herumlauscht; je mehr
-               Wirkung es that, daß, als er bei dem Namen, vor dem er bebt, entweicht, die Hülle ein
+               Erscheinung mir dünkte, wo <span class="tei_app"><span class="tei_lem">er im</span><a class="noteMarker" id="ref-d10e797" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e797">‡</a></span> düstern Zwielicht, verhüllt herumlauscht; je mehr
+               Wirkung es that, daß, als er bei dem Namen, vor dem er bebt, ent<span class="tei_pb" title="Seitenumbruch zu S. 119">|</span>weicht, die Hülle ein
                wenig herabglitt und ein Theil seiner glänzenden Jagdrüstung durch die Dämmerung
                blitzte; je mehr ich mir nun von seiner etwas sichtbareren Erscheinung versprach,
                wenn er, von <span class="679711511297114">Caspar</span> förmlich beschworen und mit ihm allein, sich zu verbergen gar keine Ursache hat; desto weniger
                möchte die fast unerklärliche Metamorphose des mächtigen Waldgeistes in ein Phantom
-               mit feuerrothem Todtenkopfe und Talar hier am rechten Orte seyn. Man bleibt hiebei
+               mit feuerrothem Todtenkopfe und <span class="tei_app"><span class="tei_lem">Talar am</span><a class="noteMarker" id="ref-d10e809" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e809">‡</a></span> rechten Orte seyn. Man bleibt hiebei
                nicht nur über die Identität der Erscheinung mit dem Waldgeiste in völliger
                Ungewißheit, sondern diese Substituirung kann sogar, wenigstens für Augenblicke, auf
                die Vermuthung leiten, daß der <span class="tei_hi_spaced_out">Zauberer</span>, dessen Schädel
                <span class="679711511297114">Caspar</span> zur Beschwörung braucht, rächend
                hervortrete, und führt überdieß den großen Uebelstand herbei, daß ein feines Ohr die
-               Stimme nicht aus dem Gebild hervorgehend, sondern vor oder hinter ihm hört. <a href="#footnote08">*)</a> Auch ist ja
-               schon bei dem „Gesindel in der Luft“ – ich meine das wilde Heer – eine Todtenjagd mit
-               angebracht. Man zeige uns also <span class="tei_hi_spaced_out">hier</span>
+               Stimme nicht aus dem Gebild hervorgehend, sondern vor oder hinter ihm hört. <a href="#footnote09" id="backref-footnote09" class="fn-ref">*)</a> Auch ist ja
+               schon<span class="tei_pb" title="Seitenumbruch zu S. 120"> | </span> bei dem „Gesindel in der Luft“ – ich meine das wilde Heer – eine Todtenjagd mit
+               <span class="tei_app"><span class="tei_lem">angebracht. Man</span><a class="noteMarker" id="ref-d10e838" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e838">‡</a></span> zeige uns also <span class="tei_hi_spaced_out">hier</span>
                nichts dergleichen, überhaupt kein willkührliches Phantasma im Allgemeinen, sondern
-               den großen, den Hochjäger in seiner dämonischen Majestät; man lasse ihn mit
+               <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">den großen</span>, <span class="tei_hi_spaced_out">den Hochjäger in seiner dämonischen Majestät</span>;</span><a class="noteMarker" id="ref-d10e847" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e847">‡</a></span> man lasse ihn mit
                schwarzgelbem Gesicht, in der Tracht der übrigen Jäger, nur statt der gelben Bauschen
-               feuerrothe, reich mit Goldlahn, mit blitzendem Jagdgeschmeide, unterwärts immerhin noch
-               verhüllt oder durch das Gestein verdeckt, aus dem Felsenspalt treten, – vor ihm, wo möglich, stygischer Nebel, die
-               Wände des Felsenrisses theils modergrün und bräunlich, theils mit Glimmer bestreut und
-               von weißem oder grünlichen Schimmer beleuchtet <a href="#footnote09">*)</a> – und der <span class="8397109105101108">Samiel</span> unsrer
+               feuerrothe, reich mit <span class="tei_app"><span class="tei_lem">Goldlahn</span><a class="noteMarker" id="ref-d10e859" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e859">‡</a></span>, mit blitzendem Jagdgeschmeide, unterwärts immerhin noch
+               <span class="tei_app"><span class="tei_lem">verhüllt oder durch das Gestein verdeckt,</span><a class="noteMarker" id="ref-d10e865" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e865">‡</a></span> aus dem Felsenspalt treten, – vor ihm, wo möglich, stygischer Nebel, die
+               Wände des Felsenrisses theils modergrün und bräunlich, theils mit <span class="tei_app"><span class="tei_lem">Glimmer bestreut</span><a class="noteMarker" id="ref-d10e871" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e871">‡</a></span> und
+               von <span class="tei_app"><span class="tei_lem">weißem</span><a class="noteMarker" id="ref-d10e877" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e877">‡</a></span> oder grünlichen Schimmer beleuchtet <a href="#footnote10" id="backref-footnote10" class="fn-ref">*)</a> – und der <span class="8397109105101108">Samiel</span> unsrer
                Bühne (den wir ja schon oft, z. B. als <span class="671041111144570252104114101114">Chor-Führer</span> in
-               der <span class="preview works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Braut von Messina</span>, als fast kolossale Heroengestalt erblickt
+               der <span class="preview works A021016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021016.html">Braut von Messina</span>, als fast kolossale Heroengestalt<span class="tei_pb" title="Seitenumbruch zu S. 121"> | </span> erblickt
                haben) wird ganz der furchtbare, aber das Gefühl für Schönheit keineswegs
                beleidigende Dämon seyn, den diese Dichtung verlangt. –</p>
                                         <p>Das Wanken der Bäume im entferntesten Hintergrunde (fast am Schlusse des zweiten
@@ -568,29 +637,30 @@
                Maschinisten in der That Ehre.</p>
                                         <p>Ueber die zweite Decoration des dritten Akts ist nicht viel zu sagen; es wär’ ihr
                etwas Charakteristisches, das, wenn man so sagen darf, an ein jungfräuliches
-               Stillleben, an das Heimliche eines Anputz-Stübchens der frommen Braut erinnert
-               hätte, zu wünschen gewesen. In <span class="tei_placeName"><span class="87105101110">Wien</span></span>
+               Stillleben, an das Heimliche eines <span class="tei_app"><span class="tei_lem">Anputz-Stübchens der frommen Braut</span><a class="noteMarker" id="ref-d10e910" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e910">‡</a></span> erinnert
+               hätte, zu wünschen gewesen. In <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>
                ist es, vermuthlich in Beziehung auf <span class="6510397116104101">Agathe</span>’s
-               Cavatine:</p><span class="verseLine">Und ob die Wolke sie verhülle,</span><span class="verseLine">Die Sonne bleibt am Himmelszelt etc.</span>
-                                        <p>von durch’s Fenster hereinfallenden
-               Morgenstrahlen freundlich erhellt worden. – Die Dichtung begehrt einen kleinen Hausaltar, und dieß wäre wenigstens etwas mehr
-               bemerkbar zu machen gewesen. Sollte hier irgend ein goldgerahmtes Bild, äußersten
-               Falls noch von einer Draperie halb verhüllt, nicht zulässig gewesen seyn? Wir haben,
-               – der bekannten mimischen Darstellungen von der <span class="tei_hi_spaced_out"><a class="preview persons A000801" href="/exist/apps/WeGA-WebApp/de/A000801.html">Hendel-Schütz</a></span> nicht einmal zu gedenken – in „<span class="preview works A020738" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020738.html">des Hasses und der Liebe Rache</span>,“ von <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">Kotzebue</a>, einen Märtyrerkopf in sehr grauenvollem
+               Cavatine:
+               <span class="lg"><span class="verseLine">Und ob die Wolke sie <span class="tei_app"><span class="tei_lem">verhülle,</span><a class="noteMarker" id="ref-d10e925" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e925">‡</a></span></span><span class="tei_app"><span class="tei_lem"><span class="verseLine">Die Sonne bleibt am Himmelszelt ec.</span></span><a class="noteMarker" id="ref-d10e930" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e930">‡</a></span></span>
+           von durch’s Fenster hereinfallenden
+               <span class="tei_app"><span class="tei_lem">Morgenstrahlen</span><a class="noteMarker" id="ref-d10e936" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e936">‡</a></span> freundlich erhellt worden. – Die Dichtung<span class="tei_pb" title="Seitenumbruch zu S. 122"> | </span> begehrt einen kleinen <span class="tei_app"><span class="tei_lem">Hausaltar</span><a class="noteMarker" id="ref-d10e945" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e945">‡</a></span>, und dieß <span class="tei_app"><span class="tei_lem">hätte</span><a class="noteMarker" id="ref-d10e951" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e951">‡</a></span> wenigstens etwas mehr
+               bemerkbar <span class="tei_app"><span class="tei_lem">gemacht werden müssen</span><a class="noteMarker" id="ref-d10e957" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e957">‡</a></span>. Sollte hier irgend ein goldgerahmtes Bild, äußersten
+               Falls noch von einer Draperie halb verhüllt, nicht <span class="tei_app"><span class="tei_lem">zuläßig</span><a class="noteMarker" id="ref-d10e963" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e963">‡</a></span> gewesen seyn? Wir haben,
+               – der bekannten mimischen Darstellungen von der <span class="tei_hi_spaced_out"><a class="preview persons A000801" href="/exist/apps/WeGA-WebApp/de/A000801.html">Hendel-Schütz</a></span> nicht einmal zu <span class="tei_app"><span class="tei_lem">gedenken – in</span><a class="noteMarker" id="ref-d10e974" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e974">‡</a></span> „<span class="preview works A020738" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020738.html">des Hasses und der Liebe Rache</span>,“ von <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">Kotzebue</a>, einen Märtyrerkopf in sehr grauenvollem
                Zusammenhange, wir haben in <a class="preview persons A001420" href="/exist/apps/WeGA-WebApp/de/A001420.html">Oehlenschlägers</a>
                <span class="67111114114101103103105111">Correggio</span>, in sehr edler Zusammenstellung, eine
-               heilige Familie und die weltberühmte Magdalena auf der Bühne gesehen, und Niemand hat
-               dieß anstößig gefunden. <a href="#footnote10">*)</a> Sollte ein Aehnliches hier, wo
+               heilige Familie und die weltberühmte <span class="tei_app"><span class="tei_lem">Magdalena</span><a class="noteMarker" id="ref-d10e994" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e994">‡</a></span> auf der Bühne gesehen, und Niemand hat
+               dieß anstößig gefunden. <a href="#footnote11" id="backref-footnote11" class="fn-ref">*)</a><span class="tei_pb" title="Seitenumbruch zu S. 123"> | </span> Sollte ein Aehnliches hier, wo
                die ganze Idee des Stücks sich auf den Sieg des Guten über das Böse bezieht, sollte
-               es hier bei einer durchaus, theils andächtigen, theils ländlich unschuldigen Scene,
+               es hier bei einer durchaus theils andächtigen, theils ländlich unschuldigen Scene,
                für entweihend anzusehen seyn? Auch hätte ja schon etwas blos Andeutendes genügt –
                etwa eine Clause mit einem betenden Eremiten, ein Waldstück mit einer knieenden
-               Pilgerin, selbst irgend ein Andacht erweckendes Landschaftsbild.</p>
-                                        <p>Bleibe jedoch diese Frage dahingestellt. Bestimmt behaupten läßt sich dagegen, daß in
+               <span class="tei_app"><span class="tei_lem">Pilgerin, irgend</span><a class="noteMarker" id="ref-d10e1021" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1021">‡</a></span> ein Andacht erweckendes <span class="tei_app"><span class="tei_lem">Landschaftsbild.</span><a class="noteMarker" id="ref-d10e1027" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1027">‡</a></span></p>
+                                        <p>Bleibe jedoch diese Frage <span class="tei_app"><span class="tei_lem">dahingestellt.</span><a class="noteMarker" id="ref-d10e1037" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1037">‡</a></span> Bestimmt behaupten läßt sich dagegen, daß in
                dieser Scene weder der Tisch weiß bedeckt, noch das Blumengefäß 
-               weiß oder gelblich seyn darf, daß vielmehr Alles gethan werden muß, um <span class="tei_sic">dem<a class="noteMarker" id="ref-d157940e371" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d157940e371">‡</a></span> weißen
+               <span class="tei_app"><span class="tei_lem">weiß oder gelblich seyn darf</span><a class="noteMarker" id="ref-d10e1043" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1043">‡</a></span>, daß vielmehr Alles gethan werden muß, um <span class="tei_sic">dem<a class="noteMarker" id="ref-d10e1049" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1049">‡</a></span> weißen
                Rosenstrauß dem Auge des Zuschauers möglichst bemerkbar zu machen. Der Hauptgedanke,
-               welcher der ganzen Fabel zum Grunde liegt, ist: daß das böse Princip rastlos Schaden
+               welcher der ganzen Fabel zum<span class="tei_pb" title="Seitenumbruch zu S. 124"> | </span> Grunde liegt, ist: daß das böse Princip rastlos Schaden
                zu stiften und selbst den Frommen zu verstricken sucht, daß aber eine höhere, weise
                und menschenliebende Macht dem Bösen entgegen wirkt, daß sie das reine Gemüth
                schützt, und sich hiezu oft eines gering scheinenden Zufalls – wir nennen dieß
@@ -598,111 +668,115 @@
                geweiheten Rosen, welche <span class="6510397116104101">Agathe</span> von dem frommen, wohl
                zu Zeiten prophetisch begeisterten <span class="69105110115105101100108101114">Einsiedler</span> erhält,
                ein solches Schutzmittel; das zufällig scheinende Verwechseln des bestellten
-               Brautkranzes mit einer Todtenkrone aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern) die Veranlassung, daß dieß Schutzmittel angewandt
-               wird. Dieß wird im Druck in den beiden ersten Scenen hinlänglich, bei der Aufführung
-               aber nur mit wenig, leicht überhörten Worten angedeutet. <a href="#footnote11">*)</a> Aus diesem Grunde nun muß einmal, wie schon gedacht,
+               Brautkranzes mit einer Todtenkrone <span class="tei_app"><span class="tei_lem">aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern)</span><a class="noteMarker" id="ref-d10e1064" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1064">‡</a></span> die Veranlassung, daß dieß Schutzmittel angewandt
+               wird. Dieß wird im Druck <span class="tei_app"><span class="tei_lem">durch die</span><a class="noteMarker" id="ref-d10e1074" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1074">‡</a></span> beiden ersten Scenen hinlänglich, bei der Aufführung
+               aber nur mit wenig, leicht überhörten Worten angedeutet. <a href="#footnote12" id="backref-footnote12" class="fn-ref">*)</a> Aus diesem<span class="tei_pb" title="Seitenumbruch zu S. 125"> | </span> Grunde nun muß <span class="tei_app"><span class="tei_lem">erstens</span><a class="noteMarker" id="ref-d10e1093" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1093">‡</a></span>, wie schon gedacht,
                der Rosenstrauß möglichst in die Augen fallen, was nur dadurch bewirkt werden kann,
                daß der Blumenkrug dunkelfarbig, Hinterwand und Bekleidung des Altar-Tisches von
-               bunter Farbe, am besten roth, sind. <a href="#footnote12">*)</a> Wie dieß Zimmerngeräth, welches ein immer scherzender Freund nicht ganz ohne Grund für ein Waschtischlein ansehen wollte, hier beschaffen ist, blieb es besser ganz weg. Der Rosenstrauß könnte dann in das geöffnete Fenster gesetzt werden, und Agathe anfänglich gegen dieß Fenster wendet, am Schlusse der Cavatine in betender Stellung niedersinken. – Sodann folgt aber auch aus dem angeführten Grunde, es müsse als noth wendig er, scheinen , daß Agathe sich eben mit diesen Weißen Rosen bekränzen lasse.</p>
-                                        <p>Diese Nothwendigkeit nun wird gänzlich aufgehoben, die, bei der Aufführung ohnedieß
-               nur leicht hervorgehende Ahnung der Idee wird noch mehr verdunkelt, mithin die innere Verknüpfung des Ganzen fast zerstört, die Frage <span class="6511011099104101110">Annchen</span>’s: „Aber
+               bunter Farbe, am besten roth, sind. <a href="#footnote13" id="backref-footnote13" class="fn-ref">*)</a> Wie dieß Zimmergeräth, welches ein immer scherzender Freund nicht ganz ohne Grund für ein <span class="tei_hi_spaced_out">Waschtischlein</span> ansehen wollte, hier beschaffen ist, blieb es besser ganz weg. Der Rosenstrauß könnte dann in das geöffnete Fenster gesetzt werden, und Agathe anfänglich gegen dieß Fenster ge<span class="tei_pb" title="Seitenumbruch zu S. 126">|</span>wendet, am Schlusse der Cavatine in betender Stellung niedersinken. –</p>
+                                        <p><span class="tei_app"><span class="tei_lem">Sodann folgt aber auch aus dem angeführten Grunde, es müsse</span><a class="noteMarker" id="ref-d10e1113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1113">‡</a></span> als <span class="tei_hi_spaced_out">nothwendig</span> erscheinen, daß Agathe sich eben mit diesen weißen Rosen bekränzen lasse.</p>
+                                        <p>Diese Nothwendigkeit <span class="tei_app"><span class="tei_lem">nun</span><a class="noteMarker" id="ref-d10e1124" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1124">‡</a></span> wird gänzlich aufgehoben, die, bei der Aufführung ohnedieß
+               nur leicht hervorgehende Ahnung der Idee wird noch mehr verdunkelt, mithin die <span class="tei_app"><span class="tei_lem">innere Verknüpfung</span><a class="noteMarker" id="ref-d10e1130" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1130">‡</a></span> des Ganzen fast zerstört, die Frage <span class="tei_app"><span class="tei_lem"><span class="6511011099104101110">Annchen</span>s</span><a class="noteMarker" id="ref-d10e1136" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1136">‡</a></span>: „Aber
                was fangen wir nun an? Einen Kranz müssen wir haben?“ stimmt mit ihrer übrigen
                schnellen Fassungskraft und Gewandtheit ganz und gar nicht überein, wenn die
                Brautjungfern – nicht nur selbst Blumenkränze im Haar tragen, (was
-               <span class="6511011099104101110">Annchen</span> sehr mit Recht vermieden hatte) sondern
+               <span class="6511011099104101110">Annchen</span> sehr mit Recht vermieden <span class="tei_app"><span class="tei_lem">hatte,)</span><a class="noteMarker" id="ref-d10e1153" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1153">‡</a></span> sondern
                sogar auf <span class="6510397116104101">Agathe</span>ns Schoose nach und nach einen ganzen
                Blumenberg aufhäufen. Dieß mag immerhin bei vielen Brautfesten geschehen seyn und
                noch geschehen; hier sind wir in Böhmens Wäldern, hier sind die Blumen (zumal wenn
-               man das Zeitalter erwägt) nicht im Ueberfluß zu finden, höchstens Rosmarin und
+               man das Zeitalter erwägt) nicht im Ueberfluß zu finden, höchstens<span class="tei_pb" title="Seitenumbruch zu S. 127"> | </span> Rosmarin und
                Thymian; hier giebts keine Kanephoren, sondern nur gutherzige Bewohnerinnen eines
-               Walddorfs, „Spinn- und Knitte-Mädchen einer Unschuldwelt,“ wie <span class="tei_hi_spaced_out"><a class="preview persons A007869" href="/exist/apps/WeGA-WebApp/de/A007869.html">Herder</a></span> nach <span class="tei_hi_spaced_out"><a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspear</a></span> sagt, die
+               Walddorfs, „Spinn- und Knitte-Mädchen einer <span class="tei_app"><span class="tei_lem">Unschuldswelt</span><a class="noteMarker" id="ref-d10e1166" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1166">‡</a></span>,“ wie <span class="tei_hi_spaced_out"><a class="preview persons A007869" href="/exist/apps/WeGA-WebApp/de/A007869.html">Herder</a></span> nach <span class="tei_hi_spaced_out"><a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakspear</a></span> sagt, die
                <span class="6510397116104101">Agathe</span>n lieben; hier ist an keine Art Huldigung,
                wie sie in Opern und Balletten fast stereotypisch worden ist, zu denken, sondern, wie
                schon der zum Theil aus wirklichen Fragmenten von Volksliedern (die mir aus der
                frühesten Zeit meines Lebens im Gedächtniß geblieben sind) zusammengesetzte
                Brautreigen zeigt, an einen ländlichen, örtlichen Gebrauch, an das, was man hie und
-               da die Brautstreue, das Brautansingen zu nennen pflegt. Hält man daher für
+               da <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">die Brautstreue</span>, <span class="tei_hi_spaced_out">das Brautansingen</span></span><a class="noteMarker" id="ref-d10e1185" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1185">‡</a></span> zu nennen pflegt. Hält man daher für
                nothwendig, daß die Brautjungfern während des Gesangs beschäftigt sind, so mögen sie
                – aber nur mit Tannen- und Fichten-Nadeln, wie dieß gar nicht ungewöhnlich – eine
                wirkliche Brautstreue verrichten, oder – was wohl noch besser ist, weil das gestreute
                Grüne vielleicht bei der folgenden Decoration störend ins Auge fiel – jedesmal
-               während des Chors einen Ringelreihen um die Braut ziehen, der, ohne der Einfachheit
+               während des Chors einen Ringelreihen um die Braut ziehen, der, ohne der<span class="tei_pb" title="Seitenumbruch zu S. 128"> | </span> Einfachheit
                zu schaden, immer sehr gefällig seyn kann. Auch bin ich gar nicht gemeint, den holden
                Kindern an einem solchen Ehrentage ihre Auszeichnung als Brautführerinnen gänzlich zu
-               entziehen, sondern würde ihnen (der, ihnen vor den übrigen Mädchen des Chors zukommenden Feierkleider natürlich unbeschadet), statt der lebendigen Blumenkränze, eine Art
-               gezackten, kronenartigen Scheins von Goldzindel oder Schmelz, irgend einen andern sie auszeichnenden Haarschmuck, doch nichts Grünendes und zu Kränzen dienliches zutheilen.  Zierrathen dieser Art sind in Gegenden, wo das öftere Anschauen der
+               entziehen, sondern würde ihnen <span class="tei_app"><span class="tei_lem">(der, ihnen vor den übrigen Mädchen des Chors zukommenden Feierkleider natürlich unbeschadet)</span><a class="noteMarker" id="ref-d10e1197" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1197">‡</a></span> statt der lebendigen Blumenkränze, eine Art
+               gezackten, kronenartigen Scheins von Goldzindel oder <span class="tei_app"><span class="tei_lem">Schmelz, irgend einen andern sie auszeichnenden Haarschmuck,</span><a class="noteMarker" id="ref-d10e1202" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1202">‡</a></span> doch <span class="tei_app"><span class="tei_lem">nichts</span><a class="noteMarker" id="ref-d10e1208" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1208">‡</a></span> Grünendes und zu Kränzen <span class="tei_app"><span class="tei_lem">dienliches</span><a class="noteMarker" id="ref-d10e1215" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1215">‡</a></span> zutheilen.  Zierrathen dieser Art sind in Gegenden, wo das öftere Anschauen der
                Madonnenbilder sich auch beim weiblichen Anzuge und Kopfputze, selbst beim Umschlagen
-               des Regentuchs kund thut, ja selbst im Wendischen, im Altenburgischen, selbst in
-               unsern, nicht zu nah bei Städten liegenden Dörfern, zumal bei Hochzeiten und ähnlichen Feierlichkeiten, gar nichts Ungewöhnliches, und waren es gewiß in der Zeit des Stücks noch weit weniger.</p>
+               des Regentuchs kund thut, ja selbst im Wendischen, im Altenburgischen, <span class="tei_app"><span class="tei_lem">sogar</span><a class="noteMarker" id="ref-d10e1221" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1221">‡</a></span> in
+               unsern, nicht zu nah bei Städten liegenden <span class="tei_app"><span class="tei_lem">Dörfern, zumal bei Hochzeiten und ähnlichen Feierlichkeiten, gar</span><a class="noteMarker" id="ref-d10e1227" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1227">‡</a></span> nichts Ungewöhnliches, und waren es gewiß in der Zeit des Stücks noch weit weniger.</p>
                                         <p>Die Decoration und sonstige Anordnung der Schlußscene war vortrefflich und ließ
-               nichts, oder doch sehr Unbedeutendes zu wünschen übrig; der Feuerschein und die
-               Verfinsterung des Horizonts beim letzten Erscheinen
+               nichts, oder doch sehr <span class="tei_app"><span class="tei_lem">Unbedeutendes</span><a class="noteMarker" id="ref-d10e1236" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1236">‡</a></span> zu wünschen übrig;<span class="tei_pb" title="Seitenumbruch zu S. 129"> | </span> der Feuerschein und die
+               Verfinsterung des <span class="tei_app"><span class="tei_lem">Horizont</span><a class="noteMarker" id="ref-d10e1244" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1244">‡</a></span> beim letzten Erscheinen
                <span class="8397109105101108">Samiel</span>s, dann wieder die fast augenblickliche
-               Erhellung, that vortreffliche Wirkung.</p>
-                                        <p>Habe ich hier gar manche scheinbare Geringfügigkeit
-               berührt, so kann es ja nicht oft genug gesagt werden, daß die äußern Verzierungen der Bühne sich durchaus nicht als etwas an sich, sondern nur als mitwirkend, geltend machen dürfen, und ist übrigens bekannt, daß mir aus Uebereinstimmung von Einzelheiten ein harmonisches Ganzes, mithin das Kunstwerk entsteht. </p><span class="tei_signed textAlign-right"><span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">K</a></span>.</span></div>
+               Erhellung, that vortreffliche Wirkung.</p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e1253" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1253">‡</a></span>
+                                        <p><span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e1362" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1362">‡</a></span> Habe ich hier gar manche scheinbare <span class="tei_app"><span class="tei_lem">Geringfügigkeit</span><a class="noteMarker" id="ref-d10e1367" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1367">‡</a></span>
+               berührt, so <span class="tei_app"><span class="tei_lem">kann es ja nicht oft genug gesagt werden, daß die äußern Verzierungen der Bühne sich durchaus nicht als etwas <span class="tei_hi_spaced_out">an sich</span>, sondern nur als <span class="tei_hi_spaced_out">mitwirkend</span>, geltend machen dürfen, und ist übrigens bekannt,</span><a class="noteMarker" id="ref-d10e1373" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1373">‡</a></span> daß nur <span class="tei_app"><span class="tei_lem">aus Uebereinstimmung</span><a class="noteMarker" id="ref-d10e1385" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1385">‡</a></span> von <span class="tei_app"><span class="tei_lem">Einzelheiten</span><a class="noteMarker" id="ref-d10e1391" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1391">‡</a></span> ein harmonisches Ganzes, mithin das Kunstwerk entsteht. <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="ref-d10e1397" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1397">‡</a></span></p><span class="tei_signed textAlign-right"><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">K</a></span></span><a class="noteMarker" id="ref-d10e1405" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1405">‡</a></span>.</span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Hierüber findet sich viel
-                     Beherzigungwerthes in dem Aufsatze: „über die Oper“ im
-                     August-Hefte dieser Monatsschrift 1821. S. 17 ff.</li>
-                                            <li id="footnote02">*) Es ist anjetzt die zweite, wenig veränderte Auflage unter der Presse.</li>
-                                            <li id="footnote03">Abendzeitung 1822. N. 27 ff.</li>
-                                            <li id="footnote04">*) Erfahrne Freunde, denen ich diesen
-                  Aufsatz mittheilte, machten mir hier den Einwand, daß dieser Vorschlag nicht
-                  ausführbar sey, weil als dann die Zuschauer in den Seitenlogen den entstehenden
-                  Zwischenraum, mithin einen Theil der schon aufgestellten Schlucht, sehen würden.
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) <span class="tei_app"><span class="tei_lem">Hierüber findet sich viel Beherzigungswer<span class="tei_pb" title="Seitenumbruch zu S. 106">|</span>thes in dem Aufsatze: „über die Oper“ im Augusthefte dieser Monatschrift 1821. S. 17 ff.</span><a class="noteMarker" id="ref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">‡</a></span></li>
+                                            <li id="footnote02"><a href="#backref-footnote02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Es ist anjetzt die zweite, wenig veränderte Auflage unter der Presse.</li>
+                                            <li id="footnote03"><a href="#backref-footnote03" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Abendzeitung 1822. N. 27 ff.</li>
+                                            <li id="footnote04"><a href="#backref-footnote04" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>Bei der vierten Darstellung ist dieß größten Theils beobachtet worden.</li>
+                                            <li id="footnote05"><a href="#backref-footnote05" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Erfahrne Freunde, denen ich diesen
+                  Aufsatz<span class="tei_pb" title="Seitenumbruch zu S. 112"> | </span> mittheilte, machten mir hier den Einwand, daß dieser Vorschlag nicht
+                  ausführbar sey, <span class="tei_app"><span class="tei_lem">weil als dann</span><a class="noteMarker" id="ref-d10e447" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e447">‡</a></span> die Zuschauer in den Seitenlogen den entstehenden
+                  Zwischenraum, mithin einen Theil der schon aufgestellten <span class="tei_app"><span class="tei_lem">Schlucht, sehen</span><a class="noteMarker" id="ref-d10e453" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e453">‡</a></span> würden.
                   Dieser Einwand ist gegründet, trifft aber zugleich die Coulissen und manches
                   Aehnliche. Könnte man in vorliegendem Falle nicht, entweder durch ein Transparent
                   in Form einer Halbkugel (Nische) oder durch an beiden Seiten des Altans
                   hervorragende Bäume, die mit zur Waldschlucht gehörten, oder bei der Veränderung
-                  zurückgezogen würden, diesem Uebelstande abhelfen?</li>
-                                            <li id="footnote05">*) S. „Ueber den Geist des Romantischen,“ in dieser
-                  Monatschrift, Februarstück 1821. S. 38 ff. woselbst der Wald sogar für die eigentliche Heimath der romantischen Poesie ausgegeben wird. Mus. Jahrg. II. 5.
-                  ff.</li>
-                                            <li id="footnote06">*) S. <span class="tei_hi_spaced_out"><span class="7411711511610539115">Justi’s</span></span> auch in diesem
+                  zurückgezogen würden, diesem Uebelstande <span class="tei_app"><span class="tei_lem">abhelfen.</span><a class="noteMarker" id="ref-d10e459" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e459">‡</a></span></li>
+                                            <li id="footnote06"><a href="#backref-footnote06" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a><span class="tei_app"><span class="tei_lem">*) S. „Ueber den Geist des Romantischen,“ in dieser
+                  Monatschrift, Februarstück 1821. S. 38. ff. woselbst der Wald sogar für die eigentliche Heimath der romantischen Poesie ausgegeben wird. </span><a class="noteMarker" id="ref-d10e510" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e510">‡</a></span></li>
+                                            <li id="footnote07"><a href="#backref-footnote07" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) S. <span class="tei_hi_spaced_out"><span class="7411711511610539115">Justi’s</span></span> auch in diesem
                   Jahre (1822) sehr reichhaltiges Taschenbuch: <span class="1001051013286111114122101105116"><span class="tei_hi_spaced_out">die
                         Vorzeit</span></span> (auf dessem Titelblatte die Ruinen von Rodenstein in
-                  Steindruck abgebildet sind). S. 333. ff. – Im Januar und Februarstück der Hamburgischen dramaturgischen Blätter v. J. 1822. 
-                  (wo selbst sich auch eine ausführliche Beurtheilung des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span> befindet) 
-                  wird S.25. bei der Anzeige des <span class="1191051081001011103272101101114115">wilden Heers</span>, Lustsp. von <a class="preview persons A009050" href="/exist/apps/WeGA-WebApp/de/A009050.html">van der Velde</a>, 
-                  auch ein Hieher gehöriges Beispiel angeführt. 
+                  Steindruck abgebildet sind). S. 333. ff. – Im Januar und Februarstück der <span class="tei_hi_spaced_out">Hamburgischen dramaturgischen Blätter</span> v. J. 1822. 
+                  (woselbst sich auch eine ausführliche Beurtheilung des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span> befindet) 
+                  wird S.25. bei der Anzeige <span class="tei_hi_spaced_out">des <span class="1191051081001011103272101101114115">wilden Heers</span></span>, Lustsp. von <span class="tei_hi_spaced_out"><a class="preview persons A009050" href="/exist/apps/WeGA-WebApp/de/A009050.html">van der Velde</a></span>, 
+                  auch ein hieher gehöriges Beispiel angeführt. 
                   Nach der Schleßwiger Chronik v. J. 1524. hatte der Brudermörder, König Abel von Dänemark, 
                   der 1252 in der Schlacht das Leben verlor, im Grabe keine Ruhe. 
-                  Wegen nächtlichen Polterns wurde er in der Peterslirche zu <span class="tei_placeName"><span class="8399104108101115119105103">Schleswig</span></span>, 
-                  wo man ihn beigesetzt hatte, wieder ausgegraben und in einen Morast des Pole-Waldes bei <span class="tei_placeName"><span class="71111116116111114112">Gottorp</span></span> versenkt. 
-                  Seitdem hörte man im Walde ein Getöse und Brausen, meistens aber die Stimme eines ins Jagdhorn stoßenden Jägers. </li>
-                                            <li id="footnote07">*) „<span class="tei_hi_spaced_out">Andeutungen über malerische
+                  Wegen nächtlichen Polterns wurde er in der Peterskirche zu <span class="preview places A130085" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130085.html">Schleswig</span>, 
+                  wo man ihn beigesetzt hatte, wieder ausgegraben und in einen<span class="tei_pb" title="Seitenumbruch zu S. 115"> | </span> Morast des Pöle-Waldes bei <span class="71111116116111114112">Gottorp</span> versenkt. 
+                  Seitdem hörte man im Walde ein Getöse und Brausen, meistens aber die Stimme eines ins Jagdhorn stoßenden Jägers.</li>
+                                            <li id="footnote07.1"><a href="#backref-footnote07.1" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) S. <span class="tei_hi_spaced_out"><span class="7411711511610539115">Justi’s</span></span> auch in diesem
+                     Jahre (1822) sehr reichhaltiges Taschenbuch: <span class="1001051013286111114122101105116"><span class="tei_hi_spaced_out">die
+                        Vorzeit</span></span> (auf dessem Titelblatte die Ruinen von Rodenstein in
+                     Steindruck abgebildet sind). S. 333. ff.</li>
+                                            <li id="footnote08"><a href="#backref-footnote08" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) „<span class="tei_hi_spaced_out">Andeutungen über malerische
                      Schauspiele</span>“ in der zweiten Auflage von <span class="86971101001219910711532769711010010810198101110">Vandycks
                         Landleben</span>. S. 20.</li>
-                                            <li id="footnote08">*) Der Todtenkopf ist dem Vernehmen nach bei der dritten Vorstellung
-                     weggeblieben, mithin dieser Uebelstand vermieden worden. – Bei der vierten ward die ganze Erscheinung der Idee der Dichtung ziemlich nahe gebracht.</li>
-                                            <li id="footnote09">*) Ein Feuerschein
-                     ist, wie mich Farbenkundige versichern, hier nicht anwendbar, weil sonst das Grün
+                                            <li id="footnote09"><a href="#backref-footnote09" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Der Todtenkopf ist dem Vernehmen nach bei der dritten Vorstellung
+                     weggeblieben, mithin dieser Uebelstand vermieden worden. <span class="tei_app"><span class="tei_lem">– Bei der<span class="tei_pb" title="Seitenumbruch zu S. 120"> | </span> vierten ward die ganze Erscheinung der Idee der Dichtung ziemlich nahe gebracht.</span><a class="noteMarker" id="ref-d10e826" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e826">‡</a></span></li>
+                                            <li id="footnote10"><a href="#backref-footnote10" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Ein Feuerschein
+                  ist, wie mich Farbenkundige <span class="tei_app"><span class="tei_lem">versicherten</span><a class="noteMarker" id="ref-d10e887" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e887">‡</a></span>, hier nicht anwendbar, weil sonst das Grün
                      violet wird.</li>
-                                            <li id="footnote10">*) Daß Alles, woran jemand mit Recht Anstoß
+                                            <li id="footnote11"><a href="#backref-footnote11" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Daß Alles, woran jemand mit Recht Anstoß
                      nehmen könnte, zu vermeiden sey, kann Niemand mehr recht finden, als ich, wie mir
                      denn z. B. die viel besprochene Nachtmahl-Scene in <span class="tei_hi_spaced_out"><span class="preview works A020919" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020919.html">Maria Stuart</span></span> durchaus nicht für die Bühne
                      geeignet scheint. Allein eine Gränzlinie ist doch hierbei zu ziehen. Sonst dürfte
                      ja der Bühnendichter, der am allgemeinsten und sichersten auf das Volk wirkt, die
                      edelsten und erhabensten Gefühle des menschlichen Herzens, die der Frömmigkeit,
-                     des Vertrauens auf die Vorsicht, nicht schildern; sonst müßten alle Gebete, z. B.
+                     des Ver<span class="tei_pb" title="Seitenumbruch zu S. 123">|</span>trauens auf die Vorsicht, nicht schildern; sonst müßten alle Gebete, z. B.
                      das sehr brünstige der <span class="tei_hi_spaced_out"><span class="741111049711011097">Johanna</span></span>, die Liederverse in <span class="tei_hi_spaced_out"><span class="7010811799104321171101003283101103101110">Fluch und Segen</span></span> und gar manches
                      Andere bei der Aufführung wegbleiben.</li>
-                                            <li id="footnote11">*) Diese Worte sind:
-                     „Ja, diese sind aus einem Reißlein entsproßt, das ein Pilger aus Palästina
+                                            <li id="footnote12"><a href="#backref-footnote12" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Diese Worte sind:
+                     "Ja, diese sind aus einem Reißlein entsproßt, das ein Pilger aus Palästina
                      mitbrachte und umblühen das Bild seines Betaltars. Die Landleute legen ihnen und
-                     dem daraus gepreßten Wasser wunderbare Schutz- und Heilkräfte bei. Als ich um
+                     dem daraus<span class="tei_pb" title="Seitenumbruch zu S. 125"> | </span> gepreßten Wasser wunderbare Schutz- und Heilkräfte bei. Als ich um
                      seine Vorbitte für mich und <span class="7797120">Max</span> bat, warnte er mich
-                     vor u. s. w.“ Wenn man diese Stelle S. 55, Z. 7 einschaltet, so ist das gedruckte
+                     vor u. s. w. "Wenn man diese Stelle S. 55. Z. 7. einschaltet, so ist das gedruckte
                      Stück, als völlig
                      berichtigte Lesart,
                      (mit Weglassung der zwei ersten Scenen) vollkommen zur Aufführung
                      brauchbar.</li>
-                                            <li id="footnote12">*) Wenn bei einer Bühne die oben erwähnte
+                                            <li id="footnote13"><a href="#backref-footnote13" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Wenn bei einer Bühne die oben erwähnte
                      Beleuchtung durch die Morgensonne nachgeahmt wird, so wäre anzurathen, daß man den
                      hereinbrechenden Strahl auf den Rosenstrauch fallen ließ. Ob dieß in
-                     <span class="tei_placeName"><span class="87105101110">Wien</span></span> geschehen, ist mir
+                     <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> geschehen, ist mir
                      nicht bekannt.</li>
                                         </ul>
                                     </div>
@@ -721,7 +795,7 @@
                         
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
-                            <p>Hierbei handelt es sich um die überarbeitete Fassung des Aufsatzes aus der Abendzeitung (Februar 1822)</p>
+                            <p>Eine frühere Fassung des Textes findet sich in der Abendzeitung Februar 1822</p>
                         </div>
                         
                         <div>
@@ -738,7 +812,40 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Die Muse. Monatsschrift für Freunde der Poesie und der mit ihr verschwisterten Künste</span>, Jg. 2, Nr. 5 (Mai 1822), S. 105–129</p>
+                                <p class="biblio-entry"><span class="journalTitle">Die Muse. Monatsschrift für Freunde der Poesie und der mit ihr verschwisterten Künste</span>, Bd. 2, Heft 5 (Mai 1822) Grundlage der vorliegenden Edition, S. 105–129</p>
+                                
+                                <div>
+                                    
+                                    <ul class="tei_list">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                                    <div>
+                                <h4 class="media-heading">Textzeuge</h4>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 46 (22. Februar 1822), S. 184</p>
+                                
+                                <div>
+                                    
+                                    <ul class="tei_list">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                                    <div>
+                                <h4 class="media-heading">Textzeuge</h4>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 47 (23. Februar 1822) Fortsetzung, S. 188</p>
+                                
+                                <div>
+                                    
+                                    <ul class="tei_list">
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                                    <div>
+                                <h4 class="media-heading">Textzeuge</h4>
+                                <p class="biblio-entry"><span class="journalTitle">Wegweiser im Gebiete der Künste und Wissenschaften. (Beilage zur Abend-Zeitung)</span>, Nr. 47 (23. Februar 1822) Beschluss, S. 61–63</p>
                                 
                                 <div>
                                     
@@ -755,15 +862,412 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d157940e371" data-title="sic">"dem": sic!</div>
+                                            <div class="apparatusEntry" id="tC_001" data-title="note textConst"><span class="tei_lemma">"… ": </span>An dieser Stelle wurde in der Abend-Zeitung (#wit-az1), vermutlich aus Platzgründen, kein Absatz gemacht, sondern mittels eines Gedankenstriches zwei Sinneinheiten geschaffen.</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="tC_002" data-title="note textConst"><span class="tei_lemma">"… einiger Entfernung den Hintergrund bildete?": </span>An dieser Stelle endet der erste Teil dieses Artikels in der Abend-Zeitung (#wit-az1) und es wird auf die Fortsetzung verwiesen (#wit-az2)</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="tC_003" data-title="note textConst"><span class="tei_lemma">"… Fortsetzung verwiesen (#wit-az2) – ": </span>Hier beginnt Teil 2 des Artikels. Vorangestellt ist die gleiche Überschrift wie zu Teil 1, mit dem Vermerk (Fortsetzung.).</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="tC_004" data-title="note textConst"><span class="tei_lemma">"… nur den großen Jäger nannten?": </span>An dieser Stelle ist folgende Fußnote im Wegweiser zusätzlich eingefügt: *) Man deutete diese Erscheinung auf - den balb darauf erfolgten Tod der schönen Gabriele. Sie ließ sich aber wohl weit besser erklären. - Sollte diese, in der französischen Gschichte vorkommende Sage nicht vielleicht <span class="tei_hi_spaced_out">Schillern</span> auf den <span class="tei_hi_spaced_out">schwarzen Ritter</span> in der Jungfrau von Orleans geleitet haben?</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="tC_005" data-title="note textConst"><span class="tei_lemma">"… kommt, mit vollem Rechte bemeistern.": </span>An dieser Stelle endet der zweite Teil der Abend-Zeitung-Variante. Hinweis auf den Beschluss im Wegweiser Nr. 16 (#wit-az-wegw).</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="tC_006" data-title="note textConst"><span class="tei_lemma">"… ": </span>Hier beginnt Teil 3 des Artikels. Vorangestellt ist die gleiche Überschrift wie zu Teil 1 und 2, mit dem Vermerk (Beschluß.).</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1049" data-title="sic">"dem": sic!</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
+                                    <ul class="commentary">
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e4" data-title="app">"III. Einiges über scenische Anordnungen, insbesondere mit Beziehung auf die Oper: Der Freischütz.": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Auch eine Stimme</span><br /> über die erste Aufführung <span class="tei_hi_spaced_out">des Freischützen</span> auf<br /> dem königl. sächs. Hoftheater, am <span class="tei_date">26. Jan. 1822</span>.</span></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e48" data-title="app">"2. Auch eine Stimme über
+            die erste Aufführung des Freischützen auf dem königl. sächs. Hoftheater, am
+               26. Jan. 1822.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e71" data-title="app">"Fortsetzung": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e80" data-title="app">"blos": Lesart in anderer Quelle: <span class="tei_rdg">bloß</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e89" data-title="app">"der allgemeinen Stellung der Poesie zur Composition": Lesart in anderer Quelle: <span class="tei_rdg">der allgemeinen Stellung der Poesie zur Composition</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e100" data-title="app">"Hierüber findet sich viel Beherzigungswerthes in dem Aufsatze: über die Oper im Augusthefte dieser Monatschrift 1821. S. 17 ff.": Lesart in anderer Quelle: <span class="tei_rdg">Hierüber findet sich viel Wohldurchdachtes und Beherzigungswerthes in dem Aufsatze: „über die Oper“ im Augusthefte der <span class="tei_hi_spaced_out">Muse</span> 1821. S. 17 ff.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e124" data-title="app">"*)*) Es ist anjetzt die zweite, wenig veränderte Auflage unter der Presse.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e135" data-title="app">"haben.": Lesart in anderer Quelle: <span class="tei_rdg">haben; die Erzählung von <span class="tei_hi_spaced_out">Gerle</span> giebt geringe Ausbeute, erschien auch erst im Jahre 1819, da der Operntext bereits fertig war.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e144" data-title="app">"Nach einer, vielleicht unrichtigen Abschrift, nach einer mehr oder minder gelungenen Aufführung, nach einer das Ganze wohl gar bis zum – Nichtsinn entstellenden Verstümmelung, irgend ein Dichterwerk beurtheilen, ist eine Voreiligkeit, die sich kein wahrhaft Berufener, sondern nur ein, nach den neuesten Neuigkeiten heißhungriger Theater-Correspondent gestatten wird.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e149" data-title="app">"Berlin, Wien und anderwärts,": Lesart in anderer Quelle: <span class="tei_rdg"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> und <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e166" data-title="app">"worden; ich": Lesart in anderer Quelle: <span class="tei_rdg">worden und ich</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e172" data-title="app">"Costum, 
+                  Decoration und scenische Anordnung – –": Lesart in anderer Quelle: <span class="tei_rdg">Costum, auf Decoration und scenische Anordnung, auf Declamation der Rede und Action,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e182" data-title="app">"als eine wahrhaft geniale und in allen Hauptparthieen vollendet zu nennende gepriesen; *)*) Abendzeitung 1822. N. 27 ff.": Lesart in anderer Quelle: <span class="tei_rdg">fast vollendet genannt;</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e195" data-title="app">"in
+               Hinsicht auf obenangezeigte Gegenstände": Lesart in anderer Quelle: <span class="tei_rdg">in Hinsicht auf die obangezeigten Gegenstände</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e204" data-title="app">"für großen Theils": Lesart in anderer Quelle: <span class="tei_rdg">größtentheils</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e210" data-title="app">"gelungen, obwohl": Lesart in anderer Quelle: <span class="tei_rdg">gelungen und</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e217" data-title="app">"durchgängig": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e222" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_p">Ich werde für diese meine Aeußerung Gründe angeben; competente Richter mögen sie prüfen! Vielleicht können meine Ansichten für andere Bühnen, wo die Oper noch in Scene gesetzt wird, einigen Nutzen haben.</span></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e244" data-title="app">"sehr": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e249" data-title="app">"Dichterisch-Wahre": Lesart in anderer Quelle: <span class="tei_rdg">Dichterisch-Wahre</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e257" data-title="app">"diese": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e263" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">Ich werde auf den letztern Punkt noch manchmal zurückkommen müssen.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e277" data-title="app">"besten": Lesart in anderer Quelle: <span class="tei_rdg">beßten</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e287" data-title="app">"Andern": Lesart in anderer Quelle: <span class="tei_rdg">andern</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e293" data-title="app">"*)Bei der vierten Darstellung ist dieß größten Theils beobachtet worden.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e302" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">recht</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e309" data-title="app">"auch übrigens viel zu modernen": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e314" data-title="app">"die Frischheit": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e319" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">doch</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e325" data-title="app">"– (das Waldschlößchen muß doch schon wenigstens hundert Jahr vorher erbaut gewesen seyn) –": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e340" data-title="app">"In solch altem Eulennest.": Lesart in anderer Quelle: <span class="tei_rdg">In solch altem Eulennest!</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e350" data-title="app">"hervorheben": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_choice"><span class="tei_corr">hervorheben</span></span></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e354" data-title="choice">recte "hervorheben": in der Vorlage "hervorhebeben"</div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e368" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e376" data-title="app">"sich": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e381" data-title="app">"Tapete befindet. Allenfalls könnte das Bild über ein seitwärts angebrachtes Fenster gehängt werden.": Lesart in anderer Quelle: <span class="tei_rdg">Tapete hängt, und es würde sich zu Abstellung dieser Mängel leicht ein Auskunftmittel finden.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e392" data-title="app">"Horizont entfernter": Lesart in anderer Quelle: <span class="tei_rdg">Horizont noch entfernter</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e398" data-title="app">"schien": Lesart in anderer Quelle: <span class="tei_rdg">schien</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e405" data-title="app">"Allein sollte": Lesart in anderer Quelle: <span class="tei_rdg">Allein - ich frage das nur - sollte</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e411" data-title="app">"dessen ungeachtet": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e416" data-title="app">"daß                          
+                  das": Lesart in anderer Quelle: <span class="tei_rdg">daß der Altan wirklich offen wäre und das</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e423" data-title="app">"weiterer": Lesart in anderer Quelle: <span class="tei_rdg">einiger</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e435" data-title="app">"erfoderliche Transparent": Lesart in anderer Quelle: <span class="tei_rdg">erfoderliche, nicht eben sehr große Transparent</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e447" data-title="app">"weil als dann": Lesart in anderer Quelle: <span class="tei_rdg">weil alsdann</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e453" data-title="app">"Schlucht, sehen": Lesart in anderer Quelle: <span class="tei_rdg">Schlucht sehen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e459" data-title="app">"abhelfen.": Lesart in anderer Quelle: <span class="tei_rdg">abhelfen? - Auch dieß ist nur eine <span class="tei_hi_spaced_out">Frage</span>.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e469" data-title="app">"Symmetrie, und die Grotte statt Felsenspaltes": Lesart in anderer Quelle: <span class="tei_rdg">Symmetrie vielleicht</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e475" data-title="app">"vortrefflich und wahrhaft grausend.": Lesart in anderer Quelle: <span class="tei_rdg">wahrhaft grausend und hätte wohl eine öffentliche Anerkennung verdient.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e481" data-title="app">"sehr gut": Lesart in anderer Quelle: <span class="tei_rdg">vortrefflich</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e510" data-title="app">"*) S. Ueber den Geist des Romantischen, in dieser
+                  Monatschrift, Februarstück 1821. S. 38. ff. woselbst der Wald sogar für die eigentliche Heimath der romantischen Poesie ausgegeben wird. ": Lesart in anderer Quelle: <span class="tei_rdg">In einer vor kurzem erschienenen ästhetischen Abhandlung wird der Wald sogar als die eigentliche Heimath der romantischen Poesie angesehen. S. „Ueber den Geist des Romantischen,“ in der Monatschrift: <span class="tei_hi_spaced_out">Die Mus</span>. Februarstück 1821. S. 38. ff.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e536" data-title="app">"Oldenburgischen": Lesart in anderer Quelle: <span class="tei_rdg">oldenburgischen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e550" data-title="app">"*)*) S. Justi's auch in diesem
+                  Jahre (1822) sehr reichhaltiges Taschenbuch: die
+                        Vorzeit (auf dessem Titelblatte die Ruinen von Rodenstein in
+                  Steindruck abgebildet sind). S. 333. ff. – Im Januar und Februarstück der Hamburgischen dramaturgischen Blätter v. J. 1822. 
+                  (woselbst sich auch eine ausführliche Beurtheilung des Freischützen befindet) 
+                  wird S.25. bei der Anzeige des wilden Heers, Lustsp. von van der Velde, 
+                  auch ein hieher gehöriges Beispiel angeführt. 
+                  Nach der Schleßwiger Chronik v. J. 1524. hatte der Brudermörder, König Abel von Dänemark, 
+                  der 1252 in der Schlacht das Leben verlor, im Grabe keine Ruhe. 
+                  Wegen nächtlichen Polterns wurde er in der Peterskirche zu Schleswig, 
+                  wo man ihn beigesetzt hatte, wieder ausgegraben und in einen Morast des Pöle-Waldes bei Gottorp versenkt. 
+                  Seitdem hörte man im Walde ein Getöse und Brausen, meistens aber die Stimme eines ins Jagdhorn stoßenden Jägers.": Lesart in anderer Quelle: <span class="tei_rdg"><a href="#footnote07.1" id="backref-footnote07.1" class="fn-ref">*)</a></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e613" data-title="app">"nicht, einmal": Lesart in anderer Quelle: <span class="tei_rdg">nicht einmal</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e634" data-title="app">"Schottland, allenthalben": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_country">Schottland</span>, ja allenthalben</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e647" data-title="app">"Mondschein oder": Lesart in anderer Quelle: <span class="tei_rdg">Mondschein, oder</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e653" data-title="app">"Dinge, wenigstens": Lesart in anderer Quelle: <span class="tei_rdg">Dinge wenigstens</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e659" data-title="app">"Zeitlang": Lesart in anderer Quelle: <span class="tei_rdg">Zeit lang</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e667" data-title="app">"Geschichte,
+                  als": Lesart in anderer Quelle: <span class="tei_rdg">Geschichte, wenigstens als</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e682" data-title="app">"größten Theils": Lesart in anderer Quelle: <span class="tei_rdg">größtentheils</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e690" data-title="app">"ein Bestandtheil": Lesart in anderer Quelle: <span class="tei_rdg">ein Ingrediens</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e696" data-title="app">"possenhaft-schauderhaften": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_spaced_out">possenhaft</span>-schauerhaften</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e706" data-title="app">"kann) – so": Lesart in anderer Quelle: <span class="tei_rdg">kann – so</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e713" data-title="app">"Verzerrtes erblicken": Lesart in anderer Quelle: <span class="tei_rdg">Verzerrtes</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e719" data-title="app">"ahnen;": Lesart in anderer Quelle: <span class="tei_rdg">ahnen können;</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e725" data-title="app">"statt titanisch den Himmel zu stürmen,": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e730" data-title="app">"zu müssen;": Lesart in anderer Quelle: <span class="tei_rdg">zu müssen, statt titanisch den Himmel zu stürmen;</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e737" data-title="app">"dieß": Lesart in anderer Quelle: <span class="tei_rdg">dies</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e744" data-title="app">"Milton und Klopstock": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_spaced_out"><a class="preview persons A003377" href="/exist/apps/WeGA-WebApp/de/A003377.html">Milton</a> und <a class="preview persons A001026" href="/exist/apps/WeGA-WebApp/de/A001026.html">Klopstock</a></span></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e759" data-title="app">"Auch von Gerhard v. Kügelchen ist mir ein Bild erinnerlich, (der böse Geist genannt) welches das, was ich hiebei im Sinne gehabt, völlig ausdrückt.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e772" data-title="app">"ich schon": Lesart in anderer Quelle: <span class="tei_rdg">ich auch vorlängst schon</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e797" data-title="app">"er im": Lesart in anderer Quelle: <span class="tei_rdg">er, im</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e809" data-title="app">"Talar am": Lesart in anderer Quelle: <span class="tei_rdg">Talar hier am</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e826" data-title="app">"– Bei der vierten ward die ganze Erscheinung der Idee der Dichtung ziemlich nahe gebracht.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e838" data-title="app">"angebracht. Man": Lesart in anderer Quelle: <span class="tei_rdg">angebracht, (die übrigens besser durch den verkörperten Jagdtroß durchschimmerte, als daß das Gegentheil statt fände). Man</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e847" data-title="app">"den großen, den Hochjäger in seiner dämonischen Majestät;": Lesart in anderer Quelle: <span class="tei_rdg">den großen, den Hochjäger in seiner dämonischen Majestät;</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e859" data-title="app">"Goldlahn": Lesart in anderer Quelle: <span class="tei_rdg">Gold</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e865" data-title="app">"verhüllt oder durch das Gestein verdeckt,": Lesart in anderer Quelle: <span class="tei_rdg">verhüllt,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e871" data-title="app">"Glimmer bestreut": Lesart in anderer Quelle: <span class="tei_rdg">Glimmergestein</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e877" data-title="app">"weißem": Lesart in anderer Quelle: <span class="tei_rdg">weissem</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e887" data-title="app">"versicherten": Lesart in anderer Quelle: <span class="tei_rdg">versichern</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e910" data-title="app">"Anputz-Stübchens der frommen Braut": Lesart in anderer Quelle: <span class="tei_rdg">Anputz-Stübchens des frommen Bräutchens</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e925" data-title="app">"verhülle,": Lesart in anderer Quelle: <span class="tei_rdg">verhülle u. s. w.,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e930" data-title="app">"Die Sonne bleibt am Himmelszelt ec.": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e936" data-title="app">"Morgenstrahlen": Lesart in anderer Quelle: <span class="tei_rdg">Sonnenstrahlen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e945" data-title="app">"Hausaltar": Lesart in anderer Quelle: <span class="tei_rdg">Haus-Altar</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e951" data-title="app">"hätte": Lesart in anderer Quelle: <span class="tei_rdg">wäre</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e957" data-title="app">"gemacht werden müssen": Lesart in anderer Quelle: <span class="tei_rdg">zu machen gewesen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e963" data-title="app">"zuläßig": Lesart in anderer Quelle: <span class="tei_rdg">zulässig</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e974" data-title="app">"gedenken – in": Lesart in anderer Quelle: <span class="tei_rdg">gedenken – wenn ich nicht irre, in</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e994" data-title="app">"Magdalena": Lesart in anderer Quelle: <span class="tei_rdg">Magdalene</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1021" data-title="app">"Pilgerin, irgend": Lesart in anderer Quelle: <span class="tei_rdg">Pilgerin selbst, irgend</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1027" data-title="app">"Landschaftsbild.": Lesart in anderer Quelle: <span class="tei_rdg">Landschaftsbild, dergleichen wir von dem sinnigen Landschaftsdichter mit Farben, <span class="tei_hi_spaced_out">Friedrich</span>, von dem Meister, der selbst Steinen, Bäumen, Wolken und Wogen Sprache an’s Herz verleiht, sogar als wirkliches Altarbild in’s Große ausgeführt, kennen.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1037" data-title="app">"dahingestellt.": Lesart in anderer Quelle: <span class="tei_rdg">dahingestellt!</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1043" data-title="app">"weiß oder gelblich seyn darf": Lesart in anderer Quelle: <span class="tei_rdg">und die Lampenhalter weiß seyn dürfen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1064" data-title="app">"aber ist (keineswegs, wie in Apels Erzählung, eine böse Vorbedeutung, sondern)": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1074" data-title="app">"durch die": Lesart in anderer Quelle: <span class="tei_rdg">in den</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1093" data-title="app">"erstens": Lesart in anderer Quelle: <span class="tei_rdg">einmal</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1113" data-title="app">"Sodann folgt aber auch aus dem angeführten Grunde, es müsse": Lesart in anderer Quelle: <span class="tei_rdg">Sodann muss es</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1124" data-title="app">"nun": Lesart in anderer Quelle: <span class="tei_rdg">aber</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1130" data-title="app">"innere Verknüpfung": Lesart in anderer Quelle: <span class="tei_rdg">Idee</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1136" data-title="app">"Annchens": Lesart in anderer Quelle: <span class="tei_rdg"><span class="6511011099104101110">Annchen</span>’s</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1153" data-title="app">"hatte,)": Lesart in anderer Quelle: <span class="tei_rdg">hatte)</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1166" data-title="app">"Unschuldswelt": Lesart in anderer Quelle: <span class="tei_rdg">Unschuldwelt</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1185" data-title="app">"die Brautstreue, das Brautansingen": Lesart in anderer Quelle: <span class="tei_rdg">die Brautstreue, das Brautansingen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1197" data-title="app">"(der, ihnen vor den übrigen Mädchen des Chors zukommenden Feierkleider natürlich unbeschadet)": Lesart in anderer Quelle: <span class="tei_rdg"></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1202" data-title="app">"Schmelz, irgend einen andern sie auszeichnenden Haarschmuck,": Lesart in anderer Quelle: <span class="tei_rdg">Rauschgold, oder etwas dergleichen, zwar Schmückendes,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1208" data-title="app">"nichts": Lesart in anderer Quelle: <span class="tei_rdg">nicht</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1215" data-title="app">"dienliches": Lesart in anderer Quelle: <span class="tei_rdg">Dienliches</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1221" data-title="app">"sogar": Lesart in anderer Quelle: <span class="tei_rdg">selbst</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1227" data-title="app">"Dörfern, zumal bei Hochzeiten und ähnlichen Feierlichkeiten, gar": Lesart in anderer Quelle: <span class="tei_rdg">Dörfern gar</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1236" data-title="app">"Unbedeutendes": Lesart in anderer Quelle: <span class="tei_rdg">unbedeutendes</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1244" data-title="app">"Horizont": Lesart in anderer Quelle: <span class="tei_rdg">Horizonts</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1253" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_p">Was endlich das Spiel anlangt - daß ich über den Gesang nur als Laie sprechen könnte, habe ich schon im Eingange unumwunden gestanden - so erwähne ich zuerst <span class="72101114114110327797121101114115">Herrn <span class="tei_hi_spaced_out">Mayers</span></span>, der die, auch körperlich äußerst anstrengende Rolle des <span class="679711511297114115">Caspars</span> mit großer Vollkommenheit gab. Seine Gesichtsmaske war höchst charakteristisch, ohne in’s Häßliche fallende Uebertreibung; sein Mienenspiel, sein ganzes Wesen schilderte durchgängig den verwilderten Zögling des Lagers, den oft heimathlosen Herumtreiber, - ich möchte sagen, die idealisirte Gesammtheit jener Classe Menschen, welche, unter dem Namen Freibursche, auch wohl jetzt noch mit Büchse und Dachsranzen von Forsthaus zu Forsthaus streifen. Nur die abgebrochenen Worte: „Es giebt allerdings gewisse geheime Kräfte der Natur u. s. w.“ könnte er wohl noch etwas bedeutsamer, etwas lauernder sagen; denn <span class="679711511297114">Caspar</span> will, daß ihm <span class="7797120">Max</span> die Sache abfrage, er will ihn reizen, er stellt sich, als traue er sich damit noch nicht recht heraus, er beobachtet, wie seine Worte auf <span class="7797120">Max</span> wirken. - <a class="preview persons A000565" href="/exist/apps/WeGA-WebApp/de/A000565.html">Dem. <span class="tei_hi_spaced_out">Funk</span></a> stellte die zärtlich bangende Braut, und <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">Herr <span class="tei_hi_spaced_out">Bergmann</span></a> den redlichen, unverdorbenen Sohn des Waldes im Ganzen recht treffend dar; nur wäre bei <a class="preview persons A000565" href="/exist/apps/WeGA-WebApp/de/A000565.html">ersterer</a> hier und da etwas mehr Wärme, bei <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">letzterm</a> hie und da etwas mehr Kraft zu wünschen gewesen. <span class="7797120">Max</span> ist ein guter, warm fühlender Mensch, aber dabei ein Jäger; er ist „vertraut mit jenem Grausen, das Mitternacht im Walde webt, u. s. w.“ Die Worte: „Es hat mich viel gekostet -“ muß er viel bedeutender und dumpfer sagen, und das <span class="tei_hi_spaced_out">viel</span> stark betonen; es ergreift ihn hier aufs neue der geheime Schauer, den er fühlte, als ihm <span class="679711511297114">Caspar</span> die Adlerfedern auf den Hut steckte; es überfällt ihn die grauenvolle Ahnung, als habe er wohl schon einen Theil seines Seelenheils verkauft.</span><span class="tei_p"><span class="6511011099104101110">Annchen</span> (<a class="preview persons A002211" href="/exist/apps/WeGA-WebApp/de/A002211.html">Mad. Haase</a>) war sehr lieblich und erfreulich. Fügte es bloß der Zufall, daß der Todtenkranz an ihrem Kleide hängen blieb, so war dieser Zufall sehr glücklich; doch hätte sie, wie mir dünkt, ihn noch etwas mehr benutzen können, wenn sie den Kranz nicht bloß losgerissen, sondern auch einen Moment in die Höhe gehalten und im höchsten Schreck angestarrt hätte. Vollkommen sichtbar muß der Todtenkranz den Zuschauern für einen Augenblick werden, geschehe dieß nun durch <span class="6510397116104101110">Agathen</span> oder durch <span class="6511011099104101110">Annchen</span>. Die Beseitigung des Kranzes sowohl, als die des vergessenen Schachteldeckels, war höchst sprechend, und sie sollte auch das letztere, als sehr ausmalend, immer mit kleinen Variationen beibehalten.</span><span class="tei_p">Die Herren <span class="tei_hi_spaced_out"><a class="preview persons A002248" href="/exist/apps/WeGA-WebApp/de/A002248.html">Kanow</a></span>, (von dem schon Einiges in Obigem erwähnt worden) <span class="tei_hi_spaced_out"><span class="8511012210110810997110110">Unzelmann</span></span> (dessen königliche Freude man fast mit ihm theilen mußte) und <span class="tei_hi_spaced_out"><a class="preview persons A002249" href="/exist/apps/WeGA-WebApp/de/A002249.html">Keller</a></span> (an dem ich mit Vergnügen einige Portrait-Aehnlichkeit mit dem Ahnenbilde des Stammvaters zu entdecken glaubte) ließen - jeder in Verhältniß der ihm zugetheilten Rolle - durchaus keine gerechte Erwartung unerfüllt. <span class="72101114114327710510711599104">Herr <span class="tei_hi_spaced_out">Miksch</span></span> erweckte durch äußere Würde und allenthalben sich aussprechende Religiosität in der That hohe Ehrfurcht, und zeigte gänzlich den <span class="69114101109105116101110">Eremiten</span>, den rings umher die Gegend ehrt und dem, als einem Gesegneten des Herrn, selbst der Fürst - <a class="preview persons A002148" href="/exist/apps/WeGA-WebApp/de/A002148.html">Herr <span class="tei_hi_spaced_out">Wilhelmi</span></a>, der seine Rolle mit schönem Aeußern, edlem Anstande, gewinnender Humanität und erheiternder Fröhlichkeit darstellte - gern Gehorsam leistet. Die Vorsängerin endlich, <span class="68101109463277105108108101114">Dem. <span class="tei_hi_spaced_out">Miller</span></span>, war ganz an ihrer Stelle und eine sehr angenehme Erscheinung. -</span></span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1362" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">Dieß über eine viel besprochene Aufführung meine aufrichtige, gänzlich partheilose, aber auch freimüthig geäußerte Meinung.</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1367" data-title="app">"Geringfügigkeit": Lesart in anderer Quelle: <span class="tei_rdg">Geringfügigkeiten</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1373" data-title="app">"kann es ja nicht oft genug gesagt werden, daß die äußern Verzierungen der Bühne sich durchaus nicht als etwas an sich, sondern nur als mitwirkend, geltend machen dürfen, und ist übrigens bekannt,": Lesart in anderer Quelle: <span class="tei_rdg">ist ja bekannt,</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1385" data-title="app">"aus Uebereinstimmung": Lesart in anderer Quelle: <span class="tei_rdg">aus dem Zusammentreffen</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1391" data-title="app">"Einzelheiten": Lesart in anderer Quelle: <span class="tei_rdg">Einzelnheiten</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1397" data-title="app">"": Lesart in anderer Quelle: <span class="tei_rdg">Uebrigens mit williger Anerkennung und Achtung jedes hiebei beantheilt gewesenen künstlerischen Talents, und - <span class="tei_hi_antiqua">salvo ubique meliori</span>!</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="apparatusEntry" id="d10e1405" data-title="app">"K": Lesart in anderer Quelle: <span class="tei_rdg"><span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind</a></span></span></div>
+                                        </li>
+                                    </ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A030798/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -771,10 +1275,6 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        
-                    </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
                         
                     </div>
                 </div>
@@ -785,9 +1285,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 30. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

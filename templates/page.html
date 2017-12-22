@@ -1,25 +1,25 @@
-<html xmlns="http://www.w3.org/1999/xhtml" data-template="app:set-attr" data-template-key="lang" data-template-attr="lang">
+<html xmlns="http://www.w3.org/1999/xhtml" data-template="app-shared:set-attr" data-template-key="lang" data-template-attr="lang">
     <head data-template="html-meta:metadata" prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8"/>
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title data-template="app:print" data-template-key="meta-page-title">Carl-Maria-von-Weber-Gesamtausgabe</title>
+        <title data-template="app-shared:print" data-template-key="meta-page-title">Carl-Maria-von-Weber-Gesamtausgabe</title>
         
-        <meta property="dc:title" data-template="app:set-attr" data-template-attr="content" data-template-key="meta-page-title"/>
+        <meta property="dc:title" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="meta-page-title"/>
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
         <meta property="dc:type" content="Text"/>
         <meta property="dc:format" content="text/html"/>
         <meta property="dc:contributor" data-template="html-meta:each-meta" data-template-key="DC.contributor"/>
-        <meta property="dc:creator" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
-        <meta property="dc:date" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.date"/>
-        <meta property="dc:identifier" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
-        <meta property="dc:description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
-        <meta name="description" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.description"/>
-        <meta property="dc:subject" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.subject"/>
+        <meta property="dc:creator" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
+        <meta property="dc:date" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.date"/>
+        <meta property="dc:identifier" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
+        <meta property="dc:description" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.description"/>
+        <meta name="description" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.description"/>
+        <meta property="dc:subject" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.subject"/>
         <meta property="dc:language" content="de"/>
-        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" data-template="app:set-attr" data-template-attr="content" data-template-key="DC.rights"/>
-        <meta name="google-site-verification" data-template="app:set-attr" data-template-attr="content" data-template-key="google-site-verification"/>
-        <meta name="msvalidate.01" data-template="app:set-attr" data-template-attr="content" data-template-key="ms-site-verification"/>
+        <meta property="dc:rights" content="https://creativecommons.org/licenses/by/4.0/" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.rights"/>
+        <meta name="google-site-verification" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="google-site-verification"/>
+        <meta name="msvalidate.01" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="ms-site-verification"/>
         <meta name="robots" content="noimageindex"/>
         
         <link rel="alternate" data-template="html-meta:hreflang"/>
@@ -33,10 +33,10 @@
         <meta name="theme-color" content="#ffffff"/>
 
         <link rel="stylesheet" type="text/css" href="$resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/styles.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/styles-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask.css" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles.css" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask-min.css" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles-min.css" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/selectize/dist/css/selectize.bootstrap3.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/google-code-prettify/bin/prettify.min.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css"/>
@@ -71,7 +71,7 @@
                             </li>
                             <li data-template="app:set-active-nav" class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/A002068/bio.html" data-template="lang:translate">bio</a>
                                     </li>
@@ -94,7 +94,7 @@
                             </li>
                             <li data-template="app:set-active-nav" class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">indices</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/indices/persons" data-template="lang:translate">persons</a>
                                     </li>
@@ -116,6 +116,9 @@
                                     <li>
                                         <a href="$link/indices/documents" data-template="lang:translate">documents</a>
                                     </li>
+                                    <li>
+                                        <a href="$link/indices/places" data-template="lang:translate">places</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li data-template="app:set-active-nav">
@@ -123,7 +126,7 @@
                             </li>
                            <li data-template="app:set-active-nav" id="project-nav" class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">project</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/project/news" data-template="lang:translate">news</a>
                                     </li>
@@ -152,7 +155,7 @@
                             </li>
                             <li data-template="app:set-active-nav" id="help-nav" class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">help</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/help/faq.html" data-template="lang:translate">faq</a>
                                     </li>
@@ -257,8 +260,8 @@
         <script type="text/javascript" src="$resources/lib/bootstrap/dist/js/bootstrap.min.js"/>
         <script type="text/javascript" src="$resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"/>
         <script type="text/javascript" src="$resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"/>
-        <script type="text/javascript" src="$resources/js/jquery.loadmask.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/jquery.loadmask-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/jquery.loadmask.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/jquery.loadmask-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         <script type="text/javascript" src="$resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"/>
         <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"/>
         <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"/>
@@ -269,12 +272,12 @@
         <script type="text/javascript" src="$resources/lib/leaflet/dist/leaflet.js"/>
         <script type="text/javascript" src="$resources/lib/leaflet-iiif/leaflet-iiif.js"/>
         <script type="text/javascript" src="$resources/lib/flip/dist/jquery.flip.min.js"/>
-        <script type="text/javascript" src="$resources/js/greedynav.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/greedynav-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/init.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/init-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/greedynav.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/greedynav-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         
-        <div data-template="app:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
+        <div data-template="app-shared:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
             <!-- Piwik -->
             <script type="text/javascript">
                 var _paq = _paq || [];

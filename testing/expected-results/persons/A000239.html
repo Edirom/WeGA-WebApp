@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000239" />
         <meta property="dc:description" content="Biographische Informationen zu Therese Brunetti d. J.. Lebensdaten: 28. Januar 1803–28. März 1892. Tätigkeiten: Sängerin (Sopran), Schauspielerin. Wirkorte: Prag, Donaueschingen, Karlsruhe" />
         <meta name="description" content="Biographische Informationen zu Therese Brunetti d. J.. Lebensdaten: 28. Januar 1803–28. März 1892. Tätigkeiten: Sängerin (Sopran), Schauspielerin. Wirkorte: Prag, Donaueschingen, Karlsruhe" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000239.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000239.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000239.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000239.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -358,7 +401,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000239/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000239.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -372,10 +415,10 @@
                                                     
                                                     
                                                     <div>
-      <p>Tochter von <span class="preview persons A004429 A000240" data-ref="/exist/apps/WeGA-WebApp/de/A004429.html /exist/apps/WeGA-WebApp/de/A000240.html">Joachim und Therese Brunetti, geb. Frey</span>; sie heiratete am 15. Oktober 1822 in <span class="tei_placeName"><span class="8011497103">Prag</span></span> <a class="preview persons A005020" href="/exist/apps/WeGA-WebApp/de/A005020.html">Johann Wenzel Kalliwoda</a> (1801–1866) und ging mit diesem 1823 nach <span class="tei_placeName"><span class="681111109711710111599104105110103101110">Donaueschingen</span></span>, wo sie vielfach bei Opernaufführungen mitwirkte, das Paar hatte acht Kinder (geb. zwischen 1823 und 1842); <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erteilte ihr, zunächst ohne Wissen ihrer <a class="preview persons A000240" href="/exist/apps/WeGA-WebApp/de/A000240.html">Mutter</a>, in seinen ersten <span class="tei_placeName"><span class="8011497103101114">Prager</span></span> Jahren Klavierunterricht.</p>
+      <p>Tochter von <span class="preview persons A004429 A000240" data-ref="/exist/apps/WeGA-WebApp/de/A004429.html /exist/apps/WeGA-WebApp/de/A000240.html">Joachim und Therese Brunetti, geb. Frey</span>; sie heiratete am 15. Oktober 1822 in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> <a class="preview persons A005020" href="/exist/apps/WeGA-WebApp/de/A005020.html">Johann Wenzel Kalliwoda</a> (1801–1866) und ging mit diesem 1823 nach <span class="preview places A130752" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130752.html">Donaueschingen</span>, wo sie vielfach bei Opernaufführungen mitwirkte, das Paar hatte acht Kinder (geb. zwischen 1823 und 1842); <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erteilte ihr, zunächst ohne Wissen ihrer <a class="preview persons A000240" href="/exist/apps/WeGA-WebApp/de/A000240.html">Mutter</a>, in seinen ersten <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Jahren Klavierunterricht.</p>
       
       <ul class="tei_list">
-         <li class="listTitle">Fachangaben und Wertungen während ihrer Tätigkeit am <span class="tei_placeName"><span class="8011497103101114">Prager</span></span> Ständetheater:</li>
+         <li class="listTitle">Fachangaben und Wertungen während ihrer Tätigkeit am <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Ständetheater:</li>
          <li><span class="tei_hi_italic">Tagebuch der deutschen Bühnen</span>, Jg. 2, Nr. 12 (Dezember 1817), S. 337: „junge Mädchen, Aushülfsrollen“</li>
          <li><span class="tei_hi_italic">Wiener Allgemeine musikalische Zeitung</span>, Jg. 5, Nr. 63 (8. August 1821), Sp. 503: „hat Talent und eine gute Stimme. Sie dürfte eine brauchbare Sängerin werden, wenn das Publicum sie mehr ermunterte“, war von August 1817 bis Februar 1821 Schülerin des <span class="tei_hi_italic">Prager</span> Konservatoriums, wurde aber „bewogen dasselbe vor ihrer gänzlichen Ausbildung zu verlassen“</li>
          <li>ab Februar 1821 Festanstellung</li>
@@ -389,11 +432,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -405,9 +448,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -464,9 +504,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000239</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000239</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

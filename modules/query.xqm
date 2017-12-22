@@ -7,15 +7,16 @@ module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query";
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace gn="http://www.geonames.org/ontology#";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 
 (:~
  : Print the regularised title for a given WeGA ID
@@ -106,18 +107,60 @@ declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
 };
 
 (:~
- : Return GND 
+ : Return GND for persons, organizations, places and works
  :
  : @author Peter Stadler
- : @param $item may be xs:string (the WeGA ID), document-node() (of a person file), or a tei:person element
+ : @param $item may be xs:string (the WeGA ID), document-node() or some root element
  : @return the GND as xs:string, or empty sequence if nothing was found 
 :)
-declare function query:get-gnd($item as item()) as xs:string? {
-    typeswitch($item)
+declare function query:get-gnd($item as item()?) as xs:string? {
+    let $doc := 
+        typeswitch($item)
+            case xs:string return core:doc($item)
+            case xdt:untypedAtomic return core:doc(string($item))
+            case attribute() return core:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
+    return
         (: there might be several gnd IDs in organizations :)
-        case xs:string return (core:doc($item)//tei:idno[@type = 'gnd']/text())[1]
-        default return ($item//tei:idno[@type = 'gnd']/text())[1]
+        if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
+        else if($doc/descendant-or-self::tei:place) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
+        else ()
 };
+
+(:~
+ : Return Geonames ID for places
+ :
+ : @author Peter Stadler
+ : @param $item may be xs:string (the WeGA ID), document-node() (of a place file), or a tei:place element
+ : @return the Geonames ID as xs:string, or empty sequence if nothing was found 
+:)
+declare function query:get-geonamesID($item as item()?) as xs:string? {
+    let $doc := 
+        typeswitch($item)
+            case xs:string return core:doc($item)
+            case xdt:untypedAtomic return core:doc(string($item))
+            case attribute() return core:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
+    return
+        if($doc/descendant-or-self::tei:place) then $doc//tei:idno[@type='geonames']
+        else ()
+};
+
+(:~
+ : Return the main GeoNames name of a place
+ :
+ : @param $gn-url the GeoNames URL for a place, e.g. http://sws.geonames.org/2921044/
+ : @return the main name as given in the GeoNames RDF as gn:name 
+:)
+declare function query:get-geonames-name($gn-id as xs:string) as xs:string? {
+    wega-util:grabExternalResource('geonames', $gn-id, '', ())//gn:name
+};
+
 
 (:~ 
  : Gets events of the day for a certain date
@@ -192,17 +235,17 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'sender' return $collection//tei:correspAction[range:eq(@type,'sent')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'addressee' return $collection//tei:correspAction[range:eq(@type,'received')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
     case 'docStatus' return $collection/*/@status | $collection//tei:revisionDesc/@status
-    case 'placeOfSender' return $collection//tei:placeName[parent::tei:correspAction/@type='sent']
-    case 'placeOfAddressee' return $collection//tei:placeName[parent::tei:correspAction/@type='received']
+    case 'placeOfSender' return $collection//tei:settlement[parent::tei:correspAction/@type='sent']/@key
+    case 'placeOfAddressee' return $collection//tei:settlement[parent::tei:correspAction/@type='received']/@key
     case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
-    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]
+    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]/@key
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
     case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
     case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
     case 'docSource' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation
-    case 'residences' return $collection//tei:settlement[parent::tei:residence]
+    case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
@@ -215,6 +258,10 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
     case 'forenames' return $collection//tei:forename[not(@full)]
     case 'surnames' return $collection//tei:surname
+    case 'einrichtungsform' return $collection//mei:term[@label='einrichtungsform']
+    case 'vorlageform' return $collection//mei:term[@label='vorlageform']
+    case 'asksam-cat' return $collection//mei:term[@label='asksam-cat']
+    case 'placenames' return $collection//tei:placeName[@type='reg']
     default return ()
 };
 
@@ -254,21 +301,115 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
 };
 
 (:~
- : Search for exact dates within collections
- : This function should probably be moved into the wdt module sometimes …
+ : Query the letter context, i.e. preceding and following letters
 ~:)
-declare function query:exact-date($dates as xs:date*, $docType as xs:string) as document-node()* {
-    let $stringDates := $dates ! string(.) (: Need to do a string comparison to boost index performance :)
+declare function query:correspContext($doc as document-node()) as map(*)? {
+    let $docID := $doc/tei:TEI/data(@xml:id)
+    let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
+    let $addresseeID := ($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
+    let $authorColl := 
+        if($authorID) then core:getOrCreateColl('letters', $authorID, true())
+        else ()
+    let $indexOfCurrentLetter := sort:index('letters', $doc)
+    
+    (: Vorausgehender Brief in der Liste des Autors (= vorheriger von-Brief) :)
+    (: Need to create the collection outside of the call to wdt:letters() because of performance issues :)
+    let $prevLetterFromSenderColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $prevLetterFromSender := wdt:letters($prevLetterFromSenderColl)('sort')(())[last()]/root()
+    (: Vorausgehender Brief in der Liste an den Autors (= vorheriger an-Brief) :)
+    let $prevLetterToSenderColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $prevLetterToSender := wdt:letters($prevLetterToSenderColl)('sort')(())[last()]/root()
+    (: Nächster Brief in der Liste des Autors (= nächster von-Brief) :)
+    let $nextLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $nextLetterFromSender := wdt:letters($nextLetterFromSenderColl)('sort')(())[1]/root()
+    (: Nächster Brief in der Liste an den Autor (= nächster an-Brief) :)
+    let $nextLetterToSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$authorID]
+    let $nextLetterToSender := wdt:letters($nextLetterToSenderColl)('sort')(())[1]/root()
+    (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
+    let $prevLetterFromAddressee :=
+        if($doc//tei:correspContext) then core:doc($doc//tei:correspContext/tei:ref[@type='previousLetterFromAddressee']/string(@target))
+        else (
+            let $prevLetterFromAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+            return wdt:letters($prevLetterFromAddresseeColl)('sort')(())[last()]/root()
+        )
+    (: Direkter vorausgehender Brief des Autors an den Korrespondenzpartner :)
+    let $prevLetterFromAuthorToAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $prevLetterFromAuthorToAddressee := wdt:letters($prevLetterFromAuthorToAddresseeColl)('sort')(())[last()]/root()
+    (: Direkter Antwortbrief des Adressaten:)
+    let $replyLetterFromAddressee := 
+        if($doc//tei:correspContext) then core:doc($doc//tei:correspContext/tei:ref[@type='nextLetterFromAddressee']/string(@target))
+        else (
+            let $replyLetterFromAddresseeColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+            return wdt:letters($replyLetterFromAddresseeColl)('sort')(())[1]/root()
+        )
+    (: Antwort des Autors auf die Antwort des Adressaten :)
+    let $replyLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
+    let $replyLetterFromSender := wdt:letters($replyLetterFromSenderColl)('sort')(())[1]/root()
+    
+    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
+        if($letter and exists(query:get-normalized-date($letter))) then
+            map {
+                'fromTo' := $fromTo,
+                'doc' := $letter
+            }
+        else ()
+    }
+    
     return
-        switch($docType)
-        case 'writings' case 'letters' case 'diaries' return 
-            let $normDates := norm:get-norm-doc($docType)//norm:entry[. = $stringDates] ! core:doc(./@docID)
-            let $otherHits := core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
-            return
-                (: pushing the normdates to the top of the result set :)
-                ($normDates, $otherHits except $normDates) 
-        case 'personsPlus' return 
-            core:getOrCreateColl('persons', 'indices', true())//tei:date[@when = $stringDates]/root() |
-            core:getOrCreateColl('orgs', 'indices', true())//tei:date[@when = $stringDates]/root()
-        default return core:getOrCreateColl($docType, 'indices', true())//tei:date[@when = $stringDates]/root()
+        if($prevLetterFromSender,$prevLetterToSender,$nextLetterFromSender,$nextLetterToSender,$prevLetterFromAuthorToAddressee,$prevLetterFromAddressee,$replyLetterFromSender,$replyLetterFromAddressee) then  
+            map {
+                'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
+                'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
+                'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
+                'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
+            }
+        else ()
+};
+
+(:~
+ : Return the TEI facsimile element if present and on the whitelist supplied in the options file
+ :
+ : @param $doc the TEI document to look for the facsimile element
+~:)
+declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)? {
+    let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
+    return
+        if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url]
+        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url]
+        else ()
+};
+
+(:~
+ : Query the related documents (drafts, etc.) for a given document
+ :
+ : @return a map with only one key 'context-relatedItems'. 
+ :      The value of this key is a sequence of maps, each containing the keys 'context-relatedItem-type', 'context-relatedItem-doc' and 'context-relatedItem-n'
+~:)
+declare function query:context-relatedItems($doc as document-node()?) as map()? {
+    let $relatedItems :=  
+        for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
+        return 
+            map {
+                'context-relatedItem-type': data($relatedItem/@type),
+                'context-relatedItem-doc': core:doc(substring-after($relatedItem/@target, ':')),
+                'context-relatedItem-n': data($relatedItem/@n)
+            }
+    return
+        if(exists($relatedItems)) then 
+            map { 
+                'context-relatedItems' := $relatedItems
+            }
+        else ()
+};
+
+(:~
+ :  Return the child elements that encode placeName information, i.e. 
+ :    tei:placeName, tei:settlement, tei:region or tei:country
+ :
+ :  @param $parent-nodes the parent node of the placeName elements, e.g. tei:birth or tei:correspAction
+ :  @return a sequence of elements
+~:)
+declare function query:placeName-elements($parent-nodes as node()*) as node()* {
+    for $parent in $parent-nodes
+    return $parent/*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country]
 };

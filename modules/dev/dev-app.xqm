@@ -78,7 +78,7 @@ declare
 	%templates:wrap 
 	function dev-app:app-status($node as node(), $model as map(*)) as map(*) {
 	    map {
-	        'deployment-date' := date:strfdate(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, 'de', ())
+	        'deployment-date' := date:format-date(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, $config:default-date-picture-string($model?lang), $model?lang)
 	    }
 };
 

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030742" />
         <meta property="dc:description" content="Abdruck des Textes der Cantate &#34;Natur und Liebe&#34; von Friedrich Kind, vertont von Carl Maria von Weber" />
         <meta name="description" content="Abdruck des Textes der Cantate &#34;Natur und Liebe&#34; von Friedrich Kind, vertont von Carl Maria von Weber" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030742.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     
                 </div>
             </div>
@@ -263,7 +305,7 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Duettino</span>.</h2><span class="lg"><span class="verseLine">Holde, zaub’rischschöne Hügel,</span><span class="verseLine">Die der Elbe Wellenspiegel</span><span class="verseLine"><span class="tei_cb" title="Spaltenumbruch"> ¦ </span>Wie ein Paradies umschließt,</span><span class="verseLine">Seyd vor Allen uns gegrüßt!</span><span class="verseLine">Allen geht ihr vor an Ruhme;</span><span class="verseLine">Denn für später Enkel Zeit</span><span class="verseLine">Hat zum hehrsten Heiligthume</span><span class="verseLine"><span class="tei_hi_spaced_out">Unser König</span>, <span class="tei_hi_spaced_out">unser Vater</span>, euch geweiht!</span></span></div>
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Recitativ</span>.</h2><span class="lg"><span class="verseLine">Ihr Hügel saht <span class="tei_hi_spaced_out">Ihn</span> oft am Morgen,</span><span class="verseLine">Wenn einsam noch die Lerche schlug,</span><span class="verseLine">In eurer Bäume Dom verborgen,</span><span class="verseLine">Wenn <span class="tei_hi_spaced_out">Er</span> des Vaterlandes Sorgen</span><span class="verseLine">Im großen Vaterherzen trug!</span><span class="verseLine">Ihr Zweige habt oft Kühlung <span class="tei_hi_spaced_out">Ihm</span> geweht,</span><span class="verseLine">Wenn <span class="tei_hi_spaced_out">Ihm</span> gelang, was <span class="tei_hi_spaced_out">Er</span> erfleht.</span><span class="verseLine">Wenn dann auf nah’ und ferne Auen</span><span class="verseLine"><span class="tei_hi_spaced_out">Des guten Königs</span> Blicke schauen,</span><span class="verseLine">Wo segensschwer die Aehre sprießt,</span><span class="verseLine">Und, schimmernder im Strahl der Abendsonne,</span><span class="verseLine">Die Silberflut durch Rebenhügel fließt,</span><span class="verseLine">Dann ruft <span class="tei_hi_spaced_out">Sein</span> Herz in stiller Wonne:</span><span class="verseLine">"O grüne stets, mein Sachsenland!" –</span><span class="verseLine">Selbst was der Flamme Muth entwandt <a href="#footnote01">*)</a>,</span><span class="verseLine">Kann <span class="tei_hi_spaced_out">Seinen</span> heitern Blick nicht trüben;</span><span class="verseLine">Er hat nur Kinder, die <span class="tei_hi_spaced_out">Ihn</span> lieben!</span><span class="verseLine">Im Glück und Unglück immer neu</span><span class="verseLine">Bewährt sich Dankbarkeit und Treu’.</span></span></div>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Recitativ</span>.</h2><span class="lg"><span class="verseLine">Ihr Hügel saht <span class="tei_hi_spaced_out">Ihn</span> oft am Morgen,</span><span class="verseLine">Wenn einsam noch die Lerche schlug,</span><span class="verseLine">In eurer Bäume Dom verborgen,</span><span class="verseLine">Wenn <span class="tei_hi_spaced_out">Er</span> des Vaterlandes Sorgen</span><span class="verseLine">Im großen Vaterherzen trug!</span><span class="verseLine">Ihr Zweige habt oft Kühlung <span class="tei_hi_spaced_out">Ihm</span> geweht,</span><span class="verseLine">Wenn <span class="tei_hi_spaced_out">Ihm</span> gelang, was <span class="tei_hi_spaced_out">Er</span> erfleht.</span><span class="verseLine">Wenn dann auf nah’ und ferne Auen</span><span class="verseLine"><span class="tei_hi_spaced_out">Des guten Königs</span> Blicke schauen,</span><span class="verseLine">Wo segensschwer die Aehre sprießt,</span><span class="verseLine">Und, schimmernder im Strahl der Abendsonne,</span><span class="verseLine">Die Silberflut durch Rebenhügel fließt,</span><span class="verseLine">Dann ruft <span class="tei_hi_spaced_out">Sein</span> Herz in stiller Wonne:</span><span class="verseLine">"O grüne stets, mein Sachsenland!" –</span><span class="verseLine">Selbst was der Flamme Muth entwandt <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>,</span><span class="verseLine">Kann <span class="tei_hi_spaced_out">Seinen</span> heitern Blick nicht trüben;</span><span class="verseLine">Er hat nur Kinder, die <span class="tei_hi_spaced_out">Ihn</span> lieben!</span><span class="verseLine">Im Glück und Unglück immer neu</span><span class="verseLine">Bewährt sich Dankbarkeit und Treu’.</span></span></div>
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Sextetto</span>.</h2><span class="lg"><span class="verseLine">Rauschet, ihr Wellen! erhebt euch, ihr Zweige!</span><span class="verseLine">Spendet, ihr Blumen! den lieblichsten Duft!</span><span class="verseLine">Hymne des Dank’s und der Freude entsteige</span><span class="verseLine">Bergen und Thälern! erfülle die Luft!</span><span class="verseLine">Jauchzet, ihr Herzen! dem sonnigen Glanze,</span><span class="verseLine">Welcher von allen uns festlich erscheint,</span><span class="verseLine">Weil er in <span class="tei_hi_spaced_out">Einem</span> entzückenden Kranze</span><span class="verseLine"><span class="tei_hi_spaced_out">Dreifache</span> Wonne des Vaterlands eint!</span></span></div>
                                     <div class="docPart">
@@ -275,8 +317,9 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Chor</span>.</h2><span class="lg"><span class="verseLine">Und <span class="tei_hi_spaced_out">Ihm</span>, den liebevoll Natur</span><span class="verseLine">Mit immer frischem Kranz umwindet,</span><span class="verseLine">Deß Blick auf jeder Segensflur</span><span class="verseLine">Des eignen Wirkens Abbild findet!</span><span class="verseLine">Heil <span class="tei_hi_spaced_out">Ihm</span>, dem fromme Zärtlichkeit</span><span class="verseLine">Schon hier des Himmels Loos verleiht!</span></span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Hindeutung auf den ungefähr drei Monate früher erfolgten Plünitzer Schloßbrand.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Hindeutung auf den ungefähr drei Monate früher erfolgten Plünitzer Schloßbrand.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -311,7 +354,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 184 (3. August 1819), S. 1r–1v</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 184 (3. August 1819), Bl. 1r–1v</p>
                                 
                                 <div>
                                     
@@ -342,10 +385,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -354,9 +393,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030742</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030742</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

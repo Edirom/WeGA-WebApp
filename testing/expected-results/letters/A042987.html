@@ -4,9 +4,9 @@
         <meta charset="UTF-8" />
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Friedrich Wilhelm Jähns an Ernst Pasqué in Darmstadt. Berlin, 16. Januar 1861</title>
+        <title>Friedrich Wilhelm Jähns an Ernst Pasqué in Darmstadt. Berlin, Mittwoch, 16. Januar 1861</title>
         
-        <meta property="dc:title" content="Friedrich Wilhelm Jähns an Ernst Pasqué in Darmstadt. Berlin, 16. Januar 1861" />
+        <meta property="dc:title" content="Friedrich Wilhelm Jähns an Ernst Pasqué in Darmstadt. Berlin, Mittwoch, 16. Januar 1861" />
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T16:05:20.174156Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042987" />
         <meta property="dc:description" content="es geht um Autographen-Tausch, P. hatte ihm eine Dubletten-Liste geschickt, daraus trifft J. Auswahl" />
         <meta name="description" content="es geht um Autographen-Tausch, P. hatte ihm eine Dubletten-Liste geschickt, daraus trifft J. Auswahl" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -202,7 +206,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Friedrich Wilhelm Jähns an Ernst Pasqué  in Darmstadt<br />Berlin, 16. Januar 1861</h1>
+                    <h1 class="document">Friedrich Wilhelm Jähns an Ernst Pasqué  in Darmstadt<br />Berlin, Mittwoch, 16. Januar 1861</h1>
                 </div>
             </div>
         </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,50 +246,94 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042987.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042965.html">1860-12-28</a>:  An   unbekannt
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042965.html">1860-12-28</a>:  An   unbekannt
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007986/Korrespondenz/A042960.html">1860-11-14</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007986.html">Gleichen-Rußwurm, Emilie von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042988.html">1861-03-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007986/Korrespondenz/A042969.html">1861-01-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007986.html">Gleichen-Rußwurm, Emilie von</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007986/Korrespondenz/A042960.html">1860-11-14</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007986.html">Gleichen-Rußwurm, Emilie von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042988.html">1861-03-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A045792.html">1860-12-16</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007986/Korrespondenz/A042969.html">1861-01-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007986.html">Gleichen-Rußwurm, Emilie von</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A045792.html">1860-12-16</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042988.html">1861-03-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007988/Korrespondenz/A043086.html">1864-09-02</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A042988.html">1861-03-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A007988/Korrespondenz/A043086.html">1864-09-02</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A007988.html">Pasqué, Ernst</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -356,9 +403,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66" /> <span title="B">B</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8710110510997114" /> <span title="Weimar">Weimar</span> 
+                                    <input type="checkbox" name="options" value="A130014" /> <span title="Weimar">Weimar</span> 
                                 </label>
                             </div>
                         </div>
@@ -380,7 +425,7 @@
                da ich schon davon habe und mir die mögliche Erfüllung einiger meiner angelegten
                Wünsche noch erwünschter wäre, von welchen ich noch besonders <span class="tei_hi_underline1"><a class="preview persons A009470" href="/exist/apps/WeGA-WebApp/de/A009470.html">Drouet</a></span>, <span class="651081011204632701011159997">Alex. <span class="tei_hi_underline1">Fesca</span></span>, <a class="preview persons A001486" href="/exist/apps/WeGA-WebApp/de/A001486.html"><span class="tei_hi_underline1">Pixis</span>, J.P.</a>, <span class="tei_hi_underline1"><span class="80114117109101">Prume</span></span> vorzüglich aber L.a.s. von <span class="tei_hi_underline1"><a class="preview persons A001579" href="/exist/apps/WeGA-WebApp/de/A001579.html">Riotte</a></span>, <span class="tei_hi_underline1"><a class="preview persons A001641" href="/exist/apps/WeGA-WebApp/de/A001641.html">Salieri</a></span> (B.a.s.) und <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html"><span class="tei_hi_underline1">Anton</span> von <span class="tei_hi_underline1">Weber</span></a> hervorhebe.
                Zugleich richte ich aber noch den Wunsch um <span class="tei_hi_underline1"><a class="preview persons A006764" href="/exist/apps/WeGA-WebApp/de/A006764.html">Anna Amalia</a></span> von
-               <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span> an Sie, die Sie wohl Doubletten haben möchten, da Ihre Mittheilungen im
+               <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span> an Sie, die Sie wohl Doubletten haben möchten, da Ihre Mittheilungen im
                   „Organ“ darauf hindeuten. </p><span class="tei_pb_block" title="Seitenumbruch"> | </span>
                                         <p>Das Autograph von <a class="preview persons A002620" href="/exist/apps/WeGA-WebApp/de/A002620.html">Friedemann</a>, (der übrigens nicht Johann, sondern <span class="tei_hi_underline1">Wilhelm</span> Friedemann heißt) ist ein so seltenes, daß ich wohl
                nicht unbescheiden erscheine, wenn ich um gütige Erfüllung möglichst vieler der
@@ -395,19 +440,19 @@
                hat.) <span class="tei_hi_underline1"><a class="preview persons A005076" href="/exist/apps/WeGA-WebApp/de/A005076.html">Kiesewetter</a></span>, der größte musikalische Gelehrte in
                bezug auf älteste namentliche altgriechische Musik ist ein seltenere Pièce von Werth.
                Außerdem, erfolgen noch Noten von <span class="tei_hi_underline1"><a class="preview persons A006428" href="/exist/apps/WeGA-WebApp/de/A006428.html">Friedr. Aug. Reissiger</a></span> in
-               <span class="tei_add">Christi<span> […]<a class="noteMarker" id="ref-d57124e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57124e112">‡</a></span><a class="noteMarker" id="ref-d57124e110" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57124e110">‡</a></span> u. <span class="66246104109">Böhm</span>. Ferner <a class="preview persons A001322" href="/exist/apps/WeGA-WebApp/de/A001322.html">Anna Milder</a> u. <span class="tei_hi_underline1"><a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">Rellstab</a>.</span></p><span class="tei_pb_block" title="Seitenumbruch"> | </span>
+               <span class="tei_add">Christi<span> […]<a class="noteMarker" id="ref-d10e111" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e111">‡</a></span><a class="noteMarker" id="ref-d10e109" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e109">‡</a></span> u. <span class="66246104109">Böhm</span>. Ferner <a class="preview persons A001322" href="/exist/apps/WeGA-WebApp/de/A001322.html">Anna Milder</a> u. <span class="tei_hi_underline1"><a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">Rellstab</a>.</span></p><span class="tei_pb_block" title="Seitenumbruch"> | </span>
                                         <p>Diese Ihnen angefügten Dinge werden meine Bitten hoffentlich noch mehr bei Ihnen
                empfehlen; <span class="tei_hi_underline1">nicht</span> gewünschtes bitte ich mir gütigst zu
                remittiren, so wie ich um baldige gefällige Übersendung der Copie des <a class="preview persons A002620" href="/exist/apps/WeGA-WebApp/de/A002620.html">Friedemann</a>
                bitte.-</p>
                                         <p class="tei_closer textAlign-left">
                Zugleich frage ich an, ob Sie auch andere Fächer als Musik und Litteratur sammeln;
-               ich würde vielleicht <span class="tei_add">an<a class="noteMarker" id="ref-d57124e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d57124e137">‡</a></span> darin mit Ihnen in Change treten können, da meine Sammlung
+               ich würde vielleicht <span class="tei_add">an<a class="noteMarker" id="ref-d10e136" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e136">‡</a></span> darin mit Ihnen in Change treten können, da meine Sammlung
                ebenso wie die <span class="tei_hi_underline1">Kunst</span> auch den <span class="tei_hi_underline1">Staat</span> u. die <span class="tei_hi_underline1">Wissenschaft</span> umfaßt. Um recht baldige
                gütige Antwort bittet Sie hochachtungsvoll
                <br />Ihr
                <br />ganz ergebenster <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F.W.Jähns</a>
-               <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="66">B</span></span>. 16. Jan. 61.</span>
+               <span class="tei_dateline textAlign-left"><span class="66">B</span>. 16. Jan. 61.</span>
             </p>
                                     </div>
                                     <div class="writingSession">
@@ -420,7 +465,7 @@
                   <span class="71111108108109105107">Gollmik</span>/ <span class="729711010046">Hand.</span> /<a class="preview persons A008029" href="/exist/apps/WeGA-WebApp/de/A008029.html">Fr.Ad.Hiller</a>./ <span class="75105114109115">Kirms</span> / <a class="preview persons A004082" href="/exist/apps/WeGA-WebApp/de/A004082.html">Ignaz Lachner</a> / <a class="preview persons A001181" href="/exist/apps/WeGA-WebApp/de/A001181.html">Lindpaintner</a> (Brief)/ <span class="7610111111097114100">Leonard</span>
                   / <a class="preview persons A007992" href="/exist/apps/WeGA-WebApp/de/A007992.html">Lortzing</a> / <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlacchi</a> / <a class="preview persons A005680" href="/exist/apps/WeGA-WebApp/de/A005680.html">Nardini</a> / <span class="83111104114">Sohr</span> / <a class="preview persons A001486" href="/exist/apps/WeGA-WebApp/de/A001486.html">Pixis.J.P.</a>/ <span class="80114117109101">Prume</span>/ <span class="8297102102">Raff</span> / <a class="preview persons A003434" href="/exist/apps/WeGA-WebApp/de/A003434.html">Rietz</a> / <span class="82105111116116101">Riotte</span>/
                   <span class="8211111510111010497105110">Rosenhain</span>/ <span class="8211798101105110115116101105110">Rubeinstein</span>/ <a class="preview persons A001641" href="/exist/apps/WeGA-WebApp/de/A001641.html">Salieri</a> L.a.s./ <span class="8399104105110100101108109101105115116101114">Schindelmeister</span>/ <span class="8399104105110100108101114">Schindler</span>/ <span class="8399104117108104111102102">Schulhoff</span>/
-                  <span class="83105110103101114">Singer</span>/ <a class="preview persons A001937" href="/exist/apps/WeGA-WebApp/de/A001937.html">Sutor</a>/ <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Anton v. Weber</a> L.a.s./ und <a class="preview persons A006764" href="/exist/apps/WeGA-WebApp/de/A006764.html">Anna Amalia</a> v. <span class="tei_placeName"><span class="8710110510997114">Weimar</span></span> um die ich ganz
+                  <span class="83105110103101114">Singer</span>/ <a class="preview persons A001937" href="/exist/apps/WeGA-WebApp/de/A001937.html">Sutor</a>/ <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Anton v. Weber</a> L.a.s./ und <a class="preview persons A006764" href="/exist/apps/WeGA-WebApp/de/A006764.html">Anna Amalia</a> v. <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span> um die ich ganz
                besonders! bitte</p><span class="tei_pb_block" title="Seitenumbruch"> | </span>
                                         <p>Als Doubletten von mir zu gefälliger Annahme sende ich: <a class="preview persons A000535" href="/exist/apps/WeGA-WebApp/de/A000535.html">Friedrich II</a> / <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C.M.v.Weber</a>
                   Noten. / <a class="preview persons A004566" href="/exist/apps/WeGA-WebApp/de/A004566.html">Grell.Eduard</a> / <a class="preview persons A008439" href="/exist/apps/WeGA-WebApp/de/A008439.html">Gustav Nicolai</a>. 2 Briefe/ <a class="preview persons A006428" href="/exist/apps/WeGA-WebApp/de/A006428.html">Fr.Aug.Reissiger</a>. 3 Lieder in
@@ -486,13 +531,13 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d57124e110" data-title="unclear">"Christi […]‡": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e109" data-title="unclear">"Christi […]‡": Unsichere Lesung.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57124e112" data-title="gap illegible"> Unleserliche Stelle </div>
+                                            <div class="apparatusEntry" id="d10e111" data-title="gap illegible"> Unleserliche Stelle </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d57124e137" data-title="unclear">"an": Unsichere Lesung.</div>
+                                            <div class="apparatusEntry" id="d10e136" data-title="unclear">"an": Unsichere Lesung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -510,10 +555,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -522,9 +563,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042987</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042987</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

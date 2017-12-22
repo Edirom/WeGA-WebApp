@@ -1,0 +1,44 @@
+<div xmlns="http://www.w3.org/1999/xhtml" class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml" data-template="app:download-link" data-template-format="WeGA">WeGA <i class="fa fa-download"/></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="$link/project/editorialGuidelines-text.html">Guidelines</a>.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=tei_all" data-template="app:download-link" data-template-format="tei_all">TEI all <i class="fa fa-download"/></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=tei_all" data-template="app:download-link" data-template-format="tei_simplePrint">TEI simplePrint <i class="fa fa-download"/></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                <!--<h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=dta" data-template="app:xml-download-link" data-template-format="dta">DTA Basisformat <i class="fa fa-download"/></a></h4>-->
+                <!--<p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>-->
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.txt" data-template="app:download-link" data-template-format="text">Plain text <i class="fa fa-download"/></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a></p>
+            </div>
+            <!--<div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>-->
+        </div>
+    </div>
+</div>

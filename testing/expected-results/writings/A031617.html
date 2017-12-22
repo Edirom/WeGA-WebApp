@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Schaffer, Sebastian" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031617" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -213,8 +217,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>Anonymus</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A031617</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031617.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -293,7 +335,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8011497103" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
                                 </label>
                             </div>
                         </div>
@@ -332,7 +374,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_placeName">Ständisches Theater</span> in <span class="tei_placeName"><span class="8011497103">Prag</span></span>.<br /></span><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Madame <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Grünbaum</a> als <span class="69109109101108105110101">Emmeline</span> in der <span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span>.</span></span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_placeName">Ständisches Theater</span> in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span>.<br /></span><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Madame <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Grünbaum</a> als <span class="69109109101108105110101">Emmeline</span> in der <span class="preview works A020495" data-ref="/exist/apps/WeGA-WebApp/de/A002094/Werke/A020495.html">Schweizerfamilie</span>.</span></span></h2>
                                         <p>Die Gesetze des Schönen, die dem gebildeten Kunstfreund einen Maaßstab für
                     die Beurtheilung der Werke <span class="tei_pb" title="Seitenumbruch zu S. 115"> | </span>aller Künste geben, verfeinern und erhöhen seinen
                     Kunstgeschmack durch Vergleichungen des Mittelmäßigen mit dem Bessern, des
@@ -342,7 +384,7 @@
                     obwohl sie ihn hier und da zu verstärken vermag, eine undramatische Künstlichkeit
                     des Componisten der auf Kosten der Darstellung sündigt. Weil aber der große
                     Haufe die Kunst nur in der Ueberwindung des Schweren erkennt und belohnt, so
-                    verleitet sein Beifall viele Sänger und Sängerinnen, nichts <span class="tei_choice"><span class="tei_corr">ihres</span><a class="noteMarker" id="ref-d221043e29" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d221043e29">‡</a></span> Fleißes würdig
+                    verleitet sein Beifall viele Sänger und Sängerinnen, nichts <span class="tei_choice"><span class="tei_corr">ihres</span><a class="noteMarker" id="ref-d10e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e28">‡</a></span> Fleißes würdig
                     zu achten, was sich nicht als ein schwieriges Kunstwerk ankündigt, und ihnen
                     Gelegenheit giebt, die Bravour ihrer Stimme zu zeigen. Desto schätzbarer ist
                     daher der wahre Kunstsinn einer großen Sängerin, wie Mad. <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html"><span class="tei_hi_spaced_out">Grünbaum</span></a>, die sich mit
@@ -376,7 +418,7 @@
                     Scene angenehm auf. <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>
                 </p>
                                         <p>Am <span class="tei_date">20. Mai</span> trat Hr. <a class="preview persons A008717" href="/exist/apps/WeGA-WebApp/de/A008717.html"><span class="tei_hi_spaced_out">Mattausch</span></a> als <span class="79116116111321181111103287105116116101108115989799104"><span class="tei_hi_spaced_out">Otto von
-                                Wittelsbach</span></span> im <span class="preview works A021049" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021049.html">Trauerspiele</span> <span class="tei_choice"><span class="tei_corr">gleichen</span><a class="noteMarker" id="ref-d221043e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d221043e104">‡</a></span> Namens auf. –
+                                Wittelsbach</span></span> im <span class="preview works A021049" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021049.html">Trauerspiele</span> <span class="tei_choice"><span class="tei_corr">gleichen</span><a class="noteMarker" id="ref-d10e103" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e103">‡</a></span> Namens auf. –
                     Der denkende, berufene Künstler ist in jeder Darstellung ein Anderer, nicht Er
                     selbst; er nimmt mit dem darzustellenden Charakter zugleich die Natur und Handlungsweise seines Helden an, und bezeichnet ihn dadurch in Kraft und Wahrheit.
                     Wer hätte heute den Darsteller <span class="tei_hi_spaced_out">des
@@ -438,7 +480,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Allgemeiner Deutscher Theater-Anzeiger</span>, Jg. 4 (1814), Nr. 29, S. 114–116</p>
+                                <p class="biblio-entry"><span class="journalTitle">Allgemeiner Deutscher Theater-Anzeiger</span>, Jg. 4 (1814), Nr. 29, S. 114–116</p>
                                 
                                 <div>
                                     
@@ -457,10 +499,10 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="d221043e29" data-title="choice">recte "ihres": in der Vorlage "ihrer"</div>
+                                            <div class="apparatusEntry" id="d10e28" data-title="choice">recte "ihres": in der Vorlage "ihrer"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d221043e104" data-title="choice">recte "gleichen": in der Vorlage "gleiches"</div>
+                                            <div class="apparatusEntry" id="d10e103" data-title="choice">recte "gleichen": in der Vorlage "gleiches"</div>
                                         </li>
                                     </ul>
                                 </div>
@@ -476,10 +518,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -488,9 +526,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031617</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031617</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

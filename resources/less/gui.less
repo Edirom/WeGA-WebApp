@@ -130,6 +130,14 @@ ol.endNotes {
     margin:0px;
 }
 
+/* little arrow that gets prepended to (original) footnote text */
+.fn-backref {
+    padding-right:.25em;
+    font-size: .83em;
+    vertical-align:super;
+    position:relative;
+}
+
 /* hanging indent for bibliographies*/
 .bibliography li {
     text-indent:-2em;
@@ -324,7 +332,7 @@ div.table-wrapper {
 .maxSize img {
     display:block;
     max-width: 100%;
-    margin: auto;
+    margin: @line-height-computed auto;
 }
 
 .float-left img {
@@ -397,6 +405,15 @@ div.table-wrapper {
 	}
 }
 
+/*
+ * highlighting of Julian calendar dates  
+ */
+.jul {
+    text-decoration: underline dotted;
+    -webkit-text-decoration: underline dotted;
+    cursor: help;
+}
+
 /* 
  * Guidelines Spec pages
  */
@@ -449,15 +466,14 @@ div.table-wrapper {
 }
 
 /*
- * styling for Guidelines' TOC
+ * styling for Guidelines and Wikipedia TOC
  */
 div.toc {
     li ul {
         margin-left: 2em;
-        display: none;
     }
     .toggle-toc-item {
-        margin-left:-.5em;
+        padding-left: 2em;
         cursor:pointer;
     }
     i {
@@ -495,4 +511,22 @@ div.toc {
         margin-right: 1em;
         font-family: @font-family-sans-serif;
     }
+}
+
+/*
+ * styling for modals, i.e. XML download options
+ */
+.modal-header button {
+    float:right;
+}
+
+.modal-body .fa-download {
+    padding-left:.5em;
+}
+
+/*
+ * A little bit more margin for paragraphs in the context box (at document pages)
+ */
+#relatedItems li p {
+    margin-bottom: @line-height-computed;
 }

@@ -15,8 +15,8 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2017-06-26T10:08:44.055557Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030446" />
         <meta property="dc:description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber" />
         <meta name="description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber" />
@@ -114,11 +114,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -214,8 +218,8 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Anonymus</a></li>
-                        <li><a>Schriften</a></li>
+                        <li><span>R.....</span></li>
+                        <li><span>Schriften</span></li>
                         <li><span>A030446</span> <span class="docStatus">in Bearbeitung</span></li>
                     </ol>
                 </div>
@@ -229,7 +233,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -244,11 +247,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030446.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -294,9 +336,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103101114" /> <span title="Leipziger">Leipziger</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8311611711610397114116101114" /> <span title="Stutgarter">Stutgarter</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -331,13 +371,14 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Aus Berlin, im Aug. und Septbr. <a href="#footnote01">*)</a>.</h2>
-                                        <p><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischütz</span>, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a>, ist ein wahrer Freischütz für die Kasse geworden. Das Haus ist jedesmal gedrängt voll, und die Damen <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Seidler</a> und <a class="preview persons A000466" href="/exist/apps/WeGA-WebApp/de/A000466.html">Eunike</a>, so wie Hr. <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Blume</a>, ernten jedesmal ihre wohlverdienten Lorbeerkränze. Auf die Gastrollen des Hrn. <a class="preview persons A009273" href="/exist/apps/WeGA-WebApp/de/A009273.html">Maurer</a> vom <span class="tei_placeName"><span class="8311611711610397114116101114">Stutgarter</span></span> Theater, der ehemals uns angehörte, und uns neuerdings bewies, daß er noch eben so gut wie ehemals schreien könne, aber auch wenig mehr, folgten die Gastdarstellungen des Hrn. <a class="preview persons A002271" href="/exist/apps/WeGA-WebApp/de/A002271.html">Stein</a> vom <span class="tei_placeName"><span class="76101105112122105103101114">Leipziger</span></span> Stadttheater. Er trat in folgenden Rollen auf: <span class="8411111411311797116111328497115115111">Torquato Tasso</span>, <span class="69117114105107111">Euriko</span> in der <span class="651089897110101115101114105110">Albaneserin</span>, <span class="68111110326797114108111115">Don Carlos</span>, im <span class="preview works A020900" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020900.html">Trauerspiele gleiches Namens</span>; <span class="77971081011143270117110107">Maler Funk</span> in den <span class="preview works A021229" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021229.html">vier Temperamenten</span>, <span class="76105101117116101110971101163287101114116104101114">Lieutenant Werther</span> in der <span class="preview works A021028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021028.html">beschämten Eifersucht</span>, <span class="6697114111110">Baron</span> im <span class="preview works A020790" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020790.html">Freimaurer</span>, und <span class="83101107114101116228114328710510810811097110103">Sekretär Willnang</span> in der <span class="preview works A020959" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020959.html">Selbstbeherrschung</span>, und zwar die letztern vier Rollen in Charlottenburg, vermuthlich wegen der Anwesenheit des Hofes und des fremden Militärs, welches sich wegen des in der Nähe jetzt errichteten Luftlagers da befindet.</p>
+                                        <h2 class="docHeader textAlign-left">Aus Berlin, im Aug. und Septbr. <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>.</h2>
+                                        <p><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischütz</span>, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a>, ist ein wahrer Freischütz für die Kasse geworden. Das Haus ist jedesmal gedrängt voll, und die Damen <a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Seidler</a> und <a class="preview persons A000466" href="/exist/apps/WeGA-WebApp/de/A000466.html">Eunike</a>, so wie Hr. <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Blume</a>, ernten jedesmal ihre wohlverdienten Lorbeerkränze. Auf die Gastrollen des Hrn. <a class="preview persons A009273" href="/exist/apps/WeGA-WebApp/de/A009273.html">Maurer</a> vom <span class="8311611711610397114116101114">Stutgarter</span> Theater, der ehemals uns angehörte, und uns neuerdings bewies, daß er noch eben so gut wie ehemals schreien könne, aber auch wenig mehr, folgten die Gastdarstellungen des Hrn. <a class="preview persons A002271" href="/exist/apps/WeGA-WebApp/de/A002271.html">Stein</a> vom <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipziger</span> Stadttheater. Er trat in folgenden Rollen auf: <span class="8411111411311797116111328497115115111">Torquato Tasso</span>, <span class="69117114105107111">Euriko</span> in der <span class="651089897110101115101114105110">Albaneserin</span>, <span class="68111110326797114108111115">Don Carlos</span>, im <span class="preview works A020900" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020900.html">Trauerspiele gleiches Namens</span>; <span class="77971081011143270117110107">Maler Funk</span> in den <span class="preview works A021229" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021229.html">vier Temperamenten</span>, <span class="76105101117116101110971101163287101114116104101114">Lieutenant Werther</span> in der <span class="preview works A021028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021028.html">beschämten Eifersucht</span>, <span class="6697114111110">Baron</span> im <span class="preview works A020790" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020790.html">Freimaurer</span>, und <span class="83101107114101116228114328710510810811097110103">Sekretär Willnang</span> in der <span class="preview works A020959" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020959.html">Selbstbeherrschung</span>, und zwar die letztern vier Rollen in Charlottenburg, vermuthlich wegen der Anwesenheit des Hofes und des fremden Militärs, welches sich wegen des in der Nähe jetzt errichteten Luftlagers da befindet.</p>
                                         <p><span> […]</span></p>
                                     </div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01">*) Nicht von dem gewöhnlichen Korrespondenten. <br />d. Red.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Nicht von dem gewöhnlichen Korrespondenten. <br />d. Red.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -372,7 +413,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 21, Nr. 236 (1. Dezember 1821), Sp. 1887–1888</p>
+                                <p class="biblio-entry"><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 21, Nr. 236 (1. Dezember 1821), Sp. 1887–1888</p>
                                 
                                 <div>
                                     
@@ -403,10 +444,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -415,9 +452,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030446</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030446</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 26. Juni 2017 durch Solveig Schreiter</span></p>
+                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

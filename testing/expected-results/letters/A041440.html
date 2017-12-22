@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-06-27T21:13:10.687713Z" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041440" />
         <meta property="dc:description" content="betrifft Textumarbeitung von Kinds Jubelkantate; Weber hofft auf Druck u. Verbreitung des Werkes;" />
         <meta name="description" content="betrifft Textumarbeitung von Kinds Jubelkantate; Weber hofft auf Druck u. Verbreitung des Werkes;" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -230,7 +234,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -245,47 +248,91 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041440.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041439.html">1818-08-04</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041439.html">1818-08-04</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041441.html">1818-08-05</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001463.html">Peters, Carl Friedrich</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A009103/Korrespondenz/A041487.html">1819-01-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A009103.html">Pius VII.</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel, Ignaz Franz Edler von</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041441.html">1818-08-05</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001463.html">Peters, Carl Friedrich</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041439.html">1818-08-04</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A009103/Korrespondenz/A041487.html">1819-01-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A009103.html">Pius VII.</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041439.html">1818-08-04</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041443.html">1818-08-14</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041443.html">1818-08-14</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind, Friedrich</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -325,9 +372,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="72111115116101114119105116122" /> <span title="Hosterwitz">Hosterwitz</span> 
+                                    <input type="checkbox" name="options" value="A130042" /> <span title="Hosterwitz">Hosterwitz</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -348,17 +395,17 @@
                über die Sache. Kann natürlich nicht wohl ausweichen, wenn mir ein anderer Vorwurf gegeben wird,
                werde aber Ihre <span class="preview works A020024" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020024.html">Cantate</span> auf jeden Fall componiren und aufführen, als selbstständiges
                Huldigungs-Zeichen unseres erhabenen <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">Monarchen</a>, oder sollte es dazu nicht kommen können, es
-               stechen lassen, worüber ich heute noch an <a class="preview persons A001463" href="/exist/apps/WeGA-WebApp/de/A001463.html">Peters</a> in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> u. <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> schreiben will; man
+               stechen lassen, worüber ich heute noch an <a class="preview persons A001463" href="/exist/apps/WeGA-WebApp/de/A001463.html">Peters</a> in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> u. <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> schreiben will; man
                könnte sie ja an mehreren Orten <span class="tei_region">Sachsens</span> zugleich aufführen. – Ich bin froh, daß Sie bald
                wieder zurück zu kommen gedenken. Mir geht es auf jeden Fall schlimm, denn es scheint
-               <span class="tei_add tei_hi_superscript">auch<a class="noteMarker" id="ref-d54679e32" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d54679e32">‡</a></span> im Theater nun etwas projektirt zu werden, ein paar Tableaux u. s. w. Es wird eine
+               <span class="tei_add tei_hi_superscript">auch<a class="noteMarker" id="ref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a></span> im Theater nun etwas projektirt zu werden, ein paar Tableaux u. s. w. Es wird eine
                Wonne sein, wie alles auf den letzten Augenblick verschoben u. gejagt werden wird. –
                Dienst-Verhältnisse – das ist nun nicht anders.<a class="noteMarker" id="ref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a></p>
                                         <p class="tei_closer textAlign-left">Treffen Sie diese Zeilen bei unserem geachteten <a class="preview persons A000648" href="/exist/apps/WeGA-WebApp/de/A000648.html">Göschen</a>, so grüßen Sie ihn aufs herzlichste von mir.<br />
                <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Meine Frau</a> ruft Ihnen freundlichst zu, u. ich bin immer u. immer in Liebe
                <span class="tei_segBlock textAlign-right">Ihr<br />
                <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>.</span>
-               <span class="tei_dateline textAlign-left"><span class="tei_placeName"><span class="72111115116101114119105116122">Hosterwitz</span></span>, 5<span class="tei_hi_superscript">t</span> August 1818.</span>
+               <span class="tei_dateline textAlign-left"><span class="preview places A130042" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130042.html">Hosterwitz</span>, 5<span class="tei_hi_superscript">t</span> August 1818.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -427,7 +474,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d54679e32" data-title="add">"auch": Hinzufügung.</div>
+                                            <div class="apparatusEntry" id="d10e31" data-title="add">"auch": Hinzufügung.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -449,10 +496,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -461,9 +504,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041440</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041440</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. Juni 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

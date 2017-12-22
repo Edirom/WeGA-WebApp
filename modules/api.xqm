@@ -18,9 +18,14 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace functx="http://www.functx.com";
 
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
+
+declare variable $api:max-limit := function($swagger-conf as map(*)) as xs:integer {
+    $swagger-conf?parameters?limitParam?maximum
+};
 
 declare function api:documents($model as map()) {
     let $ids :=
@@ -40,7 +45,7 @@ declare function api:documents($model as map()) {
 :)
 
 declare function api:documents-findByDate($model as map()) {
-    let $documents := for $docType in api:resolve-docTypes($model) return query:exact-date(xs:date($model('date')), $docType)
+    let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate)
     return
         api:document(api:subsequence($documents, $model), $model)
 };
@@ -78,7 +83,10 @@ declare function api:code-findByElement($model as map()) {
         else if($model('namespace')) then util:eval('$documents//*:' || $model('element') || '[namespace-uri()="' || $model('namespace') || '"]') (: other namespaces :)
         else util:eval('$documents//' || $model('element')) (: empty namespace :)
     return
+        (: NB: when searching for tei:facsimile empty code samples may be returned due to licensing issues :)
         if($model?total) then $eval
+        (: The 'secret' $total switch is used for our list of examples on the spec pages and is of type element()*; 
+            regular output from the API is the following subsequence of type map()* :)
         else api:codeSample(api:subsequence($eval, $model), $model) 
 };
 
@@ -92,8 +100,8 @@ declare function api:code-findByElement($model as map()) {
 declare %private function api:findByID($id as xs:string) as document-node()* {
     if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then core:doc($id)
     else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then core:doc(substring-after($id, 'de/'))
-    else if(starts-with(normalize-space($id), 'http://d-nb.info/gnd/')) then query:doc-by-gnd(substring($id, 22))
-    else if(starts-with(normalize-space($id), 'http://viaf.org/viaf/')) then query:doc-by-gnd(wega-util:viaf2gnd(substring($id, 22)))
+    else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
+    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then query:doc-by-gnd(wega-util:viaf2gnd(substring-after($id, '/viaf/')))
     else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
 };
 
@@ -148,9 +156,9 @@ declare %private function api:subsequence($seq as item()*, $model as map()) {
     let $limit := if($model('limit') castable as xs:integer) then $model('limit') cast as xs:integer else 0
     return
         if($offset gt 0 and $limit gt 0) then subsequence($seq, $offset, $limit)
-        else if($offset gt 0) then subsequence($seq, $offset)
+        else if($offset gt 0) then subsequence($seq, $offset, $api:max-limit($model('swagger:config')))
         else if($limit gt 0) then subsequence($seq, 1, $limit)
-        else $seq
+        else subsequence($seq, 1, $api:max-limit($model('swagger:config')))
 }; 
 
 (:~
@@ -188,7 +196,7 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
             map { 
                 'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
                 'docID' := $docID,
-                'codeSample' := serialize(core:change-namespace(wega-util:remove-comments($node), '', ()))
+                'codeSample' := serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
             }
 };
 
@@ -253,16 +261,24 @@ declare function api:validate-offset($model as map()) as map()? {
  : Check parameter limit
 ~:)
 declare function api:validate-limit($model as map()) as map()? {
-    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le 200) then $model 
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to 200.')
+    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le $api:max-limit($model('swagger:config'))) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to ' || $api:max-limit($model('swagger:config')) || '.')
 };
 
 (:~
- : Check parameter date
+ : Check parameter fromDate
 ~:)
-declare function api:validate-date($model as map()) as map()? {
-    if($model('date') castable as xs:date) then $model
-    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
+declare function api:validate-fromDate($model as map()) as map()? {
+    if($model('fromDate') castable as xs:date) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('fromDate') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter toDate
+~:)
+declare function api:validate-toDate($model as map()) as map()? {
+    if($model('toDate') castable as xs:date) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('toDate') || '". Should be YYYY-MM-DD.')
 };
 
 (:~

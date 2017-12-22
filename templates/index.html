@@ -3,10 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12" data-template="app:word-of-the-day">
-                    <h1 class="home" data-template="app:print" data-template-key="wordOfTheDay">„MIT HILFE DER GÖTTLICHEN <br/> TONKUNST LÄSST SICH MEHR <br/>
+                    <h1 class="home" data-template="app-shared:print" data-template-key="wordOfTheDay">„MIT HILFE DER GÖTTLICHEN <br/> TONKUNST LÄSST SICH MEHR <br/>
                         AUSDRÜCKEN UND AUSRICHTEN ALS MIT WORTEN.“ </h1>
                     <h3 class="unterschriftweber">
-                        <a href="index.html#" data-template="app:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL">
+                        <a href="index.html#" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL">
                             <span data-template="lang:translate">gotoletter</span> <i class="fa fa-arrow-right"/>
                         </a> | <img src="$resources/img/unterschrift-weber.png"/>
                     </h3>
@@ -46,17 +46,17 @@
         </div>
     </div>
     
-    <div class="colored borderBottom" data-template="app:if-matches" data-template-key="environment" data-template-value="development">
+    <div class="colored borderBottom" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development">
         <div class="container">
             <form role="form" class="form-inline">
                 <div class="row paddingTopIcon paddingBottomIcon history">
                     <div class="col-sm-12"><h3>Development Tools</h3></div>
                     <div class="col-sm-4" data-template="dev-app:ant-log">
                         <h4>Subversion Commit Status</h4>
-                        <p data-template="app:if-exists" data-template-key="ant-log-rev">
-                            <a data-template="app:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app:if-exists" data-template-key="ant-log-success"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app:if-not-exists" data-template-key="ant-log-success"/></a>
+                        <p data-template="app-shared:if-exists" data-template-key="ant-log-rev">
+                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="ant-log-url">Revision <span class="currentRevision" data-template="app-shared:print" data-template-key="ant-log-rev"> 9500 </span> <i class="fa fa-check-circle-o fa-lg" data-template="app-shared:if-matches" data-template-key="ant-log-success" data-template-value="true"/> <i class="fa fa-exclamation-triangle fa-lg" data-template="app-shared:if-matches" data-template-key="ant-log-success" data-template-value="false"/></a>
                         </p>
-                        <p data-template="app:if-not-exists" data-template-key="ant-log-rev">
+                        <p data-template="app-shared:if-not-exists" data-template-key="ant-log-rev">
                             Keine Log-Datei verfügbar.
                         </p>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
                                 <select class="input-group-addon gradient-light bootstrap-select form-control" name="newID-d" id="newID-select" data-template="dev-app:newID-docTypes">
-                                    <option value="persons" data-template="app:each" data-template-from="newID-docTypes" data-template-to="newID-docType" data-template-callback="dev-app:newID-option">persons</option>
+                                    <option value="persons" data-template="app-shared:each" data-template-from="newID-docTypes" data-template-to="newID-docType" data-template-callback="dev-app:newID-option">persons</option>
                                 </select>
                             </div>
                             <div class="input-group-btn">
@@ -85,7 +85,7 @@
                     </div>-->
                     <div class="col-sm-4" data-template="dev-app:app-status">
                         <h4>WebApp Status</h4>
-                        <p>Deployed: <span data-template="app:print" data-template-key="deployment-date">31. August 2016</span></p>
+                        <p>Deployed: <span data-template="app-shared:print" data-template-key="deployment-date">31. August 2016</span></p>
                         <!--<p>Version: <a href="#">71737434</a></p>-->
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                     <h2>
                         <a data-template="lang:translate">projectWeGA</a>
                     </h2>
-                    <ul data-template="app:order-list-items">
+                    <ul data-template="app-shared:order-list-items">
                         <li><a href="$link/project/projectDescription.html"><span data-template="lang:translate">projectDescription</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/project/editorialGuidelines-music.html"><span data-template="lang:translate">editorialGuidelines-music</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/project/editorialGuidelines-text.html"><span data-template="lang:translate">editorialGuidelines-text</span> <i class="fa fa-arrow-right"/></a></li>
@@ -117,7 +117,7 @@
                     <h2>
                         <a href="$link/A002068.html">Carl Maria von Weber</a>
                     </h2>
-                    <ul data-template="app:order-list-items">
+                    <ul data-template="app-shared:order-list-items">
                         <li><a href="$link/A002068.html"><span data-template="lang:translate">webers_person</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/A002068.html#documents"><span data-template="lang:translate">webers_documents</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/A002068.html#correspondence"><span data-template="lang:translate">webers_correspondence</span> <i class="fa fa-arrow-right"/></a></li>
@@ -132,13 +132,14 @@
                     <h2>
                         <a href="$link/indices" data-template="lang:translate">complete_indices</a>
                     </h2>
-                    <ul data-template="app:order-list-items">
+                    <ul data-template="app-shared:order-list-items">
                         <li><a href="$link/indices/persons"><span data-template="lang:translate">all_persons</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/indices/letters"><span data-template="lang:translate">all_letters</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/indices/documents"><span data-template="lang:translate">all_documents</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/indices/writings"><span data-template="lang:translate">all_writings</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/indices/diaries"><span data-template="lang:translate">all_diaries</span> <i class="fa fa-arrow-right"/></a></li>
                         <li><a href="$link/indices/works"><span data-template="lang:translate">all_works</span> <i class="fa fa-arrow-right"/></a></li>
+                        <li><a href="$link/indices/places"><span data-template="lang:translate">all_places</span> <i class="fa fa-arrow-right"/></a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 noMargin" data-template="app:index-news-items">
@@ -146,7 +147,7 @@
                     <h2>
                         <a href="$link/project/news" data-template="lang:translate">newsAboutTheProject</a>
                     </h2>
-                    <div data-template="app:each" data-template-from="news" data-template-to="doc" class="noMargin">
+                    <div data-template="app-shared:each" data-template-from="news" data-template-to="doc" class="noMargin">
                         <p data-template="app:index-news-date">06.09.2013</p>
                         <p>
                             <a href="singleAktuelles.php.html" data-template="app:preview-icon"><span data-template="app:document-title">Digitale Edition Version 1.1.8
@@ -167,12 +168,12 @@
             </div>
             <div class="row paddingBottomIcon history" data-template="app:lookup-todays-events">
                 <div class="col-sm-6">
-                    <p data-template="app:each" data-template-from="events1" data-template-to="event">
+                    <p data-template="app-shared:each" data-template-from="events1" data-template-to="event">
                         <span data-template="app:print-event"/>
                     </p>
                 </div>
                 <div class="col-sm-6">
-                    <p data-template="app:each" data-template-from="events2" data-template-to="event">
+                    <p data-template="app-shared:each" data-template-from="events2" data-template-to="event">
                         <span data-template="app:print-event"/>
                     </p>
                 </div>

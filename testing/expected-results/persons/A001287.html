@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2017-05-03T14:34:14.410772Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001287" />
         <meta property="dc:description" content="Biographische Informationen zu August Mayer. Lebensdaten: 12. August 1790–31. März 1829. Tätigkeiten: Sänger (Bass), Komponist, Bühnenschriftsteller. Wirkorte: Hamburg, Kassel, Dresden" />
         <meta name="description" content="Biographische Informationen zu August Mayer. Lebensdaten: 12. August 1790–31. März 1829. Tätigkeiten: Sänger (Bass), Komponist, Bühnenschriftsteller. Wirkorte: Hamburg, Kassel, Dresden" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,12 +226,51 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001287.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001287.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001287.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001287.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Morettisches Theater, August Mayers Wirkungsstätte in Dresden (1819–1829) (Quelle: Wikimedia)" alt="Morettisches Theater, August Mayers Wirkungsstätte in Dresden (1819–1829) (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Dresden_Moretti-Theater_au%C3%9Fen_2.jpg/220px-Dresden_Moretti-Theater_au%C3%9Fen_2.jpg" />
+                            <img class="img-responsive" title="Morettisches Theater, August Mayers Wirkungsstätte in Dresden (1819–1829) (Quelle: Wikimedia)" alt="Morettisches Theater, August Mayers Wirkungsstätte in Dresden (1819–1829) (Quelle: Wikimedia)" src="http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/ae43251312362b36d9c979986ef87e06.tif/full/,340/0/native.jpg" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -313,7 +356,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a href="#contacts" data-target="A001287/contacts.html">Kontakte<small> (1)</small></a></li>
-                                <li><a href="#backlinks" data-target="A001287/backlinks.html">Rückverweise<small> (38)</small></a></li>
+                                <li><a href="#backlinks" data-target="A001287/backlinks.html">Rückverweise<small> (45)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -341,13 +384,13 @@
                                                         <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001287/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A001287/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -356,7 +399,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A001287/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A001287.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -371,11 +414,11 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-          <li>bis 1815/16 am <span class="tei_placeName"><span class="729710998117114103101114">Hamburger</span></span> Theater</li>
-          <li>1813 in <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> Heirat mit <a class="preview persons A001289" href="/exist/apps/WeGA-WebApp/de/A001289.html">Sophie Löhrs</a></li>
-          <li>1815/16 bis 1819 am Hoftheater <span class="tei_placeName"><span class="7597115115101108">Kassel</span></span>; Fach: 1. Bass</li>
-          <li>ab 1. April 1819 Schauspieler und 1. Bassist im deutschen Départment an der Hofoper <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span></li>
-         <li>Antrittsvorstellung am 14. April 1819 als <span class="79115109105110">Osmin</span> in der <span class="tei_hi_italic"><span class="preview works A020461" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020461.html">Entführung aus dem Serail</span></span>; sang in der <span class="tei_placeName"><span class="68114101115100110101114">Dresdner</span></span> Erstaufführung des <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span> (26. Januar 1822) den <span class="679711511297114">Caspar</span> und in jener der <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> (31. März 1824) den <span class="7612111510597114116">Lysiart</span></li>
+          <li>bis 1815/16 am <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburger</span> Theater</li>
+          <li>1813 in <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> Heirat mit <a class="preview persons A001289" href="/exist/apps/WeGA-WebApp/de/A001289.html">Sophie Löhrs</a></li>
+          <li>1815/16 bis 1819 am Hoftheater <span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Kassel</span>; Fach: 1. Bass</li>
+          <li>ab 1. April 1819 Schauspieler und 1. Bassist im deutschen Départment an der Hofoper <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span></li>
+         <li>Antrittsvorstellung am 14. April 1819 als <span class="79115109105110">Osmin</span> in der <span class="tei_hi_italic"><span class="preview works A020461" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020461.html">Entführung aus dem Serail</span></span>; sang in der <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresdner</span> Erstaufführung des <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span> (26. Januar 1822) den <span class="679711511297114">Caspar</span> und in jener der <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> (31. März 1824) den <span class="7612111510597114116">Lysiart</span></li>
          <li>wurde später auch im italienischen Départment eingesetzt</li>
          <li>blieb bis auf eine Unterbrechung für Gastspiele vom 1. April bis 30. September 1823 bis zu seinem Tod an der Hofoper</li>
       </ul>
@@ -385,11 +428,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -400,6 +443,7 @@
                                                             <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=14085584X">Bayerische Staatsbibliothek (2)</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01221401]" href="http://thesaurus.cerl.org/record/cnp01221401">CERL Thesaurus</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp01226888]" href="http://thesaurus.cerl.org/record/cnp01226888">CERL Thesaurus</a></li>
+                                                            <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/14085584X&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/14085584X">Deutsche Digitale Bibliothek</a></li>
                                                             <li><a title="Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Komponisten [Mayer, Friedrich Ludwig August (1790-1829 )]" href="http://www.oper-um-1800.uni-koeln.de/einzeldarstellung_komponist.php?id_komponist=398">Die Oper in Italien und Deutschland zwischen 1770 und 1830 - Komponisten [Mayer, Friedrich Ludwig August (1790-1829 )]</a></li>
                                                             <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)14085584X">HBZ-Verbundkatalog</a></li>
@@ -414,9 +458,6 @@
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -473,9 +514,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001287</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001287</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 3. Mai 2017 durch Eveline Bartlitz</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

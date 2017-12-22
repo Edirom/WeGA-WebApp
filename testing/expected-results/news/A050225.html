@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-12-20T13:54:16.138030Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050225" />
         <meta property="dc:description" content="Dass man die Angaben Max Maria von Webers in der Biographie seines Vaters (Carl Maria von Weber. Ein Lebensbild, 3 Bd., Leipzig 1864/66) mit Vorsicht …" />
         <meta name="description" content="Dass man die Angaben Max Maria von Webers in der Biographie seines Vaters (Carl Maria von Weber. Ein Lebensbild, 3 Bd., Leipzig 1864/66) mit Vorsicht …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,11 +241,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -279,19 +321,23 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Dass man die Angaben <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Webers</a> in der Biographie seines Vaters (<span class="tei_hi_italic">Carl Maria von Weber. Ein Lebensbild</span>, 3 Bd., Leipzig 1864/66) mit Vorsicht zu betrachten hat, ist seit längerem bekannt; viele spätere Biographen sind ihnen „auf den Leim gegangen“, haben sie doch nicht gewagt, an der Authentizität dieser Mitteilungen des Komponisten-Sohnes zu zweifeln. Selten sind die phantasievollen Ausschmückungen allerdings so dreist wie im Falle gefälschter Quellen. So zitiert <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> (in Bd. 2, S. 271) angeblich aus einem Brief eines ungenannten Verlegers u. a. folgende Passage, die belegen soll, „wie wunderlich oft die Motive waren, unter denen Verleger sich um Ueberlassung von Werken an Weber wendeten“. Die Briefauszüge lauten:</p>
-                                        <p>„Recht sehr wollte ich Sie bitten, um das Rondo aus Des dur, welches Sie meinem Sohne vorgespielt haben.<br />
+                        <div id="d10e2">
+                                    <p>Dass man die Angaben <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Webers</a> in der Biographie seines Vaters (<span class="tei_hi_italic">Carl Maria von Weber. Ein Lebensbild</span>, 3 Bd., Leipzig 1864/66) mit Vorsicht zu betrachten hat, ist seit längerem bekannt; viele spätere Biographen sind ihnen „auf den Leim gegangen“, haben sie doch nicht gewagt, an der Authentizität dieser Mitteilungen des Komponisten-Sohnes zu zweifeln. Selten sind die phantasievollen Ausschmückungen allerdings so dreist wie im Falle gefälschter Quellen. So zitiert <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> (in Bd. 2, S. 271) angeblich aus einem Brief eines ungenannten Verlegers u. a. folgende Passage, die belegen soll, „wie wunderlich oft die Motive waren, unter denen Verleger sich um Ueberlassung von Werken an Weber wendeten“. Die Briefauszüge lauten:</p>
+                                    <p>„Recht sehr wollte ich Sie bitten, um das Rondo aus Des dur, welches Sie meinem Sohne vorgespielt haben.<br />
                Dieses soll, wie ich von allen Seiten höre, ein galantes und höchst munteres Rondo sein.<br />
                Da die beiden bei mir gestochenen Rondo und Polacca so schwer sind, so bitte ich mir dieß Rondo (Des dur) als ein kleines Heilpflästerchen für meine Verluste bei jenen zu überlassen. […]<br />
                Mein Sohn läßt Sie herzlich grüßen und trägt mir auf, Sie zu ersuchen, da er wünscht, Ihre Compositionen in Paris bekannt zu machen, Sie möchten einmal Etwas im französischen Genre schreiben, und zwar wo möglich ein leichtes Concert-Stück. Was meinen Sie dazu, werthester Herr Capellmeister?“</p>
-                                        <p>Deutlich erkennbar handelt es sich um den Berliner Hauptverleger <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>, <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Adolph Martin Schlesinger</a>, bei dem im November 1819 das <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> und die <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> erschienen waren, im August 1821 gefolgt von der <span class="tei_hi_italic"><span class="preview works A020230" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020230.html">Aufforderung zum Tanze</span></span>, die in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Tagebuchnotizen mehrfach als <span class="tei_hi_italic">Rondo</span> oder <span class="tei_hi_italic">Rondo brillant</span> in Des-Dur bezeichnet ist.</p>
-                                        <p>Leider sind die Briefe des Verlegers an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> bis zum Jahr 1825 verschollen: Die an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gerichteten Originale wurden offenbar (wie der Großteil der an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gerichteten Schreiben überhaupt) vernichtet, und die Briefkopierbücher des Verlages Schlesinger/Lienau mit der Geschäftskorrespondenz aus dem Zeitraum Juli 1808 bis Dezember 1825 sind verschollen. Somit wäre jedes noch so kleine Textfragment ein erfreulicher Zugewinn.</p>
-                                        <p>Doch das Zitat <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Webers</a> macht stutzig: Absatzschwierigkeiten im Falle des <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> und der <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> sind sonst nirgends thematisiert und angesichts der Neuauflagen und -ausgaben beider Werke bei <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a>, vor allem aber der vielen Nachdrucke durch andere Verlage kaum vorstellbar. Zudem bezeugen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Briefe an <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a>, dass der Verleger an Liedern und Klavierkompositionen besonders interessiert war, da sie sich besser verkaufen ließen als Werke für oder mit Orchester.</p>
-                                        <p>Den erwähnten Besuch des Schlesinger-Sohnes <a class="preview persons A001695" href="/exist/apps/WeGA-WebApp/de/A001695.html">Maurice</a> hatte es tatsächlich gegeben: laut <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Tagebuch am 11. August 1819. Dabei wurde auch ein neuer Verlags-Vertrag aufgesetzt; zum ausgehandelten Paket gehörten u. a. die <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> und zeitgleich die <span class="tei_hi_italic"><span class="preview works A020230" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020230.html">Aufforderung zum Tanze</span></span> (das <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> war <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> bereits im Juli 1818 als Ersatz für eine andere Komposition zugesagt worden).<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> 
+                                    <p>Deutlich erkennbar handelt es sich um den Berliner Hauptverleger <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>, <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Adolph Martin Schlesinger</a>, bei dem im November 1819 das <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> und die <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> erschienen waren, im August 1821 gefolgt von der <span class="tei_hi_italic"><span class="preview works A020230" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020230.html">Aufforderung zum Tanze</span></span>, die in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Tagebuchnotizen mehrfach als <span class="tei_hi_italic">Rondo</span> oder <span class="tei_hi_italic">Rondo brillant</span> in Des-Dur bezeichnet ist.</p>
+                                    <p>Leider sind die Briefe des Verlegers an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> bis zum Jahr 1825 verschollen: Die an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gerichteten Originale wurden offenbar (wie der Großteil der an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gerichteten Schreiben überhaupt) vernichtet, und die Briefkopierbücher des Verlages Schlesinger/Lienau mit der Geschäftskorrespondenz aus dem Zeitraum Juli 1808 bis Dezember 1825 sind verschollen. Somit wäre jedes noch so kleine Textfragment ein erfreulicher Zugewinn.</p>
+                                    <p>Doch das Zitat <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Webers</a> macht stutzig: Absatzschwierigkeiten im Falle des <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> und der <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> sind sonst nirgends thematisiert und angesichts der Neuauflagen und -ausgaben beider Werke bei <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a>, vor allem aber der vielen Nachdrucke durch andere Verlage kaum vorstellbar. Zudem bezeugen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Briefe an <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a>, dass der Verleger an Liedern und Klavierkompositionen besonders interessiert war, da sie sich besser verkaufen ließen als Werke für oder mit Orchester.</p>
+                                    <p>Den erwähnten Besuch des Schlesinger-Sohnes <a class="preview persons A001695" href="/exist/apps/WeGA-WebApp/de/A001695.html">Maurice</a> hatte es tatsächlich gegeben: laut <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Tagebuch am 11. August 1819. Dabei wurde auch ein neuer Verlags-Vertrag aufgesetzt; zum ausgehandelten Paket gehörten u. a. die <span class="tei_hi_italic"><span class="preview works A020335" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020335.html">Polacca brillante</span></span> und zeitgleich die <span class="tei_hi_italic"><span class="preview works A020230" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020230.html">Aufforderung zum Tanze</span></span> (das <span class="tei_hi_italic"><span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span></span> war <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schlesinger</a> bereits im Juli 1818 als Ersatz für eine andere Komposition zugesagt worden).<a class="noteMarker arabic" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
                Die <span class="tei_hi_italic"><span class="preview works A020230" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020230.html">Aufforderung zum Tanze</span></span> war also, wenn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> sie auch erst später lieferte als die beiden anderen Klavierstücke, keineswegs eine nachträgliche Wiedergutmachung für ausgebliebene Verluste, sondern von Beginn an ausgehandelter Bestandteil des Vertrags. Der von <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> als Zitat gekennzeichnete Brieftext muss also eine freie Erfindung sein! Einmal mehr erweist sich der Weber-Sohn als phantasievoller Erzähler, dem die dokumentarische Genauigkeit weniger wichtig war als eine schön erfundene Geschichte.</p>
-                                    </div>
+                                </div>
+                                <div id="endNotes">
+                                    <h2>Einzelnachweise</h2>
+                                    <ol class="endNotes">
+                                        <li id="C_01" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#ref-C_01">1</a>Vgl. dazu Frank Ziegler, <span class="tei_hi_italic">Verschollene Dokumente zu Carl Maria von Webers Vertragsabschlüssen mit Adolph Martin Schlesinger</span>, in: <span class="tei_hi_italic">Weberiana</span> 23 (2013), S. 82, 84–86.</li>
+                                    </ol>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Montag, 2. November 2015</p>
                     </div>
@@ -322,7 +368,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -335,16 +381,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary">
-                                        <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… eine andere Komposition zugesagt worden).": </span>Vgl. dazu Frank Ziegler, <span class="tei_hi_italic">Verschollene Dokumente zu Carl Maria von Webers Vertragsabschlüssen mit Adolph Martin Schlesinger</span>, in: <span class="tei_hi_italic">Weberiana</span> 23 (2013), S. 82, 84–86.</div>
-                                        </li>
-                                    </ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -357,10 +394,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -369,9 +402,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050225</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050225</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

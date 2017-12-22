@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-09-15T13:05:55.165855Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050094" />
         <meta property="dc:description" content="Mit der Präsentation „Weber Digital“, die in Kooperation mit der Staatsbibliothek zu Berlin – Preußischer Kulturbesitz am 4. Mai 2011 in der …" />
         <meta name="description" content="Mit der Präsentation „Weber Digital“, die in Kooperation mit der Staatsbibliothek zu Berlin – Preußischer Kulturbesitz am 4. Mai 2011 in der …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,11 +241,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050094.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -258,7 +300,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -269,20 +311,19 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Mit der Präsentation <span class="tei_hi_bold">„Weber Digital“</span>, die in Kooperation mit der Staatsbibliothek zu <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> – Preußischer Kulturbesitz am <span class="tei_date">4. Mai 2011</span> in der Vertretung des Landes Rheinland-Pfalz (dem Sitzland der Akademie der Wissenschaften und der Literatur Mainz) in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> stattfand, wurde der gesamte Web-Auftritt der Weber-Gesamtausgabe in neuer Gestalt freigeschaltet, der nun einen Einblick in die „Werkstatt“ der Gesamtausgabe ermöglicht, da zugleich ein erstes größeres Textkorpus der Edition der Briefe, Tagebücher, Schriften und Dokumente <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> für die Öffentlichkeit zugänglich wird.</p>
-                                        <p>Der Umzug der Inhalte der alten Website der Gesamtausabe auf diese neue Seite ist
+                        <div id="d10e2">
+                                    <p>Mit der Präsentation <span class="tei_hi_bold">„Weber Digital“</span>, die in Kooperation mit der Staatsbibliothek zu <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> – Preußischer Kulturbesitz am <span class="tei_date">4. Mai 2011</span> in der Vertretung des Landes Rheinland-Pfalz (dem Sitzland der Akademie der Wissenschaften und der Literatur Mainz) in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> stattfand, wurde der gesamte Web-Auftritt der Weber-Gesamtausgabe in neuer Gestalt freigeschaltet, der nun einen Einblick in die „Werkstatt“ der Gesamtausgabe ermöglicht, da zugleich ein erstes größeres Textkorpus der Edition der Briefe, Tagebücher, Schriften und Dokumente <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> für die Öffentlichkeit zugänglich wird.</p>
+                                    <p>Der Umzug der Inhalte der alten Website der Gesamtausabe auf diese neue Seite ist
                noch nicht komplett abgeschlossen, fehlende Inhalte (darunter die Bibliographie und
                der Überblick über die Werkausgabe) sowie einige noch essentielle Features (z. B. die
                Anordnung der News nach Aktualität und eine Filterung nach Kategorien, die Markierung
                bereits bearbeiteter Inhalte durch gelbe oder grüne Identifikationsnummern) werden
                mit Version 1.1 ergänzt. Um Ihnen die Orientierung auf der neuen Website zu
                erleichtern, folgen hier einige knappe Hinweise zur Benutzung: </p>
-                                        <ul class="tei_list">
-                                            <li>Grundsätzliche Informationen zu den Inhalten der Website bzw. zur Gesamtausgabe finden Sie unter der Rubrik <span class="tei_mentioned">Projektbeschreibung</span>. Dort sind kurz die verschiedenen Teile der Ausgabe und der gegenwärtige Stand der jeweils digital publizierten Inhalte beschrieben. Ausdrücklich sei darauf hingewiesen, dass die inhaltliche Erschließung der Texte gegenwärtig erst in Teilen in eine Anzeige umgesetzt ist.
+                                    <ul class="tei_list">
+                                        <li>Grundsätzliche Informationen zu den Inhalten der Website bzw. zur Gesamtausgabe finden Sie unter der Rubrik <span class="tei_mentioned">Projektbeschreibung</span>. Dort sind kurz die verschiedenen Teile der Ausgabe und der gegenwärtige Stand der jeweils digital publizierten Inhalte beschrieben. Ausdrücklich sei darauf hingewiesen, dass die inhaltliche Erschließung der Texte gegenwärtig erst in Teilen in eine Anzeige umgesetzt ist.
                </li>
-                                            <li>Bitte nutzen Sie die Rubrik <span class="tei_mentioned">Register</span> im Menü <span class="tei_mentioned">Digitale
+                                        <li>Bitte nutzen Sie die Rubrik <span class="tei_mentioned">Register</span> im Menü <span class="tei_mentioned">Digitale
                      Edition</span>, um einen Überblick über weitere Texte (etwa zeitgenössische
                   Aufführungsbesprechungen oder Drittbriefe) zu erhalten. Außerdem steht Ihnen
                   die <span class="tei_mentioned">Suche</span> als weitere Zugangsmöglichkeiten zu den Texten zur
@@ -290,21 +331,20 @@
                   Ergebnisse liefert, wo die grüne Identifikationsnummer signalisiert, dass eine
                   vollständige Auszeichnung nach den Vorgaben der Version 1.0 erfolgt ist.
                </li>
-                                            <li>Wenn Sie innerhalb der Registeransicht (Korrespondenz, Schriften, Tagebücher) die Suche nach den jeweils links angeordneten Kriterien (z. B. Personen, Werke, Orte) filtern möchten, wählen Sie bitte zunächst alle gewünschten, durch „und“ zu verknüpfenden Kategorien an, bevor Sie im oberen linken Fenster eine zeitliche Eingrenzung vornehmen.
+                                        <li>Wenn Sie innerhalb der Registeransicht (Korrespondenz, Schriften, Tagebücher) die Suche nach den jeweils links angeordneten Kriterien (z. B. Personen, Werke, Orte) filtern möchten, wählen Sie bitte zunächst alle gewünschten, durch „und“ zu verknüpfenden Kategorien an, bevor Sie im oberen linken Fenster eine zeitliche Eingrenzung vornehmen.
                </li>
-                                            <li>Beachten Sie bitte, dass die Werkliste augenblicklich noch nicht vollständig ist und auch keine endgültige Systematisierung und Anordnung aufweist. Sie dient momentan lediglich dazu, die in den Dokumemten genannten Werke zu identifizieren. Detailliertere Informationen zu den Werken werden erst mit einem der nächsten Releases zugänglich.
+                                        <li>Beachten Sie bitte, dass die Werkliste augenblicklich noch nicht vollständig ist und auch keine endgültige Systematisierung und Anordnung aufweist. Sie dient momentan lediglich dazu, die in den Dokumemten genannten Werke zu identifizieren. Detailliertere Informationen zu den Werken werden erst mit einem der nächsten Releases zugänglich.
                </li>
-                                            <li>Für Rückmeldungen mit Hinweisen auf Fehler, Unbequemlichkeiten oder Unklarheiten bei der Benutzung der Website, aber auch für Wünsche und Anregungen sind wir allen Nutzern dankbar. Bitte nutzen Sie dazu die Adresse bug bzw. info at weber-gesamtausgabe.de.</li>
-                                        </ul>
-                                        <p>Vorgesehene Features für die Version 1.1 sind:</p>
-                                        <ul class="tei_list">
-                                            <li><span class="tei_mentioned">AJAX History</span>: Ermöglicht das Zurückspringen in Suchergebnisse und Registerlisten mit dem Browser-Back-Button.</li>
-                                            <li><span class="tei_mentioned">Überarbeiten der Tagebuchansicht</span>: Grundsätzliche Überarbeitung der Darstellung und Erweiterung der Darstellung um eine Wochen- und Monatsansicht(?)</li>
-                                            <li><span class="tei_mentioned">Meta-Angaben im HTML Header nach Dublin Core</span>: Bereitstellung von standardisierten Meta-Angaben nach der <a href="http://dublincore.org"><span class="tei_hi_italic">Dublin Core® Metadata Initiative</span></a>.</li>
-                                            <li><span class="tei_mentioned">Einbinden von ADB/NDB an Personen</span>: Personenbiographien aus der <span class="tei_hi_italic">Allgemeinen Deutschen Biographie</span> und der <span class="tei_hi_italic">Neuen Deutschen Biographie</span>.</li>
-                                            <li><span class="tei_mentioned">Weitere Filter an der Registeransicht</span>: „Text vorhanden“, „Faksimile vorhanden“</li>
-                                        </ul>
-                                    </div>
+                                        <li>Für Rückmeldungen mit Hinweisen auf Fehler, Unbequemlichkeiten oder Unklarheiten bei der Benutzung der Website, aber auch für Wünsche und Anregungen sind wir allen Nutzern dankbar. Bitte nutzen Sie dazu die Adresse bug bzw. info at weber-gesamtausgabe.de.</li>
+                                    </ul>
+                                    <p>Vorgesehene Features für die Version 1.1 sind:</p>
+                                    <ul class="tei_list">
+                                        <li><span class="tei_mentioned">AJAX History</span>: Ermöglicht das Zurückspringen in Suchergebnisse und Registerlisten mit dem Browser-Back-Button.</li>
+                                        <li><span class="tei_mentioned">Überarbeiten der Tagebuchansicht</span>: Grundsätzliche Überarbeitung der Darstellung und Erweiterung der Darstellung um eine Wochen- und Monatsansicht(?)</li>
+                                        <li><span class="tei_mentioned">Meta-Angaben im HTML Header nach Dublin Core</span>: Bereitstellung von standardisierten Meta-Angaben nach der <a href="http://dublincore.org"><span class="tei_hi_italic">Dublin Core® Metadata Initiative</span></a>.</li>
+                                        <li><span class="tei_mentioned">Einbinden von ADB/NDB an Personen</span>: Personenbiographien aus der <span class="tei_hi_italic">Allgemeinen Deutschen Biographie</span> und der <span class="tei_hi_italic">Neuen Deutschen Biographie</span>.</li>
+                                        <li><span class="tei_mentioned">Weitere Filter an der Registeransicht</span>: „Text vorhanden“, „Faksimile vorhanden“</li>
+                                    </ul>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Freitag, 6. Mai 2011</p>
                     </div>
@@ -335,7 +375,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -348,12 +388,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -366,10 +401,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -378,9 +409,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050094</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050094</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-27T08:31:36.148861Z" />
+        <meta property="dc:date" content="2017-10-27T18:27:57.653944Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031309" />
         <meta property="dc:description" content="Erinnerungen Carl von Holteis an Carl Maria von Weber, Teil 3/3" />
         <meta name="description" content="Erinnerungen Carl von Holteis an Carl Maria von Weber, Teil 3/3" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,71 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031309.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div>
+                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">
+                            <div id="relatedItems">
+                                <h3>Verknüpfte Dokumente</h3>
+                                <ul>
+                                    <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031952.html">Zur Erinnerung von Carl Maria von Weber, von Carl von Holtei, 1853, Teil 1/3</a></p>
+                                    </li>
+                                            <li>
+                                        <h4>Weiterer Teil</h4> 
+                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000872/Schriften/A031966.html">Zur Erinnerung von Carl Maria von Weber, von Carl von Holtei, 1853, Teil 2/3</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -305,15 +368,15 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="66101114108105110" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76111110100111110" /> <span title="London">London</span> 
+                                    <input type="checkbox" name="options" value="A130011" /> <span title="London">London</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="8097114105115" /> <span title="Paris">Paris</span> 
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Paris">Paris</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="87105101110" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
                                 </label>
                             </div>
                         </div>
@@ -333,18 +396,18 @@
                                         <p>Sie, gleich uns; und wir, wie <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>; und <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>, wie <span class="tei_hi_spaced_out"><a class="preview persons A002176" href="/exist/apps/WeGA-WebApp/de/A002176.html">Wolff</a></span>; und <span class="tei_hi_spaced_out"><a class="preview persons A002176" href="/exist/apps/WeGA-WebApp/de/A002176.html">Wolff</a></span>, wie <span class="69463268101118114105101110116">E. <span class="tei_hi_spaced_out">Devrient</span></span>: wir sämmtlich hatten viel gelitten, und litten noch; nicht sowohl durch theilnehmende Besorgniß um <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a></span>’s und <span class="tei_hi_spaced_out"><a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina</a></span>’s <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">poetisch-musikalische Tochter</span>, als vielmehr, daß ich es höchst prosaisch eingestehe, durch eine Masse unzählbarer Feinde, die weder Schlaf noch Ruhe gönnten; die sich vorzugsweise unsere ausländischen Häute zum Tummelplatze ihrer „Rösel’s Insecten-Belustigungen“ auszusuchen schienen, und uns, als ob auch wir, jeder und jede, ein wilder Mann und eine wilde Männin wären, förmlich tättowirten.</p>
                                         <p>Ich selbst habe doch siebzehn Jahre später in demselben Hotel unangefochten von ähnlichen Friedensstörern geschlafen! Gott weiß, welch’ ein feindseliger Zauberer im Sommer und Herbst <span class="tei_date">1823</span> derlei Landplagen über uns verhängte? <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> machte sich anheischig, vollständige Partituren von uns herunter zu lesen, die besagte Schnellschreiber in punctirter Manier auf uns gestochen. <span class="tei_hi_spaced_out"><a class="preview persons A002176" href="/exist/apps/WeGA-WebApp/de/A002176.html">Wolff</a></span>, etwas empfindlicher Natur, hatte unbedenklich am meisten auszustehen gehabt. In seiner Ungeduld hatte er sich aus seiner, mit Wachs getränkter Leinwand einen lebensgroßen Sack nähen lassen, und in solchen mußte ihn sein Diener allabendlich beim Schlafengehen schieben, und einbinden bis an den Hals, so daß nur der Kopf ungeschützt blieb. Auf diesem hielten dann die durstigen Blutsauger ihren rechten Hexensabbath; und weil der Patient beide Hände im Sack stecken hatte, konnte er das Antlitz nur unvollkommen vertheidigen. Er brachte grimmige Nächte zu, mit Sack, wie ohne Sack, und diese waren Grund, daß er seinen Wiener Aufenthalt abkürzte.</p>
                                         <p><span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> begehrte den berühmten Sack als Vermächtniß, damit er sich säcken und zur <span class="tei_placeName">Do<span class="tei_cb" title="Spaltenumbruch">¦</span>nau</span> schleppen lasse, wenn „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ durchfalle. Die verschiedenartigen Ausbrüche verschiedener Verzweiflungen gaben uns freilich viel zu lachen, wo wir am Tage zusammen kamen; das hinderte doch nicht, daß unser nächtliches Lager bisweilen zur Folterbank wurde.</p>
-                                        <p>Was blieb am Ende übrig, als eben dieses Lager so spät wie möglich zu besteigen? Und dazu war denn die „Ludlamshöhle“<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090000.html">T</a> das sicherste Mittel. Aus dieser gab es so leicht kein Entkommen<span class="tei_supplied" id="d39035e103"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span></p>
+                                        <p>Was blieb am Ende übrig, als eben dieses Lager so spät wie möglich zu besteigen? Und dazu war denn die „Ludlamshöhle“<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090000.html">T</a> das sicherste Mittel. Aus dieser gab es so leicht kein Entkommen<span class="tei_supplied" id="d10e103"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span></p>
                                         <p>In meinen Memoiren (Band IV. pag. 97) habe ich flüchtig angedeutet, wie <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> sich anfänglich gegen die nicht immer zarten Ludlamsspäße gesträubt. Ja, ich glaube fast, hätte nicht die Rücksicht für sein Debut als Operncompositeur warnend im Hintergrunde gestanden, er wäre zum zweiten Male nicht wieder eingetreten. Etwas dem Aehnliches vertraute er mir, als wir am ersten Abende nach seiner Aufnahme miteinander heimgingen. Doch nach und nach lernte er sich fügen, und zuletzt lebte er sich so tief und fest in diese Höhle, die ihres Gleichen auf Erden nicht mehr hat, daß „Agathus der Zieltreffer, Edler von Samiel“ – (so hieß er als Ludlamit) – der feurigste Verkünder ihrer Herrlichkeiten wurde und blieb.</p>
-                                        <p><a class="preview persons A000873" href="/exist/apps/WeGA-WebApp/de/A000873.html">Meiner Frau</a> und mir war es nicht beschieden, die erste Aufführung der „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ in <span class="tei_placeName"><span class="87105101110">Wien</span></span> abwarten zu dürfen. Wir mußten scheiden. Und da wir Lebewohl sagten, da wir innig-gerührt unsern aufrichtigen Wünschen für das Gelingen seines großen Unternehmens Worte und Ausdruck zu geben versuchten: – da deutete er feierlich-ernst auf ein Blatt im Stammbuch <a class="preview persons A000873" href="/exist/apps/WeGA-WebApp/de/A000873.html">meiner Frau</a>, worauf er so eben erst sein Motto als Denkspruch eingeschrieben: „<span class="tei_hi_spaced_out">Wie Gott will</span>!“</p>
+                                        <p><a class="preview persons A000873" href="/exist/apps/WeGA-WebApp/de/A000873.html">Meiner Frau</a> und mir war es nicht beschieden, die erste Aufführung der „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> abwarten zu dürfen. Wir mußten scheiden. Und da wir Lebewohl sagten, da wir innig-gerührt unsern aufrichtigen Wünschen für das Gelingen seines großen Unternehmens Worte und Ausdruck zu geben versuchten: – da deutete er feierlich-ernst auf ein Blatt im Stammbuch <a class="preview persons A000873" href="/exist/apps/WeGA-WebApp/de/A000873.html">meiner Frau</a>, worauf er so eben erst sein Motto als Denkspruch eingeschrieben: „<span class="tei_hi_spaced_out">Wie Gott will</span>!“</p>
                                     </div>
                                     <div class="docPart">
-                                        <p>Einige Jahre sind vergangen, bis <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> den bestimmten Ruf erhielt, sich nach <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> zu begeben, und auch dort die erste Aufführung der „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ zu leiten.</p>
-                                        <p>Unser hochseliger <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König</a> liebte ihn nicht. Die Ursachen dieser Abneigung auseinander zu setzen, würde hier zu weit führen. Doch dürfen wir als sicher annehmen, daß dieselbe nicht<span class="tei_pb" title="Seitenumbruch zu S. 88"> | </span> allein in der Vorliebe für <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> wurzelte. <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> freilich war – schwach genug, Alles anzuwenden, was seine Protectionen ihm gestatten wollten, um der <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">jüngeren Schwester</span> des „<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>“ und ihrem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Vater</a> die Pforten des Opernhauses so lange als möglich zu verschließen. Gerade das Nämliche that auf der andern Seite und im entgegengesetzten Sinne der General-Intendant <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Graf <span class="tei_hi_spaced_out">Brühl</span></a>, bei dem es nicht des wohlbegründeten Hasses gegen seinen Erbfeind <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> bedurfte, damit er Alles aufbot, <span class="tei_hi_spaced_out">für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> zu handeln. Vermittler bei den Einleitungen dieser Begebenheit – denn das war es für <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> – ist der gelehrte Reisende, der geist- und gemüthvolle Naturforscher <span class="tei_hi_spaced_out"><a class="preview persons A001166" href="/exist/apps/WeGA-WebApp/de/A001166.html">Lichtenstein</a></span> gewesen, <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>’s vertrautester Freund. Theilnehmer waren alle Berliner, mit Ausnahme der Indifferenten, oder Stockspontinianer.</p>
-                                        <p>Der <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König</a>, zwischen <span class="tei_hi_spaced_out"><a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span>, und zu gerecht, um einen willkürlichen Machtspruch zu thun, übergab die Entscheidung dem Minister Seines Hauses, dem <a class="preview persons A002167" href="/exist/apps/WeGA-WebApp/de/A002167.html">Fürsten <span class="tei_hi_spaced_out">Wittgenstein</span></a>, der zugleich in Theatersachen oberste Autorität übte. Dieser, dem ganzen Publicum gegenüber in nicht geringer Verlegenheit, erbat sich vom preußischen Gesandten in <span class="tei_placeName"><span class="87105101110">Wien</span></span>, vom <a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürsten <span class="tei_hi_spaced_out">Hatzfeldt</span></a>, zuvörderst einen ästhetisch-ministeriellen Rapport über die Aufnahme, welche „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ vor etlichen Jahren in <span class="tei_placeName"><span class="87105101110">Wien</span></span> gefunden.</p>
-                                        <p><a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürst <span class="tei_hi_spaced_out">Hatzfeldt</span></a>, ein gewiegter Diplomat, ein Mann von vornehmen Zuschnitt, von steter Haltung, der sogar <span class="tei_hi_spaced_out"><a class="preview persons A008671" href="/exist/apps/WeGA-WebApp/de/A008671.html">Bonaparten</a></span> in die Zähne hinein seinem <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">Könige</a> Treue bewahrt, das Leben auf’s Spiel gesetzt und endlich, nachdem der Fürstin kühner Muth ihn gerettet, die Achtung und das Vertrauen des <a class="preview persons A008671" href="/exist/apps/WeGA-WebApp/de/A008671.html">französischen Kaisers</a> in solchem Grade davon getragen hatte, daß man im Jahre <span class="tei_date">1810</span> keinen bessern Ambassadeur für <span class="tei_placeName"><span class="8097114105115">Paris</span></span> gewußt, als ihn – dieser <a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürst <span class="tei_hi_spaced_out">Hatzfeldt</span></a> war nebenbei auch Dilettant; machte <span class="tei_hi_antiqua">fait</span> von guter Stimme; schmückte zu seiner Zeit die musikalischen <span class="tei_hi_antiqua">matinées</span> in <span class="tei_placeName">Malmaison</span> mit seinem zierlichen Gesange; italienische Schule galt ihm einzig und allein; er war durch und durch Cavalier, auch im musikalischen Geschmack!... Wir können uns leicht denken, wie sein Bericht über „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ mag ausgefallen sein!</p>
+                                        <p>Einige Jahre sind vergangen, bis <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> den bestimmten Ruf erhielt, sich nach <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> zu begeben, und auch dort die erste Aufführung der „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ zu leiten.</p>
+                                        <p>Unser hochseliger <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König</a> liebte ihn nicht. Die Ursachen dieser Abneigung auseinander zu setzen, würde hier zu weit führen. Doch dürfen wir als sicher annehmen, daß dieselbe nicht<span class="tei_pb" title="Seitenumbruch zu S. 88"> | </span> allein in der Vorliebe für <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> wurzelte. <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> freilich war – schwach genug, Alles anzuwenden, was seine Protectionen ihm gestatten wollten, um der <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">jüngeren Schwester</span> des „<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span>“ und ihrem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Vater</a> die Pforten des Opernhauses so lange als möglich zu verschließen. Gerade das Nämliche that auf der andern Seite und im entgegengesetzten Sinne der General-Intendant <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Graf <span class="tei_hi_spaced_out">Brühl</span></a>, bei dem es nicht des wohlbegründeten Hasses gegen seinen Erbfeind <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span> bedurfte, damit er Alles aufbot, <span class="tei_hi_spaced_out">für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> zu handeln. Vermittler bei den Einleitungen dieser Begebenheit – denn das war es für <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> – ist der gelehrte Reisende, der geist- und gemüthvolle Naturforscher <span class="tei_hi_spaced_out"><a class="preview persons A001166" href="/exist/apps/WeGA-WebApp/de/A001166.html">Lichtenstein</a></span> gewesen, <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>’s vertrautester Freund. Theilnehmer waren alle Berliner, mit Ausnahme der Indifferenten, oder Stockspontinianer.</p>
+                                        <p>Der <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König</a>, zwischen <span class="tei_hi_spaced_out"><a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span>, und zu gerecht, um einen willkürlichen Machtspruch zu thun, übergab die Entscheidung dem Minister Seines Hauses, dem <a class="preview persons A002167" href="/exist/apps/WeGA-WebApp/de/A002167.html">Fürsten <span class="tei_hi_spaced_out">Wittgenstein</span></a>, der zugleich in Theatersachen oberste Autorität übte. Dieser, dem ganzen Publicum gegenüber in nicht geringer Verlegenheit, erbat sich vom preußischen Gesandten in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, vom <a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürsten <span class="tei_hi_spaced_out">Hatzfeldt</span></a>, zuvörderst einen ästhetisch-ministeriellen Rapport über die Aufnahme, welche „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ vor etlichen Jahren in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> gefunden.</p>
+                                        <p><a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürst <span class="tei_hi_spaced_out">Hatzfeldt</span></a>, ein gewiegter Diplomat, ein Mann von vornehmen Zuschnitt, von steter Haltung, der sogar <span class="tei_hi_spaced_out"><a class="preview persons A008671" href="/exist/apps/WeGA-WebApp/de/A008671.html">Bonaparten</a></span> in die Zähne hinein seinem <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">Könige</a> Treue bewahrt, das Leben auf’s Spiel gesetzt und endlich, nachdem der Fürstin kühner Muth ihn gerettet, die Achtung und das Vertrauen des <a class="preview persons A008671" href="/exist/apps/WeGA-WebApp/de/A008671.html">französischen Kaisers</a> in solchem Grade davon getragen hatte, daß man im Jahre <span class="tei_date">1810</span> keinen bessern Ambassadeur für <span class="preview places A130008" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130008.html">Paris</span> gewußt, als ihn – dieser <a class="preview persons A000BF3" href="/exist/apps/WeGA-WebApp/de/A000BF3.html">Fürst <span class="tei_hi_spaced_out">Hatzfeldt</span></a> war nebenbei auch Dilettant; machte <span class="tei_hi_antiqua">fait</span> von guter Stimme; schmückte zu seiner Zeit die musikalischen <span class="tei_hi_antiqua">matinées</span> in <span class="tei_placeName">Malmaison</span> mit seinem zierlichen Gesange; italienische Schule galt ihm einzig und allein; er war durch und durch Cavalier, auch im musikalischen Geschmack!... Wir können uns leicht denken, wie sein Bericht über „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ mag ausgefallen sein!</p>
                                         <p>Schon triumphirte <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Ritter Spontini</a></span>.</p>
                                         <p>Aber dennoch zu früh. <a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Graf <span class="tei_hi_spaced_out">Brühl</span></a> war auch ein Ritter, und ritterlicher als <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Jener</a>. Er streckte die Waffen nicht. Er zeigte sich für seinen Freund <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> unermüdlich und es gelang. Der <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">König</a> befahl – und <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a></span> wurde berufen.</p>
-                                        <p>Ganz <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> rüstete sich, ihm und seiner „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ einen Empfang zu bereiten, wie es der Stadt gebührte, in deren Gassen seine<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Melodien früh und spät erklangen; einer Stadt, wo alle Stände ihn liebten; wo die Dienstmädchen zu sagen gewohnt waren: „über <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> jeht nichts nich’; mit seinem Jungfernkranz legt man sich nieder, und mit dem Jägerchor steht man auf!“</p>
+                                        <p>Ganz <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> rüstete sich, ihm und seiner „<span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>“ einen Empfang zu bereiten, wie es der Stadt gebührte, in deren Gassen seine<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Melodien früh und spät erklangen; einer Stadt, wo alle Stände ihn liebten; wo die Dienstmädchen zu sagen gewohnt waren: „über <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> jeht nichts nich’; mit seinem Jungfernkranz legt man sich nieder, und mit dem Jägerchor steht man auf!“</p>
                                         <p>Bekanntlich hatte der „<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>“ das neuerbaute <span class="tei_placeName">Berliner Schauspielhaus</span> eingeweiht. Auch ein Sieg, den <span class="tei_hi_spaced_out"><a class="preview persons A000235" href="/exist/apps/WeGA-WebApp/de/A000235.html">Brühl</a></span> über des <a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">Königs</a> Abneigung, oder richtiger gesagt, den <span class="tei_hi_spaced_out"><a class="preview persons A007860" href="/exist/apps/WeGA-WebApp/de/A007860.html">Friedrich Wilhelm</a></span> der Gerechte über sich selbst davon getragen.</p>
                                         <p>Die Berliner betrachteten <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> und dessen Opern fast wie ihr Eigenthum, und als den Ihrigen begrüßten sie ihn, mochte er immer sächsischer Hofcapellmeister heißen.</p>
                                         <p>Bevor ich zum Schlusse komme, sei dem alten Schwätzer gestattet, noch einmal von sich zu reden; von einem Lichtpunct in seinem Schattenleben.</p>
@@ -354,12 +417,12 @@
                                         <p>Wie immer bei ähnlichen Gelegenheiten, zeichnete sich auch bei dieser <span class="tei_hi_spaced_out"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Meyerbeer</a></span>’s einflußreiche Familie aus. Sie hätte nicht regsamer, nicht antheilsvoller sein können, wenn der Abend und des Abends Ehren ihrem <a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Giacomo</a> gegolten. „Daß er nur ja recht ordentlich empfangen wird, <span class="tei_hi_spaced_out">unser</span> lieber <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>!“ rief <span class="tei_hi_spaced_out"><a class="preview persons A000111" href="/exist/apps/WeGA-WebApp/de/A000111.html">Amalie Beer</a></span>, – die edle Mutter, die jetzt schon drei ihrer Söhne betrauert, und welcher Gott zum Besten der Armuth ein so hohes Alter verlieh’n, – jedem Hausfreunde, der<span class="tei_pb" title="Seitenumbruch zu S. 89"> | </span> sich in jenen Tagen zeigte, ängstlich dringend entgegen. Worauf wir im Chore erwiederten: wir werden schon unsere Schuldigkeit thun.</p>
                                         <p>Und wir haben sie gethan. Freilich nicht ohne schelmische Seitenblicke nach <span class="tei_hi_spaced_out"><a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a></span>’s Loge. Denn die Bosheit verlangt manchmal auch ihre Rechte. Was man <span class="tei_hi_antiqua">la part du diable</span> nennt.</p>
                                         <p>Wenn auch nicht dieser, dennoch ein finsterer Geist war es, der in alle Triumphe des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Meisters</a> die düst’re Larve grinsend steckte; der ihm in’s Ohr raunte: <span class="tei_hi_antiqua">memento mori</span>.</p>
-                                        <p>„Mit mir ist’s aus; ich fühl’s, es geht zu Ende!“ Das waren seine letzten Worte, als ich am Tage vor seiner Rückreise nach <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> aus dem <span class="tei_placeName">Thiergarten</span> von <span class="tei_hi_spaced_out">Beer</span>’s mit ihm zur Stadt fuhr.</p>
-                                        <p>Bevor er die Reise nach <span class="tei_placeName"><span class="76111110100111110">London</span></span> antrat, war mir vergönnt, ihm noch einmal ins Angesicht blicken, noch einmal in seinem Hause weilen, an seinem Tische sitzen, ja sogar mit ihm lachen zu dürfen. Eine winterliche Geschäftsreise in Aufträgen der Königstädter-Theater<span class="tei_cb" title="Spaltenumbruch">¦</span>direction führte mich nach <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>, und ich flog, durchfroren wie ich ankam, zu ihm. Und er legte Beschlag auf mich, nach seinem Ausdruck, damit wir uns anstellen möchten, als ob wir wohl noch lustig sein könnten. Aber es war bei All’ dem eine traurige Lustigkeit.</p>
+                                        <p>„Mit mir ist’s aus; ich fühl’s, es geht zu Ende!“ Das waren seine letzten Worte, als ich am Tage vor seiner Rückreise nach <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> aus dem <span class="tei_placeName">Thiergarten</span> von <span class="tei_hi_spaced_out">Beer</span>’s mit ihm zur Stadt fuhr.</p>
+                                        <p>Bevor er die Reise nach <span class="preview places A130011" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130011.html">London</span> antrat, war mir vergönnt, ihm noch einmal ins Angesicht blicken, noch einmal in seinem Hause weilen, an seinem Tische sitzen, ja sogar mit ihm lachen zu dürfen. Eine winterliche Geschäftsreise in Aufträgen der Königstädter-Theater<span class="tei_cb" title="Spaltenumbruch">¦</span>direction führte mich nach <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>, und ich flog, durchfroren wie ich ankam, zu ihm. Und er legte Beschlag auf mich, nach seinem Ausdruck, damit wir uns anstellen möchten, als ob wir wohl noch lustig sein könnten. Aber es war bei All’ dem eine traurige Lustigkeit.</p>
                                         <p>Nach dem Essen führte er mich in sein musikalisches Heiligthum.</p>
                                         <p>Ueberall Notenblätter, – englische Studien, – wohin man blickte: „<span class="tei_hi_spaced_out"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span>.“ Das Feuer brannte ihm schon auf die Nägel.</p>
                                         <p>„Ich muß die Ohren steif halten, daß ich fertig werde,“ meinte er.</p>
-                                        <p>„Und Sie wollen wirklich die Fahrt nach <span class="tei_placeName"><span class="76111110100111110">London</span></span> machen?“</p>
+                                        <p>„Und Sie wollen wirklich die Fahrt nach <span class="preview places A130011" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130011.html">London</span> machen?“</p>
                                         <p>„Was hilft’s! Ich denke, die Seeluft soll meinem Halse gut thun!“</p>
                                         <p>„Aber die furchtbaren Anstrengungen, die Ihnen unvermeidlich bevorstehen?“</p>
                                         <p>„<span class="tei_hi_spaced_out">Wie Gott will</span>!“</p>
@@ -397,7 +460,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Wiener Modespiegel. Wochenschrift für Mode, schöne Literatur, Novellistik, Kunst und Theater</span>, Jg. 1, Nr. 6 (10. Februar 1853), S. 87–89</p>
+                                <p class="biblio-entry"><span class="journalTitle">Wiener Modespiegel. Wochenschrift für Mode, schöne Literatur, Novellistik, Kunst und Theater</span>, Jg. 1, Nr. 6 (10. Februar 1853), S. 87–89</p>
                                 
                                 <div>
                                     
@@ -435,10 +498,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -447,9 +506,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031309</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031309</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 27. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 27. Oktober 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

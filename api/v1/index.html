@@ -29,10 +29,10 @@
         <meta name="theme-color" content="#ffffff"/>
 
         <link rel="stylesheet" type="text/css" href="$resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/styles.css" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
-        <link rel="stylesheet" type="text/css" href="$resources/css/styles-min.css" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask.css" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles.css" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/jquery.loadmask-min.css" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <link rel="stylesheet" type="text/css" href="$resources/css/styles-min.css" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/selectize/dist/css/selectize.bootstrap3.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/google-code-prettify/bin/prettify.min.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/css/swagger.css"/>
@@ -73,7 +73,7 @@
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/A002068/bio.html" data-template="lang:translate">bio</a>
                                     </li>
@@ -93,7 +93,7 @@
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">indices</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/indices/persons" data-template="lang:translate">persons</a>
                                     </li>
@@ -119,7 +119,7 @@
                             </li>
                            <li id="project-nav" class="dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">project</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                               <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/project/news" data-template="lang:translate">news</a>
                                     </li>
@@ -148,7 +148,7 @@
                             </li>
                             <li id="help-nav" class="active dropdown">
                                 <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" data-template="lang:translate" href="#">help</a>
-                                <ul class="dropdown-menu" role="menu" data-template="app:order-list-items">
+                                <ul class="dropdown-menu" role="menu" data-template="app-shared:order-list-items">
                                     <li>
                                         <a href="$link/help/faq.html" data-template="lang:translate">faq</a>
                                     </li>
@@ -193,7 +193,7 @@
             <div class="container paddingTopIcon paddingBottomIcon">
                 <div class="row swagger-section" data-template="app:inject-api-base">
                     <div class="col-md-12">
-                        <div id="message-bar" class="swagger-ui-wrap" data-sw-translate="">&#160;</div>
+                        <div id="message-bar" class="swagger-ui-wrap" data-sw-translate=""> </div>
                         <div id="swagger-ui-container" class="swagger-ui-wrap"/>
                     </div>
                 </div>
@@ -202,10 +202,10 @@
         	<div class="container documentFooter">
         		<div class="row bugreport" data-template="app:bugreport">
         			<div class="col-md-9">
-        				<p data-template="app:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
-        					<a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
-        				<p data-template="app:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
-        					<a href="#" class="obfuscate-email" data-template="app:print" data-template-key="bugEmail">bugEmail</a>.</p>
+        				<p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+        					<a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+        				<p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+        					<a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
         			</div>
         		</div>
         	</div>
@@ -275,8 +275,8 @@
         <script type="text/javascript" src="$resources/lib/bootstrap/dist/js/bootstrap.min.js"/>
         <script type="text/javascript" src="$resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"/>
         <script type="text/javascript" src="$resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"/>
-<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>-->
-<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>-->
+<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>-->
+<!--        <script type="text/javascript" src="$resources/js/jquery.loadmask-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"/>-->
@@ -287,10 +287,10 @@
 <!--        <script type="text/javascript" src="$resources/lib/leaflet/dist/leaflet.js"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/leaflet-iiif/leaflet-iiif.js"/>-->
         <script type="text/javascript" src="$resources/lib/flip/dist/jquery.flip.min.js"/>
-        <script type="text/javascript" src="$resources/js/greedynav.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/greedynav-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/init.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/init-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/greedynav.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/greedynav-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/init-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/object-assign-pollyfill.js"/>
         <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jquery.slideto.min.js"/>
         <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/jquery.wiggle.min.js"/>
@@ -306,12 +306,12 @@
         <!--        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lib/swagger-oauth.js"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lang/translator.js"/>-->
 <!--        <script type="text/javascript" src="$resources/lib/swagger-ui/dist/lang/de.js"/>-->
-        <script type="text/javascript" src="$resources/js/swagger.js" data-template="app:if-matches" data-template-key="environment" data-template-value="development"/>
-        <script type="text/javascript" src="$resources/js/swagger-min.js" data-template="app:if-not-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/swagger.js" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development"/>
+        <script type="text/javascript" src="$resources/js/swagger-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
             
         
         
-        <div data-template="app:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
+        <div data-template="app-shared:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
             <!-- Piwik -->
             <script type="text/javascript">
                 var _paq = _paq || [];

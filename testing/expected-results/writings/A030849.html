@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:41:36.803665Z" />
+        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030849" />
         <meta property="dc:description" content="Prolog zum &#34;Weinberg an der Elbe&#34; am 3. Oktober 1819 von Friedrich Kind" />
         <meta name="description" content="Prolog zum &#34;Weinberg an der Elbe&#34; am 3. Oktober 1819 von Friedrich Kind" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030849.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -268,10 +310,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>(<span class="tei_hi_spaced_out">Heitere ländliche Gegend</span>. <span class="tei_hi_spaced_out">An einer Seite eine Winzerhütte</span>, <span class="tei_hi_spaced_out">an der andern eine Weinlaube</span>. <span class="tei_hi_spaced_out">Die Sprecherin</span> <a href="#footnote02">**)</a> <span class="tei_hi_spaced_out">in etwes idealisirter Tracht eines Winzermädchens</span>.)</p><span class="lg"><span class="verseLine">Sie sind gar schön,</span><span class="verseLine">Die stromdurchschnittnen Auen –</span><span class="verseLine">Sie sind gar hold, gar lieblich anzuschauen,</span><span class="verseLine">Die vaterländ’schen Rebenhöh’n,</span><span class="verseLine">Die, reich bepflanzt mit Thyrsusstäben,</span><span class="verseLine">Am Strand’ der Elbe sich erheben,</span><span class="verseLine">Dann neben goldner Flur und schwarzer Schlucht,</span><span class="verseLine">Durch Bäume, ächzend unter Purpurfrucht,</span><span class="verseLine">An heiterm Haus’ und an idyll’scher Hütte,</span><span class="verseLine">Wo Unschuld, Frohsinn, Treue blüh’n,</span><span class="verseLine">Sich bis zu jenen Bergen zieh’n,</span><span class="verseLine">Wo mild, nach Patriarchensitte,</span><span class="verseLine">Im Angesicht der Silberflut,</span><span class="verseLine">Dicht bei dem grünen Winterkranze</span><span class="verseLine">In ros’gem Abendsonnenglanze</span><span class="verseLine">Die goldne Königskrone ruht!</span></span><span class="lg"><span class="verseLine">O! welches Herz durchströmt nicht fromme Glut</span><span class="verseLine">Bei also heil’gem Angedenken?</span><span class="verseLine">Wer sollte nicht nach jenen Bergen hin</span><span class="verseLine">Mit Ehrfurcht, tiefgerührtem Sinn’,</span><span class="tei_cb" title="Spaltenumbruch"> ¦ </span><span class="verseLine">Mit stillem Dank’ die Blicke lenken?</span><span class="verseLine">Wem sagt nicht laut die frohbewegte Brust:</span><span class="verseLine">Dort hat Natur oft ihre reinste Lust</span><span class="verseLine">In’s reinste Herrscherherz ergossen!</span><span class="verseLine">Dort hat <span class="tei_hi_spaced_out">Er</span> an der <span class="tei_hi_spaced_out">Allverehrten</span> Hand,</span><span class="verseLine">Das Glück, das je ein Vaterherz empfand –</span><span class="verseLine">Was gleicht dem wohl hienieden? – reich genossen!</span><span class="verseLine">Dort wuchsen freudig <span class="tei_hi_spaced_out">sie</span> empor,</span><span class="verseLine">Des Sachsenstammes <span class="tei_hi_spaced_out">edle Sprossen</span>;</span><span class="verseLine">Dort hüpften <span class="tei_hi_spaced_out">sie</span>, ein kindlichfrohes Chor,</span><span class="verseLine">Dort pflückten <span class="tei_hi_spaced_out">sie</span> die ersten Blumenkränze,</span><span class="verseLine">Dort ward gar manches Lenzes Flor</span><span class="verseLine">Zu <span class="tei_hi_spaced_out">ihrer</span> Jugend <span class="tei_hi_spaced_out">einem</span> Lenze –</span><span class="verseLine">Und – scheiden <span class="tei_hi_spaced_out">sie</span> zum Theil auch von uns aus,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> werden oft mit sinnigem Entzücken</span><span class="verseLine">im Geist nach diesen Hügeln blicken –</span><span class="verseLine">Sie grünten ja um’s Vaterhaus!</span></span><span class="lg"><span class="verseLine">Dieß fühlte auch des Dichters Seele tief,</span><span class="verseLine">Als von des heim’schen Heerdes Freuden</span><span class="verseLine">Im Myrtenkranz’ <span class="tei_hi_spaced_out">die erste</span> sollte scheiden,</span><span class="verseLine">Weil Liebe <span class="tei_hi_spaced_out">sie</span> nach fernen Zonen rief.</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> eilte nach dem Lande ew’ger Blüten,</span><span class="verseLine">Und – wie der Maler denen, die er liebt,</span><span class="verseLine">Weil ihm sich nicht erwählt’re Gaben bieten,</span><span class="verseLine">Der Heimath Bild mit in die Ferne giebt;</span><span class="verseLine">So hat auch er, von Lust und Leid durchdrungen,</span><span class="verseLine">An freundliche Erinnerungen</span><span class="verseLine">Der ersten schönen Jugendwelt</span><span class="verseLine">Den kleinen Abschiedskranz geschlungen;</span><span class="verseLine">So hat auch er, wie in ein laubig Zelt,</span><span class="verseLine">Sein Weihebild in’s Rebenthal gestellt,</span><span class="verseLine">Und uns, als Sprecher der Gefühle,</span><span class="verseLine">Die damals jedes Herz geschwellt,</span><span class="verseLine">In heiterm, anspruchlosem Spiele</span><span class="verseLine">Den frohen Winzern zugestellt.</span></span><span class="lg"><span class="verseLine">Nur hohe Güte, nachsichtvolle Milde,</span><span class="verseLine">Des Dichters Streben nicht, nicht scen’sche Kunst, –</span><span class="verseLine">Er fühlts, wie wir! – des Stoffes seltne Gunst,</span><span class="verseLine">Gab öftere Belebung diesem Bilde.</span><span class="verseLine">Der holden Ros’ des Sachsengartens nach;</span><span class="verseLine">Was jedes Busens inn’re Stimme sprach –</span><span class="tei_pb" title="Seitenumbruch"> | </span><span class="verseLine">Die Lieb’ zum <span class="tei_hi_spaced_out">König</span>, <span class="tei_hi_spaced_out">zu den Seinen Allen</span>! –</span><span class="verseLine">Dieß schienen Euch die Saiten nachzuhallen,</span><span class="verseLine">Die nochmals Ihr mit eurer Huld beehrt –</span><span class="verseLine">Das Herz verleiht selbst Hirten-Opfern Werth!</span></span><span class="lg"><span class="verseLine">Und – welche Brust schlüg’ freudiger nicht heute? –</span><span class="verseLine">Nicht blos, weil sich des Herbsten Luft erneute,</span><span class="verseLine">Und sich die Tage wieder nah’n,</span><span class="verseLine">Da <span class="tei_hi_spaced_out">sie</span> wir in der Myrtenkrone sah’n;</span><span class="verseLine">Nein! schöner sank er für uns nieder –</span><span class="verseLine">Die Fackel Hymens lodert wieder</span><span class="verseLine">Für Habsburgs Reich und Sachsenland,</span><span class="verseLine">Für <span class="tei_hi_spaced_out">einen der geliebten Brüder</span>!</span><span class="verseLine">Nein! – tönet lauter, kleine Lieder! –</span><span class="verseLine">Der stille Wunsch auch ward gewährt,</span><span class="verseLine">Den zweifelnd lang’ das Herz genährt:</span><span class="verseLine"><span class="tei_hi_spaced_out">Die Huldin</span>, <span class="tei_hi_spaced_out">die</span> von uns geschieden,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> kehrte aus dem schönen Süden</span><span class="verseLine">In <span class="tei_hi_spaced_out">der geliebten Ihren</span> Arm;</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> liebte noch der Rebenhügel Frieden,</span><span class="verseLine">Der Jugend Schauplatz, treu und warm;</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span>, <span class="tei_hi_spaced_out">welcher</span> unsre Opfer brannten,</span><span class="verseLine">Und <span class="tei_hi_spaced_out">Er</span>, den wir <span class="tei_hi_spaced_out">den Fernen</span> nannten,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> gönnten <span class="tei_hi_spaced_out">Selbst</span> Erneuung diesem Spiel’ –</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> werden auch, ruft <span class="tei_hi_spaced_out">Sie</span> die Trennungstunde –</span><span class="verseLine">Eint Wehmuth doch sich jedem Lustgefühl! –</span><span class="verseLine">Von neuem aus der Eintracht schönstem Bunde –</span><span class="verseLine">Wenn unser Blick <span class="tei_hi_spaced_out">Sie dort</span> vermißt –</span><span class="verseLine">Zu Zeiten dieses Abends denken,</span><span class="verseLine">Und – huldvoll uns das Zeugniß schenken,</span><span class="verseLine">Daß Sachsentreue nie vergißt!</span></span><span class="tei_signed textAlign-right"><span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind</a></span>.</span></div>
+                                        <p>(<span class="tei_hi_spaced_out">Heitere ländliche Gegend</span>. <span class="tei_hi_spaced_out">An einer Seite eine Winzerhütte</span>, <span class="tei_hi_spaced_out">an der andern eine Weinlaube</span>. <span class="tei_hi_spaced_out">Die Sprecherin</span> <a href="#footnote02" id="backref-footnote02" class="fn-ref">**)</a> <span class="tei_hi_spaced_out">in etwes idealisirter Tracht eines Winzermädchens</span>.)</p><span class="lg"><span class="verseLine">Sie sind gar schön,</span><span class="verseLine">Die stromdurchschnittnen Auen –</span><span class="verseLine">Sie sind gar hold, gar lieblich anzuschauen,</span><span class="verseLine">Die vaterländ’schen Rebenhöh’n,</span><span class="verseLine">Die, reich bepflanzt mit Thyrsusstäben,</span><span class="verseLine">Am Strand’ der Elbe sich erheben,</span><span class="verseLine">Dann neben goldner Flur und schwarzer Schlucht,</span><span class="verseLine">Durch Bäume, ächzend unter Purpurfrucht,</span><span class="verseLine">An heiterm Haus’ und an idyll’scher Hütte,</span><span class="verseLine">Wo Unschuld, Frohsinn, Treue blüh’n,</span><span class="verseLine">Sich bis zu jenen Bergen zieh’n,</span><span class="verseLine">Wo mild, nach Patriarchensitte,</span><span class="verseLine">Im Angesicht der Silberflut,</span><span class="verseLine">Dicht bei dem grünen Winterkranze</span><span class="verseLine">In ros’gem Abendsonnenglanze</span><span class="verseLine">Die goldne Königskrone ruht!</span></span><span class="lg"><span class="verseLine">O! welches Herz durchströmt nicht fromme Glut</span><span class="verseLine">Bei also heil’gem Angedenken?</span><span class="verseLine">Wer sollte nicht nach jenen Bergen hin</span><span class="verseLine">Mit Ehrfurcht, tiefgerührtem Sinn’,</span><span class="tei_cb" title="Spaltenumbruch"> ¦ </span><span class="verseLine">Mit stillem Dank’ die Blicke lenken?</span><span class="verseLine">Wem sagt nicht laut die frohbewegte Brust:</span><span class="verseLine">Dort hat Natur oft ihre reinste Lust</span><span class="verseLine">In’s reinste Herrscherherz ergossen!</span><span class="verseLine">Dort hat <span class="tei_hi_spaced_out">Er</span> an der <span class="tei_hi_spaced_out">Allverehrten</span> Hand,</span><span class="verseLine">Das Glück, das je ein Vaterherz empfand –</span><span class="verseLine">Was gleicht dem wohl hienieden? – reich genossen!</span><span class="verseLine">Dort wuchsen freudig <span class="tei_hi_spaced_out">sie</span> empor,</span><span class="verseLine">Des Sachsenstammes <span class="tei_hi_spaced_out">edle Sprossen</span>;</span><span class="verseLine">Dort hüpften <span class="tei_hi_spaced_out">sie</span>, ein kindlichfrohes Chor,</span><span class="verseLine">Dort pflückten <span class="tei_hi_spaced_out">sie</span> die ersten Blumenkränze,</span><span class="verseLine">Dort ward gar manches Lenzes Flor</span><span class="verseLine">Zu <span class="tei_hi_spaced_out">ihrer</span> Jugend <span class="tei_hi_spaced_out">einem</span> Lenze –</span><span class="verseLine">Und – scheiden <span class="tei_hi_spaced_out">sie</span> zum Theil auch von uns aus,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> werden oft mit sinnigem Entzücken</span><span class="verseLine">im Geist nach diesen Hügeln blicken –</span><span class="verseLine">Sie grünten ja um’s Vaterhaus!</span></span><span class="lg"><span class="verseLine">Dieß fühlte auch des Dichters Seele tief,</span><span class="verseLine">Als von des heim’schen Heerdes Freuden</span><span class="verseLine">Im Myrtenkranz’ <span class="tei_hi_spaced_out">die erste</span> sollte scheiden,</span><span class="verseLine">Weil Liebe <span class="tei_hi_spaced_out">sie</span> nach fernen Zonen rief.</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> eilte nach dem Lande ew’ger Blüten,</span><span class="verseLine">Und – wie der Maler denen, die er liebt,</span><span class="verseLine">Weil ihm sich nicht erwählt’re Gaben bieten,</span><span class="verseLine">Der Heimath Bild mit in die Ferne giebt;</span><span class="verseLine">So hat auch er, von Lust und Leid durchdrungen,</span><span class="verseLine">An freundliche Erinnerungen</span><span class="verseLine">Der ersten schönen Jugendwelt</span><span class="verseLine">Den kleinen Abschiedskranz geschlungen;</span><span class="verseLine">So hat auch er, wie in ein laubig Zelt,</span><span class="verseLine">Sein Weihebild in’s Rebenthal gestellt,</span><span class="verseLine">Und uns, als Sprecher der Gefühle,</span><span class="verseLine">Die damals jedes Herz geschwellt,</span><span class="verseLine">In heiterm, anspruchlosem Spiele</span><span class="verseLine">Den frohen Winzern zugestellt.</span></span><span class="lg"><span class="verseLine">Nur hohe Güte, nachsichtvolle Milde,</span><span class="verseLine">Des Dichters Streben nicht, nicht scen’sche Kunst, –</span><span class="verseLine">Er fühlts, wie wir! – des Stoffes seltne Gunst,</span><span class="verseLine">Gab öftere Belebung diesem Bilde.</span><span class="verseLine">Der holden Ros’ des Sachsengartens nach;</span><span class="verseLine">Was jedes Busens inn’re Stimme sprach –</span><span class="tei_pb" title="Seitenumbruch"> | </span><span class="verseLine">Die Lieb’ zum <span class="tei_hi_spaced_out">König</span>, <span class="tei_hi_spaced_out">zu den Seinen Allen</span>! –</span><span class="verseLine">Dieß schienen Euch die Saiten nachzuhallen,</span><span class="verseLine">Die nochmals Ihr mit eurer Huld beehrt –</span><span class="verseLine">Das Herz verleiht selbst Hirten-Opfern Werth!</span></span><span class="lg"><span class="verseLine">Und – welche Brust schlüg’ freudiger nicht heute? –</span><span class="verseLine">Nicht blos, weil sich des Herbsten Luft erneute,</span><span class="verseLine">Und sich die Tage wieder nah’n,</span><span class="verseLine">Da <span class="tei_hi_spaced_out">sie</span> wir in der Myrtenkrone sah’n;</span><span class="verseLine">Nein! schöner sank er für uns nieder –</span><span class="verseLine">Die Fackel Hymens lodert wieder</span><span class="verseLine">Für Habsburgs Reich und Sachsenland,</span><span class="verseLine">Für <span class="tei_hi_spaced_out">einen der geliebten Brüder</span>!</span><span class="verseLine">Nein! – tönet lauter, kleine Lieder! –</span><span class="verseLine">Der stille Wunsch auch ward gewährt,</span><span class="verseLine">Den zweifelnd lang’ das Herz genährt:</span><span class="verseLine"><span class="tei_hi_spaced_out">Die Huldin</span>, <span class="tei_hi_spaced_out">die</span> von uns geschieden,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> kehrte aus dem schönen Süden</span><span class="verseLine">In <span class="tei_hi_spaced_out">der geliebten Ihren</span> Arm;</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> liebte noch der Rebenhügel Frieden,</span><span class="verseLine">Der Jugend Schauplatz, treu und warm;</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span>, <span class="tei_hi_spaced_out">welcher</span> unsre Opfer brannten,</span><span class="verseLine">Und <span class="tei_hi_spaced_out">Er</span>, den wir <span class="tei_hi_spaced_out">den Fernen</span> nannten,</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> gönnten <span class="tei_hi_spaced_out">Selbst</span> Erneuung diesem Spiel’ –</span><span class="verseLine"><span class="tei_hi_spaced_out">Sie</span> werden auch, ruft <span class="tei_hi_spaced_out">Sie</span> die Trennungstunde –</span><span class="verseLine">Eint Wehmuth doch sich jedem Lustgefühl! –</span><span class="verseLine">Von neuem aus der Eintracht schönstem Bunde –</span><span class="verseLine">Wenn unser Blick <span class="tei_hi_spaced_out">Sie dort</span> vermißt –</span><span class="verseLine">Zu Zeiten dieses Abends denken,</span><span class="verseLine">Und – huldvoll uns das Zeugniß schenken,</span><span class="verseLine">Daß Sachsentreue nie vergißt!</span></span><span class="tei_signed textAlign-right"><span class="tei_hi_spaced_out"><a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Kind</a></span>.</span></div>
                                     <div id="endNotes">
+                                        <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote02">*) <a class="preview persons A008666" href="/exist/apps/WeGA-WebApp/de/A008666.html">Fräul. <span class="tei_hi_spaced_out">Augusta Tilly</span></a>.</li>
+                                            <li id="footnote02"><a href="#backref-footnote02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) <a class="preview persons A008666" href="/exist/apps/WeGA-WebApp/de/A008666.html">Fräul. <span class="tei_hi_spaced_out">Augusta Tilly</span></a>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -306,7 +349,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 239 (6. Oktober 1819), S. 1r</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 3, Nr. 239 (6. Oktober 1819), Bl. 1r</p>
                                 
                                 <div>
                                     
@@ -337,10 +380,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -349,9 +388,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030849</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030849</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

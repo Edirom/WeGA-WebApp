@@ -15,8 +15,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Ran Mo" />
-        <meta property="dc:date" content="2017-05-16T13:17:07.410094Z" />
+        <meta property="dc:creator" content="Peter Stadler" />
+        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040293" />
         <meta property="dc:description" content="teilt mit, daß er mit der Zergliederung der Voglerschen Bach-Choräle beschäftigt sei; betrifft Harmonischen Verein; plant, eine Biographie Voglers zu schreiben; komponiere zur Zeit Verschiedenes; Zusatz Gänsbachers" />
         <meta name="description" content="teilt mit, daß er mit der Zergliederung der Voglerschen Bach-Choräle beschäftigt sei; betrifft Harmonischen Verein; plant, eine Biographie Voglers zu schreiben; komponiere zur Zeit Verschiedenes; Zusatz Gänsbachers" />
@@ -114,11 +114,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -231,7 +235,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -246,53 +249,97 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293/backlinks.html">Rückverweise</a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040293.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
                     <div>
                         <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                             
-                                <h3>Absolute Chronologie</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A044874.html">1810-06-22</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002215.html">Zumsteeg, Luise</a>
-                                    </li>
+                            <div>
+                                
+                                   <h3>Absolute Chronologie</h3>
+                                   <h4>Vorausgehend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A044874.html">1810-06-22</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002215.html">Zumsteeg, Luise</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A044665.html">1810-06-18</a>:  Von   unbekannt
+                                       </li>
+                                   </ul>
+                                   <h4>Folgend</h4>
+                                   <ul>
+                                       <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A044925.html">1810-06-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000139.html">Berger, Ludwig</a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A044677.html">1810-06-23</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002074.html">Weber, Franz Anton von</a>
+                                       </li>
+                                   </ul>
+                                
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A044665.html">1810-06-18</a>:  Von   unbekannt
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A044925.html">1810-06-23</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000139.html">Berger, Ludwig</a>
-                                    </li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044816.html">1810-06-11</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
                                         <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A044677.html">1810-06-23</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002074.html">Weber, Franz Anton von</a>
-                                    </li>
-                                </ul>
-                                <h3>Korrespondenzstelle</h3>
-                                <h4>Vorausgehend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044816.html">1810-06-11</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                                <h4>Folgend</h4>
-                                <ul>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040296.html">1810-08-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                        <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044797.html">1810-08-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
-                                    </li>
-                                </ul>
-                            
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040296.html">1810-08-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                            <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044797.html">1810-08-20</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber, Gottfried</a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -338,15 +385,13 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="689711410911511697100116" /> <span title="Darmstadt">Darmstadt</span> 
+                                    <input type="checkbox" name="options" value="A130015" /> <span title="Darmstadt">Darmstadt</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="701149711010710258" /> <span title="Frankf:">Frankf:</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7011497110107102117114116" /> <span title="Frankfurt">Frankfurt</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="76101105112122105103" /> <span title="Leipzig">Leipzig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7797110104101105109" /> <span title="Manheim">Manheim</span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Mannheim">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -375,7 +420,7 @@
                das Dings gelesen hat. du mußt wißen lieber <span class="tei_hi_latintype"><a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Weber</a></span>, daß ich eine Arbeit
                auf <span class="tei_hi_latintype"><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a></span> Verlangen unternommen habe, die mir
                <span class="tei_hi_underline1">viel Ruf</span>, aber auch verflucht viel Hunde über
-               den Leib hezen kann. <span class="tei_del">Er hat<a class="noteMarker" id="ref-d58365e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d58365e50">‡</a></span>
+               den Leib hezen kann. <span class="tei_del">Er hat<a class="noteMarker" id="ref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a></span>
                daß ich
                auf <span class="tei_hi_latintype">Variation</span> Stimmen
                
@@ -412,7 +457,7 @@
                <span class="tei_ptr"></span>sein unruhiger Geist, daher<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>
                
                kann er nie lange voraus Entschlüße faßen. kommt Ihr doch <span class="tei_hi_underline1">herüber</span>. die
-               Adreße nach <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> ist.
+               Adreße nach <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> ist.
                <span class="tei_hi_underline1">an die Redaktion der Zeitung für die Elegante Welt</span>.
                ich bitte dich
                <span class="tei_ptr"></span>es bald zu thun.<a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>
@@ -434,14 +479,14 @@
                erstenmahle hörte ich heute den Orgldonnerer; ein wahrer Gott, wenn er die
                tausend Kehlen allein anstimmt; nicht bald ergriff mich etwas so mächtig;
                <span class="tei_hi_latintype">unus est Deus, unus est <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglerus</a></span>.</p>
-                                        <p><span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2FganzeThema.jpg/full/full/0/native.jpg"><img alt="ganze Thema" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2FganzeThema.jpg/full/,/0/native.jpg" /></a></span> war das ganze Thema. Wir dupten und stupten, jeder nach seiner Art
-               fleißig; dabey wurde die schöne Erinnerung an <span class="tei_placeName"><span class="7797110104101105109">Manheim</span></span> oft wiederholt. Das
+                                        <p><span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2FganzeThema.jpg/full/full/0/native.jpg"><img alt="ganze Thema" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2FganzeThema.jpg/full/,75/0/native.jpg" /></a></span> war das ganze Thema. Wir dupten und stupten, jeder nach seiner Art
+               fleißig; dabey wurde die schöne Erinnerung an <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Manheim</span> oft wiederholt. Das
                neueste ist, daß <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> diesen Augenblik von seinem 
-               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2Ffigur.jpg/full/full/0/native.jpg"><img alt="g-a-c-d-d" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2Ffigur.jpg/full/,/0/native.jpg" /></a></span>
-               nach Hof abrufen, <span class="tei_del">und<a class="noteMarker" id="ref-d58365e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d58365e369">‡</a></span>
-               mit weisen Depeschen dahin <span class="tei_del">abgegangen ist<a class="noteMarker" id="ref-d58365e373" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d58365e373">‡</a></span>
+               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2Ffigur.jpg/full/full/0/native.jpg"><img alt="g-a-c-d-d" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0402xx%2FA040293%2Ffigur.jpg/full/,75/0/native.jpg" /></a></span>
+               nach Hof abrufen, <span class="tei_del">und<a class="noteMarker" id="ref-d10e362" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e362">‡</a></span>
+               mit weisen Depeschen dahin <span class="tei_del">abgegangen ist<a class="noteMarker" id="ref-d10e366" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e366">‡</a></span>
                abgieng. Außer unserem kleinen Kreis ist dieß eigentlich das intereßanteste in 
-               <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span>.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
+               <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span>.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
             </p>
                                     </div><span id="gaensbacherEnde" class="tei_anchor"></span>
                                     <div class="writingSession">
@@ -452,15 +497,15 @@
                
                schreiben<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. /: unter uns gesagt. :/ wenn ich nehmlich so
                viel Sizleder behalte. ich habe mit der <a class="preview persons A001731" href="/exist/apps/WeGA-WebApp/de/A001731.html">Schönberger</a> Bekanntschaft gemacht, weil ich Sie gerne in
-               <span class="tei_ptr"></span>mein <span class="tei_hi_latintype">Concert</span> in <span class="tei_placeName"><span class="701149711010710258">Frankf:</span></span><a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a>
+               <span class="tei_ptr"></span>mein <span class="tei_hi_latintype">Concert</span> in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankf:</span><a class="noteMarker" id="ref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a>
                
                haben möchte wo sie Ende August wieder hingeht,
                zur Herbst Meße.
                
                da im Sommer ohne dieß nichts zu machen ist, so will ich mein <span class="tei_hi_latintype">Concert</span> in
-               <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span> auch bis zur Herbst Meße sparen, und dann in der günstigen Jahreszeit
+               <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span> auch bis zur Herbst Meße sparen, und dann in der günstigen Jahreszeit
                meinen Stab weiter sezen. Unterdeßen <span class="tei_hi_latintype">componire</span> ich
-               noch eins und das andre. Es ist aber als ob man in dem <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> gar keinen
+               noch eins und das andre. Es ist aber als ob man in dem <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> gar keinen
                ordentlichen Gedanken kriegen könnte ich bin wie vernagelt.
                <span class="tei_hi_latintype">a propos</span> wenn du in
                <span class="tei_ptr"></span>dem Aufsaz in die Eleg: Z:<a class="noteMarker" id="ref-C_19" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_19">*</a>
@@ -488,11 +533,11 @@
                
                zu erhalten, und daß ich <a class="preview persons A002064" href="/exist/apps/WeGA-WebApp/de/A002064.html">deine Frau</a> und Bruder <span class="tei_hi_underline1"><a class="preview persons A000409" href="/exist/apps/WeGA-WebApp/de/A000409.html">Dusch</a></span>
                nebst Huth’s herzlich grüße. Schreib bald wieder an deinen 
-               <span class="tei_subst"><span class="tei_add"><span class="tei_hi_latintype">Semper</span></span><a class="noteMarker" id="ref-d58365e899" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d58365e899">‡</a></span>
+               <span class="tei_subst"><span class="tei_add"><span class="tei_hi_latintype">Semper</span></span><a class="noteMarker" id="ref-d10e882" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e882">‡</a></span>
                <span class="tei_hi_latintype">idem</span>
                <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</span>
                
-               <span class="tei_dateline textAlign-textAlign-left"><span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span>. d: 23t <span class="tei_hi_latintype">Juni</span> 1810.</span>
+               <span class="tei_dateline textAlign-textAlign-left"><span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span>. d: 23t <span class="tei_hi_latintype">Juni</span> 1810.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -560,13 +605,13 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="textConstitution">
                                         <li>
-                                            <div class="apparatusEntry" id="d58365e50" data-title="del">"Er hat":  überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e50" data-title="del">"Er hat":  überschrieben.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d58365e369" data-title="del">"und":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e362" data-title="del">"und":  durchgestrichen.</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d58365e373" data-title="del">"abgegangen ist":  durchgestrichen.</div>
+                                            <div class="apparatusEntry" id="d10e366" data-title="del">"abgegangen ist":  durchgestrichen.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_01" data-title="note textConst">"<span class="tei_lemma">Post prandium dupplex … in Darmstadt .</span>": 
@@ -575,7 +620,7 @@
                </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="d58365e899" data-title="subst">"Semper": "Sepper" überschrieben.</div>
+                                            <div class="apparatusEntry" id="d10e882" data-title="subst">"Semper": "Sepper" überschrieben.</div>
                                         </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
@@ -591,20 +636,20 @@
                   Erschien als:
                   <span class="tei_hi_italic">12 Choräle von <a class="preview persons A002618" href="/exist/apps/WeGA-WebApp/de/A002618.html">Sebastian Bach</a>, umgearbeitet von <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a>,
                      zergliedert von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>,
-                  <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>: C. F. Peters, PN 843; die Einleitung dazu siehe unter <a class="preview writings A031118" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031118.html">Weberschriften</a>
+                  <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>: C. F. Peters, PN 843; die Einleitung dazu siehe unter <a class="preview writings A031118" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031118.html">Weberschriften</a>
                </div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_07" data-title="note commentary">"<span class="tei_lemma">Schönberger noch mehrere Gastrollen</span>": 
                   <a class="preview persons A001731" href="/exist/apps/WeGA-WebApp/de/A001731.html">Marianne Schönberg</a> traf nach längerem Gastspie-Aufenthalt in
-                  <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span> zu drei
-                  Gastvorstellungen in <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> ein;
+                  <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span> zu drei
+                  Gastvorstellungen in <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> ein;
                   am 21. Juni trat sie als <span class="66101108109111110116">Belmont</span> in der <span class="tei_hi_italic"><span class="preview works A020461" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020461.html">Entführung aus dem Serail</span></span> auf,
                   am 22. Juni als <span class="7611111410510097110">Loridan</span> in <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Paers</a> <span class="tei_hi_italic"><span class="preview works A020604" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020604.html">Camilla</span></span>
                   und am 25. Juni als <span class="77117114110101121">Murney</span> in
                   <a class="preview persons A002162" href="/exist/apps/WeGA-WebApp/de/A002162.html">Peter von Winters</a> <span class="tei_hi_italic"><span class="preview works A020500" data-ref="/exist/apps/WeGA-WebApp/de/A002162/Werke/A020500.html">Unterbrochenem Opferfest</span></span>
                   (vgl. <span class="72101114109971101103275110105115112101108">Hermann Knispel</span>, <span class="tei_hi_italic">Das Großherzogliche Hoftheater zu Darmstadt von 1810–1890</span>,
-                  <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> 1891, S. 294
+                  <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> 1891, S. 294
                   bzw. die Besprechung <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> in der
                   <span class="tei_hi_italic">Rheinischen Correspondenz</span> Nr. 179 vom 30. Juni 1810, S. 713–714).
                   
@@ -612,7 +657,7 @@
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_09" data-title="note commentary">"<span class="tei_lemma">Aufführung der Past: Messe</span>": 
-                  In <span class="tei_placeName"><span class="7797110110104101105109">Mannheim</span></span> 
+                  In <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> 
                </div>
                                         </li>
                                         <li>
@@ -655,13 +700,13 @@
                   <span class="preview letters A040685 A040882" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040685.html /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040882.html /exist/apps/WeGA-WebApp/de/A001590.html /exist/apps/WeGA-WebApp/de/A000559.html /exist/apps/WeGA-WebApp/de/A002025.html">Briefen an
                      <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> vom 16. Mai 1814,  „ich behalte mir vor …“
                      und an <a class="preview persons A000559" href="/exist/apps/WeGA-WebApp/de/A000559.html">Joseph Fröhlich</a> vom 20. Februar 1816, „Um die Mittheilung der Abhandlung über den Geist <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a> …“.</span>
-                  Vermutlich haben die enormen Arbeitslasten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> die Ausführung des Planes verhindert; unerklärlich bleibt aber der Verlust der Aufzeichnungen und Entwürfe zu dieser Biographie.
+                  Vermutlich haben die enormen Arbeitslasten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> die Ausführung des Planes verhindert; unerklärlich bleibt aber der Verlust der Aufzeichnungen und Entwürfe zu dieser Biographie.
                   <a class="preview persons A000559" href="/exist/apps/WeGA-WebApp/de/A000559.html">Joseph Fröhlich</a> schrieb 1845 in seiner
-                  <span class="tei_bibl"><span class="tei_hi_italic">Biographie des großen Tonkünstlers <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt Georg Joseph Vogler</a></span> […] (<span class="tei_placeName"><span class="8725211412298117114103">Würzburg</span></span>: Thein, 1845), S. 4, Anm. 1</span>,
+                  <span class="tei_bibl"><span class="tei_hi_italic">Biographie des großen Tonkünstlers <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Abt Georg Joseph Vogler</a></span> […] (<span class="preview places A130025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130025.html">Würzburg</span>: Thein, 1845), S. 4, Anm. 1</span>,
                   <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> habe die Materialien für die Ausführung dieses Werkes
                   „schon im Jahre 1812 seinem würdigen Schüler <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> gegeben, welcher es übernommen hatte,
                      die Biographie <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Voglers</a> zu schreiben.
-                     So sagte dieser <span class="tei_supplied" id="d58365e489"><span class="brackets_supplied">[</span><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a><span class="brackets_supplied">]</span></span> zu dem Referenten,
+                     So sagte dieser <span class="tei_supplied" id="d10e479"><span class="brackets_supplied">[</span><a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a><span class="brackets_supplied">]</span></span> zu dem Referenten,
                      der ihn um die Mittheilung der erwähnten Materialien ersuchte.
                      Sie müssen sich noch unter den Papieren des sel. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a> vorfinden.“
                </div>
@@ -725,12 +770,12 @@
                                         <li>
                                             <div class="apparatusEntry" id="C_23" data-title="note commentary">"<span class="tei_lemma">verreisen sollte,</span>": 
                   Laut TB fuhr <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> am 27. Juni mit
-                  <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> nach <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span>,
-                  am nächsten Tag weiter über <span class="tei_placeName"><span class="79102102101110989799104">Offenbach</span></span> nach <span class="tei_placeName"><span class="729711097117">Hanau</span></span>,
+                  <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> nach <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span>,
+                  am nächsten Tag weiter über <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span> nach <span class="preview places A130134" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130134.html">Hanau</span>,
                   wo <a class="preview persons A002025" href="/exist/apps/WeGA-WebApp/de/A002025.html">Vogler</a> am 30. Juni konzertierte
                   und bei dieser Gelegenheit mit dem Großherzog
                   (gemeint ist der <a class="preview persons A000349" href="/exist/apps/WeGA-WebApp/de/A000349.html">Fürstprimas Karl Theodor Anton Reichsfreiherr Dalberg</a>,
-                  der von 1810–1813 Großherzog von <span class="tei_placeName"><span class="7011497110107102117114116">Frankfurt</span></span> war)
+                  der von 1810–1813 Großherzog von <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span> war)
                   über <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Oper <span class="tei_hi_italic"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span> sprach.
                   Nach <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbachers</a> Angaben hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> bei diesem Konzert <span class="tei_hi_italic">die Register zu dirigiren</span>.
                   Da <a class="preview persons A000349" href="/exist/apps/WeGA-WebApp/de/A000349.html">Dalberg</a> gegen Ende des Konzerts selbst zur Orgel kam,
@@ -756,10 +801,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -768,9 +809,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040293</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040293</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 16. Mai 2017 durch Ran Mo</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

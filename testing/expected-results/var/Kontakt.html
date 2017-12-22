@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T20:20:18.483868Z" />
+        <meta property="dc:date" content="2017-12-17T19:56:43.513781Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070009" />
         <meta property="dc:description" content="Prof. Dr. Gerhard Allroggen (Hamburg) Gesellschaft zur Förderung der Carl-Maria-von-Weber-Gesamtausgabe e. V. (Detmold) Vorstand: Prof. Dr. Gerhard …" />
         <meta name="description" content="Prof. Dr. Gerhard Allroggen (Hamburg) Gesellschaft zur Förderung der Carl-Maria-von-Weber-Gesamtausgabe e. V. (Detmold) Vorstand: Prof. Dr. Gerhard …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -226,6 +230,45 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070009.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070009.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070009.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070009.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="col-md-3 col-md-push-9">
                 <div class="allFilter">
                     <div>
@@ -236,7 +279,7 @@
                                 <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070009/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070009.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
@@ -247,23 +290,23 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div id="d156714e1">
-                                    <h2 id="d156714e2">Herausgeber</h2>
+                        <div id="d10e1">
+                                    <h2 id="d10e2">Herausgeber</h2>
                                     <p>Prof. Dr. Gerhard Allroggen (Hamburg)</p>
                                 </div>
-                                <div id="d156714e6">
-                                    <h2 id="d156714e7">Arbeitsstelle Berlin</h2>
+                                <div id="d10e6">
+                                    <h2 id="d10e7">Arbeitsstelle Berlin</h2>
                                     <div>
                                         <ul class="contactAddress">
                                             <li>Staatsbibliothek zu Berlin</li>
                                             <li>Musikabteilung</li>
-                                            <li>Unter der Linden 8</li>
+                                            <li>Unter den Linden 8</li>
                                             <li>D-10117 Berlin</li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div id="d156714e19">
-                                    <h2 id="d156714e20">Arbeitsstelle Detmold (Editionsleitung)</h2>
+                                <div id="d10e19">
+                                    <h2 id="d10e20">Arbeitsstelle Detmold (Editionsleitung)</h2>
                                     <div>
                                         <ul class="contactAddress">
                                             <li>Musikwissenschaftliches Seminar Detmold/Paderborn</li>
@@ -275,17 +318,17 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div id="d156714e36">
-                                    <h2 id="d156714e37">Träger</h2>
+                                <div id="d10e36">
+                                    <h2 id="d10e37">Träger</h2>
                                     <p>Gesellschaft zur Förderung der Carl-Maria-von-Weber-Gesamtausgabe e. V. (Detmold)</p>
                                     <p>Vorstand: Prof. Dr. Gerhard Allroggen, Detlev Hellfaier M.A., Herbert Engelhardt</p>
                                 </div>
-                                <div id="d156714e43">
-                                    <h2 id="d156714e44">Förderung</h2>
+                                <div id="d10e43">
+                                    <h2 id="d10e44">Förderung</h2>
                                     <p>Union der Deutschen Akademien der Wissenschaften, vertreten durch die <a href="http://www.adwmainz.de">Akademie der Wissenschaften und der Literatur</a>, Mainz</p>
                                 </div>
-                                <div id="d156714e51">
-                                    <h2 id="d156714e52">Verlag</h2>
+                                <div id="d10e51">
+                                    <h2 id="d10e52">Verlag</h2>
                                     <p><a href="http://www.schott-musik.de">Schott Music</a> GmbH &amp; Co. KG, Mainz</p>
                                 </div>
                     </div>
@@ -295,10 +338,6 @@
                     </div>
                     <div class="tab-pane fade" id="XMLPreview">
                         <h2>XML</h2>
-                        
-                    </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
                         
                     </div>
                 </div>
@@ -311,9 +350,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070009</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070009</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am 17. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

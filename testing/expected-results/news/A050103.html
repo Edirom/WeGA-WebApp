@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T17:05:58.532128Z" />
+        <meta property="dc:date" content="2017-09-15T13:05:55.165855Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050103" />
         <meta property="dc:description" content="Vom 24. bis 28. Oktober 2011 besuchte Dr. Axel Teich-Geertinger vom Danish Centre for Music Publication (DCM) an der Königlichen Bibliothek in …" />
         <meta name="description" content="Vom 24. bis 28. Oktober 2011 besuchte Dr. Axel Teich-Geertinger vom Danish Centre for Music Publication (DCM) an der Königlichen Bibliothek in …" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -225,7 +229,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -238,11 +241,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050103.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -258,7 +300,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="7511111210111010497103101110" /> <span title="Kopenhagen">Kopenhagen</span> 
+                                    <input type="checkbox" name="options" value="A130199" /> <span title="Kopenhagen">Kopenhagen</span> 
                                 </label>
                             </div>
                         </div>
@@ -269,16 +311,15 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
-                        <div class="teiDoc_body">
-                                    <div class="docPart">
-                                        <p>Vom 24. bis 28. Oktober 2011 besuchte <span class="681144632651201011083284101105991044571101101114116105110103101114"><span class="tei_hi_bold">Dr. Axel
+                        <div id="d10e2">
+                                    <p>Vom 24. bis 28. Oktober 2011 besuchte <span class="681144632651201011083284101105991044571101101114116105110103101114"><span class="tei_hi_bold">Dr. Axel
                      Teich-Geertinger</span></span> vom <span class="tei_hi_italic"><a href="http://www.kb.dk/en/kb/nb/mta/dcm/">Danish Centre for Music
-                     Publication <i class="fa fa-external-link"></i></a></span> (DCM) an der Königlichen Bibliothek in <span class="tei_placeName"><span class="tei_hi_bold"><span class="7511111210111010497103101110">Kopenhagen</span></span></span> die Arbeitsgruppen <span class="tei_hi_italic">Edirom</span>, <span class="tei_hi_italic">TextGrid</span> und die WeGA am Musikwissenschaftlichen Seminar
+                     Publication <i class="fa fa-external-link" aria-hidden="true"></i></a></span> (DCM) an der Königlichen Bibliothek in <span class="tei_placeName"><span class="tei_hi_bold"><span class="preview places A130199" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130199.html">Kopenhagen</span></span></span> die Arbeitsgruppen <span class="tei_hi_italic">Edirom</span>, <span class="tei_hi_italic">TextGrid</span> und die WeGA am Musikwissenschaftlichen Seminar
                Detmold/Paderborn. Die Gespräche konzentrierten sich auf den von Teich-Geertinger
-               entwickelten Editor <span class="tei_hi_bold"><a href="http://www.kb.dk/en/kb/nb/mta/dcm/projekter/mermeid.html">MerMEId <i class="fa fa-external-link"></i></a></span> (ausführlich: <span class="tei_hi_italic">Metadata Editor and Repository for MEI Data</span>). Es handelt sich dabei um ein
+               entwickelten Editor <span class="tei_hi_bold"><a href="http://www.kb.dk/en/kb/nb/mta/dcm/projekter/mermeid.html">MerMEId <i class="fa fa-external-link" aria-hidden="true"></i></a></span> (ausführlich: <span class="tei_hi_italic">Metadata Editor and Repository for MEI Data</span>). Es handelt sich dabei um ein
                für die elektronischen Kataloge der Werke <span class="67971141083278105101108115101110115">Carl Nielsens</span>,
                   <span class="74468046694632729711411610997110110">J.P.E. Hartmann</span> u.a. konzipierte Software, mit der die
-               Eingabe und Pflege von Katalogdaten im Format der <a href="http://www.music-encoding.org">Music Encoding Initative <i class="fa fa-external-link"></i></a> auch ohne
+               Eingabe und Pflege von Katalogdaten im Format der <a href="http://www.music-encoding.org">Music Encoding Initative <i class="fa fa-external-link" aria-hidden="true"></i></a> auch ohne
                Kenntnis der zugrundeliegenden XML-Strukturen möglich ist. Dieser Editor soll auch
                für die <span class="tei_hi_italic">Edirom</span>-Software eingesetzt werden und auch der Ausbau
                der jetzt nur mit sehr rudimentären Daten angelegten, ebenfalls auf MEI basierenden
@@ -298,7 +339,6 @@
                Informationen. Zugleich kann das Werkverzeichnis damit in einem offenen und
                langfristig sicheren Format erarbeitet werden, das sowohl für die elektronische als
                auch die Print-Veröffentlichung viel Flexibilität bietet.</p>
-                                    </div>
                                 </div>
                                 <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Samstag, 12. November 2011</p>
                     </div>
@@ -329,7 +369,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <span class="noDataFound">keine Angaben gefunden</span>
+                                <span class="noDataFound">Keine Angaben gefunden</span>
                                 
                                 <div>
                                     
@@ -342,12 +382,7 @@
                         
                         
                         
-                        <div class="apparatus" style="display:none">
-                                    <h3 class="media-heading">Textkonstitution</h3>
-                                    <ul class="textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="commentary"></ul>
-                                </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
                         <div id="map" style="width:100%;height:100%;position:relative;"></div>
@@ -360,10 +395,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -372,9 +403,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050103</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050103</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>

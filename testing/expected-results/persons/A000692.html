@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-04-14T19:16:47.917215Z" />
+        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000692" />
         <meta property="dc:description" content="Biographische Informationen zu Therese Grünbaum. Lebensdaten: 24. August 1791–30. Januar 1876. Tätigkeiten: Sängerin (Sopran). Wirkorte: Prag, Wien, Berlin" />
         <meta name="description" content="Biographische Informationen zu Therese Grünbaum. Lebensdaten: 24. August 1791–30. Januar 1876. Tätigkeiten: Sängerin (Sopran). Wirkorte: Prag, Wien, Berlin" />
@@ -110,11 +110,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -222,6 +226,45 @@
     </div>
     
         <div class="container paddingTopIcon paddingBottomIcon">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000692.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000692.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000692.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000692.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
             <div class="row" id="meta">
                 <div class="col-md-3 col-sm-6">
                     
@@ -313,7 +356,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A000692/backlinks.html">Rückverweise<small> (330)</small></a></li>
+                                <li><a href="#backlinks" data-target="A000692/backlinks.html">Rückverweise<small> (345)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -341,13 +384,13 @@
                                                         <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
+                                                        <a class="deactivated"></a>
+                                                    </li>
+                                                    <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A000692/dnb.html">GND Eintrag</a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
-                                                    </li>
-                                                    <li class="gradient-light">
-                                                        <a class="deactivated"></a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
@@ -356,7 +399,7 @@
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000692/xml.html">XML-Vorschau</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a href="/exist/apps/WeGA-WebApp/de/A000692.xml">XML-Download</a>
+                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -378,17 +421,17 @@
    
    <ul class="tei_list">
       <li class="listTitle">Wien bis 1807</li>
-      <li>erste Bühnenauftritte unter Leitung des <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Vaters</a> am Theater in der Leopoldstadt ab Mai 1796; am 18. September 1805 schloss <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a> für sich (als Kapellmeister) und seine <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Tochter</a> (als Sängerin) einen Sechsjahresvertrag mit <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Johann Carl Liebich</a> für das <span class="tei_placeName"><span class="8011497103101114">Prager</span></span> Ständetheater ab
+      <li>erste Bühnenauftritte unter Leitung des <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Vaters</a> am Theater in der Leopoldstadt ab Mai 1796; am 18. September 1805 schloss <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a> für sich (als Kapellmeister) und seine <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Tochter</a> (als Sängerin) einen Sechsjahresvertrag mit <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Johann Carl Liebich</a> für das <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Ständetheater ab
       </li>
    </ul>
    <ul class="tei_list">
       <li class="listTitle">Prag</li>
-      <li>1807 bis 1818 als Sängerin am <span class="tei_placeName"><span class="8011497103101114">Prager</span></span> Ständetheater engagiert; dort weitere Gesangslektionen beim Italiener <span class="65108111105115105">Aloisi</span></li>
+      <li>1807 bis 1818 als Sängerin am <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Ständetheater engagiert; dort weitere Gesangslektionen beim Italiener <span class="65108111105115105">Aloisi</span></li>
       <li>1815 komponierte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zu ihrem Benefiz am 4. Januar die <span class="preview works A020241" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020241.html">Einlagearie</span> zu <a class="preview persons A001302" href="/exist/apps/WeGA-WebApp/de/A001302.html">Méhuls</a> Oper <span class="preview works A020452" data-ref="/exist/apps/WeGA-WebApp/de/A001302/Werke/A020452.html">Hélène</span></li>
-      <li>von <span class="tei_placeName"><span class="8011497103">Prag</span></span> aus Gastauftritte in <span class="tei_placeName"><span class="87105101110">Wien</span></span> (Juni /Juli 1813)</li>
+      <li>von <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> aus Gastauftritte in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> (Juni /Juli 1813)</li>
    </ul>
    <ul class="tei_list">
-      <li class="listTitle">Fachangaben während ihrer Tätigkeit am <span class="tei_placeName"><span class="8011497103101114">Prager</span></span> Ständetheater (1807–1818):</li>
+      <li class="listTitle">Fachangaben während ihrer Tätigkeit am <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Ständetheater (1807–1818):</li>
       <li><span class="tei_hi_italic">Prager Theater-Almanach auf das Jahr 1808</span>, Prag 1807 (= Jg. 1), S. 9: Debüt 1807 als <span class="7497119105110101">Jawine</span> in der <span class="791121011143210310810110599104101110327897109101110115">Oper gleichen Namens</span></li>
       <li>Iffland, <span class="tei_hi_italic">Almanach fürs Theater</span>, Jg. 2, Berlin 1808, S. 239: erste Sängerin (noch als Müller; ebenso in: Iffland, <span class="tei_hi_italic">Almanach fürs Theater</span>, Jg. 3, Berlin 1809, S. 159 sowie Schmidt, <span class="tei_hi_italic">Almanach für Theater 1812</span>, Leipzig 1811, S. 175; als Grünbaum ebenso in: <span class="tei_hi_italic">Allgemeiner Deutscher Theater-Anzeiger</span>, hg. von Daniel Gottlieb Quandt, Prag, Jg. 4 (1814), Nr. 24, S. 95; Lembert/Carl, <span class="tei_hi_italic">Taschenbuch für Schauspieler und Schauspielfreunde für das Jahr 1816</span>, Stuttgart, München 1815, S. 206, Lembert, <span class="tei_hi_italic">Taschenbuch für Schauspieler und Schauspielfreunde auf das Jahr 1817</span>, Stuttgart 1816, S. 469)</li>
       <li><span class="tei_hi_italic">Theater-Zeitung</span>, Wien, Jg. 6, Nr. 41 (7. April 1813), S. 164: „die Zierde jeder Oper“</li>
@@ -399,19 +442,19 @@
   
    <ul class="tei_list">
       <li class="listTitle">Gastspiele 1817/18</li>
-      <li>Sie absolvierte im Mai 1817 Gastrollen an der <span class="tei_placeName"><span class="68114101115100110101114">Dresdner</span></span> Hofoper als <span class="80114105110122101115115105110321181111103278971189711411497">Prinzessin von Navarra</span> in <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span>, als <span class="6811111011097326511011097">Donna Anna</span> in <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Giovanni</span>, als <span class="65100101108101">Adele</span> im <span class="preview works A020433" data-ref="/exist/apps/WeGA-WebApp/de/A000909/Werke/A020433.html">Lotterielos</span> und als <span class="65100101108101">Adele</span> in <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul der Blaubart</span>;
-         im Anschluss daran trat sie siebenmal als Gast an der <span class="tei_placeName"><span class="66101114108105110101114">Berliner</span></span> Hofoper auf; 
-         am 19. Juni war sie nochmals in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> in <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span> zu hören. Im April 1818 gastierte sie in <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span>, im Mai in <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span>, im Mai/Juni in <span class="tei_placeName"><span class="7011497110107102117114116477797105110">Frankfurt/Main</span></span>.
+      <li>Sie absolvierte im Mai 1817 Gastrollen an der <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresdner</span> Hofoper als <span class="80114105110122101115115105110321181111103278971189711411497">Prinzessin von Navarra</span> in <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span>, als <span class="6811111011097326511011097">Donna Anna</span> in <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Giovanni</span>, als <span class="65100101108101">Adele</span> im <span class="preview works A020433" data-ref="/exist/apps/WeGA-WebApp/de/A000909/Werke/A020433.html">Lotterielos</span> und als <span class="65100101108101">Adele</span> in <span class="preview works A020573" data-ref="/exist/apps/WeGA-WebApp/de/A000673/Werke/A020573.html">Raoul der Blaubart</span>;
+         im Anschluss daran trat sie siebenmal als Gast an der <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berliner</span> Hofoper auf; 
+         am 19. Juni war sie nochmals in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> in <span class="preview works A020422" data-ref="/exist/apps/WeGA-WebApp/de/A000198/Werke/A020422.html">Johann von Paris</span> zu hören. Im April 1818 gastierte sie in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>, im Mai in <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span>, im Mai/Juni in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span>.
       </li>
    </ul>
    <ul class="tei_list">
-      <li class="listTitle"><span class="tei_placeName"><span class="87105101110">Wien</span></span> ab 1817</li>
-      <li>Bereits am 28. September 1817 hatte das Ehepaar <span class="preview persons A000691 A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000691.html /exist/apps/WeGA-WebApp/de/A000692.html">Grünbaum</span> sich vertraglich verpflichtet, 1818 nach <span class="tei_placeName"><span class="87105101110">Wien</span></span> zu wechseln, wo sie am 7. Juli 1818 eintrafen (Debut am 14. Juli als <span class="83111112104105101">Sophie</span> in <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargines</span>). Therese Grünbaum war bis Juli 1830 an der dortigen Hofoper tätig (in den letzten Jahren allerdings nur noch in wenigen Rollen, danach Abgang von der Bühne); am 8. April 1820 erhielt sie das Dekret als k. k. Hofsängerin. Gastspielreisen führten sie u. a. nach <span class="tei_placeName"><span class="6611410111510897117">Breslau</span></span> (August 1820), <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> (September 1821, August 1824), <span class="tei_placeName"><span class="8011497103">Prag</span></span> (Juli/August 1824), <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span> (September bis Dezember 1824 22 Gastrollen an der Hofoper), <span class="tei_placeName"><span class="8011111611510097109">Potsdam</span></span> (Konzert 11. Dezember 1824), <span class="tei_placeName"><span class="729710998117114103">Hamburg</span></span> (September bis November 1825), <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> (Januar/Februar 1825), <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span> (Dezember 1825), <span class="tei_placeName"><span class="8011497103">Prag</span></span> (Januar/Februar 1826), <span class="tei_placeName"><span class="7725211099104101110">München</span></span> (Herbst 1827), <span class="tei_placeName"><span class="7011497110107102117114116477797105110">Frankfurt/Main</span></span> (Dezember 1827), <span class="tei_placeName"><span class="76101105112122105103">Leipzig</span></span> (Dezember 1827 bis Januar 1828), <span class="tei_placeName"><span class="779710310010198117114103">Magdeburg</span></span> (Januar bis März 1828), <span class="tei_placeName"><span class="8011497103">Prag</span></span> (Sommer 1830) und <span class="tei_placeName"><span class="689711410911511697100116">Darmstadt</span></span> (April bis Juni 1831).</li>
-      <li>In der Uraufführung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> in <span class="tei_placeName"><span class="87105101110">Wien</span></span> am 25. Oktober 1823 sang sie die Partie der <span class="6910310897110116105110101">Eglantine</span>.</li>
+      <li class="listTitle"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> ab 1817</li>
+      <li>Bereits am 28. September 1817 hatte das Ehepaar <span class="preview persons A000691 A000692" data-ref="/exist/apps/WeGA-WebApp/de/A000691.html /exist/apps/WeGA-WebApp/de/A000692.html">Grünbaum</span> sich vertraglich verpflichtet, 1818 nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> zu wechseln, wo sie am 7. Juli 1818 eintrafen (Debut am 14. Juli als <span class="83111112104105101">Sophie</span> in <span class="preview works A020423" data-ref="/exist/apps/WeGA-WebApp/de/A001436/Werke/A020423.html">Sargines</span>). Therese Grünbaum war bis Juli 1830 an der dortigen Hofoper tätig (in den letzten Jahren allerdings nur noch in wenigen Rollen, danach Abgang von der Bühne); am 8. April 1820 erhielt sie das Dekret als k. k. Hofsängerin. Gastspielreisen führten sie u. a. nach <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> (August 1820), <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> (September 1821, August 1824), <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> (Juli/August 1824), <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> (September bis Dezember 1824 22 Gastrollen an der Hofoper), <span class="preview places A130068" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130068.html">Potsdam</span> (Konzert 11. Dezember 1824), <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> (September bis November 1825), <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> (Januar/Februar 1825), <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> (Dezember 1825), <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> (Januar/Februar 1826), <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> (Herbst 1827), <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span> (Dezember 1827), <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> (Dezember 1827 bis Januar 1828), <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span> (Januar bis März 1828), <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> (Sommer 1830) und <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> (April bis Juni 1831).</li>
+      <li>In der Uraufführung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> am 25. Oktober 1823 sang sie die Partie der <span class="6910310897110116105110101">Eglantine</span>.</li>
    </ul> 
    <ul class="tei_list">
-      <li class="listTitle"><span class="tei_placeName"><span class="66101114108105110">Berlin</span></span></li>
-      <li>Das Ehepaar Grünbaum lebte ab 1832 (oder bereits 1830?) in <span class="tei_placeName"><span class="66101114108105110">Berlin</span></span>, wo Tochter <a class="preview persons A008093" href="/exist/apps/WeGA-WebApp/de/A008093.html">Caroline</a> engagiert war.</li>
+      <li class="listTitle"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></li>
+      <li>Das Ehepaar Grünbaum lebte ab 1832 (oder bereits 1830?) in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, wo Tochter <a class="preview persons A008093" href="/exist/apps/WeGA-WebApp/de/A008093.html">Caroline</a> engagiert war.</li>
    </ul>
    </div>
                                                     
@@ -419,11 +462,11 @@
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
                                                 </div>
-                                                <div class="tab-pane fade" id="ndbText">
-                                                    <h2>NDB</h2>
-                                                </div>
                                                 <div class="tab-pane fade" id="adbText">
                                                     <h2>ADB</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="ndbText">
+                                                    <h2>NDB</h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -435,18 +478,15 @@
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB), sowie Angaben des Registers" href="http://www.deutsche-biographie.de/pnd122844343.html">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00571937]" href="http://thesaurus.cerl.org/record/cnp00571937">CERL Thesaurus</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000015853357]" href="http://isni.org/isni/0000000015853357">ISNI [by http://viaf.org/viaf/20574124]</a></li>
-                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope-verbund.info/gnd=122844343">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.musiklexikon.ac.at/ml/musik_G/Gruenbaum_Familie.xml?frames=yes]" href="http://www.musiklexikon.ac.at/ml/musik_G/Gruenbaum_Familie.xml?frames=yes">Oesterreichisches Musiklexikon</a></li>
-                                                            <li><a title="Österreichische Akademie der Wissenschaften" href="http://www.biographien.ac.at/cgi-bin/gndresolver?gnd=122844343&amp;lex=oebl">Österreichisches Biographisches Lexikon</a></li>
+                                                            <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=122844343">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [Grünbaum, Familie]" href="http://www.musiklexikon.ac.at/ml/musik_G/Gruenbaum_Familie.xml?frames=no">Oesterreichisches Musiklexikon [Grünbaum, Familie]</a></li>
+                                                            <li><a title="Österreichische Akademie der Wissenschaften [http://www.biographien.ac.at/oebl/oebl_M/Mueller_Therese_1791_1876.xml?frames=yes]" href="http://www.biographien.ac.at/oebl/oebl_M/Mueller_Therese_1791_1876.xml?frames=yes">Österreichisches Biographisches Lexikon</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;TRM=122844343&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50">SWB-Verbundkatalog</a></li>
                                                         </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
                                                     
-                                                </div>
-                                                <div class="tab-pane fade" id="XMLDownload">
-                                                    <h2>XML Download</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -503,9 +543,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000692</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000692</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 14. April 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
                     </div>
                     
                 </div>

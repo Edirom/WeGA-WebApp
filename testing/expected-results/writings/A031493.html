@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Dubke, Esther" />
         <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-05-03T13:03:27.379364Z" />
+        <meta property="dc:date" content="2017-12-20T08:49:26.518780Z" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031493" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -113,11 +113,15 @@
                                     
                                     
                                     
+                                    
                                 <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                    <li>
+                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
                                         <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
@@ -228,7 +232,6 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
             <div class="col-md-3 col-md-push-9">
-                
                 <div class="allFilter">
                     
                     <div>
@@ -243,11 +246,50 @@
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a class="deactivated"></a></li>
                                 <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493.xml">XML-Download</a></li>
+                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>
-                    
+                    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    The 'standard' TEI version. 
+                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
+                    but no information needs to be dropped.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
+                    So be warned, this <i>not</i> a lossless transformation. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A031493.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    An attempt to create a 'simple' plain text version. 
+                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
+                    NB: This is considered an experimental feature!
+                </p>
+                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+                    <div></div>
                     <div>
                         <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
                         <div class="panel-collapse collapse" id="personsPlus">
@@ -285,9 +327,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="68114101115100101110" /> <span title="Dresden">Dresden</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="86101114110105111" /> <span title="Vernio">Vernio</span> 
+                                    <input type="checkbox" name="options" value="A130003" /> <span title="Dresden">Dresden</span> 
                                 </label>
                             </div>
                         </div>
@@ -301,8 +341,8 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Für Freunde der Tonkunst.</span> Von <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Friedrich Rochlitz.</a> 1. Band. 1824. 430 S. in 8.</h2>
-                                        <p>Wir lassen billig eine eindringendere Beurtheilung und Würdigung dessen, was uns dieser erste Band bringt, den <span class="tei_hi_spaced_out">Eingeweihten</span>. Möchte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a> selbst dazu Zeit gewinnen können! Wenigstens dürfen wir aus seinem Munde die Versicherung geben, daß ihm über alle die Gegenstände, die hier verhandelt werden, weder etwas Gründlicheres, noch für das große Publikum belehrenderes und <span class="tei_hi_spaced_out">faßlicheres</span> vorgekommen sey. <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Fr. Rochlitz</a> war der Erste, der vor ungefähr 30 Jahren begann, eigentliche philosophische Kenntniß und <span class="tei_hi_spaced_out">wissenschaftliche</span> Ansichten (damals die Kantischen) zur Musik zu bringen und auf sie anzuwenden; einer der Ersten auch (und das besonders in <span class="tei_placeName"><span class="tei_country">Deutschland</span></span>, da hierin in früherer Zeit <span class="tei_placeName"><span class="tei_country">Italien</span></span> vorangegangen, <span class="tei_placeName"><span class="tei_country">Frankreich</span></span> und <span class="tei_placeName"><span class="tei_country">England</span></span> nachgefolgt war), der ernstliche historische Studien und was allein vor Einseitigkeit und Ueberschätzung bewahrt, allgemeine Bildung in dieses Fach gebracht und von der durch darstellende Schriften andrer Art vielfach erprobten Fähigkeit, <span class="tei_hi_spaced_out">gut</span> zu schreiben, Gebrauch gemacht hat. Natürlich ging, was er in diesem Fache von Zeit zu Zeit, besonders durch das überall gern vernommene Organ der musikalischen Zeitung (dieses bis jetzt einzigen Pepertoriums) bekannt machte, großentheils sogleich in die allgemeine Meinung über. Ist dieß ge<span class="tei_cb" title="Spaltenumbruch">¦</span>geschehen, so denkt nicht leicht jemand daran, wann oder durch wen dieß zuerst gefunden und also aufgestellt wurde. Findet er es später wieder da, wo es zuerst ausfloß, so sagt er: "Nun, das ist nicht übel, aber daselbe, was du schon längst gehabt, gewußt, geurtheilt hast"! So ist es von jeher allen gegangen, die ihrem Zeitalter <span class="tei_hi_spaced_out">tüchtig</span> voreilten und noch ein zweites Geschlecht erlebten. Das <span class="tei_hi_spaced_out">muß</span> so seyn und wehe jedem, der in hohem Alterncoht gelernt hat, seine Persönlichkeit dem mächtig fortrollenden Zeitrad unterzuordnen! Sagt man nun, daß man hier nicht Weniges, den Stoffe, den Ansichten, den Urtheilen nach wiederfinde, was der Verf. füher schon anderwärts, besonders in der musikal. Zeit ansprach; so muß dieß doch dahin beschränkt werden, daß hier kein einziger Aufsatz so erscheint, wie dort gegeben wurde, bei weitem die meisten aber jetzt ganz neu ausgearbeitet und erst <span class="tei_date">1823</span> niedergeschrieben worden sind. Man prüfe und vergleiche selbst!</p>
-                                        <p>Das eingenthümliche Verdienst dieser Aufsätze ist die Einkleidung, womit gediegene Gründlichkeit und Gelehrsamkeit ein Lesebuch im edelsten Sinne des Wortes zu gestalten verstand. Des alten: Lehre durch Beispiel, <span class="tei_hi_italic">tutior per exempla via</span>, eingedenk, weiß er im ersten Abschnitt, welcher <span class="tei_hi_spaced_out">Bildnisse</span> überschrieben ist, in den Kunstbiographieen von <span class="tei_hi_spaced_out"><span class="72105108108101114">Hiller</span></span>, <a class="preview persons A008816" href="/exist/apps/WeGA-WebApp/de/A008816.html">Gertrud Mara</a> und <a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">Andreas Romberg</a>, dieser 3 Repräsentanten der deutschen Operncomposition, des hohen Gesanges und der Instrumentalcomposition, an die gerechte Würdigung dieser Meister überall die fruchtbarsten Winke und <span class="tei_hi_spaced_out">Warnungen</span> zu knüpfen; dann führt er im 2ten Abschnitt, mit der Ueberschrift <span class="tei_hi_spaced_out">Betrachtungen</span>, die Dilettanten, ja selbst die bloßen Laien gar freundlich an der Hand, wenn er das innerste Wesen der Fugen anschließt; die Urtheile über die Werke der Tonkunst in vier Klassen ordnet; die von <span class="tei_placeName"><span class="tei_country">Frankreich</span></span> aus vorgebrachte Klage gegen Symphonien mit Gesang gerecht würdigt; <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händels</a>, dieses Fürsten der Tonkunst, einzigen <span class="preview works A020454" data-ref="/exist/apps/WeGA-WebApp/de/A000732/Werke/A020454.html">Messias</span> meisterhaft zergliedert; die Macht des Rhythmus bei rohen Völkern ausdeutet, oder uns unerwartet an die wahre, oft vergeblich gesuchte Wiege der italienischen Oper hinstellt. Gerade in dieser letzten Untersuchung zeigt sich der Kenner, der die Ergebnisse seiner Jahrelangen Forschungen mit einer Leichtigkeit und Klarheit aufstellt, als hätte sie ihm gar keine Mühe gekostet, die Quellen selbst in Einer alles umfassenden Note S. 302 nachweiset, um so mehr zu seinem Vortheile, als er seine vor 25 Jahren schon öffentlich geäußerte Behauptung heute förmlich zurücknimmt. Das Resultat ist: „<span class="711051111189711011010532100105326697114100105">Giovanni di Bardi</span>, Graf von <span class="tei_placeName"><span class="86101114110105111">Vernio</span></span> gestaltete sie als Rezitativ, als <span class="tei_hi_italic">musica nuova in stilo rappresentativo</span> am Hofe <span class="7611111410111012211132118111110327710110010599105">Lorenzo von Medici</span>, in Verbindung mit <span class="711051171081051113267979999105110105">Giulio Caccini</span>. Die erste wirkliche Oper brachte <span class="80101114105">Peri</span> in Verbindung mit dem Dichter <span class="821051101179999105110105">Rinuccini</span> hervor. Ihre Vollendung erhielt sie durch <span class="tei_pb" title="Seitenumbruch"> | </span> die <span class="6911711410510010599101">Euridice</span> am Vermählungsfest der <span class="779711410597327710110010599105">Maria Medici</span> mit <span class="721011051101141059910432738646">Heinrich IV.</span>“ der dritte Abschnitt, <span class="tei_hi_spaced_out">Vermischtes</span> betitelt, ist vielleicht für die Mehrzahl der Leser der anziehendste. Denn da nach <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Paul</a> der Mensch aus zwei Theilen besteht, aus Ernst und Scherz, so mögen die scherzenden Aufsätze, der erste Ausflug eines Virtuosen und das Schreiben an der Redaction der Leipziger musikal. Zeitung, wegen die trockenen Laune, mit welcher sie gedichtet sind, vorzügliche Gunst finden. Aber bei der jetzt so mannigfach abgeregten und auf Blindenbildung und Pflege gerichteten Aufmerksamkeit dürfe wohl auch der dritte Aufsatz über <span class="tei_hi_spaced_out">Blinde Musiker</span> (besonders auch bei uns in <span class="tei_placeName"><span class="68114101115100101110">Dresden</span></span>) volle Beherzigung fordern, vorzüglich durch die des blinden <span class="11811111032669799122107111">von Baczko</span> Schrift über sich und seine Unglücksgefährten abgeleitete Bemerkung, daß man immer dahin arbeite, die Blinden den Sehenden so ähnlich als möglich zu bilden, statt sie immer als Blinde anzusehen und sie zu Leistungen anzuführen, womit jeder <span class="tei_hi_spaced_out">seine</span> Sphäre ausfüllt. Möge der Meister in seinem Fache uns noch oft aus den reichem Schatz seiner Lebens- und Kunstansichten eine volle Spende schenken. Wenn auch der <span class="tei_hi_spaced_out">Markt</span> unsrer Literatur mit ganz andern Dingen sich abarbeitet und Beifall erhascht; eine erlesene Zahl wahrer Kunstfreunde werden stets einen geistigen Kreis um ihn schließen. Und kommen die höhern Jahre, er wird nie eine <span class="tei_hi_italic">senectam cithara carentem</span> haben!</p>
+                                        <p>Wir lassen billig eine eindringendere Beurtheilung und Würdigung dessen, was uns dieser erste Band bringt, den <span class="tei_hi_spaced_out">Eingeweihten</span>. Möchte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a> selbst dazu Zeit gewinnen können! Wenigstens dürfen wir aus seinem Munde die Versicherung geben, daß ihm über alle die Gegenstände, die hier verhandelt werden, weder etwas Gründlicheres, noch für das große Publikum belehrenderes und <span class="tei_hi_spaced_out">faßlicheres</span> vorgekommen sey. <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Fr. Rochlitz</a> war der Erste, der vor ungefähr 30 Jahren begann, eigentliche philosophische Kenntniß und <span class="tei_hi_spaced_out">wissenschaftliche</span> Ansichten (damals die Kantischen) zur Musik zu bringen und auf sie anzuwenden; einer der Ersten auch (und das besonders in <span class="tei_country">Deutschland</span>, da hierin in früherer Zeit <span class="tei_country">Italien</span> vorangegangen, <span class="tei_country">Frankreich</span> und <span class="tei_country">England</span> nachgefolgt war), der ernstliche historische Studien und was allein vor Einseitigkeit und Ueberschätzung bewahrt, allgemeine Bildung in dieses Fach gebracht und von der durch darstellende Schriften andrer Art vielfach erprobten Fähigkeit, <span class="tei_hi_spaced_out">gut</span> zu schreiben, Gebrauch gemacht hat. Natürlich ging, was er in diesem Fache von Zeit zu Zeit, besonders durch das überall gern vernommene Organ der musikalischen Zeitung (dieses bis jetzt einzigen Pepertoriums) bekannt machte, großentheils sogleich in die allgemeine Meinung über. Ist dieß ge<span class="tei_cb" title="Spaltenumbruch">¦</span>geschehen, so denkt nicht leicht jemand daran, wann oder durch wen dieß zuerst gefunden und also aufgestellt wurde. Findet er es später wieder da, wo es zuerst ausfloß, so sagt er: "Nun, das ist nicht übel, aber daselbe, was du schon längst gehabt, gewußt, geurtheilt hast"! So ist es von jeher allen gegangen, die ihrem Zeitalter <span class="tei_hi_spaced_out">tüchtig</span> voreilten und noch ein zweites Geschlecht erlebten. Das <span class="tei_hi_spaced_out">muß</span> so seyn und wehe jedem, der in hohem Alterncoht gelernt hat, seine Persönlichkeit dem mächtig fortrollenden Zeitrad unterzuordnen! Sagt man nun, daß man hier nicht Weniges, den Stoffe, den Ansichten, den Urtheilen nach wiederfinde, was der Verf. füher schon anderwärts, besonders in der musikal. Zeit ansprach; so muß dieß doch dahin beschränkt werden, daß hier kein einziger Aufsatz so erscheint, wie dort gegeben wurde, bei weitem die meisten aber jetzt ganz neu ausgearbeitet und erst <span class="tei_date">1823</span> niedergeschrieben worden sind. Man prüfe und vergleiche selbst!</p>
+                                        <p>Das eingenthümliche Verdienst dieser Aufsätze ist die Einkleidung, womit gediegene Gründlichkeit und Gelehrsamkeit ein Lesebuch im edelsten Sinne des Wortes zu gestalten verstand. Des alten: Lehre durch Beispiel, <span class="tei_hi_italic">tutior per exempla via</span>, eingedenk, weiß er im ersten Abschnitt, welcher <span class="tei_hi_spaced_out">Bildnisse</span> überschrieben ist, in den Kunstbiographieen von <span class="tei_hi_spaced_out"><span class="72105108108101114">Hiller</span></span>, <a class="preview persons A008816" href="/exist/apps/WeGA-WebApp/de/A008816.html">Gertrud Mara</a> und <a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">Andreas Romberg</a>, dieser 3 Repräsentanten der deutschen Operncomposition, des hohen Gesanges und der Instrumentalcomposition, an die gerechte Würdigung dieser Meister überall die fruchtbarsten Winke und <span class="tei_hi_spaced_out">Warnungen</span> zu knüpfen; dann führt er im 2ten Abschnitt, mit der Ueberschrift <span class="tei_hi_spaced_out">Betrachtungen</span>, die Dilettanten, ja selbst die bloßen Laien gar freundlich an der Hand, wenn er das innerste Wesen der Fugen anschließt; die Urtheile über die Werke der Tonkunst in vier Klassen ordnet; die von <span class="tei_country">Frankreich</span> aus vorgebrachte Klage gegen Symphonien mit Gesang gerecht würdigt; <a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Händels</a>, dieses Fürsten der Tonkunst, einzigen <span class="preview works A020454" data-ref="/exist/apps/WeGA-WebApp/de/A000732/Werke/A020454.html">Messias</span> meisterhaft zergliedert; die Macht des Rhythmus bei rohen Völkern ausdeutet, oder uns unerwartet an die wahre, oft vergeblich gesuchte Wiege der italienischen Oper hinstellt. Gerade in dieser letzten Untersuchung zeigt sich der Kenner, der die Ergebnisse seiner Jahrelangen Forschungen mit einer Leichtigkeit und Klarheit aufstellt, als hätte sie ihm gar keine Mühe gekostet, die Quellen selbst in Einer alles umfassenden Note S. 302 nachweiset, um so mehr zu seinem Vortheile, als er seine vor 25 Jahren schon öffentlich geäußerte Behauptung heute förmlich zurücknimmt. Das Resultat ist: „<span class="711051111189711011010532100105326697114100105">Giovanni di Bardi</span>, Graf von <span class="86101114110105111">Vernio</span> gestaltete sie als Rezitativ, als <span class="tei_hi_italic">musica nuova in stilo rappresentativo</span> am Hofe <span class="7611111410111012211132118111110327710110010599105">Lorenzo von Medici</span>, in Verbindung mit <span class="711051171081051113267979999105110105">Giulio Caccini</span>. Die erste wirkliche Oper brachte <span class="80101114105">Peri</span> in Verbindung mit dem Dichter <span class="821051101179999105110105">Rinuccini</span> hervor. Ihre Vollendung erhielt sie durch <span class="tei_pb" title="Seitenumbruch"> | </span> die <span class="6911711410510010599101">Euridice</span> am Vermählungsfest der <span class="779711410597327710110010599105">Maria Medici</span> mit <span class="721011051101141059910432738646">Heinrich IV.</span>“ der dritte Abschnitt, <span class="tei_hi_spaced_out">Vermischtes</span> betitelt, ist vielleicht für die Mehrzahl der Leser der anziehendste. Denn da nach <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Paul</a> der Mensch aus zwei Theilen besteht, aus Ernst und Scherz, so mögen die scherzenden Aufsätze, der erste Ausflug eines Virtuosen und das Schreiben an der Redaction der Leipziger musikal. Zeitung, wegen die trockenen Laune, mit welcher sie gedichtet sind, vorzügliche Gunst finden. Aber bei der jetzt so mannigfach abgeregten und auf Blindenbildung und Pflege gerichteten Aufmerksamkeit dürfe wohl auch der dritte Aufsatz über <span class="tei_hi_spaced_out">Blinde Musiker</span> (besonders auch bei uns in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span>) volle Beherzigung fordern, vorzüglich durch die des blinden <span class="11811111032669799122107111">von Baczko</span> Schrift über sich und seine Unglücksgefährten abgeleitete Bemerkung, daß man immer dahin arbeite, die Blinden den Sehenden so ähnlich als möglich zu bilden, statt sie immer als Blinde anzusehen und sie zu Leistungen anzuführen, womit jeder <span class="tei_hi_spaced_out">seine</span> Sphäre ausfüllt. Möge der Meister in seinem Fache uns noch oft aus den reichem Schatz seiner Lebens- und Kunstansichten eine volle Spende schenken. Wenn auch der <span class="tei_hi_spaced_out">Markt</span> unsrer Literatur mit ganz andern Dingen sich abarbeitet und Beifall erhascht; eine erlesene Zahl wahrer Kunstfreunde werden stets einen geistigen Kreis um ihn schließen. Und kommen die höhern Jahre, er wird nie eine <span class="tei_hi_italic">senectam cithara carentem</span> haben!</p>
                                         <p class="tei_closer textAlign-left"><a class="preview persons A000194" href="/exist/apps/WeGA-WebApp/de/A000194.html">Böttiger</a>.</p>
                                     </div>
                                 </div>
@@ -337,7 +377,7 @@
                             <h3 class="media-heading">Überlieferung</h3>
                             <div>
                                 <h4 class="media-heading">Textzeuge</h4>
-                                <p><span class="journalTitle">Abend-Zeitung</span>, Jg. 8, Nr. 33 (24. April 1824), S. 129–130</p>
+                                <p class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 8, Nr. 33 (24. April 1824), S. 129–130</p>
                                 
                                 <div>
                                     
@@ -368,10 +408,6 @@
                         <h2>XML</h2>
                         
                     </div>
-                    <div class="tab-pane fade" id="XMLDownload">
-                        <h2>XML Download</h2>
-                        
-                    </div>
                 </div>
             </div>
         </div>
@@ -380,9 +416,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031493</span> (<span>Version 3.1.0dev vom 2. Februar 2017</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031493</span> (<span>Version 3.1.0dev vom 30. Juni 2017</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 3. Mai 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
             </div>
             
         </div>
