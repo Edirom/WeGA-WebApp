@@ -664,7 +664,7 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := wega-util:geonames2gnd($geonames-id)
+    let $gnd := if (exists(query:get-gnd($model('doc')))) then query:get-gnd($model('doc')) else if ($geonames-id) then wega-util:geonames2gnd($geonames-id) else ()
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
@@ -676,13 +676,13 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
             'names' := $model?doc//tei:placeName[@type],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'geonames_alternateNames' := 
+            'geonames_alternateNames' := if ($geonames-id) then
                 for $alternateName in $gn-doc//gn:alternateName 
                 group by $name := $alternateName/text()
                 order by $name 
                 return
-                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
-            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name()
+                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')') else (),
+            'geonames_parentCountry' := if ($geonames-id) then $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name() else ()
         }
 };
 
