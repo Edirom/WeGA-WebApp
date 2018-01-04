@@ -29,13 +29,13 @@ declare function wdt:orgs($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor::tei:org]/root()
+            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor-or-self::tei:org]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:org]/root()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor-or-self::tei:org]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('orgs')) then ()
@@ -88,14 +88,14 @@ declare function wdt:persons($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor::tei:person]/root()
+            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor-or-self::tei:person]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.):)
             ()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:person]/root()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor-or-self::tei:person]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('persons')) then ()
