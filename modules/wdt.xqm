@@ -639,7 +639,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() => $filter()
+            ($item/root()//tei:author[@key = $personID]/root() | $item/root()//tei:editor[@key = $personID]/root()) => $filter()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()
