@@ -625,7 +625,7 @@ declare function wdt:var($item as item()*) as map(*) {
 
 declare function wdt:biblio($item as item()*) as map(*) {
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $docs[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
+        $docs[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $docs[ancestor-or-self::tei:biblStruct][not(ancestor::tei:TEI)]/root()
     }
     return
     map {
