@@ -387,7 +387,7 @@ declare function wdt:works($item as item()*) as map(*) {
             }, ())
         },
         (: Sollte beim Titel noch der Komponist etc. angegeben werden? :)
-        'title' := function($serialization as xs:string) as item()? {
+        'title' := function($serialization as xs:string) as item()* {
             let $mei := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/mei:mei
@@ -398,7 +398,7 @@ declare function wdt:works($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
-                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
