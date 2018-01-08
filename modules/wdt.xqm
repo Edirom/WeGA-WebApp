@@ -29,13 +29,13 @@ declare function wdt:orgs($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor::tei:org]/root()
+            $item[descendant-or-self::tei:org][descendant-or-self::tei:orgName]/root() | $item[ancestor-or-self::tei:org]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             ()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:org]/root()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor-or-self::tei:org]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('orgs')) then ()
@@ -88,14 +88,14 @@ declare function wdt:persons($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor::tei:person]/root()
+            $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor-or-self::tei:person]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! core:doc(.):)
             ()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor::tei:person]/root()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[ancestor-or-self::tei:person]/root()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('persons')) then ()
@@ -387,7 +387,7 @@ declare function wdt:works($item as item()*) as map(*) {
             }, ())
         },
         (: Sollte beim Titel noch der Komponist etc. angegeben werden? :)
-        'title' := function($serialization as xs:string) as item()? {
+        'title' := function($serialization as xs:string) as item()* {
             let $mei := 
                 typeswitch($item)
                 case xs:string return core:doc($item)/mei:mei
@@ -398,7 +398,7 @@ declare function wdt:works($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
-                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())) 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
@@ -625,7 +625,7 @@ declare function wdt:var($item as item()*) as map(*) {
 
 declare function wdt:biblio($item as item()*) as map(*) {
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $docs[ancestor::tei:biblStruct][not(ancestor::tei:TEI)]/root()
+        $docs[descendant-or-self::tei:biblStruct][not(ancestor-or-self::tei:TEI)][not(descendant::tei:TEI)]/root() | $docs[ancestor-or-self::tei:biblStruct][not(ancestor::tei:TEI)]/root()
     }
     return
     map {
@@ -639,7 +639,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            wdt:biblio($item)('filter')()//tei:author[@key = $personID]/root() | wdt:biblio($item)('filter')()//tei:editor[@key = $personID]/root() => $filter()
+            ($item/root()//tei:author[@key = $personID]/root() | $item/root()//tei:editor[@key = $personID]/root()) => $filter()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()

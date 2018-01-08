@@ -39,12 +39,6 @@
 
 /* Settings for popovers */
 .popover {
-    div.media-body {
-        width: 75%;
-        margin: 0;
-        padding-left:3px;
-        float:left;
-    }
     div.preview-icon {
         width: 25%;
         margin: 0;
@@ -80,6 +74,12 @@
             overflow: scroll;
             overflow-x:hidden;
             overflow-y:auto;
+            > div.media-body {
+                width: 75%;
+                margin: 0;
+                padding-left:3px;
+                float:left;
+            }
         }
         .carousel-indicators {
             bottom:-60px;

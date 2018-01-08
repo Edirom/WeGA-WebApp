@@ -16,4 +16,8 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="mei:lb">
+        <xsl:element name="br"/>
+    </xsl:template>
+    
 </xsl:stylesheet>
