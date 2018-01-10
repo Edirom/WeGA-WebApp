@@ -41,7 +41,7 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
         try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
         catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
     (: Prevent the grabbing of external resources when a web crawler comes around … :)
-    let $botPresent := matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot', 'i')
+    let $botPresent := matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot|SemrushBot', 'i')
     let $url := 
         switch($resource)
         case 'wikipedia' return
