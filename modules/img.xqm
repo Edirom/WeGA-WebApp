@@ -150,7 +150,9 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
-    let $wikiApiResponse := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
+    let $wikiApiResponse := 
+        if(count($wikiFilenames) gt 0) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
+        else ()
     return
         for $page in $wikiApiResponse//page[not(@missing)]
         let $caption := $page/data(@title)
