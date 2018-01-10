@@ -532,12 +532,17 @@ declare
     function app:word-of-the-day($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $words := core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
         let $random :=
-            if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0! :)
-            else 1
+            if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0 and takes as argument positiveInteger! :)
+            else if(count($words) eq 1) then 1
+            else core:logToFile('info', 'app:word-of-the-day(): no words of the day found')
         return 
             map {
-                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang),
-                'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                'wordOfTheDay' := 
+                    if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
+                    else str:normalize-space($node/xhtml:h1),
+                'wordOfTheDayURL' := 
+                    if($random) then app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                    else '#'
             }
 };
 
