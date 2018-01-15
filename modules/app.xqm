@@ -676,13 +676,13 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
             'names' := $model?doc//tei:placeName[@type],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'geonames_alternateNames' := if ($geonames-id) then
+            'geonames_alternateNames' := 
                 for $alternateName in $gn-doc//gn:alternateName 
                 group by $name := $alternateName/text()
                 order by $name 
                 return
-                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')') else (),
-            'geonames_parentCountry' := if ($geonames-id) then $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name() else ()
+                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
+            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
         }
 };
 
