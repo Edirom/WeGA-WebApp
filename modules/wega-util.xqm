@@ -24,6 +24,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 
 (:~
  : Get resources from the web by PND and store the result in a cache object with the current date. 
@@ -37,9 +38,7 @@ import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cach
  : @return node
  :)
 declare function wega-util:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(httpclient:response)? {
-    let $lease := 
-        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     (: Prevent the grabbing of external resources when a web crawler comes around … :)
     let $botPresent := matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot|SemrushBot|MJ12bot', 'i')
     let $url := 
@@ -308,7 +307,7 @@ declare function wega-util:wikimedia-iiif($wikiFilename as xs:string) as map(*)*
     (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
     let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
     let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
-    let $lease := xs:dayTimeDuration('P1D')
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
@@ -494,9 +493,7 @@ declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string*
 ~:)
 declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as node()* {
     let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
-    let $lease := 
-        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
@@ -514,4 +511,25 @@ declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as n
 declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
     for $i in $str
     return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
+};
+
+(:~
+ :  Checker whether we need to update a given (cached) file
+ :  (Helper function for caching functions, e.g. cache:doc() from namespace http://xquery.weber-gesamtausgabe.de/modules/cache )
+ :
+ :  @param $currentDateTimeOfFile the last modification date of the file
+ :  @param $lease the maximum lease duration for that file
+ :  @return true() or false() 
+~:)
+declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as xs:dateTime?, $lease as xs:dayTimeDuration?) as xs:boolean {
+    let $my-lease :=
+        if($lease) then $lease
+        else 
+            try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
+            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:check-if-update-necessary', $err:code, $err:description, ' no default "lease-duration" with the datatype xs:dayTimeDuration was found in the options file. Moving on with caching for one day, i.e. "P1D.'), ' ;; '))}
+    return
+        (: Aktualisierung entweder bei geänderter Datenbank oder bei veraltetem Cache :) 
+        config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or $currentDateTimeOfFile + $my-lease lt current-dateTime()
+        (: oder bei nicht vorhandener Datei oder nicht vorhandenem $lease:)
+        or empty($my-lease) or empty($currentDateTimeOfFile)
 };

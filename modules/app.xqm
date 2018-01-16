@@ -1047,14 +1047,12 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $lease := 
-            try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('app:dnb', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
         let $onFailureFunc := function($errCode, $errDesc) {
             core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
         let $dnbOccupations := 
             for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
+            let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
             let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease, $onFailureFunc)
             return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return

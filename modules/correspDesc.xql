@@ -7,6 +7,7 @@ declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-fo
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
@@ -106,4 +107,10 @@ declare function ct:onFailure($errCode, $errDesc) {
     core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
 };
 
-cache:doc(str:join-path-elements(($config:tmp-collection-path, 'correspDesc.xml')), ct:corresp-list#0, (), xs:dayTimeDuration('P999D'), ct:onFailure#2)
+cache:doc(str:join-path-elements(
+    ($config:tmp-collection-path, 'correspDesc.xml')), 
+    ct:corresp-list#0, 
+    (), 
+    function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
+    ct:onFailure#2
+)

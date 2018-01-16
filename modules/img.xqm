@@ -144,9 +144,7 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
     let $wikiFilenames := ($dbpedia-rdf//dbp:imageCoa/text(), $dbpedia-rdf//dbp:imageFlag/text(), $dbpedia-rdf//dbp:imagePlan/text(), $dbpedia-rdf//dbp:image/text())
     (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
     let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || .), '|'))
-    let $lease := 
-        try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-        catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:grabExternalResource', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
