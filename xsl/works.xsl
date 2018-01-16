@@ -20,4 +20,9 @@
         <xsl:element name="br"/>
     </xsl:template>
     
+    <!-- suppress links within titles (for popovers etc.) -->
+    <xsl:template match="mei:persName[parent::mei:title][ancestor::mei:titleStmt]" priority="4">
+        <xsl:apply-templates/>
+    </xsl:template>
+    
 </xsl:stylesheet>
