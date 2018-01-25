@@ -27,12 +27,14 @@ declare variable $api:max-limit := function($swagger-conf as map(*)) as xs:integ
     $swagger-conf?parameters?limitParam?maximum
 };
 
-declare function api:documents($model as map()) {
+declare function api:documents($model as map()) as map()* {
     let $ids :=
         if(exists($model('docID'))) then api:findByID($model('docID'))
         else for $docType in api:resolve-docTypes($model) return core:getOrCreateColl($docType, 'indices', true())
-    return
+    return (
+        map { 'totalRecordCount': count($ids) },
         api:document(api:subsequence($ids, $model), $model)
+    )
 };
 
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?works=A020062&fromDate=1798-10-10&toDate=1982-06-08&func=facets&format=json&facet=persons&docID=indices&docType=writings:)
@@ -44,29 +46,35 @@ declare function api:documents($model as map()) {
 };
 :)
 
-declare function api:documents-findByDate($model as map()) {
+declare function api:documents-findByDate($model as map()) as map()* {
     let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate)
-    return
+    return (
+        map { 'totalRecordCount': count($documents) },
         api:document(api:subsequence($documents, $model), $model)
+    )
 };
 
-declare function api:documents-findByMention($model as map()) {
+declare function api:documents-findByMention($model as map()) as map()* {
     let $mentioned-doc := api:findByID($model('docID'))
     let $backlinks :=core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
     let $documents := 
         for $docType in api:resolve-docTypes($model)
         return wdt:lookup($docType, $backlinks)('filter')()
-    return
+    return (
+        map { 'totalRecordCount': count($documents) },
         api:document(api:subsequence($documents, $model), $model)
+    )
 };
 
-declare function api:documents-findByAuthor($model as map()) {
+declare function api:documents-findByAuthor($model as map()) as map()* {
     let $author := api:findByID($model('authorID'))
     let $documents := 
         for $docType in api:resolve-docTypes($model)
         return core:getOrCreateColl($docType, $author/tei:person/data(@xml:id), true())
-    return
+    return (
+        map { 'totalRecordCount': count($documents) },
         api:document(api:subsequence($documents, $model), $model)
+    )
 };
 
 declare function api:code-findByElement($model as map()) {
@@ -87,7 +95,10 @@ declare function api:code-findByElement($model as map()) {
         if($model?total) then $eval
         (: The 'secret' $total switch is used for our list of examples on the spec pages and is of type element()*; 
             regular output from the API is the following subsequence of type map()* :)
-        else api:codeSample(api:subsequence($eval, $model), $model) 
+        else (
+            map { 'totalRecordCount': count($eval) },
+            api:codeSample(api:subsequence($eval, $model), $model)
+        )
 };
 
 (:~

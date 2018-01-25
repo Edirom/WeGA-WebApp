@@ -68,12 +68,13 @@ declare function local:serialize-json($response as item()*) {
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
     let $setHeader2 := response:set-header('pragma','no-cache')
     let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
+    let $setHeader4 := response:set-header('totalRecordCount', $response[1]?totalRecordCount)
     (:let $setHeader3 := 
         if(exists($response)) then response:set-header('ETag', util:hash($response, 'md5'))
         else ():)
     return 
         response:stream(
-            serialize($response, 
+            serialize(subsequence($response, 2), 
                 <output:serialization-parameters>
                     <output:method>json</output:method>
                 </output:serialization-parameters>
@@ -91,9 +92,10 @@ declare function local:serialize-json($response as item()*) {
 ~:)
 declare function local:serialize-xml($response as item()*, $root as xs:string) as element() {
     let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
+    let $setHeader4 := response:set-header('totalRecordCount', $response[1]?totalRecordCount)
     return
         element {$root} {
-            for $i in $response
+            for $i in subsequence($response,2)
             return 
                 typeswitch($i)
                 case map() return map:keys($i) ! local:serialize-xml($i(.), .)
