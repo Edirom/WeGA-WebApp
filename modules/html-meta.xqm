@@ -98,6 +98,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
             case 'news' case 'var' case 'thematicCommentaries' return str:shorten-TEI($model('doc')//tei:text//tei:p[not(starts-with(., 'Sorry'))], 150, $lang)
             case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2)
             case 'places' return lang:get-language-string('place', $lang)
+            case 'works' return lang:get-language-string('workName', $lang)
             case 'error' return lang:get-language-string('metaDescriptionError', $lang)
             default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
@@ -120,7 +121,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
         default return  
             switch($model('docType'))
             case 'persons' return concat(str:printFornameSurname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
-            case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' case 'places' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
+            case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' case 'places' case 'works' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
             case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
             case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
             case 'error' return lang:get-language-string('metaTitleError', $lang)
@@ -145,7 +146,7 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
             case 'diaries' return string-join((lang:get-language-string('diary', $lang), query:get-authorName($model('doc'))), '; ')
             case 'news' return string-join($model('doc')//tei:keywords/tei:term, '; ')
             case 'var' return 'Varia'
-            case 'orgs' return lang:get-language-string('orgs', $lang)
+            case 'orgs' case 'works' return lang:get-language-string($model?docType, $lang)
             case 'places' return 'Geographica'
             default return ()
 };
