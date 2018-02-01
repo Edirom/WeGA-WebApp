@@ -117,6 +117,18 @@ declare %private function img:iconography4orgs($node as node(), $model as map(*)
     img:iconography4persons($node, $model, $lang)
 };
 
+(:~
+ : Helper function for img:iconography()
+ : Creates the iconography for works
+ :
+~:)
+declare %private function img:iconography4works($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    map { 
+        'iconographyImages' := (),
+        'portrait' := ( img:get-generic-portrait($model, $lang) )[1]
+    }
+};
+
 
 (:~
  : Function for outputting an image from the iconography
