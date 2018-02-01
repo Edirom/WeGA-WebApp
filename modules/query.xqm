@@ -297,7 +297,7 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
         $doc//tei:respStmt/tei:name |
         $doc//mei:respStmt/mei:persName
     return
-        $contributors ! data(.)
+        distinct-values($contributors ! str:normalize-space(.))
 };
 
 (:~
