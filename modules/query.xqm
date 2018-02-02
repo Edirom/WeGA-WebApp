@@ -125,7 +125,7 @@ declare function query:get-gnd($item as item()?) as xs:string? {
     return
         (: there might be several gnd IDs in organizations :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc/descendant-or-self::tei:place) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc//tei:idno[@type='geonames']) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -297,7 +297,7 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
         $doc//tei:respStmt/tei:name |
         $doc//mei:respStmt/mei:persName
     return
-        $contributors ! data(.)
+        distinct-values($contributors ! str:normalize-space(.))
 };
 
 (:~

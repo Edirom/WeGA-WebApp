@@ -669,7 +669,7 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := wega-util:geonames2gnd($geonames-id)
+    let $gnd := if (exists(query:get-gnd($model('doc')))) then query:get-gnd($model('doc')) else if ($geonames-id) then wega-util:geonames2gnd($geonames-id) else ()
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
@@ -687,7 +687,7 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
                 order by $name 
                 return
                     ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
-            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name()
+            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
         }
 };
 
@@ -1047,14 +1047,12 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $lease := 
-            try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('app:dnb', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
         let $onFailureFunc := function($errCode, $errDesc) {
             core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
         let $dnbOccupations := 
             for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
+            let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
             let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease, $onFailureFunc)
             return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
@@ -1511,7 +1509,7 @@ declare
                 $node/@*[not(name(.) = 'href')],
                 if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
                 else (),
-                if($title instance of xs:string or $title instance of text()) then $title
+                if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()
             }
 };

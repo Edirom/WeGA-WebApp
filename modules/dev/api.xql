@@ -26,6 +26,7 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/fac
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "../search.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../controller.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
@@ -119,7 +120,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
             cache:doc(
                 str:join-path-elements(($config:tmp-collection-path, $fileName)), 
                 $callBack, $params('type'), 
-                xs:dayTimeDuration('P999D'),
+                function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) },
                 $onFailureFunc
             )
         )
