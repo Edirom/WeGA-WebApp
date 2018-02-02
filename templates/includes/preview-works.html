@@ -1,21 +1,21 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
-    <div class="preview-icon">
+    <!--<div class="preview-icon">
         <span class="pull-left">
             <img src="$resources/img/icons/icon_musicalWorks.png" class="img-responsive" alt="preview-icon" data-template="app-shared:if-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
             <img src="$resources/img/icons/icon_works.png" class="img-responsive" alt="preview-icon" data-template="app-shared:if-not-matches" data-template-key="workType" data-template-value="http://d-nb.info/standards/elementset/gnd#MusicalWork"/>
         </span>
-    </div>
-    <!--<div class="portrait preview-icon">
+    </div>-->
+    <div class="portrait preview-icon">
         <a class="pull-left" data-template="app:preview-icon">
-            <!-\- Image will load via AJAX -\->
+            <!-- Image will load via AJAX -->
             <i class="fa fa-spinner fa-spin fa-2x"/>
         </a>
-    </div>-->
+    </div>
     <div class="media-body">
         <h3 class="media-heading">
             <!--<a data-template="app:preview-title">Work Title</a>-->
-            <span data-template="app:preview-title">Work Title</span>
-            <span data-template="app:preview-opus-no">Opus number</span>
+            <a data-template="app:preview-title">Work Title</a>
+            <a data-template="app:preview-opus-no">Opus number</a>
         </h3>
         <h4 class="media-heading" data-template="app:preview-subtitle">Some subtitle</h4>
         <p data-template="app-shared:each" data-template-from="relators" data-template-to="relator"><strong data-template="app:preview-relator-role"/>: <span data-template="app:preview-relator-name"/></p>
