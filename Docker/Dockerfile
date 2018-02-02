@@ -1,21 +1,40 @@
-FROM stadlerpeter/existdb
+#########################
+# multi stage Dockerfile
+# 1. set up the build environment and build the expath-package
+# 2. run the eXist-db
+#########################
+FROM java:8-jdk as builder
+LABEL maintainer="Peter Stadler"
 
-ENV WEGA_HOME /opt/wega 
+ENV WEGA_BUILD_HOME="/opt/wega"
+ARG SAXON_URL="http://downloads.sourceforge.net/project/saxon/Saxon-HE/9.6/SaxonHE9-6-0-7J.zip"
 
-USER root:root
-RUN apk --update add apache-ant
+ADD ${SAXON_URL} /tmp/saxon.zip
+ADD https://github.com/Edirom/WeGA-WebApp-lib/archive/master.zip /tmp/WeGA-WebApp-lib.zip
 
-ADD https://github.com/Edirom/WeGA-WebApp/releases/download/v3.2.1/WeGA-WebApp-3.2.1.xar ${EXIST_HOME}/autodeploy/
-ADD https://github.com/Edirom/WeGA-WebApp/releases/download/v3.2.0/WeGA-WebApp-lib-1.0.0.xar ${EXIST_HOME}/autodeploy/
-ADD https://github.com/Edirom/WeGA-WebApp/releases/download/v3.2.0/WeGA-data-16280-samples.xar ${EXIST_HOME}/autodeploy/
+WORKDIR ${WEGA_BUILD_HOME}
 
-WORKDIR ${WEGA_HOME}
+RUN apt-get update \
+    && apt-get install -y --force-yes ant npm \
+    && unzip /tmp/saxon.zip -d ${WEGA_BUILD_HOME}/saxon \
+    && unzip /tmp/WeGA-WebApp-lib.zip -d ${WEGA_BUILD_HOME}/ \
+    && npm install bower less \
+    && ln -s /usr/bin/nodejs /usr/local/bin/node
 
-COPY . . 
+#ADD https://github.com/Edirom/WeGA-WebApp/releases/download/v3.2.0/WeGA-data-16280-samples.xar ${EXIST_HOME}/autodeploy/
 
-RUN chown -R wegajetty:wegajetty ${EXIST_HOME}/autodeploy . \
-    && chmod 755 Docker/entrypoint.sh
+COPY . WeGA-WebApp/
 
-USER wegajetty:wegajetty
+RUN addgroup wegabuilder \
+    && adduser wegabuilder --ingroup wegabuilder --disabled-password --system \
+    && chown -R wegabuilder:wegabuilder ${WEGA_BUILD_HOME}
 
-CMD ["Docker/entrypoint.sh"]
+USER wegabuilder:wegabuilder
+
+RUN ant -lib saxon -f WeGA-WebApp-lib-master/build.xml
+RUN ant -lib saxon -f WeGA-WebApp/build.xml
+
+
+
+
+CMD ["/bin/bash"]
