@@ -756,8 +756,8 @@ declare
             'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'workType' := $model('doc')//mei:term/data(@classcode),
             'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
-                        group by $xmllang := $title/@lang
-                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+                        group by $xmllang := $title/@xml:lang
+                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())), '(' || $xmllang || ')' }</span>
         }
 };
 
