@@ -41,7 +41,7 @@ declare variable $config:app-root as xs:string :=
 declare variable $config:catalogues-collection-path as xs:string := $config:app-root || '/catalogues';
 declare variable $config:options-file-path as xs:string := $config:catalogues-collection-path || '/options.xml';
 declare variable $config:options-file as document-node() := doc($config:options-file-path);
-declare variable $config:data-collection-path as xs:string := '/db/apps/WeGA-data';
+declare variable $config:data-collection-path as xs:string := config:get-option('dataCollectionPath');
 declare variable $config:svn-change-history-file as document-node()? := 
     if(doc-available($config:data-collection-path || '/subversionHistory.xml')) then doc($config:data-collection-path || '/subversionHistory.xml')
     else ();
