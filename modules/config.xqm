@@ -409,6 +409,7 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
         <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
+        <param name="environment" value="{config:get-option('environment')}"/>
         {if(exists($params)) then 
             for $i in map:keys($params)
             return 
