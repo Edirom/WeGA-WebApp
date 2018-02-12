@@ -47,10 +47,10 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @param $lang the current language (de|en)
  : @return xs:string
 :)
-declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string) as xs:string? {
+declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
     let $path :=  controller:path-to-resource($doc, $lang)
     return
-        if($path) then core:link-to-current-app($path || '.html')
+        if($doc and $path) then core:link-to-current-app($path || '.html')
         else ()
 };
 
@@ -63,7 +63,7 @@ declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string
  : @param $lang the language switch (en, de)
  : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
  :)
-declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element() {
+declare function app:createDocLink($doc as document-node()?, $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element(xhtml:a) {
     let $href := app:createUrlForDoc($doc, $lang)
     let $docID :=  $doc/root()/*/@xml:id
     return 
@@ -73,6 +73,26 @@ declare function app:createDocLink($doc as document-node(), $content as xs:strin
         else (),
         $content
     }
+};
+
+(:~
+ : Creates an xhtml:a link to a WeGA document with popover preview
+ : This is a shortcut version of the 3-arity function app:createDocLink()
+ :
+ : @author Peter Stadler
+ : @param $doc the document to create the link for
+ : @param $content the string content for the xhtml a element
+ : @param $lang the language switch (en, de)
+ : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
+ : @param $popover whether to add class attributes for popovers
+ : @return a html:a element
+ :)
+declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
+    if($popover) then 
+        let $docID := $doc/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($docID)
+        return app:createDocLink($doc,$content, $lang, ($attributes, string-join(('class=preview', $docType, $docID), ' ')))
+    else app:createDocLink($doc,$content, $lang, $attributes)
 };
 
 declare 
@@ -512,6 +532,7 @@ declare function app:set-facet-checkbox($node as node(), $model as map(*), $key 
 (:~
  : Wrapper for dispatching various document types (in analogy to search:dispatch-preview())
  : Simply redirects to the right fragment from 'templates/includes'
+ : Used by templates/ajax/popover.html
  :
  :)
 declare function app:popover($node as node(), $model as map(*)) as map(*)* {
@@ -735,8 +756,8 @@ declare
             'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'workType' := $model('doc')//mei:term/data(@classcode),
             'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
-                        group by $xmllang := $title/@lang
-                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+                        group by $xmllang := $title/@xml:lang
+                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())), '(' || $xmllang || ')' }</span>
         }
 };
 
@@ -1596,12 +1617,15 @@ declare
 
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
-    function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        if($model('relator')/@dbkey) then query:title($model('relator')/@dbkey)
-        else if($model('relator')/@key) then query:title($model('relator')/@key)
-        else str:normalize-space($model('relator'))
+    %templates:default("popover", "false")
+    function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string, $popover as xs:string) as element() {
+        let $key := $model('relator')/@dbkey | $model('relator')/@key
+        return
+            if($key and $popover=('true', '1')) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
+            else element span {
+                str:normalize-space($model('relator'))
+            }
 };
 
 declare 

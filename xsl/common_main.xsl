@@ -28,6 +28,7 @@
     <xsl:param name="data-collection-path"/>
     <xsl:param name="catalogues-collection-path"/>
     <xsl:param name="suppressLinks"/><!-- Suppress internal links to persons, works etc. as well as tool tips -->
+    <xsl:param name="environment"/>
     
     <xsl:include href="common_funcs.xsl"/>
     

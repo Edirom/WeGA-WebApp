@@ -33,6 +33,7 @@ declare function core:doc($docID as xs:string) as document-node()? {
             return
                 if($doc/*/*:ref/@target) then core:doc($doc/*/*:ref/@target)
                 else $doc
+        else if($config:isDevelopment) then core:logToFile('debug', 'core:doc(): unable to open ' || $docID)
         else ()
 };
 

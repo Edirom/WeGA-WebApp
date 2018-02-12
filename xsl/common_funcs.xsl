@@ -315,7 +315,9 @@
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $authorID, $folder, $docID)), '.html')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>XSLT Error in wega:createLinkToDoc(): Failed to create URL for ID <xsl:value-of select="$docID"/> (language: <xsl:value-of select="$lang"/>)</xsl:message>
+                <xsl:if test="$environment ne 'testing'">
+                    <xsl:message>XSLT Error in wega:createLinkToDoc(): Failed to create URL for ID <xsl:value-of select="$docID"/> (language: <xsl:value-of select="$lang"/>)</xsl:message>
+                </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -438,7 +440,9 @@
                 <xsl:sequence select="doc($uri)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>XSLT Error in wega:doc(): could not open <xsl:value-of select="$fileIdOrPath"/></xsl:message>
+                <xsl:if test="$environment ne 'testing'">
+                    <xsl:message>XSLT Error in wega:doc(): could not open <xsl:value-of select="$fileIdOrPath"/></xsl:message>
+                </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>

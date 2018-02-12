@@ -14,6 +14,8 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace dbp="http://dbpedia.org/property/";
+declare namespace dbo="http://dbpedia.org/ontology/";
+declare namespace foaf="http://xmlns.com/foaf/0.1/";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace templates="http://exist-db.org/xquery/templates";
@@ -123,9 +125,15 @@ declare %private function img:iconography4orgs($node as node(), $model as map(*)
  :
 ~:)
 declare %private function img:iconography4works($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
+        if(exists($model('beaconMap'))) then $model('beaconMap')
+        else try { wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID'))) } catch * { map:new() }
+    let $db := map:keys($beaconMap)[contains(., 'Korrespondierendes Wikidata-Item')]
+    let $dbpedia-images := $db ! img:dbpedia-images(map:put($model, 'dbpediaID', analyze-string(.,'Q\d+')/fn:match/text()), $lang)
+    return 
     map { 
-        'iconographyImages' := (),
-        'portrait' := ( img:get-generic-portrait($model, $lang) )[1]
+        'iconographyImages' := $dbpedia-images,
+        'portrait' := ( $dbpedia-images, img:get-generic-portrait($model, $lang) )[1]
     }
 };
 
@@ -148,12 +156,25 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
  :)
 declare %private function img:dbpedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $docType := config:get-doctype-by-id($model?docID)
-    let $geonames-id := $model('doc')//tei:idno[@type='geonames']
+    let $id := 
+        switch($docType)
+        case 'places' return $model('doc')//tei:idno[@type='geonames']
+        case 'works' return $model?dbpediaID
+        default return ()
     let $dbpedia-rdf := 
         switch($docType)
-        case 'places' return wega-util:dbpedia-from-geonames($geonames-id)
+        case 'places' return wega-util:dbpedia-from-geonames($id)
+        case 'works' return wega-util:grabExternalResource('dbpedia', $id, $docType, $lang)
         default return ()
-    let $wikiFilenames := ($dbpedia-rdf//dbp:imageCoa/text(), $dbpedia-rdf//dbp:imageFlag/text(), $dbpedia-rdf//dbp:imagePlan/text(), $dbpedia-rdf//dbp:image/text())
+    let $wikiFilenames := 
+        distinct-values((
+            $dbpedia-rdf//dbp:imageCoa/text(), 
+            $dbpedia-rdf//dbp:imageFlag/text(), 
+            $dbpedia-rdf//dbp:imagePlan/text(), 
+            $dbpedia-rdf//dbp:image/text(), 
+            $dbpedia-rdf//dbo:thumbnail/functx:substring-before-if-contains(substring-after(@rdf:resource, 'Special:FilePath/'), '?'),
+            $dbpedia-rdf//foaf:depiction/functx:substring-before-if-contains(substring-after(@rdf:resource, 'Special:FilePath/'), '?')
+        ))[.] (: prevent the empty string :)
     (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
     let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || .), '|'))
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
@@ -161,7 +182,7 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $wikiApiResponse := 
-        if(count($wikiFilenames) gt 0) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $geonames-id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
+        if(count($wikiFilenames) gt 0) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
         else ()
     return
         for $page in $wikiApiResponse//page[not(@missing)]
@@ -184,7 +205,7 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
                             default return 
                                 $page//ii/data(@url)
                     },
-                    'coa' := 'File:' || $dbpedia-rdf//dbp:imageCoa/text() = $caption
+                    'coa' := 'File:' || $dbpedia-rdf//dbp:imageCoa/replace(., '\s', '_') = replace($caption, '\s', '_') (: should return true() for the coat of arms :)
                 }
 };
 
@@ -428,8 +449,8 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
                     case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
-                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
-                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places_gross.png')
+                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks_gross.png')
                     case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
