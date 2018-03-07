@@ -49,8 +49,10 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:persName) return ct:participant($node)
         case element(tei:name) return ct:participant($node)
         case element(tei:orgName) return ct:participant($node)
+        case element(tei:rs) return () (: what to do with families? :)
         case element(tei:placeName) return ct:place($node)
         case element(tei:settlement) return ct:place($node)
+        case element(tei:country) return ct:place($node)
         case element(tei:date) return ct:date($node)
         case element(tei:note) return 
             element {QName(namespace-uri($node), local-name($node))} {
@@ -70,7 +72,7 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
 };
 
 declare function ct:participant($input as element()) as element() {
-    let $id := ($input//@key)[1]
+    let $id := $input/@key
     let $gnd := if($id) then query:get-gnd(string($id)) else ()
     return 
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
@@ -79,20 +81,23 @@ declare function ct:participant($input as element()) as element() {
         }
 };
 
-declare function ct:place($input as element()) as element() {
+declare function ct:place($input as element()) as element(tei:placeName) {
     let $id := ($input//@key)[1]
     let $geoID := query:get-geonamesID($id)
     return 
-        element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
+        element {QName('http://www.tei-c.org/ns/1.0', 'placeName')} {
             if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID} else (),
             normalize-space($input)
         }
 };
 
-declare function ct:date($input as element()) as element() {
+declare function ct:date($input as element()) as element(tei:date) {
     element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
-        $input/@*[not(local-name(.) = ('n', 'calendar'))](:,
-        normalize-space($input):)
+        $input/@*[not(local-name(.) = ('n', 'calendar'))]
+        (: 
+        no content allowed here with the schema at 
+        https://raw.githubusercontent.com/TEI-Correspondence-SIG/CMIF/master/schema/cmi-customization.rng  
+        :)
     }
 };
 
