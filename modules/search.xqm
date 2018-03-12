@@ -299,7 +299,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filter := map:keys($filters)[1]
     let $filtered-coll := 
       if($filter) then 
-        if($filter = ('undated')) then () 
+        if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
         else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
@@ -319,78 +319,6 @@ declare %private function search:filter-result($collection as document-node()*, 
         if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
         else $filtered-coll
 };
-
-(:~
- : Helper function for search:filter-result()
- : Applies chronological filter 'fromDate' and 'toDate'
-~:)
-(:declare %private function search:date-filter($collection as document-node()*, $docType as xs:string, $filters as map(*)) as document-node()* {
-    let $filter := map:keys($filters)[1]
-    return
-        switch($docType)
-        case 'biblio' return
-            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then ( 
-                (\: checking only the year for the lower threshold otherwise we'll miss date=1810 when checking 1810-01-01 :\)
-                $collection//tei:date[range:field-ge('date-when', substring($filters($filter), 1, 4))] |
-                $collection//tei:date[range:field-ge('date-notBefore', substring($filters($filter), 1, 4))] |
-                $collection//tei:date[range:field-ge('date-notAfter', substring($filters($filter), 1, 4))] |
-                $collection//tei:date[range:field-ge('date-from', substring($filters($filter), 1, 4))] |
-                $collection//tei:date[range:field-ge('date-to', substring($filters($filter), 1, 4))]
-                )[parent::tei:imprint]/root()
-            else ( 
-                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-to', $filters($filter))]
-                )[parent::tei:imprint]/root()
-        case 'diaries' return 
-            if ($filter = 'fromDate') then $collection//tei:ab[@n >= $filters($filter)]/root()
-            else $collection//tei:ab[@n <= $filters($filter)]/root()
-        case 'letters' return
-            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then ( 
-                $collection//tei:date[range:field-ge('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-to', $filters($filter))]
-                )[parent::tei:correspAction]/root()
-            else ( 
-                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-to', $filters($filter))]
-                )[parent::tei:correspAction]/root()
-        case 'news' return
-            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            (\: news enthalten dateTime im date/@when :\)
-            else  if ($filter = 'fromDate') then $collection//tei:date[substring(@when,1,10) >= $filters($filter)][parent::tei:publicationStmt]/root()
-            else $collection//tei:date[substring(@when,1,10) <= $filters($filter)][parent::tei:publicationStmt]/root()
-        case 'persons' case 'orgs' return ()
-        case 'writings' return
-            if ($filter = 'undated') then ($collection intersect core:undated($docType))/root()
-            else if ($filter = 'fromDate') then ( 
-                $collection//tei:date[range:field-ge('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-ge('date-to', $filters($filter))]
-                )[parent::tei:imprint][ancestor::tei:sourceDesc]/root()
-            else ( 
-                $collection//tei:date[range:field-le('date-when', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notBefore', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-notAfter', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-from', $filters($filter))] |
-                $collection//tei:date[range:field-le('date-to', $filters($filter))]
-                )[parent::tei:imprint][ancestor::tei:sourceDesc]/root()
-        case 'works' return ()
-        case 'places' return ()
-        default return $collection
-};
-:)
 
 (:~
  : Helper function for search:filter-result()
