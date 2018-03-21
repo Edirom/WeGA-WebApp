@@ -1157,6 +1157,7 @@ declare
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
         map {
             'hasFacsimile' := exists(query:facsimile($model?doc)),
+            'hasCreation' := exists($model?doc//tei:creation),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
             'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
             'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
@@ -1358,13 +1359,11 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as element(p) {
-        let $creation := wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return 
-            element p {
-                if(exists($creation)) then $creation
-                else '–'
-            }
+    %templates:wrap
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        if($model?hasCreation and $model('result-page-entry')) then wega-util:txtFromTEI($model('doc')//tei:creation)
+        else if($model?hasCreation) then wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        else '–'
 };
 
 declare 
@@ -1515,6 +1514,7 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+            'hasCreation' := exists($model('result-page-entry')//tei:creation),
             'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
