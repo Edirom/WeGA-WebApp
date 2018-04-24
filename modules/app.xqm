@@ -1242,7 +1242,7 @@ declare
         let $respStmts :=
             switch($model('docType'))
             case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
-            default return $model('doc')//tei:respStmt[parent::tei:editionStmt]
+            default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
         return
             for $respStmt in $respStmts
             return (
