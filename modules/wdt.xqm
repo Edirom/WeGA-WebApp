@@ -319,8 +319,10 @@ declare function wdt:writings($item as item()*) as map(*) {
                 let $jg := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='jg'][1]), 6)
                 let $nr := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='nr'][1]), 6)
                 let $pp := functx:pad-integer-to-length(number(functx:substring-before-if-contains($source//tei:biblScope[@unit='pp'][1], '-')), 6)
+                (: draft versions shall appear before the manuscript or print version :)
+                let $draft := if ($source/@rend='draft') then 'd' else 'x'
                 return
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp 
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp || $draft
             }, ())
         },
         'title' := function($serialization as xs:string) as item()? {
