@@ -1312,15 +1312,17 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $summary :=
+        let $revealedNote := 
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
-            else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return
+            else ()
+        let $summary := 
+            if($model('doc')//tei:note[@type='summary']) then wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            else '–'
+        return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
-            else element p {
-                if(exists($summary)) then $summary
-                else '–'
-            }
+            else if($summary = '–' and $revealedNote) then <div><p>{$revealedNote}</p></div>
+            else <div><p>{$summary}</p></div>
+        )
 };
 
 declare 
@@ -1541,7 +1543,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-summary($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:normalize-space(app:print-summary($node, $model, $lang))
+        app:print-summary($node, $model, $lang) => string-join('; ') => str:normalize-space()
 };
 
 declare 
