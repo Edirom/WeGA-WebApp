@@ -151,12 +151,12 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
         let $sender := 
             (: need to make sure that rs with multiple keys are treated properly: as group – i.e. by the name – not as one individual – by the @key :)
-            if($senderElem[@key] and not(contains($senderElem/@key, ' '))) then str:printFornameSurname(query:title($senderElem/@key)) 
+            if($senderElem[@key] and not(contains($senderElem/@key, ' '))) then str:printFornameSurnameFromTEIpersName(core:doc($senderElem/@key)//tei:persName[@type='reg'])
             else if(functx:all-whitespace($senderElem)) then query:title(config:get-option('anonymusID'))
             else str:printFornameSurname(str:normalize-space($senderElem)) 
         let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
         let $addressee := 
-            if($addresseeElem[@key] and not(contains($addresseeElem/@key, ' '))) then str:printFornameSurname(query:title($addresseeElem/@key)) 
+            if($addresseeElem[@key] and not(contains($addresseeElem/@key, ' '))) then str:printFornameSurnameFromTEIpersName(core:doc($addresseeElem/@key)//tei:persName[@type='reg']) 
             else if(functx:all-whitespace($addresseeElem)) then query:title(config:get-option('anonymusID'))
             else str:printFornameSurname(str:normalize-space($addresseeElem))
         let $placeSender := 

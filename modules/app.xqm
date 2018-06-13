@@ -192,7 +192,7 @@ declare
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
         let $name :=
-            if($authorID) then str:printFornameSurname(query:title($authorID))
+            if($authorID) then str:printFornameSurnameFromTEIpersName(core:doc($authorID)//tei:persName[@type='reg'])
             else if (not(functx:all-whitespace($authorElem))) then str:printFornameSurname(str:normalize-space($authorElem))
             else query:title(config:get-option('anonymusID'))
         return 
@@ -799,7 +799,7 @@ declare
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        str:printFornameSurname(query:title($model('docID')))
+        str:printFornameSurnameFromTEIpersName($model?doc//tei:persName[@type='reg'])
 };
 
 declare 
