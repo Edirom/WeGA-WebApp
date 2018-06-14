@@ -92,8 +92,10 @@ $.fn.rangeSlider = function ()
              * Overwrite date params with new values from the slider 
              * when the new values equal the min/max values, reset to the empty string
              */
-            params['fromDate'] = (data.from != data.min)? newFrom: '';
-            params['toDate'] = (data.to != data.max)? newTo: '';
+            params.sliderDates['fromDate'] = (data.from != data.min)? newFrom: '';
+            params.sliderDates['toDate'] = (data.to != data.max)? newTo: '';
+            params.sliderDates['oldFromDate'] = moment(data.min).locale("de").format("YYYY-MM-DD");
+            params.sliderDates['oldToDate'] = moment(data.max).locale("de").format("YYYY-MM-DD");
             
             updatePage(params);
         }
@@ -541,15 +543,18 @@ function init_line_wrap_toggle() {
 function active_facets() {
     var params = {
             facets:[],
-            fromDate:'',
-            toDate:'',
+            sliderDates: {
+                fromDate:'',
+                toDate:'',
+                oldFromDate:'',
+                oldToDate:''
+            },
             toString:function(){
-                if(this.fromDate !== '') {
-                    this.facets.push('fromDate=' + this.fromDate);
-                };
-                if(this.toDate !== '') {
-                    this.facets.push('toDate=' + this.toDate);
-                };
+                for (var key in this.sliderDates){
+                    if(this.sliderDates[key] !== '') {
+                        this.facets.push(key + '=' + this.sliderDates[key]);
+                    };
+                }
                 return '?' + this.facets.join('&')
             }
         },
@@ -572,8 +577,8 @@ function active_facets() {
         to=slider.attr('data-to-slider');
         min=slider.attr('data-min-slider');
         max=slider.attr('data-max-slider');
-        params['fromDate'] = (from > min)? from: '';
-        params['toDate'] = (to < max)? to: '';
+        params.sliderDates['fromDate'] = (from > min)? from: '';
+        params.sliderDates['toDate'] = (to < max)? to: '';
     }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'

@@ -509,8 +509,8 @@ declare
     function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         attribute data-min-slider {$model('earliestDate')},
-         attribute data-max-slider {$model('latestDate')},
+         attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
+         attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
          attribute data-from-slider {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
          attribute data-to-slider {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
     }
