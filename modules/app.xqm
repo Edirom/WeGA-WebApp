@@ -569,21 +569,26 @@ declare
 
 declare 
     %templates:wrap
-    function app:lookup-todays-events($node as node(), $model as map(*)) as map(*) {
+    %templates:default("otd-date", "")
+    function app:lookup-todays-events($node as node(), $model as map(*), $otd-date as xs:string) as map(*) {
+    let $date := 
+        if($otd-date castable as xs:date) then xs:date($otd-date)
+        else current-date()
     let $events := 
-        for $i in query:getTodaysEvents(current-date())
+        for $i in query:getTodaysEvents($date)
         order by $i/xs:date(@when) ascending
         return $i
     let $length := count($events)
     return
         map {
+            'otd-date' := $date,
             'events1' := subsequence($events, 1, ceiling($length div 2)),
             'events2' := subsequence($events, ceiling($length div 2) + 1)
         }
 };
 
 declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
-    let $date := current-date()
+    let $date := $model?otd-date
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
     let $typeOfEvent := 
@@ -614,7 +619,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', format-date(current-date(), if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
+    <h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
 };
 
 (:~

@@ -118,6 +118,13 @@ $.fn.loadPortrait = function () {
     })
 };
 
+/* Load the what-happened-on-this-day div for the start page */
+$('#otd').each(function() {
+    var date = moment(new Date()).format("YYYY-MM-DD");
+    var url = $(this).attr('data-target') + '?otd-date=' + date ;
+    $(this).load(url);
+});
+
 /* Initialise datepicker for diaries */
 $.fn.initDatepicker = function () {
     // set language for datepicker widget
