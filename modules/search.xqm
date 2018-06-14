@@ -192,8 +192,8 @@ declare %private function search:list($model as map(*)) as map(*) {
             map {
                 'filters' := $model('filters'),
                 'search-results' := $sorted-results,
-                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($model('docType'), $model('docID')) else (),
-                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($model('docType'), $model('docID')) else ()
+                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($sorted-results, $model('docType')) else (),
+                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($sorted-results, $model('docType')) else ()
             }
         ))
 };  
@@ -337,53 +337,41 @@ declare %private function search:revealed-filter($collection as document-node()*
 (:~
  : 
 ~:)
-declare %private function search:get-earliest-date($docType as xs:string, $cacheKey as xs:string) as xs:string? {
-    let $catalogue := norm:get-norm-doc($docType)
-    return
-        switch ($docType)
-            case 'diaries' return 
-                if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[1]/text()
+declare %private function search:get-earliest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
+    switch ($docType)
+        case 'news' case 'biblio' return
+            (: reverse order :)
+            let $date := query:get-normalized-date($coll[last()])
+            return 
+                if(exists($date)) then string($date)
+                else if(count($coll) gt 1) then search:get-earliest-date(subsequence($coll, 1, count($coll) -1), $docType)
                 else ()
-            case 'letters' return 
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
-            case 'news' case 'biblio' return
-                (: reverse order :)
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
-            case 'persons' case 'orgs' return ()
-            case 'writings' return 
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
-            case 'works' return ()
-            case 'places' return ()
-            default return ()
+        case 'letters' case 'writings' case 'diaries' return 
+            string(query:get-normalized-date($coll[1]))
+        case 'persons' case 'orgs' return ()
+        case 'works' return ()
+        case 'places' return ()
+        default return ()
 };
 
 (:~
  : 
 ~:)
-declare %private function search:get-latest-date($docType as xs:string, $cacheKey as xs:string) as xs:string? {
-    let $catalogue := norm:get-norm-doc($docType)
-    return
-        switch ($docType)
-            case 'diaries' return 
-                if($cacheKey = ('A002068','indices')) then ($catalogue//norm:entry[text()])[last()]/text()
+declare %private function search:get-latest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
+    switch ($docType)
+        case 'news' case 'biblio' return
+            (: reverse order :)
+            string(query:get-normalized-date($coll[1]))
+        case 'letters' case 'writings' case 'diaries' return 
+            let $date := query:get-normalized-date($coll[last()])
+            return 
+                if(exists($date)) then string($date)
+                else if(count($coll) gt 1) then search:get-latest-date(subsequence($coll, 1, count($coll) -1), $docType)
                 else ()
-            case 'letters' return 
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[range:contains(@addresseeID, $cacheKey)][text()] | $catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
-            case 'news' case 'biblio' return
-                (: reverse order :)
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[1]/text()
-                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[1]/text()
-            case 'persons' case 'orgs' return ()
-            case 'writings' return
-                if($cacheKey eq 'indices') then ($catalogue//norm:entry[text()])[last()]/text()
-                else ($catalogue//norm:entry[range:contains(@authorID, $cacheKey)][text()])[last()]/text()
-            case 'works' return ()
-            case 'places' return ()
-            default return ()
+        case 'persons' case 'orgs' return ()
+        case 'works' return ()
+        case 'places' return ()
+        default return ()
 };
 
 (:~
