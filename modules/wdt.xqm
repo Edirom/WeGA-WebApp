@@ -438,7 +438,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             if(empty(($dateFrom, $dateTo))) then $item/root() 
             else if(string($dateFrom) = string($dateTo)) then $item/range:field-eq('ab-n', string($dateFrom))/root()
-            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateFrom))/root()
+            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateTo))/root()
             else if(empty($dateTo)) then $item/range:field-ge('ab-n', string($dateFrom))/root()
             else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
         },
