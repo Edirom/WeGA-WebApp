@@ -192,8 +192,8 @@ declare %private function search:list($model as map(*)) as map(*) {
             map {
                 'filters' := $model('filters'),
                 'search-results' := $sorted-results,
-                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-earliest-date($sorted-results, $model('docType')) else (),
-                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio')) then search:get-latest-date($sorted-results, $model('docType')) else (),
+                'earliestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio') and count($sorted-results) gt 0) then search:get-earliest-date($sorted-results, $model('docType')) else (),
+                'latestDate' := if($model('docType') = ('letters', 'writings', 'diaries', 'news', 'biblio') and count($sorted-results) gt 0) then search:get-latest-date($sorted-results, $model('docType')) else (),
                 'oldFromDate' := request:get-parameter('oldFromDate', ''),
                 'oldToDate' := request:get-parameter('oldToDate', '')
             }
