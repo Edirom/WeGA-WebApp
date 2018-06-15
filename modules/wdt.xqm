@@ -148,15 +148,16 @@ declare function wdt:letters($item as item()*) as map(*) {
             if($dateSender) then $dateSender
             else if($dateAddressee) then (lang:get-language-string('received', $lang) || ' ' || $dateAddressee)
             else ()
-        let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+        let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
         let $sender := 
-            if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
-            else if(functx:all-whitespace($senderElem)) then 'unbekannt' 
+            (: need to make sure that rs with multiple keys are treated properly: as group – i.e. by the name – not as one individual – by the @key :)
+            if($senderElem[@key] and not(contains($senderElem/@key, ' '))) then str:printFornameSurnameFromTEIpersName(core:doc($senderElem/@key)//tei:persName[@type='reg'])
+            else if(functx:all-whitespace($senderElem)) then query:title(config:get-option('anonymusID'))
             else str:printFornameSurname(str:normalize-space($senderElem)) 
-        let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+        let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
         let $addressee := 
-            if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
-            else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
+            if($addresseeElem[@key] and not(contains($addresseeElem/@key, ' '))) then str:printFornameSurnameFromTEIpersName(core:doc($addresseeElem/@key)//tei:persName[@type='reg']) 
+            else if(functx:all-whitespace($addresseeElem)) then query:title(config:get-option('anonymusID'))
             else str:printFornameSurname(str:normalize-space($addresseeElem))
         let $placeSender := 
             if(query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key)[1])
@@ -183,7 +184,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
+            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:$item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
@@ -200,7 +201,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
+            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -319,8 +320,10 @@ declare function wdt:writings($item as item()*) as map(*) {
                 let $jg := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='jg'][1]), 6)
                 let $nr := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='nr'][1]), 6)
                 let $pp := functx:pad-integer-to-length(number(functx:substring-before-if-contains($source//tei:biblScope[@unit='pp'][1], '-')), 6)
+                (: draft versions shall appear before the manuscript or print version :)
+                let $draft := if ($source/@rend='draft') then 'd' else 'x'
                 return
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp 
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp || $draft
             }, ())
         },
         'title' := function($serialization as xs:string) as item()? {
@@ -435,7 +438,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             if(empty(($dateFrom, $dateTo))) then $item/root() 
             else if(string($dateFrom) = string($dateTo)) then $item/range:field-eq('ab-n', string($dateFrom))/root()
-            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateFrom))/root()
+            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateTo))/root()
             else if(empty($dateTo)) then $item/range:field-ge('ab-n', string($dateFrom))/root()
             else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
         },

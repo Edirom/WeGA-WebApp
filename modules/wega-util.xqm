@@ -524,7 +524,7 @@ declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
 ~:)
 declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as xs:dateTime?, $lease as xs:dayTimeDuration?) as xs:boolean {
     let $my-lease :=
-        if($lease) then $lease
+        if(exists($lease)) then $lease
         else 
             try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
             catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:check-if-update-necessary', $err:code, $err:description, ' no default "lease-duration" with the datatype xs:dayTimeDuration was found in the options file. Moving on with caching for one day, i.e. "P1D.'), ' ;; '))}

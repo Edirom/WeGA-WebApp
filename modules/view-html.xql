@@ -43,7 +43,9 @@ let $model :=
 			map:entry($var, request:get-attribute($var))
 		),
 		map:entry('environment', config:get-option('environment')),
-		map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+		if(config:get-doctype-by-id(request:get-attribute('docID'))) then
+		  map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+	    else ()
 	))
     
 (:~

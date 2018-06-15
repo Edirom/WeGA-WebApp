@@ -162,10 +162,12 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
         case 'works' return $model?dbpediaID
         default return ()
     let $dbpedia-rdf := 
-        switch($docType)
-        case 'places' return wega-util:dbpedia-from-geonames($id)
-        case 'works' return wega-util:grabExternalResource('dbpedia', $id, $docType, $lang)
-        default return ()
+        if($id) then 
+            switch($docType)
+            case 'places' return wega-util:dbpedia-from-geonames($id)
+            case 'works' return wega-util:grabExternalResource('dbpedia', $id, $docType, $lang)
+            default return ()
+        else ()
     let $wikiFilenames := 
         distinct-values((
             $dbpedia-rdf//dbp:imageCoa/text(), 

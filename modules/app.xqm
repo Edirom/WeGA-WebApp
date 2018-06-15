@@ -192,7 +192,7 @@ declare
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
         let $name :=
-            if($authorID) then str:printFornameSurname(query:title($authorID))
+            if($authorID) then str:printFornameSurnameFromTEIpersName(core:doc($authorID)//tei:persName[@type='reg'])
             else if (not(functx:all-whitespace($authorElem))) then str:printFornameSurname(str:normalize-space($authorElem))
             else query:title(config:get-option('anonymusID'))
         return 
@@ -509,8 +509,8 @@ declare
     function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         attribute data-min-slider {$model('earliestDate')},
-         attribute data-max-slider {$model('latestDate')},
+         attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
+         attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
          attribute data-from-slider {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
          attribute data-to-slider {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
     }
@@ -569,21 +569,26 @@ declare
 
 declare 
     %templates:wrap
-    function app:lookup-todays-events($node as node(), $model as map(*)) as map(*) {
+    %templates:default("otd-date", "")
+    function app:lookup-todays-events($node as node(), $model as map(*), $otd-date as xs:string) as map(*) {
+    let $date := 
+        if($otd-date castable as xs:date) then xs:date($otd-date)
+        else current-date()
     let $events := 
-        for $i in query:getTodaysEvents(current-date())
+        for $i in query:getTodaysEvents($date)
         order by $i/xs:date(@when) ascending
         return $i
     let $length := count($events)
     return
         map {
+            'otd-date' := $date,
             'events1' := subsequence($events, 1, ceiling($length div 2)),
             'events2' := subsequence($events, ceiling($length div 2) + 1)
         }
 };
 
 declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
-    let $date := current-date()
+    let $date := $model?otd-date
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
     let $typeOfEvent := 
@@ -614,7 +619,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', format-date(current-date(), if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
+    <h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
 };
 
 (:~
@@ -644,12 +649,13 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return 
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
-     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:title($persName/@key)), $lang, ('class=persons'))
-        (:wega:createPersonLink($persName/string(@key), $lang, $order):)
-     else if (not(functx:all-whitespace($persName))) then 
+    if(exists($persName/@key)) then 
+        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:title($persName/@key)), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+    else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
         else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
-    else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
+    else <xhtml:span class="noDataFound">{lang:get-language-string('unknown', $lang)}</xhtml:span>
 };
 
 declare 
@@ -798,7 +804,7 @@ declare
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        str:printFornameSurname(query:title($model('docID')))
+        str:printFornameSurnameFromTEIpersName($model?doc//tei:persName[@type='reg'])
 };
 
 declare 
@@ -1157,6 +1163,7 @@ declare
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
         map {
             'hasFacsimile' := exists(query:facsimile($model?doc)),
+            'hasCreation' := exists($model?doc//tei:creation),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
             'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
             'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
@@ -1240,7 +1247,7 @@ declare
         let $respStmts :=
             switch($model('docType'))
             case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
-            default return $model('doc')//tei:respStmt[parent::tei:editionStmt]
+            default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
         return
             for $respStmt in $respStmts
             return (
@@ -1310,15 +1317,17 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $summary :=
+        let $revealedNote := 
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
-            else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return
+            else ()
+        let $summary := 
+            if($model('doc')//tei:note[@type='summary']) then wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            else '–'
+        return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
-            else element p {
-                if(exists($summary)) then $summary
-                else '–'
-            }
+            else if($summary = '–' and $revealedNote) then <div><p>{$revealedNote}</p></div>
+            else <div><p>{$summary}</p></div>
+        )
 };
 
 declare 
@@ -1358,13 +1367,11 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as element(p) {
-        let $creation := wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return 
-            element p {
-                if(exists($creation)) then $creation
-                else '–'
-            }
+    %templates:wrap
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        if($model?hasCreation and $model('result-page-entry')) then wega-util:txtFromTEI($model('doc')//tei:creation)
+        else if($model?hasCreation) then wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        else '–'
 };
 
 declare 
@@ -1383,23 +1390,19 @@ declare
     %templates:default("lang", "en")
     function app:print-letter-context($node as node(), $model as map(*), $lang as xs:string) as item()* {
         let $letter := $model('letter-norm-entry')('doc')
-        let $partnerID := 
+        let $partner := 
             switch($model('letter-norm-entry')('fromTo')) 
             (: There may be multiple addressees or senders! :)
-            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
-            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
+            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
-        let $partner := 
-            if($partnerID) then core:doc($partnerID)
-            else ()
         let $normDate := query:get-normalized-date($letter)
         return (
             app:createDocLink($letter, $normDate, $lang, ()), 
             ": ",
             lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
             " ",
-            if($partner) then app:createDocLink($partner, query:title($partnerID), $lang, ())
-            else lang:get-language-string('unknown', $lang)
+            app:printCorrespondentName($partner, $lang, 'sf')
         )
 };
 
@@ -1412,7 +1415,7 @@ declare
 declare 
     %templates:default("lang", "en")
     %templates:wrap
-    function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+    function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
 };
 
@@ -1515,6 +1518,7 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+            'hasCreation' := exists($model('result-page-entry')//tei:creation),
             'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
@@ -1544,7 +1548,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-summary($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:normalize-space(app:print-summary($node, $model, $lang))
+        app:print-summary($node, $model, $lang) => string-join('; ') => str:normalize-space()
 };
 
 declare 

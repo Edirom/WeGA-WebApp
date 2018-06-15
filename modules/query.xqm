@@ -215,12 +215,13 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
     let $docID := $doc/*/data(@xml:id)
     let $date := 
         switch(config:get-doctype-by-id($docID))
-        case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
-        case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], false())
-        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, false())
+        (: for Weber writings the creation date should take precedence over the publication date :)
+        case 'writings' return date:getOneNormalizedDate(($doc[query:get-authorID(.) = 'A002068']//tei:creation/tei:date[@* except @cert],query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date)[1], true())
+        case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], true())
+        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, true())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
-        case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, false())
+        case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, true())
         default return () 
     return 
         if($date castable as xs:date) then $date cast as xs:date
