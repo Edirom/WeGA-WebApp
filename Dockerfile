@@ -48,7 +48,7 @@ RUN ant -lib /usr/share/java
 # Now running the eXist-db
 # and adding our freshly built xar-package
 #########################
-FROM stadlerpeter/existdb
+FROM stadlerpeter/existdb:3.3.0
 
 ADD https://github.com/Edirom/WeGA-WebApp-lib/releases/download/v1.0.0/WeGA-WebApp-lib-1.0.0.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
