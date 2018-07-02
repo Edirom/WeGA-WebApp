@@ -1326,18 +1326,21 @@ declare
         return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
             else if($summary = '–' and $revealedNote) then <div><p>{$revealedNote}</p></div>
+            else if($summary = '–' and $node/ancestor-or-self::xhtml:div[@data-template="app:preview"]) then ()
             else <div><p>{$summary}</p></div>
         )
 };
 
 declare 
     %templates:default("lang", "en")
-    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    %templates:default("generate", "false")
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
         let $incipit := wega-util:transform($model('doc')//tei:note[@type='incipit'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
                 if(exists($incipit)) then $incipit
+                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang)
                 else '–'
             }
 };
@@ -1518,10 +1521,18 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'hasCreation' := exists($model('result-page-entry')//tei:creation),
             'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
+        }
+};
+
+declare
+    %templates:wrap
+    function app:preview-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'hasCreation' := exists($model('doc')//tei:creation),
+            'summary' := app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
         }
 };
 
@@ -1542,13 +1553,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-incipit($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:normalize-space(app:print-incipit($node, $model, $lang))
-};
-
-declare 
-    %templates:default("lang", "en")
-    function app:preview-summary($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        app:print-summary($node, $model, $lang) => string-join('; ') => str:normalize-space()
+        app:print-incipit($node, $model, $lang, 'true') => string-join('; ') => str:normalize-space()
 };
 
 declare 

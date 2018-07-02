@@ -4,7 +4,7 @@
             <img src="$resources/img/icons/icon_writings.png" class="img-responsive" alt="preview-icon"/>
         </a>
     </div>
-    <div class="media-body">
+    <div class="media-body" data-template="app:preview-details">
         <h3 class="media-heading">
             <a data-template="app:preview-title">Rezension: Briefe
                 über den Geschmack in der Musik von Joh. Bapt.
@@ -13,6 +13,14 @@
         <p data-template="app:preview-citation">
             Allgemeine Musikalische Zeitung (13.
                 September 1809)
+        </p>
+        <p>
+            <strong><span data-template="lang:translate">incipit</span>: </strong> 
+            <span data-template="app:preview-incipit">"Lieben Sie Beste Elise alzeit Ihr aufrichtiger …"</span>
+        </p>
+        <p data-template="app-shared:if-exists" data-template-key="summary">
+            <strong><span data-template="lang:translate">summary</span>: </strong> 
+            <span data-template="app-shared:output" data-template-key="summary">Stammbucheintrag für Elise ,"im 6ten Jahr seines Alters" (Blatt mit Bleistift vorliniert).</span>
         </p>
         <p data-template="app-shared:if-exists" data-template-key="hasCreation">
             <strong><span data-template="lang:translate">creation</span>:</strong>
