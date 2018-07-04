@@ -334,7 +334,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if($model('hasFacsimile')) then 
+        if($model('hasLocalFacsimile')) then 
             element {name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -1161,13 +1161,17 @@ declare
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
-        map {
-            'hasFacsimile' := exists(query:facsimile($model?doc)),
-            'hasCreation' := exists($model?doc//tei:creation),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
-            'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
-        }
+        let $facs := query:facsimile($model?doc)
+        return
+            map {
+                'facsimile' := $facs,
+                'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
+                'hasLocalFacsimile' := exists($facs) and not($facs/tei:graphic[starts-with(@url, 'http')]),
+                'hasCreation' := exists($model?doc//tei:creation),
+                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
+                'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
+            }
 };
 
 declare
@@ -1453,7 +1457,7 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
         element {name($node)} {
             if($image-url) then (
                 $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                if($model?hasFacsimile) then (
+                if($model?hasLocalFacsimile) then (
                     attribute {'data-url'} {$image-url}
                 )
                 else ()
