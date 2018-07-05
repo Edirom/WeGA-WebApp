@@ -414,3 +414,13 @@ declare function query:placeName-elements($parent-nodes as node()*) as node()* {
     for $parent in $parent-nodes
     return $parent/*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country]
 };
+
+(:~
+ :  Return persnames responsible for a work
+ :
+ :  @param $doc the TEI or MEI document to look for the relators
+ :  @return mei:persName or tei:persName elements
+~:)
+declare function query:relators($doc as document-node()?) as element()* {
+    $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role][not(@role='dte')] | query:get-author-element($doc)
+};

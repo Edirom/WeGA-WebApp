@@ -117,6 +117,14 @@
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="wegaText">
                                                     <h2 data-template="lang:translate">informationAboutTheWork</h2>
+                                                    <div data-template="app-shared:if-exists" data-template-key="dedicatees">
+                                                        <h3 data-template="lang:translate">dedicatees</h3>
+                                                        <ul>
+                                                            <li data-template="app-shared:each" data-template-from="dedicatees" data-template-to="relator">
+                                                                <span data-template="app:preview-relator-name" data-template-popover="true">Amalie, Königin von Sachsen</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                     <div data-template="app-shared:if-exists" data-template-key="creation">
                                                         <h3 data-template="lang:translate">creation</h3>
                                                         <div data-template="app-shared:output" data-template-key="creation"/>

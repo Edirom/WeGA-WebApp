@@ -759,7 +759,7 @@ declare
     function app:work-basic-data($node as node(), $model as map(*)) as map(*) {
         map {
             'ids' := $model?doc//mei:altId[not(@type='gnd')],
-            'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'relators' := query:relators($model?doc),
             'workType' := $model('doc')//mei:term/data(@classcode),
             'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
                         group by $xmllang := $title/@xml:lang
@@ -779,6 +779,7 @@ declare
                 doc(concat($config:xsl-collection-path, '/works.xsl')), 
                 config:get-xsl-params( map {'dbPath' := document-uri($model?doc), 'docID' := $model?docID })
                 ), 
+            'dedicatees' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' := query:get-gnd($model('doc')),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
@@ -1530,7 +1531,7 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'relators' := query:relators($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
         }
@@ -1639,8 +1640,11 @@ declare
     %templates:default("popover", "false")
     function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string, $popover as xs:string) as element() {
         let $key := $model('relator')/@dbkey | $model('relator')/@key
+        let $myPopover := 
+            if($popover castable as xs:boolean) then xs:boolean($popover)
+            else false()
         return
-            if($key and $popover=('true', '1')) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
+            if($key and $myPopover) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
             else element span {
                 str:normalize-space($model('relator'))
             }
