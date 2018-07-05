@@ -484,7 +484,7 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
 declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
     let $dbpedia-rdf := wega-util:dbpedia-from-geonames($geonames-id)
     return
-        (: ther might be multiple sameAs relations to the GND, see e.g. Altona A130064 :)
+        (: there might be multiple sameAs relations to the GND, see e.g. Altona A130064 :)
         if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then ($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')])[1]/substring-after(., 'http://d-nb.info/gnd/')
         else ()
 };
@@ -492,17 +492,10 @@ declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string*
 (:~
  :  Grab dbpedia rdf for a place by geonames ID
 ~:)
-declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as node()* {
-    let $dbpedia-url := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso/data(@rdf:resource)
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-    let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $dbpedia-rdf := 
-        for $i in $dbpedia-url
-        return cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dbpedia', 'gn_' || $geonames-id || '.rdf')), wega-util:http-get#1, xs:anyURI(replace($i, 'resource', 'data') || '.rdf'), $lease, $onFailureFunc)
+declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as element(httpclient:response)* {
+    let $seeAlso := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso[@rdf:resource]
     return
-        $dbpedia-rdf//httpclient:response[@statusCode = '200']
+        $seeAlso ! wega-util:resolve-rdf-resource(.)
 };
 
 (:~
@@ -533,4 +526,30 @@ declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as x
         config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or $currentDateTimeOfFile + $my-lease lt current-dateTime()
         (: oder bei nicht vorhandener Datei oder nicht vorhandenem $lease:)
         or empty($my-lease) or empty($currentDateTimeOfFile)
+};
+
+(:~
+ :  Make a request to linked data resources
+ :  This is in fact a wrapper function around the expath `http:send-request` method, see http://expath.org/modules/http-client/
+ : 
+ :  @param $elem an element (e.g. `<gndo:formOfWorkAndExpression rdf:resource="http://d-nb.info/gnd/4043582-9"/>`) bearing 
+ :      an `@rdf:resource` attribute which indicates the resource to fetch
+ :  @return an httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ :      see http://expath.org/modules/http-client/
+~:)
+declare function wega-util:resolve-rdf-resource($elem as element()) as element(httpclient:response)? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    let $uri := 
+        if(starts-with($elem/@rdf:resource, 'http://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
+        else if(starts-with($elem/@rdf:resource, 'http://dbpedia.org/resource/')) then (replace($elem/@rdf:resource, 'resource', 'data') || '.rdf')
+        else ()
+    let $filename := util:hash($uri, 'md5') || '.xml'
+    let $response := 
+        if($uri castable as xs:anyURI) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'rdf', $filename)), wega-util:http-get#1, xs:anyURI($uri), $lease, $onFailureFunc)
+        else ()
+    return 
+        $response//httpclient:response[@statusCode = '200']
 };

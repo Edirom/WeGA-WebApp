@@ -1080,14 +1080,8 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-        }
-        let $dnbOccupations := 
-            for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
-            let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-            let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease, $onFailureFunc)
-            return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
                 'docType' := config:get-doctype-by-id($model?docID),
@@ -1114,7 +1108,10 @@ declare
                 ),
                 'gndDefinition' := $dnbContent//gndo:definition,
                 'lang' := $lang,
-                'dnbURL' := config:get-option('dnb') || $gnd
+                'dnbURL' := config:get-option('dnb') || $gnd,
+                'preferredNameForTheWork':= $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
+                'variantNamesForTheWork' := $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
+                'subjectHeadings' := $subjectHeadings
             }
 };
 
