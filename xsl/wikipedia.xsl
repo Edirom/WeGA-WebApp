@@ -38,12 +38,14 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xsl:template match="div[@id='siteSub']">
-        <xsl:element name="span">
+    
+    <xsl:template match="div[@id='siteSub']" priority="1">
+        <xsl:element name="div">
             <xsl:attribute name="class" select="'wikipediaOrigin'"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
     <!--<xsl:template match="p[1]">
         <xsl:element name="p">
             <xsl:attribute name="class" select="'shortInfo'"/>
@@ -74,7 +76,7 @@
     <xsl:template match="li[ancestor::div[@id='toc']]">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <span class="toggle-toc-item"><i class="fa fa-plus-square" aria-hidden="true" style="display:none;"></i><i class="fa fa-minus-square" aria-hidden="true"></i></span>
+            <span class="toggle-toc-item"><i class="fa fa-plus-square" aria-hidden="true" style="display:none;"/><i class="fa fa-minus-square" aria-hidden="true"/></span>
             <xsl:apply-templates/>
         </xsl:copy>
     </xsl:template>
@@ -114,4 +116,7 @@
     <xsl:template match="div[@id='contentSub']"/>
     <xsl:template match="div[@id='NavContent']"/>
     <xsl:template match="div[matches(@class, 'haudio')]" priority="1"/>
+    <xsl:template match="a[following-sibling::div/@id='mw-content-text']"/>
+    <xsl:template match="table[@id='Vorlage_Begriffsklärungshinweis']"/>
+    <xsl:template match="div[@class='hatnote navigation-not-searchable']"/>
 </xsl:stylesheet>

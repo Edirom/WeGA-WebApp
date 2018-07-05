@@ -1002,7 +1002,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:wikipedia-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))/node()
+        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))
         return 
             if(exists($wikiText)) then $wikiText
             else lang:get-language-string('failedToLoadExternalResource', $lang)
