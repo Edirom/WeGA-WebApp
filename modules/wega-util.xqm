@@ -51,7 +51,7 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
-        case 'dbpedia' return concat('http://wikidata.dbpedia.org/data/', $gnd, '.rdf') (: $gnd is actually the dbpedia(wikidata?) ID :)
+        case 'dbpedia' return concat('http://www.wikidata.org/entity/', $gnd, '.rdf') (: $gnd is actually the dbpedia(wikidata?) ID :)
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')

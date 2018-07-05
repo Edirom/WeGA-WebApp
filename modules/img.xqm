@@ -12,6 +12,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace wd="http://www.wikidata.org/prop/direct/";
 declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace dbp="http://dbpedia.org/property/";
 declare namespace dbo="http://dbpedia.org/ontology/";
@@ -174,11 +175,14 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
             $dbpedia-rdf//dbp:imageFlag/text(), 
             $dbpedia-rdf//dbp:imagePlan/text(), 
             $dbpedia-rdf//dbp:image/text(), 
-            $dbpedia-rdf//dbo:thumbnail/functx:substring-before-if-contains(substring-after(@rdf:resource, 'Special:FilePath/'), '?'),
-            $dbpedia-rdf//foaf:depiction/functx:substring-before-if-contains(substring-after(@rdf:resource, 'Special:FilePath/'), '?')
+            (
+                $dbpedia-rdf//dbo:thumbnail[@rdf:resource] |
+                $dbpedia-rdf//foaf:depiction[@rdf:resource] |
+                $dbpedia-rdf//wd:P18[@rdf:resource]
+            ) ! functx:substring-before-if-contains(substring-after(xmldb:decode(./@rdf:resource), 'Special:FilePath/'), '?')
         ))[.] (: prevent the empty string :)
     (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
-    let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || .), '|'))
+    let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || replace(., '\s|%20', '_')), '|'))
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
