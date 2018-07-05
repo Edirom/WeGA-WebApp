@@ -25,4 +25,22 @@
         <xsl:apply-templates/>
     </xsl:template>
     
+    <xsl:template match="mei:eventList">
+        <xsl:element name="dl">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="mei:event[parent::mei:eventList]">
+        <xsl:element name="dt">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates select="mei:head"/>
+        </xsl:element>
+        <xsl:element name="dd">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates select="node() except mei:head"/>
+        </xsl:element>
+    </xsl:template>
+    
 </xsl:stylesheet>

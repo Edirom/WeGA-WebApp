@@ -774,6 +774,11 @@ declare
             'sources' := 
                 if($config:isDevelopment) then core:getOrCreateColl('sources', $model('docID'), true())
                 else (),
+            'creation' := wega-util:transform(
+                $model?doc//mei:history, 
+                doc(concat($config:xsl-collection-path, '/works.xsl')), 
+                config:get-xsl-params( map {'dbPath' := document-uri($model?doc), 'docID' := $model?docID })
+                ), 
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' := query:get-gnd($model('doc')),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
