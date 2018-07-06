@@ -403,7 +403,8 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
-    let $doc := query:doc-by-gnd(controller:basename($exist-vars('exist:resource')))
+    (: especially for works there can be several documents with the same GND :)
+    let $doc := query:doc-by-gnd(controller:basename($exist-vars('exist:resource')))[last()]
     let $media-type := controller:media-type($exist-vars)
     return
         if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')) || '.' || $media-type)

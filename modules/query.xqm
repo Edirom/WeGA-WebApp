@@ -82,7 +82,7 @@ declare function query:get-author-element($doc as document-node()?) as element()
  : @param $gnd the GND (Gemeinsame Normdatei = German Authority File) identifier
  : @return xs:string
 :)
-declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
+declare function query:doc-by-gnd($gnd as xs:string) as document-node()* {
     core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
     core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
     core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 

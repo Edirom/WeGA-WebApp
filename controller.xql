@@ -241,6 +241,17 @@ else if (matches($exist:path, '^/gkd_beacon.txt$')) then
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
+
+(: Works Beacon :)
+else if (matches($exist:path, '^/works_beacon.txt$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
+    	   <add-parameter name="func" value="create-beacon"/>
+    	   <add-parameter name="type" value="works"/>
+    	   <add-parameter name="format" value="txt"/>
+    	   <cache-control cache="yes"/>
+    	</forward>
+    </dispatch>
     
 (: correspDesc Beacon :)
 else if (matches($exist:path, '^/correspDesc.xml$')) then
