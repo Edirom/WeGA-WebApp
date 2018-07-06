@@ -810,7 +810,9 @@ declare
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        str:printFornameSurnameFromTEIpersName($model?doc//tei:persName[@type='reg'])
+        switch($model?docType)
+        case 'persons' return str:printFornameSurnameFromTEIpersName($model?doc//tei:persName[@type='reg'])
+        default return  str:printFornameSurname(query:title($model('docID')))
 };
 
 declare 
