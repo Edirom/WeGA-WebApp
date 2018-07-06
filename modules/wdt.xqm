@@ -405,7 +405,7 @@ declare function wdt:works($item as item()*) as map(*) {
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return core:logToFile('error', 'wdt:works()("label-facests"): failed to get string')
         },
-        'memberOf' := ('search', 'indices', 'unary-docTypes'),
+        'memberOf' := ('search', 'indices', 'unary-docTypes', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[mei:mei]/mei:mei[ft:query(., $query)] | 
             $item[mei:mei]//mei:title[ft:query(., $query)]
