@@ -71,6 +71,7 @@ declare function query:get-authorName($doc as document-node()?) as xs:string {
 declare function query:get-author-element($doc as document-node()?) as element()* {
     if(exists($doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'])) then $doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp']
     else if(exists($doc//tei:fileDesc/tei:titleStmt/tei:author)) then $doc//tei:fileDesc/tei:titleStmt/tei:author
+    else if(config:is-diary($doc/tei:ab/@xml:id)) then <tei:author key="A002068">Weber, Carl Maria von</tei:author>
     else ()
 };
 

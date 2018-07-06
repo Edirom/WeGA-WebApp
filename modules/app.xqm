@@ -191,10 +191,7 @@ declare
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
-        let $name :=
-            if($authorID) then str:printFornameSurnameFromTEIpersName(core:doc($authorID)//tei:persName[@type='reg'])
-            else if (not(functx:all-whitespace($authorElem))) then str:printFornameSurname(str:normalize-space($authorElem))
-            else query:title(config:get-option('anonymusID'))
+        let $name := wega-util:print-forename-surname-from-nameLike-element($authorElem)
         return 
             element {$elem} {
                 $node/@*[not(local-name(.) eq 'href')],
@@ -613,7 +610,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
         	attribute class {'event-text'},
             if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
             (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-            else (app:createDocLink($teiDate/root(), str:printFornameSurnameFromTEIpersName($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+            else (app:createDocLink($teiDate/root(), wega-util:print-forename-surname-from-nameLike-element($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
         }
     )
 };
@@ -650,10 +647,10 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
     if(exists($persName/@key)) then 
-        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:title($persName/@key)), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
         else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
-        if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
+        if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
         else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
     else <xhtml:span class="noDataFound">{lang:get-language-string('unknown', $lang)}</xhtml:span>
 };
@@ -810,9 +807,7 @@ declare
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        switch($model?docType)
-        case 'persons' return str:printFornameSurnameFromTEIpersName($model?doc//tei:persName[@type='reg'])
-        default return  str:printFornameSurname(query:title($model('docID')))
+        wega-util:print-forename-surname-from-nameLike-element(($model?doc//tei:persName | $model?doc//tei:orgName)[@type='reg'])
 };
 
 declare 

@@ -85,7 +85,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
                 let $placesOfAction := string-join($model('doc')//tei:residence/normalize-space(), ', ')
                 return concat(
                     lang:get-language-string('bioInfoAbout', $lang), ' ', 
-                    str:printFornameSurname(query:title($model('docID'))),'. ',
+                    str:print-forename-surname(query:title($model('docID'))),'. ',
                     lang:get-language-string('pnd_dates', $lang), ': ', 
                     $dates, '. ',
                     lang:get-language-string('occupations', $lang), ': ',
@@ -120,7 +120,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
         case 'search' return lang:get-language-string('metaTitleIndex-search', $lang)
         default return  
             switch($model('docType'))
-            case 'persons' return concat(str:printFornameSurname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
+            case 'persons' return concat(str:print-forename-surname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
             case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' case 'places' case 'works' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
             case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
             case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)

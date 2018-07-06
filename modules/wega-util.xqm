@@ -553,3 +553,30 @@ declare function wega-util:resolve-rdf-resource($elem as element()) as element(h
     return 
         $response//httpclient:response[@statusCode = '200']
 };
+
+(:~ 
+ : Print forename surname from a TEI persName element
+ : In contrast to str:print-forename-surname() this function checks the appearance of forenames, i.e.
+ : <persName type="reg"><forename>Eugen</forename> <forename>Friedrich</forename> <forename>Heinrich</forename>, <roleName>Herzog</roleName> <nameLink>von</nameLink> Württemberg</persName>
+ : is turned into "Eugen Friedrich Heinrich, Herzog von Württemberg" rather than "Herzog von Württemberg Eugen Friedrich Heinrich"
+ :
+ : @param $name a tei persName element
+ : @author Peter Stadler
+ : @return xs:string
+ :)
+declare function wega-util:print-forename-surname-from-nameLike-element($nameLikeElement as element()?) as xs:string? {
+    let $id := $nameLikeElement/(@key, @dbkey)
+    return
+        (: the most specific case first: a reg-name with leading forename, e.g. `<persName type="reg"><forename>Eugen</forename> <forename>Friedrich</forename>…`  :)
+        if(($nameLikeElement/element()[1])[self::tei:forename]) then str:normalize-space($nameLikeElement)
+        (: any other persName will recursively apply this function :)
+        else if($id and config:is-person($id)) then wega-util:print-forename-surname-from-nameLike-element(core:doc($id)//tei:persName[@type='reg'])
+        (: the default case for persnames: swap the order of forename und surname :)
+        else if($nameLikeElement[@type='reg']) then str:print-forename-surname($nameLikeElement)
+        (: org with key:)
+        else if($id and config:is-org($id)) then query:title($id)
+        (: any name without key / or multiple keys, e.g. `<rs type="persons" key="A001234 A004321">:)
+        else if (not(functx:all-whitespace($nameLikeElement))) then str:print-forename-surname($nameLikeElement)
+        (: fallback: anonymous :)
+        else query:title(config:get-option('anonymusID'))
+};
