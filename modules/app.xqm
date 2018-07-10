@@ -754,13 +754,28 @@ declare
 declare 
     %templates:wrap
     function app:work-basic-data($node as node(), $model as map(*)) as map(*) {
+        let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
+            for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
+            let $titleLang := $title/string(@xml:lang) 
+            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@title) = $titleLang]
+            return <span>{
+                string-join((
+                    wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
+                    wega-util:transform($subTitle, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
+                    ),
+                    '. '
+                ),
+                if($titleLang) then ' (' || $titleLang || ')'
+                else ()
+            }</span>
+        }
+        return
         map {
             'ids' := $model?doc//mei:altId[not(@type='gnd')],
             'relators' := query:relators($model?doc),
-            'workType' := $model('doc')//mei:term/data(@classcode),
-            'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
-                        group by $xmllang := $title/@xml:lang
-                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())), '(' || $xmllang || ')' }</span>
+            'workType' := $model?doc//mei:term/data(@classcode),
+            'titles' := $print-titles($model?doc, false()),
+            'altTitles' := $print-titles($model?doc, true())
         }
 };
 
