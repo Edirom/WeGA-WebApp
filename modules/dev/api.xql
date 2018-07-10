@@ -86,9 +86,9 @@ declare function local:create-beacon($params as map(*)) as xs:string {
             default return ()
         let $desc := 
             switch($type)
-            case 'pnd' return '#DESCRIPTION: Personendatensätze der Carl Maria von Weber Gesamtausgabe'
-            case 'gkd' return '#DESCRIPTION: Datensätze Organisationen/Körperschaften der Carl Maria von Weber Gesamtausgabe'
-            case 'works' return '#DESCRIPTION: Werkdatensätze der Carl Maria von Weber Gesamtausgabe'
+            case 'pnd' return '#DESCRIPTION: Personendatensätze der Carl-Maria-von-Weber-Gesamtausgabe'
+            case 'gkd' return '#DESCRIPTION: Datensätze Organisationen/Körperschaften der Carl-Maria-von-Weber-Gesamtausgabe'
+            case 'works' return '#DESCRIPTION: Werkdatensätze der Carl-Maria-von-Weber-Gesamtausgabe'
             default return ()
         let $feed := 
             switch($type)
@@ -103,7 +103,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
             '#TARGET: https://weber-gesamtausgabe.de/de/gnd/{ID}',
             $feed,
             '#CONTACT: Peter Stadler <stadler [ at ] weber-gesamtausgabe.de>',
-            '#INSTITUTION: Carl Maria von Weber Gesamtausgabe (WeGA)',
+            '#INSTITUTION: Carl-Maria-von-Weber-Gesamtausgabe (WeGA)',
             $desc,
             concat('#TIMESTAMP: ', current-dateTime())
             )
