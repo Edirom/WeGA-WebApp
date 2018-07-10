@@ -129,6 +129,16 @@
                                                         <h3 data-template="lang:translate">creation</h3>
                                                         <div data-template="app-shared:output" data-template-key="creation"/>
                                                     </div>
+                                                    <div data-template="app-shared:if-not-exists" data-template-key="dedicatees creation">
+                                                        <!-- Wenn in der Werkdatei keine Detailinformationen (dedicatees, creation) gefunden werden, dann wird der folgende Standardtext ausgegeben -->
+                                                        <p><i data-template="lang:translate">noWorkDetailsFound</i></p>
+                                                        <p data-template="lang:translate">noWorkDetailsFoundReason</p>
+                                                        <ul class="tei_list">
+                                                            <li data-template="lang:translate">noBioFoundReason1</li>
+                                                            <li data-template="lang:translate">noBioFoundReason2</li>
+                                                            <li data-template="lang:translate">noWorkDetailsFoundReason3</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="wikipediaText">
                                                     <h2>Wikipedia</h2>
