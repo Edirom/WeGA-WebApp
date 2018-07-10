@@ -457,7 +457,7 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                     case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
                     case 'place' return core:link-to-current-app('resources/img/icons/icon_places_gross.png')
                     case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks_gross.png')
-                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
+                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works_gross.png')
                     default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }
