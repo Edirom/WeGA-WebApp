@@ -44,12 +44,10 @@ declare function query:title($key as xs:string) as xs:string {
 :)
 declare function query:get-authorID($doc as document-node()?) as xs:string {
     let $author-element := query:get-author-element($doc)[1]
+    let $id := $author-element/@key | $author-element/@dbkey
     return
-        if(exists($doc)) then 
-            if(config:is-diary($doc/tei:ab/@xml:id)) then 'A002068' (: Diverse Sonderbehandlungen fürs Tagebuch :)
-            else if($author-element/@key) then $author-element/@key/string()
-            else if($author-element/@dbkey) then $author-element/@dbkey/string()
-            else config:get-option('anonymusID')
+        if(exists($doc) and $id) then string($id)
+        else if(exists($doc)) then config:get-option('anonymusID')
         else ''
 };
 
@@ -69,9 +67,9 @@ declare function query:get-authorName($doc as document-node()?) as xs:string {
 };
 
 declare function query:get-author-element($doc as document-node()?) as element()* {
-    if(config:is-diary($doc/tei:ab/@xml:id)) then <tei:author key="A002068">Weber, Carl Maria von</tei:author>
+    if(config:is-diary($doc/tei:ab/@xml:id)) then <tei:author key="A002068">Weber, Carl Maria von</tei:author> (: Sonderbehandlung fürs Tagebuch :)
     else ( 
-        $doc//mei:titleStmt/mei:respStmt/mei:persName[@role = ('cmp', 'aut', 'lbt')] |
+        $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role = ('cmp', 'aut', 'lbt')] |
         $doc//tei:fileDesc/tei:titleStmt/tei:author
     )
 };
