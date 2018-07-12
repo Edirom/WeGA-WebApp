@@ -1401,7 +1401,11 @@ declare
     function app:context($node as node(), $model as map(*)) as map(*)? {
         let $context := 
             switch($model?docType)
-            case 'letters' return map:new((query:context-relatedItems($model?doc), query:correspContext($model?doc)))
+            case 'letters' return map:new((
+                query:context-relatedItems($model?doc), 
+                query:correspContext($model?doc),
+                query:context-correspSearch($model?doc)
+            ))
             default return query:context-relatedItems($model?doc)
         return
             if(wega-util-shared:has-content($context)) then $context

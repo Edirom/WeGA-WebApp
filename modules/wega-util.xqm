@@ -580,3 +580,16 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
         (: fallback: anonymous :)
         else query:title(config:get-option('anonymusID'))
 };
+
+declare function wega-util:grab-external-xml-document($uri as xs:anyURI) as element(httpclient:response)? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    let $filename := util:hash($uri, 'md5') || '.xml'
+    let $response := 
+        if($uri castable as xs:anyURI) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'xml-cache', $filename)), wega-util:http-get#1, $uri, $lease, $onFailureFunc)
+        else ()
+    return 
+        $response//httpclient:response[@statusCode = '200']
+};

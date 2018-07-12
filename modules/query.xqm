@@ -424,3 +424,21 @@ declare function query:placeName-elements($parent-nodes as node()*) as node()* {
 declare function query:relators($doc as document-node()?) as element()* {
     $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role][not(@role='dte')] | query:get-author-element($doc)
 };
+
+declare function query:context-correspSearch($doc as document-node()?) as map()? {
+    let $dateOfDoc := query:get-normalized-date($doc)
+    let $senderGND := query:get-gnd(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key)
+    let $startDate := $dateOfDoc - xs:dayTimeDuration('P14D')
+    let $endDate := $dateOfDoc + xs:dayTimeDuration('P14D')
+    let $uri := 'http://correspSearch.bbaw.de/api/v1.1/tei-xml.xql?correspondent=http://d-nb.info/gnd/' || $senderGND || '&amp;startdate=' || $startDate || '&amp;enddate=' || $endDate 
+    let $correspSearchResponse := 
+        if(exists($dateOfDoc) and $senderGND) then wega-util:grab-external-xml-document(xs:anyURI($uri))
+        else ()
+    let $log := util:log-system-out($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))])
+    return
+        if ($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]) then
+            map {
+                'context-correspSearch': $correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]
+            }
+        else ()
+};

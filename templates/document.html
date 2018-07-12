@@ -94,6 +94,14 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div id="correspSearch" data-template="app-shared:if-exists" data-template-key="context-correspSearch">
+                                <h3 data-template="lang:translate">correspSearchContext</h3>
+                                <ul>
+                                    <li data-template="app-shared:each" data-template-from="context-correspSearch" data-template-to="correspSearchContext-item">
+                                        <span>ein text</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div data-template="app-shared:each" data-template-from="filterSections" data-template-to="filterSection">
@@ -169,7 +177,7 @@
                         
                         <div data-template="app-shared:if-exists" data-template-key="externalImageURLs">
                             <h3 data-template="lang:translate" class="media-heading">facsimile</h3>
-                            <ul class="tei_list" >
+                            <ul class="tei_list">
                                 <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
                                     <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
                                 </li>
