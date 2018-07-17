@@ -434,7 +434,6 @@ declare function query:context-correspSearch($doc as document-node()?) as map()?
     let $correspSearchResponse := 
         if(exists($dateOfDoc) and $senderGND) then wega-util:grab-external-xml-document(xs:anyURI($uri))
         else ()
-    let $log := util:log-system-out($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))])
     return
         if ($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]) then
             map {
