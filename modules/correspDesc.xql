@@ -50,7 +50,7 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:persName) return ct:participant($node)
         case element(tei:name) return ct:participant($node)
         case element(tei:orgName) return ct:participant($node)
-        case element(tei:rs) return () (: what to do with families? :)
+        case element(tei:rs) return ct:participant($node) (: what to do with families? :)
         case element(tei:placeName) return ct:place($node)
         case element(tei:settlement) return ct:place($node)
         case element(tei:country) return ct:place($node)
@@ -83,8 +83,11 @@ declare function ct:correspDesc($input as element(tei:correspDesc)) as element(t
 declare function ct:participant($input as element()) as element() {
     let $id := $input/@key
     let $gnd := if($id) then query:get-gnd(string($id)) else ()
+    let $elemName := 
+        if(local-name($input) = 'rs') then 'name'
+        else local-name($input)
     return 
-        element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
+        element {QName('http://www.tei-c.org/ns/1.0', $elemName)} {
             if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd} else (),
             normalize-space($input)
         }
