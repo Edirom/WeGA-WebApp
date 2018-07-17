@@ -40,6 +40,7 @@
     
     <target name="test">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
+        <regressiontest doctype="works"/>
         <regressiontest doctype="letters"/>
         <regressiontest doctype="persons"/>
         <regressiontest doctype="orgs"/>
@@ -108,7 +109,7 @@
         <unzip src="${bower_components.dir}/bravura.zip" dest="${tmp.dir}"/>
         
         <!-- Copy additional fonts -->
-        <copy todir="${dist.dir}/resources/fonts">
+        <copy todir="${dist.dir}/resources/fonts" failonerror="false">
             <fileset dir="${tmp.dir}/eot/">
                 <include name="Bravura.*"/>
                 <!--<include name="BravuraText.eot"/>-->
@@ -136,7 +137,7 @@
             </fileset>
         </copy>
         <!-- Copy additional images -->
-        <copy todir="${dist.dir}/resources/img">
+        <copy todir="${dist.dir}/resources/img" failonerror="false">
             <fileset dir="${wega.img.dir}">
                 <include name="*.*"/>
             </fileset>

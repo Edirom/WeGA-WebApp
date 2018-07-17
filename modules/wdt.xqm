@@ -148,16 +148,10 @@ declare function wdt:letters($item as item()*) as map(*) {
             if($dateSender) then $dateSender
             else if($dateAddressee) then (lang:get-language-string('received', $lang) || ' ' || $dateAddressee)
             else ()
-        let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-        let $sender := 
-            if($senderElem[@key]) then str:printFornameSurname(query:title($senderElem/@key)) 
-            else if(functx:all-whitespace($senderElem)) then 'unbekannt' 
-            else str:printFornameSurname(str:normalize-space($senderElem)) 
-        let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-        let $addressee := 
-            if($addresseeElem[@key]) then str:printFornameSurname(query:title($addresseeElem/@key)) 
-            else if(functx:all-whitespace($addresseeElem)) then 'unbekannt' 
-            else str:printFornameSurname(str:normalize-space($addresseeElem))
+        let $senderElem := ($TEI//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
+        let $sender := wega-util:print-forename-surname-from-nameLike-element($senderElem)
+        let $addresseeElem := ($TEI//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs[@type=('person', 'persons', 'org', 'orgs')]])[1]
+        let $addressee := wega-util:print-forename-surname-from-nameLike-element($addresseeElem) 
         let $placeSender := 
             if(query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='sent'])/@key)[1])
             else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='sent'])[1])
@@ -183,7 +177,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
+            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:$item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
@@ -200,7 +194,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry')]/root()
+            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -319,8 +313,10 @@ declare function wdt:writings($item as item()*) as map(*) {
                 let $jg := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='jg'][1]), 6)
                 let $nr := functx:pad-integer-to-length(number($source//tei:biblScope[@unit='nr'][1]), 6)
                 let $pp := functx:pad-integer-to-length(number(functx:substring-before-if-contains($source//tei:biblScope[@unit='pp'][1], '-')), 6)
+                (: draft versions shall appear before the manuscript or print version :)
+                let $draft := if ($source/@rend='draft') then 'd' else 'x'
                 return
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp 
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $journal || $jg || $nr || $pp || $draft
             }, ())
         },
         'title' := function($serialization as xs:string) as item()? {
@@ -398,7 +394,7 @@ declare function wdt:works($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
-                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())) 
+                case 'html' return <span>{wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span> 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' := function() as xs:string? {
@@ -409,7 +405,7 @@ declare function wdt:works($item as item()*) as map(*) {
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return core:logToFile('error', 'wdt:works()("label-facests"): failed to get string')
         },
-        'memberOf' := ('search', 'indices', 'unary-docTypes'),
+        'memberOf' := ('search', 'indices', 'unary-docTypes', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[mei:mei]/mei:mei[ft:query(., $query)] | 
             $item[mei:mei]//mei:title[ft:query(., $query)]
@@ -435,7 +431,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             if(empty(($dateFrom, $dateTo))) then $item/root() 
             else if(string($dateFrom) = string($dateTo)) then $item/range:field-eq('ab-n', string($dateFrom))/root()
-            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateFrom))/root()
+            else if(empty($dateFrom)) then $item/range:field-le('ab-n', string($dateTo))/root()
             else if(empty($dateTo)) then $item/range:field-ge('ab-n', string($dateFrom))/root()
             else ($item/range:field-ge('ab-n', string($dateFrom)) intersect $item/range:field-le('ab-n', string($dateTo)))/root()
         },

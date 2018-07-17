@@ -44,12 +44,10 @@ declare function query:title($key as xs:string) as xs:string {
 :)
 declare function query:get-authorID($doc as document-node()?) as xs:string {
     let $author-element := query:get-author-element($doc)[1]
+    let $id := $author-element/@key | $author-element/@dbkey
     return
-        if(exists($doc)) then 
-            if(config:is-diary($doc/tei:ab/@xml:id)) then 'A002068' (: Diverse Sonderbehandlungen fürs Tagebuch :)
-            else if($author-element/@key) then $author-element/@key/string()
-            else if($author-element/@dbkey) then $author-element/@dbkey/string()
-            else config:get-option('anonymusID')
+        if(exists($doc) and $id) then string($id)
+        else if(exists($doc)) then config:get-option('anonymusID')
         else ''
 };
 
@@ -69,9 +67,11 @@ declare function query:get-authorName($doc as document-node()?) as xs:string {
 };
 
 declare function query:get-author-element($doc as document-node()?) as element()* {
-    if(exists($doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'])) then $doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp']
-    else if(exists($doc//tei:fileDesc/tei:titleStmt/tei:author)) then $doc//tei:fileDesc/tei:titleStmt/tei:author
-    else ()
+    if(config:is-diary($doc/tei:ab/@xml:id)) then <tei:author key="A002068">Weber, Carl Maria von</tei:author> (: Sonderbehandlung fürs Tagebuch :)
+    else ( 
+        $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role = ('cmp', 'aut', 'lbt')] |
+        $doc//tei:fileDesc/tei:titleStmt/tei:author
+    )
 };
 
 (:~
@@ -81,7 +81,7 @@ declare function query:get-author-element($doc as document-node()?) as element()
  : @param $gnd the GND (Gemeinsame Normdatei = German Authority File) identifier
  : @return xs:string
 :)
-declare function query:doc-by-gnd($gnd as xs:string) as document-node()? {
+declare function query:doc-by-gnd($gnd as xs:string) as document-node()* {
     core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
     core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
     core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
@@ -125,7 +125,7 @@ declare function query:get-gnd($item as item()?) as xs:string? {
     return
         (: there might be several gnd IDs in organizations :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc/descendant-or-self::tei:place) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc//tei:idno[@type='geonames']) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -215,12 +215,13 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
     let $docID := $doc/*/data(@xml:id)
     let $date := 
         switch(config:get-doctype-by-id($docID))
-        case 'writings' return date:getOneNormalizedDate(query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date, false())
-        case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], false())
-        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, false())
+        (: for Weber writings the creation date should take precedence over the publication date :)
+        case 'writings' return date:getOneNormalizedDate(($doc[query:get-authorID(.) = 'A002068']//tei:creation/tei:date[@* except @cert],query:get-main-source($doc)/tei:monogr/tei:imprint/tei:date)[1], true())
+        case 'letters' return date:getOneNormalizedDate(($doc//tei:correspAction[@type='sent']/tei:date, $doc//tei:correspAction[@type='received']/tei:date)[1], true())
+        case 'biblio' return date:getOneNormalizedDate($doc//tei:imprint[1]/tei:date, true())
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
-        case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, false())
+        case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, true())
         default return () 
     return 
         if($date castable as xs:date) then $date cast as xs:date
@@ -297,7 +298,7 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
         $doc//tei:respStmt/tei:name |
         $doc//mei:respStmt/mei:persName
     return
-        $contributors ! data(.)
+        distinct-values($contributors ! str:normalize-space(.))
 };
 
 (:~
@@ -412,4 +413,31 @@ declare function query:context-relatedItems($doc as document-node()?) as map()? 
 declare function query:placeName-elements($parent-nodes as node()*) as node()* {
     for $parent in $parent-nodes
     return $parent/*[self::tei:placeName or self::tei:settlement or self::tei:region or self::tei:country]
+};
+
+(:~
+ :  Return persnames responsible for a work
+ :
+ :  @param $doc the TEI or MEI document to look for the relators
+ :  @return mei:persName or tei:persName elements
+~:)
+declare function query:relators($doc as document-node()?) as element()* {
+    $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role][not(@role='dte')] | query:get-author-element($doc)
+};
+
+declare function query:context-correspSearch($doc as document-node()?) as map()? {
+    let $dateOfDoc := query:get-normalized-date($doc)
+    let $senderGND := query:get-gnd(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key)
+    let $startDate := $dateOfDoc - xs:dayTimeDuration('P14D')
+    let $endDate := $dateOfDoc + xs:dayTimeDuration('P14D')
+    let $uri := 'http://correspSearch.bbaw.de/api/v1.1/tei-xml.xql?correspondent=http://d-nb.info/gnd/' || $senderGND || '&amp;startdate=' || $startDate || '&amp;enddate=' || $endDate 
+    let $correspSearchResponse := 
+        if(exists($dateOfDoc) and $senderGND) then wega-util:grab-external-xml-document(xs:anyURI($uri))
+        else ()
+    return
+        if ($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]) then
+            map {
+                'context-correspSearch': $correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]
+            }
+        else ()
 };

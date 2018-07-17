@@ -126,7 +126,7 @@
                             <div data-template="app:print-summary"/>
                         </div>
                         
-                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">
+                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters writings documents">
                             <h3 data-template="lang:translate" class="media-heading">incipit</h3>
                             <div data-template="app:print-incipit"/>
                         </div>
@@ -138,7 +138,9 @@
                         
                         <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="writings documents">
                             <h3 data-template="lang:translate" class="media-heading">creation</h3>
-                            <div data-template="app:print-creation"/>
+                            <div>
+                                <p data-template="app:print-creation"/>
+                            </div>
                         </div>
                         
                         <div>
@@ -163,6 +165,15 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                        
+                        <div data-template="app-shared:if-exists" data-template-key="externalImageURLs">
+                            <h3 data-template="lang:translate" class="media-heading">facsimile</h3>
+                            <ul class="tei_list">
+                                <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
+                                    <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
+                                </li>
+                            </ul>
                         </div>
                         
                         <div data-template="app-shared:if-exists" data-template-key="thematicCommentaries">

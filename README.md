@@ -11,6 +11,8 @@ Prerequisites
 
 A recent [eXist-db](http://exist-db.org/) with support for XQuery 3.1 (!)
 
+NB: Due to a regression in the eXist-db code (https://github.com/eXist-db/exist/issues/1550) we currently need to stick to eXist-db version 3.3.0!
+
 
 Quick start guide
 -----------------

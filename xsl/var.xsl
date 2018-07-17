@@ -219,14 +219,14 @@
 
     <!-- Create table of contents   -->
     <xsl:template name="createToc">
-        <xsl:param name="lang"/>
+        <xsl:param name="lang" as="xs:string?"/>
         <xsl:element name="div">
             <xsl:attribute name="id" select="'toc'"/>
             <xsl:element name="h2">
                 <xsl:value-of select="wega:getLanguageString('toc', $lang)"/>
             </xsl:element>
             <xsl:element name="ul">
-                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/@xml:lang = $lang][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
+                <xsl:for-each select="//tei:head[not(@type='sub')][ancestor::tei:div/string(@xml:lang) = ($lang, '')][preceding::tei:divGen[@type='toc']][parent::tei:div] | //tei:divGen[@type='endNotes']">
                     <xsl:element name="li">
                     	<xsl:attribute name="class" select="concat('secLevel', count(ancestor::tei:div))"/>
                         <xsl:element name="a">

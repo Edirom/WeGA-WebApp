@@ -47,10 +47,10 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @param $lang the current language (de|en)
  : @return xs:string
 :)
-declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string) as xs:string? {
+declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
     let $path :=  controller:path-to-resource($doc, $lang)
     return
-        if($path) then core:link-to-current-app($path || '.html')
+        if($doc and $path) then core:link-to-current-app($path || '.html')
         else ()
 };
 
@@ -63,7 +63,7 @@ declare function app:createUrlForDoc($doc as document-node(), $lang as xs:string
  : @param $lang the language switch (en, de)
  : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
  :)
-declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element() {
+declare function app:createDocLink($doc as document-node()?, $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element(xhtml:a) {
     let $href := app:createUrlForDoc($doc, $lang)
     let $docID :=  $doc/root()/*/@xml:id
     return 
@@ -73,6 +73,26 @@ declare function app:createDocLink($doc as document-node(), $content as xs:strin
         else (),
         $content
     }
+};
+
+(:~
+ : Creates an xhtml:a link to a WeGA document with popover preview
+ : This is a shortcut version of the 3-arity function app:createDocLink()
+ :
+ : @author Peter Stadler
+ : @param $doc the document to create the link for
+ : @param $content the string content for the xhtml a element
+ : @param $lang the language switch (en, de)
+ : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
+ : @param $popover whether to add class attributes for popovers
+ : @return a html:a element
+ :)
+declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
+    if($popover) then 
+        let $docID := $doc/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($docID)
+        return app:createDocLink($doc,$content, $lang, ($attributes, string-join(('class=preview', $docType, $docID), ' ')))
+    else app:createDocLink($doc,$content, $lang, $attributes)
 };
 
 declare 
@@ -171,10 +191,7 @@ declare
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
-        let $name :=
-            if($authorID) then str:printFornameSurname(query:title($authorID))
-            else if (not(functx:all-whitespace($authorElem))) then str:printFornameSurname(str:normalize-space($authorElem))
-            else query:title(config:get-option('anonymusID'))
+        let $name := wega-util:print-forename-surname-from-nameLike-element($authorElem)
         return 
             element {$elem} {
                 $node/@*[not(local-name(.) eq 'href')],
@@ -314,7 +331,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if($model('hasFacsimile')) then 
+        if($model('hasLocalFacsimile')) then 
             element {name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -489,8 +506,8 @@ declare
     function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
     element {name($node)} {
          $node/@*,
-         attribute data-min-slider {$model('earliestDate')},
-         attribute data-max-slider {$model('latestDate')},
+         attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
+         attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
          attribute data-from-slider {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
          attribute data-to-slider {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
     }
@@ -512,6 +529,7 @@ declare function app:set-facet-checkbox($node as node(), $model as map(*), $key 
 (:~
  : Wrapper for dispatching various document types (in analogy to search:dispatch-preview())
  : Simply redirects to the right fragment from 'templates/includes'
+ : Used by templates/ajax/popover.html
  :
  :)
 declare function app:popover($node as node(), $model as map(*)) as map(*)* {
@@ -532,32 +550,42 @@ declare
     function app:word-of-the-day($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $words := core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
         let $random :=
-            if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0! :)
-            else 1
+            if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0 and takes as argument positiveInteger! :)
+            else if(count($words) eq 1) then 1
+            else core:logToFile('info', 'app:word-of-the-day(): no words of the day found')
         return 
             map {
-                'wordOfTheDay' := str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang),
-                'wordOfTheDayURL' := app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                'wordOfTheDay' := 
+                    if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
+                    else str:normalize-space($node/xhtml:h1),
+                'wordOfTheDayURL' := 
+                    if($random) then app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                    else '#'
             }
 };
 
 declare 
     %templates:wrap
-    function app:lookup-todays-events($node as node(), $model as map(*)) as map(*) {
+    %templates:default("otd-date", "")
+    function app:lookup-todays-events($node as node(), $model as map(*), $otd-date as xs:string) as map(*) {
+    let $date := 
+        if($otd-date castable as xs:date) then xs:date($otd-date)
+        else current-date()
     let $events := 
-        for $i in query:getTodaysEvents(current-date())
+        for $i in query:getTodaysEvents($date)
         order by $i/xs:date(@when) ascending
         return $i
     let $length := count($events)
     return
         map {
+            'otd-date' := $date,
             'events1' := subsequence($events, 1, ceiling($length div 2)),
             'events2' := subsequence($events, ceiling($length div 2) + 1)
         }
 };
 
 declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
-    let $date := current-date()
+    let $date := $model?otd-date
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
     let $typeOfEvent := 
@@ -582,13 +610,13 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
         	attribute class {'event-text'},
             if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
             (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-            else (app:createDocLink($teiDate/root(), str:printFornameSurnameFromTEIpersName($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+            else (app:createDocLink($teiDate/root(), wega-util:print-forename-surname-from-nameLike-element($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
         }
     )
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', format-date(current-date(), if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
+    <h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
 };
 
 (:~
@@ -618,12 +646,13 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return 
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
-     if(exists($persName/@key)) then app:createDocLink(core:doc($persName/string(@key)), str:printFornameSurname(query:title($persName/@key)), $lang, ('class=persons'))
-        (:wega:createPersonLink($persName/string(@key), $lang, $order):)
-     else if (not(functx:all-whitespace($persName))) then 
-        if ($order eq 'fs') then <xhtml:span class="noDataFound">{str:printFornameSurname($persName)}</xhtml:span>
+    if(exists($persName/@key)) then 
+        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+    else if(not(functx:all-whitespace($persName))) then 
+        if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
         else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
-    else <xhtml:span class="noDataFound">{lang:get-language-string('unknown',$lang)}</xhtml:span>
+    else <xhtml:span class="noDataFound">{lang:get-language-string('unknown', $lang)}</xhtml:span>
 };
 
 declare 
@@ -664,7 +693,7 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := wega-util:geonames2gnd($geonames-id)
+    let $gnd := if (exists(query:get-gnd($model('doc')))) then query:get-gnd($model('doc')) else if ($geonames-id) then wega-util:geonames2gnd($geonames-id) else ()
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
@@ -682,7 +711,7 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
                 order by $name 
                 return
                     ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
-            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() => query:get-geonames-name()
+            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
         }
 };
 
@@ -725,13 +754,28 @@ declare
 declare 
     %templates:wrap
     function app:work-basic-data($node as node(), $model as map(*)) as map(*) {
+        let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
+            for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
+            let $titleLang := $title/string(@xml:lang) 
+            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@title) = $titleLang]
+            return <span>{
+                string-join((
+                    wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
+                    wega-util:transform($subTitle, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
+                    ),
+                    '. '
+                ),
+                if($titleLang) then ' (' || $titleLang || ')'
+                else ()
+            }</span>
+        }
+        return
         map {
             'ids' := $model?doc//mei:altId[not(@type='gnd')],
-            'relators' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
-            'workType' := $model('doc')//mei:term/data(@classcode),
-            'titles' := for $title in $model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title
-                        group by $xmllang := $title/@lang
-                        return <span>{ wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+            'relators' := query:relators($model?doc),
+            'workType' := $model?doc//mei:term/data(@classcode),
+            'titles' := $print-titles($model?doc, false()),
+            'altTitles' := $print-titles($model?doc, true())
         }
 };
 
@@ -742,6 +786,12 @@ declare
             'sources' := 
                 if($config:isDevelopment) then core:getOrCreateColl('sources', $model('docID'), true())
                 else (),
+            'creation' := wega-util:transform(
+                $model?doc//mei:history, 
+                doc(concat($config:xsl-collection-path, '/works.xsl')), 
+                config:get-xsl-params( map {'dbPath' := document-uri($model?doc), 'docID' := $model?docID })
+                ), 
+            'dedicatees' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' := query:get-gnd($model('doc')),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
@@ -772,7 +822,7 @@ declare
 declare 
     %templates:wrap
     function app:person-forename-surname($node as node(), $model as map(*)) as xs:string {
-        str:printFornameSurname(query:title($model('docID')))
+        wega-util:print-forename-surname-from-nameLike-element(($model?doc//tei:persName | $model?doc//tei:orgName)[@type='reg'])
 };
 
 declare 
@@ -965,7 +1015,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:wikipedia-text($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))/node()
+        let $wikiText := wega-util:transform($model('wikiContent')//xhtml:div[@id='bodyContent'], doc(concat($config:xsl-collection-path, '/wikipedia.xsl')), config:get-xsl-params(()))
         return 
             if(exists($wikiText)) then $wikiText
             else lang:get-language-string('failedToLoadExternalResource', $lang)
@@ -1042,16 +1092,8 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $lease := 
-            try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('app:dnb', $err:code, $err:description, config:get-option('lease-duration') || ' is not of type xs:dayTimeDuration'), ' ;; '))}
-        let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-        }
-        let $dnbOccupations := 
-            for $occupation in $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation
-            let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'dnbOccupations', $occupation/substring-after(@rdf:resource, 'http://d-nb.info/gnd/') || '.xml')), wega-util:http-get#1, xs:anyURI($occupation/@rdf:resource || '/about/rdf'), $lease, $onFailureFunc)
-            return $response//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
                 'docType' := config:get-doctype-by-id($model?docID),
@@ -1078,7 +1120,10 @@ declare
                 ),
                 'gndDefinition' := $dnbContent//gndo:definition,
                 'lang' := $lang,
-                'dnbURL' := config:get-option('dnb') || $gnd
+                'dnbURL' := config:get-option('dnb') || $gnd,
+                'preferredNameForTheWork':= $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
+                'variantNamesForTheWork' := $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
+                'subjectHeadings' := $subjectHeadings
             }
 };
 
@@ -1131,12 +1176,17 @@ declare
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
-        map {
-            'hasFacsimile' := exists(query:facsimile($model?doc)),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
-            'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
-        }
+        let $facs := query:facsimile($model?doc)
+        return
+            map {
+                'facsimile' := $facs,
+                'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
+                'hasLocalFacsimile' := exists($facs) and not($facs/tei:graphic[starts-with(@url, 'http')]),
+                'hasCreation' := exists($model?doc//tei:creation),
+                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
+                'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
+            }
 };
 
 declare
@@ -1216,7 +1266,7 @@ declare
         let $respStmts :=
             switch($model('docType'))
             case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
-            default return $model('doc')//tei:respStmt[parent::tei:editionStmt]
+            default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
         return
             for $respStmt in $respStmts
             return (
@@ -1286,25 +1336,30 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $summary :=
+        let $revealedNote := 
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
-            else wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return
+            else ()
+        let $summary := 
+            if($model('doc')//tei:note[@type='summary']) then wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            else '–'
+        return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
-            else element p {
-                if(exists($summary)) then $summary
-                else '–'
-            }
+            else if($summary = '–' and $revealedNote) then <div><p>{$revealedNote}</p></div>
+            else if($summary = '–' and $node/ancestor-or-self::xhtml:div[@data-template="app:preview"]) then ()
+            else <div><p>{$summary}</p></div>
+        )
 };
 
 declare 
     %templates:default("lang", "en")
-    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    %templates:default("generate", "false")
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
         let $incipit := wega-util:transform($model('doc')//tei:note[@type='incipit'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
                 if(exists($incipit)) then $incipit
+                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang)
                 else '–'
             }
 };
@@ -1334,13 +1389,11 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as element(p) {
-        let $creation := wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        return 
-            element p {
-                if(exists($creation)) then $creation
-                else '–'
-            }
+    %templates:wrap
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
+        if($model?hasCreation and $model('result-page-entry')) then wega-util:txtFromTEI($model('doc')//tei:creation)
+        else if($model?hasCreation) then wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        else '–'
 };
 
 declare 
@@ -1348,7 +1401,11 @@ declare
     function app:context($node as node(), $model as map(*)) as map(*)? {
         let $context := 
             switch($model?docType)
-            case 'letters' return map:new((query:context-relatedItems($model?doc), query:correspContext($model?doc)))
+            case 'letters' return map:new((
+                query:context-relatedItems($model?doc), 
+                query:correspContext($model?doc),
+                query:context-correspSearch($model?doc)
+            ))
             default return query:context-relatedItems($model?doc)
         return
             if(wega-util-shared:has-content($context)) then $context
@@ -1359,23 +1416,19 @@ declare
     %templates:default("lang", "en")
     function app:print-letter-context($node as node(), $model as map(*), $lang as xs:string) as item()* {
         let $letter := $model('letter-norm-entry')('doc')
-        let $partnerID := 
+        let $partner := 
             switch($model('letter-norm-entry')('fromTo')) 
             (: There may be multiple addressees or senders! :)
-            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
-            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name]/@key/tokenize(., '\s+'))[1]
+            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
-        let $partner := 
-            if($partnerID) then core:doc($partnerID)
-            else ()
         let $normDate := query:get-normalized-date($letter)
         return (
             app:createDocLink($letter, $normDate, $lang, ()), 
             ": ",
             lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
             " ",
-            if($partner) then app:createDocLink($partner, query:title($partnerID), $lang, ())
-            else lang:get-language-string('unknown', $lang)
+            app:printCorrespondentName($partner, $lang, 'sf')
         )
 };
 
@@ -1388,7 +1441,7 @@ declare
 declare 
     %templates:default("lang", "en")
     %templates:wrap
-    function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string {
+    function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
 };
 
@@ -1423,7 +1476,7 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
         element {name($node)} {
             if($image-url) then (
                 $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                if($model?hasFacsimile) then (
+                if($model?hasLocalFacsimile) then (
                     attribute {'data-url'} {$image-url}
                 )
                 else ()
@@ -1491,9 +1544,18 @@ declare
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'relators' := $model('result-page-entry')//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role] | query:get-author-element($model('result-page-entry')),
+            'relators' := query:relators($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' := $model('result-page-entry')//mei:term/data(@classcode)
+        }
+};
+
+declare
+    %templates:wrap
+    function app:preview-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'hasCreation' := exists($model('doc')//tei:creation),
+            'summary' := app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
         }
 };
 
@@ -1506,7 +1568,7 @@ declare
                 $node/@*[not(name(.) = 'href')],
                 if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
                 else (),
-                if($title instance of xs:string or $title instance of text()) then $title
+                if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()
             }
 };
@@ -1514,13 +1576,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-incipit($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:normalize-space(app:print-incipit($node, $model, $lang))
-};
-
-declare 
-    %templates:default("lang", "en")
-    function app:preview-summary($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        str:normalize-space(app:print-summary($node, $model, $lang))
+        app:print-incipit($node, $model, $lang, 'true') => string-join('; ') => str:normalize-space()
 };
 
 declare 
@@ -1593,12 +1649,18 @@ declare
 
 
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
-    function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        if($model('relator')/@dbkey) then query:title($model('relator')/@dbkey)
-        else if($model('relator')/@key) then query:title($model('relator')/@key)
-        else str:normalize-space($model('relator'))
+    %templates:default("popover", "false")
+    function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string, $popover as xs:string) as element() {
+        let $key := $model('relator')/@dbkey | $model('relator')/@key
+        let $myPopover := 
+            if($popover castable as xs:boolean) then xs:boolean($popover)
+            else false()
+        return
+            if($key and $myPopover) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
+            else element span {
+                str:normalize-space($model('relator'))
+            }
 };
 
 declare 

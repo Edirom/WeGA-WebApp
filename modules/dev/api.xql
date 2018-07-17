@@ -26,6 +26,7 @@ import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/fac
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "../search.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../controller.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
@@ -71,32 +72,38 @@ declare function local:diaryDay-to-kml($params as map(*)) as element(kml:Placema
     </kml:kml>
 };
 
-
+(:~
+ :  Create BEACON files
+ :  (see https://de.wikipedia.org/wiki/Wikipedia:BEACON)
+~:)
 declare function local:create-beacon($params as map(*)) as xs:string {
     let $callBack := function($type as xs:string) {
         let $pnds := 
             switch($type)
             case 'pnd' return core:data-collection('persons')//tei:idno[@type='gnd']
             case 'gkd' return core:data-collection('orgs')//tei:idno[@type='gnd']
+            case 'works' return core:data-collection('works')//mei:altId[@type='gnd']
             default return ()
         let $desc := 
             switch($type)
-            case 'pnd' return '#DESCRIPTION: Personendatensätze der Carl Maria von Weber Gesamtausgabe'
-            case 'gkd' return '#DESCRIPTION: Datensätze Organisationen/Körperschaften der Carl Maria von Weber Gesamtausgabe'
+            case 'pnd' return '#DESCRIPTION: Personendatensätze der Carl-Maria-von-Weber-Gesamtausgabe'
+            case 'gkd' return '#DESCRIPTION: Datensätze Organisationen/Körperschaften der Carl-Maria-von-Weber-Gesamtausgabe'
+            case 'works' return '#DESCRIPTION: Werkdatensätze der Carl-Maria-von-Weber-Gesamtausgabe'
             default return ()
         let $feed := 
             switch($type)
             case 'pnd' return '#FEED: http://weber-gesamtausgabe.de/pnd_beacon.txt'
             case 'gkd' return '#FEED: http://weber-gesamtausgabe.de/gkd_beacon.txt'
+            case 'works' return '#FEED: http://weber-gesamtausgabe.de/works_beacon.txt'
             default return ()
         let $header := (
             '#FORMAT: BEACON',
             '#PREFIX: http://d-nb.info/gnd/',
             '#VERSION: 0.1',
-            '#TARGET: http://www.weber-gesamtausgabe.de/de/gnd/{ID}',
+            '#TARGET: https://weber-gesamtausgabe.de/de/gnd/{ID}',
             $feed,
             '#CONTACT: Peter Stadler <stadler [ at ] weber-gesamtausgabe.de>',
-            '#INSTITUTION: Carl Maria von Weber Gesamtausgabe (WeGA)',
+            '#INSTITUTION: Carl-Maria-von-Weber-Gesamtausgabe (WeGA)',
             $desc,
             concat('#TIMESTAMP: ', current-dateTime())
             )
@@ -110,6 +117,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
         switch($params('type'))
         case 'pnd' return 'pnd_beacon.txt'
         case 'gkd' return 'gkd_beacon.txt'
+        case 'works' return 'works_beacon.txt'
         default return ()
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
@@ -119,11 +127,12 @@ declare function local:create-beacon($params as map(*)) as xs:string {
             cache:doc(
                 str:join-path-elements(($config:tmp-collection-path, $fileName)), 
                 $callBack, $params('type'), 
-                xs:dayTimeDuration('P999D'),
+                function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) },
                 $onFailureFunc
             )
         )
 };
+
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
 declare function local:facets($params as map(*))  {
     let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))

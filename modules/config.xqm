@@ -41,7 +41,7 @@ declare variable $config:app-root as xs:string :=
 declare variable $config:catalogues-collection-path as xs:string := $config:app-root || '/catalogues';
 declare variable $config:options-file-path as xs:string := $config:catalogues-collection-path || '/options.xml';
 declare variable $config:options-file as document-node() := doc($config:options-file-path);
-declare variable $config:data-collection-path as xs:string := '/db/apps/WeGA-data';
+declare variable $config:data-collection-path as xs:string := config:get-option('dataCollectionPath');
 declare variable $config:svn-change-history-file as document-node()? := 
     if(doc-available($config:data-collection-path || '/subversionHistory.xml')) then doc($config:data-collection-path || '/subversionHistory.xml')
     else ();
@@ -409,6 +409,7 @@ declare function config:get-xsl-params($params as map()?) as element(parameters)
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
         <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
+        <param name="environment" value="{config:get-option('environment')}"/>
         {if(exists($params)) then 
             for $i in map:keys($params)
             return 

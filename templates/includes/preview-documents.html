@@ -4,17 +4,20 @@
             <img src="$resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon"/>
         </a>
     </div>
-    <div class="media-body">
+    <div class="media-body" data-template="app:preview-details">
         <h3 class="media-heading">
             <a data-template="app:preview-title">Rezension: Briefe
                 über den Geschmack in der Musik von Joh. Bapt.
                 Schaul</a>
         </h3>
-        <p data-template="app:preview-teaser" data-template-max="150">Some teaser text</p>
-        <!--<p>
-            <strong data-template="lang:translate">author</strong>: 
-            <span data-template="app-shared:print" data-template-key="author"/>
-        </p>-->
+        <p>
+            <strong><span data-template="lang:translate">incipit</span>: </strong> 
+            <span data-template="app:preview-incipit">"Lieben Sie Beste Elise alzeit Ihr aufrichtiger …"</span>
+        </p>
+        <p data-template="app-shared:if-exists" data-template-key="summary">
+            <strong><span data-template="lang:translate">summary</span>: </strong> 
+            <span data-template="app-shared:output" data-template-key="summary">Stammbucheintrag für Elise ,"im 6ten Jahr seines Alters" (Blatt mit Bleistift vorliniert).</span>
+        </p>
         <p data-template="app-shared:each" data-template-from="relators" data-template-to="relator">
             <strong data-template="app:preview-relator-role"/>: 
             <span data-template="app:preview-relator-name"/>

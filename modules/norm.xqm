@@ -13,6 +13,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
@@ -30,11 +31,13 @@ import module namespace functx="http://www.functx.com";
  :)
 declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
+    let $docURI := str:join-path-elements(($config:tmp-collection-path, $fileName))
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $errCode, $errDesc), ' ;; '))
     }
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     return 
-        cache:doc(str:join-path-elements(($config:tmp-collection-path, $fileName)), norm:create-norm-doc#1, $docType, xs:dayTimeDuration('P999D'), $onFailureFunc)
+        cache:doc($docURI, norm:create-norm-doc#1, $docType, $lease, $onFailureFunc)
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {
