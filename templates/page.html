@@ -278,22 +278,21 @@
         <script type="text/javascript" src="$resources/js/init-min.js" data-template="app-shared:if-not-matches" data-template-key="environment" data-template-value="development"/>
         
         <div data-template="app-shared:if-matches" data-template-key="environment" data-template-value="production" data-template-wrap="false">
-            <!-- Piwik -->
+            <!-- Matomo -->
             <script type="text/javascript">
                 var _paq = _paq || [];
-                _paq.push(["setDomains", ["*.www.weber-gesamtausgabe.de"]]);
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(['trackPageView']);
                 _paq.push(['enableLinkTracking']);
                 (function() {
-                  var u="//www.weber-gesamtausgabe.de/piwik/";
+                  var u="//matomo.euryanthe.de/";
                   _paq.push(['setTrackerUrl', u+'piwik.php']);
-                  _paq.push(['setSiteId', 1]);
+                  _paq.push(['setSiteId', '1']);
                   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
                   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
                 })();
             </script>
-            <noscript><p><img src="//www.weber-gesamtausgabe.de/piwik/piwik.php?idsite=1" style="border:0;" alt=""/></p></noscript>
-            <!-- End Piwik Code -->
+            <!-- End Matomo Code -->
         </div>
         
     </body>
