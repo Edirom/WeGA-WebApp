@@ -71,8 +71,9 @@ declare variable $config:default-date-picture-string := function($lang as xs:str
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
-    if($config:isDevelopment) then () 
-    else (1821 to 1823);
+    if($config:isDevelopment) then ()
+    (: nothing to suppress anymore – this should be removed in the future :)
+    else ();
 
 (:~
  : get and set language variable
