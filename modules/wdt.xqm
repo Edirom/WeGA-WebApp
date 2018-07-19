@@ -377,7 +377,9 @@ declare function wdt:works($item as item()*) as map(*) {
             wdt:create-index-callback('works', wdt:works(())('init-collection')(), function($node) { 
                 functx:pad-integer-to-length(($node//mei:seriesStmt/mei:title[@level])[1]/xs:int(@n), 4) || 
                 $node//mei:altId[@type = 'WeV']/string(@subtype) || 
-                functx:pad-integer-to-length($node//mei:altId[@type = 'WeV']/xs:int(@n), 4) || 
+                if($node//mei:altId[@type = 'WeV']/@n castable as xs:int) then
+                    functx:pad-integer-to-length($node//mei:altId[@type = 'WeV']/xs:int(@n), 4) 
+                else '9999' ||
                 $node//mei:altId[@type = 'WeV']/string() || 
                 ($node//mei:title)[1]
             }, ())
