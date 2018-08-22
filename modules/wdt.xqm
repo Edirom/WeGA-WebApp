@@ -958,7 +958,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('documents')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('var')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
-                core:data-collection('works')//mei:*[contains(@dbkey,$personID)]/root() |
+                core:data-collection('works')//mei:*[contains(@dbkey,$personID)][not(ancestor::mei:revisionDesc)]/root() |
                 (: <ref target="wega:A002068"/> :)
                 core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
                 core:data-collection('diaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
