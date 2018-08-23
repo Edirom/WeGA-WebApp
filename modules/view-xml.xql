@@ -47,6 +47,7 @@ let $transformed :=
             config:get-xsl-params( map { 'current-tei-version': $TEIversion } )
         )
     else $content
+let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
 return
     wega-util:inject-version-info(
         wega-util:process-xml-for-display($transformed)

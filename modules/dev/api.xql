@@ -159,6 +159,7 @@ declare function local:serialize-xml($response as item()*) {
 
 declare function local:serialize-json($response as item()*) {
     let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
+    let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
     return 
         response:stream(
             serialize($response, 
@@ -172,6 +173,7 @@ declare function local:serialize-json($response as item()*) {
 
 declare function local:serialize-txt($response as item()*) {
     let $serializationParameters := ('method=text', 'media-type=text/plain', 'encoding=utf-8')
+    let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
     return 
         response:stream(
             if(every $i in $response satisfies $i instance of xs:string) then $response
