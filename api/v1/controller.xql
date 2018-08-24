@@ -69,6 +69,7 @@ declare function local:serialize-json($response as item()*) {
     let $setHeader2 := response:set-header('pragma','no-cache')
     let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
     let $setHeader4 := response:set-header('totalRecordCount', $response[1]?totalRecordCount)
+    let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
     (:let $setHeader3 := 
         if(exists($response)) then response:set-header('ETag', util:hash($response, 'md5'))
         else ():)
@@ -176,7 +177,7 @@ return (:(
     util:log-system-out($exist:path),
     util:log-system-out($exist:resource)
     ):)
-    if($exist:resource eq 'swagger.json') then ()
+    if($exist:resource eq 'swagger.json') then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en'} )))
     else if(contains($exist:path, '/resources/')) then 

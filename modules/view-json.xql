@@ -16,6 +16,7 @@ let $content := request:get-data()
 let $docID := request:get-attribute('docID')
 let $type := request:get-attribute('type')
 let $image := request:get-attribute('image')
+let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
 return
     if($type eq 'manifest') then img:iiif-manifest($docID)
     else ()

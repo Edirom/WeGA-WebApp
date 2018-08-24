@@ -18,8 +18,8 @@
     <xsl:template match="@href">
         <xsl:attribute name="href">
             <xsl:choose>
-                <xsl:when test="contains(., 'digilib')">
-                    <xsl:value-of select="replace(., '.*/digilib', '/digilib')"/>
+                <xsl:when test="contains(., '/Scaler/')">
+                    <xsl:value-of select="replace(., '.*/Scaler/', '/Scaler/')"/>
                 </xsl:when>
                 <xsl:when test="matches(., '#[a-f0-9]+')">
                     <xsl:value-of select="'some_computed_id'"/>
@@ -34,8 +34,8 @@
     <xsl:template match="@src">
         <xsl:attribute name="src">
             <xsl:choose>
-                <xsl:when test="contains(., 'digilib')">
-                    <xsl:value-of select="replace(., '.*/digilib', '/digilib')"/>
+                <xsl:when test="contains(., '/Scaler/')">
+                    <xsl:value-of select="replace(., '.*/Scaler/', '/Scaler/')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="replace(., '/exist/apps/WeGA-WebApp', '')"/>

@@ -340,7 +340,11 @@ $.fn.preview_popover = function() {
             var source = $(response),
                 title = source.find('h3').html(),
                 content = source.children();
-            $('.item-title', container).html(title);
+            // special rule for previews without title, e.g. biblio  
+            if(undefined===title) { $('.item-title', container).remove(); }
+            // default is to copy the non-empty title from the preview
+            else { $('.item-title', container).html(title); }
+            
             $('.item-content', container).html(content);
             $('h3.media-heading', container).remove(); // remove relicts of headings
             
@@ -654,8 +658,8 @@ $('.allFilter input').change(
 
 /* Highlight original (historic) footnotes when clicking on a reference in the text */
 $('.fn-ref').on('click', function() {
-    $('#endNotes li').removeClass('bg-info');
-    $($(this).attr('href')).addClass('bg-info');
+    $('#endNotes li').removeClass('animated-highlight');
+    $($(this).attr('href')).addClass('animated-highlight');
 })
 
 function ajaxCall(container,url,callback) {

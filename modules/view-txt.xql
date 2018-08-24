@@ -39,6 +39,7 @@ let $content :=
 	if(config:get-doctype-by-id($docID)) then try { core:doc($docID) } catch  * {()}
 	else ()
 let $transformed :=  wega-util:transform($content, doc($config:xsl-external-schemas-collection-path || '/to-text.xsl'), ())
+let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
 return (
     local:header($content),
     '&#10;&#10;',

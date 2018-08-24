@@ -541,3 +541,19 @@ div.toc {
 #relatedItems li p {
     margin-bottom: @line-height-computed;
 }
+
+/*
+ * Animated highlighting, used e.g. for historic footnotes (see https://github.com/Edirom/WeGA-WebApp/issues/226)
+ */
+@keyframes animate-bg-info {
+ 	0% {
+ 		background: @state-info-bg; 
+ 	}
+ 	100% {
+ 		background: none;
+ 	}
+}
+
+.animated-highlight {
+    animation: animate-bg-info 2.5s;
+}
