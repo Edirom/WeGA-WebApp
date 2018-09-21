@@ -639,6 +639,11 @@ $('li').has('a.deactivated').hide();
  * Initialise easyResponsiveTabs for person.html 
  */
 $('#details').easyResponsiveTabs({
+    tabidentify: 'easyResponsiveTabs',
+    activetab_bg: '#F0F0F0',
+    inactive_bg: '#B5B5B5',
+    active_border_color: '#B5B5B5',
+    active_content_border_color: '#B5B5B5',
     activate: activateTab
 });
 
