@@ -98,7 +98,8 @@
                 <exclude name=".git*"/>
                 <exclude name="*.tmpl"/>
                 <exclude name="*.txt"/>
-                <exclude name="bower.json"/>
+                <exclude name="package.json"/>
+                <exclude name="yarn.lock"/>
                 <exclude name="**/less/**"/>
             </fileset>
         </copy>
@@ -141,7 +142,7 @@
             </fileset>
         </copy>
         
-        <!-- Copy libs from bower components -->
+        <!-- Copy libs from ${lib_components.dir} -->
         <copy todir="${dist.dir}/resources/lib">
             <fileset dir="${lib_components.dir}">
                 <include name="**/*.js"/>
@@ -161,7 +162,7 @@
             </fileset>
         </copy>
         
-        <!-- Copy compiled TEI Guidelines from bower components -->
+        <!-- Copy compiled TEI Guidelines from ${lib_components.dir} -->
         <!-- TODO: include p5subset.xml as a reference -->
         <copy todir="${dist.dir}/guidelines">
             <fileset dir="${lib_components.dir}/WeGA-ODD/compiled-ODD">
