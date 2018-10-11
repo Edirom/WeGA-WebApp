@@ -1,6 +1,10 @@
 WeGA WebApp
 ===========
 
+[![](https://img.shields.io/badge/license-BSD2-green.svg)](https://github.com/Edirom/WeGA-WebApp/blob/develop/LICENSE)
+[![](https://img.shields.io/badge/license-CC--BY--4.0-green.svg)](https://github.com/Edirom/WeGA-WebApp/blob/develop/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/edirom/WeGA-WebApp.svg)](https://github.com/Edirom/WeGA-WebApp/releases)
+
 This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [www.weber-gesamtausgabe.de](http://www.weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
 
 Since version 1.2 the WeGA-WebApp is designed as an eXist app package and should happily live together with other installed apps.
