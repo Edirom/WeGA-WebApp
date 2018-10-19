@@ -30,12 +30,12 @@
     
     <target name="check-prettydiff">
         <condition property="prettydiff.available" value="true">
-            <length file="bower_components/prettydiff/api/node-local.js" when="ne" length="0" />
+            <length file="${lib_components.dir}/prettydiff/api/node-local.js" when="ne" length="0" />
         </condition>
     </target>
     
     <target name="update-prettydiff" depends="check-prettydiff" unless="prettydiff.available">
-        <antcall target="bower"/>
+        <antcall target="yarn"/>
     </target>
     
     <target name="diff" depends="update-prettydiff">
@@ -44,7 +44,7 @@
         <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
         <exec executable="${bash.command}" output="${diff.out}">
             <arg value="-c"/>
-            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node bower_components/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node ${lib_components.dir}/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
             <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
             <env key="LANG" value="C"/>
         </exec>
