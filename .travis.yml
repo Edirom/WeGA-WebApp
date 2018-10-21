@@ -1,0 +1,14 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+before_install:
+  - docker build -t wega .
+  - docker run --rm -p 8080:8080 -e WEGA_WEBAPP_dataCollectionPath="/db/apps/WeGA-data-testing" wega
+  - sleep 35
+
+script:
+  - curl -iLf  http://localhost:8080/exist/apps/WeGA-WebApp/
