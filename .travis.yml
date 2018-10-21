@@ -8,7 +8,7 @@ services:
 before_install:
   - docker build -t wega .
   - docker run --name wega -d -p 8080:8080 -e WEGA_WEBAPP_dataCollectionPath="/db/apps/WeGA-data-testing" wega
-  - bash -c 'i=0 ; while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8080/exist)" != "302" ]] ; do if (($i > 3)) ; then echo "timeout: aborting" ; break ; else  sleep 5 ; i=$[$i+1] ; echo "waiting for eXist-db …" ; fi ; done'
+  - bash -c 'i=0 ; while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8080/exist)" != "302" ]] ; do if (($i > 15)) ; then echo "timeout: aborting" ; break ; else  sleep 5 ; i=$[$i+1] ; echo "waiting for eXist-db …" ; fi ; done'
   - docker exec -it wega cat webapp/WEB-INF/logs/exist.log
 
 script:
