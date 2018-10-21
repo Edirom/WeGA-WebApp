@@ -174,7 +174,7 @@
     <target name="yuicompress" depends="dist">
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/css">
             <fileset dir="${dist.dir}/resources/css" includes="*.css" excludes="*min.css"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.css" to="*-min.css"/>
@@ -182,7 +182,7 @@
         </apply>
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/js">
             <fileset dir="${dist.dir}/resources/js" includes="*.js" excludes="*min.js"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.js" to="*-min.js"/>
@@ -190,7 +190,7 @@
         </apply>
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/lib/jquery-ui/ui/widgets">
             <fileset dir="${dist.dir}/resources/lib/jquery-ui/ui/widgets" includes="datepicker.js" excludes="*min.js"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.js" to="*-min.js"/>

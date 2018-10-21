@@ -8,9 +8,7 @@ LABEL maintainer="Peter Stadler"
 
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
-ARG YUICOMPRESSOR_URL="https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar"
 
-ADD ${YUICOMPRESSOR_URL} /tmp/yuicompressor.jar
 ADD https://deb.nodesource.com/setup_8.x /tmp/nodejs_setup 
 
 # installing Saxon, Node and Git
@@ -18,7 +16,6 @@ RUN apt-get update \
     && apt-get install -y --force-yes apt-transport-https ant git libsaxonhe-java \
     # installing nodejs
     && chmod 755 /tmp/nodejs_setup \
-    && chmod 644 /tmp/yuicompressor.jar \
     && /tmp/nodejs_setup \
     && apt-get install -y nodejs \
     && ln -s /usr/bin/nodejs /usr/local/bin/node \
