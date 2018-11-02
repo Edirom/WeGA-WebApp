@@ -331,7 +331,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if($model('hasLocalFacsimile')) then 
+        if($model?hasLocalFacsimile or $model?IIIFManifestAvailable) then 
             element {name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -1181,7 +1181,8 @@ declare
             map {
                 'facsimile' := $facs,
                 'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
-                'hasLocalFacsimile' := exists($facs) and not($facs/tei:graphic[starts-with(@url, 'http')]),
+                'hasLocalFacsimile' := exists($facs[tei:graphic]) and not($facs/tei:graphic[starts-with(@url, 'http')]),
+                'IIIFManifestAvailable' := exists($facs/@sameAs),
                 'hasCreation' := exists($model?doc//tei:creation),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
@@ -1469,21 +1470,20 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
         else()
 };
 
+(:~
+ : Initialize rendering of the facsimile (if available) on document pages
+ :)
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
-    let $image-url := core:link-to-current-app('IIIF/' || $model('docID') || '/manifest.json')
-(:    let $image-originalMaxSize := doc($config:data-collection-path || '/images/images.xml')//image[@id=$model('docID')]/data(@height) :)
-    return 
-        element {name($node)} {
-            if($image-url) then (
-                $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                if($model?hasLocalFacsimile) then (
-                    attribute {'data-url'} {$image-url}
-                )
-                else ()
-(:                attribute {'data-originalMaxSize'} {$image-originalMaxSize} :)
-            )
-            else $node/@*
-        }
+    element {name($node)} {
+        $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
+        if($model?hasLocalFacsimile) then (
+            attribute {'data-url'} {core:link-to-current-app('IIIF/' || $model('docID') || '/manifest.json')}
+        )
+        else if($model?IIIFManifestAvailable) then (
+            attribute {'data-url'} {string($model?facsimile/@sameAs)}
+        ) 
+        else ()
+    }
 };
 
 (:
