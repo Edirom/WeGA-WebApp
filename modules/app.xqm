@@ -1486,6 +1486,16 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
     }
 };
 
+declare 
+    %templates:default("lang", "en")
+    function app:print-facsimile-origin($node as node(), $model as map(*), $lang as xs:string) as element()* {
+        let $source := (app:textSources($node, $model)?textSources)[1]
+        return 
+            typeswitch($source)
+            case element(tei:msDesc) return wega-util:transform($source/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            default return app:print-textSource($node, map {'textSource' := $source}, $lang)
+};
+
 (:
  : ****************************
  : Searches
