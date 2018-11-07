@@ -472,6 +472,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
     let $baseURL := config:get-option('iiifServer')
     let $id := $baseURL || $docID 
     let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
+    let $attribution := img:iiif-manifest-attribution($doc)
     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
     return
         map {
@@ -479,6 +480,7 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
             "@id":= $id || '/manifest.json',
             "@type" := "sc:Manifest", 
             "label":= $label,
+            "attribution" := $attribution,
             "sequences" := [ map {
                 "@id":= $id || '/sequences.json',
                 "@type" := "sc:Sequence", 
@@ -510,4 +512,12 @@ declare function img:iiif-manifest($docID as xs:string) as map(*) {
                     }
             }]
         }
+};
+
+declare %private function img:iiif-manifest-attribution($doc as document-node()) as xs:string? {
+    let $sources := query:text-sources($doc)
+    return
+        typeswitch($sources)
+        case element(tei:msDesc) return (wega-util:transform($sources, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))//text())[1] 
+        default return 'Carl-Maria-von-Weber-Gesamtausgabe'
 };
