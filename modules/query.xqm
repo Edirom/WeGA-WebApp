@@ -194,13 +194,47 @@ declare function query:get-title-element($doc as document-node(), $lang as xs:st
         else ($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
 };
 
+(:~
+ : Get the main text source of an electronic document
+ : This is a simple wrapper around query:text-sources() to enforce a single, main source
+ : 
+ : @param $doc the TEI or MEI document
+ : @return the element describing the main source, e.g. a <tei:bibl> element or a <tei:msDesc> element  
+ :)
 declare function query:get-main-source($doc as document-node()) as element()? {
-    if($doc//tei:sourceDesc) then (: for writings and letters :)
-        if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']/*
-        else $doc//tei:sourceDesc/*
-    else if($doc//mei:sourceDesc) then () (: for works :)
-    else if($doc/tei:biblStruct) then $doc/tei:biblStruct (: for biblio :)
-    else ()
+    let $sources := query:text-sources($doc)
+    return
+        if(count($sources) gt 1) then $sources/parent::tei:witness[@n='1']/*
+        else $sources
+};
+
+(:~
+ : Get the text sources of an electronic document
+ :
+ : @param $doc the TEI or MEI document
+ : @return the elements describing the sources, e.g. a <tei:bibl> element or a <tei:msDesc> element  
+ :)
+declare function query:text-sources($doc as document-node()) as element()* {
+    let $docID := $doc/*/data(@xml:id)
+    let $docType := config:get-doctype-by-id($docID)
+    let $source := 
+        switch($docType)
+        case 'diaries' return 
+            <tei:msDesc>
+               <tei:msIdentifier>
+                  <tei:country>D</tei:country>
+                  <tei:settlement>Berlin</tei:settlement>
+                  <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
+                  <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber WFN 1</tei:idno>
+               </tei:msIdentifier>
+            </tei:msDesc>
+        case 'works' case 'sources' return () (:$model('doc')//mei:sourceDesc:)
+        case 'biblio' return $doc/tei:biblStruct
+        default return $doc//tei:sourceDesc/tei:*
+    return 
+        typeswitch($source)
+        case element(tei:listWit) return $source/tei:witness/tei:*
+        default return $source
 };
 
 (:~

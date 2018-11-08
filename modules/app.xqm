@@ -1279,25 +1279,8 @@ declare
 declare 
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
-        (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
-        let $source := 
-            switch($model('docType'))
-            case 'diaries' return 
-                <tei:msDesc>
-                   <tei:msIdentifier>
-                      <tei:country>D</tei:country>
-                      <tei:settlement>Berlin</tei:settlement>
-                      <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
-                      <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber WFN 1</tei:idno>
-                   </tei:msIdentifier>
-                </tei:msDesc>
-            default return $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
-        return 
         map {
-            'textSources' := 
-                typeswitch($source)
-                case element(tei:listWit) return $source/tei:witness/tei:*
-                default return $source
+            'textSources' := query:text-sources($model?doc)
         }
 };
 
@@ -1485,6 +1468,7 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
         else ()
     }
 };
+
 
 (:
  : ****************************
