@@ -132,6 +132,19 @@
                 </xsl:element>
             </xsl:for-each>
         </xsl:element>
+        <xsl:if test="tei:accMat">
+            <xsl:element name="h4">
+                <xsl:attribute name="class">media-heading</xsl:attribute>
+                <xsl:value-of select="wega:getLanguageString('accMat', $lang)"/>
+            </xsl:element>
+            <xsl:element name="ul">
+                <xsl:for-each select="tei:accMat">
+                    <xsl:element name="li">
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:history">
