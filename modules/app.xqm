@@ -331,7 +331,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if($model?hasLocalFacsimile or $model?IIIFManifestAvailable) then 
+        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then 
             element {name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -1181,8 +1181,8 @@ declare
             map {
                 'facsimile' := $facs,
                 'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
-                'hasLocalFacsimile' := exists($facs[tei:graphic]) and not($facs/tei:graphic[starts-with(@url, 'http')]),
-                'IIIFManifestAvailable' := exists($facs/@sameAs),
+                'localFacsimiles' := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
+                'externalIIIFManifestFacsimiles' := $facs[@sameAs],
                 'hasCreation' := exists($model?doc//tei:creation),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
@@ -1454,17 +1454,20 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
 };
 
 (:~
- : Initialize rendering of the facsimile (if available) on document pages
+ : Initialize rendering of the facsimile (if available) on document pages 
+ : by writing a whitespace separated list of IIIF manifest URLs to the `@data-url` attribute
+ : for a client side renderer. 
  :)
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
     element {name($node)} {
         $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-        if($model?hasLocalFacsimile) then (
-            attribute {'data-url'} {core:link-to-current-app('IIIF/' || $model('docID') || '/manifest.json')}
+        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
+            attribute {'data-url'} { normalize-space(
+                string-join($model?externalIIIFManifestFacsimiles/@sameAs, ' ') ||
+                ' ' ||
+                string-join(($model?localFacsimiles except $model?externalIIIFManifestFacsimiles) ! controller:iiif-manifest-id(.), ' ') 
+            )}
         )
-        else if($model?IIIFManifestAvailable) then (
-            attribute {'data-url'} {string($model?facsimile/@sameAs)}
-        ) 
         else ()
     }
 };

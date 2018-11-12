@@ -402,18 +402,32 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
 };
 
 (:~
- : Return the TEI facsimile element if present and on the whitelist supplied in the options file.
+ : Return the TEI facsimile elements if present and on the whitelist supplied in the options file.
  : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
  :
- : @param $doc the TEI document to look for the facsimile element
+ : @param $doc the TEI document to look for the facsimile elements
+ : @return TEI facsimile elements if available, the empty sequence otherwise
 ~:)
-declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)? {
+declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
     let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
     return
         if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
-        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
-        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile
-        else ()
+(:        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
+(:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
+        else $doc//tei:facsimile[@sameAs castable as xs:anyURI] | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+};
+
+(:~
+ : Return the appropriate source element for a given TEI facsimile element
+ :
+ : @param $facsimile the TEI facsimile element
+ : @return a TEI element describing the source (e.g. msDesc, or biblStruct) if available, the empty sequence otherwise
+~:)
+declare function query:facsimile-witness($facsimile as element(tei:facsimile)) as element()? {
+    let $sourceID := substring($facsimile/@source, 2)
+    return
+        if($sourceID) then $facsimile/preceding::tei:sourceDesc//tei:*[@xml:id=$sourceID]
+        else $facsimile/preceding::tei:sourceDesc/tei:*
 };
 
 (:~

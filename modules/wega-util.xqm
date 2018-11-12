@@ -163,14 +163,12 @@ declare function wega-util:process-xml-for-display($nodes as node()*) as node()*
             if($config:isDevelopment) then $node
             else ()
         case element(tei:facsimile) return 
-            let $facsimile := query:facsimile($node/root())
-            return
-                if($facsimile) then 
-                    element {node-name($node)} {
-                        $node/@*,
-                        wega-util:process-xml-for-display($facsimile/node())
-                    }
-                else ()
+            if($node = query:facsimile($node/root())) then 
+                element {node-name($node)} {
+                    $node/@*,
+                    wega-util:process-xml-for-display($node/node())
+                }
+            else ()
         case element() return 
             element {node-name($node)} {
                 $node/@*,

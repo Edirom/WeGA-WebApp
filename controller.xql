@@ -154,10 +154,11 @@ else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
-else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
+else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}(.*)/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
-            <set-attribute name="docID" value="{substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/')}"/>
+            <set-attribute name="docID" value="{substring(substring-after($exist:path, 'IIIF/'), 1, 7)}"/>
+            <set-attribute name="sourceID" value="{substring(substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/'), 8)}"/>
             <set-attribute name="type" value="manifest"/>
         </forward>
     </dispatch>

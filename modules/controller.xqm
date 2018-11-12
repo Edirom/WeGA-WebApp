@@ -435,6 +435,19 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
 };
 
 (:~
+ : create canonical URL for an IIIF manifest
+ :
+ : @param $facsimile a TEI facsimile element
+ : @return the URL for the IIIF manifest  
+~:)
+declare function controller:iiif-manifest-id($facsimile as element(tei:facsimile)) as xs:anyURI? {
+    let $docID := $facsimile/ancestor::tei:TEI/@xml:id
+    let $sourceID := substring($facsimile/@source, 2)
+    return
+        core:permalink('IIIF/' || $docID || $sourceID || '/manifest.json')
+};
+
+(:~
  : URL decoding with replacement of underscores to blanks
 ~:)
 declare function controller:url-decode($string as xs:string?) as xs:string {
