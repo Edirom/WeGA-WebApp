@@ -425,9 +425,12 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
 ~:)
 declare function query:facsimile-witness($facsimile as element(tei:facsimile)) as element()? {
     let $sourceID := substring($facsimile/@source, 2)
-    return
+    let $source :=
         if($sourceID) then $facsimile/preceding::tei:sourceDesc//tei:*[@xml:id=$sourceID]
         else $facsimile/preceding::tei:sourceDesc/tei:*
+    return
+        if($source[self::tei:witness]) then $source/*
+        else $source
 };
 
 (:~
