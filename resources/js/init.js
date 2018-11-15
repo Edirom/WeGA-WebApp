@@ -768,76 +768,54 @@ $('.teaser + h2 a').each(function(a,b) {
 
 $('.preview').setTextWrap();
 
-/*function initFacsimile() {
-    var map,
-        iiifLayers = {},
-        manifestAttribution,
-        manifestUrl = $('#map').attr('data-url');
-    
-    map = L.map('map', {
-        center: [0, 0],
-        crs: L.CRS.Simple,
-        zoom: 0,
-        attributionControl: false
-    });
-
-    // Grab an IIIF manifest
-    $.getJSON(manifestUrl, function(data) {
-        // Grab the attribution property from the IIIF manifest
-        manifestAttribution = data.attribution;
-        
-        // For each image create a L.TileLayer.Iiif object and add that to an object literal for the layer control
-        $.each(data.sequences[0].canvases, function(_, val) {
-            iiifLayers[val.label + ' (image ' + (_ + 1) + ')'] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json', {attribution: manifestAttribution});
-        });
-        
-        // Add attribution control to the map
-        L.control.attribution({prefix:''}).addTo(map);
-        
-        // Add layers control to the map
-        L.control.layers(iiifLayers).addTo(map);
-        
-        // Access the first Iiif object and add it to the map
-        iiifLayers[Object.keys(iiifLayers)[0]].addTo(map);
-    });
-};*/
-
+/*
+ * initialize openseadragon viewer
+ * from the IIIF manifest URLs given as @data-url attribute on div[@id=map]
+ */
 function initFacsimile() {
-    console.log('initFacsimile')
     
     var viewer,
-        iiifLayers = {},
-        manifestAttributions = [],
+        placeHolder,
+        tileSources = [],
+        imageAttributions = [],
         manifestUrls = $('#map').attr('data-url').split(/\s+/);
-    
-    $(manifestUrls).each(function(i,url) {
-        // Grab an IIIF manifest
-        $.getJSON(url, function(data) {
-            // Grab the attribution property from the IIIF manifest
-            manifestAttributions.push(data.attribution);
-        
-            // For each image create a L.TileLayer.Iiif object and add that to an object literal for the layer control
-           /* $.each(data.sequences[0].canvases, function(_, val) {
-                iiifLayers[val.label + ' (image ' + (_ + 1) + ')'] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json', {attribution: manifestAttribution});
-            });*/
-            
-        });
-    })
     
     viewer = OpenSeadragon({
         id: "map",
         prefixUrl: "$resources/lib/openseadragon/build/openseadragon/images/",
         sequenceMode: true,
         showRotationControl: true,
-        tileSources: [
-            "https://weber-gesamtausgabe.de/Scaler/IIIF/letters%2FA0407xx%2FA040727%2FA040727_1.jpg/info.json",
-            "https://weber-gesamtausgabe.de/Scaler/IIIF/letters%2FA0407xx%2FA040727%2FA040727_2.jpg/info.json"
-        ]
+        showReferenceStrip: true,
+        //placeholderFillStyle: '',
+        defaultZoomLevel: 0.8
     });
-    viewer.addHandler('page', function(page) {
+    
+    $(manifestUrls).each(function(i,url) {
+        // Grab an IIIF manifest
+        $.getJSON(url, function(data) {
+            // Grab the attribution property from the IIIF manifest
+            manifestAttribution = data.attribution;
+            
+            $(data.sequences[0].canvases).each(function(_, val) {
+                tileSources.push(val.images[0].resource.service['@id'] + '/info.json'),
+                imageAttributions.push(manifestAttribution);
+            })
+            // open viewer with the new tile sources
+            viewer.open(tileSources, 0)
+        });
+    })
+    
+    /*viewer.addHandler('page', function(page) {
         console.log(page)
     })
+    viewer.addHandler('open', function(page) {
+        console.log('open handler')
+    })
+    viewer.addHandler('tile-loaded', function(page) {
+        console.log('tile-loaded handler');
+    })*/
 };
+
 
 function jump2diary(dateText) {
     var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;
