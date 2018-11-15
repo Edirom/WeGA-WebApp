@@ -734,13 +734,13 @@ $("[data-hovered-src]").hover(
 
 $("#datePicker").initDatepicker();
 
-/* Fieser Hack */
+/*
+ * initialise facsimile viewer if it's not already loaded
+ */
 $('#facsimile-tab').on('click', function() {
-/*    setTimeout(function() {*/
        if ($('.openseadragon-container').length === 0){
            initFacsimile();
        }
-/*   }, 500);*/
 });
 
 /* Load portraits via AJAX on index pages */
@@ -775,7 +775,6 @@ $('.preview').setTextWrap();
 function initFacsimile() {
     
     var viewer,
-        placeHolder,
         tileSources = [],
         imageAttributions = [],
         manifestUrls = $('#map').attr('data-url').split(/\s+/);
@@ -787,7 +786,8 @@ function initFacsimile() {
         showRotationControl: true,
         showReferenceStrip: true,
         //placeholderFillStyle: '',
-        defaultZoomLevel: 0.8
+        defaultZoomLevel: 0,
+        viewportMargins: {top: 30, left: 20, right: 20, bottom: 10}
     });
     
     $(manifestUrls).each(function(i,url) {
@@ -802,18 +802,23 @@ function initFacsimile() {
             })
             // open viewer with the new tile sources
             viewer.open(tileSources, 0)
+            //console.log('added tiles to viewer')
         });
     })
     
-    /*viewer.addHandler('page', function(page) {
-        console.log(page)
-    })
-    viewer.addHandler('open', function(page) {
-        console.log('open handler')
-    })
-    viewer.addHandler('tile-loaded', function(page) {
-        console.log('tile-loaded handler');
-    })*/
+    // add open-handler for adding image attributions as overlays 
+    viewer.addHandler('open', function(obj) {
+        //console.log('open handler')
+        var source_x = obj.eventSource.source.width, 
+            elem = document.createElement("div");
+        elem.innerHTML = imageAttributions[obj.eventSource._sequenceIndex];
+        elem.className = 'image-attribution'
+        viewer.addOverlay({ 
+            element: elem, 
+            location: viewer.viewport.imageToViewportCoordinates(source_x, 0),
+            placement: 'BOTTOM_RIGHT'
+        });
+    });
 };
 
 
