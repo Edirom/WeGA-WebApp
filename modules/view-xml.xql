@@ -44,7 +44,7 @@ let $transformed :=
         wega-util:transform(
             $content, 
             doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), 
-            config:get-xsl-params( map { 'current-tei-version': $TEIversion } )
+            config:get-xsl-params( map { 'current-tei-version': $TEIversion, 'facsimileWhiteList': config:get-option('facsimileWhiteList') } )
         )
     else $content
 let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
