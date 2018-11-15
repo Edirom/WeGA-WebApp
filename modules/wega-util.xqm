@@ -163,7 +163,9 @@ declare function wega-util:process-xml-for-display($nodes as node()*) as node()*
             if($config:isDevelopment) then $node
             else ()
         case element(tei:facsimile) return 
-            if($node = query:facsimile($node/root())) then 
+            (: the simpler test '$node = query:facsimile($node/root())' returned always true, for e.g. A041588 with two witnesses :)
+            (: probably some too aggressive eXistdb optimization ... :)
+            if(some $i in query:facsimile($node/root()) satisfies deep-equal($i, $node)) then 
                 element {node-name($node)} {
                     $node/@*,
                     wega-util:process-xml-for-display($node/node())
