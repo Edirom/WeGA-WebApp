@@ -443,8 +443,9 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
 declare function controller:iiif-manifest-id($facsimile as element(tei:facsimile)) as xs:anyURI? {
     let $docID := $facsimile/ancestor::tei:TEI/@xml:id
     let $sourceID := substring($facsimile/@source, 2)
-    return
-        core:permalink('IIIF/' || $docID || $sourceID || '/manifest.json')
+    return xs:anyURI(
+        config:get-option('iiifPresentationApi') || $docID || $sourceID || '/manifest.json'
+    )
 };
 
 (:~

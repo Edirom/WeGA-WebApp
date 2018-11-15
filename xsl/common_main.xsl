@@ -483,7 +483,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="localURL">
-            <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
+            <xsl:value-of select="concat(wega:getOption('iiifImageApi'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
@@ -501,7 +501,7 @@
                 <xsl:element name="img">
                     <xsl:attribute name="title" select="$title"/>
                     <xsl:attribute name="alt" select="$title"/>
-                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifServer'))"/>
+                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifImageApi'))"/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>

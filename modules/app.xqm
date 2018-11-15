@@ -979,7 +979,7 @@ declare
         if($model('portrait')('source') = 'Carl-Maria-von-Weber-Gesamtausgabe') then ()
         else (
             $model('portrait')('source'),
-            if(contains($model('portrait')('linkTarget'), config:get-option('iiifServer'))) then ()
+            if(contains($model('portrait')('linkTarget'), config:get-option('iiifImageApi'))) then ()
             else (<br/>, element a {
                 attribute href {$model('portrait')('linkTarget')},
                 $model('portrait')('linkTarget')

@@ -381,10 +381,10 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
  : @return 
  :)
 declare %private function img:wega-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $iiifServer := config:get-option('iiifServer')
+    let $iiifImageApi := config:get-option('iiifImageApi')
     return
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
-        let $iiifURI := $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+        let $iiifURI := $iiifImageApi || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
@@ -465,13 +465,7 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
 
 
 declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(*) {
-    (:let $id := 'letters/A0412xx/A041234/1817-07-10_05_AM_Weber_an_Caroline_D-B_1r.tif'
-    let $width := '2030'
-    let $height := '2414':)
-    (:let $doc := core:doc($docID):)
-(:    let $baseURL := config:get-option('iiifServer'):)
-(:    let $id := $baseURL || $docID || $facsID:)
-    let $baseURL := config:get-option('iiifServer')
+    let $iiifImageApi := config:get-option('iiifImageApi')
     let $docID := $facsimile/ancestor::tei:TEI/@xml:id
     let $manifest-id := controller:iiif-manifest-id($facsimile)
     let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
@@ -491,7 +485,7 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
                 "canvases" := array {
                     for $i at $counter in $facsimile/tei:graphic
                     let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-                    let $image-id := $baseURL || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
+                    let $image-id := $iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
                     let $page-label := 
                         if($i/@xml:id) then $i/string(@xml:id)
                         else 'page' || $counter 
