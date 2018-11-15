@@ -463,14 +463,18 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         }
 };
 
-
+(:~
+ : Create an IIIF manifest for a TEI facsimile element
+ :
+ : @param $facsimile a TEI facsimile element
+ : @return a manifest object
+ :)
 declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(*) {
     let $iiifImageApi := config:get-option('iiifImageApi')
     let $docID := $facsimile/ancestor::tei:TEI/@xml:id
     let $manifest-id := controller:iiif-manifest-id($facsimile)
     let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
     let $attribution := img:iiif-manifest-attribution($facsimile)
-(:    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/'):)
     return
         map {
             "@context":= "http://iiif.io/api/presentation/2/context.json",
@@ -511,11 +515,19 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
         }
 };
 
-declare %private function img:iiif-manifest-attribution($facsimile as element(tei:facsimile)) as xs:string? {
-    let $doc := $facsimile/root()
-    let $sources := query:text-sources($doc)
+(:~
+ : Get human readable image attribution information for a digital facsimile 
+ : Helper function for img:iiif-manifest()
+ :
+ : @param $facsimile a TEI facsimile element
+ : @return a human readable string referring to the image source
+ :)
+declare %private function img:iiif-manifest-attribution($facsimile as element(tei:facsimile)) as xs:string {
+    let $source := query:facsimile-witness($facsimile)
     return
-        typeswitch($sources)
-        case element(tei:msDesc) return (wega-util:transform($sources, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))//text())[1] 
+        typeswitch($source)
+        case element(tei:msDesc) return str:normalize-space($source/tei:msIdentifier/tei:repository)
+        case element(tei:biblStruct) return str:normalize-space($source/tei:monogr/tei:title[1])
+        case element(tei:bibl) return str:normalize-space($source)
         default return 'Carl-Maria-von-Weber-Gesamtausgabe'
 };
