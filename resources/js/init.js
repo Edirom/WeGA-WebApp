@@ -738,9 +738,12 @@ $("#datePicker").initDatepicker();
  * initialise facsimile viewer if it's not already loaded
  */
 $('#facsimile-tab').on('click', function() {
+    // need to set timeout for correct display of referenceStrip
+    setTimeout(function() {
        if ($('.openseadragon-container').length === 0){
            initFacsimile();
        }
+   }, 500);
 });
 
 /* Load portraits via AJAX on index pages */
