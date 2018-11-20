@@ -463,6 +463,22 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         }
 };
 
+(:declare function img:iiif-collection() as map(*) {
+    map {
+        "@context" := "http://iiif.io/api/presentation/2/context.json",
+        "@id" := "https://weber-gesamtausgabe.de/IIIF/letters",
+        "@type" := "sc:Collection",
+        "label" := "Top Level Letters Collection for the Carl-Maria-von-Weber-Gesamtausgabe",
+        "viewingHint" := "top",
+        "description" := "Description of Collection kommt später",
+        "attribution" := "Provided by the WeGA",
+        "manifests" := array {
+            img:iiif-manifest(core:doc('A040709')//tei:facsimile),
+            img:iiif-manifest(core:doc('A040695')//tei:facsimile)
+        }
+    }
+};
+:)
 (:~
  : Create an IIIF manifest for a TEI facsimile element
  :
@@ -473,7 +489,8 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
     let $iiifImageApi := config:get-option('iiifImageApi')
     let $docID := $facsimile/ancestor::tei:TEI/@xml:id
     let $manifest-id := controller:iiif-manifest-id($facsimile)
-    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
+    let $label := config:get-doctype-by-id($docID) || ' ' || $docID
+    let $desc := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
     let $attribution := img:iiif-manifest-attribution($facsimile)
     return
         map {
@@ -481,38 +498,90 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
             "@id":= $manifest-id,
             "@type" := "sc:Manifest", 
             "label":= $label,
+            "description" := $desc,
             "attribution" := $attribution,
+            "license" := query:licence($facsimile/root()),
+            "logo" := map {
+                "@id" := "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                "service" := map {
+                    "@context": "http://iiif.io/api/image/2/context.json",
+                    "@id": "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+            },
             "sequences" := [ map {
-                "@id":= replace($manifest-id, 'manifest', 'sequences'),
+                "@context" := "http://iiif.io/api/presentation/2/context.json",
+                "@id":= replace($manifest-id, 'manifest.json', 'sequence/') || 'default',
                 "@type" := "sc:Sequence", 
-                "label" := "Default", 
+                "label" := "default",
+                "viewingHint": "paged",
                 "canvases" := array {
-                    for $i at $counter in $facsimile/tei:graphic
-                    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-                    let $image-id := $iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
-                    let $page-label := 
-                        if($i/@xml:id) then $i/string(@xml:id)
-                        else 'page' || $counter 
-                    return 
-                        map:new((
-                            map:entry("@type", "sc:Canvas"),
-                            map:entry("label", $page-label),
-                            map:entry("images", [ map {
-                                "@type" := "oa:Annotation",
-                                "resource" := map {
-                                    "@id" := replace($manifest-id, 'manifest', 'images'),
-                                    "@type" := "dctypes:Image",
-                                    "service":= map {
-                                        "@context": "http://iiif.io/api/image/2/context.json", 
-                                        "@id": $image-id, 
-                                        "profile": "http://iiif.io/api/image/2/level0.json"
-                                    }
-                                }
-                            }])
-                        ))
-                    }
+                    $facsimile/tei:graphic ! img:iiif-canvas(.)
+                }
             }]
         }
+};
+
+(:~
+ : Create an IIIF canvas for a TEI graphic element
+ :
+ : @param $graphic a TEI graphic element
+ : @return a canvas object
+ :)
+declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
+    let $docID := $graphic/ancestor::tei:TEI/@xml:id
+    let $iiifImageApi := config:get-option('iiifImageApi')
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    let $image-id := $iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $graphic/@url)))
+    let $page-label := 
+        if($graphic/@xml:id) then $graphic/string(@xml:id)
+        else 'page' || count($graphic/preceding::tei:graphic) + 1
+    let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
+    let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
+    let $image-info :=  parse-json(util:base64-decode(wega-util:http-get(xs:anyURI($image-id))//*:response))
+    return 
+        map:new((
+            map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),
+            map:entry("@id", $canvas-id),
+            map:entry("@type", "sc:Canvas"),
+            map:entry("label", $page-label),
+            map:entry("height", xs:integer($image-info?height)),
+            map:entry("width", xs:integer($image-info?width)),
+            map:entry("images", [ img:iiif-image( map { 
+                "image-id" := $image-id,
+                "canvas-id" := $canvas-id,
+                "manifest-id" := $manifest-id,
+                "height" := xs:integer($image-info?height),
+                "width" := xs:integer($image-info?width)
+            } ) ])
+        ))
+};
+
+(:~
+ : Create an IIIF image object
+ :
+ : @param 
+ : @return a image object
+ :)
+declare %private function img:iiif-image($model as map()) as map(*) {
+    map {
+        "@type" := "oa:Annotation",
+        "@id" := $model?image-id, 
+        "motivation" := "sc:painting",
+        "on" := $model?canvas-id,
+        "resource" := map {
+            "@id" := replace($model?manifest-id, 'manifest', 'images'),
+            "@type" := "dctypes:Image",
+            "height" := $model?height,
+            "width" := $model?width,
+            "format" := 'image/jpg',
+            "service":= map {
+                "@context": "http://iiif.io/api/image/2/context.json", 
+                "@id": $model?image-id, 
+                "profile": "http://iiif.io/api/image/2/level0.json"
+            }
+        }
+    }
 };
 
 (:~
