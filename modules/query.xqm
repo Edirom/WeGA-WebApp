@@ -501,7 +501,7 @@ declare function query:context-correspSearch($doc as document-node()?) as map()?
  :  @param $doc the TEI or MEI document to look for a licence
  :  @return licence as xs:anyURI if given in the document, 'https://creativecommons.org/licenses/by/4.0/' otherwise
  :)
-declare function query:licence($doc as document-node()) as xs:anyURI {
+declare function query:licence($doc as document-node()?) as xs:anyURI {
     if($doc//tei:licence/@target castable as xs:anyURI) then xs:anyURI($doc//tei:licence/@target)
     else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
 };
