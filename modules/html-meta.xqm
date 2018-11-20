@@ -34,7 +34,7 @@ declare
             'DC.identifier' := html-meta:DC.identifier($model),
             'DC.description' := html-meta:DC.description($model, $lang),
             'DC.subject' := html-meta:DC.subject($model, $lang),
-            'DC.rights' := html-meta:DC.rights($model),
+            'DC.rights' := query:licence($model?doc),
             'google-site-verification' := config:get-option('googleWebsiteMetatag'),
             'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag')
         }
@@ -150,14 +150,6 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
             case 'orgs' case 'works' case 'addenda' return lang:get-language-string($model?docType, $lang)
             case 'places' return 'Geographica'
             default return ()
-};
-
-(:~
- : Helper function for collecting licensing information
-~:)
-declare %private function html-meta:DC.rights($model as map(*)) as xs:anyURI {
-    if($model('doc')//tei:licence/@target castable as xs:anyURI) then xs:anyURI($model('doc')//tei:licence/@target)
-    else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
 };
 
 (:~
