@@ -235,6 +235,18 @@
         </xsl:choose>
     </xsl:function>
     
+    <xsl:function name="wega:isAddendum" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A12\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
@@ -280,6 +292,9 @@
             <xsl:when test="wega:isDocument($docID)">
                 <xsl:value-of select="'documents'"/>
             </xsl:when>
+            <xsl:when test="wega:isAddendum($docID)">
+                <xsl:value-of select="'addenda'"/>
+            </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
     </xsl:function>
@@ -308,7 +323,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
+            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID) or wega:isAddendum($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
             <xsl:when test="(exists($folder) and $authorID ne '') and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">

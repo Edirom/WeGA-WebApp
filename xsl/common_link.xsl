@@ -48,6 +48,17 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xsl:template match="tei:rs[@type='addenda'][@key]">
+        <!-- 
+            Addenda don't need popovers and have special virtual resource locations
+            Hence this special treatmetn here
+        -->
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="concat(wega:join-path-elements(($baseHref, $lang, @key)), '.html')"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template match="tei:characterName">
         <xsl:call-template name="createSpan"/>
