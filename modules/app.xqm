@@ -248,7 +248,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element() {
         let $pathTokens := tokenize(request:get-attribute('$exist:path'), '/')
         return 
             element {node-name($node)} {

@@ -122,7 +122,9 @@ declare function controller:redirect-absolute($path as xs:string) as element(exi
     </dispatch>
 };
 
-
+(:~
+ : Main entry point for all resources, i.e. documents accessed via WeGA document ID
+ :)
 declare function controller:dispatch($exist-vars as map(*)) as element(exist:dispatch) {
     let $media-type := controller:media-type($exist-vars)
     let $docID := functx:substring-before-if-contains($exist-vars('exist:resource'), '.')
@@ -331,6 +333,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
     return 
         if($docType = ('persons', 'orgs', 'places')) then str:join-path-elements(('/', $lang, $docID))
         else if($docType = 'var') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), $docID))
+        else if($docType = 'addenda') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string('volContents', $lang), $docID))
         else if($authorID and $displayName) then str:join-path-elements(('/', $lang, $authorID, $displayName, $docID))
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };
@@ -515,7 +518,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
         case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
         case 'works' return controller:forward-html('/templates/work.html', $exist-vars)
-        case 'var' case 'thematicCommentaries' return controller:forward-html('/templates/var.html', $exist-vars)
+        case 'var' case 'thematicCommentaries' case 'addenda' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)
     case 'txt' return controller:forward-txt($exist-vars)

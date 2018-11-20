@@ -890,6 +890,76 @@ declare function wdt:documents($item as item()*) as map(*) {
     }
 };
 
+declare function wdt:addenda($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/tei:TEI[starts-with(@xml:id, 'A12')]/root()
+    }
+    return
+    map {
+        'name' := 'addenda',
+        'prefix' := 'A12',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A12\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $filter($item)
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            $filter($item)
+        },
+        'init-collection' := function() as document-node()* {
+            core:data-collection('addenda')
+        },
+        'init-sortIndex' := function() as item()* {
+            ()
+        },
+        'title' := function($serialization as xs:string) as item()? {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            let $lang := config:guess-language(())
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            let $title-element-sub := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'][@type='sub'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@type='sub'])[1]
+            return
+                switch($serialization)
+                case 'txt' return concat(
+                    str:normalize-space(replace(string-join(str:txtFromTEI($title-element, $lang), ''), '\s*\n+\s*(\S+)', '. $1')),
+                    if($title-element-sub) then concat(
+                        '. ',
+                        str:normalize-space(replace(string-join(str:txtFromTEI($title-element-sub, $lang), ''), '\s*\n+\s*(\S+)', '. $1'))
+                    )
+                    else ()
+                )
+                case 'html' return 
+                    <xhtml:span>{
+                    wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())),
+                    if($title-element-sub) then (
+                        <xhtml:br/>,
+                        wega-util:transform($title-element-sub, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
+                    )
+                    else ()
+                    }</xhtml:span>
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+        },
+        'memberOf' := ('unary-docTypes'),
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)]
+        }
+    }
+};
+
+
 declare function wdt:contacts($item as item()*) as map(*) {
     map {
         'name' := 'contacts',
