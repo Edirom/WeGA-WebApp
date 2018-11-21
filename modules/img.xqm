@@ -489,7 +489,7 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
     let $iiifImageApi := config:get-option('iiifImageApi')
     let $docID := $facsimile/ancestor::tei:TEI/@xml:id
     let $manifest-id := controller:iiif-manifest-id($facsimile)
-    let $label := config:get-doctype-by-id($docID) || ' ' || $docID
+    let $label := $docID || $facsimile/@source
     let $desc := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
     let $attribution := img:iiif-manifest-attribution($facsimile)
     return
@@ -566,19 +566,19 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
 declare %private function img:iiif-image($model as map()) as map(*) {
     map {
         "@type" := "oa:Annotation",
-        "@id" := $model?image-id, 
+        "@id" := $model?image-id || '/annotation', 
         "motivation" := "sc:painting",
         "on" := $model?canvas-id,
         "resource" := map {
-            "@id" := replace($model?manifest-id, 'manifest', 'images'),
+            "@id" := $model?image-id || "/full/400,/0/default.jpg",
             "@type" := "dctypes:Image",
             "height" := $model?height,
             "width" := $model?width,
-            "format" := 'image/jpg',
+            "format" := "image/jpg",
             "service":= map {
                 "@context": "http://iiif.io/api/image/2/context.json", 
                 "@id": $model?image-id, 
-                "profile": "http://iiif.io/api/image/2/level0.json"
+                "profile": "http://iiif.io/api/image/2/level2.json"
             }
         }
     }
