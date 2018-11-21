@@ -1,14 +1,18 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
-declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 declare option output:method "json";
 declare option output:media-type "application/json";
@@ -26,6 +30,12 @@ return
         let $allowedFacsimiles := query:facsimile($doc)
         let $requestedFacsimile := $doc//tei:facsimile[substring(@source,2) = string($sourceID)]
         return
-            if($requestedFacsimile = $allowedFacsimiles) then img:iiif-manifest($requestedFacsimile)
+            if($requestedFacsimile = $allowedFacsimiles) then mycache:doc(
+                str:join-path-elements(($config:tmp-collection-path, 'manifests', substring($docID, 1, 5) || 'xx', $docID || $sourceID || '.json')), 
+                img:iiif-manifest#1, 
+                $requestedFacsimile, 
+                function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
+                function($errCode, $errDesc) { core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; ')) }
+            )
             else ()
     else ()
