@@ -157,6 +157,15 @@ else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}(.*)/manifest.json')) then
         </forward>
     </dispatch>
 
+(: IIIF collection meta data :)
+(:else if (matches($exist:path, '/IIIF/letters/collection.json')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
+            <set-attribute name="docID" value="letters"/>
+            <set-attribute name="type" value="collection"/>
+        </forward>
+    </dispatch>
+:)
 (: Ausführliche Weber-Biographie :)
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
     controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))

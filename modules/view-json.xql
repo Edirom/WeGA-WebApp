@@ -38,4 +38,5 @@ return
                 function($errCode, $errDesc) { core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; ')) }
             )
             else ()
+(:    else if($type eq 'collection') then img:iiif-collection($docID):)
     else ()

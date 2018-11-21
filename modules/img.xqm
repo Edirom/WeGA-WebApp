@@ -463,7 +463,14 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         }
 };
 
-(:declare function img:iiif-collection() as map(*) {
+(:~
+ : Create an IIIF collection for a WeGA document type collection
+ : WARNING: This is considered experimental beacuse it spits out too many manifests and the services choke on it 
+ :
+ : @param $docType the WeGA docType, e.g. 'letters' or 'writings'
+ : @return a collection object
+ :)
+declare function img:iiif-collection($docType as xs:string) as map(*) {
     map {
         "@context" := "http://iiif.io/api/presentation/2/context.json",
         "@id" := "https://weber-gesamtausgabe.de/IIIF/letters",
@@ -473,12 +480,15 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         "description" := "Description of Collection kommt später",
         "attribution" := "Provided by the WeGA",
         "manifests" := array {
-            img:iiif-manifest(core:doc('A040709')//tei:facsimile),
-            img:iiif-manifest(core:doc('A040695')//tei:facsimile)
+            core:getOrCreateColl($docType, 'indices', true())//tei:facsimile ! map {
+                "@id": controller:iiif-manifest-id(.),
+                "@type": "sc:Manifest",
+                "label": ./ancestor::tei:TEI/@xml:id || ./@source
+            }
         }
     }
 };
-:)
+
 (:~
  : Create an IIIF manifest for a TEI facsimile element
  :
