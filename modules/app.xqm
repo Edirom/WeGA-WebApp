@@ -1419,7 +1419,9 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
+        if($model?context-relatedItem?context-relatedItem-doc) 
+        then app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
+        else core:logToFile('warn', 'unable to process related items for ' || $model?docID)
 };
 
 declare 
