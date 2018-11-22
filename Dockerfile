@@ -50,3 +50,8 @@ FROM stadlerpeter/existdb:3.3.0
 ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
+
+HEALTHCHECK --interval=60s --timeout=5s \
+    CMD curl -iLfsS  http://localhost:8080${EXIST_CONTEXT_PATH}/apps/WeGA-WebApp | grep home \
+    && curl -iLfsS  http://localhost:8080${EXIST_CONTEXT_PATH}/apps/WeGA-WebApp | (! grep "HILFE DER GÖTTLICHEN") \
+    || exit 1
