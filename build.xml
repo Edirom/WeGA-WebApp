@@ -25,11 +25,6 @@
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
-        <condition property="update.yarn">
-            <not>
-                <available file="${lib_components.dir}" type="dir"/>
-            </not>
-        </condition>
         <condition property="update.smufl-font">
             <not>
                 <available file="${lib_components.dir}/bravura.zip"/>
@@ -57,7 +52,7 @@
         <get src="${smufl.font}" dest="${lib_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
     
-    <target name="yarn" depends="init" if="${update.yarn}">
+    <target name="yarn" depends="init">
         <description>Update javascript libraries via yarn</description>
         <exec executable="${yarn.cmd}" failonerror="yes">
             <arg value="install"/>
