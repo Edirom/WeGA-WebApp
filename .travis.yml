@@ -12,4 +12,4 @@ before_install:
   - docker exec -it wega cat webapp/WEB-INF/logs/exist.log
 
 script:
-  - curl -iLf  http://localhost:8080/exist/apps/WeGA-WebApp/
+  - ant test
