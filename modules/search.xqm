@@ -124,18 +124,21 @@ declare
     %templates:default("usage", "")
     function search:dispatch-preview($node as node(), $model as map(*), $usage as xs:string) {
         let $docID := $model('result-page-entry')/*/data(@xml:id)
-        let $docType := 
+        let $docType := config:get-doctype-by-id($docID) 
+        let $preview-template := 
+            switch($docType)
             (: Preview orgs with the person template :)
-            if(config:is-org($docID)) then 'persons'
-            else if(config:is-var($docID)) then 'documents'
-            else config:get-doctype-by-id($docID)
+            case 'orgs' return 'persons'
+            case 'var' return 'documents'
+            case 'addenda' return 'documents'
+            default return $docType
 (:        let $log := util:log-system-out($model('docType') || ' - ' || $model('docID')):)
         (: Need to distinguish between contacts and other person previews :)
         let $usage := if(wdt:personsPlus(($model('docID')))('check')() and $model('docType') = 'contacts') then 'contacts' else ''
         (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
         let $newModel := map:new(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
         return
-            templates:include($node, $newModel, 'templates/includes/preview-' || $docType || '.html')
+            templates:include($node, $newModel, 'templates/includes/preview-' || $preview-template || '.html')
 };
 
 (:~
@@ -160,7 +163,7 @@ declare
 declare %private function search:search($model as map(*)) as map(*) {
     let $updatedModel := search:prepare-search-string($model)
     let $docTypes := 
-        if($updatedModel?query-docTypes = 'all') then ($search:wega-docTypes, 'var') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
+        if($updatedModel?query-docTypes = 'all') then ($search:wega-docTypes, 'var', 'addenda') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
         else $search:wega-docTypes[.=$updatedModel?query-docTypes]
     let $base-collection := 
         if($updatedModel('query-string-org')) then $docTypes ! core:getOrCreateColl(., 'indices', true())
