@@ -651,7 +651,7 @@
                     <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smuflCodepoint, 'U+')))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message>XSLT Warning: template for `tei:g` failed to recognize glyph</xsl:message>
+                    <xsl:message>XSLT Warning: template for `tei:g` failed to recognize glyph in document <xsl:value-of select="$docID"/></xsl:message>
                     <xsl:apply-templates/>
                 </xsl:otherwise>
             </xsl:choose>
