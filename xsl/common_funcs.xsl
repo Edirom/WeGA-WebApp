@@ -560,4 +560,36 @@
         <xsl:sequence select="some $nodeInSeq in $seq/descendant-or-self::*/(.|@*) satisfies deep-equal($nodeInSeq,$node)"/>
     </xsl:function>
     
+    <xsl:function name="functx:substring-before-if-contains" as="xs:string?"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="delim" as="xs:string"/>
+        
+        <xsl:sequence select="
+            if (contains($arg,$delim))
+            then substring-before($arg,$delim)
+            else $arg
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="functx:substring-after-last" as="xs:string"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="delim" as="xs:string"/>
+        
+        <xsl:sequence select="
+            replace ($arg,concat('^.*',functx:escape-for-regex($delim)),'')
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="functx:escape-for-regex" as="xs:string"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        
+        <xsl:sequence select="
+            replace($arg,
+            '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')
+            "/>
+    </xsl:function>
+    
 </xsl:stylesheet>

@@ -639,17 +639,20 @@
     <xsl:template match="tei:footNote"/>
 
     <xsl:template match="tei:g">
-        <xsl:variable name="charName" select="concat('_', substring-after(@ref, 'http://edirom.de/smufl-browser/'))" as="xs:string"/>
+        <xsl:variable name="smuflCodepoint" as="xs:string">
+            <xsl:variable name="charName" select="concat('_', functx:substring-before-if-contains(functx:substring-after-last(@ref, '/'), '.'))"/>
+            <xsl:value-of select="key('charDecl', $charName, wega:doc($smufl-decl))/tei:mapping[@type='smufl']"/>
+        </xsl:variable>
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
-                <xsl:when test="@type='smufl'">
+                <xsl:when test="$smuflCodepoint">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
-                    <xsl:variable name="smufl-codepoint" select="key('charDecl', $charName, wega:doc($smufl-decl))/tei:mapping[@type='smufl']"/>
-                    <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
+                    <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smuflCodepoint, 'U+')))"/>
                 </xsl:when>
                 <xsl:otherwise>
-            <xsl:apply-templates/>
+                    <xsl:message>XSLT Warning: template for `tei:g` failed to recognize glyph</xsl:message>
+                    <xsl:apply-templates/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
