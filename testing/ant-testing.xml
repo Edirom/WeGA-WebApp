@@ -109,7 +109,7 @@
             <arg value="
                 i=0 ; 
                 while (! docker inspect ${docker.container.name} | grep -e Status....healthy) ; 
-                do if ((i > 15)) ; 
+                do if ((i > 30)) ; 
                 then echo ' **** timeout ... aborting **** ' ; exit 1 ; 
                 else sleep 5 ; echo waiting for container ... ; i=$((i+1)) ; 
                 fi ; done"/>
