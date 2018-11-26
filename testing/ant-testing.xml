@@ -2,6 +2,10 @@
 <project basedir=".." name="WeGA-WebApp-testing" default="diff">
     
     <property name="results.dir" value="${tmp.dir}/results"/>
+    <property name="docker.image.name" value="stadlerpeter/existdb:3.3.0"/>
+    <property name="docker.container.name" value="wega"/>
+    <property name="docker.container.test.dir" value="/opt/exist/wegatests"/>
+    <property name="docker.exposed.port" value="8080"/>
     
     <target name="reset-expected-results">
         <delete dir="${expected.results.dir}/${docType}"/>
@@ -21,11 +25,18 @@
     <target name="get-results" depends="create-result-URLs">
         <delete dir="${tmp.dir}/results.raw/${docType}"/>
         <mkdir dir="${tmp.dir}/results.raw/${docType}"/>
-        <get dest="${tmp.dir}/results.raw/${docType}">
+        <!--<get dest="${tmp.dir}/results.raw/${docType}">
             <resourcelist>
                 <file file="${tmp.dir}/${docType}.txt"/>
             </resourcelist>
-        </get>
+        </get>-->
+        <exec executable="${bash.command}" dir="${tmp.dir}/results.raw/${docType}">
+            <arg value="-c"/>
+            <arg value="while read url; 
+                do echo cURLing $url ; 
+                docker exec -w ${docker.container.test.dir}/results.raw/${docType} ${docker.container.name} curl -OLsS $url ;
+                done &lt;${basedir}/${tmp.dir}/${docType}.txt"/>
+        </exec>
     </target>
     
     <target name="check-prettydiff">
@@ -73,6 +84,44 @@
             <arg value="${tmp.dir}/html-check"/>
             <arg value="--skip-non-html"/>
         </java>
+    </target>
+    
+    <!--<target name="before_install" depends="docker_run">
+        <description>Tasks to be executed before running the dockerized tests</description>
+    </target>-->
+    
+    <target name="docker_build">
+        <description>Build the docker image from the current repository root </description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker build -t ${docker.image.name} ."/>
+        </exec>
+    </target>
+    
+    <target name="docker_run" depends="docker_build">
+        <description>Run the docker image</description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -v ${basedir}/${tmp.dir}:${docker.container.test.dir} -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' ${docker.image.name}"/>
+        </exec>
+        <exec executable="${bash.command}" failonerror="yes">
+            <arg value="-c"/>
+            <arg value="
+                i=0 ; 
+                while (! docker inspect ${docker.container.name} | grep -e Status....healthy) ; 
+                do if ((i > 15)) ; 
+                then echo ' **** timeout ... aborting **** ' ; exit 1 ; 
+                else sleep 5 ; echo waiting for container ... ; i=$((i+1)) ; 
+                fi ; done"/>
+        </exec>
+    </target>
+    
+    <target name="docker_cleanup">
+        <description>Remove test container</description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker rm -f ${docker.container.name}"/>
+        </exec>
     </target>
     
     <macrodef name="regressiontest">
