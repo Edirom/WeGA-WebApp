@@ -85,10 +85,6 @@
         </java>
     </target>
     
-    <!--<target name="before_install" depends="docker_run">
-        <description>Tasks to be executed before running the dockerized tests</description>
-    </target>-->
-    
     <target name="docker_build">
         <description>Build the docker image from the current repository root </description>
         <exec executable="${bash.command}">
