@@ -4,7 +4,6 @@
     <property name="results.dir" value="${tmp.dir}/results"/>
     <property name="docker.image.name" value="stadlerpeter/existdb:3.3.0"/>
     <property name="docker.container.name" value="wega"/>
-    <property name="docker.container.test.dir" value="/opt/exist/wegatests"/>
     <property name="docker.exposed.port" value="8080"/>
     
     <target name="reset-expected-results">
@@ -34,7 +33,7 @@
             <arg value="-c"/>
             <arg value="while read url; 
                 do echo cURLing $url ; 
-                docker exec -w ${docker.container.test.dir}/results.raw/${docType} ${docker.container.name} curl -OLsS $url ;
+                docker exec ${docker.container.name} curl -LsS $url > `basename $url`;
                 done &lt;${basedir}/${tmp.dir}/${docType}.txt"/>
         </exec>
     </target>
@@ -102,7 +101,7 @@
         <description>Run the docker image</description>
         <exec executable="${bash.command}">
             <arg value="-c"/>
-            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -v ${basedir}/${tmp.dir}:${docker.container.test.dir} -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' ${docker.image.name}"/>
+            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' ${docker.image.name}"/>
         </exec>
         <exec executable="${bash.command}" failonerror="yes">
             <arg value="-c"/>
