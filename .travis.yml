@@ -7,8 +7,10 @@ services:
 
 before_install:
   - ant docker_run
-  - docker exec -it wega cat webapp/WEB-INF/logs/exist.log
   - docker cp wega:/opt/exist/lib/endorsed/Saxon-HE-9.6.0-7.jar .
 
 script:
   - ant -lib . test
+
+after_failure:
+  - docker exec -it wega cat webapp/WEB-INF/logs/exist.log 
