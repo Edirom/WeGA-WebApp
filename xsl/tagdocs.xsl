@@ -47,13 +47,13 @@
 	</xsl:template>
 	
 	<xsl:template match="tei:specDesc">
-<!--		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>-->
+		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
 		<xsl:element name="li">
 			<xsl:variable name="gi">
 				<gi xmlns="http://www.tei-c.org/ns/1.0"><xsl:value-of select="@key"/></gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
-<!--			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>-->
+			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
 		</xsl:element>
 	</xsl:template>
 	
@@ -86,11 +86,11 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<!--<xsl:template match="teix:egXML">
+	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'panel tei_egXML'"/>
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}') and wega:getOption('environment') eq 'development'">
-				<!-\- output warnings for broken examples (in development mode only) -\->
+				<!-- output warnings for broken examples (in development mode only) -->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>
 				<xsl:variable name="myEgXML" select="functx:change-element-ns-deep(./*, 'http://www.tei-c.org/ns/1.0', '')" as="node()*"/>
 				<xsl:if test="not(@valid or functx:is-node-among-descendants-deep-equal(wega:normalize-whitespace-deep($myEgXML), wega:normalize-whitespace-deep($mySource)))">
@@ -104,13 +104,13 @@
 					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
 				</xsl:element>
 			</xsl:element>
-			<!-\- WeGA only: create back links to documents for examples -\->
+			<!-- WeGA only: create back links to documents for examples -->
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}')">
 				<xsl:variable name="rs">
-					<tei:rs>
+					<rs xmlns="http://www.tei-c.org/ns/1.0">
 						<xsl:attribute name="key" select="@source"/>
 						<xsl:value-of select="@source"/>
-					</tei:rs>
+					</rs>
 				</xsl:variable>
 				<xsl:element name="span">
 					<xsl:attribute name="class">tei_egXML_source</xsl:attribute>
@@ -120,7 +120,7 @@
 				</xsl:element>
 			</xsl:if>
 		</xsl:element>
-	</xsl:template>-->
+	</xsl:template>
 	
 	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
