@@ -13,4 +13,4 @@ script:
   - ant -lib . test
 
 after_failure:
-  - docker exec -it wega cat webapp/WEB-INF/logs/exist.log 
+  - docker exec -it wega tail -2000 webapp/WEB-INF/logs/exist.log 
