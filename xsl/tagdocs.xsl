@@ -19,15 +19,15 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="tei:remarks[@xml:lang=$lang]">
+	<!--<xsl:template match="tei:remarks[@xml:lang=$lang]">
 		<xsl:element name="div">
 			<xsl:apply-templates select="@xml:id"/>
 			<xsl:attribute name="class" select="local-name()"/>
 			<xsl:apply-templates/>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 	
-	<xsl:template match="tei:gi">
+	<!--<xsl:template match="tei:gi">
 		<xsl:element name="a">
 			<xsl:apply-templates select="@xml:id"/>
 			<xsl:attribute name="class">tei_gi</xsl:attribute>
@@ -36,7 +36,7 @@
 			<xsl:apply-templates/>
 			<xsl:text>&gt;</xsl:text>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 	
 	<xsl:template match="tei:specList">
 		<xsl:element name="ul">
@@ -46,7 +46,7 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="tei:specDesc">
+	<!--<xsl:template match="tei:specDesc">
 		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
 		<xsl:element name="li">
 			<xsl:variable name="gi">
@@ -55,7 +55,7 @@
 			<xsl:apply-templates select="$gi"/>
 			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 	
 	<xsl:template match="tei:tag">
 		<xsl:element name="span">
@@ -86,11 +86,11 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="teix:egXML">
+	<!--<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'panel tei_egXML'"/>
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}') and wega:getOption('environment') eq 'development'">
-				<!-- output warnings for broken examples (in development mode only) -->
+				<!-\- output warnings for broken examples (in development mode only) -\->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>
 				<xsl:variable name="myEgXML" select="functx:change-element-ns-deep(./*, 'http://www.tei-c.org/ns/1.0', '')" as="node()*"/>
 				<xsl:if test="not(@valid or functx:is-node-among-descendants-deep-equal(wega:normalize-whitespace-deep($myEgXML), wega:normalize-whitespace-deep($mySource)))">
@@ -104,7 +104,7 @@
 					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
 				</xsl:element>
 			</xsl:element>
-			<!-- WeGA only: create back links to documents for examples -->
+			<!-\- WeGA only: create back links to documents for examples -\->
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}')">
 				<xsl:variable name="rs">
 					<tei:rs>
@@ -120,9 +120,9 @@
 				</xsl:element>
 			</xsl:if>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 	
-	<xsl:function name="wega:spec-link">
+	<!--<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
 		<xsl:variable name="specType">
 			<xsl:choose>
@@ -139,6 +139,6 @@
 			$specType,
 			concat('ref-', $specID, '.html')
 			))"/>
-	</xsl:function>
+	</xsl:function>-->
 	
 </xsl:stylesheet>
