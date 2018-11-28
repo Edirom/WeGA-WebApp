@@ -46,16 +46,16 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<!--<xsl:template match="tei:specDesc">
-		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
+	<xsl:template match="tei:specDesc">
+<!--		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>-->
 		<xsl:element name="li">
 			<xsl:variable name="gi">
 				<tei:gi><xsl:value-of select="@key"/></tei:gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
-			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
+<!--			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>-->
 		</xsl:element>
-	</xsl:template>-->
+	</xsl:template>
 	
 	<xsl:template match="tei:tag">
 		<xsl:element name="span">
