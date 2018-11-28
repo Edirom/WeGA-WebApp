@@ -50,7 +50,7 @@
 <!--		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>-->
 		<xsl:element name="li">
 			<xsl:variable name="gi">
-				<tei:gi><xsl:value-of select="@key"/></tei:gi>
+				<gi xmlns="http://www.tei-c.org/ns/1.0"><xsl:value-of select="@key"/></gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
 <!--			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>-->
