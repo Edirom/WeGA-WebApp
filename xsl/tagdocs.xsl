@@ -27,7 +27,7 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<!--<xsl:template match="tei:gi">
+	<xsl:template match="tei:gi">
 		<xsl:element name="a">
 			<xsl:apply-templates select="@xml:id"/>
 			<xsl:attribute name="class">tei_gi</xsl:attribute>
@@ -36,7 +36,7 @@
 			<xsl:apply-templates/>
 			<xsl:text>&gt;</xsl:text>
 		</xsl:element>
-	</xsl:template>-->
+	</xsl:template>
 	
 	<xsl:template match="tei:specList">
 		<xsl:element name="ul">
@@ -46,7 +46,7 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="tei:specDesc">
+	<!--<xsl:template match="tei:specDesc">
 		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
 		<xsl:element name="li">
 			<xsl:variable name="gi">
@@ -55,7 +55,7 @@
 			<xsl:apply-templates select="$gi"/>
 			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
 		</xsl:element>
-	</xsl:template>
+	</xsl:template>-->
 	
 	<xsl:template match="tei:tag">
 		<xsl:element name="span">
@@ -122,7 +122,7 @@
 		</xsl:element>
 	</xsl:template>-->
 	
-	<!--<xsl:function name="wega:spec-link">
+	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
 		<xsl:variable name="specType">
 			<xsl:choose>
@@ -139,6 +139,6 @@
 			$specType,
 			concat('ref-', $specID, '.html')
 			))"/>
-	</xsl:function>-->
+	</xsl:function>
 	
 </xsl:stylesheet>
