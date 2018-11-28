@@ -400,7 +400,7 @@
     </xsl:template>
     <xsl:template match="tei:cell">
         <xsl:param name="widths" as="xs:double*" tunnel="yes"/>
-        <xsl:variable name="counter" as="xs:integer" select="position()"/>
+        <xsl:variable name="counter" as="xs:integer" select="count(preceding-sibling::tei:cell) + 1"/>
         <xsl:choose>
             <xsl:when test="parent::tei:row[@role='label']">
                 <xsl:element name="th">
