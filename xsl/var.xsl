@@ -13,7 +13,8 @@
     <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
-	<xsl:include href="tagdocs.xsl"/>
+    <!-- removed for debugging travis: seems to fail here ... -->
+	<!--<xsl:include href="tagdocs.xsl"/>-->
     
     <xsl:template match="/">
         <xsl:apply-templates/>
