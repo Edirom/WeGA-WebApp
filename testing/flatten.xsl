@@ -31,6 +31,10 @@
         </xsl:attribute>
     </xsl:template>
     
+    <xsl:template match="@src[ancestor::html:div[contains(@class, 'iconographie') or contains(@class, 'portrait')]]">
+        <xsl:attribute name="src">filtered_out_by_flatten.xsl</xsl:attribute>
+    </xsl:template>
+    
     <xsl:template match="@src">
         <xsl:attribute name="src">
             <xsl:choose>
