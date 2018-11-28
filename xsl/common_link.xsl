@@ -14,7 +14,7 @@
         because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
         thus exclude all elements with the following child elements 
     -->
-    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app', 'note')"/>
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app', 'note', 'settlement')"/>
     
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
