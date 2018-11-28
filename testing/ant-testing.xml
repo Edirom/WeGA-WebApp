@@ -79,6 +79,7 @@
             <fileset dir="testing/expected-results"/>
         </copy>
         <replace dir="${tmp.dir}/html-check" token="color=&quot;#0066cc&quot;"/>
+        <replace dir="${tmp.dir}/html-check" token="type=&quot;text/javascript&quot;"/>
         <java jar="${lib_components.dir}/vnu-jar/build/dist/vnu.jar" failonerror="true" fork="true">
             <arg value="${tmp.dir}/html-check"/>
             <arg value="--skip-non-html"/>
