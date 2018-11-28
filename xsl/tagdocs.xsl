@@ -19,13 +19,13 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<!--<xsl:template match="tei:remarks[@xml:lang=$lang]">
+	<xsl:template match="tei:remarks[@xml:lang=$lang]">
 		<xsl:element name="div">
 			<xsl:apply-templates select="@xml:id"/>
 			<xsl:attribute name="class" select="local-name()"/>
 			<xsl:apply-templates/>
 		</xsl:element>
-	</xsl:template>-->
+	</xsl:template>
 	
 	<!--<xsl:template match="tei:gi">
 		<xsl:element name="a">
