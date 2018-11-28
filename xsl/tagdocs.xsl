@@ -6,7 +6,7 @@
 	xmlns:functx="http://www.functx.com" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:teix="http://www.tei-c.org/ns/Examples"
-	exclude-result-prefixes="xs" version="2.0">
+	version="2.0">
 	
 	<!-- XSL module for the TEI tagdocs element set --> 
 	
