@@ -204,7 +204,7 @@ declare function query:get-title-element($doc as document-node(), $lang as xs:st
 declare function query:get-main-source($doc as document-node()) as element()? {
     let $sources := query:text-sources($doc)
     return
-        if(count($sources) gt 1) then $sources/parent::tei:witness[@n='1']/*
+        if(count($sources) gt 1) then $sources/parent::tei:witness[@n='1']/* | $sources/parent::tei:listBibl/tei:*[1]
         else $sources
 };
 
@@ -234,6 +234,7 @@ declare function query:text-sources($doc as document-node()) as element()* {
     return 
         typeswitch($source)
         case element(tei:listWit) return $source/tei:witness/tei:*
+        case element(tei:listBibl) return $source/tei:*
         default return $source
 };
 
