@@ -62,36 +62,63 @@ declare
             }
 };
 
+(:~
+ : Collect information about a resource for outputting as JSON-LD
+ :)
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function lod:jsonld($node as node(), $model as map(*), $lang as xs:string)  {
+    function lod:jsonld($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
+        let $schema.org-type := lod:schema.org-type($model)
+        let $url := 
+            if(config:get-doctype-by-id($model?docID)) then core:permalink(controller:path-to-resource($model?doc, $lang))
+            else $model?DC.identifier
         let $jsonld-common := map {
             '@id': $model?DC.identifier,
-            '@type': lod:schema-org-type($model),
+            '@type': $schema.org-type,
             '@context': 'http://schema.org',
-            'url': core:permalink(controller:path-to-resource($model?doc, $lang)),
+            'url': $url,
             'name': $model?meta-page-title
         }
-        let $jsonld-publisher := map {
+        let $publisher := map {
             'name':'Carl-Maria-von-Weber-Gesamtausgabe',
             'url':'http://weber-gesamtausgabe.de',
             '@type':'Organization'
         }
-        let $jsonld-funder := map {
+        let $funder := map {
             'name':'Akademie der Wissenschaften und der Literatur, Mainz',
             'url':'http://adwmainz.de',
             '@type':'Organization'
         }
+        let $author := function($elem as element()) {
+            map:merge((
+                map {
+                    'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
+                    '@type': if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization' else 'Person'
+                },
+                if($elem/@key) then map {
+                    '@id': core:permalink($elem/@key),
+                    'url': core:permalink($lang || '/' || $elem/@key)
+                }
+                else ()
+            ))
+        }
         return
-            $jsonld-common
+            if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
+                $jsonld-common,
+                map {'funder': $funder},
+                map {'publisher': $publisher},
+                map {'license': $model?DC.rights},
+                map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! $author(.) }}
+            )) 
+            else $jsonld-common
 };
 
 (:~
  : Helper function for setting a schema.org type
  :)
-declare %private function lod:schema-org-type($model as map(*)) as xs:string {
+declare %private function lod:schema.org-type($model as map(*)) as xs:string {
     switch(config:get-doctype-by-id($model?docID))
     case 'news' return 'NewsArticle'
     case 'persons' return 'Person'
