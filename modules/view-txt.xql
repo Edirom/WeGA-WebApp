@@ -10,7 +10,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 (:import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";:)
 (:import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";:)
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace html-meta="http://xquery.weber-gesamtausgabe.de/modules/html-meta" at "html-meta.xqm";
+import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 
 declare option exist:serialize "method=text media-type=plain/text indent=no encoding=utf-8";
 
@@ -24,12 +24,12 @@ declare function local:header($doc as document-node()) as xs:string {
             'doc': $doc,
             'docType': config:get-doctype-by-id($docID)
         }
-    let $html-meta := html-meta:metadata(<head/>, $model, $lang)
+    let $lod := lod:metadata(<head/>, $model, $lang)
     let $author := '## Author: ' || query:get-authorName($doc)
-    let $title := '## Title: ' || $html-meta?meta-page-title
+    let $title := '## Title: ' || $lod?meta-page-title
     let $version := '## Version: ' || config:get-option('version')
     let $origin := '## Origin: ' || core:permalink($docID)
-    let $license := '## License: ' || $html-meta?DC.rights
+    let $license := '## License: ' || $lod?DC.rights
     return
         string-join(($title,$author,$version,$origin,$license), '&#10;')
 };
