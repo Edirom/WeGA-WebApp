@@ -11,6 +11,7 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -157,7 +158,8 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
     return 
         if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
         else if($media-type and $path) then controller:redirect-absolute('/' || $path || '.' || $media-type)
-        else controller:error($exist-vars, 404)
+        (: last else case: document does not exist :)
+        else controller:error(map:put($updated-exist-vars, 'error-message', 'resource not found'), 404)
 };
 
 (:~
@@ -287,7 +289,29 @@ declare %private function controller:dispatch-editorialGuidelines-text-specs($ex
     else controller:error($exist-vars, 404)
 };
 
-declare function controller:error($exist-vars as map(*), $errorCode as xs:int) as element(exist:dispatch) {
+(:~
+ : Output error message 
+ : (mostly used for 404, aka document not found)
+ : When HTML serialization is requested, it forwards to the HTML error-page template via the templating module
+ : Other output serializations are handled by private functions that directly write to the output stream
+ :
+ : @param   $exist-vars an object with the standard runtime variables which are necessary for the templating module;
+ :          for all non-html serializations you'll only need the 'error-message' property
+ :)
+declare function controller:error($exist-vars as map(*), $errorCode as xs:int) {
+    response:set-status-code($errorCode),
+    switch($exist-vars?media-type)
+    case 'jsonld' return controller:error-jsonld($exist-vars?error-message)
+    case 'xml' return <error>{$exist-vars?error-message}</error>
+    case 'txt' return controller:error-txt($exist-vars?error-message)
+    default return controller:error-html($exist-vars)
+};
+
+(:~
+ : Output error message as html and close the stream
+ : Helper function for controller:error()
+ :)
+declare %private function controller:error-html($exist-vars as map(*)) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
     	<forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'templates/error-page.html'))}"/>
     	<view>
@@ -309,10 +333,39 @@ declare function controller:error($exist-vars as map(*), $errorCode as xs:int) a
             }
          </forward>
      </view>
-  </dispatch>,
-   response:set-status-code($errorCode)
+  </dispatch>
 };
 
+(:~
+ : Output error message as ld+json and close the stream
+ : Helper function for controller:error()
+ :)
+declare %private function controller:error-jsonld($message as xs:string) {
+    let $serializationParameters := ('method=text', 'media-type=application/ld+json', 'encoding=utf-8')
+    let $response := map {'msg': $message}
+    return 
+        response:stream(
+            serialize($response, 
+                <output:serialization-parameters>
+                    <output:method>json</output:method>
+                </output:serialization-parameters>
+            ),
+            string-join($serializationParameters, ' ')
+        )
+};
+
+(:~
+ : Output error message as xml and close the stream
+ : Helper function for controller:error()
+ :)
+declare %private function controller:error-txt($message as xs:string) {
+    let $serializationParameters := ('method=text', 'media-type=text/plain', 'encoding=utf-8')
+    return
+        response:stream(
+            $message, 
+            string-join($serializationParameters, ' ')
+        )
+};
 
 (:~
  : Split URI into path segments and encode those for URI if necessary
