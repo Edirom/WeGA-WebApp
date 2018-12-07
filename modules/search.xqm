@@ -343,7 +343,8 @@ declare %private function search:revealed-filter($collection as document-node()*
  : 
 ~:)
 declare %private function search:get-earliest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
-    switch ($docType)
+    if(count($coll) gt 0) then 
+        switch ($docType)
         case 'news' case 'biblio' return
             (: reverse order :)
             let $date := query:get-normalized-date($coll[last()])
@@ -357,13 +358,15 @@ declare %private function search:get-earliest-date($coll as document-node()*, $d
         case 'works' return ()
         case 'places' return ()
         default return ()
+    else ()
 };
 
 (:~
  : 
 ~:)
 declare %private function search:get-latest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
-    switch ($docType)
+    if(count($coll) gt 0) then 
+        switch ($docType)
         case 'news' case 'biblio' return
             (: reverse order :)
             string(query:get-normalized-date($coll[1]))
@@ -377,6 +380,7 @@ declare %private function search:get-latest-date($coll as document-node()*, $doc
         case 'works' return ()
         case 'places' return ()
         default return ()
+    else ()
 };
 
 (:~
