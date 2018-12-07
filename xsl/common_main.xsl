@@ -364,7 +364,17 @@
                                 Könnnte und sollte man mal generisch machen …
                             -->
                             <xsl:when test="$docID = 'A070011'">
-                                <xsl:copy-of select="(1,8,1)"/>
+                                <xsl:choose>
+                                    <xsl:when test="count($currNode/tei:row[1]/tei:cell) = 3">
+                                        <xsl:sequence select="(1,8,1)"/>
+                                    </xsl:when>
+                                    <xsl:when test="count($currNode/tei:row[1]/tei:cell) = 4">
+                                        <xsl:sequence select="(1,7.5,1,.5)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:message>XSLT Warning: unsupported ammount of table cells <xsl:value-of select="$docID"/></xsl:message>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:when>
                             <!-- Noch ein hack für die Spielpläne -->
                             <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and descendant::tei:table">
