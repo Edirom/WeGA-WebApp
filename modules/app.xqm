@@ -1432,6 +1432,46 @@ declare
 };
 
 (:~
+ : Create csLink element (see https://github.com/correspSearch/csLink for options)
+ : wip!
+ : @author Jakob Schmidt
+ :)
+ 
+declare 
+    %templates:default("lang", "en")
+    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
+        let $doc := $model('doc')
+        let $correspondent-1-key := ($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
+        let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
+        let $gnd-uri := 'http://d-nb.info/gnd/'
+        (: Element-Parameter :)
+        let $data-correspondent-1-id := concat($gnd-uri,$correspondent-1-gnd)
+        let $data-correspondent-1-name := if ($correspondent-1-key) then query:title($correspondent-1-key) else ""
+        let $data-start-date := query:get-normalized-date($doc)        
+        return
+            element { node-name($node) } {
+            attribute id {"csLink"}, (: mandatory :)
+            attribute data-correspondent-1-name {""}, (: later to be replaced by $data-correspondent-1-name :)
+            attribute data-correspondent-1-id {"http://d-nb.info/gnd/118554700"},(: later to be replaced by $data-correspondent-1-id :)
+            attribute data-correspondent-2-name {""},
+            attribute data-correspondent-2-id {"http://d-nb.info/gnd/115674667"},
+            attribute data-start-date {"1839-04-20"}, (: later to be replaced by $data-start-dat e:)
+            attribute data-end-date {""},
+            attribute data-range {"2000"},
+            attribute data-selection-when {"before-after"},
+            attribute data-selection-span {"median-before-after"},
+            attribute data-result-max {"4"}
+            (: attribute data-exclude-edition {"#WEGA"}, :)                        
+            
+            (: example data
+            <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="http://d-nb.info/gnd/118554700" data-correspondent-2-name="" data-correspondent-2-id="http://d-nb.info/gnd/115674667" data-start-date="1839-04-20" 
+            data-end-date="" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#AVHR">:)   
+  }
+
+};
+
+
+(:~
  : Create dateline and author link for website news
  : (Helper Function for app:print-transcription)
  :
