@@ -18,6 +18,7 @@
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
+    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
     <xsl:param name="optionsFile"/>
     <xsl:param name="baseHref"/>
     <xsl:param name="lang"/>
@@ -193,7 +194,7 @@
     <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
     <xsl:template match="text()">
-        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols), '|')"/>
+        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
         <xsl:analyze-string select="." regex="{$regex}">
             <xsl:matching-substring>
                 <!--       Ersetzen von Pfundzeichen in Bild         -->
@@ -212,6 +213,12 @@
                     <xsl:element name="span">
                         <xsl:attribute name="class" select="'musical-symbols'"/>
                         <xsl:value-of select="."/>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:if test="matches(.,  $fa-exclamation-circle)">
+                    <xsl:element name="i">
+                        <xsl:attribute name="class" select="'fa fa-exclamation-circle'"/>
+                        <xsl:attribute name="aria-hidden" select="'true'"/>
                     </xsl:element>
                 </xsl:if>
             </xsl:matching-substring>
