@@ -1180,7 +1180,6 @@ declare
         return
             map {
                 'facsimile' := $facs,
-                'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
                 'localFacsimiles' := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
                 'externalIIIFManifestFacsimiles' := $facs[@sameAs],
                 'hasCreation' := exists($model?doc//tei:creation),
@@ -1311,6 +1310,17 @@ declare
         case element(tei:biblStruct) return bibl:printCitation($model('additionalSource'), <xhtml:span class="biblio-entry"/>, $lang)
         case element(tei:bibl) return <span>{wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}</span>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+};
+
+(:~
+ : Fetch all (external) facsimiles for a text source
+ :)
+declare 
+    %templates:wrap
+    function app:externalImageURLs($node as node(), $model as map(*)) as map(*) {
+        map {
+            'externalImageURLs' := $model?facsimile/tei:graphic[starts-with(@url, 'http')]/data(@url) 
+        }
 };
 
 (:~

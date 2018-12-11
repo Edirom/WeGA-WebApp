@@ -153,6 +153,18 @@
                             <div data-template="app-shared:each" data-template-from="textSources" data-template-to="textSource">
                                 <h4 data-template="lang:translate" class="media-heading">textSource</h4>
                                 <div data-template="app:print-textSource"/>
+                                
+                                <!-- processing (external) facsimile references for every source -->
+                                <div data-template="app:externalImageURLs">
+                                    <div data-template="app-shared:if-exists" data-template-key="externalImageURLs" data-template-wrap="no">
+                                        <h5 data-template="lang:translate" class="media-heading">facsimile</h5>
+                                    </div>
+                                    <ul class="tei_list">
+                                        <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
+                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <!-- Processing tei:additional for every source -->
                                 <div data-template="app:additionalSources">
                                     <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
@@ -165,15 +177,6 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div data-template="app-shared:if-exists" data-template-key="externalImageURLs">
-                            <h3 data-template="lang:translate" class="media-heading">facsimile</h3>
-                            <ul class="tei_list">
-                                <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
-                                    <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
-                                </li>
-                            </ul>
                         </div>
                         
                         <div data-template="app-shared:if-exists" data-template-key="thematicCommentaries">
