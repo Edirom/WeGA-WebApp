@@ -159,7 +159,7 @@
                                     <div data-template="app-shared:if-exists" data-template-key="externalImageURLs" data-template-wrap="no">
                                         <h5 data-template="lang:translate" class="media-heading">facsimile</h5>
                                     </div>
-                                    <ul class="tei_list">
+                                    <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="externalImageURLs">
                                         <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
                                             <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
                                         </li>
@@ -170,7 +170,7 @@
                                     <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
                                         <h5 data-template="lang:translate" class="media-heading">additionalSources</h5>
                                     </div>
-                                    <ul class="tei_list">
+                                    <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
                                         <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
                                             <p data-template="app:print-additionalSource"/>
                                         </li>

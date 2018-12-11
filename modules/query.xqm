@@ -415,14 +415,17 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
         if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
 (:        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
 (:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
-        else $doc//tei:facsimile[@sameAs castable as xs:anyURI] | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+        else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
+            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+            | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
 };
 
 (:~
  : Return the appropriate source element for a given TEI facsimile element
+ : (this is the inverse function of query:witness-facsimile())
  :
  : @param $facsimile the TEI facsimile element
- : @return a TEI element describing the source (e.g. msDesc, or biblStruct) if available, the empty sequence otherwise
+ : @return a TEI 'biblLike' element describing the source (e.g. msDesc, or biblStruct) if available, the empty sequence otherwise
 ~:)
 declare function query:facsimile-witness($facsimile as element(tei:facsimile)) as element()? {
     let $sourceID := substring($facsimile/@source, 2)
@@ -433,6 +436,21 @@ declare function query:facsimile-witness($facsimile as element(tei:facsimile)) a
         if($source[self::tei:witness]) then $source/*
         else $source
 };
+
+(:~
+ : Return the appropriate TEI facsimile element for a given source (aka biblLike) element
+ : (this is the inverse function of query:facsimile-witness())
+ :
+ : @param $source the TEI 'biblLike' element (e.g. msDesc, or biblStruct)
+ : @return a TEI facsimile element if available, the empty sequence otherwise
+~:)
+declare function query:witness-facsimile($source as element()) as element(tei:facsimile)? {
+    let $sourceID := ($source/@xml:id, $source/parent::tei:witness/@xml:id)[1] (: the ID can be given on the 'biblLike' element itself or the parent witness element :) 
+    return 
+        if($sourceID) then $source/following::tei:facsimile[@source = concat('#', $sourceID)]
+        else $source/following::tei:facsimile[not(@source)]
+};
+
 
 (:~
  : Query the related documents (drafts, etc.) for a given document

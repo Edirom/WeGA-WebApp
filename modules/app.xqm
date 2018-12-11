@@ -1319,7 +1319,8 @@ declare
     %templates:wrap
     function app:externalImageURLs($node as node(), $model as map(*)) as map(*) {
         map {
-            'externalImageURLs' := $model?facsimile/tei:graphic[starts-with(@url, 'http')]/data(@url) 
+            (: intersect with $model?facsimile to only get allowed facsimiles :)
+            'externalImageURLs' := (query:witness-facsimile($model?textSource) intersect $model?facsimile)/tei:graphic[starts-with(@url, 'http')]/data(@url) 
         }
 };
 
