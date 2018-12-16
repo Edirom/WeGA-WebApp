@@ -1441,33 +1441,46 @@ declare
     %templates:default("lang", "en")
     function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
         let $doc := $model('doc')
-        let $correspondent-1-key := ($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
+        let $correspondent-1-key := query:get-authorID($doc)       
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
-        let $gnd-uri := 'http://d-nb.info/gnd/'
+        let $correspondent-2-key := $doc//tei:correspAction[range:eq(@type,'received')]//@key[parent::tei:persName or parent::name or parent::tei:orgName]
+        let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
+        let $gnd-uri := config:get-option("dnb") (: 'http://d-nb.info/gnd/' :)        
         (: Element-Parameter :)
-        let $data-correspondent-1-id := concat($gnd-uri,$correspondent-1-gnd)
-        let $data-correspondent-1-name := if ($correspondent-1-key) then query:title($correspondent-1-key) else ""
+        let $data-correspondent-1-id := if ($correspondent-1-gnd) then concat($gnd-uri,$correspondent-1-gnd) else ""
+        let $data-correspondent-1-name :=
+            (:if ($data-correspondent-1-id) then "" else:) 
+            if ($correspondent-1-key) then query:title($correspondent-1-key) else ""
+        let $data-correspondent-2-id := if ($correspondent-2-gnd) then concat($gnd-uri,$correspondent-2-gnd) else ""
+        let $data-correspondent-2-name :=
+            (:if ($data-correspondent-2-id) then "" else :)
+            if ($correspondent-2-key) then query:title($correspondent-2-key) else ""
         let $data-start-date := query:get-normalized-date($doc)        
         return
             element { node-name($node) } {
             attribute id {"csLink"}, (: mandatory :)
-            attribute data-correspondent-1-name {""}, (: later to be replaced by $data-correspondent-1-name :)
-            attribute data-correspondent-1-id {"http://d-nb.info/gnd/118554700"},(: later to be replaced by $data-correspondent-1-id :)
-            attribute data-correspondent-2-name {""},
-            attribute data-correspondent-2-id {"http://d-nb.info/gnd/115674667"},
-            attribute data-start-date {"1839-04-20"}, (: later to be replaced by $data-start-dat e:)
-            attribute data-end-date {""},
-            attribute data-range {"2000"},
+            attribute data-correspondent-1-id {$data-correspondent-1-id},
+            attribute data-correspondent-1-name {$data-correspondent-1-name},            
+            attribute data-correspondent-2-id {$data-correspondent-2-id},
+            attribute data-correspondent-2-name {$data-correspondent-2-name},           
+            attribute data-start-date { $data-start-date},
+            attribute data-end-date {$data-start-date},
+            attribute data-range {"1000"},
             attribute data-selection-when {"before-after"},
             attribute data-selection-span {"median-before-after"},
-            attribute data-result-max {"4"}
-            (: attribute data-exclude-edition {"#WEGA"}, :)                        
+            attribute data-result-max {"4"},
+            attribute data-exclude-edition {"#WEGA"}                    
             
             (: example data
             <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="http://d-nb.info/gnd/118554700" data-correspondent-2-name="" data-correspondent-2-id="http://d-nb.info/gnd/115674667" data-start-date="1839-04-20" 
             data-end-date="" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#AVHR">:)   
+           (: currrent output (A040080)
+           <div id="csLink" data-correspondent-1-id="http://d-nb.info/gnd/118629662" data-correspondent-1-name="Weber, Carl Maria von" data-correspondent-2-id="http://d-nb.info/gnd/1073065634"
+           data-correspondent-2-name="Breitkopf &amp; Härtel" data-start-date="1798-09-03" data-end-date="1798-09-03" data-range="1000" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#WEGA"></div>
+  
   }
-
+  :)
+}
 };
 
 
