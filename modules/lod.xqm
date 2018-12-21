@@ -72,7 +72,7 @@ declare
         let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
         let $schema.org-type := lod:schema.org-type($model)
         let $url := 
-            if(config:get-doctype-by-id($model?docID)) then core:permalink(controller:path-to-resource($model?doc, $lang))
+            if($model?doc) then core:permalink(controller:path-to-resource($model?doc, $lang))
             else $model?DC.identifier
         let $jsonld-common := map {
             '@id': $model?DC.identifier,
