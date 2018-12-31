@@ -1465,21 +1465,11 @@ declare
             attribute data-correspondent-2-name {$data-correspondent-2-name},           
             attribute data-start-date { $data-start-date},
             attribute data-end-date {$data-start-date},
-            attribute data-range {"1000"},
+            attribute data-range {"30"},
             attribute data-selection-when {"before-after"},
             attribute data-selection-span {"median-before-after"},
             attribute data-result-max {"4"},
-            attribute data-exclude-edition {"#WEGA"}                    
-            
-            (: example data
-            <div id="csLink" data-correspondent-1-name="" data-correspondent-1-id="http://d-nb.info/gnd/118554700" data-correspondent-2-name="" data-correspondent-2-id="http://d-nb.info/gnd/115674667" data-start-date="1839-04-20" 
-            data-end-date="" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#AVHR">:)   
-           (: currrent output (A040080)
-           <div id="csLink" data-correspondent-1-id="http://d-nb.info/gnd/118629662" data-correspondent-1-name="Weber, Carl Maria von" data-correspondent-2-id="http://d-nb.info/gnd/1073065634"
-           data-correspondent-2-name="Breitkopf &amp; Härtel" data-start-date="1798-09-03" data-end-date="1798-09-03" data-range="1000" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#WEGA"></div>
-  
-  }
-  :)
+            attribute data-exclude-edition {"#WEGA"}            
 }
 };
 
