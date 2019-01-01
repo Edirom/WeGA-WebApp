@@ -36,7 +36,8 @@ declare
             'DC.subject' := lod:DC.subject($model, $lang),
             'DC.rights' := query:licence($model?doc),
             'google-site-verification' := config:get-option('googleWebsiteMetatag'),
-            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag')
+            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag'),
+            'jsonld-metadata' := lod:jsonld($model, $lang)
         }
 };
 
@@ -65,54 +66,51 @@ declare
 (:~
  : Collect information about a resource for outputting as JSON-LD
  :)
-declare 
-    %templates:wrap
-    %templates:default("lang", "en")
-    function lod:jsonld($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
-        let $schema.org-type := lod:schema.org-type($model)
-        let $url := 
-            if($model?doc) then core:permalink(controller:path-to-resource($model?doc, $lang))
-            else $model?DC.identifier
-        let $jsonld-common := map {
-            '@id': $model?DC.identifier,
-            '@type': $schema.org-type,
-            '@context': 'http://schema.org',
-            'url': $url,
-            'name': $model?meta-page-title
-        }
-        let $publisher := map {
-            'name':'Carl-Maria-von-Weber-Gesamtausgabe',
-            'url':'http://weber-gesamtausgabe.de',
-            '@type':'Organization'
-        }
-        let $funder := map {
-            'name':'Akademie der Wissenschaften und der Literatur, Mainz',
-            'url':'http://adwmainz.de',
-            '@type':'Organization'
-        }
-        let $author := function($elem as element()) {
-            map:merge((
-                map {
-                    'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
-                    '@type': if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization' else 'Person'
-                },
-                if($elem/@key) then map {
-                    '@id': core:permalink($elem/@key),
-                    'url': core:permalink($lang || '/' || $elem/@key)
-                }
-                else ()
-            ))
-        }
-        return
-            if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
-                $jsonld-common,
-                map {'funder': $funder},
-                map {'publisher': $publisher},
-                map {'license': $model?DC.rights},
-                map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! $author(.) }}
-            )) 
-            else $jsonld-common
+declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
+    let $schema.org-type := lod:schema.org-type($model)
+    let $identifier := lod:DC.identifier($model)
+    let $url := 
+        if(config:get-doctype-by-id($model?docID)) then core:permalink(controller:path-to-resource($model?doc, $lang))
+        else $identifier
+    let $jsonld-common := map {
+        '@id': $identifier,
+        '@type': $schema.org-type,
+        '@context': 'http://schema.org',
+        'url': $url,
+        'name': lod:page-title($model, $lang)
+    }
+    let $publisher := map {
+        'name':'Carl-Maria-von-Weber-Gesamtausgabe',
+        'url':'http://weber-gesamtausgabe.de',
+        '@type':'Organization'
+    }
+    let $funder := map {
+        'name':'Akademie der Wissenschaften und der Literatur, Mainz',
+        'url':'http://adwmainz.de',
+        '@type':'Organization'
+    }
+    let $author := function($elem as element()) {
+        map:merge((
+            map {
+                'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
+                '@type': if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization' else 'Person'
+            },
+            if($elem/@key) then map {
+                '@id': core:permalink($elem/@key),
+                'url': core:permalink($lang || '/' || $elem/@key)
+            }
+            else ()
+        ))
+    }
+    return
+        if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
+            $jsonld-common,
+            map {'funder': $funder},
+            map {'publisher': $publisher},
+            map {'license': query:licence($model?doc)},
+            map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! $author(.) }}
+        )) 
+        else $jsonld-common
 };
 
 (:~

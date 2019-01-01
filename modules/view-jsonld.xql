@@ -24,9 +24,8 @@ let $docID := request:get-attribute('docID')
 let $doc := core:doc($docID)
 let $docType := config:get-doctype-by-id($docID)
 let $model := map {'docID': $docID, 'doc': $doc, 'docType': $docType}
-let $metadata := lod:metadata(<head/>, $model, 'en')
 let $jsonld := 
-    if($doc) then lod:jsonld(<head/>, map:merge(($model, $metadata)), 'en')
+    if($doc) then lod:jsonld($model, 'en')
     else ()
 let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
 return
