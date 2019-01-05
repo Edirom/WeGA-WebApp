@@ -6,7 +6,11 @@
     
    table {
         font-size:unset;    
-   }   
+   }
+   
+   table.b-table > thead > tr > th.sorting {
+        padding-right: 2em;
+   }
    
    .fade.show {
         opacity:1;   
@@ -14,7 +18,7 @@
    
    .popover-body {
         max-height:400px;
-        overflow-y:scroll;    
+        overflow-y:auto;    
         padding:4px;
     }       
     
@@ -23,7 +27,7 @@
     }    
     
     .nav {
-        margin-top:4px;
+        margin:4px 0 4px 0;
     }
     
     .nav-tabs li {
@@ -33,6 +37,14 @@
     .nav-item .nav-link.active {
         background:@brand-primary;
         color:white;
+    }   
+    
+    .tab-content {
+        font-size:smaller;
+    }
+    
+    hr {
+        margin: 4px 0 4px 0;
     }
     
     .arrow {
@@ -42,5 +54,6 @@
     .arrow::after {
         border-width: 0 .5rem .5rem;
         border-bottom-color: #fff;
-    }
+    }   
+
 }
