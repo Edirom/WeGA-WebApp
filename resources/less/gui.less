@@ -465,10 +465,15 @@ div.table-wrapper {
     }
 }
 
-/* overwrite the default to force no line break on Safari */
-.prettyprint {
-    word-wrap:normal;
-};
+/*
+ * styling of code sections on XMLPreview tabs
+ */
+#XMLPreview {
+    .prettyprint {
+        word-wrap:normal; /* overwrite the default to force no line break on Safari */
+        font-size: ceil((@font-size-base * 0.9));
+    }
+}
 
 /* the class that toggles the line wrap */
 .line-wrap {

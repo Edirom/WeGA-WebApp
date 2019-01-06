@@ -83,7 +83,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  : Resolving von allen Dokument-IDs, die als resource angesprochen werden,
  : d.h. letzer Teil des URL-Pfades sind.
  :)    
-else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,4})?$')) then 
+else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,6})?$')) then 
     controller:dispatch($exist-vars)
     
 (:

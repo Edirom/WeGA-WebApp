@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" data-template="app-shared:set-attr" data-template-key="lang" data-template-attr="lang">
-    <head data-template="html-meta:metadata" prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
+    <head data-template="lod:metadata" prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
         <meta charset="UTF-8"/>
         <!--<meta http-equiv="CONTENT-LANGUAGE" content="de"/>-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,7 +9,7 @@
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe"/>
         <meta property="dc:type" content="Text"/>
         <meta property="dc:format" content="text/html"/>
-        <meta property="dc:contributor" data-template="html-meta:each-meta" data-template-key="DC.contributor"/>
+        <meta property="dc:contributor" data-template="lod:each-meta" data-template-key="DC.contributor"/>
         <meta property="dc:creator" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.creator"/>
         <meta property="dc:date" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.date"/>
         <meta property="dc:identifier" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="DC.identifier"/>
@@ -22,7 +22,7 @@
         <meta name="msvalidate.01" data-template="app-shared:set-attr" data-template-attr="content" data-template-key="ms-site-verification"/>
         <meta name="robots" content="noimageindex"/>
         
-        <link rel="alternate" data-template="html-meta:hreflang"/>
+        <link rel="alternate" data-template="lod:hreflang"/>
         <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png"/>
         <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png"/>
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32"/>
@@ -44,8 +44,9 @@
         <link rel="stylesheet" type="text/css" href="$resources/lib/ion-rangeslider/css/ion.rangeSlider.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/ion-rangeslider/css/ion.rangeSlider.skinNice.css"/>
         <link rel="stylesheet" type="text/css" href="$resources/lib/ion-rangeslider/css/normalize.css"/>
-        <link rel="stylesheet" type="text/css" href="$resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css"/>          
-                
+        <link rel="stylesheet" type="text/css" href="$resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css"/>
+        
+        <script type="application/ld+json" data-template="app-shared:output" data-template-key="jsonld-metadata" data-template-wrap="yes"/>
 
 
     </head>

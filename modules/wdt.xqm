@@ -135,6 +135,7 @@ declare function wdt:persons($item as item()*) as map(*) {
 };
 
 declare function wdt:letters($item as item()*) as map(*) {
+    let $text-types := ('albumblatt', 'letter', 'guestbookEntry', 'dedication', 'eingabe', 'vortrag', 'weisung')
     let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
@@ -177,7 +178,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
+            $item/root()/descendant::tei:text[@type = $text-types]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:$item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
@@ -194,7 +195,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
+            core:data-collection('letters')/descendant::tei:text[@type = $text-types]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -830,8 +831,9 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
 };
 
 declare function wdt:documents($item as item()*) as map(*) {
+    let $text-types := ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document', 'legal_document', 'theater_document')
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs/root()/descendant::tei:text[@type = ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+        $docs/root()/descendant::tei:text[@type = $text-types]/root()
     }
     return
     map {
@@ -856,7 +858,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             for $i in $filter($item) order by sort:index('documents', $i)  ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('documents')/descendant::tei:text[@type=('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+            core:data-collection('documents')/descendant::tei:text[@type=$text-types]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) {
