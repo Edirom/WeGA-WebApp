@@ -70,7 +70,7 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
     let $schema.org-type := lod:schema.org-type($model)
     let $identifier := lod:DC.identifier($model)
     let $url := 
-        if(config:get-doctype-by-id($model?docID)) then core:permalink(controller:path-to-resource($model?doc, $lang))
+        if($model?doc) then core:permalink(controller:path-to-resource($model?doc, $lang))
         else $identifier
     let $jsonld-common := map {
         '@id': $identifier,
