@@ -296,7 +296,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[(parent::tei:imprint and not(ancestor::tei:additional)) or parent::tei:creation]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('writings')) then ()
