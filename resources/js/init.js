@@ -80,8 +80,12 @@ $.fn.rangeSlider = function ()
         grid_num: 3,
         keyboard: true,
         prettify: function (num) {
-            var m = moment(num).locale("de");
-            return m.format("D. MMM YYYY");
+            var lang = getLanguage(),
+                m = moment(num).locale(lang),
+                format;
+            if(lang === 'de') { format = "D. MMM YYYY"}
+            else { format = "MMM D, YYYY" }
+            return m.format(format);
         },
         onFinish: function (data) {
             /* Get active facets to append as URL params */
