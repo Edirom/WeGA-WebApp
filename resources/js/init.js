@@ -73,6 +73,7 @@ $.fn.rangeSlider = function ()
         from: +moment($(this).attr('data-from-slider')),
         to: +moment($(this).attr('data-to-slider')),
         grid: true,
+        skin: "flat",
         step: 100,
         type: "double",
         //force_edges: true,
