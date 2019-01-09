@@ -667,7 +667,7 @@ declare
     %templates:default("lang", "en")
     function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'title' := wdt:news($model?newsItem)?title('html') ,
+            'title' := wdt:news($model?newsItem)?title('html'),
             'date' := date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
             'url' := app:createUrlForDoc($model?newsItem, $lang)
         }
@@ -1585,7 +1585,8 @@ declare
             'docType' := config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' := query:relators($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
-            'workType' := $model('result-page-entry')//mei:term/data(@classcode)
+            'workType' := $model('result-page-entry')//mei:term/data(@classcode),
+            'newsDate' := date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
         }
 };
 
