@@ -16,6 +16,23 @@
         </get>
     </target>
     
+    <target name="reset-all-expected-results">
+        <parallel threadCount="5">
+            <antcall target="reset-expected-results"><param name="docType" value="addenda"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="news"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="works"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="letters"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="persons"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="orgs"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="diaries"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="documents"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="thematicCommentaries"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="var"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="writings"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="places"/></antcall>
+        </parallel>
+    </target>
+    
     <target name="create-result-URLs" depends="init">
         <copy file="testing/urls/${docType}.txt" tofile="${tmp.dir}/${docType}.txt" overwrite="true"/>
         <!--<replace file="${tmp.dir}/letters.txt" token="http://www.weber-gesamtausgabe.de" value="http://localhost:8080/exist/apps/WeGA-WebApp"/>-->
