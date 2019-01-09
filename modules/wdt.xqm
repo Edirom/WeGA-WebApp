@@ -953,7 +953,7 @@ declare function wdt:addenda($item as item()*) as map(*) {
                     }</xhtml:span>
                 default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'memberOf' := ('unary-docTypes'),
+        'memberOf' := ('unary-docTypes', 'sitemap'),
         'search' := function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
             $item[tei:TEI]//tei:title[ft:query(., $query)]
