@@ -1,7 +1,12 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
     <div class="preview-icon">
         <a class="pull-left" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="docURL">
-            <img src="$resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon"/>
+            <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="addenda" data-template-wrap="no">
+                <img src="$resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon"/>
+            </span>
+            <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="addenda" data-template-wrap="no">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </span>
         </a>
     </div>
     <div class="media-body" data-template="app:preview-details">
