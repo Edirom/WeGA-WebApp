@@ -34,18 +34,20 @@
     
     <target name="test">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
-        <regressiontest doctype="addenda"/>
-        <regressiontest doctype="news"/>
-        <regressiontest doctype="works"/>
-        <regressiontest doctype="letters"/>
-        <regressiontest doctype="persons"/>
-        <regressiontest doctype="orgs"/>
-        <regressiontest doctype="diaries"/>
-        <regressiontest doctype="documents"/>
-        <regressiontest doctype="thematicCommentaries"/>
-        <regressiontest doctype="var"/>
-        <regressiontest doctype="writings"/>
-        <regressiontest doctype="places"/>
+        <parallel threadCount="5" failonany="yes">
+            <regressiontest doctype="addenda"/>
+            <regressiontest doctype="news"/>
+            <regressiontest doctype="works"/>
+            <regressiontest doctype="letters"/>
+            <regressiontest doctype="persons"/>
+            <regressiontest doctype="orgs"/>
+            <regressiontest doctype="diaries"/>
+            <regressiontest doctype="documents"/>
+            <regressiontest doctype="thematicCommentaries"/>
+            <regressiontest doctype="var"/>
+            <regressiontest doctype="writings"/>
+            <regressiontest doctype="places"/>
+        </parallel>
     </target>
     
     <target name="download-smufl-font" depends="yarn" if="${update.smufl-font}">
