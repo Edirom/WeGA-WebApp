@@ -147,13 +147,16 @@
                     <h2>
                         <a href="$link/project/news" data-template="lang:translate">newsAboutTheProject</a>
                     </h2>
-                    <div data-template="app-shared:each" data-template-from="news" data-template-to="doc" class="noMargin">
-                        <p data-template="app:index-news-date">06.09.2013</p>
-                        <p>
-                            <a href="singleAktuelles.php.html" data-template="app:preview-icon"><span data-template="app:document-title">Digitale Edition Version 1.1.8
-                                veröffentlicht</span> <i class="fa fa-arrow-right"/>
-                            </a>
-                        </p>
+                    <div data-template="app-shared:each" data-template-from="news" data-template-to="newsItem" class="noMargin">
+                        <div data-template="app:index-news-item">
+                            <p data-template="app-shared:print" data-template-key="date">13. September 2018</p>
+                            <p>
+                                <a href="singleAktuelles.php.html" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="url">
+                                    <span data-template="app-shared:output" data-template-key="title">Digitale Edition Version 1.1.8
+                                    veröffentlicht</span> <i class="fa fa-arrow-right"/>
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

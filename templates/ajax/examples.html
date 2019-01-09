@@ -9,13 +9,13 @@
 			<li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
 				<div data-template="gl:preview">
 					<div class="portrait preview-icon" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons">
-						<a class="pull-left" data-template="app:preview-icon">
+						<a class="pull-left" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="docURL">
 							<!-- Image will load via AJAX -->
 							<i class="fa fa-spinner fa-spin fa-2x"/>
 						</a>
 					</div>
 					<div class="preview-icon" data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="persons">
-						<a class="pull-left" data-template="app:preview-icon">
+						<a class="pull-left" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="docURL">
 							<img src="$resources/img/icons/icon_letters.png" data-template="app-shared:set-attr" data-template-attr="src" data-template-key="icon-src" class="img-responsive" alt="preview-icon"/>
 						</a>
 					</div>

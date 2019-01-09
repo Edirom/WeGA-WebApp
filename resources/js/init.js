@@ -121,7 +121,7 @@ $.fn.obfuscateEMail = function () {
 $.fn.loadPortrait = function () {
     $(this).each( function(a, b) {
         var url = $(b).children('a').attr('href').replace('.html', '/portrait.html');
-        $(b).load(url + " a");
+        $(b).children('a').load(url + " img");
     })
 };
 

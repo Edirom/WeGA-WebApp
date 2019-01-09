@@ -19,6 +19,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
@@ -327,7 +328,8 @@ declare function gl:print-divGen-item($node as node(), $model as map(*)) {
 
 declare 
 	%templates:wrap
-	function gl:preview($node as node(), $model as map(*)) as map() {
+	%templates:default("lang", "en")
+	function gl:preview($node as node(), $model as map(*), $lang as xs:string) as map() {
 		let $codeSample := api:codeSample($model('result-page-entry'), $model)
 		let $doc := core:doc($codeSample?docID)
 		let $docType := config:get-doctype-by-id($codeSample?docID)
@@ -335,6 +337,7 @@ declare
 			map {
 	            'doc' := $doc,
 	            'docID' := $codeSample?docID,
+	            'docURL' := app:createUrlForDoc($doc, $lang),
 	            'relators' := $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
 	            'biblioType' := $doc/tei:biblStruct/data(@type),
 	            'workType' := $doc//mei:term/data(@classcode),

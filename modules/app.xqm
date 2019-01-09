@@ -663,12 +663,22 @@ declare
         }
 };
 
-declare
+declare 
+    %templates:default("lang", "en")
+    function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        map {
+            'title' := wdt:news($model?newsItem)?title('html') ,
+            'date' := date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
+            'url' := app:createUrlForDoc($model?newsItem, $lang)
+        }
+};
+
+(:declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
         date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-};
+};:)
 
 declare 
     %templates:default("lang", "en")
@@ -1560,33 +1570,18 @@ declare
                 }
 };
 
-(:declare 
-    %templates:wrap
-    function app:search-results-count($node as node(), $model as map(*)) as xs:string {
-        count($model('search-results')) || ' Suchergebnisse'
-};
-:)
-
-declare 
-    %templates:default("lang", "en")
-    function app:preview-icon($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        element {name($node)} {
-            $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('doc'), $lang)},
-            templates:process($node/node(), $model)
-    }
-};
-
 (:~
  : Overwrites the current model with 'doc' and 'docID' of the preview document
  :
  :)
 declare
     %templates:wrap
-    function app:preview($node as node(), $model as map(*)) as map(*) {
+    %templates:default("lang", "en")
+    function app:preview($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+            'docURL' := app:createUrlForDoc($model('result-page-entry'), $lang),
             'docType' := config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' := query:relators($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
