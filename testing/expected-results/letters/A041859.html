@@ -283,38 +283,41 @@
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000675/Korrespondenz/A041859.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000675/Korrespondenz/A041859.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000675/Korrespondenz/A041859.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000675/Korrespondenz/A041859.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000675/Korrespondenz/A041859.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -586,7 +589,7 @@
         </div>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>

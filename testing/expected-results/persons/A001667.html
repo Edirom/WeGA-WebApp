@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -46,6 +47,9 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.skinNice.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Friedrich Wilhelm Joseph Schelling – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001667","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001667"}</script>
+
 
     </head>
     <body>
@@ -188,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A001667.html" hreflang="en" lang="en">En</a></li>
@@ -227,38 +233,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001667.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -533,33 +542,31 @@
                                                             <li><a title="Personenregister für die Gesamtausgabe der Briefe Friedrich Fröbels http://bbf.dipf.de/digitale-bbf/editionen/froebel/personen (PND Zuordnung: 395)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/froebel.php?pnd=118607057">Fröbel-Briefe nach Personen</a></li>
                                                             <li><a title="Getty Union List of Artist Names (mapping provided by VIAF) [500033737]" href="http://vocab.getty.edu/ulan/500033737">Getty Union List of Artist Names [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to Great Russian Encyclopedia Online ID IDs [Q60070]" href="https://bigenc.ru/text/4693670">Great Russian Encyclopedia Online ID</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118607057">HBZ-Verbundkatalog (1361)</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)118607057">HBZ-Verbundkatalog</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/118607057">HeBIS-Verbundzentrale (936)</a></li>
                                                             <li><a title="Personendatensätze der digitalen Edition &#34;Briefe und Texte aus dem intellektuellen Berlin um 1800&#34;" href="http://www.berliner-intellektuelle.eu/pnd.pl?id=118607057">Humboldt-Universität zu Berlin, Institut für deutsche Literatur, Nachwuchsgruppe Berliner Intellektuelle 1800-1830</a></li>
                                                             <li><a title="ICCU / OPAC SBN - Istituto Centrale per il Catalogo Unico / Catalogo del Servizio Bibliotecario Nazionale (mapping provided by VIAF) [CFIV\048583]" href="http://www.sbn.it/opacsbn/opaclib?db=solr_iccu&amp;resultForward=opac/iccu/brief.jsp&amp;from=1&amp;nentries=10&amp;searchForm=opac/iccu/error.jsp&amp;do_cmd=search_show_cmd&amp;item:5032:BID=IT%5CICCU%5CCFIV%5C048583">ICCU [by http://viaf.org/viaf/88933257]</a></li>
-                                                            <li><a title="Die Datenbank &#34;Index Theologicus&#34; (IxTheo: https://ixtheo.de) ist eine internationale, open access Bibliographie für Theologie und Religionswissenschaft. Ausgewertet werden Monographien (Bücher) und Aufsätze aus mehr als 600 theologischen und religionswissenschaftlichen Zeitschriften sowie Aufsätze aus Sammelschriften (z.B. Festschriften und Kongressveröffentlichungen). Nachgewiesen werden auch einschlägige Datenbanken und Internetlinks. Statistik: mehr als 105.000 Personen-GND, ca. 1,7 Mio Titel (Stand Mai 2017)." href="https://ixtheo.de/Search/Results?lookfor=118607057">INDEX THEOLOGICUS: Publikationen im IxTheo (584)</a></li>
+                                                            <li><a title="Die Datenbank &#34;Index Theologicus&#34; (IxTheo: https://ixtheo.de) ist eine internationale, open access Bibliographie für Theologie und Religionswissenschaft. Ausgewertet werden Monographien (Bücher) und Aufsätze aus mehr als 600 theologischen und religionswissenschaftlichen Zeitschriften sowie Aufsätze aus Sammelschriften (z.B. Festschriften und Kongressveröffentlichungen). Nachgewiesen werden auch einschlägige Datenbanken und Internetlinks. Statistik: mehr als 105.000 Personen-GND, ca. 1,7 Mio Titel (Stand Mai 2017)." href="https://ixtheo.de/Search/Results?lookfor=118607057">INDEX THEOLOGICUS: Publikationen im IxTheo (586)</a></li>
                                                             <li><a title="Münzkabinett, Staatliche Museen zu Berlin - Stiftung Preußischer Kulturbesitz" href="http://ikmk.smb.museum/extended_search?search-extended=search-extended&amp;filter%5B0%5D%5Bfield%5D=gnd&amp;filter%5B0%5D%5Bvalue%5D=118607057">Interaktiver Katalog des Münzkabinetts</a></li>
                                                             <li><a title="Bio-bibliographische Informationen zu ca. 16.350 Personen (GND Zuordnung: 12056)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/isiscb.php?pnd=118607057">ISISCB</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000122827680]" href="http://isni.org/isni/0000000122827680">ISNI [by http://viaf.org/viaf/88933257]</a></li>
-                                                            <li><a title="Mapping GND zum Istituto Centrale per il Catalogo Unico (ICCU, SBN). Source: Wikidata property P396 &lt; https://www.wikidata.org/wiki/property:P396 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_iccu/118607057">Istituto Centrale per il Catalogo Unico (ICCU) (2)</a></li>
                                                             <li><a title="Berlin-Brandenburgische Akademie der Wissenschaften / Jahresberichte für deutsche Geschichte [6 von, 604 über Schelling, Friedrich Wilhelm Joseph von (1775-1854)]" href="http://jdgdb.bbaw.de/cgi-bin/jdg?t_idn_erg=x&amp;idn=GND:118607057">Jahresberichte für deutsche Geschichte - Online [6 von, 604 über Schelling, Friedrich Wilhelm Joseph von (1775-1854)]</a></li>
                                                             <li><a title="Staatsbibliothek zu Berlin - Preußischer Kulturbesitz" href="http://kalliope.staatsbibliothek-berlin.de/de/eac?eac.id=118607057">Kalliope-Verbund für Nachlässe, Autographen und Verlagsarchive</a></li>
                                                             <li><a title="Alfred Escher-Stiftung" href="https://www.briefedition.alfred-escher.ch/gnd/118607057">Korrespondenten und erwaehnte Personen in den Briefen von und an Alfred Escher</a></li>
                                                             <li><a title="Badische Landesbibliothek; Württembergische Landesbibliothek" href="http://www.statistik-bw.de/LABI/PDB.asp?ID=118607057">Landesbibliographie Baden-Württemberg</a></li>
                                                             <li><a title="In LEO-BW enthaltene Personendatenbank der Landesbibliographie Baden-Württemberg" href="http://www.leo-bw.de/web/guest/detail/-/Detail/details/PERSON/wlbblb_personen/118607057/person">LEO-BW - Landeskundliches Informationssystem Baden-Württemberg</a></li>
                                                             <li><a title="Mapping from GND ID IDs to LibriVox author ID IDs [Q60070]" href="https://librivox.org/author/3027">LibriVox author ID</a></li>
-                                                            <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A118607057">Literatur im Katalog der Universitätsbibliothek Heidelberg (265)</a></li>
+                                                            <li><a title="University library of Heidelberg" href="http://katalog.ub.uni-heidelberg.de/cgi-bin/search.cgi?sort=1&amp;query=au%3A118607057">Literatur im Katalog der Universitätsbibliothek Heidelberg (267)</a></li>
                                                             <li><a title="Latvijas Nacionālā Bibliotēka (mapping provided by VIAF) [000028853]" href="https://lira.lanet.lv/F?func=direct&amp;local_base=lnc10&amp;doc_number=000028853">LNB [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n79003281]" href="http://lccn.loc.gov/n79003281">LoC [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Aus en:Wikipedia und de:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_mgp/118607057">Mathematics Genealogy Project</a></li>
                                                             <li><a title="halbautomatische PND Zuordnung 2660 Eintraege" href="http://www.historische-kommission-muenchen-editionen.de/beacond/bbaw.php?pnd=118607057">Mitglieder der Vorgaengerakademien der Berlin-Brandenburgischen Akademie der Wissenschaften</a></li>
                                                             <li><a title="Nachweise von Onlinetexten bei Liberley (teilweise veraltet) [Schelling, Friedrich Wilhelm Joseph]" href="http://www.liberley.it/s/schelling_fwj.htm">Nachweise von Onlinetexten bei Liberley [Schelling, Friedrich Wilhelm Joseph]</a></li>
                                                             <li><a title="Die Handschriftensammlung der SLUB Dresden bewahrt rund 400.000 Autographen und 500 schriftliche Nachlässe und Sammlungen von Künstlern, Literaten, Musikern und Wissenschaftlern, überwiegend mit Bezug zum mitteldeutschen Raum." href="http://hansopac.slub-dresden.de/cgi-bin/slub.pl?t%5ftunnel=idn&amp;present=auto&amp;idn=PND:118607057">Nachweis von Autographen in der SLUB Dresden</a></li>
-                                                            <li><a title="Mapping GND zur National Library of Australia (NLA). Source: Wikidata property P409 &lt; https://www.wikidata.org/wiki/property:P409 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_nla/118607057">National Library of Australia (NLA) (2)</a></li>
                                                             <li><a title="National Diet Library (Japan) (mapping provided by VIAF) [00455510]" href="http://id.ndl.go.jp/auth/ndlna/00455510">NDL [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [jn19990007561]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=jn19990007561">NKC [by http://viaf.org/viaf/88933257]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to NNDB people ID IDs [Q60070]" href="http://www.nndb.com/people/321/000094039">NNDB people ID</a></li>
-                                                            <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=118607057">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg (15)</a></li>
+                                                            <li><a title="Landesarchiv Baden-W�rttemberg" href="http://www.landesarchiv-bw.de/plink/?gnd=118607057">Online-Findmittelsystem, Landesarchiv Baden-W�rttemberg (16)</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [33855]" href="https://openlibrary.org/authors/OL33855A">Open Library - Autorenseite [Friedrich Wilhelm Joseph von Schelling (1775-1854)]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to openMLOL author ID IDs [Q60070]" href="https://openmlol.it/autore/180882">openMLOL author ID</a></li>
                                                             <li><a title="Zuordnung 642" href="http://www.historische-kommission-muenchen-editionen.de/beacond/plm.php?pnd=118607057">Orden Pour le Merite</a></li>
@@ -571,7 +578,6 @@
                                                             <li><a title="Porträtsammlung der Stadtbibliothek München" href="http://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/118607057">Porträtsammlung des Münchner Stadtmuseums</a></li>
                                                             <li><a title="Porträts der Mitglieder der BAdW (PND Zuordnung: 245)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/badw_port.php?pnd=118607057">Porträts der Mitglieder der BAdW</a></li>
                                                             <li><a title="http://www.datenmatrix.de/projekte/hdbg/biographien/ -inaktiv seit 2015 (PND Zuordnung: 449)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/hdbg_bio-portraits.php?pnd=118607057">Porträts in den Bayerischen Biographien</a></li>
-                                                            <li><a title="Mapping GND zu CONOR.SI. Source: Wikidata property P1280 &lt; https://www.wikidata.org/wiki/property:P1280 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_conor/118607057">Slovenian authority file (CONOR.SI) (2)</a></li>
                                                             <li><a title="Mapping from GND ID IDs to SNAC Ark ID IDs [Q60070]" href="http://snaccooperative.org/ark:/99166/w66t1vd2">SNAC Ark ID</a></li>
                                                             <li><a title="Personenregister für die Gesamtausgabe der Briefe Eduard Spranger - K�the Hadlich http://bbf.dipf.de/digitale-bbf/editionen/sprangerhadlich/personen (PND Zuordnung: 2238)" href="http://www.historische-kommission-muenchen-editionen.de/beacond/sprangerhadlich.php?pnd=118607057">Spranger-Hadlich-Briefwechsel nach Personen</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [027342573]" href="http://www.idref.fr/027342573">SUDOC [by http://viaf.org/viaf/88933257]</a></li>
@@ -718,7 +724,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -738,15 +745,20 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
@@ -761,6 +773,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
