@@ -14,6 +14,7 @@ declare namespace math="http://www.w3.org/2005/xpath-functions/math";
 declare namespace owl="http://www.w3.org/2002/07/owl#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
+declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace schema="http://schema.org/";
 
 import module namespace functx="http://www.functx.com";
@@ -70,6 +71,20 @@ declare function wega-util:grabExternalResource($resource as xs:string, $gnd as 
         else ()
 };
 
+(:~
+ : Query the Wikidata API for images and mappings for a given authority ID (e.g. Geonames, GND)
+ : 
+ : @param $id some external authority ID (e.g. Geonames, GND)
+ : @param $authority-provider the respective authority-provider string (e.g. 'geonames', or 'gnd')
+ : @return a httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ :      see http://expath.org/modules/http-client/
+ :)
+declare function wega-util:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(httpclient:response)? {
+    let $uri := wega-util:wikidata-url($id, $authority-provider)
+    let $fileName := util:hash($uri, 'md5') || '.xml'
+    return
+        wega-util:cached-external-request($uri, str:join-path-elements(($config:tmp-collection-path, 'wikidata', $fileName)))
+};
 
 (:~
  : Helper function for wega:grabExternalResource()
@@ -478,24 +493,16 @@ declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
 };
 
 (:~
- :  Map geonames ID to gnd ID by calling an external service.
- :  Currently, we are using the rdf serialization from geonames.org.
+ : Translate any authority ID via wikidata (which serves as a central hub)
+ :
+ : @param $idno a `<tei:idno>`-element, e.g. `<idno type='geonames'>2759794</idno>`
+ : @param $to the desired authority-provider, e.g. 'gnd'
+ : @return the translated authority ID 
 ~:)
-declare function wega-util:geonames2gnd($geonames-id as xs:string) as xs:string* {
-    let $dbpedia-rdf := wega-util:dbpedia-from-geonames($geonames-id)
+declare function wega-util:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
+    let $wikidata := wega-util:grab-external-resource-wikidata(string($idno), $idno/@type)
     return
-        (: there might be multiple sameAs relations to the GND, see e.g. Altona A130064 :)
-        if($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]) then ($dbpedia-rdf//owl:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')])[1]/substring-after(., 'http://d-nb.info/gnd/')
-        else ()
-};
-
-(:~
- :  Grab dbpedia rdf for a place by geonames ID
-~:)
-declare function wega-util:dbpedia-from-geonames($geonames-id as xs:string) as element(httpclient:response)* {
-    let $seeAlso := wega-util:grabExternalResource('geonames', $geonames-id, '', ())//rdfs:seeAlso[@rdf:resource]
-    return
-        $seeAlso ! wega-util:resolve-rdf-resource(.)
+        $wikidata//sr:binding[@name=$to] ! str:normalize-space(.) 
 };
 
 (:~
@@ -538,20 +545,46 @@ declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as x
  :      see http://expath.org/modules/http-client/
 ~:)
 declare function wega-util:resolve-rdf-resource($elem as element()) as element(httpclient:response)? {
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-    let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-        }
     let $uri := 
         if(starts-with($elem/@rdf:resource, 'http://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
         else if(starts-with($elem/@rdf:resource, 'http://dbpedia.org/resource/')) then (replace($elem/@rdf:resource, 'resource', 'data') || '.rdf')
         else ()
     let $filename := util:hash($uri, 'md5') || '.xml'
-    let $response := 
-        if($uri castable as xs:anyURI) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'rdf', $filename)), wega-util:http-get#1, xs:anyURI($uri), $lease, $onFailureFunc)
+    return
+        if($uri castable as xs:anyURI) 
+        then wega-util:cached-external-request($uri, str:join-path-elements(($config:tmp-collection-path, 'rdf', $filename)))
         else ()
-    return 
-        $response//httpclient:response[@statusCode = '200']
+};
+
+(:~
+ : Make a (locally) cached request to an external URI
+ : This is the 2-arity version, using defaults for $lease and $onFailureFunc
+ :
+ : @param $uri the external URI to fetch
+ : @param $localFilepath the filepath to store the cached document
+ : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ :)
+declare function wega-util:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string) as element(httpclient:response)? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    return
+        wega-util:cached-external-request($uri, $localFilepath, $lease, $onFailureFunc)
+};
+
+(:~
+ : Make a (locally) cached request to an external URI
+ : This is the full fledged 4-arity version
+ :
+ : @param $uri the external URI to fetch
+ : @param $localFilepath the filepath to store the cached document
+ : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
+ : @param $onFailureFunc an on-error function that's passed on to the underlying cache:doc() function 
+ : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ :)
+declare function wega-util:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(httpclient:response)? {
+    cache:doc($localFilepath, wega-util:http-get#1, $uri, $lease, $onFailureFunc)//httpclient:response[@statusCode = '200']
 };
 
 (:~ 
@@ -581,15 +614,34 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
         else query:title(config:get-option('anonymusID'))
 };
 
-declare function wega-util:grab-external-xml-document($uri as xs:anyURI) as element(httpclient:response)? {
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-    let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-        }
-    let $filename := util:hash($uri, 'md5') || '.xml'
-    let $response := 
-        if($uri castable as xs:anyURI) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'xml-cache', $filename)), wega-util:http-get#1, $uri, $lease, $onFailureFunc)
-        else ()
-    return 
-        $response//httpclient:response[@statusCode = '200']
+(:~
+ : construct wikidata query URL
+ : (Helper function for wega-util:grabExternalResource())
+~:)
+declare %private function wega-util:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI*  {
+    (:  
+    see https://query.wikidata.org/ 
+    and https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/Wikidata_Query_Help 
+    :)
+    let $properties := map {
+        'geonames': 'wdt:P1566',
+        'gnd': 'wdt:P227',
+        'viaf': 'wdt:P214'
+    }
+    let $propFrom := $properties($authority-provider)
+    let $sparql-query := encode-for-uri(
+        'SELECT ?item ?viaf ?gnd ?geonames ?wappenbild ?flaggenbild ?image ?articleDE ?articleEN WHERE '
+        || '{ ?item ' || $propFrom ||' "' || str:normalize-space($id) || '". '
+        || 'OPTIONAL { ?item ' || $properties?geonames || ' ?geonames. } '
+        || 'OPTIONAL { ?item ' || $properties?gnd || ' ?gnd. } '
+        || 'OPTIONAL { ?item ' || $properties?viaf || ' ?viaf. } '
+        || 'OPTIONAL { ?item ' || 'wdt:P94' || ' ?wappenbild. } '
+        || 'OPTIONAL { ?item ' || 'wdt:P41' || ' ?flaggenbild. } '
+        || 'OPTIONAL { ?item ' || 'wdt:P18' || ' ?image. } '
+        || 'OPTIONAL { ?articleDE schema:about ?item ; schema:isPartOf <https://de.wikipedia.org/> ;  schema:name ?page_titleDE . } '
+        || 'OPTIONAL { ?articleEN schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> ;  schema:name ?page_titleEN . } '
+        || '}')
+    let $sparql-endpoint := "https://query.wikidata.org/sparql?format=xml&amp;query="
+    return
+        xs:anyURI($sparql-endpoint || $sparql-query) 
 };

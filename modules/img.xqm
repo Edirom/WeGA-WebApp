@@ -18,6 +18,7 @@ declare namespace dbp="http://dbpedia.org/property/";
 declare namespace dbo="http://dbpedia.org/ontology/";
 declare namespace foaf="http://xmlns.com/foaf/0.1/";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
+declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -98,16 +99,16 @@ declare %private function img:iconography4persons($node as node(), $model as map
  :
 ~:)
 declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-    let $dbpedia-images := img:dbpedia-images($model, $lang)
+    let $wikidata-images := img:wikidata-images($model, $lang)
     let $coa := 
-        for $map in $dbpedia-images 
+        for $map in $wikidata-images 
         return 
             if($map?coa) then $map 
             else ()
     return
         map { 
-                'iconographyImages' := $dbpedia-images,
-                'portrait' := ($coa, $dbpedia-images, img:get-generic-portrait($model, $lang))[1]
+                'iconographyImages' := $wikidata-images,
+                'portrait' := ($coa, $wikidata-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -126,15 +127,11 @@ declare %private function img:iconography4orgs($node as node(), $model as map(*)
  :
 ~:)
 declare %private function img:iconography4works($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-    let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
-        if(exists($model('beaconMap'))) then $model('beaconMap')
-        else try { wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID'))) } catch * { map:new() }
-    let $db := map:keys($beaconMap)[contains(., 'Korrespondierendes Wikidata-Item')]
-    let $dbpedia-images := $db ! img:dbpedia-images(map:put($model, 'dbpediaID', analyze-string(.,'Q\d+')/fn:match/text()), $lang)
+    let $wikidata-images := img:wikidata-images($model, $lang)
     return 
     map { 
-        'iconographyImages' := $dbpedia-images,
-        'portrait' := ( $dbpedia-images, img:get-generic-portrait($model, $lang) )[1]
+        'iconographyImages' := $wikidata-images,
+        'portrait' := ($wikidata-images, img:get-generic-portrait($model, $lang) )[1]
     }
 };
 
@@ -149,70 +146,26 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
 };
 
 (:~
- : Helper function for grabbing images from a dbpedia rdf 
+ : Helper function for grabbing images from wikidata
  :
  : @author Peter Stadler 
  : @param $model a map with all necessary variables, e.g. docID
  : @param $lang the language variable (de|en)
  :)
-declare %private function img:dbpedia-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $docType := config:get-doctype-by-id($model?docID)
-    let $id := 
-        switch($docType)
-        case 'places' return $model('doc')//tei:idno[@type='geonames']
-        case 'works' return $model?dbpediaID
-        default return ()
-    let $dbpedia-rdf := 
-        if($id) then 
-            switch($docType)
-            case 'places' return wega-util:dbpedia-from-geonames($id)
-            case 'works' return wega-util:grabExternalResource('dbpedia', $id, $docType, $lang)
-            default return ()
-        else ()
-    let $wikiFilenames := 
-        distinct-values((
-            $dbpedia-rdf//dbp:imageCoa/text(), 
-            $dbpedia-rdf//dbp:imageFlag/text(), 
-            $dbpedia-rdf//dbp:imagePlan/text(), 
-            $dbpedia-rdf//dbp:image/text(), 
-            (
-                $dbpedia-rdf//dbo:thumbnail[@rdf:resource] |
-                $dbpedia-rdf//foaf:depiction[@rdf:resource] |
-                $dbpedia-rdf//wd:P18[@rdf:resource]
-            ) ! functx:substring-before-if-contains(substring-after(xmldb:decode(./@rdf:resource), 'Special:FilePath/'), '?')
-        ))[.] (: prevent the empty string :)
-    (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
-    let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || replace(., '\s|%20', '_')), '|'))
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-    let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $wikiApiResponse := 
-        if(count($wikiFilenames) gt 0) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
-        else ()
+declare %private function img:wikidata-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $idno := $model?doc//tei:idno[@type=('gnd', 'viaf', 'geonames')] | $model?doc//mei:altId[@type=('gnd', 'viaf')]
+    let $wikidataResponse := $idno ! wega-util:grab-external-resource-wikidata(., ./@type)
+    
+    let $coa-filename := $wikidataResponse//sr:binding[@name=('wappenbild')] ! img:prep-wikimedia-image-filenames(.) 
+    let $other-filenames := distinct-values($wikidataResponse//sr:binding[@name=('flaggenbild', 'image')]) ! img:prep-wikimedia-image-filenames(.)
+    
+    let $maps := img:wikimedia-api-imageinfo(($coa-filename, $other-filenames), $lang)
     return
-        for $page in $wikiApiResponse//page[not(@missing)]
-        let $caption := $page/data(@title)
-        let $linkTarget := $page//ii/data(@descriptionurl)
-        return 
-            map {
-                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
-                    'linkTarget' := $linkTarget,
-                    'source' := 'Wikimedia',
-                    'url' := function($size) {
-                        let $iiifInfo := wega-util:wikimedia-iiif($page/data(@title))
-                        return
-                            switch($size)
-                            case 'thumb' case 'small' return 
-                                $page//ii/data(@thumburl)
-                            case 'large' return
-                                if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
-                                else $page//ii/data(@url)
-                            default return 
-                                $page//ii/data(@url)
-                    },
-                    'coa' := 'File:' || $dbpedia-rdf//dbp:imageCoa/replace(., '\s', '_') = replace($caption, '\s', '_') (: should return true() for the coat of arms :)
-                }
+        for $i in $maps
+        return
+            if(contains($i?caption, $coa-filename))
+            then map:put($i, 'coa', true()) (: special treatment for coat of arms which will become the main (portrait) image :)
+            else $i
 };
 
 (:~
@@ -277,6 +230,60 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                     }
                 }
             else ()
+};
+
+(:~
+ : Helper function for retrieving image metadata from Wikimedia
+ :
+ : @param $images the image filename(s). Multiple images can be queried at once to reduce calls to the external API
+ : @param $lang the language variable (de|en)
+ : @return a map with the keys 'caption', 'linkTarget', 'source' and 'url' for every image
+ :)
+declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:string) as map(*)* {
+    (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
+    let $endpoint := "https://commons.wikimedia.org/w/api.php"
+    let $defaultParams := "?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize"
+    let $titlesParam := "&amp;titles=" || encode-for-uri(string-join(distinct-values($images ! img:prep-wikimedia-image-filenames(.)), '|'))
+    let $queryURL := xs:anyURI($endpoint || $defaultParams || $titlesParam)
+    
+    let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'wikimediaAPI', util:hash($queryURL, 'md5') || '.xml'))
+    let $wikiApiResponse := 
+        if(count($images) gt 0) 
+        then wega-util:cached-external-request($queryURL, $localFilepath)
+        else ()
+        
+    return
+        for $page in $wikiApiResponse//page[not(@missing)]
+        let $caption := $page/data(@title)
+        let $linkTarget := $page//ii/data(@descriptionurl)
+        return 
+            map {
+                'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                'linkTarget' := $linkTarget,
+                'source' := 'Wikimedia',
+                'url' := function($size) {
+                    let $iiifInfo := wega-util:wikimedia-iiif($page/data(@title))
+                    return
+                        switch($size)
+                        case 'thumb' case 'small' return 
+                            $page//ii/data(@thumburl)
+                        case 'large' return
+                            if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
+                            else $page//ii/data(@url)
+                        default return 
+                            $page//ii/data(@url)
+                }
+            }
+    
+};
+
+(:~
+ : Helper function for preparing wikimedia image filenames to work with the wikimedia API
+ :)
+declare %private function img:prep-wikimedia-image-filenames($img as xs:string) as xs:string? {
+    if(contains($img, 'Special:FilePath/')) then img:prep-wikimedia-image-filenames(replace($img, '.*Special:FilePath/', 'File:'))
+    else if(contains($img, '?')) then img:prep-wikimedia-image-filenames(substring-before($img, '?'))
+    else normalize-space(xmldb:decode-uri($img))
 };
 
 (:~

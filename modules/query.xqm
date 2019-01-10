@@ -123,9 +123,9 @@ declare function query:get-gnd($item as item()?) as xs:string? {
             case document-node() return $item
             default return ()
     return
-        (: there might be several gnd IDs in organizations :)
+        (: there might be several gnd IDs :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc//tei:idno[@type='geonames']) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc//tei:idno[@type='geonames']) then wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'gnd')[1]
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -495,23 +495,6 @@ declare function query:placeName-elements($parent-nodes as node()*) as node()* {
 ~:)
 declare function query:relators($doc as document-node()?) as element()* {
     $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role][not(@role='dte')] | query:get-author-element($doc)
-};
-
-declare function query:context-correspSearch($doc as document-node()?) as map()? {
-    let $dateOfDoc := query:get-normalized-date($doc)
-    let $senderGND := query:get-gnd(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key)
-    let $startDate := $dateOfDoc - xs:dayTimeDuration('P14D')
-    let $endDate := $dateOfDoc + xs:dayTimeDuration('P14D')
-    let $uri := 'http://correspSearch.bbaw.de/api/v1.1/tei-xml.xql?correspondent=http://d-nb.info/gnd/' || $senderGND || '&amp;startdate=' || $startDate || '&amp;enddate=' || $endDate 
-    let $correspSearchResponse := 
-        if(exists($dateOfDoc) and $senderGND) then wega-util:grab-external-xml-document(xs:anyURI($uri))
-        else ()
-    return
-        if ($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]) then
-            map {
-                'context-correspSearch': $correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]
-            }
-        else ()
 };
 
 (:~

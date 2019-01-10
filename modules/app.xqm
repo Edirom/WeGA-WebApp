@@ -703,7 +703,7 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := if (exists(query:get-gnd($model('doc')))) then query:get-gnd($model('doc')) else if ($geonames-id) then wega-util:geonames2gnd($geonames-id) else ()
+    let $gnd := query:get-gnd($model('doc'))
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
@@ -1408,8 +1408,7 @@ declare
             switch($model?docType)
             case 'letters' return map:new((
                 query:context-relatedItems($model?doc), 
-                query:correspContext($model?doc),
-                query:context-correspSearch($model?doc)
+                query:correspContext($model?doc)
             ))
             default return query:context-relatedItems($model?doc)
         return
