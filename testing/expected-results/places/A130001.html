@@ -44,8 +44,6 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        
-        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
         
         <script type="application/ld+json">{"name":"Detmold","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A130001","@context":"http://schema.org","@type":"Place","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A130001"}</script>
@@ -276,11 +274,11 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="no portrait available" alt="no portrait available" src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_places_gross.png" />
+                            <img class="img-responsive" title="File:COA Detmold.svg (Quelle: Wikimedia)" alt="File:COA Detmold.svg (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/COA_Detmold.svg/340px-COA_Detmold.svg.png" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
-                            <p></p>
+                            <p>Wikimedia<br /><a href="https://commons.wikimedia.org/wiki/File:COA_Detmold.svg">https://commons.wikimedia.org/wiki/File:COA_Detmold.svg</a></p>
                         </div>
                     </div>
                 </div>
@@ -323,7 +321,12 @@
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
                     <h2>Ikonographie</h2>
-                    
+                    <div class="iconographythumbnail">
+                        <a href="https://commons.wikimedia.org/wiki/File:COA_Detmold.svg"><img title="File:COA Detmold.svg (Quelle: Wikimedia)" alt="File:COA Detmold.svg (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/COA_Detmold.svg/41px-COA_Detmold.svg.png" /></a>
+                    </div>
+                        <div class="iconographythumbnail">
+                        <a href="https://commons.wikimedia.org/wiki/File:Residenzschloss_Detmold01.jpg"><img title="File:Residenzschloss Detmold01.jpg (Quelle: Wikimedia)" alt="File:Residenzschloss Detmold01.jpg (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Residenzschloss_Detmold01.jpg/69px-Residenzschloss_Detmold01.jpg" /></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -359,13 +362,13 @@
                                                         <a data-toggle="tab" href="#geonames">GeoNames</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a class="deactivated"></a>
+                                                        <a data-toggle="tab" href="#wikipediaText" data-tab-url="/exist/apps/WeGA-WebApp/de/A130001/wikipedia.html">Wikipedia Artikel</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a class="deactivated"></a>
+                                                        <a data-toggle="tab" href="#gndText" data-tab-url="/exist/apps/WeGA-WebApp/de/A130001/dnb.html">GND Eintrag</a>
                                                     </li>
                                                     <li class="gradient-light">
-                                                        <a class="deactivated"></a>
+                                                        <a data-toggle="tab" href="#gnd-beacon">GND Beacon Links</a>
                                                     </li>
                                                     <li class="gradient-light">
                                                         <a data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A130001/xml.html">XML-Vorschau</a>
@@ -397,7 +400,31 @@
                                                 </div>
                                                 <div class="tab-pane fade" id="gnd-beacon">
                                                     <h2>Beacon Links</h2>
-                                                    <ul></ul>
+                                                    <ul>
+                                                            <li><a title="Mapping GND zu den Autorités der Bibliothèque nationale de France (BNF). Source: Wikidata property P268 &lt; https://www.wikidata.org/wiki/property:P268 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_bnf/4011555-0">Bibliothèque nationale de France (BNF)</a></li>
+                                                            <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [125099855]" href="http://catalogue.bnf.fr/ark:/12148/cb125099855">BNF [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Aus der Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_eb/4011555-0">Encyclopædia Britannica</a></li>
+                                                            <li><a title="FAST (Faceted Application of Subject Terminology) (mapping provided by VIAF) [fst01210542]" href="http://id.worldcat.org/fast/fst01210542">Faceted Application of Subject Terminology (FAST) [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Mapping from GND ID IDs to Freebase ID IDs [Q3922]" href="https://g.co/kg/m/01jf1m">Freebase ID</a></li>
+                                                            <li><a title="GeoNames (mapping provided by VIAF) [6547480]" href="http://www.geonames.org/6547480">GeoNames [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Mapping GND zur GeoNames. Source: Wikidata property P1566 &lt; https://www.wikidata.org/wiki/property:P1566 &gt; [2937936]" href="http://www.geonames.org/2937936">GeoNames [Detmold]</a></li>
+                                                            <li><a title="Körperschaften der Formalerschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4011555-0">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Sacherschliessungen mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)4011555-0">HBZ-Verbundkatalog (6)</a></li>
+                                                            <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n80139705]" href="http://lccn.loc.gov/n80139705">LoC [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Mapping GND zu NKC (Tschechien). Source: Wikidata property P691 &lt; https://www.wikidata.org/wiki/property:P691 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_nkc/4011555-0">Národní autority ČR (NKC)</a></li>
+                                                            <li><a title="This is an automatically generated BEACON file for all contributors of works catalogued in the Northrhine-Westphalian Bibliography." href="http://lobid.org/nwbib/search?subject=4011555-0">Nordrhein-Westfälische Bibliographie (NWBib) (389)</a></li>
+                                                            <li><a title="Mapping GND zur offiziellen Website. Source: Wikidata property P856 &lt; https://www.wikidata.org/wiki/property:P856 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_website/4011555-0">Official Website</a></li>
+                                                            <li><a title="Mapping GND zu Open Street Map (OSM) relation. Source: Wikidata property P402 &lt; https://www.wikidata.org/wiki/property:P402 &gt;" href="http://beacon.findbuch.de/gnd-resolver/wd_osm/4011555-0">OpenStreetMap (2)</a></li>
+                                                            <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [074131982]" href="http://www.idref.fr/074131982">SUDOC [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Sacherschliessungen (ohne Personen und Körperschaften) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50&amp;TRM=4011555-0">SWB-Verbundkatalog</a></li>
+                                                            <li><a title="Körperschaften der Formal- und Sacherschliessung mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50&amp;TRM=4011555-0">SWB-Verbundkatalog</a></li>
+                                                            <li><a title="Korrespondierendes Wikidata-Item (www.wikidata.org) [Q3922]" href="https://tools.wmflabs.org/reasonator/?q=Q3922">Wikidata</a></li>
+                                                            <li><a title="Wikidata (mapping provided by VIAF) [Q31951454]" href="https://www.wikidata.org/wiki/Q31951454">Wikidata [by http://viaf.org/viaf/125492708]</a></li>
+                                                            <li><a title="Wikimedia Commons" href="https://tools.wmflabs.org/persondata/redirect/gnd/commons/4011555-0">Wikimedia Commons</a></li>
+                                                            <li><a title="Wikipedia-Personenartikel" href="https://tools.wmflabs.org/persondata/redirect/gnd/de/4011555-0">Wikipedia-Artikel</a></li>
+                                                            <li><a title="Wikisource" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws/4011555-0">Wikisource-Autorenseite</a></li>
+                                                            <li><a title="Mapping from GND ID IDs to WOEID IDs [Q3922]" href="https://www.flickr.com/places/info/644266">WOEID</a></li>
+                                                        </ul>
                                                 </div>
                                                 <div class="tab-pane fade" id="XMLPreview">
                                                     <h2>XML</h2>
