@@ -14,6 +14,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
@@ -158,7 +159,7 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
  : @return the main name as given in the GeoNames RDF as gn:name 
 :)
 declare function query:get-geonames-name($gn-id as xs:string) as xs:string? {
-    wega-util:grabExternalResource('geonames', $gn-id, '', ())//gn:name
+    er:grabExternalResource('geonames', $gn-id, '', ())//gn:name
 };
 
 

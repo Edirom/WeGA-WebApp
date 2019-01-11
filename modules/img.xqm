@@ -29,6 +29,7 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace functx="http://www.functx.com";
@@ -154,7 +155,7 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
  :)
 declare %private function img:wikidata-images($model as map(*), $lang as xs:string) as map(*)* {
     let $idno := $model?doc//tei:idno[@type=('gnd', 'viaf', 'geonames')] | $model?doc//mei:altId[@type=('gnd', 'viaf')]
-    let $wikidataResponse := $idno ! wega-util:grab-external-resource-wikidata(., ./@type)
+    let $wikidataResponse := $idno ! er:grab-external-resource-wikidata(., ./@type)
     
     let $coa-filename := $wikidataResponse//sr:binding[@name=('wappenbild')] ! img:prep-wikimedia-image-filenames(.) 
     let $other-filenames := distinct-values($wikidataResponse//sr:binding[@name=('flaggenbild', 'image')]) ! img:prep-wikimedia-image-filenames(.)
@@ -179,7 +180,7 @@ declare %private function img:wikidata-images($model as map(*), $lang as xs:stri
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $wikiArticle := 
-        if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
@@ -215,7 +216,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                         switch($size)
                         case 'thumb' case 'small' return $thumbURI
                         case 'large' return 
-                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := er:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try {
                                  if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
@@ -223,7 +224,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                               }
                               catch * { $thumbURI }
                         default return 
-                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := er:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
                               catch * { $thumbURI }
@@ -249,7 +250,7 @@ declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:
     let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'wikimediaAPI', util:hash($queryURL, 'md5') || '.xml'))
     let $wikiApiResponse := 
         if(count($images) gt 0) 
-        then wega-util:cached-external-request($queryURL, $localFilepath)
+        then er:cached-external-request($queryURL, $localFilepath)
         else ()
         
     return
@@ -262,7 +263,7 @@ declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:
                 'linkTarget' := $linkTarget,
                 'source' := 'Wikimedia',
                 'url' := function($size) {
-                    let $iiifInfo := wega-util:wikimedia-iiif($page/data(@title))
+                    let $iiifInfo := er:wikimedia-iiif($page/data(@title))
                     return
                         switch($size)
                         case 'thumb' case 'small' return 
@@ -297,7 +298,7 @@ declare %private function img:prep-wikimedia-image-filenames($img as xs:string) 
 declare %private function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:portraitindex-images(): no images found for GND ' || $gnd) else ()
@@ -328,7 +329,7 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
 declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:tripota-images(): no images found for GND ' || $gnd) else ()
@@ -359,7 +360,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
 declare %private function img:munich-stadtmuseum-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:munich-stadtmuseum-images(): no images found for GND ' || $gnd) else ()
@@ -555,7 +556,7 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
         else 'page' || count($graphic/preceding::tei:graphic) + 1
     let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
-    let $image-info :=  parse-json(util:base64-decode(wega-util:http-get(xs:anyURI($image-id))//*:response))
+    let $image-info :=  parse-json(util:base64-decode(er:http-get(xs:anyURI($image-id))//*:response)) (: why is this not cached? :)
     return 
         map:new((
             map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),

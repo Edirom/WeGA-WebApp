@@ -23,6 +23,7 @@ import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/sea
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -707,7 +708,7 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
-    let $gn-doc := wega-util:grabExternalResource('geonames', $geonames-id, '', ())
+    let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
             'gnd' := $gnd,
@@ -1009,7 +1010,7 @@ declare
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        let $wikiContent := er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
@@ -1074,7 +1075,7 @@ declare
     %templates:wrap
     function app:deutsche-biographie($node as node(), $model as map(*)) as map(*) {
         map {
-            'adbndbContent' := wega-util:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
+            'adbndbContent' := er:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
         }
 };
 
@@ -1101,9 +1102,9 @@ declare
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
-        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $dnbContent := er:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
+        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
                 'docType' := config:get-doctype-by-id($model?docID),
