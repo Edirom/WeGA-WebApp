@@ -1195,7 +1195,7 @@ declare
                 'externalIIIFManifestFacsimiles' := $facs[@sameAs],
                 'hasCreation' := exists($model?doc//tei:creation),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
+                'thematicCommentaries' := distinct-values($model('doc')//tei:note[@type='thematicCom']/@target),
                 'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
             }
 };
