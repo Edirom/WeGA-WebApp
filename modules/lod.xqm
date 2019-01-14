@@ -77,7 +77,10 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
         '@type': $schema.org-type,
         '@context': 'http://schema.org',
         'url': $url,
-        'name': lod:page-title($model, $lang)
+        'name': 
+            if($schema.org-type = ('Person', 'Organization', 'Place')) then wdt:lookup(config:get-doctype-by-id($model?docID), $model?doc)('title')('txt')
+            else lod:page-title($model, $lang),
+        'description': lod:DC.description($model, $lang)
     }
     let $publisher := map {
         'name':'Carl-Maria-von-Weber-Gesamtausgabe',
@@ -89,28 +92,34 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
         'url':'http://adwmainz.de',
         '@type':'Organization'
     }
-    let $author := function($elem as element()) {
+    let $mentions := () 
+        (: too expensive with present implementation! :)
+        (:array {
+            distinct-values(($model?doc//tei:text//tei:*[@key] | $model?doc/tei:ab//tei:*[@key])/@key) ! lod:jsonld-entity(<tei:rs key="{.}"/>, $lang)
+        }:)
+    let $image := 
+        if($model?docID = 'home') then core:permalink('resources/img/logo_weber.png')
+        else ()
+    return
         map:merge((
-            map {
-                'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
-                '@type': if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization' else 'Person'
-            },
-            if($elem/@key) then map {
-                '@id': core:permalink($elem/@key),
-                'url': core:permalink($lang || '/' || $elem/@key)
-            }
+            $jsonld-common, (: always included :)
+            
+            if($image) then map { 'image': $image } else (), (: include image if available :)
+            
+            if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
+                $jsonld-common,
+                map {'funder': $funder},
+                map {'publisher': $publisher},
+                map {'license': query:licence($model?doc)},
+                map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! lod:jsonld-entity(., $lang) }},
+                if(count($mentions) gt 0) then map {'mentions': $mentions} else ()
+            )) 
+            else if($schema.org-type = ('Person', 'Organization', 'Place')) then 
+                if(query:get-gnd($model?doc)) then 
+                    map {'sameAs': config:get-option('dnb') || query:get-gnd($model?doc) }
+                else ()
             else ()
         ))
-    }
-    return
-        if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
-            $jsonld-common,
-            map {'funder': $funder},
-            map {'publisher': $publisher},
-            map {'license': query:licence($model?doc)},
-            map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! $author(.) }}
-        )) 
-        else $jsonld-common
 };
 
 (:~
@@ -125,6 +134,36 @@ declare %private function lod:schema.org-type($model as map(*)) as xs:string {
     case 'addenda' case 'thematicCommentary' return 'Article'
     default return 'CreativeWork'
 };
+
+(:~
+ : Helper function for outputting entity information
+ :)
+declare %private function lod:jsonld-entity($elem as element(), $lang as xs:string) as map(*)* {
+    typeswitch($elem)
+    case element(tei:rs) return tokenize(normalize-space($elem/@key), '\s') ! lod:jsonld-entity(<tei:name key="{.}"/>, $lang) 
+    default return
+        map:merge((
+            map {
+                'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
+                '@type': 
+                    if($elem/@key) then lod:schema.org-type(map { 'docID': $elem/@key })
+                    else if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization'
+                    else if($elem/self::tei:persName or $elem/self::tei:author or $elem/self::tei:rs[@type='person']) then 'Person'
+                    else if($elem/self::tei:settlement or $elem/self::tei:placeName or $elem/self::tei:region or $elem/self::tei:country or $elem/self::tei:rs[@type='place']) then 'Place'
+                    else core:logToFile('debug',  'Failed to infer schema.org type for ' || serialize($elem))
+            },
+            if($elem/@key) then map {
+                '@id': core:permalink($elem/@key),
+                'url': core:permalink($lang || '/' || $elem/@key)
+            }
+            else (),
+            if(query:get-gnd($elem/@key)) then map {
+                'sameAs': config:get-option('dnb') || query:get-gnd($elem/@key)
+            }
+            else ()
+        ))
+};
+
 
 (:~
  : Helper function for creating the page description
