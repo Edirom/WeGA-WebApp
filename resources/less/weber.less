@@ -759,15 +759,6 @@ padding: 20px 25px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-
-// Select
-
-.allFilter {
-    .bootstrap-select, .btn, .btn-group  {
-        width: 100%!important;
-    }
-}
-
 // Filter
 
 /*.panel 
@@ -891,14 +882,24 @@ padding: 20px 25px;
     background:@brand-primary!important; 
 }
 
-.allFilter
-{
-    margin-bottom: 30px;
-}
 
-.allFilter h4
-{
-    margin: 8px 0 4px 0;
+// allFilter sidebar
+
+.allFilter {
+    margin-bottom: 30px;
+    
+    h4 {
+        margin: 8px 0 4px 0;
+    }
+    
+    .bootstrap-select, .btn, .btn-group  {
+        width: 100%!important;
+    }
+    
+    label.btn {
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
 }
 
 
