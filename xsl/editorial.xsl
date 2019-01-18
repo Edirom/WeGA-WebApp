@@ -82,10 +82,9 @@
             </xsl:if>
             <xsl:if test="$node/tei:repository != ''">
                 <xsl:value-of select="$node/tei:repository"/>
-                <xsl:text> </xsl:text>
             </xsl:if>
             <xsl:if test="$node/tei:repository/@n">
-                <xsl:text>(</xsl:text>
+                <xsl:text> (</xsl:text>
                 <xsl:value-of select="$node/tei:repository/@n"/>
                 <xsl:text>)</xsl:text>
             </xsl:if>
