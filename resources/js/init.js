@@ -19,6 +19,17 @@ $.fn.extend({
     }
 });
 
+
+$.fn.prettyselect = function () 
+{
+    $(this).each( function(a, b) {
+        $(b).selectize({        
+            inputClass: 'form-control input selectize-input', 
+            dropdownParent: "body"
+            })
+    });
+}
+
 /* A wrapper function for creating select boxes */
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
@@ -630,6 +641,10 @@ $('.jubilee, .jul').tooltip();
 
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
+
+
+
+$('.prettyselect').prettyselect();
 
 /* Initialise range slider for index pages */
 $('.allFilter:visible .rangeSlider').rangeSlider();
